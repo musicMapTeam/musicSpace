@@ -58,33 +58,9 @@ html[data-theme="sakura"] .live-ticket { border: 1px solid #69805c3b; background
 html[data-theme="sakura"] .live-ticket-mast { border-color: var(--sk-green); }
 html[data-theme="sakura"] .live-ticket-mast > b { background: var(--sk-pink); color: var(--sk-rose); }
 html[data-theme="sakura"] .live-ticket-title i { color: var(--sk-rose); }
-html[data-theme="sakura"] :is(.sp-dialog, .live-dialog, .map-dialog) { background: var(--sk-paper); color: var(--sk-ink); border: 1px solid #6b7b5a54; border-radius: 14px; box-shadow: 0 22px 90px #33483435; }
-html[data-theme="sakura"] :is(.sp-dialog, .live-dialog, .map-dialog)::backdrop { background: #2f443c66; backdrop-filter: blur(6px); }
+html[data-theme="sakura"] :is(.sp-dialog, .live-dialog) { background: var(--sk-paper); color: var(--sk-ink); border: 1px solid #6b7b5a54; border-radius: 14px; box-shadow: 0 22px 90px #33483435; }
+html[data-theme="sakura"] :is(.sp-dialog, .live-dialog)::backdrop { background: #2f443c66; backdrop-filter: blur(6px); }
 html[data-theme="sakura"] :is(.sp-editor__submit, .live-editor-save) { background: #f3efdf; border-color: var(--sk-line); box-shadow: 0 -8px 22px #61724710; }
-
-/* The map becomes a printed neighbourhood plan, with record-shaped landmarks. */
-html[data-theme="sakura"] .map-workspace { background: #faf6e9; border: 1px solid #78856c47; border-radius: 15px; box-shadow: 4px 6px 0 #9baa8619; }
-html[data-theme="sakura"] .map-stage-column { background: repeating-linear-gradient(0deg, #48664a06 0 1px, transparent 1px 28px), repeating-linear-gradient(90deg, #48664a06 0 1px, transparent 1px 28px); }
-html[data-theme="sakura"] .map-optical-field { opacity: .14; color: #74886b; }
-html[data-theme="sakura"] .map-artist-panel { background: #eef0e2; border-color: #7f8d7240; }
-html[data-theme="sakura"] .map-node__disc { border-color: #759577; background: #e7eadc; box-shadow: inset 0 0 0 7px #fffaf043, 0 5px 0 #647d5020; }
-html[data-theme="sakura"] .map-node__disc::before,
-html[data-theme="sakura"] .map-node__disc::after { border-color: #69876448; }
-html[data-theme="sakura"] .map-node__disc i { border-color: #517052; background: #78957a; box-shadow: none; }
-html[data-theme="sakura"] .map-node:hover .map-node__disc { border-color: #355a42; box-shadow: 0 5px 0 #647d5040; }
-html[data-theme="sakura"] .map-node--orbit::before { background: #f7f3e6; border: 1px solid #72886632; border-radius: 8px 16px 8px 16px; box-shadow: none; filter: none; }
-html[data-theme="sakura"] .map-node--orbit .map-node__disc,
-html[data-theme="sakura"] .map-node--orbit:hover .map-node__disc { background: #dce6d2; border-color: #527453; box-shadow: none; }
-html[data-theme="sakura"] .map-node--center { background: #efd0cd; box-shadow: 0 0 0 9px #eecbce4d, 0 0 0 18px #eecbce26; }
-html[data-theme="sakura"] .map-node--center .map-node__disc { background: #edd3cf; border-color: #b0777f; box-shadow: inset 0 0 0 7px #fff3e95c; }
-html[data-theme="sakura"] .map-node--center .map-node__disc::before,
-html[data-theme="sakura"] .map-node--center .map-node__disc::after { border-color: #9c667540; }
-html[data-theme="sakura"] :is(.map-node__name, .map-node--center .map-node__name) { color: #304c3d; }
-html[data-theme="sakura"] :is(.map-node__tag, .map-node__hint, .map-node--center .map-node__tag) { color: #64715b; }
-html[data-theme="sakura"] .map-discovery { background: #edf0df; border-color: #708965; border-radius: 0 9px 9px 0; }
-html[data-theme="sakura"] .map-discovery--first { background: #f6e7e2; border-color: #b17c86; }
-html[data-theme="sakura"] .map-discovery--first .map-discovery__label { color: #935464; }
-html[data-theme="sakura"] .map-catalogue__switch button.is-active { border-color: var(--sk-rose); }
 
 /* Live retains invitation and consent surfaces, in soft daylight. */
 html[data-theme="sakura"] .live-entry-art { border-radius: 18px 18px 5px 5px; background: #dce7d4; color: var(--sk-green); border: 1px solid #69806429; }

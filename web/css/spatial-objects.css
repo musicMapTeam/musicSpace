@@ -11,35 +11,28 @@ html[data-theme='sakura'] :is(.home-paper,.live-room-ticket,.live-room-tray) {
   border:1px solid #e1dbc7; border-radius:3px; background:var(--object-paper);
   box-shadow:var(--object-shadow); color:var(--text);
 }
-html[data-theme='sakura'] :is(.home-paper,.live-room-ticket,.live-room-tray,.collection-page,.live-dialog,.sp-dialog,.library-dialog,.map-dialog,.about-dialog,.memory-export) .button {
+html[data-theme='sakura'] :is(.home-paper,.live-room-ticket,.live-room-tray,.collection-page,.live-dialog,.sp-dialog,.library-dialog,.about-dialog,.memory-export) .button {
   border-radius:3px; letter-spacing:.025em;
 }
-html[data-theme='sakura'] :is(.live-dialog,.sp-dialog,.library-dialog,.map-dialog,.about-dialog,.memory-export) {
+html[data-theme='sakura'] :is(.live-dialog,.sp-dialog,.library-dialog,.about-dialog,.memory-export) {
   border:1px solid #ddd5bd; border-radius:3px; background:var(--object-paper);
   box-shadow:var(--object-shadow),inset 6px 0 #e8e0ca,inset 7px 0 #d7cfb8;
   color:var(--text); pointer-events:auto;
 }
-html[data-theme='sakura'] :is(.live-dialog,.sp-dialog,.library-dialog,.map-dialog,.about-dialog,.memory-export)::backdrop {
+html[data-theme='sakura'] :is(.live-dialog,.sp-dialog,.library-dialog,.about-dialog,.memory-export)::backdrop {
   background:#354c3e28; backdrop-filter:none;
 }
 /* Nested legacy studio selectors include their host; the open paper owns its finish. */
-html[data-theme='sakura'] body dialog[open]:is(.live-dialog,.sp-dialog,.library-dialog,.map-dialog,.about-dialog,.memory-export) {
+html[data-theme='sakura'] body dialog[open]:is(.live-dialog,.sp-dialog,.library-dialog,.about-dialog,.memory-export) {
   border:1px solid #ddd5bd; border-radius:3px; background:var(--object-paper);
   box-shadow:var(--object-shadow),inset 6px 0 #e8e0ca,inset 7px 0 #d7cfb8;
   color:var(--text); pointer-events:auto;
 }
-html[data-theme='sakura'] body dialog.map-dialog[open] { padding:0; }
-html[data-theme='sakura'] body dialog.map-dialog[open] .map-dialog__top {
-  height:57px; padding:12px 20px 4px 28px; background:var(--object-paper);
-}
-html[data-theme='sakura'] body dialog.map-dialog[open] .map-dialog__content { padding:0 27px 26px 32px; }
-html[data-theme='sakura'] body dialog.map-dialog[open] h2 { font-family:'Songti SC','SimSun',serif; font-weight:500; letter-spacing:.035em; }
-html[data-theme='sakura'] body dialog.map-dialog[open] :is(.button,.icon-button,.map-track) { border-radius:2px; }
-html[data-theme='sakura'] :is(.live-dialog,.library-dialog,.map-dialog) { padding:25px 27px 23px 32px; }
-html[data-theme='sakura'] :is(.live-dialog,.library-dialog,.sp-dialog,.map-dialog) .icon-button {
+html[data-theme='sakura'] :is(.live-dialog,.library-dialog) { padding:25px 27px 23px 32px; }
+html[data-theme='sakura'] :is(.live-dialog,.library-dialog,.sp-dialog) .icon-button {
   border-radius:2px; background:#e7e8d9; border:1px solid #77866c26;
 }
-html[data-theme='sakura'] :is(.live-dialog,.library-dialog,.sp-dialog,.map-dialog) :is(input:not([type='checkbox']):not([type='radio']),textarea) {
+html[data-theme='sakura'] :is(.live-dialog,.library-dialog,.sp-dialog) :is(input:not([type='checkbox']):not([type='radio']),textarea) {
   border-radius:2px; background:#f9f1dd; border-color:#a0a18870;
 }
 html[data-theme='sakura'] :is(.live-dialog,.sp-dialog) :is(h2,#live-dialog-title),
@@ -261,11 +254,8 @@ html[data-theme='sakura'] body.spatial-fallback #live-surface[data-live-state='e
   html[data-theme='sakura'] .live-room-tray .live-request-row .button { width:auto; margin:0; }
   html[data-theme='sakura'] #live-surface[data-live-state='entry'] { right:0; left:0; width:auto; max-height:63dvh; padding:19px 22px 17px; }
   html[data-theme='sakura'] #live-surface[data-live-state='entry'] .live-entry-copy h1 { font-size:23px; }
-  html[data-theme='sakura'] :is(.live-dialog,.sp-dialog,.library-dialog,.map-dialog) { inset:auto 16px 94px; width:auto; max-width:none; max-height:76dvh; padding:22px 21px 20px 26px; border-radius:2px; }
-  html[data-theme='sakura'] body dialog[open]:is(.live-dialog,.sp-dialog,.library-dialog,.map-dialog) { border-radius:2px; }
-  html[data-theme='sakura'] body dialog.map-dialog[open] { padding:0; }
-  html[data-theme='sakura'] body dialog.map-dialog[open] .map-dialog__top { height:52px; padding:9px 17px 4px 25px; }
-  html[data-theme='sakura'] body dialog.map-dialog[open] .map-dialog__content { padding:0 20px 23px 26px; }
+  html[data-theme='sakura'] :is(.live-dialog,.sp-dialog,.library-dialog) { inset:auto 16px 94px; width:auto; max-width:none; max-height:76dvh; padding:22px 21px 20px 26px; border-radius:2px; }
+  html[data-theme='sakura'] body dialog[open]:is(.live-dialog,.sp-dialog,.library-dialog) { border-radius:2px; }
   html[data-theme='sakura'] .live-dialog.live-dialog--compose { --compose-max-height:76dvh; }
   html[data-theme='sakura'] .live-dialog.live-dialog--event { --event-max-height:70dvh; }
   html[data-theme='sakura'] :is(.live-dialog--compose,.live-dialog--event) #live-dialog-content { padding:20px 21px 19px 27px; }

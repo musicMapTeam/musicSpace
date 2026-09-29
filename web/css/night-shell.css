@@ -202,10 +202,10 @@ html[data-theme='sakura'] body:not(.spatial-fallback) .main-content {
   box-shadow:var(--paper-shadow-night),inset 0 0 0 1px #62725a0a;
 }
 html[data-theme='sakura'] body:not(.spatial-fallback) :is(.live-room-ticket,.live-room-tray) { box-shadow:var(--paper-shadow-night); border-color:#ece3cc; }
-html[data-theme='sakura'] body dialog[open]:is(.live-dialog,.sp-dialog,.library-dialog,.map-dialog,.about-dialog,.memory-export) {
+html[data-theme='sakura'] body dialog[open]:is(.live-dialog,.sp-dialog,.library-dialog,.about-dialog,.memory-export) {
   box-shadow:var(--paper-shadow-night),inset 6px 0 #e8e0ca,inset 7px 0 #d7cfb8;
 }
-html[data-theme='sakura'] body :is(.live-dialog,.sp-dialog,.library-dialog,.map-dialog,.about-dialog,.memory-export)::backdrop { background:#0a0d241f; backdrop-filter:none; }
+html[data-theme='sakura'] body :is(.live-dialog,.sp-dialog,.library-dialog,.about-dialog,.memory-export)::backdrop { background:#0a0d241f; backdrop-filter:none; }
 html[data-theme='sakura'] body:not(.spatial-fallback) .space-studio__sample { background:#fffcf3f0; font-size:12px; min-height:32px; }
 html[data-theme='sakura'] body:not(.spatial-fallback) .space-studio__actions { background:#fffcf3f5; box-shadow:var(--paper-shadow-night-soft); }
 

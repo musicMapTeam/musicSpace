@@ -31,9 +31,6 @@ html { scrollbar-width:thin; scrollbar-color:var(--line) transparent; }
   .space-page--demo .sp-exchange-notice { padding-block:10px; }
   .space-page--demo .sp-demo-footer { margin-top:14px; padding-top:4px; }
 }
-@media (min-width:961px) {
-  .map-experience.map-experience--compact .map-stage { height:clamp(360px,calc(100dvh - 460px),430px); }
-}
 
 
 /* Room entry and working views retain only the next useful action. */

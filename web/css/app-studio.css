@@ -33,7 +33,7 @@ html[data-theme] .button--primary { background:var(--button-fill); color:var(--b
 html[data-theme] .button:hover:not(:disabled) { transform:translateY(-1px); }
 html[data-theme] .button:active:not(:disabled) { transform:translateY(1px); }
 html[data-theme] .icon-button { border-radius:50%; }
-html[data-theme] :is(.about-dialog,.live-dialog,.sp-dialog,.map-dialog) { border-radius:var(--studio-radius); border:1px solid var(--studio-border); box-shadow:0 30px 110px #0005; }
+html[data-theme] :is(.about-dialog,.live-dialog,.sp-dialog) { border-radius:var(--studio-radius); border:1px solid var(--studio-border); box-shadow:0 30px 110px #0005; }
 html[data-theme] dialog::backdrop { background:#0e151c88; backdrop-filter:blur(8px); }
 html[data-theme] .about-dialog { background:var(--studio-panel); }
 html[data-theme] .about-dialog h2 { font-size:23px; letter-spacing:-.04em; margin:0; }
@@ -76,28 +76,7 @@ html[data-theme] .sp-memory__type { font-size:12px; color:var(--muted); }
 html[data-theme] .sp-memory__body h3 { margin:7px 0 12px; padding:0; font-size:14px; font-weight:550; line-height:1.6; }
 html[data-theme] .sp-memory__body>div { border:0; padding:0; font-size:12px; }
 html[data-theme] .sp-memory__delete { width:30px; height:30px; min-width:30px; min-height:30px; top:16px; right:16px; }
-html[data-theme] .records-page :is(.sp-local-note,.map-storage-note) { margin-top:14px; color:var(--muted); font-size:12px; }
-html[data-theme] .map-records { margin:24px 0 0; }
-html[data-theme] .map-records-heading { margin-bottom:18px; }
-html[data-theme] .map-records .map-records-heading h2 { font-size:15px; font-weight:550; }
-html[data-theme] .map-records-heading>span { font-size:12px; }
-/* Two routes side by side only where each card keeps a readable line; the collection sheet is one column. */
-html[data-theme] .map-record-list { grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr)); gap:16px; }
-/* Sleeve on the left; the words take the rest of the row and the actions sit under them, so no line is squeezed beside the buttons. */
-html[data-theme] .map-records .map-record { display:grid; grid-template-columns:52px minmax(0,1fr); grid-template-areas:'disc copy' 'disc actions'; align-items:start; border:0; border-radius:18px; background:var(--studio-panel); box-shadow:var(--studio-soft-shadow); gap:8px 16px; padding:16px; }
-html[data-theme] .map-records .map-record__disc { grid-area:disc; }
-/* Lines break at the spaced separators, never inside a name, a count or the date. */
-html[data-theme] .map-records .map-record__copy { grid-area:copy; word-break:keep-all; overflow-wrap:anywhere; }
-html[data-theme] .map-records .map-record__actions { grid-area:actions; flex-wrap:wrap; margin-left:0; }
-html[data-theme] .map-records .map-record__actions .button { white-space:nowrap; }
-html[data-theme] .map-record__disc { width:52px; height:52px; }
-html[data-theme] .map-record__disc span { width:25px; height:25px; font-size:12px; }
-html[data-theme] .map-record h3 { margin:5px 0; font-size:15px; }
-html[data-theme] .map-record__meta { font-size:12px; }
-html[data-theme] .map-record p { font-size:12px; }
-html[data-theme] .map-record__actions { margin-left:auto; gap:3px; }
-html[data-theme] .map-record__actions .button { font-size:12px; padding:7px; min-height:34px; }
-html[data-theme] .map-record__actions .icon-button { width:30px; height:30px; min-width:30px; min-height:30px; border:0; }
+html[data-theme] .records-page .sp-local-note { margin-top:14px; color:var(--muted); font-size:12px; }
 
 /* Shared room: compact card table and invitation sheet. */
 html[data-theme] .live-page { max-width:1160px; color:var(--text); padding:6px 0 24px; }
@@ -229,7 +208,6 @@ html[data-theme] .live-invite-layout { border-radius:17px; }
   html[data-theme] .sp-collection-tools>.button { padding:5px; font-size:12px; }
   html[data-theme] .sp-memory-grid { grid-template-columns:1fr; gap:18px; }
   html[data-theme] .sp-memory__visual { height:180px; }
-  html[data-theme] .map-record-list { grid-template-columns:1fr; }
   html[data-theme] .live-page { padding:0; }
   html[data-theme] .live-entry-head { margin-bottom:15px; }
   html[data-theme] .live-entry-grid { display:block; margin:0; }

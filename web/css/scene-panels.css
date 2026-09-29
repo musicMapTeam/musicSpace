@@ -9,7 +9,7 @@ html[data-theme='sakura'] .home-paper--compact .home-memory-list {
 }
 html[data-theme='sakura'] .home-paper--compact .home-memory:nth-child(n+2) { display:flex; }
 
-/* The venue title stays on the ticket; its catalogue lives behind 本场. */
+/* The venue title stays on the ticket; its details live behind 本场. */
 html[data-theme='sakura'] .live-room-ticket.live-room-ticket--compact {
   z-index:2; width:360px; padding:11px 14px;
 }

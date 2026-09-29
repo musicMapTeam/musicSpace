@@ -1,22 +1,55 @@
 # 项目状态
 
-更新日期：**2026-09-27** · MVP **0.15.0** · 产品文档 **2.6**。
+更新日期：**2026-09-29** · Music Space 起点 MVP **0.15.0**（`3dd102c`），版本号尚未重定 · 产品文档仍为 **2.6**（Map × Space 时期，待改写）。
 
-依据：[产品方案](../product/docs/01-product-plan.md) · [交付计划](../product/docs/02-delivery-plan.md) · [实施规格](../product/docs/03-build-guide.md)。
+2026-09-29 用户决定：Music Map 保持原样，留在 [musicMapTeam/musicMap](https://github.com/musicMapTeam/musicMap)（main `61d0689`，MVP 0.16.0，线上 <https://musicmapteam.github.io/musicMap/>）；交换产品作为独立产品 **Music Space**（暂定名）在新仓库 `musicMapTeam/musicSpace` 继续，从 0.15 起、移除 Map 一半。线上演示按决定做成 GitHub Pages 上的静态单文件 <https://musicmapteam.github.io/musicSpace/>（待部署，尚未上线），真实房间与交换用 Node + SQLite 服务运行。
+
+下面的 Done 各节是 Map × Space 共享项目的历史，原文保留；其中的唱片店、寻声、完整图鉴、开放曲库等属于 Map，不是 Space 的功能。Map 0.16 的记录在 Map 仓库的项目状态里。
+
+依据：[产品方案](../product/docs/01-product-plan.md) · [交付计划](../product/docs/02-delivery-plan.md) · [实施规格](../product/docs/03-build-guide.md)，三者仍按 0.15 的 Map × Space 撰写，待改写；与 [AGENTS.md](../AGENTS.md)、[README](../README.md) 和本文冲突时以后三者为准。
 
 ## Todo
 
+以下都是待办，尚未完成；顺序不代表优先级。
+
 | 任务 | 负责人 | 完成证据 |
 | --- | --- | --- |
-| 部署评审链接 | 团队，待现有托管环境选择 | 外部网络可访问，区分静态演示与完整后端 |
-| 更新比赛视频 | 团队 | 用 0.15 夜场小院、寻声与双联仪式页的完整流程重录；现有视频仍为 0.4（封面已按 0.15 重做） |
+| 确定提交 Music Space 还是 Music Map | 用户与队友（产品负责人 igohomealone216），待商定 | 官网规则：每支队伍限定提交一份作品（[原文](../references/official/2026-09-26/website/page-text.txt)）。决定与日期记入本文与 AGENTS.md，报名材料同步；此前不写成已定，也不替队友表态。Map 仓库 `61d0689` 的项目状态另记有 2026-09-28 用户以 Map 为参赛主线的决定，其细节尚待与产品负责人对齐；本仓库不据此判断提交哪一个 |
+| 创建 `musicMapTeam/musicSpace` 并推送本分支 | 未认领 | 用户 2026-09-29 已要求新开仓库，授权建仓与推送本分支；完成后远端仓库与分支可见，记下远端提交号。PR、合并和其他推送先问用户 |
+| 部署静态演示到 GitHub Pages | 未认领 | <https://musicmapteam.github.io/musicSpace/> 外网可打开，首页为静态版（「体验示例」为主、房间入口隐藏）；该地址与 Map 同源，实际检查两个产品的浏览器存储互不影响；部署前先问用户；不把 Pages 写成支持跨设备交换 |
+| 照片拍摄时间对齐进「同一刻」 | 未认领 | 读取照片拍摄时间，把不同人的卡对齐到同一刻。先定读取与保存哪些元数据，不破坏现有「去掉定位信息」的说明；无拍摄时间的照片有明确回退；用两张真实照片实际操作并记录 |
+| 端侧 AI 视角识别（舞台 / 人海 / 身边 / 细节） | 未认领 | 在设备上识别视角，用来配对互补的照片；目前视角由用户自选，没有模型推理。选定模型并在 `THIRD_PARTY_NOTICES.md` 记录来源、版本、许可与体积；实际配对操作有记录；不上传照片，不虚报准确率 |
+| 「那晚的歌单」与 QQ 音乐链接 | 未认领 | 每条链接核到同一录音的直达页，核不到就不放链接；来源与核对日期留档。原「QQ 音乐同录音直达 / 可选音频」一项的链接部分并入此行，音频仍未安排（现在没有内置音频） |
+| 手机端打磨 | 未认领 | 逐屏检查首页、示例、制卡、双联页与收藏：正文不小于 14px、辅助文字不小于 12px、点击目标不小于 44px。有真机就记机型与系统，没有就写明“模拟视口”，未验证项如实记 |
+| 按 Space 改写其余文档，重做介绍、封面与视频 | 未认领 | 改写 `product/docs/` 三份产品文档、`docs/VISUAL_THEMES.md`、`docs/competition/README.md`、`CHANGELOG.md`、`RUN-ME.md`、`THIRD_PARTY_NOTICES.md`、`delivery/README.md`、`product/README.md`（现均含 Map 内容）；重写报名介绍；重做 16:9 封面与演示视频（须含实际页面操作录屏与讲解或字幕）。现有 0.15 封面含唱片店寻声截图、0.4 视频含约 20 秒 Map 片段，都不能直接用于 Space |
 | 目标用户试用 | 团队 | 6 对同场观众，比较群相册与双联的实际选择；先验证是否愿意主动交换，不编造招募或结果 |
 | 最终报名与提交 | 团队 | 核对报名信息、上传材料、提交回执 |
-| QQ 音乐同录音直达 / 可选音频 | 未安排 | 已下载曲目元数据；播放入口须另核版本、许可与实际可听 |
 
 ## Doing
 
-当前没有进行中的实现项；视频重录、公开评审部署与目标用户试用见 Todo。
+分支 `feat/space-mainline`（起点 `3dd102c`，另含提交 `e18b9f2`：归档 2026-09-29 的提交表单字段）。
+
+| 任务 | 负责人 | 文件范围 | 状态 |
+| --- | --- | --- | --- |
+| 拆分为独立产品 Music Space：以 0.15 为起点移除 Map 一半，改成静态版 + 房间版，存储键独立 | 开发侧 + Claude 子代理（多代理并行，文件范围互斥） | `web/js/`、`web/css/`、`web/index.html`、`vite.config.js`、`package.json`、`package-lock.json`、`.github/workflows/build.yml`、`.gitignore`、`server/index.js`（仅启动日志文案）、`web/assets/licenses/`、`web/assets/data/`、`scripts/datasets/`、`AGENTS.md`、`README.md`、本文；明细见下 | 进行中：改动都在工作树，未提交、未推送、未部署 |
+
+文件范围明细：
+
+- **外壳与路由**：重写 `app.js`、`home.js`；修改 `space.js`、`live.js`、`live-library.js`、`space-data.js`、`themes.js`、`ticket-export.js`、`index.html`、`vite.config.js`、`package.json`、`package-lock.json`、`build.yml`、`.gitignore`、`gsap-notice.txt`；新增 `storage.js`；删除 `map.js`、`map-catalogue.js`、`map-data.js`、`map-network.js`、`open-catalogue.js`、`music-library.js`、`web/assets/data/`、`scripts/datasets/download_hf_catalogue.py`。
+- **场景**：修改 `sakura-scene.js`、`sakura-world.js`、`sakura-camera.js`、`sakura-framing.js`；删除 `sakura-music.js`。
+- **样式**：修改 13 份样式（裁掉 Map 选择器，个别只改注释），删除 6 份 Map 样式（`map.css`、`map-credits.css`、`map-round.css`、`map-spatial.css`、`map-studio.css`、`open-catalogue.css`）。
+- **文档**：`AGENTS.md`、`README.md`、本文；其余文档见 Todo，稍后另行改写。
+
+已改（对工作树代码与改动清单的核对；本文没有收到本轮的构建或浏览器操作记录，不据此写成通过）：
+
+- 路由只剩小院（首页）、`live`（照片墙）、`records`（收藏），另有本地示例 `#/space/demo`；旧 `#/explore` 书签落回首页。
+- 启动时探测 `/api/live/health`（`file://` 与 `*.github.io` 跳过），结果为 `api.backend = { available, note }`。无服务时首页以「体验示例」为主、「用我的照片」为辅，房间专属入口隐藏或转到示例，并统一用「真实房间需要完整版服务；线上可先用示例体验完整流程」这一句说明；有服务时房间版行为不变。
+- 存储键改为 `music-space:v1`、`music-space-live:v1`（`music-space-duet-seen:v1` 沿用）。自有键不存在时，从 0.15 的 `music-map-space:v1`、`music-map-live:v1` 各复制一次；旧键不改不删，因为 Map 与 Space 同在 github.io 源。
+- 场景接口为 `setView`、`setContent`、`focus`、`restore`、`dispose`；罗盘为小院 / 照片墙 / 工作桌 / 收藏，镜头为 home / live / editor / records / photo；唱片店保留为布景、没有动作；常驻灯从 8 盏减为 7 盏（唱片桌桌灯随唱片店移除）。
+- 包名改为 `music-space`，构建产物名改为 `music-space-demo` / `music-space-runtime`；单文件不再附带 HF 元数据许可注释；PNG 页脚改为「MUSIC SPACE」。
+- 样式子代理报告：非 Map 元素的计算样式与拆分前一致；本文未复核。
+
+移到 Done 需要：生产构建（记录模块数与大小）；静态版（无服务）与房间版（Node + SQLite）各走一遍首页、制卡、申请、同意、双联页、PNG 与收藏；`#/space/demo` 与无服务提示；从 0.15 存档迁移到新键且旧键不变；1440×900 与 390×844 目视，含无 WebGL 与减少动态；搜索确认代码中已无 Map 残留；`README.md`、`AGENTS.md` 与本文同步。
 
 ## Done · 0.15.0
 

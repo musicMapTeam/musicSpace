@@ -23,12 +23,12 @@ jobs:
       - run: node --check server/index.js && node --check server/db.js
       - uses: actions/upload-artifact@v7.0.1
         with:
-          name: music-map-space-demo
+          name: music-space-demo
           path: dist/index.html
           retention-days: 14
       - uses: actions/upload-artifact@v7.0.1
         with:
-          name: music-map-space-runtime
+          name: music-space-runtime
           path: |
             dist/index.html
             server/

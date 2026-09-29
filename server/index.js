@@ -493,7 +493,7 @@ server.on('error', error => {
   db.close();
   process.exitCode = 1;
 });
-server.listen(PORT, HOST, () => console.log(`Music Map live service: http://${HOST}:${PORT}`));
+server.listen(PORT, HOST, () => console.log(`Music Space live service: http://${HOST}:${PORT}`));
 for (const signal of ['SIGINT', 'SIGTERM']) process.on(signal, () => {
   server.close(() => { db.close(); process.exit(0); });
 });

@@ -12,8 +12,6 @@ export function mountThemes({ onAction, onShot, view }) {
   return {
     setView(next, options = {}) { return scene.setView(next, { ...options, mode: options.mode || (next === 'space' ? 'home' : next) }); },
     setContent(cards, mode) { scene.setContent(cards, mode); },
-    setMusic(content) { scene.setMusic?.(content); },
-    musicControl(command) { return scene.musicControl?.(command); },
     focus(kind, id) { return scene.focus(kind, id); },
     restore() { return scene.restore(); },
   };

@@ -4,10 +4,9 @@ export const SPACE_EVENT = {
   subtitle: '夏末特别场',
   date: '2026.09.26',
   city: '广州',
-  artists: ['林间', '乔屿'],
   song: '把晚风借给你',
+  // A card's "带上这首歌" flag. The room server stores exactly this value ('' means no song), so it stays.
   trackId: 'co-0',
-  artistId: 'a',
 };
 
 export const SPACE_ACTORS = {

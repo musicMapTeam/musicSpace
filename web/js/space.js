@@ -23,7 +23,7 @@ const escape = (value = '') => String(value).replace(/[&<>"']/g, (character) => 
 const snapshot = (value) => JSON.parse(JSON.stringify(value));
 const otherActor = (actor) => actor === 'a' ? 'b' : 'a';
 const momentName = (card) => SPACE_MOMENTS.find((moment) => moment.id === card.momentId)?.name || '这一刻';
-const cardPhoto = (card) => card.photoKey === 'custom' ? card.photoDataUrl : SPACE_PHOTOS[card.photoKey]?.url || SPACE_PHOTOS.stage.url;
+const cardPhoto = (card) => card.photoKey === 'custom' && card.photoDataUrl ? card.photoDataUrl : SPACE_PHOTOS[card.photoKey]?.url || SPACE_PHOTOS.stage.url;
 const now = () => new Date().toISOString();
 const identifier = () => `exchange-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 7)}`;
 const actorName = (actor) => SPACE_ACTORS[actor]?.name || '示例角色';
@@ -100,7 +100,8 @@ function exchangeNoticeMarkup(space, actor, api) {
   if (latest.status === 'accepted') {
     return `<section class="sp-exchange-notice sp-exchange-notice--accepted" aria-label="交换已完成"><span class="sp-exchange-notice__icon">${api.icon('check')}</span><div class="sp-exchange-notice__text"><h2>双联记忆已生成</h2></div><button type="button" class="button button--primary" data-space-action="view-exchange" data-id="${escape(latest.id)}">打开记忆${api.icon('arrow-up-right')}</button></section>`;
   }
-  return `<div class="sp-quiet-notice">${api.icon('info')}<span>${latest.status === 'declined' ? '对方婉拒了这次交换' : latest.cancelReason === 'hidden' ? '卡片已撤下，申请已取消' : '申请已取消'}</span><button type="button" data-space-action="view-exchange" data-id="${escape(latest.id)}">查看</button></div>`;
+  const cancelled = { hidden: '卡片已撤下，申请已取消', edited: '卡片有更新，申请已取消 · 可重新申请' }[latest.cancelReason] || '申请已取消';
+  return `<div class="sp-quiet-notice">${api.icon('info')}<span>${latest.status === 'declined' ? '对方婉拒了这次交换' : cancelled}</span><button type="button" data-space-action="view-exchange" data-id="${escape(latest.id)}">查看</button></div>`;
 }
 
 function makeLifecycle(container, api) {
@@ -181,7 +182,8 @@ function makeLifecycle(container, api) {
     });
   }
   function about() {
-    dialog(`<div class="sp-dialog__head">${closeButton()}<h2 data-dialog-title>本地换卡示例</h2></div><div class="sp-dialog__body sp-about"><p>切换 Lin 和阿遥，体验制卡、申请与接受。卡片仅存本机，不会带入朋友的房间。</p><p>场次、角色和歌曲为示例，预置图片由 AI 生成。</p></div><div class="sp-dialog__footer"><button type="button" class="button button--primary" data-dialog-close>知道了</button></div>`, 'sp-dialog--narrow');
+    const rooms = api.backend?.available;
+    dialog(`<div class="sp-dialog__head">${closeButton()}<h2 data-dialog-title>本地换卡示例</h2></div><div class="sp-dialog__body sp-about"><p>切换 Lin 和阿遥，体验制卡、申请、同意与双联票根。任何一张卡都可以换成你自己的照片，它缩小后只存在这台设备上${rooms ? '，不会带入朋友的房间' : ''}。</p><p>场次、角色和歌曲为虚构示例，预置图片由 AI 生成。${rooms ? '' : '真实房间需要完整版服务。'}</p></div><div class="sp-dialog__footer"><button type="button" class="button button--primary" data-dialog-close>知道了</button></div>`, 'sp-dialog--narrow');
   }
 
   function switchActor(actor) {
@@ -207,15 +209,6 @@ function makeLifecycle(container, api) {
     });
   }
 
-  function mapActionsMarkup() {
-    return `${api.getState().space.mapReturnId ? `<button type="button" class="button button--quiet" data-resume-map>${api.icon('arrow-left')}继续刚才的探索</button>` : ''}<button type="button" class="button button--quiet" data-return-map>${api.icon('compass')}从${escape(SPACE_EVENT.artists[0])}新开探索</button>`;
-  }
-
-  function bindMapActions(element, close) {
-    element.querySelector('[data-return-map]')?.addEventListener('click', () => { close(); api.navigate('explore', { artistId: SPACE_EVENT.artistId, from: 'space', newSession: true }); });
-    element.querySelector('[data-resume-map]')?.addEventListener('click', () => { close(); api.navigate('explore', { resumeSessionId: api.getState().space.mapReturnId }); });
-  }
-
   function openCardSaved() {
     const state = api.getState();
     const card = state.space.cards[state.actor];
@@ -235,10 +228,13 @@ function makeLifecycle(container, api) {
     const currentCard = api.getState().space.cards[actor];
     const draft = currentCard ? snapshot(currentCard) : { ...seedSpaceCard(actor), isPublic: false, createdAt: now(), caption: actor === 'a' ? '灯光暗下去，还舍不得说再见。' : '你在看舞台，我想留下这一片人海。' };
     let processing = false;
+    const photoHint = () => draft.photoKey === 'custom'
+      ? '你的照片 · 已缩小并去掉定位信息，只存本机 · 点图片更换'
+      : 'AI 示例图 · 可换成你自己的照片，缩小并去掉定位信息后只存本机';
     const { element, close } = dialog(`<div class="sp-dialog__head"><span class="eyebrow">本地示例</span>${closeButton()}<h2 data-dialog-title>${currentCard ? '编辑现场卡' : '制作现场卡'}</h2><p>${escape(actorName(actor))} · ${escape(SPACE_EVENT.title)}</p></div>
       <form class="sp-editor" novalidate>
         <div class="sp-editor__fields">
-          <fieldset class="sp-field"><legend>照片</legend><div class="sp-photo-options">${Object.values(SPACE_PHOTOS).map((photo) => `<button type="button" data-photo="${photo.id}" class="sp-photo-choice${draft.photoKey === photo.id ? ' is-selected' : ''}" aria-pressed="${draft.photoKey === photo.id}"><img src="${escape(photo.url)}" alt="${escape(photo.description)}"><span>${escape(photo.name)}</span><i>${api.icon('check')}</i></button>`).join('')}<button type="button" data-photo="custom" class="sp-photo-choice sp-photo-choice--upload${draft.photoKey === 'custom' ? ' is-selected' : ''}" aria-pressed="${draft.photoKey === 'custom'}">${draft.photoDataUrl ? `<img src="${escape(draft.photoDataUrl)}" alt="我的照片"><span>我的照片</span>` : `${api.icon('camera')}<span>用自己的照片</span>`}<i>${api.icon('check')}</i></button></div><input type="file" name="photo" accept="image/*" class="sp-visually-hidden" aria-label="选择自己的照片"><p class="sp-field__hint" data-photo-hint>AI 示例图 · 上传照片仅存本机</p></fieldset>
+          <fieldset class="sp-field"><legend>照片</legend><div class="sp-photo-options">${Object.values(SPACE_PHOTOS).map((photo) => `<button type="button" data-photo="${photo.id}" class="sp-photo-choice${draft.photoKey === photo.id ? ' is-selected' : ''}" aria-pressed="${draft.photoKey === photo.id}"><img src="${escape(photo.url)}" alt="${escape(photo.description)}"><span>${escape(photo.name)}</span><i>${api.icon('check')}</i></button>`).join('')}<button type="button" data-photo="custom" class="sp-photo-choice sp-photo-choice--upload${draft.photoKey === 'custom' ? ' is-selected' : ''}" aria-pressed="${draft.photoKey === 'custom'}">${draft.photoDataUrl ? `<img src="${escape(draft.photoDataUrl)}" alt="我的照片"><span>我的照片</span>` : `${api.icon('camera')}<span>用自己的照片</span>`}<i>${api.icon('check')}</i></button></div><input type="file" name="photo" accept="image/*" class="sp-visually-hidden" aria-label="选择自己的照片"><p class="sp-field__hint" data-photo-hint>${photoHint()}</p></fieldset>
           <fieldset class="sp-field"><legend>时刻</legend><div class="sp-moment-options">${SPACE_MOMENTS.map((moment) => `<button type="button" data-moment="${moment.id}" class="sp-moment-choice${draft.momentId === moment.id ? ' is-selected' : ''}" aria-pressed="${draft.momentId === moment.id}">${escape(moment.name)}</button>`).join('')}</div><label class="sp-input-label" for="sp-song-select">这一刻的音乐</label><select id="sp-song-select" name="track"><option value="${SPACE_EVENT.trackId}"${draft.trackId ? ' selected' : ''}>《${escape(SPACE_EVENT.song)}》 · 示例曲目</option><option value=""${!draft.trackId ? ' selected' : ''}>只记录这个环节</option></select></fieldset>
           <div class="sp-field"><label class="sp-field__title" for="sp-caption-input">留一句话</label><textarea id="sp-caption-input" name="caption" rows="3" maxlength="80" placeholder="那一刻，你在想什么？">${escape(draft.caption)}</textarea><div class="sp-field__counter"><span>选填</span><span data-caption-count>${draft.caption.length} / 80</span></div></div>
           <label class="sp-display-consent"><input type="checkbox" name="isPublic"${draft.isPublic ? ' checked' : ''}><span class="sp-display-consent__check">${api.icon('check')}</span><span><strong>展示这张卡</strong><small>让另一位角色看见；不勾选则私藏。</small></span></label>
@@ -266,8 +262,9 @@ function makeLifecycle(container, api) {
       const photo = event.target.closest('[data-photo]');
       const moment = event.target.closest('[data-moment]');
       if (photo) {
-        if (photo.dataset.photo === 'custom') form.elements.photo.click();
-        else { draft.photoKey = photo.dataset.photo; preview(); }
+        // A photo already chosen in this editor comes back with one tap; a second tap picks another.
+        if (photo.dataset.photo === 'custom' && !(draft.photoDataUrl && draft.photoKey !== 'custom')) form.elements.photo.click();
+        else { draft.photoKey = photo.dataset.photo; element.querySelector('[data-photo-hint]').textContent = photoHint(); preview(); }
       }
       if (moment) { draft.momentId = moment.dataset.moment; preview(); }
     });
@@ -295,7 +292,7 @@ function makeLifecycle(container, api) {
         draft.photoDataUrl = dataUrl;
         const custom = element.querySelector('[data-photo="custom"]');
         custom.innerHTML = `<img src="${escape(dataUrl)}" alt="我的照片"><span>更换我的照片</span><i>${api.icon('check')}</i>`;
-        element.querySelector('[data-photo-hint]').textContent = '照片仅存本机 · 点图片更换';
+        element.querySelector('[data-photo-hint]').textContent = photoHint();
         preview();
       } catch (cause) {
         if (!element.isConnected) return;
@@ -316,12 +313,15 @@ function makeLifecycle(container, api) {
       draft.updatedAt = now();
       draft.revision = (currentCard?.revision || 0) + 1;
       if (draft.photoKey !== 'custom') draft.photoDataUrl = '';
+      // A request shows two exact cards; once one of them changes, the request is withdrawn and can be sent again.
+      const changed = Boolean(currentCard) && ['photoKey', 'photoDataUrl', 'momentId', 'trackId', 'caption', 'isPublic'].some((key) => (currentCard[key] ?? '') !== (draft[key] ?? ''));
       try {
         api.update((state) => {
           if (state.actor !== actor) return;
           state.space.cards[actor] = snapshot(draft);
           upsertRecord(state.space, actor, { id: `card:${draft.id}`, kind: 'single', card: snapshot(draft), title: `${SPACE_EVENT.title} · 我的现场` });
           if (!draft.isPublic) cancelPendingForCard(state.space, draft.id);
+          else if (changed) cancelPendingForCard(state.space, draft.id, 'edited');
         });
         close();
         if (options.requestTarget) {
@@ -425,8 +425,7 @@ function makeLifecycle(container, api) {
     if (!record) return;
     if (record.kind === 'exchange') { openDuet(record, { recordId: id }); return; }
     api.spatial?.focus('photo', record.card.id);
-    const { element, close } = dialog(`<div class="sp-dialog__head"><span class="eyebrow">我的现场记忆</span>${closeButton()}<h2 data-dialog-title>属于你的这一晚。</h2><p>${escape(actorName(actor))}的本地记录 · ${escape(SPACE_EVENT.title)}</p></div><div class="sp-dialog__body"><div class="sp-record-single">${ticketMarkup(record.card)}</div></div><div class="sp-dialog__footer sp-dialog__footer--wrap"><button type="button" class="button button--quiet" data-delete-record>${api.icon('trash')}删除这条记录</button>${mapActionsMarkup()}</div>`, 'sp-dialog--narrow');
-    bindMapActions(element, close);
+    const { element, close } = dialog(`<div class="sp-dialog__head"><span class="eyebrow">我的现场记忆</span>${closeButton()}<h2 data-dialog-title>属于你的这一晚。</h2><p>${escape(actorName(actor))}的本地记录 · ${escape(SPACE_EVENT.title)}</p></div><div class="sp-dialog__body"><div class="sp-record-single">${ticketMarkup(record.card)}</div></div><div class="sp-dialog__footer sp-dialog__footer--wrap"><button type="button" class="button button--quiet" data-delete-record>${api.icon('trash')}删除这条记录</button><button type="button" class="button button--primary" data-dialog-close>收好</button></div>`, 'sp-dialog--narrow');
     element.querySelector('[data-delete-record]').addEventListener('click', () => { close(); deleteRecord(id); });
   }
 
@@ -438,7 +437,6 @@ function makeLifecycle(container, api) {
     const cards = [source.fromCard, source.toCard];
     const existing = api.getState().space.records[actor].some((record) => record.id === `exchange:${exchangeId}`);
     const completedAt = source.decidedAt || source.createdAt;
-    const resumeId = api.getState().space.mapReturnId;
     ceremony?.close();
     const handle = openDuetCeremony({
       id: `local:${exchangeId}`,
@@ -470,7 +468,7 @@ function makeLifecycle(container, api) {
           createdAt: completedAt,
           id: exchangeId,
         }) },
-        // One quiet way back, the same on every entry; memory and exploration stay as links.
+        // One quiet way back, the same on every entry; the memory stays a link.
         recordId
           ? { id: 'scene', kind: 'secondary', icon: 'arrow-left', label: '返回示例现场', run: ({ close }) => { close(); api.navigate('space', { eventId: SPACE_EVENT.id }); } }
           : { id: 'back', kind: 'secondary', icon: 'arrow-left', label: '返回现场', run: ({ close }) => close() },
@@ -487,8 +485,6 @@ function makeLifecycle(container, api) {
             api.navigate('records', { section: 'space', spaceRecordId: `exchange:${exchangeId}` });
             api.toast('已收进当前角色的现场记忆');
           } },
-        resumeId ? { id: 'resume-map', kind: 'link', icon: 'arrow-left', label: '继续刚才的探索', run: ({ close }) => { close(); api.navigate('explore', { resumeSessionId: resumeId }); } } : null,
-        { id: 'map', kind: 'link', icon: 'compass', label: `从${SPACE_EVENT.artists[0]}新开探索`, run: ({ close }) => { close(); api.navigate('explore', { artistId: SPACE_EVENT.artistId, from: 'space', newSession: true }); } },
         recordId ? { id: 'remove', kind: 'remove', icon: 'trash', label: '删除这条记录', run: () => deleteRecord(recordId) } : null,
       ],
       onClose: () => {
@@ -532,7 +528,7 @@ function makeLifecycle(container, api) {
   }
 
   function reset() {
-    const { element, close } = dialog(`<div class="sp-dialog__head"><span class="eyebrow">重置示例</span>${closeButton()}<h2 data-dialog-title>重新体验这一场？</h2></div><div class="sp-dialog__body"><p class="sp-exchange-boundary">清空两个角色的卡片、回应、交换与记录，恢复初始示例。Map 记录保留。</p></div><div class="sp-dialog__footer"><button type="button" class="button button--quiet" data-dialog-close>保留当前进度</button><button type="button" class="button button--primary" data-confirm-reset>重置本场</button></div>`, 'sp-dialog--narrow');
+    const { element, close } = dialog(`<div class="sp-dialog__head"><span class="eyebrow">重置示例</span>${closeButton()}<h2 data-dialog-title>重新体验这一场？</h2></div><div class="sp-dialog__body"><p class="sp-exchange-boundary">清空两个角色的卡片、回应、交换与记录，恢复初始示例。你上传的照片也会一并清除。</p></div><div class="sp-dialog__footer"><button type="button" class="button button--quiet" data-dialog-close>保留当前进度</button><button type="button" class="button button--primary" data-confirm-reset>重置本场</button></div>`, 'sp-dialog--narrow');
     element.querySelector('[data-confirm-reset]').addEventListener('click', () => {
       api.update((state) => { state.space = createSpaceState(); state.actor = 'a'; });
       close(); api.render(); api.toast('本场已重置，可以重新体验双方的视角');
@@ -552,8 +548,6 @@ function makeLifecycle(container, api) {
       case 'open-record': openRecord(action.dataset.id); break;
       case 'delete-record': deleteRecord(action.dataset.id); break;
       case 'records': api.navigate('records', { section: 'space' }); break;
-      case 'map': api.navigate('explore', { artistId: SPACE_EVENT.artistId, from: 'space', newSession: true }); break;
-      case 'resume-map': api.navigate('explore', { resumeSessionId: api.getState().space.mapReturnId }); break;
       case 'demo': showDemo = true; api.render(); window.scrollTo({ top: 0, behavior: 'instant' }); break;
       case 'make': showDemo = true; api.navigate('space', { showDemo: true, editCard: true }); break;
       case 'perspective': {
@@ -602,15 +596,20 @@ function makeLifecycle(container, api) {
   };
 }
 
-function cancelPendingForCard(space, id) {
+function cancelPendingForCard(space, id, reason = 'hidden') {
   space.exchanges.forEach((exchange) => {
     if (exchange.status === 'pending' && (exchange.fromCardId === id || exchange.toCardId === id)) {
       exchange.status = 'cancelled';
-      exchange.cancelReason = 'hidden';
+      exchange.cancelReason = reason;
       exchange.decidedAt = now();
     }
   });
 }
+
+// A card is copied into every request and both memories, and all of it sits in localStorage.
+// So each photo steps down until its data URL fits this budget (about 80 KB of JPEG).
+const PHOTO_BUDGET = 110_000;
+const PHOTO_STEPS = [[960, 0.78], [960, 0.66], [800, 0.66], [800, 0.56], [640, 0.56], [560, 0.5]];
 
 function compressPhoto(file) {
   if (!file.type.startsWith('image/')) return Promise.reject(new Error('请选择一张图片文件。'));
@@ -620,15 +619,20 @@ function compressPhoto(file) {
     const photo = new Image();
     photo.onload = () => {
       try {
-        const scale = Math.min(1, 1000 / Math.max(photo.naturalWidth, photo.naturalHeight));
         const canvas = document.createElement('canvas');
-        canvas.width = Math.max(1, Math.round(photo.naturalWidth * scale));
-        canvas.height = Math.max(1, Math.round(photo.naturalHeight * scale));
         const context = canvas.getContext('2d');
-        context.fillStyle = '#f2eee7';
-        context.fillRect(0, 0, canvas.width, canvas.height);
-        context.drawImage(photo, 0, 0, canvas.width, canvas.height);
-        resolve(canvas.toDataURL('image/jpeg', 0.8));
+        let dataUrl = '';
+        for (const [edge, quality] of PHOTO_STEPS) {
+          const scale = Math.min(1, edge / Math.max(photo.naturalWidth, photo.naturalHeight));
+          canvas.width = Math.max(1, Math.round(photo.naturalWidth * scale));
+          canvas.height = Math.max(1, Math.round(photo.naturalHeight * scale));
+          context.fillStyle = '#f2eee7';
+          context.fillRect(0, 0, canvas.width, canvas.height);
+          context.drawImage(photo, 0, 0, canvas.width, canvas.height);
+          dataUrl = canvas.toDataURL('image/jpeg', quality);
+          if (dataUrl.length <= PHOTO_BUDGET) break;
+        }
+        resolve(dataUrl);
       } catch { reject(new Error('这张照片暂时无法处理，请换一张 JPG 或 PNG。')); }
       finally { URL.revokeObjectURL(url); }
     };
@@ -668,11 +672,11 @@ export function mountSpace(container, api) {
       ${exchangeNoticeMarkup(state.space, actor, api)}
       <div class="sp-perspectives__grid">
         <section class="sp-perspective sp-perspective--mine" aria-label="我的现场卡"><div class="sp-person-heading"><span class="sp-avatar sp-avatar--${person.color}">${escape(person.initial)}</span><div><strong>${escape(person.name)} <span>· 我</span></strong></div>${own ? `<span class="sp-visibility-label${own.isPublic ? ' is-public' : ''}">${own.isPublic ? '已展示' : '私藏'}</span>` : ''}</div>
-        ${own ? `${ticketMarkup(own)}<div class="sp-card-tools"><button type="button" class="sp-text-link" data-space-action="edit">编辑${api.icon('arrow-up-right')}</button><button type="button" class="sp-text-link" data-space-action="visibility">${own.isPublic ? '撤下展示' : '展示这张卡'}</button></div>${peerReaction.here || peerReaction.like ? `<div class="sp-reaction-receipt">${api.icon('heart')}<span>${escape(actorName(peer))}${peerReaction.here ? '回应了“我也在”' : '喜欢这张卡'}${peerReaction.here && peerReaction.like ? '，也点了喜欢' : ''}</span></div>` : ''}` : `<div class="sp-create-card"><div class="sp-create-card__frame">${api.icon('camera')}</div><div class="sp-create-card__copy"><h2>你的这一面</h2><button type="button" class="button button--primary" data-space-action="edit">${api.icon('plus')}做一张卡</button></div><span class="sp-create-card__note">仅自己可见</span></div>`}</section>
+        ${own ? `${ticketMarkup(own)}<div class="sp-card-tools"><button type="button" class="sp-text-link" data-space-action="edit">${own.photoKey === 'custom' ? '编辑' : '编辑 · 换成我的照片'}${api.icon('arrow-up-right')}</button><button type="button" class="sp-text-link" data-space-action="visibility">${own.isPublic ? '撤下展示' : '展示这张卡'}</button></div>${peerReaction.here || peerReaction.like ? `<div class="sp-reaction-receipt">${api.icon('heart')}<span>${escape(actorName(peer))}${peerReaction.here ? '回应了“我也在”' : '喜欢这张卡'}${peerReaction.here && peerReaction.like ? '，也点了喜欢' : ''}</span></div>` : ''}` : `<div class="sp-create-card"><div class="sp-create-card__frame">${api.icon('camera')}</div><div class="sp-create-card__copy"><h2>你的这一面</h2><button type="button" class="button button--primary" data-space-action="edit">${api.icon('plus')}做一张卡</button></div><span class="sp-create-card__note">仅自己可见</span></div>`}</section>
         <section class="sp-perspective sp-perspective--other" tabindex="-1" aria-label="另一位示例角色的现场卡"><div class="sp-person-heading"><span class="sp-avatar sp-avatar--${SPACE_ACTORS[peer].color}">${escape(SPACE_ACTORS[peer].initial)}</span><div><strong>${escape(actorName(peer))}</strong></div></div>
         ${other?.isPublic ? `${ticketMarkup(other)}${common ? `<div class="sp-shared-moment">${api.icon('heart')}<span>${escape(common)}</span></div>` : ''}<div class="sp-demo-card-actions"><div class="sp-reaction-row"><button type="button" class="sp-reaction-button${reaction.here ? ' is-active' : ''}" data-space-action="react" data-actor="${peer}" data-reaction="here" aria-pressed="${Boolean(reaction.here)}">${api.icon('users')}我也在</button><button type="button" class="sp-reaction-button${reaction.like ? ' is-active' : ''}" data-space-action="react" data-actor="${peer}" data-reaction="like" aria-pressed="${Boolean(reaction.like)}">${api.icon('heart')}${reaction.like ? '已喜欢' : '喜欢'}</button></div><button type="button" class="button button--primary sp-request-button" data-space-action="${relevantExchange ? 'view-exchange' : 'request'}" data-actor="${peer}"${relevantExchange ? ` data-id="${escape(relevantExchange.id)}"` : ''}>${api.icon(completed && !hasPending ? 'bookmark' : 'swap')}${hasPending ? '查看申请' : completed ? '打开双联记忆' : own ? '申请换卡' : '制卡并交换'}</button></div>` : `<div class="sp-hidden-card"><span class="sp-hidden-card__icon">${api.icon('image')}</span><h2>${other ? '这张卡还未展示' : `${escape(actorName(peer))}还没有卡片`}</h2><button type="button" class="button button--quiet" data-space-action="actor" data-actor="${peer}">切到${escape(actorName(peer))}${api.icon('arrow-right')}</button></div>`}</section>
       </div>
-      <footer class="sp-demo-footer"><span>示例卡仅存本机</span><div>${state.space.mapReturnId ? `<button type="button" class="sp-text-link" data-space-action="resume-map">继续刚才的探索${api.icon('arrow-up-right')}</button>` : ''}<button type="button" class="sp-text-link" data-space-action="reset">${api.icon('rotate')}重置示例</button></div></footer>
+      <footer class="sp-demo-footer"><span>示例卡仅存本机</span><div><button type="button" class="sp-text-link" data-space-action="reset">${api.icon('rotate')}重置示例</button></div></footer>
     </section>
   </div>` : `<div class="space-page space-page--home space-studio space-studio--home" aria-labelledby="space-heading">
     <header class="space-studio__header"><h1 id="space-heading">同场<span>照片交换</span></h1><button type="button" class="space-studio__sample" data-space-action="about">本地示例${api.icon('info')}</button></header>
@@ -686,7 +690,7 @@ export function mountSpace(container, api) {
         </button>`).join('')}
       </div>
       <div class="space-studio__controls"><div class="space-perspectives" role="group" aria-label="卡片视角">${homeCards.map(({ perspective, name }) => `<button type="button" data-space-action="perspective" data-perspective="${perspective}" aria-pressed="${homePerspective === perspective}"><span></span>${escape(name)}</button>`).join('')}</div>
-        <div class="space-studio__actions"><button type="button" class="button button--primary" data-space-action="make">${api.icon('plus')}做一张卡</button><button type="button" class="button" data-space-action="live">${api.icon('users')}邀请朋友</button></div>
+        <div class="space-studio__actions"><button type="button" class="button button--primary" data-space-action="make">${api.icon('plus')}做一张卡</button>${api.backend?.available ? `<button type="button" class="button" data-space-action="live">${api.icon('users')}邀请朋友</button>` : ''}</div>
       </div>
     </section>
   </div>`;

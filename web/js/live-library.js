@@ -3,16 +3,12 @@ import { createPhotoStore } from './live-photo.js';
 import { downloadCard, downloadTicket } from './ticket-export.js';
 import { openDuetCeremony } from './duet-ceremony.js';
 import { momentLabel, perspectiveLabel, sharedLine } from './duet-facts.js';
+import { readSession } from './storage.js';
 
-const SESSION_KEY = 'music-map-live:v1';
 const escape = value => String(value ?? '').replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character]));
 const placeholder = `data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="1" height="1"><path fill="#a5b1a2" d="M0 0h1v1H0z"/></svg>')}`;
 const perspectives = { stage: '舞台', crowd: '人海', friends: '身边', detail: '细节' };
 const day = value => value ? new Date(value).toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' }) : '';
-const readSession = () => {
-  try { const saved = JSON.parse(localStorage.getItem(SESSION_KEY)); return saved?.token ? saved : null; }
-  catch { return null; }
-};
 
 /** Private, cross-room collection. Nothing here is published to the scene wall. */
 export function mountLiveLibrary(container, api) {

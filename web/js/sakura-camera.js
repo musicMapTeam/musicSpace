@@ -3,20 +3,25 @@ import { gsap } from 'gsap';
 
 const desktop = {
   home: { eye: [10.7, 8.6, 16.5], at: [-.35, 1.0, -.1], fov: 40 },
-  explore: { eye: [.25, 8.35, .16], at: [0, 1.22, -1.3], fov: 42 },
   live: { eye: [-.6, 3.6, 7.1], at: [-3.8, 1.6, 1.4], fov: 40 },
   editor: { eye: [7.2, 5.6, 5.5], at: [4, 1, 1.6], fov: 37 },
   records: { eye: [-.6, 2.4, 1.3], at: [1.3, 1.25, -2.3], fov: 46 },
 };
 const portrait = {
   home: { eye: [12, 18, 29], at: [-.8, .8, .3], fov: 43 },
-  explore: { eye: [.08, 12, 1.4], at: [0, 1.22, -1.3], fov: 45 },
   live: { eye: [-3, 4.4, 10.8], at: [-3.8, 1.5, 1.4], fov: 48 },
   editor: { eye: [6.6, 5.5, 6.6], at: [4, 1, 1.6], fov: 43 },
   records: { eye: [-.55, 2.4, 2.8], at: [1.2, 1.25, -2.3], fov: 46 },
 };
+const SHOTS = new Set(Object.keys(desktop));
+const BOTTOM_PADDING = 14;
 
-const tallExplore = { eye: [-2.62, 12, -1.22], at: [0, 1.22, -1.3], fov: 45 };
+/** The shot a key really means. `photo` is aimed at a point instead of a preset row; anything else
+ *  the director has no row for (a retired or misspelt key) shows the courtyard overview. */
+export function shotKey(key, hasPoint = false) {
+  if (key === 'photo') return hasPoint ? 'photo' : 'home';
+  return SHOTS.has(key) ? key : 'home';
+}
 
 /** One interruptible camera move; a cancelled trip cannot open a stale modal. */
 export function createCameraDirector(camera, { size, reduced, onFrame, onShot, getLayout, getBounds }) {
@@ -38,17 +43,14 @@ export function createCameraDirector(camera, { size, reduced, onFrame, onShot, g
     const { key, id, point } = active;
     const { width, height } = size();
     const mobile = width <= 760;
-    // A tall phone looks at the record table from the west, so its long side runs down the screen.
-    // Decided by the viewport only (same rule as sakura-framing), so opening paper never rotates the table.
-    const tall = key === 'explore' && height > width * 1.9;
-    const shot = tall ? tallExplore : (mobile ? portrait : desktop)[key] || desktop.live;
+    const rows = mobile ? portrait : desktop;
+    const shot = rows[key] || rows.home;
     const endTarget = point?.clone() || new THREE.Vector3(...shot.at);
     const endEye = point ? point.clone().add(new THREE.Vector3(mobile ? .65 : 1.35, mobile ? .65 : .8, mobile ? 4.6 : 3.7)) : new THREE.Vector3(...shot.eye);
     const endFov = point ? 39 : shot.fov;
     const layout = getLayout(key); const rect = layout.rect;
-    const bottomPadding = key === 'explore' ? (mobile ? 28 : 24) : 14;
-    const fitWidth = Math.max(1, rect.width - 24); const fitHeight = Math.max(1, rect.height - 12 - bottomPadding);
-    const centerX = (rect.left + rect.right) / 2; const centerY = (rect.top + 12 + rect.bottom - bottomPadding) / 2;
+    const fitWidth = Math.max(1, rect.width - 24); const fitHeight = Math.max(1, rect.height - 12 - BOTTOM_PADDING);
+    const centerX = (rect.left + rect.right) / 2; const centerY = (rect.top + 12 + rect.bottom - BOTTOM_PADDING) / 2;
     const endFrame = { x: .5 - centerX / width, y: .5 - centerY / height };
     const bounds = getBounds(key, id);
     if (bounds && !bounds.isEmpty()) {
@@ -95,7 +97,8 @@ export function createCameraDirector(camera, { size, reduced, onFrame, onShot, g
       },
     });
   }
-  function go(key, { point = null, id = null, immediate = false, force = false } = {}) {
+  function go(requested, { point = null, id = null, immediate = false, force = false } = {}) {
+    const key = shotKey(requested, Boolean(point));
     if (!force && active.key === key && active.id === id) return pending;
     stop(); active = { key, id, point: point?.clone() || null };
     navigationMove = !immediate && !reduced.matches;

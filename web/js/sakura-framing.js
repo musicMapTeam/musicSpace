@@ -1,14 +1,14 @@
-// Paper that the camera frames around. The record shop's catalogue menu is temporary
-// and deliberately absent, so opening it never moves the table.
+// Paper that the camera frames around: masthead, compass, the front-door paper, live-room tickets
+// and trays, and any open dialog. Anything that should keep the courtyard subject clear of it has
+// to match one of these selectors.
 const WATCH = [
   '.app-masthead', '.brand', '.masthead-tools', '.mobile-nav', '.world-compass', '.world-caption',
-  '.map-studio-head', '.map-studio-title', '.map-studio-tools', '.map-stage-top',
-  '.map-round-slip', '.map-round-tools', '.map-round-note', '.map-round-hand',
-  '.map-studio-dock', '.map-undo',
   '.live-room-ticket', '.live-room-tray', '#live-surface[data-live-state="entry"]', '.home-paper', '.home-hero',
   '.main-content', 'dialog[open]', '.live-room-menu[open] .live-room-menu__items',
 ].join(',');
 const INK = '.brand,.masthead-tools,.world-caption,.world-compass,.mobile-nav,.home-hero';
+// Width over height of the room each shot wants; a key without an entry is framed like the overview.
+const ASPECT = { home: 1.7, live: 1.4, editor: 1.25, records: .8, photo: .95 };
 const overlaps = (a, b, gap = 0) => a.left < b.right + gap && a.right > b.left - gap && a.top < b.bottom + gap && a.bottom > b.top - gap;
 const rectangle = (left, top, right, bottom) => ({ left, top, right, bottom, width: right - left, height: bottom - top });
 const intersects = (a, b) => rectangle(Math.max(a.left, b.left), Math.max(a.top, b.top), Math.min(a.right, b.right), Math.min(a.bottom, b.bottom));
@@ -35,12 +35,10 @@ export function createSakuraFraming(host, { getShot, onChange, onLabelsChange })
     const color = style.backgroundColor;
     return color !== 'transparent' && color !== 'rgba(0, 0, 0, 0)' && !/rgba\([^)]*,\s*0\)$/.test(color);
   }
-  function safeRectangle(base, obstacles, key, mobile, layoutWidth = base.width, layoutHeight = base.height) {
+  function safeRectangle(base, obstacles, key, mobile) {
     const clampX = value => Math.max(base.left, Math.min(base.right, value));
     const horizontal = [...new Set([base.left, base.right, ...obstacles.flatMap(item => [clampX(item.left - 9), clampX(item.right + 9)])])].sort((a, b) => a - b);
-    // A tall phone turns the record table lengthwise (see sakura-camera), so it wants a tall frame.
-    const tall = key === 'explore' && layoutHeight > layoutWidth * 1.9;
-    const desired = tall ? .7 : ({ explore: 1.5, live: 1.4, home: 1.7, editor: 1.25, records: .8, photo: .95 })[key] || 1.3;
+    const desired = Object.hasOwn(ASPECT, key) ? ASPECT[key] : ASPECT.home;
     const minWidth = mobile ? base.width * .7 : Math.min(340, base.width * .42);
     let best = null; let bestScore = -1;
     for (let leftIndex = 0; leftIndex < horizontal.length - 1; leftIndex++) for (let rightIndex = leftIndex + 1; rightIndex < horizontal.length; rightIndex++) {
@@ -80,7 +78,7 @@ export function createSakuraFraming(host, { getShot, onChange, onLabelsChange })
     }
     const margin = width <= 760 ? 12 : 20;
     const base = rectangle(margin, margin, width - margin, height - margin);
-    const nextRect = safeRectangle(base, obstacles, key, width <= 760, width, height);
+    const nextRect = safeRectangle(base, obstacles, key, width <= 760);
     const previousFits = layout.key === key && layout.width === width && layout.height === height;
     const rect = nextRect || (previousFits ? layout.rect : base);
     const next = { key, width, height, rect, obstacles, blocked: !nextRect };
@@ -109,20 +107,10 @@ export function createSakuraFraming(host, { getShot, onChange, onLabelsChange })
   }
   function labelSize(button) {
     const cached = labelSizes.get(button); if (cached) return cached;
-    const selected = button.classList.contains('is-selected');
-    const text = button.querySelector('strong')?.textContent || button.textContent || '';
+    // Estimates until ResizeObserver reports the real size of the pin.
+    const text = button.textContent || '';
     const mobile = layout.width <= 760;
-    if (button.classList.contains('world-music-label--node')) {
-      // Estimates until ResizeObserver reports the real tag: 14/16px desktop, 13/14px phone, plus a 12px 终点/你在这里 tab.
-      const font = mobile ? (selected ? 14 : 13) : (selected ? 16 : 14);
-      const tag = button.querySelector('small')?.textContent || '';
-      const tagWidth = tag ? tag.length * 12.5 + 12 : 0;
-      return { width: Math.min(mobile ? 148 : 190, Math.max(mobile ? 44 : 56, text.length * (font + .5) + tagWidth + (mobile ? 18 : 24))), height: selected ? (mobile ? 33 : 37) : (mobile ? 29 : 32) };
-    }
-    if (button.classList.contains('world-music-link')) {
-      return { width: Math.min(mobile ? 132 : 180, Math.max(48, text.length * (mobile ? 12 : 13) + 20)), height: mobile ? 25 : 27 };
-    }
-    return { width: Math.min(180, Math.max(56, text.length * (mobile ? 12.5 : 13.5) + (mobile ? 40 : 46))), height: selected ? 44 : (mobile ? 32 : 34) };
+    return { width: Math.min(180, Math.max(56, text.length * (mobile ? 12.5 : 13.5) + (mobile ? 40 : 46))), height: mobile ? 32 : 34 };
   }
   function placeLabel(button, x, y, anchor = 'top', avoid = null) {
     const size = labelSize(button);

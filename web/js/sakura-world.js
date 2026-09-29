@@ -82,7 +82,7 @@ export function buildSakuraWorld({ THREE, world, mesh, box, cylinder, ball, rod,
       nail.castShadow = false;
     }
   }
-  const shopLeftWall = box([-2.34, 1.6, 0], [.15, 2.8, 3.8], toon.plaster, shop);
+  box([-2.34, 1.6, 0], [.15, 2.8, 3.8], toon.plaster, shop);
   box([2.34, 1.6, 0], [.15, 2.8, 3.8], toon.plaster, shop);
   box([0, 1.6, -1.84], [4.8, 2.8, .15], toon.plaster, shop);
   for (const x of [-2.24, 2.24]) box([x, .41, 0], [.08, .38, 3.7], toon.green, shop);
@@ -91,7 +91,7 @@ export function buildSakuraWorld({ THREE, world, mesh, box, cylinder, ball, rod,
     box([x, 1.62, 1.85], [.18, 2.86, .18], toon.green, shop);
     box([x, 2.87, 0], [.16, .16, 3.88], warmWood, shop);
   }
-  const shopFrontBeam = box([0, 2.88, 1.85], [4.72, .22, .2], toon.green, shop);
+  box([0, 2.88, 1.85], [4.72, .22, .2], toon.green, shop);
   box([0, .14, 2.18], [4.96, .2, .63], warmWood, shop);
   box([0, .25, 2.18], [4.95, .035, .61], toon.cream, shop);
   for (const x of [-1.84, 1.84]) {
@@ -136,9 +136,8 @@ export function buildSakuraWorld({ THREE, world, mesh, box, cylinder, ball, rod,
     const tape = noShadow(box([x, .316, .027], [.095, .027, .008], toon.sand, wallPoster));
     tape.rotation.z = x < 0 ? -.19 : .13;
   }
-  // Pendant fittings belong to the roof group so a close overhead camera can
-  // remove the whole ceiling without leaving a cable across the composition.
-  const roof = group('removable-shop-roof', [0, 0, -1.5]);
+  // Pendant fittings and their halos belong to the roof group, so the whole ceiling stays one unit.
+  const roof = group('shop-roof', [0, 0, -1.5]);
   const roofSlope = Math.atan2(.78, 2.65);
   const roofLength = Math.hypot(2.65, .78);
   for (const side of [-1, 1]) {
@@ -206,15 +205,14 @@ export function buildSakuraWorld({ THREE, world, mesh, box, cylinder, ball, rod,
   }
 
   // Counter outside the opening: platter, grooves, spindle, articulated arm,
-  // receiver controls and an upright sleeve read at a close tabletop angle.
-  const counter = action(group('record-counter', [0, 0, .8]), { type: 'navigate', view: 'explore' });
+  // receiver controls and an upright sleeve. It is scenery only: nothing on it is clickable.
+  const counter = group('record-counter', [0, 0, .8]);
   roundBox([0, .61, 0], [2.08, 1.05, .78], toon.green, counter);
   roundBox([0, 1.17, 0], [2.26, .14, .94], warmWood, counter);
   for (let i = 0; i < 14; i++) box([-.96 + i * .147, .67, .399], [.058, .69, .021], toon.leaf, counter);
   sign('SIDE B', [0, .899, .424], .57, .13, '#efe4c7', '#42696a', counter);
-  const turntable = roundBox([-.28, 1.296, -.015], [1.12, .12, .69], toon.cream, counter);
-  turntable.userData.action = { type: 'navigate', view: 'explore' };
-  const record = action(group('spinning-vinyl', [-.45, 1.37, .8]), { type: 'navigate', view: 'explore' });
+  roundBox([-.28, 1.296, -.015], [1.12, .12, .69], toon.cream, counter);
+  const record = group('spinning-vinyl', [-.45, 1.37, .8]);
   cylinder([0, 0, 0], [.275, .024, .275], toon.black, record);
   for (const radius of [.158, .187, .218, .25]) {
     const groove = noShadow(mesh(ringGeometry, toon.leaf, [0, .014, 0], [radius, radius, radius], record));
@@ -803,20 +801,11 @@ export function buildSakuraWorld({ THREE, world, mesh, box, cylinder, ball, rod,
   tube([[-.24, .11, -.06], [-.34, .091, .076], [-.18, .061, .213], [.019, .065, .2]], .041, toon.cream, cat);
   ball([.168, .048, .141], [.118, .041, .05], toon.cream, cat);
 
-  const anchors = {
-    home: new THREE.Vector3(-.2, 1.55, -.05),
-    explore: new THREE.Vector3(-.1, 1.35, .8),
-    live: new THREE.Vector3(-3.8, 1.73, 1.48),
-    stage: new THREE.Vector3(-4, 1.16, .5),
-    editor: new THREE.Vector3(4, 1.12, 1.6),
-    records: new THREE.Vector3(1.45, 1.28, -2.08),
-  };
   // Textures created by label() are already registered by the owner helper;
   // externally supplied photo maps must be added to the same textures Set.
   void textures;
   return {
-    roof, record, photoCards, desk, draftImageMesh, shelf, anchors,
-    exploreShadowBlockers: [shopLeftWall, shopFrontBeam],
+    record, photoCards, desk, draftImageMesh, shelf,
     // Handles for the one-time opening light-up; values at rest are the night look.
     night: { haloMaterial, beamMaterial, windowGlow, warmLamp, lampColor: warmLamp.color.clone() },
     update(time) {

@@ -90,8 +90,9 @@ db.exec(`
 // Additive migration keeps existing rooms, cards and accepted snapshots intact.
 for (const [table, additions] of [
   ['rooms', { event_date: 'TEXT', city: 'TEXT', song: 'TEXT' }],
-  // taken_at is the photo's capture time (epoch ms) and taken_source says where it came from ('exif' | 'manual' | 'file');
-  // song is the optional 「这一刻在唱的歌」. All three may be NULL: cards made before them, or made without them.
+  // taken_at is the photo's capture time (epoch ms) and taken_source says where it came from ('exif' | 'manual'; older rows may say 'file',
+  // a guess that no rule reads and nothing writes any more); song is the optional 「这一刻在唱的歌」. All three may be NULL: cards made
+  // before them, or made without them.
   ['cards', { photo_id: 'TEXT REFERENCES photos(id)', perspective: 'TEXT', taken_at: 'INTEGER', taken_source: 'TEXT', song: 'TEXT' }],
 ]) {
   const columns = new Set(db.prepare(`PRAGMA table_info(${table})`).all().map((column) => column.name));

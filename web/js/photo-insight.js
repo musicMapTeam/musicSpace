@@ -1,6 +1,6 @@
 import { readCaptureTime, fallbackTime } from './ai/exif-time.js';
 import { getViewpointAI } from './ai/space-ai.js';
-import { formatTaken, takenFromExif, takenFromFile, viewpointName, zoneNote } from './moment.js';
+import { formatTaken, fromInputValue, takenFromExif, takenFromFile, viewpointName, zoneNote } from './moment.js';
 
 /**
  * What the editors learn from a photo the person has just picked, all of it on this device:
@@ -14,10 +14,21 @@ import { formatTaken, takenFromExif, takenFromFile, viewpointName, zoneNote } fr
 export const AI_NOTE = 'AI 在本机判断，照片不上传';
 /** The same promise in a room, where saving the card sends its photo to the room server: only the judging is private, and it says when the upload happens. */
 export const AI_NOTE_ROOM = 'AI 在本机判断，判断时照片不上传；保存现场卡时才上传照片';
-/** The line shown while the model is being fetched (the first time only; the browser keeps it afterwards). */
-export const AI_LOADING = 'AI 在本机判断视角 · 首次下载约 10 MB';
+/**
+ * The line shown while the model is being fetched (the first time only). It names no size that depends on the host's compression: a server
+ * that gzips sends about 10 MB, one that does not sends about 23 MB, and the person on a phone plan should be told both.
+ */
+const AI_LOADING_LEAD = 'AI 在本机判断视角 · 首次需下载模型';
+const AI_LOADING_SIZE = '（约 10–23 MB）'; // kept on one line when the sentence wraps (see loadingMarkup): "10–23 / MB" reads as two facts
+export const AI_LOADING = AI_LOADING_LEAD + AI_LOADING_SIZE;
+/** Shown from the moment a picture is handed to the model until its answer (or its silence) arrives: the line is never empty while the person waits. */
 export const AI_THINKING = 'AI 在本机判断视角…';
 export const NO_TIME = '没读到拍摄时间（截图或转发的图常会丢失）';
+/** A time the person typed that the page cannot use (before 2000 or later than tomorrow): said next to the field instead of being dropped silently. */
+export const TIME_OUT_OF_RANGE = '这个时间不在可选范围内（2000\u00a0年至明天），没有采用；不填也能保存。'; // no break inside "2000 年"
+
+/** '' when a typed time is usable or the field is empty; TIME_OUT_OF_RANGE when something was typed that fromInputValue() refuses. */
+export const timeProblem = value => (value && fromInputValue(value) === null ? TIME_OUT_OF_RANGE : '');
 /** How long a load may take before the person is told about it: a model already kept on this device is ready sooner than that. */
 const LOADING_LINE_DELAY_MS = 350;
 
@@ -97,8 +108,9 @@ export async function readPhotoTime(file) {
 
 /**
  * Identify the viewpoint of a picture (a data: / blob: URL or a Blob). `onState` is called with
- *   { phase: 'loading', loaded, total }   the model is being downloaded (first visit); said only once a download has lasted a moment
- *   { phase: 'thinking' }                 the model is starting up or looking at this photo
+ *   { phase: 'thinking' }                 the model is being fetched or started, or is looking at this photo: said at once and kept until the answer
+ *   { phase: 'loading', loaded, total }   the model is being downloaded (first visit); said only once a download has lasted a moment, and
+ *                                         replaced by 'thinking' again when every byte is here
  *   { phase: 'done', result }             an answer; result.sure says whether it is confident enough to pre-select
  *   { phase: 'silent' }                   no answer (unsupported, failed, timed out): show nothing extra
  * The returned handle's cancel() drops every later call, so a photo that was replaced in the meantime is never labelled.
@@ -113,11 +125,17 @@ export function identifyViewpoint(picture, onState) {
   (async () => {
     const model = ai();
     if (!model.supported()) { say({ phase: 'silent' }); return; }
+    // A load that began earlier (the file picker's warm-up) may already have every byte; its progress is not sent again to a late listener.
+    try { progress = model.progress?.() ?? progress; } catch { /* the words below still hold */ }
     if (model.status() !== 'ready') {
-      // A model kept from an earlier visit is ready in a blink, and nothing is being downloaded then: the line is only for a
-      // download that is really still going after a moment.
+      // From here until the answer something is going on (a download, then the model starting up), so the line says so at once: it is
+      // never empty while the person waits. The download words replace it only for a download that is really still going after a
+      // moment; a model kept from an earlier visit is ready in a blink and never shows them.
+      say({ phase: 'thinking' });
       timer = setTimeout(() => {
-        if (live && model.status() === 'loading' && !haveAllBytes()) { announced = true; say({ phase: 'loading', ...progress }); }
+        if (!live) return;
+        try { progress = model.progress?.() ?? progress; } catch { /* keep what the listener has seen */ }
+        if (model.status() === 'loading' && !haveAllBytes()) { announced = true; say({ phase: 'loading', ...progress }); }
       }, LOADING_LINE_DELAY_MS);
     }
     await model.load(({ loaded, total }) => {
@@ -143,14 +161,14 @@ const percentOf = ({ loaded = 0, total = 0 } = {}) => (total > 0 ? Math.min(99, 
 const percentText = percent => (percent > 0 ? ` · ${percent}%` : '');
 
 /**
- * The line shown while the model is being fetched, "AI 在本机判断视角 · 首次下载约 10 MB · 43%", and a small bar. It lives in a status region,
+ * The line shown while the model is being fetched, "AI 在本机判断视角 · 首次需下载模型（约 10–23 MB） · 43%", and a small bar. It lives in a status region,
  * and a region announces every change to what it holds while a download reports progress many times a second: only the fixed words are
  * announced (once). The percent and the bar are decoration (aria-hidden) and are moved in place afterwards (see moveLoading).
  * `prefix` is the page's own class stem ('sp-ai-line' or 'live-ai-line').
  */
 export function loadingMarkup(prefix, progress) {
   const percent = percentOf(progress);
-  return `<span>${AI_LOADING}<span data-ai-percent aria-hidden="true">${percentText(percent)}</span></span><span class="${prefix}__bar" aria-hidden="true"><i data-ai-fill style="width:${percent}%"></i></span>`;
+  return `<span>${AI_LOADING_LEAD}<span class="nowrap">${AI_LOADING_SIZE}</span><span data-ai-percent aria-hidden="true">${percentText(percent)}</span></span><span class="${prefix}__bar" aria-hidden="true"><i data-ai-fill style="width:${percent}%"></i></span>`;
 }
 
 const painted = new WeakMap();

@@ -1,5 +1,5 @@
 import { SPACE_PHOTOS } from './space-data.js';
-import { completedFull, duetSides, eventMeta, eventTitle, facts, sharedLine, singleLine, stampDate } from './duet-facts.js';
+import { completedFull, duetSides, eventMeta, eventTitle, facts, inventedNotice, sharedLine, singleLine, stampDate } from './duet-facts.js';
 
 /*
  * The PNG speaks the same language as the duet page: a night screening, festoon lights and a warm paper ticket.
@@ -285,13 +285,12 @@ function stubText(ctx, line, paired, info) {
   ctx.restore();
   seal(ctx, 1368, T.tear + 96, paired ? '双方同意' : '我的现场', stampDate(info.createdAt));
 }
-function footer(ctx, info, paired) {
+function footer(ctx, info, paired, cards) {
   ctx.save();
   ctx.textAlign = 'left'; ctx.fillStyle = C.onSoft; setFont(ctx, 400, 27); spacing(ctx, 1);
   ctx.fillText(`${completedFull(info.createdAt)} · ${paired ? '双方已同意共同署名' : '我的现场纪念'}`, T.x + 4, 1712);
   ctx.fillStyle = C.onFaint; setFont(ctx, 400, 24); spacing(ctx, 1);
-  const notice = info.scenario === 'local' ? ' · 本地情景演示，角色、现场与歌曲为虚构' : info.isDemo === false ? '' : ' · 现场与歌曲为示例内容';
-  ctx.fillText(`MUSIC SPACE${notice}`, T.x + 4, 1758, 1080);
+  ctx.fillText(`MUSIC SPACE${inventedNotice(cards, info)}`, T.x + 4, 1758, 1080);
   ctx.textAlign = 'right'; ctx.fillStyle = C.sakura; setFont(ctx, 600, 32, serifFamily()); spacing(ctx, 4);
   ctx.fillText('同一刻，另一面', T.x + T.w - 4, 1724);
   ctx.restore();
@@ -313,7 +312,7 @@ function drawMemory(ctx, cards, images, info, paired) {
   } else side(ctx, images[0], cards[0], 144, 1312, false, h, about[0], metas[0], metaRow);
   const line = paired ? sharedLine(cards, event) : singleLine(cards[0], event);
   stubText(ctx, line, paired, info);
-  footer(ctx, info, paired);
+  footer(ctx, info, paired, cards);
 }
 function canvasBase() {
   const canvas = document.createElement('canvas');

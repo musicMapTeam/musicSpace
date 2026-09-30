@@ -6,7 +6,7 @@ import {
   SAME_MOMENT_MS, SONG_MAX, VIEWPOINTS, TAKEN_MIN, buildSetlist, cardFacts, cleanSong, formatDayTime, fromInputValue, readPair, reasonHtml, takenMax, ticketStamp, toInputValue, viewpointOf,
 } from './moment.js';
 import {
-  AI_NOTE, AI_OFF_LINES, AI_THINKING, SUGGESTED_DESCRIPTION, aiState, answerView, identifyViewpoint, loadingMarkup, moveLoading, paintAiLine, readPhotoTime, timeView, viewpointHint, warmUpViewpointAI,
+  AI_NOTE, AI_OFF_LINES, AI_THINKING, SUGGESTED_DESCRIPTION, aiState, answerView, identifyViewpoint, loadingMarkup, moveLoading, paintAiLine, readPhotoTime, timeProblem, timeView, viewpointHint, warmUpViewpointAI,
 } from './photo-insight.js';
 import { bindSetlistCopy, setlistBody } from './setlist-ui.js';
 
@@ -307,11 +307,11 @@ function makeLifecycle(container, api) {
           <fieldset class="sp-field"><legend>照片</legend><div class="sp-photo-options">${Object.values(SPACE_PHOTOS).map((photo) => `<button type="button" data-photo="${photo.id}" class="sp-photo-choice${draft.photoKey === photo.id ? ' is-selected' : ''}" aria-pressed="${draft.photoKey === photo.id}"><img src="${escape(photo.url)}" alt="${escape(photo.description)}"><span>${escape(photo.name)}</span><i>${api.icon('check')}</i></button>`).join('')}<button type="button" data-photo="custom" class="sp-photo-choice sp-photo-choice--upload${draft.photoKey === 'custom' ? ' is-selected' : ''}" aria-pressed="${draft.photoKey === 'custom'}">${draft.photoDataUrl ? `<img src="${escape(draft.photoDataUrl)}" alt="我的照片"><span>我的照片</span>` : `${api.icon('camera')}<span>用自己的照片</span>`}<i>${api.icon('check')}</i></button></div><input type="file" name="photo" accept="image/*" class="sp-visually-hidden" aria-label="选择自己的照片"><p class="sp-field__hint" data-photo-hint>${photoHint()}</p>
             <div class="sp-ai-line" data-ai-line role="status" aria-live="polite"></div>
             <div class="sp-taken" data-taken>
-              <div class="sp-taken__row"><p class="sp-taken__line" role="status" aria-live="polite"><span data-taken-line></span> <small data-taken-note></small></p><button type="button" class="sp-text-link sp-taken__edit" data-taken-edit aria-controls="sp-taken-field" hidden>修改时间</button></div>
-              <div class="sp-taken__field" id="sp-taken-field" data-taken-field hidden><label class="sp-input-label" for="sp-taken-input" data-taken-label>拍摄时间 · 北京时间</label><input id="sp-taken-input" type="datetime-local" name="takenAt" min="${toInputValue(TAKEN_MIN)}" max="${toInputValue(takenMax())}" step="60"><p class="sp-field__hint" data-taken-hint></p></div>
+              <div class="sp-taken__row"><p class="sp-taken__line" role="status" aria-live="polite"><span data-taken-line></span> <small data-taken-note></small></p><button type="button" class="sp-text-link sp-taken__edit" data-taken-edit aria-controls="sp-taken-field" aria-expanded="false" hidden>修改时间</button></div>
+              <div class="sp-taken__field" id="sp-taken-field" data-taken-field hidden><label class="sp-input-label" for="sp-taken-input" data-taken-label>拍摄时间 · 北京时间</label><input id="sp-taken-input" type="datetime-local" name="takenAt" min="${toInputValue(TAKEN_MIN)}" max="${toInputValue(takenMax())}" step="60"><p class="sp-field__hint" data-taken-hint></p><p class="sp-form-error sp-taken__error" id="sp-taken-error" role="alert" data-taken-error hidden></p></div>
             </div>
           </fieldset>
-          <fieldset class="sp-field sp-field--viewpoint"><legend>视角</legend><div class="sp-moment-options sp-viewpoint-options" role="group" aria-label="我拍的这一面">${VIEWPOINTS.map((item) => `<button type="button" data-viewpoint="${item.id}" class="sp-moment-choice sp-viewpoint-choice" aria-pressed="false">${escape(item.name)}</button>`).join('')}</div><p class="sp-field__hint" data-viewpoint-hint>${viewpointHint()}</p><span class="sp-visually-hidden" id="sp-viewpoint-likely">${SUGGESTED_DESCRIPTION}</span></fieldset>
+          <fieldset class="sp-field sp-field--viewpoint"><legend>视角</legend><div class="sp-moment-options sp-viewpoint-options" role="group" aria-label="我拍的这一面">${VIEWPOINTS.map((item) => `<button type="button" data-viewpoint="${item.id}" class="sp-moment-choice sp-viewpoint-choice" aria-pressed="false">${escape(item.name)}</button>`).join('')}</div><p class="sp-field__hint" data-viewpoint-hint>${viewpointHint()}</p></fieldset>
           <fieldset class="sp-field"><legend>时刻</legend><div class="sp-moment-options">${SPACE_MOMENTS.map((moment) => `<button type="button" data-moment="${moment.id}" class="sp-moment-choice${draft.momentId === moment.id ? ' is-selected' : ''}" aria-pressed="${draft.momentId === moment.id}">${escape(moment.name)}</button>`).join('')}</div>
             <label class="sp-input-label" for="sp-song-input">这一刻在唱的歌 <span>选填</span></label><input id="sp-song-input" type="text" name="song" maxlength="${SONG_MAX}" autocomplete="off" placeholder="例如：晴天" value="${escape(draft.song)}"><div class="sp-field__counter"><span>会排进「那晚的歌单」</span><span data-song-count>${[...draft.song].length} / ${SONG_MAX}</span></div>
             <label class="sp-input-label" for="sp-song-select">带上示例曲目</label><select id="sp-song-select" name="track"><option value="${SPACE_EVENT.trackId}"${draft.trackId ? ' selected' : ''}>《${escape(SPACE_EVENT.song)}》 · 示例曲目</option><option value=""${!draft.trackId ? ' selected' : ''}>不带示例曲目</option></select></fieldset>
@@ -332,6 +332,12 @@ function makeLifecycle(container, api) {
       const view = answer.phase === 'done' ? answerView(answer.result) : null;
       return view && !view.sure && !draft.perspective && viewpointFrom !== 'user' ? view.suggested : [];
     };
+    /** The sentence a suggested chip points to (aria-describedby). It is in the page only while the model has a suggestion to describe. */
+    const syncLikelyNote = (needed) => {
+      const existing = $('#sp-viewpoint-likely');
+      if (needed && !existing) $('.sp-field--viewpoint').insertAdjacentHTML('beforeend', `<span class="sp-visually-hidden" id="sp-viewpoint-likely">${escape(SUGGESTED_DESCRIPTION)}</span>`);
+      else if (!needed) existing?.remove();
+    };
     const preview = () => {
       $('[data-card-preview]').innerHTML = ticketMarkup(draft, { preview: true });
       element.querySelectorAll('[data-photo]').forEach((button) => {
@@ -345,6 +351,7 @@ function makeLifecycle(container, api) {
         button.setAttribute('aria-pressed', String(selected));
       });
       const hints = suggested();
+      syncLikelyNote(hints.length > 0);
       element.querySelectorAll('[data-viewpoint]').forEach((button) => {
         const selected = button.dataset.viewpoint === draft.perspective;
         const likely = !selected && hints.includes(button.dataset.viewpoint);
@@ -379,14 +386,22 @@ function makeLifecycle(container, api) {
     const renderTaken = ({ fillInput = false } = {}) => {
       const view = timeView(draft, SPACE_EVENT.date, { zone });
       const open = view.mode !== 'known' || editTime;
-      $('[data-taken-line]').textContent = view.line;
+      if (fillInput) form.elements.takenAt.value = draft.takenAt === null ? '' : toInputValue(draft.takenAt);
+      // Something typed that cannot be used (before 2000, after tomorrow) is said next to the field, not dropped in silence.
+      const problem = draft.takenAt === null ? timeProblem(form.elements.takenAt.value) : '';
+      $('[data-taken-line]').textContent = problem ? '暂无可用的拍摄时间' : view.line;
       $('[data-taken-note]').textContent = view.mode === 'known' ? `· ${view.note}` : '';
       const edit = $('[data-taken-edit]');
       edit.hidden = !(view.mode === 'known' && view.editable && !editTime);
+      edit.setAttribute('aria-expanded', String(open));
       $('[data-taken-field]').hidden = !open;
       $('[data-taken-label]').textContent = view.mode === 'guess' ? '大约的时间 · 北京时间' : view.mode === 'known' ? '修改拍摄时间 · 北京时间' : '拍摄时间 · 北京时间';
       $('[data-taken-hint]').textContent = view.mode === 'known' ? '改过的时间以你填的为准。' : view.note;
-      if (fillInput) form.elements.takenAt.value = draft.takenAt === null ? '' : toInputValue(draft.takenAt);
+      const complaint = $('[data-taken-error]');
+      complaint.textContent = problem;
+      complaint.hidden = !problem;
+      if (problem) { form.elements.takenAt.setAttribute('aria-invalid', 'true'); form.elements.takenAt.setAttribute('aria-describedby', 'sp-taken-error'); }
+      else { form.elements.takenAt.removeAttribute('aria-invalid'); form.elements.takenAt.removeAttribute('aria-describedby'); }
     };
     const renderAll = ({ fillInput = true } = {}) => { hint.textContent = photoHint(); renderTaken({ fillInput }); renderAi(); preview(); };
     const restoreCustomButton = () => {

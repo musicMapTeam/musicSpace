@@ -310,7 +310,8 @@ html[data-theme] dialog.duet-ceremony::backdrop { background: var(--dc-night-0);
 }
 .duet-ticket__stub::before { position: absolute; top: 0; left: calc(var(--notch) + 8px); right: calc(var(--notch) + 8px); border-top: 2px dashed var(--dc-edge); content: ''; }
 .duet-ticket__shared { min-width: 0; }
-.duet-ticket__label { display: block; color: var(--dc-rose); font-size: 13px; line-height: 1.5; letter-spacing: .12em; }
+/* The stub's label is the pairing reason (「同一刻 · 21:47，相差 1 分钟」): body size, and only slightly tracked so it stays on one line. */
+.duet-ticket__label { display: block; color: var(--dc-rose); font-size: 14px; line-height: 1.5; letter-spacing: .04em; }
 .duet-ticket__value { display: block; margin-top: 2px; color: var(--dc-ink); font-family: var(--dc-serif); font-size: clamp(22px, 2.3vw, 30px); font-weight: 700; line-height: 1.3; letter-spacing: .03em; overflow-wrap: anywhere; }
 .duet-ticket__seal {
   display: grid;
@@ -450,7 +451,7 @@ html[data-theme] body:has(dialog.duet-ceremony[open]) dialog:is(.live-dialog, .s
   .duet-ticket__half p { margin-top: 5px; font-size: 14px; line-height: 1.65; }
   .duet-ticket__seam { top: 10px; }
   .duet-ticket__stub { --notch: 10px; gap: 4px 12px; padding: 14px 14px 15px 18px; border-radius: 0 0 12px 12px; }
-  .duet-ticket__label { font-size: 12px; letter-spacing: .06em; }
+  .duet-ticket__label { font-size: 14px; letter-spacing: .02em; }
   .duet-ticket__value { font-size: 21px; }
   .duet-ticket__seal { width: 62px; height: 62px; outline-offset: -6px; }
   .duet-ticket__seal b { font-size: 12px; letter-spacing: .02em; }

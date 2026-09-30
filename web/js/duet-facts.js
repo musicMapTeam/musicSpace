@@ -1,5 +1,5 @@
 import { SPACE_MOMENTS } from './space-data.js';
-import { cardFacts, pairSides, sharedFacts, songsOf } from './moment.js';
+import { cardFacts, cleanSong, pairSides, sharedFacts, songsOf } from './moment.js';
 
 /** Facts shared by the duet page and its PNG. They only read accepted snapshots. */
 export const momentLabel = id => SPACE_MOMENTS.find(item => item.id === id)?.name || '现场瞬间';
@@ -15,6 +15,24 @@ export function sharedLine(cards = [], event = {}) {
 /** Per half: viewpoint, chosen moment, capture time (only a trusted one) and the song that half prints itself. */
 export function duetSides(cards = [], event = {}) {
   return pairSides(cards, event, SPACE_MOMENTS);
+}
+
+/**
+ * What the footer of a ticket PNG says about the invented parts of the night it shows.
+ * The local demo's roles, venue and example song are fictional, but a visitor may have put their own photo (and typed a real song
+ * title) on one half: a footer that called those fictional would be wrong, so it says what is invented and what the visitor supplied.
+ * `info` = { scenario: 'local' | 'live', isDemo }; `cards` = the cards drawn on the ticket. '' when there is nothing to disclose.
+ */
+export function inventedNotice(cards = [], info = {}) {
+  if (info.scenario === 'local') {
+    const ownPhoto = cards.some(card => card?.photoKey === 'custom' || card?.photoId);
+    const ownSong = cards.some(card => cleanSong(card?.song));
+    if (!ownPhoto && !ownSong) return ' · 本地情景演示，角色、现场与歌曲为虚构';
+    const invented = ['角色', '场次', cards.some(card => card?.trackId) ? '示例曲目' : ''].filter(Boolean).join('、');
+    const supplied = [ownPhoto ? '照片' : '', ownSong ? '歌名' : ''].filter(Boolean).join('与');
+    return ` · 本地示例，${invented}为虚构；含使用者提供的${supplied}`;
+  }
+  return info.isDemo === false ? '' : ' · 现场与歌曲为示例内容';
 }
 
 /** One card's own facts, for a single-card PNG and the collection. */

@@ -29,7 +29,7 @@ html[data-theme] .live-compose .live-upload-empty>.icon { width:30px; height:30p
 html[data-theme] .live-compose .live-upload-empty strong { color:var(--text); font-size:16px; font-weight:550; }
 html[data-theme] .live-compose .live-upload-empty>span { color:var(--muted); font-size:12px; }
 html[data-theme] .live-compose .live-upload-button { min-height:46px!important; margin-top:12px; border-radius:12px; font-size:14px; }
-html[data-theme] .live-compose .live-form-note { margin:10px 0 0; font-size:12px; line-height:1.7; color:var(--muted); }
+html[data-theme] .live-compose .live-form-note { margin:10px 0 0; font-size:12px; line-height:1.7; color:var(--muted); text-wrap:pretty; }
 html[data-theme] .live-compose .live-example-picker { margin:12px 0 0; padding:0; border:0; }
 html[data-theme] .live-compose .live-example-picker>summary { display:list-item; min-height:42px; padding:10px 0; font-size:13px; color:var(--muted); }
 html[data-theme] .live-compose .live-example-picker>p { margin:0 0 11px; color:var(--muted); font-size:12px; }
@@ -114,6 +114,9 @@ html[data-theme] .live-compose .live-taken__field { margin:2px 0 0; }
 html[data-theme] .live-compose .live-taken__field .live-field { margin:0; }
 html[data-theme] .live-compose .live-taken__field .live-field>span { float:none; display:block; color:var(--text); font-size:13px; font-weight:500; }
 html[data-theme] .live-compose .live-taken__field .live-form-note { margin:8px 0 0; }
+/* A typed time the page cannot use: a rose note on the paper, body size, said next to the field. */
+html[data-theme] .live-compose .live-taken__field .live-taken__error { margin:8px 0 0; padding:8px 12px; border-left:3px solid var(--coral); border-radius:0 6px 6px 0; background:#f6e9e6; color:var(--coral-ink,#96495e); font-size:14px; line-height:1.6; word-break:keep-all; overflow-wrap:anywhere; text-wrap:pretty; }
+html[data-theme] .live-compose .live-taken__field .live-taken__error[hidden] { display:none; }
 html[data-theme] .live-compose .live-taken__field input[type="datetime-local"],
 html[data-theme] .live-compose .live-compose__song input { display:block; width:100%; min-width:0; box-sizing:border-box; height:auto; min-height:46px; margin-top:8px; padding:10px 12px; border:1px solid var(--line); border-radius:12px; background:var(--studio-well,var(--surface-raised)); color:var(--text); font-size:16px; line-height:1.5; color-scheme:light; }
 html[data-theme] .live-compose .live-compose__song { margin:16px 0 0; }
@@ -126,9 +129,9 @@ html[data-theme] .live-compose .live-ai-line__bar { flex:0 0 96px; height:4px; o
 html[data-theme] .live-compose .live-ai-line__bar>i { display:block; height:100%; background:var(--mint); transition:width .25s linear; }
 html[data-theme] .live-compose .live-ai-tag { display:inline-flex; align-items:center; gap:7px; min-height:28px; padding:2px 12px; border:1px solid var(--line); border-radius:999px; background:var(--studio-well,var(--surface-raised)); color:var(--text); font-size:14px; }
 html[data-theme] .live-compose .live-ai-tag::before { width:6px; height:6px; border-radius:50%; background:var(--mint); content:''; }
-html[data-theme] .live-compose .live-ai-tag--unsure { border-style:dashed; border-color:var(--coral); color:var(--coral); }
+html[data-theme] .live-compose .live-ai-tag--unsure { border-style:dashed; border-color:var(--coral); color:var(--coral-ink,var(--coral)); }
 html[data-theme] .live-compose .live-ai-tag--unsure::before { background:var(--coral); }
-html[data-theme] .live-compose .live-perspectives label.is-suggested>span { border-style:dashed; border-color:var(--coral); color:var(--coral); }
+html[data-theme] .live-compose .live-perspectives label.is-suggested>span { border-style:dashed; border-color:var(--coral); color:var(--coral-ink,var(--coral)); }
 html[data-theme] .live-compose .live-perspectives__note { margin:8px 0 14px; font-size:13px; line-height:1.7; text-wrap:pretty; }
 html[data-theme] .live-compose .live-perspectives { margin-bottom:0; }
 /* 44px targets for the choices in this editor */

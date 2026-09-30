@@ -89,7 +89,7 @@
 .live-saved-actions .button{justify-content:center;min-height:48px}
 /* Secondary routes sit on one ruled line under the two buttons, with the dismiss at its end. */
 html[data-theme] .live-dialog .live-saved-links{display:flex;flex-wrap:wrap;align-items:center;gap:0 20px;margin-top:14px;padding-top:6px;border-top:1px dashed var(--object-line,#0c101626)}
-html[data-theme] .live-dialog .live-saved-links .text-button{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0;font-size:14px;line-height:1.4}
+html[data-theme] .live-dialog .live-saved-links .text-button{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-width:44px;min-height:44px;padding:0;font-size:14px;line-height:1.4}
 html[data-theme] .live-dialog .live-saved-links .text-button .icon{width:14px;height:14px}
 html[data-theme] .live-dialog .live-saved-links .live-saved-later{margin-left:auto;color:var(--muted,#6b6f66)}
 .live-return-slip{padding:24px;background:var(--live-paper);color:var(--live-ink);border-top:3px solid var(--live-coral);border-bottom:1px dashed #0c101660}

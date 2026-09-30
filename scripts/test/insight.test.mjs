@@ -61,7 +61,8 @@ assert.equal(P.timeView({ ...card, takenSource: 'file' }, '2026.09.26', { zone: 
 
 // ---- the status line: announced once per phase, not once per percent ------------------------------------------------------
 const loading = P.loadingMarkup('sp-ai-line', { loaded: 250, total: 1000 });
-assert.ok(loading.startsWith(`<span>${P.AI_LOADING}<span data-ai-percent aria-hidden="true"> · 25%</span></span>`));
+assert.ok(loading.startsWith('<span>AI 在本机判断视角 · 首次需下载模型<span class="nowrap">（约 10–23 MB）</span><span data-ai-percent aria-hidden="true"> · 25%</span></span>'));
+assert.equal(loading.replace(/<[^>]*>/g, ''), `${P.AI_LOADING} · 25%`); // the words a screen reader hears are AI_LOADING (the percent is decoration)
 assert.match(loading, /<span class="sp-ai-line__bar" aria-hidden="true"><i data-ai-fill style="width:25%"><\/i><\/span>$/);
 assert.ok(P.loadingMarkup('sp-ai-line').includes('<span data-ai-percent aria-hidden="true"></span>')); // no bytes counted yet: no percent
 const nodes = { '[data-ai-percent]': { textContent: '' }, '[data-ai-fill]': { style: {} } };
@@ -77,5 +78,74 @@ P.paintAiLine(region, '<span>a</span>'); // the same words again would be announ
 assert.equal(writes, 1);
 P.paintAiLine(region, '');
 assert.equal(writes, 2);
+
+// The download line names no size that depends on the host's compression (about 10 MB gzipped, about 23 MB as it is).
+assert.equal(P.AI_LOADING, 'AI 在本机判断视角 · 首次需下载模型（约 10–23 MB）');
+assert.ok(!P.AI_LOADING.includes('首次下载约 10 MB'));
+
+// A typed time the page cannot use is named, not dropped in silence; an empty field and a usable time say nothing.
+assert.equal(P.timeProblem(''), '');
+assert.equal(P.timeProblem('2026-09-26T21:47'), '');
+assert.equal(P.timeProblem('1999-12-31T23:59'), P.TIME_OUT_OF_RANGE);
+assert.equal(P.timeProblem('2999-01-01T00:00'), P.TIME_OUT_OF_RANGE);
+assert.equal(P.timeProblem('2026-02-30T21:47'), P.TIME_OUT_OF_RANGE);
+assert.match(P.TIME_OUT_OF_RANGE, /2000\s年至明天/); // the space is a no-break space: a line never ends after "2000"
+
+// ---- the status while the model is fetched: never empty from the moment a picture is handed over until the answer -----------
+// The shared classifier is a plain object; a stand-in load lets the phases be watched without a browser or a model.
+const model = (await import('../../web/js/ai/space-ai.js')).getViewpointAI();
+const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
+const watch = () => {
+  const seen = [];
+  const handle = P.identifyViewpoint('data:image/png;base64,AA==', state => seen.push(state.phase === 'loading' ? `loading ${state.loaded}/${state.total}` : state.phase));
+  return { seen, handle };
+};
+let modelState = 'idle';
+let progressNow = { loaded: 0, total: 0 };
+let finish = () => {};
+Object.assign(model, {
+  status: () => modelState,
+  progress: () => ({ ...progressNow }),
+  load: onProgress => new Promise(resolve => {
+    modelState = 'loading';
+    finish = () => { modelState = 'ready'; resolve(); };
+    model.report = state => { progressNow = state; onProgress(state); };
+  }),
+  classify: async () => ({ ok: true, sure: false, label: 'stage', top2: ['stage', 'crowd'] }),
+});
+
+// cold start, every byte already here (the picker's warm-up finished the download): "thinking" at once and no download words at all
+progressNow = { loaded: 100, total: 100 };
+let run = watch();
+await pause(0);
+assert.deepEqual(run.seen, ['thinking']);
+await pause(450);
+assert.deepEqual(run.seen, ['thinking']); // the delay passed and the download is not going on: the words stay
+finish(); await pause(0);
+assert.deepEqual(run.seen, ['thinking', 'thinking', 'done']);
+
+// cold start with a download that lasts: "thinking" at once, the download words after a moment, "thinking" again when every byte is here
+modelState = 'idle'; progressNow = { loaded: 0, total: 0 };
+run = watch();
+await pause(0);
+assert.deepEqual(run.seen, ['thinking']);
+model.report({ loaded: 20, total: 100 });
+await pause(450);
+assert.deepEqual(run.seen, ['thinking', 'loading 20/100']);
+model.report({ loaded: 60, total: 100 });
+assert.deepEqual(run.seen.at(-1), 'loading 60/100');
+model.report({ loaded: 100, total: 100 });
+assert.deepEqual(run.seen.at(-1), 'thinking'); // the rest is starting the model, not a download
+finish(); await pause(0);
+assert.deepEqual(run.seen.at(-2), 'thinking');
+assert.equal(run.seen.at(-1), 'done');
+
+// a model that is already there: no download words, and a cancelled request says nothing more
+modelState = 'ready';
+run = watch();
+run.handle.cancel();
+await pause(20);
+assert.ok(!run.seen.some(phase => phase.startsWith('loading')));
+assert.ok(!run.seen.includes('done'));
 
 console.log('insight: all assertions passed');

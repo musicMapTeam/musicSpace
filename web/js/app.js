@@ -264,7 +264,7 @@ function aboutFacts() {
     // Said only where it is true: a browser without WebAssembly SIMD (or a file:// page) never runs the model, and a model that
     // failed to load is not promised either. The facts are drawn again each time the dialog opens.
     ['AI', model === 'on'
-      ? 'AI 在本机判断视角，判断时照片不上传（第一次要下载约 10 MB）；没把握就不替你选，选了也随时可改。'
+      ? 'AI 在本机判断视角，判断时照片不上传（第一次要下载模型，<span class="nowrap">约 10–23 MB）；</span>没把握就不替你选，选了也随时可改。'
       : AI_OFF_LINES[model]],
     ['票根', '对方同意后，两张卡合成两人署名的双联票根，收进我的记忆。'],
     ['示例', backend.available

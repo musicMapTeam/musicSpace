@@ -20,6 +20,8 @@
  *   whyUnsupported() synchronous. null when supported(); else 'page' (the page is not served over http(s), e.g. file://: the same browser
  *                    would run the model from a URL) or 'browser' (no WebAssembly SIMD / createImageBitmap / fetch). For wording only.
  *   status()         'idle' | 'loading' | 'ready' | 'unsupported' | 'failed'.
+ *   progress()       synchronous. { loaded, total } bytes of the load so far (decoded bytes; 0 / 0 before the first one is known), so a caller
+ *                    that joins a load already under way knows whether the download is still going or only the model is starting up.
  *   load(onProgress) idempotent, never rejects (failure -> status 'failed'). onProgress({ loaded, total }) in bytes.
  *   classify(blob)   queued one at a time, never rejects. Starts load() if nobody did. Takes a Blob/File (the normal input); an
  *                    ImageBitmap / <img> / <canvas> works too, and a data: or blob: URL string is read locally (a web URL is refused,
@@ -384,7 +386,9 @@ function createViewpointAI() {
     };
   }
 
-  return { supported, whyUnsupported, status, load, classify, diagnostics };
+  const bytesSoFar = () => ({ loaded: progress.loaded, total: progress.total });
+
+  return { supported, whyUnsupported, status, progress: bytesSoFar, load, classify, diagnostics };
 }
 
 let shared = null;

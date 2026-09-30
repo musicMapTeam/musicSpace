@@ -368,6 +368,9 @@ html[data-theme='sakura'] .space-studio.space-studio--demo .sp-ticket { box-shad
 .sp-taken .sp-taken__field[hidden],
 .sp-ai-line[hidden] { display: none; }
 .sp-taken__field { margin-top: 2px; }
+/* A typed time the page cannot use: a rose note on the paper (the editor's own .sp-form-error is a dark box made for the night). */
+.sp-dialog .sp-taken__error { margin: 8px 0 0; padding: 8px 12px; border: 0; border-left: 3px solid var(--coral); border-radius: 0 6px 6px 0; background: #f6e9e6; color: var(--coral-ink, #96495e); font-size: 14px; line-height: 1.6; word-break: keep-all; overflow-wrap: anywhere; text-wrap: pretty; }
+.sp-dialog .sp-taken__error[hidden] { display: none; }
 .sp-taken__field .sp-input-label { font-size: 13px; }
 
 /* Text and date fields share the look of the select and the caption box */
@@ -383,17 +386,19 @@ html[data-theme='sakura'] .space-studio.space-studio--demo .sp-ticket { box-shad
 
 /* Viewpoint and moment chips: 44px targets, and a dashed outline for the two sides the model would suggest */
 .sp-dialog .sp-moment-choice { min-height: 44px; padding: 8px 17px; font-size: 14px !important; }
-.sp-dialog .sp-moment-choice.is-suggested { border-style: dashed; border-color: var(--coral); color: var(--coral); }
+.sp-dialog .sp-moment-choice.is-suggested { border-style: dashed; border-color: var(--coral); color: var(--coral-ink, var(--coral)); }
 .sp-viewpoint-options { margin-bottom: 4px; }
 /* The sentence that says what the model does and does not do (and that the photo stays on the device) is not fine print. */
 .sp-field--viewpoint .sp-field__hint { font-size: 13px; line-height: 1.7; text-wrap: pretty; }
+/* No one-character last line ("点图片更 / 换") in any hint under a field. */
+.sp-dialog .sp-field__hint { text-wrap: pretty; }
 .sp-ai-line { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px; margin: 8px 0 0; color: var(--text); font-size: 14px; line-height: 1.6; }
 .sp-ai-line__hint { color: #5b6259; font-size: 13px; }
 .sp-ai-line__bar { flex: 0 0 96px; height: 4px; overflow: hidden; border-radius: 2px; background: var(--line); }
 .sp-ai-line__bar > i { display: block; height: 100%; background: var(--mint); transition: width 0.25s linear; }
 .sp-ai-tag { display: inline-flex; align-items: center; gap: 7px; min-height: 28px; padding: 2px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--studio-well); color: var(--text); font-size: 14px; }
 .sp-ai-tag::before { width: 6px; height: 6px; border-radius: 50%; background: var(--mint); content: ''; }
-.sp-ai-tag--unsure { border-style: dashed; border-color: var(--coral); color: var(--coral); }
+.sp-ai-tag--unsure { border-style: dashed; border-color: var(--coral); color: var(--coral-ink, var(--coral)); }
 .sp-ai-tag--unsure::before { background: var(--coral); }
 /* The status region stays in the page so a screen reader is told when it starts to speak; empty, it takes no room. */
 .sp-ai-line:empty { margin: 0; }

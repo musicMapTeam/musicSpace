@@ -49,7 +49,7 @@ function boolean(value) {
 }
 
 const TAKEN_MIN = Date.UTC(2000, 0, 1);
-const TAKEN_SOURCES = ['exif', 'manual', 'file'];
+const TAKEN_SOURCES = ['exif', 'manual'];
 const SONG_MAX = 40;
 // Controls, line/paragraph separators and bidirectional overrides: a title must be one plain line of text.
 const SONG_FORBIDDEN = /[\p{Cc}\u2028\u2029\u061c\u200e\u200f\u202a-\u202e\u2066-\u2069\ufeff]/u;
@@ -371,7 +371,9 @@ async function api(request, response, path) {
     const isPublic = boolean(data.isPublic);
     // A missing field keeps the old meaning (the example photo's side); '' says the person chose none.
     const perspective = data.perspective == null ? photoKey : data.perspective === '' ? '' : choice(data.perspective, ['stage', 'crowd', 'friends', 'detail'], '视角');
-    const takenAt = capturedAt(data.takenAt);
+    // A file's modification time is only a guess at when a photo was taken, and the page no longer sends one. A page that still does (an
+    // old copy left open, another client) is not refused: the card is saved without a capture time, so nothing approximate is stored.
+    const takenAt = data.takenSource === 'file' ? null : capturedAt(data.takenAt);
     const takenSource = takenAt === null ? null : choice(data.takenSource, TAKEN_SOURCES, '拍摄时间来源');
     const song = songTitle(data.song);
     const photoId = data.photoId == null ? null : text(data.photoId, '照片', 36);

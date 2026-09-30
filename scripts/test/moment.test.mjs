@@ -2,6 +2,7 @@
 // Plain node:assert, no framework, no browser: `npm test` or `node scripts/test/moment.test.mjs`.
 import assert from 'node:assert/strict';
 import * as M from '../../web/js/moment.js';
+import { inventedNotice } from '../../web/js/duet-facts.js';
 
 const moments = [{ id: 'encore', name: '返场' }, { id: 'chorus', name: '全场合唱' }, { id: 'lights', name: '灯光亮起' }];
 const event = { title: '回声现场', date: '2026.09.26', song: '把晚风借给你', isDemo: true };
@@ -91,10 +92,36 @@ assert.match(farReading.detail, /不算同一刻/);
 assert.equal(farReading.title, '现场的另一面');
 assert.ok(!farReading.detail.includes(farReading.title));
 assert.match(farReading.detail, /你们都选了「返场」/);
+// Around the 3-minute line the words never contradict the rule: "相差 3 分钟" is at most 3:00 and "隔了 3 分多钟" is more (not 同一刻),
+// whether the difference is one second or one millisecond, whichever card is first.
+assert.match(M.readPair(lin, near, { event, moments }).detail, /^同一刻 · 21:47，相差 3 分钟；/);
+assert.match(farReading.detail, /但拍摄时间隔了 3 分多钟，不算同一刻/);
+assert.match(M.readPair(lin, { ...yao, takenAt: t(21, 50) + 1 }, { event, moments }).detail, /隔了 3 分多钟，不算同一刻/);
+assert.match(M.readPair(lin, { ...yao, takenAt: t(21, 49, 59) }, { event, moments }).detail, /^同一刻 · 21:47，相差 2 分多钟；/);
+assert.match(M.readPair(lin, { ...yao, takenAt: t(21, 51) }, { event, moments }).detail, /隔了 4 分钟，不算同一刻/);
+assert.equal(M.readPair({ ...yao, takenAt: t(21, 50, 1) }, lin, { event, moments }).basis, 'apart');
+assert.equal(M.readPair({ ...yao, takenAt: t(21, 50) }, lin, { event, moments }).basis, 'time');
+assert.deepEqual([180_000, 180_001, 59_999, 60_000, 90_000, 240_000, 3_600_000, 7_200_000].map(M.spanWords), ['3 分钟', '3 分多钟', '不到 1 分钟', '1 分钟', '1 分多钟', '4 分钟', '1 小时', '2 小时']);
+// Sweep every gap from 0 to 6 minutes in 250 ms steps: the words agree with the rule on both sides of the line and never rate one gap as both.
+for (let gap = 0; gap <= 360_000; gap += 250) {
+  const detail = M.readPair(lin, { ...yao, takenAt: t(21, 47) + gap }, { event, moments }).detail;
+  const minutes = /(?:相差|隔了) (\d+) 分(多?)钟/.exec(detail);
+  if (gap <= M.SAME_MOMENT_MS) {
+    assert.ok(detail.startsWith('同一刻 · '), `${gap} ms: ${detail}`);
+    assert.ok(!detail.includes('不算同一刻'), `${gap} ms: ${detail}`);
+    if (minutes) assert.ok(minutes[2] ? Number(minutes[1]) < 3 : Number(minutes[1]) <= 3, `${gap} ms: ${detail}`); // at most "3 分钟", or "2 分多钟" and below
+  } else {
+    assert.ok(detail.includes('不算同一刻'), `${gap} ms: ${detail}`);
+    assert.ok(minutes, `${gap} ms: ${detail}`);
+    assert.ok(minutes[2] ? Number(minutes[1]) >= 3 : Number(minutes[1]) >= 4, `${gap} ms: ${detail}`); // "3 分多钟" and above, never "3 分钟"
+  }
+}
+assert.equal(M.reasonHtml('同一刻 · 21:47，相差 2 分多钟'), '同一刻 · <span class="nowrap">21:47</span>，<span class="nowrap">相差 2 分多钟</span>');
+assert.equal(M.reasonHtml('但拍摄时间隔了 3 分多钟，不算同一刻'), '但<span class="nowrap">拍摄时间</span><span class="nowrap">隔了 3 分多钟</span>，<span class="nowrap">不算同一刻</span>');
 // same minute
 assert.match(M.readPair(lin, { ...yao, takenAt: t(21, 47, 5) }, { event, moments }).detail, /几乎同时/);
 assert.match(M.readPair(lin, { ...yao, takenAt: t(21, 47, 40) }, { event, moments }).detail, /相差不到 1 分钟/);
-assert.match(M.readPair(lin, { ...yao, takenAt: t(21, 48, 30) }, { event, moments }).detail, /相差 2 分钟/);
+assert.match(M.readPair(lin, { ...yao, takenAt: t(21, 48, 30) }, { event, moments }).detail, /相差 1 分多钟/);
 assert.equal(M.reasonHtml('同一刻 · 21:47，相差 1 分钟；你拍<舞台>'), '同一刻 · <span class="nowrap">21:47</span>，<span class="nowrap">相差 1 分钟</span>；你拍&lt;舞台&gt;');
 // The viewpoint clauses, the moment name and a short song title are units too: a narrow column may end a line after "你拍舞台，"
 // but never inside "TA 拍人海" (the orphaned 海), and never inside 「返场」.
@@ -202,4 +229,16 @@ assert.equal(M.sharedFacts([{ ...lin, trackId: '', song: '歌一' }, { ...yao, t
 assert.equal(M.sharedFacts([{ id: 1, momentId: 'a' }, { id: 2, momentId: 'b' }], { title: '某场' }, moments).label, '我们交换的这一晚');
 assert.deepEqual(M.takenFields({ takenAt: t(21, 47), takenSource: 'sample' }), { takenAt: null, takenSource: null });
 assert.deepEqual(M.takenFields({ takenAt: t(21, 47), takenSource: 'exif' }), { takenAt: t(21, 47), takenSource: 'exif' });
+assert.deepEqual(M.takenFields({ takenAt: t(21, 47), takenSource: 'manual' }), { takenAt: t(21, 47), takenSource: 'manual' });
+// A file's modification time is a guess the person has not confirmed: it never goes to a server (typing or editing it makes it 'manual').
+assert.deepEqual(M.takenFields({ takenAt: t(21, 47), takenSource: 'file' }), { takenAt: null, takenSource: null });
+
+// The footer of a ticket PNG names what is invented, and does not call a visitor's own photo or song title fictional.
+const exampleCard = { photoKey: 'stage', trackId: 'co-0', song: '' };
+assert.equal(inventedNotice([exampleCard, { ...exampleCard, photoKey: 'crowd' }], { scenario: 'local', isDemo: true }), ' · 本地情景演示，角色、现场与歌曲为虚构');
+assert.equal(inventedNotice([{ ...exampleCard, photoKey: 'custom' }, exampleCard], { scenario: 'local', isDemo: true }), ' · 本地示例，角色、场次、示例曲目为虚构；含使用者提供的照片');
+assert.equal(inventedNotice([{ ...exampleCard, photoKey: 'custom', trackId: '', song: '晴天' }, { ...exampleCard, trackId: '' }], { scenario: 'local', isDemo: true }), ' · 本地示例，角色、场次为虚构；含使用者提供的照片与歌名');
+assert.equal(inventedNotice([{ ...exampleCard, trackId: '', song: '晴天' }, exampleCard], { scenario: 'local', isDemo: true }), ' · 本地示例，角色、场次、示例曲目为虚构；含使用者提供的歌名');
+assert.equal(inventedNotice([exampleCard], { scenario: 'live', isDemo: false }), '');
+assert.equal(inventedNotice([exampleCard], { scenario: 'live', isDemo: true }), ' · 现场与歌曲为示例内容');
 console.log('moment.js: all assertions passed');

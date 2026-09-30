@@ -92,9 +92,16 @@ async function run(base) {
   await bad({ song: 42 });
   await bad({ perspective: 'sideways' });
   // within limits
-  r = await put(a.token, { ...base0, song: '字'.repeat(40), takenAt: Date.now() + 3_600_000, takenSource: 'file' });
+  r = await put(a.token, { ...base0, song: '字'.repeat(40), takenAt: Date.now() + 3_600_000, takenSource: 'exif' });
   assert.equal(r.status, 200, JSON.stringify(r.json));
   assert.equal([...r.json.ownCard.song].length, 40);
+  // a file's modification time is only a guess: a client that still sends one is not refused, but nothing approximate is stored
+  r = await put(a.token, { ...base0, takenAt: t, takenSource: 'file' });
+  assert.equal(r.status, 200, JSON.stringify(r.json));
+  assert.deepEqual([r.json.ownCard.takenAt, r.json.ownCard.takenSource], [null, null]);
+  r = await put(a.token, { ...base0, takenAt: 'not a time', takenSource: 'file' });
+  assert.equal(r.status, 200, JSON.stringify(r.json));
+  assert.deepEqual([r.json.ownCard.takenAt, r.json.ownCard.takenSource], [null, null]);
   r = await put(a.token, { ...base0, song: '   ', takenAt: null, takenSource: 'exif' });
   assert.equal(r.status, 200);
   assert.deepEqual([r.json.ownCard.song, r.json.ownCard.takenAt, r.json.ownCard.takenSource], ['', null, null]);

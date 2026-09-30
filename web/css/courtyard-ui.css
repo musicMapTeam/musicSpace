@@ -1,10 +1,12 @@
 /* One little cinema: warm paper, printed marks and room for the scene. */
 html[data-theme='sakura'] {
   --studio-panel:#fffdf5; --studio-well:#f0eee3; --studio-border:#62695124;
-  --text:#35443e; --muted:#737970; --line:#566b512c;
+  --text:#35443e; --muted:#5f655c; --coral-ink:#96495e; --line:#566b512c;
   --mint:#35664e; --button-fill:#35614d; --button-ink:#fffcef;
   --studio-shadow:0 18px 50px #384c3c17,0 2px 5px #384c3c0a;
 }
+/* base.css draws the skip link's dark text for a bright mint; here mint is a dark green, so the link reads in cream when it takes focus. */
+html[data-theme='sakura'] .skip-link { color:#fffcef; }
 html[data-theme='sakura'] .app-masthead.app-studio-shell { inset:25px 32px auto; width:auto; max-width:none; height:51px; display:flex; justify-content:space-between; pointer-events:none; }
 html[data-theme='sakura'] .app-studio-shell .brand { position:relative; width:auto; min-height:48px; justify-content:flex-start; gap:13px; padding:0; color:#344d42; pointer-events:auto; }
 /* Wordmark type and night colours live in night-shell.css. */

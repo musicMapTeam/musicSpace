@@ -65,7 +65,7 @@ html[data-theme='sakura'] body[data-spatial-section='live'] .world-caption { dis
 html[data-theme='sakura'] .live-room-scene { position:relative; height:100%; min-height:0; }
 html[data-theme='sakura'] .live-room-ticket { position:absolute; left:0; top:0; width:330px; padding:17px 20px 10px; pointer-events:auto; }
 html[data-theme='sakura'] .live-room-ticket::before { content:''; position:absolute; width:40px; height:11px; left:24px; top:-5px; transform:rotate(-5deg); background:#b5bfa18c; }
-html[data-theme='sakura'] .live-paper-label { display:block; margin-bottom:9px; color:#a2757b; font:12px/1.4 var(--font-mono); letter-spacing:.17em; }
+html[data-theme='sakura'] .live-paper-label { display:block; margin-bottom:9px; color:#8f5d66; font:12px/1.4 var(--font-mono); letter-spacing:.17em; }
 html[data-theme='sakura'] .live-room-ticket .live-room-head { padding:0; margin:0; }
 html[data-theme='sakura'] .live-room-ticket .live-room-head h1 { margin:0 0 8px; font:500 22px/1.5 'Songti SC','SimSun',serif; letter-spacing:.03em; }
 html[data-theme='sakura'] .live-room-ticket .live-event-meta { font-size:12px; line-height:1.7; }
@@ -169,7 +169,7 @@ html[data-theme='sakura'] body[data-spatial-section='records'] .records-heading 
 html[data-theme='sakura'] body[data-spatial-section='records'] .records-heading h1 { font:500 27px/1.5 'Songti SC','SimSun',serif; letter-spacing:.09em; }
 /* Album index: quiet ink words on one hairline; the open section gets a short rose ribbon, not a folder tab. */
 html[data-theme='sakura'] .collection-page .records-filters { display:flex; flex-wrap:nowrap; gap:0 26px; width:100%; margin:0 0 20px; padding:0; border:0; border-bottom:1px solid #e4dcc6; border-radius:0; background:none; box-shadow:none; }
-html[data-theme='sakura'] .collection-page .records-filters button { position:relative; flex:none; min-width:44px; min-height:44px; padding:6px 0 10px; border:0; border-radius:0; background:none; color:#77786a; font-size:14px; font-weight:500; letter-spacing:.06em; white-space:nowrap; box-shadow:none; transition:color .18s ease; }
+html[data-theme='sakura'] .collection-page .records-filters button { position:relative; flex:none; min-width:44px; min-height:44px; padding:6px 0 10px; border:0; border-radius:0; background:none; color:#666a5c; font-size:14px; font-weight:500; letter-spacing:.06em; white-space:nowrap; box-shadow:none; transition:color .18s ease; }
 html[data-theme='sakura'] .collection-page .records-filters button:hover { color:#34503f; background:none; }
 html[data-theme='sakura'] .collection-page .records-filters button[aria-pressed='true'] { color:#23392c; font-weight:600; background:none; box-shadow:none; }
 html[data-theme='sakura'] .collection-page .records-filters button::after { content:''; display:block; position:absolute; left:50%; right:auto; bottom:-1px; width:0; height:2px; border-radius:2px; background:#b36677; transform:translateX(-50%); transition:width .22s ease; }

@@ -20,9 +20,14 @@ export const TAKEN_MIN = Date.UTC(2000, 0, 1);
 export const takenMax = (now = Date.now()) => now + DAY_MS;
 export const validTakenAt = value => Number.isFinite(value) && value >= TAKEN_MIN && value <= takenMax();
 
-/** Where a card's time came from. Only these can decide 「同一刻」; a file's modification time ('file') never does. */
+/**
+ * Where a card's time came from. Only 'exif' and 'manual' can decide 「同一刻」 and only they ever leave the device: a file's
+ * modification time ('file') is a guess the person has not confirmed, so it stays on the page (and in the local demo's own storage).
+ * The moment the person types or edits the time, it becomes 'manual'.
+ */
 export const TAKEN_SOURCES = Object.freeze(['exif', 'manual', 'file']);
 const TRUSTED_SOURCES = Object.freeze(['exif', 'manual', 'sample']); // 'sample' = the demo's fictional example photos
+const SENT_SOURCES = Object.freeze(['exif', 'manual']);              // the sources a room server is told about
 
 const pad = value => String(value).padStart(2, '0');
 
@@ -140,17 +145,28 @@ export function trustedTime(card) {
   return Number.isFinite(ms) && TRUSTED_SOURCES.includes(card.takenSource) ? ms : null;
 }
 
-/** Sanitised card fields for a server request: a finite time with a known source, or neither. */
+/**
+ * Sanitised card fields for a server request: a finite time from the camera ('exif') or typed by the person ('manual'), or neither.
+ * A file's modification time is only a guess at when the photo was taken, so it is never sent (see TAKEN_SOURCES).
+ */
 export function takenFields(card) {
-  const ok = validTakenAt(card?.takenAt) && TAKEN_SOURCES.includes(card.takenSource);
+  const ok = validTakenAt(card?.takenAt) && SENT_SOURCES.includes(card.takenSource);
   return ok ? { takenAt: Math.round(card.takenAt), takenSource: card.takenSource } : { takenAt: null, takenSource: null };
 }
 
-/** "3 分钟" / "5 小时" / "14 天" / "15 个月" / "12 年": rounded, and only as fine as a sentence about a night needs. */
+/**
+ * "3 分钟" / "3 分多钟" / "5 小时" / "14 天" / "15 个月" / "12 年": rounded, and only as fine as a sentence about a night needs.
+ * Minutes are never rounded up to a whole one: "3 分钟" is exactly 3:00 or less and "3 分多钟" is a little more, so a sentence about
+ * the 3-minute rule (SAME_MOMENT_MS) cannot read "3 分钟" on both sides of the line.
+ */
 export function spanWords(ms) {
-  const minutes = Math.max(1, Math.round(Math.abs(ms) / 60_000));
-  if (minutes < 60) return `${minutes} 分钟`;
-  const hours = Math.round(minutes / 60);
+  const span = Math.abs(ms);
+  if (span < 60_000) return '不到 1 分钟';
+  if (span < 3_600_000) {
+    const whole = Math.floor(span / 60_000);
+    return `${whole} 分${span > whole * 60_000 ? '多' : ''}钟`;
+  }
+  const hours = Math.round(span / 3_600_000);
   if (hours < 48) return `${hours} 小时`;
   const days = Math.round(hours / 24);
   if (days < 60) return `${days} 天`;
@@ -159,7 +175,7 @@ export function spanWords(ms) {
 
 /**
  * Reason text as HTML for a narrow column: the small units of a reason never break across two lines, so no line ends or starts with
- * half of one ("相差 1 / 分钟", "TA 拍人 / 海", "「返 / 场」"). The units are a clock time, a span of minutes, a viewpoint clause
+ * half of one ("相差 1 / 分钟", "TA 拍人 / 海", "「返 / 场」"). The units are a clock time, a span of minutes ("相差 2 分多钟"), a viewpoint clause
  * ("你拍舞台，" / "TA 拍人海" / "你们都拍了舞台"), a moment name in 「」, a short song title in 《》 and the few two-to-five-character
  * phrases a line would otherwise split ("拍摄时间", "不算同一刻", "几乎同时"). The line may still break between units, and inside
  * anything longer.
@@ -169,7 +185,7 @@ let reasonUnits = null;
 function reasonUnitPattern() {
   if (!reasonUnits) { // built on first use: VIEWPOINTS is declared further down this file
     const sides = VIEWPOINTS.map(item => item.name).join('|');
-    reasonUnits = new RegExp(`(相差 \\d+ 分钟|相差不到 1 分钟|隔了 \\d+ (?:分钟|小时|天|个月|年)|\\d{1,2}月\\d{1,2}日 \\d{2}:\\d{2}|\\d{2}:\\d{2}|你们都拍了(?:${sides})|你拍(?:${sides})，|TA 拍(?:${sides})|「[^」]{1,8}」|《[^》]{1,10}》|不[算是]同一刻|拍摄时间|几乎同时)`, 'g');
+    reasonUnits = new RegExp(`(相差 \\d+ 分多?钟|相差不到 1 分钟|隔了 \\d+ (?:分多?钟|小时|天|个月|年)|\\d{1,2}月\\d{1,2}日 \\d{2}:\\d{2}|\\d{2}:\\d{2}|你们都拍了(?:${sides})|你拍(?:${sides})，|TA 拍(?:${sides})|「[^」]{1,8}」|《[^》]{1,10}》|不[算是]同一刻|拍摄时间|几乎同时)`, 'g');
   }
   return reasonUnits;
 }
@@ -325,7 +341,8 @@ export function readPair(mine, theirs, { event = {}, moments = [] } = {}) {
   let detail = theirLine;
   if (basis === 'time') {
     const seconds = gapMs / 1000;
-    const gap = seconds < 10 ? '几乎同时' : seconds < 60 ? '相差不到 1 分钟' : `相差 ${Math.round(seconds / 60)} 分钟`;
+    // The same words as the "not 同一刻" sentence below (spanWords): "相差 3 分钟" is at most 3:00, "隔了 3 分多钟" is more, so no gap reads as both.
+    const gap = seconds < 10 ? '几乎同时' : seconds < 60 ? '相差不到 1 分钟' : `相差 ${spanWords(gapMs)}`;
     score = differentView ? 100 : 80;
     title = differentView ? '同一刻的另一面' : '同一刻';
     lead = `同一刻 · ${formatTaken(Math.min(timeMine, timeTheirs), event.date)}，${gap}`;

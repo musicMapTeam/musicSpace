@@ -8,7 +8,7 @@ import {
   SONG_MAX, TAKEN_MIN, VIEWPOINTS, buildSetlist, cardFacts, cleanSong, fromInputValue, orderWall, readPair, reasonHtml, songsOf, takenFields, takenMax, toInputValue, viewpointName, viewpointOf,
 } from './moment.js';
 import {
-  AI_NOTE_ROOM, AI_THINKING, SUGGESTED_DESCRIPTION, answerView, identifyViewpoint, loadingMarkup, moveLoading, paintAiLine, readPhotoTime, timeView, viewpointHint, warmUpViewpointAI,
+  AI_NOTE_ROOM, AI_THINKING, SUGGESTED_DESCRIPTION, answerView, identifyViewpoint, loadingMarkup, moveLoading, paintAiLine, readPhotoTime, timeProblem, timeView, viewpointHint, warmUpViewpointAI,
 } from './photo-insight.js';
 import { bindSetlistCopy, setlistBody } from './setlist-ui.js';
 import qrcode from 'qrcode-generator';
@@ -416,6 +416,10 @@ export function mountLive(container, api) {
   function syncChips() {
     if (currentModal?.name !== 'editor' || !draft) return;
     const hints = suggestedViewpoints();
+    // The sentence a suggested choice points to (aria-describedby) is in the page only while the model has a suggestion to describe.
+    const note = modal.querySelector('#live-viewpoint-likely');
+    if (!hints.length) note?.remove();
+    else if (!note) modal.querySelector('[data-viewpoint-hint]')?.insertAdjacentHTML('afterend', `<span class="sr-only" id="live-viewpoint-likely">${escape(SUGGESTED_DESCRIPTION)}</span>`);
     modal.querySelectorAll('.live-perspectives label').forEach(label => {
       const input = label.querySelector('input');
       input.checked = input.value === draft.perspective;
@@ -459,13 +463,23 @@ export function mountLive(container, api) {
     if (wrap.hidden) return;
     const view = timeView(draft, draftEventDate(), { zone: draft.ui.zone });
     const open = view.mode !== 'known' || draft.ui.editTime;
-    wrap.querySelector('[data-taken-line]').textContent = view.line;
+    const input = wrap.querySelector('input[name="takenAt"]');
+    if (fillInput) input.value = draft.takenAt === null ? '' : toInputValue(draft.takenAt);
+    // Something typed that cannot be used (before 2000, after tomorrow) is said next to the field, not dropped in silence.
+    const problem = draft.takenAt === null ? timeProblem(input.value) : '';
+    wrap.querySelector('[data-taken-line]').textContent = problem ? '暂无可用的拍摄时间' : view.line;
     wrap.querySelector('[data-taken-note]').textContent = view.mode === 'known' ? `· ${view.note}` : '';
-    wrap.querySelector('[data-live-action="taken-edit"]').hidden = !(view.mode === 'known' && view.editable && !draft.ui.editTime);
+    const edit = wrap.querySelector('[data-live-action="taken-edit"]');
+    edit.hidden = !(view.mode === 'known' && view.editable && !draft.ui.editTime);
+    edit.setAttribute('aria-expanded', String(open));
     wrap.querySelector('[data-taken-field]').hidden = !open;
     wrap.querySelector('[data-taken-label]').textContent = view.mode === 'guess' ? '大约的时间 · 北京时间' : view.mode === 'known' ? '修改拍摄时间 · 北京时间' : '拍摄时间 · 北京时间';
     wrap.querySelector('[data-taken-hint]').textContent = view.mode === 'known' ? '改过的时间以你填的为准。' : view.note;
-    if (fillInput) wrap.querySelector('input[name="takenAt"]').value = draft.takenAt === null ? '' : toInputValue(draft.takenAt);
+    const complaint = wrap.querySelector('[data-taken-error]');
+    complaint.textContent = problem;
+    complaint.hidden = !problem;
+    if (problem) { input.setAttribute('aria-invalid', 'true'); input.setAttribute('aria-describedby', 'live-taken-error'); }
+    else { input.removeAttribute('aria-invalid'); input.removeAttribute('aria-describedby'); }
   }
   function syncEditorFacts({ fillInput = true } = {}) {
     if (currentModal?.name !== 'editor' || !draft) return;
@@ -533,8 +547,8 @@ export function mountLive(container, api) {
         <fieldset class="live-compose__step" data-compose-panel="photo" ${editorStep !== 'photo' ? 'hidden' : ''}><legend class="sr-only">选照片</legend>
           <div class="live-upload-preview" data-photo-preview>${editorPhoto()}</div>
           <div class="live-taken" data-taken>
-            <div class="live-taken__row"><p class="live-taken__line" role="status" aria-live="polite"><span data-taken-line></span> <small data-taken-note></small></p><button class="text-button live-taken__edit" type="button" data-live-action="taken-edit" aria-controls="live-taken-field" hidden>修改时间</button></div>
-            <div class="live-taken__field" id="live-taken-field" data-taken-field hidden><label class="live-field"><span data-taken-label>拍摄时间 · 北京时间</span><input type="datetime-local" name="takenAt" min="${toInputValue(TAKEN_MIN)}" max="${toInputValue(takenMax())}" step="60"></label><p class="live-form-note" data-taken-hint></p></div>
+            <div class="live-taken__row"><p class="live-taken__line" role="status" aria-live="polite"><span data-taken-line></span> <small data-taken-note></small></p><button class="text-button live-taken__edit" type="button" data-live-action="taken-edit" aria-controls="live-taken-field" aria-expanded="false" hidden>修改时间</button></div>
+            <div class="live-taken__field" id="live-taken-field" data-taken-field hidden><label class="live-field"><span data-taken-label>拍摄时间 · 北京时间</span><input type="datetime-local" name="takenAt" min="${toInputValue(TAKEN_MIN)}" max="${toInputValue(takenMax())}" step="60"></label><p class="live-form-note" data-taken-hint></p><p class="live-form-note live-taken__error" id="live-taken-error" role="alert" data-taken-error hidden></p></div>
           </div>
           <div class="live-ai-line" data-ai-line role="status" aria-live="polite"></div>
           <label class="button button--secondary live-upload-button">${icon('image')} ${own?.photoId ? '换一张自己的照片' : '选择自己的照片'}<input type="file" name="photoFile" accept="image/jpeg,image/png,image/webp" data-photo-file></label>
@@ -545,7 +559,7 @@ export function mountLive(container, api) {
           <button class="live-compose__photo-edit" type="button" data-live-action="compose-back"><span class="live-compose__thumbnail" data-compose-preview>${editorPhoto()}</span><span>换照片<small data-compose-photo-kind>${draft.useExample ? 'AI 示例图' : '我的现场照片'}</small></span>${icon('chevron-right')}</button>
           <fieldset class="live-perspectives"><legend>我拍的这一面</legend>${VIEWPOINTS.map(item => `<label><input type="radio" name="perspective" value="${item.id}" ${item.id === draft.perspective ? 'checked' : ''}><span><b>${item.name}</b></span></label>`).join('')}</fieldset>
           <div class="live-ai-line" data-ai-line role="status" aria-live="polite"></div>
-          <p class="live-form-note live-perspectives__note" data-viewpoint-hint>${viewpointHint({ upload: true })}</p><span class="sr-only" id="live-viewpoint-likely">${SUGGESTED_DESCRIPTION}</span>
+          <p class="live-form-note live-perspectives__note" data-viewpoint-hint>${viewpointHint({ upload: true })}</p>
           <label class="live-field live-compose__caption">留一句话 <span data-caption-count>${draft.caption.length} / 80</span><textarea name="caption" maxlength="80" rows="2" placeholder="这一刻，我记得……">${escape(draft.caption)}</textarea></label>
           <label class="live-field live-compose__song">这一刻在唱的歌 <span data-song-count>${[...(draft.song || '')].length} / ${SONG_MAX}</span><input type="text" name="song" maxlength="${SONG_MAX}" autocomplete="off" placeholder="选填，例如：晴天" value="${escape(draft.song || '')}"></label>
           <details class="live-compose__details"><summary>更多细节 ${icon('chevron-right')}</summary><fieldset class="live-moment-choices"><legend>现场瞬间</legend>${SPACE_MOMENTS.map(item => `<label><input type="radio" name="momentId" value="${item.id}" ${item.id === draft.momentId ? 'checked' : ''}><span>${item.name}</span></label>`).join('')}</fieldset>${event.song ? `<label class="live-check"><input type="checkbox" name="track" ${draft.trackId ? 'checked' : ''}><span>带上这首歌 <b>♪ ${escape(event.song)}</b></span></label>` : ''}</details>
@@ -580,7 +594,7 @@ export function mountLive(container, api) {
     const reason = matchReason(room.ownCard, target);
     // What sending shares, and the send button, live in a bar that stays at the bottom of the sheet: the two cards and the reason are
     // taller than a short window, and the button must never be in view without the sentence that says what it does.
-    openModal('request', `和 ${escape(target.ownerName)}，<span class="nowrap">交换这一刻</span>`, `<div class="live-pair-reason"><b>${escape(reason.title)}</b><p>${reasonHtml(reason.detail)}</p></div><div class="live-compare">${miniCard(room.ownCard, '我送出的')}${miniCard(target, '想换回的')}</div><div class="live-dialog-bar"><div class="live-consent-note">${icon('swap')}<span>发送后，这张卡将分享给 ${escape(target.ownerName)}。<span class="nowrap">接受后生成双联。</span></span></div><button class="button button--primary live-wide" data-live-action="send">发送交换申请 ${icon('arrow-right')}</button></div>`, 'live-dialog--wide', target.id);
+    openModal('request', `和 ${escape(target.ownerName)}，<span class="nowrap">交换这一刻</span>`, `<div class="live-pair-reason"><b>${escape(reason.title)}</b><p>${reasonHtml(reason.detail)}</p></div><div class="live-compare">${miniCard(room.ownCard, `我送出的 · ${perspectiveName(room.ownCard)}`)}${miniCard(target, `想换回的 · ${perspectiveName(target)}`)}</div><div class="live-dialog-bar"><div class="live-consent-note">${icon('swap')}<span>发送后，这张卡将分享给 ${escape(target.ownerName)}。<span class="nowrap">接受后生成双联。</span></span></div><button class="button button--primary live-wide" data-live-action="send">发送交换申请 ${icon('arrow-right')}</button></div>`, 'live-dialog--wide', target.id);
   }
 
   function openExchange(id) {

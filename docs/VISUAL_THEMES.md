@@ -140,7 +140,7 @@ GSAP / Flip 使用 [Standard No Charge 许可](https://gsap.com/community/standa
 
 ### 0.16 截图登记
 
-下面 15 个路径是本版本约定的截图，文件名固定：`docs/assets/themes/space-<页>-<desktop 或 mobile>-v016.png`，页为 home、demo-wall、editor-ai、pairing、setlist、duet、records，另有 `space-ticket-v016.png`。**这些图片现在还不存在**（2026-09-30，补拍由后续一轮完成），所以表里的链接暂时打不开；补拍后逐个核对文件名与内容，再用 `ls docs/assets/themes/space-*-v016.png` 数一下是否为 15 个。
+下面 15 个路径是本版本约定的截图，文件名固定：`docs/assets/themes/space-<页>-<desktop 或 mobile>-v016.png`，页为 home、demo-wall、editor-ai、pairing、setlist、duet、records，另有 `space-ticket-v016.png`。这些图片已于 2026-09-30 补拍（Tabbit，从清空的存储起，桌面 1440×900、手机 390×844 模拟视口，逐张目视）；`ls docs/assets/themes/space-*-v016.png` 为 15 个。编辑器图里的 AI 线是「不确定，请选择」（示例舞台图没到「有把握」的门槛），拍摄时间来自我们用示例舞台图加 `DateTimeOriginal` 合成的测试文件，不是真实观众的照片。16:9 封面 `delivery/cover.png`（源 `delivery/recording-source/cover-space-v016.html`）直接使用其中的首页、配对与票根三张。
 
 | 页面 | 桌面 1440×900 | 手机 390×844 | 拍什么 |
 | --- | --- | --- | --- |
@@ -155,7 +155,7 @@ GSAP / Flip 使用 [Standard No Charge 许可](https://gsap.com/community/standa
 
 拍摄条件：整个 `dist/`（含 `ai/`）静态托管，Chrome，模拟视口；照片用项目的 AI 示例图或已取得同意的照片，页内的「示例」「AI 示例图」标记保留；截图前移除浏览器扩展注入的节点。这是内部示例画面，不是目标用户验证，也不代表实体手机。
 
-现有比赛材料：`delivery/cover.png` 是 0.15 的 Map × Space 封面，视频是 0.4；两者都含 Map 内容，需为 Music Space 重做，见[交付清单](../delivery/README.md)。
+现有比赛材料：`delivery/cover.png` 已重做为 Music Space 0.16 封面（1920×1080，待用户签收）；视频仍是含 Map 内容的 0.4，需重做，见[交付清单](../delivery/README.md)。
 
 ### 历史画面（0.15 及更早，Map × Space 时期）
 

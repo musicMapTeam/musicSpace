@@ -6,7 +6,7 @@
 
 ## 0.16.0 · 2026-09-30
 
-Music Space 从 Music Map × Music Space 0.15（`3dd102c`）拆成独立产品（仓库 `musicMapTeam/musicSpace`，2026-09-30 建成），并做完第一轮功能：让「同一刻，另一面」按拍摄时间与视角成立，把端侧 AI 放进制卡。分支 `feat/moment-ai`，起点是 `main` 的 `a45ecbd`。Map 留在自己的仓库，两个仓库的版本号从 0.15 分叉、各自计数：Map 的 0.16.0 与本条无关。检查范围、未验证项与线上版本见 `README.md` 和 `docs/PROJECT_STATUS.md`。
+Music Space 从 Music Map × Music Space 0.15（`3dd102c`）拆成独立产品（仓库 `musicMapTeam/musicSpace`，2026-09-30 建成），并做完第一轮功能：让「同一刻，另一面」按拍摄时间与视角成立，把端侧 AI 放进制卡。分支 `feat/moment-ai`，起点是 `main` 的 `a45ecbd`，经 PR #1 于 2026-09-30 合并进 `main`（合并提交 `54f3e6e`，PR 上 CI 通过），线上 GitHub Pages 是该提交的构建（`gh-pages` `e28fab5`，与干净构建逐字节一致）。Map 留在自己的仓库，两个仓库的版本号从 0.15 分叉、各自计数：Map 的 0.16.0 与本条无关。检查范围、未验证项与线上版本见 `README.md` 和 `docs/PROJECT_STATUS.md`。
 
 - 拆成独立产品（`c455279`、`6f8ff2c`、`d774325`、`1f5a405`、`a45ecbd`）：
   - 移除 Map 一半：唱片店、寻声一局、完整图鉴、开放曲库与 Map 的音乐收藏，连同它们的代码、六份样式、HF 数据与下载脚本、场景里唱片桌的互动。唱片店只留作不可点的布景，场景罗盘是「小院 / 照片墙 / 工作桌 / 收藏」。
@@ -32,8 +32,8 @@ Music Space 从 Music Map × Music Space 0.15（`3dd102c`）拆成独立产品�
   - 浏览器拒绝写入时，顶部提示分「照片太大」与「浏览器禁止本地存储」两种，toast 与「卡片已保存」对话框不再说已保存；提示可关闭，可重试保存。
   - 演示与房间页的可点区域按 44px 整理；无 WebGL 时纸面回到正常文档流，去掉 4px 横向溢出。
 - 构建与检查：新增 `web/public/`（`ai/tc8/` 模型入 Git，`ai/ort/` 构建时生成），`onnxruntime-web` 1.30.0 作为精确版本的 devDependency，`npm run ai:ort`（`predev` / `prebuild`）、`npm run ai:check`、`npm test`（`scripts/test/` 的三份检查，只用 `node:assert`）；`dist/` 现在是 `index.html` 加 `ai/`，静态部署须发布整个目录；`vite preview` 不再代理到本机房间服务；CI 增加 `ai:check` 与 `npm test`，两份产物都含整个 `dist/`；`Dockerfile` 复制 `scripts/`。`scripts/ai/` 记录模型来源并可复现（固定提交、SHA-256）。
-- 文档：本文所在的六份文档（`README.md`、`RUN-ME.md`、`AGENTS.md`、`CONTRIBUTING.md`、`CHANGELOG.md`、`THIRD_PARTY_NOTICES.md`）按独立的 Music Space 重写，`THIRD_PARTY_NOTICES.md` 分成「本应用用到的」与「Map 时期的历史」两部分；`README.md`「画面」列出 0.16 截图的文件名（`docs/assets/themes/space-<页面>-<desktop|mobile>-v016.png`，截图另行拍摄后放入该目录）；产品方案、交付计划、实施规格、视觉规范、参赛材料、交付清单与项目状态同轮改写，以各文件顶部的版本标注为准。
-- 未验证：iOS Safari、微信内置浏览器、Android 与实体手机；AI 在手机上的耗时、内存与主线程停顿（桌面 Chrome 上每张约 0.15–0.4 s，期间页面不响应）；真实观众照片上的 AI 准确率；读屏软件；目标用户试用。
+- 文档：本文所在的六份文档（`README.md`、`RUN-ME.md`、`AGENTS.md`、`CONTRIBUTING.md`、`CHANGELOG.md`、`THIRD_PARTY_NOTICES.md`）按独立的 Music Space 重写，`THIRD_PARTY_NOTICES.md` 分成「本应用用到的」与「Map 时期的历史」两部分；`README.md`「画面」列出 0.16 截图（`docs/assets/themes/space-<页面>-<desktop|mobile>-v016.png` 共 15 个文件，随后由 `c733512` 入库，同时重做了 `delivery/cover.png`，封面待用户签收）；产品方案、交付计划、实施规格、视觉规范、参赛材料、交付清单与项目状态同轮改写，以各文件顶部的版本标注为准。
+- 未验证：iOS Safari、微信内置浏览器、Android 与实体手机；大陆网络下的加载；AI 在手机上的耗时、内存与主线程停顿（桌面 Chrome 上每张约 0.15–0.4 s，期间页面不响应）；真实观众照片上的 AI 准确率；读屏软件；目标用户试用。
 
 ## 0.15.0 · 2026-09-27
 

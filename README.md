@@ -8,7 +8,7 @@ MVP **0.16.0** · 文档 **3.0** · 2026-09-30 · 在线演示（静态版）：
 
 你拍到了舞台，朋友记住了人海。各自留下一张现场卡，向对方申请交换；对方同意后，两张卡合成一张两人署名的双联票根，收进各自的收藏。「同一刻」按照片自带的拍摄时间判断，「另一面」按视角判断；视角由一个在你自己设备上运行的小模型建议，AI 判断时照片不上传。
 
-线上版本以 `gh-pages` 分支为准：2026-09-30 11:28 复查，线上是 `feat/moment-ai@7c962e2` 的构建（带 `ai/`，部署提交 `2d8f1a3`），不含这之后的改动；此前上线的是没有 AI 的 `a45ecbd`。详见[状态与待办](#状态与待办)。快速体验：打开线上演示，首页点「体验示例」，切换 Lin 与阿遥完成一次申请与同意，再用「用我的照片」试试 AI（用法见 [RUN-ME.md](RUN-ME.md)）。
+线上版本以 `gh-pages` 分支为准：2026-09-30 线上是 `main@54f3e6e`（PR #1 的合并提交）的构建（带 `ai/`，部署提交 `e28fab5`），即含 0.16 的全部代码；更早的部署是 `7c962e2` 的 `2d8f1a3` 与没有 AI 的 `a45ecbd` 的 `f0ad219`。详见[状态与待办](#状态与待办)。快速体验：打开线上演示，首页点「体验示例」，切换 Lin 与阿遥完成一次申请与同意，再用「用我的照片」试试 AI（用法见 [RUN-ME.md](RUN-ME.md)）。
 
 ## 主线
 
@@ -100,15 +100,15 @@ Music Map（从一位华语歌手出发，沿真实的合唱录音走向下一�
 
 ### 线上与分支
 
-- 线上由 `gh-pages` 分支提供，只放构建产物（`index.html`、`ai/`、`.nojekyll`）。2026-09-30 11:28 复查：最新部署提交 `2d8f1a3`「Deploy Music Space static build from feat/moment-ai@7c962e2 (index.html + ai/)」，线上 `index.html` 是 1,747,253 字节，`ai/tc8/labels.json` 返回 200；之前是 `main` 的 `a45ecbd` 的构建，没有 `ai/`。要让线上带上 `7c962e2` 之后的改动，得重新发布 `gh-pages`。
-- 用 curl 带 `Accept-Encoding: gzip` 测本站：`index.html` 传 604,408 字节；AI 的五个文件共 10,344,436 字节（`vision.onnx` 6,590,919，`.wasm` 3,722,335，其余三个 31,182），`.onnx` 与 `.wasm` 都是 `Content-Encoding: gzip`。浏览器实际协商的编码可能不同，没有测。
-- 分支 `feat/moment-ai`（起点 `main` 的 `a45ecbd`）有 4 个提交：`348fe02` AI 核心、`f9a2d75` 同一刻配对与歌单、`df8c8cd` 外壳、`7c962e2` 文档说明，另有这一轮尚未提交的改动。写本文时它没有远端分支、没有 PR，`origin/main` 仍是 `a45ecbd`；推送、PR、合并按 [AGENTS.md](AGENTS.md)「完成与提交」办理。
+- 线上由 `gh-pages` 分支提供，只放构建产物（`index.html`、`ai/`、`.nojekyll`）。2026-09-30 14:04 +08:00 部署，最新部署提交 `e28fab5`「Deploy Music Space static build from main@54f3e6e (index.html + ai/)」，Pages 构建状态 built；线上 6 个文件（`index.html` 1,754,470 字节，`ai/` 里的模型、标签与三个运行时文件）与 `54f3e6e` 的干净构建逐字节一致。之前依次是 `2d8f1a3`（`feat/moment-ai@7c962e2`）与 `f0ad219`（`main@a45ecbd`，没有 `ai/`）。
+- 用 curl 带 `Accept-Encoding: gzip` 测本站（2026-09-30，`e28fab5`）：`index.html` 传 605,941 字节；AI 的五个文件共 10,344,436 字节（`vision.onnx` 6,590,919，`.wasm` 3,722,335，其余三个 31,182），`.onnx` 与 `.wasm` 都是 `Content-Encoding: gzip`。浏览器实际协商的编码可能不同，没有测。
+- 分支 `feat/moment-ai`（起点 `main` 的 `a45ecbd`）经 [PR #1](https://github.com/musicMapTeam/musicSpace/pull/1) 于 2026-09-30 14:03 +08:00 合并进 `main`，合并提交 `54f3e6e`；PR 上的「Build demo」通过（[run 36676242848](https://github.com/musicMapTeam/musicSpace/actions/runs/36676242848)）。同日用户给了本仓库的长期授权：推送功能分支、开 PR、CI 通过后合并、重新发布 `gh-pages`，不必每次再问；不含删库、force push、改 Map 仓库或其他对外操作（[AGENTS.md](AGENTS.md)「完成与提交」）。
 
 ### 已有证据
 
 明细见[项目状态](docs/PROJECT_STATUS.md)。
 
-- 2026-09-30：`npm test`（三份检查）与 `npm run ai:check` 通过。
+- 2026-09-30：`npm test`（三份检查）与 `npm run ai:check` 在本机通过，PR #1 上的 CI（构建、`ai:check`、`npm test`）也通过。
 - GitHub Pages 上 `ai/` 的实际传输大小与压缩，已在线上用 curl 实测（见上）；线上的 Cache Storage 命中、浏览器实际协商的编码和手机上的表现还没有记录。
 - 多轮独立验证（用 Tabbit 驱动浏览器）：1440×900 与 390×844 两个模拟视口，另有 `file://`、无 WebGL 和两个来源的房间流程；最近一轮 12 项全部通过，0 个页面错误，14 条次要发现。
 - AI 的数字见上文，是公开照片上的量测。
@@ -118,6 +118,7 @@ Music Map（从一位华语歌手出发，沿真实的合唱录音走向下一�
 - 实体 iPhone、Android 与微信内置浏览器；AI 在手机上的耗时与内存；大陆网络下的加载。
 - 读屏软件；真实观众照片上的 AI 准确率；目标用户试用；队友审阅。
 - 视频：`delivery/` 里现有的视频是含 Map 内容的旧版，不能直接用。封面已按 0.16 重做（`delivery/cover.png`），待用户签收。
+- 线上页面在浏览器里的检查（Cache Storage 命中、与 Map 共用 github.io 源时的存储互不影响）。
 
 ### 待队友与用户决定
 

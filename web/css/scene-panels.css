@@ -41,7 +41,7 @@ html[data-theme='sakura'] .live-room-ticket--compact .live-room-menu__meta {
 }
 html[data-theme='sakura'] .live-room-menu__meta strong { color:var(--text); font-size:13px; font-weight:500; }
 html[data-theme='sakura'] .live-room-ticket--compact .live-room-menu__items .text-button {
-  justify-content:space-between; min-height:37px; font-size:12px;
+  justify-content:space-between; min-height:44px; font-size:12px;
 }
 html[data-theme='sakura'] .live-room-ticket.live-room-ticket--compact [data-sync]:not([hidden]) {
   display:block; margin-top:8px; padding-top:7px; border-top:1px dashed var(--object-line);
@@ -55,7 +55,7 @@ html[data-theme='sakura'] .live-room-tray.live-room-tray--compact {
 }
 html[data-theme='sakura'] .live-room-tray--compact .live-own-section { position:relative; }
 html[data-theme='sakura'] .live-room-tray--compact .live-own-fold>summary {
-  display:flex; align-items:center; gap:8px; min-height:42px; padding:7px 64px 7px 0;
+  display:flex; align-items:center; gap:8px; min-height:44px; padding:7px 64px 7px 0;
   list-style:none; cursor:pointer; font-size:13px;
 }
 html[data-theme='sakura'] .live-own-fold>summary::-webkit-details-marker { display:none; }
@@ -64,7 +64,7 @@ html[data-theme='sakura'] .live-own-fold[open]>summary>.icon { transform:rotate(
 html[data-theme='sakura'] .live-own-state { color:#876b70; font-size:12px; font-weight:400; }
 html[data-theme='sakura'] .live-own-state.is-public { color:#526e4c; }
 html[data-theme='sakura'] .live-room-tray--compact .live-own-edit {
-  position:absolute; top:0; right:0; min-height:42px; padding:7px 0 7px 9px; font-size:12px;
+  position:absolute; top:0; right:0; min-height:44px; padding:7px 0 7px 9px; font-size:12px;
 }
 html[data-theme='sakura'] .live-own-preview>.live-card {
   display:grid; grid-template-columns:90px minmax(0,1fr); padding:5px;
@@ -85,11 +85,11 @@ html[data-theme='sakura'] .main-content .live-room-tray--compact .live-own-actio
 }
 html[data-theme='sakura'] .main-content .live-room-tray--compact .live-own-actions>.text-button { min-height:38px; margin:0; font-size:12px; }
 html[data-theme='sakura'] .live-room-tray--compact .live-empty-card { padding:3px 0 10px; }
-html[data-theme='sakura'] .live-room-tray--compact .live-empty-card .button { width:100%; min-height:42px; font-size:13px; }
+html[data-theme='sakura'] .live-room-tray--compact .live-empty-card .button { width:100%; min-height:44px; font-size:13px; }
 html[data-theme='sakura'] .live-room-directories { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 16px; }
 html[data-theme='sakura'] .live-room-directories>details[open] { grid-column:1/-1; }
 html[data-theme='sakura'] .live-room-tray--compact .live-room-directories>details>summary {
-  gap:6px; min-height:40px; padding:8px 0; font-size:12px;
+  gap:6px; min-height:44px; padding:8px 0; font-size:12px;
 }
 html[data-theme='sakura'] .live-room-tray--compact .live-room-directories>details>summary small { font:12px var(--font-mono); }
 html[data-theme='sakura'] .live-room-tray--compact .live-room-directories>details>summary>.icon { width:11px; height:11px; }
@@ -126,7 +126,7 @@ html[data-theme='sakura'] :is(.live-request-more,.live-pending)[open]>summary>.i
 html[data-theme='sakura'] .live-room-tray--compact .live-pending { margin:0; padding:0; border-top:1px dashed var(--object-line); }
 html[data-theme='sakura'] .live-room-tray--compact .live-pending-row { flex-wrap:nowrap; gap:8px; padding:4px 0; }
 html[data-theme='sakura'] .live-room-tray--compact .live-pending-row>span { flex:1; font-size:12px; }
-html[data-theme='sakura'] .live-room-tray--compact .live-pending-row .text-button { flex-shrink:0; min-height:36px; font-size:12px; }
+html[data-theme='sakura'] .live-room-tray--compact .live-pending-row .text-button { flex-shrink:0; min-height:44px; font-size:12px; }
 
 @media(max-width:760px) {
   html[data-theme='sakura'] .live-room-ticket.live-room-ticket--compact { left:0; right:0; width:auto; padding:9px 12px; }
@@ -137,8 +137,8 @@ html[data-theme='sakura'] .live-room-tray--compact .live-pending-row .text-butto
   html[data-theme='sakura'] .live-room-ticket--compact .live-room-head h1 { font-size:16px; }
   html[data-theme='sakura'] .live-room-tray.live-room-tray--compact { width:auto; max-height:165px; padding:6px 12px 4px; }
   html[data-theme='sakura'] .live-room-tray.live-room-tray--compact:has(details[open]) { max-height:min(48dvh,420px); }
-  html[data-theme='sakura'] .live-room-tray--compact .live-own-fold>summary { min-height:40px; }
-  html[data-theme='sakura'] .live-room-tray--compact .live-own-edit { min-height:40px; }
+  html[data-theme='sakura'] .live-room-tray--compact .live-own-fold>summary { min-height:44px; }
+  html[data-theme='sakura'] .live-room-tray--compact .live-own-edit { min-height:44px; }
   html[data-theme='sakura'] .live-room-directories { column-gap:13px; }
 }
 
@@ -169,7 +169,7 @@ html[data-theme='sakura'] body dialog:is(.live-dialog,.library-dialog) .live-car
 }
 html[data-theme='sakura'] body dialog:is(.live-dialog,.library-dialog) .live-card-content p {
   min-height:0; margin:7px 0 3px; font-size:12px; line-height:1.7;
-  white-space:pre-wrap; word-break:normal; overflow-wrap:break-word;
+  white-space:pre-wrap; word-break:normal; overflow-wrap:break-word; text-wrap:pretty;
 }
 html[data-theme='sakura'] body dialog:is(.live-dialog,.library-dialog) .live-card-track { font-size:12px; }
 html[data-theme='sakura'] body dialog:is(.live-dialog,.library-dialog) :is(.live-compare,.live-ticket-pair) {
@@ -239,3 +239,35 @@ html[data-theme='sakura'] body dialog.library-dialog .library-detail-photos figc
   html[data-theme='sakura'] body dialog:is(.live-dialog,.library-dialog) :is(.live-card-content,.library-detail-photos figcaption) { padding:8px 3px 4px; }
   html[data-theme='sakura'] body dialog:is(.live-dialog,.library-dialog) :is(.live-ticket-actions,.library-detail-actions) { grid-template-columns:minmax(0,1fr); }
 }
+
+/* Touch floor: the compact paper keeps its look; single controls in it reach 44px through an invisible layer. Rows that
+   stack (menu items, the card fold and its edit button, the directories, pending requests) get real height instead, so
+   neighbours never share a hit area. */
+html[data-theme='sakura'] :where(
+  .live-room-ticket--compact .live-room-menu>summary,
+  .live-room-ticket--compact .live-room-tools>.button,
+  .live-room-tray--compact .live-own-actions>.text-button,
+  .live-room-tray--compact .live-request-row .button,
+  .live-room-tray--compact :is(.live-request-more,.live-pending)>summary,
+  .live-room-tray--compact .live-history>summary,
+  .live-room-tray .live-wall-item>.button) { position:relative; }
+html[data-theme='sakura'] :is(
+  .live-room-ticket--compact .live-room-menu>summary,
+  .live-room-ticket--compact .live-room-tools>.button,
+  .live-room-tray--compact .live-own-actions>.text-button,
+  .live-room-tray--compact .live-request-row .button,
+  .live-room-tray--compact :is(.live-request-more,.live-pending)>summary,
+  .live-room-tray--compact .live-history>summary,
+  .live-room-tray .live-wall-item>.button)::after {
+  content:''; position:absolute; top:50%; left:50%; width:max(100%,45px); height:max(100%,45px); transform:translate(-50%,-50%);
+}
+/* ...and the same controls are also 44px tall themselves, not only in reach: the room header, the fold's own actions, the request and
+   history rows. The extra few pixels sit in the row's padding; the paper keeps its look. The long selector is what beats the phone
+   rules above, which come with more classes. */
+html[data-theme='sakura'] body .live-room-scene :is(
+  .live-room-ticket--compact .live-room-menu>summary,
+  .live-room-ticket--compact .live-room-tools>.button,
+  .live-room-tray--compact .live-own-actions>.text-button,
+  .live-room-tray--compact .live-request-row .button,
+  .live-room-tray--compact :is(.live-request-more,.live-pending)>summary,
+  .live-room-tray--compact .live-history>summary) { box-sizing:border-box; min-height:44px; }

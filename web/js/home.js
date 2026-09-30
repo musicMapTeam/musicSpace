@@ -1,6 +1,7 @@
 import { SPACE_PHOTOS, SPACE_ACTORS, seedSpaceCard } from './space-data.js';
 import { createPhotoStore } from './live-photo.js';
 import { readSession } from './storage.js';
+import { aiAvailable } from './photo-insight.js';
 
 const escape = value => String(value ?? '').replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character]));
 
@@ -10,6 +11,10 @@ const escape = value => String(value ?? '').replace(/[&<>"']/g, character => ({ 
  */
 export function mountHome(container, api) {
   const rooms = api.backend.available;
+  // The model has one job here: suggesting the viewpoint of the person's own photo. Pairing is by capture time and viewpoint, with
+  // no AI in it, so the step about finding the other side never says otherwise. The AI is named only where it can run (see aiState).
+  // With a room server the saved card's photo is uploaded to the room, so only the judging is said to stay on the device.
+  const aiStep = aiAvailable() ? `<li class="home-hero__step--ai"><span>拍下这一刻，AI 在本机判断视角，${rooms ? '判断时照片不上传' : '照片不上传'}</span></li>` : '<li>拍下这一刻</li>';
   // The title is written once; data and photo loads only repaint the paper, so its entrance never replays.
   container.innerHTML = `<section class="space-page space-page--home space-studio space-studio--home home-studio" aria-labelledby="home-title">
     <div class="home-cover">
@@ -17,7 +22,7 @@ export function mountHome(container, api) {
         <p class="home-hero__kicker"><i aria-hidden="true"></i>音乐现场 · 散场以后</p>
         <h1 id="home-title" class="home-hero__title"><span>同一刻，</span><span>另一面。</span></h1>
         <p class="home-hero__lede">用另一位观众的视角，补完整你记住的那一晚。</p>
-        <ol class="home-hero__steps" aria-label="怎么交换"><li>交换现场照片</li><li>双方同意</li><li>两人署名的双联票根</li></ol>
+        <ol class="home-hero__steps" aria-label="怎么交换">${aiStep}<li>找到同一刻的另一面</li><li>双方同意，交换留念</li></ol>
       </header>
       <div class="home-paper home-paper--compact" data-home-paper></div>
     </div>

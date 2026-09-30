@@ -15,6 +15,24 @@ const parse = raw => { try { return JSON.parse(raw); } catch { return null; } };
 const isObject = value => Boolean(value) && typeof value === 'object' && !Array.isArray(value);
 
 /**
+ * Why the browser refused a write, and what to tell the visitor. 'quota' means this save is too big for the space the
+ * browser gives the site (a photo is what makes it big); 'blocked' means the browser will not keep anything at all
+ * (site data switched off, a sandboxed frame, some private modes), so a refresh loses the record.
+ */
+export const STORAGE_ADVICE = {
+  quota: '照片太大，换一张或减少照片后重试',
+  blocked: '浏览器禁止了本地存储，刷新后记录会丢失',
+};
+
+/** Classifies whatever a failed localStorage read or write threw: 'quota' or 'blocked'. */
+export function storageFailureKind(error) {
+  const name = String(error?.name || '');
+  // Chromium and Safari: QuotaExceededError (code 22); Firefox: NS_ERROR_DOM_QUOTA_REACHED (code 1014).
+  const full = name === 'QuotaExceededError' || name === 'NS_ERROR_DOM_QUOTA_REACHED' || error?.code === 22 || error?.code === 1014;
+  return full ? 'quota' : 'blocked';
+}
+
+/**
  * Called once at boot, before anything reads state. A key is adopted only while Space's own key is absent, so a later
  * boot never overwrites what Space saved; if the write fails (storage full or blocked) Space simply starts clean.
  */
@@ -45,8 +63,9 @@ export function readSession() {
 }
 
 /**
- * Throws when the browser refuses the write, so callers can report a failed save. Signing out stores null rather than
- * removing the key, because only an absent key may adopt a Map-era identity: one the server dropped must not come back.
+ * Throws when the browser refuses the write, so callers can report a failed save (storageFailureKind says why).
+ * Signing out stores null rather than removing the key, because only an absent key may adopt a Map-era identity:
+ * one the server dropped must not come back.
  */
 export function saveSession(session) {
   localStorage.setItem(SESSION_KEY, JSON.stringify(session ?? null));

@@ -389,6 +389,18 @@ html[data-theme='sakura'] body dialog[open].sp-dialog--exchange .sp-dialog__foot
 html[data-theme='sakura'] body dialog[open].live-dialog--wide .live-dialog-bar>.live-notice { margin:0 0 12px; padding:10px 14px; font-size:14px; line-height:1.6; }
 html[data-theme='sakura'] body dialog[open].live-dialog--wide .live-dialog-bar>.live-consent-note { margin:0 0 12px; font-size:14px; line-height:1.6; text-wrap:pretty; }
 
+/* The content region scrolls, the answer bar does not: head and body are one scroller (.sp-dialog__scroll) above a fixed bar, so a long caption
+   is cut at the scroller's own edge (with its scrollbar), never half a line under the bar, and a phone keeps as much of the cards in view as
+   the sheet allows. The close button is absolutely placed against the sheet and stays put. */
+html[data-theme='sakura'] body dialog[open].sp-dialog--exchange { display:flex; flex-direction:column; overflow:hidden; }
+html[data-theme='sakura'] body dialog[open].sp-dialog--exchange>.sp-dialog__scroll { flex:1 1 auto; min-height:0; overflow-y:auto; overscroll-behavior:contain; }
+html[data-theme='sakura'] body dialog[open].sp-dialog--exchange>.sp-dialog__footer { flex:none; position:static; }
+
+html[data-theme='sakura'] body dialog[open].live-dialog--wide { display:flex; flex-direction:column; overflow:hidden; }
+html[data-theme='sakura'] body dialog[open].live-dialog--wide>#live-dialog-content { display:flex; flex-direction:column; flex:1 1 auto; min-height:0; }
+html[data-theme='sakura'] body dialog[open].live-dialog--wide .live-dialog-scroll { flex:1 1 auto; min-height:0; overflow-y:auto; overscroll-behavior:contain; }
+html[data-theme='sakura'] body dialog[open].live-dialog--wide .live-dialog-bar { flex:none; position:static; }
+
 /* ---------- Answers fit ----------
    A request or a decision is a reason, two cards and an answer. On a 1440 x 900 window it is read whole and answered without scrolling:
    the sheet spends less on margins, on the status line and on the photographs (thumbnails for telling the two cards apart), and keeps

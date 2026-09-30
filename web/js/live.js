@@ -8,7 +8,7 @@ import {
   SONG_MAX, TAKEN_MIN, VIEWPOINTS, buildSetlist, cardFacts, cleanSong, fromInputValue, orderWall, readPair, reasonHtml, songsOf, takenFields, takenMax, toInputValue, viewpointName, viewpointOf,
 } from './moment.js';
 import {
-  AI_NOTE_ROOM, AI_THINKING, SUGGESTED_DESCRIPTION, answerView, identifyViewpoint, loadingMarkup, moveLoading, paintAiLine, readPhotoTime, timeProblem, timeView, viewpointHint, warmUpViewpointAI,
+  AI_NOTE_ROOM, AI_THINKING, SUGGESTED_DESCRIPTION, answerView, identifyViewpoint, loadingMarkup, moveLoading, paintAiLine, readPhotoTime, revealMessage, timeProblem, timeView, viewpointHint, warmUpViewpointAI,
 } from './photo-insight.js';
 import { bindSetlistCopy, setlistBody } from './setlist-ui.js';
 import qrcode from 'qrcode-generator';
@@ -347,6 +347,14 @@ export function mountLive(container, api) {
     // The answer bar sticks to the bottom of the sheet, so what went wrong is shown inside it, above the buttons: at the end of the
     // scrolling content it would sit behind the bar.
     modal.querySelector('.live-dialog-bar')?.prepend(modal.querySelector('[data-modal-error]'));
+    // Everything above the answer bar is one scroller: a long caption is cut at its edge above the bar, never half a line under it.
+    const bar = modal.querySelector('.live-dialog-bar');
+    if (bar && className.includes('live-dialog--wide')) {
+      const scroller = document.createElement('div');
+      scroller.className = 'live-dialog-scroll';
+      while (modal.firstChild !== bar) scroller.append(modal.firstChild);
+      modal.insertBefore(scroller, bar);
+    }
     if (!dialog.open) dialog.showModal();
     hydratePhotos(modal);
   }
@@ -478,6 +486,7 @@ export function mountLive(container, api) {
     const complaint = wrap.querySelector('[data-taken-error]');
     complaint.textContent = problem;
     complaint.hidden = !problem;
+    if (problem) revealMessage(complaint);
     if (problem) { input.setAttribute('aria-invalid', 'true'); input.setAttribute('aria-describedby', 'live-taken-error'); }
     else { input.removeAttribute('aria-invalid'); input.removeAttribute('aria-describedby'); }
   }

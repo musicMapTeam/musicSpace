@@ -6,7 +6,7 @@ import {
   SAME_MOMENT_MS, SONG_MAX, VIEWPOINTS, TAKEN_MIN, buildSetlist, cardFacts, cleanSong, formatDayTime, fromInputValue, readPair, reasonHtml, takenMax, ticketStamp, toInputValue, viewpointOf,
 } from './moment.js';
 import {
-  AI_NOTE, AI_OFF_LINES, AI_THINKING, SUGGESTED_DESCRIPTION, aiState, answerView, identifyViewpoint, loadingMarkup, moveLoading, paintAiLine, readPhotoTime, timeProblem, timeView, viewpointHint, warmUpViewpointAI,
+  AI_NOTE, AI_OFF_LINES, AI_THINKING, SUGGESTED_DESCRIPTION, aiState, answerView, identifyViewpoint, loadingMarkup, moveLoading, paintAiLine, readPhotoTime, revealMessage, timeProblem, timeView, viewpointHint, warmUpViewpointAI,
 } from './photo-insight.js';
 import { bindSetlistCopy, setlistBody } from './setlist-ui.js';
 
@@ -400,6 +400,7 @@ function makeLifecycle(container, api) {
       const complaint = $('[data-taken-error]');
       complaint.textContent = problem;
       complaint.hidden = !problem;
+      if (problem) revealMessage(complaint);
       if (problem) { form.elements.takenAt.setAttribute('aria-invalid', 'true'); form.elements.takenAt.setAttribute('aria-describedby', 'sp-taken-error'); }
       else { form.elements.takenAt.removeAttribute('aria-invalid'); form.elements.takenAt.removeAttribute('aria-describedby'); }
     };
@@ -574,6 +575,9 @@ function makeLifecycle(container, api) {
       draft.caption = form.elements.caption.value.trim();
       draft.song = cleanSong(form.elements.song.value);
       draft.isPublic = form.elements.isPublic.checked;
+      // A file's modification time is only a guess the person has not confirmed (they would have edited it, making it 'manual'): it stays on the
+      // page while editing and is not written into the card, not even in this demo's own localStorage.
+      if (draft.takenSource === 'file') { draft.takenAt = null; draft.takenSource = null; }
       draft.updatedAt = now();
       draft.revision = (currentCard?.revision || 0) + 1;
       if (draft.photoKey !== 'custom') draft.photoDataUrl = '';
@@ -621,7 +625,7 @@ function makeLifecycle(container, api) {
     });
     if (previous) { openExchange(previous.id); return; }
     api.spatial?.focus('photo', theirs.id);
-    const { element, close } = dialog(`<div class="sp-dialog__head"><span class="eyebrow">交换申请</span>${closeButton()}<h2 data-dialog-title>和${escape(actorName(target))}交换<span class="nowrap">这两张卡？</span></h2></div><div class="sp-dialog__body">${reasonMarkup(reading(own, theirs))}<div class="sp-pair sp-pair--request"><div><div class="sp-pair__label">${escape(actorName(actor))}的卡</div>${ticketMarkup(own, { small: true })}</div><span class="sp-pair__join" aria-hidden="true">${api.icon('swap')}</span><div><div class="sp-pair__label">${escape(actorName(target))}的卡</div>${ticketMarkup(theirs, { small: true })}</div></div></div><div class="sp-dialog__footer sp-dialog__footer--notes"><p class="sp-exchange-boundary">对方同意后，双方各自收好一份<span class="nowrap">双联记忆。</span></p>${own.isPublic ? '' : '<p class="sp-private-note">这张私藏卡将向对方可见。</p>'}<button type="button" class="button button--quiet" data-dialog-close>再看看</button><button type="button" class="button button--primary" data-send-request>发送申请${api.icon('arrow-right')}</button></div>`, 'sp-dialog--exchange');
+    const { element, close } = dialog(`<div class="sp-dialog__scroll"><div class="sp-dialog__head"><span class="eyebrow">交换申请</span>${closeButton()}<h2 data-dialog-title>和${escape(actorName(target))}交换<span class="nowrap">这两张卡？</span></h2></div><div class="sp-dialog__body">${reasonMarkup(reading(own, theirs))}<div class="sp-pair sp-pair--request"><div><div class="sp-pair__label">${escape(actorName(actor))}的卡</div>${ticketMarkup(own, { small: true })}</div><span class="sp-pair__join" aria-hidden="true">${api.icon('swap')}</span><div><div class="sp-pair__label">${escape(actorName(target))}的卡</div>${ticketMarkup(theirs, { small: true })}</div></div></div></div><div class="sp-dialog__footer sp-dialog__footer--notes"><p class="sp-exchange-boundary">对方同意后，双方各自收好一份<span class="nowrap">双联记忆。</span></p>${own.isPublic ? '' : '<p class="sp-private-note">这张私藏卡将向对方可见。</p>'}<button type="button" class="button button--quiet" data-dialog-close>再看看</button><button type="button" class="button button--primary" data-send-request>发送申请${api.icon('arrow-right')}</button></div>`, 'sp-dialog--exchange');
     element.querySelector('[data-send-request]').addEventListener('click', (event) => {
       event.currentTarget.disabled = true;
       let created = false;
@@ -660,7 +664,7 @@ function makeLifecycle(container, api) {
     // The reason speaks to whoever is looking at it: "你" is the card they own, whichever side sent the request.
     const [mine, theirs] = receiving ? [exchange.toCard, exchange.fromCard] : [exchange.fromCard, exchange.toCard];
     const exchangeVisual = `${reasonMarkup(reading(mine, theirs))}<div class="sp-pair sp-pair--request"><div><div class="sp-pair__label">${escape(actorName(exchange.from))}的卡</div>${ticketMarkup(exchange.fromCard, { small: true })}</div><span class="sp-pair__join" aria-hidden="true">${api.icon('swap')}</span><div><div class="sp-pair__label">${escape(actorName(exchange.to))}的卡</div>${ticketMarkup(exchange.toCard, { small: true })}</div></div>`;
-    const { element, close } = dialog(`<div class="sp-dialog__head"><span class="eyebrow">现场卡交换</span>${closeButton()}<h2 data-dialog-title>${titles[exchange.status]}</h2><p class="sp-exchange-status">${api.icon(pending ? 'swap' : 'info')}<span>${escape(statusText[exchange.status])}</span></p></div><div class="sp-dialog__body">${exchangeVisual}</div><div class="sp-dialog__footer sp-dialog__footer--wrap sp-dialog__footer--notes"><p class="sp-exchange-boundary">${pending ? '同意后，双方各自保存这两张卡的<span class="nowrap">双联快照。</span>' : '双方保留自己的卡片。'}</p>${pending && !receiving ? '<p class="sp-private-note">切到对方角色，接受或拒绝这次申请。</p>' : ''}${pending && receiving ? `<button type="button" class="button button--quiet" data-decide="declined">这次先不了</button><button type="button" class="button button--primary" data-decide="accepted">同意交换${api.icon('swap')}</button>` : pending ? `<button type="button" class="button button--quiet" data-decide="cancelled">取消申请</button><button type="button" class="button button--primary" data-switch-recipient>切到${escape(actorName(counterpart))}${api.icon('arrow-right')}</button>` : '<button type="button" class="button button--primary" data-dialog-close>回到本场</button>'}</div>`, 'sp-dialog--exchange');
+    const { element, close } = dialog(`<div class="sp-dialog__scroll"><div class="sp-dialog__head"><span class="eyebrow">现场卡交换</span>${closeButton()}<h2 data-dialog-title>${titles[exchange.status]}</h2><p class="sp-exchange-status">${api.icon(pending ? 'swap' : 'info')}<span>${escape(statusText[exchange.status])}</span></p></div><div class="sp-dialog__body">${exchangeVisual}</div></div><div class="sp-dialog__footer sp-dialog__footer--wrap sp-dialog__footer--notes"><p class="sp-exchange-boundary">${pending ? '同意后，双方各自保存这两张卡的<span class="nowrap">双联快照。</span>' : '双方保留自己的卡片。'}</p>${pending && !receiving ? '<p class="sp-private-note">切到对方角色，接受或拒绝这次申请。</p>' : ''}${pending && receiving ? `<button type="button" class="button button--quiet" data-decide="declined">这次先不了</button><button type="button" class="button button--primary" data-decide="accepted">同意交换${api.icon('swap')}</button>` : pending ? `<button type="button" class="button button--quiet" data-decide="cancelled">取消申请</button><button type="button" class="button button--primary" data-switch-recipient>切到${escape(actorName(counterpart))}${api.icon('arrow-right')}</button>` : '<button type="button" class="button button--primary" data-dialog-close>回到本场</button>'}</div>`, 'sp-dialog--exchange');
     element.querySelectorAll('[data-decide]').forEach((button) => button.addEventListener('click', () => {
       const decision = button.dataset.decide;
       let changed = false;

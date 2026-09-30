@@ -179,9 +179,9 @@ html[data-theme='sakura'] .library-toolbar { margin:0 0 17px; }
 html[data-theme='sakura'] .library-filters { gap:6px; }
 html[data-theme='sakura'] .library-filters button { min-height:44px; padding:5px 13px; border:1px solid #e2dac3; border-radius:999px; background:transparent; color:#6c6f60; font-size:13px; transition:background .18s, border-color .18s, color .18s; }
 html[data-theme='sakura'] .library-filters button:hover { border-color:#c9bf9f; color:#34503f; }
-html[data-theme='sakura'] .library-filters button span { font-size:12px; opacity:.72; }
+html[data-theme='sakura'] .library-filters button span { font-size:12px; }
 html[data-theme='sakura'] .library-filters button[aria-pressed='true'] { border-color:#34503f; background:#34503f; color:#fffaf0; box-shadow:none; }
-html[data-theme='sakura'] .library-filters button[aria-pressed='true'] span { opacity:.8; }
+html[data-theme='sakura'] .library-filters button[aria-pressed='true'] span { opacity:1; }
 html[data-theme='sakura'] .library-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px 19px; }
 html[data-theme='sakura'] .library-card { position:relative; display:block; padding:7px; overflow:visible; border:1px solid #e0d6bd; border-radius:1px; background:#fffdf3; box-shadow:0 3px 7px #534a3020; }
 html[data-theme='sakura'] .library-card::before { content:''; position:absolute; z-index:1; right:-3px; top:-3px; width:18px; height:18px; border-top:3px solid #8c9c7980; border-right:3px solid #8c9c7980; pointer-events:none; }

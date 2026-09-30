@@ -22,7 +22,7 @@ export const validTakenAt = value => Number.isFinite(value) && value >= TAKEN_MI
 
 /**
  * Where a card's time came from. Only 'exif' and 'manual' can decide 「同一刻」 and only they ever leave the device: a file's
- * modification time ('file') is a guess the person has not confirmed, so it stays on the page (and in the local demo's own storage).
+ * modification time ('file') is a guess the person has not confirmed, so it stays on the editing page: it is not saved into a card, not even in the local demo's own storage.
  * The moment the person types or edits the time, it becomes 'manual'.
  */
 export const TAKEN_SOURCES = Object.freeze(['exif', 'manual', 'file']);

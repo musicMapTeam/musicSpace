@@ -157,8 +157,20 @@ export function identifyViewpoint(picture, onState) {
   return { cancel() { live = false; clearTimeout(timer); } };
 }
 
+/**
+ * A message next to a field must be seen where the person is typing: on a phone it can land under the sticky save bar or below the fold
+ * of the sheet's own scroller. Scrolls it to the middle of its scroller when it is not fully above the bar (about 96 px at the sheet's foot).
+ */
+export function revealMessage(element) {
+  const sheet = element.closest('dialog') || document.documentElement;
+  const box = element.getBoundingClientRect();
+  const floor = (sheet === document.documentElement ? window.innerHeight : sheet.getBoundingClientRect().bottom) - 96;
+  if (box.height > 0 && (box.bottom > floor || box.top < 0)) element.scrollIntoView({ block: 'center', inline: 'nearest' });
+}
+
 const percentOf = ({ loaded = 0, total = 0 } = {}) => (total > 0 ? Math.min(99, Math.floor((loaded / total) * 100)) : 0);
-const percentText = percent => (percent > 0 ? ` · ${percent}%` : '');
+// Non-breaking spaces (and .nowrap on the span): the percent never wraps alone onto the next line, it stays with the size text.
+const percentText = percent => (percent > 0 ? `\u00a0·\u00a0${percent}%` : '');
 
 /**
  * The line shown while the model is being fetched, "AI 在本机判断视角 · 首次需下载模型（约 10–23 MB） · 43%", and a small bar. It lives in a status region,
@@ -168,7 +180,7 @@ const percentText = percent => (percent > 0 ? ` · ${percent}%` : '');
  */
 export function loadingMarkup(prefix, progress) {
   const percent = percentOf(progress);
-  return `<span>${AI_LOADING_LEAD}<span class="nowrap">${AI_LOADING_SIZE}</span><span data-ai-percent aria-hidden="true">${percentText(percent)}</span></span><span class="${prefix}__bar" aria-hidden="true"><i data-ai-fill style="width:${percent}%"></i></span>`;
+  return `<span>${AI_LOADING_LEAD}<span class="nowrap">${AI_LOADING_SIZE}</span><span class="nowrap" data-ai-percent aria-hidden="true">${percentText(percent)}</span></span><span class="${prefix}__bar" aria-hidden="true"><i data-ai-fill style="width:${percent}%"></i></span>`;
 }
 
 const painted = new WeakMap();

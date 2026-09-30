@@ -61,14 +61,14 @@ assert.equal(P.timeView({ ...card, takenSource: 'file' }, '2026.09.26', { zone: 
 
 // ---- the status line: announced once per phase, not once per percent ------------------------------------------------------
 const loading = P.loadingMarkup('sp-ai-line', { loaded: 250, total: 1000 });
-assert.ok(loading.startsWith('<span>AI 在本机判断视角 · 首次需下载模型<span class="nowrap">（约 10–23 MB）</span><span data-ai-percent aria-hidden="true"> · 25%</span></span>'));
-assert.equal(loading.replace(/<[^>]*>/g, ''), `${P.AI_LOADING} · 25%`); // the words a screen reader hears are AI_LOADING (the percent is decoration)
+assert.ok(loading.startsWith('<span>AI 在本机判断视角 · 首次需下载模型<span class="nowrap">（约 10–23 MB）</span><span class="nowrap" data-ai-percent aria-hidden="true"> · 25%</span></span>'));
+assert.equal(loading.replace(/<[^>]*>/g, ''), `${P.AI_LOADING} · 25%`); // the words a screen reader hears are AI_LOADING (the percent is decoration)
 assert.match(loading, /<span class="sp-ai-line__bar" aria-hidden="true"><i data-ai-fill style="width:25%"><\/i><\/span>$/);
-assert.ok(P.loadingMarkup('sp-ai-line').includes('<span data-ai-percent aria-hidden="true"></span>')); // no bytes counted yet: no percent
+assert.ok(P.loadingMarkup('sp-ai-line').includes('<span class="nowrap" data-ai-percent aria-hidden="true"></span>')); // no bytes counted yet: no percent
 const nodes = { '[data-ai-percent]': { textContent: '' }, '[data-ai-fill]': { style: {} } };
 const line = { querySelector: selector => nodes[selector] || null };
 assert.equal(P.moveLoading(line, { loaded: 500, total: 1000 }), true); // only the decoration moves
-assert.equal(nodes['[data-ai-percent]'].textContent, ' · 50%');
+assert.equal(nodes['[data-ai-percent]'].textContent, ' · 50%');
 assert.equal(nodes['[data-ai-fill]'].style.width, '50%');
 assert.equal(P.moveLoading({ querySelector: () => null }, { loaded: 1, total: 2 }), false); // a line that shows something else is redrawn instead
 let writes = 0;

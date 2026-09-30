@@ -17,7 +17,7 @@
   --dc-edge: #d6c09a;
   --dc-ink: #2a2a34;
   --dc-ink-soft: #5f5a6b;
-  --dc-rose: #9b5664;
+  --dc-rose: #924e5c;
   --dc-green: #3d6653;
   --dc-serif: var(--font-serif, 'Songti SC', 'Noto Serif SC', 'Source Han Serif SC', 'STSong', 'SimSun', serif);
   --dc-sans: 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', system-ui, sans-serif;
@@ -327,7 +327,6 @@ html[data-theme] dialog.duet-ceremony::backdrop { background: var(--dc-night-0);
   text-align: center;
   line-height: 1.3;
   transform: rotate(-8deg);
-  opacity: .92;
 }
 .duet-ticket__seal b { font-size: 13px; font-weight: 700; letter-spacing: .02em; }
 .duet-ticket__seal small { font-size: 12px; letter-spacing: .06em; font-variant-numeric: tabular-nums; }

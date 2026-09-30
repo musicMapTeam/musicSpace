@@ -26,41 +26,57 @@ import { mountHome } from './home.js';
 import { mountLiveLibrary } from './live-library.js';
 import { mountLive } from './live.js';
 import { mountMotion } from './motion.js';
-import { STATE_KEY, adoptLegacyStorage } from './storage.js';
+import { SAME_MOMENT_MS } from './moment.js';
+import { AI_OFF_LINES, aiState } from './photo-insight.js';
+import { STATE_KEY, STORAGE_ADVICE, adoptLegacyStorage, storageFailureKind } from './storage.js';
 
 const views = ['space', 'records', 'live'];
 const root = document.querySelector('#app');
 const toastElement = document.querySelector('#toast');
 let toastTimer;
 let cleanup;
-let saveFailed = false;
 let recordsFilter = 'live';
 let demoActive = false;
 let themeController;
 let motion;
 let spatialContext = {};
 let spatialActionVersion = 0;
+let started = false; // the first page is drawn; a later answer about rooms has to repaint it
+
+/** What the browser did with the last save of the demo state; `kind` says why it refused (see storage.js). */
+const storage = { ok: true, kind: '' };
+let noticeClosed = ''; // the failure whose notice the visitor closed; a different failure, or a save that works again, brings it back
 
 /**
- * Answered once at boot. Static hosting (GitHub Pages, file://) has no room server, so everything that needs
- * one is hidden or sent to the local demo, which then carries the whole story with the visitor's own photo.
+ * Whether a room server stands behind this page. Static hosting (GitHub Pages, any plain file host, a file on disk,
+ * vite preview) has none, so everything that needs one is hidden or sent to the local demo, which then carries the
+ * whole story with the visitor's own photo. The page does not go looking for a server over the network:
+ *  - the room server writes <meta name="space-rooms" content="1"> into the page it serves, so the page believes in
+ *    its rooms at once and only confirms with /api/live/health in the background, giving them up if that fails;
+ *  - the Vite dev server has a proxy to the room server, so there (and only there) the page asks, as it always did,
+ *    and adopts an answer that arrives after the first page;
+ *  - anything else is the static version and sends no request at all.
  */
 const backend = {
   available: false,
   note: '真实房间需要完整版服务；线上可先用示例体验完整流程。',
 };
+// A page saved to disk or copied to GitHub Pages can still carry the tag; there is no server behind it.
+const hosted = location.protocol !== 'file:' && !/(^|\.)github\.io$/.test(location.hostname);
+const roomsMeta = document.querySelector('meta[name="space-rooms"]');
+const detection = !hosted ? 'static'
+  : roomsMeta && !/^(0|false|no|off)$/i.test(roomsMeta.content.trim()) ? 'served'
+    : import.meta.env.DEV ? 'probe' : 'static';
+backend.available = detection === 'served';
 
-async function probeBackend() {
-  // Opened from disk, or on GitHub Pages: there is no server to ask, so skip the request (and its 404 in the console).
-  if (location.protocol === 'file:' || /(^|\.)github\.io$/.test(location.hostname)) return;
-  // No abort timer here: a busy main thread would fire it before the answer is read. The boot waits separately
-  // (see the end of this file) and adopts an answer that comes later.
+/** One look at the room server's health endpoint: true only for a JSON answer that says ok. */
+async function askHealth() {
   try {
     const response = await fetch('/api/live/health', { cache: 'no-store' });
     const body = response.ok && (response.headers.get('content-type') || '').includes('application/json') ? await response.json() : null;
-    backend.available = body?.ok === true;
+    return body?.ok === true;
   } catch {
-    backend.available = false;
+    return false;
   }
 }
 
@@ -99,7 +115,8 @@ const routeHash = (view, payload) => (view === 'space' && isDemoPayload(payload)
 function routeUrl(view, payload) {
   const url = new URL(location.href);
   url.hash = routeHash(view, payload);
-  if (view !== 'live') url.searchParams.delete('room');
+  // An invite code means something only on the live page of a room server; anywhere else it is dropped from the address.
+  if (view !== 'live' || !backend.available) url.searchParams.delete('room');
   return url;
 }
 
@@ -116,26 +133,49 @@ function resolveRoute({ view, payload }) {
   return { view, payload, rerouted: false };
 }
 
-function toast(message) {
+// Words that say something was kept in this browser. After a refused write they would be untrue.
+const SAVE_CLAIM = /已(?:私下)?保存|已收进|已存入/;
+const storageAdvice = () => STORAGE_ADVICE[storage.kind] || '';
+
+/**
+ * A toast that reports a save must not outlive a failed one: when the browser refused the last write, the message is
+ * replaced by the reason. `saved: true` marks a message as a save report, `saved: false` exempts it. Unmarked messages
+ * that use the words above count as save reports, except on the room page, where 已保存 means the server kept it
+ * and a full or blocked localStorage changes nothing about that.
+ */
+function toast(message, { saved } = {}) {
+  const claimsSave = saved ?? (state.view !== 'live' && SAVE_CLAIM.test(message));
+  const text = claimsSave && !storage.ok ? `没能存入浏览器：${storageAdvice()}` : message;
   clearTimeout(toastTimer);
-  toastElement.textContent = message;
+  toastElement.textContent = text;
   toastElement.classList.add('visible');
-  toastTimer = setTimeout(() => toastElement.classList.remove('visible'), 3200);
+  toastTimer = setTimeout(() => toastElement.classList.remove('visible'), Math.min(7000, Math.max(3200, text.length * 120)));
 }
 
+/** Writes the state to this browser and records the outcome. Returns true when the browser kept it. */
 function persist() {
   try {
     localStorage.setItem(STATE_KEY, JSON.stringify(state));
-    saveFailed = false;
-  } catch {
-    saveFailed = true;
+    storage.ok = true;
+    storage.kind = '';
+    noticeClosed = '';
+  } catch (error) {
+    storage.ok = false;
+    storage.kind = storageFailureKind(error);
   }
   updateChrome();
+  return storage.ok;
 }
 
+/** True when the browser kept the change, so a caller can word its own confirmation. */
 function update(mutator) {
   mutator(state);
-  persist();
+  return persist();
+}
+
+/** For pages that report saves: whether the last write was kept and, if not, why (`kind`) and what to tell the visitor. */
+function storageState() {
+  return { ok: storage.ok, kind: storage.kind, advice: storage.ok ? '' : storageAdvice() };
 }
 
 function navigate(view, payload = null) {
@@ -154,7 +194,7 @@ function navigate(view, payload = null) {
   document.querySelector('#main-content').focus({ preventScroll: true });
 }
 
-const api = { getState: () => state, update, render, navigate, toast, icon, backend,
+const api = { getState: () => state, update, render, navigate, toast, icon, backend, storageState,
   spatial: {
     publish(content) {
       spatialContext = content;
@@ -194,9 +234,15 @@ function updateChrome() {
     else el.removeAttribute('aria-current');
   });
   const storageNote = document.querySelector('#storage-warning');
-  if (storageNote) storageNote.hidden = !saveFailed;
+  if (storageNote) {
+    storageNote.hidden = storage.ok || noticeClosed === storage.kind;
+    // What to do about it depends on why the browser refused (see storage.js); the text is only rewritten when it changes.
+    const line = storageNote.querySelector('[data-storage-text]');
+    const text = storage.ok ? '' : `没能保存到浏览器，当前页面内容仍保留。${storageAdvice()}。`;
+    if (line && line.textContent !== text) line.textContent = text;
+  }
   const sectionNames = { space: demoActive ? '示例现场' : '同一刻，另一面', records: '留住这次相遇', live: '邀请同场，交换视角' };
-  document.title = `${sectionNames[state.view]} · Music Space`;
+  document.title = `Music Space · ${sectionNames[state.view]}`;
 }
 
 function navItems() {
@@ -211,8 +257,15 @@ function navItems() {
 }
 
 function aboutFacts() {
+  const model = aiState();
   const facts = [
     ['现场卡', '默认私藏，双方同意后交换。'],
+    ['同一刻', `按照片的拍摄时间判断，相差 ${SAME_MOMENT_MS / 60_000} 分钟内算同一刻；读不到时间，就按你选的时刻。`],
+    // Said only where it is true: a browser without WebAssembly SIMD (or a file:// page) never runs the model, and a model that
+    // failed to load is not promised either. The facts are drawn again each time the dialog opens.
+    ['AI', model === 'on'
+      ? 'AI 在本机判断视角，判断时照片不上传（第一次要下载模型，<span class="nowrap">约 10–23 MB）；</span>没把握就不替你选，选了也随时可改。'
+      : AI_OFF_LINES[model]],
     ['票根', '对方同意后，两张卡合成两人署名的双联票根，收进我的记忆。'],
     ['示例', backend.available
       ? 'Lin、阿遥及预置照片均为虚构，也可以换成你自己的照片。'
@@ -237,21 +290,22 @@ function refreshChrome() {
 function shell() {
   root.innerHTML = `
     <header class="app-masthead app-studio-shell">
-      <button class="brand" data-nav="space" aria-label="回到小院 · 樱下放映 Music Space">
+      <button class="brand" data-nav="space" aria-label="Music Space · 樱下放映 · 散场以后，回到小院">
         <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
-        <span class="brand-wordmark">樱下放映<small>Music Space</small></span>
+        <span class="brand-wordmark">Music Space<small>樱下放映 · 散场以后</small></span>
       </button>
       <nav class="primary-nav" aria-label="主要导航"></nav>
       <div class="masthead-tools"><button class="demo-help icon-button" id="demo-help" aria-label="关于 Music Space" aria-haspopup="dialog" aria-controls="about-dialog">${icon('info')}</button></div>
     </header>
+    <!-- Right after the masthead in reading and tab order; it is pinned under it on screen. -->
+    <div id="storage-warning" class="storage-warning" role="alert" hidden><span data-storage-text></span><button id="retry-save">重试保存</button><button id="close-storage-note" class="storage-warning__close" aria-label="先不提醒">${icon('x')}</button></div>
     <div id="sakura-world" class="spatial-world" hidden></div>
     <div class="app-body">
-      <div id="storage-warning" class="storage-warning" role="alert" hidden>这次修改尚未保存到浏览器，当前页面内容仍保留。可减少上传图片后重试。<button id="retry-save">重试保存</button></div>
       <main id="main-content" class="main-content" tabindex="-1"></main>
     </div>
     <nav class="mobile-nav" aria-label="手机导航"></nav>
     <dialog id="about-dialog" class="about-dialog" aria-labelledby="about-title">
-      <div class="about-top"><h2 id="about-title">樱下放映</h2><button class="icon-button" id="close-about" aria-label="关闭关于">${icon('x')}</button></div>
+      <div class="about-top"><h2 id="about-title">Music Space</h2><button class="icon-button" id="close-about" aria-label="关闭关于">${icon('x')}</button></div>
       <p class="about-intro">同一刻，另一面。</p><div class="about-facts"></div>
       <button class="button button--primary" id="start-experience">知道了</button>
     </dialog>`;
@@ -274,13 +328,21 @@ function shell() {
     }
   });
   const dialog = document.querySelector('#about-dialog');
-  document.querySelector('#demo-help').addEventListener('click', () => dialog.showModal());
+  document.querySelector('#demo-help').addEventListener('click', () => {
+    root.querySelector('.about-facts').innerHTML = aboutFacts();
+    dialog.showModal();
+  });
   document.querySelector('#close-about').addEventListener('click', () => dialog.close());
   document.querySelector('#start-experience').addEventListener('click', () => dialog.close());
   dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
   document.querySelector('#retry-save').addEventListener('click', () => {
     persist();
-    toast(saveFailed ? '仍未保存，可减少上传图片后重试' : '已保存到当前浏览器');
+    toast(storage.ok ? '已保存到当前浏览器' : `仍未保存：${storageAdvice()}`, { saved: false });
+  });
+  document.querySelector('#close-storage-note').addEventListener('click', () => {
+    noticeClosed = storage.kind;
+    updateChrome();
+    document.querySelector('#main-content').focus({ preventScroll: true });
   });
 }
 
@@ -321,56 +383,90 @@ function render() {
 window.addEventListener('popstate', () => {
   if (location.hash === '#main-content') return;
   const route = resolveRoute(routeFromLocation());
-  if (route.rerouted) {
-    history.replaceState(null, '', routeUrl(route.view, route.payload));
-    toast(backend.note);
-  }
+  // A hand-edited or retired address (#/explore) settles on the one that is shown, as it does when the page loads.
+  const shown = routeUrl(route.view, route.payload);
+  if (route.rerouted || (location.hash && shown.hash !== location.hash)) history.replaceState(null, '', shown);
+  if (route.rerouted) toast(backend.note);
   state.view = route.view;
   state.routePayload = route.payload;
   persist();
   render();
 });
 
-let startedWith = null; // what the first page believed about the room server
-
 function start() {
-  startedWith = backend.available;
+  started = true;
   recordsFilter = backend.available ? 'live' : 'demo';
   refreshChrome();
   const route = resolveRoute(routeFromLocation());
   state.view = route.view;
   state.routePayload = route.payload;
-  // Old bookmarks (#/explore) and blocked routes settle on the address that is actually shown.
+  // Old bookmarks (#/explore), blocked routes and an invite code the static build cannot use settle on the address that is
+  // actually shown.
   const shown = routeUrl(route.view, route.payload);
-  if (route.rerouted || (location.hash && location.hash !== '#main-content' && shown.hash !== location.hash)) history.replaceState(null, '', shown);
+  const staleHash = Boolean(location.hash) && location.hash !== '#main-content' && shown.hash !== location.hash;
+  const strayRoom = !backend.available && new URLSearchParams(location.search).has('room');
+  if (route.rerouted || staleHash || strayRoom) history.replaceState(null, '', shown);
   persist();
   render();
   if (route.rerouted) toast(backend.note);
 }
 
-/** A slow device can answer the probe after the first page is up; the rooms then appear without a reload. */
-function adoptLateAnswer() {
-  if (startedWith !== false || !backend.available) return;
+/**
+ * The answer about the room server arrived, or changed, after the first page was drawn: a slow probe in dev finds
+ * rooms, or a served page finds its API gone. Navigation, pills and pages follow without a reload. A visitor in the
+ * middle of the demo keeps it (its own actions cope with rooms coming or going), and an open dialog is left alone
+ * until it closes.
+ */
+function adoptBackend(available) {
+  if (backend.available === available) return;
+  backend.available = available;
+  if (!started) return; // start() has not drawn anything yet and will read the answer itself
   refreshChrome();
-  if (demoActive || document.querySelector('dialog[open]')) return;
-  if (state.view === 'space' || state.view === 'records') render();
+  const repaint = () => {
+    const route = resolveRoute({ view: state.view, payload: state.routePayload });
+    if (route.rerouted) {
+      state.view = route.view;
+      state.routePayload = route.payload;
+      history.replaceState(null, '', routeUrl(route.view, route.payload));
+      persist();
+      render();
+      toast(backend.note);
+    } else if (!demoActive && (state.view === 'space' || state.view === 'records')) {
+      render();
+    }
+  };
+  const open = document.querySelector('dialog[open]');
+  if (open) open.addEventListener('close', repaint, { once: true });
+  else repaint();
 }
 
-// The probe runs while the shell and the courtyard build; the first page waits for its answer.
-const probe = probeBackend();
-state.view = routeFromLocation().view;
-shell();
-themeController = mountThemes({ onAction: onSpatialAction, view: state.view,
-  onShot(key, id, travelling) { document.body.dataset.spatialShot = key; document.body.toggleAttribute('data-spatial-travelling', travelling); },
-});
-motion = mountMotion();
-// The allowance starts after the courtyard is built: a busy phone must not lose the race to its own main thread.
-// An invite link or #/live is worth a longer wait; the home page settles for 1.5 s and adopts a late answer.
-const allowance = routeFromLocation().view === 'live' ? 8000 : 1500;
-Promise.race([probe, new Promise(resolve => setTimeout(resolve, allowance))]).then(start);
-probe.then(adoptLateAnswer);
+/** A served page believes in its room server at once; this only checks, twice, before it gives the rooms up. */
+async function confirmRooms() {
+  if (await askHealth()) return;
+  await new Promise(resolve => setTimeout(resolve, 1500)); // a restarting server is not a missing one
+  if (!(await askHealth())) adoptBackend(false);
+}
+
 // Keep window scrolling and focus navigation native; only replace its chrome.
 OverlayScrollbars(document.body, {
   overflow: { x: 'hidden', y: 'scroll' },
   scrollbars: { theme: 'os-theme-music', autoHide: 'scroll', autoHideDelay: 650, dragScroll: true, clickScroll: false },
 });
+// Dev only, where the proxy can answer: the probe runs while the shell and the courtyard build.
+const answer = detection === 'probe' ? askHealth().then(adoptBackend) : null;
+// The courtyard opens on the shot of the page that will actually be shown; only the dev probe has to guess.
+state.view = detection === 'probe' ? routeFromLocation().view : resolveRoute(routeFromLocation()).view;
+shell();
+themeController = mountThemes({ onAction: onSpatialAction, view: state.view,
+  onShot(key, id, travelling) { document.body.dataset.spatialShot = key; document.body.toggleAttribute('data-spatial-travelling', travelling); },
+});
+motion = mountMotion();
+if (answer) {
+  // The allowance starts after the courtyard is built: a busy phone must not lose the race to its own main thread.
+  // An invite link or #/live is worth a longer wait; the home page settles for 1.5 s and adopts a late answer.
+  const allowance = routeFromLocation().view === 'live' ? 8000 : 1500;
+  Promise.race([answer, new Promise(resolve => setTimeout(resolve, allowance))]).then(start);
+} else {
+  start();
+  if (detection === 'served') confirmRooms();
+}

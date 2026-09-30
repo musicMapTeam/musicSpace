@@ -4,7 +4,7 @@
 .library-toolbar { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:2px 0 22px; }
 .library-filters { display:flex; gap:5px; flex-wrap:wrap; }
 .library-filters button { display:inline-flex; align-items:center; gap:7px; min-height:40px; padding:8px 14px; border:0; border-radius:30px; color:var(--muted); background:transparent; font-size:14px; }
-.library-filters button span { font-size:12px; opacity:.75; font-variant-numeric:tabular-nums; }
+.library-filters button span { font-size:12px; font-variant-numeric:tabular-nums; }
 .library-filters button[aria-pressed="true"] { background:var(--studio-panel,var(--surface)); color:var(--text); box-shadow:var(--studio-soft-shadow); }
 .library-refresh.icon-button { width:36px; height:36px; min-width:36px; min-height:36px; border:0; color:var(--muted); }
 .library-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(235px,1fr)); gap:22px; align-items:start; }
@@ -39,7 +39,7 @@
 .library-rooms { margin-top:27px; border-top:1px solid var(--line); padding-top:12px; }
 .library-rooms summary { display:flex; align-items:center; gap:8px; min-height:38px; list-style:none; cursor:pointer; color:var(--muted); font-size:13px; }
 .library-rooms summary::-webkit-details-marker { display:none; }
-.library-rooms summary>span { opacity:.75; font-size:12px; }
+.library-rooms summary>span { font-size:12px; }
 .library-rooms summary>.icon { width:13px; height:13px; margin-left:auto; transition:transform .2s; }
 .library-rooms[open] summary>.icon { transform:rotate(90deg); }
 .library-rooms>div { display:grid; grid-template-columns:repeat(auto-fill,minmax(235px,1fr)); gap:8px 22px; padding-top:4px; }
@@ -141,3 +141,7 @@ html[data-theme="sakura"] .library-dialog--confirm { inset:50% 26px auto auto; t
   .library-card--record .library-photo__label-rest { display:none; }
   .library-card--record .library-photo__status { white-space:nowrap; font-size:12px; }
 }
+
+/* Songs named on a collected card or duet: one ♪ line per song, side by side when there is room. */
+.library-detail-song { display:flex; flex-wrap:wrap; gap:2px 14px; }
+.library-detail-song>span { min-width:0; overflow-wrap:anywhere; }

@@ -22,14 +22,14 @@ html[data-theme] .live-compose fieldset { min-width:0; border:0; padding:0; marg
 html[data-theme] .live-compose legend { margin:0 0 9px; color:var(--text); font-size:13px; font-weight:550; line-height:1.5; }
 html[data-theme] .live-compose__step>legend { position:absolute; width:1px; height:1px; padding:0; margin:0; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
 html[data-theme] .live-compose__step:not([hidden]) { animation:live-compose-enter .18s ease-out both; }
-html[data-theme] .live-compose .live-upload-preview { height:clamp(180px,24dvh,230px); border:0; border-radius:15px; background:var(--studio-well,var(--surface-raised)); }
+html[data-theme] .live-compose .live-upload-preview { height:clamp(132px,19dvh,230px); border:0; border-radius:15px; background:var(--studio-well,var(--surface-raised)); }
 html[data-theme] .live-compose .live-upload-preview>span { padding:7px 11px; font-size:12px; }
 html[data-theme] .live-compose .live-upload-empty { gap:9px; padding:20px; }
 html[data-theme] .live-compose .live-upload-empty>.icon { width:30px; height:30px; margin:0 0 4px; }
 html[data-theme] .live-compose .live-upload-empty strong { color:var(--text); font-size:16px; font-weight:550; }
 html[data-theme] .live-compose .live-upload-empty>span { color:var(--muted); font-size:12px; }
 html[data-theme] .live-compose .live-upload-button { min-height:46px!important; margin-top:12px; border-radius:12px; font-size:14px; }
-html[data-theme] .live-compose .live-form-note { margin:10px 0 0; font-size:12px; line-height:1.7; color:var(--muted); }
+html[data-theme] .live-compose .live-form-note { margin:10px 0 0; font-size:12px; line-height:1.7; color:var(--muted); text-wrap:pretty; }
 html[data-theme] .live-compose .live-example-picker { margin:12px 0 0; padding:0; border:0; }
 html[data-theme] .live-compose .live-example-picker>summary { display:list-item; min-height:42px; padding:10px 0; font-size:13px; color:var(--muted); }
 html[data-theme] .live-compose .live-example-picker>p { margin:0 0 11px; color:var(--muted); font-size:12px; }
@@ -103,6 +103,42 @@ html[data-theme] .live-event-compose__footer { flex-shrink:0; margin:18px 0 0; p
 html[data-theme] .live-event-compose__footer>p { margin:0 0 11px; color:var(--muted); font-size:12px; line-height:1.6; }
 html[data-theme] .live-event-compose__footer>.button { width:100%; min-height:46px; margin:0; border-radius:12px; font-size:14px; }
 html[data-theme="sakura"] .live-dialog.live-dialog--event { --event-max-height:calc(100dvh - 122px); }
+/* ===== 同一刻，另一面: capture time, viewpoint suggestion (on-device AI) and the song of the moment ===== */
+html[data-theme] .live-compose .live-taken { margin:12px 0 0; }
+html[data-theme] .live-compose .live-taken[hidden] { display:none!important; }
+html[data-theme] .live-compose .live-taken__row { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+html[data-theme] .live-compose .live-taken__line { margin:0; color:var(--text); font-size:14px; line-height:1.6; }
+html[data-theme] .live-compose .live-taken__line small { color:#5b6259; font-size:12px; }
+html[data-theme] .live-compose .live-taken__edit.text-button { flex:none; min-width:44px; min-height:44px; justify-content:center; padding:0 4px; color:var(--mint); font-size:14px; text-decoration:underline; text-underline-offset:4px; }
+html[data-theme] .live-compose .live-taken__field { margin:2px 0 0; }
+html[data-theme] .live-compose .live-taken__field .live-field { margin:0; }
+html[data-theme] .live-compose .live-taken__field .live-field>span { float:none; display:block; color:var(--text); font-size:13px; font-weight:500; }
+html[data-theme] .live-compose .live-taken__field .live-form-note { margin:8px 0 0; }
+/* A typed time the page cannot use: a rose note on the paper, body size, said next to the field. */
+html[data-theme] .live-compose .live-taken__field .live-taken__error { margin:8px 0 0; padding:8px 12px; border-left:3px solid var(--coral); border-radius:0 6px 6px 0; background:#f6e9e6; color:var(--coral-ink,#96495e); font-size:14px; line-height:1.6; word-break:keep-all; overflow-wrap:anywhere; text-wrap:pretty; }
+html[data-theme] .live-compose .live-taken__field .live-taken__error[hidden] { display:none; }
+html[data-theme] .live-compose .live-taken__field input[type="datetime-local"],
+html[data-theme] .live-compose .live-compose__song input { display:block; width:100%; min-width:0; box-sizing:border-box; height:auto; min-height:46px; margin-top:8px; padding:10px 12px; border:1px solid var(--line); border-radius:12px; background:var(--studio-well,var(--surface-raised)); color:var(--text); font-size:16px; line-height:1.5; color-scheme:light; }
+html[data-theme] .live-compose .live-compose__song { margin:16px 0 0; }
+html[data-theme] .live-compose .live-compose__song input::placeholder { color:var(--muted); }
+html[data-theme] .live-compose .live-ai-line { display:flex; align-items:center; flex-wrap:wrap; gap:6px 10px; margin:6px 0 0; color:var(--text); font-size:14px; line-height:1.6; }
+html[data-theme] .live-compose .live-ai-line[hidden] { display:none!important; }
+/* The status region stays in the page so a screen reader is told when it starts to speak; empty, it takes no room. */
+html[data-theme] .live-compose .live-ai-line:empty { margin:0; }
+html[data-theme] .live-compose .live-ai-line__bar { flex:0 0 96px; height:4px; overflow:hidden; border-radius:2px; background:var(--line); }
+html[data-theme] .live-compose .live-ai-line__bar>i { display:block; height:100%; background:var(--mint); transition:width .25s linear; }
+html[data-theme] .live-compose .live-ai-tag { display:inline-flex; align-items:center; gap:7px; min-height:28px; padding:2px 12px; border:1px solid var(--line); border-radius:999px; background:var(--studio-well,var(--surface-raised)); color:var(--text); font-size:14px; }
+html[data-theme] .live-compose .live-ai-tag::before { width:6px; height:6px; border-radius:50%; background:var(--mint); content:''; }
+html[data-theme] .live-compose .live-ai-tag--unsure { border-style:dashed; border-color:var(--coral); color:var(--coral-ink,var(--coral)); }
+html[data-theme] .live-compose .live-ai-tag--unsure::before { background:var(--coral); }
+html[data-theme] .live-compose .live-perspectives label.is-suggested>span { border-style:dashed; border-color:var(--coral); color:var(--coral-ink,var(--coral)); }
+html[data-theme] .live-compose .live-perspectives__note { margin:8px 0 14px; font-size:13px; line-height:1.7; text-wrap:pretty; }
+html[data-theme] .live-compose .live-perspectives { margin-bottom:0; }
+/* 44px targets for the choices in this editor */
+html[data-theme] .live-compose .live-perspectives label>span { min-height:44px; }
+html[data-theme] .live-compose__details .live-moment-choices label>span,
+html[data-theme] .live-compose .live-moment-choices label>span { min-height:44px; padding:10px 13px; font-size:13px; }
+html[data-theme] .live-compose .live-check { min-height:44px; align-items:center; }
 @media(max-width:760px) {
   html[data-theme] .live-dialog.live-dialog--compose { --compose-max-height:calc(100dvh - 28px); }
   html[data-theme] .live-dialog--compose #live-dialog-content { padding:18px; }
@@ -128,7 +164,13 @@ html[data-theme="sakura"] .live-dialog.live-dialog--event { --event-max-height:c
   to { opacity:1; transform:translateY(0); }
 }
 @media(prefers-reduced-motion:reduce) {
+  html[data-theme] .live-compose .live-ai-line__bar>i { transition:none; }
   html[data-theme] .live-compose__step:not([hidden]) { animation:none; }
   html[data-theme] .live-compose__details>summary>.icon { transition:none; }
   html[data-theme] .live-event-compose__details>summary .icon { transition:none; }
 }
+
+/* 44px targets in the card editor: close, the example picker and the details fold */
+html[data-theme] .live-dialog--compose .live-modal-top .icon-button { width:44px; height:44px; min-width:44px; min-height:44px; }
+html[data-theme] .live-compose .live-example-picker>summary,
+html[data-theme] .live-compose__details>summary { min-height:44px; box-sizing:border-box; align-items:center; }

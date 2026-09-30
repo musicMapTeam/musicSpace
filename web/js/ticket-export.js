@@ -1,5 +1,5 @@
 import { SPACE_PHOTOS } from './space-data.js';
-import { completedFull, eventMeta, eventTitle, momentLabel, perspectiveLabel, sharedLine, singleLine, stampDate } from './duet-facts.js';
+import { completedFull, duetSides, eventMeta, eventTitle, facts, inventedNotice, sharedLine, singleLine, stampDate } from './duet-facts.js';
 
 /*
  * The PNG speaks the same language as the duet page: a night screening, festoon lights and a warm paper ticket.
@@ -230,15 +230,18 @@ function photoDisclosure(ctx, card, x, y) {
   ctx.restore();
 }
 const captionOf = (card, paired) => (card.caption || (paired ? '这一刻，想和你一起记住。' : '这一刻，先为自己留住。')).replace(/\s+/g, ' ');
+/** A line under the byline (capture time, song) costs the photographs this much. */
+const META_ROW = 46;
 /** Short captions give their room back to the photographs; long ones keep all 80 characters. */
-function photoHeight(ctx, cards, paired) {
+function photoHeight(ctx, cards, paired, metaRow = false) {
   setFont(ctx, 400, paired ? 28 : 30);
   const width = paired ? 630 : 1308;
   const rows = Math.min(paired ? 4 : 3, Math.max(...cards.map(card => countRows(ctx, captionOf(card, paired), width))));
   // Paired photos stay near-square; a single card may widen into the whole ticket.
-  return paired ? 640 + (4 - rows) * 34 : 790 - (rows - 1) * 44;
+  return (paired ? 640 + (4 - rows) * 34 : 790 - (rows - 1) * 44) - (metaRow ? META_ROW : 0);
 }
-function side(ctx, image, card, x, w, paired, h) {
+/** `about` = { viewpoint, moment }; `meta` is the line under the byline ("拍摄于 21:47 · ♪ 歌名"), '' when this side has none; `metaRow` reserves the row on both sides. */
+function side(ctx, image, card, x, w, paired, h, about, meta, metaRow) {
   const y = T.y + 36;
   ctx.save(); roundedPath(ctx, x, y, w, h, 16); ctx.clip(); drawPhoto(ctx, image, x, y, w, h); ctx.restore();
   ctx.save(); ctx.strokeStyle = 'rgba(0,0,0,.12)'; ctx.lineWidth = 2; roundedPath(ctx, x, y, w, h, 16); ctx.stroke(); ctx.restore();
@@ -247,11 +250,13 @@ function side(ctx, image, card, x, w, paired, h) {
   ctx.textAlign = 'left'; ctx.fillStyle = C.ink;
   fitLine(ctx, authorOf(card), x + 2, y + h + 62, w * (paired ? .54 : .6), 36, { weight: 700, min: 26 });
   ctx.textAlign = 'right'; ctx.fillStyle = C.rose; spacing(ctx, 2);
-  fitLine(ctx, `${perspectiveLabel(card)} · ${momentLabel(card.momentId)}`, x + w - 2, y + h + 62, w * .42, 25, { weight: 500, min: 20 });
+  fitLine(ctx, `${about.viewpoint || '现场'} · ${about.moment}`, x + w - 2, y + h + 62, w * .42, 25, { weight: 500, min: 20 });
   spacing(ctx, 0);
-  ctx.textAlign = 'left'; ctx.fillStyle = C.inkSoft; setFont(ctx, 400, paired ? 28 : 30);
+  ctx.textAlign = 'left'; ctx.fillStyle = C.inkSoft;
+  if (meta) fitLine(ctx, meta, x + 2, y + h + 106, w - 4, 26, { weight: 500, min: 20 });
+  setFont(ctx, 400, paired ? 28 : 30);
   // 80-character captions fit without an ellipsis in both layouts.
-  wrapText(ctx, captionOf(card, paired), x + 2, y + h + 116, w - 4, paired ? 42 : 44, paired ? 4 : 3);
+  wrapText(ctx, captionOf(card, paired), x + 2, y + h + 116 + (metaRow ? META_ROW : 0), w - 4, paired ? 42 : 44, paired ? 4 : 3);
   ctx.restore();
 }
 function seal(ctx, x, y, title, date) {
@@ -280,13 +285,12 @@ function stubText(ctx, line, paired, info) {
   ctx.restore();
   seal(ctx, 1368, T.tear + 96, paired ? '双方同意' : '我的现场', stampDate(info.createdAt));
 }
-function footer(ctx, info, paired) {
+function footer(ctx, info, paired, cards) {
   ctx.save();
   ctx.textAlign = 'left'; ctx.fillStyle = C.onSoft; setFont(ctx, 400, 27); spacing(ctx, 1);
   ctx.fillText(`${completedFull(info.createdAt)} · ${paired ? '双方已同意共同署名' : '我的现场纪念'}`, T.x + 4, 1712);
   ctx.fillStyle = C.onFaint; setFont(ctx, 400, 24); spacing(ctx, 1);
-  const notice = info.scenario === 'local' ? ' · 本地情景演示，角色、现场与歌曲为虚构' : info.isDemo === false ? '' : ' · 现场与歌曲为示例内容';
-  ctx.fillText(`MUSIC SPACE${notice}`, T.x + 4, 1758, 1080);
+  ctx.fillText(`MUSIC SPACE${inventedNotice(cards, info)}`, T.x + 4, 1758, 1080);
   ctx.textAlign = 'right'; ctx.fillStyle = C.sakura; setFont(ctx, 600, 32, serifFamily()); spacing(ctx, 4);
   ctx.fillText('同一刻，另一面', T.x + T.w - 4, 1724);
   ctx.restore();
@@ -296,14 +300,19 @@ function drawMemory(ctx, cards, images, info, paired) {
   petals(ctx);
   heading(ctx, cards, info, paired);
   ticketPaper(ctx, paired);
-  const h = photoHeight(ctx, cards, paired);
+  const event = { title: info.title, date: info.eventDate, song: info.song, isDemo: info.isDemo };
+  // A song both cards name goes on the stub; a song only one names, and each capture time, sit under that side's byline.
+  const about = paired ? duetSides(cards, event) : cards.map(card => ({ ...facts(card, event), songs: [] }));
+  const metas = about.map(item => [item.time ? `拍摄于 ${item.time}` : '', item.songs.map(title => `♪ ${title}`).join('  ')].filter(Boolean).join('  ·  '));
+  const metaRow = metas.some(Boolean);
+  const h = photoHeight(ctx, cards, paired, metaRow);
   if (paired) {
-    side(ctx, images[0], cards[0], 144, 634, true, h);
-    side(ctx, images[1], cards[1], 822, 634, true, h);
-  } else side(ctx, images[0], cards[0], 144, 1312, false, h);
-  const line = paired ? sharedLine(cards, { song: info.song, title: info.title }) : singleLine(cards[0], { song: info.song });
+    side(ctx, images[0], cards[0], 144, 634, true, h, about[0], metas[0], metaRow);
+    side(ctx, images[1], cards[1], 822, 634, true, h, about[1], metas[1], metaRow);
+  } else side(ctx, images[0], cards[0], 144, 1312, false, h, about[0], metas[0], metaRow);
+  const line = paired ? sharedLine(cards, event) : singleLine(cards[0], event);
   stubText(ctx, line, paired, info);
-  footer(ctx, info, paired);
+  footer(ctx, info, paired, cards);
 }
 function canvasBase() {
   const canvas = document.createElement('canvas');

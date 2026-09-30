@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-09-27",
-  "planVersion": "1.8",
-  "scope": "当前来源与实际落地状态；完整原始数据保留本地，不与逐人制作署名混合。",
+  "updatedAt": "2026-09-30",
+  "planVersion": "3.0",
+  "scope": "Music Space（MVP 0.16.0）当前用到的来源、素材与模型，及其实际落地状态。Map 时期的条目（旧 Map 原型数据、MusicBrainz 样例、HF 曲库）不属于 Space，原样移到 mapOnlyHistory，不再是 Space 的资源；它们的路径指向的 web/assets/data/ 与本地原始 CSV 不在本仓库。",
   "resources": [
     {
       "id": "official-competition",
@@ -9,7 +9,8 @@
       "status": "provided",
       "sourceUrl": "https://join.tencentmusic.com/ai-hackathon/",
       "localArchive": "../../references/official/2026-09-26/README.md",
-      "notes": "赛事原文留档范围以档案README为准。"
+      "notes": "赛事原文留档范围以档案README为准。2026-09-29 用户从初赛提交表单页面复制的字段原文另存于 formArchive（用户转录，表单第 01、02 项没有贴）。文档 3.0 只据这些留档，没有再次直接读取官方页面（9 月 27 日的重读见 references/research/2026-09-27/）。",
+      "formArchive": "../../references/official/2026-09-29/submission-form.md"
     },
     {
       "id": "original-ideas",
@@ -19,46 +20,173 @@
       "notes": "用户原始Music Space与同场创意，已恢复现场社交定位。"
     },
     {
-      "id": "prototype-fictional",
-      "type": "demo-data",
-      "status": "provided",
-      "location": "../prototype/demo-data.js",
-      "notes": "旧Map虚构数据，仅供明确标识的原型情景。"
-    },
-    {
-      "id": "musicbrainz-metadata",
-      "type": "metadata",
-      "status": "sample-verified",
-      "sourceUrl": "https://musicbrainz.org/ws/2/recording/3d9d0380-c701-4154-a284-1a034348078a?inc=artist-credits%2Bartist-rels%2Bwork-rels%2Breleases&fmt=json",
-      "notes": "前轮读到《珊瑚海》共同艺人署名样例；未导入产品，不包含音频权限。"
-    },
-    {
       "id": "event-demo-photos",
       "type": "image",
       "status": "generated-demo",
-      "notes": "两张 AI 生成的虚构现场示例图，原图与生成来源已留档；真实用户上传照片不提交 Git。",
+      "notes": "两张 AI 生成的虚构现场示例图，原图与生成来源已留档；真实用户上传照片不提交 Git。示例场次「回声现场」、角色 Lin / 阿遥、歌曲《把晚风借给你》和示例卡的拍摄时间（21:47 / 21:48）同为虚构，卡上标「示例图」，票根标「AI 生成示例照片」。",
       "location": "../../web/assets/image-provenance.json"
+    },
+    {
+      "id": "tinyclip-vision-int8",
+      "type": "model",
+      "status": "shipped-self-hosted",
+      "location": "../../web/public/ai/tc8/vision.onnx",
+      "bytes": 8807127,
+      "sha256": "53112612a2c20a6c7af46c46de0824ea2206c9de5c3cae18ba11d3fa8fa328ca",
+      "license": "MIT, Copyright (c) Microsoft Corporation",
+      "licenseFile": "../../web/public/ai/tc8/LICENSE-TinyCLIP-MIT.txt",
+      "source": {
+        "onnxExport": "https://huggingface.co/onnx-community/TinyCLIP-ViT-8M-16-Text-3M-YFCC15M-ONNX",
+        "onnxExportRevision": "9463a9c508a344c837ffefe9d724f3827bf2dc79",
+        "onnxExportFile": "onnx/model.onnx",
+        "onnxExportSha256": "31d28cb07209533d10fc4fef73ac324ce17de6741a2372e7e1531a4ac8fdaeb2",
+        "checkpoint": "https://huggingface.co/wkcn/TinyCLIP-ViT-8M-16-Text-3M-YFCC15M",
+        "checkpointRevision": "a2a8c6eaa2549ad66eb7c31b85022bf58273a26c",
+        "upstream": "https://github.com/microsoft/Cream/tree/main/TinyCLIP"
+      },
+      "record": [
+        "../../scripts/ai/README.md",
+        "../../THIRD_PARTY_NOTICES.md"
+      ],
+      "notes": "TinyCLIP-ViT-8M/16 的图像塔，动态 int8 量化（QUInt8）；不含文字塔与 fp32 塔，没有微调。预训练数据按模型卡为 YFCC-15M。本项目只做抽塔、量化与四组视角文字向量的预计算。只用来建议照片的视角，会判错；运行时只从本站同源加载，不访问 huggingface.co 或 CDN。"
+    },
+    {
+      "id": "viewpoint-label-vectors",
+      "type": "model-data",
+      "status": "shipped-self-hosted",
+      "location": "../../web/public/ai/tc8/labels.json",
+      "bytes": 17609,
+      "sha256": "a7422fc83f7f1c3b1f7133575969d9348e6fb6fa6019614ff9798d653dbdcc2e",
+      "record": [
+        "../../scripts/ai/prompts.mjs",
+        "../../scripts/ai/build-labels.mjs"
+      ],
+      "notes": "舞台 / 人海 / 身边 / 细节四个视角的 512 维文字向量（每个视角七条英文提示的平均，L2 归一），加类别顺序、logit 尺度 100、CLIP 均值与标准差、裁切 224 和两个文件的字节数（应用拒绝长度不符的下载）。中文提示对这个模型无效，所以只用英文提示。"
+    },
+    {
+      "id": "onnxruntime-web",
+      "type": "runtime",
+      "status": "shipped-self-hosted",
+      "version": "1.30.0",
+      "sourceUrl": "https://github.com/microsoft/onnxruntime",
+      "sourceTag": "v1.30.0",
+      "sourceCommit": "f2c39fe2f838cf35ce7da92824f5a5e3ee6e88a7",
+      "license": "MIT, Copyright (c) Microsoft Corporation",
+      "licenseFile": "../../web/public/ai/LICENSE-onnxruntime-web-MIT.txt",
+      "location": "../../web/public/ai/ort/",
+      "files": [
+        {
+          "file": "ort.wasm.min.mjs",
+          "bytes": 50126,
+          "sha256": "219e6a1fc8a9938268d18efca3c91d310bd2f4a59bbd13744df5b2b7fc6cee3b"
+        },
+        {
+          "file": "ort-wasm-simd-threaded.mjs",
+          "bytes": 24381,
+          "sha256": "e13f7f94fc51b4ca72b12faeb1ee95f4ace6dfbc8939bc718aabdc0a27c4299b"
+        },
+        {
+          "file": "ort-wasm-simd-threaded.wasm",
+          "bytes": 14239897,
+          "sha256": "3398c10d07d229bd91b364548e130e0e51a8e5704b88c7c083ebbeb78842dee2"
+        }
+      ],
+      "record": [
+        "../../scripts/ai/copy-ort.mjs",
+        "../../THIRD_PARTY_NOTICES.md"
+      ],
+      "notes": "npm 的精确版本 devDependency；npm run ai:ort（predev / prebuild）从 node_modules 复制三个未修改的文件到 web/public/ai/ort/（git 忽略），先校验包版本与 SHA-256，并核对 .wasm 长度等于 labels.json。WASM 单线程。"
+    },
+    {
+      "id": "exif-time-reader",
+      "type": "code",
+      "status": "project-original",
+      "location": "../../web/js/ai/exif-time.js",
+      "record": [
+        "../../THIRD_PARTY_NOTICES.md"
+      ],
+      "notes": "读拍摄时间的原创代码，无第三方源码、无依赖；只读时间相关标签，不读经纬度（GPS 只取 UTC 日期与时间戳，在照片没写时区偏移时推算时区）。开发时的输出与 exifr 7.1.3（MIT）和 ExifTool 在小样本上对照过，两个工具都不随包分发，样本与清单不入库；对 spike 的 96 个样本，94 个一致，另 2 个是已记录的上限（段 / 块超过 64 个时返回空）。"
+    },
+    {
+      "id": "ai-eval-photos",
+      "type": "evaluation-data",
+      "status": "not-distributed",
+      "sourceUrl": "https://commons.wikimedia.org/",
+      "record": [
+        "../../web/js/ai/space-ai.js",
+        "../../scripts/ai/README.md",
+        "../../THIRD_PARTY_NOTICES.md"
+      ],
+      "notes": "75 张 Wikimedia Commons 的 CC 授权照片（舞台 / 人海 / 身边 / 细节），只用于离线量视角建议的准确率：spike 直接跑原图 top-1 92%（69/75）、top-2 100%；应用路径（先压缩再判断）57 张「有把握」全对，另 18 张「不确定」的前两名都含正确答案；连同六种退化共 525 个输入，402 个「有把握」、400 个正确。图片不在仓库、不在构建里、不在应用里展示。这不是真实观众手机照片上的准确率，不作为产品指标。"
+    },
+    {
+      "id": "qq-music-search",
+      "type": "external-link",
+      "status": "search-only",
+      "pattern": "https://y.qq.com/n/ryqq/search?w=<歌名>&t=song",
+      "location": "../../web/js/moment.js",
+      "notes": "「那晚的歌单」每首歌的外链：只是按歌名的搜索，新标签页打开（noopener noreferrer），不含音源，不声称同一版本。2026-09-30 用 curl 复查：桌面 UA 落到 y.qq.com/n/ryqq_v2/search?w=…&t=song 并保留搜索词；iPhone UA 被转到 i2.y.qq.com/n3/other/pages/myqq/index.html，搜索词丢失，所以另给「复制歌名」。虚构的示例曲目不放链接。"
+    },
+    {
+      "id": "sakura-crossing-render",
+      "type": "code",
+      "status": "vendored",
+      "sourceUrl": "https://github.com/Kenton-GMI/sakura-crossing",
+      "sourceCommit": "de01898e89c7f6ab3fad93fa802f0f5ac66fbd81",
+      "license": "MIT, Copyright (c) 2026 Kenton Wang",
+      "location": "../../web/js/vendor/sakura/",
+      "record": [
+        "../../web/js/vendor/sakura/SOURCE.json",
+        "../../THIRD_PARTY_NOTICES.md"
+      ],
+      "notes": "cel 材质、调色与深度描线 / 调色 / FXAA 三个模块（toon.js、post.js、palette.js），按 Three 0.186.1 适配；不含上游的世界、人物、输入、纹理原图与音频。本项目不再修改这些文件，夜场取值写在 sakura-scene.js 与 sakura-world.js。"
     },
     {
       "id": "tme-event-music",
       "type": "optional-audio",
-      "status": "candidate",
+      "status": "not-used",
       "sourceUrl": "https://c6.y.qq.com/base/fcgi-bin/u?__=UFgdsOYo9Glo",
       "permissionSourceUrl": "https://saas.docs.qq.com/sheet/DR2VHa0JGT3ZGVFNKTmpybUdJ?tab=000006",
-      "notes": "官方赛事评审用途歌单；未取得音频文件或接入方式。音频是可选增强，不阻塞前端情景演示。"
+      "notes": "官方赛事评审用途歌单；未取得音频文件或接入方式。Music Space 没有内置音频，不使用；FAQ Q11 限定该素材只用于评审演示、不对外发布上线。"
     },
     {
-      "id": "hf-spotify-tracks",
-      "type": "metadata",
-      "status": "downloaded-full-local",
-      "sourceUrl": "https://huggingface.co/datasets/maharshipandya/spotify-tracks-dataset/tree/635b034f69257814eff850a5c2b3346fe458134f",
-      "localRaw": "../../data/external/spotify-tracks-dataset/dataset.csv",
-      "distributedExtract": "../../web/assets/data/hf-collaborations.json",
-      "record": "../../references/research/2026-09-27/huggingface-download.md",
-      "rows": 114000,
-      "bytes": 20118244,
-      "selectedTracks": 120,
-      "notes": "共同署名艺人，不含制作分工、音频或权重。卡仅标bsd，无独立LICENSE；逐字情况见下载记录。"
+      "id": "third-party-notices",
+      "type": "reference",
+      "status": "maintained",
+      "location": "../../THIRD_PARTY_NOTICES.md",
+      "notes": "全部第三方代码、素材与模型的来源、版本、许可与本地改动以它为准；官网要求如实、完整披露引用的开源框架、代码与协议，提交前逐项核对。本文件不重复许可文本。"
     }
-  ]
+  ],
+  "mapOnlyHistory": {
+    "note": "以下三条是 planVersion 1.8（2026-09-27，Map × Space 时期）登记的原文，一字未改。它们属于 Map，不是 Space 的资源；Space 仓库已移除 web/assets/data/ 与下载脚本，其中的路径与状态（如 downloaded-full-local）不适用于本仓库。",
+    "resources": [
+      {
+        "id": "prototype-fictional",
+        "type": "demo-data",
+        "status": "provided",
+        "location": "../prototype/demo-data.js",
+        "notes": "旧Map虚构数据，仅供明确标识的原型情景。"
+      },
+      {
+        "id": "musicbrainz-metadata",
+        "type": "metadata",
+        "status": "sample-verified",
+        "sourceUrl": "https://musicbrainz.org/ws/2/recording/3d9d0380-c701-4154-a284-1a034348078a?inc=artist-credits%2Bartist-rels%2Bwork-rels%2Breleases&fmt=json",
+        "notes": "前轮读到《珊瑚海》共同艺人署名样例；未导入产品，不包含音频权限。"
+      },
+      {
+        "id": "hf-spotify-tracks",
+        "type": "metadata",
+        "status": "downloaded-full-local",
+        "sourceUrl": "https://huggingface.co/datasets/maharshipandya/spotify-tracks-dataset/tree/635b034f69257814eff850a5c2b3346fe458134f",
+        "localRaw": "../../data/external/spotify-tracks-dataset/dataset.csv",
+        "distributedExtract": "../../web/assets/data/hf-collaborations.json",
+        "record": "../../references/research/2026-09-27/huggingface-download.md",
+        "rows": 114000,
+        "bytes": 20118244,
+        "selectedTracks": 120,
+        "notes": "共同署名艺人，不含制作分工、音频或权重。卡仅标bsd，无独立LICENSE；逐字情况见下载记录。"
+      }
+    ]
+  }
 }

@@ -1,4 +1,41 @@
-# MVP 0.15.0 交付清单
+# MVP 0.16.0 交付清单 · Music Space
+
+2026-09-30 · 文档 3.0。这里列 Music Space 当前的交付物和状态；构建大小与检查记录见[项目状态](../docs/PROJECT_STATUS.md)。**视频还没有为 Music Space 重做**（现存的是含 Map 的旧版）；封面已重做（待用户签收），线上链接现在服务的是含 AI 的 `7c962e2` 构建（2026-09-30 11:18 部署），不含它之后的修正，再部署要用户批准。未代填报名或提交赛事。
+
+## 当前材料
+
+| 文件 / 位置 | 用途 | 规格与现状 | 状态 |
+| --- | --- | --- | --- |
+| <https://musicmapteam.github.io/musicSpace/> | 在线 Demo 链接（表单第 05 项） | 静态版，服务的是 `feat/moment-ai@7c962e2` 的构建：`gh-pages` 分支 `2d8f1a3`（2026-09-30 11:18 +08:00），内容是 `.nojekyll`、`index.html`（1,747,253 B）和 `ai/`（8 个文件）。2026-09-30 11:55 核对：首页 200，`ai/tc8/labels.json` 200，线上 `index.html` 与该提交的本机构建 SHA-256 一致（`54ed3146…f0d178`），`ai/` 的 5 个文件也一致；带 gzip 时五个文件共传 10,344,436 B。它**不含** `7c962e2` 之后的改动。此前（00:18 起）线上是没有 AI 的 `a45ecbd`（`f0ad219`，只有 1,683,279 B 的 `index.html`） | 已上线（`7c962e2`，带 AI）；之后的改动待再部署 |
+| `dist/`（`npm run build` 生成，不入 Git） | 静态版：部署到 GitHub Pages 或任意静态托管 | **一个文件夹**，必须整个发布：`index.html`（脚本与样式内联）加 `ai/` 23,141,982 B（模型 8,807,127、wasm 14,239,897、运行时脚本 74,507、标签 17,609、两份 MIT 许可 2,842）。提交 `7c962e2` 的构建里 `index.html` 为 1,747,253 B，合计 24,889,235 B（也是线上那一份）；工作树里未提交的改动会改变 `index.html` 的大小（`ai/` 不变），提交后要重量。只发 `index.html` 时页面可用，只是没有 AI。首次使用要下载约 23 MB，Pages 压缩传输时约 10 MB（curl 带 gzip 测过，见上一行） | 已在本机构建；`7c962e2` 的构建已部署，工作树的构建未部署 |
+| CI 产物 `music-space-runtime` | 房间版：两台设备的真实房间 | 内容是 `dist/`、`server/`、`package.json`、`README.md`、`RUN-ME.md`、`THIRD_PARTY_NOTICES.md`，Node.js 24+，`node server/index.js`（`HOST`、`PORT`、`DATA_DIR`）；也可以从源码 `npm run build` 后 `npm start`。`delivery/*.zip` 被 Git 忽略，本机没有为 0.16 打过 zip；`feat/moment-ai` 没推送，0.16 的 CI 还没跑过 | 未打包 |
+| `delivery/cover.png` | 参赛封面（表单第 07 项） | Music Space 0.16 封面，1920×1080（16:9），1,165,899 B，PNG；已目视，缩到 480 px 宽仍可读。内容：「Music Space」字标、「同一刻，另一面。」、一句话「散场后，同场的人互换同一刻的另一面：AI 在本机建议视角，双方同意才交换」，三张真实截图（首页、配对理由条、应用「保存双联图片」导出的票根），页脚「页面为实际截图 · 示例照片由 AI 生成 · MVP 0.16」。源文件 [recording-source/cover-space-v016.html](recording-source/cover-space-v016.html)，直接引用 `docs/assets/themes/` 里的三张图，用仓库根起静态服务再以 1920×1080 截图。覆盖了 0.15 的 Map × Space 封面（旧版在 Git 历史 `3dd102c`）；用户签收前不算完成 | 已重做，待用户签收 |
+| 演示视频（表单第 06 项） | ≤ 3 分钟、≤ 500 MB，语音讲解或字幕 | 还没有 0.16 视频。脚本见[参赛材料](../docs/competition/README.md)第 3 节，要在含 AI 的构建上从真实页面录制。现存 `music-map-space-demo.mp4`（0.4，106 秒，含约 20 秒 Map 片段）只是历史，不能用于 Space | 待录制 |
+| `docs/assets/themes/space-*-v016.png` | 截图（FAQ Q13 的「原型截图」）与文档配图 | 15 个文件：7 个页面各有桌面（1440×900）与手机（390×844，模拟视口），另有 `space-ticket-v016.png`（应用导出的 1600×1800 票根）。2026-09-30 用 Tabbit 从清空的存储起在本机构建上拍摄，逐张目视；路径已在[视觉规范](../docs/VISUAL_THEMES.md)登记 | 已拍摄 |
+| [参赛材料](../docs/competition/README.md) | 介绍草稿（主稿 285 字，短稿 222 字）、FAQ Q4 的「已实现 / 计划」、视频脚本、评委问答、核对清单 | 待团队逐字核对，补齐队伍信息、赛道与提交回执 | 草稿 |
+| [视觉规范](../docs/VISUAL_THEMES.md) · [来源说明](../THIRD_PARTY_NOTICES.md) | 美术方向、页面与新增元素的规则、截图登记；第三方代码、模型与素材的来源和许可（含 TinyCLIP 与 onnxruntime-web） | 当前有效 | 已有 |
+
+## 运行
+
+静态版：
+
+```sh
+npm ci
+npm run build                            # 生成 dist/：index.html + ai/
+python3 -m http.server --directory dist  # 或任意静态托管；必须放整个 dist/
+```
+
+发布到 GitHub Pages 时，沿用前两次（`f0ad219`、`2d8f1a3`）的做法：`gh-pages` 分支的根目录放 `dist/` 的全部内容，加空文件 `.nojekyll`。推送与部署都要先问用户，上一次的授权不自动延续。
+
+房间版：在源码仓库 `npm ci`、`npm run build`、`npm start`，打开 <http://127.0.0.1:8787/>；朋友的手机要访问，需要 `HOST=0.0.0.0 npm start`，再用这台电脑的局域网地址；纯 http 的局域网页面没有 Cache Storage，AI 的文件每次都要重新下载。对外部署需要 HTTPS 与持久磁盘。数据库默认在 `data/music-map.sqlite`（沿用 0.15 的文件名），不得打进分享包。详见 [RUN-ME.md](../RUN-ME.md)。
+
+GitHub Actions 的 `Build demo` 构建后运行 `npm run ai:check` 与 `npm test`，并上传 `music-space-demo`（整个 `dist/`）和 `music-space-runtime` 两份产物，保留 14 天。
+
+## 历史 · 0.15.0 及更早（Map × Space 时期，原文保留）
+
+以下各节是 Map × Space 共享项目时期的交付记录，原文保留，仅在 0.15.0 的几个标题前加了「历史」二字。其中的文件名（如 `music-map-space-runtime.zip`、`music-map-space-demo.mp4`）、运行包、视频、封面和画面都指当时的产物，含 Map 的内容，不描述当前 Music Space 的交付。
+
+## 历史 0.15.0 交付清单（原表）
 
 2026-09-27 · 文档 2.6。本轮交付目标为 0.15.0；最终构建、运行包和操作画面以[项目状态](../docs/PROJECT_STATUS.md)为准。比赛封面已按 0.15 重做；视频仍是 0.4 旧版，需按 0.15 重新录屏，尚未开始。评审链接尚未部署，未代填报名或提交赛事。
 
@@ -13,7 +50,7 @@
 | [video-source/](video-source/) | 0.2 / 0.3历史展示源 | 旧截图编排源；旧视频和封面可由Git历史取得，不作为本轮录屏 |
 | [报名材料](../docs/competition/README.md) | 介绍与演示脚本 | 待团队补齐身份信息、访问链接和提交回执 |
 
-## 运行完整版本
+## 历史 0.15.0 运行完整版本
 
 解压运行包，安装 Node.js 24+，在包根目录执行：
 
@@ -23,7 +60,7 @@ node server/index.js
 
 打开 http://127.0.0.1:8787/ 。无需安装 npm 依赖；两个人用独立浏览器身份操作。详见包内 `RUN-ME.md`。本地服务与公开评审链接是两个不同交付状态。
 
-## 从源码重新打包
+## 历史 0.15.0 从源码重新打包
 
 先在仓库根目录执行 `npm ci` 和 `npm run build`，再用 PowerShell：
 
@@ -33,7 +70,7 @@ Compress-Archive -Path dist,server,package.json,RUN-ME.md,THIRD_PARTY_NOTICES.md
 
 GitHub Actions 同时提供 `music-map-space-demo` 和 `music-map-space-runtime` 两份构建产物，保留14天。视频和封面已保存在仓库，[重渲染方式](recording-source/README.md)另有说明。
 
-## 0.15.0 视觉整改
+## 历史 0.15.0 视觉整改
 
 - **夜场**：小院从晴天午后改为傍晚到夜场演出，并冻结为最终美术方向。夜空靛紫、串灯琥珀、暖纸、樱粉与鼠尾草绿；月光投影，店内暖光、串灯、舞台灯与自发光夜樱；首次进入有短暂的开场亮灯。
 - **首屏**：首页首屏写「同一刻，另一面。」、一句承诺与交换三步「交换现场照片｜双方同意｜两人署名的双联票根」；首访纸卡注明照片默认私藏、双方同意才交换。

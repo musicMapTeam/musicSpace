@@ -30,6 +30,8 @@ html[data-theme="sakura"] :is(.sp-ticket__caption, .live-card-author, .sp-memory
 html[data-theme="sakura"] :is(.sp-ticket__song, .live-card-track) { color: #486953; border-color: var(--sk-line); }
 html[data-theme="sakura"] :is(.sp-ticket__event, .sp-ticket__author, .live-card-author small) { color: #67725f; }
 html[data-theme="sakura"] :is(.sp-ticket__stub, .live-ticket-strip) { background: #e7ead8; border-color: #62795551; color: var(--sk-ink); }
+/* Small print on the stub (author, "的现场卡", ticket code) is darker than the paper print above it: the stub is the darker ground. */
+html[data-theme="sakura"] .sp-ticket .sp-ticket__stub :is(.sp-ticket__author, .sp-ticket__author > span:last-child, .sp-ticket__code) { color: #535d4a; }
 /* Ticket notches are real cuts in the paper (mask), so paper, lamp-lit night or scene all show through; no painted dots. */
 html[data-theme="sakura"] .sp-ticket { --sp-stub-h: 62px; background: transparent; border-color: transparent; box-shadow: 0 1px 0 #7c8b6b2e, 0 8px 18px #1d22182b; }
 html[data-theme="sakura"] .sp-ticket--small { --sp-stub-h: 50px; }

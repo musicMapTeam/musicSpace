@@ -89,7 +89,7 @@ dialog:hover::-webkit-scrollbar-thumb,dialog:focus-within::-webkit-scrollbar-thu
   .app-body { padding-bottom:calc(62px + env(safe-area-inset-bottom)); }
   .app-masthead { min-height:68px; padding:12px 20px; gap:8px; }
   .brand-wordmark { font-size:24px; }
-  .brand { min-height:42px; }
+  .brand { min-height:44px; }
   .masthead-tools { gap:4px; }
   .masthead-tools .demo-help { width:32px; min-width:32px; }
   .main-content { padding:18px 20px 28px; min-height:calc(100dvh - 130px); }

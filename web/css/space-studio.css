@@ -257,7 +257,7 @@ html[data-theme='sakura'] .space-studio.space-studio--demo .sp-ticket { box-shad
 /* Editing is a sheet of controls; keep the photograph as its focal point. */
 .sp-dialog.sp-dialog { border: 0; border-radius: 22px; }
 .sp-dialog .sp-dialog__head { padding: 25px 28px 17px; border-bottom: 0; }
-.sp-dialog .sp-dialog__head h2 { margin: 8px 40px 5px 0; font-size: 25px; font-weight: 600; line-height: 1.4; letter-spacing: -.035em; }
+.sp-dialog .sp-dialog__head h2 { margin: 8px 40px 5px 0; font-size: 25px; font-weight: 600; line-height: 1.4; letter-spacing: -.035em; text-wrap: pretty; }
 .sp-dialog .sp-dialog__head > .eyebrow { font-size: 12px; letter-spacing: 0; }
 .sp-dialog .sp-dialog__close { top: 19px; right: 19px; width: 35px; height: 35px; border: 0; }
 .sp-dialog .sp-dialog__body { padding: 18px 28px 23px; }
@@ -353,3 +353,105 @@ html[data-theme='sakura'] .space-studio.space-studio--demo .sp-ticket { box-shad
   .space-studio .space-photo,
   .space-studio .space-perspectives > button { transition: none; }
 }
+
+/* ===== 同一刻，另一面 ===================================================================================================
+   Capture time, viewpoint chips, the on-device AI line, the pair reading and 那晚的歌单 in the local demo. The .song-list rules
+   are shared: the room page draws its setlist with the same markup (setlist-ui.js). */
+
+/* Capture time under the photo choices */
+.sp-taken { margin-top: 12px; }
+.sp-taken__row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.sp-taken__line { margin: 0; color: var(--text); font-size: 14px; line-height: 1.6; }
+.sp-taken__line small { color: #5b6259; font-size: 12px; }
+.sp-taken .sp-taken__edit { flex: none; min-width: 44px; min-height: 44px; padding: 0 4px; color: var(--mint); font-size: 14px !important; text-decoration: underline; text-underline-offset: 4px; }
+.sp-taken .sp-taken__edit[hidden],
+.sp-taken .sp-taken__field[hidden],
+.sp-ai-line[hidden] { display: none; }
+.sp-taken__field { margin-top: 2px; }
+/* A typed time the page cannot use: a rose note on the paper (the editor's own .sp-form-error is a dark box made for the night). */
+.sp-dialog .sp-taken__error { margin: 8px 0 0; padding: 8px 12px; border: 0; border-left: 3px solid var(--coral); border-radius: 0 6px 6px 0; background: #f6e9e6; color: var(--coral-ink, #96495e); font-size: 14px; line-height: 1.6; word-break: keep-all; overflow-wrap: anywhere; text-wrap: pretty; }
+.sp-dialog .sp-taken__error[hidden] { display: none; }
+.sp-taken__field .sp-input-label { font-size: 13px; }
+
+/* Text and date fields share the look of the select and the caption box */
+.sp-dialog .sp-field input[type='text'],
+.sp-dialog .sp-field input[type='datetime-local'] {
+  display: block; width: 100%; box-sizing: border-box; min-height: 46px; padding: 9px 12px;
+  border: 1px solid var(--line); border-radius: 10px; background: var(--paper); color: var(--text);
+  font-family: inherit; font-size: 16px; line-height: 1.5; color-scheme: light;
+}
+.sp-dialog .sp-field input::placeholder { color: var(--muted); }
+.sp-dialog .sp-field input[type='text'] + .sp-field__counter { margin-bottom: 14px; }
+.sp-dialog .sp-input-label > span { color: var(--muted); font-size: 12px; font-weight: 400; }
+
+/* Viewpoint and moment chips: 44px targets, and a dashed outline for the two sides the model would suggest */
+.sp-dialog .sp-moment-choice { min-height: 44px; padding: 8px 17px; font-size: 14px !important; }
+.sp-dialog .sp-moment-choice.is-suggested { border-style: dashed; border-color: var(--coral); color: var(--coral-ink, var(--coral)); }
+.sp-viewpoint-options { margin-bottom: 4px; }
+/* The sentence that says what the model does and does not do (and that the photo stays on the device) is not fine print. */
+.sp-field--viewpoint .sp-field__hint { font-size: 13px; line-height: 1.7; text-wrap: pretty; }
+/* No one-character last line ("点图片更 / 换") in any hint under a field. */
+.sp-dialog .sp-field__hint { text-wrap: pretty; }
+.sp-ai-line { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px; margin: 8px 0 0; color: var(--text); font-size: 14px; line-height: 1.6; }
+.sp-ai-line__hint { color: #5b6259; font-size: 13px; }
+.sp-ai-line__bar { flex: 0 0 96px; height: 4px; overflow: hidden; border-radius: 2px; background: var(--line); }
+.sp-ai-line__bar > i { display: block; height: 100%; background: var(--mint); transition: width 0.25s linear; }
+.sp-ai-tag { display: inline-flex; align-items: center; gap: 7px; min-height: 28px; padding: 2px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--studio-well); color: var(--text); font-size: 14px; }
+.sp-ai-tag::before { width: 6px; height: 6px; border-radius: 50%; background: var(--mint); content: ''; }
+.sp-ai-tag--unsure { border-style: dashed; border-color: var(--coral); color: var(--coral-ink, var(--coral)); }
+.sp-ai-tag--unsure::before { background: var(--coral); }
+/* The status region stays in the page so a screen reader is told when it starts to speak; empty, it takes no room. */
+.sp-ai-line:empty { margin: 0; }
+/* 「这张卡还没选视角」 in the saved-card dialog is a sentence to read, not fine print. */
+.sp-dialog .sp-saved-next > .sp-viewpoint-note { color: var(--text); font-size: 14px; line-height: 1.75; }
+.sp-dialog .sp-display-consent { min-height: 44px; }
+
+/* Demo page: 44px role toggles, a 44px help button, and the pair reading under the other side's card */
+html[data-theme] .space-studio.space-studio--demo .sp-actor-switch .sp-actor-button { min-height: 44px; }
+html[data-theme] .space-studio.space-studio--demo .sp-demo-help { width: 44px; height: 44px; min-width: 44px; padding: 8px; }
+.sp-pair-reading { display: flex; align-items: flex-start; gap: 10px; margin-top: 14px; padding: 12px 14px; border-left: 2px solid var(--line); border-radius: 0 var(--studio-radius, 12px) var(--studio-radius, 12px) 0; background: var(--studio-well); color: var(--text); }
+.sp-pair-reading.is-best { border-left-color: var(--mint); }
+.sp-pair-reading > svg { flex: none; width: 16px; height: 16px; margin-top: 3px; color: var(--coral); }
+.sp-pair-reading > div { min-width: 0; }
+.sp-pair-reading p { margin: 0; font-size: 14px; line-height: 1.75; overflow-wrap: anywhere; text-wrap: pretty; }
+.sp-pair-reading__badge { display: inline-block; margin: 0 0 5px; padding: 2px 11px; border-radius: 999px; background: var(--button-fill, var(--mint)); color: var(--button-ink, #fff); font-size: 12px; font-weight: 600; letter-spacing: 0.04em; line-height: 1.6; }
+.sp-common-reason .sp-pair-reading__badge { margin: 0 4px 0 0; }
+/* The reason above the two cards of a request: 14px like the reading on the page, left-aligned so a second line does not float, and no
+   line ends with a lone character. */
+.sp-dialog .sp-common-reason { align-items: flex-start; justify-content: flex-start; font-size: 14px; text-align: left; text-wrap: pretty; }
+.sp-dialog .sp-common-reason svg { margin-top: 5px; }
+.sp-pair-reading__tip { margin-top: 6px !important; color: #5b6259; font-size: 12px !important; }
+
+/* 那晚的歌单 */
+.sp-setlist { margin: 36px 18px 0; }
+.sp-setlist__head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding-bottom: 8px; border-bottom: 1px dashed var(--object-line, var(--line)); }
+.sp-setlist__head h2 { margin: 0; color: var(--text); font: 600 18px/1.4 var(--font-serif, serif); letter-spacing: 0.04em; }
+.sp-setlist__head span { color: #5b6259; font-size: 12px; }
+.song-list { display: grid; margin: 0; padding: 0; list-style: none; }
+.song-list__item { display: grid; grid-template-columns: minmax(5em, max-content) minmax(0, 1fr) auto; grid-template-areas: 'time title copy' 'time names names' 'time link link'; column-gap: 12px; align-items: start; padding: 4px 0 6px; border-bottom: 1px dashed var(--object-line, var(--line)); }
+.song-list__time { grid-area: time; padding-top: 12px; color: var(--coral); font: 500 14px/1.6 var(--font-mono, monospace); font-variant-numeric: tabular-nums; letter-spacing: 0; white-space: nowrap; }
+.song-list__time.is-unknown { color: #666d64; font-family: inherit; }
+.song-list__title { grid-area: title; align-self: center; min-width: 0; padding: 9px 0 0; color: var(--text); font: 600 15px/1.55 var(--font-serif, serif); overflow-wrap: anywhere; user-select: text; }
+.song-list__names { grid-area: names; margin-top: -4px; color: #5b6259; font-size: 12px; line-height: 1.5; }
+.song-list__link,
+.song-list__copy { display: inline-flex; align-items: center; gap: 4px; min-height: 44px; padding: 0; border: 0; background: none; font-family: inherit; line-height: 1.4; cursor: pointer; text-underline-offset: 4px; }
+.song-list__link { grid-area: link; justify-self: start; color: var(--mint); font-size: 14px; text-decoration: underline; }
+.song-list__link .icon { width: 14px; height: 14px; }
+.song-list .song-list__copy { grid-area: copy; justify-self: end; padding: 0 2px; color: #5b6259; font-size: 14px; text-decoration: underline dotted; }
+.song-list__tag { grid-area: copy; justify-self: end; align-self: center; margin-top: 9px; padding: 1px 10px; border: 1px solid var(--line); border-radius: 999px; color: #5b6259; font-size: 12px; line-height: 1.6; }
+.song-list__item.is-example { padding-bottom: 12px; }
+.song-list__note,
+.song-list__empty { margin: 10px 0 0; color: #5b6259; font-size: 13px; line-height: 1.75; text-wrap: pretty; }
+.song-list__empty { font-size: 14px; }
+@media (max-width: 760px) {
+  .sp-setlist { margin-inline: 5px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sp-ai-line__bar > i { transition: none; }
+}
+.nowrap { white-space: nowrap; }
+
+/* 44px targets on the demo page and in its editor */
+html[data-theme] .space-studio.space-studio--demo .sp-reaction-button { min-height: 44px; }
+html[data-theme] .space-studio.space-studio--demo .sp-demo-card-actions .sp-request-button { min-height: 44px; }
+html[data-theme] .sp-dialog .sp-editor__preview > summary { box-sizing: border-box; min-height: 44px; align-items: center; }

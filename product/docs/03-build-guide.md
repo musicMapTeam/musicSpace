@@ -1,119 +1,381 @@
-# 实施与演示规格
+# Music Space · 实施规格
+
+版本：**3.0 · 2026-09-30**，对应应用 **MVP 0.16.0**，取代 2.6（Music Map × Music Space）。产品规则见[产品方案](01-product-plan.md)，比赛交付见[交付计划](02-delivery-plan.md)。本文写「代码现在是什么样」：模块、状态与存储、拍摄时间与配对的实现、端侧 AI 管线、房间服务、构建与部署、测试。
+
+写的是 `feat/moment-ai` 工作树的样子。该分支**没有推送、没有 PR、没有合并**；线上（`gh-pages` `2d8f1a3`，2026-09-30 11:18 +08:00）是它 `7c962e2` 的构建，不含之后的工作树改动。构建与浏览器检查的记录登记在[项目状态](../../docs/PROJECT_STATUS.md)，本文 §9 只摘要。2.6 里属于 Map 的部分（寻声、完整图鉴、开放曲库、音乐收藏，及其存储与数据）不在本文，见 `git show 3dd102c:product/docs/03-build-guide.md` 与 Map 仓库；2.6 里的历史证据在附录原文保留。
+
+## 1. 技术决定
+
+| 部分 | 当前实现 | 边界 |
+| --- | --- | --- |
+| 页面 | HTML / CSS / 原生 JavaScript ES 模块；Vite 8.3.1 + vite-plugin-singlefile 2.3.3；hash 路由：`#/space`（首页，没有 hash 也进首页）、`#/space/demo`（本地示例）、`#/live`（照片墙）、`#/records`（收藏） | 不迁移框架；依赖由 `package-lock.json` 固定；`vite.config.js` 的 `base: './'`，所以能挂在子路径（如 `/musicSpace/`）下 |
+| 构建产物 | `dist/index.html`（脚本与样式内联，约 1.7 MB）加 `dist/ai/`（`web/public/ai/` 原样复制，约 23 MB，不内联），合计约 25 MB | **静态部署的单位是整个 `dist/`**，不再是单个 HTML |
+| 视觉 | Three 0.186.1 常驻夜场小院 + Sakura Crossing cel / 深度描线 / 调色 / FXAA（MIT，`web/js/vendor/sakura/`，不修改）+ GSAP 3.15.0 / Flip；DOM 纸件与投影标签 | 只有 `sakura`；手机独立机位；WebGL 不可用（`body.spatial-fallback`）时用二维布局与浅纸深字 |
+| 滚动 | OverlayScrollbars 2.16.0（自动隐藏的细浮动条），弹窗用原生滚动 | 仅前端依赖 |
+| 端侧 AI | TinyCLIP-ViT-8M/16 图像塔（int8）+ onnxruntime-web 1.30.0（WASM 单线程），同源自托管在 `./ai/`（§5） | 不访问 huggingface.co 与任何 CDN；没有服务端推理 |
+| 拍摄时间 | `web/js/ai/exif-time.js`：原创、无依赖，压缩前读原图 | 只读时间，不读位置（§4.1） |
+| 配对规则 | `web/js/moment.js`：无 DOM、无依赖，`npm test` 覆盖 | 不含模型 |
+| 示例页状态 | `localStorage` `music-space:v1` | 仅当前浏览器 |
+| 房间身份 | 匿名 bearer 凭据，浏览器保存在 `music-space-live:v1`；服务只存哈希 | 没有账号、找回与跨设备迁移 |
+| 服务 | Node.js 24+，内置 http 与 `node:sqlite` 的 `DatabaseSync`；无运行时 npm 依赖 | 同源 `/api/live`；服务端校验成员与权限 |
+| 数据库 | SQLite，默认 `data/music-map.sqlite`（沿用 0.15 的文件名，改名须配迁移），WAL 与事务；照片存独立表的 BLOB | 单实例加持久磁盘；`data/` 与 sidecar 文件不提交 |
+| 二维码 | 浏览器里用 qrcode-generator 2.0.4 现场生成邀请链接 | 不调用外部二维码服务 |
+| 输出 | 浏览器 canvas 绘制 1600×1800 的单卡与双联 PNG | 见 `ticket-export.js` |
+
+## 2. 目录与模块
+
+| 路径 | 职责 |
+| --- | --- |
+| `web/index.html` | 入口：`data-theme="sakura"`、theme-color `#23214a`、标题「Music Space · 同一刻，另一面」 |
+| `web/js/app.js` | 外壳：路由、模式判定 `api.backend = { available, note }`、存储失败提示、toast、「关于」、导航（房间版「小院 / 照片墙 / 收藏」，静态版第二项「示例」）；`api` 还有 `getState`、`update`、`navigate`、`storageState`、`spatial.publish / focus / restore` |
+| `web/js/home.js` | 首页首屏（眉行、大字、承诺句与三步，AI 可用时第一步写「AI 在本机判断视角」）与个人纸卡；数据与照片载入只重绘纸卡 |
+| `web/js/space.js` | 本地双角色示例：制卡、展示、申请、切角色同意、示例记录；导出 `createSpaceState`、`mountSpace`、`mountSpaceRecords`；`upgradeSavedCards` 给旧存档补 `perspective`、`takenAt`、`takenSource`、`song` |
+| `web/js/space-data.js` | 虚构场次「回声现场」（`SPACE_EVENT`）、两位示例角色、三个时刻、两张示例照片及其虚构拍摄时间（21:47、21:48）、种子卡 |
+| `web/js/live.js` | 房间：入场、创建、邀请与二维码、两步制卡、照片墙（按 `orderWall` 分组排序）、申请与回应、「那晚的歌单」目录 |
+| `web/js/live-library.js` | 「收藏」：本人跨场次的卡与双联，回访、删除本人那份双联 |
+| `web/js/live-photo.js` | 照片授权读取的 blob 缓存（`createPhotoStore`）与房间版的 `preparePhoto`（JPG / PNG / WebP，最长边 ≤ 960 px，JPEG ≤ 300 KB） |
+| `web/js/moment.js` | 「同一刻」全部规则：拍摄时间的读取结果整理、时区、格式化、可信度、`readPair`、`orderWall`、歌单、票根事实（§4.2） |
+| `web/js/photo-insight.js` | 制卡编辑器读到的两件事的文案与状态：`readPhotoTime`、`identifyViewpoint`、`answerView`、`timeView`、`timeProblem`（范围外的时间在时间框旁说明）、`viewpointHint`、`warmUpViewpointAI`、`aiState`；不画东西、不上传 |
+| `web/js/setlist-ui.js` | 「那晚的歌单」的绘制、QQ 音乐搜索链接与「复制歌名」（Clipboard API，纯 http 页面降级为选中复制） |
+| `web/js/ai/exif-time.js` | EXIF 拍摄时间读取器（§4.1） |
+| `web/js/ai/space-ai.js` | 端侧视角识别（§5.1） |
+| `web/js/storage.js` | 存储键、旧键一次性领养、写入失败分类、房间身份读写 |
+| `web/js/duet-ceremony.js`、`duet-facts.js` | 全屏双联仪式页（单例，首映 / 回看）与它和 PNG 共用的事实（共同线索、两半的视角与时间、日期与完成时间格式、页脚只把虚构部分写成虚构的 `inventedNotice`） |
+| `web/js/ticket-export.js` | canvas 绘制夜场票根，`downloadTicket`（双联）与 `downloadCard`（单卡，房间版）；原生 dialog 展示成品、可再次下载、支持时提供分享 |
+| `web/js/themes.js`、`sakura-scene.js`、`sakura-world.js`、`sakura-camera.js`、`sakura-framing.js`、`sakura-batch.js`、`sakura-printwork.js` | 常驻夜场小院：场景（七盏常驻灯，只补间强度）、镜头（`home` / `live` / `editor` / `records` / `photo`）、按纸件占位取景、静态网格合批、原创印刷纹理；场景接口 `setView`、`setContent`、`focus`、`restore`、`dispose`，最多同时贴 6 张卡 |
+| `web/js/motion.js`、`icons.js` | GSAP / Flip 的界面动画（尊重减少动态）；图标 |
+| `web/js/vendor/sakura/` | Sakura Crossing 的 MIT 渲染模块，`SOURCE.json` 固定上游提交；不修改 |
+| `web/css/` | 各页样式；`night-shell.css` 最后加载（夜空上的奶油色品牌字、深色玻璃导航、暖纸夜间阴影、琥珀焦点环），`duet-ceremony.css`、`live-compose.css`、`library.css` 等；`body.spatial-fallback` 下回到浅纸深字 |
+| `web/public/ai/` | 原样复制到 `dist/ai/`：`tc8/`（模型与标签，入 Git）、`ort/`（由 `npm run ai:ort` 生成，不入 Git）、两份 MIT 许可文本 |
+| `web/assets/` | 示例照片（AI 生成，`image-provenance.json` 记来源）与各许可文本 |
+| `server/index.js`、`server/db.js` | 房间服务与数据库（§6） |
+| `scripts/ai/` | 模型来源、复现与检查脚本（§5.2、§5.3） |
+| `scripts/test/` | `npm test` 的三份检查（§8） |
+
+## 3. 状态、存储与迁移
+
+### 3.1 存储
+
+| 位置 | 键 | 内容 | 谁写 |
+| --- | --- | --- | --- |
+| `localStorage` | `music-space:v1` | 示例页状态：`{ version: 1, view, actor, space: { version: 1, cards: { a, b }, exchanges[], reactions, records: { a[], b[] } }, routePayload }` | `app.js` 的 `persist()` |
+| `localStorage` | `music-space-live:v1` | 房间身份 `{ token, user, roomId, rejoinCode }`；服务端判定失效（401）后写 `null`，不删键 | `storage.js` 的 `saveSession` |
+| `localStorage` | `music-space-duet-seen:v1` | 看过的双联的交换 ID，保留最近 60 个；只决定首映还是回看 | `duet-ceremony.js` |
+| Cache Storage | `music-space-ai-v1` | `labels.json`、两个运行时脚本、模型与 wasm（换模型或运行时要一起改名） | `space-ai.js` 的 `CACHE_NAME` |
+
+示例卡（本地）的字段：`id, revision, owner, eventId, photoKey('stage'|'crowd'|'custom'), photoDataUrl, perspective, takenAt, takenSource('exif'|'manual'|'file'|'sample'|null), song, momentId, trackId, caption, isPublic, createdAt, updatedAt`。照片压到约 80 KB（数据 URL ≤ 110,000 字符，最长边 960 → 560 逐档降），因为一张卡会被复制进每个申请与两份记录，全部放在 `localStorage` 里。
+
+写入被浏览器拒绝时，`api.storageState()` 给出原因（`quota`：照片太大；`blocked`：浏览器禁止本地存储），顶部提示、toast 与「卡片已保存」对话框据此改口；说「已保存」的 toast 用 `api.toast(msg, { saved: true })` 标记。房间页的「已保存」指服务端已保存，不受它影响。
+
+### 3.2 与 Map 同源共存
+
+Space 与 Map 在同一个 github.io 源，存储按源共享、不按路径隔离。Space **不写、不改、不删** `music-map-space:v1`、`music-map-live:v1`，也不读 `music-map-saved-music:v1`；新增的键一律用 `music-space-` 前缀。
+
+`adoptLegacyStorage(isValidSpace)` 在启动时、任何读取之前运行一次：
+
+- Space 自己的 `music-space:v1` 不存在，且旧键 `music-map-space:v1` 里有 `version === 1` 且通过校验的 `space` 字段时，把它（加上 `actor`）复制进新键，只取 `space`，不取 `map`；载入时再丢弃 `map` 与 `space.mapReturnId`。
+- `music-space-live:v1` 不存在，且旧键 `music-map-live:v1` 里有 `token` 时，原样复制。
+- 写入失败（存储满或被禁止）就静默地从头开始。之后旧键原样保留。
+- Map 0.16 会剔除 `music-map-space:v1` 里的 `space` 与 `actor`（Map 仓库 `61d0689` 的 `web/js/app.js`），所以同一浏览器先打开了 Map，旧示例状态就没了，Space 的示例从头开始；`music-map-live:v1` 不受 Map 影响。
+- 401 后 `music-space-live:v1` 写 `null` 而不是删除：只有键**不存在**才会领养 Map 时代的身份，服务端已丢弃的身份不能回来。
+
+**没有这条迁移路径的操作证据**（项目状态：待补）；代码存在不等于验证。
+
+### 3.3 模式判定
+
+页面自己决定是静态版还是房间版，结果是 `api.backend = { available, note }`：
+
+- 房间服务在它提供的 `index.html` 的 `<head>` 里、内联脚本之前写 `<meta name="space-rooms" content="1">`（`server/index.js` 的 `markRooms`）。页面据此立刻按房间版显示，并在后台请求 `/api/live/health` 确认，失败隔 1.5 秒再试一次，仍失败就退回静态版（换掉房间路由、给出统一说明，不重载；已打开的示例或对话框等它关掉再刷新）。
+- `file://` 与 `*.github.io` 上，标记一律忽略；没有标记的页面（`vite preview`、任意静态托管）按静态版，**不发任何探测请求**。
+- 只有 Vite 开发服务器（`import.meta.env.DEV`，因为代理到本机服务）仍探测一次，并采纳晚到的答案（两个方向都可）。
+- 房间相关的显示与跳转只读 `api.backend.available`，不各自探测。静态版里 `live` 路由不作为目的地，一律进示例，并给出 `api.backend.note`（「真实房间需要完整版服务；线上可先用示例体验完整流程」）；`?room=` 邀请参数会从地址里去掉；旧的 `#/explore` 书签落回首页。
+
+## 4. 拍摄时间与「同一刻」
+
+### 4.1 读取拍摄时间：`web/js/ai/exif-time.js`
+
+- **入口**：`readCaptureTime(file)`（从不抛错；读不到给 `null`）与 `fallbackTime(file)`（只在读不到时给 `File.lastModified`，永远是近似）。
+- **读取范围**：先读 `blob.slice(0, 128 KB)`；结构落在更后面时才再读，每次 ≤ 1 MB、最多 64 次段 / 块 / box 跳转（JPEG 的 APPn 之后、HEIC 的 Exif 项（libheif 放在文件末尾）、PNG / WebP 在像素数据之后的块）。
+- **格式**：JPEG（每个 APP1 都试，区分 Exif 与 XMP）、HEIC / HEIF / AVIF、PNG（`eXIf`）、WebP（`EXIF`）、裸 TIFF；大小端都支持。
+- **标签**：IFD0 → ExifIFD（`0x8769`）→ `DateTimeOriginal` `0x9003`，其次 `DateTimeDigitized` `0x9004`，再其次 IFD0 `DateTime` `0x0132`（文件修改时间，弱证据）；`SubSecTime*`、`OffsetTime*`、`Orientation`；GPS 只取日期 `0x1d` 与时间戳 `7`（见下）。
+- **结果**：`local`（照片里存的墙钟时间，不带时区，不要交给 `new Date()`）、`offset`（先 `OffsetTimeOriginal`，再 `OffsetTimeDigitized`，再 `OffsetTime`；都没有就用「本地时间减 GPS UTC」推算并取整到 15 分钟，`offsetFrom === 'GPS'`；否则 `null`）、`epochMs`（真实时刻；**没有 offset 时为 `null`**，不猜时区）、`wallMs`（墙钟当作 UTC 的毫秒数，永不为 `null`）、`source`、`format`、`orientation`。
+- **隐私**：只读时间相关的标签；**不读经纬度**；GPS 的 UTC 日期与时间戳只用来推算时区。重新编码后的照片不再带 EXIF。
+- **已知上限**：段 / 块超过 64 个时返回 `null`（对 spike 的 96 个样本，94 个与 ExifTool 一致，另 2 个是这个已记录的上限）；样本与清单不入库。
+
+### 4.2 规则：`web/js/moment.js`
+
+| 函数 / 常量 | 作用 |
+| --- | --- |
+| `SAME_MOMENT_MS`（180000）、`TAKEN_MIN`（2000-01-01）、`takenMax()`（现在 + 1 天）、`validTakenAt` | 「同一刻」的窗口与时间范围（服务端同一窗口） |
+| `takenFromExif(found)` | 读取结果 → `{ takenAt, trusted, zoneAssumed, origin }`；没有时区偏移就当作北京时间（`wallMs` 减 8 小时）；`source === 'DateTime'` 或 PNG 是弱证据（`trusted: false`，`origin: 'weak'`） |
+| `takenFromFile(fallback)` | `File.lastModified` → 近似时间（`origin: 'file'`，不可信） |
+| `zoneNote(found)` | 时区说明：照片没写时区、或已换算成北京时间时怎么告诉本人 |
+| `trustedTime(card)` | 只有 `exif`、`manual`、`sample` 的时间参与判断；`file` 永不 |
+| `takenFields(card)` | 发给服务的字段：只有 `exif` 与 `manual`（且时间有效）才发，否则 `{ takenAt: null, takenSource: null }`；`file` 与 `sample` 都不发 |
+| `formatTaken`、`ticketStamp`、`formatDayTime`、`toInputValue`、`fromInputValue`、`venueTime`、`venueParts` | 一律按北京时间（UTC+8）显示与输入；`fromInputValue` 拒绝不存在的时间与范围外的值 |
+| `spanWords(ms)` | 时间差的说法：`不到 1 分钟`、`3 分钟`（不超过 3:00）、`3 分多钟`（多一点）、`N 小时 / 天 / 个月 / 年`；分钟不四舍五入，所以句子不会在 3 分钟界线两边写成同一个数 |
+| `readPair(mine, theirs, { event, moments })` | 两张卡的关系：`basis`（`time` / `moment` / `apart` / `null`）、`same`、`complementary`、`gapMs`、`title`、`lead`、`detail`、`score`、`sharedSong` |
+| `orderWall(mine, cards, options)` | 照片墙：按 `score` 降序，再时间差、拍摄时间（无时间的在后）、制卡时间、ID；返回 `{ items, best }` |
+| `VIEWPOINTS`、`viewpointOf(card)`、`viewpointName` | 四个视角；卡上的视角是人选的，`''` 表示没选，只有没有 `perspective` 字段的旧卡才借示例照片的 `photoKey` |
+| `cleanSong`、`songKey`、`songsOf`、`buildSetlist`、`qqSearchUrl` | 歌名清理（去控制字符与双向覆写，去外层《》，≤ 40 字）、合并键（NFKC、小写、去空格）、一张卡的歌、歌单、搜索链接 |
+| `cardFacts`、`sharedFacts`、`pairSides` | 票根与仪式页的事实：每半的视角 / 时刻 / 可信时间 / 自己的歌，中缝存根的共同线索（`time` / `song` / `moment` / `night`） |
+| `reasonHtml(text)` | 把理由里的小单位（时间、时间差、视角句、「时刻」、《歌名》）包成不换行的 `span.nowrap`，先转义再包，输入的文字不能带标记 |
+
+`readPair` 的内部分值（只用于排序，不展示，也不称契合度）：`time`＋视角不同 100 / 视角相同 80；`moment` 70 / 50；`apart` 且选了同一时刻 40 / 30；`apart` 且时刻不同 20 / 10；无可比较 20 / 10；本人没有卡 0；两人都写了同一首歌且不是 `apart` 时再加 5。
+
+### 4.3 一张照片从选中到保存
+
+1. 点选照片入口时 `warmUpViewpointAI()` 开始下载模型（浏览器支持才做，省流量模式不做）。
+2. 选定文件后先 `readPhotoTime(file)`（**原图**）：读到可信的 EXIF 时间给 `time`；只有弱证据（IFD0 `DateTime`、PNG）或 `lastModified` 时给 `guess`。
+3. 压缩：示例页 `compressPhoto`（接受任何 `image/*`、≤ 20 MB，重绘为 JPEG 数据 URL）；房间版 `preparePhoto`（JPG / PNG / WebP，其他类型报错并提示 iPhone 的 HEIC 先转 JPG）。重绘会丢掉全部 EXIF 与定位信息。
+4. `draft.takenAt / takenSource`：有 `time` 则 `exif`；只有 `guess` 则 `file`（页面上标「大约的时间」，不发给服务）；都没有则 `null`。`draft.perspective` 清空。本人在时间框里填写或改过，就成为 `manual`。
+5. `identifyViewpoint(dataUrl, onState)` 给出 `thinking`（立刻，直到有答案）、`loading`（下载超过约 350 ms 才说，带进度）、`done`（`answerView(result)`：`sure` 则预选并标「AI 判断：…」，否则「不确定，请选择」加两个虚线框）、`silent`（没有答案，什么也不说）。人点过的视角标为 `user`，永不被覆盖。
+6. 保存：房间版先 `POST /rooms/:id/photos`（有新照片时），再 `PUT /rooms/:id/card`，body 里 `takenAt`、`takenSource` 来自 `takenFields(draft)`；示例页 `api.update(...)` 写 `localStorage`。保存不等模型，模型迟到的答案不写进已保存的卡。
+
+## 5. 端侧 AI
+
+### 5.1 运行时：`web/js/ai/space-ai.js`
+
+- **契约**：`getViewpointAI()` 给共享实例，方法：`supported()`（同步：WebAssembly SIMD、`createImageBitmap`、http(s) 页面）、`whyUnsupported()`（`null` / `'page'`（不是 http(s)，如 `file://`）/ `'browser'`）、`status()`（`idle | loading | ready | unsupported | failed`）、`progress()`、`load(onProgress)`（幂等，从不 reject）、`classify(blob)`（排队逐个跑，从不 reject）、`diagnostics()`。
+- **结果**：成功 `{ ok: true, label, prob, margin, top2: [id, id], sure, scores, ms }`；没有答案 `{ ok: false, error, sure: false, ... }`，`error` 为 `unsupported | failed | timeout | input | decode | infer`，所以调用方可以直接读 `sure`。
+- **预处理**：`createImageBitmap(photo, { imageOrientation: 'from-image' })`；短边缩到 224 后居中裁切（`squash: false`）；CLIP 的均值与标准差；`float32` CHW。
+- **打分**：图像嵌入与四个单位向量（512 维，`labels.json`）求余弦；`prob = softmax(100 × 余弦)`；`margin` = 第一名余弦减第二名余弦；`sure = margin ≥ 0.02 且 prob ≥ 0.5`（`SURE_MARGIN`、`SURE_PROB`）。模型自己的类别 `near` 在产品里叫 `friends`（身边）。
+- **加载**：模型、wasm、两个运行时脚本、`labels.json` 都由本模块自己 `fetch`（字节进度、Cache Storage、不依赖托管方给 `.mjs` / `.wasm` 设对 MIME：脚本从 Blob URL 导入，wasm 字节直接交给运行时）。`numThreads = 1`（GitHub Pages 发不出 COOP / COEP，没有 SharedArrayBuffer）。`env.wasm.proxy`（放进 Worker）评估过没有启用：桌面 Chrome 152 上主线程停顿从约 340 ms 降到约 40 ms，加载慢约 1 秒，没在 Safari 与微信 WebView 上试过，Worker 起不来还需要回退。
+- **缓存**：Cache Storage `music-space-ai-v1`，缓存优先；缓存里的长度对不上就丢弃重下；下载**长度校验通过后**才写入，所以被截断或被登录页顶替的响应进不了缓存。没有 `caches`（非安全上下文）就只靠 HTTP 缓存。
+- **超时**：下载 30 秒没有新字节就中止；单张照片最多等 45 秒的冷下载；失败后至少隔 15 秒才能重试、每页最多 3 次。
+- **触发**：`warmUpViewpointAI` 在点开选照片入口时预取；选定照片时 `identifyViewpoint` 也会 `load()`。
+
+### 5.2 离线管线：`scripts/ai/`
+
+这些是开发者工具，**不在应用与 `npm run build` 里运行**；应用只带结果：`vision.onnx`、`labels.json`（入 Git）与运行时（构建时复制）。
+
+#### 来源（固定）
+
+| | |
+| --- | --- |
+| 使用的 ONNX 导出 | `onnx-community/TinyCLIP-ViT-8M-16-Text-3M-YFCC15M-ONNX` @ `9463a9c508a344c837ffefe9d724f3827bf2dc79`，文件 `onnx/model.onnx`（94,071,688 B，SHA-256 `31d28cb07209533d10fc4fef73ac324ce17de6741a2372e7e1531a4ac8fdaeb2`） |
+| 转换自 | `wkcn/TinyCLIP-ViT-8M-16-Text-3M-YFCC15M` @ `a2a8c6eaa2549ad66eb7c31b85022bf58273a26c` |
+| 上游与许可 | `microsoft/Cream` 的 `TinyCLIP/`，MIT，Copyright (c) Microsoft Corporation；两张模型卡都写 `license: mit`（2026-09-30 读取） |
+| 预训练数据（模型卡所写） | YFCC-15M；卡上没有数据许可条款或偏见分析，本项目对此不作声明 |
+| 规格 | 视觉塔 10 层、隐层 256、patch 16（约 8M 参数）；文字塔 3 层 |
+
+`fetch-source.mjs` 固定提交并校验它下载的全部文件的 SHA-256，所以 `main` 变了也不会改变结果。
+
+#### 复现
+
+macOS arm64、Node v24.19.0 / npm 11.17.0、Python 3.14.3 上于 2026-09-30 在临时目录里从头复现过；本文没有重跑。
+
+```sh
+python3 -m venv scripts/ai/work/venv
+scripts/ai/work/venv/bin/pip install -r scripts/ai/requirements.txt    # onnx 1.23.0、onnxruntime 1.30.0 及固定的依赖
+(cd scripts/ai && npm ci)                                              # @huggingface/transformers 4.3.0
+
+node scripts/ai/fetch-source.mjs                                       # 1. 取固定导出并校验（可设 HF_ENDPOINT=https://hf-mirror.com，哈希说了算）
+scripts/ai/work/venv/bin/python scripts/ai/extract_tinyclip.py         # 2. 拆出图像塔与文字塔，图像塔动态 int8 量化（QUInt8）
+node scripts/ai/text_embed.mjs                                         # 3. 用 fp32 文字塔嵌入 prompts.mjs 里的全部提示
+node scripts/ai/build-labels.mjs --check                               # 4. 不改任何文件，检查已提交的两个文件是否逐字节一致（退出码 0 = 一致）
+node scripts/ai/build-labels.mjs                                       #    或：写出 labels.json 与 vision.onnx
+```
+
+`AI_WORK=/某目录` 可移动工作目录（默认 `scripts/ai/work/`，git 忽略）；`requant.py` 是试过没采用的量化变体。视角文字向量取 `en7`：每个视角七条**英文**提示（中文提示对这个模型无效，见 `prompts.mjs`，所以界面语言与提示语言无关），各自 L2 归一、取平均、再归一。
+
+#### 发布的文件与哈希
+
+SHA-256 由本文写作时用 `shasum -a 256` 核对。
+
+| 文件 | 大小（B） | SHA-256 |
+| --- | --- | --- |
+| `ai/tc8/vision.onnx`（图像塔，int8） | 8,807,127 | `53112612a2c20a6c7af46c46de0824ea2206c9de5c3cae18ba11d3fa8fa328ca` |
+| `ai/tc8/labels.json`（类别顺序、四个 512 维向量、logit 尺度 100、CLIP 均值与标准差、裁切 224、两个文件的字节数） | 17,609 | `a7422fc83f7f1c3b1f7133575969d9348e6fb6fa6019614ff9798d653dbdcc2e` |
+| `ai/ort/ort.wasm.min.mjs` | 50,126 | `219e6a1fc8a9938268d18efca3c91d310bd2f4a59bbd13744df5b2b7fc6cee3b` |
+| `ai/ort/ort-wasm-simd-threaded.mjs` | 24,381 | `e13f7f94fc51b4ca72b12faeb1ee95f4ace6dfbc8939bc718aabdc0a27c4299b` |
+| `ai/ort/ort-wasm-simd-threaded.wasm` | 14,239,897 | `3398c10d07d229bd91b364548e130e0e51a8e5704b88c7c083ebbeb78842dee2` |
+| `ai/tc8/LICENSE-TinyCLIP-MIT.txt`、`ai/LICENSE-onnxruntime-web-MIT.txt` | 1,769；1,073 | 见文件 |
+
+不发布：文字塔（60.8 MB）与 fp32 图像塔（33.3 MB）；浏览器里不编码文字。中间产物（fp32 视觉塔、文字塔、量化前后文件、`textemb_tinyclip-8m.json`）的哈希见 [`scripts/ai/README.md`](../../scripts/ai/README.md)。
+
+### 5.3 构建集成
+
+- `npm run ai:ort`（`predev` 与 `prebuild` 自动运行，`copy-ort.mjs`）：从 `node_modules/onnxruntime-web/dist` 只复制上表三个运行时文件到 `web/public/ai/ort/`（git 忽略），先校验包版本是 1.30.0、每个文件的 SHA-256、以及 `.wasm` 的长度等于 `labels.json` 的 `wasmBytes`；该目录里的其他文件会被删掉。
+- `vite.config.js`：`publicDir` 指向 `web/public`，`copyPublicDir: true`；`vite-plugin-singlefile` 只内联 JS 与 CSS，`web/public` 不内联；`assetsInlineLimit` 很大，所以示例图等资源内联进 `index.html`（约 1.7 MB）；`preview.proxy = {}`，让 `vite preview` 保持纯静态，不继承开发代理。
+- `npm run ai:check`（`check-dist.mjs`，CI 也跑）：`dist/ai` 里的模型与 wasm 长度必须等于 `labels.json` 所写，`dist/ai/ort` 恰好三个运行时文件，两份许可文本在，`index.html` 小于 5 MB（防止模型被内联）。
+- 换模型或提示：重跑第 1–4 步，提交 `vision.onnx` 与 `labels.json`，更新哈希；换 onnxruntime-web：改 `package.json`、`copy-ort.mjs` 的版本与三个哈希，重跑 `build-labels.mjs`（记下新的 wasm 大小）；**两种情况都要改 `space-ai.js` 的 `CACHE_NAME`**，回访者才不会留着旧文件。
+
+### 5.4 托管与传输
+
+- 任何静态托管都行：`index.html` 与 `ai/` 放在同一目录；不需要 COOP / COEP，不需要特殊 MIME（脚本走 Blob URL）；https 才有 Cache Storage；托管方压缩传输时约 10 MB，否则约 23 MB。本机 `gzip -6`：模型 6,581,433、wasm 3,668,789、两个脚本 9,102 与 16,178、标签 5,802，合计约 10.28 MB；**Pages 上实测**（2026-09-30 11:51 +08:00，curl 带 `Accept-Encoding: gzip`）：模型 6,590,919、wasm 3,722,335、标签 5,849、两个脚本 9,095 与 16,238，都带 `content-encoding: gzip`，共 10,344,436 B；`index.html` 带 gzip 604,408 B。Pages 对 `.onnx` 给 `application/octet-stream`、`.wasm` 给 `application/wasm`，脚本不依赖这些类型（走 Blob URL）。
+- 房间服务对 `.html .js .mjs .css .json .wasm .onnx .svg`（> 1 KB）在请求带 `Accept-Encoding: gzip` 时压缩，结果按文件版本缓存在内存；`/ai/` 带弱 ETag（大小与修改时间）并支持 `If-None-Match` → 304，因为 `Cache-Control: no-cache` 单独会让每次访问都重下 23 MB。
+- 运行时不访问 huggingface.co、jsdelivr 或任何 CDN：模型、运行时与向量都同源。
+
+## 6. 房间服务
+
+### 6.1 数据库
+
+SQLite，默认 `data/music-map.sqlite`（环境变量 `DATA_DIR` 可改目录），`PRAGMA journal_mode = WAL`、`foreign_keys = ON`。
+
+| 表 | 关键列 |
+| --- | --- |
+| `users` | `id`、`name`、`token_hash`（bearer 的 SHA-256，唯一）、`created_at` |
+| `rooms` | `id`、`code`（6 位数字，唯一）、`title`、`event_id`（`'room:' + id`；旧房间 `'echo-live-2026'`）、`creator_id`、`event_date`、`city`、`song` |
+| `room_members` | `(room_id, user_id)`、`joined_at`；每房最多 24 人 |
+| `photos` | `id`、`room_id`、`owner_id`、`mime`（只允许 `image/jpeg`）、`data` BLOB |
+| `cards` | `id`、`room_id`、`owner_id`（每人每房唯一）、`photo_key`（`stage` / `crowd`，示例图回退）、`caption`、`moment_id`（`encore` / `chorus` / `lights`）、`track_id`（`''` 或 `'co-0'`）、`is_public`、`revision`、`photo_id`、`perspective`、**`taken_at`**、**`taken_source`**、**`song`** |
+| `exchanges` | `id`、`room_id`、双方用户与卡 ID、`pair_key`、**发出时两张卡的 JSON 快照**、`status`（`pending` / `accepted` / `declined` / `cancelled`）、`cancel_reason`、`decided_at`；同一对人同一房间最多一条 `pending`（部分唯一索引） |
+| `records` | `id`、`room_id`、`owner_id`、`exchange_id`、`title`、两卡快照；每位用户每次交换一条（`(owner_id, exchange_id)` 唯一） |
+
+叠加式迁移（启动时按 `PRAGMA table_info` 增列，不重建表、不改写旧快照）：`rooms` 增 `event_date`、`city`、`song`；`cards` 增 `photo_id`、`perspective`、`taken_at`（毫秒时间戳，INTEGER）、`taken_source`、`song`。三个新列都可以是 `NULL`（旧卡，或没填）。`taken_source` 现在只会写 `exif` 或 `manual`；旧行里可能有 `file`，没有任何规则读它。`SPACE_EVENT.trackId = 'co-0'` 与数据库文件名带着 Map 时期的名字，改动须配迁移，不要当作残留清理。
+
+卡的 JSON：`{ id, ownerId, ownerName, eventId, event: { id, title, date, city, song, isDemo }, photoKey, photoId, perspective, caption, takenAt, takenSource, song, momentId, trackId, isPublic, revision, createdAt, updatedAt }`。`perspective`：`''` 表示没选；只有旧卡（列为 `NULL`）借 `photo_key`。新交换把整张卡序列化进快照，所以同时冻结照片 ID、拍摄时间、视角、歌与短句；之后改卡、换图、撤卡都不改写已有快照与记录。
+
+### 6.2 接口
+
+除健康检查与创建会话外，请求都带 `Authorization: Bearer <token>`；错误格式 `{ error: { code, message } }`；普通 JSON ≤ 8 KiB，照片上传 JSON ≤ 420 KiB（JPEG 二进制 ≤ 300 KiB，检查 data URL、base64 与首尾签名，不引入图像库）；不开放跨域。
+
+| 接口（均以 `/api/live` 开头） | 用途 |
+| --- | --- |
+| `GET /health` | 公开，`{ ok: true, storage: 'sqlite' }`，不泄露房间或用户 |
+| `POST /session`、`GET /session` | 创建匿名凭据（称呼 ≤ 20 字，缺省「观众 + 4 位数」）；恢复用户与已加入的房间 |
+| `GET /library` | `{ me, rooms, cards, records }`：本人跨场次的当前卡与已保存双联，附 `roomId / roomCode / roomTitle / joined`；离场后仍可读；不返回他人未交换的私卡 |
+| `DELETE /library/records/:id` | 只删本人那份双联（离场后也可用），返回 `{ ok: true }`；不删对方记录、交换或照片 |
+| `POST /rooms` | `{ title ≤ 60, eventDate 'YYYY-MM-DD' 或空, city ≤ 40, song ≤ 80 }`，返回房间状态；`event_id = 'room:' + id`；没有公共房间目录 |
+| `POST /rooms/join` | `{ code }`，6 位数字；满 24 人返回 409 |
+| `GET /rooms/:id` | 房间、自己的卡、可见卡（已展示的加自己的）、自己参与的交换、自己的记录 |
+| `POST /rooms/:id/photos` | `{ dataUrl: 'data:image/jpeg;base64,…' }`，成员才行，`201 { photoId }` |
+| `GET /photos/:id` | 带 bearer 且满足权限才返回 `image/jpeg`（`Cache-Control: no-store`）；不可读与不存在统一 404，不能用裸 URL 读 |
+| `PUT /rooms/:id/card` | 创建或修改自己的卡（递增 `revision`）：见下 |
+| `PATCH /rooms/:id/card/visibility` | 展示或撤下自己的卡（撤下会取消相关待回应申请） |
+| `POST /rooms/:id/exchanges` | `{ toCardId, fromRevision, toRevision }`；版本对不上返回 `409 CARD_CHANGED`；已有待回应返回 `409 EXCHANGE_PENDING`；自己与自己返回 `400 SELF_EXCHANGE` |
+| `POST /rooms/:id/exchanges/:id/decision` | `accepted` / `declined` / `cancelled`；只有接收者能接受或拒绝，只有发起者能取消；接受时在同一事务里为双方各写一条 `records` |
+| `DELETE /rooms/:id/records/:id` | 只删当前用户自己的记录 |
+| `DELETE /rooms/:id/membership` | 显式退出：隐藏自己的卡、取消待回应申请、删除成员关系；保留已接受的记录 |
+
+#### `PUT /rooms/:id/card` 的校验
+
+| 字段 | 规则 |
+| --- | --- |
+| `photoKey` | `stage` / `crowd`（示例图的回退键） |
+| `caption` | 字符串，≤ 80 字，可为空 |
+| `momentId` | `encore` / `chorus` / `lights` |
+| `trackId` | `co-0` 或 `''` |
+| `isPublic` | 布尔 |
+| `perspective` | 缺省 → 用 `photoKey`（旧客户端）；`''` → 没选；否则 `stage / crowd / friends / detail` |
+| `takenAt` | 缺省或 `null` 表示没有；否则有限的数字，2000-01-01 到现在 + 1 天，取整；超范围或类型不对返回 `400 INVALID_INPUT`「拍摄时间无效」 |
+| `takenSource` | 有 `takenAt` 时必须是 `exif` 或 `manual`（其他值，包括 `sample`，返回 400）；**`file` 不报错，但整个时间被丢弃**（存成没有拍摄时间）：文件修改时间只是猜测，页面也不再发送 |
+| `song` | 缺省或 `null` → `''`；字符串，去首尾空白，≤ 40 字，不含控制字符、行 / 段分隔符与双向覆写字符，否则 400 |
+| `photoId` | 缺省或 `null`；否则必须是本人在本房上传的照片，否则 `400 PHOTO_UNAVAILABLE` |
+
+**照片读取权限**：照片主人；同房间里该照片所在的卡正在展示的成员；`pending` 或 `accepted` 交换的双方；持有引用该照片的记录的人。拒绝 / 取消后，仅依赖那条待回应申请的权限失效；已接受的交换持续保留读取依据，删除自己的记录不会撤销它；已分享或下载的副本收不回，也没有清除全部历史照片的接口。
+
+**频率限制**：`POST /session` 每 IP 30 次 / 15 分钟；每用户读 120 次 / 分钟、写 30 次 / 分钟；建房 5 次 / 小时；加入每用户 10 次与每 IP 40 次 / 15 分钟；照片 12 次 / 分钟、60 次 / 小时。超限 429 并带 `Retry-After`。
+
+### 6.3 静态文件与页面标记
+
+同一进程用 `serveStatic` 提供 `dist/`：路径穿越被拒；没有扩展名的路径回退到 `index.html`（SPA），有扩展名而找不到则 404；`dist/` 不存在时 503「请先执行 npm run build」；响应带 `X-Content-Type-Options: nosniff`、`Referrer-Policy: no-referrer`，静态文件 `Cache-Control: no-cache`。`index.html` 经 `roomsPage` 在 `<head>` 里写入 `<meta name="space-rooms" content="1">`（已有则替换；按文件的修改时间与大小缓存）。只有本服务写这个标记：放到 GitHub Pages 或任意静态托管的 `dist/` 不带它，就是静态版。类型表补了 `.wasm`、`.mjs`、`.onnx`。
+
+### 6.4 交换状态
+
+```mermaid
+stateDiagram-v2
+    [*] --> pending: 发起申请并指定两张卡
+    pending --> accepted: 指定接收方接受
+    pending --> declined: 指定接收方拒绝
+    pending --> cancelled: 发起方取消 / 撤卡 / 离场
+    accepted --> [*]: 同一事务里为双方各写一条记录
+    declined --> [*]
+    cancelled --> [*]
+```
+
+发起时必传 `fromRevision` 与 `toRevision`，任一与当前卡不符返回 `409 CARD_CHANGED`，先看新版再确认。`pending` 保存两张卡的不可变快照，后续改卡不替换申请内容；撤下卡（`PATCH …/card/visibility`）或离场会把相关 `pending` 标为 `cancelled`（`cancel_reason` 为 `hidden` / `left`，发起方取消为 `sender`）。相同两人同一房间最多一条 `pending`，不能自换。只有 `accepted` 打开双联仪式页并写入两份私有记录；拒绝与取消不生成记录，对已结束的申请重复响应返回 `409 EXCHANGE_CLOSED`，重复同一个终态不重复写记录。删除自己的记录不影响对方，也不撤销已接受交换对照片的读取依据。本地示例里同一版本的两张卡已有完成的交换时，直接打开已有双联，不重复申请；这是示例页的规则，不是服务端的约束。
+
+## 7. 构建、运行与部署
+
+环境：Node.js **24 或更高**（`.nvmrc`）。
+
+```sh
+npm ci
+npm run dev        # Vite 开发服务器（127.0.0.1）；predev 先复制 onnxruntime-web 运行时
+npm run server     # 另一个终端：node --watch server/index.js（127.0.0.1:8787）；Vite 把 /api/live 代理过去
+npm run build      # prebuild 先 npm run ai:ort；vite build → dist/（index.html + ai/）
+npm run ai:check   # 检查 dist/ai 与 index.html
+npm test           # 三份检查，只用 node:assert
+npm start          # 房间版：先 build；同一个 Node 进程提供页面（含 ai/）与 /api/live
+npm run preview    # 只预览静态版，不是生产 API 服务
+```
+
+服务的环境变量：`HOST`（默认 `127.0.0.1`，手机要访问用 `0.0.0.0`）、`PORT`（默认 8787）、`DATA_DIR`（默认仓库根的 `data/`）。数据库与 `-wal` / `-shm`、用户照片、`.env`、`node_modules/`、`dist/` 都不提交。
+
+### 静态版：发布整个 `dist/`
+
+**下面是发布方法；`git push` 是对远端的写操作，每次先问用户，上一轮的授权不自动延续。** 线上现在是 `feat/moment-ai@7c962e2` 的构建（`gh-pages` `2d8f1a3`：`.nojekyll`、`index.html`、`ai/`）；此前 `a45ecbd` 的版本只有单个 `index.html`，没有 `ai/`。`7c962e2` 之后的改动要再发布一次才会上线。
+
+```sh
+npm ci && npm run build && npm run ai:check
+git clone --branch gh-pages --single-branch https://github.com/musicMapTeam/musicSpace.git /tmp/space-pages
+rsync -a --delete --exclude .git --exclude .nojekyll dist/ /tmp/space-pages/    # 整个目录：index.html + ai/
+cd /tmp/space-pages && git add -A && git commit -m "Deploy Music Space static build from <分支>@<提交号> (index.html + ai/)" && git push
+```
+
+Pages 的源是 `gh-pages` 分支根目录（传统构建，强制 HTTPS），分支里要保留 `.nojekyll`。只发布 `index.html` 时页面仍可用，只是没有 AI；从磁盘直接打开（`file://`）同样没有 AI。部署后的检查见[交付计划](02-delivery-plan.md) §3.A。
+
+### Docker（可选）
+
+多阶段 `Dockerfile`：构建阶段复制 `package.json`、锁文件、`web/`、`scripts/`（`prebuild` 需要 `scripts/ai/copy-ort.mjs`）、`vite.config.js` 并 `npm run build`；运行阶段是 Node 24 alpine，只带 `dist/`、`server/`、`package.json`，以非 root 的 `node` 用户运行，`HOST=0.0.0.0`、`DATA_DIR=/app/data`、`VOLUME /app/data`。`.dockerignore` 排除 `product`、`docs`、`references`、`archive`、`dist`、`data`、`.env*`。
+
+```sh
+docker build -t music-space:0.16.0 .
+docker volume create music-space-data
+docker run -d --name music-space --restart unless-stopped -p 127.0.0.1:8787:8787 -v music-space-data:/app/data music-space:0.16.0
+```
+
+**没有构建成镜像**：拉取 `node:24-alpine` 的元数据 7 分钟无返回，已中止；只在临时目录里用同一文件集模拟了两个阶段，服务能起、页面带房间标记、`/ai/tc8/vision.onnx` 返回 200。生产由反向代理把同一 HTTPS 域名的页面与 `/api/live` 全部转发给这一个实例；保留数据卷，不启用多个独立 SQLite 副本。实际托管、TLS、访问控制与备份都还没有安排。
+
+### CI
+
+`.github/workflows/build.yml`（`Build demo`）在推送 `main`、PR 与手动触发时运行：`npm ci` → `npm run build` → `npm run ai:check` → `node --check`（`server/index.js` 与 `server/db.js`）→ `npm test`；上传两份产物，保留 14 天：`music-space-demo`（整个 `dist/`）与 `music-space-runtime`（`dist/`、`server/`、`package.json`、`README.md`、`RUN-ME.md`、`THIRD_PARTY_NOTICES.md`）。**远端只跑过旧版工作流**：`a45ecbd` 上的「Build demo」（run 36595874461）成功，那一版只有 `npm ci`、`npm run build`、`node --check`，产物只含 `dist/index.html`；含 `ai:check` 与 `npm test` 的新工作流还没在 GitHub 上跑过（分支未推送）。
+
+## 8. 测试
+
+`npm test` 依次运行三份检查（`scripts/test/`），只用 Node 自带的 `node:assert`，没有测试框架：
+
+| 文件 | 覆盖 |
+| --- | --- |
+| `moment.test.mjs` | `moment.js` 的全部规则：时间格式与输入、`takenFromExif` 与时区说明、`readPair` 的各种情形与理由用词（含 3 分钟界线两侧）、`orderWall`、歌名清理与合并、`qqSearchUrl`、`buildSetlist`、票根事实、`takenFields`、`reasonHtml` |
+| `insight.test.mjs` | `photo-insight.js` 与 `space-ai.js` 的措辞与状态：模型为什么不能运行（`page` / `browser`）、房间与示例页的 AI 句子不同（房间不许承诺「照片不上传」）、下载行不写取决于压缩的确切体积、`answerView`、`timeView`、范围外时间的说明（`timeProblem`）、加载行的进度与只报一次的状态区；用替身模型检查「判断中 → 下载中 → 判断中 → 完成」的先后（从交出照片到有答案，提示行不空着），不加载真模型 |
+| `api.test.mjs` | 房间卡片接口：在空闲端口起 `server/index.js`（临时 `DATA_DIR`，结束即删；设 `BASE=http://host:port/api/live` 则测已在运行的服务）；旧客户端的请求体仍有效，新字段往返，`perspective ''` 与缺省的含义，拍摄时间、歌名与视角的各种拒绝，`file` 来源被丢弃，交换快照与记录带这些字段、改卡不改快照，收藏读取 |
+
+**没有覆盖**：浏览器里的界面流程、真正的模型推理（Node 里没有模型）、EXIF 读取器（开发时与 ExifTool 的对照没有把语料入库）、服务的静态文件与 gzip、从 0.15 旧键的迁移、PNG 的实际绘制。这些靠浏览器检查，记录见项目状态。
+
+## 9. 检查记录与边界
+
+以下摘自[项目状态](../../docs/PROJECT_STATUS.md)的 2026-09-30 记录（本机 macOS，Node 24.19.0 / npm 11.17.0，Chrome 152 经 Tabbit，模拟视口，无触屏）；`npm test` 与 Pages 两行是写本文时另行核对的。
+
+| 项 | 结果 |
+| --- | --- |
+| 生产构建（`7c962e2` 的构建，也就是线上那一版） | 62 个模块；`dist/index.html` 1,747,253 B；`dist/ai/` 23,141,982 B；`dist/` 合计 24,889,235 B。`npm run ai:check` 通过。之后代码又有改动，重新构建的大小会略有不同 |
+| `npm test` | 三份检查通过（本文写作时在含未提交改动的工作树上复跑，Node 24.19.0） |
+| 语法检查 | `web/js`（不含 vendor）、`server/`、`scripts/` 的 36 个文件 `node --check` 通过 |
+| 静态版 | `python3 -m http.server --directory dist`：首页只发一个请求；「用我的照片」读出 EXIF 时间；模型从空缓存冷加载，约 1.0 秒出现「AI 判断：舞台」；请求只有同源的 `ai/` 与 `blob:`；模拟存储写入失败时提示与 toast 改口 |
+| 房间版 | 两个来源（`127.0.0.1` 与 `localhost`）加入同一房间；两人各传带 EXIF 的照片（21:47:30 与 21:48:50），AI 分别判「舞台」与「人海」；照片墙出现「同一刻的另一面」；申请、同意后双联页写出两边的视角、时间与共同的歌；带 `Accept-Encoding: gzip` 时模型传 6,501,770 B，解压后 SHA-256 与原文件一致；`If-None-Match` 返回 304 |
+| Pages | `gh-pages` `2d8f1a3` 是 `feat/moment-ai@7c962e2` 的构建；`ai/tc8/labels.json` 返回 200；`index.html` 1,747,253 B，没有 `space-rooms` 标记；`ai/` 五个文件都带 gzip，共 10,344,436 B（2026-09-30 11:51 +08:00 用 gh 与 curl 核对） |
+| EXIF | 对 spike 的 96 个样本，94 个与 ExifTool 一致，另 2 个是已记录的上限 |
+| AI 准确率 | 见[产品方案](01-product-plan.md) §3.5；来自 75 张公开 CC 图，不是真实观众照片 |
+| 独立验证 | 最近一轮 12/12 项通过、0 个页面错误、14 条次要发现（处置没记）；1440×900 与 390×844，另有 `file://`、无 WebGL、两个来源的房间流程 |
+
+**没有验证**：iOS Safari、微信内置浏览器、Android 与实体手机（AI 的耗时、内存与页面停顿只在桌面 Chrome 量过）；触屏与读屏软件；减少动态的独立验证；从 0.15 旧键迁移的操作；Cache Storage 在 Pages 上的命中；大陆网络下的加载；两台设备与 HTTPS 下的房间版；Docker 镜像；PNG 里新增的拍摄时间与歌名行的导出文件（待 `space-ticket-v016.png` 留证）；真实观众照片上的 AI 准确率。
+
+---
+
+## 附录 · 历史（2.6 原文保留）
+
+以下是 2.6（Music Map × Music Space，0.15）里的原文，一字未改，按出处分块保留。其中的 Map、唱片店、寻声、完整图鉴、HF 曲库与「没有模型推理」等属于 Map 或已被 3.0 取代，不适用于 Music Space。版本行「文档 2.6」与「0.4.0 至 0.15 的检查范围」按原样保留，不能延用到 0.16。2.6 的完整全文见 `git show 3dd102c:product/docs/03-build-guide.md`。
+
+### A. 版本说明与 0.15 的实现分布（2.6 第 3、5 行）
 
 版本：2.6 · 2026-09-27，对应应用 MVP 0.15.0。产品范围见[产品方案](01-product-plan.md)，比赛交付见[交付方案](02-delivery-plan.md)。本轮是视觉整改，包括：夜场小院与外壳、首屏价值主张、唱片店寻声一局与完整图鉴、双联全屏仪式页与夜场票根 PNG。后端接口、照片权限与数据库结构沿用，没有服务端改动。本轮构建和浏览器结果见[项目状态](../../docs/PROJECT_STATUS.md)记录；第 8 节旧证据保留原版本。
 
 0.15 各部分的实现分布：`sakura-scene.js` / `sakura-world.js` 管夜场光照与材质，`night-shell.css` 管外壳；`home.js` 输出首屏；`map.js` / `map-network.js` / `sakura-music.js` / `map-round.css` 实现寻声；`duet-ceremony.js` / `duet-facts.js` / `duet-ceremony.css` 实现仪式页；`ticket-export.js` 绘制夜场票根。本轮同时清理 9–11px 小字，正文不小于 14px，辅助文字不小于 12px。本轮实际检查见项目状态。
 
-## 1. 技术决定
-
-| 部分 | 当前实现 | 边界 |
-|---|---|---|
-| 页面 | HTML / CSS / JavaScript ES 模块；Vite 8.3.1 + vite-plugin-singlefile 2.3.3 | 复用当前原生 JavaScript，不迁移框架 |
-| 视觉 | Three 0.186.1 常驻夜场小院与唱片桌 + Sakura Crossing cel / 深度描线 / 调色 / FXAA；DOM 纸件与投影标签，GSAP 3.15.0 / Flip 管镜头、抬卡和弹窗 | 仅保留 sakura，手机独立机位。WebGL 不可用（`body.spatial-fallback`）时使用同一布局与可见性的 DOM / SVG 二维图，外壳回到浅纸深字 |
-| 场景外壳 | `web/js/themes.js` 固定管理樱花场景 | 不读写或监听旧外观键；旧键即便存在也无效果，不改业务存储 |
-| 滚动 | OverlayScrollbars 2.16.0 增强 body，自动隐藏的 6px 浮动条；弹窗使用原生细条 | 保留浏览器滚动与键盘导航；仅前端依赖 |
-| 内容 | 12 位艺人、13 份合作录音、13 条共同演唱边、2 个独立回路及逐人署名；独立 HF 开放曲库 120 首；保留虚构示例及两张 AI 生成图 | 录音室、联唱现场和英文版分别限定；共同署名不直接成为合唱边，不内置音频 |
-| 关系网 | `map-network.js` 缓存确定性布局；`roundKnowledge` 由会话推导已认识艺人与已翻开的边；BFS 距离与最短链只用于提示、揭晓和歌单中的“本专题最短”对比 | 不写路径、事件或步数，不替用户走；“完整”与“最短”都只指当前收录图 |
-| 本地情景状态 | localStorage `music-map-space:v1`，两个示例角色；Map 会话（含寻声的翻开、提示与揭晓）也存在这里 | 仅当前浏览器；可选本机照片，不上传服务 |
-| 音乐收藏 | localStorage `music-map-saved-music:v1`，真实精选与 HF 作品 | 独立于探索路线，仅当前浏览器；保留来源和数据集 |
-| 双联首映记录 | localStorage `music-space-duet-seen:v1`，保存最近 60 个已看过的交换 ID | 只决定播放首映还是回看，不写服务端，不影响权限；存储不可用时直接回看 |
-| 联网身份 | 匿名 bearer 凭据，浏览器保存于 `music-map-live:v1` | 不是手机号账号，无找回与跨设备身份迁移 |
-| 个人现场收藏 | 受身份保护的 `/api/live/library`，本人跨场次当前卡与已保存双联 | 离场后仍可读；删除接口仅删本人双联，不公开他人私卡 |
-| 共享服务 | Node.js 24+，内置 HTTP 与 `node:sqlite` 的 DatabaseSync；无运行时 npm 依赖 | 同源 `/api/live`，服务端校验成员和操作权限 |
-| 二维码 | 浏览器打包 `qrcode-generator` 2.0.4，现场生成邀请链接二维码 | 不调用外部二维码服务；前端依赖与无 npm 依赖的后端分别说明 |
-| 数据库 | SQLite，默认 `data/music-map.sqlite`，事务与 WAL；用户照片存独立表的 BLOB | 单实例 + 持久磁盘；图片不写入公开目录，`data/` 和数据库 sidecars 不提交 |
-| 输出 | 单个 `dist/index.html`；联网服务同时提供它和 API；浏览器绘制夜场票根单卡 / 双联 PNG | 具体构建与导出检查见项目状态；只托管 HTML 可跑 Map 和本地演示，不能运行后端 |
-
-源码分工：外壳 `web/js/app.js`、本人主页 `home.js`、Map `map.js` / `map-network.js` / `map-data.js` / `map-catalogue.js`、开放曲库 `open-catalogue.js`、音乐收藏 `music-library.js`、本地示例 `space.js`、联网房间 `live.js`、现场收藏 `live-library.js`、照片 `live-photo.js`、双联仪式页 `duet-ceremony.js` / `duet-facts.js`、票根 `ticket-export.js`、界面动画 `motion.js`；服务入口 `server/index.js`，数据库 `server/db.js`。使用 hash 路由，依赖由锁文件固定。Three 场景随功能切换镜头，HTML 层负责输入与业务操作；OverlayScrollbars 调整滚动条呈现。没有引入 React、测试框架或推理模型。
-
-### 0.15 页面与操作
-
-- 顶部品牌与一套空间导航连接小院、唱片店、照片墙和收藏。`night-shell.css` 最后加载：夜空上的品牌用奶油色字，导航与右上按钮用深色玻璃；纸件为暖纸，带夜间灯光阴影；焦点环为琥珀色。首页隐藏右上的邀请码按钮和地点名，其他页面的地点名为玻璃条。`body.spatial-fallback` 下回到浅纸深字与纸面导航。封套内页、场次票签、工作纸和纪念册共用暖纸、细墨线、纸角与索引；说明仅出现在相关决定处。
-- `sakura-framing.js` 测量实际纸件与弹窗，供相机按各页主体适配可见区域，投影标签避开操作层。观察列表包含 `.home-hero` 与寻声的 `.map-round-slip` / `.map-round-tools` / `.map-round-note` / `.map-round-hand`；唱片店目录菜单有意不在其中，打开它不移动桌子。面板展开、异步内容、路由和窗口变化后重新测量。`sakura-camera.js` 在手机竖屏（高 > 1.9×宽）时为 `explore` 使用竖向机位，320×568 仍用横向桌面。
-- `home.js` 只渲染一次静态的 `.home-hero`，内容为：眉行「音乐现场 · 散场以后」、标题「同一刻，／另一面。」、承诺句「用另一位观众的视角，补完整你记住的那一晚。」、三步「交换现场照片｜双方同意｜两人署名的双联票根」。数据或照片载入只重绘下方纸卡，入场动画不重放；回访用户不显示三步。首访纸卡副行为「照片默认私藏，双方同意才交换」，纸卡底部始终有「我有邀请码」。首页不显示照片投影标签。`app.js` 把首页页面标题设为「同一刻，另一面 · Music Map × Space」，`index.html` 的 theme-color 为 `#23214a`。
-- `home.js` 读取本人收藏，保留近期私人卡入口；无卡时预置内容注明示例。记录入口进入真实制卡，邀请入口有房间直接展示邀请码，无房间走昵称→创建→邀请。首页提供邀请码入口；邀请码在入场页填写，加入由用户确认。
-- 没有 hash 的访问直接进入首页，不被上次页面覆盖；返回空 hash 同样回首页。邀请链接仍进入对应入场流程。点本人卡进收藏，点示例进明确的本地情景。
-- `space.js` 保留本地双角色和旧 payload；普通首页与示例不混用身份、计数或记录。`#sakura-world` 全屏小院承担主画面。
-- Map 默认发布寻声局。未知唱片以纸背封套发布，不带名字，也不可选；只发布已翻开的边。第 2 级提示只发布一段从所在艺人出发的不可点残段，带箭头，止于对方唱片之前。完整图鉴发布全量节点与边。只有明确沿当前节点已翻开的合法边「前往」，才记一步。
-- 寻声复用 challenge 会话，新增 `fog`、`flipped`、`hints` 与状态 `revealed`；翻开和提示不进 events。未翻开的手牌只带槽位号，不带边 ID，因为边 ID 可能拼出合唱者。局中关闭署名表和 `credits` 动作，抵达或揭晓后在连线歌单中开放。抵达或揭晓后，按一次性的 `view.ceremony` 播放路线动画，再打开连线歌单：场景播完回报 `ceremony-done`，页面另有兜底计时器；超过 6 秒的过期仪式在挂载时清除并直接打开歌单。减少动态时不播放仪式，直接打开歌单。WebGL 不可用时，用 SVG `stroke-dashoffset` 播放约 1.8 秒、可跳过的二维仪式。搜索、作品、署名、连接与来源面板，以及二维 DOM 和投影标签，都只读同一可见集合。
-- 寻声的手机布局：短屏手机（高 ≤ 640）隐藏提示便签，手牌收成单行，第 2 级提示改在按钮里显示为「翻开 · 试试这张」；桌面高 ≤ 760 时手牌紧凑。完整图鉴中选中非邻居艺人时，显示「和 TA 隔几首？」，从当前位置开一局新寻声，替代原「找关联」与最短链高亮。
-- 三维唱片桌提供平移、缩放、适配全图和触摸输入处理。二维降级沿用相同节点、边、布局、可见性与业务动作。手机模拟视口、真机双指与手势冲突检查按实际执行记录，不由代码存在推断通过。
-- 双联统一由 `openDuetCeremony` 打开，入口有三处：`live.js` 在真实 pending → accepted 变化时首映一次；`live-library.js` 在收藏页翻开，刷新不重放，他端删除时关闭；`space.js` 在本地接受后经路由带上 `reveal`。组件不判断同意，调用方只为已接受快照打开它。首映或回看由 `music-space-duet-seen:v1` 决定。组件设 `data-motion="self"`，`motion.js` 跳过它。减少动态时直接显示终态；点击或按键可跳过，页面有兜底计时，`popstate` / `pagehide` 时关闭。打开后焦点落在标题上。
-- 收藏、取消和撤销恢复 Map 焦点、折叠状态与滚动；订阅同步按钮和计数。移除真实曲目收藏不删除探索历史。
-- 我的收藏以纪念册与索引呈现，默认本人现场，另有音乐、路线和示例。双联为空且仍在场时回到已有房间换卡；身份失效给重新入场入口，401 说明新身份无法带回旧记录。私人收藏不批量发布到照片墙。
-- 房间以场次票签和照片托盘为主体，同场卡片、共同记忆与动态使用可展开目录；轮询重绘保留目录展开状态。收到的待回应申请保持显式入口，其他房间与离开留在 `details.live-room-menu`；异常连接、私藏与同意状态保留。
-- 同一 live 页面内关闭再开编辑器，保留照片、短句、可见范围及步骤，修改后显示“草稿未保存”。保存成功或切换房间清理；草稿不落盘，刷新或切页不承诺恢复。照片处理的 `photoSelection` 和 `currentDraft` 边界继续防止旧异步结果写回新草稿。
-- body 使用 OverlayScrollbars 2.16.0 的自动隐藏细浮动条，弹窗保持原生滚动；许可见[第三方说明](../../THIRD_PARTY_NOTICES.md)。
-- 详情与输入使用窄纸面弹窗；手机打开弹窗时收起暂不可操作的底部导航。短屏制卡与创建表单改为外层滚动，输入、错误和末尾动作一起保留。
-
-### 樱花模块与生命周期
-
-| 文件 | 职责 |
-| --- | --- |
-| `web/index.html` | 固定首屏 `data-theme="sakura"`，不读取历史主题偏好；标题「同一刻，另一面 · Music Map × Space」，theme-color `#23214a` |
-| `web/js/themes.js` | 名称沿用，固定管理常驻樱花场景；无主题按钮、选择弹窗或偏好同步 |
-| `web/css/themes.css` / `theme-sakura.css` | 纸面 token、浅色业务页面、樱花卡片与表单；`theme-zine.css` 删除，失效的 `.sp-hero*` 规则已删 |
-| `web/css/night-shell.css` | 最后加载的夜场外壳：夜空上的奶油色品牌字、深色玻璃导航与右上按钮、暖纸纸件的夜间灯光阴影、琥珀焦点环、纸面 toast；包含手机、短屏、平板与矮桌面规则；`body.spatial-fallback` 回到浅纸深字 |
-| `web/css/app-studio.css` / `space-studio.css` / `map-studio.css` | 既有外壳、照片工作台和图谱的基础构图；`app-studio.css`、`space-studio.css` 的小字提到 12px 以上，`map-studio.css` 的横幅只留给没有迷雾的旧挑战 |
-| `web/js/sakura-world.js` | 原创小院、店铺雨篷、印刷唱片、樱树、照片墙、工作桌与收藏道具。夜场材质包括：亮窗、暗色远屋与山丘、自发光夜樱、17 个灯泡光晕、舞台 par 灯与光束；光晕与光束不参与拾取 |
-| `web/js/map.js` | 寻声与完整图鉴。负责：题签、提示梯、手牌、翻开 / 前往 / 退回、死胡同提示、揭晓确认、仪式编排、连线歌单与探索记录；负责泄题守卫（局中隐藏搜索与关系面板，关闭署名）；负责一次性迁移 |
-| `web/js/map-network.js` | 缓存稳定布局与 `shortestChain`；寻声新增 `roundKnowledge`（由会话推导已认识艺人与已翻开的边，不另存）、`distancesFrom`（从终点只沿共同演唱边做 BFS）、`roundHint`（还隔几首、面前几首更近、下一首最短边）、`chainLength`、`shortestChains`（枚举等长路线，只用于回顾）。最短链只用于提示、揭晓与回顾对比，不直接展示；Three 和二维降级共用 |
-| `web/js/map-data.js` | 数据集目录；`rounds` 为固定寻声题组（真实 5 组、示例 3 组），不新增边 |
-| `web/js/sakura-music.js` | 原创唱片关系桌、可点击实体连接、艺人投影标签、平移缩放与物件动作。寻声部分包括：共享纸背封套（不带名字或颜色）、翻面、墨线生长、提示残段、终点光圈，以及抵达与揭晓仪式。投影标签每帧只设一次可见性，获得键盘焦点的标签保持可见。复用同一场景和 cel 材质 |
-| `web/js/sakura-scene.js` | Three 场景、透视机位、授权卡片贴图、拾取、镜头控制与销毁。夜场值集中在 `NIGHT` 常量，包括：世界固定的夜空渐变与地平线暖辉，以及 8 盏常驻灯。8 盏灯为半球光、唯一投影的月光、补光、店内暖光、左右两组串灯、舞台 par 灯、唱片桌 `tableSpot`。预设有 `night` / `explore` / `records` / `editor`，只补间强度（收藏机位另移店内暖光位置），灯的数量不变。首次挂载且非减少动态时，有不超过 1.4 秒的开场亮灯。手机暗角降到 .12 |
-| `web/js/sakura-framing.js` / `sakura-camera.js` | 测量可见纸件、弹窗与投影标签，计算主体可用区域并调整镜头；手机竖屏的 `explore` 竖向机位阈值为高 > 1.9×宽；销毁时清理观察器、帧调度和计时器 |
-| `web/css/map-round.css` | 寻声的题签、温度章（「近 / 远 / 平」字形加文字）、手牌与卡片正反面、「试试这张」签、死胡同状态、「终点」标签、二维降级的背面唱片与路线 / 答案 / 残段线、连线歌单票条与手机底部纸面 |
-| `web/css/map-spatial.css` | 场景探索的封套索引、路线纸条、投影标签（名字桌面 14px、手机 13px）、44px 视图控制与二维图降级；删除原最短链样式 |
-| `web/css/scene-panels.css` / `scene-layout.css` | 首页与现场纸件收合、Map 详情索引、纪念册位置和窄纸面弹窗；短屏表单滚动 |
-| `web/css/spatial-world.css` | 全屏场景、HTML 操作层与手机构图 |
-| `web/js/motion.js` | GSAP / Flip 驱动卡片和弹窗，支持减少动态 |
-| `web/js/open-catalogue.js` / `music-library.js` | HF 搜索与独立本机音乐收藏，保留来源和数据集 |
-| `web/js/home.js` | 本人主页。静态 `.home-hero` 只渲染一次，数据与照片载入只重绘纸卡；回访隐藏三步 |
-| `web/js/live-library.js` / `web/css/library.css` | 跨场次收藏、授权照片及回访入口；翻开双联进入仪式页回看；分类为轻量下划线标签，筛选为胶囊 |
-| `web/js/duet-ceremony.js` | 全屏夜场双联仪式页。单例；支持首映与回看；照片经授权 blob 异步载入，失败时显示文字；错误内联显示在页内 |
-| `web/js/duet-facts.js` | 仪式页与 PNG 共用的事实：视角与时刻名、共同线索规则（两卡同歌 → 同一时刻 → 场次）、日期与完成时间格式；只读已接受快照 |
-| `web/css/duet-ceremony.css` | 仪式页的夜空、串灯、两半照片合拢、中缝、存根、印章与按钮层级；短屏手机只把两枚按钮固定在底部 |
-| `web/css/map-credits.css` | 按人合并工种与逐工种来源 |
-| `web/js/vendor/sakura/` | MIT cel、彩色阴影、深度描线、调色与 FXAA；`SOURCE.json` 固定上游提交。0.15 未修改，夜场值都在本项目文件中 |
-| `web/js/ticket-export.js` / `web/css/memory-export.css` | 绘制夜场票根单卡和双联，原生 dialog 展示 PNG 成品，提供下载和可用的文件分享 |
-
-历史键 `music-map-visual-theme:v1` 不再读写或监听，即便存在也不影响界面；不主动迁移或清除它。匿名身份、探索、收藏和示例存储键保持不变；寻声不新增存储键。0.15 只为双联首映新增 `music-space-duet-seen:v1`，它只在浏览器端区分首映与回看。规范见 [VISUAL_THEMES.md](../../docs/VISUAL_THEMES.md)。
-
-`#sakura-world` 的同一 scene / renderer 跨 hash 路由保留。基础机位为 `home`、`explore`、`live`、`records`；`editor` 走近工作桌，`photo` 靠近选中照片。手机独立取景；新选择可打断旧转场，减少动态直接显示目标。场景销毁时释放后处理目标、材质、几何、纹理、renderer 和监听。
-
-业务接口沿用 `api.spatial.publish({mode,cards,onPhoto,onEdit})`、`focus(kind,id?)`、`restore()`。本人主页发布 `home`，示例发布 `exchange`，Live 发布 `live`；卡片含 `id/src/title/subtitle/alt/isDemo`，最多 6 张。首页可展示本人私卡，同伴只发布当前展示卡；缺自卡的 seed 明示示例。联网 `src` 只来自已授权读取的 blob，不把照片 ID 改为公共网址。清缓存、退出或撤权前先撤下场景贴图，再释放 blob。
-
-Map 使用同一 `publish` 入口发布 `mode:'explore'`、`music` 与 `onMusic`。`music` 按数据集与模式发布节点、边与稳定坐标，并携带当前探索节点、选中与已走过状态。寻声另发布以下字段：
-- 节点的 `unknown`（名字置空、统一纸色、数量为 0）、`target`、`current`、`route` 与仪式翻面延迟；
-- 边的 `route` / `answer`，边列表只含已翻开的边；
-- 第 2 级提示的 `stub` 残段；
-- 一次性的 `ceremony:{token,kind,order}`。
-
-`setMusic` 更新画面，并只在 `ceremony.token` 变化时播放仪式。场景拾取及投影标签回调到同一 Map 动作入口。`select` / `edge` 只改变查看状态；`sealed` 只提示这张唱片还盖着，并轻晃一下；`ceremony-done` 结束仪式并打开歌单；`move` 校验当前节点的合法邻居，寻声中还要求这条边已翻开，通过后才写 session 的路径与事件。`musicControl` 接缩放、适配全图和定位选中，DOM / SVG 二维图保留对应操作；离开探索清除音乐展示。场景销毁时，释放关系桌自己的纹理（共享纸背只在销毁时释放）、材质、几何、翻面与仪式时间线和监听。
-
-场景拾取复用已有预览、编辑、申请和双联操作，关闭弹窗恢复基础机位，替换弹窗时延后恢复。小院几何、程序纹理与构图由本项目编写；渲染方法复用 Sakura Crossing MIT 源码，未复制其完整街区、人物、纹理原图或音频。Three 0.180.0 的上游 shader 补丁已按项目 0.186.1 适配；独立材质池、透视深度描线与 FXAA 保持。空闲 30fps / 转场 60fps 是调度目标，不是设备实测保证。
-
-PNG 为夜场票根，仍是 **1600×1800**。双联取已接受快照，印有两位作者、各自照片与短句、共同线索存根、「双方同意」印章和「双方已同意共同署名」。预置图带「AI 生成示例照片」标签，中缝为与页面一致的虚线。单卡取本人的当前卡，使用「我的现场卡」版式：存根为「带上的这首歌」或「我记得的这一刻」，印章为「我的现场」。共同线索与仪式页共用 `duet-facts.js` 的规则。`info` 可带 `scenario` / `eventDate` / `city`；`scenario:'local'` 的页脚写「本地情景演示，角色、现场与歌曲为虚构」，其余示例场次注明现场与歌曲为示例内容。照片、文字、作者与交换数据不被视觉整理改写，上传图通过原授权 blob 读取。
-
-`downloadCard` / `downloadTicket` 接口不变：同一 canvas 生成 PNG，保留下载并展示实际 blob 图片，可再次下载或长按保存。仅在 `navigator.canShare({files})` 支持时显示分享，用户点击才调用 `navigator.share`；取消不报错。预览避开全局 GSAP 位移动画，关闭、下次导出、返回或离页释放对象 URL，不增加照片权限。
-
-Three 与 Sakura Crossing 模块保留 MIT 许可，GSAP 使用 Standard No Charge 许可。固定提交和改动见[源码清单](../../web/js/vendor/sakura/SOURCE.json)与[第三方说明](../../THIRD_PARTY_NOTICES.md)。0.5 的[研究记录](../../references/research/2026-09-27/sakura-visual-reference.md)保留原历史范围。
-
-### 数据来源与复现
-
-`map-catalogue.js` 的 13 份精选合作录音使用 `real-vocal-2026-09-v3`。原 11 个艺人及 10 首作品 / 边的稳定 ID 保持，增加孙燕姿与 3 份特定录音；当前共 12 个艺人、13 条边、2 个独立回路。《黑暗骑士》共唱者是阿信本人；2020 双 J 联唱按一份现场节目记录；《Stay With You》英文版与中文词作、现场版分别限定。见[本轮取证](../../references/research/2026-09-27/vocal-network-expansion.md)，原 10 首的[工种记录](../../references/research/2026-09-27/collaboration-roles.md)保留历史来源。
-
-`credits[]` 每项包含 `name`、`role`、`sourceId` 和可选 `artistId`；幕后人员可以没有图节点。`creditSources[]` 提供来源 URL、标题和核对日期。`creditsScope: 'selected-verified'` 表示只列已核实分工，不承诺完整名单。详情按人合并工种，来源仍精确到工种；制作、编曲和同名艺人不自动生成共同演唱边。
-
-Hugging Face 数据：`maharshipandya/spotify-tracks-dataset`，固定 revision `635b034f69257814eff850a5c2b3346fe458134f`。完整 `dataset.csv` 位于 `data/external/spotify-tracks-dataset/`，共 **114,000 行、20,118,244 B**；同目录有清单、文件树和数据卡副本。复现：
-
-```sh
-python scripts/datasets/download_hf_catalogue.py
-```
-
-前端载入 `web/assets/data/hf-collaborations.json` 的 **120 首**整理结果，由 `open-catalogue.js` 提供独立搜索。HF 中的共同 artist 署名不推断主唱、词曲或制作，不合并到寻声或图鉴的共唱图中。完整 CSV 不进入 HTML 或运行包，启动不依赖在线 HF 请求；没有下载音频、封面或模型权重。下载范围和来源见[下载记录](../../references/research/2026-09-27/huggingface-download.md)。
-
-### 沿用的 0.4.0 能力
+### B. 沿用的 0.4.0 能力（2.6 §1，原标题「沿用的 0.4.0 能力」从略）
 
 0.4 在动态排版主导的音乐节视觉下加入以下能力；当前版本保留其业务含义。0.4 实际操作范围见第 8 节与项目状态：
 
@@ -124,160 +386,7 @@ python scripts/datasets/download_hf_catalogue.py
 
 0.2.0 / 0.3.0 的历史检查见项目状态。0.4.0 已交付 106 秒实际操作中文字幕视频和 16:9 封面；全片解码通过，关键帧已目视。它们不包含 0.5 三主题，文件、规格与检查范围见[交付清单](../../delivery/README.md)。旧截图编排仍是历史展示，不作为照片上传流程的操作证据。
 
-## 2. 两种实现状态写清楚
-
-### A. 保留的静态交付：本地情景演示
-
-首页点「体验示例」进入本地工作区，再制卡或点照片预览与交换。流程使用一场预置活动与两个明确标识的示例角色 A / B；没有自卡时的 seed 仅作示例，用户保存后才进入该角色的卡片状态。评委可以制卡、切换角色、发起申请、接受或拒绝，接受后在双联仪式页查看结果。两个角色仍在同一浏览器中模拟；示例区不常驻首页下方。
-
-- 视图标明“本地示例”，提供角色切换、重置与返回首页。
-- 角色 A 不能在 A 的操作区替 B 接受；切到 B 视角后才能执行 B 的操作，以讲清产品规则。
-- 新交换接受后自动为两个示例角色各保存一份；自己的卡也可单独收藏。旧版已接受但未保存的交换保留手动保存入口，不批量回填旧记录。
-- 当前两张卡的 ID / 所有者 / 版本已有 accepted 交换时，打开已有双联，不重复创建申请；不同卡版本可发起新交换。刷新保留同一浏览器进度，不假称跨设备同步。
-- 这是完整的交互演示，能表达社交机制；不能宣传已经有真人用户或真实跨设备交换。
-
-### B. 沿用 0.4.0：自己的活动与真实独立会话
-
-参与者各持独立匿名会话，通过 6 位邀请码或携带房间码的链接进入同一房间，最多 24 人。新房间的活动由创建者填写：标题必填 ≤60 字，日期为有效 `YYYY-MM-DD` 或空，城市 ≤40 字、共同歌曲 ≤80 字，后二者可空。服务生成 `eventId = 'room:' + roomId`，不提供公开房间目录，也没有活动真实性或到场认证。
-
-创建场次默认只展示名称；日期、地点与歌名收在「补充场次信息」，从音乐入口带歌名时默认展开。常规高度保留底部创建区，短屏改为整个表单滚动；展开选填项后仍能到达提交按钮。
-
-各用户每房一张持久化卡片：短句 ≤80 字，环节为 `encore` / `chorus` / `lights`，视角 `perspective` 为 `stage` / `crowd` / `friends` / `detail`。`photoId` 指向本人在本房上传的照片，或为 `null`；`photoKey` 仍为 `stage` / `crowd`，作为预置图片回退。`trackId` 为 `co-0` 或空，在自定义房间仅表示是否带上本房共同歌名，不扩展成真实曲库 ID 或试听能力。
-
-编辑器使用同一个 form，在「选照片」「留一句」两个 fieldset 间切换可见性，保留输入与草稿。新卡从选图开始，已有卡直接编辑短句，可返回换图；压图完成前不能继续。环节与歌名放在「更多细节」，私藏／展示和保存结果在第二步及底部显示。步骤切换不上传、保存或公开，最终提交沿用原卡片接口。关闭再开在当前页面继续草稿，成功保存或换房清理；不写 localStorage，不承诺跨页面恢复。
-
-前端调用同源 `/api/live` 并短轮询。浏览器持有随机 bearer 凭据，数据库只存其哈希；刷新可返回已加入房间。清除浏览器数据后无法找回原身份。服务不可用时显示实际错误并保留制卡输入，不伪造申请或交换成功。
-
-前端将用户选择的照片重绘、压缩为 JPEG 后上传，服务端接收的二进制不超过 300 KiB；图片保存在 SQLite `photos.data` BLOB 中，不生成公共图片网址。房间轮询只返回 `photoId` 等元数据，不携带 base64。前端使用 bearer 身份获取照片并转为本会话使用的 blob URL；导出前也需完成授权读取。本地演示照片不会自动迁入房间。
-
-服务在接受操作的事务中为双方各自生成私有纪念记录，用户无需再点击保存。双联 PNG 从接受时的快照绘制；单卡 PNG 使用自己的当前卡，两者都在浏览器生成，不另建云文件存储或新的记录种类。卡片持久化、纪念记录生成、PNG 下载是不同动作。
-
-房内操作要求调用者为成员，只有指定接收者可接受 / 拒绝，只有发送者可取消。私人自卡可用于定向申请；其他成员不能因此读取它。切换到房间入口不会自动退会；显式退出会隐藏自卡、取消相关 pending 并删除成员关系。本人卡片与双联保留，可直接从个人收藏读取；回到房内操作仍须主动加入。
-
-**照片读取权限：** 照片主人可读；同房成员可读当前正在展示的卡所引用的照片；pending / accepted 交换的双方或拥有引用该照片的个人记录者可读。拒绝 / 取消后，仅依赖该 pending 的共享权限失效。accepted 交换持续保留读取依据：删除自己的 record 不会删除对方记录，也不会撤销 accepted 交换的照片权限。已分享或下载的副本不能通过删除本人记录收回；当前没有清除全部历史照片的接口。退出后房间 API 仍需重新入会，已接受交换对照片的读取依据继续保留。
-
-**旧库兼容：** 启动时通过增列迁移补充房间的日期 / 城市 / 歌曲和卡片的照片 / 视角字段，不重建数据表或改写旧交换快照。旧房间仍是 `echo-live-2026` 的虚构“回声现场”，返回 `isDemo:true`；旧卡 `photoId` 为 `null`，视角沿用 `photoKey`，旧记录缺少新字段时使用示例兼容显示。新房返回 `isDemo:false`，仅表示用户自建，不表示活动已核验。
-
-0.4 整合时已重启服务执行增列迁移，并读回旧森森 / 小舟匿名身份及原房间列表；这项历史结果说明当次保留的旧数据可读，不扩展成任意历史数据库迁移验证。
-
-前端空墙按成员数和自卡状态显示下一步。首次保存或保存私卡后，可邀请朋友、看同场卡片、主动展示、下载单卡或去收藏；不自动公开。为定向交换补卡时继续进入两卡确认。离开确认可复制邀请码，成功后用原有会话存储的 `rejoinCode` 预填入场栏；只有用户主动加入才恢复成员关系。联网票根各入口与 PNG 统一取 `decidedAt`，记录对象使用其完成时的 `createdAt`。
-
-### C. 0.9：个人收藏与入口衔接
-
-`GET /library` 在 bearer 身份下返回 `{me,rooms,cards,records}`。`rooms` 只含当前已加入房间；`cards` 只含本人的跨场次当前卡；`records` 只含本人已保存的交换双联。两类内容附 `roomId / roomCode / roomTitle / joined`，即使离场也可读。当前卡会随本人编辑更新，双联保留接受时快照；不返回他人未交换私卡，不改变照片读取权限。
-
-`DELETE /library/records/:id` 仅按记录 ID 与本人 `owner_id` 删除，离场后也可用；不删除对方副本、交换或照片。收藏页读取不自动恢复成员关系，回场只预填邀请码，等待用户点击加入。
-
-Live 的入口 payload：`roomId` 选择本人已加入场次；`intent:'make-card'` 在当前场次开编辑器，没有场次则创建后开编辑器；`intent:'invite'` 有当前场次则开邀请，没有场次则留昵称、创建后开邀请；`joinCode` 加 `intent:'join-room'` 仅预填加入码。携带 `songDraft:{id,title,artists,source,dataset}` 时始终走新建场次，只将 `title` 写入可编辑的歌名草稿，不改旧房间。
-
-音乐收藏独立保存为 `{version:1,tracks:[],imports:[]}`；条目含 `id / title / artists / source / dataset / savedAt`。真实精选与 HF 可留下，虚构作品仍属于示例。旧真实 Map 收藏仅导入一次，移除后不再次补回；删歌不删路线。它仅在本机，不写入 SQLite 或声明跨设备同步。
-
-## 3. 最少数据对象
-
-| 对象 | 最少字段 / 用途 |
-|---|---|
-| Artist / Track | 稳定 ID、`dataset`、名称、显式 `songIds`；真实精选含录音版本、`credits` / `creditSources`、日期与空的 `listenLinks`；`audioAvailable:false` |
-| OpenCatalogue | 独立 HF 精选 JSON；共同署名和数据来源，不写入原挑战图或人工核实制作工种 |
-| SavedMusic | 本机独立收藏的 `id / title / artists / source / dataset / savedAt`，不属于房间歌曲、交换快照或路线步数 |
-| Relation | 两端艺人、`dataset`、合作作品、版本、演唱角色和来源；真实共同演唱或明确示例 |
-| Event | 房间响应与新卡快照中的 `{id,title,date,city,song,isDemo}`；Map 真实合作专题与虚构示例另行标识 |
-| Moment | 场次内的歌曲或环节，如返场、全场合唱 |
-| User / Room / Member | 用户 ID 与 token 哈希、房间 ID / 邀请码 / 活动、成员关系；加入时检查 24 人容量 |
-| Photo | ID、room_id、owner_id、mime、data BLOB、created_at；当前只接收 JPEG |
-| Card | ID、房间、作者、eventId / event、momentId、trackId、photoKey / photoId、perspective、短句、展示状态、revision、时间 |
-| Exchange | 房间、双方用户和卡 ID、发出时两张卡的快照、状态、取消原因、时间 |
-| Record | 记录所有者、房间、已接受交换 ID、两卡快照；每位用户每次交换一条 |
-| LocalMemory | 本地单卡收藏、新接受后自动保存的双联，以及兼容手存的旧接受记录；与联网 Record、Map 记录分开 |
-| MapSession | `dataset`、图谱版本、类型、完成状态、起点 / 当前艺人、目标、模式 / 视角、当前路径、完整事件、主动留下曲目、原漫游引用。寻声（`type:'challenge'` 且 `fog:true`）另有：`flipped`（已翻开的边 ID）、`hints`（`[{level,at,edgeId?,t}]`），状态增加 `revealed`；`move` 事件在用过提示 ① 后带 `remaining` 与 `tone`（near / far / even） |
-| MapView | `map.view` 删除 `networkQuery`，增加一次性的 `ceremony:{sessionId,kind,token}` 与 `roundCursor:{real,fictional}`；`map.roundsIntroduced` 是一次性迁移标记 |
-| Sakura presentation | 固定樱花夜场艺术方向；无新业务对象或数据库表，不写入 Card、Exchange 或 Record 快照 |
-
-SQLite 包含用户、房间、成员、照片、卡片、交换和记录表。新交换序列化完整卡片对象，因而同时冻结照片 ID、活动、环节、视角和短句；后续换图、改卡、撤卡不改写已有快照。Map 的合作依据、Space 的共同兴趣和用户自述到场保持不同含义。
-
-Map 的真实数据使用 `real-*` ID，原 `a…i` / `co-*` / `style-*` 保留为 `fictional`。旧会话缺 `dataset` 时按原艺人 ID 补识别，不将旧路线替换成真实艺人；切换图谱恢复该数据集已有会话；没有记住的会话时，按该数据集 `rounds[0]` 开局。旧存档迁移由 `roundsIntroduced` 控制，只做一次：删除 `networkQuery`，补上 `roundCursor`；活动会话若是从未走过、没有事件、也没有留下作品的漫游，换成默认寻声局；已走过的漫游和没有 `fog` 的旧挑战原样保留，旧挑战仍显示全网。寻声状态随 `music-map-space:v1` 保存，不新增存储键，不改服务端。进入 Space 前保存 `space.mapReturnId`，真实专题传 `{from:'real-map',intent:'create-room',resumeSessionId}` 引导用户自建活动，返回按 `{resumeSessionId}` 恢复原局。
-
-## 4. 交换状态
-
-```mermaid
-stateDiagram-v2
-    [*] --> pending: 发起申请并指定两张卡
-    pending --> accepted: 指定接收方接受
-    pending --> declined: 指定接收方拒绝
-    pending --> cancelled: 发起方取消 / 撤卡 / 离场
-    accepted --> [*]: 新交换自动保存双方记录
-    declined --> [*]
-    cancelled --> [*]
-```
-
-联网发起请求必传 `fromRevision` 和 `toRevision`；任一与当前卡不符返回 `409 CARD_CHANGED`，先看新版再确认。pending 保存不可变的两卡快照，后续编辑不替换申请内容；撤下或离场会取消相关 pending。相同两人同房间最多一条 pending，不能自换。只有 accepted 打开双联仪式页，并自动保存两份私有记录；拒绝和取消不生成记录。删除自己的记录不影响对方，也不撤销 accepted 交换的照片读取依据，终态重复响应不重复保存。本地同版本已完成交换的复用规则见第 2 节，不混写为服务端新增约束。
-
-### API 入口
-
-除健康检查和创建会话外，其余请求携带 `Authorization: Bearer <token>`；JSON 错误格式为 `{error:{code,message}}`。普通 JSON 请求限制 8 KiB；照片上传 JSON 限制 420 KiB，其中 JPEG 二进制最多 300 KiB。服务检查 JPEG data URL、base64 和首尾签名，不引入图像处理库；浏览器负责重绘压缩。图片上传每人最多 12 次 / 分钟、60 次 / 小时，仍受整体请求频率限制。不开放跨域 CORS。
-
-| 接口（均以 `/api/live` 开头） | 用途 |
-|---|---|
-| `GET /health` | 公开返回 `{ok:true,storage:'sqlite'}`，不泄露房间或用户 |
-| `POST /session`、`GET /session` | 创建匿名凭据；恢复用户和自己已加入房间列表 |
-| `GET /library` | `{me,rooms,cards,records}`；本人跨场次当前卡与已保存双联，附房间信息及 `joined`；离场后仍可读取 |
-| `DELETE /library/records/:id` | 仅删除本人双联，离场后也可用；返回 `{ok:true}`，不删除对方记录、交换或照片 |
-| `POST /rooms` | `{title,eventDate,city,song}` 建立自定义活动房间，返回 room state；`room.event` 含 `date`（请求字段为 `eventDate`） |
-| `POST /rooms/join` | `{code}` 按 6 位码加入，不提供公共房间检索 |
-| `GET /rooms/:id` | 获取房间、自卡、可见卡、自己参与的交换、自己的纪念记录 |
-| `POST /rooms/:id/photos` | `{dataUrl:'data:image/jpeg;base64,...'}`；检查本房成员身份，成功返回 `201 {photoId}` |
-| `GET /photos/:id` | 携带 bearer 且满足照片读取权限时返回 `image/jpeg`，`Cache-Control:no-store`；无身份为 401，不可查看或不存在统一 404。不能以裸 URL 直接读取 |
-| `PUT /rooms/:id/card` | `{photoKey,photoId,perspective,caption,momentId,trackId,isPublic}` 创建 / 修改自卡，递增版本；photoId 仅允许本人本房照片 |
-| `PATCH /rooms/:id/card/visibility` | 展示或撤下自卡 |
-| `POST /rooms/:id/exchanges` | 指定 `toCardId`、`fromRevision`、`toRevision` 发出申请 |
-| `POST /rooms/:id/exchanges/:exchangeId/decision` | `accepted` / `declined` / `cancelled`，服务检查操作方 |
-| `DELETE /rooms/:id/records/:recordId` | 只删除当前用户自己的记录 |
-| `DELETE /rooms/:id/membership` | 显式退出，隐藏自卡、取消待回应，保留已接受记录 |
-
-## 5. 音频如果加入
-
-当前没有播放器、音频下载或实时音频分析；试听链接已撤下。以后优先采用经核实的 QQ 音乐同作品、同版本直达，未核实时继续不显示入口。当前来源链接只用于署名取证。以下仅是未来确实接入试听时的规格。
-
-使用单一原生音频元素，只有用户明确点击才播放。浏览其他艺人、开关面板或进入 Space 不主动打断；播放器显示实际音源，避免把 A 的歌归到当前查看的 B。刷新不自动播放，后台表现以实际浏览器为准。
-
-缺资源、加载失败和播放被拒绝都要反馈；不以计时器伪装真实声音，也不把另一首歌挂到目标作品名下。只有确实接入音频分析时才显示真实频谱，普通装饰不标作实时音频。
-
-本条是“实现试听时”的规格。已下载的 HF 文件只有元数据，不提供试听音频；没有试听仍可完整展示现场卡和交换。
-
-## 6. 本地运行与部署
-
-环境：Node.js **24 或更高**。首次安装与构建：
-
-```powershell
-npm ci
-npm run build
-```
-
-开发时开两个终端，分别运行 `npm run server` 与 `npm run dev`。前端 Vite 把 `/api/live` 代理到 `http://127.0.0.1:8787`；使用 Vite 打印的页面地址。`npm run preview` 仅用于查看静态构建，不是生产 API 服务。
-
-生产产物本地运行：构建后执行 `npm start`，再打开 `http://127.0.0.1:8787`。Node 同时提供网页、API 和 SPA fallback。默认仅本机访问；需要指定绑定地址、端口或数据目录时，在启动前设置环境变量：
-
-```powershell
-$env:HOST = '127.0.0.1'
-$env:PORT = '8787'
-$env:DATA_DIR = 'D:\music-map-data'
-npm start
-```
-
-以上数据目录仅为示例，应使用实际有写权限且持续保留的路径；未设置时为仓库根 `data/`。数据库与 `-wal` / `-shm` 文件、用户照片、`.env`、`node_modules/`、`dist/` 均不提交。
-
-### 可选 Docker 交付
-
-仓库有多阶段 Dockerfile：构建前端，运行时保留 Node 24、服务和 `dist/`，以非 root 用户运行。
-
-```powershell
-docker build -t music-map-space:0.15.0 .
-docker volume create music-map-data
-docker run -d --name music-map-space --restart unless-stopped -p 127.0.0.1:8787:8787 -v music-map-data:/app/data music-map-space:0.15.0
-```
-
-这些是部署说明，不代表已经执行。Docker 内服务监听 `0.0.0.0`，上述端口映射仍只开放到宿主机环回地址。生产由反向代理将同一 HTTPS 域名的页面和 `/api/live` 全部转发到这个 Node 实例；需要定向访问时也在入口限制站点访问。保留 `music-map-data` volume，不把数据库放进镜像或无持久磁盘的平台。采用单实例，不启用多个独立 SQLite 副本的自动横向扩容。实际托管、TLS、访问控制与备份安排尚未执行。
-
-## 7. 当前交付与后续
+### C. 当前交付与后续（2.6 §7，原标题「7. 当前交付与后续」从略）
 
 | 项目 | 当前安排 | 记录位置 |
 |---|---|---|
@@ -300,7 +409,7 @@ docker run -d --name music-map-space --restart unless-stopped -p 127.0.0.1:8787:
 
 本轮不新增推理模型或内置音频。若联网部署受阻，可如实交付静态情景演示并保留联网代码；录像和介绍须同步删去未经展示的联网完成声明，不能用本地角色切换充数。
 
-## 8. 证据与待检查边界
+### D. 证据与待检查边界（2.6 §8 全文，原标题「8. 证据与待检查边界」从略；以下各小节标题为原文）
 
 ### 0.15 当前整合
 

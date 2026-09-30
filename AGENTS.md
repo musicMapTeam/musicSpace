@@ -5,7 +5,7 @@
 ## 产品拆分
 
 - 2026-09-29 用户决定：Music Map 保持原样，继续在 `musicMapTeam/musicMap`（main `61d0689`，MVP 0.16.0，线上 <https://musicmapteam.github.io/musicMap/>）；交换产品作为独立产品 **Music Space**（暂定名）另建仓库 `musicMapTeam/musicSpace`，以 0.15（`3dd102c`）为起点，移除 Map 一半。
-- Space 的线上演示按用户决定做成 GitHub Pages 上的静态单文件，地址 <https://musicmapteam.github.io/musicSpace/>，尚未部署。线上体验的是本地双角色示例（可换成自己的照片）；真实房间与交换用 Node + SQLite 服务运行，演示走局域网或录屏。
+- Space 的线上演示按用户决定做成 GitHub Pages 上的静态版，地址 <https://musicmapteam.github.io/musicSpace/>，尚未部署。线上体验的是本地双角色示例（可换成自己的照片）；真实房间与交换用 Node + SQLite 服务运行，演示走局域网或录屏。2026-09-30 起端侧视角识别把模型与运行时（`web/public/ai/`，约 23 MB）随构建放进 `dist/ai/`，不内联进页面，所以静态版的部署单位是整个 `dist/`（`index.html` 加 `ai/`），不再是单个 HTML；只发布 `index.html` 时页面仍能用，只是没有 AI。
 - Map 的能力、数据、文案、存储键和跳转不进入 Space，也不把 Map 写成 Space 的一部分。0.15 的 Map 部分留在 Git 提交 `3dd102c` 和 Map 仓库。
 - 每支队伍限定提交一份作品（官网规则，见 `references/official/2026-09-26/website/page-text.txt`）。提交 Space 还是 Map 尚未决定，需要与队友（产品负责人 igohomealone216）商定；结论出来前不写成已定，也不替队友表态。
 
@@ -29,25 +29,28 @@
 - 联网制卡在同一个 form 内分「选照片」「留一句」两步，新卡从照片开始，旧卡直接编辑短句；来回切换保留输入，环节和歌名放在「更多细节」。私藏／展示与保存结果始终明确，换步骤不产生保存或公开。同一 live 页面关闭再开继续草稿，修改后显示“草稿未保存”；保存成功或换房才清理，不承诺刷新或跨页恢复。
 - PNG 导出使用已授权照片和唯一樱花排版。生成后展示真实成品预览，允许再次下载、长按保存；仅在浏览器支持文件分享时显示分享按钮，必须由用户主动点击。关闭或下一次导出释放预览 URL，不增加照片权限。
 - 产品主张（自 0.4.0 起）是“同一刻，另一面”：以用户自己的现场卡、不同视角与双向同意为主线。
-- 现场墙的排序与推荐理由由用户填写的字段（时刻、视角、歌名）按普通规则计算；当前没有模型推理或 AI 匹配分数，视角由用户自选。计划中的端侧视角识别、拍摄时间对齐与「那晚的歌单」还没做，做成并验证前不写成已有能力。听歌链接优先 QQ 音乐，未核到同一录音直达页就不放；没有内置音频。
+- 「同一刻，另一面」（2026-09-30 起）：卡带拍摄时间 `takenAt` 与来源 `takenSource`（`exif` / `manual` / `file`；示例卡为仅存本机的 `sample`）。EXIF 在压缩前从原图读取（`web/js/ai/exif-time.js`），按北京时间显示，照片不带时区就当作北京时间；`file`（文件修改时间）与修图软件、PNG 的时间只是预填的猜测，不参与判断。两张卡的可信时间相差 ≤ 3 分钟（`SAME_MOMENT_MS`）算同一刻，任一方没有可信时间时退回两人选的同一 `momentId`；同一刻而视角不同的卡标「同一刻的另一面」，理由写成人能核对的话（「同一刻 · 21:47，相差 1 分钟；你拍舞台，TA 拍人海」）。规则集中在 `web/js/moment.js`（无 DOM、无依赖，`npm test` 覆盖），示例页、房间页、双联页与 PNG 共用。
+- 视角建议是产品里唯一的模型：TinyCLIP-ViT-8M/16 图像塔（MIT，int8）+ onnxruntime-web（WASM 单线程），在浏览器里本机判断，照片不上传；只在「有把握」（余弦差 ≥ 0.02 且概率 ≥ 0.5）时预选，选的视角永不被覆盖，不支持或失败时界面里不出现 AI 字样（`web/js/ai/space-ai.js`）。文案只说「AI 在本机判断，照片不上传」，不说准确、不说确定。准确率只在 75 张公开 CC 图上量过（top-1 92%），没在真实观众照片上量过，不写成产品指标。配对、排序与理由不含 AI。
+- 「那晚的歌单」：卡上选填的「这一刻在唱的歌」（≤ 40 字），按拍摄时间排序；链接只是 QQ 音乐的按歌名搜索（`y.qq.com/n/ryqq/search?w=…&t=song`），不是核实过的同一录音直达页，页面也这样写；手机上的 QQ 音乐会丢掉搜索词，所以另有「复制歌名」。示例场次的虚构曲目标「示例」、不放链接。没有内置音频。
 - 本地双角色情景与联网独立会话分别标注。用户自填场次、视角和照片不构成到场认证；本机双会话检查不等于实体双手机、外网评审访问或目标用户研究。
 
 ## 静态版与房间版
 
-- 页面启动时探测一次 `/api/live/health`，结果为 `api.backend = { available, note }`；`file://` 与 `*.github.io` 不探测，直接按静态版。房间相关的显示与跳转只读 `api.backend.available`，不各自探测；探测答案晚到时补出房间入口，不重载页面。
+- 模式由页面自己的来源决定，结果为 `api.backend = { available, note }`：房间服务在它提供的 `index.html` 的 `<head>` 里写入 `<meta name="space-rooms" content="1">`（`server/index.js` 的 `markRooms`，先于内联脚本），页面据此立刻按房间版显示，并在后台用 `/api/live/health` 确认，失败会隔 1.5 秒再试一次，仍失败就退回静态版（换掉房间路由、给出统一的一句说明，不重载；已打开的示例或对话框等它关掉再刷新）。`file://`、`*.github.io` 上的标记一律忽略；没有标记的页面（`vite preview`、任意静态托管）按静态版，不发探测请求。只有 Vite 开发服务器（`import.meta.env.DEV`）因代理到本机服务，仍探测一次并采纳晚到的答案（两个方向都可）。房间相关的显示与跳转只读 `api.backend.available`，不各自探测。静态版里 `?room=` 邀请参数会从地址中去掉。
 - 房间版（服务可用）：首页主按钮为「记录我的现场」「邀请朋友」，另有「继续本场」「我有邀请码」，「体验示例」作为侧门；邀请有当前房间直接展示邀请码，没有房间先留昵称、创建再邀请。导航为小院 / 照片墙 / 收藏。
 - 静态版（无服务）：首页以「体验示例」为主、「用我的照片」为辅；导航第二项为「示例」，收藏页只有「示例」；房间入口（邀请朋友、邀请码等）不显示。`live` 路由不作为目的地，一律进入示例，并统一用一句「真实房间需要完整版服务；线上可先用示例体验完整流程」（即 `api.backend.note`）说明，不另造措辞，也不写成故障。
 - 本地示例路由为 `#/space/demo`，两种模式都可进入。Lin / 阿遥、场次和歌曲为虚构，预置图由 AI 生成，写明“情景演示”；用户自己的照片缩小并去掉定位信息，只存本机，不进房间。静态部署不得写成支持跨设备交换或真实房间。
 
 ## 浏览器存储
 
-- Space 与 Map 部署在同一个 github.io 源，`localStorage` 按源共享，不按路径隔离。Space 只读写 `music-space:v1`（本地示例状态）、`music-space-live:v1`（房间身份）和 `music-space-duet-seen:v1`（双联首映是否看过）；新增的键都用 `music-space-` 前缀。
+- Space 与 Map 部署在同一个 github.io 源，`localStorage` 与 Cache Storage 都按源共享，不按路径隔离。Space 只读写 `localStorage` 的 `music-space:v1`（本地示例状态）、`music-space-live:v1`（房间身份）和 `music-space-duet-seen:v1`（双联首映是否看过），以及 Cache Storage 的 `music-space-ai-v1`（端侧模型、运行时脚本与 wasm，`web/js/ai/space-ai.js` 的 `CACHE_NAME`；换模型或运行时要一起改名，回访者才不会留着旧文件）；新增的键都用 `music-space-` 前缀。
+- 写入 `music-space:v1` 被浏览器拒绝时，`api.storageState()` 说明原因（`quota`：照片太大；`blocked`：浏览器禁止本地存储），顶部提示、toast 与「卡片已保存」对话框都据此改口，不再说「已保存」；说「已保存」的 toast 用 `api.toast(msg, { saved: true })` 标记。房间页的「已保存」指服务端已保存，不受本机存储影响。
 - 不写、不改、不删 0.15 遗留的 `music-map-space:v1`、`music-map-live:v1` 和 Map 的 `music-map-saved-music:v1`；Map 0.16 会剔除 `music-map-space:v1` 里的 `space` 字段。前两个旧键只在首次启动时读取：Space 自有键不存在时，各复制一次 0.15 的本地示例状态与房间身份，之后旧键原样保留；`music-map-saved-music:v1` 不读。
 - 服务端判定身份失效（401）后，`music-space-live:v1` 写入 `null`，不删除键：只有键不存在才会领养 Map 时代的身份，服务端已丢弃的身份不能回来。
 
 ## 代码与资料
 
-- 新版入口为 `web/index.html`；业务代码在 `web/js/`，样式在 `web/css/`，图片与许可记录在 `web/assets/`。
+- 新版入口为 `web/index.html`；业务代码在 `web/js/`（端侧 AI 与 EXIF 在 `web/js/ai/`），样式在 `web/css/`，图片与许可记录在 `web/assets/`；原样复制进 `dist/` 的文件在 `web/public/`（`ai/tc8/` 模型与标签，入 Git；`ai/ort/` 由 `npm run ai:ort` 生成，不入 Git）。`scripts/ai/` 是模型的来源、复现与检查脚本，`scripts/test/` 是 `npm test` 的两份检查。
 - `product/prototype/` 是旧版参考，不直接混入新版构建或把旧版能力写成新版已完成。确需复用时，明确迁移到新版的代码与含义。
 - `references/official/` 保存官方原始资料；`references/research/` 保存按日期整理的研究、来源与采用决定。不要修改历史原文来适配当前方案，研究结论须区分已读事实、推断与尚未执行的建议。
 - 当前产品依据为 `product/docs/01-product-plan.md`、`02-delivery-plan.md`、`03-build-guide.md`，`docs/VISUAL_THEMES.md` 补充唯一樱花艺术规范，不另建产品状态体系。这些文档与 `product/README.md`、`CHANGELOG.md`、`RUN-ME.md`、`THIRD_PARTY_NOTICES.md`、`delivery/`、`docs/competition/` 仍是 0.15 的 Map × Space 内容，待按 Space 改写；改写前其中的 Map 部分不适用，与本文、`README.md`、`docs/PROJECT_STATUS.md` 冲突时以后三者为准。`archive/` 不作为当前实施规格。
@@ -66,7 +69,7 @@
 - 引入开源代码或素材时在 `THIRD_PARTY_NOTICES.md` 记录来源、版本或提交、许可及本地修改，保留要求附带的许可证。AI 生成素材标明生成日期及虚构性质。
 - 不提交用户上传照片、`.env` 或其他凭据、`node_modules/`、`dist/`。演示用预置素材应有来源说明。
 - 用户上传照片在当前服务受权限保护的数据库中保存；上传、房内展示和定向交换是不同操作。不能把图片改放公共静态目录，也不把邀请码当作整个评审网站的访问控制。
-- 当前使用 Vite `8.3.1` + `vite-plugin-singlefile` `2.3.3`。2026-09-27 完整 MVP 开发选定 Node.js 24 + 自带 SQLite 实现独立会话真实交换，服务位于 `server/`。普通功能不新增测试框架、推理模型或复杂工程流程；计划中的端侧视角识别单独立项，先记录模型来源、许可与体积，再引入。
+- 当前使用 Vite `8.3.1` + `vite-plugin-singlefile` `2.3.3`（只内联脚本与样式；`web/public/` 不内联）。2026-09-27 完整 MVP 开发选定 Node.js 24 + 自带 SQLite 实现独立会话真实交换，服务位于 `server/`。2026-09-30 引入端侧视角识别：TinyCLIP-ViT-8M/16 图像塔（MIT）与 onnxruntime-web `1.30.0`（精确版本的 devDependency，构建时复制三个文件），来源、许可、体积与本地改动记在 `THIRD_PARTY_NOTICES.md` 和 `scripts/ai/README.md`。不得从 huggingface.co、jsdelivr 或其他外部源在运行时加载模型或脚本（大陆访问不可靠），一律同源；MobileCLIP 权重仅限研究，不用。普通功能不新增测试框架或复杂工程流程；`npm test` 只用 Node 自带的 `node:assert`。
 
 ## 完成与提交
 

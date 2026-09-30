@@ -18,7 +18,7 @@ npm run build
 npm run preview
 ```
 
-构建工具固定为 Vite `8.3.1` 与 `vite-plugin-singlefile` `2.3.3`，目标为单文件 HTML 交付。构建成功只说明产物生成；正式部署与在线可访问性需要分别记录证据。`dist/` 是本地产物，不提交 Git。
+构建工具固定为 Vite `8.3.1` 与 `vite-plugin-singlefile` `2.3.3`：脚本与样式内联进 `dist/index.html`，`web/public/`（端侧 AI 的模型与 onnxruntime-web 运行时，约 23 MB）原样复制到 `dist/ai/`，所以静态部署的单位是整个 `dist/`。`npm run dev` 与 `npm run build` 会先复制运行时（`npm run ai:ort`），`npm run ai:check` 检查 `dist/ai/`。构建成功只说明产物生成；正式部署与在线可访问性需要分别记录证据。`dist/` 与 `web/public/ai/ort/` 是本地产物，不提交 Git。`npm test` 检查「同一刻」规则与房间卡片接口，只用 Node 自带的 `node:assert`。
 
 完整生产版本使用 `npm run build` 后 `npm start`，同一个 Node 服务提供页面和真实交换接口；`npm run preview` 仅预览静态演示。后端代码在 `server/`，本地数据库在忽略的 `data/`；不能把数据库或临时会话令牌放入 Git。
 
@@ -44,7 +44,7 @@ npm run preview
 - `feat: 完成现场卡交换申请`：新增能力。
 - `fix: 修正拒绝后的交换状态`：修复已有行为。
 - `docs: 更新演示范围与完成证据`：文档与资料。
-- `build: 调整单文件构建配置`：依赖和构建。
+- `build: 调整构建配置`：依赖和构建。
 
 不提交用户上传照片、`.env`、凭据、`node_modules/`、`dist/`；预置示例图片需有来源。不要把旧 `product/prototype/` 整包复制进新版来宣称迁移完成。
 

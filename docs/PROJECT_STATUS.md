@@ -1,6 +1,6 @@
 # 项目状态
 
-更新日期：**2026-09-29** · Music Space 起点 MVP **0.15.0**（`3dd102c`），版本号尚未重定 · 产品文档仍为 **2.6**（Map × Space 时期，待改写）。
+更新日期：**2026-09-30** · Music Space 起点 MVP **0.15.0**（`3dd102c`），版本号尚未重定 · 产品文档仍为 **2.6**（Map × Space 时期，待改写）。
 
 2026-09-29 用户决定：Music Map 保持原样，留在 [musicMapTeam/musicMap](https://github.com/musicMapTeam/musicMap)（main `61d0689`，MVP 0.16.0，线上 <https://musicmapteam.github.io/musicMap/>）；交换产品作为独立产品 **Music Space**（暂定名）在新仓库 `musicMapTeam/musicSpace` 继续，从 0.15 起、移除 Map 一半。线上演示按决定做成 GitHub Pages 上的静态单文件 <https://musicmapteam.github.io/musicSpace/>（待部署，尚未上线），真实房间与交换用 Node + SQLite 服务运行。
 
@@ -16,12 +16,10 @@
 | --- | --- | --- |
 | 确定提交 Music Space 还是 Music Map | 用户与队友（产品负责人 igohomealone216），待商定 | 官网规则：每支队伍限定提交一份作品（[原文](../references/official/2026-09-26/website/page-text.txt)）。决定与日期记入本文与 AGENTS.md，报名材料同步；此前不写成已定，也不替队友表态。Map 仓库 `61d0689` 的项目状态另记有 2026-09-28 用户以 Map 为参赛主线的决定，其细节尚待与产品负责人对齐；本仓库不据此判断提交哪一个 |
 | 创建 `musicMapTeam/musicSpace` 并推送本分支 | 未认领 | 用户 2026-09-29 已要求新开仓库，授权建仓与推送本分支；完成后远端仓库与分支可见，记下远端提交号。PR、合并和其他推送先问用户 |
-| 部署静态演示到 GitHub Pages | 未认领 | <https://musicmapteam.github.io/musicSpace/> 外网可打开，首页为静态版（「体验示例」为主、房间入口隐藏）；该地址与 Map 同源，实际检查两个产品的浏览器存储互不影响；部署前先问用户；不把 Pages 写成支持跨设备交换 |
-| 照片拍摄时间对齐进「同一刻」 | 未认领 | 读取照片拍摄时间，把不同人的卡对齐到同一刻。先定读取与保存哪些元数据，不破坏现有「去掉定位信息」的说明；无拍摄时间的照片有明确回退；用两张真实照片实际操作并记录 |
-| 端侧 AI 视角识别（舞台 / 人海 / 身边 / 细节） | 未认领 | 在设备上识别视角，用来配对互补的照片；目前视角由用户自选，没有模型推理。选定模型并在 `THIRD_PARTY_NOTICES.md` 记录来源、版本、许可与体积；实际配对操作有记录；不上传照片，不虚报准确率 |
-| 「那晚的歌单」与 QQ 音乐链接 | 未认领 | 每条链接核到同一录音的直达页，核不到就不放链接；来源与核对日期留档。原「QQ 音乐同录音直达 / 可选音频」一项的链接部分并入此行，音频仍未安排（现在没有内置音频） |
-| 手机端打磨 | 未认领 | 逐屏检查首页、示例、制卡、双联页与收藏：正文不小于 14px、辅助文字不小于 12px、点击目标不小于 44px。有真机就记机型与系统，没有就写明“模拟视口”，未验证项如实记 |
-| 按 Space 改写其余文档，重做介绍、封面与视频 | 未认领 | 改写 `product/docs/` 三份产品文档、`docs/VISUAL_THEMES.md`、`docs/competition/README.md`、`CHANGELOG.md`、`RUN-ME.md`、`THIRD_PARTY_NOTICES.md`、`delivery/README.md`、`product/README.md`（现均含 Map 内容）；重写报名介绍；重做 16:9 封面与演示视频（须含实际页面操作录屏与讲解或字幕）。现有 0.15 封面含唱片店寻声截图、0.4 视频含约 20 秒 Map 片段，都不能直接用于 Space |
+| 部署静态演示到 GitHub Pages | 未认领 | <https://musicmapteam.github.io/musicSpace/> 外网可打开，首页为静态版（「体验示例」为主、房间入口隐藏）；发布整个 `dist/`（含 `ai/`，不只是 `index.html`），并实测 `ai/` 的实际传输大小（是否压缩，README 里的「约 10 MB」目前只是本机 gzip 的换算）、Cache Storage 命中和从大陆网络的加载；该地址与 Map 同源，实际检查两个产品的浏览器存储（`localStorage` 与 Cache Storage）互不影响；部署前先问用户；不把 Pages 写成支持跨设备交换 |
+| 真机与主流手机浏览器上的端侧 AI | 未认领 | iOS Safari、微信内置浏览器、Android Chrome 各上传两张照片，记录机型与系统、能否加载（WebAssembly SIMD、内存）、首次下载耗时、每张的判断耗时与页面停顿，以及不支持时的回退；用至少 30 张真实手机现场照片（注明来源与同意）量视角建议的准确率与「有把握」的比例，不虚报；评估把推理放进 Worker（`env.wasm.proxy`，桌面 Chrome 上实测主线程停顿从约 340 ms 降到 40 ms，加载慢约 1 s）|
+| 手机端打磨 | 未认领 | 逐屏检查首页、示例、制卡、双联页与收藏：正文不小于 14px、辅助文字不小于 12px、点击目标不小于 44px。有真机就记机型与系统，没有就写明“模拟视口”，未验证项如实记。2026-09-30 已用 Tabbit（Chrome 152）的 1280×800 与 390×844 模拟视口按可点区域查过示例页、制卡、票根、收藏与房间页（见 Doing），没有触屏、真机、其他尺寸与其他浏览器的记录 |
+| 按 Space 改写其余文档，重做介绍、封面与视频 | 未认领 | 改写 `product/docs/` 三份产品文档、`docs/VISUAL_THEMES.md`、`docs/competition/README.md`、`CHANGELOG.md`、`THIRD_PARTY_NOTICES.md`、`delivery/README.md`、`product/README.md`（现均含 Map 内容；`RUN-ME.md` 已于 2026-09-30 按 Space 重写，`CHANGELOG.md` 与 `THIRD_PARTY_NOTICES.md` 已加本轮条目，Map 时期的旧条目仍在）；`docs/competition/README.md` 与 `product/docs/` 里「没有模型推理、规则匹配不是模型推理」的 AI 使用说明已不符合现状（现在有端侧视角识别），报名介绍与 AI 使用说明要据实重写；重写报名介绍；重做 16:9 封面与演示视频（须含实际页面操作录屏与讲解或字幕）。现有 0.15 封面含唱片店寻声截图、0.4 视频含约 20 秒 Map 片段，都不能直接用于 Space |
 | 目标用户试用 | 团队 | 6 对同场观众，比较群相册与双联的实际选择；先验证是否愿意主动交换，不编造招募或结果 |
 | 最终报名与提交 | 团队 | 核对报名信息、上传材料、提交回执 |
 
@@ -32,6 +30,7 @@
 | 任务 | 负责人 | 文件范围 | 状态 |
 | --- | --- | --- | --- |
 | 拆分为独立产品 Music Space：以 0.15 为起点移除 Map 一半，改成静态版 + 房间版，存储键独立 | 开发侧 + Claude 子代理（多代理并行，文件范围互斥） | `web/js/`、`web/css/`、`web/index.html`、`vite.config.js`、`package.json`、`package-lock.json`、`.github/workflows/build.yml`、`.gitignore`、`server/index.js`（仅启动日志文案）、`web/assets/licenses/`、`web/assets/data/`、`scripts/datasets/`、`AGENTS.md`、`README.md`、本文；明细见下 | 进行中：改动都在工作树，未提交、未推送、未部署 |
+| 「同一刻，另一面」：读拍摄时间、端侧 AI 视角识别、配对理由、那晚的歌单，并整理外壳（模式检测、存储提示、品牌、点击目标）；集成与检查 | 开发侧 + Claude 子代理（AI 核心、功能、外壳、集成，文件范围互斥） | `web/js/ai/`、`web/public/ai/`、`web/js/moment.js`、`photo-insight.js`、`setlist-ui.js`、`space.js`、`space-data.js`、`live.js`、`live-library.js`、`duet-ceremony.js`、`duet-facts.js`、`ticket-export.js`、`app.js`、`home.js`、`storage.js`、`web/css/`、`web/index.html`、`server/`、`scripts/ai/`、`scripts/test/`、`vite.config.js`、`package.json`、`package-lock.json`、`.github/workflows/build.yml`、`Dockerfile`、`.dockerignore`、`.gitattributes`、`.gitignore`、`AGENTS.md`、`README.md`、`RUN-ME.md`、`CONTRIBUTING.md`、`CHANGELOG.md`、`THIRD_PARTY_NOTICES.md`、本文 | 进行中：改动都在工作树，未提交、未推送、未部署；检查记录见「2026-09-30 一轮的检查」 |
 
 文件范围明细：
 
@@ -43,13 +42,37 @@
 已改（对工作树代码与改动清单的核对；本文没有收到本轮的构建或浏览器操作记录，不据此写成通过）：
 
 - 路由只剩小院（首页）、`live`（照片墙）、`records`（收藏），另有本地示例 `#/space/demo`；旧 `#/explore` 书签落回首页。
-- 启动时探测 `/api/live/health`（`file://` 与 `*.github.io` 跳过），结果为 `api.backend = { available, note }`。无服务时首页以「体验示例」为主、「用我的照片」为辅，房间专属入口隐藏或转到示例，并统一用「真实房间需要完整版服务；线上可先用示例体验完整流程」这一句说明；有服务时房间版行为不变。
+- 模式由页面来源决定（2026-09-30 起，规则见 AGENTS.md「静态版与房间版」）：房间服务在它提供的页面里写 `<meta name="space-rooms" content="1">`，页面立刻按房间版显示并在后台确认；没有标记就是静态版，不发探测请求；只有 Vite 开发服务器仍探测。结果为 `api.backend = { available, note }`。无服务时首页以「体验示例」为主、「用我的照片」为辅，房间专属入口隐藏或转到示例，并统一用「真实房间需要完整版服务；线上可先用示例体验完整流程」这一句说明；有服务时房间版行为不变。
 - 存储键改为 `music-space:v1`、`music-space-live:v1`（`music-space-duet-seen:v1` 沿用）。自有键不存在时，从 0.15 的 `music-map-space:v1`、`music-map-live:v1` 各复制一次；旧键不改不删，因为 Map 与 Space 同在 github.io 源。
 - 场景接口为 `setView`、`setContent`、`focus`、`restore`、`dispose`；罗盘为小院 / 照片墙 / 工作桌 / 收藏，镜头为 home / live / editor / records / photo；唱片店保留为布景、没有动作；常驻灯从 8 盏减为 7 盏（唱片桌桌灯随唱片店移除）。
 - 包名改为 `music-space`，构建产物名改为 `music-space-demo` / `music-space-runtime`；单文件不再附带 HF 元数据许可注释；PNG 页脚改为「MUSIC SPACE」。
 - 样式子代理报告：非 Map 元素的计算样式与拆分前一致；本文未复核。
 
-移到 Done 需要：生产构建（记录模块数与大小）；静态版（无服务）与房间版（Node + SQLite）各走一遍首页、制卡、申请、同意、双联页、PNG 与收藏；`#/space/demo` 与无服务提示；从 0.15 存档迁移到新键且旧键不变；1440×900 与 390×844 目视，含无 WebGL 与减少动态；搜索确认代码中已无 Map 残留；`README.md`、`AGENTS.md` 与本文同步。
+### 2026-09-30 一轮的检查
+
+改动清单见 `CHANGELOG.md` 的「未发布」一条。下面只记实际执行过的检查（本机 macOS，Node 24.19.0 / npm 11.17.0，Chrome 152 经 Tabbit，模拟视口 1280×800 与 390×844，无触屏）和没有做的。
+
+- **构建与静态检查**：`npm ci` 后 `npm run build`，62 个模块，`dist/index.html` 1,739,325 字节（Vite 估 gzip 600.87 kB），`dist/ai/` 里模型 8,807,127 字节、wasm 14,239,897 字节；`npm run ai:check` 与 `npm test`（`scripts/test/` 的规则与接口两份检查，前者约 100 条断言）通过；`web/js`（不含 vendor）、`server/*.js`、`scripts/` 下脚本 `node --check` 通过；用 Vite 的 `parseAst` 扫 27 个文件，没有未用的 import 与顶层声明。把将要提交的文件（已跟踪加未忽略的未跟踪，245 个）复制到临时目录，`npm ci`、`npm run build`、`npm run ai:check`、`npm test` 通过，得到的 `dist/` 与工作树逐字节相同（8 个文件）。
+- **Docker**：没有构建成镜像——拉取 `node:24-alpine` 的元数据 7 分钟没有返回，已中止，没有留下镜像或容器。改用 `Dockerfile` 的同一文件集（`package.json`、锁文件、`web/`、`scripts/`、`vite.config.js`）在临时目录里做了构建阶段，再把 `dist/`、`server/`、`package.json` 放成运行阶段的布局启动服务：页面带房间标记，`/ai/tc8/vision.onnx` 返回 200。没有 `scripts/` 时 `prebuild` 会 `MODULE_NOT_FOUND`（AI 核心的记录），`Dockerfile` 已补上复制。
+- **EXIF**：对 spike 的 96 个样本，94 个与清单（ExifTool）一致，另 2 个是清单里记为已知上限的（超过 64 个段 / 块，读取器返回空）。
+- **静态版**（`python3 -m http.server --directory dist`，端口 4361）：
+  - 首页只发出一个请求（`/`），没有 `/api/live/health`；导航为小院 / 示例 / 收藏；`?room=…#/live` 落到 `#/space/demo` 并给出统一说明，`?room` 被去掉；`#/explore` 与乱写的哈希落回首页。
+  - 「用我的照片」上传 `real-canon6d-concert.jpg`（2014 年的 EXIF，无时区）：卡上写「拍摄于 2014年10月2日 20:59」；模型从空缓存冷加载，约 0.7 s 时出现「AI 在本机判断视角…」，约 1.0 s 时「AI 判断：舞台」并预选；发出的请求只有同源的 `ai/` 文件与 `blob:`。
+  - 把时间改成 9月26日 21:50 后，与阿遥的 21:48 成为「同一刻的另一面」，理由「同一刻 · 21:48，相差 2 分钟；你拍舞台，TA 拍人海」；歌单里 Lin 的《晴天》带 QQ 搜索链接（`target="_blank"`、`rel="noopener noreferrer"`），示例曲目标「示例」、没有链接。
+  - 无 EXIF 的 `wechat-like-iphone15pm.jpg`：显示「没读到拍摄时间…」，时间框预填文件时间并标「大约的时间」，存为 `file` 来源，配对退回「按你们都选的「返场」算同一刻」。
+  - 申请、切到阿遥同意、双联页正常。
+  - 模拟写入失败（`Storage.prototype.setItem` 抛 `QuotaExceededError` 与 `SecurityError`）：顶部提示、toast 与「卡片已保存」对话框都改口，恢复后重试成功、提示消失。
+  - 键盘：Tab 到得了视角按钮，空格 / 回车切换，焦点环 2 px。
+- **房间版**（`PORT=8861 DATA_DIR=/tmp/space-int2-data node server/index.js`）：
+  - 把 `/api/live/health` 人为拖到 4 s，首页在 207 ms 时已是房间版（记录我的现场 / 邀请朋友 / 我有邀请码 / 体验示例，导航为小院 / 照片墙 / 收藏）；创建房间；第二个身份（`localhost` 源）用邀请码加入。
+  - 两人各传带 EXIF 的照片（21:47:30 与 21:48:50），AI 分别判「舞台」与「人海」；照片墙出现「同一刻的另一面」与「同一刻 · 9月26日 21:47，相差 1 分钟；你拍人海，TA 拍舞台；都写下了《晴天》」；申请、同意后双联页写出两边的视角、时间与共同的歌；歌单合并成一首《晴天》。
+  - 服务端：带 `Accept-Encoding: gzip` 时模型传 6,501,770 字节，解压后 SHA-256 与原文件一致；`If-None-Match` 返回 304；路径穿越与向静态路径 POST 被拒；`.mjs`、`.wasm` 的类型正确。
+  - 接口检查（`api.test.mjs`）覆盖拍摄时间、歌名与视角的校验，交换快照、记录与收藏里带这些字段。
+- **点击目标**：用「元素能否在 44×44 范围内接收指针」的脚本，在 1280×800 与 390×844 下查了示例页、制卡、展示设置、重置、票根、收藏、房间页（含折叠展开）、房间制卡两步、邀请与收藏，找到并修了 1 处（示例页「交换申请」条里的按钮 38 px，改为不可见的 45 px 命中层）；其余只剩相邻控件命中层互相重叠 1–6 px，和折叠里没有显示的内容。
+- **集成时改的**：示例页「卡片已保存」对话框与 toast 接上 `api.storageState()`；「关于」里的 AI 一行按浏览器是否支持改口，「3 分钟」取自 `SAME_MOMENT_MS`；示例制卡里 AI 有把握时提示去哪里改视角；删掉指向已不存在元素的两条命中层选择器和没用的 `VENUE_ZONE`；补上 `Dockerfile` 的 `COPY scripts`、`.dockerignore`、`.gitattributes`；把两份检查收进 `scripts/test/` 并接进 CI；重写 `RUN-ME.md`，改 `README.md`、`AGENTS.md`、`CONTRIBUTING.md`、`CHANGELOG.md`。
+- **没有验证**：iOS Safari、微信内置浏览器、Android 与实体手机（AI 每张约 0.3–0.4 s 的耗时与其间的页面停顿只在桌面 Chrome 上量过）；触屏与其他视口尺寸；GitHub Pages 上 `ai/` 的实际传输大小（README 的「约 10 MB」是本机 gzip 算得的 10.3 MB，另见 GitHub.com 对别人 Pages 站点上的 `.wasm` / `.onnx` 返回 gzip，本站尚未部署）；真实观众照片上的 AI 准确率（只有 75 张 CC 图：top-1 92%，「有把握」的 59 张全对）；QQ 音乐搜索链接在手机上会丢掉搜索词（2026-09-30 用 iPhone UA 的 curl 复查：桌面 UA 落到 `y.qq.com/n/ryqq_v2/search?w=晴天&t=song`，iPhone UA 被转到 `i2.y.qq.com/n3/other/pages/myqq/index.html`；试过的另外几个手机版地址都打不开搜索），所以另给了复制歌名，也没有更好的手机链接可换；读屏软件；减少动态与无 WebGL 只在外壳与功能各自的检查里看过，本轮集成没有重跑。
+
+移到 Done 需要：生产构建（记录模块数与大小，2026-09-30 已记）；静态版（无服务）与房间版（Node + SQLite）各走一遍首页、制卡、申请、同意、双联页、PNG 与收藏（2026-09-30 走过两边的首页、制卡、申请、同意与双联页，收藏页只做了点击目标检查；PNG 导出由功能子代理另查，本文未复核）；`#/space/demo` 与无服务提示（已走）；从 0.15 存档迁移到新键且旧键不变；1440×900 与 390×844 目视，含无 WebGL 与减少动态；搜索确认代码中已无 Map 残留；`README.md`、`AGENTS.md` 与本文同步（2026-09-30 已同步）；上面「没有验证」一节的真机、Pages 部署与真实照片项。
 
 ## Done · 0.15.0
 

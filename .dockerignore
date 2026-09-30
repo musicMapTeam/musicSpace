@@ -1,6 +1,7 @@
 .git
 .github
 node_modules
+**/node_modules
 dist
 data
 .env
@@ -17,3 +18,4 @@ tmp
 *.zip
 *.tar
 *.tar.gz
+scripts/ai/work

@@ -18,3 +18,5 @@ data/
 delivery/*.zip
 delivery/runtime/
 delivery/video-source/.hyperframes/
+# onnxruntime-web runtime files: copied from node_modules by `npm run ai:ort` (predev / prebuild); the model pack in web/public/ai/tc8/ is committed
+web/public/ai/ort/

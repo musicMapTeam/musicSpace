@@ -19,18 +19,25 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
       - run: npm ci --no-audit --no-fund
+      # `npm run build` first runs `npm run ai:ort` (prebuild), which copies the onnxruntime-web 1.30.0 runtime into
+      # web/public/ai/ort/; Vite then copies web/public (model pack + runtime) to dist/ai/ without inlining it.
       - run: npm run build
+      # dist/ai must hold the model pack and exactly the three runtime files, sized as labels.json says; index.html must stay small.
+      - run: npm run ai:check
       - run: node --check server/index.js && node --check server/db.js
+      # The rules of 「同一刻」 (web/js/moment.js) and the card API of the room server (on a free port, throw-away data dir). node:assert only.
+      - run: npm test
+      # Without the ai/ folder next to it, web/js/ai/space-ai.js reports status 'failed' (it never throws), so ship dist/ whole.
       - uses: actions/upload-artifact@v7.0.1
         with:
           name: music-space-demo
-          path: dist/index.html
+          path: dist/
           retention-days: 14
       - uses: actions/upload-artifact@v7.0.1
         with:
           name: music-space-runtime
           path: |
-            dist/index.html
+            dist/
             server/
             package.json
             README.md

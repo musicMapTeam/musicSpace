@@ -8,14 +8,20 @@
     "node": ">=24.0.0"
   },
   "scripts": {
+    "ai:ort": "node scripts/ai/copy-ort.mjs",
+    "ai:check": "node scripts/ai/check-dist.mjs",
+    "predev": "npm run ai:ort",
     "dev": "vite --host 127.0.0.1",
+    "prebuild": "npm run ai:ort",
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1",
     "server": "node --watch server/index.js",
-    "start": "node server/index.js"
+    "start": "node server/index.js",
+    "test": "node scripts/test/moment.test.mjs && node scripts/test/insight.test.mjs && node scripts/test/api.test.mjs"
   },
   "devDependencies": {
     "gsap": "3.15.0",
+    "onnxruntime-web": "1.30.0",
     "overlayscrollbars": "2.16.0",
     "qrcode-generator": "2.0.4",
     "three": "0.186.1",

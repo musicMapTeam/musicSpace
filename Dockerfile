@@ -3,7 +3,9 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
 COPY web ./web
+COPY scripts ./scripts
 COPY vite.config.js ./
+# `npm run build` first runs `npm run ai:ort` (scripts/ai/copy-ort.mjs), which copies the onnxruntime-web runtime into web/public/ai/ort/.
 RUN npm run build
 
 FROM node:24-alpine AS runtime

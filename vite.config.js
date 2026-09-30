@@ -13,8 +13,15 @@ const gsapNotice = readFileSync(new URL('./web/assets/licenses/gsap-notice.txt',
 export default defineConfig({
   root: fileURLToPath(new URL('./web', import.meta.url)),
   base: './',
+  // web/public is copied to dist/ as-is and is never inlined by vite-plugin-singlefile (which only touches the JS/CSS bundle).
+  // It carries the on-device model pack (ai/tc8/) and, after `npm run ai:ort`, the onnxruntime-web runtime (ai/ort/).
+  publicDir: fileURLToPath(new URL('./web/public', import.meta.url)),
   server: {
     proxy: { '/api/live': 'http://127.0.0.1:8787' },
+  },
+  // `vite preview` inherits server.proxy unless told otherwise, which made a static preview look like a live room server.
+  preview: {
+    proxy: {},
   },
   plugins: [
     viteSingleFile(),
@@ -35,6 +42,7 @@ export default defineConfig({
   build: {
     outDir: fileURLToPath(new URL('./dist', import.meta.url)),
     emptyOutDir: true,
+    copyPublicDir: true,
     assetsInlineLimit: 100_000_000,
     chunkSizeWarningLimit: 8000,
   },

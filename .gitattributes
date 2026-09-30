@@ -5,5 +5,7 @@
 *.pdf binary
 *.pptx binary
 *.zip binary
+*.onnx binary
+*.wasm binary
 # Preserve exact official-source bytes so SHA256SUMS survives checkout.
 references/official/** -text

@@ -1,12 +1,16 @@
 # 项目状态
 
-更新日期：**2026-09-30** · Music Space 起点 MVP **0.15.0**（`3dd102c`），版本号尚未重定 · 产品文档仍为 **2.6**（Map × Space 时期，待改写）。
+更新日期：**2026-09-30** · Music Space **MVP 0.16.0** / 文档 **3.0**。工作分支 `feat/moment-ai`（起点 `a45ecbd`，4 个提交，只在本机：未推送、无 PR、未合并）；`main` 停在 `a45ecbd`。线上 <https://musicmapteam.github.io/musicSpace/> 是 `feat/moment-ai@7c962e2` 的静态版构建（带 `ai/`，`gh-pages` 分支 `2d8f1a3`，2026-09-30 11:18 +08:00 部署），不含它之后的改动；此前上线的是没有 AI 的 `a45ecbd`。推送、PR、合并，以及 `7c962e2` 之后改动的再部署，都在等用户批准，本文不把它们写成已发生。工作树里另有未提交的改动（本轮的代码修正与文档改写，见 Doing）。
 
-2026-09-29 用户决定：Music Map 保持原样，留在 [musicMapTeam/musicMap](https://github.com/musicMapTeam/musicMap)（main `61d0689`，MVP 0.16.0，线上 <https://musicmapteam.github.io/musicMap/>）；交换产品作为独立产品 **Music Space**（暂定名）在新仓库 `musicMapTeam/musicSpace` 继续，从 0.15 起、移除 Map 一半。线上演示按决定做成 GitHub Pages 上的静态单文件 <https://musicmapteam.github.io/musicSpace/>（待部署，尚未上线），真实房间与交换用 Node + SQLite 服务运行。
+**产品。** Music Space：演唱会散场以后，同场观众交换彼此没有的视角（「同一刻，另一面。」）。2026-09-30 从 Music Map × Music Space 0.15（`3dd102c`）拆出，独立仓库 [musicMapTeam/musicSpace](https://github.com/musicMapTeam/musicSpace)（公开，带完整历史），移除了 Map 一半。Music Map 保持原样，留在 [musicMapTeam/musicMap](https://github.com/musicMapTeam/musicMap)（main `61d0689`，线上 <https://musicmapteam.github.io/musicMap/>，2026-09-30 复查首页仍返回 200），没有删除。两个产品的版本号各自独立（Map 现在也是 0.16.0），互不代表对方。
 
-下面的 Done 各节是 Map × Space 共享项目的历史，原文保留；其中的唱片店、寻声、完整图鉴、开放曲库等属于 Map，不是 Space 的功能。Map 0.16 的记录在 Map 仓库的项目状态里。
+**用户决定**（GitHub Alakazamc，开发侧）：2026-09-28 转向只做 Map；2026-09-29 恢复 Space 并打磨它，AI 放进核心（端侧视觉识别），线上做成静态演示；2026-09-29 保留 Map，为 Space 另开新仓库。
 
-依据：[产品方案](../product/docs/01-product-plan.md) · [交付计划](../product/docs/02-delivery-plan.md) · [实施规格](../product/docs/03-build-guide.md)，三者仍按 0.15 的 Map × Space 撰写，待改写；与 [AGENTS.md](../AGENTS.md)、[README](../README.md) 和本文冲突时以后三者为准。
+**参赛。** 官网规则：每支队伍限定提交一份作品（[原文](../references/official/2026-09-26/website/page-text.txt)；FAQ Q12：每人只能以团队或个人身份提交一个方案，选择一个赛道）。提交 Music Space 还是 Music Map、选哪条赛道，尚未决定，需要与队友（产品负责人 igohomealone216）商定；结论前不写成已定，队友的意见也没有记录在本仓库，本文不替队友表态。Map 仓库的项目状态另记有 2026-09-28 转向 Map 的决定，其细节尚待与产品负责人对齐，本仓库不据此判断提交哪一个。
+
+依据：[产品方案](../product/docs/01-product-plan.md) · [交付计划](../product/docs/02-delivery-plan.md) · [实施规格](../product/docs/03-build-guide.md)，以及 [AGENTS.md](../AGENTS.md) 和 [README](../README.md)。本轮（文档 3.0）按独立 Music Space 改写当前文档，见 Doing；各文件的版本头以文件自己为准，与 AGENTS.md、README 和本文冲突时以后三者为准。
+
+「Done · 0.15.0」及更早各节是 Map × Space 共享项目的历史，原文保留；其中的唱片店、寻声、完整图鉴、开放曲库等属于 Map，不是 Space 的功能。Map 0.16 的记录在 Map 仓库的项目状态里。
 
 ## Todo
 
@@ -14,23 +18,56 @@
 
 | 任务 | 负责人 | 完成证据 |
 | --- | --- | --- |
-| 确定提交 Music Space 还是 Music Map | 用户与队友（产品负责人 igohomealone216），待商定 | 官网规则：每支队伍限定提交一份作品（[原文](../references/official/2026-09-26/website/page-text.txt)）。决定与日期记入本文与 AGENTS.md，报名材料同步；此前不写成已定，也不替队友表态。Map 仓库 `61d0689` 的项目状态另记有 2026-09-28 用户以 Map 为参赛主线的决定，其细节尚待与产品负责人对齐；本仓库不据此判断提交哪一个 |
-| 创建 `musicMapTeam/musicSpace` 并推送本分支 | 未认领 | 用户 2026-09-29 已要求新开仓库，授权建仓与推送本分支；完成后远端仓库与分支可见，记下远端提交号。PR、合并和其他推送先问用户 |
-| 部署静态演示到 GitHub Pages | 未认领 | <https://musicmapteam.github.io/musicSpace/> 外网可打开，首页为静态版（「体验示例」为主、房间入口隐藏）；发布整个 `dist/`（含 `ai/`，不只是 `index.html`），并实测 `ai/` 的实际传输大小（是否压缩，README 里的「约 10 MB」目前只是本机 gzip 的换算）、Cache Storage 命中和从大陆网络的加载；该地址与 Map 同源，实际检查两个产品的浏览器存储（`localStorage` 与 Cache Storage）互不影响；部署前先问用户；不把 Pages 写成支持跨设备交换 |
-| 真机与主流手机浏览器上的端侧 AI | 未认领 | iOS Safari、微信内置浏览器、Android Chrome 各上传两张照片，记录机型与系统、能否加载（WebAssembly SIMD、内存）、首次下载耗时、每张的判断耗时与页面停顿，以及不支持时的回退；用至少 30 张真实手机现场照片（注明来源与同意）量视角建议的准确率与「有把握」的比例，不虚报；评估把推理放进 Worker（`env.wasm.proxy`，桌面 Chrome 上实测主线程停顿从约 340 ms 降到 40 ms，加载慢约 1 s）|
-| 手机端打磨 | 未认领 | 逐屏检查首页、示例、制卡、双联页与收藏：正文不小于 14px、辅助文字不小于 12px、点击目标不小于 44px。有真机就记机型与系统，没有就写明“模拟视口”，未验证项如实记。2026-09-30 已用 Tabbit（Chrome 152）的 1280×800 与 390×844 模拟视口按可点区域查过示例页、制卡、票根、收藏与房间页（见 Doing），没有触屏、真机、其他尺寸与其他浏览器的记录 |
-| 按 Space 改写其余文档，重做介绍、封面与视频 | 未认领 | 改写 `product/docs/` 三份产品文档、`docs/VISUAL_THEMES.md`、`docs/competition/README.md`、`CHANGELOG.md`、`THIRD_PARTY_NOTICES.md`、`delivery/README.md`、`product/README.md`（现均含 Map 内容；`RUN-ME.md` 已于 2026-09-30 按 Space 重写，`CHANGELOG.md` 与 `THIRD_PARTY_NOTICES.md` 已加本轮条目，Map 时期的旧条目仍在）；`docs/competition/README.md` 与 `product/docs/` 里「没有模型推理、规则匹配不是模型推理」的 AI 使用说明已不符合现状（现在有端侧视角识别），报名介绍与 AI 使用说明要据实重写；重写报名介绍；重做 16:9 封面与演示视频（须含实际页面操作录屏与讲解或字幕）。现有 0.15 封面含唱片店寻声截图、0.4 视频含约 20 秒 Map 片段，都不能直接用于 Space |
-| 目标用户试用 | 团队 | 6 对同场观众，比较群相册与双联的实际选择；先验证是否愿意主动交换，不编造招募或结果 |
-| 最终报名与提交 | 团队 | 核对报名信息、上传材料、提交回执 |
+| 推送 `feat/moment-ai`、开 PR、合并到 main，并把 `7c962e2` 之后的改动再部署到 GitHub Pages | 用户（Alakazamc）批准；执行者待定 | 四件事各自先问用户，上一轮的授权不自动延续（AGENTS.md）。线上已经是 `7c962e2` 的构建，但它对应的分支没有远端（远端只有 `main` 与 `gh-pages`），所以线上版本的源码提交只在本机。推送后远端分支与提交号可见；PR 上「Build demo」通过（0.16 的工作流多了 `npm run ai:check` 与 `npm test`，还没在 GitHub 上跑过）；合并后记下合并提交号。再部署后，线上 `index.html` 与新构建逐字节一致（比对方法见 Done「含 AI 的静态版上线」），首页仍是静态版（无 `space-rooms` 标记、不发探测请求），发布的是整个 `dist/`（含 `ai/`）；该源与 Map 共用，部署前后各检查一次两个产品的浏览器存储（`localStorage` 与 Cache Storage）互不影响；不把 Pages 写成支持跨设备交换 |
+| 真机、微信内置浏览器与大陆网络检查（含 AI 加载耗时与内存） | 未认领 | iOS Safari、微信内置浏览器、Android Chrome 各选两张照片：记录机型与系统、能否加载（WebAssembly SIMD、内存）、首次下载耗时、每张的判断耗时与页面停顿、不支持时的回退；在浏览器里确认 Pages 上 `ai/` 的实际传输编码与大小（2026-09-30 用 curl 带 `Accept-Encoding: gzip` 测过，五个文件共 10,344,436 B，浏览器实际协商的编码没测）、Cache Storage 命中和大陆网络下的加载；QQ 音乐搜索链接在手机上是否带出歌名；用至少 30 张真实手机现场照片（注明来源与同意）量视角建议的准确率与「有把握」的比例，不虚报；评估把推理放进 Worker（`env.wasm.proxy`，桌面 Chrome 上主线程停顿从约 340 ms 降到 40 ms，加载慢约 1 s，见 `web/js/ai/space-ai.js` 的注释）。没量到的项写「未测」 |
+| 小规模目标用户试用 | 团队 | 6 对同场观众（规模可调），比较群相册与双联的实际选择，先验证是否愿意主动交换；只记真实数字，不编造招募或结果 |
+| 演示视频（≤ 3 分钟） | 未认领 | 按[参赛材料](competition/README.md)第 3 节的脚本，在含 AI 的 0.16 构建上从真实页面录屏（静态版全流程；两台手机的房间版为可选），语音讲解或字幕，≤ 500 MB，无水印杂音；不用截图或接口改状态代替操作。成片时长、大小与来源记入 `delivery/README.md`。现有 0.4 视频含约 20 秒 Map 片段，不能用于 Space |
+| 封面（16:9） | 未认领；用户签收 | 重做 `delivery/cover.png`：现存的是 0.15 的 Map × Space 封面（含唱片店寻声截图），不能用于 Space。1920×1080，主体用实际导出的双联票根，注明示例照片由 AI 生成；用户看过并签收 |
+| 确定提交 Music Space 还是 Music Map，以及赛道 | 用户与队友（产品负责人 igohomealone216），待商定 | 决定与日期记入本文与 AGENTS.md，报名材料同步；此前不写成已定，也不替队友表态。赛道一是 TME 产品创新功能，需要指明落在哪个 TME 平台上；赛道二是创新音乐产品（官方赛题说明见[留档](../references/official/2026-09-26/spreadsheet/03-topics-cells.md)） |
+| 参赛合规核对 | 团队 | 官方 FAQ Q4 要求作品「目前还没有上线」，Q10 把「对外发布至公开平台，任何人均可访问、体验使用」算作上线；Q8 建议入选前尽量不要开源代码，风险自担。本仓库和 Pages 站点都是公开的（2026-09-30 查 GitHub API 与 curl），这是否影响参赛，本文不作判断，需向组委会或赛事交流群确认，把结论与日期记在这里。素材边界（Q11）：产品没有内置音频、歌词或专辑封面，QQ 音乐链接只是搜索 |
+| 核对独立验证的 14 条轻微发现 | 开发侧 | 最近一轮独立验证的 14 条轻微发现，逐条处置情况没有记在仓库里；把每条标为已修 / 不修 / 待修，摘要写进本文，已修的注明提交号 |
+| `package.json` 版本号 | 开发侧 | 文档已按 0.16.0 写，`package.json` 与构建日志里仍是 `music-space@0.15.0`；升到 0.16.0 后，本行删除 |
+| 最终报名与提交 | 团队 | 核对报名信息、上传材料、提交回执；截止 2026-10-09 23:59 |
 
 ## Doing
 
-分支 `feat/space-mainline`（起点 `3dd102c`，另含提交 `e18b9f2`：归档 2026-09-29 的提交表单字段）。
+本轮：代码修正、文档改写与截图。
 
 | 任务 | 负责人 | 文件范围 | 状态 |
 | --- | --- | --- | --- |
-| 拆分为独立产品 Music Space：以 0.15 为起点移除 Map 一半，改成静态版 + 房间版，存储键独立 | 开发侧 + Claude 子代理（多代理并行，文件范围互斥） | `web/js/`、`web/css/`、`web/index.html`、`vite.config.js`、`package.json`、`package-lock.json`、`.github/workflows/build.yml`、`.gitignore`、`server/index.js`（仅启动日志文案）、`web/assets/licenses/`、`web/assets/data/`、`scripts/datasets/`、`AGENTS.md`、`README.md`、本文；明细见下 | 进行中：改动都在工作树，未提交、未推送、未部署 |
-| 「同一刻，另一面」：读拍摄时间、端侧 AI 视角识别、配对理由、那晚的歌单，并整理外壳（模式检测、存储提示、品牌、点击目标）；集成与检查 | 开发侧 + Claude 子代理（AI 核心、功能、外壳、集成，文件范围互斥） | `web/js/ai/`、`web/public/ai/`、`web/js/moment.js`、`photo-insight.js`、`setlist-ui.js`、`space.js`、`space-data.js`、`live.js`、`live-library.js`、`duet-ceremony.js`、`duet-facts.js`、`ticket-export.js`、`app.js`、`home.js`、`storage.js`、`web/css/`、`web/index.html`、`server/`、`scripts/ai/`、`scripts/test/`、`vite.config.js`、`package.json`、`package-lock.json`、`.github/workflows/build.yml`、`Dockerfile`、`.dockerignore`、`.gitattributes`、`.gitignore`、`AGENTS.md`、`README.md`、`RUN-ME.md`、`CONTRIBUTING.md`、`CHANGELOG.md`、`THIRD_PARTY_NOTICES.md`、本文 | 进行中：改动都在工作树，未提交、未推送、未部署；检查记录见「2026-09-30 一轮的检查」 |
+| 本轮代码修正 | 并行的 Claude 子代理（文件范围互斥；本文只记录 2026-09-30 12:10 前后 `git diff` 里看到的范围，不代为验证） | `web/js/moment.js`、`photo-insight.js`、`ai/space-ai.js`、`space.js`、`live.js`、`duet-facts.js`、`ticket-export.js`，`web/css/` 的 7 份（`night-shell.css`、`space-studio.css`、`live-compose.css`、`courtyard-ui.css`、`duet-ceremony.css`、`spatial-objects.css`、`theme-sakura.css`），`server/index.js`、`server/db.js`，`scripts/test/` 三份，共 19 个文件 | 进行中，改动在工作树，未提交，线上（`7c962e2`）不含这些。看到的内容：文件修改时间（`file`）不再发给房间服务（服务端收到也丢掉，旧客户端不被拒绝）；理由里的时长不再四舍五入（「相差 3 分钟」至多 3 分整，稍多写「3 分多钟」，不算同一刻）；AI 线一交出照片就显示「判断中」，下载文字改为「首次需下载模型（约 10–23 MB）」；填了用不了的拍摄时间时字段旁给出提示；票根 PNG 的页脚区分虚构内容与使用者提供的内容；`aria-expanded`、建议句只在有建议时才在页面里等可访问性细节；建议态文字改用更深的玫红以保证对比度；申请 / 回应对话框与卡片编辑窗的布局微调。这些改动本文没有逐项核对，构建与 `npm test` 在 12:10 的工作树上通过（见下） |
+| 按独立 Music Space 改写当前文档（文档 3.0） | 开发侧 + Claude 子代理（并行，文件范围互斥） | 本任务：本文、`docs/VISUAL_THEMES.md`、`docs/competition/README.md`、`delivery/README.md`；同轮的其余文档（`README.md`、`AGENTS.md`、`CHANGELOG.md`、`RUN-ME.md`、`CONTRIBUTING.md`、`THIRD_PARTY_NOTICES.md`、`product/` 下的文档等）由并行任务改写，各自记录 | 进行中：改动在工作树，未提交（以 `git status` 为准）。Map 时期的历史条目原文保留并标注 |
+| 补拍 0.16 截图并登记 | 开发侧（后续一轮） | `docs/assets/themes/space-<页>-<desktop 或 mobile>-v016.png`，页为 home、demo-wall、editor-ai、pairing、setlist、duet、records，另有 `space-ticket-v016.png`（实际导出的双联 PNG），共 15 个文件 | 路径已在[视觉规范](VISUAL_THEMES.md)登记；**图片尚未拍摄，这些文件现在还不存在**；补拍后逐个核对路径与内容 |
+
+工作树在 2026-09-30 12:10（含上面未提交的代码改动）上重跑：`npm run build` 通过，`dist/index.html` 1,752,910 B（Vite 估 gzip 604.38 kB；11:51 时是 1,752,035 B），`dist/ai/` 仍是 23,141,982 B；`npm run ai:check` 通过；`npm test` 三份全部通过。这只是那一刻的工作树，代码还在改，提交前要重跑。
+
+## Done · 0.16.0
+
+分支 `feat/moment-ai`（起点 `a45ecbd`，4 个提交，只在本机）。这里的 Done 指：代码已提交到本地分支，`npm run build` 与 `npm test` 通过，静态版与房间版的主流程在桌面 Chrome（模拟视口）里走过。它**不含**真机、大陆网络、真实照片上的准确率与目标用户试用，见本节末尾的「未验证与边界」。含 AI 的 `7c962e2` 已部署到 Pages（见下表），`7c962e2` 之后的改动没有。
+
+| 任务 | 文件 / 提交 | 证据 |
+| --- | --- | --- |
+| 建仓与拆分：以 0.15 为起点移除 Map 一半 | 仓库 `musicMapTeam/musicSpace`；`3dd102c` 之后的提交：`e18b9f2`（归档 2026-09-29 的提交表单字段）、`c455279`（独立应用）、`6f8ff2c`（去掉唱片桌）、`d774325`（移除 Map 样式）、`1f5a405`（包名改为 `music-space`）、`a45ecbd`（记录拆分与新仓库的规则） | GitHub API（2026-09-30 查）：仓库公开，创建于 2026-09-29 16:10 UTC（北京时间 2026-09-30 00:10），main 为 `a45ecbd`，历史保留 0.15 及以前的全部提交；「Build demo」[run 36595874461](https://github.com/musicMapTeam/musicSpace/actions/runs/36595874461)（main@`a45ecbd`）成功。Map 仓库没有动：main `61d0689`（2026-09-29 合并 PR #6），线上首页返回 200。代码里没有 Map 残留的搜索见下 |
+| 静态版首次上线（GitHub Pages，AI 之前的构建 `a45ecbd`） | `gh-pages` 分支 `f0ad219`「Deploy Music Space static build from main@a45ecbd」（2026-09-29 16:18 UTC，北京时间 2026-09-30 00:18） | 分支只有 `index.html`（1,683,279 B）与 `.nojekyll`；Pages 构建 [run 36596764084](https://github.com/musicMapTeam/musicSpace/actions/runs/36596764084) 成功。2026-09-30 11:17 用 curl 复查（那时线上还是这一版）：首页 200，HTML 带 `content-encoding: gzip`，页面没有 `space-rooms` 标记（静态版），`ai/tc8/labels.json` 返回 404，即当时线上没有 AI，也没有拍摄时间读取、按拍摄时间的「同一刻」配对和「那晚的歌单」。这一版在 11:18 被下一行的部署取代 |
+| 含 AI 的静态版上线（GitHub Pages，`7c962e2`） | `gh-pages` 分支 `2d8f1a3`「Deploy Music Space static build from feat/moment-ai@7c962e2 (index.html + ai/)」（2026-09-30 03:18 UTC，北京时间 11:18，作者 Alakazamc，父提交 `f0ad219`） | 分支内容：`.nojekyll`、`index.html`（1,747,253 B）、`ai/` 的 8 个文件；Pages 构建 [run 36663862233](https://github.com/musicMapTeam/musicSpace/actions/runs/36663862233) 成功。本文 11:55 前后核对：首页 200，`ai/tc8/labels.json` 200，页面没有 `space-rooms` 标记；线上 `index.html` 的 SHA-256（`54ed3146…f0d178`）与在临时目录里用 `git archive HEAD` 重新构建 `7c962e2` 得到的完全一致，`ai/` 的 5 个文件（模型、labels、wasm、两个 mjs）也逐个一致；带 `Accept-Encoding: gzip` 时这 5 个文件都返回 `Content-Encoding: gzip`，共 10,344,436 B（`vision.onnx` 6,590,919、`.wasm` 3,722,335、labels 5,849、两个 mjs 9,095 与 16,238）。分支 `feat/moment-ai` 没有远端，线上版本的源码提交只在本机；线上**不含** `7c962e2` 之后的改动（见 Doing）。这次部署的授权，本文没有记录 |
+| 端侧视角 AI 与拍摄时间读取 | `348fe02`：`web/js/ai/space-ai.js`、`web/js/ai/exif-time.js`、`web/public/ai/tc8/`（模型与标签）、`scripts/ai/`（来源、复现、检查）、`package.json`（onnxruntime-web 1.30.0）、`vite.config.js`、`.github/workflows/build.yml`、`Dockerfile`、`THIRD_PARTY_NOTICES.md` | TinyCLIP-ViT-8M/16 图像塔（MIT，int8）`vision.onnx` 8,807,127 B，加 onnxruntime-web 1.30.0（WASM 单线程），同源自托管在 `ai/`，不访问 huggingface.co 或 CDN；Cache Storage 名 `music-space-ai-v1`；预选门槛为余弦差 ≥ 0.02 且概率 ≥ 0.5。来源提交与各文件 SHA-256 记在 `scripts/ai/README.md`，该文件自述 2026-09-30 在新装的临时目录里从头复现过；本文没有重跑。EXIF 读取对 spike 的 96 个样本，94 个与 ExifTool 清单一致，另 2 个是清单里记为已知上限的（超过 64 个段 / 块，读取器返回空） |
+| 「同一刻，另一面」配对与「那晚的歌单」 | `f9a2d75`：`web/js/moment.js`、`photo-insight.js`、`setlist-ui.js`、`space.js`、`live.js`、`live-library.js`、`duet-facts.js`、`duet-ceremony.js`、`ticket-export.js`、`server/`（`cards` 增 `taken_at`、`taken_source`、`song`，叠加式迁移）、`scripts/test/`、相关样式 | 拍摄时间相差 ≤ 3 分钟（`SAME_MOMENT_MS`）算同一刻，任一方没有可信时间时退回两人选的同一时刻；同一刻而视角不同的卡标「同一刻的另一面」并写出理由；文件修改时间（`file`）只作预填的猜测，不参与判断。歌单按拍摄时间排序，链接只是 QQ 音乐的按歌名搜索。`npm test`（三份检查）通过；接口检查覆盖拍摄时间、歌名与视角的校验（见下「集成阶段的检查记录」） |
+| 外壳与模式检测 | `df8c8cd`：`app.js`、`home.js`、`storage.js`、`night-shell.css`、`scene-panels.css`、`index.html` 等 | 品牌「Music Space」加「樱下放映 · 散场以后」；模式由页面来源决定（房间服务写入 `space-rooms` 标记，静态页不发探测请求）；浏览器拒绝写入时提示改口，不再说「已保存」；可点区域按 ≥ 44px 整理。检查见下 |
+| 当前文档同步（第一轮） | `7c962e2`：`AGENTS.md`、`README.md`、`RUN-ME.md`、`CONTRIBUTING.md`、`CHANGELOG.md`、本文 | 记录上面三个提交的改动。其中「改动都在工作树、未提交」的说法写于提交之前，已过时，以 `git log` 为准；本轮（文档 3.0）的改写见 Doing |
+| 构建与检查（提交 `7c962e2`） | `package.json` 的脚本；本文 2026-09-30 约 11:20 重跑，当时代码文件都没有未提交改动（`git status` 干净，最早的代码改动是 11:35），即与 `7c962e2` 一致；Node 24.19.0 / npm 11.17.0 | `npm run build`：62 个模块；`dist/index.html` 1,747,253 B（Vite 估 gzip 603.07 kB，本机 `gzip -9` 596,533 B）；`dist/ai/` 共 23,141,982 B：`tc8/vision.onnx` 8,807,127、`ort/ort-wasm-simd-threaded.wasm` 14,239,897、`ort/ort-wasm-simd-threaded.mjs` 24,381、`ort/ort.wasm.min.mjs` 50,126、`tc8/labels.json` 17,609、两份 MIT 许可文本 1,769 与 1,073；`dist/` 合计 24,889,235 B。`npm run ai:check`：通过（模型、wasm、`index.html` 的大小与预期一致，`ai/ort` 恰好 3 个文件）。`npm test`：`moment.test.mjs`、`insight.test.mjs`、`api.test.mjs` 三份全部通过（只用 `node:assert`）。`web/js`（不含 vendor）、`server/`、`scripts/ai/*.mjs`、`scripts/test/*.mjs` 共 36 个文件 `node --check` 通过。本机 `gzip -9` 后 `ai/` 里较大的几个文件合计 10,259,278 B（模型 6,575,442、wasm 3,652,793、两个 mjs 共 25,255、labels 5,788，不含许可文本），这是换算，不是 Pages 上的实测传输大小。GitHub 上的 CI 还没跑过 0.16 的工作流（分支未推送） |
+| 独立验证 | 多轮，Tabbit（Chrome 152），模拟视口；回报由本轮工作流给出，原文没有存进仓库 | 最近一轮：12/12 项通过、0 个页面错误、14 条轻微发现；覆盖 1440×900 与 390×844，另有 `file://`、无 WebGL、两个来源的房间流程。逐项内容与 14 条发现的处置本文没有记录（见 Todo） |
+| 视频脚本的操作路径核对 | 本文 2026-09-30 约 12:00–12:10，Tabbit（Chrome 152）1440×900；页面是 `git archive HEAD` 在临时目录重建的 `7c962e2` 构建（与线上逐字节相同），由本机静态服务器在全新的 `127.0.0.1` 来源上打开；房间版只在同一构建上另起 Node 服务看了首页 | 按[参赛材料](competition/README.md)第 3 节的顺序在静态版走了一遍：首页文字与按钮；「用我的照片」→「制作现场卡」；传入手工写入 EXIF（2026-09-26 21:47:30）的 JPEG，卡上写「拍摄于 21:47 · 来自照片自带的信息」；AI 线先是「AI 在本机判断视角…」，随后是「不确定，请选择」（这张 AI 生成的示例舞台图，前两名是人海与舞台，虚线落在「舞台」「人海」上，没有预选）；点「舞台」后 AI 线清空；保存后阿遥的卡下出现「同一刻的另一面」与「同一刻 · 21:47，相差不到 1 分钟；你拍舞台，TA 拍人海」；「申请换卡」对话框（理由、「再看看」「发送申请」）；发送后「切到阿遥」→「查看申请」→「同意交换」；仪式页的按钮是「保存双联图片」「返回现场」「查看我的记忆」；点「保存双联图片」得到 1600×1800 的预览（按钮「下载图片」「关闭预览」「分享图片」），票根上两半写着「舞台 · 返场」「人海 · 返场」、「拍摄于 21:47 · ♪ 晴天」，存根写「同一刻 · 21:47，相差不到 1 分钟」；切回 Lin 后「那晚的歌单」两首（21:47《晴天》带「在 QQ 音乐搜索《晴天》」与「复制歌名」，21:48 的虚构曲目标「示例」），链接是 `https://y.qq.com/n/ryqq/search?w=%E6%99%B4%E5%A4%A9&t=song`，`target="_blank"`、`rel="noopener noreferrer"`。房间版首页的按钮是「记录我的现场」「邀请朋友」「我有邀请码」「体验示例」。**没有做**：点开 QQ 音乐的搜索页、手机、房间版的建房 / 加入 / 交换流程、`7c962e2` 之后的改动。这一遍只是核对脚本里的路径与文字，不算独立验证 |
+| 代码里没有 Map 残留 | `web/js`、`web/css`、`web/index.html`、`server/`（不含 `web/js/vendor/`） | 本轮用 grep 检查（Map、music-map、寻声、图鉴、唱片店、explore 等）：界面代码里没有 Map 产品的入口、数据和文案；只剩三类有意保留的：`storage.js` / `app.js` 里读取 0.15 旧键（`music-map-space:v1`、`music-map-live:v1`，只读一次、不写不删）和剔除旧存档里 Map 字段（`map`、`mapReturnId`）的代码与注释、数据库文件名 `data/music-map.sqlite`、Three.js 材质的 `map:` 选项（与 Map 产品无关） |
+
+AI 视角建议：量过什么、没量什么。
+
+- **spike**（`scripts/ai/README.md`）：浏览器里跑同一个 int8 模型和同一组视角向量，输入是 75 张维基共享资源的 CC 授权照片（图片不在仓库里）：top-1 92.0%（69/75），top-2 100%。
+- **应用自己的路径**（照片先经 `compressPhoto` 再 `classify`；数字记在 `web/js/ai/space-ai.js` 里 `SURE_MARGIN` 上方的注释）：75 张原图里 57 张判为「有把握」，57 张全对；另 18 张「不确定」，它们的前两名里都含正确答案。再对每张原图做六种退化（变暗、裁切、模糊、缩小、倾斜、微信压缩），共 525 个输入：402 个「有把握」，其中 400 个正确；错的 2 个都是舞台照被判成「身边」（变暗、裁切各一，余差 0.0203 与 0.0241，刚过门槛）。
+- 这些是公开 CC 照片上的数字，不是真实观众手机照片上的，不能当产品准确率；「有把握」只表示够格替你预选一个可以改的选项，不表示答对。旧文档里「59 张有把握、全对；另 16 张没把握、62.5% 猜对」是 spike 直接跑原图的结果，与应用路径的 57 / 18 量的是不同输入，两组不互相替代。
+
+### 拆分明细（原 Doing 记录，原文保留）
+
+下面两小节原在 Doing 里，写于拆分与 AI 一轮进行中，文字原样搬来。其中「本文没有收到本轮的构建或浏览器操作记录」「改动都在工作树」这类状态是当时的，已被上面的表和提交取代；「其余文档见 Todo」现在对应上面的 Doing。
 
 文件范围明细：
 
@@ -48,7 +85,9 @@
 - 包名改为 `music-space`，构建产物名改为 `music-space-demo` / `music-space-runtime`；单文件不再附带 HF 元数据许可注释；PNG 页脚改为「MUSIC SPACE」。
 - 样式子代理报告：非 Map 元素的计算样式与拆分前一致；本文未复核。
 
-### 2026-09-30 一轮的检查
+### 集成阶段的检查记录（原 Doing 记录，原文保留）
+
+写于提交与部署之前：其中「本站尚未部署」「GitHub Pages 上 `ai/` 的实际传输大小没测」是当时的状态，11:18 部署之后见上表「含 AI 的静态版上线」。构建大小是当时某次构建（`dist/index.html` 1,739,325 B）的，之后代码又有改动，最终构建的大小见上表「构建与检查」，两组数字不要混用；`npm test` 当时是两份检查，现在是三份（多了 `insight.test.mjs`）；AI 准确率沿用 spike 的数字（59 张有把握），应用路径上量到的 57 / 18 见上面「AI 视角建议」的说明。
 
 改动清单见 `CHANGELOG.md` 的「未发布」一条。下面只记实际执行过的检查（本机 macOS，Node 24.19.0 / npm 11.17.0，Chrome 152 经 Tabbit，模拟视口 1280×800 与 390×844，无触屏）和没有做的。
 
@@ -72,7 +111,38 @@
 - **集成时改的**：示例页「卡片已保存」对话框与 toast 接上 `api.storageState()`；「关于」里的 AI 一行按浏览器是否支持改口，「3 分钟」取自 `SAME_MOMENT_MS`；示例制卡里 AI 有把握时提示去哪里改视角；删掉指向已不存在元素的两条命中层选择器和没用的 `VENUE_ZONE`；补上 `Dockerfile` 的 `COPY scripts`、`.dockerignore`、`.gitattributes`；把两份检查收进 `scripts/test/` 并接进 CI；重写 `RUN-ME.md`，改 `README.md`、`AGENTS.md`、`CONTRIBUTING.md`、`CHANGELOG.md`。
 - **没有验证**：iOS Safari、微信内置浏览器、Android 与实体手机（AI 每张约 0.3–0.4 s 的耗时与其间的页面停顿只在桌面 Chrome 上量过）；触屏与其他视口尺寸；GitHub Pages 上 `ai/` 的实际传输大小（README 的「约 10 MB」是本机 gzip 算得的 10.3 MB，另见 GitHub.com 对别人 Pages 站点上的 `.wasm` / `.onnx` 返回 gzip，本站尚未部署）；真实观众照片上的 AI 准确率（只有 75 张 CC 图：top-1 92%，「有把握」的 59 张全对）；QQ 音乐搜索链接在手机上会丢掉搜索词（2026-09-30 用 iPhone UA 的 curl 复查：桌面 UA 落到 `y.qq.com/n/ryqq_v2/search?w=晴天&t=song`，iPhone UA 被转到 `i2.y.qq.com/n3/other/pages/myqq/index.html`；试过的另外几个手机版地址都打不开搜索），所以另给了复制歌名，也没有更好的手机链接可换；读屏软件；减少动态与无 WebGL 只在外壳与功能各自的检查里看过，本轮集成没有重跑。
 
-移到 Done 需要：生产构建（记录模块数与大小，2026-09-30 已记）；静态版（无服务）与房间版（Node + SQLite）各走一遍首页、制卡、申请、同意、双联页、PNG 与收藏（2026-09-30 走过两边的首页、制卡、申请、同意与双联页，收藏页只做了点击目标检查；PNG 导出由功能子代理另查，本文未复核）；`#/space/demo` 与无服务提示（已走）；从 0.15 存档迁移到新键且旧键不变；1440×900 与 390×844 目视，含无 WebGL 与减少动态；搜索确认代码中已无 Map 残留；`README.md`、`AGENTS.md` 与本文同步（2026-09-30 已同步）；上面「没有验证」一节的真机、Pages 部署与真实照片项。
+### 当时定的「移到 Done 需要」与现状
+
+下面引用的是开工时写在「Doing」里的条件（原文保留），右表逐项写现状。
+
+> 移到 Done 需要：生产构建（记录模块数与大小，2026-09-30 已记）；静态版（无服务）与房间版（Node + SQLite）各走一遍首页、制卡、申请、同意、双联页、PNG 与收藏（2026-09-30 走过两边的首页、制卡、申请、同意与双联页，收藏页只做了点击目标检查；PNG 导出由功能子代理另查，本文未复核）；`#/space/demo` 与无服务提示（已走）；从 0.15 存档迁移到新键且旧键不变；1440×900 与 390×844 目视，含无 WebGL 与减少动态；搜索确认代码中已无 Map 残留；`README.md`、`AGENTS.md` 与本文同步（2026-09-30 已同步）；上面「没有验证」一节的真机、Pages 部署与真实照片项。
+
+| 当时的条件 | 现状 |
+| --- | --- |
+| 生产构建（记录模块数与大小） | 已记：见上表「构建与检查」，本文重跑 |
+| 静态版与房间版各走一遍首页、制卡、申请、同意、双联页、PNG 与收藏 | 首页、制卡、申请、同意、双联页在两边都走过（集成阶段的记录，另有独立验证 12/12 通过，逐项内容没有存进仓库）；收藏页只做了点击目标检查；PNG 导出没有导出文件的字节数与目视记录，待 `space-ticket-v016.png` 一并留证 |
+| `#/space/demo` 与无服务提示 | 已走 |
+| 从 0.15 存档迁移到新键且旧键不变 | 记录里没有这一项的操作证据，待补 |
+| 1440×900 与 390×844 目视，含无 WebGL 与减少动态 | 独立验证覆盖两个视口与无 WebGL；减少动态没有独立验证记录 |
+| 搜索确认代码中已无 Map 残留 | 已做，见上表「代码里没有 Map 残留」 |
+| `README.md`、`AGENTS.md` 与本文同步 | 2026-09-30 同步过一次（`7c962e2`）；文档 3.0 的改写见 Doing |
+| 「没有验证」一节的真机、Pages 部署与真实照片项 | Pages 部署已在 11:18 完成（见上表「含 AI 的静态版上线」），传输大小只用 curl 测过；真机、大陆网络与真实照片没做，已转入 Todo；本节的 Done 不含这些 |
+
+### 未验证与边界
+
+- **部署**：线上是 `7c962e2` 的构建（带 AI），不含之后的工作树改动；`feat/moment-ai` 没有推送、没有 PR、没有合并，线上版本的源码提交只在本机；0.16 的 CI 没有在 GitHub 上跑过；再部署要用户批准。
+- **手机与其他浏览器**：iOS Safari、微信内置浏览器、Android 与实体手机都没测；触屏、其他视口尺寸和读屏软件没测；AI 每张约 0.3–0.4 s 的耗时和其间的页面停顿只在桌面 Chrome 上量过（推理期间页面不响应），手机上的耗时、内存、是否支持 WebAssembly SIMD 都不知道。
+- **网络**：没有从大陆网络实测；Pages 上 `ai/` 只用 curl 带 `Accept-Encoding: gzip` 测过传输大小（五个文件共 10,344,436 B，均为 `Content-Encoding: gzip`），浏览器实际协商的编码和 Cache Storage 命中没测；纯 http 的局域网页面没有 Cache Storage，每次都要重新下载约 23 MB。
+- **AI 准确率**：只在 75 张公开 CC 图（及其六种退化）上量过，没有在真实观众的手机照片上量过，不当作产品指标。
+- **用户**：没有目标用户试用，没有「愿意主动交换」的证据；示例角色、场次、歌曲和示例照片的拍摄时间都是虚构的（Lin 21:47、阿遥 21:48，一开始就是一对「同一刻」）；自填的场次、视角、拍摄时间和照片不构成到场认证。
+- **QQ 音乐**：链接只是按歌名的搜索，不是核实过的同一录音的直达页；2026-09-30 用 curl 复查：桌面 UA 落到 `y.qq.com/n/ryqq_v2/search?w=晴天&t=song`，iPhone UA 被转到 `i2.y.qq.com/n3/other/pages/myqq/index.html`（搜索词丢失），所以另给了「复制歌名」；没有内置音频，不称站内播放。
+- **PNG 导出**：新增的拍摄时间与歌名行没有导出文件的字节数与目视记录，待 `space-ticket-v016.png` 一并留证。
+- **房间版**：只在同一台电脑的两个来源（`127.0.0.1` 与 `localhost`）之间走过，没有两台设备，也没有 HTTPS；Docker 没有构建成镜像（拉取 `node:24-alpine` 的元数据 7 分钟没有返回，已中止），只在临时目录里用 `Dockerfile` 的同一文件集模拟了构建阶段与运行阶段。
+- **其他**：减少动态没有独立验证记录；14 条轻微发现的处置没记；`package.json` 版本号仍是 0.15.0；视频、封面没做，报名介绍待团队核对，没有队友评审这些材料的记录。
+
+## 历史 · Map × Space 共享项目（0.15.0 及更早）
+
+以下是 Map × Space 共享项目时期的记录，原文保留，不代表 Music Space 的当前状态；其中的唱片店、寻声、完整图鉴、开放曲库等属于 Map。
 
 ## Done · 0.15.0
 

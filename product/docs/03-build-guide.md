@@ -2,7 +2,7 @@
 
 版本：**3.0 · 2026-09-30**，对应应用 **MVP 0.16.0**，取代 2.6（Music Map × Music Space）。产品规则见[产品方案](01-product-plan.md)，比赛交付见[交付计划](02-delivery-plan.md)。本文写「代码现在是什么样」：模块、状态与存储、拍摄时间与配对的实现、端侧 AI 管线、房间服务、构建与部署、测试。
 
-写的是 `feat/moment-ai` 工作树的样子。该分支**没有推送、没有 PR、没有合并**；线上（`gh-pages` `2d8f1a3`，2026-09-30 11:18 +08:00）是它 `7c962e2` 的构建，不含之后的工作树改动。构建与浏览器检查的记录登记在[项目状态](../../docs/PROJECT_STATUS.md)，本文 §9 只摘要。2.6 里属于 Map 的部分（寻声、完整图鉴、开放曲库、音乐收藏，及其存储与数据）不在本文，见 `git show 3dd102c:product/docs/03-build-guide.md` 与 Map 仓库；2.6 里的历史证据在附录原文保留。
+写的是 `main@54f3e6e`（PR #1 于 2026-09-30 14:03 +08:00 由 `feat/moment-ai` 合并而成）的样子；线上（`gh-pages` `e28fab5`，14:04 +08:00 部署）是这一提交的构建。构建与浏览器检查的记录登记在[项目状态](../../docs/PROJECT_STATUS.md)，本文 §9 只摘要。2.6 里属于 Map 的部分（寻声、完整图鉴、开放曲库、音乐收藏，及其存储与数据）不在本文，见 `git show 3dd102c:product/docs/03-build-guide.md` 与 Map 仓库；2.6 里的历史证据在附录原文保留。
 
 ## 1. 技术决定
 
@@ -306,7 +306,7 @@ npm run preview    # 只预览静态版，不是生产 API 服务
 
 ### 静态版：发布整个 `dist/`
 
-**下面是发布方法；`git push` 是对远端的写操作，每次先问用户，上一轮的授权不自动延续。** 线上现在是 `feat/moment-ai@7c962e2` 的构建（`gh-pages` `2d8f1a3`：`.nojekyll`、`index.html`、`ai/`）；此前 `a45ecbd` 的版本只有单个 `index.html`，没有 `ai/`。`7c962e2` 之后的改动要再发布一次才会上线。
+**下面是发布方法。** 2026-09-30 用户给了本仓库的长期授权：推送功能分支、开 PR、CI 通过后合并、重新发布 `gh-pages`，不必每次再问，做完告知，发布后核对线上文件与本地构建逐字节一致（不含删库、force push、改 Map 仓库与其他对外操作）。线上现在是 `main@54f3e6e` 的构建（`gh-pages` `e28fab5`：`.nojekyll`、`index.html`、`ai/`）；更早的 `2d8f1a3`（`feat/moment-ai@7c962e2`）含 AI，`f0ad219`（`a45ecbd`）只有单个 `index.html`，没有 `ai/`。
 
 ```sh
 npm ci && npm run build && npm run ai:check
@@ -331,7 +331,7 @@ docker run -d --name music-space --restart unless-stopped -p 127.0.0.1:8787:8787
 
 ### CI
 
-`.github/workflows/build.yml`（`Build demo`）在推送 `main`、PR 与手动触发时运行：`npm ci` → `npm run build` → `npm run ai:check` → `node --check`（`server/index.js` 与 `server/db.js`）→ `npm test`；上传两份产物，保留 14 天：`music-space-demo`（整个 `dist/`）与 `music-space-runtime`（`dist/`、`server/`、`package.json`、`README.md`、`RUN-ME.md`、`THIRD_PARTY_NOTICES.md`）。**远端只跑过旧版工作流**：`a45ecbd` 上的「Build demo」（run 36595874461）成功，那一版只有 `npm ci`、`npm run build`、`node --check`，产物只含 `dist/index.html`；含 `ai:check` 与 `npm test` 的新工作流还没在 GitHub 上跑过（分支未推送）。
+`.github/workflows/build.yml`（`Build demo`）在推送 `main`、PR 与手动触发时运行：`npm ci` → `npm run build` → `npm run ai:check` → `node --check`（`server/index.js` 与 `server/db.js`）→ `npm test`；上传两份产物，保留 14 天：`music-space-demo`（整个 `dist/`）与 `music-space-runtime`（`dist/`、`server/`、`package.json`、`README.md`、`RUN-ME.md`、`THIRD_PARTY_NOTICES.md`）。远端上：`a45ecbd` 的「Build demo」（run 36595874461）跑的是旧版工作流（只有 `npm ci`、`npm run build`、`node --check`，产物只含 `dist/index.html`）；含 `ai:check` 与 `npm test` 的新工作流已在 PR #1 上通过（run 36676242848，2026-09-30）。
 
 ## 8. 测试
 
@@ -351,17 +351,18 @@ docker run -d --name music-space --restart unless-stopped -p 127.0.0.1:8787:8787
 
 | 项 | 结果 |
 | --- | --- |
-| 生产构建（`7c962e2` 的构建，也就是线上那一版） | 62 个模块；`dist/index.html` 1,747,253 B；`dist/ai/` 23,141,982 B；`dist/` 合计 24,889,235 B。`npm run ai:check` 通过。之后代码又有改动，重新构建的大小会略有不同 |
-| `npm test` | 三份检查通过（本文写作时在含未提交改动的工作树上复跑，Node 24.19.0） |
+| 生产构建（`54f3e6e`，线上那一版） | `dist/index.html` 1,754,470 B（线上同大小）；`dist/ai/` 仍是 23,141,982 B；PR #1 上的 CI（构建、`ai:check`、`node --check`、`npm test`）通过（run 36676242848）。模块数与 `dist/` 合计没有在这一提交上重新记录 |
+| 生产构建（`7c962e2` 的构建，历史） | 62 个模块；`dist/index.html` 1,747,253 B；`dist/ai/` 23,141,982 B；`dist/` 合计 24,889,235 B。`npm run ai:check` 通过；这是 2026-09-30 11:18 上线的那一版，之后代码又有改动 |
+| `npm test` | 三份检查通过（本机 Node 24.19.0；PR #1 的 CI 上也通过） |
 | 语法检查 | `web/js`（不含 vendor）、`server/`、`scripts/` 的 36 个文件 `node --check` 通过 |
 | 静态版 | `python3 -m http.server --directory dist`：首页只发一个请求；「用我的照片」读出 EXIF 时间；模型从空缓存冷加载，约 1.0 秒出现「AI 判断：舞台」；请求只有同源的 `ai/` 与 `blob:`；模拟存储写入失败时提示与 toast 改口 |
 | 房间版 | 两个来源（`127.0.0.1` 与 `localhost`）加入同一房间；两人各传带 EXIF 的照片（21:47:30 与 21:48:50），AI 分别判「舞台」与「人海」；照片墙出现「同一刻的另一面」；申请、同意后双联页写出两边的视角、时间与共同的歌；带 `Accept-Encoding: gzip` 时模型传 6,501,770 B，解压后 SHA-256 与原文件一致；`If-None-Match` 返回 304 |
-| Pages | `gh-pages` `2d8f1a3` 是 `feat/moment-ai@7c962e2` 的构建；`ai/tc8/labels.json` 返回 200；`index.html` 1,747,253 B，没有 `space-rooms` 标记；`ai/` 五个文件都带 gzip，共 10,344,436 B（2026-09-30 11:51 +08:00 用 gh 与 curl 核对） |
+| Pages | `gh-pages` `e28fab5` 是 `main@54f3e6e` 的构建（2026-09-30 14:04 +08:00 部署，built）；6 个服务文件与该提交的干净构建逐字节一致；`index.html` 1,754,470 B（带 gzip 605,941 B）；`ai/` 五个文件都带 gzip，共 10,344,436 B（用 gh 与 curl 核对）。更早的 `2d8f1a3`（`7c962e2`）11:51 的核对：`labels.json` 200、没有 `space-rooms` 标记 |
 | EXIF | 对 spike 的 96 个样本，94 个与 ExifTool 一致，另 2 个是已记录的上限 |
 | AI 准确率 | 见[产品方案](01-product-plan.md) §3.5；来自 75 张公开 CC 图，不是真实观众照片 |
 | 独立验证 | 最近一轮 12/12 项通过、0 个页面错误、14 条次要发现（处置没记）；1440×900 与 390×844，另有 `file://`、无 WebGL、两个来源的房间流程 |
 
-**没有验证**：iOS Safari、微信内置浏览器、Android 与实体手机（AI 的耗时、内存与页面停顿只在桌面 Chrome 量过）；触屏与读屏软件；减少动态的独立验证；从 0.15 旧键迁移的操作；Cache Storage 在 Pages 上的命中；大陆网络下的加载；两台设备与 HTTPS 下的房间版；Docker 镜像；PNG 里新增的拍摄时间与歌名行的导出文件（待 `space-ticket-v016.png` 留证）；真实观众照片上的 AI 准确率。
+**没有验证**：iOS Safari、微信内置浏览器、Android 与实体手机（AI 的耗时、内存与页面停顿只在桌面 Chrome 量过）；触屏与读屏软件；减少动态的独立验证；从 0.15 旧键迁移的操作；Cache Storage 在 Pages 上的命中；大陆网络下的加载；两台设备与 HTTPS 下的房间版；Docker 镜像；PNG 里的拍摄时间与歌名行只有一张示例票根 `space-ticket-v016.png` 的记录；真实观众照片上的 AI 准确率。
 
 ---
 

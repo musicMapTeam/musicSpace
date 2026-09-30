@@ -2,7 +2,7 @@
 
 版本：**3.0 · 2026-09-30**，对应应用 **MVP 0.16.0**。这是独立产品 Music Space 的第一版方案，取代 2.6（Music Map × Music Space，对应 0.15）。本文由开发侧起草，队友（产品负责人）尚未审阅。
 
-写作时的状态（2026-09-30 11:51 +08:00 用 gh 与 curl 核对）：工作分支 `feat/moment-ai`（`348fe02`、`f9a2d75`、`df8c8cd`、`7c962e2`，另有未提交的改动）**没有推送、没有 PR、没有合并**，远端只有 `main`（`a45ecbd`）与 `gh-pages`。线上 <https://musicmapteam.github.io/musicSpace/> 是 `feat/moment-ai@7c962e2` 的静态版构建（`gh-pages` 分支 `2d8f1a3`，带 `ai/`，2026-09-30 11:18 +08:00 部署），**不含之后的改动**；此前上线的是没有 AI 的 `main@a45ecbd`。0.15 里属于 Map 的规则、数据和画面不在本文，留在 Git 提交 `3dd102c` 与 [musicMapTeam/musicMap](https://github.com/musicMapTeam/musicMap)；两个产品各自编号（Map 仓库同为 MVP 0.16.0，两者互不相干）。
+当前状态（2026-09-30 14:04 +08:00 之后用 gh 与 curl 核对）：工作分支 `feat/moment-ai` 已经 [PR #1](https://github.com/musicMapTeam/musicSpace/pull/1) 于 14:03 合并进 `main`，合并提交 `54f3e6e`，PR 上「Build demo」通过（run 36676242848）。线上 <https://musicmapteam.github.io/musicSpace/> 是 `main@54f3e6e` 的静态版构建（`gh-pages` 分支 `e28fab5`，带 `ai/`，14:04 +08:00 部署，Pages 构建 built，6 个服务文件与该提交的干净构建逐字节一致）；更早的部署是 `feat/moment-ai@7c962e2` 的 `2d8f1a3`（11:18）与没有 AI 的 `main@a45ecbd` 的 `f0ad219`（00:18）。0.15 里属于 Map 的规则、数据和画面不在本文，留在 Git 提交 `3dd102c` 与 [musicMapTeam/musicMap](https://github.com/musicMapTeam/musicMap)；两个产品各自编号（Map 仓库同为 MVP 0.16.0，两者互不相干）。
 
 读法：**已实现**＝代码存在，并有 §6 写明的检查；**未验证**＝代码存在，没在目标环境检查过；**计划**＝还没做；**待决定**＝要团队定。事实与计划分开写，不把计划写成结果，也不估计获奖概率。构建、画面与验证记录登记在[项目状态](../../docs/PROJECT_STATUS.md)；实现细节见[实施规格](03-build-guide.md)，比赛交付见[交付计划](02-delivery-plan.md)。
 
@@ -198,24 +198,24 @@ flowchart LR
 | 能力 | 状态 | 依据与边界 |
 | --- | --- | --- |
 | 拆分为独立产品，Map 已移除 | 已实现 | `main` 上的 `c455279` … `a45ecbd`；前端里只剩对 0.15 旧存储键的一次性读取；远端「Build demo」在 `a45ecbd` 上通过（run 36595874461，当时的工作流只有 `npm ci`、`npm run build`、`node --check`） |
-| 静态版在线演示 | 已部署：`feat/moment-ai@7c962e2` 的构建（带 AI）；**之后的改动未部署** | `gh-pages` 分支 `2d8f1a3`「Deploy Music Space static build from feat/moment-ai@7c962e2 (index.html + ai/)」（2026-09-30 11:18 +08:00）；此前是 `a45ecbd` 的单文件 `f0ad219`（00:18 +08:00）。11:51 +08:00 用 gh 与 curl 核对：`ai/tc8/labels.json` 返回 200，`index.html` 1,747,253 B、没有 `space-rooms` 标记（静态版） |
+| 静态版在线演示 | 已部署：`main@54f3e6e` 的构建（带 AI，含 `7c962e2` 之后的全部修正） | `gh-pages` 分支 `e28fab5`「Deploy Music Space static build from main@54f3e6e (index.html + ai/)」（2026-09-30 14:04 +08:00）；更早是 `2d8f1a3`（`feat/moment-ai@7c962e2`，11:18）与 `f0ad219`（`a45ecbd`，00:18）。线上 6 个文件与干净构建逐字节一致，`index.html` 1,754,470 B；浏览器里的页面没有在这一版上再走一遍 |
 | 现场卡：照片、拍摄时间、视角、时刻、一句话、歌 | 已实现 | `moment.js`、`space.js`、`live.js`；`npm test` 通过（本文写作时复跑，Node 24.19.0）；验证轮次走过示例页与房间页 |
 | 读取 EXIF 拍摄时间 | 已实现 | `web/js/ai/exif-time.js`；对 spike 的 96 个样本，94 个与 ExifTool 一致，另 2 个是已记录的已知上限（段 / 块超过 64 个时读取器返回空）；样本不入库 |
 | 端侧视角建议 | 已实现，只在桌面 Chrome 上实测 | `web/js/ai/space-ai.js`；准确率数字见 §3.5；手机上的耗时、内存与页面停顿未测 |
 | 同一刻配对与理由 | 已实现 | `moment.js`；`scripts/test/moment.test.mjs`（上百次断言） |
 | 私藏 / 展示、申请、同意、快照、纪念记录 | 已实现（房间版）；示例页为本地双角色 | `scripts/test/api.test.mjs`（卡片校验、快照、纪念记录、收藏）；验证轮次的两个来源房间流程 |
-| 双联仪式页与 1600×1800 票根 PNG | 已实现；新增的拍摄时间与歌名行**没有**导出文件的字节数与目视记录 | `duet-ceremony.js`、`ticket-export.js`；待 `space-ticket-v016.png` 一并留证（见项目状态） |
+| 双联仪式页与 1600×1800 票根 PNG | 已实现；导出记录只有一张示例票根 | `duet-ceremony.js`、`ticket-export.js`；`docs/assets/themes/space-ticket-v016.png`（应用导出，1600×1800，2,965,546 B）；没有用户自己的照片、跨日 / 跨年时间的导出记录 |
 | 那晚的歌单与 QQ 音乐搜索链接 | 已实现 | `moment.js` 的 `buildSetlist`、`setlist-ui.js`；链接在手机上会丢搜索词（§3.6） |
 | 静态版 / 房间版双模式 | 已实现 | `app.js`；静态版首页只发一个请求（`/`），房间版按标记判定，把 `/api/live/health` 拖慢到 4 秒时首页在 207 ms 已是房间版（集成阶段记录，Chrome 152） |
 | 浏览器存储与写入失败提示 | 已实现；从 0.15 存档迁移到新键**没有**操作记录 | `storage.js`；写入失败用模拟的 `QuotaExceededError` 与 `SecurityError` 检查过，提示与 toast 都改口 |
 | iOS Safari、微信内置浏览器、Android 与实体手机 | **未做** | AI 的耗时与内存、iPhone 选图后的拍摄时间、点击目标都未测 |
 | 大陆网络下的访问 | **未做** | 见[交付计划](02-delivery-plan.md) §3.C |
-| Pages 上 `ai/` 的传输大小 | 已测（开发机网络） | 2026-09-30 11:51 +08:00：五个文件都带 `content-encoding: gzip`，共 10,344,436 B；`index.html` 带 gzip 604,408 B。Pages 上 Cache Storage 的命中没测 |
+| Pages 上 `ai/` 的传输大小 | 已测（开发机网络） | 2026-09-30（`e28fab5`）：五个文件都带 `content-encoding: gzip`，共 10,344,436 B；`index.html` 带 gzip 605,941 B。Pages 上 Cache Storage 的命中没测 |
 | 目标用户试用 | **未做** | §8 |
-| Space 版的介绍、封面与视频 | **未做** | 现有封面与视频含 Map 内容，不能直接用 |
+| Space 版的介绍、封面与视频 | 视频**未做**；封面已重做（`delivery/cover.png`，提交 `c733512`），待用户签收；介绍只是草稿，待团队逐字核对 | `delivery/` 里现有的视频含 Map 内容，不能用于 Space |
 | 队友审阅本文与产品决定 | **未做** | §9 |
 
-**计划**（都没开始，不是承诺；日期与依赖见[交付计划](02-delivery-plan.md) §6）：把 `7c962e2` 之后的改动提交、推送并再部署；真机、微信内置浏览器与大陆网络检查；用至少 30 张真实手机现场照片量视角建议的准确率与「有把握」的比例，并评估把推理放进 Worker；小样本试用（§8）；为 Space 重做介绍、封面与视频；补拍 15 张 0.16 画面。
+**计划**（都没开始，不是承诺；日期与依赖见[交付计划](02-delivery-plan.md) §6）：在浏览器里检查线上页面（含 Cache Storage 命中）；真机、微信内置浏览器与大陆网络检查；用至少 30 张真实手机现场照片量视角建议的准确率与「有把握」的比例，并评估把推理放进 Worker；小样本试用（§8）；为 Space 录制视频，并请团队核对介绍、用户签收封面。
 
 ## 7. 不做
 
@@ -243,7 +243,6 @@ flowchart LR
 | 赛道：赛道一（TME 产品创新功能）还是赛道二（创新音乐产品） | 表单第 03 项 | 未决。Space 是独立的新产品，形态上更接近赛道二；走赛道一要指明落在 TME 的哪个平台、哪个体验空白。[参赛材料](../../docs/competition/README.md)里有赛道二主稿与赛道一短稿两种口径，赛道一那版只是设想的落点，没有核对该平台的现状，也没有任何对接 |
 | 作品名称 | 表单第 02 项（用户还没贴这一项） | 「Music Space」是暂定名（它原是 2026-09-26 前双 App 方案里 Space 一端的名字，见 [original-ideas](../../references/original-ideas/README.md)） |
 | 仓库与 Pages 是否保持公开；「上线」口径 | FAQ Q10：对外发布至公开平台、任何人可访问，视为上线；FAQ Q4 与官网「无在先使用行为」又要求参赛作品还没上线；FAQ Q8 建议入选前尽量不要开源。而提交要求评审能直接访问在线链接 | 2026-09-30 用 gh 与 curl 核对：仓库是公开的，Pages 站点也是公开的。这一种情形是否算「已上线」，官方口径没有直接回答，需向主办方确认；确认前不主动传播该链接 |
-| `feat/moment-ai` 何时推送、开 PR、合并；`7c962e2` 之后的改动何时再部署 | 线上已经带 AI，但它对应的分支没有远端；之后的改动（如不再发送文件时间）还没上线 | 需要用户批准；上一轮的授权不自动延续 |
 | 房间版是否上线托管 | 需要 Node 24、持久磁盘、HTTPS 与访问控制；官方决赛要求「成功部署上线」 | 未选定主机；现在只用局域网与录屏演示 |
 | 真机检查：谁、什么设备、何时 | iOS Safari、微信内置浏览器、Android 都没测，AI 是最大的未知 | 未安排 |
 | 大陆网络访问不稳时的备选 | 评委的网络环境未知；github.io 在大陆是否稳定没实测，而 `ai/` 有 23 MB | 未测，备选托管未选 |
@@ -260,7 +259,9 @@ flowchart LR
 | 2026-09-28 | 用户决定转向只做 Map（Map-only pivot）：Map 继续在 musicMapTeam/musicMap（MVP 0.16.0，线上 <https://musicmapteam.github.io/musicMap/>，保持原样、没有删除）。细节尚待与产品负责人对齐 | [项目状态](../../docs/PROJECT_STATUS.md)；Map 仓库 `61d0689` |
 | 2026-09-29 | 用户决定恢复 Space 并打磨；**AI 放进核心**（端侧视觉判断视角）；线上演示是静态版（GitHub Pages）。这取代 2.6「不增加模型推理」的表述（原文见附录 B） | 本文 §3.5；[AGENTS.md](../../AGENTS.md) |
 | 2026-09-29 | 用户决定保留 Map，Space 另开新仓库 `musicMapTeam/musicSpace`，以 0.15（`3dd102c`）为起点，移除 Map 一半；该要求授权建仓并推送本分支，PR、合并与其他推送（含部署 Pages）仍先问用户 | [AGENTS.md](../../AGENTS.md) |
-| 2026-09-30 | 执行记录（不是新决定）：00:10 +08:00 建仓；`c455279` … `a45ecbd` 完成拆分；00:18 部署静态版 `a45ecbd` 到 Pages；`feat/moment-ai` 上做了 AI、拍摄时间、同一刻配对、歌单与外壳（`348fe02`、`f9a2d75`、`df8c8cd`、`7c962e2`），该分支没有推送；11:18 +08:00 线上换成 `feat/moment-ai@7c962e2` 的构建（`gh-pages` `2d8f1a3`，`index.html` + `ai/`）；文档 3.0 起草 | `git log`；gh 核对 |
+| 2026-09-30 | 执行记录（不是新决定）：00:10 +08:00 建仓；`c455279` … `a45ecbd` 完成拆分；00:18 部署静态版 `a45ecbd` 到 Pages；`feat/moment-ai` 上做了 AI、拍摄时间、同一刻配对、歌单与外壳（`348fe02`、`f9a2d75`、`df8c8cd`、`7c962e2`），当时该分支没有推送；11:18 +08:00 线上换成 `feat/moment-ai@7c962e2` 的构建（`gh-pages` `2d8f1a3`，`index.html` + `ai/`）；文档 3.0 起草 | `git log`；gh 核对 |
+| 2026-09-30 | 用户给了本仓库的长期授权：推送功能分支、开 PR、CI 通过后合并到 `main`、重新发布 `gh-pages`，以后不必再问，做完告知；不含删除仓库、force push、改动 `musicMapTeam/musicMap` 与其他对外操作。这取代 2026-09-29 那一行里「PR、合并与其他推送仍先问用户」的要求（该行保留作历史）；记录授权的提交 `a516c8a` 在 PR #1 合并之前 | 提交 `a516c8a`；[AGENTS.md](../../AGENTS.md)「完成与提交」 |
+| 2026-09-30 | 执行记录（不是新决定）：依据上一行的授权，PR #1（`feat/moment-ai` → `main`）于 06:03 UTC（14:03 +08:00）合并，合并提交 `54f3e6e`，PR 上 CI 通过（run 36676242848）；14:04 +08:00 重新部署 `gh-pages` `e28fab5`（`main@54f3e6e`），线上与干净构建逐字节一致 | `gh pr view 1`；`git ls-remote`；gh 与 curl 核对 |
 | 未决 | 提交 Space 还是 Map；赛道；名称；是否公开；是否托管房间版 | §9 |
 
 ---

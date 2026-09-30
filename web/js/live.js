@@ -2,15 +2,22 @@ import { SPACE_EVENT, SPACE_MOMENTS, SPACE_PHOTOS } from './space-data.js';
 import { downloadTicket, downloadCard } from './ticket-export.js';
 import { createPhotoStore, preparePhoto } from './live-photo.js';
 import { openDuetCeremony } from './duet-ceremony.js';
-import { momentLabel, perspectiveLabel, sharedLine } from './duet-facts.js';
+import { duetSides, sharedLine } from './duet-facts.js';
 import { readSession, saveSession } from './storage.js';
+import {
+  SONG_MAX, TAKEN_MIN, VIEWPOINTS, buildSetlist, cardFacts, cleanSong, fromInputValue, orderWall, readPair, reasonHtml, songsOf, takenFields, takenMax, toInputValue, viewpointName, viewpointOf,
+} from './moment.js';
+import {
+  AI_NOTE_ROOM, AI_THINKING, SUGGESTED_DESCRIPTION, answerView, identifyViewpoint, loadingMarkup, moveLoading, paintAiLine, readPhotoTime, timeView, viewpointHint, warmUpViewpointAI,
+} from './photo-insight.js';
+import { bindSetlistCopy, setlistBody } from './setlist-ui.js';
 import qrcode from 'qrcode-generator';
 
 const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const momentName = id => SPACE_MOMENTS.find(item => item.id === id)?.name || '现场瞬间';
 const demoEvent = { id: SPACE_EVENT.id, title: `${SPACE_EVENT.title} / ${SPACE_EVENT.subtitle}`, date: '2026-09-26', city: SPACE_EVENT.city, song: SPACE_EVENT.song, isDemo: true };
-const PERSPECTIVES = [{ id: 'stage', name: '舞台', detail: '灯光下的那一面' }, { id: 'crowd', name: '人海', detail: '一起举手的那一面' }, { id: 'friends', name: '身边', detail: '陪你听歌的那一面' }, { id: 'detail', name: '细节', detail: '只有你留意的那一面' }];
-const perspectiveName = card => PERSPECTIVES.find(item => item.id === (card.perspective || card.photoKey))?.name || '现场';
+// Who was there, and from which side of the night: 舞台 / 人海 / 身边 / 细节. A card whose maker left it open just says 现场.
+const perspectiveName = card => viewpointName(viewpointOf(card)) || '现场';
 const photoPlaceholder = `data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="1" height="1"><path fill="#153637" d="M0 0h1v1H0z"/></svg>')}`;
 const dateLabel = value => new Date(value).toLocaleString('zh-CN', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' });
 const completedAt = item => item.decidedAt || item.createdAt;
@@ -45,6 +52,8 @@ export function mountLive(container, api) {
   let version = 0;
   let photoPreparing = false;
   let photoSelection = 0;
+  let insightToken = 0; // bumps only when a NEW picture (or an example) is chosen, so late answers about an old one are dropped
+  let savedWhileModelWorking = false; // the card was saved before the on-device model had answered: the saved-card sheet says the card has no side yet
   let createRequested = (makeRequested || inviteRequested) && !session?.roomId && !requestedRoomId;
   let entryMode = createRequested || makeRequested ? 'create' : 'join';
   let eventDraft = { title: '', eventDate: '', city: '', song: '' };
@@ -123,14 +132,9 @@ export function mountLive(container, api) {
     const event = eventOf(card);
     return { title: event.title, song: event.song, eventDate: event.date, city: event.city, isDemo: event.isDemo, createdAt: completedAt(item), id: item.exchangeId || item.id };
   }
+  /** How the viewer's card and another card relate: capture time first, the chosen moment when a time is missing (see moment.js). */
   function matchReason(a, b) {
-    if (!a) return { score: 0, title: `${perspectiveName(b)}的视角`, detail: '先留下自己的卡，再看看两种视角如何呼应。' };
-    const sameMoment = a.momentId === b.momentId;
-    const differentView = (a.perspective || a.photoKey) !== (b.perspective || b.photoKey);
-    if (sameMoment && differentView) return { score: 3, title: '同一瞬间，不同视角', detail: `都选了「${momentName(a.momentId)}」；你拍${perspectiveName(a)}，对方拍${perspectiveName(b)}。` };
-    if (sameMoment) return { score: 2, title: '你们记住了同一瞬间', detail: `都选了「${momentName(a.momentId)}」，看看对方留住了什么。` };
-    if (a.trackId && b.trackId && eventOf(a).song) return { score: 1, title: '带着同一首歌的记忆', detail: `都带上了《${eventOf(a).song}》，各自记住了不同片刻。` };
-    return { score: 0, title: '现场的另一面', detail: `${momentName(b.momentId)} · ${perspectiveName(b)}，或许能补上你没看到的一面。` };
+    return readPair(a, b, { event: eventOf(b), moments: SPACE_MOMENTS });
   }
   function acceptedPair(card) {
     const own = room?.ownCard;
@@ -253,7 +257,9 @@ export function mountLive(container, api) {
 
   function miniCard(card, label = '') {
     const event = eventOf(card);
-    return `<article class="live-card"><div class="live-card-photo">${photoMarkup(card)}<span>${escape(label || perspectiveName(card))}</span>${!card.photoId ? '<b class="live-example-photo">示例图</b>' : ''}</div><div class="live-card-content"><span class="live-card-author">${escape(card.ownerName)} <small>${escape(momentName(card.momentId))}</small></span><p>${escape(card.caption || '这一刻，想和你一起记住。')}</p>${card.trackId && event.song ? `<span class="live-card-track">♪ ${escape(event.song)}</span>` : ''}</div></article>`;
+    const facts = cardFacts(card, event, SPACE_MOMENTS);
+    const songs = songsOf(card, event);
+    return `<article class="live-card"><div class="live-card-photo">${photoMarkup(card)}<span>${escape(label || perspectiveName(card))}</span>${!card.photoId ? '<b class="live-example-photo">示例图</b>' : ''}</div><div class="live-card-content"><span class="live-card-author">${escape(card.ownerName)} <small>${escape(momentName(card.momentId))}</small></span><p>${escape(card.caption || '这一刻，想和你一起记住。')}</p>${facts.time ? `<span class="live-card-time">拍摄于 ${escape(facts.time)}</span>` : ''}${songs.length ? `<span class="live-card-track">${songs.map(song => `<span>♪ ${escape(song.title)}</span>`).join('')}</span>` : ''}</div></article>`;
   }
 
   function banner() {
@@ -292,13 +298,31 @@ export function mountLive(container, api) {
     const hasCards = room.cards.some(card => card.ownerId !== room.me.id && card.isPublic);
     const action = hasCards ? 'wall' : room.room.memberCount < 2 ? 'invite' : own.isPublic ? 'wall' : 'visibility';
     const label = { wall: '看看同场卡片', invite: '邀请朋友一起', visibility: '展示到本场' }[action];
-    openModal('card-saved', '现场卡已保存', `<div class="live-saved-note">${icon('check')}<div><strong>${own.isPublic ? '已展示到本场' : '这张卡先为你私藏'}</strong><p>${own.isPublic ? '交换仍需双方同意。' : '只有你可见，也能主动申请交换。'}</p></div></div><div class="live-saved-actions"><button class="button button--primary" data-live-action="${action}">${label} ${icon('arrow-right')}</button><button class="button button--secondary" data-live-action="download-card">下载我的卡片 ${icon('arrow-up-right')}</button></div><div class="live-saved-links">${!own.isPublic && action !== 'visibility' ? '<button class="text-button" data-live-action="visibility">展示到本场</button>' : ''}<button class="text-button" data-live-action="collection">去我的记录 ${icon('arrow-right')}</button><button class="text-button live-saved-later" data-live-action="close">先收好</button></div>`, 'live-dialog--saved', own.id);
+    // A card without a side never gets 「同一刻的另一面」: say so, and why when the model simply had not answered yet (its answer is not written in later).
+    const noViewpoint = !viewpointOf(own);
+    const modelWasWorking = noViewpoint && savedWhileModelWorking;
+    savedWhileModelWorking = false;
+    openModal('card-saved', '现场卡已保存', `<div class="live-saved-note">${icon('check')}<div><strong>${own.isPublic ? '已展示到本场' : '这张卡先为你私藏'}</strong><p>${own.isPublic ? '交换仍需双方同意。' : '只有你可见，也能主动申请交换。'}</p></div></div>${noViewpoint ? `<p class="live-form-note live-saved-viewpoint" data-viewpoint-note>${modelWasWorking ? 'AI 还没来得及判断视角，这张卡先没有视角。' : '这张卡还没选视角。'}没有视角，配对时就不会标「同一刻的另一面」。</p>` : ''}<div class="live-saved-actions"><button class="button button--primary" data-live-action="${action}">${label} ${icon('arrow-right')}</button><button class="button button--secondary" data-live-action="download-card">下载我的卡片 ${icon('arrow-up-right')}</button></div><div class="live-saved-links">${noViewpoint ? '<button class="text-button" data-live-action="choose-viewpoint">选一个视角</button>' : ''}${!own.isPublic && action !== 'visibility' ? '<button class="text-button" data-live-action="visibility">展示到本场</button>' : ''}<button class="text-button" data-live-action="collection">去我的记录 ${icon('arrow-right')}</button><button class="text-button live-saved-later" data-live-action="close">先收好</button></div>`, 'live-dialog--saved', own.id);
   }
 
   function roomView() {
     const own = room.ownCard;
     const event = room.room.event || demoEvent;
-    const cards = room.cards.filter(card => card.ownerId !== room.me.id).sort((a, b) => matchReason(own, b).score - matchReason(own, a).score);
+    // Best first: 同一刻 by capture time, then by the chosen moment, then the rest of the night; the best other side is marked.
+    const wall = orderWall(own, room.cards.filter(card => card.ownerId !== room.me.id), { event, moments: SPACE_MOMENTS });
+    const cards = wall.items;
+    // The mark says "swap with this one next": a card the viewer already holds a duet with is not it.
+    const bestId = cards.find(item => item.reading.complementary && !acceptedPair(item.card))?.card.id ?? null;
+    const songs = buildSetlist(room.cards.map(card => ({ card, event, name: card.ownerName })));
+    const sameMoment = cards.filter(item => item.reading.same);
+    const groups = sameMoment.length && sameMoment.length < cards.length
+      ? [['和你同一刻', sameMoment], ['这一晚的其他视角', cards.filter(item => !item.reading.same)]]
+      : [['', cards]];
+    const wallItem = ({ card, reading }) => {
+      const complete = acceptedPair(card);
+      const best = card.id === bestId;
+      return `<div class="live-wall-item${best ? ' is-best' : ''}">${best ? '<span class="live-wall-item__badge">同一刻的另一面</span>' : ''}${miniCard(card)}<div class="live-match">${best || reading.same ? '' : `<b>${escape(reading.title)}</b>`}<p>${reasonHtml(reading.detail)}</p></div><button class="button button--secondary" data-live-action="request" data-id="${escape(card.id)}">${complete ? '打开双联' : '申请交换'} ${icon(complete ? 'arrow-up-right' : 'swap')}</button></div>`;
+    };
     const incoming = room.exchanges.filter(ex => ex.to === room.me.id && ex.status === 'pending');
     const outgoing = room.exchanges.filter(ex => ex.from === room.me.id && ex.status === 'pending');
     const resolved = room.exchanges.filter(ex => ex.status !== 'pending').slice(-6).reverse();
@@ -307,9 +331,10 @@ export function mountLive(container, api) {
     </div><div class="live-room-tray live-room-tray--compact">${incoming.length ? `<section class="live-incoming" aria-label="收到的交换申请"><div class="live-request-note">${incoming.length} 条申请待回应</div>${requestRow(incoming[0])}${incoming.length > 1 ? `<details class="live-request-more" data-room-fold="incoming"><summary>其他 ${incoming.length - 1} 条申请 ${icon('chevron-right')}</summary>${incoming.slice(1).map(requestRow).join('')}</details>` : ''}</section>` : ''}
     <section class="live-own-section">${own ? `<details class="live-own-fold" data-room-fold="own"><summary><span>我的现场卡 <small class="live-own-state ${own.isPublic ? 'is-public' : ''}">· ${own.isPublic ? '展示' : '私藏'}</small></span>${icon('chevron-right')}</summary><div class="live-own-preview">${miniCard(own)}<div class="live-own-actions"><button class="text-button" data-live-action="download-card">保存我的卡片 ${icon('arrow-up-right')}</button><button class="text-button" data-live-action="visibility">${own.isPublic ? '从本场撤下' : '展示到本场'} ${icon('arrow-up-right')}</button></div></div></details><button class="text-button live-own-edit" data-live-action="edit" aria-label="编辑我的现场卡">编辑 ${icon('arrow-up-right')}</button>` : `<div class="live-empty-card"><button class="button button--primary" data-live-action="edit">制作我的现场卡 ${icon('plus')}</button></div>`}</section>
     ${outgoing.length ? `<details class="live-pending" data-room-fold="outgoing"><summary><span>${outgoing.length} 条申请等待回应</span>${icon('chevron-right')}</summary>${outgoing.map(ex => `<div class="live-pending-row"><span>等待 <b>${escape(ex.toCard.ownerName)}</b> 回应</span><button class="text-button" data-live-action="review" data-id="${escape(ex.id)}">查看 / 取消</button></div>`).join('')}</details>` : ''}
-    <div class="live-room-directories"><details class="live-wall-directory live-wall-section" data-room-fold="wall"><summary><span>同场卡片</span><small>${cards.length}</small>${icon('chevron-right')}</summary>${cards.length ? `<div class="live-wall">${cards.map(card => { const match = matchReason(own, card); const complete = acceptedPair(card); return `<div class="live-wall-item">${miniCard(card)}<div class="live-match"><b>${escape(match.title)}</b></div><button class="button button--secondary" data-live-action="request" data-id="${escape(card.id)}">${complete ? '打开双联' : '申请交换'} ${icon(complete ? 'arrow-up-right' : 'swap')}</button></div>`; }).join('')}</div>` : emptyWall(own)}</details>
+    <div class="live-room-directories"><details class="live-wall-directory live-wall-section" data-room-fold="wall"><summary><span>同场卡片</span><small>${cards.length}</small>${icon('chevron-right')}</summary>${cards.length ? `<div class="live-wall">${groups.map(([label, items]) => `${label ? `<h4 class="live-wall-group">${escape(label)}</h4>` : ''}${items.map(wallItem).join('')}`).join('')}</div>` : emptyWall(own)}</details>
     <details class="live-memory-directory live-memories" data-room-fold="memories"><summary><span>共同记忆</span><small>${room.records.length}</small>${icon('chevron-right')}</summary>${room.records.length ? `<div class="live-memory-list">${room.records.map(record => `<button class="live-memory" data-live-action="memory" data-id="${escape(record.id)}"><div class="live-memory-pictures"><div>${photoMarkup(record.fromCard, '')}</div><div>${photoMarkup(record.toCard, '')}</div></div><div><h3>${escape(record.fromCard.ownerName)} <i>×</i> ${escape(record.toCard.ownerName)}</h3><p>${escape(dateLabel(completedAt(record)))} · 双方已同意</p></div>${icon('arrow-up-right')}</button>`).join('')}</div>` : '<p class="live-empty-memory">下一张，和朋友一起。</p>'}
-    ${resolved.length ? `<details class="live-history" data-room-fold="history"><summary>最近交换动态 <span>${resolved.length}</span></summary>${resolved.map(ex => `<div><span>${escape(ex.from === room.me.id ? ex.toCard.ownerName : ex.fromCard.ownerName)}</span><b>${({ accepted: '交换已完成', declined: '这次没有交换', cancelled: '申请已取消' })[ex.status]}</b><small>${escape(dateLabel(ex.decidedAt || ex.createdAt))}</small></div>`).join('')}</details>` : ''}</details></div></div></div>`;
+    ${resolved.length ? `<details class="live-history" data-room-fold="history"><summary>最近交换动态 <span>${resolved.length}</span></summary>${resolved.map(ex => `<div><span>${escape(ex.from === room.me.id ? ex.toCard.ownerName : ex.fromCard.ownerName)}</span><b>${({ accepted: '交换已完成', declined: '这次没有交换', cancelled: '申请已取消' })[ex.status]}</b><small>${escape(dateLabel(ex.decidedAt || ex.createdAt))}</small></div>`).join('')}</details>` : ''}</details>
+    <details class="live-memory-directory live-setlist-directory" data-room-fold="setlist"><summary><span>那晚的歌单</span><small>${songs.length}</small>${icon('chevron-right')}</summary>${setlistBody(songs, { eventDate: event.date, icon })}</details></div></div></div>`;
   }
 
   function openModal(name, title, content, className = '', cardId = null) {
@@ -319,6 +344,9 @@ export function mountLive(container, api) {
     else api.spatial?.restore();
     dialog.className = `live-dialog ${className}`;
     modal.innerHTML = `<div class="live-modal-top"><span class="eyebrow">MUSIC SPACE / ${room ? escape(room.room.code) : 'TOGETHER'}</span><button class="icon-button" data-live-action="close" aria-label="关闭">${icon('x')}</button></div><h2 id="live-dialog-title">${title}</h2>${content}<p class="live-notice" data-modal-error role="alert" hidden></p>`;
+    // The answer bar sticks to the bottom of the sheet, so what went wrong is shown inside it, above the buttons: at the end of the
+    // scrolling content it would sit behind the bar.
+    modal.querySelector('.live-dialog-bar')?.prepend(modal.querySelector('[data-modal-error]'));
     if (!dialog.open) dialog.showModal();
     hydratePhotos(modal);
   }
@@ -335,6 +363,7 @@ export function mountLive(container, api) {
   }
 
   function clearDraft() {
+    draft?.ui?.identify?.cancel();
     draft = null;
     draftRoomId = null;
     draftChanged = false;
@@ -376,12 +405,97 @@ export function mountLive(container, api) {
     modal.querySelectorAll('[data-live-action="compose-back"]').forEach(button => { button.disabled = busy || photoPreparing; });
   }
 
+  const freshInsight = (guess = null) => ({ from: '', answer: { phase: 'idle' }, guess, zone: '', editTime: false, identify: null });
+  const draftEventDate = () => eventOf(room?.ownCard)?.date || '';
+
+  /** The two likeliest sides when the model is unsure: highlighted, never selected for the person. */
+  function suggestedViewpoints() {
+    const view = draft?.ui.answer.phase === 'done' ? answerView(draft.ui.answer.result) : null;
+    return view && !view.sure && !draft.perspective && draft.ui.from !== 'user' ? view.suggested : [];
+  }
+  function syncChips() {
+    if (currentModal?.name !== 'editor' || !draft) return;
+    const hints = suggestedViewpoints();
+    modal.querySelectorAll('.live-perspectives label').forEach(label => {
+      const input = label.querySelector('input');
+      input.checked = input.value === draft.perspective;
+      const likely = !input.checked && hints.includes(input.value);
+      label.classList.toggle('is-suggested', likely);
+      // The dashed outline is only for the eyes: a screen reader gets the same message as a description of the choice.
+      if (likely) input.setAttribute('aria-describedby', 'live-viewpoint-likely'); else input.removeAttribute('aria-describedby');
+    });
+  }
+  /** The model's progress and answer. It only ever adds a small line; when it has nothing to say the line is gone. */
+  function renderAi() {
+    if (currentModal?.name !== 'editor' || !draft) return;
+    const { answer, from } = draft.ui;
+    const view = answer.phase === 'done' ? answerView(answer.result) : null;
+    const lines = modal.querySelectorAll('[data-ai-line]');
+    // A download reports progress many times a second and each line is a status region: once a line shows the loading words only its
+    // aria-hidden percent and bar move, so a screen reader hears the download once, not every percent.
+    if (answer.phase === 'loading') {
+      lines.forEach(line => { if (!moveLoading(line, answer)) paintAiLine(line, loadingMarkup('live-ai-line', answer)); });
+      return;
+    }
+    let html = '';
+    if (answer.phase === 'thinking') html = `<span>${escape(AI_THINKING)}</span>`;
+    else if (view && from !== 'user') {
+      if (view.sure && from === 'ai') html = `<span class="live-ai-tag" title="${escape(AI_NOTE_ROOM)}">${escape(view.tag)}</span>`;
+      // The dashed chips are for the eyes; the visually hidden words name the two sides for everyone else (the chips carry a description too).
+      else if (!view.sure && !draft.perspective) html = `<span class="live-ai-tag live-ai-tag--unsure">${escape(view.tag)}</span><span class="sr-only">${escape(view.spoken)}</span>`;
+    }
+    // The regions stay in the page (emptied, not hidden): a status region that appears together with its words is often not announced.
+    lines.forEach(line => paintAiLine(line, html));
+    // The words about the AI are taken back when the model turns out not to run here (a file that would not load).
+    modal.querySelectorAll('[data-viewpoint-hint]').forEach(note => { note.textContent = viewpointHint({ upload: true }); });
+  }
+  /** Capture time: what was read, what is only a guess, and the field to say otherwise. An example picture has none. */
+  function renderTaken({ fillInput = false } = {}) {
+    if (currentModal?.name !== 'editor' || !draft) return;
+    const wrap = modal.querySelector('[data-taken]');
+    if (!wrap) return;
+    // Nothing to say about a capture time until there is a picture of one's own.
+    wrap.hidden = draft.useExample || (!draft.photoId && !draft.uploadDataUrl);
+    if (wrap.hidden) return;
+    const view = timeView(draft, draftEventDate(), { zone: draft.ui.zone });
+    const open = view.mode !== 'known' || draft.ui.editTime;
+    wrap.querySelector('[data-taken-line]').textContent = view.line;
+    wrap.querySelector('[data-taken-note]').textContent = view.mode === 'known' ? `· ${view.note}` : '';
+    wrap.querySelector('[data-live-action="taken-edit"]').hidden = !(view.mode === 'known' && view.editable && !draft.ui.editTime);
+    wrap.querySelector('[data-taken-field]').hidden = !open;
+    wrap.querySelector('[data-taken-label]').textContent = view.mode === 'guess' ? '大约的时间 · 北京时间' : view.mode === 'known' ? '修改拍摄时间 · 北京时间' : '拍摄时间 · 北京时间';
+    wrap.querySelector('[data-taken-hint]').textContent = view.mode === 'known' ? '改过的时间以你填的为准。' : view.note;
+    if (fillInput) wrap.querySelector('input[name="takenAt"]').value = draft.takenAt === null ? '' : toInputValue(draft.takenAt);
+  }
+  function syncEditorFacts({ fillInput = true } = {}) {
+    if (currentModal?.name !== 'editor' || !draft) return;
+    renderTaken({ fillInput });
+    renderAi();
+    syncChips();
+    const kind = modal.querySelector('[data-compose-photo-kind]');
+    if (kind) {
+      const time = draft.useExample ? '' : cardFacts(draft, eventOf(room?.ownCard), SPACE_MOMENTS).time;
+      kind.textContent = `${draft.useExample ? 'AI 示例图' : '我的现场照片'}${time ? ` · 拍摄于 ${time}` : ''}`;
+    }
+  }
+  /** An answer from the on-device model. It may fill an empty side when it is sure; a side the person chose is never touched. */
+  function onAnswer(target, token, state) {
+    if (target !== draft || token !== insightToken || signal.aborted) return;
+    target.ui.answer = state;
+    if (state.phase === 'done' && state.result.sure && !target.ui.from && !target.perspective) {
+      target.perspective = state.result.label;
+      target.ui.from = 'ai';
+      markDraftChanged();
+    }
+    renderAi();
+    if (state.phase === 'done') syncChips(); // download progress must not rewrite the chips a dozen times a second
+  }
+
   function updateEditorPhoto() {
     modal.querySelectorAll('[data-photo-preview],[data-compose-preview]').forEach(element => { element.innerHTML = editorPhoto(); });
-    const kind = modal.querySelector('[data-compose-photo-kind]');
-    if (kind) kind.textContent = draft.useExample ? 'AI 示例图' : '我的现场照片';
     hydratePhotos(modal);
     updateComposeAvailability();
+    syncEditorFacts();
   }
 
   function showEditorStep(step, focus = true) {
@@ -399,12 +513,14 @@ export function mountLive(container, api) {
     updateComposeAvailability();
   }
 
-  function openEditor(target = null) {
+  function openEditor(target = null, { askViewpoint = false } = {}) {
     requestTarget = target;
     const own = room.ownCard;
     const event = eventOf(own);
     if (!draft || !draftChanged || draftRoomId !== room.room.id) {
-      draft = { photoKey: 'stage', photoId: null, perspective: 'stage', momentId: 'encore', trackId: event.song ? SPACE_EVENT.trackId : '', caption: '', isPublic: false, ...own, uploadDataUrl: null, useExample: Boolean(own && !own.photoId) };
+      // A side that was never chosen stays '' (no default): the model may fill it when it is sure, the person always can.
+      draft = { photoKey: 'stage', photoId: null, perspective: '', takenAt: null, takenSource: null, song: '', momentId: 'encore', trackId: event.song ? SPACE_EVENT.trackId : '', caption: '', isPublic: false, ...own, uploadDataUrl: null, useExample: Boolean(own && !own.photoId), ui: freshInsight() };
+      draft.perspective = viewpointOf(draft);
       draftRoomId = room.room.id;
       draftChanged = false;
       editorStep = own ? 'details' : 'photo';
@@ -416,14 +532,22 @@ export function mountLive(container, api) {
       <div class="live-compose__body">
         <fieldset class="live-compose__step" data-compose-panel="photo" ${editorStep !== 'photo' ? 'hidden' : ''}><legend class="sr-only">选照片</legend>
           <div class="live-upload-preview" data-photo-preview>${editorPhoto()}</div>
+          <div class="live-taken" data-taken>
+            <div class="live-taken__row"><p class="live-taken__line" role="status" aria-live="polite"><span data-taken-line></span> <small data-taken-note></small></p><button class="text-button live-taken__edit" type="button" data-live-action="taken-edit" aria-controls="live-taken-field" hidden>修改时间</button></div>
+            <div class="live-taken__field" id="live-taken-field" data-taken-field hidden><label class="live-field"><span data-taken-label>拍摄时间 · 北京时间</span><input type="datetime-local" name="takenAt" min="${toInputValue(TAKEN_MIN)}" max="${toInputValue(takenMax())}" step="60"></label><p class="live-form-note" data-taken-hint></p></div>
+          </div>
+          <div class="live-ai-line" data-ai-line role="status" aria-live="polite"></div>
           <label class="button button--secondary live-upload-button">${icon('image')} ${own?.photoId ? '换一张自己的照片' : '选择自己的照片'}<input type="file" name="photoFile" accept="image/jpeg,image/png,image/webp" data-photo-file></label>
           <p class="live-form-note" data-photo-hint>JPG / PNG / WebP · 自动缩小并移除定位信息</p>
           <details class="live-example-picker"><summary>使用示例图</summary><p>AI 生成，卡片会保留示例标记。</p><fieldset class="live-photo-choices"><legend class="sr-only">选择示例照片</legend>${Object.values(SPACE_PHOTOS).map(item => `<label><input type="radio" name="photoKey" value="${item.id}" ${draft.useExample && item.id === draft.photoKey ? 'checked' : ''}><span><img src="${item.url}" alt="${item.description}"><b>${item.name}</b>${icon('check')}</span></label>`).join('')}</fieldset></details>
         </fieldset>
         <fieldset class="live-compose__step" data-compose-panel="details" ${editorStep !== 'details' ? 'hidden' : ''}><legend class="sr-only">留一句</legend>
           <button class="live-compose__photo-edit" type="button" data-live-action="compose-back"><span class="live-compose__thumbnail" data-compose-preview>${editorPhoto()}</span><span>换照片<small data-compose-photo-kind>${draft.useExample ? 'AI 示例图' : '我的现场照片'}</small></span>${icon('chevron-right')}</button>
-          <fieldset class="live-perspectives"><legend>我拍的这一面</legend>${PERSPECTIVES.map(item => `<label><input type="radio" name="perspective" value="${item.id}" ${item.id === draft.perspective ? 'checked' : ''}><span><b>${item.name}</b></span></label>`).join('')}</fieldset>
+          <fieldset class="live-perspectives"><legend>我拍的这一面</legend>${VIEWPOINTS.map(item => `<label><input type="radio" name="perspective" value="${item.id}" ${item.id === draft.perspective ? 'checked' : ''}><span><b>${item.name}</b></span></label>`).join('')}</fieldset>
+          <div class="live-ai-line" data-ai-line role="status" aria-live="polite"></div>
+          <p class="live-form-note live-perspectives__note" data-viewpoint-hint>${viewpointHint({ upload: true })}</p><span class="sr-only" id="live-viewpoint-likely">${SUGGESTED_DESCRIPTION}</span>
           <label class="live-field live-compose__caption">留一句话 <span data-caption-count>${draft.caption.length} / 80</span><textarea name="caption" maxlength="80" rows="2" placeholder="这一刻，我记得……">${escape(draft.caption)}</textarea></label>
+          <label class="live-field live-compose__song">这一刻在唱的歌 <span data-song-count>${[...(draft.song || '')].length} / ${SONG_MAX}</span><input type="text" name="song" maxlength="${SONG_MAX}" autocomplete="off" placeholder="选填，例如：晴天" value="${escape(draft.song || '')}"></label>
           <details class="live-compose__details"><summary>更多细节 ${icon('chevron-right')}</summary><fieldset class="live-moment-choices"><legend>现场瞬间</legend>${SPACE_MOMENTS.map(item => `<label><input type="radio" name="momentId" value="${item.id}" ${item.id === draft.momentId ? 'checked' : ''}><span>${item.name}</span></label>`).join('')}</fieldset>${event.song ? `<label class="live-check"><input type="checkbox" name="track" ${draft.trackId ? 'checked' : ''}><span>带上这首歌 <b>♪ ${escape(event.song)}</b></span></label>` : ''}</details>
           <label class="live-check live-compose__privacy"><input type="checkbox" name="isPublic" ${draft.isPublic ? 'checked' : ''}><span>展示到本场<small>未开启时，仅自己可见。</small></span></label>
         </fieldset>
@@ -434,6 +558,14 @@ export function mountLive(container, api) {
       </footer>
     </form>`, 'live-dialog--editor live-dialog--compose');
     updateComposeAvailability();
+    syncEditorFacts();
+    // Came from 「选一个视角」 on a card saved without one: the model goes on loading after a save, so it may be ready to look at the photo now.
+    const picture = draft.photoId ? photos.peek(draft.photoId) : null;
+    if (askViewpoint && picture && !draft.perspective && !draft.ui.identify) {
+      const held = draft;
+      const token = ++insightToken;
+      held.ui.identify = identifyViewpoint(picture, state => onAnswer(held, token, state));
+    }
   }
 
   function openRequest(cardId) {
@@ -446,7 +578,9 @@ export function mountLive(container, api) {
     if (pending) { openExchange(pending.id); return; }
     requestTarget = { id: cardId, fromRevision: room.ownCard.revision, toRevision: target.revision };
     const reason = matchReason(room.ownCard, target);
-    openModal('request', `和 ${escape(target.ownerName)}，交换这一刻`, `<div class="live-pair-reason"><b>${escape(reason.title)}</b><p>${escape(reason.detail)}</p></div><div class="live-compare">${miniCard(room.ownCard, '我送出的')}${miniCard(target, '想换回的')}</div><div class="live-consent-note">${icon('swap')}<span>发送后，这张卡将分享给 ${escape(target.ownerName)}。接受后生成双联。</span></div><button class="button button--primary live-wide" data-live-action="send">发送交换申请 ${icon('arrow-right')}</button>`, 'live-dialog--wide', target.id);
+    // What sending shares, and the send button, live in a bar that stays at the bottom of the sheet: the two cards and the reason are
+    // taller than a short window, and the button must never be in view without the sentence that says what it does.
+    openModal('request', `和 ${escape(target.ownerName)}，<span class="nowrap">交换这一刻</span>`, `<div class="live-pair-reason"><b>${escape(reason.title)}</b><p>${reasonHtml(reason.detail)}</p></div><div class="live-compare">${miniCard(room.ownCard, '我送出的')}${miniCard(target, '想换回的')}</div><div class="live-dialog-bar"><div class="live-consent-note">${icon('swap')}<span>发送后，这张卡将分享给 ${escape(target.ownerName)}。<span class="nowrap">接受后生成双联。</span></span></div><button class="button button--primary live-wide" data-live-action="send">发送交换申请 ${icon('arrow-right')}</button></div>`, 'live-dialog--wide', target.id);
   }
 
   function openExchange(id) {
@@ -455,7 +589,11 @@ export function mountLive(container, api) {
     if (exchange.status === 'accepted') { openTicket(exchange); return; }
     const incoming = exchange.to === room.me.id;
     const pending = exchange.status === 'pending';
-    openModal('exchange', pending ? incoming ? '接受这次交换？' : '等待对方回应' : '交换已结束', `<p class="live-modal-intro">${pending ? '交换以眼前这两张卡为准。' : '只有双方接受，才会产生双联记忆。'}</p><div class="live-compare">${miniCard(exchange.fromCard, `${exchange.fromCard.ownerName} 的视角`)}${miniCard(exchange.toCard, `${exchange.toCard.ownerName} 的视角`)}</div>${pending ? `<div class="live-decision-actions">${incoming ? `<button class="button button--primary" data-live-action="decide" data-id="${escape(id)}" data-decision="accepted">愿意，交换这一刻 ${icon('swap')}</button><button class="text-button" data-live-action="decide" data-id="${escape(id)}" data-decision="declined">这次先不了</button>` : `<button class="button button--secondary" data-live-action="decide" data-id="${escape(id)}" data-decision="cancelled">取消这次申请</button>`}</div>` : ''}`, 'live-dialog--wide', incoming ? exchange.fromCard.id : exchange.toCard.id);
+    // Why these two cards were put together, told to whoever is looking: "你" is the card they own, whichever side sent the request.
+    const [mine, theirs] = incoming ? [exchange.toCard, exchange.fromCard] : [exchange.fromCard, exchange.toCard];
+    const reason = matchReason(mine, theirs);
+    // Each card is labelled with the side of the night it shows (舞台 / 人海 …); the owner's name is on the card itself.
+    openModal('exchange', pending ? incoming ? '接受这次交换？' : '等待对方回应' : '交换已结束', `<p class="live-modal-intro">${pending ? '交换以眼前这两张卡为准。' : '只有双方接受，才会产生双联记忆。'}</p><div class="live-pair-reason"><b>${escape(reason.title)}</b><p>${reasonHtml(reason.detail)}</p></div><div class="live-compare">${miniCard(exchange.fromCard)}${miniCard(exchange.toCard)}</div>${pending ? `<div class="live-decision-actions live-dialog-bar">${incoming ? `<button class="button button--primary" data-live-action="decide" data-id="${escape(id)}" data-decision="accepted">愿意，交换这一刻 ${icon('swap')}</button><button class="text-button" data-live-action="decide" data-id="${escape(id)}" data-decision="declined">这次先不了</button>` : `<button class="button button--secondary" data-live-action="decide" data-id="${escape(id)}" data-decision="cancelled">取消这次申请</button>`}</div>` : ''}`, 'live-dialog--wide', incoming ? exchange.fromCard.id : exchange.toCard.id);
     currentModal.id = id;
   }
 
@@ -468,19 +606,22 @@ export function mountLive(container, api) {
     const saved = room.records.find(record => record.exchangeId === exchangeId);
     if (dialog.open) { dialog.close(); currentModal = null; }
     ceremony?.close();
+    const facts = duetSides([a, b], event);
     const handle = openDuetCeremony({
       id: exchangeId,
       reveal,
       scenario: 'live',
       event: { title: event.title, date: event.date, city: event.city, isDemo: event.isDemo },
       completedAt: completedAt(item),
-      sides: [a, b].map(card => ({
+      sides: [a, b].map((card, index) => ({
         author: card.ownerName || '同场朋友',
         src: photo(card),
         load: card.photoId ? () => photos.load(card.photoId) : null,
         isExample: !card.photoId,
-        perspective: perspectiveLabel(card),
-        moment: momentLabel(card.momentId),
+        perspective: facts[index].viewpoint || '现场',
+        moment: facts[index].moment,
+        time: facts[index].time,
+        songs: facts[index].songs,
         caption: card.caption || '这一刻，想和你一起记住。',
       })),
       shared: sharedLine([a, b], event),
@@ -612,7 +753,16 @@ export function mountLive(container, api) {
       const target = typeof requestTarget === 'string' ? requestTarget : null;
       const currentDraft = draft;
       const firstCard = !room.ownCard;
-      const body = { photoKey: draft.photoKey, photoId: draft.photoId || null, perspective: data.get('perspective'), momentId: data.get('momentId'), caption: String(data.get('caption')).trim(), trackId: data.has('track') ? SPACE_EVENT.trackId : '', isPublic: data.has('isPublic') };
+      // Saving does not wait for the model, and an answer that lands after the save is not written into the card. If it had not answered
+      // yet and no side is chosen, the saved-card sheet says the card has none (and offers to add one).
+      savedWhileModelWorking = Boolean(currentDraft.ui.identify) && !data.get('perspective') && ['idle', 'loading', 'thinking'].includes(currentDraft.ui.answer.phase);
+      currentDraft.ui.identify?.cancel();
+      // perspective '' = "no side chosen" (FormData gives null for an untouched radio group); an example picture has no capture time.
+      const body = {
+        photoKey: draft.photoKey, photoId: draft.photoId || null, perspective: String(data.get('perspective') ?? ''), momentId: data.get('momentId'),
+        caption: String(data.get('caption')).trim(), trackId: data.has('track') ? SPACE_EVENT.trackId : '', isPublic: data.has('isPublic'),
+        ...(draft.useExample ? { takenAt: null, takenSource: null } : takenFields(draft)), song: cleanSong(data.get('song')),
+      };
       act(async () => {
         const saveHint = modal.querySelector('[data-save-visibility]');
         if (currentDraft.uploadDataUrl) {
@@ -629,7 +779,7 @@ export function mountLive(container, api) {
         closeModal();
         api.toast(body.isPublic ? '现场卡已保存，也展示到本房间了' : '现场卡已私下保存');
         if (target) openRequest(target);
-        else if (firstCard || !body.isPublic) openCardSaved();
+        else if (firstCard || !body.isPublic || savedWhileModelWorking) openCardSaved();
       });
     }
   }, { signal });
@@ -641,9 +791,24 @@ export function mountLive(container, api) {
     if (currentModal?.name === 'editor') {
       const { name, value, checked } = event.target;
       if (['caption', 'perspective', 'momentId'].includes(name)) draft[name] = value;
+      if (name === 'perspective') { draft.ui.from = 'user'; renderAi(); syncChips(); }
+      if (name === 'song') draft.song = cleanSong(value);
+      if (name === 'takenAt') {
+        // Whatever the person types replaces a read or guessed time; an empty or impossible value means "no time".
+        draft.ui.editTime = true;
+        draft.ui.guess = null;
+        draft.ui.zone = '';
+        draft.takenAt = fromInputValue(value);
+        draft.takenSource = draft.takenAt === null ? null : 'manual';
+        syncEditorFacts({ fillInput: false });
+      }
       if (name === 'track') draft.trackId = checked ? SPACE_EVENT.trackId : '';
       if (name === 'isPublic') draft.isPublic = checked;
-      if (['caption', 'perspective', 'momentId', 'track', 'isPublic'].includes(name)) markDraftChanged();
+      if (['caption', 'perspective', 'momentId', 'track', 'isPublic', 'song', 'takenAt'].includes(name)) markDraftChanged();
+    }
+    if (event.target.name === 'song') {
+      const count = modal.querySelector('[data-song-count]');
+      if (count) count.textContent = `${[...event.target.value].length} / ${SONG_MAX}`;
     }
     if (event.target.name === 'caption') {
       const count = modal.querySelector('[data-caption-count]');
@@ -661,10 +826,17 @@ export function mountLive(container, api) {
     if (input.name === 'photoKey') {
       photoSelection += 1;
       photoPreparing = false;
+      insightToken += 1;
+      draft.ui.identify?.cancel();
       draft.photoKey = input.value;
       draft.photoId = null;
       draft.uploadDataUrl = null;
       draft.useExample = true;
+      // An example picture has no capture time, and its side is what it shows.
+      draft.takenAt = null;
+      draft.takenSource = null;
+      draft.perspective = SPACE_PHOTOS[input.value]?.viewpoint || '';
+      draft.ui = freshInsight();
       markDraftChanged();
       updateEditorPhoto();
       modal.querySelector('[data-photo-hint]').textContent = '已选 AI 示例图，卡片会保留示例标记。';
@@ -672,22 +844,34 @@ export function mountLive(container, api) {
     if (input.name !== 'photoFile' || !input.files?.[0]) return;
     const selected = ++photoSelection;
     const currentDraft = draft;
+    const file = input.files[0];
     photoPreparing = true;
     const hint = modal.querySelector('[data-photo-hint]');
     updateComposeAvailability();
     hint.textContent = '正在处理照片…';
     try {
-      const dataUrl = await preparePhoto(input.files[0]);
+      // The capture time is read from the ORIGINAL file: re-encoding it (below) drops every EXIF tag.
+      const found = await readPhotoTime(file);
+      const dataUrl = await preparePhoto(file);
       if (selected !== photoSelection || currentDraft !== draft || currentModal?.name !== 'editor') return;
+      currentDraft.ui.identify?.cancel();
+      const token = ++insightToken;
       draft.uploadDataUrl = dataUrl;
       draft.photoId = null;
       draft.useExample = false;
+      draft.takenAt = found.time ? found.time.takenAt : found.guess ? found.guess.takenAt : null;
+      draft.takenSource = found.time ? 'exif' : found.guess ? 'file' : null;
+      // A new photo is a new question: its side starts empty, and the model may answer it.
+      draft.perspective = '';
+      draft.ui = freshInsight(found.guess);
+      draft.ui.zone = found.zone;
       markDraftChanged();
       modal.querySelectorAll('[name="photoKey"]').forEach(radio => { radio.checked = false; });
       updateEditorPhoto();
       hint.textContent = '照片已准备好，保存时上传。';
       const error = modal.querySelector('[data-modal-error]');
       if (error) error.hidden = true;
+      draft.ui.identify = identifyViewpoint(dataUrl, state => onAnswer(currentDraft, token, state));
     } catch (error) {
       if (selected === photoSelection) { hint.textContent = '原来的照片和文字都还在，可以重新选择。'; showError(error); }
     } finally {
@@ -696,6 +880,10 @@ export function mountLive(container, api) {
     }
   }, { signal });
 
+  // The picker is about to open: start fetching the on-device model now, so it is usually there when the picture is chosen.
+  container.addEventListener('click', event => { if (event.target.matches?.('[data-photo-file]')) warmUpViewpointAI(() => { if (!signal.aborted) renderAi(); }); }, { signal });
+  bindSetlistCopy(container, signal, api.toast);
+
   container.addEventListener('click', event => {
     const button = event.target.closest('[data-live-action]');
     if (!button) return;
@@ -703,6 +891,11 @@ export function mountLive(container, api) {
     const id = button.dataset.id;
     if (busy) return;
     if (action === 'compose-next') showEditorStep('details');
+    if (action === 'taken-edit') {
+      draft.ui.editTime = true;
+      renderTaken({ fillInput: true });
+      modal.querySelector('input[name="takenAt"]')?.focus();
+    }
     if (action === 'compose-back') showEditorStep('photo');
     if (action === 'join-entry') {
       entryMode = 'join'; createRequested = false;
@@ -728,6 +921,7 @@ export function mountLive(container, api) {
       });
     }
     if (action === 'edit') openEditor();
+    if (action === 'choose-viewpoint') openEditor(null, { askViewpoint: true });
     if (action === 'request') openRequest(id);
     if (action === 'review') openExchange(id);
     if (action === 'memory') {
@@ -808,7 +1002,9 @@ export function mountLive(container, api) {
   }, { signal });
 
   dialog.addEventListener('click', event => { if (event.target === dialog && !busy) closeModal(); }, { signal });
-  dialog.addEventListener('cancel', event => { event.preventDefault(); if (!busy) closeModal(); }, { signal });
+  // Esc on the sheet itself. A file input inside it fires (and bubbles) its own `cancel` when the person dismisses the picture
+  // chooser without choosing; that is not a request to close the editor and must not throw the draft away.
+  dialog.addEventListener('cancel', event => { if (event.target !== dialog) return; event.preventDefault(); if (!busy) closeModal(); }, { signal });
   dialog.addEventListener('close', restoreScene, { signal });
   document.addEventListener('visibilitychange', () => { if (!document.hidden) refresh(); }, { signal });
   connect();

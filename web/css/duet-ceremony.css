@@ -21,7 +21,7 @@
   --dc-green: #3d6653;
   --dc-serif: var(--font-serif, 'Songti SC', 'Noto Serif SC', 'Source Han Serif SC', 'STSong', 'SimSun', serif);
   --dc-sans: 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', system-ui, sans-serif;
-  --dc-photo-h: clamp(200px, calc(100dvh - 592px), 420px);
+  --dc-photo-h: clamp(200px, calc(100dvh - 592px - var(--dc-song, 0px)), 420px);
   --dc-ticket-w: min(100%, 960px, calc(var(--dc-photo-h) * 3.3 + 64px));
   --dc-name-scale: 1;
 }
@@ -255,6 +255,9 @@ html[data-theme] dialog.duet-ceremony::backdrop { background: var(--dc-night-0);
 .duet-ticket__byline { display: flex; align-items: baseline; justify-content: space-between; gap: 4px 12px; flex-wrap: wrap; }
 .duet-ticket__byline b { min-width: 0; color: var(--dc-ink); font-size: 18px; font-weight: 700; line-height: 1.35; overflow-wrap: anywhere; }
 .duet-ticket__byline > span { color: var(--dc-rose); font-size: 13px; line-height: 1.5; letter-spacing: .06em; }
+.duet-ticket__song { display: flex; flex-wrap: wrap; gap: 0 12px; margin-top: 4px; color: var(--dc-rose); font-size: 13px; line-height: 1.5; letter-spacing: .02em; }
+.duet-ticket__song > span { min-width: 0; overflow-wrap: anywhere; }
+.duet-ceremony[data-songs] { --dc-song: 24px; }
 .duet-ticket__half p { margin: 6px 0 0; color: #3b3945; font-size: 15px; line-height: 1.7; white-space: pre-wrap; overflow-wrap: anywhere; }
 .duet-ticket__seam {
   position: absolute;
@@ -392,15 +395,15 @@ html[data-theme] body:has(dialog.duet-ceremony[open]) dialog:is(.live-dialog, .s
 
 /* Two or three caption lines borrow their height from the photographs (desktop). */
 @media (min-width: 761px) {
-  .duet-ceremony[data-captions='medium'] { --dc-photo-h: clamp(190px, calc(100dvh - 616px), 400px); }
-  .duet-ceremony[data-captions='long'] { --dc-photo-h: clamp(170px, calc(100dvh - 660px), 380px); }
+  .duet-ceremony[data-captions='medium'] { --dc-photo-h: clamp(190px, calc(100dvh - 616px - var(--dc-song, 0px)), 400px); }
+  .duet-ceremony[data-captions='long'] { --dc-photo-h: clamp(170px, calc(100dvh - 660px - var(--dc-song, 0px)), 380px); }
 }
 
 /* Shorter laptop screens keep the whole ticket and its actions in one view. */
 @media (min-width: 761px) and (max-height: 840px) {
-  .duet-ceremony { --dc-photo-h: clamp(170px, calc(100dvh - 500px), 400px); }
-  .duet-ceremony[data-captions='medium'] { --dc-photo-h: clamp(160px, calc(100dvh - 524px), 380px); }
-  .duet-ceremony[data-captions='long'] { --dc-photo-h: clamp(150px, calc(100dvh - 566px), 360px); }
+  .duet-ceremony { --dc-photo-h: clamp(170px, calc(100dvh - 500px - var(--dc-song, 0px)), 400px); }
+  .duet-ceremony[data-captions='medium'] { --dc-photo-h: clamp(160px, calc(100dvh - 524px - var(--dc-song, 0px)), 380px); }
+  .duet-ceremony[data-captions='long'] { --dc-photo-h: clamp(150px, calc(100dvh - 566px - var(--dc-song, 0px)), 360px); }
   .duet-ceremony__bar { padding-top: max(12px, env(safe-area-inset-top)); }
   .duet-ceremony__stage { padding-top: 0; padding-bottom: 8px; }
   .duet-ceremony__status { margin-bottom: 4px; }
@@ -418,10 +421,10 @@ html[data-theme] body:has(dialog.duet-ceremony[open]) dialog:is(.live-dialog, .s
 }
 
 @media (max-width: 760px) {
-  .duet-ceremony { --dc-photo-h: clamp(150px, calc(100dvh - 590px), 250px); --dc-ticket-w: 100%; }
+  .duet-ceremony { --dc-photo-h: clamp(150px, calc(100dvh - 590px - var(--dc-song, 0px)), 250px); --dc-ticket-w: 100%; }
   /* Longer captions take their lines from the photographs, so a tall phone still shows the whole ticket. */
-  .duet-ceremony[data-captions='medium'] { --dc-photo-h: clamp(140px, calc(100dvh - 624px), 236px); }
-  .duet-ceremony[data-captions='long'] { --dc-photo-h: clamp(130px, calc(100dvh - 680px), 210px); }
+  .duet-ceremony[data-captions='medium'] { --dc-photo-h: clamp(140px, calc(100dvh - 624px - var(--dc-song, 0px)), 236px); }
+  .duet-ceremony[data-captions='long'] { --dc-photo-h: clamp(130px, calc(100dvh - 680px - var(--dc-song, 0px)), 210px); }
   .duet-ceremony__bar { gap: 8px; padding: max(10px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) 0 max(16px, env(safe-area-inset-left)); }
   .duet-ceremony__brand span { display: none; }
   .duet-ceremony__brand b { font-size: 15px; letter-spacing: .06em; }
@@ -462,7 +465,7 @@ html[data-theme] body:has(dialog.duet-ceremony[open]) dialog:is(.live-dialog, .s
 /* Short phones (320 × 568): the whole ticket, stub included, fits above one sticky row of buttons;
    the quiet links follow the note in the page flow. */
 @media (max-width: 760px) and (max-height: 700px) {
-  .duet-ceremony[data-captions] { --dc-photo-h: clamp(108px, calc(100dvh - 452px), 200px); }
+  .duet-ceremony[data-captions] { --dc-photo-h: clamp(calc(108px - var(--dc-song, 0px)), calc(100dvh - 452px - var(--dc-song, 0px)), 200px); }
   .duet-ceremony__stage { padding-top: 8px; }
   .duet-ceremony__status { margin-bottom: 2px; }
   .duet-ceremony__names { font-size: calc(clamp(26px, 8.6vw, 36px) * var(--dc-name-scale)); }

@@ -1,7 +1,9 @@
 import { createServer } from 'node:http';
 import { createHash, randomBytes, randomInt, randomUUID } from 'node:crypto';
 import { createReadStream } from 'node:fs';
-import { stat } from 'node:fs/promises';
+import { readFile, stat } from 'node:fs/promises';
+import { gzip } from 'node:zlib';
+import { promisify } from 'node:util';
 import { extname, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { db, get, all, run, transaction } from './db.js';
@@ -44,6 +46,31 @@ function choice(value, allowed, field) {
 function boolean(value) {
   if (typeof value !== 'boolean') fail(400, 'INVALID_INPUT', '请选择是否展示这张卡。');
   return value;
+}
+
+const TAKEN_MIN = Date.UTC(2000, 0, 1);
+const TAKEN_SOURCES = ['exif', 'manual', 'file'];
+const SONG_MAX = 40;
+// Controls, line/paragraph separators and bidirectional overrides: a title must be one plain line of text.
+const SONG_FORBIDDEN = /[\p{Cc}\u2028\u2029\u061c\u200e\u200f\u202a-\u202e\u2066-\u2069\ufeff]/u;
+
+/** A photo's capture time: epoch milliseconds between 2000-01-01 and one day from now, or none. */
+function capturedAt(value) {
+  if (value === undefined || value === null) return null;
+  if (typeof value !== 'number' || !Number.isFinite(value) || value < TAKEN_MIN || value > Date.now() + 86_400_000) {
+    fail(400, 'INVALID_INPUT', '拍摄时间无效，请重新选择，或留空。');
+  }
+  return Math.round(value);
+}
+
+/** 「这一刻在唱的歌」: optional, one line, at most 40 characters. */
+function songTitle(value) {
+  if (value === undefined || value === null) return '';
+  if (typeof value !== 'string') fail(400, 'INVALID_INPUT', '歌名请填写文字。');
+  const title = value.trim();
+  if (SONG_FORBIDDEN.test(title)) fail(400, 'INVALID_INPUT', '歌名里有无法显示的字符，请重新填写。');
+  if ([...title].length > SONG_MAX) fail(400, 'INVALID_INPUT', `歌名请填写不超过 ${SONG_MAX} 个字的文字。`);
+  return title;
 }
 
 const limits = new Map();
@@ -130,7 +157,9 @@ function cardJSON(card, room) {
     id: card.id, ownerId: card.owner_id, ownerName: card.owner_name,
     eventId: room.event_id, event: roomEvent(room),
     photoKey: card.photo_key, photoId: card.photo_id || null,
-    perspective: card.perspective || card.photo_key, caption: card.caption,
+    // '' means the person left the viewpoint open; only cards that predate viewpoints (NULL) borrow the example photo's.
+    perspective: card.perspective ?? card.photo_key, caption: card.caption,
+    takenAt: card.taken_at ?? null, takenSource: card.taken_source ?? null, song: card.song ?? '',
     momentId: card.moment_id, trackId: card.track_id, isPublic: Boolean(card.is_public),
     revision: card.revision, createdAt: card.created_at, updatedAt: card.updated_at,
   };
@@ -340,7 +369,11 @@ async function api(request, response, path) {
     const momentId = choice(data.momentId, ['encore', 'chorus', 'lights'], '时刻');
     const trackId = choice(data.trackId, ['co-0', ''], '音乐');
     const isPublic = boolean(data.isPublic);
-    const perspective = choice(data.perspective ?? photoKey, ['stage', 'crowd', 'friends', 'detail'], '视角');
+    // A missing field keeps the old meaning (the example photo's side); '' says the person chose none.
+    const perspective = data.perspective == null ? photoKey : data.perspective === '' ? '' : choice(data.perspective, ['stage', 'crowd', 'friends', 'detail'], '视角');
+    const takenAt = capturedAt(data.takenAt);
+    const takenSource = takenAt === null ? null : choice(data.takenSource, TAKEN_SOURCES, '拍摄时间来源');
+    const song = songTitle(data.song);
     const photoId = data.photoId == null ? null : text(data.photoId, '照片', 36);
     transaction(() => {
       requireRoom(room.id, user.id);
@@ -349,12 +382,13 @@ async function api(request, response, path) {
       }
       const old = findCard(room.id, user.id);
       const time = now();
-      run(`INSERT INTO cards (id, room_id, owner_id, photo_key, caption, moment_id, track_id, is_public, revision, created_at, updated_at, photo_id, perspective)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      run(`INSERT INTO cards (id, room_id, owner_id, photo_key, caption, moment_id, track_id, is_public, revision, created_at, updated_at, photo_id, perspective, taken_at, taken_source, song)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ON CONFLICT(room_id, owner_id) DO UPDATE SET photo_key = excluded.photo_key, caption = excluded.caption,
           moment_id = excluded.moment_id, track_id = excluded.track_id, is_public = excluded.is_public,
-          revision = excluded.revision, updated_at = excluded.updated_at, photo_id = excluded.photo_id, perspective = excluded.perspective`,
-      old?.id || randomUUID(), room.id, user.id, photoKey, caption, momentId, trackId, Number(isPublic), (old?.revision || 0) + 1, old?.created_at || time, time, photoId, perspective);
+          revision = excluded.revision, updated_at = excluded.updated_at, photo_id = excluded.photo_id, perspective = excluded.perspective,
+          taken_at = excluded.taken_at, taken_source = excluded.taken_source, song = excluded.song`,
+      old?.id || randomUUID(), room.id, user.id, photoKey, caption, momentId, trackId, Number(isPublic), (old?.revision || 0) + 1, old?.created_at || time, time, photoId, perspective, takenAt, takenSource, song);
       if (old?.is_public && !isPublic) cancelPending(room.id, old.id);
     });
     return json(response, 200, roomState(room, user));
@@ -446,7 +480,50 @@ async function api(request, response, path) {
   fail(404, 'NOT_FOUND', '接口不存在。');
 }
 
-const mimeTypes = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.json': 'application/json', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.svg': 'image/svg+xml', '.ico': 'image/x-icon', '.woff2': 'font/woff2' };
+const mimeTypes = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.mjs': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.json': 'application/json', '.wasm': 'application/wasm', '.onnx': 'application/octet-stream', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.svg': 'image/svg+xml', '.ico': 'image/x-icon', '.woff2': 'font/woff2' };
+
+// The page tells itself it has a room server behind it by this tag, so it needs no probe to find out. Only this server writes it:
+// a copy of dist/ on GitHub Pages or a plain file host never carries it and stays the static version.
+const ROOMS_MARKER = '<meta name="space-rooms" content="1">';
+const markedPages = new Map();
+
+/** The tag goes in the document's head, ahead of the (huge, inlined) script, so nothing inside the script can be mistaken for it. */
+function markRooms(html) {
+  const cut = html.search(/<script[\s>]/i);
+  const head = cut === -1 ? html.slice(0, 8192) : html.slice(0, cut);
+  const rest = html.slice(head.length);
+  const existing = /<meta\s+name=["']space-rooms["'][^>]*>/i;
+  if (existing.test(head)) return head.replace(existing, ROOMS_MARKER) + rest;
+  const open = /<head(?:\s[^>]*)?>/i;
+  return open.test(head) ? head.replace(open, tag => `${tag}\n    ${ROOMS_MARKER}`) + rest : html;
+}
+
+async function roomsPage(file, info) {
+  const known = markedPages.get(file);
+  if (known && known.mtimeMs === info.mtimeMs && known.size === info.size) return known.body;
+  const body = Buffer.from(markRooms(await readFile(file, 'utf8')), 'utf8');
+  markedPages.set(file, { mtimeMs: info.mtimeMs, size: info.size, body });
+  return body;
+}
+
+// Text, the page and the on-device model pack compress well (the pack goes from 23 MB to about 10 MB), and a phone on Wi-Fi feels
+// that. Each file is compressed once per version and kept in memory; a browser that does not ask for gzip gets the plain bytes.
+const COMPRESSIBLE = new Set(['.html', '.js', '.mjs', '.css', '.json', '.wasm', '.onnx', '.svg']);
+const gzipAsync = promisify(gzip);
+const gzipped = new Map();
+function compressed(key, load) {
+  let entry = gzipped.get(key);
+  if (!entry) {
+    entry = Promise.resolve().then(load).then(bytes => gzipAsync(bytes, { level: 6 }));
+    entry.catch(() => gzipped.delete(key));
+    // A rebuilt file replaces its old version instead of piling up beside it.
+    const file = key.slice(0, key.lastIndexOf(':', key.lastIndexOf(':') - 1));
+    for (const other of gzipped.keys()) if (other !== key && other.startsWith(`${file}:`)) gzipped.delete(other);
+    gzipped.set(key, entry);
+  }
+  return entry;
+}
+const acceptsGzip = request => /\bgzip\b/.test(request.headers['accept-encoding'] || '');
 
 async function serveStatic(request, response, pathname) {
   if (!['GET', 'HEAD'].includes(request.method)) fail(405, 'METHOD_NOT_ALLOWED', '不支持这个操作。');
@@ -462,7 +539,34 @@ async function serveStatic(request, response, pathname) {
     info = await stat(file).catch(() => null);
   }
   if (!info?.isFile()) fail(503, 'BUILD_REQUIRED', '网页尚未构建，请先执行 npm run build。');
-  response.writeHead(200, { 'Content-Type': mimeTypes[extname(file)] || 'application/octet-stream', 'Content-Length': info.size, 'Cache-Control': 'no-cache' });
+  const headers = { 'Content-Type': mimeTypes[extname(file)] || 'application/octet-stream', 'Content-Length': info.size, 'Cache-Control': 'no-cache' };
+  const compressible = COMPRESSIBLE.has(extname(file)) && info.size > 1024;
+  const packed = compressible && acceptsGzip(request);
+  if (compressible) headers.Vary = 'Accept-Encoding';
+  if (file === resolve(DIST, 'index.html')) {
+    let body = await roomsPage(file, info);
+    if (packed) {
+      body = await compressed(`${file}:${info.mtimeMs}:${info.size}`, () => body);
+      headers['Content-Encoding'] = 'gzip';
+    }
+    response.writeHead(200, { ...headers, 'Content-Length': body.length });
+    return response.end(request.method === 'HEAD' ? undefined : body);
+  }
+  // The on-device model pack (ai/) is ~23 MB and never changes between builds of the same model. `no-cache` alone would send every phone
+  // back for all of it on each visit; an ETag lets the browser ask "still the same?" and get a 304 instead.
+  if (decoded.startsWith('/ai/')) {
+    headers.ETag = `W/"${info.size.toString(16)}-${Math.trunc(info.mtimeMs).toString(16)}"`;
+    if (request.headers['if-none-match'] === headers.ETag) {
+      response.writeHead(304, { ETag: headers.ETag, 'Cache-Control': headers['Cache-Control'] });
+      return response.end();
+    }
+  }
+  if (packed) {
+    const body = await compressed(`${file}:${info.mtimeMs}:${info.size}`, () => readFile(file));
+    response.writeHead(200, { ...headers, 'Content-Encoding': 'gzip', 'Content-Length': body.length });
+    return response.end(request.method === 'HEAD' ? undefined : body);
+  }
+  response.writeHead(200, headers);
   if (request.method === 'HEAD') return response.end();
   const stream = createReadStream(file);
   stream.on('error', () => response.destroy());

@@ -141,3 +141,7 @@ html[data-theme="sakura"] .library-dialog--confirm { inset:50% 26px auto auto; t
   .library-card--record .library-photo__label-rest { display:none; }
   .library-card--record .library-photo__status { white-space:nowrap; font-size:12px; }
 }
+
+/* Songs named on a collected card or duet: one ♪ line per song, side by side when there is room. */
+.library-detail-song { display:flex; flex-wrap:wrap; gap:2px 14px; }
+.library-detail-song>span { min-width:0; overflow-wrap:anywhere; }

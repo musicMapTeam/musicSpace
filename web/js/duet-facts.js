@@ -1,25 +1,29 @@
 import { SPACE_MOMENTS } from './space-data.js';
+import { cardFacts, pairSides, sharedFacts, songsOf } from './moment.js';
 
 /** Facts shared by the duet page and its PNG. They only read accepted snapshots. */
-export const PERSPECTIVE_NAMES = { stage: '舞台', crowd: '人海', friends: '身边', detail: '细节' };
-
 export const momentLabel = id => SPACE_MOMENTS.find(item => item.id === id)?.name || '现场瞬间';
 
-export function perspectiveLabel(card = {}) {
-  return PERSPECTIVE_NAMES[card.perspective || card.photoKey] || (card.photoKey === 'custom' ? '我的视角' : '现场');
-}
-
-/** One rule everywhere: a song needs both cards to carry it; then a shared moment; then the night itself. */
+/**
+ * What joins the two cards, printed on the ticket's stub: the same moment (by capture time when both cards have one), a song both
+ * name, the chosen moment, or the night itself. A song only one card names stays on that card's half (see duetSides).
+ */
 export function sharedLine(cards = [], event = {}) {
-  const [a, b] = cards;
-  if (a?.trackId && a.trackId === b?.trackId && event.song) return { label: '让两张卡相遇的歌', value: `♪ ${event.song}`, kind: 'song' };
-  if (a?.momentId && a.momentId === b?.momentId) return { label: '我们共同记住的时刻', value: momentLabel(a.momentId), kind: 'moment' };
-  return { label: '我们交换的这一晚', value: event.title || '这一场现场', kind: 'night' };
+  return sharedFacts(cards, event, SPACE_MOMENTS);
 }
 
-/** A single card PNG uses the same stub language. */
+/** Per half: viewpoint, chosen moment, capture time (only a trusted one) and the song that half prints itself. */
+export function duetSides(cards = [], event = {}) {
+  return pairSides(cards, event, SPACE_MOMENTS);
+}
+
+/** One card's own facts, for a single-card PNG and the collection. */
+export const facts = (card = {}, event = {}) => cardFacts(card, event, SPACE_MOMENTS);
+
+/** A single card PNG uses the same stub language: its own song first, then the song it brought along, then the moment. */
 export function singleLine(card = {}, event = {}) {
-  if (card.trackId && event.song) return { label: '带上的这首歌', value: `♪ ${event.song}`, kind: 'song' };
+  const [song] = songsOf(card, event);
+  if (song) return { label: song.from === 'card' ? '这一刻在唱的歌' : '带上的这首歌', value: `♪ ${song.title}`, kind: 'song' };
   return { label: '我记得的这一刻', value: momentLabel(card.momentId), kind: 'moment' };
 }
 

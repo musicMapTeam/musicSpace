@@ -60,7 +60,9 @@ const PETALS = [
  * @param {'live'|'local'} options.scenario
  * @param {{title,subtitle,date,city,isDemo}} options.event
  * @param {string} options.completedAt
- * @param {Array<{author,src,load,isExample,perspective,moment,caption}>} options.sides
+ * @param {Array<{author,src,load,isExample,perspective,moment,time,songs,caption}>} options.sides
+ *        perspective is the viewpoint name (舞台 / 人海 / 身边 / 细节), time a capture time such as 21:47 (only when a trusted one exists),
+ *        songs the songs this half names on its own (a song both cards name is printed on the stub, in options.shared)
  * @param {{label,value}} options.shared
  * @param {string} options.status
  * @param {string} [options.note]
@@ -87,7 +89,7 @@ export function openDuetCeremony(options) {
   };
   const half = (side, index) => `<figure class="duet-ticket__half duet-ticket__half--${index ? 'b' : 'a'}" data-duet-half="${index}">
       <div class="duet-ticket__photo"><img src="${escape(side.src)}" alt="${escape(side.isExample ? `${side.author}选用的 AI 示例照片` : `${side.author}的现场照片`)}" decoding="async" draggable="false">${side.isExample ? '<small class="duet-ticket__ai">AI 示例图</small>' : ''}${side.load ? '<small class="duet-ticket__loading" data-duet-loading>照片读取中</small>' : ''}</div>
-      <figcaption><span class="duet-ticket__byline"><b>${escape(side.author)}</b><span>${escape([side.perspective, side.moment].filter(Boolean).join(' · '))}</span></span><p>${escape(side.caption)}</p></figcaption>
+      <figcaption><span class="duet-ticket__byline"><b>${escape(side.author)}</b><span>${escape([side.perspective, side.moment, side.time].filter(Boolean).join(' · '))}</span></span><p>${escape(side.caption)}</p>${side.songs?.length ? `<small class="duet-ticket__song">${side.songs.map(title => `<span>♪ ${escape(title)}</span>`).join('')}</small>` : ''}</figcaption>
     </figure>`;
 
   const dialog = document.createElement('dialog');
@@ -102,6 +104,8 @@ export function openDuetCeremony(options) {
   // Long captions (up to 80 characters) take height from the photographs so the actions stay in view.
   const longestCaption = Math.max(...options.sides.map(side => [...String(side.caption || '')].length));
   dialog.dataset.captions = longestCaption > 44 ? 'long' : longestCaption > 22 ? 'medium' : 'short';
+  // A song line under a caption takes one more line from the photographs (see --dc-song in the stylesheet).
+  if (options.sides.some(side => side.songs?.length)) dialog.dataset.songs = '1';
   dialog.innerHTML = `<div class="duet-ceremony__sky" aria-hidden="true">
       <span class="duet-ceremony__waves"></span>
       <svg class="duet-ceremony__wire" viewBox="0 0 100 140" preserveAspectRatio="none"><path d="${lights.path}"/></svg>

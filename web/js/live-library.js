@@ -1,13 +1,13 @@
-import { SPACE_PHOTOS, SPACE_MOMENTS } from './space-data.js';
+import { SPACE_PHOTOS } from './space-data.js';
 import { createPhotoStore } from './live-photo.js';
 import { downloadCard, downloadTicket } from './ticket-export.js';
 import { openDuetCeremony } from './duet-ceremony.js';
-import { momentLabel, perspectiveLabel, sharedLine } from './duet-facts.js';
+import { duetSides, facts, sharedLine } from './duet-facts.js';
+import { buildSetlist } from './moment.js';
 import { readSession } from './storage.js';
 
 const escape = value => String(value ?? '').replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character]));
 const placeholder = `data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="1" height="1"><path fill="#a5b1a2" d="M0 0h1v1H0z"/></svg>')}`;
-const perspectives = { stage: '舞台', crowd: '人海', friends: '身边', detail: '细节' };
 const day = value => value ? new Date(value).toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' }) : '';
 
 /** Private, cross-room collection. Nothing here is published to the scene wall. */
@@ -51,6 +51,17 @@ export function mountLiveLibrary(container, api) {
   const titleOf = item => item.roomTitle || eventOf(item).title || '我的现场';
   const authorsOf = item => item.cards.map(card => card.ownerName || '我').join(' × ');
   const dateOf = item => day(eventOf(item).date || item.createdAt);
+
+  /** 舞台 · 返场 · 拍摄于 21:47 */
+  function cardLine(card, event) {
+    const about = facts(card, event);
+    return [about.viewpoint, about.moment, about.time ? `拍摄于 ${about.time}` : ''].filter(Boolean).join(' · ');
+  }
+  /** The songs on the card(s), earliest capture time first; empty when there are none. */
+  function songsLine(item, event) {
+    const songs = buildSetlist(item.cards.map(card => ({ card, event, name: card.ownerName || '我' })));
+    return songs.length ? `<p class="library-detail-song">${songs.map(song => `<span>♪ ${escape(song.title)}</span>`).join('')}</p>` : '';
+  }
 
   function photoMarkup(card, eager = false) {
     const src = card.photoId ? photos.peek(card.photoId) || placeholder : SPACE_PHOTOS[card.photoKey]?.url || SPACE_PHOTOS.stage.url;
@@ -171,7 +182,7 @@ export function mountLiveLibrary(container, api) {
     if (item.type === 'record') { openRecord(item); return; }
     selectedKey = key;
     const event = eventOf(item);
-    openDetail(item.type === 'record' ? '一起留下的双联' : '我的现场卡', `<div class="library-detail-heading"><span>${item.type === 'record' ? '双方已同意' : item.isPublic && item.joined !== false ? '本场展示中' : '私藏'}</span><h3>${escape(titleOf(item))}</h3><p>${escape([dateOf(item), event.city].filter(Boolean).join(' · '))}${event.isDemo ? ' · 示例场次' : ''}</p></div><div class="library-detail-photos ${item.type === 'record' ? 'library-detail-photos--pair' : ''}">${item.cards.map(card => `<figure>${photoMarkup(card, true)}<figcaption><b>${escape(card.ownerName || '我')}</b><small>${escape([SPACE_MOMENTS.find(moment => moment.id === card.momentId)?.name, perspectives[card.perspective]].filter(Boolean).join(' · '))}</small>${card.caption ? `<p>${escape(card.caption)}</p>` : ''}</figcaption></figure>`).join('')}</div>${item.cards[0].trackId && event.song ? `<p class="library-detail-song">♪ ${escape(event.song)}</p>` : ''}<div class="library-detail-actions"><button class="button button--primary" data-library-action="download" data-key="${escape(key)}" data-library-mutation>保存${item.type === 'record' ? '双联' : '卡片'}图片 ${icon('arrow-up-right')}</button><button class="button button--secondary" data-library-action="return" data-key="${escape(key)}">${item.joined === false ? '查看邀请码' : '返回现场'} ${icon('arrow-right')}</button></div>${item.type === 'record' ? `<button class="library-delete text-button" data-library-action="delete" data-key="${escape(key)}" data-library-mutation>${icon('trash')} 从我的记忆中删除</button>` : ''}`);
+    openDetail(item.type === 'record' ? '一起留下的双联' : '我的现场卡', `<div class="library-detail-heading"><span>${item.type === 'record' ? '双方已同意' : item.isPublic && item.joined !== false ? '本场展示中' : '私藏'}</span><h3>${escape(titleOf(item))}</h3><p>${escape([dateOf(item), event.city].filter(Boolean).join(' · '))}${event.isDemo ? ' · 示例场次' : ''}</p></div><div class="library-detail-photos ${item.type === 'record' ? 'library-detail-photos--pair' : ''}">${item.cards.map(card => `<figure>${photoMarkup(card, true)}<figcaption><b>${escape(card.ownerName || '我')}</b><small>${escape(cardLine(card, event))}</small>${card.caption ? `<p>${escape(card.caption)}</p>` : ''}</figcaption></figure>`).join('')}</div>${songsLine(item, event)}<div class="library-detail-actions"><button class="button button--primary" data-library-action="download" data-key="${escape(key)}" data-library-mutation>保存${item.type === 'record' ? '双联' : '卡片'}图片 ${icon('arrow-up-right')}</button><button class="button button--secondary" data-library-action="return" data-key="${escape(key)}">${item.joined === false ? '查看邀请码' : '返回现场'} ${icon('arrow-right')}</button></div>${item.type === 'record' ? `<button class="library-delete text-button" data-library-action="delete" data-key="${escape(key)}" data-library-mutation>${icon('trash')} 从我的记忆中删除</button>` : ''}`);
   }
 
   /** A saved duet opens the shared full-screen ticket; its first view in this browser premieres. */
@@ -180,18 +191,21 @@ export function mountLiveLibrary(container, api) {
     if (dialog.open) dialog.close();
     selectedKey = item.key;
     const event = eventOf(item);
+    const about = duetSides(item.cards, event);
     const handle = openDuetCeremony({
       id: item.exchangeId || item.id,
       scenario: 'live',
       event: { title: titleOf(item), date: event.date, city: event.city, isDemo: event.isDemo },
       completedAt: item.createdAt,
-      sides: item.cards.map(card => ({
+      sides: item.cards.map((card, index) => ({
         author: card.ownerName || '我',
         src: card.photoId ? photos.peek(card.photoId) || placeholder : SPACE_PHOTOS[card.photoKey]?.url || SPACE_PHOTOS.stage.url,
         load: card.photoId ? () => photos.load(card.photoId) : null,
         isExample: !card.photoId,
-        perspective: perspectiveLabel(card),
-        moment: momentLabel(card.momentId),
+        perspective: about[index].viewpoint || '现场',
+        moment: about[index].moment,
+        time: about[index].time,
+        songs: about[index].songs,
         caption: card.caption || '这一刻，想和你一起记住。',
       })),
       shared: sharedLine(item.cards, event),

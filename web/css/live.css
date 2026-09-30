@@ -135,7 +135,7 @@ html[data-theme] .live-dialog .live-saved-links .live-saved-later{margin-left:au
 .live-memory-pictures .live-photo-status{font-size:12px;left:4px;right:4px}
 .live-pair-reason{padding:18px 20px;border-left:3px solid var(--live-mint);background:#70ddcf0c;margin:0 0 24px}
 .live-pair-reason>b{font-size:16px;color:var(--live-mint)}
-.live-pair-reason p{font-size:14px;line-height:1.8;color:#4d5a4c;margin:8px 0 0;overflow-wrap:anywhere}
+.live-pair-reason p{font-size:14px;line-height:1.8;color:#4d5a4c;margin:8px 0 0;overflow-wrap:anywhere;text-wrap:pretty}
 .live-ticket-title>span{overflow-wrap:anywhere;font-size:14px;line-height:1.8}
 .live-ticket-title>span small{display:block;font-size:12px;color:#5e6b63;margin-top:5px}
 .live-ticket-strip>span{min-width:0;overflow-wrap:anywhere;line-height:1.6}
@@ -197,3 +197,31 @@ html[data-theme] .live-dialog .live-saved-links .live-saved-later{margin-left:au
  .live-event-meta>span{display:block;margin-left:0}
  .live-entry-promise{font-size:12px;gap:7px 13px}
 }
+
+/* ===== 同一刻，另一面 on the wall and in the setlist ============================================================= */
+/* The compact tray turns every .live-card into a photo-beside-words row (spatial-world.css); on the wall the cards stack instead,
+   otherwise the photo covers the words. */
+html[data-theme='sakura'] .main-content .live-wall-item>.live-card { display:block; padding:0; }
+html[data-theme='sakura'] .main-content .live-wall-item>.live-card .live-card-photo { width:100%; height:auto; min-height:0; aspect-ratio:1.8; }
+.live-wall-group { grid-column:1 / -1; margin:8px 0 -4px; color:#5b6259; font-size:12px; font-weight:600; letter-spacing:.12em; }
+.live-wall-group:first-child { margin-top:0; }
+.live-wall-item { position:relative; }
+.live-wall-item.is-best { border-color:var(--mint)!important; box-shadow:0 0 0 1px var(--mint); }
+.live-wall-item__badge { position:absolute; z-index:2; top:0; left:12px; transform:translateY(-52%); padding:2px 12px; border-radius:999px; background:var(--button-fill,var(--mint)); color:var(--button-ink,#fff); font-size:12px; font-weight:600; letter-spacing:.04em; line-height:1.6; white-space:nowrap; }
+.live-card-time { display:block; margin-top:4px; color:#5b6259; font-size:12px; line-height:1.6; }
+.live-card-track { display:flex!important; flex-wrap:wrap; gap:0 12px; }
+/* The time line sits right above the song row's rule: without room it reads like an underline of the time. */
+.live-card-time + .live-card-track { margin-top:8px; }
+/* 「这张卡还没选视角」 on the saved sheet is a sentence to read, not fine print. */
+html[data-theme] .live-dialog--saved .live-saved-viewpoint { margin:14px 0 0; font-size:14px; line-height:1.75; color:var(--text,#35443e); }
+.live-card-track>span { min-width:0; overflow-wrap:anywhere; }
+.live-wall-item .live-match p { margin:4px 0 0; color:var(--text,#35443e); font-size:14px; line-height:1.7; text-wrap:pretty; }
+html[data-theme] .live-wall-item .live-match>b { font-size:13px; }
+.live-wall-item .live-match:not(:has(b)) { margin-top:10px; }
+.live-wall-item.is-best .live-match { border-left-color:var(--mint); }
+.live-setlist-directory>.song-list,
+.live-setlist-directory>.song-list__empty,
+.live-setlist-directory>.song-list__note { margin-left:1px; margin-right:1px; }
+.live-setlist-directory>.song-list__note { padding-bottom:12px; }
+.live-setlist-directory>.song-list__empty { padding-bottom:10px; }
+html[data-theme='sakura'] .main-content .live-room-tray .live-wall-item>.button { min-height:44px; }

@@ -1,5 +1,9 @@
 # Third-party notices and visual-asset provenance
 
+## Music Map factual bridge (2026-10-02)
+
+Four public recording titles, credited performers, stable exploration IDs and source links were checked against musicMapTeam/musicMap commit `c626c0e54de1f5ea362710f1e47bacd8c09aa804`, `web/js/map-catalogue.js`. The source records carry their original 2026-09-27 verification date. This bridge does not copy repository code, audio, lyrics, cover artwork or dataset assets. The SVG relationship diagram and music-card CSS are original work. No blanket license for the original repository or unknown dataset assets is inferred. See `docs/event/MUSIC-BRIDGE-AUDIT.md` for the exact read scope and exclusions.
+
 This file covers **Music Space 0.16.0** (repository `musicMapTeam/musicSpace`), which was split on 2026-09-30 from the merged Music Map × Music Space 0.15 (commit `3dd102c`).
 
 - **Part 1: used by this app.** Everything the shipped app, its build or its room server actually uses or bundles.

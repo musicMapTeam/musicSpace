@@ -956,7 +956,7 @@ export function mountToonScene(container, initialState = {}) {
     if(view==='person'){
       const person=livePeople.get(id);if(!person)return null;
       const origin=person.root.position,scale=person.root.scale.x;
-      return {position:origin.clone().add(new THREE.Vector3(.6,2.65,7).multiplyScalar(scale)),target:origin.clone().add(new THREE.Vector3(0,1.65,0).multiplyScalar(scale))};
+      return {position:origin.clone().add(new THREE.Vector3(.6,portraitAspect?2.05:2.65,7).multiplyScalar(scale)),target:origin.clone().add(new THREE.Vector3(0,portraitAspect?1.05:1.65,0).multiplyScalar(scale))};
     }
     if(view==='photos'){
       const count=Math.max(1,Math.min(6,(state.photos||[]).length)),cols=galleryColumns(count,portraitAspect),rows=Math.ceil(count/cols);

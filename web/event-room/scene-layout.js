@@ -9,7 +9,7 @@ export function memberFloorPositions(count,portrait){
 export function overviewCameraLayout(count,portrait){
  const distance=portrait?(count>2?13.8:11.8):(count>4?14.4:10.8);
  return portrait
-  ?{position:[-.14*distance,2+.18*distance,.5+.99015*distance],target:[0,2,.5]}
+  ?{position:[-.14*distance,1.3+.18*distance,.5+.99015*distance],target:[0,1.3,.5]}
   :{position:[-.493*distance,2.15+.20*distance,1+.87004*distance],target:[0,2.15,1]};
 }
 

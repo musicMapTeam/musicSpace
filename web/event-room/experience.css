@@ -19,3 +19,16 @@
 .presence-state{font-size:12px;display:block;color:#65666d;margin-top:5px}.memory-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.memory-toolbar button{font-size:14px;min-height:44px;padding:8px 10px;border:1px solid #a6a797}
 @media(max-width:800px){.presence{left:16px;right:16px;bottom:110px;max-width:none;padding:12px;align-items:flex-start;gap:10px}.presence strong{font-size:15px;max-width:none}.presence p{font-size:13px;line-height:1.5;max-width:none}.presence-actions{min-width:126px}.presence-actions button{font-size:13px;padding:8px}.presence.welcome .presence-actions{min-width:130px}.panel{right:12px;left:12px;width:auto;bottom:110px;max-height:calc(100dvh - 190px);padding:24px 18px 18px}.panel h2{font-size:23px}.track{max-width:190px}.frame{min-height:100dvh;height:100dvh}.camera-nav{bottom:30px}.close-camera .presence{display:none}}
 @media(max-width:420px){.presence{display:block}.presence p{margin-bottom:10px}.presence-actions{display:grid;grid-template-columns:1fr 1fr}.presence.welcome .presence-actions{grid-template-columns:1fr}.presence-actions button{white-space:normal}.presence-actions #room-recap{min-height:44px}}
+
+/* Keep the reading tools in the same printed stage language. */
+:root{--paper:#f1eadb;--ink:#282633;--accent:#dce982;--paper-line:#cfc5b3;--muted-ink:#625e68}
+.panel,.private-chat,.photo-exchanges,.moderation-panel{background:var(--paper);color:var(--ink);border-color:var(--paper-line)}
+.panel p,.panel label,.private-chat>footer,.chat-notice,.photo-exchanges p{color:var(--muted-ink)}
+.panel .primary,.private-chat .chat-composer button,.photo-exchanges .x-primary{background:var(--accent);color:var(--ink)}
+.panel[data-kind=person]{border-top:3px solid #b6c572}.panel[data-kind=person] .participation-note{margin:8px 0;padding:7px 10px;border-left-width:2px;background:#e5e4d2;font-size:13px}
+.panel[data-kind=person] .eyebrow{color:var(--muted-ink)}
+button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}.panel button:focus-visible,.private-chat button:focus-visible{outline-color:#52613c}
+@media(max-width:800px){.presence{padding:10px 12px}.presence p{margin:4px 0 0;font-size:12px}.presence-actions{margin-top:8px;gap:6px}.presence-actions #join,.presence-actions #room-recap{background:transparent;border-color:transparent;box-shadow:none;text-decoration:underline;text-underline-offset:4px;font-weight:400}.presence-actions #room-first-photo{font-weight:700}.presence-actions #my-participation{border-color:#b9b8a5}.panel[data-kind=person]{max-height:42dvh;padding:16px 18px 14px;bottom:110px;box-shadow:3px 4px 0 #1d1b2928}.panel[data-kind=person] h2{font-size:21px;margin:4px 0 8px}.panel[data-kind=person] .fine{font-size:12px}.panel[data-kind=person] .quiet{font-size:13px}.panel[data-kind=person] button.primary{margin:8px 0}.close-camera:has(.panel[data-kind=person]:not([hidden])) .camera-nav{opacity:.75}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0s!important;transition-duration:0s!important;scroll-behavior:auto!important}}
+
+@media(max-width:800px){.presence-actions #join,.presence-actions #room-recap{color:var(--ink)}}

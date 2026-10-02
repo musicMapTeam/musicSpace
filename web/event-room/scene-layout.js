@@ -6,10 +6,11 @@ export function memberFloorPositions(count,portrait){
  return Array.from({length:count},(_,i)=>{const x=(i-(count-1)/2)*gap,depth=count>2?(i%2?.1:-.1):0;return [right[0]*x+right[1]*depth,0,centerZ+right[1]*x-right[0]*depth];});
 }
 
-export function overviewCameraLayout(count,portrait){
- const distance=portrait?(count>2?13.8:11.8):(count>4?14.4:10.8);
+export function overviewCameraLayout(count,portrait,height=844){
+ const distance=portrait?(height<650||count>2?13.8:11.8):(count>4?14.4:10.8);
+ const targetY=height<650?.95:1.3;
  return portrait
-  ?{position:[-.14*distance,2+.18*distance,.5+.99015*distance],target:[0,2,.5]}
+  ?{position:[-.14*distance,targetY+.18*distance,.5+.99015*distance],target:[0,targetY,.5]}
   :{position:[-.493*distance,2.15+.20*distance,1+.87004*distance],target:[0,2.15,1]};
 }
 

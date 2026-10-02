@@ -69,4 +69,4 @@ jobs:
             echo "Release exists; preserving tag and assets."
             exit 0
           fi
-          gh release create "$tag" release-assets/* --target "$GITHUB_SHA" --prerelease --title "Music Space $version — 场次房间预发布" --notes-file docs/release/0.17.0-rc.1.md
+          gh release create "$tag" release-assets/* --target "$GITHUB_SHA" --prerelease --title "Music Space $version — 场次房间预发布" --notes-file "docs/release/$version.md"

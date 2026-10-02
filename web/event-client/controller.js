@@ -526,6 +526,7 @@ export function createEventController(options = {}) {
         op.status = op.status === 'cancelled' ? 'cancelled' : error.uncertain ? 'uncertain' : 'failed'; op.error = summaryError(error);
         persist(op);
         if (socialTypes.has(op.type) && [404, 409].includes(error.status)) await reconcileSocialOperation(op);
+        if(op.type==='setParticipation'&&[404,409].includes(error.status)&&op.actorId===session?.user.id){invalidateSocial();const jobs=[loadSocial()];if(state.route.kind==='room'&&state.room?.id===op.target)jobs.push(refreshRoom());await Promise.allSettled(jobs);}
         syncStoredIdentity();report(error, token, socialTypes.has(op.type) ? op.actorId === session?.user.id : matches(op)); throw error;
       } finally { running.delete(op.id); emit(); }
     })();

@@ -12,11 +12,12 @@ const stage = resolve(output, name);
 mkdirSync(output, { recursive: true });
 // Fresh staging protects against accidentally carrying a prior run's files into a release.
 mkdirSync(stage);
-for (const item of ['dist', 'server', 'runtime-preview/src', 'runtime-preview/drizzle', 'package.json', 'RUN-ME.md', 'THIRD_PARTY_NOTICES.md']) {
+for (const item of ['dist', 'server', 'runtime-preview/src', 'runtime-preview/drizzle', 'scripts/ops', 'package.json', 'RUN-ME.md', 'THIRD_PARTY_NOTICES.md']) {
   cpSync(resolve(root, item), resolve(stage, item), { recursive: true });
 }
 mkdirSync(resolve(stage, 'docs'), { recursive: true });
 cpSync(resolve(root, 'docs/deployment.md'), resolve(stage, 'docs/deployment.md'));
+cpSync(resolve(root, 'docs/ops'), resolve(stage, 'docs/ops'), { recursive: true });
 function files(dir) {
   return readdirSync(dir).sort().flatMap(name => {
     const path = resolve(dir, name);

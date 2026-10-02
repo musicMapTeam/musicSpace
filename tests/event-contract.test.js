@@ -22,7 +22,8 @@ export function eventContract(label, fixture) {
     const inside = await f.request('/rooms/'+room.id,{token:b.token}); assert.equal(inside.status,200);
     assert.deepEqual(new Set(inside.body.members.map(m=>m.id)),new Set([a.user.id,b.user.id]));
     assert.equal(inside.body.actorId,b.user.id);
-    assert.ok(inside.body.members.every(m=>Object.keys(m).sort().join(',')==='avatar,id,joinedAt,name'));
+    assert.ok(inside.body.members.every(m=>Object.keys(m).sort().join(',')==='avatar,id,joinedAt,name,participation,participationRevision'));
+    assert.ok(inside.body.members.every(m=>['quiet','open'].includes(m.participation)&&Number.isInteger(m.participationRevision)&&m.participationRevision>=1));
     const own = await f.request('/rooms',{token:b.token}); assert.equal(own.body.rooms.length,1);
     assert.equal((await f.request('/no-such-route',{token:a.token})).status,404);
   });

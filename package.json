@@ -1,6 +1,6 @@
 {
   "name": "music-space",
-  "version": "0.17.0-rc.1",
+  "version": "0.17.0-rc.2",
   "private": true,
   "type": "module",
   "description": "Music Space: after the show, concert-goers trade the view the other one missed, by consent, as a two-name double ticket",

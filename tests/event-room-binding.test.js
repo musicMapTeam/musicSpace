@@ -197,11 +197,18 @@ test('resolved unapplied retry repaints the current pending list without forcing
 });
 
 const socialState=extra=>({actorId:actor,incoming:[],outgoing:[],friends:[],blocks:[],nextCursors:{incoming:null,outgoing:null,friends:null,blocks:null},loaded:true,stale:false,...extra});
-const peer={id:otherId,name:'Synthetic peer',avatar:DEFAULT_AVATAR};
+const peer={id:otherId,name:'Synthetic peer',avatar:DEFAULT_AVATAR,participation:'open',participationRevision:1};
+test('quiet author has no greeting action and cancelling a participation draft restores the saved choice',async()=>{
+  const me={id:actor,name:'Me',avatar:DEFAULT_AVATAR,participation:'open',participationRevision:2};
+  const h=harness(initial({room:room(),route:{kind:'room',target:roomId},members:[me,{...peer,participation:'quiet'}],social:socialState()}));
+  h.binding.openPanel('person',otherId);assert.doesNotMatch(h.body.innerHTML,/data-social-send/);assert.equal(h.calls.some(c=>c[0]==='sendGreeting'),false);
+  h.binding.openPanel('room');const form={dataset:{form:'participation'}};h.input(form,'participation','quiet');h.binding.openPanel('room');assert.match(h.body.innerHTML,/name="participation" value="quiet" checked/);
+  h.binding.closePanel();h.binding.openPanel('room');assert.match(h.body.innerHTML,/name="participation" value="open" checked/);assert.equal(h.calls.some(c=>c[0]==='setParticipation'),false);
+});
 const greeting={id:'20000000-0000-4000-8000-000000000001',roomId,senderId:otherId,recipientId:actor,peer,status:'pending',revision:3};
 
 test('opening a person does not send or accept; a greeting is sent only by explicit button action',async()=>{
-  const h=harness(initial({room:room(),route:{kind:'room',target:roomId},members:[peer],social:socialState()}));
+  const h=harness(initial({room:room(),route:{kind:'room',target:roomId},members:[{id:actor,name:'Me',avatar:DEFAULT_AVATAR,participation:'open',participationRevision:1},peer],social:socialState()}));
   h.controller.sendGreeting=async(id,o)=>{h.calls.push(['sendGreeting',id,o.roomId]);return {applied:true};};
   h.binding.openPanel('person',otherId);assert.match(h.body.innerHTML,/data-social-send/);assert.equal(h.calls.some(c=>c[0]==='sendGreeting'),false);
   await h.click({socialSend:otherId});assert.deepEqual(h.calls.filter(c=>c[0]==='sendGreeting'),[['sendGreeting',otherId,roomId]]);
@@ -395,10 +402,10 @@ test('quick identity shows nickname and optional wardrobe, preserves chosen part
  const look={...DEFAULT_AVATAR,hair:7,eyewear:0,top:4,bottom:2,shoes:3,accessory:'chain'},preview={...room(),code:'AAAAAAAAAAAA'};
  const h=harness(initial({identity:{status:'missing',user:null},route:{kind:'preview',target:preview.code},preview,drafts:{profile:{name:'Draft',avatar:look},room:null,photo:null}}));
  h.binding.openPanel('preview');h.binding.openPanel('profile');
- assert.match(h.body.innerHTML,/先留个昵称/);assert.match(h.body.innerHTML,/data-illustrated-avatar="1"/);assert.match(h.body.innerHTML,/data-open="wardrobe"/);assert.doesNotMatch(h.body.innerHTML,/<select/);
+ assert.match(h.body.innerHTML,/一个昵称，就能带上小人/);assert.match(h.body.innerHTML,/data-illustrated-avatar="1"/);assert.match(h.body.innerHTML,/data-open="wardrobe"/);assert.doesNotMatch(h.body.innerHTML,/<select/);
  let saved,joins=0;h.controller.establishIdentity=async profile=>{saved=clone(profile);h.emit({...h.get().state,identity:{status:'ready',user:{id:actor,name:profile.name,avatar:profile.avatar,revision:1}}});return {applied:true};};h.controller.joinRoom=async()=>{joins++;};
  h.submit('profile',{name:'Quick name'});await tick();await tick();
- assert.deepEqual(saved,{name:'Quick name',avatar:look});assert.equal(h.get().panelKind,'preview');assert.equal(h.get().state.preview.code,preview.code);assert.match(h.body.innerHTML,/data-form="join"/);assert.doesNotMatch(h.body.innerHTML,/checked/);assert.equal(joins,0,'saving a nickname never silently accepts joining');
+ assert.deepEqual(saved,{name:'Quick name',avatar:look});assert.equal(h.get().panelKind,'preview');assert.equal(h.get().state.preview.code,preview.code);assert.match(h.body.innerHTML,/data-form="join"/);assert.doesNotMatch(h.body.innerHTML,/name="consent"[^>]*checked/);assert.match(h.body.innerHTML,/name="participation" value="quiet" checked/);assert.equal(joins,0,'saving a nickname never silently accepts joining');
 });
 
 test('a committed arrival with a failed room read shows exact-room recovery instead of closing into an empty view',async()=>{

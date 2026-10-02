@@ -1,6 +1,10 @@
 # 场次房间的持久部署
 
+源码集成与 CI 记录：[PR #3](https://github.com/musicMapTeam/musicSpace/pull/3)。发行资产和最终发行状态以 [0.17.0-rc.1 预发布](https://github.com/musicMapTeam/musicSpace/releases/tag/v0.17.0-rc.1) 为准；这里的预发布不表示生产上线，旧 GitHub Pages 保持原样。
+
 0.17.0-rc.1 是预发布，没有新建公网服务。旧 GitHub Pages 只承载静态演示。支持 Node 24+ 同源服务与单节点 SQLite；runtime-preview/src 是共享处理器，并不是已部署的云项目。
+
+从预发布页面下载运行包与 SHA256SUMS.txt，先校验归档哈希再解包。运行包不含用户数据；解包目录中的 manifest.json 记录对应源码提交与文件哈希。
 
 源码先运行 `npm ci`、`npm run build:all`；运行包直接 `node server/index.js`，不需要安装依赖。必须同时保留 dist/、server/、runtime-preview/src/、runtime-preview/drizzle/ 和 package.json。
 

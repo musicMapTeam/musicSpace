@@ -1,5 +1,7 @@
 # 当前进展 · 2026-10-01
 
+源码集成与 CI 记录：[PR #3](https://github.com/musicMapTeam/musicSpace/pull/3)。发行资产和最终发行状态以 [0.17.0-rc.1 预发布](https://github.com/musicMapTeam/musicSpace/releases/tag/v0.17.0-rc.1) 为准；这里的预发布不表示生产上线，旧 GitHub Pages 保持原样。
+
 版本 **0.17.0-rc.1**。场次功能源码来自完整 Library 快照 eb0223f（清单 321 文件哈希全部一致），运行功能冻结在 996e78a；本轮补齐部署、CI 和交付文档。有限浏览器验收与 90.4 秒真实正常演示已完成，详见 [检查记录](release/0.17.0-rc.1.md)。这不是全面生产验收。
 
 ## Doing · 预发布工程收尾

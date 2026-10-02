@@ -1,5 +1,7 @@
 # Music Space · 0.17.0-rc.1 候选发布
 
+源码集成与 CI 记录：[PR #3](https://github.com/musicMapTeam/musicSpace/pull/3)。发行资产和最终发行状态以 [0.17.0-rc.1 预发布](https://github.com/musicMapTeam/musicSpace/releases/tag/v0.17.0-rc.1) 为准；这里的预发布不表示生产上线，旧 GitHub Pages 保持原样。
+
 最新体验入口是 **/event-room/**：人物换装、同场房间、照片、双方同意的交换、私聊和房主成员管理，使用同源 Node API 与持久 SQLite。旧首页与旧 GitHub Pages 演示保留；本轮不更新 gh-pages，也不表示新房间已公开上线。
 
 源码运行：Node.js 24+，执行 `npm ci`、`npm run build:all`、`npm start`，打开 http://127.0.0.1:8787/event-room/ 。已构建运行包直接 `node server/index.js`，不需要安装依赖。数据保存在 DATA_DIR（默认 data/），重启必须复用该目录。

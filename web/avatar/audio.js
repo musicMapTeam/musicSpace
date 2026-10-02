@@ -1,0 +1,5 @@
+let ctx=null,timer=null,active=false;
+export function stopMusic(){active=false;clearTimeout(timer); if(ctx){ctx.close().catch(()=>{});ctx=null;}}
+/** Original procedural four-note soundscape; no recording, model or third-party audio. */
+export async function playMusic(song,onStop){stopMusic(); const Audio=window.AudioContext||window.webkitAudioContext;if(!Audio)throw Error('这个浏览器暂不支持试听');ctx=new Audio();await ctx.resume();active=true;const master=ctx.createGain();master.gain.value=.17;master.connect(ctx.destination);let beat=0;
+ function step(){if(!active||!ctx)return;const t=ctx.currentTime,unit=60/song.bpm;for(const [i,f]of song.notes.entries()){const o=ctx.createOscillator(),g=ctx.createGain();o.type='sine';o.frequency.value=f/((beat%4===3)?2:1);g.gain.setValueAtTime(0,t+i*.06);g.gain.linearRampToValueAtTime(.24/(i+1),t+i*.06+.03);g.gain.exponentialRampToValueAtTime(.0001,t+unit*3);o.connect(g);g.connect(master);o.start(t+i*.06);o.stop(t+unit*3+.1);}beat++;timer=setTimeout(step,unit*2000);}step();setTimeout(()=>{if(active){stopMusic();onStop?.();}},24000);}

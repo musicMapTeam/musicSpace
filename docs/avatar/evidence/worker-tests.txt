@@ -1,0 +1,49 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> music-space@0.16.0 test:runtime
+> node --test runtime-preview/tests/avatar*.test.mjs
+
+✔ Worker/D1: all legacy outfit seeds normalize without losing explicit components (94.755336ms)
+✔ Worker/D1: every new component value round-trips independently of outfit (248.508684ms)
+✔ Worker/D1: a full appearance payload changes one part and leaves stored compositions independent (25.929616ms)
+✔ Worker/D1: modular snapshots preserve invite privacy and two-person export approval (49.387723ms)
+✔ Worker/D1: old stored profiles and accepted snapshots normalize on read without rewriting identity or consent (38.422919ms)
+✔ Worker/D1: legacy cached retries return normalized avatars without replacing their capability or saved response (8.415872ms)
+✔ Worker/D1: malformed and non-finite components are rejected rather than silently reset (289.68781ms)
+✔ identity is a private bearer capability, with recoverability boundary and idempotent bootstrap (65.977633ms)
+✔ profile survives reload but composition avatar snapshots are independent (21.087873ms)
+✔ library, photo, and composition state cannot be read by another identity or invite bearer (37.236559ms)
+✔ guest needs their own distinct identity, explicit placement consent, and current revision (38.830768ms)
+✔ concurrent joins fill one guest slot and idempotent retries never add a second participant (26.798669ms)
+✔ only host decides; invite viewer and guest cannot substitute host acceptance or sharing consent (46.806184ms)
+✔ either participant can revoke sharing consent and every content edit invalidates both consents (46.249625ms)
+✔ guest cannot edit host, scene, song, or title; host cannot edit guest response or avatar (31.109466ms)
+✔ reject clears consent and revokes invitation; guest withdrawal removes their state and read access (44.781126ms)
+✔ invitation rotation, explicit revocation, and seven-day expiry immediately remove preview/photo/join access (41.552969ms)
+✔ mutation retries are stable and conflicting reuse is rejected without duplicate works or consent changes (24.02094ms)
+✔ photo parser removes EXIF, GPS-like metadata and comments, bounds pixels, rejects fake JPEG and trailing bytes (19.147034ms)
+✔ input bounds, HTTP body limits, non-JSON and cross-site requests fail clearly (44.276053ms)
+✔ identities, avatar profile, invited composition, photo and idempotency persist across a fresh server (17.768763ms)
+✔ rate limiting returns retry advice without creating more identities (102.536271ms)
+Avatar worker error: Error
+✔ database failure yields recoverable service error without leaking SQL or paths (5.338598ms)
+✔ streamed body over limit returns JSON 413 instead of a disconnected socket (13.682967ms)
+✔ fresh Worker isolates racing for one D1 guest slot cannot both commit (10.789683ms)
+✔ concurrent duplicate photo creation is one composition with one private object (4.083123ms)
+✔ transport loss after commit recovers idempotently without deleting committed R2 photo (4.750453ms)
+✔ simultaneous scene edits clean only failed uploads and preserve the winning photo (7.345289ms)
+✔ missing private upload binding fails clearly and never stores a partial room (2.998459ms)
+✔ assets fallback never receives unknown API requests or private photo keys (2.945851ms)
+✔ two real capabilities, host acceptance and two current-version consents gate export (14.88927ms)
+✔ persistent rate limits cannot be bypassed by starting another Worker isolate (25.664962ms)
+Avatar photo cleanup: Error
+Avatar worker error: Error
+✔ unknown commit outcome plus read outage preserves the photo for a later exact retry (4.629647ms)
+ℹ tests 33
+ℹ suites 0
+ℹ pass 33
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 840.704627

@@ -1,0 +1,174 @@
+{
+  "site": "https://music-space-studio-kx.k2ctliuhan.chatgpt.site",
+  "testedVersion": "v4",
+  "expectedSourceFromParent": "b3523b160cd53bb78974fba9e836bfc174045de6",
+  "date": "2026-09-30T08:15:38.705Z",
+  "gpu": {
+    "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+    "renderer": "ANGLE (Intel, Intel(R) UHD Graphics 770 (0x00004680) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "lost": false,
+    "buffer": [
+      514,
+      683
+    ]
+  },
+  "componentChecks": {
+    "count": 44,
+    "failures": []
+  },
+  "colorChecks": {
+    "count": 33,
+    "failures": []
+  },
+  "reloadPreserved": true,
+  "mobile": {
+    "viewport": [
+      390,
+      844
+    ],
+    "hasTouch": true,
+    "maxTouchPoints": 1,
+    "pageWidth": 390,
+    "pageScrollWidth": 390,
+    "layout": "Bottom wardrobe drawer, horizontal tabs and option cards"
+  },
+  "identities": {
+    "host": {
+      "name": "合成V4主理人",
+      "avatar": {
+        "version": 2,
+        "skin": 3,
+        "hair": 6,
+        "hairColor": 0,
+        "outfit": 0,
+        "top": 1,
+        "bottom": 5,
+        "shoes": 2,
+        "eyewear": 5,
+        "topColor": 4,
+        "bottomColor": 1,
+        "shoeColor": 2,
+        "expression": "focused",
+        "accessory": "chain",
+        "pose": "sway"
+      }
+    },
+    "guest": {
+      "name": "合成V4客人",
+      "avatar": {
+        "version": 2,
+        "skin": 0,
+        "hair": 7,
+        "hairColor": 3,
+        "outfit": 0,
+        "top": 5,
+        "bottom": 4,
+        "shoes": 1,
+        "eyewear": 0,
+        "topColor": 0,
+        "bottomColor": 1,
+        "shoeColor": 0,
+        "expression": "neutral",
+        "accessory": "none",
+        "pose": "listen"
+      }
+    }
+  },
+  "normalInviteFlow": {
+    "privateInviteCreated": true,
+    "secondIndependentContextOpened": true,
+    "joinWithoutConsentBlocked": true,
+    "guestConsentThenJoin": true,
+    "hostSawResponse": true,
+    "hostConfirmedVersion": true,
+    "noExportBeforeConsent": true,
+    "hostOnlyConsentKeptExportUnavailable": true,
+    "guestConsentIndependent": true,
+    "bothConsentsEnabledExport": true,
+    "hostAndGuestDownloaded": true,
+    "roleLabelsAndProfilesDistinct": true
+  },
+  "exports": [
+    {
+      "role": "host",
+      "failure": null,
+      "path": "v4-duo-export-host.png",
+      "width": 1440,
+      "height": 1920
+    },
+    {
+      "role": "guest",
+      "failure": null,
+      "path": "v4-duo-export-guest.png",
+      "width": 1440,
+      "height": 1920
+    }
+  ],
+  "photoImport": {
+    "originalSyntheticOnly": true,
+    "previewNowShowsBackground": true,
+    "exportShowsSameBackground": true,
+    "pixelIdenticalFrameNotAsserted": true
+  },
+  "posesObserved": [
+    "sway",
+    "wave",
+    "sing",
+    "listen"
+  ],
+  "findings": [
+    {
+      "severity": "visual",
+      "detail": "Default head smaller and legs longer than previous version; wide tee torso and footwear remain blocky rather than refined thin line art",
+      "evidence": [
+        "v4-default.png",
+        "v4-synthetic-export.png"
+      ]
+    },
+    {
+      "severity": "visual",
+      "detail": "Darkest skin with thick frames retains eyes, but mouth/nose line contrast remains weak",
+      "evidence": [
+        "v4-dark-glasses-detail.png",
+        "v4-synthetic-export.png"
+      ]
+    },
+    {
+      "severity": "visual",
+      "detail": "Short sleeves do not follow raised arms elegantly; sampled long-sleeve mixed outfit has no severe visible intersections across four poses",
+      "evidence": [
+        "v4-default.png",
+        "v4-pose-wave.png",
+        "v4-pose-sing.png",
+        "v4-pose-listen.png"
+      ]
+    },
+    {
+      "severity": "consistency",
+      "detail": "Shared participant roster uses old chibi SVG look; guest is bare-eyed on main canvas but roster illustration has eyeglasses",
+      "evidence": [
+        "v4-joined-host.png",
+        "v4-joined-guest.png",
+        "v4-duo-export-host.png"
+      ]
+    }
+  ],
+  "pageErrors": [],
+  "limitations": [
+    "No exhaustive visual QA of all combinatorial outfits",
+    "44 component and 33 color checks assert persisted state independence, not all geometric combinations",
+    "390px touch browser emulation, not physical phone",
+    "Abnormal invitation/save races deliberately deferred to v5",
+    "No direct DelphiaSummer source art was available in this local thread; target judged from parent description"
+  ],
+  "earlyVisualLibraryFileId": "libfile_a4110178f09c81919d4ceab4305b15bf",
+  "safety": {
+    "userPhotos": false,
+    "settingsChanges": false,
+    "newSoftware": false,
+    "publicPosts": false,
+    "externalMessages": false,
+    "bearerOrInviteLinksIncludedInEvidence": false
+  },
+  "localXattrs": "Windows Python os.setxattr unavailable; successful Library identity kept in separate receipts"
+}

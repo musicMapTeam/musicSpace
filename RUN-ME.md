@@ -1,3 +1,11 @@
+# 0.17.0-rc.1 · 场次房间运行
+
+安装 Node.js 24 或更新版本。运行包中执行 `node server/index.js`，打开 http://127.0.0.1:8787/event-room/ 。源码先运行 `npm ci`、`npm run build:all`。服务默认只监听 127.0.0.1；PORT 默认 8787，DATA_DIR 默认 data/。终端按 Ctrl+C 正常停止。运行包需要 dist/、server/、runtime-preview/src/、runtime-preview/drizzle/ 和 package.json 同时存在。
+
+保留整个 DATA_DIR（含身份密钥、照片、聊天及数据库）；删除它会丢失身份和所有服务端记录。浏览器身份保存在当前来源的存储中：同一上下文的两个标签是同一身份，独立浏览器上下文才是另一身份。清浏览器存储或换域名不会自动恢复身份。详见 [部署与备份](docs/deployment.md)。
+
+这是预发布，尚未部署新公网服务。旧静态首页不能代替场次 API。下文 0.16 说明只适用于旧首页。
+
 # Music Space · 运行说明
 
 MVP 0.16.0 · 2026-09-30

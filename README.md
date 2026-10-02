@@ -1,3 +1,17 @@
+# Music Space · 0.17.0-rc.1 候选发布
+
+源码集成与 CI 记录：[PR #3](https://github.com/musicMapTeam/musicSpace/pull/3)。发行资产和最终发行状态以 [0.17.0-rc.1 预发布](https://github.com/musicMapTeam/musicSpace/releases/tag/v0.17.0-rc.1) 为准；这里的预发布不表示生产上线，旧 GitHub Pages 保持原样。
+
+最新体验入口是 **/event-room/**：人物换装、同场房间、照片、双方同意的交换、私聊和房主成员管理，使用同源 Node API 与持久 SQLite。旧首页与旧 GitHub Pages 演示保留；本轮不更新 gh-pages，也不表示新房间已公开上线。
+
+源码运行：Node.js 24+，执行 `npm ci`、`npm run build:all`、`npm start`，打开 http://127.0.0.1:8787/event-room/ 。已构建运行包直接 `node server/index.js`，不需要安装依赖。数据保存在 DATA_DIR（默认 data/），重启必须复用该目录。
+
+- [运行说明](RUN-ME.md) · [持久部署、备份与上线边界](docs/deployment.md)
+- [本次检查与未测项](docs/release/0.17.0-rc.1.md) · [项目状态](docs/PROJECT_STATUS.md)
+- 检查命令：`npm test`、`npm run test:release`、`npm run test:character`、`npm run ai:check`。
+
+以下 0.16 记录保留为旧首页及交付历史；最新状态以本节和上述链接为准。
+
 # Music Space
 
 **同一刻，另一面。演唱会散场以后，同场观众交换彼此没有的视角。**
@@ -9,6 +23,33 @@ MVP **0.16.0** · 文档 **3.0** · 2026-09-30 · 在线演示（静态版）：
 你拍到了舞台，朋友记住了人海。各自留下一张现场卡，向对方申请交换；对方同意后，两张卡合成一张两人署名的双联票根，收进各自的收藏。「同一刻」按照片自带的拍摄时间判断，「另一面」按视角判断；视角由一个在你自己设备上运行的小模型建议，AI 判断时照片不上传。
 
 线上版本以 `gh-pages` 分支为准：2026-09-30 线上是 `main@54f3e6e`（PR #1 的合并提交）的构建（带 `ai/`，部署提交 `e28fab5`），即含 0.16 的全部代码；更早的部署是 `7c962e2` 的 `2d8f1a3` 与没有 AI 的 `a45ecbd` 的 `f0ad219`。详见[状态与待办](#状态与待办)。快速体验：打开线上演示，首页点「体验示例」，切换 Lin 与阿遥完成一次申请与同意，再用「用我的照片」试试 AI（用法见 [RUN-ME.md](RUN-ME.md)）。
+
+## Livehouse 新主线 · 本地开发中
+
+2026-10-01 07:45 UTC：正在完善真实现场产品闭环。快速昵称入场、独立的「这一晚」照片/当前联系回顾及真实下一场入口已实现，240 项相关检查和构建通过，实际浏览器流程尚待验收；局部舞台印刷与整体 UI 候选也待实际审图。完整范围与剩余项见[完成清单](docs/event/COMPLETION.md)。当前新主线仍只本机运行。
+
+2026-10-01 小幅调整：眼镜继续自由选择，默认无镜，已保存外观保留；四方向、取消、保存、双身份同步和重载的真实 GPU 复验通过。随后将单个部件提升为衣橱主入口，组合示例默认折叠；这项新层级只经源码／DOM 与构建检查，未再做浏览器审图。相关测试 80 项通过。见[眼镜可选验证](docs/event/evidence/optional-eyewear-qa.md)。
+
+用户进一步明确音乐现场房间、照片交换与同场交友为核心。当前分为真实三维空间样片、单角色造型研究和独立事件房间后端。旧根站与 avatar 公开试玩保持原样；不把样片中的虚构人物当作真实在线用户。
+
+- `npm run build:livehouse`：实体房间与三个透视机位；空间操作已做真实 GPU 检查，美术仍在修正
+- `npm run build:character`：一个定制曲面角色与四视图转台；美术尚未验收，不扩充批量模板
+- `npm run test:event`：开房、独立身份加入、私密/成员照片持久化权限的 30 项本地验证；新系统尚未发布，也尚未连通房间 UI
+- 具体边界见 [房间系统](docs/event/README.md)、[三维样片](web/livehouse/README.md) 和 [角色研究](web/character-lab/README.md)
+
+## Avatar Studio · 独立预览入口
+
+2026-09-30 的新主线围绕持续的 avatar 身份与双人共创：给朋友留一个位置，由对方用自己的分身回应。原有樱下现场、端侧 AI、同一刻与双联能力完整保留，现阶段不替换线上根入口。
+
+- `npm run build:all` 构建既有页面及 `/avatar/`；`npm start` 后打开 `http://127.0.0.1:8787/avatar/`
+- `npm run dev:avatar` 启动独立前端开发；代理预期端口 8788，可用 `PORT=8788 npm start`
+- 自定义分身、选择原创夜景或本人照片、调整位置/比例/动作、试听三段原创合成声景、撤销、草稿、单人 PNG 导出
+- 双人模式使用各自独立身份：私密邀请 → 加入者的分身和回应 → 发起者确认当前版本 → 双方分别允许保存 → 共同 PNG
+- 每次修改使旧确认失效；邀请可关闭或重新生成。照片不会放入公共静态资源
+- 静态文件仅提供本机创作与单人导出，不能冒充联网双人模式
+- 新的 Node 数据库存于同一 DATA_DIR 下的 `avatar-space.sqlite`，与原有现场库分离。Worker + D1/R2 适配器在 `runtime-preview/`；它是同一功能的托管预览，不是替换仓库或迁移原线上站点
+
+详细范围、素材和验证记录见 [Avatar Studio 说明](docs/avatar/README.md) 与 [QA 记录](docs/avatar/QA.md)。
 
 ## 主线
 
@@ -140,3 +181,7 @@ Music Map（从一位华语歌手出发，沿真实的合唱录音走向下一�
 | [参赛材料](docs/competition/README.md) · [交付清单](delivery/README.md) | 报名介绍与演示脚本；封面、视频与运行包规格 |
 | [更新记录](CHANGELOG.md) · [来源说明](THIRD_PARTY_NOTICES.md) · [模型来源](scripts/ai/README.md) | 版本与许可；含 Map 时期的历史部分；模型来源与复现 |
 | [官方资料档案](references/official/2026-09-26/README.md) · [原始创意](references/original-ideas/README.md) | 官网与六张官方表原文 / 截图；早期双 App 方案 |
+
+### 2026-09-30 15:03 UTC · 本地新候选
+
+用户要求继续打磨：两人私聊、二维手绘小人进入真实三维现场、场馆与UI艺术统一、自由实时换装。独立 `/event-room/` 正在集成这四项，原公开版本保持不变。衣橱只在明确保存后同步同场，私聊只对双方接受且未屏蔽的朋友开放；照片权限不扩大。当前新增后端与客户端已做代码级测试，新的全屏场景、四向立绘及UI尚在GPU/独立浏览器验收过程中，不能称为最终成品。详见 `web/event-room/README.md` 与 `docs/event/chat-contract.md`。

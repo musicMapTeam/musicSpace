@@ -1,0 +1,23 @@
+MusicSpace candidate v6 — PASS for the TWO requested defect retests
+Frozen HTML SHA256 matched 5fd5b4da975f85f27d90d97a26f70716f245d82c8c33249768c02417b5574dbe.
+Real WebGL2, Intel UHD770 ANGLE/D3D11. GLB ready / blender-venue-r2 / 19728 triangles /12 meshes. Fresh owned localhost service and data, existing Node/Chromium, synthetic identities and four newly drawn numbered/colored images. No production changes, install, public service or user photos.
+
+1 CLICK/TAP — PASS:
+Dedicated desktop context isMobile=false, hasTouch=false,1365x900; mobile isMobile=true, hasTouch=true,390x844. Two explicit independent identities joined original example room 原创示例·返场夜. Actual four original synthetic image records QA PHOTO1 orange /2 teal /3 mauve /4 blue; authors alternate A,B,A,B.
+Desktop TWO-photo mouse centers: (535,475),(835,475).
+Desktop FOUR-photo mouse centers: (463,325),(680,325),(900,325),(680,610).
+Mobile TWO-photo taps: (130,375),(270,375).
+Mobile FOUR-photo taps: (130,295),(270,295),(130,475),(270,475).
+All12 actual pointer selections opened details of the corresponding visible numbered image and author; each waited350ms for compatibility click, then another5400ms (longer than one5-second poll), remained open, same numbered image and author. Twelve post-wait detail screenshots were visually reviewed. No API-only image read was treated as UI opening. Native desktop TWO-photo case explicitly completed, not inferred from mobile/expanded viewport.
+
+Verification caveat: experimental exact decoded-pixel SHA comparisons in raw results.json returned matches=false for all detail/reference image pairs. This is NOT counted as successful byte/pixel equality and was not used for acceptance. The definitive test here is actual visible QA PHOTO1/2/3/4 number, distinct color and author in each post-wait screenshot. No claim about identical JPEG decoding/cache bytes or reason for hash difference. This caveat preserves the failed auxiliary check instead of hiding it.
+
+2 WALL / RETURN — PASS:
+All four configurations have no foreground right-PA speaker or vertical decorative rod covering images/title. Wall title and frames remain within real wall; no former large right black border. There are normal wall light/shadow fixtures, not the obstructing cutaway props. Closed detail, returned via existing overview UI in each configuration; same right PA stack and wall decorative rod positions restored visibly in desktop/mobile return screenshots. Reentered wall and captured each clear wall again. Existing cameras only: no changed camera, source, fake scene injection, hidden prop mutation or render substitution performed by test.
+
+Requested priority PNGs saved independently:
+mobile-4-wall.png Library libfile_5066e471261081919ef5506e01d0f011
+desktop-4-wall.png Library libfile_8d2109a7e2648191aca5e81789f27deb
+desktop-4-detail-3.png Library libfile_75cf7046891881918d9d4d6d9d2a18b7
+
+Not tested this round: optional photo withdrawal, prior backend boundaries, crowd/wardrobe/title regressions, FPS or video. These are not claimed passing here. Initial console/pageerrors captured empty; restored desktop tracked pageerrors. Only this task's browser/service closed; data retained. Evidence archive excludes signed download metadata, DB and credentials. Raw results contain public synthetic photo IDs, click coordinates and auxiliary hash outcomes only.

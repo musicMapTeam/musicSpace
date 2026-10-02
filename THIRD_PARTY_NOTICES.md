@@ -217,3 +217,15 @@ These are video-production tools only, not Music Map / Music Space application r
 > **Status: history, not used by this app** (note added 2026-09-30). "Current" in this heading meant current in 0.4. The recording and cover are the Music Map × Music Space 0.4 delivery, not Music Space materials; the tools are not application dependencies.
 
 The current video captures actual application operations using Playwright's native Screencast API through Tabbit, then cuts the WebM clips and adds original Chinese subtitles with FFmpeg 9.0.1. The cover is a browser rendering of the project's original HTML and its actual exported ticket PNG. These authoring tools are not application dependencies; no tool binaries or runtime code are bundled in the MP4 or PNG. Source clips, timestamps, holds, file hashes, and the AI-generated demonstration-photo disclosure are documented in `delivery/recording-source/README.md` and `source-summary.json`. The previous HyperFrames/GSAP composition remains historical source, not the renderer for the current video.
+
+
+## Avatar Studio additions (2026-09-30)
+
+- `web/avatar/avatar.js`: original programmatic vector character and pose artwork created for this project; no imported character, artist likeness, or face input.
+- `web/avatar/assets/rooftop-night.webp` and `sakura-night.webp`: original AI-generated fictional scenes, generated 2026-09-30 with the built-in image generation tool. Prompts, hashes and provenance in the adjacent `scene-provenance.json`. No real concert attendance or artist endorsement is implied.
+- `web/avatar/audio.js`: original four-note Web Audio soundscapes generated procedurally in the browser; no third-party recordings or commercial songs.
+- Avatar-specific interface icons are simple original line drawings defined in `web/avatar/app.js`. Existing Phosphor assets in the legacy app retain their existing notices.
+- Hosted preview migration tooling: drizzle-kit 0.31.10 / drizzle-orm 0.45.2 (Apache-2.0). They are development-only schema-generation tools; not bundled into the avatar browser experience.
+
+- `web/avatar/three-scene.js`: original procedural geometry, articulated wardrobes and scenes. Reuses the repository's existing Three.js and Sakura Crossing cel/depth-ink modules with their unchanged MIT notices; no vendor modifications. Same camera/state/postprocessing are used for live preview and capture.
+- Six wardrobe concepts are original reference-informed designs. The user's source reference image is not redistributed. The authored 2D fallback and actual 3D meshes are distinguished in UI and validation records.

@@ -7,9 +7,12 @@ import { promisify } from 'node:util';
 import { extname, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { db, get, all, run, transaction } from './db.js';
+import { handleAvatarApi, closeAvatarApi } from './avatar-api.js';
+import { handleEventApi, closeEventApi } from './event-api.js';
 
 const HOST = process.env.HOST || '127.0.0.1';
-const PORT = Number(process.env.PORT || 8787);
+let PORT = Number(process.env.PORT || 8787);
+const initialPort=PORT,tryNextLocalPort=process.env.MUSIC_SPACE_TRY_NEXT_LOCAL_PORT==='1'&&HOST==='127.0.0.1';
 const DIST = resolve(fileURLToPath(new URL('../dist/', import.meta.url)));
 const PREFIX = '/api/live';
 const EVENT_ID = 'echo-live-2026';
@@ -535,6 +538,7 @@ async function serveStatic(request, response, pathname) {
   let file = resolve(DIST, `.${decoded}`);
   if (file !== DIST && !file.startsWith(`${DIST}${sep}`)) fail(404, 'NOT_FOUND', '文件不存在。');
   let info = await stat(file).catch(() => null);
+  if (info?.isDirectory()) { file = resolve(file, 'index.html'); info = await stat(file).catch(() => null); }
   if (!info?.isFile()) {
     if (extname(decoded)) fail(404, 'NOT_FOUND', '文件不存在。');
     file = resolve(DIST, 'index.html');
@@ -579,6 +583,8 @@ const server = createServer(async (request, response) => {
   response.setHeader('X-Content-Type-Options', 'nosniff');
   response.setHeader('Referrer-Policy', 'no-referrer');
   try {
+    if (await handleAvatarApi(request, response)) return;
+    if (await handleEventApi(request, response)) return;
     const { pathname } = new URL(request.url, 'http://localhost');
     if (pathname === PREFIX || pathname.startsWith(`${PREFIX}/`)) await api(request, response, pathname.slice(PREFIX.length));
     else if (pathname.startsWith('/api/')) fail(404, 'NOT_FOUND', '接口不存在。');
@@ -592,14 +598,18 @@ const server = createServer(async (request, response) => {
 });
 server.requestTimeout = 15_000;
 server.headersTimeout = 10_000;
+let storesClosed=false,resolveStartup,rejectStartup;
+const closeStores=()=>{if(storesClosed)return;storesClosed=true;closeAvatarApi();closeEventApi();db.close();};
+export const serverReady=new Promise((resolve,reject)=>{resolveStartup=resolve;rejectStartup=reject;});
+serverReady.catch(()=>{});
+export const stopLocalService=()=>new Promise(resolve=>{if(!server.listening){closeStores();resolve();return;}server.close(()=>{closeStores();resolve();});});
 server.on('error', error => {
+  if(error.code==='EADDRINUSE'&&tryNextLocalPort&&PORT<Math.min(65535,initialPort+30)){PORT++;setImmediate(()=>server.listen(PORT,HOST));return;}
   console.error(error.code === 'EADDRINUSE'
-    ? `端口 ${PORT} 已被占用。若已启动过服务，可打开 http://${HOST}:${PORT}；否则设置 PORT 后再启动。`
+    ? `端口 ${PORT} 已被占用，本次服务未启动，也没有关闭其他服务。为保留浏览器身份，不会改变已有实例的地址。`
     : `服务未能启动：${error.code || error.message}`);
-  db.close();
-  process.exitCode = 1;
+  closeStores();rejectStartup(error);process.exitCode=1;
 });
-server.listen(PORT, HOST, () => console.log(`Music Space live service: http://${HOST}:${PORT}`));
-for (const signal of ['SIGINT', 'SIGTERM']) process.on(signal, () => {
-  server.close(() => { db.close(); process.exit(0); });
-});
+server.once('listening',()=>{resolveStartup(server.address());if(process.env.MUSIC_SPACE_LOCAL_LAUNCH!=='1')console.log(`Music Space live service: http://${HOST}:${PORT}`);});
+server.listen(PORT, HOST);
+for (const signal of ['SIGINT', 'SIGTERM']) process.on(signal, () => {void stopLocalService().then(()=>process.exit(0));});

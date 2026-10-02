@@ -1,0 +1,48 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1790749706638,
+      "tag": "0000_known_colonel_america",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1790763047216,
+      "tag": "0001_event_rooms",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1790769624820,
+      "tag": "0002_event_social",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1790781033528,
+      "tag": "0003_event_chat",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1790842244610,
+      "tag": "0004_event_exchanges",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1790845013264,
+      "tag": "0005_event_moderation",
+      "breakpoints": true
+    }
+  ]
+}

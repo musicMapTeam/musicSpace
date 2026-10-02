@@ -1,3 +1,4 @@
+node_modules
 node_modules/
 dist/
 .vite/
@@ -20,3 +21,7 @@ delivery/runtime/
 delivery/video-source/.hyperframes/
 # onnxruntime-web runtime files: copied from node_modules by `npm run ai:ort` (predev / prebuild); the model pack in web/public/ai/tc8/ is committed
 web/public/ai/ort/
+
+# Reproducible release output and local dependency cache
+delivery/releases/
+.npm-cache/

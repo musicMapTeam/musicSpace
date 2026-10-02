@@ -1,7 +1,7 @@
 // Initial migration generated 2026-09-30 with drizzle-kit 0.31.10 and drizzle-orm 0.45.2.
 // Keep applied drizzle SQL and matching metadata immutable; append later migrations.
 import { sql } from 'drizzle-orm';
-import { sqliteTable, text, integer, index, uniqueIndex, check, primaryKey } from 'drizzle-orm/sqlite-core';
+import { sqliteTable, text, integer, index, uniqueIndex, check, primaryKey, foreignKey } from 'drizzle-orm/sqlite-core';
 
 export const avatarMeta = sqliteTable('avatar_meta', {
   key: text('key').primaryKey(), value: text('value').notNull(),
@@ -182,3 +182,15 @@ export const eventRoomExclusions = sqliteTable('event_room_exclusions', {
   targetName: text('target_name').notNull(), revision: integer('revision').notNull().default(1),
   createdAt: text('created_at').notNull(), updatedAt: text('updated_at').notNull(), restoredAt: text('restored_at'),
 }, table => [primaryKey({ columns: [table.roomId, table.userId] }),check('event_exclusion_revision',sql`${table.revision} >= 1`)]);
+
+// Participation is scoped to a room; it is not real identity or physical presence.
+export const eventParticipation = sqliteTable('event_participation', {
+  roomId: text('room_id').notNull(), userId: text('user_id').notNull(),
+  mode: text('mode').notNull().default('quiet'), revision: integer('revision').notNull().default(1),
+  updatedAt: text('updated_at').notNull(),
+}, table => [
+  primaryKey({ columns: [table.roomId, table.userId] }),
+  foreignKey({ columns: [table.roomId, table.userId], foreignColumns: [eventMembers.roomId, eventMembers.userId] }),
+  check('event_participation_mode', sql`${table.mode} IN ('quiet','open')`),
+  check('event_participation_revision', sql`${table.revision} >= 1`),
+]);

@@ -26,8 +26,8 @@ async function fixture(t) {
     const body = await response.json(); assert.ok(response.ok, JSON.stringify(body)); return body;
   }
   const a = await request('/api/avatar/session', null, { name: 'A' }), b = await request('/api/avatar/session', null, { name: 'B' }), outsider = await request('/api/avatar/session', null, { name: 'C' });
-  const room = (await request('/rooms', a.token, { title: '合成交换测试', venue: '合成现场', songId: 'late-train', joinConsent: true })).room;
-  await request(`/rooms/${room.code}/join`, b.token, { joinConsent: true });
+  const room = (await request('/rooms', a.token, { title: '合成交换测试', venue: '合成现场', songId: 'late-train', joinConsent: true, participation: 'open' })).room;
+  await request(`/rooms/${room.code}/join`, b.token, { joinConsent: true, participation: 'open' });
   const offered = (await request(`/rooms/${room.id}/photos`, a.token, { ...photoData(), visibility: 'private' })).photo;
   const requested = (await request(`/rooms/${room.id}/photos`, b.token, { ...photoData(), visibility: 'members' })).photo;
   const payload = { recipientId: b.user.id, offeredPhotoId: offered.id, requestedPhotoId: requested.id, offeredRevision: 1, requestedRevision: 1, offerPreviewConsent: true, offerOriginalConsent: true, offeredPreviewDataUrl: photoData().dataUrl };
@@ -109,7 +109,7 @@ test('exchange client: a definitive retried POST rejection resolves uncertainty 
 });
 
 test('exchange client: same-identity tabs persist distinct lost operations in independent atomic storage items', async t => {
-  const f = await fixture(t); await f.request(`/rooms/${f.room.code}/join`, f.outsider.token, { joinConsent: true });
+  const f = await fixture(t); await f.request(`/rooms/${f.room.code}/join`, f.outsider.token, { joinConsent: true, participation: 'open' });
   const targetC = (await f.request(`/rooms/${f.room.id}/photos`, f.outsider.token, { ...photoData(), visibility: 'members' })).photo;
   const payloadC = { ...f.payload, recipientId: f.outsider.user.id, requestedPhotoId: targetC.id },storage = store(),sent = [];
   const fetcher = async (url, options) => { const response = await fetch(url, options); if (options.method === 'POST') { sent.push(options.headers['Idempotency-Key']); throw Error('Synthetic lost response'); } return response; };
@@ -122,7 +122,7 @@ test('exchange client: same-identity tabs persist distinct lost operations in in
 });
 
 test('exchange client: concurrent successful operations keep their own receipt when one canonical read finishes later', async t => {
-  const f=await fixture(t);await f.request(`/rooms/${f.room.code}/join`,f.outsider.token,{joinConsent:true});
+  const f=await fixture(t);await f.request(`/rooms/${f.room.code}/join`,f.outsider.token,{joinConsent:true,participation:'open'});
   const targetC=(await f.request(`/rooms/${f.room.id}/photos`,f.outsider.token,{...photoData(),visibility:'members'})).photo,started=deferred(),gate=deferred();let held=false,firstId;
   const aa=f.client(f.a,{fetch:async(url,options)=>{const response=await fetch(url,options);if(options.method==='GET'&&/\/exchanges\/[0-9a-f-]{36}$/.test(url)&&!held){held=true;firstId=url.split('/').at(-1);started.resolve();await gate.promise;}return response;}});
   const first=aa.c.create(f.room.id,f.payload);await started.promise;const second=await aa.c.create(f.room.id,{...f.payload,recipientId:f.outsider.user.id,requestedPhotoId:targetC.id});gate.resolve();const result=await first;

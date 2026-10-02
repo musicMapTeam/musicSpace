@@ -18,8 +18,8 @@ async function fixture(t){
  const server=createServer(async(req,res)=>{if(!await event(req,res)&&!await avatar(req,res)){res.writeHead(404);res.end();}});server.listen(0,'127.0.0.1');await once(server,'listening');const baseUrl=`http://127.0.0.1:${server.address().port}`;
  t.after(async()=>{clients.forEach(c=>c.dispose());server.closeAllConnections();await new Promise(done=>server.close(done));avatar.close();event.close();await removeTempAfterTests(dir);});
  const request=async(path,token,data,method=data?'POST':'GET')=>{const response=await fetch(baseUrl+(path.startsWith('/api/')?path:'/api/event'+path),{method,headers:{...(token?{Authorization:`Bearer ${token}`}:{ }),...(data?{'Content-Type':'application/json','Idempotency-Key':crypto.randomUUID()}:{} )},...(data?{body:JSON.stringify(data)}:{})});const body=await response.json();assert.ok(response.ok,JSON.stringify(body));return body;};
- const h=await request('/api/avatar/session',null,{name:'Host'}),a=await request('/api/avatar/session',null,{name:'Reporter'}),b=await request('/api/avatar/session',null,{name:'Target'}),room=(await request('/rooms',h.token,{title:'Synthetic management',venue:'Synthetic venue',songId:'late-train',joinConsent:true})).room;
- for(const actor of[a,b])await request(`/rooms/${room.code}/join`,actor.token,{joinConsent:true});
+ const h=await request('/api/avatar/session',null,{name:'Host'}),a=await request('/api/avatar/session',null,{name:'Reporter'}),b=await request('/api/avatar/session',null,{name:'Target'}),room=(await request('/rooms',h.token,{title:'Synthetic management',venue:'Synthetic venue',songId:'late-train',joinConsent:true,participation:'open'})).room;
+ for(const actor of[a,b])await request(`/rooms/${room.code}/join`,actor.token,{joinConsent:true,participation:'open'});
  return{h,a,b,room,request,payload:{targetId:b.user.id,photoId:null,category:'spam',details:'Synthetic feedback only',reportConsent:true},client(actor,{storage=store(),...options}={}){if(actor)storage.setItem(SESSION_KEY,JSON.stringify(actor));const c=createModerationController({storage,baseUrl,timeoutMs:2000,...options});clients.push(c);return{c,storage};}};
 }
 

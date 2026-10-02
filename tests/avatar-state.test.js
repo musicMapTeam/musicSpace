@@ -338,7 +338,7 @@ test('join freezes the reviewed appearance, position and response before identit
   } });
   h.state.set({ profile: { name: 'Guest', avatar }, session: session('guest') });
   h.location.hash = '#invite=' + 'a'.repeat(43); await h.state.openRoute();
-  Object.assign(h.state.get().draft, { joinConsent: true, response: 'Reviewed response' });
+  Object.assign(h.state.get().draft, { joinConsent: true, participation: 'open', response: 'Reviewed response' });
   h.state.get().draft.avatar.top = 4;
   const expected = plain(h.state.get().draft), joining = h.state.withBusy(h.state.joinInvitation);
   h.state.get().draft.avatar.top = 5; h.state.get().draft.transform.x = 25; h.state.get().draft.response = 'Later response';
@@ -393,7 +393,7 @@ test('join conflict refreshes preview, keeps contribution edits, and requires fr
   } });
   h.state.set({ profile: { name: 'Guest', avatar }, session: session('guest') });
   h.location.hash = '#invite=' + 'a'.repeat(43); await h.state.openRoute();
-  Object.assign(h.state.get().draft, { joinConsent: true, response: 'Keep my response' });
+  Object.assign(h.state.get().draft, { joinConsent: true, participation: 'open', response: 'Keep my response' });
   h.state.get().draft.avatar.eyewear = 5; h.state.get().draft.transform.x = 61;
   await h.state.withBusy(h.state.joinInvitation);
   assert.equal(previews, 2);

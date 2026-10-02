@@ -16,6 +16,7 @@ const signatures = {
   establishIdentity: ['avatar', 'POST', /^\/session$/], saveProfile: ['avatar', 'PUT', /^\/profile$/],
   createRoom: ['event', 'POST', /^\/rooms$/], joinRoom: ['event', 'POST', /^\/rooms\/[A-Z2-7]{12}\/join$/],
   uploadPhoto: ['event', 'POST', /^\/rooms\/[0-9a-f-]{36}\/photos$/],
+  setParticipation: ['event','PATCH', /^\/rooms\/[0-9a-f-]{36}\/participation$/],
   setPhotoVisibility: ['event', 'PATCH', /^\/photos\/[0-9a-f-]{36}$/], removePhoto: ['event', 'DELETE', /^\/photos\/[0-9a-f-]{36}$/],
   withdrawPhoto: ['event', 'POST', /^\/photos\/[0-9a-f-]{36}\/withdraw$/],
   leaveRoom: ['event', 'POST', /^\/rooms\/[0-9a-f-]{36}\/leave$/], closeRoom: ['event', 'POST', /^\/rooms\/[0-9a-f-]{36}\/close$/],
@@ -33,6 +34,7 @@ function validOperation(op) {
   try {
     const data = JSON.parse(op.bodyJson);
     if (!data || typeof data !== 'object' || Array.isArray(data)) return false;
+    if(op.type==='setParticipation')return ['quiet','open'].includes(data.mode)&&Number.isSafeInteger(data.revision)&&data.revision>0&&ID.test(op.target)&&op.path===`/rooms/${op.target}/participation`;
     if (!socialTypes.has(op.type)) return true; // Keep the original saved operation format compatible.
     const target = op.target;
     if (!ID.test(op.actorId) || !target || !ID.test(target.userId) || target.userId === op.actorId) return false;
@@ -458,6 +460,7 @@ export function createEventController(options = {}) {
     if (op.actorId !== session?.user.id || state.identity.status !== 'ready') return false;
     if (op.type === 'saveProfile' && result.user.revision >= session.user.revision) { session.user = clone(result.user); state.identity.user = clone(result.user); try { storage.setItem(SESSION_KEY, JSON.stringify(session)); } catch { storageFailure(); } }
     if (socialTypes.has(op.type)) return reconcileSocialOperation(op, result);
+    if(op.type==='setParticipation'){invalidateSocial();const jobs=[loadSocial()];if(state.route.kind==='room'&&state.room?.id===op.target)jobs.push(refreshRoom());await Promise.allSettled(jobs);return applicable&&matches(op);}
     // Privacy changes still apply to an independently opened recap when a
     // same-identity mutation completes after navigation moved elsewhere.
     recapMutation(op, result);
@@ -546,14 +549,15 @@ export function createEventController(options = {}) {
     identity(); if (payload?.joinConsent !== true) fail('请确认向本场成员展示昵称和分身。', 'JOIN_CONSENT_REQUIRED');
     retainDraft('room', { title: payload.title, venue: payload.venue || '', songId: payload.songId });
     navigate('create', null);
-    return execute(capture('createRoom', '/rooms', { title: payload.title, venue: payload.venue || '', songId: payload.songId, joinConsent: true }, 'create', 'room'));
+    return execute(capture('createRoom', '/rooms', { title: payload.title, venue: payload.venue || '', songId: payload.songId, joinConsent: true,participation:payload.participation||'quiet' }, 'create', 'room'));
   }
-  function joinRoom(value, { joinConsent } = {}) {
+  function joinRoom(value, { joinConsent,participation='quiet' } = {}) {
     const code = String(value).trim().toUpperCase(); identity();
     if (state.route.kind !== 'preview' || state.route.target !== code || state.preview?.code !== code) fail('现场已经切换，请先查看这个邀请码的预览。', 'TARGET_CHANGED');
     if (joinConsent !== true) fail('请确认向本场成员展示昵称和分身。', 'JOIN_CONSENT_REQUIRED');
-    return execute(capture('joinRoom', '/rooms/' + code + '/join', { joinConsent: true }, code));
+    return execute(capture('joinRoom', '/rooms/' + code + '/join', { joinConsent: true,participation }, code));
   }
+  function setParticipation(mode,{roomId=state.room?.id,revision}={}){requireTarget(roomId);const actor=identity(),member=state.members.find(m=>m.id===actor.user.id);if(!['quiet','open'].includes(mode)||!member||revision!==member.participationRevision)fail('参与方式已变化，请重新确认。','REVIEW_STALE');return execute(capture('setParticipation',`/rooms/${roomId}/participation`,{mode,revision},roomId));}
   function uploadPhoto(dataUrl, value, { roomId = state.room?.id } = {}) {
     requireTarget(roomId); if (!['private', 'members'].includes(value)) fail('请明确选择仅自己可见或向本场成员展示。', 'VISIBILITY_REQUIRED');
     retainDraft('photo', { roomId, dataUrl, visibility: value });
@@ -571,6 +575,7 @@ export function createEventController(options = {}) {
   function sendGreeting(recipientId, { roomId = state.room?.id } = {}) {
     requireTarget(roomId); const target = peerTarget(recipientId);
     if (!state.room.joined || state.room.status !== 'open' || !state.members.some(member => member.id === recipientId)) fail('请先进入双方都在的开放现场。', 'PERSON_REQUIRED');
+    if(state.members.find(m=>m.id===state.identity.user.id)?.participation!=='open'||state.members.find(m=>m.id===recipientId)?.participation!=='open')fail('双方都选择愿意打招呼后，才可发起新联系。','PARTICIPATION_QUIET');
     return execute(capture('sendGreeting', `/rooms/${roomId}/greetings`, { recipientId }, { ...target, roomId }));
   }
   function respondGreeting(type, id, { revision } = {}) {
@@ -614,7 +619,7 @@ export function createEventController(options = {}) {
   }
   function dispose() { if (disposed) return; disposed = true; generation++; identityGeneration++; for (const abort of reads.values()) abort.abort(); for (const entry of running.values()) entry.abort.abort(); listeners.clear(); }
   return { getState, subscribe(listener) { assertLive(); listeners.add(listener); listener(getState()); return () => listeners.delete(listener); },
-    connect, syncStoredIdentity, establishIdentity, saveProfile, setDraft, previewRoom, createRoom, joinRoom, openRoom, refreshRoom, uploadPhoto, setPhotoVisibility, removePhoto, withdrawPhoto,
+    connect, syncStoredIdentity, establishIdentity, saveProfile, setDraft, previewRoom, createRoom, joinRoom, openRoom, refreshRoom, setParticipation, uploadPhoto, setPhotoVisibility, removePhoto, withdrawPhoto,
     leaveRoom, closeRoom, loadMyRooms: options => loadList('rooms', options), loadMyPhotos: options => loadList('photos', options), loadRoomRecap, refreshRoomRecap, clearRoomRecap, fetchPhotoBlob,
     loadSocial, loadSocialPeer, sendGreeting, acceptGreeting: (id, options) => respondGreeting('acceptGreeting', id, options), rejectGreeting: (id, options) => respondGreeting('rejectGreeting', id, options),
     cancelGreeting: (id, options) => respondGreeting('cancelGreeting', id, options), removeFriend, blockUser, unblockUser,

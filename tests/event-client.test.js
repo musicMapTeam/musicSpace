@@ -17,7 +17,7 @@ import { photoData } from './event-contract.test.js';
 const deferred=()=>{let resolve,reject;const promise=new Promise((yes,no)=>{resolve=yes;reject=no;});return {promise,resolve,reject};};
 function localStore() { const entries=new Map(); return {entries,get length(){return entries.size;},key:i=>[...entries.keys()][i]??null,getItem:key=>entries.get(key)??null,setItem(key,value){entries.set(key,String(value));},removeItem:key=>entries.delete(key)}; }
 const profile=name=>({name,avatar:{...DEFAULT_AVATAR}});
-const roomInput=(title='Synthetic show')=>({title,venue:'Synthetic venue',songId:'late-train',joinConsent:true});
+const roomInput=(title='Synthetic show')=>({title,venue:'Synthetic venue',songId:'late-train',joinConsent:true,participation:'open'});
 async function fixture(t) {
   const dir=await mkdtemp(join(tmpdir(),'event-client-')),avatar=createAvatarApi({dataDir:dir,rateLimits:false}),event=createEventApi({dataDir:dir,rateLimits:false});
   const server=createServer(async(req,res)=>{if(!await event(req,res)&&!await avatar(req,res)){res.writeHead(404);res.end();}});server.listen(0,'127.0.0.1');await once(server,'listening');
@@ -26,7 +26,7 @@ async function fixture(t) {
   const f={baseUrl,dir,client({storage=localStore(),fetch:fetcher=fetch,timeoutMs=1000}={}){const c=createEventController({storage,fetch:fetcher,baseUrl,timeoutMs});controllers.push(c);return {c,storage};},async person(name){const pair=f.client();await pair.c.connect();await pair.c.establishIdentity(profile(name));return pair;},async api(path,token,method='GET',body){const r=await fetch(baseUrl+path,{method,headers:{Authorization:`Bearer ${token}`,'Content-Type':'application/json','Idempotency-Key':randomUUID()},...(body?{body:JSON.stringify(body)}:{})});return {status:r.status,body:await r.json()};}};
   return f;
 }
-async function joinRoom(c,room){await c.previewRoom(room.code);return c.joinRoom(room.code,{joinConsent:true});}
+async function joinRoom(c,room){await c.previewRoom(room.code);return c.joinRoom(room.code,{joinConsent:true,participation:'open'});}
 
 test('controller construction has no network side effects; identity and immutable state contain no credentials',async t=>{
   const f=await fixture(t);let calls=0;const {c,storage}=f.client({fetch:(...args)=>{calls++;return fetch(...args);}});
@@ -54,8 +54,8 @@ test('two real independent controllers create/join, share scoped photos, retain 
 test('preview consent, uploads and revisions remain bound to the reviewed room/photo',async t=>{
   const f=await fixture(t),a=await f.person('A'),b=await f.person('B');const one=(await a.c.createRoom(roomInput('One'))).room,two=(await a.c.createRoom(roomInput('Two'))).room;
   await b.c.previewRoom(one.code);await b.c.previewRoom(two.code);
-  assert.throws(()=>b.c.joinRoom(one.code,{joinConsent:true}),e=>e.code==='TARGET_CHANGED');assert.throws(()=>b.c.joinRoom(two.code,{joinConsent:false}),e=>e.code==='JOIN_CONSENT_REQUIRED');
-  await b.c.joinRoom(two.code,{joinConsent:true});assert.throws(()=>b.c.uploadPhoto(photoData().dataUrl,'members',{roomId:one.id}),e=>e.code==='TARGET_CHANGED');
+  assert.throws(()=>b.c.joinRoom(one.code,{joinConsent:true,participation:'open'}),e=>e.code==='TARGET_CHANGED');assert.throws(()=>b.c.joinRoom(two.code,{joinConsent:false}),e=>e.code==='JOIN_CONSENT_REQUIRED');
+  await b.c.joinRoom(two.code,{joinConsent:true,participation:'open'});assert.throws(()=>b.c.uploadPhoto(photoData().dataUrl,'members',{roomId:one.id}),e=>e.code==='TARGET_CHANGED');
   const photo=(await b.c.uploadPhoto(photoData().dataUrl,'private',{roomId:two.id})).photo;
   assert.throws(()=>b.c.setPhotoVisibility(photo.id,'members',{revision:8}),e=>e.code==='REVIEW_STALE');
 });
@@ -96,7 +96,7 @@ test('interrupted join can finish only for its original room and cannot navigate
   const f=await fixture(t),a=await f.person('A'),b=await f.person('B'),one=(await a.c.createRoom(roomInput('One'))).room,two=(await a.c.createRoom(roomInput('Two'))).room;await joinRoom(b.c,two);b.c.dispose();
   const gate=deferred(),started=deferred();let hold=true;
   const c=f.client({storage:b.storage,fetch:async(url,options)=>{const response=await fetch(url,options);if(hold&&url.endsWith('/'+one.code+'/join')){hold=false;started.resolve();await gate.promise;}return response;}}).c;await c.connect();await c.previewRoom(one.code);
-  const pending=c.joinRoom(one.code,{joinConsent:true});await started.promise;await c.openRoom(two.id);gate.resolve();const result=await pending;
+  const pending=c.joinRoom(one.code,{joinConsent:true,participation:'open'});await started.promise;await c.openRoom(two.id);gate.resolve();const result=await pending;
   assert.equal(result.applied,false);assert.equal(c.getState().room.id,two.id);assert.equal(c.getState().route.target,two.id);
   await c.loadMyRooms();assert.equal(c.getState().myRooms.items.length,2);
 });

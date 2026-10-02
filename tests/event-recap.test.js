@@ -43,8 +43,8 @@ async function fixture(t, mode = 'Worker') {
     },
   };
   f.session = async name => (await f.request('/api/avatar/session', { method: 'POST', data: { name } })).body;
-  f.room = async a => (await f.request('/rooms', { method: 'POST', token: a.token, data: { title: '合成回顾现场', venue: '合成场地', songId: 'late-train', joinConsent: true } })).body.room;
-  f.join = (room, a) => f.request(`/rooms/${room.code}/join`, { method: 'POST', token: a.token, data: { joinConsent: true } });
+  f.room = async a => (await f.request('/rooms', { method: 'POST', token: a.token, data: { title: '合成回顾现场', venue: '合成场地', songId: 'late-train', joinConsent: true, participation: 'open' } })).body.room;
+  f.join = (room, a) => f.request(`/rooms/${room.code}/join`, { method: 'POST', token: a.token, data: { joinConsent: true, participation: 'open' } });
   f.leave = (room, a) => f.request(`/rooms/${room.id}/leave`, { method: 'POST', token: a.token, data: {} });
   f.block = (a, b) => f.request(`/blocks/${b.user.id}`, { method: 'POST', token: a.token, data: {} });
   f.upload = async (room, a, visibility = 'members') => (await f.request(`/rooms/${room.id}/photos`, { method: 'POST', token: a.token, data: { ...photoData(), visibility } })).body.photo;

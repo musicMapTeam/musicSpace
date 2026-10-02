@@ -254,15 +254,15 @@ test('real HTTP/SQLite recap stays separate from the active room and permits onl
     await c.connect(); await c.establishIdentity({ name, avatar: { ...DEFAULT_AVATAR } }); return c;
   }
   const host = await person('Synthetic host'), guest = await person('Synthetic guest');
-  const input = title => ({ title, venue: 'Synthetic venue', songId: 'late-train', joinConsent: true });
+  const input = title => ({ title, venue: 'Synthetic venue', songId: 'late-train', joinConsent: true, participation: 'open' });
   const first = (await host.createRoom(input('First synthetic room'))).room;
   const hostPhoto = (await host.uploadPhoto(photoData().dataUrl, 'members', { roomId: first.id })).photo;
-  await guest.previewRoom(first.code); await guest.joinRoom(first.code, { joinConsent: true });
+  await guest.previewRoom(first.code); await guest.joinRoom(first.code, { joinConsent: true, participation: 'open' });
   const ownPhoto = (await guest.uploadPhoto(photoData().dataUrl, 'members', { roomId: first.id })).photo;
   await host.refreshRoom(); const greeting = (await host.sendGreeting(guest.getState().identity.user.id)).greeting;
   await guest.loadSocial(); await guest.acceptGreeting(greeting.id, { revision: greeting.revision });
   const second = (await host.createRoom(input('Second synthetic room'))).room;
-  await guest.previewRoom(second.code); await guest.joinRoom(second.code, { joinConsent: true });
+  await guest.previewRoom(second.code); await guest.joinRoom(second.code, { joinConsent: true, participation: 'open' });
   await guest.loadRoomRecap(first.id);
   assert.equal(guest.getState().room.id, second.id); assert.equal(guest.getState().recap.photos.items.length, 2); assert.equal(guest.getState().recap.friends.items.length, 1);
   assert.ok((await guest.fetchPhotoBlob(hostPhoto.id, { recapRoomId: first.id })).size > 50);

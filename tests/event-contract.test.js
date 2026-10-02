@@ -86,7 +86,7 @@ export function eventContract(label, fixture) {
     const f=await fixture(t),host=await f.session('Host');
     const key=randomUUID(),[first,retry]=await Promise.all([f.createRoom(host,key),f.createRoom(host,key)]);
     assert.equal(first.status,201);assert.equal(retry.status,201);assert.equal(first.body.room.id,retry.body.room.id);const room=first.body.room;
-    const other=await f.request('/rooms',{token:host.token,method:'POST',key,data:{title:'different',songId:'late-train',joinConsent:true}});assert.equal(other.status,409);
+    const other=await f.request('/rooms',{token:host.token,method:'POST',key,data:{title:'different',songId:'late-train',joinConsent:true,participation:'open'}});assert.equal(other.status,409);
     const people=await Promise.all(Array.from({length:30},(_,i)=>f.session('Person'+i)));
     const joined=await Promise.all(people.map(u=>f.join(room,u)));assert.equal(joined.filter(r=>r.status===200).length,23);assert.ok(joined.every(r=>[200,409].includes(r.status)));
     const inside=await f.request('/rooms/'+room.id,{token:host.token});assert.equal(inside.body.members.length,24);assert.equal(new Set(inside.body.members.map(m=>m.id)).size,24);
@@ -101,8 +101,8 @@ export function eventContract(label, fixture) {
     const f=await fixture(t),a=await f.session('A'),room=(await f.createRoom(a)).body.room;
     for(const data of [{...photoData(),url:'https://other.test/private'}, {...photoData(),visibility:'public'}, {...photoData(),dataUrl:'data:image/jpeg;base64,ZmFrZQ=='}]) assert.equal((await f.request(`/rooms/${room.id}/photos`,{token:a.token,method:'POST',data})).status,400);
     assert.equal((await f.request(`/rooms/${room.id}/leave`,{token:a.token,method:'POST',data:{},key:null})).status,400);
-    assert.equal((await f.request('/rooms',{token:a.token,method:'POST',data:{title:'x'.repeat(41),songId:'late-train',joinConsent:true}})).status,400);
-    assert.equal((await f.request('/rooms',{token:a.token,method:'POST',data:{title:'x\ny',songId:'late-train',joinConsent:true}})).status,400);
+    assert.equal((await f.request('/rooms',{token:a.token,method:'POST',data:{title:'x'.repeat(41),songId:'late-train',joinConsent:true,participation:'open'}})).status,400);
+    assert.equal((await f.request('/rooms',{token:a.token,method:'POST',data:{title:'x\ny',songId:'late-train',joinConsent:true,participation:'open'}})).status,400);
     assert.equal((await f.request('/rooms/'+room.id,{token:a.token,headers:{'Sec-Fetch-Site':'cross-site'}})).status,403);
     const uploads=await Promise.all(Array.from({length:10},()=>f.upload(room,a,'private')));assert.equal(uploads.filter(r=>r.status===201).length,6);assert.ok(uploads.every(r=>[201,409].includes(r.status)));
     assert.equal((await f.request('/photos',{token:a.token})).body.photos.length,6);

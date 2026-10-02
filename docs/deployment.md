@@ -39,10 +39,54 @@ node server/index.js
 
 ## 数据、备份与升级
 
-DATA_DIR 包含 music-map.sqlite 与 avatar-space.sqlite（人物、房间、聊天、交换、照片 BLOB、幂等记录及持久签名密钥），运行期间还有 WAL/SHM。目录必须在持久磁盘且不公开、不提交源码。运行包不含用户数据。
+DATA_DIR 包含 `music-map.sqlite` 和 `avatar-space.sqlite`。当前 Node 实现把原图、交换预览及旧现场照片存为 SQLite BLOB；不存在要另行公开的照片目录。人物、房间、聊天、交换、撤销/拉黑/成员排除、幂等回执与持久签名密钥必须一起保留。目录及备份都必须私有，不能放入源码、静态托管或公开云盘。
 
-备份时先正常停止服务、确认进程退出，再复制**完整 DATA_DIR**到受控位置，随后启动。不要在写入期间只复制单个 sqlite。恢复先停止服务，再恢复整个目录，检查运行用户读写权限，启动并验证健康接口及原身份读取。容器先 `docker compose stop`，通过现有受控卷备份流程复制整个卷。尚未执行真实服务器备份恢复。
+仓库提供 `scripts/ops/data-backup.mjs`（Node 24+，无 npm 依赖）。工具是后续运维补充，**不包含在已冻结的 0.17.0-rc.1 运行包中**；请从包含该文件的官方源码提交运行它，不修改已有 Release 资产。
 
-升级前保留旧运行包和完整数据备份。加法迁移不等于任意版本可回滚；回滚应停止服务并恢复升级前运行包和数据。保持原浏览器来源，身份凭证存在该来源存储；换域名/清存储不会自动恢复。身份备份不是账户密码找回，泄露凭证等同泄露身份。
+### 停服备份
 
-未测手机/微信、大陆网络、生产负载、留存政策、全量身份恢复与实际云部署，详见 [有限检查记录](release/0.17.0-rc.1.md)。
+先通过现有服务管理器正常停止**所有**共享 DATA_DIR 的进程，并确认退出。Docker 使用 `docker compose stop`，不要删除卷。工具不会停止进程，也不能仅凭文件检查证明服务器已停；`--service-stopped` 表示操作者已确认停服。发现 WAL、SHM 或 rollback journal 会拒绝备份；若异常退出遗留 journal，先用原服务完成恢复并正常退出，不要手工删 journal。
+
+```sh
+node scripts/ops/data-backup.mjs backup --data-dir /srv/musicspace-data --output /private/backups/musicspace-2026-10-02 --service-stopped
+```
+
+PowerShell 同样使用参数，路径带空格时加引号：
+
+```powershell
+node scripts/ops/data-backup.mjs backup --data-dir 'C:\private\musicspace-data' --output 'C:\private\backups\musicspace-2026-10-02' --service-stopped
+```
+
+输出父目录必须事先存在，输出目录必须是新目录，且与 DATA_DIR 互不嵌套。工具分块复制全部常规文件，包括可能的私有照片附属文件；拒绝符号链接，核验两个 SQLite 的 integrity/foreign-key 检查、签名密钥存在性、照片与活跃交换预览引用，再比对备份前后源数据及每个副本的 SHA256。只在全部检查通过后写入 `.musicspace-backup.json` 完成标记。缺少该标记的目录不是可恢复备份。Windows 必须使用已有受控 ACL 的目录；Unix 文件/新目录权限分别为 0600/0700。
+
+备份目录含能够恢复身份的服务端密钥与私人照片。应使用既有受控备份存储及访问权限。SHA256 检测损坏，不证明备份来源可信，也不加密内容。不要把清单或日志当作公开附件。
+
+### 恢复到新目录并验证
+
+先正常停服，保留原 DATA_DIR 和原运行包。**恢复目标必须不存在**，不能直接覆盖原数据：
+
+```sh
+node scripts/ops/data-backup.mjs restore --input /private/backups/musicspace-2026-10-02 --data-dir /srv/musicspace-restored-2026-10-02 --service-stopped
+```
+
+工具先验证清单、路径与全部文件哈希，再复制到独占的新目录，检查 SQLite/照片引用及最终哈希。损坏文件、路径穿越、额外文件或已有目标都会失败；失败只清理本次新建的目标，不修改备份或原 DATA_DIR。突发断电可能留下未完成的新目录，改用另一个新目标即可，原目录仍保留。
+
+通过后，在现有管理器中把 DATA_DIR 指向恢复目录，以**同一发行版本、同一浏览器来源**启动。检查 `/api/event/health`，使用原浏览器身份确认房间、照片和明确同意的交换可读，撤销、拉黑、成员排除仍生效；不得把未授权照片变成公开静态资源。如果启动/验收失败，停止新实例，将 DATA_DIR 指回未被覆盖的原目录，使用原运行包恢复。不要并行运行两个共享 SQLite 目录的实例。
+
+自动验证已用隔离合成数据执行真实 CLI 备份/恢复及 Node HTTP API 复验，覆盖照片字节、原身份/签名回执、房间、联系人、私聊、接受/撤销交换、拉黑和成员排除；详见 [备份恢复验证记录](ops/backup-restore-qa.md)。这不等于在用户真实服务器完成灾难演练。
+
+升级前保留旧运行包与完整备份。加法迁移不保证任意版本回滚；回滚应恢复升级前运行包与对应备份到新目录。换域名、清浏览器存储或丢失身份凭证不会因数据库恢复而自动找回身份。
+
+## 当前可用托管与最小上线条件
+
+2026-10-02 只读核查：现有 GitHub Pages 仍为静态展示；现有 Music Space Avatar Studio 的 Sites 项目为 active，公开版本为 v4，本轮未改动它。未发现已授权、可直接运行此 Node 发行包的远端服务器或持久磁盘。
+
+| 路径 | 能否直接运行当前发行包 | 持久化与下一步 |
+| --- | --- | --- |
+| 旧 GitHub Pages | 不能；[官方说明为静态托管](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages) | 无 Node 服务或 SQLite 数据磁盘，保持现有演示 |
+| 现有 Sites / Cloudflare Workers | 不能直接运行 Node + 本地 SQLite 发行包 | 支持 Worker + D1/R2；[Workers 文件系统为内存且临时文件逐请求销毁](https://developers.cloudflare.com/workers/runtime-apis/nodejs/fs/)。需授权新的场次入口、核验现有 DB/PHOTOS 绑定、逐条迁移与端到端验证；此工具只适用于 Node 磁盘数据，不替代 D1/R2 备份 |
+| 已有 Node/Docker 服务器 | 可以在具备条件后使用 | 用户需指明平台/主机、经授权的部署方式、私有持久目录或卷、HTTPS 同源入口与现有备份位置；不应在聊天中粘贴密码或新建凭据 |
+
+原发行包的最小功能条件是 Node 24+（或支持 Docker）、一个持续运行的单节点实例、可写且重启不丢失的私有 DATA_DIR、同源 HTTPS 反向代理与正常停启权限。磁盘至少容纳当前数据、备份及新恢复副本；如果都在同一磁盘，约需三份数据空间，另留增长与运行包空间。CPU/内存容量未做生产负载验收，不能将本地测试数量当作并发能力。
+
+上线前需要用户决定：使用已有符合条件的服务器，或授权在现有 Sites 上新增独立场次入口并配置/复核 D1/R2；本轮未购买资源、未新增 OAuth/凭据、未改网络安全或任何在线服务。真机/微信、大陆网络和生产负载仍需外部设备与真实部署条件，手机模拟不算真机验收。

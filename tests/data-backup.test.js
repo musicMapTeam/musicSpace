@@ -59,10 +59,10 @@ test('offline backup/restore: real HTTP identities, room, exact photo bytes, acc
   const b = ok(await f.request('/api/avatar/session', { data: { name: 'Synthetic Guest' } }), 201);
   const removed = ok(await f.request('/api/avatar/session', { data: { name: 'Synthetic Removed' } }), 201);
   const outside = ok(await f.request('/api/avatar/session', { data: { name: 'Synthetic Outside' } }), 201);
-  const room = ok(await f.request('/rooms', { token: a.token, data: { title: 'Synthetic Backup Show', venue: 'Synthetic', songId: 'late-train', joinConsent: true } }), 201).room;
-  const joinGuest = ok(await f.request(`/rooms/${room.code}/join`, { token: b.token, data: { joinConsent: true } }));
-  const joinedRemoved = ok(await f.request(`/rooms/${room.code}/join`, { token: removed.token, data: { joinConsent: true } }));
-  ok(await f.request(`/rooms/${room.code}/join`, { token: outside.token, data: { joinConsent: true } }));
+  const room = ok(await f.request('/rooms', { token: a.token, data: { title: 'Synthetic Backup Show', venue: 'Synthetic', songId: 'late-train', joinConsent: true, participation: 'open' } }), 201).room;
+  const joinGuest = ok(await f.request(`/rooms/${room.code}/join`, { token: b.token, data: { joinConsent: true, participation: 'open' } }));
+  const joinedRemoved = ok(await f.request(`/rooms/${room.code}/join`, { token: removed.token, data: { joinConsent: true, participation: 'open' } }));
+  ok(await f.request(`/rooms/${room.code}/join`, { token: outside.token, data: { joinConsent: true, participation: 'open' } }));
   const greeting = ok(await f.request(`/rooms/${room.id}/greetings`, { token: a.token, data: { recipientId: b.user.id } }), 201).greeting;
   ok(await f.request(`/greetings/${greeting.id}/accept`, { token: b.token, data: { revision: greeting.revision } }));
   ok(await f.request(`/chats/${b.user.id}/messages`, { token: a.token, data: { text: 'Synthetic backup message only' } }), 201);
@@ -112,7 +112,7 @@ test('offline backup/restore: real HTTP identities, room, exact photo bytes, acc
   assert.deepEqual(ok(await f.request(`/chats/${a.user.id}/messages`, { token: b.token })), messagesBefore);
   assert.equal((await f.request(`/chats/${a.user.id}/messages`, { token: outside.token })).status, 404);
   assert.equal((await f.request(`/exchanges/${revoked.id}/photos/${withdrawn.id}/image`, { token: b.token })).status, 404);
-  assert.equal((await f.request(`/rooms/${room.code}/join`, { token: removed.token, data: { joinConsent: true } })).status, 403);
+  assert.equal((await f.request(`/rooms/${room.code}/join`, { token: removed.token, data: { joinConsent: true, participation: 'open' } })).status, 403);
   assert.equal((await f.request(`/rooms/${room.id}`, { token: removed.token })).status, 404);
   const replay = ok(await f.request('/api/avatar/session', { data: { name: 'Synthetic Host' }, key: sessionKey }), 201);
   assert.equal(replay.token, a.token, 'persistent signing key and exact bootstrap receipt survive');
@@ -136,7 +136,7 @@ test('offline backup refuses a running WAL database and incomplete source withou
 test('offline restore rejects corrupt bytes, SQLite corruption, missing photo bytes and existing targets without touching original data', async t => {
   const root = temporary(t), data = join(root, 'source'); mkdirSync(data); legacyDatabase(data); const f = await fixture(t, data);
   const a = ok(await f.request('/api/avatar/session', { data: { name: 'Synthetic A' } }), 201);
-  const r = ok(await f.request('/rooms', { token: a.token, data: { title: 'Synthetic', songId: 'late-train', joinConsent: true } }), 201).room;
+  const r = ok(await f.request('/rooms', { token: a.token, data: { title: 'Synthetic', songId: 'late-train', joinConsent: true, participation: 'open' } }), 201).room;
   ok(await f.request(`/rooms/${r.id}/photos`, { token: a.token, data: photoData() }), 201);
   await f.stop();
   const before = checksum(join(data, 'avatar-space.sqlite')), backup = join(root, 'backup');

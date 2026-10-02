@@ -24,7 +24,7 @@ async function fixture(t) {
     const bytes=Buffer.from(await result.arrayBuffer());return {status:result.status,headers:result.headers,bytes,body:result.headers.get('content-type')?.includes('json')?JSON.parse(bytes):null};
   }};
   f.session=async name=>(await f.request('/api/avatar/session',{method:'POST',data:{name}})).body;
-  f.createRoom=(user,key)=>f.request('/rooms',{method:'POST',token:user.token,key,data:{title:'合成测试现场',venue:'合成场地',songId:'late-train',joinConsent:true}});
+  f.createRoom=(user,key)=>f.request('/rooms',{method:'POST',token:user.token,key,data:{title:'合成测试现场',venue:'合成场地',songId:'late-train',joinConsent:true,participation:'open'}});
   f.join=(room,user,yes=true)=>f.request(`/rooms/${room.code}/join`,{method:'POST',token:user.token,data:{joinConsent:yes}});
   f.upload=(room,user,visibility,key)=>f.request(`/rooms/${room.id}/photos`,{method:'POST',token:user.token,key,data:{...photoData(),visibility}});
   return f;

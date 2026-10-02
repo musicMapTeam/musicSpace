@@ -32,8 +32,8 @@ async function fixture(t,mode='Worker',{rateLimits=false}={}){
   const bytes=Buffer.from(await r.arrayBuffer());return{status:r.status,headers:r.headers,body:r.headers.get('Content-Type')?.includes('json')?JSON.parse(bytes):null,bytes};
  }};
  f.session=async name=>ok(await f.request('/api/avatar/session',{data:{name}}),201);
- f.room=async actor=>ok(await f.request('/rooms',{token:actor.token,data:{title:'合成管理测试',venue:'合成现场',songId:'late-train',joinConsent:true}}),201).room;
- f.join=(r,a,opts={})=>f.request(`/rooms/${r.code}/join`,{token:a.token,data:{joinConsent:true},...opts});
+ f.room=async actor=>ok(await f.request('/rooms',{token:actor.token,data:{title:'合成管理测试',venue:'合成现场',songId:'late-train',joinConsent:true,participation:'open'}}),201).room;
+ f.join=(r,a,opts={})=>f.request(`/rooms/${r.code}/join`,{token:a.token,data:{joinConsent:true,participation:'open'},...opts});
  f.leave=(r,a)=>f.request(`/rooms/${r.id}/leave`,{token:a.token,data:{}});
  f.upload=async(r,a,visibility='private')=>ok(await f.request(`/rooms/${r.id}/photos`,{token:a.token,data:{...photoData(),visibility}}),201).photo;
  f.wall=(p,a,visibility)=>f.request(`/photos/${p.id}`,{token:a.token,method:'PATCH',data:{visibility,revision:p.revision}});

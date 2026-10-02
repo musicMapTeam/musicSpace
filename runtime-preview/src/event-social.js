@@ -1,3 +1,4 @@
+import {openParticipationSQL} from './event-participation.js';
 import { randomUUID } from 'node:crypto';
 
 const ID = '[0-9a-f-]{36}';
@@ -98,6 +99,8 @@ export async function handleEventSocial(c) {
       const roomGuard = { sql: `EXISTS (SELECT 1 FROM event_rooms r JOIN event_members a ON a.room_id = r.id JOIN event_members b ON b.room_id = r.id
         WHERE r.id = ? AND r.closed_at IS NULL AND r.expires_at > ? AND a.user_id = ? AND b.user_id = ? AND a.left_at IS NULL AND b.left_at IS NULL)`, args: [roomId, now(), user.id, other] };
       if (!await get(`SELECT 1 AS ok WHERE ${roomGuard.sql}`, ...roomGuard.args)) fail(404, 'PERSON_UNAVAILABLE', '请在同一场未结束的现场中打招呼。');
+      const willingness={sql:openParticipationSQL('?','?','?'),args:[roomId,user.id,other]};
+      if(!await get(`SELECT 1 AS ok WHERE ${willingness.sql}`,...willingness.args))fail(409,'PARTICIPATION_QUIET','只有双方都选择愿意打招呼时，才能发起新联系。照片仍可按各自的分享范围查看。');
       const previous = await pair(other);
       if (previous?.status === 'pending') fail(409, 'GREETING_PENDING', '你们已有待回应的招呼，请先查看。');
       if (previous?.status === 'accepted') fail(409, 'ALREADY_FRIENDS', '你们已经互为好友。');
@@ -110,7 +113,7 @@ export async function handleEventSocial(c) {
       const [low, high] = pairIds(user.id, other), timestamp = now();
       const row = { id: previous?.id || randomUUID(), low_id: low, high_id: high, status: 'pending', revision: (previous?.revision || 0) + 1,
         greeting_id: randomUUID(), sender_id: user.id, recipient_id: other, room_id: roomId, created_at: timestamp, updated_at: timestamp, friends_at: null };
-      return { status: 201, body: { greeting: greetingJSON(row, await peer(other)) }, guard: combine(privacy, roomGuard, pairGuard(previous, other)), statements: [
+      return { status: 201, body: { greeting: greetingJSON(row, await peer(other)) }, guard: combine(privacy, roomGuard, willingness, pairGuard(previous, other)), statements: [
         stmt(`INSERT INTO event_social_pairs (id,low_id,high_id,status,revision,greeting_id,sender_id,recipient_id,room_id,created_at,updated_at,friends_at)
           VALUES (?,?,?,?,?,?,?,?,?,?,?,NULL) ON CONFLICT(low_id,high_id) DO UPDATE SET status=excluded.status,revision=excluded.revision,greeting_id=excluded.greeting_id,
           sender_id=excluded.sender_id,recipient_id=excluded.recipient_id,room_id=excluded.room_id,created_at=excluded.created_at,updated_at=excluded.updated_at,friends_at=NULL,cooldown_until=NULL`,
@@ -130,9 +133,11 @@ export async function handleEventSocial(c) {
       revision(row, data.revision);
       if (row.status !== 'pending') fail(409, 'GREETING_RESOLVED', '这条招呼已经处理，请刷新。');
       const updated = { ...row, status: { accept: 'accepted', reject: 'rejected', cancel: 'cancelled' }[action], revision: row.revision + 1, updated_at: now(), friends_at: action === 'accept' ? now() : null, cooldown_until: action === 'accept' ? null : new Date(clock() + COOLDOWN_MS).toISOString() };
+      const willingness={sql:openParticipationSQL('?','?','?'),args:[row.room_id,user.id,other]};
+      if(action==='accept'&&!await get(`SELECT 1 AS ok WHERE ${willingness.sql}`,...willingness.args))fail(409,'PARTICIPATION_QUIET','参与方式已变化，请重新核对这次联系。');
       const profile = await peer(other);
       return { body: { greeting: greetingJSON(updated, profile), ...(action === 'accept' ? { friend: friendJSON(updated, profile) } : {}) },
-        guard: combine(pairGuard(row, other), unblocked(other)), statements: [
+        guard: combine(pairGuard(row, other), unblocked(other), ...(action==='accept'?[willingness]:[])), statements: [
           stmt('UPDATE event_social_pairs SET status = ?,revision = revision + 1,updated_at = ?,friends_at = ?,cooldown_until = ? WHERE id = ? AND revision = ?', updated.status, updated.updated_at, updated.friends_at, updated.cooldown_until, row.id, row.revision),
         ] };
     });

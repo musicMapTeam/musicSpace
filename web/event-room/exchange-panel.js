@@ -14,7 +14,7 @@ export async function exchangePreview(blob){
  }finally{image.close();}
 }
 
-export function createExchangePanel({container,getContext,fetchPhoto,onClose=()=>{}}){
+export function createExchangePanel({container,getContext,fetchPhoto,onClose=()=>{},onPhotos=()=>{}}){
  const client=createExchangeController(),root=document.createElement('section');root.className='photo-exchanges';root.hidden=true;root.setAttribute('role','dialog');root.setAttribute('aria-modal','true');root.setAttribute('aria-label','照片交换');container.append(root);
  root.innerHTML='<header><button data-x-back aria-label="返回交换列表">←</button><div><small>同一晚 / 另一面</small><h2>交换一个视角</h2></div><button data-x-close aria-label="关闭照片交换">×</button></header><div class="exchange-body"></div><div class="exchange-problem" role="status"></div>';
  const q=s=>root.querySelector(s),body=q('.exchange-body'),urls=new Map(),loadingImages=new Set();
@@ -52,7 +52,7 @@ export function createExchangePanel({container,getContext,fetchPhoto,onClose=()=
    if(confirmAction)content+=`<div class="exchange-confirm"><p>${confirmAction==='revoke'?'确认结束本次两张照片的双向在线访问？不会删除各自原件。':confirmAction==='cancel'?'确认撤回这个申请？对方将不能继续读取这次小图预览。':'确认谢绝这次申请？'}</p><button class="exchange-primary" data-x-confirm ${busy?'disabled':''}>确认${{revoke:'撤销',cancel:'撤回',decline:'谢绝'}[confirmAction]}</button><button data-x-dismiss>返回查看</button></div>`;
    return content+'<button data-x-refresh>核对最新状态</button>';
   }
-  return `<p class="exchange-intro">照片交换与交朋友分开决定。这里留下双方明确选中的两张照片。</p><div class="exchange-list">${state.list.items.map(row=>`<button data-x-open="${row.id}"><span><b>${esc(row.peer.name)}</b><small>${row.senderId===state.actorId?'我发起的':'对方发起的'} · ${esc(statusLabel[row.status])}</small></span><span>↗</span></button>`).join('')||(state.list.loaded?'<p>还没有交换。进入照片墙，点开另一人的照片，再选自己的一张。</p>':'<p>正在读取交换记录…</p>')}</div><div class="exchange-pagination"><button data-x-page="previous" ${pages.length<=1?'disabled':''}>上一页</button><span>第 ${pages.length} 页</span><button data-x-page="next" ${!state.list.nextCursor?'disabled':''}>下一页</button></div><button data-x-list-refresh>刷新这一页</button>`;
+  return `<p class="exchange-intro">照片交换与交朋友分开决定。这里留下双方明确选中的两张照片。</p><div class="exchange-list">${state.list.items.map(row=>`<button data-x-open="${row.id}"><span><b>${esc(row.peer.name)}</b><small>${row.senderId===state.actorId?'我发起的':'对方发起的'} · ${esc(statusLabel[row.status])}</small></span><span>↗</span></button>`).join('')||(state.list.loaded?`<p>还没有交换。照片分享不要求交换；想交换时，双方各自选择一张。</p>${getContext()?.room?.joined?'<button class="exchange-primary" data-exchange-photos>回到本场照片墙</button>':''}`:'<p>正在读取交换记录…</p>')}</div><div class="exchange-pagination"><button data-x-page="previous" ${pages.length<=1?'disabled':''}>上一页</button><span>第 ${pages.length} 页</span><button data-x-page="next" ${!state.list.nextCursor?'disabled':''}>下一页</button></div><button data-x-list-refresh>刷新这一页</button>`;
  }
  function pendingMarkup(){return state.pending.map(op=>`<div class="exchange-pending"><b>${op.type==='create'?'发起交换':'处理交换'}</b><p>${op.status==='running'?'正在确认原操作…':esc(op.error?.message||'结果还没确认，请保留原操作')}</p>${op.status!=='running'?`<button data-x-retry="${op.id}">原选择重试</button>${op.status==='failed'&&!op.error?.uncertain?`<button data-x-discard="${op.id}">移除失败记录</button>`:''}`:`<button data-x-stop="${op.id}">停止本机等待</button>`}</div>`).join('');}
  function render(){if(!opened)return;const active=document.activeElement,key=active?.dataset?JSON.stringify(active.dataset):null,focused=body.contains(active),scroll=body.scrollTop,html=markup()+pendingMarkup();q('[data-x-back]').hidden=mode==='list';if(html!==lastMarkup){body.innerHTML=html;lastMarkup=html;body.scrollTop=scroll;if(focused){const replacement=[...body.querySelectorAll('button,input,select')].find(n=>JSON.stringify(n.dataset)===key);(replacement||q('[data-x-close]')).focus();}}problem(localError?{message:localError}:null);schedule();}
@@ -79,7 +79,7 @@ export function createExchangePanel({container,getContext,fetchPhoto,onClose=()=
  }
  async function mutate(fn){if(busy)return;busy=true;localError=null;render();try{const result=await fn();if(!opened||result?.applied===false)return;mode='detail';compose=null;consent=false;confirmAction=null;render();loadDetailImages();if(result.committed&&!result.permissionConfirmed)problem({message:'操作已由服务收到，最新权限暂未读出。恢复后点「核对最新状态」，不必重发。'});}catch(error){problem(error);}finally{busy=false;render();}}
  root.addEventListener('change',e=>{if(e.target.hasAttribute('data-x-choice'))void choose(e.target.value);if(e.target.hasAttribute('data-x-consent')){consent=e.target.checked;render();}});
- root.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+ root.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.hasAttribute('data-exchange-photos')){close();onPhotos();return;}
   if(b.hasAttribute('data-x-close'))close();
   if(b.hasAttribute('data-x-back'))void open();
   if(b.dataset.xOpen)void open(b.dataset.xOpen);

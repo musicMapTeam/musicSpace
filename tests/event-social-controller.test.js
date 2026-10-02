@@ -18,7 +18,7 @@ import { photoData } from './event-contract.test.js';
 const deferred = () => { let resolve; const promise = new Promise(yes => { resolve = yes; }); return { promise, resolve }; };
 const localStore = () => { const items = new Map(); return { get length(){return items.size;},key:i=>[...items.keys()][i]??null, getItem: key => items.get(key) ?? null, setItem: (key, value) => items.set(key, String(value)), removeItem: key => items.delete(key) }; };
 const profile = name => ({ name, avatar: { ...DEFAULT_AVATAR } });
-const roomInput = (title = 'Synthetic social show') => ({ title, venue: 'Synthetic venue', songId: 'late-train', joinConsent: true });
+const roomInput = (title = 'Synthetic social show') => ({ title, venue: 'Synthetic venue', songId: 'late-train', joinConsent: true, participation: 'open' });
 const actorId = pair => pair.c.getState().identity.user.id;
 const token = pair => JSON.parse(pair.storage.getItem(SESSION_KEY)).token;
 async function fixture(t) {
@@ -47,7 +47,7 @@ async function fixture(t) {
   };
   return f;
 }
-async function joinRoom(c, room) { await c.previewRoom(room.code); await c.joinRoom(room.code, { joinConsent: true }); }
+async function joinRoom(c, room) { await c.previewRoom(room.code); await c.joinRoom(room.code, { joinConsent: true, participation: 'open' }); }
 async function pairRoom(f) {
   const a = await f.person('A'), b = await f.person('B'), room = (await a.c.createRoom(roomInput())).room;
   await joinRoom(b.c, room); await a.c.refreshRoom(); await Promise.all([a.c.loadSocial(), b.c.loadSocial()]); return { a, b, room };

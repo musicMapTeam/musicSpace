@@ -53,8 +53,8 @@ async function fixture(t, mode = 'Worker', { rateLimits = false } = {}) {
     },
   };
   f.session = async name => ok(await f.request('/api/avatar/session', { method: 'POST', data: { name } }), 201);
-  f.room = async a => ok(await f.request('/rooms', { method: 'POST', token: a.token, data: { title: '合成现场', venue: '合成场地', songId: 'late-train', joinConsent: true } }), 201).room;
-  f.join = (room, a) => f.request(`/rooms/${room.code}/join`, { method: 'POST', token: a.token, data: { joinConsent: true } });
+  f.room = async a => ok(await f.request('/rooms', { method: 'POST', token: a.token, data: { title: '合成现场', venue: '合成场地', songId: 'late-train', joinConsent: true, participation: 'open' } }), 201).room;
+  f.join = (room, a) => f.request(`/rooms/${room.code}/join`, { method: 'POST', token: a.token, data: { joinConsent: true, participation: 'open' } });
   f.leave = (room, a) => f.request(`/rooms/${room.id}/leave`, { method: 'POST', token: a.token, data: {} });
   f.close = (room, a) => f.request(`/rooms/${room.id}/close`, { method: 'POST', token: a.token, data: { revision: room.revision } });
   f.upload = async (room, a, visibility = 'private') => ok(await f.request(`/rooms/${room.id}/photos`, { method: 'POST', token: a.token, data: { ...photoData(), visibility } }), 201).photo;

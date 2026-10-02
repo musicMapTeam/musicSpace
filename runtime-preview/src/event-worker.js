@@ -1,3 +1,4 @@
+import {handleEventParticipation,participationMode} from './event-participation.js';
 import { createHash, randomBytes, randomUUID } from 'node:crypto';
 import { Buffer } from 'node:buffer';
 import { sanitizeAvatarJpeg } from './avatar-worker.js';
@@ -154,6 +155,8 @@ export function createEventWorker({ clock = Date.now, rateLimits = true } = {}) 
         if (plan.removeKey) await removeUnreferenced(plan.removeKey);
         return json(plan.status || 200, plan.body);
       }
+      const participationResponse=await handleEventParticipation({request,path,method,user,stmt,get,now,mutate,readJSON,keys,revision,fail,json});
+      if(participationResponse)return participationResponse;
       const endExchanges = (predicate, args, options) => endEventExchanges(stmt, now(), predicate, args, options);
       const moderationResponse = await handleEventModeration({request,path,method,user,stmt,get,now,rate,mutate,readJSON,keys,revision,fail,json,endExchanges});
       if(moderationResponse)return moderationResponse;
@@ -182,8 +185,9 @@ export function createEventWorker({ clock = Date.now, rateLimits = true } = {}) 
         return json(200, { photos: photos.slice(0, 100).map(photoJSON), actorId: user.id, nextCursor: photos.length > 100 ? photos[99].id : null });
       }
       if (method === 'POST' && path === '/rooms') {
-        const data = await readJSON(request); keys(data, ['title', 'venue', 'songId', 'joinConsent']); consent(data);
+        const data = await readJSON(request); keys(data, ['title', 'venue', 'songId', 'joinConsent', 'participation']); consent(data);
         const title = label(data.title, '现场名称'), venue = label(data.venue, '场地', true);
+        if(!['quiet','open'].includes(participationMode(data.participation)))fail(400,'PARTICIPATION_REQUIRED','请选择安静参与或愿意打招呼。');
         if (!SONGS.includes(data.songId)) fail(400, 'INVALID_INPUT', '歌曲选择无效。');
         return await mutate(data, async () => {
           await rate(`create:${user.id}`, 6, DAY);
@@ -191,12 +195,14 @@ export function createEventWorker({ clock = Date.now, rateLimits = true } = {}) 
           return { status: 201, body: { room: roomJSON(room, user.id), actorId: user.id }, statements: [
             stmt('INSERT INTO event_rooms (id,code,host_id,title,venue,song_id,revision,created_at,expires_at,closed_at) VALUES (?,?,?,?,?,?,?,?,?,?)', room.id, room.code, user.id, title, venue, room.song_id, 1, room.created_at, room.expires_at, null),
             stmt('INSERT INTO event_members (room_id,user_id,joined_at,left_at) VALUES (?,?,?,NULL)', room.id, user.id, now()),
+            stmt('INSERT INTO event_participation (room_id,user_id,mode,revision,updated_at) VALUES (?,?,?,1,?)',room.id,user.id,participationMode(data.participation),now()),
           ] };
         });
       }
       const join = new RegExp(`^/rooms/(${CODE})/join$`).exec(path);
       if (method === 'POST' && join) {
-        const data = await readJSON(request); keys(data, ['joinConsent']); consent(data);
+        const data = await readJSON(request); keys(data, ['joinConsent','participation']); consent(data);
+        if(!['quiet','open'].includes(participationMode(data.participation)))fail(400,'PARTICIPATION_REQUIRED','请选择安静参与或愿意打招呼。');
         await rate(`join:${user.id}`, 20);
         return await mutate(data, async () => {
           const room = await get('SELECT * FROM event_rooms WHERE code = ?', join[1]);
@@ -209,7 +215,7 @@ export function createEventWorker({ clock = Date.now, rateLimits = true } = {}) 
           return { body: { room: roomJSON(room, user.id), actorId: user.id }, guard: {
             sql: 'EXISTS (SELECT 1 FROM event_rooms WHERE id = ? AND closed_at IS NULL AND expires_at > ?) AND ((SELECT COUNT(*) FROM event_members WHERE room_id = ? AND left_at IS NULL) < ? OR EXISTS (SELECT 1 FROM event_members WHERE room_id = ? AND user_id = ? AND left_at IS NULL)) AND NOT EXISTS (SELECT 1 FROM event_room_exclusions WHERE room_id = ? AND user_id = ? AND restored_at IS NULL)',
             args: [room.id, now(), room.id, EVENT_CAPACITY, room.id, user.id,room.id,user.id],
-          }, statements: [stmt('INSERT INTO event_members (room_id,user_id,joined_at,left_at) VALUES (?,?,?,NULL) ON CONFLICT(room_id,user_id) DO UPDATE SET joined_at = excluded.joined_at, left_at = NULL', room.id, user.id, now())] };
+          }, statements: [stmt('INSERT INTO event_members (room_id,user_id,joined_at,left_at) VALUES (?,?,?,NULL) ON CONFLICT(room_id,user_id) DO UPDATE SET joined_at = excluded.joined_at, left_at = NULL', room.id, user.id, now()),stmt('INSERT INTO event_participation (room_id,user_id,mode,revision,updated_at) VALUES (?,?,?,1,?) ON CONFLICT(room_id,user_id) DO UPDATE SET mode=excluded.mode,revision=event_participation.revision+1,updated_at=excluded.updated_at',room.id,user.id,participationMode(data.participation),now()),...(participationMode(data.participation)==='quiet'?[stmt("UPDATE event_social_pairs SET status='cancelled',revision=revision+1,updated_at=?,cooldown_until=NULL WHERE room_id=? AND status='pending' AND (sender_id=? OR recipient_id=?)",now(),room.id,user.id,user.id)]:[])] };
         });
       }
       const roomRoute = new RegExp(`^/rooms/(${ID})(/leave|/close|/photos)?$`).exec(path);
@@ -217,12 +223,12 @@ export function createEventWorker({ clock = Date.now, rateLimits = true } = {}) 
         const id = roomRoute[1], action = roomRoute[2] || '';
         if (method === 'GET' && !action) {
           const room = await memberRoom(id);
-          const members = await all(`SELECT u.id,u.name,u.avatar,m.joined_at FROM event_members m JOIN avatar_users u ON u.id = m.user_id WHERE m.room_id = ? AND m.left_at IS NULL AND ${socialAllowedSQL('?', 'u.id')} ORDER BY m.joined_at,u.id`, id, user.id, user.id);
+          const members = await all(`SELECT u.id,u.name,u.avatar,m.joined_at,COALESCE(p.mode,'quiet') AS participation,COALESCE(p.revision,1) AS participation_revision FROM event_members m JOIN avatar_users u ON u.id = m.user_id LEFT JOIN event_participation p ON p.room_id=m.room_id AND p.user_id=m.user_id WHERE m.room_id = ? AND m.left_at IS NULL AND ${socialAllowedSQL('?', 'u.id')} ORDER BY m.joined_at,u.id`, id, user.id, user.id);
           const photos = await all(`SELECT p.* FROM event_photos p WHERE p.room_id = ? AND p.deleted_at IS NULL AND (p.owner_id = ? OR (p.visibility = 'members' AND EXISTS (SELECT 1 FROM event_members WHERE room_id = p.room_id AND user_id = p.owner_id AND left_at IS NULL) AND ${socialAllowedSQL('?', 'p.owner_id')})) ORDER BY p.created_at,p.id`, id, user.id, user.id, user.id);
           // Recheck membership after the reads so a concurrent leave cannot expose a fresh roster response.
           await memberRoom(id);
           const denied = new Set((await all(`SELECT m.user_id AS peer_id FROM event_members m WHERE m.room_id = ? AND NOT (${socialAllowedSQL('?', 'm.user_id')})`, id, user.id, user.id)).map(row => row.peer_id));
-          return json(200, { room: {...roomJSON(room, user.id),hostId:room.host_id}, members: members.filter(member => !denied.has(member.id)).map(member => ({ id: member.id, name: member.name, avatar: JSON.parse(member.avatar), joinedAt: member.joined_at })), photos: photos.filter(photo => !denied.has(photo.owner_id)).map(photoJSON), actorId: user.id });
+          return json(200, { room: {...roomJSON(room, user.id),hostId:room.host_id}, members: members.filter(member => !denied.has(member.id)).map(member => ({ id: member.id, name: member.name, avatar: JSON.parse(member.avatar), joinedAt: member.joined_at,participation:member.participation,participationRevision:member.participation_revision })), photos: photos.filter(photo => !denied.has(photo.owner_id)).map(photoJSON), actorId: user.id });
         }
         if (method === 'POST' && ['/leave', '/close', '/photos'].includes(action)) {
           const data = await readJSON(request);

@@ -7,6 +7,7 @@ export function recapMarkup({recap,photoCards,pages={photos:1,friends:1},error=n
  const pager=kind=>`<div class="recap-pagination"><button data-recap-page="${kind}" data-recap-dir="previous" ${pages[kind]<=1?'disabled':''}>上一页</button><span>第 ${pages[kind]} 页</span><button data-recap-page="${kind}" data-recap-dir="next" ${!recap[kind]?.nextCursor?'disabled':''}>下一页</button></div>`;
  const photos=recap.photos?.items||[],friends=recap.friends?.items||[];
  return `<small class="eyebrow">这一晚 · ${r.status==='open'?'仍在进行':'已散场'}</small><h2>${esc(r.title)}</h2><p class="recap-venue">${esc(r.venue||'这一场')} · ${r.joined?'你仍是本场成员':'你已离场'}</p>${stale?'<p class="social-notice">暂未确认最新状态。下面是上次读取的记录，恢复连接后会重新核对。</p>':''}
+ <section class="recap-section"><h3>散场以后，继续聊。</h3><button class="primary" data-open="conversation" data-id="${r.id}">回到这一场的聊天室</button><button data-open="communities">我的长期音乐社群</button><p class="fine">聊天室需明确加入；不改变照片权限或自动添加好友。</p></section>
  <section class="recap-keepsake"><h3>把这一晚，留在手里。</h3><p>选择自己的照片和小人，做一张带署名的私人纪念卡。</p><button class="primary" data-open="memory-card" ${stale||!recap.loaded?'disabled':''}>保存我的纪念卡 ↗</button><p class="fine">不包含私聊、朋友名单或他人的照片，不自动公开。</p></section>
  <section class="recap-section"><h3>留下的视角</h3><p class="fine">${r.joined?'自己的照片，以及读取时仍获授权的共享照片。':'离场后只保留自己的照片，不再读取别人的共享图。'}</p>${photoCards(photos)}${pager('photos')}</section>
  <section class="recap-section"><h3>交换过的另一面</h3><p class="fine">已经双方同意的定向交换有独立权限。散场后仍可查看，也可以随时撤销。</p><button class="quiet" data-open="exchanges">查看我的照片交换 ↗</button></section>

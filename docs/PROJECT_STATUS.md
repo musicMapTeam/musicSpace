@@ -1,10 +1,14 @@
+## Doing · 长期主办方社群与散场聊天室（2026-10-02）
+
+负责人Codex，唯一实施者；feat/community-rooms，基于main 9dbed4c。范围runtime-preview/src、加法drizzle、event-client/event-room、相关测试及文档。实施顺序见[event/COMMUNITY_ROADMAP.md](event/COMMUNITY_ROADMAP.md)。RC.4已合并发布，8791沿用原DATA_DIR且两库备份已验证；8788/8790保留。
+
 ## Done · RC.3 后本机产品体验收尾（2026-10-02）
 
 负责人：Codex，唯一实施者；分支 `feat/memory-closeout`，起点 `34eb0be`。范围：event-room 的纪念卡、纸签视觉、照片读取重试及相关测试/产品文档。保留已有未跟踪纪念卡草稿，Node/Worker 与迁移共享实现不省略；8791 在候选验收和备份完成前保持 RC.3，8788/8790 与数据不动。
 
-实现完成：本人纪念卡明确选材/署名/PNG/真实成品预览；照片读取失败重试；同意、取消、重复点击、断网与跨标签删除保护。最终 655/655 完整回归、五入口构建、AI/基础 API/角色检查通过；35 步双身份实际 Intel GPU 浏览器、390×844/320×568、正常服务重启保留照片及私聊通过。[实际证据与边界](event/evidence/memory-closeout-qa.md)。Library `libfile_4d218b35e3fc8191b7ecdfd861ed6a65`。
+实现完成：本人纪念卡明确选材/署名/PNG/真实成品预览；照片读取失败重试；同意、取消、重复点击、断网与跨标签删除保护。最终 655/655 完整回归、五入口构建、AI/基础 API/角色检查通过；34 步双身份实际 Intel GPU 浏览器、390×844/320×568、正常服务重启保留照片及私聊通过。[实际证据与边界](event/evidence/memory-closeout-qa.md)。Library `libfile_4d218b35e3fc8191b7ecdfd861ed6a65`。
 
-发布正在收口：先草稿 PR、自审和准确 HEAD CI，再合并并由 main 工作流发布 RC.4；下载包与 8791 升级必须另行核验。当前未称已发布、生产上线或真机通过。
+RC.4经PR #8自审和CI合并发布；实际下载48个运行文件逐项一致，34步下载包浏览器验收通过。8791正常停服并校验两库备份后升级，HTTP页面与发行包逐字节一致。Library实际包证据libfile_c504ee9305908191aa47954955069d21。不是生产上线或真机验收。
 
 ## Done — 手机构图与作者镜头可用性
 

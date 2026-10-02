@@ -17,7 +17,7 @@ export async function handleEventParticipation(c) {
     const statements=[stmt('UPDATE event_participation SET mode=?,revision=revision+1,updated_at=? WHERE room_id=? AND user_id=? AND revision=?',data.mode,now(),roomId,user.id,row.revision)];
     // Existing friendships/chats and every photo grant remain untouched.
     // A concurrent greeting's transaction also checks both choices.
-    if(data.mode==='quiet')statements.push(stmt("UPDATE event_social_pairs SET status='cancelled',revision=revision+1,updated_at=?,cooldown_until=NULL WHERE room_id=? AND status='pending' AND (sender_id=? OR recipient_id=?)",now(),roomId,user.id,user.id));
+    if(data.mode==='quiet')statements.push(stmt("UPDATE event_social_pairs SET status='cancelled',revision=revision+1,updated_at=?,cooldown_until=NULL WHERE room_id=? AND status='pending' AND (sender_id=? OR recipient_id=?) AND NOT EXISTS(SELECT 1 FROM event_community_greetings g WHERE g.pair_id=event_social_pairs.id AND g.greeting_id=event_social_pairs.greeting_id)",now(),roomId,user.id,user.id));
     return {guard,statements,body:{actorId:user.id,roomId,participation:{mode:data.mode,revision:row.revision+1}}};
   });
 }

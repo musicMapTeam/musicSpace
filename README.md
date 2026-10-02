@@ -1,3 +1,13 @@
+# Music Space · 0.18.0-rc.1 候选
+
+主办方维护长期音乐空间，观众带着同一手绘小人进入3D场馆。场次停止入场与上传后，明确加入的多人聊天室继续保留；长期社群另行选择加入，不订阅营销。回复、未读、手动已读、静音、退出和房主管理有独立权限；群聊不开放照片。已有双向好友私聊跨场次保留。
+
+入口 **/event-room/**；本場／回顾中的「散场聊天室」和「长期音乐社群」接入既有空间。「备份或恢复我的小人身份」提供用户主动加密备份与同一服务核验恢复；没有提前备份且清缓存不能凭昵称找回。
+
+[分阶段清单](docs/event/COMMUNITY_ROADMAP.md) · [阶段验收](docs/event/evidence/community-rooms-qa.md) · [运行与持久化](docs/deployment.md)。Node24+，持久DATA_DIR；共享runtime-preview/src及drizzle必须一起交付。此阶段不是公网生产部署；Map、专辑世界杯、原生近场和双人共创仍按清单继续。
+
+以下保留RC.4及更早的历史交付说明。
+
 # Music Space · 0.17.0-rc.4
 
 音乐现场的社交与个人留存：带上可组合手绘小人进入三维 livehouse，照片私藏或分享给同场成员，自愿交换视角；双方愿意认识后再聊。散场回顾可明确选择本人照片和小人，下载带署名的私人纪念卡。
@@ -7,7 +17,7 @@
 纪念卡只包含显式选择的最多两张本人照片、本人署名及可选小人，不收他人照片/好友名单/私聊，不自动公开；无照片时可导出文字纪念票。网络中断、取消与素材变化均有明确反馈和重新核对入口。
 
 - [运行与持久部署](docs/deployment.md) · [RC.4 说明](docs/release/0.17.0-rc.4.md)
-- [35 步真实双身份浏览器证据及未测项](docs/event/evidence/memory-closeout-qa.md) · [项目状态](docs/PROJECT_STATUS.md)
+- [34 步真实双身份浏览器证据及未测项](docs/event/evidence/memory-closeout-qa.md) · [项目状态](docs/PROJECT_STATUS.md)
 - 检查：`npm test`、`npm run test:release`、`npm run test:character`、`npm run ai:check`。发行状态以 [GitHub Releases](https://github.com/musicMapTeam/musicSpace/releases) 为准。
 
 这是本机/预发布交付，不表示公网或生产上线。仍需真机、微信、大陆网络、真实观众研究。旧 gh-pages、Music Map 和原运行数据保留。

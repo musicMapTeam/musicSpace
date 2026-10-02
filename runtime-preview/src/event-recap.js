@@ -31,7 +31,7 @@ export async function handleEventRecap(c) {
       ORDER BY p.id LIMIT ${EVENT_RECAP_PAGE_SIZE + 1}`, roomId, user.id, user.id, user.id, user.id, ...(cursor ? [cursor] : [])));
     else queries.push(stmt(`SELECT s.*,u.id AS peer_id,u.name AS peer_name,u.avatar AS peer_avatar
       FROM event_social_pairs s JOIN avatar_users u ON u.id = CASE WHEN s.low_id = ? THEN s.high_id ELSE s.low_id END
-      WHERE s.room_id = ? AND (s.low_id = ? OR s.high_id = ?) AND s.status = 'accepted' AND ${socialAllowedSQL('?', 'u.id')}${cursor ? ' AND s.id > ?' : ''}
+      WHERE s.room_id = ? AND NOT EXISTS(SELECT 1 FROM event_community_greetings g WHERE g.pair_id=s.id AND g.greeting_id=s.greeting_id) AND (s.low_id = ? OR s.high_id = ?) AND s.status = 'accepted' AND ${socialAllowedSQL('?', 'u.id')}${cursor ? ' AND s.id > ?' : ''}
       ORDER BY s.id LIMIT ${EVENT_RECAP_PAGE_SIZE + 1}`, user.id, roomId, user.id, user.id, user.id, user.id, ...(cursor ? [cursor] : [])));
   }
   // Recheck room participation and all photo/friend permissions in one final

@@ -1,3 +1,4 @@
+import {handleEventCommunity} from './event-community.js';
 import {handleEventParticipation,participationMode} from './event-participation.js';
 import { createHash, randomBytes, randomUUID } from 'node:crypto';
 import { Buffer } from 'node:buffer';
@@ -155,6 +156,8 @@ export function createEventWorker({ clock = Date.now, rateLimits = true } = {}) 
         if (plan.removeKey) await removeUnreferenced(plan.removeKey);
         return json(plan.status || 200, plan.body);
       }
+      const communityResponse=await handleEventCommunity({request,path,method,user,db,stmt,get,now,rate,mutate,readJSON,keys,revision,fail,json});
+      if(communityResponse)return communityResponse;
       const participationResponse=await handleEventParticipation({request,path,method,user,stmt,get,now,mutate,readJSON,keys,revision,fail,json});
       if(participationResponse)return participationResponse;
       const endExchanges = (predicate, args, options) => endEventExchanges(stmt, now(), predicate, args, options);
@@ -215,7 +218,7 @@ export function createEventWorker({ clock = Date.now, rateLimits = true } = {}) 
           return { body: { room: roomJSON(room, user.id), actorId: user.id }, guard: {
             sql: 'EXISTS (SELECT 1 FROM event_rooms WHERE id = ? AND closed_at IS NULL AND expires_at > ?) AND ((SELECT COUNT(*) FROM event_members WHERE room_id = ? AND left_at IS NULL) < ? OR EXISTS (SELECT 1 FROM event_members WHERE room_id = ? AND user_id = ? AND left_at IS NULL)) AND NOT EXISTS (SELECT 1 FROM event_room_exclusions WHERE room_id = ? AND user_id = ? AND restored_at IS NULL)',
             args: [room.id, now(), room.id, EVENT_CAPACITY, room.id, user.id,room.id,user.id],
-          }, statements: [stmt('INSERT INTO event_members (room_id,user_id,joined_at,left_at) VALUES (?,?,?,NULL) ON CONFLICT(room_id,user_id) DO UPDATE SET joined_at = excluded.joined_at, left_at = NULL', room.id, user.id, now()),stmt('INSERT INTO event_participation (room_id,user_id,mode,revision,updated_at) VALUES (?,?,?,1,?) ON CONFLICT(room_id,user_id) DO UPDATE SET mode=excluded.mode,revision=event_participation.revision+1,updated_at=excluded.updated_at',room.id,user.id,participationMode(data.participation),now()),...(participationMode(data.participation)==='quiet'?[stmt("UPDATE event_social_pairs SET status='cancelled',revision=revision+1,updated_at=?,cooldown_until=NULL WHERE room_id=? AND status='pending' AND (sender_id=? OR recipient_id=?)",now(),room.id,user.id,user.id)]:[])] };
+          }, statements: [stmt('INSERT INTO event_members (room_id,user_id,joined_at,left_at) VALUES (?,?,?,NULL) ON CONFLICT(room_id,user_id) DO UPDATE SET joined_at = excluded.joined_at, left_at = NULL', room.id, user.id, now()),stmt('INSERT INTO event_participation (room_id,user_id,mode,revision,updated_at) VALUES (?,?,?,1,?) ON CONFLICT(room_id,user_id) DO UPDATE SET mode=excluded.mode,revision=event_participation.revision+1,updated_at=excluded.updated_at',room.id,user.id,participationMode(data.participation),now()),...(participationMode(data.participation)==='quiet'?[stmt("UPDATE event_social_pairs SET status='cancelled',revision=revision+1,updated_at=?,cooldown_until=NULL WHERE room_id=? AND status='pending' AND (sender_id=? OR recipient_id=?) AND NOT EXISTS(SELECT 1 FROM event_community_greetings g WHERE g.pair_id=event_social_pairs.id AND g.greeting_id=event_social_pairs.greeting_id)",now(),room.id,user.id,user.id)]:[])] };
         });
       }
       const roomRoute = new RegExp(`^/rooms/(${ID})(/leave|/close|/photos)?$`).exec(path);

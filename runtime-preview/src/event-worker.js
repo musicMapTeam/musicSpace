@@ -1,3 +1,4 @@
+import {admissionRoute} from './admission-protocol.js';
 import {handleEventCommunity} from './event-community.js';
 import {handleEventWorldCup} from './event-worldcup.js';
 import {handleEventParticipation,participationMode} from './event-participation.js';
@@ -65,7 +66,7 @@ export function createEventWorker({ clock = Date.now, rateLimits = true } = {}) 
       const get = (sql, ...args) => stmt(sql, ...args).first();
       const all = async (sql, ...args) => (await stmt(sql, ...args).all()).results;
       const now = () => new Date(clock()).toISOString();
-      const path = pathname.slice(EVENT_API_PREFIX.length), method = request.method;
+      const method = request.method, path = admissionRoute(pathname.slice(EVENT_API_PREFIX.length), method);
       const roomJSON = (room, actorId, joined = true) => ({ id: room.id, code: room.code, title: room.title, venue: room.venue, songId: room.song_id,
         status: room.closed_at ? 'closed' : room.expires_at <= now() ? 'expired' : 'open', revision: room.revision,
         createdAt: room.created_at, expiresAt: room.expires_at, capacity: EVENT_CAPACITY, ...(actorId ? { role: room.host_id === actorId ? 'host' : 'member', joined, entryState:room.is_excluded?'removed':joined?'joined':'left' } : {}) });

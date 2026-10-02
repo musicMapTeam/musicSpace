@@ -226,3 +226,16 @@ for(const mode of ['Node','Worker'])test(mode+' worldcup: concurrent different f
  for(const m of matches)await f.request(path+'/matches/'+m.id+'/vote',{token:a.token,method:'POST',data:{revision:m.revision,albumId:m.left.id,voteConsent:true}});
  const responses=await Promise.all(matches.map(m=>f.request(path+'/matches/'+m.id+'/advance',{token:a.token,method:'POST',data:{revision:m.revision,advanceConsent:true}})));assert.ok(responses.every(r=>r.status===200));const current=(await f.request(path,{token:a.token})).body;assert.equal(current.matches.length,3);assert.equal(current.matches.filter(m=>m.ordinal===2).length,1);
 });
+for(const mode of ['Node','Worker'])test(mode+' native admission: preview never joins; consent, closed rooms and private images remain guarded',async t=>{
+ const f=await fixture(t,mode),a=await f.session('Admission host'),b=await f.session('Admission guest'),room=await f.room(a),photo=await f.upload(room,a,'private'),route='/admission/room/'+room.code;
+ assert.equal((await f.request(route+'/preview')).status,200);
+ assert.equal((await f.request('/rooms/'+room.id,{token:b.token})).status,404);
+ assert.equal((await f.request(route+'/join',{method:'POST',token:b.token,data:{}})).status,400);
+ const key=randomUUID(),data={joinConsent:true,participation:'quiet'};
+ const pair=await Promise.all([f.request(route+'/join',{method:'POST',token:b.token,data,key}),f.request('/rooms/'+room.code+'/join',{method:'POST',token:b.token,data,key})]);
+ assert.deepEqual(pair.map(r=>r.status),[200,200]);
+ assert.equal((await f.request('/photos/'+photo.id+'/image',{token:b.token})).status,404);
+ assert.equal((await f.request('/rooms/'+room.id+'/close',{method:'POST',token:a.token,data:{revision:room.revision}})).status,200);
+ const outside=await f.session('Admission outside');assert.equal((await f.request(route+'/join',{method:'POST',token:outside.token,data})).status,409);
+ await f.restart();assert.equal((await f.request('/rooms/'+room.id,{token:b.token})).status,200);
+});

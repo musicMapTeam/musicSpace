@@ -12,6 +12,7 @@
 
 源码运行：Node.js 24+，执行 `npm ci`、`npm run build:all`、`npm start`，打开 http://127.0.0.1:8787/event-room/ 。已构建运行包直接 `node server/index.js`，不需要安装依赖。数据保存在 DATA_DIR（默认 data/），重启必须复用该目录。
 
+- 停服备份/恢复工具：`node scripts/ops/data-backup.mjs`，恢复仅允许新目录；[操作步骤与托管条件](docs/deployment.md#数据备份与升级)、[合成数据验证](docs/ops/backup-restore-qa.md)。工具来自后续源码，不覆盖已冻结的 rc.1 发行包。
 - [运行说明](RUN-ME.md) · [持久部署、备份与上线边界](docs/deployment.md)
 - [本次检查与未测项](docs/release/0.17.0-rc.1.md) · [项目状态](docs/PROJECT_STATUS.md)
 - 检查命令：`npm test`、`npm run test:release`、`npm run test:character`、`npm run ai:check`。

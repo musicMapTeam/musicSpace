@@ -1,5 +1,9 @@
 # 当前进展 · 2026-10-01
 
+## Done · 离线备份与恢复合成验证
+
+负责人：Codex。范围：scripts/ops/data-backup.mjs、tests/data-backup.test.js、部署说明和 README。4 项针对性测试通过；真实 CLI 和恢复后 HTTP 权限复验见 [验证记录](ops/backup-restore-qa.md)。使用隔离合成数据验证两个数据库、照片字节、身份、房间与权限/撤销状态；恢复只允许新目录，失败不覆盖原数据。不改应用运行逻辑、不覆盖已有发行资产，托管仅做只读核查。
+
 ## 发布完成 · 2026-10-02
 
 [PR #3](https://github.com/musicMapTeam/musicSpace/pull/3) 已于 00:10:44 UTC 合并，发行源码提交 `217f14424253b8e6adf6781f40bdce9d33da3663`。[main CI](https://github.com/musicMapTeam/musicSpace/actions/runs/36944672561) 的全入口构建、AI 检查、旧功能测试、621 项完整测试、角色几何检查、运行包、Docker 构建与发行步骤通过。

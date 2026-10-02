@@ -1,0 +1,39 @@
+{
+  "canonical_repository": "https://github.com/musicMapTeam/musicSpace",
+  "feature_branch": "feat/avatar-social-studio",
+  "source_baseline": "54f3e6ee2a8613ef3ae0d38c2472dff0b7a708a5",
+  "preserved_pages_commit": "e28fab5df54852d4398bb7b403e476faf43ac168",
+  "preserved_root_sha256": "e8c8fc96269fd61580f499f6409209da1f137d398c34de64c5aec676ad9df104",
+  "site_project_id": "appgprj_6abcaafdea688191a3f001afbdf31fef",
+  "site_url": "https://music-space-studio-kx.k2ctliuhan.chatgpt.site",
+  "access": "public",
+  "site_source_commit": "b3523b160cd53bb78974fba9e836bfc174045de6",
+  "site_version_id": "appgprj_6abcaafdea688191a3f001afbdf31fef~appgver_17a03fe3ce608191a87dd626d211ab0b",
+  "site_deployment_id": "appgdep_6abcbf2b64d88191865ae9dddfd65e81",
+  "deployment_status": "succeeded",
+  "hosted_app_verification": "v4 true Intel UHD 770 WebGL2 and two independent browser contexts verified normal invite/join/host acceptance/separate dual consent/two 1440x1920 exports. 44 component and 33 colour changes preserved unrelated parts. Photo preview fixed. Visual acceptance still fails garment/footwear/thumbnail issues. Local-only corrective source not deployed; user reviewing product-direction sketch.",
+  "public_preview_status": "User explicitly approved public preview; existing GitHub /avatar-preview/ points to runtime",
+  "do_not_recreate_site": true,
+  "bindings": {
+    "d1": "DB",
+    "r2": "PHOTOS"
+  },
+  "migration": "0000_known_colonel_america",
+  "generation_tools": {
+    "drizzle-kit": "0.31.10",
+    "drizzle-orm": "0.45.2"
+  },
+  "pages_preview_commit": "192ad9e8538a4fc2a2c4ce7a55412552dbb0198c",
+  "component_schema_version": 2,
+  "component_inventory": {
+    "hair": 8,
+    "eyewear": 6,
+    "top": 6,
+    "bottom": 6,
+    "shoes": 4,
+    "accessory": 6,
+    "expression": 4,
+    "pose": 4,
+    "garment_colors": 8
+  }
+}

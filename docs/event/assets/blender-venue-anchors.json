@@ -1,0 +1,260 @@
+{
+  "schema": "musicspace-venue-contract-v1",
+  "sourceCommit": "28508a28b8fee1d73b93aa5ae8e22585d7223136",
+  "coordinates": "glTF/Three Y-up, +Z entrance, -Z stage; one exported unit equals one existing app unit",
+  "blenderFromThree": "[x, -z, y]",
+  "root": {
+    "name": "MS_VENUE_ROOT",
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ],
+    "scale": [
+      1,
+      1,
+      1
+    ]
+  },
+  "floor": {
+    "center": [
+      0,
+      -0.16,
+      0.7
+    ],
+    "size": [
+      14,
+      0.3,
+      12.5
+    ],
+    "characterFeetY": 0
+  },
+  "stage": {
+    "center": [
+      -0.1,
+      0.295,
+      -3.29
+    ],
+    "size": [
+      9.85,
+      0.61,
+      4.28
+    ],
+    "finishedTopY": 0.6425
+  },
+  "walls": {
+    "backCenter": [
+      0,
+      3.05,
+      -5.56
+    ],
+    "backSize": [
+      14,
+      6.1,
+      0.24
+    ],
+    "rightCenter": [
+      6.97,
+      2.8,
+      -1.9
+    ],
+    "rightSize": [
+      0.24,
+      5.6,
+      7.5
+    ]
+  },
+  "gallery": {
+    "anchorName": "MS_GALLERY_ANCHOR",
+    "position": [
+      6.795,
+      2.64,
+      -0.65
+    ],
+    "rotationY": -1.5707963267948966,
+    "hotspot": [
+      6.57,
+      2.65,
+      -0.3
+    ],
+    "frameOuterSize": [
+      0.965,
+      1.285,
+      0.036
+    ],
+    "frameSpacing": [
+      1.12,
+      1.46
+    ],
+    "maxPhotos": 6,
+    "mobileColumns": 2,
+    "desktopColumns": 3,
+    "framesOwnedBy": "web runtime"
+  },
+  "people": [
+    {
+      "index": 0,
+      "feet": [
+        -1.1,
+        0,
+        1.8
+      ],
+      "yaw": 0.18,
+      "scale": 1
+    },
+    {
+      "index": 1,
+      "feet": [
+        0.45,
+        0,
+        0.5
+      ],
+      "yaw": -0.18,
+      "scale": 1
+    },
+    {
+      "index": 2,
+      "feet": [
+        1.6,
+        0,
+        2.2
+      ],
+      "yaw": -0.35,
+      "scale": 1
+    },
+    {
+      "index": 3,
+      "feet": [
+        -1.55,
+        0,
+        -0.1
+      ],
+      "yaw": 0.38,
+      "scale": 1
+    },
+    {
+      "index": 4,
+      "feet": [
+        2.7,
+        0,
+        0.5
+      ],
+      "yaw": -0.35,
+      "scale": 1
+    },
+    {
+      "index": 5,
+      "feet": [
+        -2.6,
+        0,
+        -0.6
+      ],
+      "yaw": 0.2,
+      "scale": 1
+    },
+    {
+      "index": 6,
+      "feet": [
+        1.1,
+        0,
+        -0.85
+      ],
+      "yaw": -0.2,
+      "scale": 1
+    },
+    {
+      "index": 7,
+      "feet": [
+        3.2,
+        0,
+        -0.9
+      ],
+      "yaw": -0.3,
+      "scale": 1
+    }
+  ],
+  "character": {
+    "type": "four-direction-2D-plate",
+    "visibleHeightApprox": 3.1,
+    "planeSize": [
+      1.5552,
+      3.24
+    ],
+    "planeCenterY": 1.48,
+    "hotspotLocal": [
+      0.043,
+      3.13,
+      0
+    ],
+    "alphaTest": 0.35,
+    "depthTest": true,
+    "depthWrite": true
+  },
+  "camera": {
+    "type": "PerspectiveCamera",
+    "verticalFov": 43,
+    "near": 0.08,
+    "far": 90,
+    "portraitAspectThreshold": 0.85,
+    "mobileOverview": {
+      "position": [
+        -2.2,
+        4.1,
+        13.2
+      ],
+      "positionWhenMoreThan2People": [
+        -2.2,
+        4.1,
+        16
+      ],
+      "target": [
+        0.15,
+        1.8,
+        -0.7
+      ]
+    },
+    "desktopOverview": {
+      "position": [
+        -6.2,
+        5.4,
+        10.4
+      ],
+      "target": [
+        0.15,
+        1.92,
+        -0.8
+      ]
+    },
+    "person": {
+      "relativePosition": [
+        0.6,
+        2.65,
+        7
+      ],
+      "relativeTarget": [
+        0,
+        1.65,
+        0
+      ],
+      "multiplyByPersonScale": true
+    },
+    "photos": {
+      "position": "[6.79-distance, 2.73, 0.05]",
+      "target": [
+        6.79,
+        2.18,
+        -0.65
+      ],
+      "distance": "max(5, max(1.6,cols*1.12)/(2*tan(fov/2)*aspect*.82), (rows*1.46+.65)/(2*tan(fov/2)*.51))",
+      "columns": "min(aspect<.85?2:3, max(1,min(6,photoCount)))",
+      "rows": "ceil(max(1,min(6,photoCount))/columns)"
+    },
+    "transitionMs": 950
+  },
+  "integrationStatus": "Asset node/material contract proposed; GLB loader binding not yet implemented; no backend/API changes required"
+}

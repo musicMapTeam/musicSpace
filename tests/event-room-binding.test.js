@@ -8,6 +8,9 @@ import {memberFloorPositions,layoutSceneLabels} from '../web/event-room/scene-la
 import { DEFAULT_AVATAR, SKINS, HAIRS, GARMENT_COLORS, SONGS, safeAvatar, escape as esc } from '../web/avatar/model.js';
 import {renderAvatarSvg} from '../web/illustrated-avatar/index.js';
 import {recapMarkup} from '../web/event-room/recap-view.js';
+import {createMemoryCardExporter} from '../web/event-room/memory-card.js';
+import {memoryCardMarkup} from '../web/event-room/memory-card-view.js';
+import {renderMemoryCardPng,saveMemoryCardDownload} from '../web/event-room/memory-card-png.js';
 const source=readFileSync(new URL('../web/event-room/app.js',import.meta.url),'utf8');
 const clone=value=>JSON.parse(JSON.stringify(value));
 const defer=()=>{let resolve,reject;const promise=new Promise((yes,no)=>{resolve=yes;reject=no;});return {promise,resolve,reject};};
@@ -38,11 +41,11 @@ function harness(start=initial(),url='https://musicspace.test/event/') {
     createModerationPanel:options=>({openReports:async()=>calls.push(['myFeedback']),openManagement:async id=>calls.push(['manageRoom',id]),openFeedback:(target,options)=>calls.push(['feedback',clone(target),options===undefined?undefined:clone(options)]),close(){},syncIdentity(){},refresh:async()=>{},dispose(){}}),
     createExchangePanel:options=>({open:async id=>calls.push(['exchangeOpen',id]),openOffer:async p=>calls.push(['exchangeOffer',clone(p)]),close(){},syncIdentity(){},refresh:async()=>{},invalidate:scope=>calls.push(['exchangeInvalidate',clone(scope)]),getState:()=>({}),dispose(){}}),
     matchMedia:()=>({matches:true,addEventListener(){}}),setTimeout:(callback,delay)=>{const id=++nextTimer;timers.set(id,{callback,delay});return id;},clearTimeout:id=>timers.delete(id),createEventController:()=>controller,mountLivehouseScene:()=>engine,
-    memberFloorPositions,layoutSceneLabels,renderAvatarSvg,recapMarkup,venueAssetUrl:'data:model/gltf-binary;base64,c3ludGhldGlj',SESSION_KEY:'music-space-avatar-session:v1',DEFAULT_AVATAR,SKINS,HAIRS,GARMENT_COLORS,SONGS,safeAvatar,esc,qrcode:()=>({addData(){},make(){},createSvgTag:()=>'<svg></svg>'}),
-    FormData:class {constructor(form){this.values=form.values||{};}get(key){return this.values[key]??null;}},
+    memberFloorPositions,layoutSceneLabels,renderAvatarSvg,recapMarkup,createMemoryCardExporter,memoryCardMarkup,renderMemoryCardPng,saveMemoryCardDownload,AbortController,venueAssetUrl:'data:model/gltf-binary;base64,c3ludGhldGlj',SESSION_KEY:'music-space-avatar-session:v1',DEFAULT_AVATAR,SKINS,HAIRS,GARMENT_COLORS,SONGS,safeAvatar,esc,qrcode:()=>({addData(){},make(){},createSvgTag:()=>'<svg></svg>'}),
+    FormData:class {constructor(form){this.values=form.values||{};}get(key){return this.values[key]??null;}getAll(key){const v=this.values[key];return v===undefined?[]:Array.isArray(v)?v:[v];}},
   });
   const code=source.replace(/^import .*;$/gm,'').replace('void boot();','');
-  vm.runInContext(code+`\nglobalThis.binding={setReady:value=>{ready=value;},scenePicked,openPanel,closePanel,synchronizePhotos,boot,saveWardrobeProfile,setWardrobeReturn:value=>{wardrobeReturn=value;},get:()=>({state,panelKind,panelTarget,detailEpoch,photoDraft,photoInputGeneration,formBusy,urls:[...urls]}),setPhotoDraft:value=>{photoDraft=value;},cache:(id,url,revision=1)=>urls.set(id,{url,revision})};`,context,{filename:'event-room-ui-binding.vm.js'});
+  vm.runInContext(code+`\nglobalThis.binding={setReady:value=>{ready=value;},scenePicked,openPanel,closePanel,synchronizePhotos,boot,saveWardrobeProfile,setWardrobeReturn:value=>{wardrobeReturn=value;},get:()=>({state,panelKind,panelTarget,detailEpoch,photoDraft,photoInputGeneration,formBusy,photoScope,urls:[...urls]}),setPhotoDraft:value=>{photoDraft=value;},cache:(id,url,revision=1)=>urls.set(id,{url,revision})};`,context,{filename:'event-room-ui-binding.vm.js'});
   return {engine,controller,calls,revoked,emit,document:doc,element:get,async runPoll(){const entry=[...timers].find(([,t])=>t.delay===5000);assert.ok(entry,'visible poll is scheduled');timers.delete(entry[0]);await entry[1].callback();await tick();},async setVisible(value){doc.hidden=!value;for(const fn of doc.events.get('visibilitychange')||[])fn();await tick();},async focusWindow(){for(const fn of window.events.get('focus')||[])fn();await tick();},async storageChanged(key){for(const fn of window.events.get('storage')||[])fn({key});await tick();},async online(){for(const fn of window.events.get('online')||[])fn();await tick();},get:()=>context.binding.get(),binding:context.binding,body:get('#panel-body'),panel:get('#panel'),
     async click(dataset){const button={dataset,closest(selector){return selector==='button'?this:null;}};for(const fn of doc.events.get('click')||[])await fn({target:button});await tick();},
     submit(kind,values={},dataset={}){const form={dataset:{form:kind,...dataset},values,setAttribute(){},removeAttribute(){},querySelectorAll:()=>[]};for(const fn of get('#panel-body').events.get('submit')||[])fn({preventDefault(){},target:form});return form;},
@@ -439,6 +442,32 @@ test('leaving opens only the just-left event recap, while old shared-photo URLs 
  h.binding.cache(p.id,'blob:must-revoke');h.controller.leaveRoom=async()=>{h.emit({...h.get().state,room:null,members:[],photos:[],route:{kind:'home',target:null}});return {applied:true};};
  const reads=[];h.controller.loadRoomRecap=async id=>{reads.push(id);h.emit({...h.get().state,recap:{roomId:id,room:{...r,joined:false},actorId:actor,loaded:true,photos:{items:[],nextCursor:null},friends:{items:[],nextCursor:null},photosCursor:null,friendsCursor:null}});return {applied:true};};
  h.binding.openPanel('leave');await h.click({confirm:'leave'});await tick();assert.deepEqual(reads,[roomId]);assert.equal(h.get().panelKind,'recap');assert.equal(h.get().state.room,null);assert.ok(h.revoked.includes('blob:must-revoke'));assert.equal(h.get().urls.length,0);
+});
+
+test('failed photo read exposes an exact-photo retry instead of perpetual loading',async()=>{
+ const p=photo(),h=harness(initial({room:room(),photos:[p]}));let failed=true;
+ h.controller.fetchPhotoBlob=async()=>{if(failed)throw Object.assign(Error('offline'),{code:'NETWORK'});return new Blob(['qa']);};
+ h.binding.openPanel('wall');await tick();h.binding.openPanel('photo',p.id);
+ assert.match(h.body.innerHTML,/data-photo-retry/);assert.match(h.body.innerHTML,/暂未读到/);
+ failed=false;await h.click({photoRetry:p.id});await tick();assert.match(h.body.innerHTML,/photo-review/);assert.doesNotMatch(h.body.innerHTML,/data-photo-retry/);
+});
+
+test('memory selection keeps recap scope; returning cancels a pending refresh without downloading',async()=>{
+ const p=photo(),r=room(),h=harness(initial({room:r,photos:[p],recap:{roomId,room:r,actorId:actor,loaded:true,photos:{items:[p]},friends:{items:[]}}}));
+ h.controller.loadRoomRecap=async()=>({applied:true});const gate=defer();h.controller.refreshRoomRecap=()=>gate.promise;
+ await h.click({open:'recap',id:roomId});await h.click({open:'memory-card'});
+ assert.match(h.body.innerHTML,/name="memory-photo"/);assert.equal(h.get().photoScope,'recap');
+ h.input({dataset:{form:'memory-card'},values:{'memory-photo':p.id,'memory-confirm':'on'}},'memory-confirm','on');h.submit('memory-card',{'memory-photo':p.id,'memory-confirm':'on'});await h.click({memoryBack:''});gate.resolve();await tick();
+ assert.equal(h.get().panelKind,'recap');assert.equal(h.get().photoScope,'recap');
+});
+
+test('late memory refresh cannot reset a newer explicit selection after leaving and reopening',async()=>{
+ const p=photo(),r=room(),h=harness(initial({recap:{roomId,room:r,actorId:actor,loaded:true,photos:{items:[p]},friends:{items:[]}}}));
+ h.controller.loadRoomRecap=async()=>({applied:true});h.controller.clearRoomRecap=()=>{};
+ await h.click({open:'recap',id:roomId});await h.click({open:'memory-card'});const gate=defer();h.controller.refreshRoomRecap=()=>gate.promise;
+ await h.click({memoryRefresh:''});await h.click({open:'entry'});await h.click({open:'recap',id:roomId});await h.click({open:'memory-card'});
+ h.input({dataset:{form:'memory-card'},values:{'memory-photo':p.id,'memory-confirm':'on'}},'memory-confirm','on');gate.resolve();await tick();
+ assert.match(h.body.innerHTML,/name="memory-confirm" required checked/);
 });
 
  test('photo author waits for camera arrival and an abandoned move cannot reopen its card',async()=>{

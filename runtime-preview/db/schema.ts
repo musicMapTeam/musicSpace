@@ -217,3 +217,13 @@ export const eventCommunityGreetings = sqliteTable('event_community_greetings',{
 export const eventGroupMusic = sqliteTable('event_group_music',{
  messageId:text('message_id').primaryKey().references(()=>eventGroupMessages.id),recordingId:text('recording_id').notNull(),
 },t=>[check('event_group_music_reference',sql`length(${t.recordingId}) BETWEEN 1 AND 80`)]);
+
+export const eventWorldcups=sqliteTable('event_worldcups',{
+ id:text('id').primaryKey(),kind:text('kind').notNull(),scopeId:text('scope_id').notNull(),creatorId:text('creator_id').notNull().references(()=>avatarUsers.id),creatorName:text('creator_name').notNull(),title:text('title').notNull(),createdAt:text('created_at').notNull(),
+},t=>[check('event_worldcup_kind',sql`${t.kind} IN ('room','community')`),index('event_worldcup_scope').on(t.kind,t.scopeId,t.createdAt)]);
+export const eventWorldcupMatches=sqliteTable('event_worldcup_matches',{
+ id:text('id').primaryKey(),cupId:text('cup_id').notNull().references(()=>eventWorldcups.id),ordinal:integer('ordinal').notNull(),leftId:text('left_id').notNull(),rightId:text('right_id').notNull(),winnerId:text('winner_id'),leftCount:integer('left_count'),rightCount:integer('right_count'),tieReason:text('tie_reason'),revision:integer('revision').notNull().default(1),
+},t=>[uniqueIndex('event_worldcup_matches_cup_id_ordinal_unique').on(t.cupId,t.ordinal),check('event_worldcup_ordinal',sql`${t.ordinal} BETWEEN 0 AND 2`),check('event_worldcup_distinct',sql`${t.leftId}!=${t.rightId}`),check('event_worldcup_winner',sql`${t.winnerId} IS NULL OR ${t.winnerId} IN (${t.leftId},${t.rightId})`)]);
+export const eventWorldcupVotes=sqliteTable('event_worldcup_votes',{
+ matchId:text('match_id').notNull().references(()=>eventWorldcupMatches.id),userId:text('user_id').notNull().references(()=>avatarUsers.id),albumId:text('album_id').notNull(),createdAt:text('created_at').notNull(),
+},t=>[primaryKey({columns:[t.matchId,t.userId]})]);

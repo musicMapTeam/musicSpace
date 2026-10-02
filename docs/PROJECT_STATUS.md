@@ -1,4 +1,8 @@
-## Doing — 音乐探索与分享（2026-10-02）
+## Doing — 专辑世界杯（2026-10-02）
+
+负责人Codex（唯一实施者），feat/album-worldcup，基于main ea6e010。范围：明确虚构的四张专辑、共享Node/Worker世界杯API与叠加迁移、既有聊天室投票/晋级/结果UI、权限并发与浏览器持久化检查及相关文档。不引入新素材/服务、不伪造票数或权威排行。音乐阶段[PR #10](https://github.com/musicMapTeam/musicSpace/pull/10)已完成：670测试、五入口构建、修复共享构建输入后的精确HEAD及main CI通过；RC2实际下载54文件逐字节一致、音乐7步＋社群21步/重启通过，Library实际包libfile_6bd821caac88819183de745f97fd7722。8791正常停机、两库备份验证后运行实际RC2 PID24188，原DATA_DIR保持。8788/8790、Map、gh-pages未操作。
+
+## Done — 音乐探索与分享（2026-10-02）
 
 负责人Codex（唯一实施者），feat/music-explore，基于main523f0d8。范围：允许列表音乐元数据、共享Node/Worker消息音乐引用与叠加0008迁移、聊天室音乐卡及原生SVG关系图、权限测试/浏览器验收及相关文档。Map只读核对，不修改其仓库、部署或存储。第一阶段实际交付记录：[PR #9](https://github.com/musicMapTeam/musicSpace/pull/9)。667测试、五入口构建、精确HEAD/main CI通过；RC1实际下载51运行文件逐字节一致、21步浏览器与重启通过。Library候选libfile_fc5a077dacdc8191b4cf23fff4f6af19，实际包libfile_72463f12cac081919c210709d9af8079。8791正常停机且两库完整备份校验后更新，PID14276运行下载RC1；原DATA_DIR保持，8788/8790未操作。
 

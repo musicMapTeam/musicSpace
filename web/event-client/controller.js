@@ -642,7 +642,7 @@ export function createEventController(options = {}) {
     syncStoredIdentity();return {restored:true};
   }
   async function communityRequest(path, {method='GET',data,key,signal}={}) {
-    if(!/^\/(?:music|communities(?:\/preview\/[A-Z2-7]{12})?|(?:rooms|communities)\/[0-9a-f-]{36}\/(?:community|greetings|conversation(?:\/(?:join|leave|settings|messages|read|members\/[0-9a-f-]{36}|messages\/[0-9a-f-]{36}))?))(?:\?before=[0-9a-f-]{36})?$/.test(path))fail('社群路径无效。');
+    if(!/^\/(?:worldcups\/[0-9a-f-]{36}(?:\/matches\/[0-9a-f-]{36}\/(?:vote|advance))?|music|communities(?:\/preview\/[A-Z2-7]{12})?|(?:rooms|communities)\/[0-9a-f-]{36}\/(?:worldcups|community|greetings|conversation(?:\/(?:join|leave|settings|messages|read|members\/[0-9a-f-]{36}|messages\/[0-9a-f-]{36}))?))(?:\?before=[0-9a-f-]{36})?$/.test(path))fail('社群路径无效。');
     const actor=identity(),epoch=identityGeneration;
     try {const result=await api.request(path,{method,bodyJson:data===undefined?undefined:JSON.stringify(data),token:actor.token,key,signal});syncStoredIdentity();if(disposed||epoch!==identityGeneration||identity().user.id!==actor.user.id)fail('身份已变化，旧内容不会显示。','TARGET_CHANGED');return result;}
     catch(error){syncStoredIdentity();report(error,actor.token,epoch===identityGeneration);throw error;}

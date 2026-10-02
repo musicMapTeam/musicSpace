@@ -39,7 +39,7 @@ function harness(start=initial(),url='https://musicspace.test/event/') {
   const location=new URL(url),history={replaceState(_a,_b,next){location.href=String(next);}};
   const engine={ready:Promise.resolve(),update(){},goTo(){},getState:()=>({view:'overview'}),setReducedMotion(){},dispose(){},pick(){return null;}};
   const context=vm.createContext({console,document:doc,window,location,history,navigator:{clipboard:{writeText:async()=>{}}},URL:SafeURL,Blob,
-    invitation,invitationUrl,nfcInvitation,createIdentityContinuityPanel:()=>({open(){},close(){},dispose(){}}),
+    invitation,invitationUrl,nfcInvitation,createCornerPanel:()=>({open:async value=>calls.push(['cornerOpen',clone(value)]),close(){},syncIdentity(){},dispose(){}}),createIdentityContinuityPanel:()=>({open(){},close(){},dispose(){}}),
     createCommunityPanel:()=>({open:async value=>calls.push(["communityOpen",clone(value)]),close(){},syncIdentity(){},dispose(){}}),
     createWorldCupPanel:()=>({open:async value=>calls.push(["worldcupOpen",clone(value)]),close(){},syncIdentity(){},dispose(){}}),
     createModerationPanel:options=>({openReports:async()=>calls.push(['myFeedback']),openManagement:async id=>calls.push(['manageRoom',id]),openFeedback:(target,options)=>calls.push(['feedback',clone(target),options===undefined?undefined:clone(options)]),close(){},syncIdentity(){},refresh:async()=>{},dispose(){}}),

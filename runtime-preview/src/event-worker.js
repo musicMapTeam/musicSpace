@@ -1,4 +1,5 @@
 import {admissionRoute} from './admission-protocol.js';
+import {handleEventCorners} from './event-corners.js';
 import {handleEventCommunity} from './event-community.js';
 import {handleEventWorldCup} from './event-worldcup.js';
 import {handleEventParticipation,participationMode} from './event-participation.js';
@@ -158,6 +159,8 @@ export function createEventWorker({ clock = Date.now, rateLimits = true } = {}) 
         if (plan.removeKey) await removeUnreferenced(plan.removeKey);
         return json(plan.status || 200, plan.body);
       }
+      const cornerResponse=await handleEventCorners({request,path,method,user,db,stmt,get,now,rate,mutate,readJSON,keys,revision,fail,json,env,headers});
+      if(cornerResponse)return cornerResponse;
       const worldcupResponse=await handleEventWorldCup({request,path,method,user,db,stmt,get,now,rate,mutate,readJSON,keys,revision,fail,json});
       if(worldcupResponse)return worldcupResponse;
       const communityResponse=await handleEventCommunity({request,path,method,user,db,stmt,get,now,rate,mutate,readJSON,keys,revision,fail,json});

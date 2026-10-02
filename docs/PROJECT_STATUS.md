@@ -1,4 +1,8 @@
-## Doing · 长期主办方社群与散场聊天室（2026-10-02）
+## Doing — 音乐探索与分享（2026-10-02）
+
+负责人Codex（唯一实施者），feat/music-explore，基于main523f0d8。范围：允许列表音乐元数据、共享Node/Worker消息音乐引用与叠加0008迁移、聊天室音乐卡及原生SVG关系图、权限测试/浏览器验收及相关文档。Map只读核对，不修改其仓库、部署或存储。第一阶段实际交付记录：[PR #9](https://github.com/musicMapTeam/musicSpace/pull/9)。667测试、五入口构建、精确HEAD/main CI通过；RC1实际下载51运行文件逐字节一致、21步浏览器与重启通过。Library候选libfile_fc5a077dacdc8191b4cf23fff4f6af19，实际包libfile_72463f12cac081919c210709d9af8079。8791正常停机且两库完整备份校验后更新，PID14276运行下载RC1；原DATA_DIR保持，8788/8790未操作。
+
+## Done · 长期主办方社群与散场聊天室（2026-10-02）
 
 负责人Codex，唯一实施者；feat/community-rooms，基于main 9dbed4c。范围runtime-preview/src、加法drizzle、event-client/event-room、相关测试及文档。实施顺序见[event/COMMUNITY_ROADMAP.md](event/COMMUNITY_ROADMAP.md)。RC.4已合并发布，8791沿用原DATA_DIR且两库备份已验证；8788/8790保留。
 

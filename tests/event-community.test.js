@@ -148,3 +148,32 @@ for(const mode of ['Node','Worker'])test(mode+' community capacity: concurrent f
  assert.equal((await joinConversation(b)).status,403);db.prepare("UPDATE event_conversation_members SET left_at=? WHERE kind='community' AND scope_id=? AND user_id=?").run('2026-10-02T11:00:00.000Z',community.id,freed);
  const results=await Promise.all([joinConversation(b),joinConversation(c)]);assert.equal(results.filter(r=>r.status===200).length,1);assert.equal(db.prepare("SELECT COUNT(*) total FROM event_conversation_members WHERE kind='community' AND scope_id=? AND left_at IS NULL AND removed_at IS NULL").get(community.id).total,100);if(mode==='Node')db.close();
 });
+
+for(const mode of ['Node','Worker'])test(mode+' music bridge: references inherit consent, idempotency, quote retraction, block and persistent membership gates',async t=>{
+ const f=await fixture(t,mode),{a,b,room}=await f.two(),outsider=await f.session('Outside'),path='/rooms/'+room.id+'/conversation';
+ const call=(suffix,actor=a,method='GET',data,options={})=>f.request(path+suffix,{token:actor.token,method,data,...options});
+ const catalogue=(await f.request('/music',{token:a.token})).body.recordings;assert.equal(catalogue.length,4);assert.equal(catalogue[0].title,'不该');assert.equal(new URL(catalogue[0].exploreUrl).hostname,'musicmapteam.github.io');assert.equal((await f.request('/music')).status,401);
+ assert.equal((await call('/messages',a,'POST',{text:'Music',musicId:catalogue[0].id})).status,403);
+ for(const actor of[a,b])await call('/join',actor,'POST',{joinConsent:true});
+ assert.equal((await call('/messages',a,'POST',{text:'Spoof',musicId:'unknown'})).status,400);
+ assert.equal((await call('/messages',a,'POST',{text:'Spoof',musicId:catalogue[0].id,sourceUrl:'https://example.com/private'})).status,400);
+ const key=randomUUID(),data={text:'This duet matters to me',musicId:catalogue[0].id};
+ const [one,two]=await Promise.all([call('/messages',a,'POST',data,{key}),call('/messages',a,'POST',data,{key})]);assert.equal(one.status,201);assert.equal(one.body.messageId,two.body.messageId);
+ let messages=(await call('/messages',b)).body.messages;assert.equal(messages.length,1);assert.deepEqual(messages[0].music,catalogue[0]);assert.equal(messages[0].senderId,a.user.id);
+ assert.equal((await call('/messages',outsider)).status,403);
+ const reply=await call('/messages',b,'POST',{text:'Another perspective',replyId:one.body.messageId});assert.equal(reply.status,201);
+ await f.restart();messages=(await call('/messages',b)).body.messages;assert.deepEqual(messages[1].reply.music,catalogue[0]);
+ await f.block(a,b);assert.equal((await call('/messages',b)).body.messages[0].reply,null);
+ await f.unblock(a,b,(await f.social(a)).blocks[0].revision);
+ assert.equal((await call('/messages/'+one.body.messageId,a,'DELETE',{})).status,200);
+ messages=(await call('/messages',b)).body.messages;assert.equal(messages.length,1);assert.equal(messages[0].reply,null);
+ const member=(await call('',b)).body.conversation;await call('/leave',b,'POST',{revision:member.revision});assert.equal((await call('/messages',b)).status,403);
+});
+
+test('Node music additive migration preserves a 0007 conversation and restores the new table on restart',async t=>{
+ const f=await fixture(t,'Node'),{a,b,room}=await f.two(),path='/rooms/'+room.id+'/conversation';for(const actor of[a,b])await f.request(path+'/join',{token:actor.token,method:'POST',data:{joinConsent:true}});
+ const old=await f.request(path+'/messages',{token:a.token,method:'POST',data:{text:'Before music references'}});assert.equal(old.status,201);
+ const db=new DatabaseSync(join(f.dir,'avatar-space.sqlite'));db.exec('DROP TABLE event_group_music');db.close();await f.restart();
+ const messages=(await f.request(path+'/messages',{token:b.token})).body.messages;assert.equal(messages[0].id,old.body.messageId);assert.equal(messages[0].text,'Before music references');assert.equal(messages[0].music,null);
+ assert.equal((await f.request(path+'/messages',{token:a.token,method:'POST',data:{text:'After migration',musicId:'real-bu-gai'}})).status,201);
+});

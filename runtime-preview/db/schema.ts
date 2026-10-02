@@ -213,3 +213,7 @@ export const eventGroupReceipts = sqliteTable('event_group_receipts', {
 },t=>[primaryKey({columns:[t.messageId,t.viewerId]})]);
 
 export const eventCommunityGreetings = sqliteTable('event_community_greetings',{pairId:text('pair_id').primaryKey().references(()=>eventSocialPairs.id),communityId:text('community_id').notNull().references(()=>eventCommunities.id),greetingId:text('greeting_id').notNull()});
+
+export const eventGroupMusic = sqliteTable('event_group_music',{
+ messageId:text('message_id').primaryKey().references(()=>eventGroupMessages.id),recordingId:text('recording_id').notNull(),
+},t=>[check('event_group_music_reference',sql`length(${t.recordingId}) BETWEEN 1 AND 80`)]);

@@ -2,7 +2,7 @@ import { createAvatarStore } from './avatar-store.js';
 import { readFileSync } from 'node:fs';
 
 // One additive schema source for local SQLite and D1. Existing migrations stay immutable.
-const socialSchema = ['0002_event_social.sql', '0003_event_chat.sql', '0004_event_exchanges.sql', '0005_event_moderation.sql', '0006_event_participation.sql'].map(name =>
+const socialSchema = ['0002_event_social.sql', '0003_event_chat.sql', '0004_event_exchanges.sql', '0005_event_moderation.sql', '0006_event_participation.sql', '0007_event_communities.sql'].map(name =>
   readFileSync(new URL('../runtime-preview/drizzle/' + name, import.meta.url), 'utf8')
     .replace(/CREATE TABLE /g, 'CREATE TABLE IF NOT EXISTS ').replace(/CREATE (UNIQUE )?INDEX /g, 'CREATE $1INDEX IF NOT EXISTS ')
 ).join('\n');

@@ -194,3 +194,22 @@ export const eventParticipation = sqliteTable('event_participation', {
   check('event_participation_mode', sql`${table.mode} IN ('quiet','open')`),
   check('event_participation_revision', sql`${table.revision} >= 1`),
 ]);
+
+// Chat memberships are explicit and independent of event photo membership.
+export const eventCommunities = sqliteTable('event_communities', {
+ id:text('id').primaryKey(),code:text('code').notNull().unique(),hostId:text('host_id').notNull().references(()=>avatarUsers.id),title:text('title').notNull(),createdAt:text('created_at').notNull(),
+});
+export const eventCommunityRooms = sqliteTable('event_community_rooms', {
+ roomId:text('room_id').primaryKey().references(()=>eventRooms.id),communityId:text('community_id').notNull().references(()=>eventCommunities.id),
+});
+export const eventConversationMembers = sqliteTable('event_conversation_members', {
+ kind:text('kind').notNull(),scopeId:text('scope_id').notNull(),userId:text('user_id').notNull().references(()=>avatarUsers.id),joinedAt:text('joined_at').notNull(),leftAt:text('left_at'),removedAt:text('removed_at'),mode:text('mode').notNull().default('quiet'),muted:integer('muted').notNull().default(0),revision:integer('revision').notNull().default(1),
+}, t=>[primaryKey({columns:[t.kind,t.scopeId,t.userId]}),check('event_conversation_kind',sql`${t.kind} IN ('room','community')`),check('event_conversation_muted',sql`${t.muted} IN (0,1)`),check('event_conversation_mode',sql`${t.mode} IN ('quiet','open')`)]);
+export const eventGroupMessages = sqliteTable('event_group_messages', {
+ seq:integer('seq').primaryKey({autoIncrement:true}),id:text('id').notNull().unique(),kind:text('kind').notNull(),scopeId:text('scope_id').notNull(),senderId:text('sender_id').notNull().references(()=>avatarUsers.id),senderName:text('sender_name').notNull(),text:text('text').notNull(),replyId:text('reply_id'),createdAt:text('created_at').notNull(),hiddenAt:text('hidden_at'),
+},t=>[foreignKey({columns:[t.replyId],foreignColumns:[t.id]}),check('event_group_kind',sql`${t.kind} IN ('room','community')`),check('event_group_text',sql`length(${t.text}) BETWEEN 1 AND 1000`),index('event_group_scope').on(t.kind,t.scopeId,t.seq)]);
+export const eventGroupReceipts = sqliteTable('event_group_receipts', {
+ messageId:text('message_id').notNull().references(()=>eventGroupMessages.id),viewerId:text('viewer_id').notNull().references(()=>avatarUsers.id),deliveredAt:text('delivered_at').notNull(),readAt:text('read_at'),
+},t=>[primaryKey({columns:[t.messageId,t.viewerId]})]);
+
+export const eventCommunityGreetings = sqliteTable('event_community_greetings',{pairId:text('pair_id').primaryKey().references(()=>eventSocialPairs.id),communityId:text('community_id').notNull().references(()=>eventCommunities.id),greetingId:text('greeting_id').notNull()});

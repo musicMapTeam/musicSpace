@@ -1,3 +1,4 @@
+import {encryptIdentityBackup,decryptIdentityBackup} from './identity-backup.js';
 import { createEventApiClient, EventClientError } from './api.js';
 
 export const SESSION_KEY = 'music-space-avatar-session:v1';
@@ -618,11 +619,39 @@ export function createEventController(options = {}) {
     const op = operations.get(id); if (!visibleOperation(op)) return null;
     return freeze({ ...pendingSummary(op), payload: JSON.parse(op.bodyJson) });
   }
+  async function exportIdentityBackup(password,{consent,origin=globalThis.location?.origin}={}) {
+    if(consent!==true)fail('请明确同意导出当前身份的加密备份。','BACKUP_CONSENT_REQUIRED');
+    if(origin!==(options.baseUrl?new URL(options.baseUrl).origin:globalThis.location?.origin))fail('备份只能绑定当前实际服务地址。','ORIGIN_MISMATCH');
+    const actor=identity(),epoch=identityGeneration;
+    const verified=await api.request('/session',{namespace:'avatar',token:actor.token}).catch(error=>{report(error,actor.token);throw error;});
+    if(verified.user?.id!==actor.user.id||syncStoredIdentity()||epoch!==identityGeneration)fail('核对期间身份已变化，没有导出备份。','IDENTITY_CHANGED');
+    const result=await encryptIdentityBackup({token:actor.token,user:verified.user},password,{origin});
+    if(syncStoredIdentity()||epoch!==identityGeneration)fail('加密期间身份已变化，没有导出备份。','IDENTITY_CHANGED');
+    return result;
+  }
+  async function restoreIdentityBackup(text,password,{consent,signal,origin=globalThis.location?.origin}={}) {
+    assertLive();if(consent!==true)fail('请明确同意核对后替换本浏览器身份。','RESTORE_CONSENT_REQUIRED');
+    if(origin!==(options.baseUrl?new URL(options.baseUrl).origin:globalThis.location?.origin))fail('恢复只能使用当前实际服务地址。','ORIGIN_MISMATCH');
+    const previous=storage?.getItem(SESSION_KEY),epoch=identityGeneration;
+    const restored=await decryptIdentityBackup(text,password,{origin});
+    if(signal?.aborted)fail('已取消恢复，当前身份没有改变。','ABORTED');
+    const result=await api.request('/session',{namespace:'avatar',token:restored.token,signal});
+    if(result.user?.id!==restored.actorId)fail('服务没有认可这份身份，当前身份没有改变。','IDENTITY_INVALID');
+    if(signal?.aborted||disposed||epoch!==identityGeneration||storage?.getItem(SESSION_KEY)!==previous)fail('浏览器身份已变化或恢复已取消，没有替换身份。','IDENTITY_CHANGED');
+    storage.setItem(SESSION_KEY,JSON.stringify({token:restored.token,user:result.user}));
+    syncStoredIdentity();return {restored:true};
+  }
+  async function communityRequest(path, {method='GET',data,key,signal}={}) {
+    if(!/^\/(?:communities(?:\/preview\/[A-Z2-7]{12})?|(?:rooms|communities)\/[0-9a-f-]{36}\/(?:community|greetings|conversation(?:\/(?:join|leave|settings|messages|read|members\/[0-9a-f-]{36}|messages\/[0-9a-f-]{36}))?))(?:\?before=[0-9a-f-]{36})?$/.test(path))fail('社群路径无效。');
+    const actor=identity(),epoch=identityGeneration;
+    try {const result=await api.request(path,{method,bodyJson:data===undefined?undefined:JSON.stringify(data),token:actor.token,key,signal});syncStoredIdentity();if(disposed||epoch!==identityGeneration||identity().user.id!==actor.user.id)fail('身份已变化，旧内容不会显示。','TARGET_CHANGED');return result;}
+    catch(error){syncStoredIdentity();report(error,actor.token,epoch===identityGeneration);throw error;}
+  }
   function dispose() { if (disposed) return; disposed = true; generation++; identityGeneration++; for (const abort of reads.values()) abort.abort(); for (const entry of running.values()) entry.abort.abort(); listeners.clear(); }
   return { getState, subscribe(listener) { assertLive(); listeners.add(listener); listener(getState()); return () => listeners.delete(listener); },
     connect, syncStoredIdentity, establishIdentity, saveProfile, setDraft, previewRoom, createRoom, joinRoom, openRoom, refreshRoom, setParticipation, uploadPhoto, setPhotoVisibility, removePhoto, withdrawPhoto,
     leaveRoom, closeRoom, loadMyRooms: options => loadList('rooms', options), loadMyPhotos: options => loadList('photos', options), loadRoomRecap, refreshRoomRecap, clearRoomRecap, fetchPhotoBlob,
     loadSocial, loadSocialPeer, sendGreeting, acceptGreeting: (id, options) => respondGreeting('acceptGreeting', id, options), rejectGreeting: (id, options) => respondGreeting('rejectGreeting', id, options),
     cancelGreeting: (id, options) => respondGreeting('cancelGreeting', id, options), removeFriend, blockUser, unblockUser,
-    retry, cancel, cancelNavigation, reviewOperation, dispose };
+    exportIdentityBackup, restoreIdentityBackup, communityRequest, retry, cancel, cancelNavigation, reviewOperation, dispose };
 }

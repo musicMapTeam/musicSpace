@@ -1,10 +1,16 @@
 # 当前进展 · 2026-10-01
 
+## 发布完成 · 2026-10-02
+
+[PR #3](https://github.com/musicMapTeam/musicSpace/pull/3) 已于 00:10:44 UTC 合并，发行源码提交 `217f14424253b8e6adf6781f40bdce9d33da3663`。[main CI](https://github.com/musicMapTeam/musicSpace/actions/runs/36944672561) 的全入口构建、AI 检查、旧功能测试、621 项完整测试、角色几何检查、运行包、Docker 构建与发行步骤通过。
+
+[0.17.0-rc.1 Release](https://github.com/musicMapTeam/musicSpace/releases/tag/v0.17.0-rc.1) 于 00:12:15 UTC 发布，明确标注为预发布，标签指向上述提交。资产包括运行包与 SHA256SUMS.txt；运行包 12,960,122 字节、43 个文件，SHA256 `3751e97d87ce7408115433bab48759feb7e6de73213ca6f7cea86f1f96c3d24b`，manifest 绑定发行源码提交。没有新建公网服务，旧 gh-pages 保持原样；这不代表生产上线。
+
 源码集成与 CI 记录：[PR #3](https://github.com/musicMapTeam/musicSpace/pull/3)。发行资产和最终发行状态以 [0.17.0-rc.1 预发布](https://github.com/musicMapTeam/musicSpace/releases/tag/v0.17.0-rc.1) 为准；这里的预发布不表示生产上线，旧 GitHub Pages 保持原样。
 
 版本 **0.17.0-rc.1**。场次功能源码来自完整 Library 快照 eb0223f（清单 321 文件哈希全部一致），运行功能冻结在 996e78a；本轮补齐部署、CI 和交付文档。有限浏览器验收与 90.4 秒真实正常演示已完成，详见 [检查记录](release/0.17.0-rc.1.md)。这不是全面生产验收。
 
-## Doing · 预发布工程收尾
+## Done · 预发布工程收尾
 
 负责人：Codex。写入范围：Dockerfile、compose.yaml、package.json/lock、.github/workflows/build.yml、scripts/release/、scripts/test/release-suite.mjs、README/RUN-ME/AGENTS、docs/deployment.md、docs/release/、当前状态与三份产品文档。用户授权草稿 PR、检查通过后合并及标注预发布的 Release。新公网部署、创建账号/凭据或付费服务需先说明条件；旧 gh-pages 和 Music Map 不在本次写入范围。
 

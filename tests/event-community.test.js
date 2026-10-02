@@ -177,3 +177,52 @@ test('Node music additive migration preserves a 0007 conversation and restores t
  const messages=(await f.request(path+'/messages',{token:b.token})).body.messages;assert.equal(messages[0].id,old.body.messageId);assert.equal(messages[0].text,'Before music references');assert.equal(messages[0].music,null);
  assert.equal((await f.request(path+'/messages',{token:a.token,method:'POST',data:{text:'After migration',musicId:'real-bu-gai'}})).status,201);
 });
+
+for(const mode of ['Node','Worker'])test(mode+' album worldcup: explicit synthetic votes, ties, advancement, result and persistent private ballots',async t=>{
+ const f=await fixture(t,mode),{a,b,room}=await f.two(),outside=await f.session('Outside'),conversation='/rooms/'+room.id+'/conversation',collection='/rooms/'+room.id+'/worldcups';
+ assert.equal((await f.request(collection,{token:a.token,method:'POST',data:{title:'Synthetic albums',createConsent:true}})).status,403);
+ for(const actor of[a,b])await f.request(conversation+'/join',{token:actor.token,method:'POST',data:{joinConsent:true}});
+ assert.equal((await f.request(collection,{token:a.token,method:'POST',data:{title:'Synthetic albums'}})).status,400);
+ const cup=(await f.request(collection,{token:a.token,method:'POST',data:{title:'Synthetic albums',createConsent:true}})).body.worldcup,path='/worldcups/'+cup.id;
+ assert.equal(cup.fictional,true);assert.equal((await f.request(path,{token:outside.token})).status,403);
+ const read=async actor=>(await f.request(path,{token:actor.token})).body;
+ const vote=(m,actor,album,key=randomUUID())=>f.request(path+'/matches/'+m.id+'/vote',{token:actor.token,method:'POST',key,data:{revision:m.revision,albumId:album,voteConsent:true}});
+ const advance=(m,actor=a,extra={},key=randomUUID())=>f.request(path+'/matches/'+m.id+'/advance',{token:actor.token,method:'POST',key,data:{revision:m.revision,advanceConsent:true,...extra}});
+ let state=await read(a);assert.equal(state.matches.length,2);assert.ok(state.matches.every(m=>m.left.fictional&&m.right.fictional&&m.leftCount+m.rightCount===0));
+ assert.equal((await advance(state.matches[0])).status,409);
+ const m=state.matches[0],key=randomUUID(),pair=await Promise.all([vote(m,a,m.left.id,key),vote(m,a,m.left.id,key)]);assert.ok(pair.every(r=>r.status===200));
+ assert.equal((await vote(m,a,m.right.id)).status,409);assert.equal((await vote(m,b,m.right.id)).status,200);
+ assert.equal((await advance(m,b)).status,403);assert.equal((await advance(m)).status,400);assert.equal((await advance(m,a,{tieWinner:m.left.id,tieReason:'Synthetic host tie decision'})).status,200);
+ assert.equal((await vote(m,a,m.left.id,key)).status,200);assert.equal((await vote(m,b,m.left.id)).status,409);
+ let other=state.matches[1];await vote(other,a,other.left.id);await vote(other,b,other.left.id);const advanceKey=randomUUID(),advances=await Promise.all([advance(other,a,{},advanceKey),advance(other,a,{},advanceKey)]);assert.ok(advances.every(r=>r.status===200));
+ state=await read(a);assert.equal(state.matches.length,3);assert.equal(state.matches[0].leftCount,1);assert.equal(state.matches[0].rightCount,1);assert.equal(state.matches[0].tieReason,'Synthetic host tie decision');assert.equal(state.matches[1].leftCount,2);assert.equal(state.matches[2].left.id,m.left.id);assert.equal(state.matches[2].right.id,other.left.id);
+ const final=state.matches[2];await vote(final,a,final.left.id);await vote(final,b,final.right.id);assert.equal((await advance(final,a,{tieWinner:final.right.id,tieReason:'Another explicit tie decision'})).status,200);
+ await f.restart();state=await read(b);assert.equal(state.completed,true);assert.equal(state.matches[2].winner.id,final.right.id);assert.equal(state.matches[2].myVote,final.right.id);assert.equal(state.matches[0].myVote,m.right.id);assert.equal(JSON.stringify(state).includes(a.token),false);assert.equal('voters' in state.matches[2],false);
+});
+
+for(const mode of ['Node','Worker'])test(mode+' album worldcup: conflicting concurrent votes, blocks, exit and closed-show participation',async t=>{
+ const f=await fixture(t,mode),{a,b,room}=await f.two(),conversation='/rooms/'+room.id+'/conversation';for(const actor of[a,b])await f.request(conversation+'/join',{token:actor.token,method:'POST',data:{joinConsent:true}});
+ const cup=(await f.request('/rooms/'+room.id+'/worldcups',{token:a.token,method:'POST',data:{title:'Synthetic concurrency',createConsent:true}})).body.worldcup,path='/worldcups/'+cup.id,state=(await f.request(path,{token:b.token})).body,m=state.matches[0];
+ const vote=(actor,album)=>f.request(path+'/matches/'+m.id+'/vote',{token:actor.token,method:'POST',data:{revision:m.revision,albumId:album,voteConsent:true}});
+ assert.equal((await vote(b,'not-an-album')).status,400);const attempts=await Promise.all([vote(b,m.left.id),vote(b,m.right.id)]);assert.equal(attempts.filter(r=>r.status===200).length,1);let current=(await f.request(path,{token:b.token})).body;assert.equal(current.matches[0].leftCount+current.matches[0].rightCount,1);
+ await f.block(a,b);assert.equal((await f.request(path,{token:b.token})).status,403);assert.equal((await vote(b,m.left.id)).status,403);await f.unblock(a,b,(await f.social(a)).blocks[0].revision);
+ await f.block(b,a);assert.equal((await f.request(path,{token:b.token})).status,403);await f.unblock(b,a,(await f.social(b)).blocks[0].revision);
+ let member=(await f.request(conversation,{token:b.token})).body.conversation;await f.request(conversation+'/leave',{token:b.token,method:'POST',data:{revision:member.revision}});assert.equal((await f.request(path,{token:b.token})).status,403);assert.equal((await f.request('/rooms/'+room.id+'/worldcups',{token:b.token})).status,403);
+ await f.request(conversation+'/join',{token:b.token,method:'POST',data:{joinConsent:true}});await f.request('/rooms/'+room.id+'/close',{token:a.token,method:'POST',data:{revision:room.revision}});f.advance(2*86400000);assert.equal((await vote(a,m.left.id)).status,200);assert.equal((await f.request(path,{token:b.token})).status,200);
+});
+
+test('Worker worldcup: a new ballot during advancement rejects the stale count snapshot',async t=>{
+ const f=await fixture(t),{a,b,room}=await f.two(),conversation='/rooms/'+room.id+'/conversation';for(const actor of[a,b])await f.request(conversation+'/join',{token:actor.token,method:'POST',data:{joinConsent:true}});
+ const cup=(await f.request('/rooms/'+room.id+'/worldcups',{token:a.token,method:'POST',data:{title:'Synthetic race',createConsent:true}})).body.worldcup,path='/worldcups/'+cup.id,m=(await f.request(path,{token:a.token})).body.matches[0];
+ const vote=actor=>f.request(path+'/matches/'+m.id+'/vote',{token:actor.token,method:'POST',data:{revision:m.revision,albumId:actor===a?m.left.id:m.right.id,voteConsent:true}});await vote(a);
+ let release,signal;const gate=new Promise(r=>release=r),started=new Promise(r=>signal=r),original=f.env.DB.batch.bind(f.env.DB);f.env.DB.batch=async statements=>{if(statements.some(s=>s.query.startsWith('UPDATE event_worldcup_matches SET winner_id'))){signal();await gate;}return original(statements);};
+ const advancing=f.request(path+'/matches/'+m.id+'/advance',{token:a.token,method:'POST',data:{revision:m.revision,advanceConsent:true}});await started;assert.equal((await vote(b)).status,200);release();assert.equal((await advancing).status,409);
+ const state=(await f.request(path,{token:a.token})).body;assert.equal(state.matches[0].winner,null);assert.equal(state.matches[0].leftCount,1);assert.equal(state.matches[0].rightCount,1);
+});
+
+for(const mode of ['Node','Worker'])test(mode+' worldcup: concurrent different first-round advancements create one final',async t=>{
+ const f=await fixture(t,mode),{a,room}=await f.two(),conversation='/rooms/'+room.id+'/conversation';await f.request(conversation+'/join',{token:a.token,method:'POST',data:{joinConsent:true}});
+ const cup=(await f.request('/rooms/'+room.id+'/worldcups',{token:a.token,method:'POST',data:{title:'Synthetic parallel brackets',createConsent:true}})).body.worldcup,path='/worldcups/'+cup.id,matches=(await f.request(path,{token:a.token})).body.matches;
+ for(const m of matches)await f.request(path+'/matches/'+m.id+'/vote',{token:a.token,method:'POST',data:{revision:m.revision,albumId:m.left.id,voteConsent:true}});
+ const responses=await Promise.all(matches.map(m=>f.request(path+'/matches/'+m.id+'/advance',{token:a.token,method:'POST',data:{revision:m.revision,advanceConsent:true}})));assert.ok(responses.every(r=>r.status===200));const current=(await f.request(path,{token:a.token})).body;assert.equal(current.matches.length,3);assert.equal(current.matches.filter(m=>m.ordinal===2).length,1);
+});

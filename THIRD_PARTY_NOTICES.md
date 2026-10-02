@@ -1,5 +1,9 @@
 # Third-party notices and visual-asset provenance
 
+## Fictional album game (2026-10-02)
+
+The four album and band names in `runtime-preview/src/worldcup-albums.js` are fictional. Their typographic cover designs are original CSS created for this project on 2026-10-02. No recordings, lyrics, cover images, artist photographs or external assets were copied. Vote totals are generated from actual participant requests, not seeded popularity. See `docs/event/WORLDCUP-RULES.md`.
+
 ## Music Map factual bridge (2026-10-02)
 
 Four public recording titles, credited performers, stable exploration IDs and source links were checked against musicMapTeam/musicMap commit `c626c0e54de1f5ea362710f1e47bacd8c09aa804`, `web/js/map-catalogue.js`. The source records carry their original 2026-09-27 verification date. This bridge does not copy repository code, audio, lyrics, cover artwork or dataset assets. The SVG relationship diagram and music-card CSS are original work. No blanket license for the original repository or unknown dataset assets is inferred. See `docs/event/MUSIC-BRIDGE-AUDIT.md` for the exact read scope and exclusions.

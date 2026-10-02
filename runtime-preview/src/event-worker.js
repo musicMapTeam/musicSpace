@@ -1,4 +1,5 @@
 import {handleEventCommunity} from './event-community.js';
+import {handleEventWorldCup} from './event-worldcup.js';
 import {handleEventParticipation,participationMode} from './event-participation.js';
 import { createHash, randomBytes, randomUUID } from 'node:crypto';
 import { Buffer } from 'node:buffer';
@@ -156,6 +157,8 @@ export function createEventWorker({ clock = Date.now, rateLimits = true } = {}) 
         if (plan.removeKey) await removeUnreferenced(plan.removeKey);
         return json(plan.status || 200, plan.body);
       }
+      const worldcupResponse=await handleEventWorldCup({request,path,method,user,db,stmt,get,now,rate,mutate,readJSON,keys,revision,fail,json});
+      if(worldcupResponse)return worldcupResponse;
       const communityResponse=await handleEventCommunity({request,path,method,user,db,stmt,get,now,rate,mutate,readJSON,keys,revision,fail,json});
       if(communityResponse)return communityResponse;
       const participationResponse=await handleEventParticipation({request,path,method,user,stmt,get,now,mutate,readJSON,keys,revision,fail,json});

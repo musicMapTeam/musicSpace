@@ -64,6 +64,13 @@
       "idx": 8,
       "when": 1790966400000,
       "tag": "0008_event_music"
+    },
+    {
+      "tag": "0009_event_worldcup",
+      "version": "6",
+      "idx": 9,
+      "when": 1790966400001,
+      "breakpoints": true
     }
   ]
 }

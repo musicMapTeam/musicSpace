@@ -40,6 +40,7 @@ function harness(start=initial(),url='https://musicspace.test/event/') {
   const context=vm.createContext({console,document:doc,window,location,history,navigator:{clipboard:{writeText:async()=>{}}},URL:SafeURL,Blob,
     createIdentityContinuityPanel:()=>({open(){},close(){},dispose(){}}),
     createCommunityPanel:()=>({open:async value=>calls.push(["communityOpen",clone(value)]),close(){},syncIdentity(){},dispose(){}}),
+    createWorldCupPanel:()=>({open:async value=>calls.push(["worldcupOpen",clone(value)]),close(){},syncIdentity(){},dispose(){}}),
     createModerationPanel:options=>({openReports:async()=>calls.push(['myFeedback']),openManagement:async id=>calls.push(['manageRoom',id]),openFeedback:(target,options)=>calls.push(['feedback',clone(target),options===undefined?undefined:clone(options)]),close(){},syncIdentity(){},refresh:async()=>{},dispose(){}}),
     createExchangePanel:options=>({open:async id=>calls.push(['exchangeOpen',id]),openOffer:async p=>calls.push(['exchangeOffer',clone(p)]),close(){},syncIdentity(){},refresh:async()=>{},invalidate:scope=>calls.push(['exchangeInvalidate',clone(scope)]),getState:()=>({}),dispose(){}}),
     matchMedia:()=>({matches:true,addEventListener(){}}),setTimeout:(callback,delay)=>{const id=++nextTimer;timers.set(id,{callback,delay});return id;},clearTimeout:id=>timers.delete(id),createEventController:()=>controller,mountLivehouseScene:()=>engine,

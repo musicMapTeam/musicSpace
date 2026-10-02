@@ -1,3 +1,4 @@
+import {invitation,previewPath} from '../../runtime-preview/src/admission-protocol.js';
 import {encryptIdentityBackup,decryptIdentityBackup} from './identity-backup.js';
 import { createEventApiClient, EventClientError } from './api.js';
 
@@ -200,9 +201,9 @@ export function createEventController(options = {}) {
     }, () => epoch === identityGeneration && token === session?.token, token);
   }
   async function previewRoom(value) {
-    const code = String(value).trim().toUpperCase(); if (!CODE.test(code)) fail('请输入 12 位现场邀请码。');
+    let target; try { target=invitation(value,{base:globalThis.location?.href,kind:'room'}); } catch(error) { fail(error.message); } const code=target.code;
     const gen = navigate('preview', code);
-    return read('navigation', signal => api.request('/preview/' + code, { signal }), result => { state.preview = result.preview; }, () => gen === generation);
+    return read('navigation', signal => api.request(previewPath(target), { signal }), result => { state.preview = result.preview; }, () => gen === generation);
   }
   function reconcilePhotos(incoming, since, roomId = null) {
     const result = new Map(incoming.map(p => [p.id, p]));

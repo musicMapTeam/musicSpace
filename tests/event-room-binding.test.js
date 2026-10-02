@@ -1,5 +1,6 @@
 // Execute the real UI binding with a bounded DOM/controller shell. These are
 // callback, state and resource-lifetime checks, NOT browser/WebGL/visual QA.
+import {invitation,invitationUrl,nfcInvitation} from '../runtime-preview/src/admission-protocol.js';
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -38,7 +39,7 @@ function harness(start=initial(),url='https://musicspace.test/event/') {
   const location=new URL(url),history={replaceState(_a,_b,next){location.href=String(next);}};
   const engine={ready:Promise.resolve(),update(){},goTo(){},getState:()=>({view:'overview'}),setReducedMotion(){},dispose(){},pick(){return null;}};
   const context=vm.createContext({console,document:doc,window,location,history,navigator:{clipboard:{writeText:async()=>{}}},URL:SafeURL,Blob,
-    createIdentityContinuityPanel:()=>({open(){},close(){},dispose(){}}),
+    invitation,invitationUrl,nfcInvitation,createIdentityContinuityPanel:()=>({open(){},close(){},dispose(){}}),
     createCommunityPanel:()=>({open:async value=>calls.push(["communityOpen",clone(value)]),close(){},syncIdentity(){},dispose(){}}),
     createWorldCupPanel:()=>({open:async value=>calls.push(["worldcupOpen",clone(value)]),close(){},syncIdentity(){},dispose(){}}),
     createModerationPanel:options=>({openReports:async()=>calls.push(['myFeedback']),openManagement:async id=>calls.push(['manageRoom',id]),openFeedback:(target,options)=>calls.push(['feedback',clone(target),options===undefined?undefined:clone(options)]),close(){},syncIdentity(){},refresh:async()=>{},dispose(){}}),
@@ -49,7 +50,7 @@ function harness(start=initial(),url='https://musicspace.test/event/') {
   });
   const code=source.replace(/^import .*;$/gm,'').replace('void boot();','');
   vm.runInContext(code+`\nglobalThis.binding={setReady:value=>{ready=value;},scenePicked,openPanel,closePanel,synchronizePhotos,boot,saveWardrobeProfile,setWardrobeReturn:value=>{wardrobeReturn=value;},get:()=>({state,panelKind,panelTarget,detailEpoch,photoDraft,photoInputGeneration,formBusy,photoScope,urls:[...urls]}),setPhotoDraft:value=>{photoDraft=value;},cache:(id,url,revision=1)=>urls.set(id,{url,revision})};`,context,{filename:'event-room-ui-binding.vm.js'});
-  return {engine,controller,calls,revoked,emit,document:doc,element:get,async runPoll(){const entry=[...timers].find(([,t])=>t.delay===5000);assert.ok(entry,'visible poll is scheduled');timers.delete(entry[0]);await entry[1].callback();await tick();},async setVisible(value){doc.hidden=!value;for(const fn of doc.events.get('visibilitychange')||[])fn();await tick();},async focusWindow(){for(const fn of window.events.get('focus')||[])fn();await tick();},async storageChanged(key){for(const fn of window.events.get('storage')||[])fn({key});await tick();},async online(){for(const fn of window.events.get('online')||[])fn();await tick();},get:()=>context.binding.get(),binding:context.binding,body:get('#panel-body'),panel:get('#panel'),
+  return {engine,controller,calls,revoked,emit,window,document:doc,element:get,async runPoll(){const entry=[...timers].find(([,t])=>t.delay===5000);assert.ok(entry,'visible poll is scheduled');timers.delete(entry[0]);await entry[1].callback();await tick();},async setVisible(value){doc.hidden=!value;for(const fn of doc.events.get('visibilitychange')||[])fn();await tick();},async focusWindow(){for(const fn of window.events.get('focus')||[])fn();await tick();},async storageChanged(key){for(const fn of window.events.get('storage')||[])fn({key});await tick();},async online(){for(const fn of window.events.get('online')||[])fn();await tick();},get:()=>context.binding.get(),binding:context.binding,body:get('#panel-body'),panel:get('#panel'),
     async click(dataset){const button={dataset,closest(selector){return selector==='button'?this:null;}};for(const fn of doc.events.get('click')||[])await fn({target:button});await tick();},
     submit(kind,values={},dataset={}){const form={dataset:{form:kind,...dataset},values,setAttribute(){},removeAttribute(){},querySelectorAll:()=>[]};for(const fn of get('#panel-body').events.get('submit')||[])fn({preventDefault(){},target:form});return form;},
     input(form,name,value){const target={name,value,closest:()=>form};for(const fn of get('#panel-body').events.get('input')||[])fn({target});},
@@ -477,3 +478,15 @@ test('late memory refresh cannot reset a newer explicit selection after leaving 
  const theirs={...photo(2),ownerId:otherId,visibility:'members'};const h=harness(initial({room:room(),route:{kind:'room',target:roomId},photos:[theirs],members:[{id:actor,name:'Me',avatar:DEFAULT_AVATAR},peer],social:socialState()}));h.binding.setReady(true);let arrival=defer();h.engine.goTo=()=>arrival.promise;h.binding.openPanel('photo',theirs.id);await h.click({photoAuthor:theirs.id});assert.equal(h.get().panelKind,null,'card does not obscure the moving camera');arrival.resolve(true);await tick();await tick();assert.equal(h.get().panelKind,'person');assert.equal(h.element('#context-actions').hidden,true,'author card replaces duplicate context action');
  h.binding.closePanel();arrival=defer();h.engine.goTo=()=>arrival.promise;h.binding.openPanel('photo',theirs.id);await h.click({photoAuthor:theirs.id});h.element('#back').onclick();arrival.resolve(false);await tick();await tick();assert.equal(h.get().panelKind,null,'back cancels the old author presentation');
  });
+
+
+test('NFC requires an explicit click, uses the invitation URL once and cancels on closing',async()=>{
+ const h=harness(initial({room:room(),route:{kind:'room',target:roomId}}));let writes=[];
+ h.window.NDEFReader=class {write(message,options){writes.push({message,options});return new Promise((_yes,no)=>options.signal.addEventListener('abort',()=>no(Object.assign(new Error('Cancelled'),{name:'AbortError'}))));}};
+ h.binding.openPanel('room');assert.equal(writes.length,0);
+ await h.click({writeNfc:''});await h.click({writeNfc:''});assert.equal(writes.length,1);
+ assert.equal(writes[0].message.records[0].data,'https://musicspace.test/event/?room=AAAAAAAAAAAA');
+ h.binding.closePanel();assert.equal(writes[0].options.signal.aborted,true);await tick();
+});
+
+test('manual admission accepts a complete invitation address without truncation',()=>{const h=harness();h.binding.openPanel('entry');assert.match(h.body.innerHTML,/input name="code" maxlength="2048"/);});

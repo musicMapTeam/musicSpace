@@ -237,3 +237,5 @@ The current video captures actual application operations using Playwright's nati
 
 - `web/avatar/three-scene.js`: original procedural geometry, articulated wardrobes and scenes. Reuses the repository's existing Three.js and Sakura Crossing cel/depth-ink modules with their unchanged MIT notices; no vendor modifications. Same camera/state/postprocessing are used for live preview and capture.
 - Six wardrobe concepts are original reference-informed designs. The user's source reference image is not redistributed. The authored 2D fallback and actual 3D meshes are distinguished in UI and validation records.
+
+The admission protocol, QR/NDEF/GATT adapter source and invitation UI added on 2026-10-02 are original project code. Android/iOS API documentation is referenced in docs/event/ADMISSION-PROTOCOL.md; no mobile SDK, radio service, external asset or copied third-party implementation was added. Native adapters have not been compiled or tested on hardware.

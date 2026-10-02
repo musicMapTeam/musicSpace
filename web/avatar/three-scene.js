@@ -967,7 +967,7 @@ export function mountToonScene(container, initialState = {}) {
       const targetY=(top+bottom)/2-(height/2-(safeTop+safeBottom)/2)*(2*halfFov*distance)/height;
       return {position:new THREE.Vector3(6.79-distance,targetY+.33,photoWallCenterZ+.15),target:new THREE.Vector3(6.79,targetY,photoWallCenterZ)};
     }
-    const overview=overviewCameraLayout(livePeople.size,portraitAspect);
+    const overview=overviewCameraLayout(livePeople.size,portraitAspect,height);
     return {position:new THREE.Vector3(...overview.position),target:new THREE.Vector3(...overview.target)};
   }
   function getState(){return {scene:liveMode?{...liveRoomSummary,peopleCount:livePeople.size,venueAsset:{...venueStatus}}:undefined,view:liveView,id:livePersonId,personId:livePersonId,moving:!!cameraMove,mode:liveMode?'livehouse':'avatar',camera:{type:camera.type,projection:camera.isPerspectiveCamera?'perspective':'orthographic',position:camera.position.toArray(),target:cameraLook.toArray(),fov:camera.fov??null,aspect:width/height}};}

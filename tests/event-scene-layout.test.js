@@ -46,3 +46,8 @@ test('desktop close framing keeps two/four/eight actual people inside the readin
  const width=390,height=844,shot=overviewCameraLayout(2,true),camera=new THREE.PerspectiveCamera(43,width/height,.08,90);camera.position.set(...shot.position);camera.lookAt(...shot.target);camera.updateMatrixWorld();
  for(const [x,,z]of memberFloorPositions(2,true)){const head=new THREE.Vector3(x,3.24,z).project(camera),foot=new THREE.Vector3(x,0,z).project(camera);assert.ok((1-head.y)*height/2>190,'heads clear room metadata');assert.ok((1-foot.y)*height/2<570,'feet clear the memory dock');}
  });
+
+ test('short mobile overview keeps the full two-person silhouette above the compact 44px action dock',()=>{
+ const width=320,height=568,shot=overviewCameraLayout(2,true,height),camera=new THREE.PerspectiveCamera(43,width/height,.08,90);camera.position.set(...shot.position);camera.lookAt(...shot.target);camera.updateMatrixWorld();
+ for(const [x,,z]of memberFloorPositions(2,true)){const head=new THREE.Vector3(x,3.24,z).project(camera),foot=new THREE.Vector3(x,0,z).project(camera);assert.ok((1-head.y)*height/2>130,'head clears room title');assert.ok((1-foot.y)*height/2<350,'feet clear compact action dock');}
+ });

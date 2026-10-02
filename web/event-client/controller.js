@@ -648,11 +648,17 @@ export function createEventController(options = {}) {
     try {const result=await api.request(path,{method,bodyJson:data===undefined?undefined:JSON.stringify(data),token:actor.token,key,signal});syncStoredIdentity();if(disposed||epoch!==identityGeneration||identity().user.id!==actor.user.id)fail('身份已变化，旧内容不会显示。','TARGET_CHANGED');return result;}
     catch(error){syncStoredIdentity();report(error,actor.token,epoch===identityGeneration);throw error;}
   }
+  async function cornerRequest(path,{method='GET',data,key,signal,blob=false}={}) {
+    if(!/^\/corners(?:\/[0-9a-f-]{36}(?:\/(?:join|contribution|confirm|save|withdraw|photos\/[0-9a-f-]{36}\/image))?)?$/.test(path)||!['GET','POST'].includes(method)||blob&&(method!=='GET'||!path.endsWith('/image')))fail('共同创作路径无效。');
+    const actor=identity(),epoch=identityGeneration;
+    try{const result=await api.request(path,{method,bodyJson:data===undefined?undefined:JSON.stringify(data),token:actor.token,key,signal,blob});syncStoredIdentity();if(disposed||epoch!==identityGeneration||identity().user.id!==actor.user.id)fail('身份已变化，旧创作内容不再显示。','TARGET_CHANGED');return result;}
+    catch(error){syncStoredIdentity();report(error,actor.token,epoch===identityGeneration);throw error;}
+  }
   function dispose() { if (disposed) return; disposed = true; generation++; identityGeneration++; for (const abort of reads.values()) abort.abort(); for (const entry of running.values()) entry.abort.abort(); listeners.clear(); }
   return { getState, subscribe(listener) { assertLive(); listeners.add(listener); listener(getState()); return () => listeners.delete(listener); },
     connect, syncStoredIdentity, establishIdentity, saveProfile, setDraft, previewRoom, createRoom, joinRoom, openRoom, refreshRoom, setParticipation, uploadPhoto, setPhotoVisibility, removePhoto, withdrawPhoto,
     leaveRoom, closeRoom, loadMyRooms: options => loadList('rooms', options), loadMyPhotos: options => loadList('photos', options), loadRoomRecap, refreshRoomRecap, clearRoomRecap, fetchPhotoBlob,
     loadSocial, loadSocialPeer, sendGreeting, acceptGreeting: (id, options) => respondGreeting('acceptGreeting', id, options), rejectGreeting: (id, options) => respondGreeting('rejectGreeting', id, options),
     cancelGreeting: (id, options) => respondGreeting('cancelGreeting', id, options), removeFriend, blockUser, unblockUser,
-    exportIdentityBackup, restoreIdentityBackup, communityRequest, retry, cancel, cancelNavigation, reviewOperation, dispose };
+    exportIdentityBackup, restoreIdentityBackup, communityRequest, cornerRequest, retry, cancel, cancelNavigation, reviewOperation, dispose };
 }

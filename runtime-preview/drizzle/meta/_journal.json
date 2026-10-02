@@ -71,6 +71,13 @@
       "idx": 9,
       "when": 1790966400001,
       "breakpoints": true
+    },
+    {
+      "tag": "0010_event_corners",
+      "version": "6",
+      "idx": 10,
+      "when": 1790966400002,
+      "breakpoints": true
     }
   ]
 }

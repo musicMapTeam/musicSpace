@@ -300,3 +300,9 @@ test('event operation journal: unavailable durable storage prevents a new photo 
  await assert.rejects(c.uploadPhoto(photoData().dataUrl,'private',{roomId:room.id}),e=>e.code==='STORAGE_REQUIRED');assert.equal(posts,0);assert.equal(c.getState().dirty.photo,true);assert.equal(c.getState().pending[0].durable,false);
  a.storage.setItem=save;await c.retry(c.getState().pending[0].id);assert.equal(posts,1);await c.loadMyPhotos();assert.equal(c.getState().myPhotos.items.length,1);
 });
+test('corner transport rejects unrelated paths and discards a response after stored identity is removed',async t=>{
+ const f=await fixture(t),storage=localStore();let signal,release,pause=false;const started=new Promise(r=>signal=r),gate=new Promise(r=>release=r);const {c}=f.client({storage,fetch:async(...args)=>{const response=await fetch(...args);if(pause&&String(args[0]).endsWith('/api/event/corners')){signal();await gate;}return response;}});
+ await c.connect();await c.establishIdentity(profile('Corner viewer'));
+ await assert.rejects(c.cornerRequest('/social'),/路径/);await assert.rejects(c.cornerRequest('/corners',{blob:true}),/路径/);
+ pause=true;const pending=c.cornerRequest('/corners');await started;storage.removeItem(SESSION_KEY);c.syncStoredIdentity();release();await assert.rejects(pending,e=>e.code==='TARGET_CHANGED');assert.equal(c.getState().identity.status,'lost');
+});

@@ -239,3 +239,79 @@ for(const mode of ['Node','Worker'])test(mode+' native admission: preview never 
  const outside=await f.session('Admission outside');assert.equal((await f.request(route+'/join',{method:'POST',token:outside.token,data})).status,409);
  await f.restart();assert.equal((await f.request('/rooms/'+room.id,{token:b.token})).status,200);
 });
+for(const mode of ['Node','Worker']){
+ test(mode+' creation corner: explicit participants, own material, both confirmations and separate persistent saves',async t=>{
+  const f=await fixture(t,mode),{a,b,room}=await f.friends(),outside=await f.session('Corner outside'),photo=await f.upload(room,a,'private');
+  assert.equal((await f.request('/corners',{method:'POST',token:a.token,data:{peerId:outside.user.id,participationConsent:true}})).status,403);
+  assert.equal((await f.request('/corners',{method:'POST',token:a.token,data:{peerId:b.user.id,participationConsent:false}})).status,400);
+  const created=await f.request('/corners',{method:'POST',token:a.token,data:{peerId:b.user.id,participationConsent:true}});assert.equal(created.status,201);const id=created.body.cornerId,path='/corners/'+id,read=actor=>f.request(path,{token:actor.token});
+  assert.equal((await read(b)).body.contributions.length,0);assert.equal((await read(outside)).status,404);
+  assert.equal((await f.request(path+'/contribution',{method:'POST',token:a.token,data:{revision:1,note:'Not yet',photoId:photo.id,shareConsent:true}})).status,403);
+  assert.equal((await f.request(path+'/join',{method:'POST',token:a.token,data:{revision:1,participationConsent:true}})).status,403);
+  assert.equal((await f.request(path+'/join',{method:'POST',token:b.token,data:{revision:1,participationConsent:false}})).status,400);
+  const key=randomUUID(),join={method:'POST',token:b.token,data:{revision:1,participationConsent:true},key};assert.equal((await f.request(path+'/join',join)).status,200);assert.equal((await f.request(path+'/join',join)).status,200);
+  assert.equal((await read(a)).body.corner.revision,2);
+  assert.equal((await f.request(path+'/contribution',{method:'POST',token:b.token,data:{revision:2,note:'Fake own photo',photoId:photo.id,shareConsent:true}})).status,404);
+  assert.equal((await f.request(path+'/contribution',{method:'POST',token:a.token,data:{revision:2,note:'Our other side',photoId:photo.id,shareConsent:true,userId:b.user.id}})).status,400);
+  assert.equal((await f.request(path+'/contribution',{method:'POST',token:a.token,data:{revision:2,note:'Our other side',photoId:photo.id,shareConsent:true}})).status,200);
+  let view=(await read(b)).body;assert.equal(view.corner.revision,3);assert.equal(view.contributions.find(d=>d.userId===a.user.id).photo.id,photo.id);
+  const image=path+'/photos/'+photo.id+'/image';assert.equal((await f.request(image,{token:b.token})).status,200);assert.equal((await f.request('/photos/'+photo.id+'/image',{token:b.token})).status,404);assert.equal((await f.request(image,{token:outside.token})).status,404);
+  assert.equal((await f.request(path+'/save',{method:'POST',token:a.token,data:{revision:3,saveConsent:true}})).status,409);
+  assert.equal((await f.request(path+'/confirm',{method:'POST',token:a.token,data:{revision:3,consent:false}})).status,400);
+  for(const actor of[a,b])assert.equal((await f.request(path+'/confirm',{method:'POST',token:actor.token,data:{revision:3,consent:true}})).status,200);
+  const saveKey=randomUUID(),save={method:'POST',token:a.token,data:{revision:3,saveConsent:true},key:saveKey};assert.equal((await f.request(path+'/save',save)).status,200);assert.equal((await f.request(path+'/save',save)).status,200);assert.equal((await read(a)).body.corner.ownSaved,true);assert.equal((await read(b)).body.corner.ownSaved,false);
+  assert.equal((await f.request(path+'/save',{method:'POST',token:b.token,data:{revision:3,saveConsent:true}})).status,200);
+  await f.restart();for(const actor of[a,b])assert.equal((await read(actor)).body.corner.ownSaved,true);
+ });
+ test(mode+' creation corner: competing edits conflict, cannot modify another contribution and invalidate old approval',async t=>{
+  const f=await fixture(t,mode),{a,b}=await f.friends(),id=(await f.request('/corners',{method:'POST',token:a.token,data:{peerId:b.user.id,participationConsent:true}})).body.cornerId,path='/corners/'+id;
+  await f.request(path+'/join',{method:'POST',token:b.token,data:{revision:1,participationConsent:true}});
+  const edit=(actor,note,rev)=>f.request(path+'/contribution',{method:'POST',token:actor.token,data:{revision:rev,note,photoId:null,shareConsent:true}});
+  const result=await Promise.all([edit(a,'A alone edits A',2),edit(b,'B alone edits B',2)]);assert.deepEqual(result.map(r=>r.status).sort(),[200,409]);
+  let view=(await f.request(path,{token:a.token})).body;assert.equal(view.corner.revision,3);assert.equal(view.contributions.filter(d=>d.note).length,1);
+  const loser=result[0].status===409?a:b;assert.equal((await edit(loser,'Deliberate retry after review',3)).status,200);
+  for(const actor of[a,b])assert.equal((await f.request(path+'/confirm',{method:'POST',token:actor.token,data:{revision:4,consent:true}})).status,200);
+  assert.equal((await f.request(path+'/save',{method:'POST',token:a.token,data:{revision:4,saveConsent:true}})).status,200);
+  assert.equal((await edit(b,'New version requires fresh agreement',4)).status,200);view=(await f.request(path,{token:a.token})).body;assert.equal(view.corner.eligible,false);assert.equal(view.corner.myConfirmed,false);assert.equal(view.corner.peerConfirmed,false);assert.equal(view.corner.ownSaved,false);
+  assert.equal((await f.request(path+'/confirm',{method:'POST',token:a.token,data:{revision:4,consent:true}})).status,409);
+ });
+ test(mode+' creation corner: deleted or withdrawn photos stop joint reads and saving; either participant can withdraw',async t=>{
+  const f=await fixture(t,mode),{a,b,room}=await f.friends(),photo=await f.upload(room,a,'private'),id=(await f.request('/corners',{method:'POST',token:a.token,data:{peerId:b.user.id,participationConsent:true}})).body.cornerId,path='/corners/'+id;
+  await f.request(path+'/join',{method:'POST',token:b.token,data:{revision:1,participationConsent:true}});await f.request(path+'/contribution',{method:'POST',token:a.token,data:{revision:2,note:'Private scoped material',photoId:photo.id,shareConsent:true}});
+  for(const actor of[a,b])await f.request(path+'/confirm',{method:'POST',token:actor.token,data:{revision:3,consent:true}});await f.request(path+'/save',{method:'POST',token:b.token,data:{revision:3,saveConsent:true}});
+  assert.equal((await f.request('/photos/'+photo.id+'/withdraw',{method:'POST',token:a.token,data:{revision:photo.revision}})).status,200);
+  assert.equal((await f.request(path+'/photos/'+photo.id+'/image',{token:b.token})).status,404);let view=(await f.request(path,{token:b.token})).body;assert.equal(view.corner.materialValid,false);assert.equal(view.corner.eligible,false);assert.equal(view.corner.ownSaved,false);assert.equal(view.contributions.some(d=>d.userId===a.user.id),false);
+  assert.equal((await f.request(path+'/save',{method:'POST',token:b.token,data:{revision:3,saveConsent:true}})).status,409);
+  assert.equal((await f.request(path+'/contribution',{method:'POST',token:a.token,data:{revision:3,note:'Explicitly no photo',photoId:null,shareConsent:true}})).status,200);
+  const next=await f.upload(room,b,'private');await f.request(path+'/contribution',{method:'POST',token:b.token,data:{revision:4,note:'My material',photoId:next.id,shareConsent:true}});
+  assert.equal((await f.request('/photos/'+next.id,{method:'DELETE',token:b.token,data:{revision:next.revision}})).status,200);assert.equal((await f.request(path+'/photos/'+next.id+'/image',{token:a.token})).status,404);
+  const key=randomUUID(),withdraw={method:'POST',token:b.token,data:{revision:5},key};assert.equal((await f.request(path+'/withdraw',withdraw)).status,200);assert.equal((await f.request(path+'/withdraw',withdraw)).status,200);
+  for(const actor of[a,b]){view=(await f.request(path,{token:actor.token})).body;assert.equal(view.corner.status,'withdrawn');assert.deepEqual(view.contributions,[]);}
+  assert.equal((await f.request(path+'/join',{method:'POST',token:b.token,data:{revision:6,participationConsent:true}})).status,404);
+ });
+ test(mode+' creation corner: block/unblock or renewed friendship cannot revive old creation permissions',async t=>{
+  const f=await fixture(t,mode),{a,b,room}=await f.friends(),id=(await f.request('/corners',{method:'POST',token:a.token,data:{peerId:b.user.id,participationConsent:true}})).body.cornerId,path='/corners/'+id;
+  await f.request(path+'/join',{method:'POST',token:b.token,data:{revision:1,participationConsent:true}});const blocked=await f.block(a,b);assert.equal(blocked.status,200);const ownBlock=(await f.social(a)).blocks.find(x=>x.userId===b.user.id);assert.ok(ownBlock);assert.equal((await f.request(path,{token:b.token})).status,404);
+  assert.equal((await f.unblock(a,b,ownBlock.revision)).status,200);assert.equal((await f.request(path,{token:a.token})).status,404);assert.equal((await f.request(path,{token:b.token})).status,404);
+  f.advance(60000);const greeting=(await f.send(room,a,b)).body.greeting;if(greeting)assert.equal((await f.respond(greeting,'accept',b)).status,200);
+  assert.equal((await f.request(path,{token:a.token})).status,404);const again=await f.request('/corners',{method:'POST',token:a.token,data:{peerId:b.user.id,participationConsent:true}});assert.equal(again.status,201);assert.notEqual(again.body.cornerId,id);
+  assert.equal((await f.request('/corners',{token:a.token})).body.corners.find(c=>c.id===id).status,'unavailable');
+ });
+}
+test('Worker creation corner: material response rechecks permission after object storage returns',async t=>{
+ const f=await fixture(t),{a,b,room}=await f.friends(),photo=await f.upload(room,a,'private'),id=(await f.request('/corners',{method:'POST',token:a.token,data:{peerId:b.user.id,participationConsent:true}})).body.cornerId,path='/corners/'+id;
+ await f.request(path+'/join',{method:'POST',token:b.token,data:{revision:1,participationConsent:true}});await f.request(path+'/contribution',{method:'POST',token:a.token,data:{revision:2,note:'Scoped photo',photoId:photo.id,shareConsent:true}});
+ let signal,release;const started=new Promise(r=>signal=r),gate=new Promise(r=>release=r),original=f.env.PHOTOS.get.bind(f.env.PHOTOS);f.env.PHOTOS.get=async key=>{const object=await original(key);signal();await gate;return object;};
+ const read=f.request(path+'/photos/'+photo.id+'/image',{token:b.token});await started;assert.equal((await f.block(a,b)).status,200);release();assert.equal((await read).status,404);
+});
+test('Worker creation corner: an edit before a paused save transaction invalidates both confirmations atomically',async t=>{
+ const f=await fixture(t),{a,b}=await f.friends(),id=(await f.request('/corners',{method:'POST',token:a.token,data:{peerId:b.user.id,participationConsent:true}})).body.cornerId,path='/corners/'+id;
+ await f.request(path+'/join',{method:'POST',token:b.token,data:{revision:1,participationConsent:true}});for(const actor of[a,b])await f.request(path+'/confirm',{method:'POST',token:actor.token,data:{revision:2,consent:true}});
+ let signal,release;const started=new Promise(r=>signal=r),gate=new Promise(r=>release=r),original=f.env.DB.batch.bind(f.env.DB);f.env.DB.batch=async statements=>{if(statements.some(s=>s.query.startsWith('INSERT INTO event_corner_saves'))){signal();await gate;}return original(statements);};
+ const save=f.request(path+'/save',{method:'POST',token:a.token,data:{revision:2,saveConsent:true}});await started;assert.equal((await f.request(path+'/contribution',{method:'POST',token:b.token,data:{revision:2,note:'Changed while saving',photoId:null,shareConsent:true}})).status,200);release();assert.equal((await save).status,409);
+ assert.equal(f.env.DB.sql.prepare('SELECT COUNT(*) n FROM event_corner_saves WHERE corner_id=?').get(id).n,0);assert.equal((await f.request(path,{token:a.token})).body.corner.eligible,false);
+});
+test('Worker creation corner: concurrent reciprocal invitations create one draft, not two active grants',async t=>{
+ const f=await fixture(t),{a,b}=await f.friends();const results=await Promise.all([f.request('/corners',{method:'POST',token:a.token,data:{peerId:b.user.id,participationConsent:true}}),f.request('/corners',{method:'POST',token:b.token,data:{peerId:a.user.id,participationConsent:true}})]);
+ assert.equal(results.filter(r=>r.status===201).length,1);assert.ok(results.every(r=>[200,201,409].includes(r.status)));assert.equal(f.env.DB.sql.prepare("SELECT COUNT(*) n FROM event_corners WHERE status!='withdrawn'").get().n,1);assert.equal((await f.request('/corners',{token:a.token})).body.corners.length,1);
+});

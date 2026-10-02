@@ -1,3 +1,19 @@
+# Music Space · 0.17.0-rc.4
+
+音乐现场的社交与个人留存：带上可组合手绘小人进入三维 livehouse，照片私藏或分享给同场成员，自愿交换视角；双方愿意认识后再聊。散场回顾可明确选择本人照片和小人，下载带署名的私人纪念卡。
+
+当前入口 **/event-room/**。Node 24+，源码用 `npm ci`、`npm run build:all`、`npm start`；预发布运行包可直接 `node server/index.js`。照片、身份、关系与文字保存在持久 DATA_DIR，重启使用原目录。runtime-preview/src 与 drizzle 随包提供。
+
+纪念卡只包含显式选择的最多两张本人照片、本人署名及可选小人，不收他人照片/好友名单/私聊，不自动公开；无照片时可导出文字纪念票。网络中断、取消与素材变化均有明确反馈和重新核对入口。
+
+- [运行与持久部署](docs/deployment.md) · [RC.4 说明](docs/release/0.17.0-rc.4.md)
+- [35 步真实双身份浏览器证据及未测项](docs/event/evidence/memory-closeout-qa.md) · [项目状态](docs/PROJECT_STATUS.md)
+- 检查：`npm test`、`npm run test:release`、`npm run test:character`、`npm run ai:check`。发行状态以 [GitHub Releases](https://github.com/musicMapTeam/musicSpace/releases) 为准。
+
+这是本机/预发布交付，不表示公网或生产上线。仍需真机、微信、大陆网络、真实观众研究。旧 gh-pages、Music Map 和原运行数据保留。
+
+以下为既有发行与旧首页的历史记录，不作为当前版本状态。
+
 # Music Space · 0.17.0-rc.1 预发布
 
 ## 发布完成 · 2026-10-02

@@ -1,3 +1,4 @@
+import {spaceWriteGuard} from './space-access.js';
 import {openParticipationSQL} from './event-participation.js';
 import { randomUUID } from 'node:crypto';
 
@@ -98,7 +99,8 @@ export async function handleEventSocial(c) {
     return mutate(data, async () => {
       const other=data.recipientId,communityId=send[1]==='communities'?send[2]:null,roomId=communityId?(await get('SELECT room_id FROM event_community_rooms WHERE community_id=? ORDER BY room_id LIMIT 1',communityId))?.room_id:send[2],privacy=await allowed(other);
       if(!roomId)fail(409,'COMMUNITY_EVENT_REQUIRED','请先由主办方关联真实场次，再从社群建立新联系。');
-      const roomGuard = communityId?{sql:communityWillingnessSQL(),args:[communityId,user.id,other]}:{ sql: `EXISTS (SELECT 1 FROM event_rooms r JOIN event_members a ON a.room_id = r.id JOIN event_members b ON b.room_id = r.id
+      const writable=await spaceWriteGuard(get,fail,communityId?'community':'room',communityId||roomId);
+      const roomGuard = communityId?{sql:`(${communityWillingnessSQL()}) AND (${writable.sql})`,args:[communityId,user.id,other,...writable.args]}:{ sql: `EXISTS (SELECT 1 FROM event_rooms r JOIN event_members a ON a.room_id = r.id JOIN event_members b ON b.room_id = r.id
         WHERE r.id = ? AND r.closed_at IS NULL AND r.expires_at > ? AND a.user_id = ? AND b.user_id = ? AND a.left_at IS NULL AND b.left_at IS NULL)`, args: [roomId, now(), user.id, other] };
       if (!await get(`SELECT 1 AS ok WHERE ${roomGuard.sql}`, ...roomGuard.args)) fail(communityId?409:404, communityId?'PARTICIPATION_QUIET':'PERSON_UNAVAILABLE', communityId?'双方需仍是社群成员，并明确愿意打招呼。':'请在同一场未结束的现场中打招呼。');
       const willingness=communityId?roomGuard:{sql:openParticipationSQL('?','?','?'),args:[roomId,user.id,other]};

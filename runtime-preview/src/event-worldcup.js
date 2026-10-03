@@ -1,3 +1,4 @@
+import {spaceWriteGuard} from './space-access.js';
 import {randomUUID} from 'node:crypto';
 import {socialAllowedSQL} from './event-social.js';
 import {WORLDCUP_ALBUMS,worldcupAlbum} from './worldcup-albums.js';
@@ -15,13 +16,15 @@ export async function handleEventWorldCup(c){
  const membership={sql:`EXISTS(SELECT 1 FROM event_conversation_members WHERE kind=? AND scope_id=? AND user_id=? AND left_at IS NULL AND removed_at IS NULL)${kind==='room'?" AND EXISTS(SELECT 1 FROM event_members WHERE room_id=? AND user_id=? AND left_at IS NULL) AND NOT EXISTS(SELECT 1 FROM event_room_exclusions WHERE room_id=? AND user_id=? AND restored_at IS NULL)":''}`,args:[kind,scope,user.id,...(kind==='room'?[scope,user.id,scope,user.id]:[])]};
  const access=cup?{sql:`${membership.sql} AND ${socialAllowedSQL('?','?')}`,args:[...membership.args,user.id,cup.creator_id,cup.creator_id,user.id]}:membership;
  if(!await get(`SELECT 1 ok WHERE ${access.sql}`,...access.args))fail(403,'CONVERSATION_MEMBERSHIP_REQUIRED','请先明确加入对应聊天室；退出、移除或屏蔽后不能继续参与。');
+ const writable=method==='POST'?await spaceWriteGuard(get,fail,kind,scope):{sql:'1=1',args:[]};
+ const writeAccess={sql:`(${access.sql}) AND (${writable.sql})`,args:[...access.args,...writable.args]};
  const cupJSON=r=>({id:r.id,kind:r.kind,scopeId:r.scope_id,title:r.title,creatorId:r.creator_id,creatorName:r.creator_name,createdAt:r.created_at,fictional:true});
  if(collection){
   if(method==='GET'){const result=await db.batch([stmt(`SELECT 1 ok WHERE ${access.sql}`,...access.args),stmt(`SELECT c.* FROM event_worldcups c WHERE kind=? AND scope_id=? AND ${socialAllowedSQL('?','c.creator_id')} ORDER BY created_at DESC,id DESC LIMIT 20`,kind,scope,user.id,user.id)]);if(!result[0].results.length)fail(403,'CONVERSATION_MEMBERSHIP_REQUIRED','读取时参与资格已变化。');return json(200,{actorId:user.id,worldcups:result[1].results.map(cupJSON)});}
   if(method==='POST'){
    const d=await readJSON(request);keys(d,['title','createConsent']);if(d.createConsent!==true)fail(400,'WORLDCUP_CONSENT_REQUIRED','请确认在当前聊天室发起虚构专辑投票。');
    if(typeof d.title!=='string'||!d.title.trim()||[...d.title].length>40||/[\p{C}]/u.test(d.title))fail(400,'INVALID_TITLE','标题需为1至40字，不含控制字符。');
-   return mutate(d,async()=>{await rate(`worldcup-create:${user.id}`,3,86400000);const id=randomUUID(),r={id,kind,scope_id:scope,creator_id:user.id,creator_name:user.name,title:d.title.trim(),created_at:now()};return {status:201,body:{actorId:user.id,worldcup:cupJSON(r)},guard:access,statements:[stmt('INSERT INTO event_worldcups(id,kind,scope_id,creator_id,creator_name,title,created_at) VALUES(?,?,?,?,?,?,?)',id,kind,scope,user.id,user.name,r.title,r.created_at),...[[0,0,1],[1,2,3]].map(([ordinal,a,b])=>stmt('INSERT INTO event_worldcup_matches(id,cup_id,ordinal,left_id,right_id) VALUES(?,?,?,?,?)',randomUUID(),id,ordinal,WORLDCUP_ALBUMS[a].id,WORLDCUP_ALBUMS[b].id))]};});
+   return mutate(d,async()=>{await rate(`worldcup-create:${user.id}`,3,86400000);const id=randomUUID(),r={id,kind,scope_id:scope,creator_id:user.id,creator_name:user.name,title:d.title.trim(),created_at:now()};return {status:201,body:{actorId:user.id,worldcup:cupJSON(r)},guard:writeAccess,statements:[stmt('INSERT INTO event_worldcups(id,kind,scope_id,creator_id,creator_name,title,created_at) VALUES(?,?,?,?,?,?,?)',id,kind,scope,user.id,user.name,r.title,r.created_at),...[[0,0,1],[1,2,3]].map(([ordinal,a,b])=>stmt('INSERT INTO event_worldcup_matches(id,cup_id,ordinal,left_id,right_id) VALUES(?,?,?,?,?)',randomUUID(),id,ordinal,WORLDCUP_ALBUMS[a].id,WORLDCUP_ALBUMS[b].id))]};});
   }
   return null;
  }
@@ -34,7 +37,7 @@ export async function handleEventWorldCup(c){
  const match=await get('SELECT * FROM event_worldcup_matches WHERE id=? AND cup_id=?',route[2],cup.id);if(!match)fail(404,'MATCH_NOT_FOUND','找不到这轮投票。');
  if(method!=='POST')return null;
  const d=await readJSON(request),expected=d.revision;if(!Number.isSafeInteger(expected)||expected<1)fail(400,'INVALID_REVISION','请先读取当前轮次。');
- const openGuard={sql:`${access.sql} AND EXISTS(SELECT 1 FROM event_worldcup_matches WHERE id=? AND cup_id=? AND revision=? AND winner_id IS NULL)`,args:[...access.args,match.id,cup.id,expected]};
+ const openGuard={sql:`${writeAccess.sql} AND EXISTS(SELECT 1 FROM event_worldcup_matches WHERE id=? AND cup_id=? AND revision=? AND winner_id IS NULL)`,args:[...writeAccess.args,match.id,cup.id,expected]};
  if(route[3]==='vote'){
   keys(d,['revision','albumId','voteConsent']);if(d.voteConsent!==true)fail(400,'VOTE_CONSENT_REQUIRED','请确认把这一票计入当前聊天室结果。');if(![match.left_id,match.right_id].includes(d.albumId))fail(400,'INVALID_ALBUM','只能选择这一轮的两张虚构专辑。');
   return mutate(d,async()=>{revision(match,expected);await rate(`worldcup-vote:${user.id}`,30,3600000);if(await get('SELECT 1 FROM event_worldcup_votes WHERE match_id=? AND user_id=?',match.id,user.id))fail(409,'ALREADY_VOTED','这一轮已投票，不能重复投或改票。');return {body:{actorId:user.id,matchId:match.id,albumId:d.albumId},guard:{sql:`${openGuard.sql} AND NOT EXISTS(SELECT 1 FROM event_worldcup_votes WHERE match_id=? AND user_id=?)`,args:[...openGuard.args,match.id,user.id]},statements:[stmt('INSERT INTO event_worldcup_votes(match_id,user_id,album_id,created_at) VALUES(?,?,?,?)',match.id,user.id,d.albumId,now())]};});

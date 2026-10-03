@@ -1,8 +1,10 @@
 # Music Space 当前状态
 
-## Doing · 完整产品旅程
+## Doing — 完整产品旅程
 
-负责人 Codex，唯一实施者；基于 0.18.0-rc.5，新分支 `feat/personal-space`。三阶段有限交付见 [产品完成清单](event/PRODUCT-COMPLETION.md)：统一个人空间和回访，主办方长期社群及场次管理，自建音乐主题与世界杯结果讨论。当前先实施第一阶段，其他项仍是计划；源码、实际操作与发行分别登记。
+负责人：Codex（唯一实施者）。[三阶段清单](event/PRODUCT-COMPLETION.md)有限交付。第一阶段统一个人空间已由 [PR14](https://github.com/musicMapTeam/musicSpace/pull/14) 合并并发布 0.19.0-rc.1，实际下载包的 62 个运行文件与已验收阶段一致，32 步独立浏览器旅程含正常重启通过。
+
+当前第二阶段 `feat/host-spaces`：长期空间介绍、开放／归档、活动预告、明确关联现场及断网原操作恢复；文件范围为共享 event-spaces／space-access、追加 drizzle、Node 迁移账本、社群与世界杯提交守卫、空间活动页面及必要验收。最后阶段自建音乐主题、Worldcup 选项和讨论仍为计划。原场景与照片权限保持独立。
 
 ## Done · 双人创作角候选
 

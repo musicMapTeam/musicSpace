@@ -78,6 +78,13 @@
       "idx": 10,
       "when": 1790966400002,
       "breakpoints": true
+    },
+    {
+      "tag": "0011_event_spaces",
+      "version": "6",
+      "idx": 11,
+      "when": 1790966400003,
+      "breakpoints": true
     }
   ]
 }

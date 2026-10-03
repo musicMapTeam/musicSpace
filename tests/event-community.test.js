@@ -68,7 +68,84 @@ test('Worker space archive/reopen cannot revive an already authorized message',a
  for(const archived of [true,false]){const current=(await f.request(base+'/space',{token:a.token})).body.space;assert.equal((await f.request(base+'/space',{token:a.token,method:'POST',data:{title:current.title,description:current.description,archived,revision:current.revision,editConsent:true}})).status,200);}
  resume();assert.equal((await waiting).status,409);assert.equal((await f.request(base+'/conversation/messages',{token:a.token})).body.messages.length,0);
 });
+test('Worker queued game answer cannot revive after block and unblock',async t=>{
+ const f=await fixture(t),{a,b,room}=await f.two(),base='/rooms/'+room.id;
+ for(const who of[a,b])await f.request(base+'/conversation/join',{token:who.token,method:'POST',data:{joinConsent:true}});
+ const path='/games/'+(await f.request(base+'/games',{token:a.token,method:'POST',data:{type:'preference',title:'Queued answer boundary',roundLimit:1,createConsent:true}})).body.gameId;
+ let d=(await f.request(path,{token:a.token})).body;await f.request(path+'/join',{token:b.token,method:'POST',data:{revision:d.game.revision,joinConsent:true}});d=(await f.request(path,{token:a.token})).body;await f.request(path+'/start',{token:a.token,method:'POST',data:{revision:d.game.revision,startConsent:true}});d=(await f.request(path,{token:b.token})).body;
+ let resume,started;const paused=new Promise(r=>started=r),gate=new Promise(r=>resume=r),batch=f.env.DB.batch;
+ f.env.DB.batch=async statements=>{if(statements.some(s=>s.query.startsWith('INSERT INTO event_game_answers'))){started();await gate;}return batch(statements);};
+ const waiting=f.request(path+'/answer',{token:b.token,method:'POST',data:{revision:d.rounds[0].revision,choiceId:d.options.entries[0].id,answerConsent:true}});await paused;
+ const blocked=(await f.block(b,a)).body.block;assert.ok(blocked);assert.equal((await f.unblock(b,a,blocked.revision)).status,200);resume();assert.equal((await waiting).status,409);
+ d=(await f.request(path,{token:b.token})).body;assert.equal(d.joined,false);assert.equal(d.rounds[0].answeredCount,0);assert.equal(d.rounds[0].myAnswer,null);
+});
 for(const mode of ['Node','Worker']){
+ test(mode+' games block epochs and archive: previous participation never revives, no-vote result stays incomplete',async t=>{
+  const f=await fixture(t,mode),{a,b}=await f.two();
+  const community=(await f.request('/communities',{token:a.token,method:'POST',data:{title:'Game boundary',joinConsent:true}})).body.community,base='/communities/'+community.id;
+  assert.equal((await f.request(base+'/conversation/join',{token:b.token,method:'POST',data:{joinConsent:true}})).status,200);
+  const path='/games/'+(await f.request(base+'/games',{token:a.token,method:'POST',data:{type:'preference',title:'Private before reveal',roundLimit:1,createConsent:true}})).body.gameId;
+  const read=who=>f.request(path,{token:who.token}),post=(who,action,data)=>f.request(path+'/'+action,{token:who.token,method:'POST',data});
+  let d=(await read(a)).body;assert.equal((await post(b,'join',{revision:d.game.revision,joinConsent:true})).status,200);d=(await read(a)).body;await post(a,'start',{revision:d.game.revision,startConsent:true});d=(await read(b)).body;
+  assert.equal((await post(a,'reveal',{revision:d.rounds[0].revision,revealConsent:true})).status,409,'no votes cannot produce a result');
+  await post(b,'answer',{revision:d.rounds[0].revision,choiceId:d.options.entries[0].id,answerConsent:true});
+  assert.equal((await f.block(b,a)).status,200);assert.equal((await read(b)).status,403);const block=(await f.social(b)).blocks.find(x=>x.userId===a.user.id);assert.ok(block);assert.equal((await f.unblock(b,a,block.revision)).status,200);
+  d=(await read(b)).body;assert.equal(d.joined,false);assert.equal(d.canLeave,true);assert.equal(d.rounds[0].myAnswer,null);assert.equal(d.rounds[0].answeredCount,0);assert.equal((await post(b,'answer',{revision:d.rounds[0].revision,choiceId:d.options.entries[1].id,answerConsent:true})).status,403);
+  const space=(await f.request(base+'/space',{token:a.token})).body.space;assert.equal((await f.request(base+'/space',{token:a.token,method:'POST',data:{title:space.title,description:space.description,archived:true,revision:space.revision,editConsent:true}})).status,200);
+  assert.equal((await read(a)).body.archived,true);assert.equal((await f.request(base+'/games',{token:a.token})).body.archived,true);assert.equal((await post(a,'reveal',{revision:d.rounds[0].revision,revealConsent:true})).status,409);
+  assert.equal((await post(b,'leave',{playerRevision:d.playerRevision})).status,200);d=(await read(a)).body;assert.equal(d.game.phase,'cancelled');assert.equal(d.rounds[0].result,undefined);await f.restart();assert.equal((await read(a)).body.game.phase,'cancelled');
+ });
+
+ test(mode+' member topics and custom Worldcup: provenance, result discussion, revocation and history',async t=>{
+  const f=await fixture(t,mode),{a,b,room}=await f.two(),base='/rooms/'+room.id;
+  for(const who of[a,b])await f.request(base+'/conversation/join',{token:who.token,method:'POST',data:{joinConsent:true}});
+  const topic=await f.request(base+'/topics',{token:a.token,method:'POST',data:{title:'Synthetic member song',artist:'Unverified artist',note:'My own memory of that night',publishConsent:true}});assert.equal(topic.status,201,JSON.stringify(topic.body));
+  const ownTopic=(await f.request(base+'/topics',{token:b.token})).body.topics[0];assert.equal(ownTopic.verified,false);assert.equal(ownTopic.provenance,'member-text');
+  assert.equal((await f.request(base+'/conversation/messages',{token:b.token,method:'POST',data:{text:'Let us discuss this',topicId:topic.body.topicId}})).status,201);
+  let messages=(await f.request(base+'/conversation/messages',{token:b.token})).body.messages;assert.equal(messages[0].context.title,'Synthetic member song');
+  assert.equal((await f.request(base+'/topics/'+topic.body.topicId,{token:a.token,method:'DELETE',data:{revision:ownTopic.revision}})).status,200);messages=(await f.request(base+'/conversation/messages',{token:b.token})).body.messages;assert.equal(messages[0].context,null);
+  const entries=Array.from({length:4},(_,i)=>({title:'Synthetic entry '+i,artist:'Member text '+i})),created=await f.request(base+'/worldcups',{token:a.token,method:'POST',data:{title:'Member selection',entries,createConsent:true}});assert.equal(created.status,201,JSON.stringify(created.body));assert.equal(created.body.worldcup.fictional,false);const path='/worldcups/'+created.body.worldcup.id,read=()=>f.request(path,{token:a.token}),vote=(who,m,id)=>f.request(path+'/matches/'+m.id+'/vote',{token:who.token,method:'POST',data:{revision:m.revision,albumId:id,voteConsent:true}}),advance=(m,extra={})=>f.request(path+'/matches/'+m.id+'/advance',{token:a.token,method:'POST',data:{revision:m.revision,advanceConsent:true,...extra}});
+  assert.equal((await f.request(base+'/conversation/messages',{token:b.token,method:'POST',data:{text:'Cannot invent an unfinished result',cupId:created.body.worldcup.id}})).status,404);
+  let state=(await read()).body;assert.equal(state.matches[0].left.fictional,false);assert.equal(state.matches[0].left.provenance,'member-text');
+  for(let ordinal=0;ordinal<3;ordinal++){state=(await read()).body;const m=state.matches.find(m=>m.ordinal===ordinal);await Promise.all([vote(a,m,m.left.id),vote(b,m,ordinal===0?m.right.id:m.left.id)]);assert.equal((await advance(m,ordinal===0?{tieWinner:m.left.id,tieReason:'An explicit creator decision, not a score'}:{})).status,200);}
+  state=(await read()).body;assert.equal(state.completed,true);assert.equal((await f.request(base+'/worldcups?status=completed',{token:b.token})).body.worldcups[0].id,created.body.worldcup.id);assert.equal((await f.request(base+'/worldcups?status=active',{token:b.token})).body.worldcups.length,0);
+  assert.equal((await f.request(base+'/conversation/messages',{token:b.token,method:'POST',data:{text:'The result keeps the conversation going',cupId:created.body.worldcup.id}})).status,201);messages=(await f.request(base+'/conversation/messages',{token:a.token})).body.messages;assert.equal(messages.at(-1).context.type,'worldcup');
+  await f.restart();assert.equal((await read()).body.completed,true);assert.equal((await f.request(base+'/topics',{token:b.token})).body.topics.length,0);
+ });
+ test(mode+' game exit and contact boundaries: no hidden answers retained, no recovery after block or room leave',async t=>{
+  const f=await fixture(t,mode),{a,b,room}=await f.two(),base='/rooms/'+room.id;
+  for(const who of[a,b])await f.request(base+'/conversation/join',{token:who.token,method:'POST',data:{joinConsent:true}});
+  const game=(await f.request(base+'/games',{token:a.token,method:'POST',data:{type:'preference',title:'Exit boundaries',roundLimit:2,createConsent:true}})).body.gameId,path='/games/'+game,read=who=>f.request(path,{token:who.token}),post=(who,action,data)=>f.request(path+'/'+action,{token:who.token,method:'POST',data});let detail=(await read(a)).body;await post(b,'join',{revision:detail.game.revision,joinConsent:true});detail=(await read(a)).body;await post(a,'start',{revision:detail.game.revision,startConsent:true});detail=(await read(b)).body;
+  const payload={revision:detail.rounds[0].revision,choiceId:detail.options.entries[0].id,answerConsent:true};const competing=await Promise.all([post(b,'answer',payload),post(b,'answer',payload)]);assert.deepEqual(competing.map(r=>r.status).sort(),[200,409]);
+  assert.equal((await post(b,'leave',{playerRevision:detail.playerRevision})).status,200);detail=(await read(a)).body;assert.equal(detail.game.phase,'cancelled');assert.equal(detail.rounds[0].answeredCount,0);assert.equal(detail.rounds[0].result,undefined);
+  assert.equal((await f.request(base+'/conversation/messages',{token:a.token,method:'POST',data:{text:'No fabricated complete result',gameId:game}})).status,404);
+  await f.block(b,a);assert.equal((await read(b)).status,403);const member=(await f.request(base+'/conversation',{token:b.token})).body.conversation;await f.request(base+'/conversation/leave',{token:b.token,method:'POST',data:{revision:member.revision}});assert.equal((await f.request(base+'/games',{token:b.token})).status,403);
+ });
+ test(mode+' voluntary games: hidden choices, duplicate votes, explicit reveal, restart and discussion scope',async t=>{
+  const f=await fixture(t,mode),{a,b,room}=await f.two(),base='/rooms/'+room.id;
+  for(const who of[a,b])assert.equal((await f.request(base+'/conversation/join',{token:who.token,method:'POST',data:{joinConsent:true}})).status,200);
+  const created=await f.request(base+'/games',{token:a.token,method:'POST',data:{type:'preference',title:'Only this round',roundLimit:1,createConsent:true}});assert.equal(created.status,201,JSON.stringify(created.body));const path='/games/'+created.body.gameId;
+  const read=who=>f.request(path,{token:who.token}),post=(who,action,data,key)=>f.request(path+'/'+action,{token:who.token,method:'POST',data,...(key?{key}:{})});
+  let detail=(await read(a)).body;assert.equal((await post(a,'start',{revision:detail.game.revision,startConsent:true})).status,409);
+  assert.equal((await post(b,'join',{revision:detail.game.revision,joinConsent:true})).status,200);detail=(await read(a)).body;assert.equal((await post(a,'start',{revision:detail.game.revision,startConsent:true})).status,200);
+  detail=(await read(a)).body;const round=detail.rounds[0],choice=detail.options.entries[0].id,key=randomUUID(),payload={revision:round.revision,choiceId:choice,answerConsent:true};
+  const [one,duplicate]=await Promise.all([post(a,'answer',payload,key),post(a,'answer',payload,key)]);assert.equal(one.status,200);assert.equal(duplicate.status,200);
+  let other=(await read(b)).body;assert.equal(other.rounds[0].myAnswer,null);assert.equal(other.rounds[0].result,undefined);assert.equal(other.rounds[0].commonChoices,undefined);
+  assert.equal((await post(a,'reveal',{revision:round.revision,revealConsent:true})).status,409);
+  assert.equal((await post(b,'answer',payload)).status,200);assert.equal((await post(a,'reveal',{revision:round.revision,revealConsent:true})).status,200);detail=(await read(a)).body;assert.equal(detail.game.phase,'completed');assert.equal(detail.rounds[0].result[0].count,2);assert.deepEqual(detail.rounds[0].commonChoices,[choice]);
+  assert.equal((await post(a,'answer',payload,key)).status,200,'original request still recovers after reveal');await f.restart();assert.equal((await read(b)).body.game.phase,'completed');
+  const outside=await f.session('Outside');assert.equal((await read(outside)).status,403);
+ });
+ test(mode+' voluntary relay: verified shared musician, self-described steps and no proxy answer',async t=>{
+  const f=await fixture(t,mode),{a,b,room}=await f.two(),base='/rooms/'+room.id;
+  for(const who of[a,b])await f.request(base+'/conversation/join',{token:who.token,method:'POST',data:{joinConsent:true}});
+  const created=await f.request(base+'/games',{token:a.token,method:'POST',data:{type:'relay',title:'Music connection',seedRecordingId:'real-bu-gai',roundLimit:2,createConsent:true}});assert.equal(created.status,201,JSON.stringify(created.body));const path='/games/'+created.body.gameId,read=()=>f.request(path,{token:a.token}),post=(who,action,data)=>f.request(path+'/'+action,{token:who.token,method:'POST',data});
+  let detail=(await read()).body;await post(b,'join',{revision:detail.game.revision,joinConsent:true});detail=(await read()).body;assert.equal((await post(a,'start',{revision:detail.game.revision,startConsent:true})).status,200);detail=(await read()).body;let r=detail.rounds[0],turn=r.turnId===a.user.id?a:b,other=turn===a?b:a;
+  assert.equal((await post(other,'answer',{revision:r.revision,recordingId:'real-far-away',reason:'Shared musician',answerConsent:true})).status,409);
+  assert.equal((await post(turn,'answer',{revision:r.revision,recordingId:'real-far-away',reason:'Shared musician',answerConsent:true})).status,200);detail=(await read()).body;assert.equal(detail.rounds[0].step.provenance,'verified-catalogue');assert.deepEqual(detail.rounds[0].step.sharedArtistIds,['real-jay']);
+  assert.equal((await post(a,'next',{revision:detail.rounds[0].revision,nextConsent:true})).status,200);detail=(await read()).body;r=detail.rounds[1];turn=r.turnId===a.user.id?a:b;
+  assert.equal((await post(turn,'answer',{revision:r.revision,title:'My own memory song',artist:'Unverified name',reason:'These remind me of the same rainy night',answerConsent:true})).status,200);detail=(await read()).body;assert.equal(detail.game.phase,'completed');assert.equal(detail.rounds[1].step.provenance,'member-text');assert.equal(detail.rounds[1].step.sharedArtistIds,undefined);
+ });
  test(mode+' space organization: explicit host edits, event association, archive and persistence',async t=>{
   const f=await fixture(t,mode),a=await f.session('Organizer'),b=await f.session('Member'),outsider=await f.session('Outside');
   const create=await f.request('/communities',{token:a.token,method:'POST',data:{title:'Small music space',joinConsent:true}});assert.equal(create.status,201);

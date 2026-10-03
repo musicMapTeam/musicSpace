@@ -1,5 +1,9 @@
 # Music Space 当前状态
 
+## Doing · 完整产品旅程
+
+负责人 Codex，唯一实施者；基于 0.18.0-rc.5，新分支 `feat/personal-space`。三阶段有限交付见 [产品完成清单](event/PRODUCT-COMPLETION.md)：统一个人空间和回访，主办方长期社群及场次管理，自建音乐主题与世界杯结果讨论。当前先实施第一阶段，其他项仍是计划；源码、实际操作与发行分别登记。
+
 ## Done · 双人创作角候选
 
 负责：Codex，唯一实施者。当前候选 0.18.0-rc.5，分支 `feat/creation-corner`。

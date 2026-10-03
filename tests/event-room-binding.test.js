@@ -39,7 +39,7 @@ function harness(start=initial(),url='https://musicspace.test/event/') {
   const location=new URL(url),history={replaceState(_a,_b,next){location.href=String(next);}};
   const engine={ready:Promise.resolve(),update(){},goTo(){},getState:()=>({view:'overview'}),setReducedMotion(){},dispose(){},pick(){return null;}};
   const context=vm.createContext({console,document:doc,window,location,history,navigator:{clipboard:{writeText:async()=>{}}},URL:SafeURL,Blob,
-    invitation,invitationUrl,nfcInvitation,createCornerPanel:()=>({open:async value=>calls.push(['cornerOpen',clone(value)]),close(){},syncIdentity(){},dispose(){}}),createIdentityContinuityPanel:()=>({open(){},close(){},dispose(){}}),
+    invitation,invitationUrl,nfcInvitation,createPersonalSpace:()=>({open:async()=>calls.push(["personalOpen"]),close(){},syncIdentity(){},dispose(){}}),createCornerPanel:()=>({open:async value=>calls.push(['cornerOpen',clone(value)]),close(){},syncIdentity(){},dispose(){}}),createIdentityContinuityPanel:()=>({open(){},close(){},dispose(){}}),
     createCommunityPanel:()=>({open:async value=>calls.push(["communityOpen",clone(value)]),close(){},syncIdentity(){},dispose(){}}),
     createWorldCupPanel:()=>({open:async value=>calls.push(["worldcupOpen",clone(value)]),close(){},syncIdentity(){},dispose(){}}),
     createModerationPanel:options=>({openReports:async()=>calls.push(['myFeedback']),openManagement:async id=>calls.push(['manageRoom',id]),openFeedback:(target,options)=>calls.push(['feedback',clone(target),options===undefined?undefined:clone(options)]),close(){},syncIdentity(){},refresh:async()=>{},dispose(){}}),
@@ -490,3 +490,15 @@ test('NFC requires an explicit click, uses the invitation URL once and cancels o
 });
 
 test('manual admission accepts a complete invitation address without truncation',()=>{const h=harness();h.binding.openPanel('entry');assert.match(h.body.innerHTML,/input name="code" maxlength="2048"/);});
+
+test('personal return opens without entering any room and closes the old scene panel',()=>{
+ const h=harness();h.binding.openPanel('entry');h.binding.openPanel('personal');
+ assert.ok(h.calls.some(c=>c[0]==='personalOpen'));assert.equal(h.panel.hidden,true);
+ assert.equal(h.calls.some(c=>['openRoom','createRoom','joinRoom'].includes(c[0])),false);
+});
+
+test('personal return requires the current identity before displaying private lists',()=>{
+ const h=harness(initial({identity:{status:'missing',user:null}}));h.binding.openPanel('personal');
+ assert.equal(h.get().panelKind,'profile');assert.equal(h.calls.some(c=>c[0]==='personalOpen'),false);
+ assert.ok(h.body.innerHTML.includes('data-form="profile"'));
+});

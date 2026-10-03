@@ -132,8 +132,8 @@ export function mountToonScene(container, initialState = {}) {
   function lathe(profile, m, parent, at = [0, 0, 0]) {
     return mesh(geo(new THREE.LatheGeometry(profile.map(p => new THREE.Vector2(...p)), 32)), m, at, [1, 1, 1], parent);
   }
-  const warm = new THREE.HemisphereLight('#d4d4f5', '#8e718d', 1.2);
-  const moon = new THREE.DirectionalLight('#c8d5ff', 1.1);
+  const warm = new THREE.HemisphereLight(liveMode?'#ece5c9':'#d4d4f5',liveMode?'#826749':'#8e718d',liveMode?1.05:1.2);
+  const moon = new THREE.DirectionalLight(liveMode?'#f0e1bd':'#c8d5ff',liveMode?.9:1.1);
   moon.position.set(-4.5, 8, 5); moon.castShadow = true;
   moon.shadow.mapSize.set(1024, 1024);
   Object.assign(moon.shadow.camera, { left: -8, right: 8, top: 10, bottom: -8, near: .5, far: 32 });

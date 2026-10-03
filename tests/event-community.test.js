@@ -260,17 +260,17 @@ for(const mode of ['Node','Worker'])test(mode+' community capacity: concurrent f
 for(const mode of ['Node','Worker'])test(mode+' music bridge: references inherit consent, idempotency, quote retraction, block and persistent membership gates',async t=>{
  const f=await fixture(t,mode),{a,b,room}=await f.two(),outsider=await f.session('Outside'),path='/rooms/'+room.id+'/conversation';
  const call=(suffix,actor=a,method='GET',data,options={})=>f.request(path+suffix,{token:actor.token,method,data,...options});
- const catalogue=(await f.request('/music',{token:a.token})).body.recordings;assert.equal(catalogue.length,4);assert.equal(catalogue[0].title,'不该');assert.equal(new URL(catalogue[0].exploreUrl).hostname,'musicmapteam.github.io');assert.equal((await f.request('/music')).status,401);
- assert.equal((await call('/messages',a,'POST',{text:'Music',musicId:catalogue[0].id})).status,403);
+ const catalogue=(await f.request('/music',{token:a.token})).body.recordings;assert.equal(catalogue.length,37);assert.equal(catalogue[0].title,'不该');assert.equal(catalogue[0].exploreUrl,'#music-map:real-bu-gai');assert.equal((await f.request('/music')).status,401);
+ assert.equal((await call('/messages',a,'POST',{text:'Music',musicId:catalogue[20].id})).status,403);
  for(const actor of[a,b])await call('/join',actor,'POST',{joinConsent:true});
  assert.equal((await call('/messages',a,'POST',{text:'Spoof',musicId:'unknown'})).status,400);
  assert.equal((await call('/messages',a,'POST',{text:'Spoof',musicId:catalogue[0].id,sourceUrl:'https://example.com/private'})).status,400);
- const key=randomUUID(),data={text:'This duet matters to me',musicId:catalogue[0].id};
+ const key=randomUUID(),data={text:'This duet matters to me',musicId:catalogue[20].id};
  const [one,two]=await Promise.all([call('/messages',a,'POST',data,{key}),call('/messages',a,'POST',data,{key})]);assert.equal(one.status,201);assert.equal(one.body.messageId,two.body.messageId);
- let messages=(await call('/messages',b)).body.messages;assert.equal(messages.length,1);assert.deepEqual(messages[0].music,catalogue[0]);assert.equal(messages[0].senderId,a.user.id);
+ let messages=(await call('/messages',b)).body.messages;assert.equal(messages.length,1);assert.deepEqual(messages[0].music,catalogue[20]);assert.equal(messages[0].senderId,a.user.id);
  assert.equal((await call('/messages',outsider)).status,403);
  const reply=await call('/messages',b,'POST',{text:'Another perspective',replyId:one.body.messageId});assert.equal(reply.status,201);
- await f.restart();messages=(await call('/messages',b)).body.messages;assert.deepEqual(messages[1].reply.music,catalogue[0]);
+ await f.restart();messages=(await call('/messages',b)).body.messages;assert.deepEqual(messages[1].reply.music,catalogue[20]);
  await f.block(a,b);assert.equal((await call('/messages',b)).body.messages[0].reply,null);
  await f.unblock(a,b,(await f.social(a)).blocks[0].revision);
  assert.equal((await call('/messages/'+one.body.messageId,a,'DELETE',{})).status,200);

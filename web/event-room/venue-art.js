@@ -1,8 +1,8 @@
 // Runtime lighting/print direction over the unchanged Blender r2 geometry.
 // These are original code-native print marks, not photographs or venue skins.
 export const VENUE_PRINT_PALETTE=Object.freeze({
- CEL_FLOOR:'#96909b',CEL_PAPER:'#d5cdbb',CEL_CURTAIN:'#292737',
- CEL_SHADOW:'#494257',CEL_INK:'#252530',CEL_METAL:'#797481',
+ CEL_FLOOR:'#a77c56',CEL_PAPER:'#526a51',CEL_CURTAIN:'#294938',
+ CEL_SHADOW:'#2a4133',CEL_INK:'#223b2d',CEL_METAL:'#827d62',
  CEL_LIME:'#bca66c',EMISSIVE_LIME:'#f1e2ab',
 });
 
@@ -16,7 +16,7 @@ export const stagePrintLayout=portrait=>({position:portrait?[.65,3.55,-4.71]:[-.
 
 /** Paint only the physical stage's hanging print, leaving all room volume real. */
 export function paintStagePrint(ctx){
- const paper='#eee7d6',ink='#2b273d',acid='#dce982';
+ const paper='#eee2c1',ink='#294c3e',acid='#c78555';
  ctx.fillStyle=paper;ctx.fillRect(0,0,1200,680);
  ctx.fillStyle=ink;ctx.fillRect(38,35,1124,610);
  ctx.save();ctx.translate(81,95);ctx.rotate(-.035);

@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 
 // One additive schema source for local SQLite and D1. Existing migrations stay immutable.
-const migrations = ['0002_event_social.sql', '0003_event_chat.sql', '0004_event_exchanges.sql', '0005_event_moderation.sql', '0006_event_participation.sql', '0007_event_communities.sql', '0008_event_music.sql', '0009_event_worldcup.sql', '0010_event_corners.sql', '0011_event_spaces.sql'].map(name => {
+const migrations = ['0002_event_social.sql', '0003_event_chat.sql', '0004_event_exchanges.sql', '0005_event_moderation.sql', '0006_event_participation.sql', '0007_event_communities.sql', '0008_event_music.sql', '0009_event_worldcup.sql', '0010_event_corners.sql', '0011_event_spaces.sql', '0012_event_music_play.sql'].map(name => {
   const source = readFileSync(new URL('../runtime-preview/drizzle/' + name, import.meta.url), 'utf8');
   return { name, hash: createHash('sha256').update(source).digest('hex'), source };
 });

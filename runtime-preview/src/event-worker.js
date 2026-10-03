@@ -1,5 +1,7 @@
 import {admissionRoute} from './admission-protocol.js';
 import {handleEventCorners} from './event-corners.js';
+import {handleMusicTopics} from './event-music-topics.js';
+import {handleEventGames} from './event-games.js';
 import {handleEventCommunity} from './event-community.js';
 import {handleEventSpaces} from './event-spaces.js';
 import {handleEventWorldCup} from './event-worldcup.js';
@@ -127,6 +129,7 @@ export function createEventWorker({ clock = Date.now, rateLimits = true } = {}) 
         if (!key || !env.PHOTOS?.delete) return;
         try { if (!await get('SELECT id FROM event_photos WHERE photo_key = ? UNION ALL SELECT id FROM event_exchanges WHERE preview_key = ? LIMIT 1', key, key)) await env.PHOTOS.delete(key); } catch { /* retention is safer than uncertain deletion */ }
       }
+      async function replayOperation(data){const key=request.headers.get('Idempotency-Key');if(typeof key!=='string'||!/^[A-Za-z0-9_-]{16,128}$/.test(key))fail(400,'IDEMPOTENCY_KEY_REQUIRED','请提供本次操作的原请求编号。');const previous=await get('SELECT * FROM event_idempotency WHERE actor_id=? AND key_hash=?',user.id,hash(key));if(!previous)return null;if(previous.request_hash!==hash(`${method}\n${path}\n${JSON.stringify(data)}`))fail(409,'IDEMPOTENCY_CONFLICT','同一请求编号对应不同内容。');return json(previous.status,JSON.parse(previous.response),{'Idempotency-Replayed':'true'});}
       async function mutate(data, action) {
         const key = request.headers.get('Idempotency-Key');
         if (typeof key !== 'string' || !/^[A-Za-z0-9_-]{16,128}$/.test(key)) fail(400, 'IDEMPOTENCY_KEY_REQUIRED', '请为此次操作提供唯一重试编号。');
@@ -160,9 +163,13 @@ export function createEventWorker({ clock = Date.now, rateLimits = true } = {}) 
         if (plan.removeKey) await removeUnreferenced(plan.removeKey);
         return json(plan.status || 200, plan.body);
       }
+      const gamesResponse=await handleEventGames({request,path,method,user,db,stmt,get,now,rate,mutate,replayOperation,readJSON,keys,revision,fail,json});
+      if(gamesResponse)return gamesResponse;
+      const topicsResponse=await handleMusicTopics({request,path,method,user,db,stmt,get,now,rate,mutate,readJSON,keys,revision,fail,json});
+      if(topicsResponse)return topicsResponse;
       const cornerResponse=await handleEventCorners({request,path,method,user,db,stmt,get,now,rate,mutate,readJSON,keys,revision,fail,json,env,headers});
       if(cornerResponse)return cornerResponse;
-      const worldcupResponse=await handleEventWorldCup({request,path,method,user,db,stmt,get,now,rate,mutate,readJSON,keys,revision,fail,json});
+      const worldcupResponse=await handleEventWorldCup({request,path,method,user,db,stmt,get,now,rate,mutate,replayOperation,readJSON,keys,revision,fail,json});
       if(worldcupResponse)return worldcupResponse;
       const spacesResponse=await handleEventSpaces({request,path,method,user,db,stmt,get,now,rate,mutate,readJSON,keys,revision,fail,json});
       if(spacesResponse)return spacesResponse;

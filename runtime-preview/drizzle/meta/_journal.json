@@ -85,6 +85,13 @@
       "idx": 11,
       "when": 1790966400003,
       "breakpoints": true
+    },
+    {
+      "tag": "0012_event_music_play",
+      "version": "6",
+      "idx": 12,
+      "when": 1790966400004,
+      "breakpoints": true
     }
   ]
 }

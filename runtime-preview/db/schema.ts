@@ -197,8 +197,11 @@ export const eventParticipation = sqliteTable('event_participation', {
 
 // Chat memberships are explicit and independent of event photo membership.
 export const eventCommunities = sqliteTable('event_communities', {
- id:text('id').primaryKey(),code:text('code').notNull().unique(),hostId:text('host_id').notNull().references(()=>avatarUsers.id),title:text('title').notNull(),createdAt:text('created_at').notNull(),
-});
+ id:text('id').primaryKey(),code:text('code').notNull().unique(),hostId:text('host_id').notNull().references(()=>avatarUsers.id),title:text('title').notNull(),createdAt:text('created_at').notNull(),description:text('description').notNull().default(''),archivedAt:text('archived_at'),revision:integer('revision').notNull().default(1),
+},t=>[check('event_space_description',sql`length(${t.description})<=300`),check('event_space_revision',sql`${t.revision}>=1`)]);
+export const eventCommunityEvents=sqliteTable('event_community_events',{
+ id:text('id').primaryKey(),communityId:text('community_id').notNull().references(()=>eventCommunities.id),title:text('title').notNull(),venue:text('venue').notNull(),startsAt:integer('starts_at'),note:text('note').notNull().default(''),status:text('status').notNull().default('planned'),roomId:text('room_id').unique().references(()=>eventRooms.id),revision:integer('revision').notNull().default(1),createdAt:text('created_at').notNull(),updatedAt:text('updated_at').notNull(),
+},t=>[check('event_activity_title',sql`length(${t.title}) BETWEEN 1 AND 40`),check('event_activity_venue',sql`length(${t.venue})<=40`),check('event_activity_note',sql`length(${t.note})<=300`),check('event_activity_status',sql`${t.status} IN ('planned','linked','cancelled')`),check('event_activity_revision',sql`${t.revision}>=1`),check('event_activity_room',sql`(${t.status}='linked' AND ${t.roomId} IS NOT NULL) OR (${t.status}!='linked' AND ${t.roomId} IS NULL)`),index('event_community_event_order').on(t.communityId,t.createdAt,t.id)]);
 export const eventCommunityRooms = sqliteTable('event_community_rooms', {
  roomId:text('room_id').primaryKey().references(()=>eventRooms.id),communityId:text('community_id').notNull().references(()=>eventCommunities.id),
 });

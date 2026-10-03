@@ -1,6 +1,7 @@
 import {admissionRoute} from './admission-protocol.js';
 import {handleEventCorners} from './event-corners.js';
 import {handleEventCommunity} from './event-community.js';
+import {handleEventSpaces} from './event-spaces.js';
 import {handleEventWorldCup} from './event-worldcup.js';
 import {handleEventParticipation,participationMode} from './event-participation.js';
 import { createHash, randomBytes, randomUUID } from 'node:crypto';
@@ -163,6 +164,8 @@ export function createEventWorker({ clock = Date.now, rateLimits = true } = {}) 
       if(cornerResponse)return cornerResponse;
       const worldcupResponse=await handleEventWorldCup({request,path,method,user,db,stmt,get,now,rate,mutate,readJSON,keys,revision,fail,json});
       if(worldcupResponse)return worldcupResponse;
+      const spacesResponse=await handleEventSpaces({request,path,method,user,db,stmt,get,now,rate,mutate,readJSON,keys,revision,fail,json});
+      if(spacesResponse)return spacesResponse;
       const communityResponse=await handleEventCommunity({request,path,method,user,db,stmt,get,now,rate,mutate,readJSON,keys,revision,fail,json});
       if(communityResponse)return communityResponse;
       const participationResponse=await handleEventParticipation({request,path,method,user,stmt,get,now,mutate,readJSON,keys,revision,fail,json});

@@ -60,7 +60,38 @@ async function fixture(t, mode = 'Worker', { rateLimits = false } = {}) {
 
 
 
+test('Worker space archive/reopen cannot revive an already authorized message',async t=>{
+ const f=await fixture(t),a=await f.session('Organizer'),space=(await f.request('/communities',{token:a.token,method:'POST',data:{title:'Archive race',joinConsent:true}})).body.community,base='/communities/'+space.id;
+ let resume,started;const paused=new Promise(r=>started=r),gate=new Promise(r=>resume=r),batch=f.env.DB.batch;
+ f.env.DB.batch=async statements=>{if(statements.some(s=>s.query.startsWith('INSERT INTO event_group_messages'))){started();await gate;}return batch(statements);};
+ const waiting=f.request(base+'/conversation/messages',{token:a.token,method:'POST',data:{text:'An older permission snapshot'}});await paused;
+ for(const archived of [true,false]){const current=(await f.request(base+'/space',{token:a.token})).body.space;assert.equal((await f.request(base+'/space',{token:a.token,method:'POST',data:{title:current.title,description:current.description,archived,revision:current.revision,editConsent:true}})).status,200);}
+ resume();assert.equal((await waiting).status,409);assert.equal((await f.request(base+'/conversation/messages',{token:a.token})).body.messages.length,0);
+});
 for(const mode of ['Node','Worker']){
+ test(mode+' space organization: explicit host edits, event association, archive and persistence',async t=>{
+  const f=await fixture(t,mode),a=await f.session('Organizer'),b=await f.session('Member'),outsider=await f.session('Outside');
+  const create=await f.request('/communities',{token:a.token,method:'POST',data:{title:'Small music space',joinConsent:true}});assert.equal(create.status,201);
+  const space=create.body.community,base='/communities/'+space.id,post=(path,actor,data)=>f.request(base+path,{token:actor.token,method:'POST',data});
+  assert.equal((await f.request(base+'/events',{token:outsider.token})).status,403);
+  assert.equal((await post('/conversation/join',b,{joinConsent:true})).status,200);
+  let detail=(await f.request(base+'/space',{token:a.token})).body.space;
+  assert.equal((await post('/space',b,{title:detail.title,description:'New description',archived:false,revision:detail.revision,editConsent:true})).status,403);
+  assert.equal((await post('/space',a,{title:detail.title,description:'Meet again after the show',archived:false,revision:detail.revision,editConsent:true})).status,200);
+  const event=await post('/events',a,{title:'Next live show',venue:'Small venue',startsAt:null,note:'Bring your own perspective',organizeConsent:true});assert.equal(event.status,201,JSON.stringify(event.body));
+  const room=await f.room(a);assert.equal((await post('/events/'+event.body.eventId,a,{action:'link',revision:1,roomId:room.id,organizeConsent:true})).status,200);
+  const events=await f.request(base+'/events',{token:b.token});assert.equal(events.status,200);assert.equal(events.body.events[0].room.joined,false);
+  assert.equal((await f.request('/rooms/'+room.id+'/photos',{token:b.token})).status,404);
+  detail=(await f.request(base+'/space',{token:a.token})).body.space;
+  assert.equal((await post('/space',a,{title:detail.title,description:detail.description,archived:true,revision:detail.revision,editConsent:true})).status,200);
+  assert.equal((await post('/conversation/join',outsider,{joinConsent:true})).status,409);
+  assert.equal((await post('/conversation/messages',b,{text:'Cannot send after archive'})).status,409);
+  assert.equal((await post('/worldcups',b,{title:'Cannot publish after archive',createConsent:true})).status,409);
+  assert.equal((await f.request(base+'/events',{token:b.token})).status,200);
+  await f.restart();detail=(await f.request(base+'/space',{token:a.token})).body.space;assert.equal(detail.archived,true);assert.equal(detail.description,'Meet again after the show');
+  assert.equal((await post('/space',a,{title:detail.title,description:detail.description,archived:false,revision:detail.revision,editConsent:true})).status,200);
+  assert.equal((await post('/conversation/messages',b,{text:'Back again'})).status,201);
+ });
  test(mode+' community: independent consent, lifecycle, replies, explicit reads and persistence',async t=>{
   const f=await fixture(t,mode),{a,b,room}=await f.two(),outside=await f.session('Outside'),path='/rooms/'+room.id+'/conversation';
   const call=(suffix,actor=a,method='GET',data,opts={})=>f.request(path+suffix,{token:actor.token,method,data,...opts});

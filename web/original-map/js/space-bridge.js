@@ -11,7 +11,7 @@ const status=document.createElement('p');status.className='space-map-status';sta
 function online(){if(navigator.onLine!==false){status.hidden=true;return true;}status.hidden=false;status.textContent='当前离线，请恢复连接后重试返回。探索记录与聊天草稿仍保留。';return false;}
 window.addEventListener('online',()=>{status.hidden=true;});
 if(realSongs[context?.recordingId]){
- const song=realSongs[context.recordingId],b=document.createElement('button');b.textContent='带来的歌';b.title=`从《${song.title}》的作者继续探索`;b.setAttribute('aria-label',b.title);
+ const song=realSongs[context.recordingId],b=document.createElement('button');b.className='space-map-context';b.textContent='歌曲';b.title=`从《${song.title}》的作者继续探索`;b.setAttribute('aria-label',b.title);document.querySelector('.app-masthead').classList.add('space-map-has-recording');
  b.onclick=()=>window.dispatchEvent(new CustomEvent('music-space-map-artist',{detail:{artistId:song.artists[0]}}));bar.append(b);
 }
 // Add draft actions beside the original track controls. Never translate an

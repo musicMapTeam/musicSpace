@@ -1,5 +1,5 @@
 /* Approved editorial night direction over the real venue and existing consent flows. */
-.conversation-content{display:contents}
+.conversation-content{display:flex;flex-direction:column;flex:1;min-height:0;overflow:auto;overscroll-behavior:contain}
 .frame>header .status{color:#53664b}
 @media(max-height:680px) and (max-width:700px), (max-height:520px){
  .conversation-layout .conversation-content{display:flex;flex-direction:column;flex:1;min-height:0;overflow:auto;overscroll-behavior:contain}

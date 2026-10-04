@@ -24,3 +24,9 @@ test('offline opening preserves the current screen for an explicit retry',()=>{
  const prior=Object.getOwnPropertyDescriptor(globalThis,'navigator');Object.defineProperty(globalThis,'navigator',{value:{onLine:false},configurable:true});let errors=0,navigations=0;globalThis.location={assign:()=>navigations++};
  try{const map=createMusicMap({controller:{getState:()=>{throw Error('must not leave');}},onError:()=>errors++});map.open();assert.equal(errors,1);assert.equal(navigations,0);}finally{if(prior)Object.defineProperty(globalThis,'navigator',prior);else delete globalThis.navigator;}
 });
+test('return camera waits for the restored room and renderer without repeating the draft',()=>{
+ const values=new Map(),key='music-space-map-return:v1';globalThis.sessionStorage={getItem:k=>values.get(k),setItem:(k,v)=>values.set(k,v),removeItem:k=>values.delete(k)};
+ values.set(key,JSON.stringify({actor:'a',scope:{kind:'room',id:'r'},returning:true,view:{view:'photos',roomId:'r'}}));let ready=false,returns=0,restores=0;
+ const map=createMusicMap({controller:{getState:()=>({identity:{status:'ready',user:{id:'a'}}})},canRestore:v=>ready&&v.roomId==='r',onReturn:()=>returns++,onRestore:v=>{assert.equal(v.view,'photos');restores++;}});
+ map.syncIdentity();assert.equal(returns,1);assert.equal(restores,0);ready=true;map.syncIdentity();map.syncIdentity();assert.equal(returns,1);assert.equal(restores,1);
+});

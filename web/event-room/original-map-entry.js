@@ -1,8 +1,8 @@
 import {realSongs} from '../../runtime-preview/src/map-catalogue.js';
 const KEY='music-space-map-return:v1';
 /** Full-page route: the original Map owns the screen and its single renderer. */
-export function createMusicMap({controller,onShare=()=>{},onRelay=()=>{},onReturn=()=>{},getView=()=>null,onRestore=()=>{},onError=()=>{}}){
- let leaving=false;
+export function createMusicMap({controller,onShare=()=>{},onRelay=()=>{},onReturn=()=>{},getView=()=>null,canRestore=()=>true,onRestore=()=>{},onError=()=>{}}){
+ let leaving=false,pendingView=null;
  function open(scope=null,_back=null,recordingId=null){
   if(leaving)return;
   if(globalThis.navigator?.onLine===false){onError(Error('当前离线，恢复连接后再打开音乐探索；聊天草稿会保留。'));return;}
@@ -15,16 +15,22 @@ export function createMusicMap({controller,onShare=()=>{},onRelay=()=>{},onRetur
  // still check membership and require explicit send/start confirmation.
  function syncIdentity(){
   const identity=controller.getState().identity;if(identity.status!=='ready')return;
+  if(pendingView?.actor!==identity.user?.id)pendingView=null;
   let saved;try{saved=JSON.parse(sessionStorage.getItem(KEY)||'null');}catch{return;}
-  if(!saved?.returning&&!saved?.action)return;
-  sessionStorage.removeItem(KEY);
-  if(saved.actor!==identity.user?.id)return;
-  if(saved.view)onRestore(saved.view);
-  if(!saved.scope)return;
-  if(!saved.action){onReturn(saved.scope);return;}
-  if(!realSongs[saved.recordingId])return;
-  if(saved.action==='share')onShare(saved.scope,saved.recordingId);
-  if(saved.action==='relay')onRelay(saved.scope,saved.recordingId);
+  if(saved?.returning||saved?.action){
+   sessionStorage.removeItem(KEY);
+   if(saved.actor===identity.user?.id){
+    if(saved.view)pendingView={actor:saved.actor,view:saved.view};
+    if(saved.scope){
+     if(!saved.action)onReturn(saved.scope);
+     else if(realSongs[saved.recordingId]){
+      if(saved.action==='share')onShare(saved.scope,saved.recordingId);
+      if(saved.action==='relay')onRelay(saved.scope,saved.recordingId);
+     }
+    }
+   }
+  }
+  if(pendingView&&canRestore(pendingView.view)){const view=pendingView.view;pendingView=null;onRestore(view);}
  }
  return {open,close(){},syncIdentity,dispose(){}};
 }

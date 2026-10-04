@@ -1,6 +1,6 @@
-# Music Space · 0.21.0-rc.4 候选
+# Music Space · 0.21.0-rc.4 预发布
 
-本轮专门做实际浏览器排版 QA：确认并局部修复横屏房间／社群聊天和私聊输入区被裁、短屏场景标题与人数重叠、页头状态低对比度、Map 音乐人名字拆行。保留原版 Map 美术、探索、分享与接龙草稿和所有权限；桌面、小笔记本、390px、320px、横屏及 200% 等效布局均留图复查。发行与 8791 升级结果待实际核验，见 [排版验收](docs/event/evidence/layout-ui-qa.md)。
+本轮完成实际浏览器排版收尾：修复横屏房间／社群聊天及私聊输入区被裁、短屏标题与人数重叠、纸面状态低对比、Map 艺人名字拆行，以及实际 RC3 包检查发现的长标题加分享草稿挤掉输入框；加载文字和中断状态条也已修正。原版 Three.js Map、既有照片／好友／私聊权限保持不变。721 项测试、六个入口构建、精确提交 CI 通过；RC4 实际下载包 75 文件核验一致、42 步独立身份与权限／持久化闭环通过，另有当前构建小游戏 19 步。8791 已在验证备份后升级并正常重启，原业务记录及全部私人照片一致。见 [排版验收](docs/event/evidence/layout-ui-qa.md) 和 [RC4 预发布](https://github.com/musicMapTeam/musicSpace/releases/tag/v0.21.0-rc.4)。
 
 上一轮把 Music Map 0.16.0 的完整原版三维页面接入 `/music-map/`，保留唱片桌、小院、翻片寻声和收藏。页面往返释放渲染器，Three 模块共享缓存；返回恢复现场机位、聊天室与未发送草稿。当前隔离实现已通过 721 条测试、三身份真实浏览器的 9 步分享与接龙草稿闭环、320×568 场景往返及无 WebGL 降级。[PR22](https://github.com/musicMapTeam/musicSpace/pull/22) 与短屏修复 [PR23](https://github.com/musicMapTeam/musicSpace/pull/23) 已经精确提交 CI、自审、合并和 [RC.2 预发布](https://github.com/musicMapTeam/musicSpace/releases/tag/v0.21.0-rc.2)；实际下载包 75 个运行文件核验一致，8791 在两库及私人照片备份核对后升级并正常重启，见 [本轮证据](docs/event/evidence/original-map-qa.md)。
 

@@ -1,6 +1,6 @@
 {
   "name": "music-space",
-  "version": "0.20.0-rc.2",
+  "version": "0.21.0-rc.1",
   "private": true,
   "type": "module",
   "description": "Music Space: after the show, concert-goers trade the view the other one missed, by consent, as a two-name double ticket",
@@ -22,7 +22,7 @@
     "test:avatar": "node --test tests/avatar*.test.js",
     "test": "node scripts/test/moment.test.mjs && node scripts/test/insight.test.mjs && node scripts/test/api.test.mjs",
     "test:runtime": "node --test runtime-preview/tests/avatar*.test.mjs",
-    "build:all": "npm run build && npm run build:avatar && npm run build:livehouse && npm run build:character && npm run build:event",
+    "build:all": "npm run build && npm run build:avatar && npm run build:livehouse && npm run build:character && npm run build:event && npm run build:map",
     "build:livehouse": "vite build --config vite.livehouse.config.js",
     "dev:livehouse": "vite --config vite.livehouse.config.js",
     "build:character": "vite build --config vite.character.config.js",
@@ -40,7 +40,8 @@
     "start:local": "node server/launch-local.js",
     "test:launcher": "node --test tests/local-launcher.test.js",
     "test:release": "node scripts/test/release-suite.mjs",
-    "release:pack": "node scripts/release/package.mjs"
+    "release:pack": "node scripts/release/package.mjs",
+    "build:map": "vite build --config vite.map.config.js"
   },
   "devDependencies": {
     "gsap": "3.15.0",

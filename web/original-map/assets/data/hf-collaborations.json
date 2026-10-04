@@ -1,0 +1,1811 @@
+{
+  "schemaVersion": 1,
+  "dataset": "hf-open-catalogue",
+  "title": "开放曲库",
+  "source": {
+    "repository": "maharshipandya/spotify-tracks-dataset",
+    "revision": "635b034f69257814eff850a5c2b3346fe458134f",
+    "url": "https://huggingface.co/datasets/maharshipandya/spotify-tracks-dataset/tree/635b034f69257814eff850a5c2b3346fe458134f",
+    "cardUrl": "https://huggingface.co/datasets/maharshipandya/spotify-tracks-dataset/blob/635b034f69257814eff850a5c2b3346fe458134f/README.md",
+    "file": "dataset.csv",
+    "sha256": "b202fa49909b2d5cef71a04b1d21243cfeb36414535f2ca9272aa646721177bd",
+    "licenseLabel": "bsd",
+    "licenseNote": "上游数据卡仅标 bsd，未提供独立 LICENSE 或具体 BSD 版本；不构成音频授权。"
+  },
+  "counts": {
+    "rows": 114000,
+    "uniqueTrackIds": 89741,
+    "multiArtistRows": 30075,
+    "genres": 114,
+    "zhGenreRows": 2000,
+    "zhCoCreditRows": 175,
+    "excludedRows": 19,
+    "eligibleUniqueTrackIds": 149,
+    "selectedTracks": 126
+  },
+  "genres": [
+    "mandopop",
+    "cantopop"
+  ],
+  "creditMeaning": "原始 artists 字段列出的共同署名艺人；具体演唱、词曲、编曲、制作与演奏分工未提供。",
+  "selection": "仅取固定快照中 track_genre 为 mandopop 或 cantopop 的记录，要求列出 2–5 名不同艺人且曲名、专辑非空；排除列有 11 个指定字符串之一的记录：内容风险姓名 Namewee、Kris Wu、明日花綺羅，以及 Unknown、Sony Studio、Tom Brown 等占位或录音室 / 制作署名。先按 track_id 去重，再按去掉末尾版本括注与“ - ”后缀的曲名 + 艺人名单去重；同一首位艺人最多 3 首，剩余全部收录，共 126 首。采集时的 popularity 只用于去重取舍和列表顺序，不表示当前热度或排名；不是榜单或统计抽样。",
+  "tracks": [
+    {
+      "id": "hf-0FfNFvy5KRRyB2snvK39zL",
+      "title": "I'm Alive",
+      "artists": [
+        "W.M.L",
+        "Vicky Chen"
+      ],
+      "album": "I'm Alive",
+      "source": {
+        "rowIndex": 70189,
+        "recordNumber": 70190,
+        "trackId": "0FfNFvy5KRRyB2snvK39zL"
+      }
+    },
+    {
+      "id": "hf-07DWACsD58aEdq6XnDadLh",
+      "title": "手心的薔薇",
+      "artists": [
+        "JJ Lin",
+        "G.E.M."
+      ],
+      "album": "新地球",
+      "source": {
+        "rowIndex": 70077,
+        "recordNumber": 70078,
+        "trackId": "07DWACsD58aEdq6XnDadLh"
+      }
+    },
+    {
+      "id": "hf-1JLtvvPsHwLyd2ufASdkWV",
+      "title": "感谢你曾来过",
+      "artists": [
+        "阿涵",
+        "Ayo97"
+      ],
+      "album": "感谢你曾来过",
+      "source": {
+        "rowIndex": 70226,
+        "recordNumber": 70227,
+        "trackId": "1JLtvvPsHwLyd2ufASdkWV"
+      }
+    },
+    {
+      "id": "hf-4JY5s40ymnG18f6wxQtzPw",
+      "title": "珊瑚海",
+      "artists": [
+        "Jay Chou",
+        "Lara Liang"
+      ],
+      "album": "11月的蕭邦",
+      "source": {
+        "rowIndex": 70021,
+        "recordNumber": 70022,
+        "trackId": "4JY5s40ymnG18f6wxQtzPw"
+      }
+    },
+    {
+      "id": "hf-3TYzES2lL8BTPE4uudj0Hj",
+      "title": "不得不愛",
+      "artists": [
+        "Will Pan",
+        "Xian Zi"
+      ],
+      "album": "高手",
+      "source": {
+        "rowIndex": 70061,
+        "recordNumber": 70062,
+        "trackId": "3TYzES2lL8BTPE4uudj0Hj"
+      }
+    },
+    {
+      "id": "hf-5AnD1Tmu5hKPeHGyxGq6LJ",
+      "title": "飄流教室",
+      "artists": [
+        "Leo Ku",
+        "Edan 呂爵安"
+      ],
+      "album": "飄流教室",
+      "source": {
+        "rowIndex": 12180,
+        "recordNumber": 12181,
+        "trackId": "5AnD1Tmu5hKPeHGyxGq6LJ"
+      }
+    },
+    {
+      "id": "hf-77BQceOpfvUBXgokOFHYMm",
+      "title": "說好不哭",
+      "artists": [
+        "Jay Chou",
+        "Ashin Chen"
+      ],
+      "album": "最偉大的作品",
+      "source": {
+        "rowIndex": 70038,
+        "recordNumber": 70039,
+        "trackId": "77BQceOpfvUBXgokOFHYMm"
+      }
+    },
+    {
+      "id": "hf-1XXvo0XLQqEnIb0fjEr0C8",
+      "title": "Drowning",
+      "artists": [
+        "高爾宣 OSN",
+        "李浩瑋 Howard Lee"
+      ],
+      "album": "Drowning",
+      "source": {
+        "rowIndex": 70302,
+        "recordNumber": 70303,
+        "trackId": "1XXvo0XLQqEnIb0fjEr0C8"
+      }
+    },
+    {
+      "id": "hf-40NvsEFexANIROSnKIMYXB",
+      "title": "自我安慰",
+      "artists": [
+        "Leo Ku",
+        "MC 張天賦"
+      ],
+      "album": "自我安慰",
+      "source": {
+        "rowIndex": 12193,
+        "recordNumber": 12194,
+        "trackId": "40NvsEFexANIROSnKIMYXB"
+      }
+    },
+    {
+      "id": "hf-1WzMnzTmdWbJZ3OhizMtbX",
+      "title": "Frenemy",
+      "artists": [
+        "MC 張天賦",
+        "Kaho Hung"
+      ],
+      "album": "Frenemy",
+      "source": {
+        "rowIndex": 12286,
+        "recordNumber": 12287,
+        "trackId": "1WzMnzTmdWbJZ3OhizMtbX"
+      }
+    },
+    {
+      "id": "hf-68tZwwRuo9ip5gRQFG1XWF",
+      "title": "開始懂了",
+      "artists": [
+        "Stefanie Sun",
+        "Jerry",
+        "Lin Zheng-Zhong"
+      ],
+      "album": "我要的幸福",
+      "source": {
+        "rowIndex": 70147,
+        "recordNumber": 70148,
+        "trackId": "68tZwwRuo9ip5gRQFG1XWF"
+      }
+    },
+    {
+      "id": "hf-6us212S3fCRIQwOwNExqLH",
+      "title": "愛我的時候",
+      "artists": [
+        "Eric Chou",
+        "單依純"
+      ],
+      "album": "愛我的時候",
+      "source": {
+        "rowIndex": 70222,
+        "recordNumber": 70223,
+        "trackId": "6us212S3fCRIQwOwNExqLH"
+      }
+    },
+    {
+      "id": "hf-3N0srZgpRLSY2ziJ1FsJh9",
+      "title": "Work",
+      "artists": [
+        "高爾宣 OSN",
+        "sunkis"
+      ],
+      "album": "Work",
+      "source": {
+        "rowIndex": 70360,
+        "recordNumber": 70361,
+        "trackId": "3N0srZgpRLSY2ziJ1FsJh9"
+      }
+    },
+    {
+      "id": "hf-6qnSA1GSwRtgHCqaD1jQin",
+      "title": "今天陽光就是特別耀眼特別和諧 feat. 韋禮安",
+      "artists": [
+        "Pets Tseng",
+        "WeiBird"
+      ],
+      "album": "今天陽光就是特別耀眼特別和諧",
+      "source": {
+        "rowIndex": 70490,
+        "recordNumber": 70491,
+        "trackId": "6qnSA1GSwRtgHCqaD1jQin"
+      }
+    },
+    {
+      "id": "hf-7LyCtbxher5m97MImn5M3l",
+      "title": "不該",
+      "artists": [
+        "Jay Chou",
+        "A-Mei Chang"
+      ],
+      "album": "周杰倫的床邊故事",
+      "source": {
+        "rowIndex": 70126,
+        "recordNumber": 70127,
+        "trackId": "7LyCtbxher5m97MImn5M3l"
+      }
+    },
+    {
+      "id": "hf-7ovUSP7jWkzWR2SHptYJfd",
+      "title": "你被寫在我的歌裡",
+      "artists": [
+        "Sodagreen",
+        "Ella Chen"
+      ],
+      "album": "你在煩惱什麼",
+      "source": {
+        "rowIndex": 70199,
+        "recordNumber": 70200,
+        "trackId": "7ovUSP7jWkzWR2SHptYJfd"
+      }
+    },
+    {
+      "id": "hf-4PMakIBWXujbe2MIsuZtOc",
+      "title": "對等關係 (feat. 張惠妹)",
+      "artists": [
+        "Ronghao Li",
+        "A-Mei Chang"
+      ],
+      "album": "對等關係 (feat. 張惠妹)",
+      "source": {
+        "rowIndex": 70304,
+        "recordNumber": 70305,
+        "trackId": "4PMakIBWXujbe2MIsuZtOc"
+      }
+    },
+    {
+      "id": "hf-7DQOE8yIchm7bPPvJ0w6Bf",
+      "title": "好心分手",
+      "artists": [
+        "Candy Lo",
+        "Leehom Wang"
+      ],
+      "album": "不能不愛…盧巧音精選",
+      "source": {
+        "rowIndex": 12057,
+        "recordNumber": 12058,
+        "trackId": "7DQOE8yIchm7bPPvJ0w6Bf"
+      }
+    },
+    {
+      "id": "hf-6zeblz6qaURo2JphS7XeFz",
+      "title": "一表人才",
+      "artists": [
+        "Edan 呂爵安",
+        "Feng Ze"
+      ],
+      "album": "一表人才",
+      "source": {
+        "rowIndex": 12905,
+        "recordNumber": 12906,
+        "trackId": "6zeblz6qaURo2JphS7XeFz"
+      }
+    },
+    {
+      "id": "hf-7LmFgyIHlXRqjDOt68RQoQ",
+      "title": "凉凉 - 電視劇《三生三世十里桃花》片尾曲",
+      "artists": [
+        "Aska Yang",
+        "Zhang Bichen"
+      ],
+      "album": "凉凉",
+      "source": {
+        "rowIndex": 70027,
+        "recordNumber": 70028,
+        "trackId": "7LmFgyIHlXRqjDOt68RQoQ"
+      }
+    },
+    {
+      "id": "hf-53WV5mAY2opmFC0r0LjRdM",
+      "title": "小酒窩",
+      "artists": [
+        "JJ Lin",
+        "Charlene Choi"
+      ],
+      "album": "JJ陸",
+      "source": {
+        "rowIndex": 70287,
+        "recordNumber": 70288,
+        "trackId": "53WV5mAY2opmFC0r0LjRdM"
+      }
+    },
+    {
+      "id": "hf-01PSJFZbSRujjSk9d2Gbla",
+      "title": "再也沒有你",
+      "artists": [
+        "Lara Liang",
+        "Andrew Tan"
+      ],
+      "album": "來者何人{}",
+      "source": {
+        "rowIndex": 70491,
+        "recordNumber": 70492,
+        "trackId": "01PSJFZbSRujjSk9d2Gbla"
+      }
+    },
+    {
+      "id": "hf-58XI7GWbSNjhltlsrUz6pt",
+      "title": "知否知否 - \"知否知否应是绿肥红瘦\" 电视剧主题曲",
+      "artists": [
+        "Hu Xia",
+        "Yisa Yu"
+      ],
+      "album": "知否知否 (\"知否知否应是绿肥红瘦\" 电视剧主题曲)",
+      "source": {
+        "rowIndex": 70185,
+        "recordNumber": 70186,
+        "trackId": "58XI7GWbSNjhltlsrUz6pt"
+      }
+    },
+    {
+      "id": "hf-2d3DoAIDeUC58X3mzDRmDs",
+      "title": "你最珍貴",
+      "artists": [
+        "Jacky Cheung",
+        "高慧君"
+      ],
+      "album": "不後悔",
+      "source": {
+        "rowIndex": 12266,
+        "recordNumber": 12267,
+        "trackId": "2d3DoAIDeUC58X3mzDRmDs"
+      }
+    },
+    {
+      "id": "hf-0WzdHebEnoKHlTxq5x2e67",
+      "title": "私奔到月球",
+      "artists": [
+        "Mayday",
+        "Cheer Chen"
+      ],
+      "album": "離開地球表面",
+      "source": {
+        "rowIndex": 70241,
+        "recordNumber": 70242,
+        "trackId": "0WzdHebEnoKHlTxq5x2e67"
+      }
+    },
+    {
+      "id": "hf-3dGkfiu2IKSWZRfmBoUxvV",
+      "title": "Without You - Acoustic Version",
+      "artists": [
+        "高爾宣 OSN",
+        "Vicky Chen"
+      ],
+      "album": "#osnrap",
+      "source": {
+        "rowIndex": 70399,
+        "recordNumber": 70400,
+        "trackId": "3dGkfiu2IKSWZRfmBoUxvV"
+      }
+    },
+    {
+      "id": "hf-2TkAUHBaCReXruGnMVPGNL",
+      "title": "Bedroom (feat. Anne-Marie)",
+      "artists": [
+        "JJ Lin",
+        "Anne-Marie"
+      ],
+      "album": "Bedroom (feat. Anne-Marie)",
+      "source": {
+        "rowIndex": 70112,
+        "recordNumber": 70113,
+        "trackId": "2TkAUHBaCReXruGnMVPGNL"
+      }
+    },
+    {
+      "id": "hf-40fcXSuSb80MekMZM1ei2J",
+      "title": "溫柔 #MaydayBlue20th - feat.孫燕姿",
+      "artists": [
+        "Mayday",
+        "Stefanie Sun"
+      ],
+      "album": "溫柔 #MaydayBlue20th",
+      "source": {
+        "rowIndex": 70387,
+        "recordNumber": 70388,
+        "trackId": "40fcXSuSb80MekMZM1ei2J"
+      }
+    },
+    {
+      "id": "hf-6tzOEJ2tqSiAxHw9CAT9Ru",
+      "title": "別勉強",
+      "artists": [
+        "G.E.M.",
+        "Eric Chou"
+      ],
+      "album": "摩天動物園",
+      "source": {
+        "rowIndex": 70725,
+        "recordNumber": 70726,
+        "trackId": "6tzOEJ2tqSiAxHw9CAT9Ru"
+      }
+    },
+    {
+      "id": "hf-6h9km3YJWVABKCV6SVF9LS",
+      "title": "你那麼愛她",
+      "artists": [
+        "林隆璇",
+        "Sam Lee"
+      ],
+      "album": "Men's Talk About Love新歌+1992~2005精選",
+      "source": {
+        "rowIndex": 70979,
+        "recordNumber": 70980,
+        "trackId": "6h9km3YJWVABKCV6SVF9LS"
+      }
+    },
+    {
+      "id": "hf-6kZfjIUmJqQAosGKyOcOIk",
+      "title": "相愛很難 - 電影\"男人四十\"歌曲",
+      "artists": [
+        "Jacky Cheung",
+        "Anita Mui"
+      ],
+      "album": "他在那裡",
+      "source": {
+        "rowIndex": 12321,
+        "recordNumber": 12322,
+        "trackId": "6kZfjIUmJqQAosGKyOcOIk"
+      }
+    },
+    {
+      "id": "hf-7Fr7Ag2bQyJl86BtsFmdOW",
+      "title": "隔離 - Studio Live Duet",
+      "artists": [
+        "Jace Chan",
+        "Terence Lam"
+      ],
+      "album": "Processing",
+      "source": {
+        "rowIndex": 12379,
+        "recordNumber": 12380,
+        "trackId": "7Fr7Ag2bQyJl86BtsFmdOW"
+      }
+    },
+    {
+      "id": "hf-3kQvyf0lMEpcn0xGWM1blY",
+      "title": "我也難過的",
+      "artists": [
+        "吳林峰",
+        "謝芊彤"
+      ],
+      "album": "我也難過的",
+      "source": {
+        "rowIndex": 12704,
+        "recordNumber": 12705,
+        "trackId": "3kQvyf0lMEpcn0xGWM1blY"
+      }
+    },
+    {
+      "id": "hf-47qkmo2smLRBNlbzDEwZHS",
+      "title": "如果的事",
+      "artists": [
+        "Christine Fan",
+        "Angela Chang"
+      ],
+      "album": "一比一",
+      "source": {
+        "rowIndex": 70497,
+        "recordNumber": 70498,
+        "trackId": "47qkmo2smLRBNlbzDEwZHS"
+      }
+    },
+    {
+      "id": "hf-4eH9ujPhZSF0HZ1c004wtb",
+      "title": "致姗姗来迟的你",
+      "artists": [
+        "A Si",
+        "Yoga Lin"
+      ],
+      "album": "我愚蠢的理想主义",
+      "source": {
+        "rowIndex": 70503,
+        "recordNumber": 70504,
+        "trackId": "4eH9ujPhZSF0HZ1c004wtb"
+      }
+    },
+    {
+      "id": "hf-2LoGv4HSbilp1SVoQ10Qw6",
+      "title": "Black Out (feat. 9m88)",
+      "artists": [
+        "ØZI",
+        "9m88"
+      ],
+      "album": "ØZI: The Album",
+      "source": {
+        "rowIndex": 70850,
+        "recordNumber": 70851,
+        "trackId": "2LoGv4HSbilp1SVoQ10Qw6"
+      }
+    },
+    {
+      "id": "hf-3hdQIQYs13Gv2gdncFvKZ0",
+      "title": "How Many Times - Studio Live",
+      "artists": [
+        "MC 張天賦",
+        "Jay Fung"
+      ],
+      "album": "How Many Times (Studio Live)",
+      "source": {
+        "rowIndex": 12323,
+        "recordNumber": 12324,
+        "trackId": "3hdQIQYs13Gv2gdncFvKZ0"
+      }
+    },
+    {
+      "id": "hf-2edBRoaI2F2ST6WK0jdLUX",
+      "title": "屋頂",
+      "artists": [
+        "Landy Wen",
+        "Jay Chou"
+      ],
+      "album": "有點野",
+      "source": {
+        "rowIndex": 70662,
+        "recordNumber": 70663,
+        "trackId": "2edBRoaI2F2ST6WK0jdLUX"
+      }
+    },
+    {
+      "id": "hf-22Dglcz1VwyXTCEBt6PIdG",
+      "title": "不是我不明白",
+      "artists": [
+        "Fish Leong",
+        "Crowd Lu"
+      ],
+      "album": "親親",
+      "source": {
+        "rowIndex": 70859,
+        "recordNumber": 70860,
+        "trackId": "22Dglcz1VwyXTCEBt6PIdG"
+      }
+    },
+    {
+      "id": "hf-3ZNVR4Nl4NLVioCv4zyFhq",
+      "title": "另一個天堂",
+      "artists": [
+        "Leehom Wang",
+        "Jane Zhang"
+      ],
+      "album": "王力宏全新創作大碟 心.跳",
+      "source": {
+        "rowIndex": 70912,
+        "recordNumber": 70913,
+        "trackId": "3ZNVR4Nl4NLVioCv4zyFhq"
+      }
+    },
+    {
+      "id": "hf-7xAVLrbnud6OrU6f4FmxDr",
+      "title": "羅生門",
+      "artists": [
+        "Juno Mak",
+        "Kay Tse"
+      ],
+      "album": "羅生門",
+      "source": {
+        "rowIndex": 12050,
+        "recordNumber": 12051,
+        "trackId": "7xAVLrbnud6OrU6f4FmxDr"
+      }
+    },
+    {
+      "id": "hf-49TW63ZUE5HJ7hSqyjbCu1",
+      "title": "戀愛頻率",
+      "artists": [
+        "Andy Hui",
+        "許慧欣"
+      ],
+      "album": "我還能愛誰",
+      "source": {
+        "rowIndex": 12631,
+        "recordNumber": 12632,
+        "trackId": "49TW63ZUE5HJ7hSqyjbCu1"
+      }
+    },
+    {
+      "id": "hf-05N5PhoJCpHIxzyGYiqthJ",
+      "title": "目黑 - 合唱版",
+      "artists": [
+        "Endy Chow",
+        "Fiona Sit"
+      ],
+      "album": "周國賢同名EP",
+      "source": {
+        "rowIndex": 12530,
+        "recordNumber": 12531,
+        "trackId": "05N5PhoJCpHIxzyGYiqthJ"
+      }
+    },
+    {
+      "id": "hf-1VpHU8KcaoB2WVVV2KDWEn",
+      "title": "廣島之戀",
+      "artists": [
+        "Karen Mok",
+        "張洪量"
+      ],
+      "album": "做自己 TO BE",
+      "source": {
+        "rowIndex": 12901,
+        "recordNumber": 12902,
+        "trackId": "1VpHU8KcaoB2WVVV2KDWEn"
+      }
+    },
+    {
+      "id": "hf-487CwH00ao0LRep28i58sT",
+      "title": "jagi (feat. KIRE)",
+      "artists": [
+        "Shi Shi",
+        "KIRE"
+      ],
+      "album": "jagi (feat. KIRE)",
+      "source": {
+        "rowIndex": 70807,
+        "recordNumber": 70808,
+        "trackId": "487CwH00ao0LRep28i58sT"
+      }
+    },
+    {
+      "id": "hf-7nlBO1PoiiB5rjro96w35l",
+      "title": "聽海浪",
+      "artists": [
+        "Byejack",
+        "Midnight."
+      ],
+      "album": "Bluesea EP (Extended Version)",
+      "source": {
+        "rowIndex": 12876,
+        "recordNumber": 12877,
+        "trackId": "7nlBO1PoiiB5rjro96w35l"
+      }
+    },
+    {
+      "id": "hf-4YiLuz7hZ6ysG5iJxNlDmX",
+      "title": "Storm - English Version",
+      "artists": [
+        "吳青峰",
+        "AURORA"
+      ],
+      "album": "Storm (English Version)",
+      "source": {
+        "rowIndex": 70292,
+        "recordNumber": 70293,
+        "trackId": "4YiLuz7hZ6ysG5iJxNlDmX"
+      }
+    },
+    {
+      "id": "hf-6AjARrb0g2jgGLpm0gOAYx",
+      "title": "友情歲月",
+      "artists": [
+        "Jordan Chan",
+        "Ekin Cheng",
+        "謝天華",
+        "林曉峰"
+      ],
+      "album": "黃金兄弟 (電影原聲)",
+      "source": {
+        "rowIndex": 12654,
+        "recordNumber": 12655,
+        "trackId": "6AjARrb0g2jgGLpm0gOAYx"
+      }
+    },
+    {
+      "id": "hf-2kmwkxaPjSwJ1fe7SFROTs",
+      "title": "綠光",
+      "artists": [
+        "Stefanie Sun",
+        "Shen Darren"
+      ],
+      "album": "風箏",
+      "source": {
+        "rowIndex": 70571,
+        "recordNumber": 70572,
+        "trackId": "2kmwkxaPjSwJ1fe7SFROTs"
+      }
+    },
+    {
+      "id": "hf-5ZFN0GcP1IA5jUp9kf1X03",
+      "title": "今天妳要嫁給我",
+      "artists": [
+        "Jolin Tsai",
+        "David Tao"
+      ],
+      "album": "唯舞獨尊演唱會鮮聽版&特別混音專輯",
+      "source": {
+        "rowIndex": 70962,
+        "recordNumber": 70963,
+        "trackId": "5ZFN0GcP1IA5jUp9kf1X03"
+      }
+    },
+    {
+      "id": "hf-7GDwYUuvu1qjah9rAH15AH",
+      "title": "現代愛情故事",
+      "artists": [
+        "Chilam",
+        "Xu Qiu Yi"
+      ],
+      "album": "EMI 星聲傳集之張智霖",
+      "source": {
+        "rowIndex": 12781,
+        "recordNumber": 12782,
+        "trackId": "7GDwYUuvu1qjah9rAH15AH"
+      }
+    },
+    {
+      "id": "hf-7F92rki4H1RZ68OrOZQy4u",
+      "title": "畫沙",
+      "artists": [
+        "Cindy Yen",
+        "Jay Chou"
+      ],
+      "album": "袁詠琳Cindy",
+      "source": {
+        "rowIndex": 70690,
+        "recordNumber": 70691,
+        "trackId": "7F92rki4H1RZ68OrOZQy4u"
+      }
+    },
+    {
+      "id": "hf-0k4FG9l3OrxLt5NQU3uEkR",
+      "title": "I'm not yours (feat. 安室奈美惠)",
+      "artists": [
+        "Jolin Tsai",
+        "Namie Amuro"
+      ],
+      "album": "呸",
+      "source": {
+        "rowIndex": 70794,
+        "recordNumber": 70795,
+        "trackId": "0k4FG9l3OrxLt5NQU3uEkR"
+      }
+    },
+    {
+      "id": "hf-46dMEqSYXPLEQosHOse0H0",
+      "title": "堅強的理由",
+      "artists": [
+        "Karen Mok",
+        "Wu Bai"
+      ],
+      "album": "I SAY",
+      "source": {
+        "rowIndex": 12300,
+        "recordNumber": 12301,
+        "trackId": "46dMEqSYXPLEQosHOse0H0"
+      }
+    },
+    {
+      "id": "hf-3oTmOv9KjIcOfRTfGH5c62",
+      "title": "我是誰 (電視劇《狼殿下》主題曲)",
+      "artists": [
+        "Jolin Tsai",
+        "Jony J"
+      ],
+      "album": "《狼殿下》影視原聲帶",
+      "source": {
+        "rowIndex": 70365,
+        "recordNumber": 70366,
+        "trackId": "3oTmOv9KjIcOfRTfGH5c62"
+      }
+    },
+    {
+      "id": "hf-2r4Qugm13w48DJ13jCUQgo",
+      "title": "(......小王子)(feat. ohashiTrio)",
+      "artists": [
+        "吳青峰",
+        "大橋三重唱"
+      ],
+      "album": "馬拉美的星期二",
+      "source": {
+        "rowIndex": 70694,
+        "recordNumber": 70695,
+        "trackId": "2r4Qugm13w48DJ13jCUQgo"
+      }
+    },
+    {
+      "id": "hf-36zXp2vEis00HRdX3pYEMr",
+      "title": "我們萬歲",
+      "artists": [
+        "Eason Chan",
+        "eason and the duo band"
+      ],
+      "album": "L.O.V.E.",
+      "source": {
+        "rowIndex": 12258,
+        "recordNumber": 12259,
+        "trackId": "36zXp2vEis00HRdX3pYEMr"
+      }
+    },
+    {
+      "id": "hf-2HgSK0w0mfcB9dEnFMYagd",
+      "title": "年少無知 - (劇集 \"天與地\" 片尾曲)",
+      "artists": [
+        "Bowie Lam",
+        "陳豪",
+        "黃德斌"
+      ],
+      "album": "年少無知 (劇集 \"天與地\" 片尾曲)",
+      "source": {
+        "rowIndex": 12705,
+        "recordNumber": 12706,
+        "trackId": "2HgSK0w0mfcB9dEnFMYagd"
+      }
+    },
+    {
+      "id": "hf-24L9JvI4WHMIG5RfjWkkqF",
+      "title": "獨一無二",
+      "artists": [
+        "AGA",
+        "Gin Lee"
+      ],
+      "album": "Ginadoll Concert Live",
+      "source": {
+        "rowIndex": 12978,
+        "recordNumber": 12979,
+        "trackId": "24L9JvI4WHMIG5RfjWkkqF"
+      }
+    },
+    {
+      "id": "hf-6Q1Ekf6C8V0e7aOCymgscs",
+      "title": "Don't Wanna Lie (feat. 8lak & Hosea)",
+      "artists": [
+        "Patrick Brasca",
+        "8lak",
+        "Hosea"
+      ],
+      "album": "燥熱",
+      "source": {
+        "rowIndex": 70656,
+        "recordNumber": 70657,
+        "trackId": "6Q1Ekf6C8V0e7aOCymgscs"
+      }
+    },
+    {
+      "id": "hf-29sgXiafZq3bSkSGoafvli",
+      "title": "輕熟女27 (我只在乎你)",
+      "artists": [
+        "MC HotDog",
+        "關彥淳"
+      ],
+      "album": "貧民百萬歌星 2009-2012 Best Singles Collection",
+      "source": {
+        "rowIndex": 70852,
+        "recordNumber": 70853,
+        "trackId": "29sgXiafZq3bSkSGoafvli"
+      }
+    },
+    {
+      "id": "hf-6ZRdwFsEw5crjTzHo6Idxh",
+      "title": "Take It Slow",
+      "artists": [
+        "Crispy脆樂團",
+        "恐龍的皮"
+      ],
+      "album": "愛是我們必經的辛苦",
+      "source": {
+        "rowIndex": 70855,
+        "recordNumber": 70856,
+        "trackId": "6ZRdwFsEw5crjTzHo6Idxh"
+      }
+    },
+    {
+      "id": "hf-5noC8HGZaLiXNdvGmjemGP",
+      "title": "Moonlight (feat. 袁婭維)",
+      "artists": [
+        "Will Pan",
+        "TIA RAY"
+      ],
+      "album": "節奏先生",
+      "source": {
+        "rowIndex": 70955,
+        "recordNumber": 70956,
+        "trackId": "5noC8HGZaLiXNdvGmjemGP"
+      }
+    },
+    {
+      "id": "hf-0tSbBmOAukoqCsFfYYAI2A",
+      "title": "(......醉鬼阿Q)(feat. 孫燕姿)",
+      "artists": [
+        "吳青峰",
+        "Stefanie Sun"
+      ],
+      "album": "(......醉鬼阿Q)",
+      "source": {
+        "rowIndex": 70845,
+        "recordNumber": 70846,
+        "trackId": "0tSbBmOAukoqCsFfYYAI2A"
+      }
+    },
+    {
+      "id": "hf-7roRA1aMpy9axwLnwdFhOb",
+      "title": "敢愛敢做",
+      "artists": [
+        "George Lam",
+        "David Ling Jr"
+      ],
+      "album": "祥情廿載",
+      "source": {
+        "rowIndex": 12463,
+        "recordNumber": 12464,
+        "trackId": "7roRA1aMpy9axwLnwdFhOb"
+      }
+    },
+    {
+      "id": "hf-1o5PE9VNUd8EJtcYLA3QxP",
+      "title": "漸漸",
+      "artists": [
+        "Eason Chan",
+        "eason and the duo band"
+      ],
+      "album": "L.O.V.E.",
+      "source": {
+        "rowIndex": 12563,
+        "recordNumber": 12564,
+        "trackId": "1o5PE9VNUd8EJtcYLA3QxP"
+      }
+    },
+    {
+      "id": "hf-4yOMpzImEy2xWT5e5i1cAD",
+      "title": "敏感(LH x Z.TAO)",
+      "artists": [
+        "Lu Han",
+        "Z.TAO"
+      ],
+      "album": "敏感(LH x Z.TAO)",
+      "source": {
+        "rowIndex": 70102,
+        "recordNumber": 70103,
+        "trackId": "4yOMpzImEy2xWT5e5i1cAD"
+      }
+    },
+    {
+      "id": "hf-3yUsuJrixeXnCnR7ulQ36N",
+      "title": "石徑",
+      "artists": [
+        "Hins Cheung",
+        "Keeva Mak"
+      ],
+      "album": "No. Eleven",
+      "source": {
+        "rowIndex": 12832,
+        "recordNumber": 12833,
+        "trackId": "3yUsuJrixeXnCnR7ulQ36N"
+      }
+    },
+    {
+      "id": "hf-35KzQtjAlRJiV85veCiX6z",
+      "title": "月球上碰面",
+      "artists": [
+        "Fiona Sit",
+        "Juno Mak"
+      ],
+      "album": "月球上碰面",
+      "source": {
+        "rowIndex": 12761,
+        "recordNumber": 12762,
+        "trackId": "35KzQtjAlRJiV85veCiX6z"
+      }
+    },
+    {
+      "id": "hf-7t2NEWONd6piQvE8uyXSsJ",
+      "title": "自知之明",
+      "artists": [
+        "Pong Nan",
+        "Tang Siu Hau"
+      ],
+      "album": "自知之明",
+      "source": {
+        "rowIndex": 12800,
+        "recordNumber": 12801,
+        "trackId": "7t2NEWONd6piQvE8uyXSsJ"
+      }
+    },
+    {
+      "id": "hf-0LML5iWVpYfMmYqLyWwPiO",
+      "title": "[Jiang Yanli & Jin Zixuan] Yong Ge",
+      "artists": [
+        "Lara Liang",
+        "Yang Qiyu"
+      ],
+      "album": "The Untamed",
+      "source": {
+        "rowIndex": 70699,
+        "recordNumber": 70700,
+        "trackId": "0LML5iWVpYfMmYqLyWwPiO"
+      }
+    },
+    {
+      "id": "hf-0tkbJCn5k7lqeOKPaXAXcg",
+      "title": "樓下有人",
+      "artists": [
+        "Leo Ku",
+        "葉巧琳"
+      ],
+      "album": "樓下有人",
+      "source": {
+        "rowIndex": 12900,
+        "recordNumber": 12901,
+        "trackId": "0tkbJCn5k7lqeOKPaXAXcg"
+      }
+    },
+    {
+      "id": "hf-0Bpy7wcAOMg5ut2ERwPSbk",
+      "title": "兩旬之歌",
+      "artists": [
+        "Byejack",
+        "Slizznico"
+      ],
+      "album": "兩旬之歌",
+      "source": {
+        "rowIndex": 12095,
+        "recordNumber": 12096,
+        "trackId": "0Bpy7wcAOMg5ut2ERwPSbk"
+      }
+    },
+    {
+      "id": "hf-7HBG18C9NTlN5rFVOc3yX7",
+      "title": "漩渦",
+      "artists": [
+        "Anthony Wong",
+        "Cass Phang"
+      ],
+      "album": "ACOUSTIC…AND A LITTLE MORE",
+      "source": {
+        "rowIndex": 12261,
+        "recordNumber": 12262,
+        "trackId": "7HBG18C9NTlN5rFVOc3yX7"
+      }
+    },
+    {
+      "id": "hf-0a0z74CqgCXrC3UyYATdLC",
+      "title": "Try - Kung Fu Panda 3 Official Theme Song",
+      "artists": [
+        "Patrick Brasca",
+        "Jay Chou"
+      ],
+      "album": "Kung Fu Panda 3 (Music from the Motion Picture)",
+      "source": {
+        "rowIndex": 70498,
+        "recordNumber": 70499,
+        "trackId": "0a0z74CqgCXrC3UyYATdLC"
+      }
+    },
+    {
+      "id": "hf-7kw4judGjxQqThpPe02MQB",
+      "title": "眠眠",
+      "artists": [
+        "Yisa Yu",
+        "霍尊"
+      ],
+      "album": "电视剧《离人心上》原声带",
+      "source": {
+        "rowIndex": 70485,
+        "recordNumber": 70486,
+        "trackId": "7kw4judGjxQqThpPe02MQB"
+      }
+    },
+    {
+      "id": "hf-4QwWiSJkCeGx99JDAroYHW",
+      "title": "情未了",
+      "artists": [
+        "Christopher Wong",
+        "Vivian Chow"
+      ],
+      "album": "黃凱芹給您留念30首",
+      "source": {
+        "rowIndex": 12149,
+        "recordNumber": 12150,
+        "trackId": "4QwWiSJkCeGx99JDAroYHW"
+      }
+    },
+    {
+      "id": "hf-1Juu6Lvbf5ByIghY6uDbM0",
+      "title": "把歌談心",
+      "artists": [
+        "林姍姍",
+        "David Ling Jr"
+      ],
+      "album": "我愛經典系列",
+      "source": {
+        "rowIndex": 12178,
+        "recordNumber": 12179,
+        "trackId": "1Juu6Lvbf5ByIghY6uDbM0"
+      }
+    },
+    {
+      "id": "hf-0YKJCMDtdfZs6MTtUSnBk9",
+      "title": "無言的結局",
+      "artists": [
+        "Daniel Lo",
+        "林淑容"
+      ],
+      "album": "羅時豐國語精選",
+      "source": {
+        "rowIndex": 70394,
+        "recordNumber": 70395,
+        "trackId": "0YKJCMDtdfZs6MTtUSnBk9"
+      }
+    },
+    {
+      "id": "hf-5xEI8SlNjEsan3EG40DSLj",
+      "title": "螢火 Firefly",
+      "artists": [
+        "Byejack",
+        "Trickie Bonnie"
+      ],
+      "album": "螢火 Firefly",
+      "source": {
+        "rowIndex": 12196,
+        "recordNumber": 12197,
+        "trackId": "5xEI8SlNjEsan3EG40DSLj"
+      }
+    },
+    {
+      "id": "hf-6nTynZhI11TUVxnwZxSLTV",
+      "title": "鴛鴦酒杯",
+      "artists": [
+        "Jody Chiang",
+        "Hong Ronghong"
+      ],
+      "album": "不想伊",
+      "source": {
+        "rowIndex": 70391,
+        "recordNumber": 70392,
+        "trackId": "6nTynZhI11TUVxnwZxSLTV"
+      }
+    },
+    {
+      "id": "hf-7m9lrMzOMbFWEaRISYukDY",
+      "title": "舞伴",
+      "artists": [
+        "陳盈潔",
+        "袁小迪"
+      ],
+      "album": "陳盈潔 (台語暢銷精選)",
+      "source": {
+        "rowIndex": 70447,
+        "recordNumber": 70448,
+        "trackId": "7m9lrMzOMbFWEaRISYukDY"
+      }
+    },
+    {
+      "id": "hf-5UgEQZEqCBogjiEEGnZzu7",
+      "title": "情難斷夢袂醒",
+      "artists": [
+        "陳中",
+        "邱芸子"
+      ],
+      "album": "陳中+邱芸子情歌對唱",
+      "source": {
+        "rowIndex": 70487,
+        "recordNumber": 70488,
+        "trackId": "5UgEQZEqCBogjiEEGnZzu7"
+      }
+    },
+    {
+      "id": "hf-1RUKoAMk3lluNoQYDMKs71",
+      "title": "千個太陽",
+      "artists": [
+        "Deanie Ip",
+        "Elisa Chan",
+        "散芬芳合唱團"
+      ],
+      "album": "林振強依然愛不完",
+      "source": {
+        "rowIndex": 12295,
+        "recordNumber": 12296,
+        "trackId": "1RUKoAMk3lluNoQYDMKs71"
+      }
+    },
+    {
+      "id": "hf-64HMLLB30Tlt8bW9AcImL0",
+      "title": "就要揮別",
+      "artists": [
+        "楊芳儀",
+        "徐曉菁"
+      ],
+      "album": "楊芳儀 徐曉菁 重唱專輯",
+      "source": {
+        "rowIndex": 70634,
+        "recordNumber": 70635,
+        "trackId": "64HMLLB30Tlt8bW9AcImL0"
+      }
+    },
+    {
+      "id": "hf-0a5bri0S23Mx2e62v2HsYU",
+      "title": "鐵幕誘惑",
+      "artists": [
+        "Aaron Kwok",
+        "Frankie"
+      ],
+      "album": "郭富城精選2006",
+      "source": {
+        "rowIndex": 12230,
+        "recordNumber": 12231,
+        "trackId": "0a5bri0S23Mx2e62v2HsYU"
+      }
+    },
+    {
+      "id": "hf-4wTJ5BMVyeAJ6bvgULQ40u",
+      "title": "不懂愛你",
+      "artists": [
+        "Daniel Chan",
+        "林京燁"
+      ],
+      "album": "不懂愛你",
+      "source": {
+        "rowIndex": 12277,
+        "recordNumber": 12278,
+        "trackId": "4wTJ5BMVyeAJ6bvgULQ40u"
+      }
+    },
+    {
+      "id": "hf-3PCUdfQ0MdU8tkzi2uN6wr",
+      "title": "真愛在明天",
+      "artists": [
+        "Vivian Chow",
+        "Leon Lai"
+      ],
+      "album": "萬千寵愛30首",
+      "source": {
+        "rowIndex": 12298,
+        "recordNumber": 12299,
+        "trackId": "3PCUdfQ0MdU8tkzi2uN6wr"
+      }
+    },
+    {
+      "id": "hf-7DakGWtWA6lU53HvQi96pz",
+      "title": "In Love With You",
+      "artists": [
+        "Jacky Cheung",
+        "Regine Velasquez"
+      ],
+      "album": "Best of OPM Love Duets & Best of OPM Classic Love Songs",
+      "source": {
+        "rowIndex": 12299,
+        "recordNumber": 12300,
+        "trackId": "7DakGWtWA6lU53HvQi96pz"
+      }
+    },
+    {
+      "id": "hf-7eQuR3bAlmlHqvlr0Q8uPm",
+      "title": "常在我心間...愛你不分早晚",
+      "artists": [
+        "Michael Kwan",
+        "Tracy Huang"
+      ],
+      "album": "BTB-常在我心間...愛你不分早晚-關正傑",
+      "source": {
+        "rowIndex": 12389,
+        "recordNumber": 12390,
+        "trackId": "7eQuR3bAlmlHqvlr0Q8uPm"
+      }
+    },
+    {
+      "id": "hf-52VircFKPvIsgIjjsbhJsQ",
+      "title": "放過自己 - Acoustic Version",
+      "artists": [
+        "G5SH",
+        "Marz23"
+      ],
+      "album": "放過自己 (Acoustic Version)",
+      "source": {
+        "rowIndex": 70685,
+        "recordNumber": 70686,
+        "trackId": "52VircFKPvIsgIjjsbhJsQ"
+      }
+    },
+    {
+      "id": "hf-5mWSFPkmo4u0rDUrp2ppiH",
+      "title": "嫁妝",
+      "artists": [
+        "陳中",
+        "邱芸子"
+      ],
+      "album": "陳中+邱芸子情歌對唱",
+      "source": {
+        "rowIndex": 70686,
+        "recordNumber": 70687,
+        "trackId": "5mWSFPkmo4u0rDUrp2ppiH"
+      }
+    },
+    {
+      "id": "hf-4K3Iu3WLo19LIkfcpfldQL",
+      "title": "出來面對",
+      "artists": [
+        "魏嘉瑩 Arrow Wei",
+        "WONFU"
+      ],
+      "album": "我很好",
+      "source": {
+        "rowIndex": 70698,
+        "recordNumber": 70699,
+        "trackId": "4K3Iu3WLo19LIkfcpfldQL"
+      }
+    },
+    {
+      "id": "hf-59z2K4f6SOa3Z41ymlOvje",
+      "title": "相思夢難圓 - 修復版",
+      "artists": [
+        "麗莎",
+        "郭炳堅"
+      ],
+      "album": "麗莎, Vol. 2 (珍藏版) [修復版]",
+      "source": {
+        "rowIndex": 12430,
+        "recordNumber": 12431,
+        "trackId": "59z2K4f6SOa3Z41ymlOvje"
+      }
+    },
+    {
+      "id": "hf-6TMZ0p19g05PzIDuKxgkp2",
+      "title": "茫茫到深更",
+      "artists": [
+        "陳中",
+        "邱芸子"
+      ],
+      "album": "陳中+邱芸子情歌對唱",
+      "source": {
+        "rowIndex": 70789,
+        "recordNumber": 70790,
+        "trackId": "6TMZ0p19g05PzIDuKxgkp2"
+      }
+    },
+    {
+      "id": "hf-21ycMPCnfeUMxg3eArabhp",
+      "title": "我現在會好好的 - TVBS「女力報到愛的故事」片尾曲",
+      "artists": [
+        "陳威全",
+        "Danny Koo"
+      ],
+      "album": "我現在會好好的 - TVBS「女力報到愛的故事」片尾曲",
+      "source": {
+        "rowIndex": 70792,
+        "recordNumber": 70793,
+        "trackId": "21ycMPCnfeUMxg3eArabhp"
+      }
+    },
+    {
+      "id": "hf-0OU0Y8sFNuV14W3tbqNKDS",
+      "title": "有意 - (劇集 \"烈火雄心III\" 片尾曲)",
+      "artists": [
+        "Kevin Cheng",
+        "Myolie Wu"
+      ],
+      "album": "有意 (劇集 \"烈火雄心III\" 片尾曲)",
+      "source": {
+        "rowIndex": 12337,
+        "recordNumber": 12338,
+        "trackId": "0OU0Y8sFNuV14W3tbqNKDS"
+      }
+    },
+    {
+      "id": "hf-3yeUq7XSirAb4p6QNOvAqw",
+      "title": "I LOVE YOU SO太愛妳",
+      "artists": [
+        "Aaron Kwok",
+        "Beta Soul"
+      ],
+      "album": "True Legend 101",
+      "source": {
+        "rowIndex": 12499,
+        "recordNumber": 12500,
+        "trackId": "3yeUq7XSirAb4p6QNOvAqw"
+      }
+    },
+    {
+      "id": "hf-7dSGmCi7S81C9fFiIw2yv1",
+      "title": "紫釵恨",
+      "artists": [
+        "張偉文",
+        "胡美儀"
+      ],
+      "album": "胡美儀摩登名曲精選",
+      "source": {
+        "rowIndex": 12629,
+        "recordNumber": 12630,
+        "trackId": "7dSGmCi7S81C9fFiIw2yv1"
+      }
+    },
+    {
+      "id": "hf-3q5DarVoP2OGdlbp50YfOX",
+      "title": "回頭看看我",
+      "artists": [
+        "Feng Ze",
+        "采子"
+      ],
+      "album": "回頭看看我",
+      "source": {
+        "rowIndex": 70733,
+        "recordNumber": 70734,
+        "trackId": "3q5DarVoP2OGdlbp50YfOX"
+      }
+    },
+    {
+      "id": "hf-6PfK0jvFrTeS98QhNVJaG2",
+      "title": "出嫁",
+      "artists": [
+        "Zhang Qing Fang",
+        "優客李林"
+      ],
+      "album": "張清芳 25th 那些你最喜歡的歌",
+      "source": {
+        "rowIndex": 70799,
+        "recordNumber": 70800,
+        "trackId": "6PfK0jvFrTeS98QhNVJaG2"
+      }
+    },
+    {
+      "id": "hf-6MwdxH1iD9lNKNZcg9Gy28",
+      "title": "我有多麼喜歡你 (feat. 林宥嘉)",
+      "artists": [
+        "Jam Hsiao",
+        "Yoga Lin"
+      ],
+      "album": "我有多麼喜歡你 (feat. 林宥嘉)",
+      "source": {
+        "rowIndex": 70815,
+        "recordNumber": 70816,
+        "trackId": "6MwdxH1iD9lNKNZcg9Gy28"
+      }
+    },
+    {
+      "id": "hf-6wLuAJgxUVcsmyEyF477FF",
+      "title": "心痛不再有",
+      "artists": [
+        "方季惟",
+        "Pan Mei Chen"
+      ],
+      "album": "心痛不再有",
+      "source": {
+        "rowIndex": 70821,
+        "recordNumber": 70822,
+        "trackId": "6wLuAJgxUVcsmyEyF477FF"
+      }
+    },
+    {
+      "id": "hf-6ZcatlNX0hgJljw6U1PPQt",
+      "title": "別弄花我的妝 (feat. Karencici)",
+      "artists": [
+        "Sharon Kwan",
+        "Karencici"
+      ],
+      "album": "別弄花我的妝 (feat. Karencici)",
+      "source": {
+        "rowIndex": 70848,
+        "recordNumber": 70849,
+        "trackId": "6ZcatlNX0hgJljw6U1PPQt"
+      }
+    },
+    {
+      "id": "hf-294jS0EVBue6WSgF38SCVl",
+      "title": "你我相逢",
+      "artists": [
+        "Jody Chiang",
+        "施文彬"
+      ],
+      "album": "愛不對人",
+      "source": {
+        "rowIndex": 70872,
+        "recordNumber": 70873,
+        "trackId": "294jS0EVBue6WSgF38SCVl"
+      }
+    },
+    {
+      "id": "hf-1DOhVriCUWPW7F5etUz1Ti",
+      "title": "心仍是冷",
+      "artists": [
+        "倫永亮",
+        "Anita Mui"
+      ],
+      "album": "情歌1",
+      "source": {
+        "rowIndex": 12549,
+        "recordNumber": 12550,
+        "trackId": "1DOhVriCUWPW7F5etUz1Ti"
+      }
+    },
+    {
+      "id": "hf-0fTRcNCi7ox0PRfHpjtznl",
+      "title": "愛的呼喚",
+      "artists": [
+        "Aaron Kwok",
+        "Beta Soul"
+      ],
+      "album": "郭富城精選2006",
+      "source": {
+        "rowIndex": 12599,
+        "recordNumber": 12600,
+        "trackId": "0fTRcNCi7ox0PRfHpjtznl"
+      }
+    },
+    {
+      "id": "hf-0eMcN0mYyowOaqOk8xIhky",
+      "title": "受傷的心",
+      "artists": [
+        "Jacky Wu",
+        "Huang Yee Ling"
+      ],
+      "album": "玲聲若響Ⅱ精選輯",
+      "source": {
+        "rowIndex": 70881,
+        "recordNumber": 70882,
+        "trackId": "0eMcN0mYyowOaqOk8xIhky"
+      }
+    },
+    {
+      "id": "hf-5nykzzGNIZrQxv659tcMtb",
+      "title": "一生何求",
+      "artists": [
+        "Danny Chan",
+        "Bryan Choy Hin Lok",
+        "David Ling Jr"
+      ],
+      "album": "陳百強不朽金曲金藏集",
+      "source": {
+        "rowIndex": 12641,
+        "recordNumber": 12642,
+        "trackId": "5nykzzGNIZrQxv659tcMtb"
+      }
+    },
+    {
+      "id": "hf-6xruR6AwCTiybabrVblEQZ",
+      "title": "甲乙丙丁",
+      "artists": [
+        "Andy Hui",
+        "Jacky Cheung",
+        "鄭中基"
+      ],
+      "album": "甲乙丙丁",
+      "source": {
+        "rowIndex": 12642,
+        "recordNumber": 12643,
+        "trackId": "6xruR6AwCTiybabrVblEQZ"
+      }
+    },
+    {
+      "id": "hf-38LsSBIm9vhqk0HEUTLWI8",
+      "title": "將冰山劈開",
+      "artists": [
+        "Andy Hui",
+        "Anita Mui"
+      ],
+      "album": "許志安46首主打全精選",
+      "source": {
+        "rowIndex": 12673,
+        "recordNumber": 12674,
+        "trackId": "38LsSBIm9vhqk0HEUTLWI8"
+      }
+    },
+    {
+      "id": "hf-5bWDeuHFyP3hC16YctibZo",
+      "title": "熱力節拍Wou Bom Ba",
+      "artists": [
+        "Grasshopper",
+        "Shirley Kwan",
+        "湯寶如",
+        "Winnie Lau"
+      ],
+      "album": "草蜢音樂大全101",
+      "source": {
+        "rowIndex": 12749,
+        "recordNumber": 12750,
+        "trackId": "5bWDeuHFyP3hC16YctibZo"
+      }
+    },
+    {
+      "id": "hf-6ayLUgVfrEbkQDoSyCcrsR",
+      "title": "註定 -電視劇: 愛在有情天 主題曲(粵語)",
+      "artists": [
+        "陳秀雯",
+        "Ruco Chan"
+      ],
+      "album": "勢在亞洲 超人氣電視劇主題曲巡禮",
+      "source": {
+        "rowIndex": 12837,
+        "recordNumber": 12838,
+        "trackId": "6ayLUgVfrEbkQDoSyCcrsR"
+      }
+    },
+    {
+      "id": "hf-2dyFuiklAzsV8Jh1ANLKrU",
+      "title": "前塵",
+      "artists": [
+        "Sandy Lam",
+        "Wong Kei Wah"
+      ],
+      "album": "依然...林憶蓮 (30周年精選)",
+      "source": {
+        "rowIndex": 12873,
+        "recordNumber": 12874,
+        "trackId": "2dyFuiklAzsV8Jh1ANLKrU"
+      }
+    },
+    {
+      "id": "hf-6obcfaN1hYGCy1dUuXMpao",
+      "title": "帝女花之香夭(Live)",
+      "artists": [
+        "張偉文",
+        "May Ho"
+      ],
+      "album": "靚聲王張偉文唱好101-6CD世紀珍藏集",
+      "source": {
+        "rowIndex": 12940,
+        "recordNumber": 12941,
+        "trackId": "6obcfaN1hYGCy1dUuXMpao"
+      }
+    },
+    {
+      "id": "hf-0vgMpRUYhG2eNxmtPs0KN0",
+      "title": "笑容入我眼",
+      "artists": [
+        "劉珺兒",
+        "Jia Liang Luo"
+      ],
+      "album": "劉珺兒vs羅嘉良",
+      "source": {
+        "rowIndex": 12959,
+        "recordNumber": 12960,
+        "trackId": "0vgMpRUYhG2eNxmtPs0KN0"
+      }
+    },
+    {
+      "id": "hf-5c4s9fJsSawgToKOt3fNt6",
+      "title": "幻影/ 霧之戀",
+      "artists": [
+        "Leslie Cheung",
+        "Alan Tam"
+      ],
+      "album": "首麟合唱歌",
+      "source": {
+        "rowIndex": 12664,
+        "recordNumber": 12665,
+        "trackId": "5c4s9fJsSawgToKOt3fNt6"
+      }
+    },
+    {
+      "id": "hf-7ti0olzQPvYNc7PSor2qrI",
+      "title": "流離所愛",
+      "artists": [
+        "Christopher Wong",
+        "余劍明"
+      ],
+      "album": "黃凱芹給您留念30首",
+      "source": {
+        "rowIndex": 12699,
+        "recordNumber": 12700,
+        "trackId": "7ti0olzQPvYNc7PSor2qrI"
+      }
+    },
+    {
+      "id": "hf-0bFCMD0K7sxkz4qYWjP2Qu",
+      "title": "追憶",
+      "artists": [
+        "George Lam",
+        "David Ling Jr"
+      ],
+      "album": "林子祥 24K Mastersonic Compilation",
+      "source": {
+        "rowIndex": 12791,
+        "recordNumber": 12792,
+        "trackId": "0bFCMD0K7sxkz4qYWjP2Qu"
+      }
+    },
+    {
+      "id": "hf-0boCKVrrTzJbceMG0aMSDy",
+      "title": "@princejoyce (feat. ANSONBEAN)",
+      "artists": [
+        "Joyce Cheng",
+        "ANSONBEAN"
+      ],
+      "album": "@princejoyce (feat. ANSONBEAN)",
+      "source": {
+        "rowIndex": 12848,
+        "recordNumber": 12849,
+        "trackId": "0boCKVrrTzJbceMG0aMSDy"
+      }
+    },
+    {
+      "id": "hf-07VFhQepf26fYJvy32mjeg",
+      "title": "要走的始終都要走",
+      "artists": [
+        "蔣志光",
+        "王利名"
+      ],
+      "album": "相逢.走",
+      "source": {
+        "rowIndex": 12973,
+        "recordNumber": 12974,
+        "trackId": "07VFhQepf26fYJvy32mjeg"
+      }
+    },
+    {
+      "id": "hf-1ejod1Qch2v2HDImZAtezI",
+      "title": "舊居中的鋼琴",
+      "artists": [
+        "George Lam",
+        "David Ling"
+      ],
+      "album": "林子祥 24K Mastersonic Compilation",
+      "source": {
+        "rowIndex": 12880,
+        "recordNumber": 12881,
+        "trackId": "1ejod1Qch2v2HDImZAtezI"
+      }
+    },
+    {
+      "id": "hf-3jwx9ayJw2lHEKRGCBbQwR",
+      "title": "依然相愛",
+      "artists": [
+        "Hacken Lee",
+        "Shirley Kwan"
+      ],
+      "album": "只想您會意",
+      "source": {
+        "rowIndex": 12976,
+        "recordNumber": 12977,
+        "trackId": "3jwx9ayJw2lHEKRGCBbQwR"
+      }
+    },
+    {
+      "id": "hf-1PKBW5ZFi8acWzQu4Fcw1g",
+      "title": "一刀了斷",
+      "artists": [
+        "Chilam",
+        "Myolie Wu"
+      ],
+      "album": "Loveholic",
+      "source": {
+        "rowIndex": 12979,
+        "recordNumber": 12980,
+        "trackId": "1PKBW5ZFi8acWzQu4Fcw1g"
+      }
+    },
+    {
+      "id": "hf-24AuGLZl2PN4spCRGcJZDT",
+      "title": "一起衝一起闖 (電影\"黃金兄弟\"主題曲)",
+      "artists": [
+        "Ekin Cheng",
+        "Jordan Chan",
+        "謝天華",
+        "錢嘉樂",
+        "林曉峰"
+      ],
+      "album": "黃金兄弟 (電影原聲)",
+      "source": {
+        "rowIndex": 12987,
+        "recordNumber": 12988,
+        "trackId": "24AuGLZl2PN4spCRGcJZDT"
+      }
+    },
+    {
+      "id": "hf-43wBEMmDjKXCR1l6vzHHAJ",
+      "title": "苦口良藥",
+      "artists": [
+        "陳慧珊",
+        "Andy Hui"
+      ],
+      "album": "Best Cantopop Tunes",
+      "source": {
+        "rowIndex": 12849,
+        "recordNumber": 12850,
+        "trackId": "43wBEMmDjKXCR1l6vzHHAJ"
+      }
+    }
+  ]
+}

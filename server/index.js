@@ -545,7 +545,7 @@ async function serveStatic(request, response, pathname) {
     info = await stat(file).catch(() => null);
   }
   if (!info?.isFile()) fail(503, 'BUILD_REQUIRED', '网页尚未构建，请先执行 npm run build。');
-  const headers = { 'Content-Type': mimeTypes[extname(file)] || 'application/octet-stream', 'Content-Length': info.size, 'Cache-Control': 'no-cache' };
+  const headers = { 'Content-Type': mimeTypes[extname(file)] || 'application/octet-stream', 'Content-Length': info.size, 'Cache-Control': decoded.startsWith('/shared/three-0.186.1/') ? 'public, max-age=31536000, immutable' : 'no-cache' };
   const compressible = COMPRESSIBLE.has(extname(file)) && info.size > 1024;
   const packed = compressible && acceptsGzip(request);
   if (compressible) headers.Vary = 'Accept-Encoding';

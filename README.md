@@ -1,10 +1,10 @@
-# Music Space · 0.21.0-rc.2 候选
+# Music Space · 0.21.0-rc.2 预发布
 
-本轮把 Music Map 0.16.0 的完整原版三维页面接入 `/music-map/`，保留唱片桌、小院、翻片寻声和收藏。页面往返释放渲染器，Three 模块共享缓存；返回恢复现场机位、聊天室与未发送草稿。当前隔离实现已通过 721 条测试、三身份真实浏览器的 9 步分享与接龙草稿闭环、320×568 场景往返及无 WebGL 降级。发行和当前服务升级尚待精确提交 CI 与下载包核验，见 [本轮证据](docs/event/evidence/original-map-qa.md)。
+本轮把 Music Map 0.16.0 的完整原版三维页面接入 `/music-map/`，保留唱片桌、小院、翻片寻声和收藏。页面往返释放渲染器，Three 模块共享缓存；返回恢复现场机位、聊天室与未发送草稿。当前隔离实现已通过 721 条测试、三身份真实浏览器的 9 步分享与接龙草稿闭环、320×568 场景往返及无 WebGL 降级。[PR22](https://github.com/musicMapTeam/musicSpace/pull/22) 与短屏修复 [PR23](https://github.com/musicMapTeam/musicSpace/pull/23) 已经精确提交 CI、自审、合并和 [RC.2 预发布](https://github.com/musicMapTeam/musicSpace/releases/tag/v0.21.0-rc.2)；实际下载包 75 个运行文件核验一致，8791 在两库及私人照片备份核对后升级并正常重启，见 [本轮证据](docs/event/evidence/original-map-qa.md)。
 
 本轮统一为暖纸、深绿、暖木的独立音乐编辑式画面：真实三维场馆保留体积、灯光与镜头，二维手绘小人贯穿聊天室、音乐互动和个人空间。聊天阅读与输入分区，设置收进「本场与管理」；音乐互动先呈现本轮选项，参与者和退出操作仍可展开访问。
 
-最终交付 [0.20.0-rc.2](https://github.com/musicMapTeam/musicSpace/releases/tag/v0.20.0-rc.2)：[PR19](https://github.com/musicMapTeam/musicSpace/pull/19) 与实包短屏修正 [PR20](https://github.com/musicMapTeam/musicSpace/pull/20) 合并，717 项适用测试、五项构建、AI／角色检查和精确提交 CI 通过。官方工作流产物经 Library 正规传输下载，其中运行压缩包与 Release SHA-256 一致，72 个运行文件逐项匹配；最终实包七条独立合成身份旅程共 120 步通过，包含实际 WebGL、PNG、320×568、断网、多标签、撤权和正常重启。现有本地预览已在两库及 16 个私人照片对象备份核对后恢复并正常重启，原业务记录和照片字节保持一致；环境恢复时旧进程已不存在，没有据此停止其他版本。过期速率窗口按既有逻辑清理。详见[本轮验收](docs/event/evidence/editorial-map-qa.md)。
+上一轮历史交付 [0.20.0-rc.2](https://github.com/musicMapTeam/musicSpace/releases/tag/v0.20.0-rc.2)：[PR19](https://github.com/musicMapTeam/musicSpace/pull/19) 与实包短屏修正 [PR20](https://github.com/musicMapTeam/musicSpace/pull/20) 合并，717 项适用测试、五项构建、AI／角色检查和精确提交 CI 通过。官方工作流产物经 Library 正规传输下载，其中运行压缩包与 Release SHA-256 一致，72 个运行文件逐项匹配；最终实包七条独立合成身份旅程共 120 步通过，包含实际 WebGL、PNG、320×568、断网、多标签、撤权和正常重启。现有本地预览已在两库及 16 个私人照片对象备份核对后恢复并正常重启，原业务记录和照片字节保持一致；环境恢复时旧进程已不存在，没有据此停止其他版本。过期速率窗口按既有逻辑清理。详见[本轮验收](docs/event/evidence/editorial-map-qa.md)。
 
 应用内 Music Map 复用独立 Map 的 29 位真实音乐人、37 条演唱录音关系及原始来源，支持节点选择、关系详情、全图、目录内最短关系链和手机拖动/缩放。打开公共音乐目录无需创建身份；从聊天室进入后，可以准备音乐发现或接龙起点，仍需本人明确确认才发布。没有新增音频、外部素材或音乐服务，独立 Map 与旧 Pages 保持原样。当前检查与交付状态见[项目状态](docs/PROJECT_STATUS.md)。
 

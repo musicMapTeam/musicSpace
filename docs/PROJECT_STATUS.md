@@ -1,10 +1,14 @@
 # Music Space 当前状态
 
-## Doing — 原版 Three.js Music Map 页面整合
+## Done — 原版 Three.js Music Map 页面整合
 
 负责人：Codex（唯一实施者）。以 0.20.0-rc.2 为基线，复用独立 Map 的 0.16.0 完整页面、美术、Three.js 场景与交互，替代上轮简化图谱。范围为独立集成路由／适配层、Map 原版模块、场景生命周期、分享／接龙与相关验证文档；先核对原版实际像素，在隔离数据上实施，不改 8791 数据或独立 Map。原版来源、低性能／无 WebGL、上下文和释放验证分别记录。
 
-隔离实现完成：迁移原版完整页面与真实唱片桌，Space 返回、草稿、独立存储及共享 Three 缓存接通。721 条全量适用测试、六项构建、npm test、AI／角色检查通过；三身份 9 步分享与接龙草稿旅程、四轮上下文释放、触屏短屏、断网返回和无 WebGL 降级通过。原服务尚未升级，下一步为草稿 PR、自审、精确提交 CI、下载包及备份核验。证据见 [本轮记录](event/evidence/original-map-qa.md)。
+最终交付：[PR22](https://github.com/musicMapTeam/musicSpace/pull/22) 完整原版迁移；[PR23](https://github.com/musicMapTeam/musicSpace/pull/23) 修复实际 RC.1 下载包发现的 320px 歌曲上下文页头重叠。两次均按 draft PR、自审、精确 HEAD CI 后合并；[0.21.0-rc.2](https://github.com/musicMapTeam/musicSpace/releases/tag/v0.21.0-rc.2) 为明确预发布，RC.1 保留。721 条全量适用测试、六项构建、AI／角色／发行检查及 Docker CI 通过。
+
+发行源码提交 `62c1021b8dd5f33079341b45706304c337d248ea`；实际下载运行包 SHA-256 `79c58b47ce57b8d11106337b8471947b0c4293ff3bc4ef653692473873cd74df` 与 Release 一致，75 个运行文件逐项匹配。最终下载包真实浏览器 35 步（9＋8＋3＋15）及 320px 上下文检查通过；真实 GPU 是 Intel UHD 770／ANGLE D3D11，包含双方明确同意后的实际 1200×1920 PNG。8791 已从该包启动并正常重启，两库原业务记录和 16 个私密照片对象字节保持一致，备份完整；仅过期限速窗口按既有逻辑清理。8788／8790、独立 Map 和 Pages 未更新。证据见 [验收记录](event/evidence/original-map-qa.md)。
+
+本轮实施完成，明确停下；余下是真实手机、低端 GPU 和真实观众使用研究，不冒充已验收。保留用户未提交的 `design-preview/`，无其他代码编辑者。
 
 ## Done — 刊物夜场视觉与应用内 Music Map
 

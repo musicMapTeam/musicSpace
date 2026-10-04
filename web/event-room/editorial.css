@@ -1,6 +1,8 @@
 /* Approved editorial night direction over the real venue and existing consent flows. */
-.conversation-content{display:contents}
+.conversation-content{display:flex;flex-direction:column;flex:1;min-height:0;overflow:auto;overscroll-behavior:contain}
 .frame>header .status{color:#53664b}
+.loading p,.loading small{color:#f0e9d8}
+#connection-banner{top:auto;bottom:0;padding:4px 12px;max-height:24px;overflow:auto;line-height:1.4}
 @media(max-height:680px) and (max-width:700px), (max-height:520px){
  .conversation-layout .conversation-content{display:flex;flex-direction:column;flex:1;min-height:0;overflow:auto;overscroll-behavior:contain}
  .conversation-layout .conversation-content .chat-reading{flex:none;min-height:0;overflow:visible}

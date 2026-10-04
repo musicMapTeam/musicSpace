@@ -6,7 +6,7 @@ COPY web ./web
 COPY scripts ./scripts
 COPY runtime-preview/src/music-catalogue.js runtime-preview/src/map-catalogue.js runtime-preview/src/admission-protocol.js ./runtime-preview/src/
 COPY vite.config.js ./
-COPY vite.avatar.config.js vite.livehouse.config.js vite.character.config.js vite.event.config.js ./
+COPY vite.avatar.config.js vite.livehouse.config.js vite.character.config.js vite.event.config.js vite.map.config.js ./
 # `npm run build` first runs `npm run ai:ort` (scripts/ai/copy-ort.mjs), which copies the onnxruntime-web runtime into web/public/ai/ort/.
 RUN npm run build:all
 

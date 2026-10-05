@@ -257,12 +257,13 @@ export function createAutopilot({
     if (busy) { counters.skipped += 1; return false; }
     busy = true;
     const began = globalThis.performance?.now?.() ?? Date.now();
-    run = { at: now(), requests: 0, mutations: 0, failures: 0 };
-    try { await pass(); }
-    catch (error) { if (error !== STOPPED) failed('tick', error); }
+    try {
+      run = { at: now(), requests: 0, mutations: 0, failures: 0 };  // inside the try: whatever the clock does, busy is released below
+      await pass();
+    } catch (error) { if (error !== STOPPED) failed('tick', error); }
     finally {
       counters.ticks += 1;
-      lastTick = { ...run, ms: (globalThis.performance?.now?.() ?? Date.now()) - began };
+      lastTick = { at: null, requests: 0, mutations: 0, failures: 0, ...run, ms: (globalThis.performance?.now?.() ?? Date.now()) - began };
       run = null;
       busy = false;
     }

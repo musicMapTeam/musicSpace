@@ -1,6 +1,25 @@
-# Music Space · 0.21.0-rc.4 预发布
+# Music Space · 0.22.0-rc.1 预发布
 
-本轮完成实际浏览器排版收尾：修复横屏房间／社群聊天及私聊输入区被裁、短屏标题与人数重叠、纸面状态低对比、Map 艺人名字拆行，以及实际 RC3 包检查发现的长标题加分享草稿挤掉输入框；加载文字和中断状态条也已修正。原版 Three.js Map、既有照片／好友／私聊权限保持不变。721 项测试、六个入口构建、精确提交 CI 通过；RC4 实际下载包 75 文件核验一致、42 步独立身份与权限／持久化闭环通过，另有当前构建小游戏 19 步。8791 已在验证备份后升级并正常重启，原业务记录及全部私人照片一致。见 [排版验收](docs/event/evidence/layout-ui-qa.md) 和 [RC4 预发布](https://github.com/musicMapTeam/musicSpace/releases/tag/v0.21.0-rc.4)。
+> ## 参赛演示：路线 B
+>
+> **同一晚，你拍了舞台，TA 拍了人海。**
+>
+> **AI 在本机给你一个视角建议，规则按拍摄时间帮你找到「同一刻的另一面」。**
+>
+> **双方同意才交换。**
+>
+> - **评审链接是什么。** <https://musicmapteam.github.io/musicSpace/> 的根路径，在「切换」之后是这个应用的静态示例站：事件房间页，加上在浏览器页面里运行的房间服务。**在切换之前，根路径仍是 0.16 页面**；测试用的预览副本放在 `/preview/`。现在走到哪一步，以[项目状态](docs/PROJECT_STATUS.md)为准。
+> - **真的。** 房间规则（同一份房间服务代码，不是演示脚本）、照片拍摄时间的 EXIF 读取、「同一刻」（拍摄时间相差不超过 3 分钟）的规则判断、存在你浏览器里的数据，以及浏览器支持时在本机运行的 AI 视角建议。AI 只建议视角，选择由你；配对、分组、排序和理由是规则，不是 AI。
+> - **模拟的。** 同场的人。阿遥·示例、小满·示例、北屿·示例、林间·示例是虚构角色，由页面里的程序通过和真人相同的接口自动回应，不是真人，也不学习；示例照片是仓库里两张 AI 生成图的裁切，场次、场地和歌曲都是虚构的。
+> - **单设备。** 房间服务就在你的浏览器页面里运行（sql.js，即 SQLite 的 WebAssembly 版；照片放在 IndexedDB），没有服务器，什么都不会上传。换一台设备或另一个浏览器，看到的是各自独立的一份示例，不互通，也没有二维码、NFC 或邀请链接。这是单设备的模拟，不是跨设备的真实房间，也不是已上线的多人产品。
+> - **没有验证过。** 真机（iPhone Safari、Android Chrome）、微信内置浏览器、大陆网络和真实用户都还没有验证；有了结果才写。
+> - **Map 与旧首页在哪里。** 页内的「音乐探索」进入原版 Music Map，路径 `/musicSpace/music-map/`，带返回条回到房间。0.16 的旧首页在 `/musicSpace/classic/`，没有常驻入口，只在页面启动失败的提示里提供「打开早期原型」。独立的 Music Map（<https://musicmapteam.github.io/musicMap/>）和 `/musicSpace/avatar-preview/` 没有改动。
+>
+> 构建、预览与发布：`npm run build:pages`、`npm run preview:pages`、`npm run test:static`，详见 [scripts/pages/README.md](scripts/pages/README.md) 和[部署说明](docs/deployment.md)的「静态托管」一节。
+
+以下各段是 0.21.0-rc.4 及更早各版的记录，保留原文；其中「旧 Pages 保持原样」「不修改网站部署」之类的话只在当时成立。
+
+0.21.0-rc.4（上一版，历史记录）完成实际浏览器排版收尾：修复横屏房间／社群聊天及私聊输入区被裁、短屏标题与人数重叠、纸面状态低对比、Map 艺人名字拆行，以及实际 RC3 包检查发现的长标题加分享草稿挤掉输入框；加载文字和中断状态条也已修正。原版 Three.js Map、既有照片／好友／私聊权限保持不变。721 项测试、六个入口构建、精确提交 CI 通过；RC4 实际下载包 75 文件核验一致、42 步独立身份与权限／持久化闭环通过，另有当前构建小游戏 19 步。8791 已在验证备份后升级并正常重启，原业务记录及全部私人照片一致。见 [排版验收](docs/event/evidence/layout-ui-qa.md) 和 [RC4 预发布](https://github.com/musicMapTeam/musicSpace/releases/tag/v0.21.0-rc.4)。
 
 上一轮把 Music Map 0.16.0 的完整原版三维页面接入 `/music-map/`，保留唱片桌、小院、翻片寻声和收藏。页面往返释放渲染器，Three 模块共享缓存；返回恢复现场机位、聊天室与未发送草稿。当前隔离实现已通过 721 条测试、三身份真实浏览器的 9 步分享与接龙草稿闭环、320×568 场景往返及无 WebGL 降级。[PR22](https://github.com/musicMapTeam/musicSpace/pull/22) 与短屏修复 [PR23](https://github.com/musicMapTeam/musicSpace/pull/23) 已经精确提交 CI、自审、合并和 [RC.2 预发布](https://github.com/musicMapTeam/musicSpace/releases/tag/v0.21.0-rc.2)；实际下载包 75 个运行文件核验一致，8791 在两库及私人照片备份核对后升级并正常重启，见 [本轮证据](docs/event/evidence/original-map-qa.md)。
 
@@ -34,10 +53,13 @@
 
 需要 Node 24+。`npm ci`、`npm run build:all`、`npm run test:release`、`npm run start:local`。服务提供同源页面及 API，持久存储按[部署说明](docs/deployment.md)配置；`runtime-preview/src` 和 drizzle 是共享实现，发行包不能省略。
 
+静态示例站（GitHub Pages）另有三条命令：`npm run build:pages` 生成 `dist-pages/`；`npm run preview:pages` 在 `http://127.0.0.1:4783/musicSpace/` 本地预览，和 github.io 一样，前缀之外一律 404；`npm run test:static` 跑静态运行时的测试，并在 sql.js 上重跑房间服务的测试套件。
+
 - [阶段清单](docs/event/COMMUNITY_ROADMAP.md) · [当前状态](docs/PROJECT_STATUS.md)
-- [共同创作规则与验收](docs/event/evidence/corner-qa.md) · [预发布候选说明](docs/release/0.18.0-rc.5.md)
+- [静态站的构建、校验与发布](scripts/pages/README.md) · [部署说明：静态托管](docs/deployment.md) · [0.22.0-rc.1 发布说明](docs/release/0.22.0-rc.1.md)
+- [共同创作规则与验收](docs/event/evidence/corner-qa.md)
 - [统一入场协议与原生边界](docs/event/ADMISSION-PROTOCOL.md)
 - [产品计划](product/docs/01-product-plan.md) · [交付计划](product/docs/02-delivery-plan.md) · [实施说明](product/docs/03-build-guide.md)
 - [第三方许可](THIRD_PARTY_NOTICES.md)
 
-本轮不修改 Music Map、旧公开演示或网站部署，不引入新外部素材、服务或凭据。
+本轮（0.22.0-rc.1）不修改独立的 Music Map 仓库和页面，不触碰 `/musicSpace/avatar-preview/`，不新增账号、主机、凭据或付费服务。网站部署只走 `scripts/pages/` 的流程：先发到 `/preview/`，经用户明确同意后一次性切换到根路径，之后冻结（见[部署说明](docs/deployment.md)）。新增的依赖只有 devDependency `sql.js` 1.14.2（MIT，见[第三方许可](THIRD_PARTY_NOTICES.md)）；示例照片是仓库里两张 AI 生成图的裁切，没有新的外部素材。

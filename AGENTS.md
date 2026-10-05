@@ -1,3 +1,85 @@
+# 2026-10-05 路线 B：初赛演示走浏览器内运行的静态示例站（最新，优先于下面所有较早的段落）
+
+当前版本 0.22.0-rc.1（开发分支 `feat/route-b-static`，起点 0.21.0-rc.4，即 `main` 的 `2edc18d`）。本节记录用户 2026-10-05 的决定和由它来的约束，与下面较早的段落冲突时以本节为准。较早的段落保留原文作为历史：其中的版本标注（0.17.0-rc.1、MVP 0.16.0）、「不得更新旧 gh-pages」、「静态版只有本地双角色示例」和「提交 Space 还是 Map 尚未决定」都不再是现状，现状见本节。
+
+## 决定
+
+- 用户（GitHub Alakazamc，开发侧）2026-10-05 选定路线 B：初赛提交 0.21 的现场社交版 Music Space，并把端侧 AI 放进照片流程；评委只用一个链接 <https://musicmapteam.github.io/musicSpace/>，一个人就能走完整个流程。没有服务器也没有预算，所以房间服务在浏览器里运行；同场的人是标明「·示例」的虚构角色，用和真人相同的接口自动回应。
+- 这是用户的决定。与队友（产品负责人 igohomealone216）的对齐没有记录：不写成队友已同意，不替队友表态。每队限提交一份作品，作品名、赛道、报名和提交由团队在表单里办理，不由本仓库决定。
+- 0.16 的旧首页不删：路线 B 把它放在 `/musicSpace/classic/`，界面里没有常驻入口，只在页面启动失败的救援提示里提供，是最便宜的退路。Music Map 在 `/musicSpace/music-map/`。
+
+## 一次切换，然后冻结
+
+- 评审链接的根路径只切换一次。切换之前所有测试都发到 `/musicSpace/preview/`（`node scripts/pages/publish.mjs --channel preview`，只改 `preview/`），根路径保持现状：0.16 页面，`index.html` 的 sha256 是 `e8c8fc96269fd61580f499f6409209da1f137d398c34de64c5aec676ad9df104`，`gh-pages` 为 `192ad9e`。
+- 切换是 `publish.mjs --channel pages --from-preview`：把已经测过的预览树原样复制到根路径，并在同一个提交里删除 `preview/`，上线的字节就是测过的字节。只在用户明确同意之后做，先看一次 dry run。预览测过之后只要有改动，先重发预览、重跑冒烟，再谈切换。
+- 切换之后冻结，直到评审结束（官方日程：评审 2026-10-12 至 10-23，入围名单 10-26，见 `references/official/2026-09-26/spreadsheet/04-schedule-cells.md`）。冻结期间只做用户批准的热修。回滚是用一个新提交还原 `192ad9e` 的树（不 force push，步骤见 `scripts/pages/README.md`），它是第二次切换，同样要用户决定。
+- 决策门的时间与门槛 G-A 到 G-G 记在 `docs/PROJECT_STATUS.md`。门槛没过就不切换：根路径保持 0.16 页面，删除 `preview/`，提交材料回到 0.16 的方案。这个转向要和用户明确商定，不能悄悄发生。G-F 是用户自己在真机上的检查，只有用户能报告，没有报告就不写成通过。
+
+## 发布授权的调和
+
+- 2026-10-01 节写着「不得更新旧 gh-pages 或 Music Map」，2026-10-03 节写着「不修改独立 Map 仓库或 Pages」；「完成与提交」一节记着用户 2026-09-30 给的长期授权，包括重新发布 `gh-pages`。几处原文都保留。路线 B 按长期授权办理：那两条对 Space 自己的 `gh-pages` 的限制，不再阻止下面两种发布，也只在这两种形式内失效：
+  - 预览：发到 `/musicSpace/preview/`，随时，只改 `preview/`。
+  - 切换：上一节说的那一次，用户明确同意之后。
+- 两种都从已经合并、CI 通过的 `main` 构建，用 `scripts/pages/publish.mjs` 发布（它从不 force push），发布后用 `verify-tree.mjs` 核对线上字节与 `build.json` 一致，再告诉用户。除此之外不动 `gh-pages`：不手改线上文件，不动 `avatar-preview/`。
+- 长期授权的排除项不变：不删仓库，不改写已推送的历史（回滚是新提交），不改 `musicMapTeam/musicMap`，独立 Map 的仓库和页面仍然不动。2026-10-03 节的「不新增公网部署、凭证和付费」也仍然有效：Pages 是已有的站点，没有新的主机。
+
+## 不动的东西
+
+- `musicMapTeam/musicMap` 仓库和它的页面（<https://musicmapteam.github.io/musicMap/>）不改。
+- `/musicSpace/avatar-preview/` 是指向第三方托管的 Avatar Studio 的跳转页，不改、不删，发布工具也拒绝改动它。它的「返回原樱下现场」链接是 `../`，切换之后指向新的站点根，不再是 0.16 页面；这一点记在 `scripts/pages/README.md`，要不要处理由用户决定。
+
+## 不新增
+
+- 不新增账号、主机、凭据或付费服务。模型、WASM、three.js、sql.js 的 wasm 和示例照片都是同源文件，不用 CDN。
+- 新增的依赖只有 devDependency `sql.js` 1.14.2（MIT），记在 `THIRD_PARTY_NOTICES.md`；Node 房间服务仍没有运行时的 npm 依赖。
+
+## 诚实规则（对示例站的每一处文字和界面都有约束力）
+
+1. AI 只建议视角，可以说「不确定」，选择永远由人做。
+2. 配对、分组、排序、理由，以及示例角色接受或婉拒交换的规则，都是普通规则，不标成 AI。
+3. 静态站里什么都不上传：照片只在这个浏览器里处理和保存。只在这是事实时才写这句话。
+4. 产品界面不写准确率。公开照片上量出的数字只在「关于」里、并注明是公开照片的数字时出现。
+5. 模型文件、WASM 和脚本只从本站同源加载；加载失败就安静地退回手选，不当作错误弹出。
+6. 示例角色的照片带着其「作者」手选的视角，永远不标成 AI。
+7. 示例照片标明「示例」，它们自带的拍摄时间是虚构的，要说出来。
+8. 只有这个浏览器真能运行模型时才出现 AI 字样，否则只用一句话说明视角自己选的原因。
+9. 示例角色标「·示例」，说明是自动回应、不学习、不记录。
+10. 没有二维码、NFC 或邀请链接：浏览器本地的房间，另一台设备进不来。
+11. 没有运行过的检查不写成结果：真机、微信、大陆网络、真实用户、上线，都需要真的做过或用户的报告。这个站是单设备的浏览器内模拟，要写清楚。
+
+## 端侧 AI 预下载的例外
+
+「端侧 AI」一节写的是：用户点开「选照片」才开始预下载，只用示例图不下载，开了省流量就不预下载。这仍是 0.16 的旧首页和 Node 房间页的规则。静态示例站是例外：访问者进入示例现场之后（不是页面一打开），模型在后台开始下载，传输约 10 MB；浏览器要求省流量（`navigator.connection.saveData`）时不预下载。下载不挡任何操作，保存不等模型，失败就退回手选；「关于这个示例」里写明了这件事。其余规则不变：文件只来自本站，只有浏览器真能运行时才出现 AI 字样。
+
+## 房间照片的拍摄时间与视角（迁移 0013）
+
+下面标题为「拍摄时间与同一刻，另一面」的一节写的是 0.16 旧首页和 `/api/live` 的卡片，来源有 `exif`、`manual`、`file`、`sample`。现场房间的照片另有自己的四个字段（`event_photos`，可空）：`taken_at`（毫秒时间戳）、`taken_source`（只有 `exif` 和 `manual`，没有 `file` 和 `sample`）、`viewpoint`（`stage` 舞台、`crowd` 人海、`friends` 身边、`detail` 细节）、`viewpoint_source`（`ai` 或 `manual`）。时间与来源、视角与来源各自成对出现或同时为空，上传之后不能改。
+
+- `exif` 只给可信的 EXIF 时间（`DateTimeOriginal`、`DateTimeDigitized`），不给文件修改时间、PNG 里的时间和 IFD0 的 `DateTime`；时间在压缩前从原图读取。`manual` 是本人填写或确认过的时间。
+- `viewpoint_source` 为 `ai` 只表示本人保存时没有改动 AI 的预选；本人点过任何一个视角就是 `manual`。示例角色的照片带着其「作者」手选的视角，来源是 `manual`，不标 AI。
+- 配对、分组、排序和理由在客户端按 `web/js/moment.js` 现算，不存储，也不经过 AI。
+
+## 静态运行时的约束（`web/static-runtime/`，细节见 `docs/deployment.md` 的静态托管一节）
+
+- 浏览器里跑的是原样的 `runtime-preview/src/event-worker.js` 和 `avatar-worker.js`：页面替换全局 `fetch`，只接住 http(s) 网址里 `/api/event`、`/api/avatar` 的请求（`data:`、`blob:` 和其他网址交给原生 `fetch`），D1 用 sql.js 垫片，R2 用 IndexedDB 垫片，`node:crypto` 与 `node:buffer` 由构建别名到 `web/static-runtime/shims/`。不要为了静态站去改这两个 worker；改它们要让默认引擎的套件和 sql.js 上的套件（`npm run test:static` 第二段）同时通过。
+- 迁移文件一旦被任何构建跑过就不能再编辑：Node 存储和静态运行时都按文件哈希记账，改了之后前者拒绝打开数据库（`Event migration changed`），后者触发浏览器自愈清空。要改就新增迁移文件，并同时补进 Node 存储（`server/event-store.js` 的 `migrations`）和静态运行时拿到的迁移列表。
+- 一个会改数据的请求，要等快照写进 IndexedDB 之后才应答；只读请求不写入（200 次轮询写 0 次）；第二个标签页只读（改动一律答 409 `READ_ONLY_COPY`），不播种、不自动回复，永远不清空数据。
+- 浏览器里的示例数据是一次性的：快照读不出、迁移账本变了、示例世界的版本变了、播种失败，都清掉示例数据再来一次，第二次还失败就进安全模式（救援提示）；IndexedDB 卡住则改用内存存储并显示提示，不清任何东西。
+- 示例世界有版本：`SHOWCASE_VERSION` 由名单内容（`web/static-runtime/showcase/roster.js`）的哈希推出。改名单、台词、播种步骤或重新裁切示例照片，要按 `scripts/demo/README.md` 提高 `SEED_REV`；`tests/static-showcase-seed.test.js` 在世界变了而 `SEED_REV` 没变时失败。
+- 存储：IndexedDB 库名按渠道，`music-space-static:<channel>:v1`；`localStorage` 和 Cache Storage 是整个 `musicmapteam.github.io` 源共享的（根、`/preview/`、`/classic/`、`/music-map/` 和独立 Map）。要清除与要保留的前缀写在 `web/static-runtime/storage-guard.js`：新增 `music-space-` 键时先决定它归哪边，`tests/static-storage-guard.test.js` 会扫描事件房间等目录，字面量既不在清除也不在保留列表里就失败。绝不清 Cache Storage `music-space-ai-v1`，绝不碰 `music-space-map-*`、`music-map-*`、`music-space:v1`、`music-space-live:v1`、`music-space-duet-seen:v1`。
+- 子路径：站点在 `/musicSpace/` 下，预览在 `/musicSpace/preview/`。新代码不写根绝对网址（`/music-map/…`、`/shared/…`、`/api/…`），经 `web/shared/site-base.js` 取；用 `npm run preview:pages` 检查，前缀之外一律 404，和 github.io 一样。
+- 根与预览是同一份字节：构建里没有渠道开关，页面按自己的网址在运行时判断（路径以 `/preview/` 结尾是预览，其余是根）。
+- 页面发出的请求里不得有 `/api` 请求，也不得有第三方域名。
+- 示例角色的自动回应只在标签页可见时运行（隐藏的标签页里它们不会回应，回到前台后补上）：做浏览器检查时标签页要放在前台。局域网上的 `http://` 页面不是安全上下文（没有 Web Locks 和 Cache Storage），所以桌面检查用 localhost，真机检查用已发布的 https 预览。
+- 运行时的时钟（`web/static-runtime/clock.js`）不会早于构建时间：示例照片的拍摄时间是 2026-09-26，而 worker 拒绝晚于「现在 + 1 天」的拍摄时间，设备时间偏早时也要能播种。
+- 静态构建把五处带「服务器」口吻的提示改成页面内的说法（`scripts/build/static-html-plugin.mjs` 的 `COPY_RULES`，每条必须至少匹配一次，否则构建失败）；Node 服务的构建不变。要改这些句子，就同时改规则。
+- 测试：`npm run test:release` 通配 `tests/*.test.js`，静态测试在默认引擎下也会跑。`npm run test:static` 分三段：(a) `tests/static-*.test.js`；(b) 在 sql.js 与浏览器版 crypto/Buffer 垫片上重跑 Worker 模式套件；(c) `scripts/test/static-build.test.mjs`。(b) 只允许两处引擎相关的跳过（`SPACE_TEST_ENGINE === 'sqljs'` 的两条测试：照片解析器测试里与 Node 的 Buffer 比较，和直接改数据库文件的旧档案读取测试），多出第三处会让它失败，要加就先说明理由。
+
+## 版本、发布与文档
+
+- 版本 0.22.0-rc.1。CI 在 push 到 `main`、版本号形如 `x.y.z-rc.n` 时自动建预发布 Release，说明取自 `docs/release/<版本>.md`，资产是 Node 房间服务运行包；示例站不在资产里，它是另一份构建（`npm run build:pages`，CI 产物 `music-space-pages`），发布只走 `scripts/pages/`。
+- 改实现状态时同步 `README.md` 和 `docs/PROJECT_STATUS.md`（Doing 到 Done 要附证据）。示例站的集成检查证据写在 `docs/event/evidence/static-pages-qa.md`（集成 QA 产出，写成之前这个文件不存在），真机检查只记用户报告的结果。
+
 # 2026-10-01 当前交付约束
 
 当前版本 0.17.0-rc.1。用户已授权提交草稿 PR、在 CI 与审查通过后合并，并创建明确标注的预发布 Release。不得据此声称正式生产上线，不得更新旧 gh-pages 或 Music Map。新账号、凭据、付费服务或新增授权需要先列明部署条件。当前入口 /event-room/，Node 24+ 同源 API + 持久 DATA_DIR；runtime-preview/src 与 drizzle 是共享实现，不能省略。下面历史版本文字保留，冲突时以本节、README 和项目状态的最新记录为准。

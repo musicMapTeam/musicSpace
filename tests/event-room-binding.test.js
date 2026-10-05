@@ -12,6 +12,9 @@ import {recapMarkup} from '../web/event-room/recap-view.js';
 import {createMemoryCardExporter} from '../web/event-room/memory-card.js';
 import {memoryCardMarkup} from '../web/event-room/memory-card-view.js';
 import {renderMemoryCardPng,saveMemoryCardDownload} from '../web/event-room/memory-card-png.js';
+import {createMomentUpload} from '../web/event-room/moment-upload.js';
+import {wallMarkup} from '../web/event-room/moment-wall.js';
+import {photoMetaLine,wallReadings} from '../web/event-room/moment-model.js';
 const source=readFileSync(new URL('../web/event-room/app.js',import.meta.url),'utf8');
 const clone=value=>JSON.parse(JSON.stringify(value));
 const defer=()=>{let resolve,reject;const promise=new Promise((yes,no)=>{resolve=yes;reject=no;});return {promise,resolve,reject};};
@@ -46,7 +49,7 @@ function harness(start=initial(),url='https://musicspace.test/event/') {
     createModerationPanel:options=>({openReports:async()=>calls.push(['myFeedback']),openManagement:async id=>calls.push(['manageRoom',id]),openFeedback:(target,options)=>calls.push(['feedback',clone(target),options===undefined?undefined:clone(options)]),close(){},syncIdentity(){},refresh:async()=>{},dispose(){}}),
     createExchangePanel:options=>({open:async id=>calls.push(['exchangeOpen',id]),openOffer:async p=>calls.push(['exchangeOffer',clone(p)]),close(){},syncIdentity(){},refresh:async()=>{},invalidate:scope=>calls.push(['exchangeInvalidate',clone(scope)]),getState:()=>({}),dispose(){}}),
     matchMedia:()=>({matches:true,addEventListener(){}}),setTimeout:(callback,delay)=>{const id=++nextTimer;timers.set(id,{callback,delay});return id;},clearTimeout:id=>timers.delete(id),createEventController:()=>controller,profile:{mode:'server',controllerOptions:()=>({}),copy:{},demo:null},mountLivehouseScene:()=>engine,
-    memberFloorPositions,layoutSceneLabels,renderAvatarSvg,recapMarkup,createMemoryCardExporter,memoryCardMarkup,renderMemoryCardPng,saveMemoryCardDownload,AbortController,venueAssetUrl:'data:model/gltf-binary;base64,c3ludGhldGlj',SESSION_KEY:'music-space-avatar-session:v1',DEFAULT_AVATAR,SKINS,HAIRS,GARMENT_COLORS,SONGS,safeAvatar,esc,qrcode:()=>({addData(){},make(){},createSvgTag:()=>'<svg></svg>'}),
+    memberFloorPositions,layoutSceneLabels,renderAvatarSvg,recapMarkup,createMemoryCardExporter,memoryCardMarkup,renderMemoryCardPng,saveMemoryCardDownload,createMomentUpload,wallMarkup,photoMetaLine,wallReadings,AbortController,venueAssetUrl:'data:model/gltf-binary;base64,c3ludGhldGlj',SESSION_KEY:'music-space-avatar-session:v1',DEFAULT_AVATAR,SKINS,HAIRS,GARMENT_COLORS,SONGS,safeAvatar,esc,qrcode:()=>({addData(){},make(){},createSvgTag:()=>'<svg></svg>'}),
     FormData:class {constructor(form){this.values=form.values||{};}get(key){return this.values[key]??null;}getAll(key){const v=this.values[key];return v===undefined?[]:Array.isArray(v)?v:[v];}},
   });
   const code=source.replace(/^import .*;$/gm,'').replace('void boot();','');

@@ -6,7 +6,8 @@
 //   ai/                   on-device model pack and onnxruntime-web files (web/public/ai), one copy for the whole site
 //   shared/three-0.186.1/ the shared three.js modules both pages import
 //   sql/                  sql-wasm.wasm (+ licence)
-//   demo/                 the demo photos and their manifest (web/static-runtime/demo-assets)
+//   demo/                 the demo photos and their manifest (web/static-runtime/demo-assets); a build without them FAILS (the showcase world
+//                         reads its photos from here: without them every visitor would see the rescue screen)
 //   build.json            {version, commit, builtAt, files: [{path, bytes, sha256}]}: the identity of these bytes. No channel:
 //                         root and preview are the same bytes, the page derives its channel from its URL.
 //   .nojekyll
@@ -64,6 +65,23 @@ export function addAiBaseMeta(html, content = '../ai/') {
   return clean.slice(0, at) + meta + clean.slice(at);
 }
 
+/**
+ * demo/ is not optional: the page lays the showcase room out from these photos on every first visit. Missing manifest.json, an unreadable
+ * one, or a photo it lists that is not on disk fails the build, before any Vite step has run.
+ */
+export function checkDemoAssets(dir) {
+  const shown = path => { const inside = relative(ROOT, path); return inside && !inside.startsWith('..') ? inside : path; };
+  const manifestPath = join(dir, 'manifest.json');
+  if (!existsSync(manifestPath)) throw new BuildError(`${shown(manifestPath)} is missing: the showcase photos are part of the site (run node scripts/demo/build-demo-photos.mjs, or restore web/static-runtime/demo-assets).`);
+  let manifest;
+  try { manifest = JSON.parse(readFileSync(manifestPath, 'utf8')); } catch (error) { throw new BuildError(`${shown(manifestPath)} is not JSON (${error.message}).`); }
+  const listed = Array.isArray(manifest?.files) ? manifest.files.map(entry => entry?.file).filter(name => typeof name === 'string' && name) : [];
+  if (!listed.length) throw new BuildError(`${shown(manifestPath)} lists no photos ({"files": [{"file": ...}]}).`);
+  const missing = listed.filter(name => !existsSync(join(dir, name)));
+  if (missing.length) throw new BuildError(`demo photo(s) listed in manifest.json are not in ${shown(dir)}: ${missing.join(', ')}.`);
+  return listed;
+}
+
 /** The build empties OUT first, so it only does that to the repository's own dist-pages, to nothing, or to an earlier build's output. */
 function guardOutDir() {
   if (OUT === ROOT || ROOT.startsWith(OUT + sep) || OUT === resolve('/') || existsSync(join(OUT, 'package.json')) || existsSync(join(OUT, '.git'))) {
@@ -75,6 +93,8 @@ function guardOutDir() {
 
 async function main() {
   guardOutDir();
+  const demoSource = join(ROOT, 'web/static-runtime/demo-assets');
+  checkDemoAssets(demoSource);                  // fail before the three Vite builds, not after them
   const info = buildInfo();
   // One identity for the three Vite configs and for build.json (the configs read these when they load).
   process.env.STATIC_OUT = OUT;
@@ -103,9 +123,7 @@ async function main() {
   });
   await step('ai/ and demo/', () => {
     cpSync(join(ROOT, 'web/public/ai'), join(OUT, 'ai'), {recursive: true});
-    const demo = join(ROOT, 'web/static-runtime/demo-assets');
-    if (existsSync(join(demo, 'manifest.json'))) cpSync(demo, join(OUT, 'demo'), {recursive: true});
-    else process.stdout.write('build:pages - warning: web/static-runtime/demo-assets/manifest.json is missing, so there is no demo/ (the showcase world needs it)\n');
+    cpSync(demoSource, join(OUT, 'demo'), {recursive: true});
   });
 
   writeFileSync(join(OUT, '.nojekyll'), '');

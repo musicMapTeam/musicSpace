@@ -5,7 +5,7 @@
 import {defineConfig} from 'vite';
 import {viteSingleFile} from 'vite-plugin-singlefile';
 import {fileURLToPath} from 'node:url';
-import {readFileSync, mkdirSync, writeFileSync} from 'node:fs';
+import {readFileSync, readdirSync, mkdirSync, writeFileSync} from 'node:fs';
 import {resolve, join} from 'node:path';
 import {sharedThree} from './scripts/build/shared-three.mjs';
 import {staticHtmlPlugin, staticCopyPlugin, buildInfo} from './scripts/build/static-html-plugin.mjs';
@@ -13,6 +13,8 @@ import {staticHtmlPlugin, staticCopyPlugin, buildInfo} from './scripts/build/sta
 const here = p => fileURLToPath(new URL(p, import.meta.url));
 const OUT = resolve(process.env.STATIC_OUT || here('./dist-pages'));
 const build = buildInfo();
+// The migrations the in-page room service applies (web/static-runtime/profile.js reads them with import.meta.glob).
+const migrationFiles = readdirSync(here('./runtime-preview/drizzle')).filter(name => name.endsWith('.sql')).sort();
 const licenseText = name => {
   const text = readFileSync(here(`./web/assets/licenses/${name}`), 'utf8');
   if (text.includes('-->')) throw new Error(`${name} would end its HTML comment early`);
@@ -42,6 +44,24 @@ export default defineConfig({
       },
     },
     staticHtmlPlugin({page: 'root', build}),
+    {
+      name: 'static-profile-guard',
+      apply: 'build',
+      enforce: 'post',
+      // The page is only the demo if the in-page room service is in it. If the ./runtime-profile.js alias stops matching (app.js changes its
+      // import) or the migration glob finds nothing, the build would still succeed and ship a page whose /api calls go to the network and
+      // fail: refuse that here, with the reason. (Strings, not identifiers: they survive minification.)
+      generateBundle(_, bundle) {
+        const html = String(bundle['index.html']?.source ?? '');
+        const missing = [
+          ['__SPACE_STATIC__', 'the boot (web/static-runtime/boot.js): the QA handle'],
+          ['music-space-static', 'the IndexedDB database name of the boot'],
+          ['_static_migrations', 'the runtime (web/static-runtime/runtime.js): its migration ledger'],
+          ...migrationFiles.map(name => [name, `migration ${name} (import.meta.glob of runtime-preview/drizzle/*.sql)`]),
+        ].filter(([marker]) => !html.includes(marker));
+        if (missing.length) this.error(`static profile guard: the built page lacks ${missing.map(([, what]) => what).join('; ')}. Is ./runtime-profile.js still aliased to web/static-runtime/profile.js?`);
+      },
+    },
     {
       name: 'static-sql-wasm',
       apply: 'build',

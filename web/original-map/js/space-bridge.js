@@ -1,9 +1,11 @@
 import {realSongs} from '../../../runtime-preview/src/map-catalogue.js';
 import '../css/space-bridge.css';
+import {eventRoomReturn} from '../../shared/site-base.js';
 const KEY='music-space-map-return:v1';
 let context=null;try{context=JSON.parse(sessionStorage.getItem(KEY)||'null');}catch{}
-// Only this application's route is an allowed return destination.
-const returnUrl=context?.returnUrl?.startsWith('/event-room/')&&!context.returnUrl.startsWith('//')?context.returnUrl:'/event-room/';
+// Only this application's route is an allowed return destination: the event room's own page on this origin. Its path comes from the
+// page's space-event-room hint (a static site carries the room at its root or under /preview/), '/event-room/' on the Node server.
+const returnUrl=eventRoomReturn(context?.returnUrl);
 const bar=document.createElement('aside');bar.className='space-map-return';bar.setAttribute('aria-label','返回 Music Space');
 const back=document.createElement('button');back.textContent='← 返回现场';back.onclick=()=>{if(!online())return;try{if(context)sessionStorage.setItem(KEY,JSON.stringify({...context,returning:true}));}catch{}location.assign(returnUrl);};bar.append(back);
 const note=document.createElement('span');note.textContent='原版三维唱片桌';bar.append(note);document.querySelector('.masthead-tools').prepend(bar);

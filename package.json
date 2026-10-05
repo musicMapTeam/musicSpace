@@ -41,13 +41,17 @@
     "test:launcher": "node --test tests/local-launcher.test.js",
     "test:release": "node scripts/test/release-suite.mjs",
     "release:pack": "node scripts/release/package.mjs",
-    "build:map": "vite build --config vite.map.config.js"
+    "build:map": "vite build --config vite.map.config.js",
+    "build:pages": "node scripts/pages/build.mjs",
+    "preview:pages": "node scripts/pages/serve-prefix.mjs dist-pages /musicSpace/ 4783",
+    "test:static": "node scripts/test/static-suite.mjs && node scripts/test/static-build.test.mjs"
   },
   "devDependencies": {
     "gsap": "3.15.0",
     "onnxruntime-web": "1.30.0",
     "overlayscrollbars": "2.16.0",
     "qrcode-generator": "2.0.4",
+    "sql.js": "1.14.2",
     "three": "0.186.1",
     "vite": "8.3.1",
     "vite-plugin-singlefile": "2.3.3"

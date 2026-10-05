@@ -1,6 +1,8 @@
 import './exchange-panel.css';
 import {escape as esc} from '../avatar/model.js';
 import {createExchangeController} from '../event-client/exchange-controller.js';
+import {offerSuggestions} from './moment-model.js';
+import {optionsMarkup,suggestionMarkup} from './exchange-suggest.js';
 
 const statusLabel={pending:'等待本人回应',accepted:'交换已接受',declined:'对方谢绝了',cancelled:'申请已结束',revoked:'在线访问已结束',expired:'申请已过期'};
 const boundary='任一方撤销，会同时结束本次两张照片的在线访问；原件仍归各自。已下载或截图的副本无法远程收回。';
@@ -14,25 +16,27 @@ export async function exchangePreview(blob){
  }finally{image.close();}
 }
 
-export function createExchangePanel({container,getContext,fetchPhoto,onClose=()=>{},onPhotos=()=>{}}){
+export function createExchangePanel({container,getContext,fetchPhoto,onClose=()=>{},onPhotos=()=>{},pollMs=5000}){
  const client=createExchangeController(),root=document.createElement('section');root.className='photo-exchanges';root.hidden=true;root.setAttribute('role','dialog');root.setAttribute('aria-modal','true');root.setAttribute('aria-label','照片交换');container.append(root);
  root.innerHTML='<header><button data-x-back aria-label="返回交换列表">←</button><div><small>同一晚 / 另一面</small><h2>交换一个视角</h2></div><button data-x-close aria-label="关闭照片交换">×</button></header><div class="exchange-body"></div><div class="exchange-problem" role="status"></div>';
  const q=s=>root.querySelector(s),body=q('.exchange-body'),urls=new Map(),loadingImages=new Set();
+ const interval=Number.isFinite(pollMs)&&pollMs>0?pollMs:5000;
  let state=client.getState(),opened=false,mode='list',compose=null,consent=false,confirmAction=null,lastFocus,lastMarkup='',epoch=0,disposed=false,busy=false,pollBusy=false,pollTimer,pages=[null],localError=null;
  const clearImages=()=>{epoch++;const retired=new Set(urls.values());for(const img of root.querySelectorAll('img'))if(retired.has(img.getAttribute('src')))img.removeAttribute('src');for(const url of retired)URL.revokeObjectURL(url);urls.clear();loadingImages.clear();};
  const image=(key,alt)=>urls.has(key)?`<img src="${urls.get(key)}" alt="${esc(alt)}">`:'<span class="exchange-image-wait">正在核对照片…</span>';
  const current=()=>state.current?.exchange;
  function problem(error){localError=error?.message||null;q('.exchange-problem').textContent=localError||state.error?.message||(!state.storage.ok?state.storage.message:'');}
  function stop(){clearTimeout(pollTimer);}
- function schedule(){stop();if(opened&&!disposed&&!document.hidden&&mode!=='compose')pollTimer=setTimeout(refresh,5000);}
+ function schedule(){stop();if(opened&&!disposed&&!document.hidden&&mode!=='compose')pollTimer=setTimeout(refresh,interval);}
  const isComposeCurrent=()=>{const ctx=getContext();return compose&&ctx.actorId===compose.actorId&&ctx.room?.id===compose.roomId&&ctx.room.joined&&ctx.room.status==='open'&&ctx.photos.some(p=>p.id===compose.target.id&&p.revision===compose.target.revision&&p.visibility==='members');};
+ const ownPhotos=ctx=>ctx.photos.filter(p=>p.roomId===compose.roomId&&p.ownerId===state.actorId);
  function photoCell(label,key,alt,extra=''){return `<figure><div class="exchange-photo">${image(key,alt)}</div><figcaption><b>${esc(label)}</b>${extra}</figcaption></figure>`;}
  function markup(){
   if(state.identityStatus!=='ready')return '<p>请先核对当前浏览器身份，再打开照片交换。</p>';
   if(mode==='compose'){
-   const ctx=getContext(),choices=ctx.photos.filter(p=>p.roomId===compose.roomId&&p.ownerId===state.actorId),selected=choices.find(p=>p.id===compose.selectedId),valid=isComposeCurrent()&&selected?.revision===compose.selectedRevision;
+   const ctx=getContext(),choices=ownPhotos(ctx),selected=choices.find(p=>p.id===compose.selectedId),valid=isComposeCurrent()&&selected?.revision===compose.selectedRevision,rows=offerSuggestions(choices,compose.target,{eventDate:ctx.eventDate||''});
    return `<p class="exchange-intro">用我拍下的，换 <b>${esc(compose.peerName)}</b> 看到的。</p><div class="exchange-pair">${photoCell('我提供的',selected?`own:${selected.id}:${selected.revision}`:'none','我选择提供的现场照片',selected?'<small>我选中的这一张</small>':'<small>先选一张自己的照片</small>')}${photoCell(`${compose.peerName}的`, `target:${compose.target.id}:${compose.target.revision}`,'希望交换的对方现场照片','<small>照片墙上的这一张</small>')}</div>
-   <label class="exchange-choice">我提供哪一张<select data-x-choice><option value="">选择自己拍的照片</option>${choices.map((p,i)=>`<option value="${p.id}" ${p.id===compose.selectedId?'selected':''}>我的第 ${i+1} 张 · ${p.visibility==='members'?'已上墙':'未上墙'}</option>`).join('')}</select></label>
+   <label class="exchange-choice">我提供哪一张<select data-x-choice aria-describedby="exchange-reason">${optionsMarkup(rows,{selectedId:compose.selectedId,esc})}</select></label>${suggestionMarkup(rows,{selectedId:compose.selectedId,target:compose.target,esc})}
    ${!choices.length?'<p>你在这一场还没有照片。先保存一张自己的，再回来交换。</p>':''}
    <div class="exchange-agreement"><p>发送后，${esc(compose.peerName)} 可以看并保存我的小图预览。TA 明确接受后，我们才能通过这次交换继续查看两张原图，散场后也可以。</p><label><input data-x-consent type="checkbox" ${consent?'checked':''}>我同意提供选中照片的预览，并在对方接受后分享这张原图</label></div><p class="exchange-fine">${boundary}</p><button class="exchange-primary" data-x-send ${!valid||!consent||!compose.preview||busy?'disabled':''}>把这两张交给对方确认 ↗</button>${!valid&&compose.selectedId?'<p class="exchange-fine">照片或场次范围已变化，请重新打开并选择。</p>':''}`;
   }
@@ -71,7 +75,8 @@ export function createExchangePanel({container,getContext,fetchPhoto,onClose=()=
  async function open(id=null){clearImages();compose=null;mode=id?'detail':'list';pages=[null];begin();render();try{await(id?client.open(id):client.list());}catch(error){problem(error);}schedule();}
  async function openOffer(photo){const ctx=getContext();if(!ctx.actorId||!ctx.room?.joined||ctx.room.status!=='open'||photo.roomId!==ctx.room.id||photo.visibility!=='members'||photo.ownerId===ctx.actorId)throw Error('请在当前开放的现场，选择另一人放到照片墙的照片。');
   clearImages();client.close();mode='compose';compose={actorId:ctx.actorId,roomId:ctx.room.id,target:{...photo},peerName:ctx.members.find(m=>m.id===photo.ownerId)?.name||'同场观众',selectedId:null,selectedRevision:null,preview:null};begin();render();
-  const captured=epoch;await loadImage(`target:${photo.id}:${photo.revision}`,async()=>{const blob=await fetchPhoto(photo.id);if(captured!==epoch||!isComposeCurrent())throw Error('场次或照片已变化。');return blob;});
+  const captured=epoch,targetKey=`target:${photo.id}:${photo.revision}`;await loadImage(targetKey,async()=>{const blob=await fetchPhoto(photo.id);if(captured!==epoch||!isComposeCurrent())throw Error('场次或照片已变化。');return blob;});
+  if(captured!==epoch||!compose||compose.selectedId||!urls.has(targetKey))return;const fresh=getContext(),pick=offerSuggestions(ownPhotos(fresh),compose.target,{eventDate:fresh.eventDate||''}).find(row=>row.recommended);if(pick)await choose(pick.photo.id);
  }
  function close({restore=true}={}){if(!opened)return;opened=false;root.hidden=true;stop();clearImages();client.close();compose=null;consent=false;confirmAction=null;body.innerHTML='';lastMarkup='';onClose();if(restore&&lastFocus?.isConnected)lastFocus.focus();}
  async function choose(id){if(!compose)return;const ctx=getContext(),selected=ctx.photos.find(p=>p.id===id&&p.ownerId===state.actorId&&p.roomId===compose.roomId);consent=false;compose.selectedId=selected?.id||null;compose.selectedRevision=selected?.revision||null;compose.preview=null;localError=null;render();if(!selected)return;const captured=epoch,selection=id;

@@ -3,7 +3,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createServer } from 'node:http';
 import { once } from 'node:events';
-import { mkdtemp, rm, readFile } from 'node:fs/promises';
+import { mkdtemp, rm, readFile, readdir } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { randomUUID } from 'node:crypto';
@@ -550,7 +550,12 @@ test('Exchange additive migration preserves old identity, room, photo, friendshi
   const tables = ['avatar_users', 'event_rooms', 'event_photos', 'event_social_pairs', 'avatar_compositions'], before = tables.map(table => db.prepare('SELECT * FROM ' + table).all()); db.close();
   for (let n = 0; n < 2; n++) { const store = createEventStore({ databasePath: file }); store.close(); }
   const read = new DatabaseSync(file); try {
-    assert.deepEqual(tables.map(table => read.prepare('SELECT * FROM ' + table).all()), before);
+    // Migration 0013 only appends four nullable photo-fact columns: every old value is unchanged and the old photo reads them as null.
+    const plain = rows => JSON.parse(JSON.stringify(rows)), photoFacts = { taken_at: null, taken_source: null, viewpoint: null, viewpoint_source: null };
+    assert.deepEqual(plain(tables.map(table => read.prepare('SELECT * FROM ' + table).all())), plain(before).map((rows, index) => tables[index] === 'event_photos' ? rows.map(row => ({ ...row, ...photoFacts })) : rows));
+    // The ledger names every shared migration after the two the avatar store creates itself, newest included (a migration file missing from the store's list fails here).
+    const shipped = (await readdir(new URL('../runtime-preview/drizzle/', import.meta.url))).filter(name => /^\d{4}_.+\.sql$/.test(name) && name >= '0002').sort();
+    assert.deepEqual(read.prepare('SELECT name FROM _node_event_migrations ORDER BY name').all().map(row => row.name), shipped); assert.ok(shipped.includes('0013_event_photo_moment.sql'));
     for (const table of ['event_exchanges', 'event_exchange_grants']) assert.equal(read.prepare('SELECT COUNT(*) AS n FROM ' + table).get().n, 0);
     assert.deepEqual(read.prepare('PRAGMA foreign_key_check').all(), []);
   } finally { read.close(); }

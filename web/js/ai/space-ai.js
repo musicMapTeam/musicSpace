@@ -33,7 +33,11 @@
  *   diagnostics()    plain object for logs and tests (timings, cache hit, last error).
  */
 
-const ASSET_DIR = './ai/';                 // resolved against document.baseURI, e.g. https://host/musicSpace/ai/
+// Where ai/ lives, relative to the page (document.baseURI): './ai/' for a page that sits next to it (index.html on GitHub Pages), and
+// whatever <meta name="space-ai-base" content="../ai/"> says for a page one level down (event-room/index.html on the Node server, which
+// serves /ai/ at its root; the static build rewrites that meta to './ai/'). It is read when the first file is needed, not when this file is
+// loaded, so a test's bare `document` ({ baseURI } without querySelector) and a page that has no such tag both get the default.
+const DEFAULT_ASSET_DIR = './ai/';
 const MODEL_DIR = 'tc8/';                  // TinyCLIP-8M pack: labels.json + vision.onnx
 const ORT_DIR = 'ort/';                    // ort.wasm.min.mjs, ort-wasm-simd-threaded.mjs, ort-wasm-simd-threaded.wasm (copied at build time)
 const CACHE_NAME = 'music-space-ai-v1';    // Cache Storage bucket; bump when the model or runtime files change
@@ -56,7 +60,14 @@ const ID_OF = { stage: 'stage', crowd: 'crowd', near: 'friends', friends: 'frien
 // A 1-function module using a v128 op: validates only when the engine has WebAssembly SIMD (the ORT WASM build needs it).
 const SIMD_PROBE = new Uint8Array([0, 97, 115, 109, 1, 0, 0, 0, 1, 5, 1, 96, 0, 1, 123, 3, 2, 1, 0, 10, 10, 1, 8, 0, 65, 0, 253, 15, 253, 98, 11]);
 
-const assetUrl = path => new URL(ASSET_DIR + path, document.baseURI).href;
+function assetDir() {
+  let dir = '';
+  try { dir = String(document.querySelector?.('meta[name="space-ai-base"]')?.content ?? '').trim(); } catch { dir = ''; }
+  if (!dir) return DEFAULT_ASSET_DIR;
+  return dir.endsWith('/') ? dir : `${dir}/`;
+}
+
+const assetUrl = path => new URL(assetDir() + path, document.baseURI).href;
 
 /** Why the model cannot run here: 'page' (not an http(s) page, so it cannot fetch its own files), 'browser' (missing engine features), or null. */
 function unsupportedReason() {

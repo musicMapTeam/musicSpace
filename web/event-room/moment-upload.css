@@ -1,0 +1,144 @@
+/*
+ * The photo upload form (moment-upload.js): example photos, capture time, the four viewpoint chips and the on-device AI line.
+ * Cream paper, deep-green ink and the lime accent of editorial.css. Body text 14 px or more, helper text 12 px or more, every control
+ * 44 px or taller. Everything is scoped to form.moment-upload; the rest of the panel keeps its own styles.
+ */
+form.moment-upload {
+  --mu-ink: var(--ink, #203b32);
+  --mu-accent: var(--accent, #d8df83);
+  --mu-line: #b6bbaa;
+  --mu-field: #fffdf5;
+  --mu-olive: #66751c;
+  --mu-muted: #57515f;
+  --mu-soft: #eaeed2;
+  --mu-warn: #8a2b1f;
+  display: block;
+}
+form.moment-upload [hidden] { display: none !important; }
+form.moment-upload .sr-only {
+  position: absolute !important; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+form.moment-upload .nowrap { white-space: nowrap; }
+
+/* Choosing a photo: one tidy button; the real file input lies invisibly over it, so a tap anywhere on it opens the picker. */
+form.moment-upload .file-choice {
+  position: relative; display: flex; align-items: center; justify-content: center; min-height: 48px; margin: 14px 0 0; padding: 0 16px;
+  border: 1px solid var(--mu-ink); border-radius: 3px; background: var(--mu-field); color: var(--mu-ink);
+  font-size: 15px; font-weight: 700; cursor: pointer;
+}
+form.moment-upload .file-choice svg { flex: none; width: 18px; height: 18px; margin-right: 8px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linejoin: round; }
+form.moment-upload .file-choice:focus-within { outline: 2px solid #52613c; outline-offset: 2px; }
+form.moment-upload .file-choice input[type="file"] {
+  position: absolute; top: 0; right: 0; bottom: 0; left: 0; width: 100%; height: 100%; margin: 0; padding: 0; border: 0; opacity: 0; cursor: pointer; font-size: 0 !important;
+}
+
+/* The example photos. */
+form.moment-upload .moment-samples { margin: 14px 0 0; }
+form.moment-upload .moment-samples__title { margin: 0 0 8px; font-size: 14px; font-weight: 700; line-height: 1.5; color: var(--mu-ink); }
+form.moment-upload .moment-samples__list { display: grid; gap: 8px; }
+form.moment-upload .moment-sample {
+  display: flex; align-items: center; gap: 12px; width: 100%; min-height: 64px; margin: 0; padding: 8px 12px 8px 8px; text-align: left;
+  border: 1px solid var(--mu-line); border-radius: 3px; background: var(--mu-field); color: var(--mu-ink); font: inherit; cursor: pointer;
+}
+form.moment-upload .moment-sample__thumb { flex: none; width: 72px; height: 54px; overflow: hidden; border-radius: 2px; background: #e1e4da; }
+form.moment-upload .moment-sample__thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
+form.moment-upload .moment-sample__text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+form.moment-upload .moment-sample__text b { font-size: 14px; line-height: 1.4; }
+form.moment-upload .moment-sample__text small { font-size: 12px; line-height: 1.45; color: var(--mu-muted); overflow-wrap: anywhere; }
+form.moment-upload .moment-sample.is-current { border-color: var(--mu-olive); background: var(--mu-soft); box-shadow: inset 3px 0 0 var(--mu-olive); }
+
+form.moment-upload .moment-status { margin: 8px 0 0; font-size: 13px; line-height: 1.5; color: var(--mu-muted); }
+form.moment-upload .moment-status:empty { margin: 0; }
+
+/* The chosen photo and when it was taken: one card, thumbnail on the left. */
+form.moment-upload .moment-taken {
+  display: grid; grid-template-columns: 112px minmax(0, 1fr); column-gap: 12px; row-gap: 8px; align-items: start;
+  margin: 12px 0 0; padding: 12px; border: 1px solid var(--mu-line); border-radius: 3px; background: #fbf7ea;
+}
+form.moment-upload .moment-taken .photo-review {
+  grid-column: 1; grid-row: 1 / span 2; display: block; width: 112px; height: 84px; max-height: none; margin: 0; border-radius: 2px;
+  background: #e1e4da; object-fit: cover;
+}
+form.moment-upload .moment-taken__row { grid-column: 2; grid-row: 1; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; min-width: 0; }
+form.moment-upload .moment-taken__line { margin: 0; font-size: 14px; line-height: 1.5; color: var(--mu-ink); overflow-wrap: anywhere; }
+form.moment-upload .moment-taken__line small { font-size: 12px; color: var(--mu-muted); }
+form.moment-upload .moment-taken__edit {
+  min-height: 44px; margin: 0; padding: 0 14px; border: 1px solid var(--mu-line); border-radius: 3px; background: transparent; color: var(--mu-ink);
+  font: inherit; font-size: 13px; cursor: pointer;
+}
+form.moment-upload .moment-sample-flag {
+  grid-column: 2; grid-row: 2; margin: 0; padding: 4px 8px; border-left: 3px solid var(--mu-olive); background: var(--mu-soft); font-size: 12px; line-height: 1.5; color: var(--mu-ink);
+}
+form.moment-upload .moment-taken__field, form.moment-upload .moment-taken__off, form.moment-upload .moment-demo { grid-column: 1 / -1; }
+form.moment-upload .moment-taken__field label { display: block; margin: 0; font-size: 14px; color: var(--mu-ink); }
+form.moment-upload .moment-taken__field input[type="datetime-local"] { margin-top: 6px; }
+form.moment-upload .moment-taken__field input[aria-invalid="true"] { border-color: var(--mu-warn); }
+form.moment-upload .fine { margin: 6px 0 0; font-size: 13px; line-height: 1.6; color: var(--mu-muted); }
+form.moment-upload .moment-taken .fine { margin: 4px 0 0; }
+form.moment-upload .moment-taken__error { color: var(--mu-warn); font-weight: 700; }
+form.moment-upload .moment-taken__off:empty { display: none; }
+form.moment-upload .moment-demo {
+  display: block; width: 100%; min-height: 44px; margin: 0; padding: 8px 12px; text-align: left; border: 1px dashed var(--mu-olive); border-radius: 3px;
+  background: transparent; color: var(--mu-ink); font: inherit; font-size: 13px; line-height: 1.45; cursor: pointer;
+}
+form.moment-upload .moment-demo[aria-pressed="true"] { border-style: solid; background: var(--mu-soft); }
+
+/* Once there is a photo the picker and the examples shrink to a quiet row, so the chips and the AI line stay on screen. */
+form.moment-upload.has-photo .file-choice { min-height: 44px; margin-top: 12px; font-size: 14px; }
+form.moment-upload.has-photo .moment-samples { margin-top: 8px; }
+form.moment-upload.has-photo .moment-samples__title {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+form.moment-upload.has-photo .moment-samples__list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+form.moment-upload.has-photo .moment-sample { min-height: 44px; gap: 8px; padding: 4px 10px; }
+form.moment-upload.has-photo .moment-sample__thumb { display: none; }
+form.moment-upload.has-photo .moment-sample__text b { font-size: 13px; }
+form.moment-upload.has-photo .moment-sample__text small { display: none; }
+
+/* Which side of the night: four chips. Selected = lime fill and a mark; suggested by the model = dashed; nudged = warm outline. */
+form.moment-upload .moment-view { min-width: 0; margin: 14px 0 0; padding: 0; border: 0; }
+form.moment-upload .moment-view legend { margin: 0 0 8px; padding: 0; font-size: 14px; font-weight: 700; color: var(--mu-ink); }
+form.moment-upload .moment-chips { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+form.moment-upload .moment-chip {
+  display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 2px; min-height: 56px; margin: 0; padding: 8px 12px;
+  border: 1px solid var(--mu-line); border-radius: 3px; background: var(--mu-field); color: var(--mu-ink); font: inherit; text-align: left; cursor: pointer;
+  overflow-wrap: anywhere;
+}
+form.moment-upload .moment-chip b { font-size: 15px; line-height: 1.35; }
+form.moment-upload .moment-chip small { font-size: 12px; line-height: 1.4; color: var(--mu-muted); }
+form.moment-upload .moment-chip.is-selected { border-color: var(--mu-olive); background: var(--mu-accent); box-shadow: inset 0 0 0 1px var(--mu-olive); }
+form.moment-upload .moment-chip.is-selected small { color: #3b4513; }
+form.moment-upload .moment-chip.is-selected b::after { content: ' \2713'; content: ' \2713' / ''; }
+form.moment-upload .moment-chip.is-suggested { padding: 7px 11px; border: 2px dashed var(--mu-olive); }
+form.moment-upload .moment-chip.is-nudged { border-color: var(--mu-warn); box-shadow: 0 0 0 2px #8a2b1f40; }
+form.moment-upload .moment-chip:focus-visible,
+form.moment-upload .moment-sample:focus-visible,
+form.moment-upload .moment-taken__edit:focus-visible,
+form.moment-upload .moment-demo:focus-visible { outline: 2px solid #52613c; outline-offset: 2px; }
+@media (hover: hover) {
+  form.moment-upload .moment-chip:hover, form.moment-upload .moment-sample:hover { border-color: var(--mu-olive); }
+}
+
+/* The model's words. The regions stay in the page when empty (a status region that appears together with its words is often not announced). */
+form.moment-upload .moment-nudge { margin: 10px 0 0; padding: 8px 10px; border-left: 3px solid var(--mu-warn); background: #f6e6dc; font-size: 14px; line-height: 1.55; color: #5c1d14; }
+form.moment-upload .moment-nudge:empty { margin: 0; padding: 0; border: 0; background: none; }
+form.moment-upload .moment-ai-line { display: flex; flex-direction: column; gap: 6px; margin: 10px 0 0; font-size: 14px; line-height: 1.55; color: var(--mu-ink); }
+form.moment-upload .moment-ai-line:empty { margin: 0; }
+form.moment-upload .moment-ai-tag {
+  align-self: flex-start; padding: 4px 12px; border: 1px solid var(--mu-olive); border-radius: 999px; background: var(--mu-soft); font-size: 13px; font-weight: 700; color: var(--mu-ink);
+}
+form.moment-upload .moment-ai-tag--unsure { border-style: dashed; background: transparent; font-weight: 400; }
+form.moment-upload .moment-ai-off { color: var(--mu-muted); font-size: 13px; }
+form.moment-upload .moment-ai-line__bar { display: block; height: 4px; overflow: hidden; border-radius: 2px; background: #d9dcc6; }
+form.moment-upload .moment-ai-line__bar i { display: block; width: 0; height: 100%; background: #52613c; }
+
+@media (max-width: 400px) {
+  form.moment-upload .moment-taken { grid-template-columns: 88px minmax(0, 1fr); column-gap: 10px; padding: 10px; }
+  form.moment-upload .moment-taken .photo-review { width: 88px; height: 66px; }
+}
+@media (max-width: 340px) {
+  form.moment-upload .moment-chips { gap: 6px; }
+  form.moment-upload .moment-chip { padding: 8px 8px; }
+  form.moment-upload .moment-chip.is-suggested { padding: 7px 7px; }
+}

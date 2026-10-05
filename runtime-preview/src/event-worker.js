@@ -22,6 +22,8 @@ export const EVENT_CAPACITY = 24;
 export const EVENT_PHOTO_LIMIT = 6;
 const DAY = 24 * 60 * 60 * 1000;
 const SONGS = ['late-train', 'moon-window', 'sakura-echo'];
+const VIEWPOINTS = ['stage', 'crowd', 'friends', 'detail'];
+const TAKEN_MIN = Date.UTC(2000, 0, 1);
 const ID = '[0-9a-f-]{36}';
 const CODE = '[A-Z2-7]{12}';
 const hash = value => createHash('sha256').update(value).digest('hex');
@@ -39,6 +41,17 @@ function label(value, field, optional = false) {
 function revision(row, value) {
   if (!Number.isInteger(value) || value < 1) fail(400, 'REVISION_REQUIRED', '请提交当前版本。');
   if (row.revision !== value) fail(409, 'REVISION_CONFLICT', '内容已更新，请刷新后重试。', { currentRevision: row.revision });
+}
+/** The photo facts behind 「同一刻，另一面」: both halves of each pair or neither. Time: camera (exif) or person (manual), 2000-01-01 .. tomorrow. */
+function photoMoment(data, nowMs) {
+  const at = data.takenAt ?? null, source = data.takenSource ?? null, view = data.viewpoint ?? null, viewSource = data.viewpointSource ?? null;
+  if ((at === null) !== (source === null)) fail(400, 'INVALID_INPUT', '拍摄时间需要同时提供时间和来源。');
+  if (at !== null && (!Number.isSafeInteger(at) || at < TAKEN_MIN || at > nowMs + DAY)) fail(400, 'INVALID_TAKEN_AT', '拍摄时间需在 2000 年至明天之间。');
+  if (source !== null && !['exif', 'manual'].includes(source)) fail(400, 'INVALID_TAKEN_SOURCE', '拍摄时间只能来自照片自带信息或本人填写。');
+  if ((view === null) !== (viewSource === null)) fail(400, 'INVALID_INPUT', '视角需要同时提供选择和来源。');
+  if (view !== null && !VIEWPOINTS.includes(view)) fail(400, 'INVALID_VIEWPOINT', '视角只能是舞台、人海、身边或细节。');
+  if (viewSource !== null && !['ai', 'manual'].includes(viewSource)) fail(400, 'INVALID_VIEWPOINT_SOURCE', '视角来源无效。');
+  return { takenAt: at, takenSource: source, viewpoint: view, viewpointSource: viewSource };
 }
 function visibility(value) { if (!['private', 'members'].includes(value)) fail(400, 'VISIBILITY_REQUIRED', '请明确选择仅自己可见或向本场成员展示。'); return value; }
 function consent(data) { if (data.joinConsent !== true) fail(400, 'JOIN_CONSENT_REQUIRED', '请确认将昵称和分身展示给本场已加入的成员。'); }
@@ -75,7 +88,8 @@ export function createEventWorker({ clock = Date.now, rateLimits = true } = {}) 
         status: room.closed_at ? 'closed' : room.expires_at <= now() ? 'expired' : 'open', revision: room.revision,
         createdAt: room.created_at, expiresAt: room.expires_at, capacity: EVENT_CAPACITY, ...(actorId ? { role: room.host_id === actorId ? 'host' : 'member', joined, entryState:room.is_excluded?'removed':joined?'joined':'left' } : {}) });
       const photoJSON = photo => ({ id: photo.id, roomId: photo.room_id, ownerId: photo.owner_id, visibility: photo.visibility,
-        revision: photo.revision, createdAt: photo.created_at, updatedAt: photo.updated_at, imageUrl: `${EVENT_API_PREFIX}/photos/${photo.id}/image` });
+        revision: photo.revision, createdAt: photo.created_at, updatedAt: photo.updated_at,
+        takenAt: photo.taken_at ?? null, takenSource: photo.taken_source ?? null, viewpoint: photo.viewpoint ?? null, viewpointSource: photo.viewpoint_source ?? null, imageUrl: `${EVENT_API_PREFIX}/photos/${photo.id}/image` });
       async function rate(key, maximum, period = 60_000) {
         if (!rateLimits) return;
         const time = clock(), opaque = hash(key);
@@ -270,19 +284,19 @@ export function createEventWorker({ clock = Date.now, rateLimits = true } = {}) 
               return { body: { room: roomJSON(updated, user.id, Boolean(room.is_member)) }, guard: { sql: 'EXISTS (SELECT 1 FROM event_rooms WHERE id = ? AND revision = ? AND host_id = ?)', args: [id, room.revision, user.id] },
                 statements: [stmt('UPDATE event_rooms SET closed_at = ?,revision = revision + 1 WHERE id = ? AND revision = ?', updated.closed_at, id, room.revision)] };
             }
-            keys(data, ['dataUrl', 'visibility']); requireOpen(room); visibility(data.visibility);
+            keys(data, ['dataUrl', 'visibility', 'takenAt', 'takenSource', 'viewpoint', 'viewpointSource']); requireOpen(room); visibility(data.visibility); const moment = photoMoment(data, clock());
             await rate(`upload:${user.id}`, 20, 60 * 60_000);
             const count = await get('SELECT COUNT(*) AS total FROM event_photos WHERE room_id = ? AND owner_id = ? AND deleted_at IS NULL', id, user.id);
             if (count.total >= EVENT_PHOTO_LIMIT) fail(409, 'PHOTO_LIMIT', '每人每场最多保留 6 张照片。');
             let bytes; try { bytes = sanitizeAvatarJpeg(data.dataUrl); } catch (error) { if (error.status) fail(error.status, error.code, error.message); throw error; }
             if (!env.PHOTOS?.put) fail(503, 'PHOTO_SERVICE_UNAVAILABLE', '照片服务暂时不可用。');
-            const photo = { id: randomUUID(), room_id: id, owner_id: user.id, visibility: data.visibility, revision: 1, created_at: now(), updated_at: now() };
+            const photo = { id: randomUUID(), room_id: id, owner_id: user.id, visibility: data.visibility, revision: 1, created_at: now(), updated_at: now(), taken_at: moment.takenAt, taken_source: moment.takenSource, viewpoint: moment.viewpoint, viewpoint_source: moment.viewpointSource };
             const objectKey = `events/${id}/${photo.id}/${randomUUID()}.jpg`;
             await env.PHOTOS.put(objectKey, bytes, { httpMetadata: { contentType: 'image/jpeg' } });
             return { status: 201, body: { photo: photoJSON(photo) }, uploadedKey: objectKey, guard: {
               sql: 'EXISTS (SELECT 1 FROM event_rooms WHERE id = ? AND closed_at IS NULL AND expires_at > ?) AND EXISTS (SELECT 1 FROM event_members WHERE room_id = ? AND user_id = ? AND left_at IS NULL) AND (SELECT COUNT(*) FROM event_photos WHERE room_id = ? AND owner_id = ? AND deleted_at IS NULL) < ?',
               args: [id, now(), id, user.id, id, user.id, EVENT_PHOTO_LIMIT],
-            }, statements: [stmt('INSERT INTO event_photos (id,room_id,owner_id,photo_key,visibility,revision,created_at,updated_at,deleted_at) VALUES (?,?,?,?,?,1,?,?,NULL)', photo.id, id, user.id, objectKey, photo.visibility, photo.created_at, photo.updated_at)] };
+            }, statements: [stmt('INSERT INTO event_photos (id,room_id,owner_id,photo_key,visibility,revision,created_at,updated_at,deleted_at,taken_at,taken_source,viewpoint,viewpoint_source) VALUES (?,?,?,?,?,1,?,?,NULL,?,?,?,?)', photo.id, id, user.id, objectKey, photo.visibility, photo.created_at, photo.updated_at, moment.takenAt, moment.takenSource, moment.viewpoint, moment.viewpointSource)] };
           });
         }
       }

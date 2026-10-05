@@ -306,3 +306,62 @@ test('corner transport rejects unrelated paths and discards a response after sto
  await assert.rejects(c.cornerRequest('/social'),/路径/);await assert.rejects(c.cornerRequest('/corners',{blob:true}),/路径/);
  pause=true;const pending=c.cornerRequest('/corners');await started;storage.removeItem(SESSION_KEY);c.syncStoredIdentity();release();await assert.rejects(pending,e=>e.code==='TARGET_CHANGED');assert.equal(c.getState().identity.status,'lost');
 });
+
+// 「同一刻，另一面」 photo facts: uploadPhoto(..., { meta }) carries the four known facts, nothing else, into the saved draft and the request body.
+const PHOTO_FACT_KEYS=['takenAt','takenSource','viewpoint','viewpointSource'];
+const factsAgo=(ms=36e5)=>({takenAt:Math.floor((Date.now()-ms)/1000)*1000,takenSource:'exif',viewpoint:'crowd',viewpointSource:'ai'});
+function recordPhotoPosts(sent,{beforeReturn}={}){return async(url,options)=>{if(!(url.endsWith('/photos')&&options.method==='POST'))return fetch(url,options);sent.push({body:options.body,key:options.headers['Idempotency-Key']});const response=await fetch(url,options);if(beforeReturn?.())throw Error('synthetic lost response');return response;};}
+
+test('uploadPhoto meta puts only the known, non-null photo facts into the draft and the request body, in a fixed order',async t=>{
+  const f=await fixture(t),a=await f.person('A'),room=(await a.c.createRoom(roomInput())).room;a.c.dispose();const sent=[],facts=factsAgo(),lose=[true];
+  const c=f.client({storage:a.storage,fetch:recordPhotoPosts(sent,{beforeReturn:()=>lose.shift()})}).c;await c.connect();await c.openRoom(room.id);
+  // Keys out of order, one unknown key and one file-time-like key: only the four facts survive, in the canonical order.
+  const meta={viewpointSource:facts.viewpointSource,unknown:'x',viewpoint:facts.viewpoint,takenSource:facts.takenSource,mtime:123,takenAt:facts.takenAt};
+  await assert.rejects(c.uploadPhoto(photoData().dataUrl,'members',{roomId:room.id,meta}),e=>e.code==='NETWORK'&&e.uncertain);
+  const draft=c.getState().drafts.photo;assert.deepEqual(draft,{roomId:room.id,dataUrl:photoData().dataUrl,visibility:'members',...facts});assert.deepEqual(Object.keys(draft),['roomId','dataUrl','visibility',...PHOTO_FACT_KEYS]);
+  assert.deepEqual(Object.keys(JSON.parse(sent[0].body)),['dataUrl','visibility',...PHOTO_FACT_KEYS]);assert.deepEqual(JSON.parse(sent[0].body),{dataUrl:photoData().dataUrl,visibility:'members',...facts});
+  assert.equal(c.getState().dirty.photo,true);const op=c.getState().pending[0];assert.equal(op.status,'uncertain');assert.equal(op.durable,true);
+  const saved=JSON.parse(a.storage.getItem(EVENT_STORAGE_KEY));assert.equal(saved.operations[0].bodyJson,sent[0].body);assert.deepEqual(saved.drafts.photo,draft);
+  // The retry replays the identical body under the identical key; the server answers from its receipt and keeps one photo with the facts.
+  const result=await c.retry(op.id);assert.equal(sent.length,2);assert.equal(sent[1].body,sent[0].body);assert.equal(sent[1].key,sent[0].key);
+  assert.deepEqual(PHOTO_FACT_KEYS.map(key=>result.photo[key]),PHOTO_FACT_KEYS.map(key=>facts[key]));
+  assert.equal(c.getState().pending.length,0);assert.equal(c.getState().dirty.photo,false,'a submitted draft that carries facts is recognised as submitted');
+  await c.loadMyPhotos();assert.equal(c.getState().myPhotos.items.length,1);assert.deepEqual(PHOTO_FACT_KEYS.map(key=>c.getState().myPhotos.items[0][key]),PHOTO_FACT_KEYS.map(key=>facts[key]));
+  assert.deepEqual(PHOTO_FACT_KEYS.map(key=>c.getState().photos[0][key]),PHOTO_FACT_KEYS.map(key=>facts[key]));
+});
+
+test('a lost upload response with facts is retried from a fresh controller with the same stored bodyJson and key',async t=>{
+  const f=await fixture(t),a=await f.person('A'),room=(await a.c.createRoom(roomInput())).room;a.c.dispose();const sent=[],facts=factsAgo(90*60_000),lose=[true];
+  const transport=recordPhotoPosts(sent,{beforeReturn:()=>lose.shift()});
+  const first=f.client({storage:a.storage,fetch:transport}).c;await first.connect();await first.openRoom(room.id);
+  await assert.rejects(first.uploadPhoto(photoData().dataUrl,'private',{roomId:room.id,meta:facts}),e=>e.uncertain);const id=first.getState().pending[0].id;first.dispose();
+  const restored=f.client({storage:a.storage,fetch:transport}).c;await restored.connect();assert.equal(restored.getState().pending.length,1);
+  assert.deepEqual(JSON.parse(JSON.parse(a.storage.getItem(EVENT_STORAGE_KEY)).operations[0].bodyJson),{dataUrl:photoData().dataUrl,visibility:'private',...facts});
+  const result=await restored.retry(id);assert.deepEqual(sent[1],sent[0]);assert.equal(result.photo.takenAt,facts.takenAt);assert.equal(result.photo.viewpointSource,'ai');
+  await restored.loadMyPhotos();assert.equal(restored.getState().myPhotos.items.length,1);assert.equal(restored.getState().myPhotos.items[0].takenSource,'exif');
+});
+
+test('uploadPhoto without meta, with empty meta or with only null/undefined facts keeps the original body and draft exactly',async t=>{
+  const f=await fixture(t),a=await f.person('A'),room=(await a.c.createRoom(roomInput())).room;a.c.dispose();const sent=[];
+  const c=f.client({storage:a.storage,fetch:recordPhotoPosts(sent)}).c;await c.connect();await c.openRoom(room.id);const original={dataUrl:photoData().dataUrl,visibility:'private'};
+  for(const options of [{roomId:room.id},{roomId:room.id,meta:undefined},{roomId:room.id,meta:null},{roomId:room.id,meta:{}},{roomId:room.id,meta:{takenAt:null,takenSource:undefined,viewpoint:null,viewpointSource:undefined,mtime:5}}]){
+    sent.length=0;const result=await c.uploadPhoto(photoData().dataUrl,'private',options);
+    assert.equal(sent[0].body,JSON.stringify(original));assert.deepEqual(c.getState().drafts.photo,{roomId:room.id,...original});assert.equal(c.getState().dirty.photo,false);
+    assert.deepEqual(PHOTO_FACT_KEYS.map(key=>result.photo[key]),[null,null,null,null]);
+    await c.removePhoto(result.photo.id,{revision:1});
+  }
+  // A half-known set is passed as given (the server decides): a viewpoint pair alone is a complete pair, a time alone is not.
+  sent.length=0;const pair={takenAt:null,viewpoint:'detail',viewpointSource:'manual'};const one=await c.uploadPhoto(photoData().dataUrl,'private',{roomId:room.id,meta:pair});
+  assert.deepEqual(Object.keys(JSON.parse(sent[0].body)),['dataUrl','visibility','viewpoint','viewpointSource']);assert.deepEqual(PHOTO_FACT_KEYS.map(key=>one.photo[key]),[null,null,'detail','manual']);
+  await assert.rejects(c.uploadPhoto(photoData().dataUrl,'private',{roomId:room.id,meta:{takenAt:factsAgo().takenAt}}),e=>e.status===400&&e.code==='INVALID_INPUT'&&!e.retryable&&!e.uncertain);
+  assert.equal(c.getState().pending[0].status,'failed');assert.equal(c.getState().dirty.photo,true);
+});
+
+test('different photo facts are different operations, so a changed viewpoint never reuses the first request key',async t=>{
+  const f=await fixture(t),a=await f.person('A'),room=(await a.c.createRoom(roomInput())).room;a.c.dispose();const sent=[];let drop=true;
+  const c=f.client({storage:a.storage,fetch:recordPhotoPosts(sent,{beforeReturn:()=>{const lost=drop;drop=false;return lost;}})}).c;await c.connect();await c.openRoom(room.id);
+  const facts=factsAgo();await assert.rejects(c.uploadPhoto(photoData().dataUrl,'private',{roomId:room.id,meta:facts}),e=>e.uncertain);
+  const changed=await c.uploadPhoto(photoData().dataUrl,'private',{roomId:room.id,meta:{...facts,viewpoint:'stage',viewpointSource:'manual'}});
+  assert.notEqual(sent[1].key,sent[0].key);assert.equal(JSON.parse(sent[1].body).viewpoint,'stage');assert.equal(changed.photo.viewpointSource,'manual');
+  assert.equal(c.getState().pending.length,1,'the first, unconfirmed upload is still its own pending operation');
+});

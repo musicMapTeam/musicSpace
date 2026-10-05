@@ -181,6 +181,7 @@ test('Worker/D1: modular snapshots preserve invite privacy and two-person export
 });
 
 test('Worker/D1: old stored profiles and accepted snapshots normalize on read without rewriting identity or consent', async t => {
+  if (process.env.SPACE_TEST_ENGINE === 'sqljs') return t.skip('engine-specific: edits the database file while the worker holds it open, sql.js keeps its own in-memory copy');
   const f = await fixture(t), pair = await f.joined();
   const accepted = await f.consented(pair);
   const db = new DatabaseSync(join(f.dataDir, 'avatar-space.sqlite'));

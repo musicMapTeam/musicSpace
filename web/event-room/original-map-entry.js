@@ -1,4 +1,5 @@
 import {realSongs} from '../../runtime-preview/src/map-catalogue.js';
+import {siteUrl} from '../shared/site-base.js';
 const KEY='music-space-map-return:v1';
 /** Full-page route: the original Map owns the screen and its single renderer. */
 export function createMusicMap({controller,onShare=()=>{},onRelay=()=>{},onReturn=()=>{},getView=()=>null,canRestore=()=>true,onRestore=()=>{},onError=()=>{}}){
@@ -9,7 +10,7 @@ export function createMusicMap({controller,onShare=()=>{},onRelay=()=>{},onRetur
   const actor=controller.getState().identity.user?.id||null;
   const context={actor,view:getView(),scope:scope?{kind:scope.kind,id:scope.id}:null,returnUrl:location.pathname+location.search+location.hash,recordingId:realSongs[recordingId]?recordingId:null};
   try{sessionStorage.setItem(KEY,JSON.stringify(context));}catch{onError(Error('浏览器无法保留返回位置，请允许本机存储后重试。'));return;}
-  leaving=true;location.assign('/music-map/#/explore');
+  leaving=true;location.assign(siteUrl('music-map/')+'#/explore');
  }
  // Consume a draft request once, after identity is ready. Existing services
  // still check membership and require explicit send/start confirmation.

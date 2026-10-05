@@ -34,6 +34,7 @@ export function eventContract(label, fixture) {
     const noChoice=await f.request(`/rooms/${room.id}/photos`,{token:a.token,method:'POST',data:{dataUrl:photoData().dataUrl}}); assert.equal(noChoice.status,400);
     const upload=await f.upload(room,a,'private'); assert.equal(upload.status,201); const p=upload.body.photo;
     assert.equal(p.visibility,'private'); assert.ok(!JSON.stringify(p).includes('photo_key'));
+    assert.deepEqual([p.takenAt,p.takenSource,p.viewpoint,p.viewpointSource],[null,null,null,null]); // photo facts (migration 0013) are present and null when the upload had none
     assert.equal((await f.request(`/photos/${p.id}/image`,{token:b.token})).status,404);
     assert.equal((await f.request(`/photos/${p.id}/image`,{token:c.token})).status,404);
     assert.equal((await f.request('/rooms/'+room.id,{token:b.token})).body.photos.length,0);

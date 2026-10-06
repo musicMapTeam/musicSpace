@@ -28,6 +28,10 @@ jobs:
       # The rules of 「同一刻」 (web/js/moment.js) and the card API of the room server (on a free port, throw-away data dir). node:assert only.
       - run: npm test
       - run: npm run test:release && npm run test:character
+      # The GitHub Pages tree (the event room as the site root, music-map/, classic/, ai/, demo/): built from the same sources and
+      # checked by verify-tree and the static suites. The artifact below is what scripts/pages/publish.mjs would publish; there is no deploy step.
+      - run: npm run build:pages
+      - run: npm run test:static
       - run: npm run release:pack
       - run: docker build -t musicspace-candidate .
       # Without the ai/ folder next to it, web/js/ai/space-ai.js reports status 'failed' (it never throws), so ship dist/ whole.
@@ -35,6 +39,11 @@ jobs:
         with:
           name: music-space-static
           path: dist/
+          retention-days: 14
+      - uses: actions/upload-artifact@v7.0.1
+        with:
+          name: music-space-pages
+          path: dist-pages/
           retention-days: 14
       - uses: actions/upload-artifact@v7.0.1
         with:

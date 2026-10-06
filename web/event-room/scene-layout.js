@@ -2,16 +2,21 @@
  * changing close-up view. Actual membership and ordering remain unchanged. */
 export function memberFloorPositions(count,portrait){
  const right=portrait?[.99015,.14]:[.87004,.493];
- const gap=portrait?(count>2?1.15:1.9):(count>4?1.45:2.15),centerZ=portrait?1.4:2;
+ const gap=portrait?(count>2?1.15:1.9):(count>3?1.45:2.15),centerZ=portrait?1.4:2;
  return Array.from({length:count},(_,i)=>{const x=(i-(count-1)/2)*gap,depth=count>2?(i%2?.1:-.1):0;return [right[0]*x+right[1]*depth,0,centerZ+right[1]*x-right[0]*depth];});
 }
 
+// Landscape with people in the room: the presence card sits over the right of the room (400 to 500 px of it), so the overview looks 1.8 m to the right
+// of the group (along its own screen-right axis, [.87004,0,.493]): the group stands left of the middle, the last member (often the visitor) clear of the
+// card, the wall in view. The empty lobby keeps the stage framing it had.
+const LANDSCAPE_SHIFT=1.8;
 export function overviewCameraLayout(count,portrait,height=844){
  const distance=portrait?(height<650||count>2?13.8:11.8):(count>4?14.4:10.8);
  const targetY=height<650?.95:1.3;
+ const shift=count>0?LANDSCAPE_SHIFT:0,sx=.87004*shift,sz=.493*shift;
  return portrait
   ?{position:[-.14*distance,targetY+.18*distance,.5+.99015*distance],target:[0,targetY,.5]}
-  :{position:[-.493*distance,2.15+.20*distance,1+.87004*distance],target:[0,2.15,1]};
+  :{position:[-.493*distance+sx,2.15+.20*distance,1+.87004*distance+sz],target:[sx,2.15,1+sz]};
 }
 
 /** Screen-space labels keep their own target and a small leader. All names

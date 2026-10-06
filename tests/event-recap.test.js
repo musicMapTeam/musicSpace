@@ -77,7 +77,7 @@ for (const mode of ['Node', 'Worker']) {
     assert.ok(!JSON.stringify(recap.body).includes(b.user.name));
     const friend = await f.friend(room, a, b); recap = await f.recap(room, a);
     assert.deepEqual(recap.body.friends.items, [{ ...friend, userId: b.user.id, peer: { id: b.user.id, name: b.user.name, avatar: b.user.avatar } }]);
-    assert.deepEqual(Object.keys(recap.body.photos.items[0]).sort(), ['createdAt', 'id', 'imageUrl', 'ownerId', 'revision', 'roomId', 'updatedAt', 'visibility']);
+    assert.deepEqual(Object.keys(recap.body.photos.items[0]).sort(), ['createdAt', 'id', 'imageUrl', 'ownerId', 'revision', 'roomId', 'takenAt', 'takenSource', 'updatedAt', 'viewpoint', 'viewpointSource', 'visibility']);
     assert.deepEqual(Object.keys(recap.body.friends.items[0].peer).sort(), ['avatar', 'id', 'name']);
     assert.equal((await f.request(shared.imageUrl, { token: a.token })).status, 200);
   });

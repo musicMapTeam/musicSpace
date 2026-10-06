@@ -51,3 +51,14 @@ test('desktop close framing keeps two/four/eight actual people inside the readin
  const width=320,height=568,shot=overviewCameraLayout(2,true,height),camera=new THREE.PerspectiveCamera(43,width/height,.08,90);camera.position.set(...shot.position);camera.lookAt(...shot.target);camera.updateMatrixWorld();
  for(const [x,,z]of memberFloorPositions(2,true)){const head=new THREE.Vector3(x,3.24,z).project(camera),foot=new THREE.Vector3(x,0,z).project(camera);assert.ok((1-head.y)*height/2>130,'head clears room title');assert.ok((1-foot.y)*height/2<350,'feet clear compact action dock');}
  });
+
+test('desktop overview keeps the fourth member (often the visitor) and their name tag clear of the presence card on the right',()=>{
+ // the room starts 31 px from the window's left and is about W-70 by H-212; the card is at most 440 px wide with its right edge 60 px from the
+ // window's right (doodle/chrome.css .presence; narrower in the room), so in room coordinates it starts at W-531 or further right
+ for(const [W,H]of[[1280,800],[1440,900],[1920,1080]]){
+  const width=W-70,height=H-212,shot=overviewCameraLayout(4,false,height),camera=new THREE.PerspectiveCamera(43,width/height,.08,90);camera.position.set(...shot.position);camera.lookAt(...shot.target);camera.updateMatrixWorld();
+  const [x,,z]=memberFloorPositions(4,false)[3],head=new THREE.Vector3(x,3.13,z).project(camera),tagRight=(head.x+1)*width/2+64,cardLeft=W-60-440-31;
+  assert.ok(tagRight<cardLeft,`${W}x${H}: the last name tag ends at ${Math.round(tagRight)} px, the card starts at ${cardLeft} px`);
+ }
+ assert.deepEqual(overviewCameraLayout(0,false).target,[0,2.15,1],'the empty lobby keeps the stage framing it had');
+});

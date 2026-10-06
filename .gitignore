@@ -1,6 +1,8 @@
 node_modules
 node_modules/
 dist/
+# Static (GitHub Pages) site built by `npm run build:pages`; published to gh-pages by scripts/pages/publish.mjs, never committed on main
+dist-pages/
 .vite/
 .env
 .env.*

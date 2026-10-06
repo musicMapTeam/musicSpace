@@ -33,8 +33,8 @@ test('runtime print palette changes only material colors, keeping the authored G
  asset.dispose();materials.forEach(m=>m.dispose());assert.equal(createHash('sha256').update(bytes).digest('hex'),before);
 });
 
-test('four photos form a balanced two-by-two in both orientations; typography keeps its native aspect',()=>{
- assert.equal(galleryColumns(4,false),2);assert.equal(galleryColumns(4,true),2);
+test('four photos form one row on a landscape wall and a balanced two-by-two on a portrait one; typography keeps its native aspect',()=>{
+ assert.equal(galleryColumns(4,false),4);assert.equal(galleryColumns(4,true),2);
  assert.equal(galleryColumns(6,false),3);assert.equal(galleryColumns(6,true),2);
  assert.equal(galleryColumns(1,false),1);assert.equal(GALLERY_PRINT_ASPECT,6.4);
 });

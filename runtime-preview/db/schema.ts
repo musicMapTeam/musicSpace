@@ -52,11 +52,19 @@ export const eventPhotos = sqliteTable('event_photos', {
   ownerId: text('owner_id').notNull().references(() => avatarUsers.id), photoKey: text('photo_key'),
   visibility: text('visibility').notNull(), revision: integer('revision').notNull().default(1),
   createdAt: text('created_at').notNull(), updatedAt: text('updated_at').notNull(), deletedAt: text('deleted_at'),
+  // Migration 0013 (「同一刻，另一面」 photo facts), all nullable: capture time from the camera (exif) or the person (manual),
+  // and the viewpoint the person kept or chose (ai = they kept the on-device suggestion unchanged). Each pair is both-or-neither.
+  takenAt: integer('taken_at'), takenSource: text('taken_source'), viewpoint: text('viewpoint'), viewpointSource: text('viewpoint_source'),
 }, table => [
   check('event_photo_visibility', sql`${table.visibility} IN ('private', 'members')`),
   check('event_photo_storage', sql`(${table.deletedAt} IS NULL AND ${table.photoKey} IS NOT NULL) OR (${table.deletedAt} IS NOT NULL AND ${table.photoKey} IS NULL)`),
+  check('event_photo_taken_at', sql`${table.takenAt} IS NULL OR (${table.takenAt} >= 946684800000 AND ${table.takenAt} <= 32503680000000)`),
+  check('event_photo_taken_source', sql`(${table.takenSource} IS NULL) = (${table.takenAt} IS NULL) AND (${table.takenSource} IS NULL OR ${table.takenSource} IN ('exif', 'manual'))`),
+  check('event_photo_viewpoint', sql`${table.viewpoint} IS NULL OR ${table.viewpoint} IN ('stage', 'crowd', 'friends', 'detail')`),
+  check('event_photo_viewpoint_source', sql`(${table.viewpointSource} IS NULL) = (${table.viewpoint} IS NULL) AND (${table.viewpointSource} IS NULL OR ${table.viewpointSource} IN ('ai', 'manual'))`),
   index('event_photo_room').on(table.roomId, table.deletedAt), index('event_photo_owner').on(table.ownerId, table.createdAt),
   index('event_photo_key').on(table.photoKey).where(sql`${table.photoKey} IS NOT NULL`),
+  index('event_photo_moment').on(table.roomId, table.takenAt).where(sql`${table.takenAt} IS NOT NULL AND ${table.deletedAt} IS NULL`),
 ]);
 export const eventIdempotency = sqliteTable('event_idempotency', {
   actorId: text('actor_id').notNull(), keyHash: text('key_hash').notNull(), requestHash: text('request_hash').notNull(),

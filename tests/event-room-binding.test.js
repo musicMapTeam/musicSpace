@@ -12,6 +12,9 @@ import {recapMarkup} from '../web/event-room/recap-view.js';
 import {createMemoryCardExporter} from '../web/event-room/memory-card.js';
 import {memoryCardMarkup} from '../web/event-room/memory-card-view.js';
 import {renderMemoryCardPng,saveMemoryCardDownload} from '../web/event-room/memory-card-png.js';
+import {createMomentUpload} from '../web/event-room/moment-upload.js';
+import {wallMarkup,photoMetaHtml} from '../web/event-room/moment-wall.js';
+import {wallReadings} from '../web/event-room/moment-model.js';
 const source=readFileSync(new URL('../web/event-room/app.js',import.meta.url),'utf8');
 const clone=value=>JSON.parse(JSON.stringify(value));
 const defer=()=>{let resolve,reject;const promise=new Promise((yes,no)=>{resolve=yes;reject=no;});return {promise,resolve,reject};};
@@ -23,7 +26,7 @@ const room=(id=roomId)=>({id,code:id===roomId?'AAAAAAAAAAAA':'BBBBBBBBBBBB',titl
 const photo=(n=1)=>({id:`10000000-0000-4000-8000-${String(n).padStart(12,'0')}`,roomId,ownerId:actor,visibility:'private',revision:1});
 function initial(extra={}) {return {connection:'connected',identity:{status:'ready',user:{id:actor,name:'Synthetic viewer',avatar:DEFAULT_AVATAR,revision:1}},route:{kind:'home',target:null},room:null,preview:null,members:[],photos:[],myPhotos:{items:[],nextCursor:null},myRooms:{items:[],nextCursor:null},drafts:{photo:null,profile:null,room:null},draftVersions:{photo:0,profile:0,room:0},dirty:{photo:false,profile:false,room:false},pending:[],loading:[],storage:{ok:true,refreshRecovery:true},error:null,...extra};}
 function element() {const events=new Map();return {events,hidden:false,innerHTML:'',textContent:'',scrollTop:0,dataset:{},isConnected:true,classList:{add(){},remove(){},toggle(){}},addEventListener(type,fn){const list=events.get(type)||[];list.push(fn);events.set(type,list);},setAttribute(){},removeAttribute(){},focus(){},append(){},remove(){},querySelector(){return null;},querySelectorAll(){return [];}};}
-function harness(start=initial(),url='https://musicspace.test/event/') {
+function harness(start=initial(),url='https://musicspace.test/event/',extra={}) {
   let current=clone(start),subscriber;
   const elements=new Map(),doc=element(),window=element(),calls=[],revoked=[],timers=new Map();let nextTimer=0;
   const get=selector=>{if(!elements.has(selector))elements.set(selector,element());return elements.get(selector);};
@@ -45,9 +48,10 @@ function harness(start=initial(),url='https://musicspace.test/event/') {
     createMusicGames:()=>({open:async()=>{},close(){},syncIdentity(){},dispose(){}}),createMusicTopics:()=>({open:async()=>{},close(){},syncIdentity(){},dispose(){}}),createSpaceManagement:()=>({open:async value=>calls.push(['spaceManagementOpen',clone(value)]),close(){},syncIdentity(){},dispose(){}}),
     createModerationPanel:options=>({openReports:async()=>calls.push(['myFeedback']),openManagement:async id=>calls.push(['manageRoom',id]),openFeedback:(target,options)=>calls.push(['feedback',clone(target),options===undefined?undefined:clone(options)]),close(){},syncIdentity(){},refresh:async()=>{},dispose(){}}),
     createExchangePanel:options=>({open:async id=>calls.push(['exchangeOpen',id]),openOffer:async p=>calls.push(['exchangeOffer',clone(p)]),close(){},syncIdentity(){},refresh:async()=>{},invalidate:scope=>calls.push(['exchangeInvalidate',clone(scope)]),getState:()=>({}),dispose(){}}),
-    matchMedia:()=>({matches:true,addEventListener(){}}),setTimeout:(callback,delay)=>{const id=++nextTimer;timers.set(id,{callback,delay});return id;},clearTimeout:id=>timers.delete(id),createEventController:()=>controller,mountLivehouseScene:()=>engine,
-    memberFloorPositions,layoutSceneLabels,renderAvatarSvg,recapMarkup,createMemoryCardExporter,memoryCardMarkup,renderMemoryCardPng,saveMemoryCardDownload,AbortController,venueAssetUrl:'data:model/gltf-binary;base64,c3ludGhldGlj',SESSION_KEY:'music-space-avatar-session:v1',DEFAULT_AVATAR,SKINS,HAIRS,GARMENT_COLORS,SONGS,safeAvatar,esc,qrcode:()=>({addData(){},make(){},createSvgTag:()=>'<svg></svg>'}),
+    matchMedia:()=>({matches:true,addEventListener(){}}),setTimeout:(callback,delay)=>{const id=++nextTimer;timers.set(id,{callback,delay});return id;},clearTimeout:id=>timers.delete(id),createEventController:()=>controller,profile:{mode:'server',controllerOptions:()=>({}),copy:{},demo:null},mountLivehouseScene:()=>engine,
+    memberFloorPositions,layoutSceneLabels,renderAvatarSvg,recapMarkup,createMemoryCardExporter,memoryCardMarkup,renderMemoryCardPng,saveMemoryCardDownload,createMomentUpload,wallMarkup,photoMetaHtml,wallReadings,AbortController,venueAssetUrl:'data:model/gltf-binary;base64,c3ludGhldGlj',SESSION_KEY:'music-space-avatar-session:v1',DEFAULT_AVATAR,SKINS,HAIRS,GARMENT_COLORS,SONGS,safeAvatar,esc,qrcode:()=>({addData(){},make(){},createSvgTag:()=>'<svg></svg>'}),
     FormData:class {constructor(form){this.values=form.values||{};}get(key){return this.values[key]??null;}getAll(key){const v=this.values[key];return v===undefined?[]:Array.isArray(v)?v:[v];}},
+    ...extra,
   });
   const code=source.replace(/^import .*;$/gm,'').replace('void boot();','');
   vm.runInContext(code+`\nglobalThis.binding={setReady:value=>{ready=value;},scenePicked,openPanel,closePanel,synchronizePhotos,boot,saveWardrobeProfile,setWardrobeReturn:value=>{wardrobeReturn=value;},get:()=>({state,panelKind,panelTarget,detailEpoch,photoDraft,photoInputGeneration,formBusy,photoScope,urls:[...urls]}),setPhotoDraft:value=>{photoDraft=value;},cache:(id,url,revision=1)=>urls.set(id,{url,revision})};`,context,{filename:'event-room-ui-binding.vm.js'});
@@ -337,6 +341,16 @@ test('opening a later-page friend uses bounded canonical peer lookup rather than
   h.controller.loadSocial=async()=>{h.emit({...h.get().state,social:socialState()});return {applied:true};};
   h.controller.loadSocialPeer=async id=>{h.calls.push(['loadSocialPeer',id]);return {applied:true};};
   h.binding.openPanel('friends');await h.click({open:'person',id:otherId});assert.deepEqual(h.calls.filter(c=>c[0]==='loadSocialPeer'),[['loadSocialPeer',otherId]]);assert.match(h.body.innerHTML,/移除朋友/);assert.match(h.body.innerHTML,/Synthetic peer/);
+});
+
+test('a poll reads the chat list only while no private thread is open: an open thread is polled by the chat panel itself',async()=>{
+  const chat={current:null,refreshes:0},h=harness(initial(),undefined,{createChatPanel:()=>({open:async()=>{},close(){},syncIdentity(){},refresh:async()=>{chat.refreshes++;},getState:()=>({current:chat.current}),dispose(){}})});
+  await tick();const before=chat.refreshes;
+  await h.runPoll();assert.equal(chat.refreshes,before+1,'with the list (or nothing) open, the poll reads the chat list');
+  chat.current={peerId:otherId};
+  await h.runPoll();assert.equal(chat.refreshes,before+1,'reading the list would re-render the panel and restart its own thread timer, so a reply would never show');
+  chat.current=null;
+  await h.runPoll();assert.equal(chat.refreshes,before+2,'back on the list, the poll reads it again');
 });
 
 test('visible departed-home social state catches remote friend removal on the next5s poll without reload',async()=>{

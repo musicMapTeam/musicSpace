@@ -167,7 +167,12 @@ test('Moderation0005 is additive and preserves existing identities/photos/exchan
  db.prepare("INSERT INTO event_exchanges (id,room_id,sender_id,recipient_id,offered_photo_id,requested_photo_id,offered_revision,requested_revision,low_id,high_id,low_photo_id,high_photo_id,sender_profile,recipient_profile,preview_key,status,revision,created_at,updated_at,expires_at,accepted_at) VALUES ('old-exchange','old-room','old-a','old-b','a-photo','b-photo',4,4,'old-a','old-b','a-photo','b-photo','{}','{}','old-preview','accepted',2,'old-date','old-date','later','old-date')").run();
  for(const [photo,owner,viewer]of[['a-photo','old-a','old-b'],['b-photo','old-b','old-a']])db.prepare("INSERT INTO event_exchange_grants (exchange_id,photo_id,owner_id,viewer_id,created_at) VALUES ('old-exchange',?,?,?,'old-date')").run(photo,owner,viewer);
  const tables=['avatar_users','event_rooms','event_photos','event_exchanges','event_exchange_grants'],before=tables.map(name=>db.prepare('SELECT * FROM '+name).all());db.close();
- for(let i=0;i<2;i++)createEventStore({databasePath:file}).close();const read=new DatabaseSync(file);try{assert.deepEqual(tables.map(name=>read.prepare('SELECT * FROM '+name).all()),before);for(const name of['event_reports','event_room_exclusions'])assert.equal(read.prepare('SELECT COUNT(*) AS n FROM '+name).get().n,0);assert.deepEqual(read.prepare('PRAGMA foreign_key_check').all(),[]);}finally{read.close();}
+ for(let i=0;i<2;i++)createEventStore({databasePath:file}).close();const read=new DatabaseSync(file);try{
+  // Migration 0013 only appends four nullable photo-fact columns: every old value is unchanged and the old photos read them as null.
+  const plain=rows=>JSON.parse(JSON.stringify(rows)),photoFacts={taken_at:null,taken_source:null,viewpoint:null,viewpoint_source:null};
+  assert.deepEqual(plain(tables.map(name=>read.prepare('SELECT * FROM '+name).all())),plain(before).map((rows,index)=>tables[index]==='event_photos'?rows.map(row=>({...row,...photoFacts})):rows));
+  assert.ok(read.prepare('SELECT name FROM _node_event_migrations').all().some(row=>row.name==='0013_event_photo_moment.sql'));
+  for(const name of['event_reports','event_room_exclusions'])assert.equal(read.prepare('SELECT COUNT(*) AS n FROM '+name).get().n,0);assert.deepEqual(read.prepare('PRAGMA foreign_key_check').all(),[]);}finally{read.close();}
 });
 
 test('Worker moderation: feedback rate limits survive restart without blocking exact successful receipt replay',async t=>{

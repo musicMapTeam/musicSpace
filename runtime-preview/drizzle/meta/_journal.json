@@ -92,6 +92,13 @@
       "idx": 12,
       "when": 1790966400004,
       "breakpoints": true
+    },
+    {
+      "tag": "0013_event_photo_moment",
+      "version": "6",
+      "idx": 13,
+      "when": 1790966400005,
+      "breakpoints": true
     }
   ]
 }

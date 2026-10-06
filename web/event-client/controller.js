@@ -12,6 +12,10 @@ const CODE = /^[A-Z2-7]{12}$/;
 const clone = value => value === undefined ? undefined : JSON.parse(JSON.stringify(value));
 const freeze = value => { if (value && typeof value === 'object') { Object.values(value).forEach(freeze); Object.freeze(value); } return value; };
 const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+// 「同一刻，另一面」 photo facts that may travel with an upload. A caller that does not have a fact passes null/undefined and the key is
+// simply absent from the draft and the request body; the fixed order keeps the saved body, a retry and the server's idempotency hash identical.
+const PHOTO_META_KEYS = ['takenAt', 'takenSource', 'viewpoint', 'viewpointSource'];
+const photoMeta = meta => Object.fromEntries(PHOTO_META_KEYS.filter(key => meta?.[key] !== null && meta?.[key] !== undefined).map(key => [key, meta[key]]));
 const fail = (message, code = 'INVALID_INPUT') => { throw new EventClientError(message, { code }); };
 const summaryError = error => ({ message: error.message, code: error.code || 'CLIENT_ERROR', status: error.status || 0, retryable: Boolean(error.retryable), uncertain: Boolean(error.uncertain), retryAfter: error.retryAfter || null, operationId: error.operationId || null });
 const signatures = {
@@ -424,7 +428,7 @@ export function createEventController(options = {}) {
   function clearSubmittedDraft(op) {
     if (!op.draftKind || state.draftVersions[op.draftKind] !== op.draftVersion) return;
     const payload = JSON.parse(op.bodyJson), draft = state.drafts[op.draftKind];
-    const reviewed = op.type === 'saveProfile' ? { name: payload.name, avatar: payload.avatar } : op.type === 'uploadPhoto' ? { roomId: op.target, dataUrl: payload.dataUrl, visibility: payload.visibility } : op.type === 'createRoom' ? { title: payload.title, venue: payload.venue || '', songId: payload.songId } : payload;
+    const reviewed = op.type === 'saveProfile' ? { name: payload.name, avatar: payload.avatar } : op.type === 'uploadPhoto' ? { roomId: op.target, dataUrl: payload.dataUrl, visibility: payload.visibility, ...photoMeta(payload) } : op.type === 'createRoom' ? { title: payload.title, venue: payload.venue || '', songId: payload.songId } : payload;
     if (same(draft, reviewed)) state.dirty[op.draftKind] = false;
   }
   function recapMutation(op, result) {
@@ -561,10 +565,11 @@ export function createEventController(options = {}) {
     return execute(capture('joinRoom', '/rooms/' + code + '/join', { joinConsent: true,participation }, code));
   }
   function setParticipation(mode,{roomId=state.room?.id,revision}={}){requireTarget(roomId);const actor=identity(),member=state.members.find(m=>m.id===actor.user.id);if(!['quiet','open'].includes(mode)||!member||revision!==member.participationRevision)fail('参与方式已变化，请重新确认。','REVIEW_STALE');return execute(capture('setParticipation',`/rooms/${roomId}/participation`,{mode,revision},roomId));}
-  function uploadPhoto(dataUrl, value, { roomId = state.room?.id } = {}) {
+  function uploadPhoto(dataUrl, value, { roomId = state.room?.id, meta } = {}) {
     requireTarget(roomId); if (!['private', 'members'].includes(value)) fail('请明确选择仅自己可见或向本场成员展示。', 'VISIBILITY_REQUIRED');
-    retainDraft('photo', { roomId, dataUrl, visibility: value });
-    return execute(capture('uploadPhoto', `/rooms/${roomId}/photos`, { dataUrl, visibility: value }, roomId, 'photo'));
+    const facts = photoMeta(meta);
+    retainDraft('photo', { roomId, dataUrl, visibility: value, ...facts });
+    return execute(capture('uploadPhoto', `/rooms/${roomId}/photos`, { dataUrl, visibility: value, ...facts }, roomId, 'photo'));
   }
   function setPhotoVisibility(id, value, { revision } = {}) { const found = photo(id, revision, { recap: value === 'private' }); if (!['private', 'members'].includes(value)) fail('照片可见范围无效。'); return execute(capture('setPhotoVisibility', '/photos/' + found.id, { revision, visibility: value }, found.roomId)); }
   function removePhoto(id, { revision } = {}) { const found = photo(id, revision, { recap: true }); return execute(capture('removePhoto', '/photos/' + found.id, { revision }, found.roomId)); }

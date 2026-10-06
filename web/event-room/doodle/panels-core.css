@@ -1,0 +1,1785 @@
+/*
+ * doodle: panels-core (owner: photos). The core judge path in the Doodle style (docs/design/doodle.md): the upload form (moment-upload.js),
+ * the photo wall (moment-wall.js), the exchange dialog (exchange-panel.js + exchange-suggest.js), the recap (recap-view.js) and the memory
+ * card form (memory-card-view.js). It restyles moment-upload.css, wall-moments.css, exchange-panel.css and memory-card.css without editing
+ * them: this file is imported after them (doodle/index.css comes last), and every rule here is at least as specific as the one it replaces.
+ * Colours are tokens only; the doodles (tape, check, stars, swap arrows) are alpha masks, so their colour is a token too.
+ * Body text 15–16px, helper text 13–14px, meta 12–13px; every control 44px or taller; motion is off under prefers-reduced-motion.
+ */
+
+:root {
+  /* digits first, then the marker face: in a line like 「拍摄于 21:48」 the clock is set in Doodle Digits and the words in Doodle Marker */
+  --pc-clock: "Doodle Digits", var(--ds-font-ui);
+  --pc-clock-display: "Doodle Digits", var(--ds-font-display);
+  --pc-polaroid: var(--ds-paper-card);
+  /* masks (black = drawn); this layer keeps its own copies so a renamed kit variable can never turn a doodle into a solid block */
+  --pc-svg-tape: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 30' preserveAspectRatio='none'%3E%3Cpath d='M2 0h96l2 5-3 5 3 5-3 5 3 5-2 5H2L0 25l3-5-3-5 3-5-3-5Z'/%3E%3C/svg%3E");
+  --pc-svg-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3.6 12.6C6 14 8 16.6 9.6 19.8 12.4 12.6 16.2 7.4 21.2 3.4' fill='none' stroke='black' stroke-width='3.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --pc-svg-sparkle: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M20 1.5C21.4 12.6 27.4 18.6 38.5 20 27.4 21.4 21.4 27.4 20 38.5 18.6 27.4 12.6 21.4 1.5 20 12.6 18.6 18.6 12.6 20 1.5Z'/%3E%3C/svg%3E");
+  --pc-svg-star: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M20.4 3.2 25.6 14.6 37.4 15.9 28.6 24.1 31.3 36.4 20.2 30.1 8.9 36.6 11.5 24.3 2.6 16.1 14.6 14.4Z' stroke='black' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --pc-svg-star-line: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M20.4 3.2 25.6 14.6 37.4 15.9 28.6 24.1 31.3 36.4 20.2 30.1 8.9 36.6 11.5 24.3 2.6 16.1 14.6 14.4Z' fill='none' stroke='black' stroke-width='2.8' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --pc-svg-swap: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 40'%3E%3Cpath d='M6 15.5C15 9.5 27 8.6 39.5 12.6M32.6 5.2l8.2 7.6-9.3 5.3M42 25.5C33 31.4 21 32.4 8.5 28.4M15.4 35.8 7.2 28.2l9.3-5.3' fill='none' stroke='black' stroke-width='3.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --pc-svg-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M9 36C6 25 9 13 20 6M12.5 4.6 21 5.5 18.6 13.8' fill='none' stroke='black' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --pc-svg-clock: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12.3 3.4c4.9-.1 8.4 3.6 8.3 8.7-.1 4.8-3.8 8.5-8.6 8.4-4.9-.1-8.4-3.7-8.3-8.6.1-4.9 3.7-8.4 8.6-8.5Z' fill='none' stroke='black' stroke-width='2.4'/%3E%3Cpath d='M12 7.4v5.3l3.6 2.3' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --pc-svg-squiggle: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 12'%3E%3Cpath d='M1.5 7.5C6 2 10 2 15 6.5S24 11 30 6.5 39 2 45 6.5 54 10.5 58.5 5' fill='none' stroke='black' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E");
+  --pc-svg-bang: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12.3 4.2c-.5 3.6-.6 7.1-.4 10.4' fill='none' stroke='black' stroke-width='3.2' stroke-linecap='round'/%3E%3Ccircle cx='12' cy='19.3' r='2'/%3E%3C/svg%3E");
+}
+
+/* ======================================================================================================================================
+   0. shared bits of the five panels: the panel title as layered lettering, the eyebrow, the small print, the main and second buttons
+   ====================================================================================================================================== */
+
+.panel:is([data-kind='upload'], [data-kind='wall'], [data-kind='recap'], [data-kind='memory-card'], [data-kind='photo'], [data-kind='library']) .fine {
+  color: var(--ds-ink-2);
+  font-family: var(--ds-font-body);
+  font-size: 14px;
+  line-height: 1.6;
+}
+.panel:is([data-kind='upload'], [data-kind='wall'], [data-kind='recap'], [data-kind='memory-card'], [data-kind='photo'], [data-kind='library']) .nowrap { white-space: nowrap; }
+
+/* main button: ink block, cream marker letters, pink offset shadow; second button: card paper, ink line, mint shadow */
+.panel:is([data-kind='upload'], [data-kind='wall'], [data-kind='recap'], [data-kind='memory-card'], [data-kind='photo'], [data-kind='library']) button.primary,
+.photo-exchanges .exchange-body .exchange-primary {
+  display: block;
+  width: 100%;
+  min-height: 54px;
+  margin: 18px 0 8px;
+  padding: 10px 18px;
+  border: var(--ds-border);
+  border-radius: var(--ds-radius-btn);
+  background: var(--ds-ink);
+  box-shadow: 5px 5px 0 var(--ds-pink);
+  color: var(--ds-paper);
+  font-family: var(--ds-font-ui);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: .04em;
+  text-align: center;
+  cursor: pointer;
+  transition: transform var(--ds-fast) ease-out, box-shadow var(--ds-fast) ease-out;
+}
+.panel:is([data-kind='upload'], [data-kind='wall'], [data-kind='recap'], [data-kind='memory-card'], [data-kind='photo'], [data-kind='library']) button.primary:active:not(:disabled),
+.photo-exchanges .exchange-body .exchange-primary:active:not(:disabled) { transform: translate(2px, 2px); box-shadow: 3px 3px 0 var(--ds-pink); }
+.panel:is([data-kind='upload'], [data-kind='wall'], [data-kind='recap'], [data-kind='memory-card'], [data-kind='photo'], [data-kind='library']) button.primary:disabled,
+.photo-exchanges .exchange-body .exchange-primary:disabled {
+  border-style: dashed;
+  border-color: var(--ds-ink-3);
+  background: var(--ds-paper-deep);
+  box-shadow: none;
+  color: var(--ds-ink-3);
+  opacity: 1;
+  cursor: not-allowed;
+}
+.panel[data-kind='recap'] .recap-section > button:not(.primary):not(.quiet) {
+  display: block;
+  width: 100%;
+  min-height: 48px;
+  margin: 12px 0 6px;
+  padding: 9px 16px;
+  border: var(--ds-line-thin) solid var(--ds-ink);
+  border-radius: var(--ds-radius-btn);
+  background: var(--ds-paper-card);
+  box-shadow: 4px 4px 0 var(--ds-mint);
+  color: var(--ds-ink);
+  font-family: var(--ds-font-ui);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.3;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform var(--ds-fast) ease-out, box-shadow var(--ds-fast) ease-out;
+}
+.panel[data-kind='recap'] .recap-section > button:not(.primary):not(.quiet):active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ds-mint); }
+@media (hover: hover) and (pointer: fine) {
+  .panel:is([data-kind='upload'], [data-kind='wall'], [data-kind='recap'], [data-kind='memory-card'], [data-kind='photo'], [data-kind='library']) button.primary:hover:not(:disabled),
+  .photo-exchanges .exchange-body .exchange-primary:hover:not(:disabled) { transform: rotate(-.6deg) translateY(-1px); }
+}
+.panel:is([data-kind='upload'], [data-kind='wall'], [data-kind='recap'], [data-kind='memory-card'], [data-kind='photo'], [data-kind='library']) :is(button, input, select, a):focus-visible,
+.photo-exchanges :is(button, input, select):focus-visible {
+  outline: 3px dashed var(--ds-ink);
+  outline-offset: 3px;
+}
+
+/* a list whose 「·」 never ends or starts a line (the sides of a wall header, the parts of the chosen photo in compose): the real 「 · 」 is a hidden
+   span for screen readers; each item draws its dot in the gap before it, and the dot of an item that starts a line falls outside the clipping box */
+:is(.moment-wall, .photo-exchanges) .pc-dots, .panel[data-kind='recap'] .pc-dots { display: block; overflow: hidden; padding: .12em 0; margin: -.12em 0; }
+:is(.moment-wall, .photo-exchanges) .pc-dots__in, .panel[data-kind='recap'] .pc-dots__in { display: flex; flex-wrap: wrap; align-items: baseline; margin-left: -1em; row-gap: 2px; }
+:is(.moment-wall, .photo-exchanges) .pc-dots__item, .panel[data-kind='recap'] .pc-dots__item { position: relative; min-width: 0; margin-left: 1em; }
+:is(.moment-wall, .photo-exchanges) .pc-dots__item::before, .panel[data-kind='recap'] .pc-dots__item::before {
+  content: '·' / '';
+  position: absolute;
+  left: -1em;
+  width: 1em;
+  color: var(--ds-ink-2);
+  font-family: var(--ds-font-ui);
+  text-align: center;
+  pointer-events: none;
+}
+
+/* a form field: card paper, ink line, hand-drawn corners, a mint shadow on focus; the select's chevron is drawn with two gradients */
+form.moment-upload select[name='visibility'],
+form.moment-upload input[type='datetime-local'],
+.photo-exchanges .exchange-choice select {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 50px;
+  margin: 8px 0 0;
+  padding: 8px 40px 8px 14px;
+  border: var(--ds-line-thin) solid var(--ds-ink);
+  border-radius: var(--ds-radius-2);
+  background-color: var(--ds-paper-card);
+  color: var(--ds-ink);
+  font-family: var(--ds-font-ui);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.3;
+  box-shadow: none;
+  transition: box-shadow var(--ds-fast) ease-out;
+}
+form.moment-upload input[type='datetime-local'] { padding-right: 12px; font-family: var(--pc-clock); }
+form.moment-upload select[name='visibility'],
+.photo-exchanges .exchange-choice select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--ds-ink) 50%), linear-gradient(135deg, var(--ds-ink) 50%, transparent 50%);
+  background-position: calc(100% - 22px) 52%, calc(100% - 15px) 52%;
+  background-size: 7px 7px, 7px 7px;
+  background-repeat: no-repeat;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+form.moment-upload select[name='visibility']:focus,
+form.moment-upload input[type='datetime-local']:focus,
+.photo-exchanges .exchange-choice select:focus { box-shadow: 4px 4px 0 var(--ds-mint); }
+
+/* ======================================================================================================================================
+   1. the upload form: a taped polaroid, the time in Doodle Digits, four sticker toggles, the AI's word as a sticker, one big save button
+   ====================================================================================================================================== */
+
+form.moment-upload {
+  --mu-ink: var(--ds-ink);
+  --mu-accent: var(--ds-yellow);
+  --mu-line: var(--ds-ink);
+  --mu-field: var(--ds-paper-card);
+  --mu-olive: var(--ds-ink);
+  --mu-muted: var(--ds-ink-2);
+  --mu-soft: var(--ds-yellow-soft);
+  --mu-warn: var(--ds-ink);
+  color: var(--ds-ink);
+  font-family: var(--ds-font-body);
+  /* nothing in the form anchors the sheet's scroll: when the model's answer grows its line, the browser would otherwise keep a node below it in
+     place and push 「我拍的这一面」 off the top; moment-upload.js places a new photo itself */
+  overflow-anchor: none;
+}
+
+/* 「选照片」: the second-button recipe with a drawn camera-roll icon */
+form.moment-upload .file-choice {
+  min-height: 52px;
+  margin: 16px 0 0;
+  padding: 0 18px;
+  border: var(--ds-border);
+  border-radius: var(--ds-radius-btn);
+  background: var(--ds-paper-card);
+  box-shadow: 5px 5px 0 var(--ds-mint);
+  color: var(--ds-ink);
+  font-family: var(--ds-font-ui);
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: .04em;
+  transition: transform var(--ds-fast) ease-out, box-shadow var(--ds-fast) ease-out;
+}
+form.moment-upload .file-choice:active { transform: translate(2px, 2px); box-shadow: 3px 3px 0 var(--ds-mint); }
+form.moment-upload .file-choice svg { width: 22px; height: 22px; margin-right: 10px; stroke-width: 2.2; stroke-linecap: round; }
+form.moment-upload .file-choice:focus-within { outline: 3px dashed var(--ds-ink); outline-offset: 3px; }
+
+/* the example photos: small taped prints with a label */
+form.moment-upload .moment-samples { margin: 22px 0 0; }
+form.moment-upload .moment-samples__title { margin: 0 0 10px; color: var(--ds-ink); font-family: var(--ds-font-ui); font-size: 15px; font-weight: 400; line-height: 1.45; }
+form.moment-upload .moment-samples__list { gap: 12px; }
+form.moment-upload .moment-sample {
+  gap: 14px;
+  min-height: 72px;
+  padding: 9px 14px 9px 10px;
+  border: var(--ds-line-thin) solid var(--ds-ink);
+  border-radius: var(--ds-radius-card);
+  background: var(--ds-paper-card);
+  box-shadow: var(--ds-shadow-sm);
+  color: var(--ds-ink);
+  transition: transform var(--ds-fast) ease-out, box-shadow var(--ds-fast) ease-out, background-color var(--ds-fast) ease-out;
+}
+form.moment-upload .moment-sample:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--ds-ink); }
+form.moment-upload .moment-sample__thumb {
+  box-sizing: border-box;
+  width: 74px;
+  height: 58px;
+  padding: 3px 3px 7px;
+  border: var(--ds-line-thin) solid var(--ds-ink);
+  border-radius: 2px;
+  background: var(--pc-polaroid);
+  transform: rotate(-3deg);
+}
+form.moment-upload .moment-sample:nth-child(even) .moment-sample__thumb { transform: rotate(2.5deg); }
+form.moment-upload .moment-sample__thumb img { border-radius: 1px; }
+form.moment-upload .moment-sample__text b { font-family: var(--ds-font-ui); font-size: 16px; font-weight: 400; line-height: 1.35; }
+form.moment-upload .moment-sample__text small { color: var(--ds-ink-2); font-family: var(--ds-font-body); font-size: 13px; line-height: 1.45; }
+form.moment-upload .moment-sample.is-current { border-color: var(--ds-ink); background: var(--ds-yellow-soft); box-shadow: 4px 4px 0 var(--ds-yellow), 4px 4px 0 var(--ds-line-thin) var(--ds-ink); }
+@media (hover: hover) and (pointer: fine) {
+  form.moment-upload .moment-sample:hover { border-color: var(--ds-ink); transform: rotate(-.6deg) translateY(-1px); }
+  form.moment-upload .moment-chip:hover { border-color: var(--ds-ink); transform: rotate(-1deg) translateY(-1px); }
+  form.moment-upload .moment-chip.is-selected:hover { transform: rotate(-1.5deg) translateY(-1px); }
+}
+/* once there is a photo the examples shrink to a row of two labels */
+form.moment-upload.has-photo .file-choice { min-height: 46px; margin-top: 14px; font-size: 16px; box-shadow: 4px 4px 0 var(--ds-mint); }
+form.moment-upload.has-photo .moment-samples { margin-top: 14px; }
+form.moment-upload.has-photo .moment-samples__list { gap: 10px; }
+form.moment-upload.has-photo .moment-sample { min-height: 46px; padding: 6px 10px; justify-content: center; text-align: center; border-radius: var(--ds-radius-btn); }
+form.moment-upload.has-photo .moment-sample__text { align-items: center; }
+form.moment-upload.has-photo .moment-sample__text b { font-size: 14px; }
+form.moment-upload .moment-status { color: var(--ds-ink-2); font-family: var(--ds-font-body); font-size: 14px; }
+form.moment-upload .moment-status:not(:empty) { margin-top: 10px; }
+
+/* the photo and its time: a taped polaroid on the left, the clock big on the right, the example's label as a sticky note */
+form.moment-upload .moment-taken {
+  position: relative;
+  grid-template-columns: minmax(0, 47%) minmax(0, 1fr);
+  column-gap: 18px;
+  row-gap: 10px;
+  margin: 26px 0 0;
+  padding: 0 2px 4px;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  /* a new photo on a short sheet: moment-upload.js scrolls the sheet to this edge, with room for the tape (the sample row goes out of view whole) */
+  scroll-margin-top: 18px;
+}
+form.moment-upload .moment-taken .photo-review {
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 5 / 6;
+  margin: 4px 0 6px;
+  padding: 7px 7px 26px;
+  border: var(--ds-line-thin) solid var(--ds-ink);
+  border-radius: 3px;
+  background: var(--pc-polaroid);
+  box-shadow: 4px 5px 0 var(--ds-ink);
+  object-fit: cover;
+  transform: rotate(-2.5deg);
+}
+/* the tape that holds it (a pseudo-element of the card, over the polaroid's top edge) */
+form.moment-upload .moment-taken[data-taken]:not([hidden])::before {
+  content: '';
+  position: absolute;
+  top: -9px;
+  left: calc(23.5% - 36px);
+  z-index: 2;
+  width: 72px;
+  height: 22px;
+  background: color-mix(in srgb, var(--ds-yellow) 72%, transparent);
+  -webkit-mask: var(--pc-svg-tape) center / 100% 100% no-repeat;
+  mask: var(--pc-svg-tape) center / 100% 100% no-repeat;
+  transform: rotate(-7deg);
+  pointer-events: none;
+}
+/* the time column starts a little below the polaroid's top edge: once the sheet scrolls (a new photo on a short sheet lands here), the panel's
+   close sticker (chrome.css) stays in the sheet's top-right corner, and that corner is then paper, not the clock */
+form.moment-upload .moment-taken__row { align-self: center; gap: 2px; margin-top: 44px; }
+form.moment-upload .moment-taken__line { margin: 0; color: var(--ds-ink); font-family: var(--ds-font-ui); font-size: 15px; line-height: 1.4; }
+form.moment-upload .moment-taken__line [data-taken-line] {
+  display: inline;
+  padding: 0 .12em;
+  background: linear-gradient(transparent 60%, var(--ds-yellow) 60%, var(--ds-yellow) 92%, transparent 92%);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  color: var(--ds-ink);
+  font-family: var(--pc-clock);
+  font-size: 27px;
+  line-height: 1.25;
+  letter-spacing: .01em;
+  /* 「拍摄于 9月25日 20:15」 breaks at its spaces, never inside 「9月25日」 (anywhere only when one part is wider than the column) */
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+/* no usable time (moment-upload.js marks it): the line is a sentence, 「没读到拍摄时间（截图或转发的图常会丢失）」, so it is set as one; in the clock's
+   size and highlight it broke as 「没读到拍摄时 / 间 / … / ）」 */
+form.moment-upload .moment-taken__line [data-taken-line][data-taken-none] {
+  padding: 0;
+  background: none;
+  font-family: var(--ds-font-ui);
+  font-size: 17px;
+  line-height: 1.5;
+  letter-spacing: 0;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+form.moment-upload .moment-taken__line small {
+  display: block;
+  margin-top: 6px;
+  color: var(--ds-ink-2);
+  font-family: var(--ds-font-body);
+  font-size: 14px;
+  line-height: 1.45;
+  text-wrap: balance;
+}
+/* the 「 · 」 between the clock and the note (moment-upload.js): read aloud, not drawn, since the note sits on a line of its own under the clock */
+form.moment-upload .moment-taken__sep {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+form.moment-upload .moment-taken__edit {
+  min-height: 44px;
+  margin: 2px 0 0 -4px;
+  padding: 0 6px;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  color: var(--ds-ink);
+  font-family: var(--ds-font-ui);
+  font-size: 15px;
+  text-decoration: underline wavy var(--ds-pink);
+  text-decoration-thickness: 1.5px;
+  text-decoration-skip-ink: none;
+  text-underline-offset: 6px;
+}
+@media (hover: hover) and (pointer: fine) {
+  form.moment-upload .moment-taken__edit:hover { color: var(--ds-ink); text-decoration-color: var(--ds-ink); }
+}
+form.moment-upload .moment-sample-flag {
+  align-self: start;
+  margin: 0;
+  padding: 7px 10px 8px;
+  border: var(--ds-line-thin) solid var(--ds-ink);
+  border-radius: var(--ds-radius-1);
+  background: var(--ds-yellow-soft);
+  box-shadow: 2px 2px 0 var(--ds-ink);
+  color: var(--ds-ink);
+  font-family: var(--ds-font-body);
+  font-size: 13px;
+  line-height: 1.5;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  transform: rotate(1deg);
+}
+/* 「示例照片」 heads the note as a small label (honesty rule 7: an example photo says so); the 「 · 」 after it is read aloud, not drawn */
+form.moment-upload .moment-sample-flag__tag {
+  display: table;
+  margin: 0 0 4px;
+  padding: 0 8px;
+  border: 1.5px solid var(--ds-ink);
+  border-radius: var(--ds-radius-pill);
+  background: var(--ds-mint);
+  font-family: var(--ds-font-ui);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.6;
+  transform: rotate(-2deg);
+}
+form.moment-upload .moment-sample-flag__sep {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+form.moment-upload .moment-taken__field { margin-top: 6px; }
+form.moment-upload .moment-taken__field label { color: var(--ds-ink); font-family: var(--ds-font-ui); font-size: 15px; }
+form.moment-upload .moment-taken__field input[aria-invalid='true'] { border-color: var(--ds-ink); border-style: dashed; box-shadow: 4px 4px 0 var(--ds-pink); }
+form.moment-upload .moment-taken .fine { color: var(--ds-ink-2); font-family: var(--ds-font-body); font-size: 13px; }
+form.moment-upload .moment-taken__error {
+  padding: 6px 10px;
+  border-left: 4px solid var(--ds-pink);
+  background: var(--ds-pink-soft);
+  color: var(--ds-ink);
+  font-family: var(--ds-font-body);
+  font-weight: 400;
+}
+form.moment-upload .moment-taken__off:not(:empty) { padding: 6px 10px; border: var(--ds-line-thin) dashed var(--ds-ink); border-radius: var(--ds-radius-2); background: var(--ds-paper-card); color: var(--ds-ink); }
+form.moment-upload .moment-demo {
+  min-height: 46px;
+  margin-top: 4px;
+  padding: 8px 12px;
+  border: var(--ds-line-thin) dashed var(--ds-ink);
+  border-radius: var(--ds-radius-2);
+  background: var(--ds-paper-card);
+  color: var(--ds-ink);
+  font-family: var(--ds-font-ui);
+  font-size: 14px;
+}
+form.moment-upload .moment-demo[aria-pressed='true'] { border-style: solid; background: var(--ds-mint-soft); box-shadow: 3px 3px 0 var(--ds-ink); }
+
+/* which side of the night: four sticker toggles (a sheet too short for the photo and the chips together starts here, at the legend) */
+form.moment-upload .moment-view { margin: 26px 0 0; scroll-margin-top: 18px; }
+form.moment-upload .moment-view legend {
+  margin: 0 0 12px;
+  padding: 0 .2em;
+  background: linear-gradient(transparent 58%, var(--ds-mint) 58%, var(--ds-mint) 92%, transparent 92%);
+  color: var(--ds-ink);
+  font-family: var(--ds-font-display);
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.3;
+}
+form.moment-upload .moment-chips { gap: 12px; }
+form.moment-upload .moment-chip {
+  position: relative;
+  gap: 3px;
+  min-height: 66px;
+  padding: 9px 12px 10px;
+  border: var(--ds-border);
+  border-radius: var(--ds-radius-btn);
+  background: var(--ds-paper-card);
+  box-shadow: 3px 3px 0 var(--ds-ink);
+  color: var(--ds-ink);
+  transition: transform var(--ds-fast) ease-out, box-shadow var(--ds-fast) ease-out, background-color var(--ds-fast) ease-out;
+}
+form.moment-upload .moment-chip:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--ds-ink); }
+form.moment-upload .moment-chip b { display: flex; align-items: center; gap: 6px; font-family: var(--ds-font-display); font-size: 21px; font-weight: 400; line-height: 1.2; letter-spacing: .02em; }
+form.moment-upload .moment-chip small { color: var(--ds-ink-2); font-family: var(--ds-font-body); font-size: 13px; line-height: 1.35; text-wrap: balance; }
+form.moment-upload .moment-chip.is-selected {
+  border-color: var(--ds-ink);
+  background: var(--ds-yellow);
+  box-shadow: 4px 4px 0 var(--ds-ink);
+  transform: rotate(-1.2deg);
+}
+form.moment-upload .moment-chips .moment-chip.is-selected:nth-child(even) { transform: rotate(1.2deg); }
+form.moment-upload .moment-chip.is-selected small { color: var(--ds-ink); }
+/* the marker tick of the chosen side (the old ✓ glyph is replaced by a drawn one; still silent for screen readers) */
+form.moment-upload .moment-chip.is-selected b::after {
+  content: '' / '';
+  display: inline-block;
+  flex: none;
+  width: 22px;
+  height: 22px;
+  background: var(--ds-ink);
+  -webkit-mask: var(--pc-svg-check) center / contain no-repeat;
+  mask: var(--pc-svg-check) center / contain no-repeat;
+  transform: rotate(-6deg) translateY(-2px);
+}
+/* the AI is unsure: its two likeliest sides are dashed, nothing is selected */
+form.moment-upload .moment-chip.is-suggested {
+  padding: 9px 12px 10px;
+  border: var(--ds-border);
+  border-style: dashed;
+  background: var(--ds-paper-card);
+  box-shadow: none;
+}
+form.moment-upload .moment-chip.is-suggested::after {
+  content: '';
+  position: absolute;
+  top: 7px;
+  right: 8px;
+  width: 15px;
+  height: 15px;
+  background: var(--ds-pink);
+  -webkit-mask: var(--pc-svg-sparkle) center / contain no-repeat;
+  mask: var(--pc-svg-sparkle) center / contain no-repeat;
+  pointer-events: none;
+}
+form.moment-upload .moment-chip.is-nudged { border-color: var(--ds-ink); box-shadow: 4px 4px 0 var(--ds-pink); }
+form.moment-upload .moment-chip:focus-visible,
+form.moment-upload .moment-sample:focus-visible,
+form.moment-upload .moment-taken__edit:focus-visible,
+form.moment-upload .moment-demo:focus-visible { outline: 3px dashed var(--ds-ink); outline-offset: 3px; }
+
+/* the nudge: a pink sticky with a drawn 「!」 */
+form.moment-upload .moment-nudge:not(:empty) {
+  position: relative;
+  margin: 14px 0 0;
+  padding: 9px 12px 9px 38px;
+  border: var(--ds-line-thin) solid var(--ds-ink);
+  border-radius: var(--ds-radius-2);
+  background: var(--ds-pink-soft);
+  color: var(--ds-ink);
+  font-family: var(--ds-font-body);
+  font-size: 15px;
+  line-height: 1.55;
+}
+form.moment-upload .moment-nudge:not(:empty)::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 20px;
+  height: 20px;
+  background: var(--ds-ink);
+  -webkit-mask: var(--pc-svg-bang) center / contain no-repeat;
+  mask: var(--pc-svg-bang) center / contain no-repeat;
+}
+
+/* the AI line: sure = a yellow sticker 「AI 判断：人海」, unsure = a dashed one 「不确定，请选择」, loading = words + a drawn progress bar */
+form.moment-upload .moment-ai-line { gap: 8px; margin: 16px 0 0; color: var(--ds-ink-2); font-family: var(--ds-font-body); font-size: 15px; line-height: 1.55; }
+form.moment-upload .moment-ai-line:empty { margin: 0; }
+form.moment-upload .moment-ai-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  min-height: 38px;
+  box-sizing: border-box;
+  padding: 5px 16px 5px 12px;
+  border: var(--ds-border);
+  border-radius: var(--ds-radius-pill);
+  background: var(--ds-yellow);
+  box-shadow: 3px 3px 0 var(--ds-ink);
+  color: var(--ds-ink);
+  font-family: var(--ds-font-ui);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: .03em;
+  transform: rotate(-2deg);
+  transform-origin: left center;
+}
+form.moment-upload .moment-ai-tag::before {
+  content: '';
+  flex: none;
+  width: 18px;
+  height: 18px;
+  background: var(--ds-ink);
+  -webkit-mask: var(--pc-svg-sparkle) center / contain no-repeat;
+  mask: var(--pc-svg-sparkle) center / contain no-repeat;
+}
+form.moment-upload .moment-ai-tag--unsure {
+  border-style: dashed;
+  background: var(--ds-paper-card);
+  box-shadow: none;
+  font-weight: 400;
+  transform: rotate(-1deg);
+}
+form.moment-upload .moment-ai-tag--unsure::before { background: var(--ds-pink); }
+form.moment-upload .moment-ai-off { color: var(--ds-ink-2); font-family: var(--ds-font-body); font-size: 14px; }
+form.moment-upload .moment-ai-line [data-ai-percent] { margin-left: .3em; color: var(--ds-ink); font-family: var(--ds-font-digits); font-size: 17px; }
+form.moment-upload .moment-ai-line__bar {
+  box-sizing: border-box;
+  width: min(100%, 300px);
+  height: 16px;
+  padding: 2px;
+  border: var(--ds-line-thin) solid var(--ds-ink);
+  border-radius: var(--ds-radius-pill);
+  background: var(--ds-paper-card);
+  box-shadow: 2px 2px 0 var(--ds-ink);
+}
+form.moment-upload .moment-ai-line__bar i {
+  border-radius: var(--ds-radius-pill);
+  background: repeating-linear-gradient(-45deg, var(--ds-yellow) 0 6px, var(--ds-orange) 6px 9px);
+  transition: width var(--ds-med) ease-out;
+}
+form.moment-upload [data-viewpoint-hint] { margin-top: 10px; }
+
+/* who sees it, the small print, and the save */
+form.moment-upload > label {
+  display: block;
+  margin: 26px 0 0;
+  color: var(--ds-ink);
+  font-family: var(--ds-font-ui);
+  font-size: 16px;
+  line-height: 1.4;
+}
+form.moment-upload > .fine { margin-top: 10px; color: var(--ds-ink-2); font-family: var(--ds-font-body); font-size: 14px; }
+form.moment-upload > button.primary[type='submit'] { margin-top: 20px; min-height: 58px; font-size: 19px; }
+
+@media (max-width: 400px) {
+  form.moment-upload .moment-taken { grid-template-columns: minmax(0, 46%) minmax(0, 1fr); column-gap: 14px; }
+  form.moment-upload .moment-taken .photo-review { width: 100%; height: auto; }
+  form.moment-upload .moment-taken__line [data-taken-line] { font-size: 24px; }
+}
+@media (max-width: 360px) {
+  /* the two example buttons side by side: 「人海 · 示例照片」 keeps one line (it broke as 「人海 · 示例照 / 片」) */
+  form.moment-upload.has-photo .moment-samples__list { gap: 8px; }
+  form.moment-upload.has-photo .moment-sample { padding: 6px; }
+  form.moment-upload.has-photo .moment-sample__text b { font-size: 13px; text-wrap: balance; }
+}
+@media (max-width: 340px) {
+  form.moment-upload .moment-chips { gap: 8px; }
+  form.moment-upload .moment-chip { padding: 8px 8px 9px; }
+  form.moment-upload .moment-chip b { font-size: 19px; }
+  form.moment-upload .moment-taken__line [data-taken-line] { font-size: 21px; }
+  /* 「来自照片自带的信息」 keeps one line in the narrow column (at 14px it broke as 「来自照片自 / 带的信息」) */
+  form.moment-upload .moment-taken__line small { font-size: 13px; }
+  form.moment-upload .moment-taken[data-taken]:not([hidden])::before { display: none; }
+}
+
+/* ======================================================================================================================================
+   2. the photo wall: a pipeline strip, moment headers with a big clock, polaroids that alternate ±1.5°, the other side as the star
+   ====================================================================================================================================== */
+
+.moment-wall { color: var(--ds-ink); }
+
+/* 「AI 建议视角 → 规则找同一刻 → 双方同意才交换」: a strip of yellow tape */
+.moment-wall .moment-ribbon {
+  position: relative;
+  margin: 16px 2px 6px;
+  padding: 9px 14px 10px;
+  border: var(--ds-line-thin) solid var(--ds-ink);
+  border-radius: var(--ds-radius-1);
+  background: var(--ds-yellow-soft);
+  box-shadow: 3px 3px 0 var(--ds-ink);
+  color: var(--ds-ink);
+  font-family: var(--ds-font-ui);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: .02em;
+  transform: rotate(-.8deg);
+}
+
+/* one section per moment, divided by a drawn wave instead of a rule */
+.moment-wall .moment-group { margin: 30px 0 0; padding: 0; border-top: 0; }
+.moment-wall .moment-group:first-child, .moment-wall .moment-ribbon + .moment-group { margin-top: 22px; }
+.moment-wall .moment-group + .moment-group::before {
+  content: '';
+  display: block;
+  height: 12px;
+  margin: 0 0 24px;
+  background: var(--ds-ink-3);
+  -webkit-mask: var(--pc-svg-squiggle) left center / 60px 12px repeat-x;
+  mask: var(--pc-svg-squiggle) left center / 60px 12px repeat-x;
+  opacity: .7;
+}
+.moment-wall .moment-group--untimed { border-top: 0; }
+
+/* the 「 · 」 between the parts of a header or a meta line (moment-wall.js): read aloud, not drawn; the parts are spaced by the flex gap instead,
+   so a part always wraps whole and no line ends with a lone dot (also in the captions app.js draws with moment-wall.js photoMetaHtml: the recap's
+   and the library's polaroids and the photo's own page) */
+:is(.moment-wall, .photo-item, .panel[data-kind='photo']) :is(.moment-group__sep, .moment-meta__sep) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* the header: the clock big in Doodle Digits with a pink shadow, 「同一刻」 as a mint sticker beside it, the sides on a line of their own */
+.moment-wall .moment-group__title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 14px;
+  margin: 0;
+  color: var(--ds-ink);
+  font-family: var(--ds-font-display);
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: .02em;
+  overflow-wrap: anywhere;
+}
+.moment-wall .moment-group__clock {
+  font-family: var(--pc-clock-display);
+  font-size: 2.55em;
+  line-height: 1;
+  letter-spacing: .01em;
+  text-shadow: .045em .05em 0 var(--ds-pink);
+}
+/* a photo from another day: 「10月6日 18:44」 or 「2025年7月10日 10:53」 is a day and a clock, set smaller so it still reads as one line */
+.moment-wall .moment-group__clock:has(> .nowrap + .nowrap) { font-size: 1.55em; }
+.moment-wall .moment-group__same {
+  padding: .1em .62em .14em;
+  border: var(--ds-line-thin) solid var(--ds-ink);
+  border-radius: var(--ds-radius-pill);
+  background: var(--ds-mint);
+  box-shadow: 2px 2px 0 var(--ds-ink);
+  font-family: var(--ds-font-ui);
+  font-size: 16px;
+  line-height: 1.3;
+  transform: rotate(-3deg);
+}
+.moment-wall .moment-group__sides { flex: 1 0 100%; text-wrap: balance; }
+.moment-wall .moment-group--untimed .moment-group__title { font-size: 22px; }
+
+/* 「按拍摄时间分组…规则判断，不是 AI」: a hand-written margin note with an arrow up to its header */
+.moment-wall .moment-group__note {
+  position: relative;
+  margin: 8px 0 0;
+  padding: 2px 0 0 30px;
+  color: var(--ds-ink-2);
+  font-family: var(--ds-font-body);
+  font-size: 14px;
+  line-height: 1.55;
+  transform: rotate(-.6deg);
+  transform-origin: left top;
+}
+.moment-wall .moment-group__note::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 2px;
+  width: 22px;
+  height: 22px;
+  background: var(--ds-pink);
+  -webkit-mask: var(--pc-svg-arrow) center / contain no-repeat;
+  mask: var(--pc-svg-arrow) center / contain no-repeat;
+}
+
+/* the grid of polaroids */
+.moment-wall .moment-grid { gap: 26px 16px; margin: 22px 0 0; }
+.moment-wall .moment-card {
+  position: relative;
+  box-sizing: border-box;
+  padding: 8px 8px 10px;
+  border: var(--ds-line-thin) solid var(--ds-ink);
+  border-radius: 3px;
+  background: var(--pc-polaroid);
+  box-shadow: 4px 4px 0 var(--ds-ink);
+  transform: rotate(-1.5deg);
+}
+.moment-wall .moment-grid > .moment-card:nth-child(even) { transform: rotate(1.5deg); }
+.moment-wall .moment-card > .photo-item,
+.panel:is([data-kind='recap'], [data-kind='library']) .photo-grid > .photo-item {
+  display: block;
+  width: 100%;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  color: var(--ds-ink);
+  text-align: left;
+  cursor: pointer;
+}
+.moment-wall .moment-card > .photo-item > span,
+.panel:is([data-kind='recap'], [data-kind='library']) .photo-grid > .photo-item > span {
+  box-sizing: border-box;
+  height: auto;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: var(--ds-line-thin) solid var(--ds-ink);
+  border-radius: 1px;
+  background: var(--ds-night);
+  color: var(--ds-paper);
+  font-family: var(--ds-font-body);
+  font-size: 13px;
+  text-align: center;
+}
+.moment-wall .moment-card > .photo-item strong,
+.panel:is([data-kind='recap'], [data-kind='library']) .photo-grid > .photo-item strong {
+  margin-top: 9px;
+  color: var(--ds-ink);
+  font-family: var(--ds-font-ui);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.3;
+}
+.moment-wall .moment-card > .photo-item small,
+.panel:is([data-kind='recap'], [data-kind='library']) .photo-grid > .photo-item small {
+  margin-top: 3px;
+  color: var(--ds-ink-2);
+  font-family: var(--ds-font-body);
+  font-size: 13px;
+  line-height: 1.45;
+}
+@media (hover: hover) and (pointer: fine) {
+  .moment-wall .moment-card:hover { transform: rotate(-.5deg) translateY(-2px); }
+}
+
+/* the meta line: the clock in Doodle Digits, the side, and who chose it as a small label; each part wraps whole (no dangling 「·」), on the wall,
+   under a polaroid of the recap or the library, and on the photo's own page */
+.moment-wall .moment-meta,
+.panel .moment-meta {
+  margin: 8px 0 0;
+  color: var(--ds-ink-2);
+  font-family: var(--ds-font-body);
+  font-size: 13px;
+  line-height: 1.6;
+}
+:is(.moment-wall, .photo-item, .panel[data-kind='photo']) .moment-meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px; }
+:is(.moment-wall, .photo-item, .panel[data-kind='photo']) .moment-meta__time { color: var(--ds-ink); font-family: var(--pc-clock); font-size: 15px; }
+:is(.moment-wall, .photo-item, .panel[data-kind='photo']) .moment-meta__by {
+  margin-top: 2px;
+  padding: 0 7px;
+  border: 1.5px solid var(--ds-ink);
+  border-radius: var(--ds-radius-pill);
+  background: var(--ds-paper-deep);
+  color: var(--ds-ink);
+  font-family: var(--ds-font-ui);
+  font-size: 12px;
+  line-height: 1.6;
+  /* a column narrower than the pill (two polaroids side by side on a 320–375px phone: 「✦ AI 建议，未改动」 is about 130px) wraps it inside the
+     pill, balanced, so it breaks after 「，」 instead of running out of the card; wherever it fits it stays one line */
+  white-space: normal;
+  text-wrap: balance;
+}
+/* 「AI 建议，未改动」 carries the sparkle of the upload's AI sticker on a yellow-soft pill; 「作者选择」 stays plain paper */
+:is(.moment-wall, .photo-item, .panel[data-kind='photo']) .moment-meta__by--ai { display: inline-flex; align-items: center; gap: 4px; padding-left: 6px; background: var(--ds-yellow-soft); }
+:is(.moment-wall, .photo-item, .panel[data-kind='photo']) .moment-meta__by--ai::before {
+  content: '';
+  flex: none;
+  width: 11px;
+  height: 11px;
+  background: var(--ds-ink);
+  -webkit-mask: var(--pc-svg-sparkle) center / contain no-repeat;
+  mask: var(--pc-svg-sparkle) center / contain no-repeat;
+}
+
+/* the small marks: 「同一刻」 a mint sticker, 「已有交换」 a yellow one with a tick */
+.moment-wall .moment-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin: 9px 6px 0 0;
+  padding: 2px 10px 3px;
+  border: var(--ds-line-thin) solid var(--ds-ink);
+  border-radius: var(--ds-radius-pill);
+  background: var(--ds-mint);
+  box-shadow: 2px 2px 0 var(--ds-ink);
+  color: var(--ds-ink);
+  font-family: var(--ds-font-ui);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+  transform: rotate(-2deg);
+}
+.moment-wall .moment-tag--done { background: var(--ds-yellow); color: var(--ds-ink); }
+.moment-wall .moment-tag--done::before {
+  content: '';
+  width: 13px;
+  height: 13px;
+  background: var(--ds-ink);
+  -webkit-mask: var(--pc-svg-check) center / contain no-repeat;
+  mask: var(--pc-svg-check) center / contain no-repeat;
+}
+
+/* 「同一刻的另一面」: the best other side takes the row, a bigger taped polaroid. Its block (the sticker, the reason, the one main button) leads the
+   card (moment-wall.js), so right after 「保存这张照片」 the button is on the wall's first screen; the photo and its caption follow under it */
+.moment-wall .moment-card--best {
+  grid-column: 1 / -1;
+  margin: 8px 2px 4px;
+  padding: 12px 12px 16px;
+  border: var(--ds-line) solid var(--ds-ink);
+  box-shadow: 6px 7px 0 var(--ds-ink);
+  transform: rotate(-1deg);
+}
+.moment-wall .moment-grid > .moment-card--best:nth-child(even) { transform: rotate(1deg); }
+.moment-wall .moment-card--best::before,
+.moment-wall .moment-card--best::after {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  top: -12px;
+  width: 84px;
+  height: 24px;
+  background: color-mix(in srgb, var(--ds-yellow) 72%, transparent);
+  -webkit-mask: var(--pc-svg-tape) center / 100% 100% no-repeat;
+  mask: var(--pc-svg-tape) center / 100% 100% no-repeat;
+  pointer-events: none;
+}
+.moment-wall .moment-card--best::before { left: 16px; transform: rotate(-8deg); }
+.moment-wall .moment-card--best::after { right: 16px; transform: rotate(6deg); background: color-mix(in srgb, var(--ds-pink) 52%, transparent); }
+.moment-wall .moment-card--best > .photo-item > span { height: auto; aspect-ratio: 4 / 3; }
+.moment-wall .moment-card--best > .photo-item strong { font-size: 17px; }
+.moment-wall .moment-badge {
+  position: relative;
+  margin: 2px 0 16px;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+.moment-wall .moment-badge__title {
+  display: inline-block;
+  position: relative;
+  margin: 0 0 2px -4px;
+  padding: 5px 16px 6px;
+  border: var(--ds-border);
+  border-radius: var(--ds-radius-pill);
+  background: var(--ds-pink);
+  box-shadow: 3px 3px 0 var(--ds-ink);
+  color: var(--ds-ink);
+  font-family: var(--ds-font-display);
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: .03em;
+  transform: rotate(-2.5deg);
+}
+/* a sparkle at the sticker's corner */
+.moment-wall .moment-badge__title::after {
+  content: '';
+  position: absolute;
+  top: -13px;
+  right: -15px;
+  width: 22px;
+  height: 22px;
+  background: var(--ds-ink);
+  -webkit-mask: var(--pc-svg-sparkle) center / contain no-repeat;
+  mask: var(--pc-svg-sparkle) center / contain no-repeat;
+  transform: rotate(12deg);
+}
+.moment-wall .moment-badge__reason {
+  margin: 12px 0 4px;
+  color: var(--ds-ink);
+  font-family: var(--ds-font-body);
+  font-size: 16px;
+  line-height: 1.7;
+}
+.moment-wall .moment-badge__reason .nowrap:first-of-type { font-family: var(--pc-clock); font-size: 18px; }
+.moment-wall .moment-badge button.primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 56px;
+  margin: 16px 0 2px;
+  border: var(--ds-border);
+  border-radius: var(--ds-radius-btn);
+  background: var(--ds-ink);
+  box-shadow: 5px 5px 0 var(--ds-pink);
+  color: var(--ds-paper);
+  font-family: var(--ds-font-ui);
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: .04em;
+}
+.moment-wall .moment-badge button.primary::before {
+  content: '';
+  flex: none;
+  width: 30px;
+  height: 25px;
+  background: var(--ds-yellow);
+  -webkit-mask: var(--pc-svg-swap) center / contain no-repeat;
+  mask: var(--pc-svg-swap) center / contain no-repeat;
+}
+.moment-wall .moment-badge button.primary:active { transform: translate(2px, 2px); box-shadow: 3px 3px 0 var(--ds-pink); }
+.moment-wall .moment-badge button.primary:focus-visible { outline: 3px dashed var(--ds-ink); outline-offset: 4px; }
+
+/* the wall's empty state and the buttons under it */
+.panel[data-kind='wall'] .empty,
+.panel:is([data-kind='recap'], [data-kind='library']) .empty {
+  margin: 18px 0;
+  padding: 18px 16px;
+  border: var(--ds-line-thin) dashed var(--ds-ink);
+  border-radius: var(--ds-radius-card);
+  background: var(--ds-paper-card);
+  text-align: center;
+}
+.panel[data-kind='wall'] .empty b,
+.panel:is([data-kind='recap'], [data-kind='library']) .empty b { display: block; font-family: var(--ds-font-display); font-size: 22px; font-weight: 400; text-shadow: .06em .06em 0 var(--ds-yellow); }
+.panel[data-kind='wall'] .empty p,
+.panel:is([data-kind='recap'], [data-kind='library']) .empty p { margin: 6px 0 0; color: var(--ds-ink-2); font-family: var(--ds-font-body); font-size: 15px; }
+.panel[data-kind='wall'] #panel-body > button.primary[data-open] { margin-top: 14px; }
+/* 「照片交换」 under the wall is a way in, not the next step: the second-button recipe */
+.panel[data-kind='wall'] #panel-body > button.primary[data-open='exchanges'] {
+  min-height: 50px;
+  border-width: var(--ds-line-thin);
+  background: var(--ds-paper-card);
+  box-shadow: 4px 4px 0 var(--ds-mint);
+  color: var(--ds-ink);
+  font-size: 17px;
+}
+.panel[data-kind='wall'] #panel-body > button.primary[data-open='exchanges']:active { box-shadow: 2px 2px 0 var(--ds-mint); }
+.panel[data-kind='wall'] #panel-body > .moment-wall + button.quiet,
+.panel[data-kind='wall'] #panel-body > .photo-grid + button.quiet { margin-top: 26px; }
+
+@media (max-width: 360px) {
+  .moment-wall .moment-grid { gap: 22px 12px; }
+  .moment-wall .moment-group__title { font-size: 17px; }
+  .moment-wall .moment-card--best::after { display: none; }
+  .moment-wall .moment-badge__title { font-size: 19px; }
+  /* 「和 TA 交换这个视角」 stays one line beside its arrows (at 18px a 320 screen broke it as 「和 TA 交换这个 / 视角」) */
+  .moment-wall .moment-badge button.primary { gap: 8px; padding-right: 12px; padding-left: 12px; font-size: 16px; letter-spacing: .02em; }
+}
+
+/* ======================================================================================================================================
+   3. the exchange dialog: a paper sheet; compose = two polaroids with drawn swap arrows; accepted = the celebration
+   ====================================================================================================================================== */
+
+.photo-exchanges {
+  background: var(--ds-paper) var(--ds-dots);
+  color: var(--ds-ink);
+  border: var(--ds-border);
+  border-radius: var(--ds-radius-card);
+  box-shadow: var(--ds-shadow-lg);
+  font-family: var(--ds-font-body);
+  font-size: 16px;
+  line-height: 1.6;
+}
+.photo-exchanges header {
+  position: relative;
+  gap: 12px;
+  padding: 14px 16px 16px;
+  border-bottom: 0;
+}
+.photo-exchanges header::after {
+  content: '';
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: -2px;
+  height: 8px;
+  background: var(--ds-ink);
+  -webkit-mask: var(--pc-svg-squiggle) left center / 48px 8px repeat-x;
+  mask: var(--pc-svg-squiggle) left center / 48px 8px repeat-x;
+  opacity: .8;
+}
+.photo-exchanges header small { color: var(--ds-ink-2); font-family: var(--ds-font-ui); font-size: 13px; letter-spacing: .1em; }
+.photo-exchanges h2 {
+  margin: 2px 0 0;
+  color: var(--ds-ink);
+  font-family: var(--ds-font-display);
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: .02em;
+  text-shadow: .06em .06em 0 var(--ds-pink);
+}
+.photo-exchanges header button {
+  flex: none;
+  width: 46px;
+  height: 46px;
+  min-height: 46px;
+  padding: 0;
+  border: var(--ds-border);
+  border-radius: 50%;
+  background: var(--ds-paper-card);
+  box-shadow: var(--ds-shadow-sm);
+  color: var(--ds-ink);
+  font-family: var(--ds-font-ui);
+  font-size: 24px;
+  line-height: 1;
+  transition: transform var(--ds-fast) ease-out, box-shadow var(--ds-fast) ease-out;
+}
+.photo-exchanges header button[data-x-close] { background: var(--ds-yellow); transform: rotate(4deg); }
+.photo-exchanges header button:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--ds-ink); }
+.photo-exchanges .exchange-body { padding: 22px 20px 24px; }
+.photo-exchanges .exchange-body p { color: var(--ds-ink-2); font-size: 15px; line-height: 1.65; }
+.photo-exchanges .exchange-body h3 {
+  margin: 10px 0 14px;
+  color: var(--ds-ink);
+  font-family: var(--ds-font-display);
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.3;
+}
+.photo-exchanges .exchange-body .exchange-intro { margin: 0 0 6px; color: var(--ds-ink); font-size: 17px; }
+.photo-exchanges .exchange-intro b,
+.photo-exchanges .exchange-body h3 b {
+  padding: 0 .15em;
+  background: linear-gradient(transparent 56%, var(--ds-yellow) 56%, var(--ds-yellow) 92%, transparent 92%);
+  color: var(--ds-ink);
+  font-family: var(--ds-font-ui);
+  font-weight: 400;
+}
+/* in 「和 阿遥·示例 的两张照片」 the name keeps the heading's face; the marker band is the same as the intro's */
+.photo-exchanges .exchange-body h3 b { font-family: inherit; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+
+/* the two photos as polaroids with the swap arrows between them */
+.photo-exchanges .exchange-pair {
+  position: relative;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 30px;
+  margin: 22px 4px 26px;
+}
+.photo-exchanges .exchange-pair::after {
+  content: '';
+  position: absolute;
+  z-index: 3;
+  top: calc(50% - 40px);
+  left: calc(50% - 22px);
+  width: 44px;
+  height: 44px;
+  border: var(--ds-line-thin) solid var(--ds-ink);
+  border-radius: 50%;
+  background: var(--ds-yellow);
+  box-shadow: 2px 2px 0 var(--ds-ink);
+  pointer-events: none;
+}
+.photo-exchanges .exchange-pair::before {
+  content: '';
+  position: absolute;
+  z-index: 4;
+  top: calc(50% - 32px);
+  left: calc(50% - 14px);
+  width: 28px;
+  height: 28px;
+  background: var(--ds-ink);
+  -webkit-mask: var(--pc-svg-swap) center / contain no-repeat;
+  mask: var(--pc-svg-swap) center / contain no-repeat;
+  pointer-events: none;
+}
+.photo-exchanges .exchange-pair figure {
+  position: relative;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 7px 7px 10px;
+  border: var(--ds-line-thin) solid var(--ds-ink);
+  border-radius: 3px;
+  background: var(--pc-polaroid);
+  box-shadow: 4px 5px 0 var(--ds-ink);
+  transform: rotate(-2.5deg);
+}
+.photo-exchanges .exchange-pair figure + figure { transform: rotate(2.5deg); }
+.photo-exchanges .exchange-pair figure::before {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  top: -10px;
+  left: calc(50% - 30px);
+  width: 60px;
+  height: 20px;
+  background: color-mix(in srgb, var(--ds-yellow) 72%, transparent);
+  -webkit-mask: var(--pc-svg-tape) center / 100% 100% no-repeat;
+  mask: var(--pc-svg-tape) center / 100% 100% no-repeat;
+  transform: rotate(-5deg);
+  pointer-events: none;
+}
+.photo-exchanges .exchange-pair figure + figure::before { background: color-mix(in srgb, var(--ds-mint) 66%, transparent); transform: rotate(6deg); }
+.photo-exchanges .exchange-photo {
+  box-sizing: border-box;
+  aspect-ratio: 1;
+  padding: 0;
+  border: var(--ds-line-thin) solid var(--ds-ink);
+  border-radius: 1px;
+  background: var(--ds-night);
+  box-shadow: none;
+}
+.photo-exchanges .exchange-photo img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.photo-exchanges .exchange-image-wait { padding: 8px; color: var(--ds-paper); font-family: var(--ds-font-body); font-size: 13px; }
+.photo-exchanges .exchange-pair figcaption { margin: 8px 2px 0; color: var(--ds-ink); font-size: 15px; line-height: 1.35; }
+.photo-exchanges .exchange-pair figcaption b { display: block; font-family: var(--ds-font-ui); font-size: 16px; font-weight: 400; }
+/* a name is one unit (it breaks only when it cannot fit a line of its own): a narrow polaroid reads 「阿遥·示例 / 提供的」, never 「阿遥·示例提 / 供的」 */
+.photo-exchanges .exchange-pair figcaption .exchange-who { display: inline-block; max-width: 100%; }
+.photo-exchanges .exchange-pair figcaption small { display: block; margin-top: 2px; color: var(--ds-ink-2); font-family: var(--ds-font-body); font-size: 13px; }
+
+/* which of my photos: a label and the field; the reason under it as a card (the recommended one gets a mint card and a sticker) */
+.photo-exchanges .exchange-choice { gap: 0; margin: 4px 0 14px; color: var(--ds-ink); font-family: var(--ds-font-ui); font-size: 16px; font-weight: 400; }
+.photo-exchanges .exchange-choice select { font-size: 15px; }
+/* the chosen photo is written out under the select (exchange-panel.js), so 「我的第 1 张 · 已上墙 · 同一刻的另一面（推荐）」 wraps on a phone instead of
+   being cut; the real select lies on top of it, transparent, so a tap or a click still opens the system picker and the keyboard works as before */
+.photo-exchanges .exchange-select { position: relative; display: block; margin: 8px 0 0; }
+.photo-exchanges .exchange-select > select {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  margin: 0;
+  opacity: 0;
+  font-size: 16px; /* invisible, but 16px keeps iOS from zooming in on focus */
+  cursor: pointer;
+}
+.photo-exchanges .exchange-select__shown {
+  display: block;
+  box-sizing: border-box;
+  min-height: 50px;
+  padding: 12px 42px 12px 14px;
+  border: var(--ds-line-thin) solid var(--ds-ink);
+  border-radius: var(--ds-radius-2);
+  background-color: var(--ds-paper-card);
+  background-image: linear-gradient(45deg, transparent 50%, var(--ds-ink) 50%), linear-gradient(135deg, var(--ds-ink) 50%, transparent 50%);
+  background-position: calc(100% - 22px) 50%, calc(100% - 15px) 50%;
+  background-size: 7px 7px, 7px 7px;
+  background-repeat: no-repeat;
+  color: var(--ds-ink);
+  font-family: var(--ds-font-ui);
+  font-size: 15px;
+  line-height: 1.45;
+  transition: box-shadow var(--ds-fast) ease-out;
+}
+/* 「我的第 1 张 · 已上墙」 and the rule's verdict are two parts (pc-dots): side by side with a dot when they fit, the verdict on a line of its own when not */
+.photo-exchanges .exchange-select__sep { display: none; }
+.photo-exchanges .exchange-select__verdict { color: var(--ds-ink-2); }
+.photo-exchanges .exchange-select__verdict.is-recommended {
+  padding: 0 .15em;
+  background: linear-gradient(transparent 56%, var(--ds-mint) 56%, var(--ds-mint) 92%, transparent 92%);
+  color: var(--ds-ink);
+}
+.photo-exchanges .exchange-select > select:focus + .exchange-select__shown { box-shadow: 4px 4px 0 var(--ds-mint); }
+.photo-exchanges .exchange-select > select:focus-visible + .exchange-select__shown { outline: 3px dashed var(--ds-ink); outline-offset: 3px; }
+@media (hover: hover) and (pointer: fine) {
+  .photo-exchanges .exchange-select:hover > .exchange-select__shown { box-shadow: 3px 3px 0 var(--ds-ink); }
+}
+.photo-exchanges .exchange-body .exchange-reason {
+  position: relative;
+  margin: 0 0 16px;
+  padding: 12px 14px;
+  border: var(--ds-line-thin) solid var(--ds-ink);
+  border-left-width: var(--ds-line-thin);
+  border-radius: var(--ds-radius-card);
+  background: var(--ds-paper-card);
+  color: var(--ds-ink);
+  font-family: var(--ds-font-body);
+  font-size: 16px;
+  line-height: 1.65;
+}
+.photo-exchanges .exchange-reason .nowrap:first-of-type { font-family: var(--pc-clock); }
+.photo-exchanges .exchange-body .exchange-reason.is-recommended {
+  margin-top: 26px;
+  padding-top: 20px;
+  border-color: var(--ds-ink);
+  background: var(--ds-mint-soft);
+  box-shadow: 4px 4px 0 var(--ds-ink);
+  color: var(--ds-ink);
+}
+.photo-exchanges .exchange-reason.is-recommended::before {
+  content: '推荐 · 同一刻的另一面' / '';
+  position: absolute;
+  top: -16px;
+  left: 12px;
+  padding: 3px 12px 4px;
+  border: var(--ds-line-thin) solid var(--ds-ink);
+  border-radius: var(--ds-radius-pill);
+  background: var(--ds-pink);
+  box-shadow: 2px 2px 0 var(--ds-ink);
+  color: var(--ds-ink);
+  font-family: var(--ds-font-ui);
+  font-size: 14px;
+  line-height: 1.35;
+  letter-spacing: .03em;
+  white-space: nowrap;
+  transform: rotate(-2deg);
+}
+.photo-exchanges .exchange-reason small { margin-top: 8px; color: var(--ds-ink-2); font-family: var(--ds-font-body); font-size: 13px; line-height: 1.55; }
+
+/* consent: a dashed rule, the sentence, and the drawn tick box */
+.photo-exchanges .exchange-agreement {
+  margin-top: 20px;
+  padding-top: 14px;
+  border-top: var(--ds-line-thin) dashed var(--ds-ink-3);
+}
+.photo-exchanges .exchange-agreement p { margin: 0 0 4px; color: var(--ds-ink-2); font-size: 15px; }
+.photo-exchanges .exchange-agreement label {
+  align-items: flex-start;
+  gap: 14px;
+  min-height: 44px;
+  padding: 12px 0 8px;
+  color: var(--ds-ink);
+  font-family: var(--ds-font-ui);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+.photo-exchanges .exchange-agreement input[type='checkbox'] { margin-top: 0; }
+.photo-exchanges .exchange-body .exchange-fine { color: var(--ds-ink-2); font-family: var(--ds-font-body); font-size: 13px; line-height: 1.6; }
+.photo-exchanges .exchange-body .exchange-primary { margin-top: 18px; min-height: 58px; font-size: 18px; }
+
+/* other buttons in the dialog: card paper, ink line, a small ink shadow (the quiet actions: refresh, cancel, revoke, pages) */
+.photo-exchanges .exchange-body button:not(.exchange-primary),
+.photo-exchanges .exchange-pagination button {
+  min-height: 48px;
+  padding: 9px 14px;
+  border: var(--ds-line-thin) solid var(--ds-ink);
+  border-radius: var(--ds-radius-btn);
+  background: var(--ds-paper-card);
+  box-shadow: 4px 4px 0 var(--ds-mint);
+  color: var(--ds-ink);
+  font-family: var(--ds-font-ui);
+  font-size: 16px;
+  font-weight: 400;
+  transition: transform var(--ds-fast) ease-out, box-shadow var(--ds-fast) ease-out;
+}
+.photo-exchanges .exchange-body > button:not(.exchange-primary) { margin: 12px 0 6px; }
+.photo-exchanges .exchange-body button:not(.exchange-primary):active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ds-mint); }
+/* 「核对最新状态」「刷新这一页」 are the quiet ones: ink words on a wavy pink underline, like the panel's .quiet */
+.photo-exchanges .exchange-body button:is([data-x-refresh], [data-x-list-refresh]) {
+  border: 0;
+  background: none;
+  box-shadow: none;
+  font-size: 15px;
+  text-decoration: underline wavy var(--ds-pink);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: .35em;
+  text-decoration-skip-ink: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .photo-exchanges .exchange-body button:not(.exchange-primary):not(:disabled):hover { transform: rotate(-1deg) translateY(-1px); }
+  .photo-exchanges .exchange-body button:is([data-x-refresh], [data-x-list-refresh]):hover { transform: none; color: var(--ds-pink); text-decoration-color: var(--ds-ink); }
+}
+.photo-exchanges .exchange-body button:disabled { border-style: dashed; border-color: var(--ds-ink-3); background: var(--ds-paper-deep); box-shadow: none; color: var(--ds-ink-3); opacity: 1; }
+.photo-exchanges .exchange-pagination { color: var(--ds-ink-2); font-family: var(--pc-clock); font-size: 14px; }
+
+/* the list of exchanges */
+.photo-exchanges .exchange-list { gap: 14px; }
+.photo-exchanges .exchange-list button {
+  min-height: 64px;
+  padding: 12px 16px;
+  border-radius: var(--ds-radius-card);
+  box-shadow: 3px 3px 0 var(--ds-ink);
+}
+.photo-exchanges .exchange-list button b { font-family: var(--ds-font-ui); font-size: 17px; font-weight: 400; }
+.photo-exchanges .exchange-list small { color: var(--ds-ink-2); font-family: var(--ds-font-body); font-size: 13px; }
+.photo-exchanges .exchange-list button > span:last-child { font-family: var(--ds-font-ui); font-size: 20px; }
+
+/* the status sticker: pending is a yellow note with a drawn clock; the confirm/pending boxes are notes too */
+.photo-exchanges .exchange-body .exchange-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 2px 0 6px;
+  padding: 4px 14px 5px 12px;
+  border: var(--ds-line-thin) solid var(--ds-ink);
+  border-radius: var(--ds-radius-pill);
+  background: var(--ds-paper-card);
+  box-shadow: 2px 2px 0 var(--ds-ink);
+  color: var(--ds-ink);
+  font-family: var(--ds-font-ui);
+  font-size: 15px;
+  line-height: 1.4;
+  transform: rotate(-1.5deg);
+}
+.photo-exchanges .exchange-body .exchange-status--pending { background: var(--ds-yellow-soft); }
+.photo-exchanges .exchange-status--pending::before {
+  content: '';
+  flex: none;
+  width: 18px;
+  height: 18px;
+  background: var(--ds-ink);
+  -webkit-mask: var(--pc-svg-clock) center / contain no-repeat;
+  mask: var(--pc-svg-clock) center / contain no-repeat;
+}
+.photo-exchanges .exchange-confirm,
+.photo-exchanges .exchange-pending {
+  margin: 18px 0;
+  padding: 14px;
+  border: var(--ds-line-thin) solid var(--ds-ink);
+  border-radius: var(--ds-radius-card);
+  background: var(--ds-yellow-soft);
+  box-shadow: 3px 3px 0 var(--ds-ink);
+}
+.photo-exchanges .exchange-problem { color: var(--ds-ink); font-family: var(--ds-font-body); font-size: 14px; }
+.photo-exchanges .exchange-problem:not(:empty) { border-top: var(--ds-line-thin) dashed var(--ds-ink); background: var(--ds-pink-soft); }
+
+/* 「交换已接受」: the celebration. A big mint sticker between two stars, the two polaroids leaning in, the arrows on a pink sticker */
+.photo-exchanges .exchange-body .exchange-status--accepted {
+  position: relative;
+  display: flex;
+  width: fit-content;
+  margin: 18px auto 4px;
+  padding: 8px 24px 10px;
+  border: var(--ds-line-bold) solid var(--ds-ink);
+  background: var(--ds-mint);
+  box-shadow: 5px 5px 0 var(--ds-ink);
+  font-family: var(--ds-font-display);
+  font-size: 28px;
+  line-height: 1.15;
+  letter-spacing: .04em;
+  transform: rotate(-2.5deg);
+  animation: pc-pop .42s var(--ds-pop) both;
+}
+/* a two-tone star at each end: the yellow fill is ::before, the ink outline ::after (same box, so they form one star) */
+.photo-exchanges .exchange-status--accepted::before,
+.photo-exchanges .exchange-status--accepted::after {
+  content: '';
+  position: absolute;
+  top: -22px;
+  right: -26px;
+  width: 38px;
+  height: 38px;
+  -webkit-mask: var(--pc-svg-star) center / contain no-repeat;
+  mask: var(--pc-svg-star) center / contain no-repeat;
+  background: var(--ds-yellow);
+  transform: rotate(14deg) translate(2px, 3px);
+  pointer-events: none;
+}
+.photo-exchanges .exchange-status--accepted::after {
+  -webkit-mask-image: var(--pc-svg-star-line);
+  mask-image: var(--pc-svg-star-line);
+  background: var(--ds-ink);
+  transform: rotate(14deg);
+}
+.photo-exchanges .exchange-status--accepted + h3 {
+  position: relative;
+  margin: 18px 0 6px;
+  text-align: center;
+}
+/* a small pink sparkle pair beside the h3 (the second star of the moment) */
+.photo-exchanges .exchange-status--accepted + h3::before,
+.photo-exchanges .exchange-status--accepted + h3::after {
+  content: '';
+  position: absolute;
+  top: -44px;
+  left: 6px;
+  width: 26px;
+  height: 26px;
+  background: var(--ds-pink);
+  -webkit-mask: var(--pc-svg-sparkle) center / contain no-repeat;
+  mask: var(--pc-svg-sparkle) center / contain no-repeat;
+  pointer-events: none;
+}
+.photo-exchanges .exchange-status--accepted + h3::after { top: -20px; left: 30px; width: 14px; height: 14px; background: var(--ds-ink); }
+.photo-exchanges .exchange-status--accepted ~ .exchange-pair { margin-top: 26px; gap: 26px; }
+.photo-exchanges .exchange-status--accepted ~ .exchange-pair figure { transform: rotate(-4deg) translateX(3px); animation: pc-lean-l .5s var(--ds-pop) .08s both; }
+.photo-exchanges .exchange-status--accepted ~ .exchange-pair figure + figure { transform: rotate(4deg) translateX(-3px); animation: pc-lean-r .5s var(--ds-pop) .16s both; }
+.photo-exchanges .exchange-status--accepted ~ .exchange-pair::after { width: 52px; height: 52px; top: calc(50% - 46px); left: calc(50% - 26px); background: var(--ds-pink); border-width: var(--ds-line); box-shadow: 3px 3px 0 var(--ds-ink); }
+.photo-exchanges .exchange-status--accepted ~ .exchange-pair::before { width: 34px; height: 34px; top: calc(50% - 37px); left: calc(50% - 17px); }
+.photo-exchanges .exchange-status--accepted ~ .exchange-pair figure::before { background: color-mix(in srgb, var(--ds-pink) 52%, transparent); }
+.photo-exchanges .exchange-status--accepted ~ .exchange-pair figure + figure::before { background: color-mix(in srgb, var(--ds-yellow) 72%, transparent); }
+@keyframes pc-pop { 0% { opacity: 0; transform: rotate(-2.5deg) scale(.7); } 100% { opacity: 1; transform: rotate(-2.5deg) scale(1); } }
+@keyframes pc-lean-l { 0% { opacity: 0; transform: rotate(-12deg) translateX(-14px); } 100% { opacity: 1; transform: rotate(-4deg) translateX(3px); } }
+@keyframes pc-lean-r { 0% { opacity: 0; transform: rotate(12deg) translateX(14px); } 100% { opacity: 1; transform: rotate(4deg) translateX(-3px); } }
+
+/* the sheet takes the panel's place, so the presence card under it comes back (chrome.css hides it only while #panel is open) and its ink edge
+   shows 4px left of the sheet: hidden while the sheet is open, as for #panel and the private chat */
+.frame:has(> .photo-exchanges:not([hidden])) > .presence { visibility: hidden; }
+
+/* on a wide screen the sheet lies exactly over the panel (chrome.css: right 56px, bottom 136px, the panel's full height), a little wider for two
+   polaroids; it keeps that height whatever it shows, so a short list never leaves the panel behind it half covered */
+@media (min-width: 701px) {
+  .photo-exchanges { top: auto; right: 56px; bottom: 136px; left: auto; width: min(440px, calc(100% - 112px)); height: calc(100% - 236px); max-height: none; }
+}
+@media (min-width: 701px) and (max-width: 800px) {
+  .photo-exchanges { left: 12px; right: 17px; width: auto; bottom: calc(112px + var(--safe-bottom, 0px)); height: calc(100% - 186px - var(--safe-bottom, 0px)); }
+}
+@media (max-width: 700px) {
+  .photo-exchanges { inset: 0; border: 0; border-radius: 0; box-shadow: none; }
+  .photo-exchanges h2 { font-size: 27px; }
+  .photo-exchanges .exchange-body { padding: 20px 18px max(24px, env(safe-area-inset-bottom)); }
+}
+@media (max-width: 360px) {
+  .photo-exchanges .exchange-pair { gap: 22px; }
+  .photo-exchanges h2 { font-size: 24px; }
+  .photo-exchanges .exchange-body .exchange-status--accepted { font-size: 24px; padding: 7px 18px 8px; }
+  .photo-exchanges .exchange-status--accepted + h3::before, .photo-exchanges .exchange-status--accepted + h3::after { display: none; }
+}
+
+/* ======================================================================================================================================
+   4. the recap: a ticket stub header, the keepsake as a taped card, the photos as polaroids
+   ====================================================================================================================================== */
+
+.panel[data-kind='recap'] .recap-ticket {
+  position: relative;
+  margin: 30px 2px 8px;
+  padding: 16px 18px 16px 18px;
+  border: var(--ds-border);
+  border-radius: var(--ds-radius-card);
+  background: var(--ds-paper-card);
+  box-shadow: var(--ds-shadow);
+}
+.panel[data-kind='recap'] .recap-ticket .eyebrow {
+  margin: 0 0 8px;
+  padding: 2px 10px 3px;
+  border: var(--ds-line-thin) solid var(--ds-ink);
+  border-radius: var(--ds-radius-pill);
+  background: var(--ds-mint);
+  color: var(--ds-ink);
+  font-size: 13px;
+  letter-spacing: .06em;
+  transform: rotate(-2deg);
+}
+.panel[data-kind='recap'] .recap-ticket h2 { margin: 2px 0 8px; font-size: min(var(--ds-size-h1), 34px); text-shadow: .06em .06em 0 var(--ds-yellow); }
+.panel[data-kind='recap'] .recap-venue {
+  margin: 0;
+  padding-top: 10px;
+  border-top: var(--ds-line-thin) dashed var(--ds-ink-3);
+  color: var(--ds-ink-2);
+  font-family: var(--ds-font-body);
+  /* venue-polish.css sets .recap-venue{font-size:12px!important}: only a more specific !important wins (12px of the hand face is below its floor) */
+  font-size: 15px !important;
+  line-height: 1.5;
+}
+/* 「月台 Livehouse（虚构场地） · 你仍是本场成员」: at 15px a phone needs two lines, so the venue and the membership are parts that wrap whole
+   (recap-view.js, pc-dots above) and never break inside 「本场成员」; the 「 · 」 is read aloud, and drawn in the gap only when both share a line */
+.panel[data-kind='recap'] .recap-venue__sep {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.panel[data-kind='recap'] .recap-section,
+.panel[data-kind='recap'] .recap-next { margin: 26px 0 0; padding: 0; border: 0; }
+.panel[data-kind='recap'] .recap-section h3,
+.panel[data-kind='recap'] .recap-next h3 {
+  margin: 0 0 8px;
+  color: var(--ds-ink);
+  font-family: var(--ds-font-display);
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: .02em;
+}
+.panel[data-kind='recap'] .recap-section > .fine { margin: 4px 0 0; }
+.panel[data-kind='recap'] .recap-section > button.primary { margin-top: 12px; }
+.panel[data-kind='recap'] .social-notice { padding: 8px 12px; border: var(--ds-line-thin) dashed var(--ds-ink); border-radius: var(--ds-radius-2); background: var(--ds-yellow-soft); color: var(--ds-ink); font-family: var(--ds-font-body); font-size: 14px; }
+
+/* the keepsake: the most important card here, with yellow tape and the second layered title */
+.panel[data-kind='recap'] .recap-keepsake {
+  position: relative;
+  margin: 30px 2px 6px;
+  padding: 22px 18px 16px;
+  border: var(--ds-border);
+  border-left-width: var(--ds-line);
+  border-radius: var(--ds-radius-card);
+  background: var(--ds-yellow-soft);
+  box-shadow: 6px 6px 0 var(--ds-ink);
+}
+.panel[data-kind='recap'] .recap-keepsake::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: calc(50% - 46px);
+  width: 92px;
+  height: 24px;
+  background: color-mix(in srgb, var(--ds-mint) 66%, transparent);
+  -webkit-mask: var(--pc-svg-tape) center / 100% 100% no-repeat;
+  mask: var(--pc-svg-tape) center / 100% 100% no-repeat;
+  transform: rotate(-4deg);
+  pointer-events: none;
+}
+.panel[data-kind='recap'] .recap-keepsake h3 {
+  margin: 0;
+  color: var(--ds-ink);
+  font-family: var(--ds-font-display);
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 1.25;
+  text-shadow: .06em .06em 0 var(--ds-pink);
+}
+.panel[data-kind='recap'] .recap-keepsake > p:not(.fine) { margin: 8px 0 0; color: var(--ds-ink); font-family: var(--ds-font-body); font-size: 16px; line-height: 1.6; }
+.panel[data-kind='recap'] .recap-keepsake .primary { margin-top: 14px; }
+.panel[data-kind='recap'] .recap-keepsake .fine { margin-top: 8px; }
+
+/* the photos of the night as polaroids (app.js's .photo-item buttons) */
+.panel:is([data-kind='recap'], [data-kind='library']) .photo-grid { gap: 22px 16px; margin: 16px 2px; }
+.panel:is([data-kind='recap'], [data-kind='library']) .photo-grid > .photo-item {
+  box-sizing: border-box;
+  padding: 7px 7px 10px;
+  border: var(--ds-line-thin) solid var(--ds-ink);
+  border-radius: 3px;
+  background: var(--pc-polaroid);
+  box-shadow: 4px 4px 0 var(--ds-ink);
+  transform: rotate(-1.5deg);
+}
+.panel:is([data-kind='recap'], [data-kind='library']) .photo-grid > .photo-item:nth-child(even) { transform: rotate(1.5deg); }
+.panel:is([data-kind='recap'], [data-kind='library']) .photo-grid > .photo-item small.moment-meta {
+  margin-top: 6px;
+  color: var(--ds-ink);
+  font-family: var(--pc-clock);
+  font-size: 13px;
+  line-height: 1.5;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+.panel[data-kind='recap'] .recap-pagination,
+.photo-exchanges .exchange-pagination { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 14px 0 6px; color: var(--ds-ink-2); font-family: var(--pc-clock); font-size: 14px; }
+.panel[data-kind='recap'] .recap-pagination button {
+  min-height: 44px;
+  padding: 6px 14px;
+  border: var(--ds-line-thin) solid var(--ds-ink);
+  border-radius: var(--ds-radius-btn);
+  background: var(--ds-paper-card);
+  box-shadow: 2px 2px 0 var(--ds-ink);
+  color: var(--ds-ink);
+  font-family: var(--ds-font-ui);
+  font-size: 14px;
+}
+.panel[data-kind='recap'] .recap-pagination button:disabled { border-style: dashed; border-color: var(--ds-ink-3); box-shadow: none; background: var(--ds-paper-deep); color: var(--ds-ink-3); }
+.panel[data-kind='recap'] .recap-friends { display: grid; gap: 12px; margin: 12px 0 4px; }
+.panel[data-kind='recap'] .recap-friends > button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 64px;
+  padding: 6px 14px 6px 8px;
+  border: var(--ds-line-thin) solid var(--ds-ink);
+  border-radius: var(--ds-radius-card);
+  background: var(--ds-paper-card);
+  box-shadow: 3px 3px 0 var(--ds-ink);
+  color: var(--ds-ink);
+  text-align: left;
+}
+.panel[data-kind='recap'] .recap-friends > button > span:first-child { flex: none; display: grid; place-items: end center; width: 56px; height: 56px; overflow: hidden; border: var(--ds-line-thin) solid var(--ds-ink); border-radius: 50%; background: var(--ds-mint-soft); }
+.panel[data-kind='recap'] .recap-friends > button > span:first-child svg { width: 40px; height: auto; margin-bottom: -40px; }
+.panel[data-kind='recap'] .recap-friends b { display: block; font-family: var(--ds-font-ui); font-size: 16px; font-weight: 400; }
+.panel[data-kind='recap'] .recap-friends small { display: block; color: var(--ds-ink-2); font-family: var(--ds-font-body); font-size: 13px; }
+.panel[data-kind='recap'] .recap-friends > p { color: var(--ds-ink-2); font-family: var(--ds-font-body); font-size: 15px; }
+.panel[data-kind='recap'] .recap-refresh-note { margin-top: 26px; }
+.panel[data-kind='recap'] .recap-next { padding: 18px 16px 10px; border: var(--ds-line-thin) dashed var(--ds-ink); border-radius: var(--ds-radius-card); background: var(--ds-paper-card); }
+.panel[data-kind='recap'] .recap-next .row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
+.panel[data-kind='recap'] .recap-next .row > button { width: 100%; min-height: 48px; margin: 6px 0; }
+
+/* ======================================================================================================================================
+   5. the memory card form: the photos to keep as selectable polaroids, the little person on a round sticker, the result as a taped print
+   ====================================================================================================================================== */
+
+.panel[data-kind='memory-card'] .memory-room {
+  margin: 4px 0 10px;
+  padding: 0 0 12px;
+  border-bottom: var(--ds-line-thin) dashed var(--ds-ink-3);
+  color: var(--ds-ink);
+  font-family: var(--ds-font-ui);
+  font-size: 15px;
+  line-height: 1.5;
+}
+.panel[data-kind='memory-card'] .memory-materials { margin: 18px 0 8px; padding: 0; border: 0; }
+.panel[data-kind='memory-card'] .memory-materials legend {
+  margin: 0 0 12px;
+  padding: 0 .2em;
+  background: linear-gradient(transparent 58%, var(--ds-mint) 58%, var(--ds-mint) 92%, transparent 92%);
+  color: var(--ds-ink);
+  font-family: var(--ds-font-display);
+  font-size: 21px;
+  font-weight: 400;
+}
+.panel[data-kind='memory-card'] .memory-materials[disabled] { opacity: .7; }
+.panel[data-kind='memory-card'] .memory-photo-options { gap: 18px 14px; }
+.panel[data-kind='memory-card'] .memory-photo-options label {
+  position: relative;
+  display: block;
+  margin: 6px 0;
+  cursor: pointer;
+}
+.panel[data-kind='memory-card'] .memory-photo-options label > input[type='checkbox'] { position: absolute; z-index: 2; top: -8px; left: -6px; }
+.panel[data-kind='memory-card'] .memory-photo-options label > span {
+  display: block;
+  box-sizing: border-box;
+  padding: 7px 7px 10px;
+  border: var(--ds-line-thin) solid var(--ds-ink);
+  border-radius: 3px;
+  background: var(--pc-polaroid);
+  box-shadow: 4px 4px 0 var(--ds-ink);
+  transform: rotate(-1.5deg);
+  transition: transform var(--ds-fast) ease-out, box-shadow var(--ds-fast) ease-out;
+}
+.panel[data-kind='memory-card'] .memory-photo-options label:nth-child(even) > span { transform: rotate(1.5deg); }
+.panel[data-kind='memory-card'] .memory-photo-options label:has(input:checked) > span { outline: 0; background: var(--ds-yellow-soft); box-shadow: 5px 5px 0 var(--ds-pink), 5px 5px 0 var(--ds-line-thin) var(--ds-ink); transform: rotate(-.5deg) translateY(-2px); }
+.panel[data-kind='memory-card'] .memory-photo-options label:has(input:focus-visible) > span { outline: 3px dashed var(--ds-ink); outline-offset: 4px; }
+.panel[data-kind='memory-card'] .memory-photo-options img,
+.panel[data-kind='memory-card'] .memory-placeholder {
+  box-sizing: border-box;
+  display: grid;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  min-height: 0;
+  border: var(--ds-line-thin) solid var(--ds-ink);
+  background: var(--ds-night);
+  object-fit: cover;
+}
+.panel[data-kind='memory-card'] .memory-placeholder { place-items: center; color: var(--ds-paper); font-family: var(--ds-font-body); font-size: 13px; }
+.panel[data-kind='memory-card'] .memory-photo-options b { margin-top: 8px; color: var(--ds-ink); font-family: var(--ds-font-ui); font-size: 15px; font-weight: 400; line-height: 1.35; }
+.panel[data-kind='memory-card'] .memory-photo-options small { display: flex; flex-wrap: wrap; column-gap: .6em; color: var(--ds-ink-2); font-family: var(--ds-font-body); font-size: 13px; line-height: 1.45; }
+/* 「本场成员可见 · 署名保留」: two parts that wrap whole (memory-card-view.js); the 「 · 」 is read aloud, not drawn */
+.panel[data-kind='memory-card'] .memory-sep { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.panel[data-kind='memory-card'] .memory-empty { padding: 12px 14px; border: var(--ds-line-thin) dashed var(--ds-ink); border-radius: var(--ds-radius-card); background: var(--ds-paper-card); color: var(--ds-ink-2); font-family: var(--ds-font-body); font-size: 15px; }
+.panel[data-kind='memory-card'] .memory-avatar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 22px 0 0;
+  padding: 10px 14px 10px 12px;
+  border: var(--ds-line-thin) solid var(--ds-ink);
+  border-radius: var(--ds-radius-card);
+  background: var(--ds-paper-card);
+  box-shadow: 3px 3px 0 var(--ds-ink);
+  color: var(--ds-ink);
+  font-family: var(--ds-font-ui);
+  font-size: 16px;
+  line-height: 1.4;
+  cursor: pointer;
+}
+.panel[data-kind='memory-card'] .memory-avatar:has(input:checked) { background: var(--ds-mint-soft); }
+.panel[data-kind='memory-card'] .memory-avatar > span[aria-hidden='true'] {
+  flex: none;
+  display: grid;
+  place-items: start center;
+  width: 58px;
+  height: 58px;
+  overflow: hidden;
+  border: var(--ds-line-thin) solid var(--ds-ink);
+  border-radius: 50%;
+  background: var(--ds-yellow);
+}
+.panel[data-kind='memory-card'] .memory-avatar > span[aria-hidden='true'] svg { width: 44px; height: 92px; margin-top: 4px; }
+.panel[data-kind='memory-card'] .memory-avatar small { margin-top: 4px; color: var(--ds-ink-2); font-family: var(--ds-font-body); font-size: 13px; line-height: 1.45; text-wrap: balance; }
+.panel[data-kind='memory-card'] .memory-confirm {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin: 20px 0 0;
+  padding: 14px 0 4px;
+  border-top: var(--ds-line-thin) dashed var(--ds-ink-3);
+  color: var(--ds-ink);
+  font-family: var(--ds-font-ui);
+  font-size: 16px;
+  line-height: 1.5;
+  cursor: pointer;
+}
+.panel[data-kind='memory-card'] .memory-progress { margin: 12px 0 0; color: var(--ds-ink-2); font-family: var(--ds-font-body); font-size: 15px; line-height: 1.6; }
+.panel[data-kind='memory-card'] .memory-progress:empty { margin: 0; }
+.panel[data-kind='memory-card'] .memory-result { position: relative; margin: 28px 0 8px; padding: 0; border: 0; }
+.panel[data-kind='memory-card'] .memory-result h3 {
+  margin: 0 0 16px;
+  color: var(--ds-ink);
+  font-family: var(--ds-font-display);
+  font-size: 26px;
+  font-weight: 400;
+  text-shadow: .06em .06em 0 var(--ds-yellow);
+}
+.panel[data-kind='memory-card'] .memory-result img {
+  box-sizing: border-box;
+  max-height: 520px;
+  padding: 8px 8px 22px;
+  border: var(--ds-line-thin) solid var(--ds-ink);
+  border-radius: 3px;
+  background: var(--pc-polaroid);
+  box-shadow: 6px 6px 0 var(--ds-ink);
+  transform: rotate(-1.2deg);
+}
+/* the print is held by a strip across its top-left corner (the card itself already has its own tape at the top centre) */
+.panel[data-kind='memory-card'] .memory-result::before {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  top: 50px;
+  left: -14px;
+  width: 84px;
+  height: 24px;
+  background: color-mix(in srgb, var(--ds-mint) 70%, transparent);
+  -webkit-mask: var(--pc-svg-tape) center / 100% 100% no-repeat;
+  mask: var(--pc-svg-tape) center / 100% 100% no-repeat;
+  transform: rotate(-36deg);
+  pointer-events: none;
+}
+
+/* the single photo view: the photo as a polaroid */
+.panel[data-kind='photo'] .photo-review {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 14px 0 10px;
+  padding: 8px 8px 24px;
+  border: var(--ds-line-thin) solid var(--ds-ink);
+  border-radius: 3px;
+  background: var(--pc-polaroid);
+  box-shadow: 5px 5px 0 var(--ds-ink);
+  transform: rotate(-1deg);
+}
+
+/* ======================================================================================================================================
+   motion off on request; forced colours keep the real borders and drop the doodles
+   ====================================================================================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .photo-exchanges .exchange-body .exchange-status--accepted,
+  .photo-exchanges .exchange-status--accepted ~ .exchange-pair figure { animation: none; }
+  form.moment-upload .moment-chip, form.moment-upload .moment-sample, form.moment-upload .file-choice,
+  .moment-wall .moment-card, .moment-wall .moment-badge button.primary,
+  .panel:is([data-kind='upload'], [data-kind='wall'], [data-kind='recap'], [data-kind='memory-card'], [data-kind='photo'], [data-kind='library']) button,
+  .photo-exchanges button,
+  .panel[data-kind='memory-card'] .memory-photo-options label > span, form.moment-upload .moment-ai-line__bar i,
+  .photo-exchanges .exchange-select__shown { transition: none; }
+}
+@media (forced-colors: active) {
+  .moment-wall .moment-card--best::before, .moment-wall .moment-card--best::after, form.moment-upload .moment-taken::before,
+  .photo-exchanges .exchange-pair::before, .photo-exchanges .exchange-pair::after, .photo-exchanges .exchange-pair figure::before,
+  .photo-exchanges .exchange-status--accepted::before, .photo-exchanges .exchange-status--accepted::after,
+  .photo-exchanges .exchange-status--accepted + h3::before, .photo-exchanges .exchange-status--accepted + h3::after,
+  .panel[data-kind='recap'] .recap-keepsake::before, .panel[data-kind='memory-card'] .memory-result::before,
+  :is(.moment-wall, .photo-item, .panel[data-kind='photo']) .moment-meta__by--ai::before { display: none; }
+}

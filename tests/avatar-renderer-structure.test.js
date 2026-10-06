@@ -494,8 +494,8 @@ test('Blender venue replaces only static scenery, retains dynamic people/photos 
   await engine.goTo('person','member-5');assert.deepEqual(people.filter(p=>p.visible).map(p=>p.userData.hotspot.id),['member-5']);assert.equal(engine.getState().scene.peopleCount,8,'portrait selection never removes real members');
   await engine.goTo('overview');assert.equal(people.filter(p=>p.visible).length,8);
   engine.update({photos:[0,1,2,3].map(i=>({id:'desktop-photo-'+i,url:PHOTO_A}))});harness.images.slice(-4).forEach(image=>image.load());await engine.goTo('photos');
-  assert.equal(new Set(gallery.children.slice(0,4).map(f=>f.position.x)).size,2,'four prints share two balanced columns');
-  assert.equal(new Set(gallery.children.slice(0,4).map(f=>f.position.y)).size,2);
+  assert.equal(new Set(gallery.children.slice(0,4).map(f=>f.position.x)).size,4,'four prints form one row on a landscape wall');
+  assert.equal(new Set(gallery.children.slice(0,4).map(f=>f.position.y)).size,1);
   assert.ok(scene.getObjectByName('livehouse-hanging-stage-print').visible,'a local physical hanging print is added in front of the curtain');
   const cutaway=scene.getObjectByName('MS_FOREGROUND_CUTAWAY');assert.equal(cutaway.children.length,3,'right PA and two trims are now real independent semantic meshes');
   for(const [w,h] of [[320,568],[390,844],[1365,900]])for(const count of[2,4,6]){

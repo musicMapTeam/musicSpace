@@ -12,7 +12,8 @@ this folder only to re-cut them.
   and sha256 of both are in [`web/assets/image-provenance.json`](../../web/assets/image-provenance.json); the build script refuses a
   source whose hash differs from it.
 - **No third-party image, stock picture or picture of a real person is used.** The show, the venue (「月台 Livehouse（虚构场地）」), the
-  people (all named 「·示例」) and every time are invented. Nothing is retouched: a crop, then a JPEG at quality 80.
+  people (all named 「·示例」) and every time are invented. A crop, then a JPEG at quality 80; the only retouch is one documented levels
+  lift on `man-near.jpg` (below), because that crop was too dark to read.
 - Listed with the other assets in [`THIRD_PARTY_NOTICES.md`](../../THIRD_PARTY_NOTICES.md) ("Static demo site: showcase photos").
 
 ## The six files
@@ -22,7 +23,7 @@ this folder only to re-cut them.
 | `yao-stage.jpg` | 阿遥·示例, 舞台, 21:47:20 | `crowd-scene.png` | 0, 60, 620, 413 | 620x413 | 70,016 |
 | `man-crowd.jpg` | 小满·示例, 人海, 21:48:05 | `crowd-scene.png` | 200, 380, 620, 413 | 620x413 | 56,842 |
 | `bei-balcony.jpg` | 北屿·示例, 细节, 21:49:30 | `stage-scene.png` | 1000, 0, 536, 357 | 536x357 | 34,042 |
-| `man-near.jpg` | 小满·示例, 身边, 22:21:10 | `crowd-scene.png` | 0, 650, 700, 374 | 700x374 | 21,921 |
+| `man-near.jpg` | 小满·示例, 身边, 22:21:10 (levels lift) | `crowd-scene.png` | 0, 650, 700, 374 | 700x374 | 75,391 |
 | `sample-stage.jpg` | 「舞台 · 示例照片」, a visitor's one-tap photo | `stage-scene.png` | 340, 120, 840, 560 | 840x560 | 90,522 |
 | `sample-crowd.jpg` | 「人海 · 示例照片」, a visitor's one-tap photo | `crowd-scene.png` | 836, 200, 700, 600 | 700x600 | 81,292 |
 
@@ -34,8 +35,13 @@ this folder only to re-cut them.
   app says so next to them (「虚构的拍摄时间 21:47，写在文件里」).
 - Every file passes the room worker's photo limits (`sanitizeAvatarJpeg`: JPEG, at most 300 KB, 2400 px and 4 MP). No two crops of one
   source overlap by more than 35 % of the smaller one (the largest overlap is 27.9 %, `man-crowd` and `man-near`, so the wall never
-  shows one picture twice). Total 354,635 bytes; first boot fetches only the four cast photos (182,821 bytes), the samples load when tapped.
-- `manifest.json` records, per file: source, crop box, size, bytes, sha256 and, for the samples, `fictionalExifTime` and `pixelSha256`.
+  shows one picture twice). Total 408,105 bytes; first boot fetches only the four cast photos (236,291 bytes), the samples load when tapped.
+- `man-near.jpg` is the crowd's back rows in the dark: as cut it measures a mean luminance of 9 of 255 (the other five 23 to 75) and showed
+  as a black square in a polaroid. Its lossless cut gets one levels step before the JPEG, the same table on R, G and B (`tone` in `PLAN`):
+  black point 2, white point 70, gamma 0.85, that is 255 · ((level − 2) / 68)^0.85, clamped. It then measures 37. Nothing else is changed
+  on it or on any other file, and never on a sample (their pixels are the ones the AI was measured on; the script refuses a `tone` there).
+- `manifest.json` records, per file: source, crop box, size, bytes, sha256, `tone` for the one file that has it and, for the samples,
+  `fictionalExifTime` and `pixelSha256`.
 
 ## The EXIF stamp
 
@@ -87,5 +93,5 @@ node scripts/demo/build-demo-photos.mjs --accept-new-sample-pixels   # only afte
 
 | File | What it is |
 | --- | --- |
-| `build-demo-photos.mjs` | the plan (`PLAN`: file, source, box, EXIF time), the cut, the verification, `manifest.json`; exports `PLAN`, `MEASURED_SAMPLE_PIXELS`, `LIMITS` for the test |
+| `build-demo-photos.mjs` | the plan (`PLAN`: file, source, box, tone, EXIF time), the cut, the levels step (`toneTable`, `writePng`), the verification, `manifest.json`; exports `PLAN`, `MEASURED_SAMPLE_PIXELS`, `LIMITS` for the test |
 | `exif-inject.mjs` | `stampCaptureTime`, `stripCaptureTime`, `hasCaptureTime`, `exifSegment` |

@@ -7,11 +7,11 @@ import {execFileSync, spawnSync} from 'node:child_process';
 import {chmodSync, cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {tmpdir} from 'node:os';
-import {join} from 'node:path';
+import {extname, join} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {FORBIDDEN_HTML, MAX_ROOT_HTML_BYTES, REQUIRED_FILES, checkHtml, openSource, verifyTree} from '../pages/verify-tree.mjs';
 import {publish} from '../pages/publish.mjs';
-import {createPrefixServer} from '../pages/serve-prefix.mjs';
+import {CONTENT_TYPES, createPrefixServer} from '../pages/serve-prefix.mjs';
 import {COPY_RULES, RESCUE_PURGE_PREFIXES} from '../build/static-html-plugin.mjs';
 
 const ROOT = fileURLToPath(new URL('../../', import.meta.url));
@@ -227,7 +227,7 @@ test('verify-tree against a URL: it waits for the expected build, then checks wh
   buildRequests = -1000;
   clock = 0;
   const never = await verifyTree({source: 'https://example.invalid/musicSpace/', expected: fresh, fetchImpl: fakeFetch, poll: {timeoutMs: 45_000, intervalMs: 15_000}, sleep: async ms => { clock += ms; }, now: () => clock, log: () => {}});
-  assert.ok(!never.ok && /live build\.json is 0\.21\.0-rc\.4\+0000000/.test(failed(never)[0]), failed(never)[0]);
+  assert.ok(!never.ok && failed(never)[0].includes(`live build.json is ${fresh.version}+0000000`), failed(never)[0]);
   // 404 for build.json
   const notThere = await verifyTree({source: 'https://example.invalid/musicSpace/', fetchImpl: async () => new Response('', {status: 404}), poll: null});
   assert.ok(!notThere.ok && /HTTP 404/.test(failed(notThere)[0]));
@@ -250,6 +250,13 @@ test('serve-prefix serves the tree below its prefix only, like GitHub Pages, and
     assert.equal(wasm.headers.get('cache-control'), 'no-store');
     assert.equal(Number(wasm.headers.get('content-length')), statSync(join(dist, 'sql/sql-wasm.wasm')).size);
     assert.equal(await status('/musicSpace/sql/sql-wasm.wasm', {method: 'HEAD'}), 200);
+    // Every kind of file in the tree has a content type of its own, as on Pages: the Doodle fonts are font/woff2, the licences text.
+    const files = JSON.parse(text('build.json')).files.map(file => file.path);
+    assert.deepEqual([...new Set(files.map(path => extname(path).toLowerCase()))].filter(kind => !CONTENT_TYPES[kind]), []);
+    for (const [kind, type] of [['.woff2', 'font/woff2'], ['.txt', 'text/plain; charset=utf-8']]) {
+      const path = files.find(name => name.endsWith(kind));
+      assert.equal((await fetch(`${base}/musicSpace/${path}`, {method: 'HEAD'})).headers.get('content-type'), type, path);
+    }
     // QA helpers
     const seen = await (await fetch(`${base}/__log`)).json();
     assert.ok(seen.includes('GET /api/event/health') && seen.includes('GET /musicSpace/'));

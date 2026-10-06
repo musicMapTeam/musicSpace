@@ -485,7 +485,7 @@ async function api(request, response, path) {
   fail(404, 'NOT_FOUND', '接口不存在。');
 }
 
-const mimeTypes = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.mjs': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.json': 'application/json', '.wasm': 'application/wasm', '.onnx': 'application/octet-stream', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.svg': 'image/svg+xml', '.ico': 'image/x-icon', '.woff2': 'font/woff2' };
+const mimeTypes = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.mjs': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.json': 'application/json', '.wasm': 'application/wasm', '.onnx': 'application/octet-stream', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.svg': 'image/svg+xml', '.ico': 'image/x-icon', '.woff2': 'font/woff2', '.txt': 'text/plain; charset=utf-8' };
 
 // The page tells itself it has a room server behind it by this tag, so it needs no probe to find out. Only this server writes it:
 // a copy of dist/ on GitHub Pages or a plain file host never carries it and stays the static version.
@@ -538,7 +538,18 @@ async function serveStatic(request, response, pathname) {
   let file = resolve(DIST, `.${decoded}`);
   if (file !== DIST && !file.startsWith(`${DIST}${sep}`)) fail(404, 'NOT_FOUND', '文件不存在。');
   let info = await stat(file).catch(() => null);
-  if (info?.isDirectory()) { file = resolve(file, 'index.html'); info = await stat(file).catch(() => null); }
+  if (info?.isDirectory()) {
+    const index = resolve(file, 'index.html');
+    const page = await stat(index).catch(() => null);
+    // A page asked for without its trailing slash (/event-room?room=…) moves to the slash form first, as on GitHub Pages and in
+    // scripts/pages/serve-prefix.mjs: served in place, its relative URLs (./fonts/doodle/…) would resolve one directory up and 404.
+    if (page?.isFile() && !pathname.endsWith('/')) {
+      response.writeHead(301, { Location: `/${pathname.replace(/^\/+/, '')}/${new URL(request.url, 'http://localhost').search}`, 'Cache-Control': 'no-cache', 'Content-Length': 0 });
+      return response.end();
+    }
+    file = index;
+    info = page;
+  }
   if (!info?.isFile()) {
     if (extname(decoded)) fail(404, 'NOT_FOUND', '文件不存在。');
     file = resolve(DIST, 'index.html');
@@ -558,14 +569,13 @@ async function serveStatic(request, response, pathname) {
     response.writeHead(200, { ...headers, 'Content-Length': body.length });
     return response.end(request.method === 'HEAD' ? undefined : body);
   }
-  // The on-device model pack (ai/) is ~23 MB and never changes between builds of the same model. `no-cache` alone would send every phone
-  // back for all of it on each visit; an ETag lets the browser ask "still the same?" and get a 304 instead.
-  if (decoded.startsWith('/ai/')) {
-    headers.ETag = `W/"${info.size.toString(16)}-${Math.trunc(info.mtimeMs).toString(16)}"`;
-    if (request.headers['if-none-match'] === headers.ETag) {
-      response.writeHead(304, { ETag: headers.ETag, 'Cache-Control': headers['Cache-Control'] });
-      return response.end();
-    }
+  // `no-cache` alone would send every returning phone back for all of every file: the on-device model pack (ai/, ~23 MB, unchanged
+  // between builds of the same model), the event room page and its Doodle font slices (event-room/fonts/doodle/, ~0.8 MB). An ETag
+  // lets the browser ask "still the same?" and get a 304 instead.
+  headers.ETag = `W/"${info.size.toString(16)}-${Math.trunc(info.mtimeMs).toString(16)}"`;
+  if (request.headers['if-none-match'] === headers.ETag) {
+    response.writeHead(304, { ETag: headers.ETag, 'Cache-Control': headers['Cache-Control'], ...(headers.Vary ? { Vary: headers.Vary } : {}) });
+    return response.end();
   }
   if (packed) {
     const body = await compressed(`${file}:${info.mtimeMs}:${info.size}`, () => readFile(file));

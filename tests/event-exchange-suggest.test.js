@@ -125,6 +125,8 @@ test('suggestion markup: the reason of the chosen option, a note when nothing is
 
 const source = readFileSync(new URL('../web/event-room/exchange-panel.js', import.meta.url), 'utf8').replace(/^import .*;$/gm, '').replace(/^export /gm, '');
 const tick = () => new Promise(done => setImmediate(done));
+// the text of the chosen photo as it is written out under the select
+const shownText = html => plain(/<span class="exchange-select__shown" aria-hidden="true">(.*?)<\/span><\/span><\/label>/.exec(html)?.[1] ?? '');
 const defer = () => { let resolve, reject; const promise = new Promise((yes, no) => { resolve = yes; reject = no; }); return { promise, resolve, reject }; };
 
 function fakeNode() {
@@ -159,7 +161,7 @@ function setup({ photos, pollMs, eventDate = DATE, fetchPhoto } = {}) {
     activeElement: fakeNode(), hidden: false, addEventListener() {}, removeEventListener() {},
   };
   const sandbox = vm.createContext({
-    document, esc, offerSuggestions, optionsMarkup, suggestionMarkup, console,
+    document, esc, offerSuggestions, optionsMarkup, suggestionMarkup, optionLabel, PLACEHOLDER, console,
     createExchangeController: () => client,
     URL: { createObjectURL: blob => `blob:${blob.id}`, revokeObjectURL() {} },
     createImageBitmap: async () => ({ width: 100, height: 80, close() {} }),
@@ -229,6 +231,8 @@ test('panel: compose lists my photos best first and pre-selects the recommended 
   assert.match(html, />我的第 3 张 · 已上墙 · 同一刻<\/option>/);
   assert.match(html, />我的第 1 张 · 已上墙 · 不是同一刻（隔了 1 小时）<\/option>/);
   assert.match(html, /<select data-x-choice aria-describedby="exchange-reason">/);
+  assert.equal(shownText(html), '我的第 2 张 · 未上墙 · 同一刻的另一面（推荐）', 'the chosen option is written out too, so a phone wraps it instead of cutting it');
+  assert.match(html, /<\/select><span class="exchange-select__shown" aria-hidden="true"><span class="pc-dots"><span class="pc-dots__in"><span class="pc-dots__item"><span class="nowrap">我的第 2 张 · 未上墙<\/span><\/span><span class="exchange-select__sep"> · <\/span><span class="pc-dots__item exchange-select__verdict is-recommended">同一刻的另一面（推荐）<\/span><\/span><\/span><\/span>/);
   assert.match(html, /<p class="exchange-reason is-recommended" id="exchange-reason" data-x-reason>同一刻 · <span class="nowrap">21:47<\/span>/);
   assert.ok(html.includes(RULE_NOTE));
 });
@@ -264,8 +268,11 @@ test('panel: the person can choose another photo, which resets the consent', asy
   assert.match(run.html(), /<input data-x-consent type="checkbox" >/, 'choosing again asks for consent again');
   assert.match(run.html(), /同一刻 · <span class="nowrap">21:48<\/span>，<span class="nowrap">几乎同时<\/span>；<span class="nowrap">你们都拍了人海<\/span>/);
   assert.doesNotMatch(run.html(), /is-recommended/, 'the reason of a photo that is not the recommended one is not styled as the recommendation');
+  assert.equal(shownText(run.html()), '我的第 3 张 · 已上墙 · 同一刻');
+  assert.doesNotMatch(run.html(), /exchange-select__verdict is-recommended/);
   await run.choose('');
   assert.equal(run.selected(), null);
+  assert.equal(shownText(run.html()), PLACEHOLDER);
 });
 
 test('panel: a choice made while the target image loads is never overridden by the recommendation', async () => {

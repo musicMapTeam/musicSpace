@@ -2,8 +2,12 @@ import './exchange-panel.css';
 import {escape as esc} from '../avatar/model.js';
 import {createExchangeController} from '../event-client/exchange-controller.js';
 import {offerSuggestions} from './moment-model.js';
-import {optionsMarkup,suggestionMarkup} from './exchange-suggest.js';
+import {PLACEHOLDER,optionLabel,optionsMarkup,suggestionMarkup} from './exchange-suggest.js';
 
+// The chosen photo written out under the select (doodle/panels-core.css lays the transparent select over it): 「我的第 1 张 · 已上墙」 kept whole, then what
+// the rule says about it, which takes a line of its own when the two do not fit; the text is the option's own label (optionLabel()).
+const SEP=' · ';
+function chosenMarkup(row){if(!row)return esc(PLACEHOLDER);const [number,wall,...rest]=optionLabel(row).split(SEP),verdict=rest.join(SEP),head=`<span class="nowrap">${esc([number,wall].filter(Boolean).join(SEP))}</span>`;if(!verdict)return head;return `<span class="pc-dots"><span class="pc-dots__in"><span class="pc-dots__item">${head}</span><span class="exchange-select__sep">${SEP}</span><span class="pc-dots__item exchange-select__verdict${row.recommended?' is-recommended':''}">${esc(verdict)}</span></span></span>`;}
 const statusLabel={pending:'等待本人回应',accepted:'交换已接受',declined:'对方谢绝了',cancelled:'申请已结束',revoked:'在线访问已结束',expired:'申请已过期'};
 const boundary='任一方撤销，会同时结束本次两张照片的在线访问；原件仍归各自。已下载或截图的副本无法远程收回。';
 
@@ -30,13 +34,13 @@ export function createExchangePanel({container,getContext,fetchPhoto,onClose=()=
  function schedule(){stop();if(opened&&!disposed&&!document.hidden&&mode!=='compose')pollTimer=setTimeout(refresh,interval);}
  const isComposeCurrent=()=>{const ctx=getContext();return compose&&ctx.actorId===compose.actorId&&ctx.room?.id===compose.roomId&&ctx.room.joined&&ctx.room.status==='open'&&ctx.photos.some(p=>p.id===compose.target.id&&p.revision===compose.target.revision&&p.visibility==='members');};
  const ownPhotos=ctx=>ctx.photos.filter(p=>p.roomId===compose.roomId&&p.ownerId===state.actorId);
- function photoCell(label,key,alt,extra=''){return `<figure><div class="exchange-photo">${image(key,alt)}</div><figcaption><b>${esc(label)}</b>${extra}</figcaption></figure>`;}
+ function photoCell([who,what=''],key,alt,extra=''){return `<figure><div class="exchange-photo">${image(key,alt)}</div><figcaption><b><span class="exchange-who">${esc(who)}</span>${what?`<span class="nowrap">${esc(what)}</span>`:''}</b>${extra}</figcaption></figure>`;}
  function markup(){
   if(state.identityStatus!=='ready')return '<p>请先核对当前浏览器身份，再打开照片交换。</p>';
   if(mode==='compose'){
-   const ctx=getContext(),choices=ownPhotos(ctx),selected=choices.find(p=>p.id===compose.selectedId),valid=isComposeCurrent()&&selected?.revision===compose.selectedRevision,rows=offerSuggestions(choices,compose.target,{eventDate:ctx.eventDate||''});
-   return `<p class="exchange-intro">用我拍下的，换 <b>${esc(compose.peerName)}</b> 看到的。</p><div class="exchange-pair">${photoCell('我提供的',selected?`own:${selected.id}:${selected.revision}`:'none','我选择提供的现场照片',selected?'<small>我选中的这一张</small>':'<small>先选一张自己的照片</small>')}${photoCell(`${compose.peerName}的`, `target:${compose.target.id}:${compose.target.revision}`,'希望交换的对方现场照片','<small>照片墙上的这一张</small>')}</div>
-   <label class="exchange-choice">我提供哪一张<select data-x-choice aria-describedby="exchange-reason">${optionsMarkup(rows,{selectedId:compose.selectedId,esc})}</select></label>${suggestionMarkup(rows,{selectedId:compose.selectedId,target:compose.target,esc})}
+   const ctx=getContext(),choices=ownPhotos(ctx),selected=choices.find(p=>p.id===compose.selectedId),valid=isComposeCurrent()&&selected?.revision===compose.selectedRevision,rows=offerSuggestions(choices,compose.target,{eventDate:ctx.eventDate||''}),chosen=rows.find(row=>row.photo.id===compose.selectedId);
+   return `<p class="exchange-intro">用我拍下的，换 <b>${esc(compose.peerName)}</b> 看到的。</p><div class="exchange-pair">${photoCell(['我','提供的'],selected?`own:${selected.id}:${selected.revision}`:'none','我选择提供的现场照片',selected?'<small>我选中的这一张</small>':'<small>先选一张自己的照片</small>')}${photoCell([`${compose.peerName}的`], `target:${compose.target.id}:${compose.target.revision}`,'希望交换的对方现场照片','<small>照片墙上的这一张</small>')}</div>
+   <label class="exchange-choice">我提供哪一张<span class="exchange-select"><select data-x-choice aria-describedby="exchange-reason">${optionsMarkup(rows,{selectedId:compose.selectedId,esc})}</select><span class="exchange-select__shown" aria-hidden="true">${chosenMarkup(chosen)}</span></span></label>${suggestionMarkup(rows,{selectedId:compose.selectedId,target:compose.target,esc})}
    ${!choices.length?'<p>你在这一场还没有照片。先保存一张自己的，再回来交换。</p>':''}
    <div class="exchange-agreement"><p>发送后，${esc(compose.peerName)} 可以看并保存我的小图预览。TA 明确接受后，我们才能通过这次交换继续查看两张原图，散场后也可以。</p><label><input data-x-consent type="checkbox" ${consent?'checked':''}>我同意提供选中照片的预览，并在对方接受后分享这张原图</label></div><p class="exchange-fine">${boundary}</p><button class="exchange-primary" data-x-send ${!valid||!consent||!compose.preview||busy?'disabled':''}>把这两张交给对方确认 ↗</button>${!valid&&compose.selectedId?'<p class="exchange-fine">照片或场次范围已变化，请重新打开并选择。</p>':''}`;
   }
@@ -45,8 +49,8 @@ export function createExchangePanel({container,getContext,fetchPhoto,onClose=()=
    const mine=row.senderId===state.actorId,offeredOwner=mine?'我':row.peer.name,requestedOwner=mine?row.peer.name:'我',active=['pending','accepted'].includes(row.status),confirmed=state.current.confirmed;
    const saved=state.lastResult?.exchangeId===row.id&&state.lastResult.committed&&!confirmed;
    const displayImages=active&&confirmed;
-   let content=`<p class="exchange-status">${esc(statusLabel[row.status])}${!confirmed?' · 最新权限待确认':''}</p><h3>和 ${esc(row.peer.name)} 的两张照片</h3>${saved?'<p>操作已由服务收到。当前权限还没读取出来，不需要重新发起。</p>':''}`;
-   if(displayImages)content+=`<div class="exchange-pair">${photoCell(`${offeredOwner}提供的`,`detail:${row.id}:${row.revision}:offered`,`${offeredOwner}提供的照片`, `<small>${row.status==='pending'&&!mine?'限尺寸预览':'这次确定的一张'}</small>`)}${photoCell(`${requestedOwner}提供的`,`detail:${row.id}:${row.revision}:requested`,`${requestedOwner}提供的照片`,'<small>这次确定的一张</small>')}</div>`;
+   let content=`<p class="exchange-status exchange-status--${esc(row.status)}">${esc(statusLabel[row.status])}${!confirmed?' · 最新权限待确认':''}</p><h3>和 <b>${esc(row.peer.name)}</b> 的两张照片</h3>${saved?'<p>操作已由服务收到。当前权限还没读取出来，不需要重新发起。</p>':''}`;
+   if(displayImages)content+=`<div class="exchange-pair">${photoCell([offeredOwner,'提供的'],`detail:${row.id}:${row.revision}:offered`,`${offeredOwner}提供的照片`, `<small>${row.status==='pending'&&!mine?'限尺寸预览':'这次确定的一张'}</small>`)}${photoCell([requestedOwner,'提供的'],`detail:${row.id}:${row.revision}:requested`,`${requestedOwner}提供的照片`,'<small>这次确定的一张</small>')}</div>`;
    if(!active)content+='<p>这次交换不再提供照片访问。各自的原件仍保留；照片墙的独立分享范围不受本次撤销影响。</p>';
    if(row.status==='pending')content+=`<p class="exchange-fine">申请有效至 ${esc(new Date(row.expiresAt).toLocaleString('zh-CN',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}))}。换另一张图需要结束此申请后重新发起。</p>`;
    if(row.status==='pending'&&!mine&&confirmed)content+=`<div class="exchange-agreement"><p>接受后，你会把自己的这张指定原图分享给 ${esc(row.peer.name)}，同时取得对方这张原图的在线访问。散场后仍有效。</p><label><input data-x-consent type="checkbox" ${consent?'checked':''}>我已核对两张照片，同意这次交换</label></div><button class="exchange-primary" data-x-action="accept" ${!consent||busy||!urls.has(`detail:${row.id}:${row.revision}:offered`)||!urls.has(`detail:${row.id}:${row.revision}:requested`)?'disabled':''}>同意，交换这两张</button><button data-x-action="decline" ${busy?'disabled':''}>这次先不了</button>`;

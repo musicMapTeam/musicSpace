@@ -1,0 +1,37 @@
+/* Doodle design tokens: the single source of the hand-drawn look (spec: docs/design/doodle.md).
+   Fonts are role names from public/fonts/doodle/fonts.css, so swapping a typeface never touches this file. */
+:root{
+  /* paper & ink */
+  --ds-paper:#f7efdf;--ds-paper-card:#fffaf0;--ds-paper-deep:#efe3c8;
+  --ds-ink:#1c1b1a;--ds-ink-2:#3d3a36;--ds-ink-3:#6b655c;
+  /* marker colours: fills and accents; small text on them is always ink */
+  --ds-pink:#ff5c8a;--ds-pink-soft:#ffd0dd;
+  --ds-mint:#5fdcc0;--ds-mint-soft:#c9f3e8;
+  --ds-yellow:#ffd447;--ds-yellow-soft:#fff0b8;
+  --ds-sky:#74b9ff;--ds-sky-soft:#d6e9ff;
+  --ds-orange:#ff8a3d;
+  --ds-night:#23212b;
+  /* type roles */
+  --ds-font-logo:"Doodle Logo","Doodle Display","Arial Black",sans-serif;
+  --ds-font-display:"Doodle Display","Doodle Marker","PingFang SC","Microsoft YaHei",sans-serif;
+  --ds-font-ui:"Doodle Marker","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  --ds-font-body:"Doodle Hand","Doodle Marker","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  --ds-font-digits:"Doodle Digits","Doodle Logo",ui-monospace,sans-serif;
+  --ds-font-note:"Doodle Note","Doodle Hand",cursive;
+  /* type scale: big contrast on purpose (hero is ~5x body) */
+  --ds-size-hero:clamp(40px,10.5vw,96px);--ds-size-h1:clamp(30px,7vw,56px);
+  --ds-size-h2:clamp(23px,4.6vw,34px);--ds-size-h3:clamp(19px,3.4vw,24px);
+  --ds-size-body:16px;--ds-size-small:14px;--ds-size-micro:12px;
+  /* lines, shapes, depth */
+  --ds-line:2.5px;--ds-line-thin:2px;--ds-line-bold:3.5px;
+  --ds-border:var(--ds-line) solid var(--ds-ink);
+  --ds-radius-1:255px 15px 225px 15px/15px 225px 15px 255px;
+  --ds-radius-2:15px 255px 15px 225px/225px 15px 255px 15px;
+  --ds-radius-card:18px 6px 22px 8px/8px 20px 6px 18px;
+  --ds-radius-btn:14px 8px 16px 9px/9px 15px 8px 14px;
+  --ds-radius-pill:999px;
+  --ds-shadow-sm:3px 3px 0 var(--ds-ink);--ds-shadow:5px 5px 0 var(--ds-ink);--ds-shadow-lg:8px 9px 0 var(--ds-ink);
+  --ds-dots:radial-gradient(rgba(28,27,26,.16) 1.2px,transparent 1.3px) 0 0/24px 24px;
+  /* motion */
+  --ds-pop:cubic-bezier(.34,1.56,.64,1);--ds-fast:120ms;--ds-med:220ms;
+}

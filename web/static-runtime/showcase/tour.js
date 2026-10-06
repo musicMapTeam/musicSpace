@@ -63,8 +63,10 @@ export function tourMarkup({ progress, collapsed = false, esc = escape, samples 
   const step = progress.complete ? null : TOUR_STEPS[progress.current];
   const label = collapsed ? '展开' : '收起';
   const bar = `<span class="demo-tour-bar" aria-hidden="true">${progress.done.map(done => `<i${done ? ' class="on"' : ''}></i>`).join('')}</span>`;
-  const head = `<div class="demo-tour-head"><p class="demo-tour-title"><strong>示例路线 ${progress.complete ? total : progress.current + 1}/${total}</strong> · ${step ? step.title : '路线走完了'}</p>`
-    + `<button type="button" class="demo-tour-toggle" data-tour-toggle aria-expanded="${!collapsed}" aria-label="${label}示例路线">${label}</button></div>${bar}`;
+  // The spans only give the sticky note its layers (label sticker with the step dots, then the step in the display face); the text is unchanged.
+  const head = `<div class="demo-tour-head"><p class="demo-tour-title"><strong>示例路线 ${progress.complete ? total : progress.current + 1}/${total}</strong>${bar}`
+    + `<span class="demo-tour-sep"> · </span><span class="demo-tour-step">${step ? step.title : '路线走完了'}</span></p>`
+    + `<button type="button" class="demo-tour-toggle" data-tour-toggle aria-expanded="${!collapsed}" aria-label="${label}示例路线">${label}</button></div>`;
   if (collapsed) return head;
   const button = (action, text, primary) => `<button type="button" class="demo-tour-action ${primary ? 'primary' : 'quiet'}" data-tour-action="${esc(action)}">${esc(text)}</button>`;
   let actions;
@@ -105,8 +107,8 @@ export function createTour({ container, esc = escape, onAction, samples, storage
     const progress = tourProgress(view, state);
     const html = tourMarkup({ progress, collapsed: state.collapsed, esc, samples });
     container.hidden = !progress.visible;
-    // The expanded card takes the place of the presence's own text and buttons on phones (demo.css); a class on the parent says so
-    // without needing :has(), which some WeChat WebViews do not know yet.
+    // The expanded card takes the place of the presence's own text and buttons (demo.css on phones, the Doodle showcase.css at every
+    // width); a class on the parent says so without needing :has(), which some WeChat WebViews do not know yet.
     container.parentElement?.classList?.toggle('demo-tour-open', progress.visible && !state.collapsed);
     if (html !== shown) { container.innerHTML = html; shown = html; }
     return { visible: progress.visible, step: progress.complete ? null : progress.current + 1, complete: progress.complete, done: progress.done };

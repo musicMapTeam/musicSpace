@@ -36,9 +36,10 @@ export function entryMarkup({ state = {}, esc = escape, avatarSvg, defaults = {}
     + `<p class="fine">${known ? '这个浏览器里已经有你的小人，会直接带着它进去。' : '先用这个小人，入场后随时能逐件换装。'}</p>`
     + `<button type="button" class="quiet" data-open="wardrobe">现在换个造型 ↗</button></div></div>`
     + `<fieldset class="participation-choices"><legend>这一场，我想怎样参与</legend>${choice('open', open)}${choice('quiet', !open)}</fieldset>`
-    + `<label class="consent"><input name="consent" type="checkbox" required><span>我愿意向本场成员（示例角色）展示我的昵称和小人。数据只存在这个浏览器里。</span></label>`
+    // The consent, the button and the line that says why the button may still be disabled stay together: the sheet pins them to its bottom.
+    + `<div class="demo-entry-actions"><label class="consent"><input name="consent" type="checkbox" required><span>我愿意向本场成员（示例角色）展示我的昵称和小人。数据只存在这个浏览器里。</span></label>`
     + `<button class="primary" type="submit"${preparing ? ' disabled' : ''}>进入示例现场</button>`
-    + `<p class="fine demo-entry-status" role="status">${preparing ? '正在布置示例现场…' : ''}</p>`
+    + `<p class="fine demo-entry-status" role="status">${preparing ? '正在布置示例现场…' : ''}</p></div>`
     + `<p class="fine">没有服务器，也没有账号：这个示例完全在你的浏览器里运行，选择只存在这里。</p>`
     + `<button type="button" class="quiet" data-open="about">关于这个示例</button>`
     + `<details class="demo-entry-more"><summary>自己开个房</summary><p class="fine">也可以在这个浏览器里自己开一个房间：只有你自己，示例角色不会来。</p><button type="button" class="quiet" data-open="create">自己开个房</button></details></form>`;

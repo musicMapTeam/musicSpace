@@ -209,7 +209,8 @@ function fakeForm(room = ROOM) {
   const nodes = {
     '.photo-review': fakeNode(),
     '[data-pick-status]': fakeNode(),
-    '[data-taken-line]': fakeNode({}, '没读到拍摄时间（截图或转发的图常会丢失）'),
+    '[data-taken-line]': fakeNode({ 'data-taken-none': '' }, '没读到拍摄时间（截图或转发的图常会丢失）'),
+    '[data-taken-sep]': Object.assign(fakeNode(), { hidden: true }),     // shut, as markup() draws it before there is a note
     '[data-taken-note]': fakeNode(),
     '[data-taken-edit]': fakeNode({ 'aria-expanded': 'true' }),
     '[data-taken-field]': fakeNode(),
@@ -588,7 +589,10 @@ test('time: a trusted EXIF time is shown as such, sent as exif, and may be edite
   await h.upload.pick(photo());
   const html = h.html();
   assert.equal(takenLine(html), '拍摄于 21:47');
-  assert.equal(takenNote(html), '· 来自照片自带的信息');
+  assert.equal(takenNote(html), '来自照片自带的信息');
+  assert.match(html, /<span data-taken-line>拍摄于 21:47<\/span>/, 'a time is set as the clock');
+  // the status line still reads as one sentence; its 「 · 」 is a span of its own, so the note can sit under the clock without a leading dot
+  assert.match(html, /<span data-taken-line>拍摄于 21:47<\/span><span class="moment-taken__sep" data-taken-sep> · <\/span><small data-taken-note>来自照片自带的信息<\/small>/);
   assert.deepEqual(h.upload.facts(), { takenAt: NIGHT(21, 47, 50), takenSource: 'exif' });
   assert.match(el(html, 'data-taken-edit'), /^<button type="button"/);
   assert.doesNotMatch(el(html, 'data-taken-edit'), / hidden/, 'the edit button is offered');
@@ -621,6 +625,8 @@ test('time: a weak EXIF time (an editor\'s DateTime) is a guess: shown, not sent
   await h.upload.pick(photo({ bytes: exifJpeg({ dateTime: '2026-09-26T21:47:50' }) }));
   const html = h.html();
   assert.equal(takenLine(html), '没读到拍摄时间（截图或转发的图常会丢失）');
+  assert.match(html, /<span class="moment-taken__sep" data-taken-sep hidden> · <\/span><small data-taken-note><\/small>/, 'no note, so no 「 · 」 either');
+  assert.match(html, /<span data-taken-line data-taken-none>没读到拍摄时间/, 'no usable time: the line is a sentence, and says so to the Doodle layer');
   assert.match(plain(html), /取自文件信息，只是大概，不一定是拍摄时间；不修改就不用来判断「同一刻」。/);
   assert.match(plain(html), /大约的时间 · 北京时间/);
   assert.match(timeField(html), /value="2026-09-26T21:47"/, 'prefilled, as a suggestion the person can confirm');
@@ -655,7 +661,7 @@ test('time: typing a time makes it the person\'s own (manual) and replaces a rea
   type('2026-09-26T21:47');
   assert.deepEqual(h.upload.facts(), { takenAt: NIGHT(21, 47), takenSource: 'manual' });
   assert.equal(takenLine(h.html()), '拍摄于 21:47');
-  assert.equal(takenNote(h.html()), '· 你填写的时间');
+  assert.equal(takenNote(h.html()), '你填写的时间');
   await h.upload.pick(photo());                                                                  // a trusted time
   type('2026-09-26T21:50');
   assert.deepEqual(h.upload.facts(), { takenAt: NIGHT(21, 50), takenSource: 'manual' });
@@ -735,7 +741,7 @@ test('demo-only time: one press sets the example night\'s time as manual, labell
   container.emit('click', control({ demoTime: '' }));
   assert.deepEqual(h.upload.facts(), { takenAt: DEMO_TIME.ms, takenSource: 'manual' });
   assert.equal(takenLine(h.html()), '拍摄于 21:47');
-  assert.equal(takenNote(h.html()), '· 你填写的时间 · 演示用');
+  assert.equal(takenNote(h.html()), '你填写的时间 · 演示用');
   assert.match(el(h.html(), 'data-demo-time'), /aria-pressed="true"/);
   assert.match(plain(region(h.html(), 'data-demo-time')), /已把拍摄时间设成 21:47（演示用）· 再按一次撤销/);
   assert.doesNotMatch(plain(h.html()), /不算同一刻/, 'and now it is');
@@ -756,7 +762,7 @@ test('demo-only time: typing replaces it, it undoes to what was typed before, an
   assert.deepEqual(h.upload.facts(), { takenAt: DEMO_TIME.ms, takenSource: 'manual' });
   container.emit('input', { name: 'takenAt', value: '2026-09-26T22:00' });
   assert.deepEqual(h.upload.facts(), { takenAt: NIGHT(22, 0), takenSource: 'manual' });
-  assert.equal(takenNote(h.html()), '· 你填写的时间', 'typing took the demo label away');
+  assert.equal(takenNote(h.html()), '你填写的时间', 'typing took the demo label away');
   assert.match(el(h.html(), 'data-demo-time'), /aria-pressed="false"/);
   container.emit('click', control({ demoTime: '' }));
   container.emit('click', control({ demoTime: '' }));
@@ -1130,7 +1136,7 @@ test('restore(facts) brings a saved draft\'s time and side back; a photo that is
   assert.deepEqual(h.upload.facts(), { takenAt: NIGHT(21, 47), takenSource: 'manual', viewpoint: 'stage', viewpointSource: 'manual' });
   const html = h.upload.markup({ draft: { roomId: ROOM, dataUrl: DATA_URL }, roomId: ROOM });
   assert.deepEqual(pressedChips(html), ['stage']);
-  assert.equal(takenNote(html), '· 你填写的时间');
+  assert.equal(takenNote(html), '你填写的时间');
   assert.equal(h.upload.restore({ viewpoint: 'detail', viewpointSource: 'manual' }), false, 'live state wins');
   assert.equal(h.upload.facts().viewpoint, 'stage');
   h.upload.reset();
@@ -1297,7 +1303,9 @@ test('patch() updates the AI line, chips and time rows in place and touches noth
 
   // the time rows
   assert.equal(nodes['[data-taken-line]'].textContent, '拍摄于 2025年7月10日 10:53');
-  assert.equal(nodes['[data-taken-note]'].textContent, '· 来自照片自带的信息');
+  assert.equal(nodes['[data-taken-line]'].getAttribute('data-taken-none'), null, 'a time came: the line is the clock again');
+  assert.equal(nodes['[data-taken-note]'].textContent, '来自照片自带的信息');
+  assert.equal(nodes['[data-taken-sep]'].hidden, false, 'the 「 · 」 between clock and note is there while there is a note');
   assert.equal(nodes['[data-taken-edit]'].hidden, false);
   assert.equal(nodes['[data-taken-edit]'].getAttribute('aria-expanded'), 'false');
   assert.equal(nodes['[data-taken-field]'].hidden, true);

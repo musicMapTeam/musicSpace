@@ -24,7 +24,7 @@ import { orderWall, readPair, venueTime, takenFromExif, SAME_MOMENT_MS } from '.
 import { readCaptureTime } from '../web/js/ai/exif-time.js';
 import { safeAvatar } from '../web/avatar/model.js';
 import { sanitizeAvatarJpeg } from '../runtime-preview/src/avatar-worker.js';
-import { PLAN, MEASURED_SAMPLE_PIXELS, LIMITS, jpegSize } from '../scripts/demo/build-demo-photos.mjs';
+import { PLAN, MEASURED_SAMPLE_PIXELS, LIMITS, jpegSize, readPng, toneTable, writePng } from '../scripts/demo/build-demo-photos.mjs';
 import { stripCaptureTime } from '../scripts/demo/exif-inject.mjs';
 
 const here = new URL('../', import.meta.url);
@@ -223,6 +223,25 @@ test('demo-assets: the samples keep the pixels the on-device AI was measured on 
     assert.equal(sha256(stripCaptureTime(bytes)), hash, `${file}: the encoder's own bytes are not the measured ones; measure the AI again (architecture 7.5) before updating MEASURED_SAMPLE_PIXELS`);
     assert.equal(entryOf(file).pixelSha256, hash, file);
     assert.equal(bytes.length - stripCaptureTime(bytes).length, 94, 'the only addition is the one stamped Exif segment');
+  }
+});
+
+test('demo-assets: the one retouch is the documented levels lift on man-near (a cast photo, never a sample), recorded in the manifest', () => {
+  const toned = PLAN.filter(entry => entry.tone);
+  assert.deepEqual(toned.map(entry => entry.file), ['man-near.jpg']);
+  assert.ok(toned.every(entry => !entry.exif), 'never on a sample: their pixels are the ones the AI was measured on');
+  for (const entry of PLAN) assert.deepEqual(entryOf(entry.file).tone, entry.tone, `${entry.file}: the manifest records the tone the plan applies`);
+  const table = toneTable(toned[0].tone);
+  assert.deepEqual([table[0], table[2], table[70], table[255]], [0, 0, 255, 255], 'black point 2, white point 70');
+  assert.equal(table[36], Math.round(255 * (34 / 68) ** 0.85), 'gamma 0.85 in between');
+  for (let level = 1; level < 256; level++) assert.ok(table[level] >= table[level - 1], 'the lift keeps the order of the levels');
+  assert.throws(() => toneTable({ black: 70, white: 2, gamma: 1 }));
+});
+
+test('demo-assets: writePng writes exactly what readPng reads back', () => {
+  for (const channels of [3, 4]) {
+    const pixels = Buffer.from(Array.from({ length: 5 * 3 * channels }, (_, i) => (i * 37 + 11) & 255));
+    assert.deepEqual(readPng(writePng({ width: 5, height: 3, channels, pixels })), { width: 5, height: 3, channels, pixels });
   }
 });
 
@@ -605,7 +624,7 @@ async function worldDigest(seeded) {
 
 // One entry per SEED_REV, never edited afterwards: when the seeded world changes (a line, a title, a photo re-cut, the order of the steps) this fails
 // until SEED_REV is raised and the new fingerprint is added under the new number. That is what makes browsers that hold the old world lay out the new one.
-const PINNED_WORLD = { 1: '9e81cc5d430d093c' };
+const PINNED_WORLD = { 1: '9e81cc5d430d093c', 2: '6cec44198f031a7f' };
 
 test('seed: the seeded world is pinned to SEED_REV (the fingerprint of what the room holds changes only together with SEED_REV)', async () => {
   const world = await openWorld();

@@ -1,0 +1,12 @@
+/* Layered lettering recipes ("colour, layers, sizes"). Use them on real text; they never change layout semantics. */
+.ds-title{font-family:var(--ds-font-display);font-weight:400;color:var(--ds-ink);line-height:1.08;letter-spacing:.01em;text-shadow:.06em .06em 0 var(--ds-shadow-color,var(--ds-pink))}
+.ds-title--mint{--ds-shadow-color:var(--ds-mint)}.ds-title--yellow{--ds-shadow-color:var(--ds-yellow)}.ds-title--sky{--ds-shadow-color:var(--ds-sky)}
+.ds-sticker{font-family:var(--ds-font-display);font-weight:400;color:var(--ds-sticker,var(--ds-yellow));-webkit-text-stroke:.07em var(--ds-ink);paint-order:stroke fill;text-shadow:.06em .07em 0 var(--ds-ink)}
+.ds-sticker--mint{--ds-sticker:var(--ds-mint)}.ds-sticker--pink{--ds-sticker:var(--ds-pink)}.ds-sticker--white{--ds-sticker:#fff}.ds-sticker--sky{--ds-sticker:var(--ds-sky)}
+.ds-hl{--ds-hl-c:var(--ds-hl,var(--ds-mint));background:linear-gradient(transparent 56%,var(--ds-hl-c) 56%,var(--ds-hl-c) 92%,transparent 92%);padding:0 .18em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.ds-hl--yellow{--ds-hl:var(--ds-yellow)}.ds-hl--pink{--ds-hl:var(--ds-pink-soft)}.ds-hl--sky{--ds-hl:var(--ds-sky-soft)}
+.ds-key{font-family:var(--ds-font-display);font-weight:400;font-size:1.45em;color:var(--ds-pink);text-shadow:.04em .04em 0 var(--ds-ink);line-height:1}
+.ds-note{display:inline-block;font-family:var(--ds-font-note);font-weight:400;color:var(--ds-pink);transform:rotate(-6deg)}
+.ds-digits{font-family:var(--ds-font-digits);letter-spacing:.02em;font-variant-numeric:tabular-nums}
+.ds-logo{font-family:var(--ds-font-logo);font-weight:400;color:var(--ds-yellow);-webkit-text-stroke:.055em var(--ds-ink);paint-order:stroke fill;text-shadow:.07em .07em 0 var(--ds-ink),.13em .13em 0 var(--ds-pink);letter-spacing:.01em}
+@media (prefers-contrast:more){.ds-title,.ds-key{text-shadow:none}.ds-sticker,.ds-logo{color:var(--ds-ink);-webkit-text-stroke:0;text-shadow:none}}

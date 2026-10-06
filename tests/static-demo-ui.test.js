@@ -215,6 +215,7 @@ test('entry markup: one required consent checkbox, participation open by default
   assert.match(html, /<input name="name" maxlength="18" value="访客2468" autocomplete="nickname" required>/);
   assert.match(html, /<button type="button" class="quiet" data-open="wardrobe">现在换个造型 ↗<\/button>/);
   assert.match(html, /<button class="primary" type="submit">进入示例现场<\/button>/);
+  assert.match(html, /<div class="demo-entry-actions"><label class="consent">[^]*?<\/label><button class="primary" type="submit">[^<]*<\/button><p class="fine demo-entry-status" role="status"><\/p><\/div>/, 'the consent, the button and its status line stay together (the sheet pins them to its bottom)');
   assert.match(html, /<button type="button" class="quiet" data-open="about">关于这个示例<\/button>/);
   assert.match(html, /<details class="demo-entry-more"><summary>自己开个房<\/summary>[\s\S]*data-open="create"/);
   assert.match(html, /没有服务器，也没有账号/);

@@ -18,9 +18,17 @@
   - 房间服务用的时钟不会早于构建时间：示例照片的拍摄时间是 2026-09-26，设备时间偏早也能播种。
 - 示例世界（`web/static-runtime/showcase/`）：阿遥·示例、小满·示例、北屿·示例、林间·示例是虚构角色，通过房间服务的普通接口播种，并由页面里的程序自动回应招呼、私聊、交换、专辑世界杯和小游戏；回应是固定规则，不是 AI，不学习，也不记录。六张示例照片都是仓库里两张 AI 生成图的裁切（`web/static-runtime/demo-assets/`，来源与裁切框见 [scripts/demo/README.md](scripts/demo/README.md)），其中两张「示例照片」自带虚构的拍摄时间。进入示例现场后有示例路线卡，「关于这个示例」说明哪些是真的、哪些是模拟的，也可以在那里重置示例数据。
 - Pages 站点与工具：事件房间页成为站点根，另有 `music-map/`、`classic/`（0.16 旧首页，无常驻入口）、`ai/` 和 `demo/`（`vite.static.config.js`、`vite.static-map.config.js`、`scripts/build/static-html-plugin.mjs`）。所有链接相对站点根（`web/shared/site-base.js`），Node 服务的行为不变；静态构建把五处带「服务器」口吻的提示改成页面内的说法。新增 `npm run build:pages`、`npm run preview:pages`、`npm run test:static`，以及 [scripts/pages/](scripts/pages/README.md) 的校验与发布脚本：先发 `/preview/`，经用户同意后一次性切换到根路径，不 force push；根与预览是同一份字节。CI 构建这棵树并上传 `music-space-pages`，没有部署步骤。
-- 依赖与许可：新增 devDependency `sql.js` 1.14.2（MIT，只用于静态站）；`THIRD_PARTY_NOTICES.md` 补了 sql.js 与示例照片两节。
+- 手绘涂鸦风（Doodle）改版（2026-10-06 起，产品负责人选定，规范见 [docs/design/doodle.md](docs/design/doodle.md)）：
+  - 界面：米色点阵纸上的马克笔涂鸦。墨线手绘边框、硬边错位阴影、粉 / 薄荷 / 黄三色马克笔点缀、贴纸、胶带和拍立得照片；标题用叠层文字（彩色错位影、贴纸描边、荧光笔底色），关键词放大变色，正文和标题的字号拉开。全部样式在 `web/event-room/doodle/`（`tokens.css`、`type.css`、`kit.css`、`chrome.css`、`panels-core.css`、`panels-social.css`、`showcase.css`，由 `app.js` 最后导入），旧 CSS 文件没有改；脚本和测试依赖的 `id`、`class`、`data-*`、`aria-*` 都保留，文案和行为不变，只新增装饰用的 class 和包裹元素（桌面首屏多了一句装饰用、读屏跳过的手写批注「就是这一刻！」）。
+  - 三维场馆：纸面立体书式的涂鸦小剧场，只改渲染，不改 Blender 模型（`venue.glb` 的校验不变）。纸面平涂色、按深度与颜色边缘描的墨线、两档明暗加屏幕空间斜排线、纸张颗粒和点阵（`web/avatar/doodle-pass.js`）；墨线每秒约 7 次轻微「抖动」，减少动态、标签页隐藏或场景被面板盖住时停下；舞台海报和画廊标语重画为涂鸦海报，字体到了再重画一次。只用于活动房间，`/livehouse/` 样张保持原样。
+  - 回退：地址加 `?doodle=0`（`off`、`false`、`classic` 同义）只把三维渲染换回原来的卡通着色，界面和配色不变，同一标签页里重新载入仍然记得（`sessionStorage` 的 `music-space-event-doodle`）；浏览器缺少所需的 WebGL2 能力，或涂鸦着色器编译失败时，自动回到原来的渲染；软件渲染或双核设备保留画风，但不做抖线和超采样。
+  - 导出：私人纪念卡与双面纪念 PNG（`memory-card-png.js`、`corner-png.js`）改为同一画风，画之前先载入字体。
+  - 字体：六款自托管字体，按角色改名为 Doodle Display（站酷庆科黄油体 1.000）、Doodle Marker（霞鹜漫黑 1.003）、Doodle Hand（悠哉 Medium 0.868）、Doodle Note（龙藏体 2.001）、Doodle Logo（Luckiest Guy 1.001，Apache-2.0）、Doodle Digits（得意黑 Oblique 2.0.1，保留字体名「Smiley」「得意黑」，所以改名），除 Luckiest Guy 外都是 SIL OFL 1.1。从本站同源加载（`fonts/doodle/`），不用 CDN，不用苹果系统字体；许可全文随字体放在 `fonts/doodle/LICENSES.txt`，来源与改动记在 `THIRD_PARTY_NOTICES.md`。字体按字频切成 `unicode-range` 切片，页面只下载用到的切片：首屏（加载屏、入场卡、入场表单、示例路线卡、示例角色名）的字都在第 0 片，手机首屏 6 个文件约 317 KB；站酷庆科黄油体的「入」与「几」同形、「个」像「卜」，由脚本用它自己的笔画重画，「·」换成它自己的圆点；霞鹜漫黑缺的 ↗ ✓ ♡ 等 12 个符号取自悠哉（`marker-symbols.woff2`）。
+  - 重新生成字体：`pip install fonttools brotli` 之后运行 `python3 scripts/fonts/build-doodle-fonts.py`。上游字体按固定网址下载并校验 SHA-256，下载与许可文本缓存在 `DOODLE_FONT_CACHE`（默认 `/tmp/music-space-font-cache`），产物（`web/event-room/public/fonts/doodle/` 的 woff2、`fonts.css`、`LICENSES.txt`）入库；不属于 `npm run build`。新加的界面文字里有产品从没出现过的字时，会先退回系统字体（不会显示方块），重跑一次脚本即可；新的手写批注先把字加进脚本的 `NOTE_PHRASES`。
+  - 同期修复：重新载入后，照片墙不再对已经发出的交换再次给出「和 TA 交换这个视角」；示例路线的第 3、4 步在重新载入后保持完成；静态站 2 秒一次的轮询会重画私聊并打断它自己的读取，对方的回复要重开私聊才看得到，已修正。示例照片 `man-near.jpg` 原裁切太暗，加了一次记录在案的色阶提亮（[scripts/demo/README.md](scripts/demo/README.md)），`SEED_REV` 升到 2，回访者的示例数据会按规则清掉重建一次。Node 服务：`/event-room` 不带斜杠时先 301 到 `/event-room/`（否则字体等相对网址会 404），静态文件都带 ETag，回访时得到 304。
+- 依赖与许可：新增 devDependency `sql.js` 1.14.2（MIT，只用于静态站）；`THIRD_PARTY_NOTICES.md` 补了 sql.js、示例照片与 Doodle 字体三节。
 - 测试：`npm run test:static` 分三段：`tests/static-*.test.js`；在 sql.js 与浏览器版 crypto/Buffer 垫片上重跑 Worker 模式套件（只允许两处引擎相关的跳过）；`scripts/test/static-build.test.mjs`。`npm run test:release` 通配 `tests/*.test.js`，所以静态测试在默认引擎下也跑。
-- 未验证：真机（iOS Safari、Android Chrome）、微信内置浏览器、大陆网络下的加载；WebKit 与 Gecko 上 IndexedDB 和 Web Locks 的行为；真实用户；AI 在真实观众手机照片上的准确率与耗时（只在公开照片上量过）。示例站是单设备的浏览器内模拟，同场的人是自动回应的虚构角色，不是真人，也不是已上线的多人产品。
+- 未验证：真机（iOS Safari、Android Chrome）、微信内置浏览器、大陆网络下的加载；WebKit 与 Gecko 上 IndexedDB 和 Web Locks 的行为；真实用户；AI 在真实观众手机照片上的准确率与耗时（只在公开照片上量过）。手绘涂鸦风只在桌面 Chrome（含手机尺寸的模拟）上看过，没有在 Safari、Firefox、真机或微信里看过；涂鸦渲染在手机 GPU 上的帧率没有量过。示例站是单设备的浏览器内模拟，同场的人是自动回应的虚构角色，不是真人，也不是已上线的多人产品。
 
 ## 0.16.0 · 2026-09-30
 

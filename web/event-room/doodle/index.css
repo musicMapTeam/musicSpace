@@ -1,0 +1,10 @@
+/* Doodle layer: imported last by app.js so it restyles the existing event-room CSS without editing it.
+   Owners: tokens/type = design system; kit + chrome = app shell; panels-core = photo/exchange path;
+   panels-social = social, games and extras; showcase = the static example site (Route B). */
+@import './tokens.css';
+@import './type.css';
+@import './kit.css';
+@import './chrome.css';
+@import './panels-core.css';
+@import './panels-social.css';
+@import './showcase.css';

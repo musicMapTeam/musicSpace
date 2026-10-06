@@ -43,7 +43,8 @@ import { TAKEN_MIN, VIEWPOINTS, formatTaken, fromInputValue, onEventDay, takenFi
  *   restore(facts) then markup()                     when the panel opens from a draft that came back (a reload, a retry)
  *   facts()                                          at save: { takenAt, takenSource, viewpoint, viewpointSource }, only keys that have a value
  *   requiresViewpoint() / nudge(body)                a saved example without a side gets no 「同一刻的另一面」: block the save and say so
- *   reset()                                          after the save succeeded (forgets the photo and drops any model answer still on its way)
+ *   reset()                                          after the save succeeded (forgets the photo and drops any model answer still on its way;
+ *                                                    the sheet the form is in goes back to its top, for what the page draws there next)
  *   warmUp()                                         after the visitor has joined, before an example is loaded
  *
  * markup() is a pure function of the module's state plus its arguments, and patch(container) leaves the dynamic parts of the DOM (AI line,
@@ -124,6 +125,17 @@ function freshState() {
 }
 
 const cls = (...names) => names.filter(Boolean).join(' ');
+/** The nearest box that scrolls `node` (the panel sheet), or null when nothing does. */
+function scrollerOf(node) {
+  for (let box = node?.parentElement; box; box = box.parentElement) {
+    if (box.scrollHeight > box.clientHeight + 1 && /^(auto|scroll)$/.test(getComputedStyle(box).overflowY)) return box;
+  }
+  return null;
+}
+// What the model's line takes once it has an answer (its sticker and the gap above it): kept free while the answer is still on its way.
+const AI_LINE_ROOM = 56;
+// The longest a new photo's reveal waits for the photo to decode and the sheet to stop moving.
+const REVEAL_WAIT_MS = 600;
 // photo-insight.js words the room's promise for the 0.16 live page, where what is saved is a 「现场卡」; here it is a photo. The shared sentence stays
 // the one source (so a change there reaches this form); only the noun is swapped, and a sentence without it passes through unchanged.
 const forPhoto = sentence => sentence.replace('保存现场卡时', '保存照片时');
@@ -145,6 +157,7 @@ export function createMomentUpload(options = {}) {
   let busy = false;
   let bound = null;
   let unbinders = [];
+  let revealTurn = 0;                              // bumped by every reveal and reset: a reveal still waiting for the photo to decode is dropped
 
   const roomOf = () => { try { return String(getRoomId?.() ?? ''); } catch { return ''; } };
   const dateOf = () => { try { return String((typeof eventDate === 'function' ? eventDate() : eventDate) ?? ''); } catch { return ''; } };
@@ -241,14 +254,20 @@ export function createMomentUpload(options = {}) {
     return true;
   }
 
-  /** The photo was saved, or given up on: forget it and everything the model may still say about it. */
+  /**
+   * The photo was saved, or given up on: forget it and everything the model may still say about it. A form that starts over starts from the top, so
+   * the sheet it is in goes back to its top too: what the page draws next in that sheet (the wall, right after a save) does not open where the save
+   * button was, half way down.
+   */
   function reset() {
     pickGeneration += 1;
     identifyToken += 1;
+    revealTurn += 1;
     cancelIdentify();
     working = '';
     state = freshState();
     notify({ page: false });
+    try { const form = findForm(bound); const sheet = form ? scrollerOf(form) : null; if (sheet) sheet.scrollTop = 0; } catch { /* no layout to scroll */ }
   }
 
   // ---- picking ------------------------------------------------------------------------------------------------------------
@@ -276,9 +295,61 @@ export function createMomentUpload(options = {}) {
     revealView();
   }
 
-  /** On a short screen the chips and the model's line lie below the photo: bring them into view (a no-op when they already are). */
+  /**
+   * The photo is in: show it with its side. When the chips and the model's line lie below the sheet's edge, the sheet scrolls until the taped
+   * polaroid starts at its top (the Doodle layer gives it a scroll margin). That edge depends only on the heading and the pickers above it, never on
+   * the photo decoding or the model's answer arriving, so the sheet does not stop half way through a line. A sheet too short for the polaroid and
+   * the chips together starts at 「我拍的这一面」 instead; a sheet that already shows them does not move (its heading stays). The small print under
+   * the model's line may stay below the edge, like the rest of the form. While the answer is on its way, room is kept for it. The look waits until
+   * the photo has decoded and the sheet has finished popping in (at most REVEAL_WAIT_MS), then a frame, and it measures in the sheet's own pixels
+   * (a sheet that is still scaled would seem to fit); a newer photo or a reset drops a look that is still waiting.
+   */
   function revealView() {
-    try { bound?.querySelector?.('.moment-view')?.scrollIntoView?.({ block: 'nearest', inline: 'nearest' }); } catch { /* no layout to scroll */ }
+    const turn = ++revealTurn;
+    let form = null;
+    try { form = findForm(bound); } catch { /* no DOM */ }
+    if (!form) return;
+    const look = () => {
+      if (turn !== revealTurn) return;
+      try {
+        const live = findForm(bound);                // the page may have drawn the form again meanwhile
+        const taken = live?.querySelector('.moment-taken');
+        const view = live?.querySelector('.moment-view');
+        const chips = live?.querySelector('.moment-chips');
+        const line = live?.querySelector('[data-ai-line]');
+        if (!taken || !view || !chips || view.hidden || !view.isConnected) return;
+        const sheet = scrollerOf(live);
+        if (!sheet) return;
+        const box = sheet.getBoundingClientRect();
+        const scale = sheet.offsetHeight > 0 && box.height > 0 ? box.height / sheet.offsetHeight : 1;
+        const top = node => (node.getBoundingClientRect().top - box.top) / scale;
+        const bottom = node => (node.getBoundingClientRect().bottom - box.top) / scale;
+        const waiting = aiAvailable() && ['idle', 'thinking', 'loading'].includes(state.answer.phase);
+        const end = Math.max(line && line.textContent.trim() ? bottom(line) : 0, bottom(chips) + (waiting ? AI_LINE_ROOM : 0));
+        const margin = node => parseFloat(getComputedStyle(node).scrollMarginTop) || 0;
+        // already in view: the polaroid with its tape (not cut at the top, as after a new photo replaced a taller one) down to the model's line
+        if (top(taken) - margin(taken) >= sheet.clientTop && end <= sheet.clientTop + sheet.clientHeight) return;
+        const both = end - top(taken) + margin(taken) <= sheet.clientHeight;
+        // the legend can start the sheet only if the form goes on far enough below it; otherwise the sheet would stop short, half way through
+        // whatever lies above (a photo without a time: its open time field), so it starts at the polaroid and the chips follow below the edge
+        const reachable = top(view) - margin(view) - sheet.clientTop <= sheet.scrollHeight - sheet.clientHeight - sheet.scrollTop + 1;
+        (both || !reachable ? taken : view).scrollIntoView({ block: 'start', inline: 'nearest' });
+      } catch { /* no layout to scroll */ }
+    };
+    const picture = form.querySelector?.('.photo-review');
+    const waits = [typeof picture?.decode === 'function' ? picture.decode().catch(() => {}) : null];
+    try {
+      for (const animation of document.getAnimations()) {
+        const finite = Number.isFinite(animation.effect?.getComputedTiming?.().endTime);
+        if (finite && animation.effect?.target?.contains?.(form)) waits.push(animation.finished.catch(() => {}));
+      }
+    } catch { /* nothing is moving */ }
+    let timer = null;
+    const cap = new Promise(resolve => { timer = setTimeout(resolve, REVEAL_WAIT_MS); });
+    Promise.race([Promise.all(waits), cap]).then(() => {
+      clearTimeout(timer);
+      if (typeof requestAnimationFrame === 'function') requestAnimationFrame(look); else look();
+    });
   }
 
   async function run(file, generation, sample) {
@@ -408,7 +479,8 @@ export function createMomentUpload(options = {}) {
       status: WORKING[working] || '',
       taken: {
         line: problem ? '暂无可用的拍摄时间' : view.line,
-        note: known ? `· ${time.demo ? stringOr(demo?.note, DEMO_NOTE) : view.note}` : '',
+        none: Boolean(problem) || !known,              // the line is a sentence (「没读到拍摄时间…」), not a clock
+        note: known ? (time.demo ? stringOr(demo?.note, DEMO_NOTE) : view.note) : '',
         editHidden: !(known && view.editable && !s.edit),
         open,
         label: view.mode === 'guess' ? '大约的时间 · 北京时间' : known ? '修改拍摄时间 · 北京时间' : '拍摄时间 · 北京时间',
@@ -446,11 +518,14 @@ export function createMomentUpload(options = {}) {
   /**
    * The photo and when it was taken, one card: the picture, its time (and the way to change it), what it is if it is an example, the time field.
    * It is always in the page and shut (hidden) until there is a photo to talk about; the picture itself exists only for a valid draft.
+   * The status line reads 「拍摄于 21:47 · 来自照片自带的信息」; its 「 · 」 is a span of its own (shut while there is no note), so the Doodle layer can
+   * set the note on a line under the clock without a line that starts with a lone 「·」, while a screen reader still hears the one sentence.
    */
   function takenMarkup(taken, esc, { photo, flag }) {
     return `<div class="moment-taken" data-taken${photo ? '' : ' hidden'}>`
       + (photo ? `<img class="photo-review" src="${esc(photo.dataUrl)}" alt="${uploadsToServer ? '本次待上传的照片' : '待保存的照片'}">` : '')
-      + `<div class="moment-taken__row"><p class="moment-taken__line" role="status" aria-live="polite"><span data-taken-line>${esc(taken.line)}</span> <small data-taken-note>${esc(taken.note)}</small></p>`
+      + `<div class="moment-taken__row"><p class="moment-taken__line" role="status" aria-live="polite"><span data-taken-line${taken.none ? ' data-taken-none' : ''}>${esc(taken.line)}</span>`
+      + `<span class="moment-taken__sep" data-taken-sep${taken.note ? '' : ' hidden'}> · </span><small data-taken-note>${esc(taken.note)}</small></p>`
       + `<button type="button" class="moment-taken__edit" data-taken-edit aria-controls="moment-taken-field" aria-expanded="${taken.open}"${taken.editHidden ? ' hidden' : ''}>修改时间</button></div>`
       + flag
       + `<div class="moment-taken__field" id="moment-taken-field" data-taken-field${taken.open ? '' : ' hidden'}>`
@@ -481,7 +556,7 @@ export function createMomentUpload(options = {}) {
     const samples = sampleList.length
       ? `<div class="moment-samples" role="group" aria-labelledby="moment-samples-title"><p class="moment-samples__title" id="moment-samples-title">${esc(SAMPLES_TITLE)}</p><div class="moment-samples__list">${sampleList.map(item => sampleMarkup(item, m.sampleId === item.id, esc)).join('')}</div></div>`
       : '';
-    const flag = sample ? `<p class="moment-sample-flag" data-sample-flag>示例照片 · ${esc(stringOr(sample.note, SAMPLE_NOTE_FALLBACK))}</p>` : '';
+    const flag = sample ? `<p class="moment-sample-flag" data-sample-flag><b class="moment-sample-flag__tag">示例照片</b><span class="moment-sample-flag__sep"> · </span>${esc(stringOr(sample.note, SAMPLE_NOTE_FALLBACK))}</p>` : '';
     return `${heading ? `<small class="eyebrow">${EYEBROW}</small><h2>${TITLE}</h2>` : ''}`
       + `<form class="${photo ? 'moment-upload has-photo' : 'moment-upload'}" data-form="upload" data-room="${esc(room)}" novalidate>`
       + `<label class="file-choice"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5h16v15H4zM4 16l5-5 4 4 3-3 4 4M8 8h.1"/></svg>选照片<input type="file" name="photo" accept="image/jpeg,image/png,image/webp"></label>${samples}`
@@ -516,7 +591,11 @@ export function createMomentUpload(options = {}) {
     if (!live) return true;
 
     const { taken } = m;
-    setText(find('[data-taken-line]'), taken.line);
+    const clock = find('[data-taken-line]');
+    setText(clock, taken.line);
+    setAttribute(clock, 'data-taken-none', taken.none ? '' : null);
+    const separator = find('[data-taken-sep]');
+    if (separator) separator.hidden = !taken.note;
     setText(find('[data-taken-note]'), taken.note);
     const edit = find('[data-taken-edit]');
     if (edit) { edit.hidden = taken.editHidden; setAttribute(edit, 'aria-expanded', String(taken.open)); }

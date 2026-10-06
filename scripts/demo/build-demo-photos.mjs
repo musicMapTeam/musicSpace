@@ -1,6 +1,7 @@
 // One-off, macOS-only (/usr/bin/sips): cuts the six bundled demo photos out of the two AI-generated concert images that already live in
-// web/assets/ (stage-scene.png, crowd-scene.png; provenance in web/assets/image-provenance.json) and stamps the two sample photos with a
-// fictional capture time. The OUTPUTS are committed (web/static-runtime/demo-assets/ with manifest.json); CI and the site build never run this.
+// web/assets/ (stage-scene.png, crowd-scene.png; provenance in web/assets/image-provenance.json), lifts the levels of the one cut that is too
+// dark to read (man-near, PLAN `tone`) and stamps the two sample photos with a fictional capture time. The OUTPUTS are committed
+// (web/static-runtime/demo-assets/ with manifest.json); CI and the site build never run this.
 // scripts/demo/README.md says what the photos are, where they come from and what was measured on them.
 //
 //   node scripts/demo/build-demo-photos.mjs                 cut, verify, write the six JPEGs and manifest.json
@@ -8,12 +9,12 @@
 //   node scripts/demo/build-demo-photos.mjs --accept-new-sample-pixels
 //                                                           only after the sample pixels changed on purpose (see MEASURED_SAMPLE_PIXELS)
 //
-// Every file records its source, crop box, size, bytes and sha256 in manifest.json; the stamped samples also record the fictional capture
-// time and pixelSha256, the hash of the file without the stamped Exif segment (= the pixels the AI was measured on).
+// Every file records its source, crop box, size, bytes and sha256 in manifest.json (and its `tone` when it has one); the stamped samples also
+// record the fictional capture time and pixelSha256, the hash of the file without the stamped Exif segment (= the pixels the AI was measured on).
 import { execFileSync } from 'node:child_process';
 import { readFileSync, writeFileSync, mkdirSync, mkdtempSync, rmSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { inflateSync } from 'node:zlib';
+import { crc32, deflateSync, inflateSync } from 'node:zlib';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
@@ -26,15 +27,21 @@ export const SIPS = '/usr/bin/sips';
 export const QUALITY = 80;
 export const OFFSET = '+08:00';                           // the fictional camera clock is set to Beijing time
 
-/** Boxes are x, y, w, h in the 1536x1024 source. Four photos belong to the cast (roster.js), two are the samples a visitor can pick. */
+/**
+ * Boxes are x, y, w, h in the 1536x1024 source. Four photos belong to the cast (roster.js), two are the samples a visitor can pick.
+ * `tone` (optional) is one levels step on the lossless cut, the same table for each colour channel (toneTable): black and white are the
+ * input levels that become 0 and 255, gamma the exponent in between (below 1 lifts the mid-tones). man-near, the crowd's back rows in the
+ * dark, measures a mean luminance of 9 of 255 as cut (the other crops 23 to 75) and reads as a failed image in a polaroid; with this lift
+ * it measures 37. Never on a sample: their pixels are the ones the AI was measured on.
+ */
 export const PLAN = Object.freeze([
   { file: 'yao-stage.jpg', source: 'crowd-scene.png', box: { x: 0, y: 60, w: 620, h: 413 } },
   { file: 'man-crowd.jpg', source: 'crowd-scene.png', box: { x: 200, y: 380, w: 620, h: 413 } },
   { file: 'bei-balcony.jpg', source: 'stage-scene.png', box: { x: 1000, y: 0, w: 536, h: 357 } },
-  { file: 'man-near.jpg', source: 'crowd-scene.png', box: { x: 0, y: 650, w: 700, h: 374 } },
+  { file: 'man-near.jpg', source: 'crowd-scene.png', box: { x: 0, y: 650, w: 700, h: 374 }, tone: { black: 2, white: 70, gamma: 0.85 } },
   { file: 'sample-stage.jpg', source: 'stage-scene.png', box: { x: 340, y: 120, w: 840, h: 560 }, exif: '2026-09-26T21:47:50' },
   { file: 'sample-crowd.jpg', source: 'crowd-scene.png', box: { x: 836, y: 200, w: 700, h: 600 }, exif: '2026-09-26T21:48:10' },
-].map(entry => Object.freeze({ ...entry, box: Object.freeze(entry.box) })));
+].map(entry => Object.freeze({ ...entry, box: Object.freeze(entry.box), ...(entry.tone ? { tone: Object.freeze(entry.tone) } : {}) })));
 
 /**
  * The encoder's own bytes for the two samples (the file without the stamped Exif segment), as they were when the on-device model was run on
@@ -147,6 +154,37 @@ function cutPng(entry, source, tmp) {
   throw new Error(`${file}: sips did not cut the box ${JSON.stringify(box)} out of ${entry.source}`);
 }
 
+/** A PLAN `tone` as a lookup table, input level -> output level, used for R, G and B alike: 255 * ((level - black) / (white - black)) ^ gamma. */
+export function toneTable({ black, white, gamma } = {}) {
+  if (!Number.isInteger(black) || !Number.isInteger(white) || black < 0 || white > 255 || black >= white || !(gamma > 0)) throw new Error(`invalid tone ${JSON.stringify({ black, white, gamma })}`);
+  return Uint8Array.from({ length: 256 }, (_, level) => Math.round(255 * Math.min(1, Math.max(0, (level - black) / (white - black))) ** gamma));
+}
+
+const PNG_SIGNATURE = Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]);
+/** An 8-bit, non-interlaced RGB or RGBA PNG of { width, height, channels, pixels }, every row with filter 0 (what readPng reads back unchanged). */
+export function writePng({ width, height, channels, pixels }) {
+  const chunk = (kind, body) => {
+    const name = Buffer.from(kind, 'latin1'), head = Buffer.alloc(8), tail = Buffer.alloc(4);
+    head.writeUInt32BE(body.length, 0); name.copy(head, 4); tail.writeUInt32BE(crc32(Buffer.concat([name, body])), 0);
+    return Buffer.concat([head, body, tail]);
+  };
+  const header = Buffer.alloc(13);                                        // compression, filter and interlace stay 0
+  header.writeUInt32BE(width, 0); header.writeUInt32BE(height, 4); header[8] = 8; header[9] = channels === 4 ? 6 : 2;
+  const stride = width * channels, raw = Buffer.alloc((stride + 1) * height);
+  for (let y = 0; y < height; y++) pixels.copy(raw, y * (stride + 1) + 1, y * stride, (y + 1) * stride);
+  return Buffer.concat([PNG_SIGNATURE, chunk('IHDR', header), chunk('IDAT', deflateSync(raw)), chunk('IEND', Buffer.alloc(0))]);
+}
+
+/** The lossless cut with its PLAN tone applied to the colour channels, written next to it as a PNG for sips to encode; read back to prove it. */
+function tonePng(entry, cut, tmp) {
+  const image = readPng(readFileSync(cut)), table = toneTable(entry.tone), pixels = Buffer.from(image.pixels);
+  for (let at = 0; at < pixels.length; at += image.channels) for (let channel = 0; channel < 3; channel++) pixels[at + channel] = table[pixels[at + channel]];
+  const png = writePng({ ...image, pixels }), out = join(tmp, entry.file.replace(/\.jpg$/, '-tone.png'));
+  if (!readPng(png).pixels.equals(pixels)) throw new Error(`${entry.file}: the toned PNG does not read back as written`);
+  writeFileSync(out, png);
+  return out;
+}
+
 /** Cuts and stamps everything in memory. Returns { manifest, files: Map(file -> Buffer) }; throws on anything that would ship a wrong file. */
 export function buildDemoPhotos() {
   if (!existsSync(SIPS)) throw new Error('This one-off tool needs macOS sips (/usr/bin/sips). The outputs are committed; you only need it to re-cut them.');
@@ -158,8 +196,9 @@ export function buildDemoPhotos() {
       const source = sources[entry.source];
       if (!source) throw new Error(`${entry.file}: unknown source ${entry.source}`);
       if (!inside(entry.box, source.width, source.height)) throw new Error(`${entry.file}: the box leaves ${entry.source} (${source.width}x${source.height})`);
-      const jpeg = join(tmp, entry.file);
-      sips('-s', 'format', 'jpeg', '-s', 'formatOptions', String(QUALITY), cutPng(entry, source, tmp), '--out', jpeg);
+      if (entry.tone && entry.exif) throw new Error(`${entry.file}: a sample keeps the pixels the AI was measured on, it takes no tone`);
+      const jpeg = join(tmp, entry.file), cut = cutPng(entry, source, tmp);
+      sips('-s', 'format', 'jpeg', '-s', 'formatOptions', String(QUALITY), entry.tone ? tonePng(entry, cut, tmp) : cut, '--out', jpeg);
       const encoded = readFileSync(jpeg);
       const bytes = entry.exif ? stampCaptureTime(encoded, { local: entry.exif, offset: OFFSET }) : encoded;
       const { width, height } = jpegSize(bytes);
@@ -167,7 +206,7 @@ export function buildDemoPhotos() {
       if (bytes.length > LIMITS.bytes || width > LIMITS.edge || height > LIMITS.edge || width * height > LIMITS.pixels) throw new Error(`${entry.file}: over the worker's photo limits`);
       files.set(entry.file, bytes);
       entries.push({
-        file: entry.file, source: entry.source, box: { ...entry.box }, width, height, bytes: bytes.length, sha256: sha256(bytes),
+        file: entry.file, source: entry.source, box: { ...entry.box }, ...(entry.tone ? { tone: { ...entry.tone } } : {}), width, height, bytes: bytes.length, sha256: sha256(bytes),
         fictionalExifTime: entry.exif ? `${entry.exif}${OFFSET}` : null,
         ...(entry.exif ? { pixelSha256: sha256(stripCaptureTime(bytes)) } : {}),
       });

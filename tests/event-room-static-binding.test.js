@@ -16,8 +16,8 @@ import { createMemoryCardExporter } from '../web/event-room/memory-card.js';
 import { memoryCardMarkup } from '../web/event-room/memory-card-view.js';
 import { renderMemoryCardPng, saveMemoryCardDownload } from '../web/event-room/memory-card-png.js';
 import { createMomentUpload } from '../web/event-room/moment-upload.js';
-import { wallMarkup } from '../web/event-room/moment-wall.js';
-import { photoMetaLine, wallReadings } from '../web/event-room/moment-model.js';
+import { wallMarkup, photoMetaHtml } from '../web/event-room/moment-wall.js';
+import { wallReadings } from '../web/event-room/moment-model.js';
 import { profile as serverProfile } from '../web/event-room/runtime-profile.js';
 import { createDemoProfile } from '../web/static-runtime/showcase/demo-hooks.js';
 import { createCopy } from '../web/static-runtime/showcase/copy.js';
@@ -36,6 +36,9 @@ async function until(check, label = 'condition', limit = 2000) {
     await tick();
   }
 }
+
+/** A localStorage stand-in (one per harness unless a test hands the same one to the next page load). */
+const memoryStorage = (items = {}) => { const map = new Map(Object.entries(items)); return { getItem: key => (map.has(key) ? map.get(key) : null), setItem: (key, value) => { map.set(key, String(value)); }, removeItem: key => { map.delete(key); }, get length() { return map.size; }, key: index => [...map.keys()][index] ?? null }; };
 
 const actor = '00000000-0000-4000-8000-000000000001';
 const roomId = '00000000-0000-4000-8000-000000000002';
@@ -126,7 +129,7 @@ function makeProfile({ ready, overrides = {} } = {}) {
   return { profile: { mode: 'static', controllerOptions: () => ({}), copy: createCopy({ aiAvailable: () => true }), demo, ready: Promise.resolve() }, demo, seen, flags };
 }
 
-function harness({ start = inRoom(), url = 'https://musicspace.test/musicSpace/', profile = makeProfile().profile, confirms = true, exchange = {}, uploadFails = false } = {}) {
+function harness({ start = inRoom(), url = 'https://musicspace.test/musicSpace/', profile = makeProfile().profile, confirms = true, exchange = {}, uploadFails = false, reader = { items: [] }, storage = memoryStorage() } = {}) {
   let current = clone(start), subscriber, nextTimer = 0;
   const elements = new Map(), doc = element(), window = element(), calls = [], drafts = [], timers = new Map(), confirmed = [], created = { exchange: [], elements: [] };
   const get = selector => { if (!elements.has(selector)) elements.set(selector, element()); return elements.get(selector); };
@@ -161,9 +164,12 @@ function harness({ start = inRoom(), url = 'https://musicspace.test/musicSpace/'
     createMusicGames: () => ({ open: async () => {}, close() {}, syncIdentity() {}, dispose() {} }), createMusicTopics: () => ({ open: async () => {}, close() {}, syncIdentity() {}, dispose() {} }), createSpaceManagement: () => ({ open: async () => {}, close() {}, syncIdentity() {}, dispose() {} }),
     createModerationPanel: () => ({ close() {}, syncIdentity() {}, refresh: async () => {}, dispose() {} }),
     createExchangePanel: options => { created.exchange.push(options); return { open: async () => {}, openOffer: async photo => calls.push(['exchangeOffer', clone(photo)]), close() {}, syncIdentity() {}, refresh: async () => {}, invalidate() {}, getState: () => exchangeState.state, dispose() {} }; },
+    // the page's own exchange reader (read once per identity and room); `reader.items` is what the room service holds, `reader.fail` makes it fail
+    createExchangeController: () => ({ async list() { calls.push(['readerList']); if (reader.fail) throw Object.assign(new Error('offline'), { code: 'NETWORK' }); return { applied: true }; }, getState: () => ({ list: { items: clone(reader.items) } }), dispose() { calls.push(['readerDispose']); } }),
+    localStorage: storage,
     matchMedia: () => ({ matches: false, addEventListener() {} }), setTimeout: (callback, delay) => { const id = ++nextTimer; timers.set(id, { callback, delay }); return id; }, clearTimeout: id => timers.delete(id),
     createEventController: () => controller, profile, mountLivehouseScene: () => engine,
-    memberFloorPositions, layoutSceneLabels, renderAvatarSvg, recapMarkup, createMemoryCardExporter, memoryCardMarkup, renderMemoryCardPng, saveMemoryCardDownload, createMomentUpload, wallMarkup, photoMetaLine, wallReadings,
+    memberFloorPositions, layoutSceneLabels, renderAvatarSvg, recapMarkup, createMemoryCardExporter, memoryCardMarkup, renderMemoryCardPng, saveMemoryCardDownload, createMomentUpload, wallMarkup, photoMetaHtml, wallReadings,
     AbortController, venueAssetUrl: 'data:model/gltf-binary;base64,c3ludGhldGlj', SESSION_KEY: 'music-space-avatar-session:v1', DEFAULT_AVATAR, SKINS, HAIRS, GARMENT_COLORS, SONGS, safeAvatar, esc,
     qrcode: () => { calls.push(['qrcode']); return { addData() {}, make() {}, createSvgTag: () => '<svg></svg>' }; },
     FormData: class { constructor(form) { this.values = form.values || {}; } get(key) { return this.values[key] ?? null; } getAll(key) { const v = this.values[key]; return v === undefined ? [] : Array.isArray(v) ? v : [v]; } },
@@ -172,7 +178,7 @@ function harness({ start = inRoom(), url = 'https://musicspace.test/musicSpace/'
   vm.runInContext(code + `\nglobalThis.binding={openPanel,closePanel,renderPanel,uploadHtml,momentUpload,tourAction,get:()=>({state,panelKind,panelTarget,photoDraft,lastPanelMarkup,warmedUp,openedRecap,tour}),setPhotoDraft:value=>{photoDraft=value;}};`, context, { filename: 'event-room-static-binding.vm.js' });
   const binding = context.binding;
   return {
-    controller, calls, drafts, emit, window, document: doc, element: get, body, binding, created, confirmed, writes: () => writes, html: () => html, get: () => binding.get(), presence: get('.presence'),
+    controller, calls, drafts, emit, window, document: doc, element: get, body, binding, created, confirmed, writes: () => writes, html: () => html, get: () => binding.get(), presence: get('.presence'), storage,
     setExchange(next) { exchangeState.state = next; },
     async click(dataset) { const button = { dataset, closest(selector) { return selector === 'button' ? this : null; } }; for (const fn of doc.events.get('click') || []) await fn({ target: button }); await tick(); },
     /** The panel body's own delegated listeners (the upload module's), as the browser would call them. */
@@ -320,6 +326,24 @@ test('the About panel is drawn again when what it reports changes (the browser s
   assert.match(h.html(), /没有让这里保存数据/);
 });
 
+test('a sheet that opens starts at its top, also right after a scrolled one (the round × is sticky, focusing it scrolls nothing); a redraw keeps the place', () => {
+  const { profile, flags } = makeProfile();
+  const h = harness({ start: inRoom(), profile });
+  const sheet = h.element('#panel');
+  h.binding.openPanel('room');
+  sheet.scrollTop = 341; // the ··· sheet read to its foot and closed: #panel keeps that offset while it is hidden
+  h.binding.closePanel();
+  h.binding.openPanel('about');
+  assert.equal(sheet.scrollTop, 0);
+  sheet.scrollTop = 700;
+  flags.persistent = false;
+  h.emit(inRoom()); // About is drawn again in place
+  assert.match(h.html(), /没有让这里保存数据/);
+  assert.equal(sheet.scrollTop, 700, 'a redraw of the open sheet keeps the reader where they were');
+  h.binding.openPanel('wall');
+  assert.equal(sheet.scrollTop, 0, 'the next sheet starts at its top');
+});
+
 test('reset asks first: a refusal does nothing, an agreement resets once, a failure is shown', async () => {
   const refused = makeProfile();
   const a = harness({ start: inRoom(), profile: refused.profile, confirms: false });
@@ -431,10 +455,16 @@ test('library and recap photos and the photo detail carry the meta line; a photo
   const h = harness({ start: inRoom({ myPhotos: { items: [timed, bare], nextCursor: null } }), profile: makeProfile().profile });
   h.binding.openPanel('library');
   const html = h.html();
-  assert.match(html, new RegExp(`data-photo="${photoId(7)}">.*?<small class="moment-meta">拍摄于 21:47 · 视角：舞台 · AI 建议，未改动</small></button>`));
+  // the wall's parts (moment-wall.js photoMetaHtml): the time, the side and the byline each wrap whole, the 「 · 」 between them are spans
+  const parts = '<span class="moment-meta__time"><span class="nowrap">拍摄于 21:47</span></span><span class="moment-meta__sep"> · </span><span class="nowrap">视角：舞台</span>'
+    + '<span class="moment-meta__sep"> · </span><span class="nowrap moment-meta__by moment-meta__by--ai">AI 建议，未改动</span>';
+  const caption = new RegExp(`data-photo="${photoId(7)}">.*?<small class="moment-meta">(.*?)</small></button>`).exec(html);
+  assert.ok(caption, 'the meta line closes the photo item');
+  assert.equal(caption[1], parts);
+  assert.equal(plain(caption[1]), '拍摄于 21:47 · 视角：舞台 · AI 建议，未改动');
   assert.match(html, new RegExp(`data-photo="${photoId(8)}"><span>[^<]*</span><strong>[^<]*</strong><small>[^<]*</small></button>`), 'no empty meta element');
   h.binding.openPanel('photo', photoId(7));
-  assert.match(h.html(), /的视角<\/h2><p class="moment-meta">拍摄于 21:47 · 视角：舞台 · AI 建议，未改动<\/p>/);
+  assert.ok(h.html().includes(`的视角</h2><p class="moment-meta">${parts}</p>`), 'the photo page carries the same parts');
   h.binding.openPanel('photo', photoId(8));
   assert.doesNotMatch(h.html(), /moment-meta/);
 });
@@ -815,6 +845,61 @@ test('a receipt that is not a send, or arrives with no offer opened, is not mist
   assert.equal(sent.views.at(-1).exchanges.total, 1);
   sent.h.emit(initial({ room: room({ id: 'another-room-id' }), route: { kind: 'room', target: 'another-room-id' }, members: [me] }));
   assert.equal(sent.views.at(-1).exchanges.total, 0, 'leaving for another room forgets the old room\'s exchanges');
+});
+
+test('after a reload the room\'s exchanges are read once, with a reader of their own: the wall says 已有交换 and offers the next other side', async () => {
+  const mine = shot(9, actor, [21, 48, 10], 'crowd');
+  const accepted = { id: 'x-old', roomId, senderId: actor, recipientId: YAO, offeredPhotoId: mine.id, requestedPhotoId: photoId(1), status: 'accepted' };
+  const elsewhere = { ...accepted, id: 'x-elsewhere', roomId: 'another-room-id', requestedPhotoId: photoId(3) };
+  const { h, views } = tourHarness({ start: inRoom({ photos: [...seeded(), mine] }), reader: { items: [accepted, elsewhere] } });
+  await settle();
+  assert.deepEqual(h.calls.filter(([name]) => name === 'readerList' || name === 'readerDispose').map(([name]) => name), ['readerList', 'readerDispose'], 'one read, then the reader is let go');
+  assert.equal(views.at(-1).exchanges.total, 1, 'step three of the tour stays done; another room\'s exchange is not this room\'s');
+  h.binding.openPanel('wall');
+  assert.deepEqual([...h.html().matchAll(/data-exchange-offer="([^"]+)"/g)].map(match => match[1]), [photoId(3)], 'the photo already exchanged is not offered again');
+  assert.match(h.html(), /已有交换/);
+  h.emit(inRoom({ photos: [...seeded(), mine] }));
+  await settle();
+  assert.equal(h.calls.filter(([name]) => name === 'readerList').length, 1, 'renders and polls do not read it again');
+});
+
+test('a failed exchange read is tried again on a later render, and a new room is read on its own', async () => {
+  const reader = { items: [], fail: true };
+  const { h } = tourHarness({ reader });
+  await settle();
+  assert.equal(h.calls.filter(([name]) => name === 'readerList').length, 1);
+  reader.fail = false;
+  h.emit(inRoom());
+  await settle();
+  assert.equal(h.calls.filter(([name]) => name === 'readerList').length, 2, 'the failure did not count as read');
+  h.emit(inRoom());
+  await settle();
+  assert.equal(h.calls.filter(([name]) => name === 'readerList').length, 2);
+  h.emit(initial({ room: room({ id: 'another-room-id' }), route: { kind: 'room', target: 'another-room-id' }, members: [me] }));
+  await settle();
+  assert.equal(h.calls.filter(([name]) => name === 'readerList').length, 3);
+});
+
+test('steps three and four stay done after a reload: kept for this identity and room under the tour\'s purge-listed prefix', async () => {
+  const KEY = 'music-space-tour:done:v1', mine = shot(9, actor, [21, 48, 10], 'crowd'), withMine = () => inRoom({ photos: [...seeded(), mine] });
+  const storage = memoryStorage();
+  const first = tourHarness({ storage, start: withMine() });
+  await first.h.click({ exchangeOffer: photoId(1) });
+  first.h.setExchange({ lastResult: { type: 'create', exchangeId: 'x-3', committed: true } });
+  first.h.emit(withMine());
+  await first.h.click({ open: 'recap', id: roomId });
+  assert.deepEqual(JSON.parse(storage.getItem(KEY)), { v: 1, actor, room: roomId, exchange: true, recap: true });
+  const again = tourHarness({ storage, start: withMine(), reader: { items: [], fail: true } });    // the next page load, before (or without) the list
+  assert.equal(again.views.at(-1).exchanges.total, 1, 'step three is still done');
+  assert.equal(again.views.at(-1).openedRecap, true, 'step four is still done');
+  assert.equal(again.h.get().openedRecap, false, 'this page itself has not opened the recap');
+  const elsewhere = tourHarness({ storage, start: initial({ room: room({ id: 'another-room-id' }), route: { kind: 'room', target: 'another-room-id' }, members: [me] }) });
+  assert.deepEqual([elsewhere.views.at(-1).exchanges.total, elsewhere.views.at(-1).openedRecap], [0, false], 'another room starts again');
+  const stranger = tourHarness({ storage: memoryStorage({ [KEY]: JSON.stringify({ v: 1, actor: '00000000-0000-4000-8000-0000000000ff', room: roomId, exchange: true, recap: true }) }) });
+  assert.deepEqual([stranger.views.at(-1).exchanges.total, stranger.views.at(-1).openedRecap], [0, false], 'another identity starts again');
+  const server = harness({ profile: { ...serverProfile, demo: null } });
+  await server.click({ open: 'recap', id: roomId });
+  assert.equal(server.storage.getItem(KEY), null, 'the room server has no tour and keeps nothing');
 });
 
 test('the tour follows the panels: it is told which one is open, also when it opens or closes between renders', async () => {

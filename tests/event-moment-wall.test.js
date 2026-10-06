@@ -4,7 +4,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { venueTime } from '../web/js/moment.js';
 import { escape as esc } from '../web/avatar/model.js';
-import { BADGE_TITLE, EMPTY_WALL, EXCHANGED_TAG, GROUP_NOTE, OFFER_LABEL, PIPELINE_RIBBON, UNTIMED_NOTE, UNTIMED_TITLE, wallMarkup } from '../web/event-room/moment-wall.js';
+import { BADGE_TITLE, EMPTY_WALL, EXCHANGED_TAG, GROUP_NOTE, OFFER_LABEL, PIPELINE_RIBBON, UNTIMED_NOTE, UNTIMED_TITLE, photoMetaHtml, wallMarkup } from '../web/event-room/moment-wall.js';
 
 const DATE = '2026.09.26';
 const at = (hour, minute, second = 0) => venueTime(2026, 9, 26, hour, minute, second);
@@ -94,7 +94,11 @@ test('moment wall: only the best other side carries the 同一刻的另一面 bl
   assert.match(badge, /<span class="nowrap">21:47<\/span>/, 'the reason is moment.js reasonHtml: small units do not break');
   assert.match(badge, /<button type="button" class="primary" data-exchange-offer="man-crowd" aria-label="和 TA 交换这个视角（小满·示例 的照片）">和 TA 交换这个视角<\/button>/);
   assert.equal(OFFER_LABEL, '和 TA 交换这个视角');
-  assert.ok(owner[0].html.indexOf('<p class="moment-meta">') < owner[0].html.indexOf('data-moment-badge'), 'item, meta line, then the block');
+  // the block leads the best card (it is drawn there, so focus meets the button first too): the block, then the item, then its meta line
+  assert.ok(owner[0].html.indexOf('data-moment-badge') < owner[0].html.indexOf('class="photo-item"'), 'the block, then the item');
+  assert.ok(owner[0].html.indexOf('class="photo-item"') < owner[0].html.indexOf('<p class="moment-meta">'), 'the item, then its meta line');
+  assert.match(owner[0].html, /^<div class="moment-card moment-card--best" data-moment-photo="man-crowd"><div class="moment-badge" data-moment-badge="other-side">/);
+  assert.match(owner[0].html, /<\/button><p class="moment-meta">[\s\S]*<\/p><\/div>$/, 'the meta line closes the card');
   assert.ok(owner[0].html.includes('moment-card moment-card--best'));
 });
 
@@ -264,13 +268,33 @@ test('moment wall: section headings are labelled for screen readers and ids are 
 test('moment wall: small units never break across lines, and a long date may break between its day and its clock', () => {
   const html = wall([yao, manCrowd, bei, mine]);
   const title = /<h3[^>]*>(.*?)<\/h3>/.exec(html)[1];
-  assert.equal(title, '<span class="nowrap">21:47</span> · <span class="nowrap">同一刻</span> · <span class="nowrap">3 个视角：</span><span class="nowrap">舞台</span> · <span class="nowrap">人海</span> · <span class="nowrap">细节</span>');
-  assert.match(html, /<p class="moment-meta"><span class="nowrap">拍摄于 21:47<\/span> · <span class="nowrap">视角：舞台<\/span> · <span class="nowrap">作者选择<\/span><\/p>/);
+  // the clock, 「同一刻」 and the sides are parts of their own; the 「 · 」 between them is a span (read aloud, spaced on screen), the text is the same
+  assert.equal(title, '<span class="moment-group__clock"><span class="nowrap">21:47</span></span><span class="moment-group__sep"> · </span><span class="nowrap moment-group__same">同一刻</span><span class="moment-group__sep"> · </span>'
+    + '<span class="moment-group__sides pc-dots"><span class="pc-dots__in"><span class="pc-dots__item"><span class="nowrap">3 个视角：</span><span class="nowrap">舞台</span></span><span class="moment-group__sep"> · </span><span class="pc-dots__item"><span class="nowrap">人海</span></span><span class="moment-group__sep"> · </span><span class="pc-dots__item"><span class="nowrap">细节</span></span></span></span>');
+  assert.match(html, /<p class="moment-meta"><span class="moment-meta__time"><span class="nowrap">拍摄于 21:47<\/span><\/span><span class="moment-meta__sep"> · <\/span><span class="nowrap">视角：舞台<\/span><span class="moment-meta__sep"> · <\/span><span class="nowrap moment-meta__by">作者选择<\/span><\/p>/);
+  const untimedSide = wall([yao, photo('no-time', 'man', null, 'crowd')]);
+  assert.match(untimedSide, /<p class="moment-meta"><span class="nowrap">视角：人海<\/span><span class="moment-meta__sep"> · <\/span><span class="nowrap moment-meta__by">作者选择<\/span><\/p>/, 'no time: no time part, the byline is still marked');
+  const single = /<h3[^>]*>(.*?)<\/h3>/.exec(wall([manNear, yao]).split('data-moment-group="m').at(-1))[1];
+  assert.equal(single, '<span class="moment-group__clock"><span class="nowrap">22:21</span></span>', 'a group of one photo is its clock alone');
   const old = photo('old', 'yao', venueTime(2025, 7, 10, 10, 53), 'crowd', { viewpointSource: 'ai' });
   const oldHtml = wall([old, photo('old2', 'man', venueTime(2025, 7, 10, 10, 54), 'detail')]);
   assert.deepEqual(metaLines(oldHtml), ['拍摄于 2025年7月10日 10:53 · 视角：人海 · AI 建议，未改动', '拍摄于 2025年7月10日 10:54 · 视角：细节 · 作者选择']);
+  assert.match(oldHtml, /<span class="nowrap moment-meta__by moment-meta__by--ai">AI 建议，未改动<\/span>/, 'the AI byline is marked apart from 作者选择');
+  assert.equal(count(oldHtml, 'moment-meta__by--ai'), 1);
   assert.ok(!/<span class="nowrap">拍摄于 2025/.test(oldHtml), 'a unit never holds a whole long date, which would not fit a narrow column');
   assert.equal(plain(/<h3[^>]*>(.*?)<\/h3>/.exec(oldHtml)[1]), '2025年7月10日 10:53 · 同一刻 · 2 个视角：人海 · 细节');
+});
+
+test('photoMetaHtml: the wall\'s meta line in its parts, for the captions app.js draws outside the wall; nothing for a photo with nothing to say', () => {
+  const kept = photo('me-ai', 'me', at(21, 47, 50), 'stage', { viewpointSource: 'ai' });
+  const parts = photoMetaHtml(kept, { eventDate: DATE, esc });
+  assert.equal(parts, '<span class="moment-meta__time"><span class="nowrap">拍摄于 21:47</span></span><span class="moment-meta__sep"> · </span><span class="nowrap">视角：舞台</span>'
+    + '<span class="moment-meta__sep"> · </span><span class="nowrap moment-meta__by moment-meta__by--ai">AI 建议，未改动</span>');
+  assert.ok(wall([yao, kept]).includes(`<p class="moment-meta">${parts}</p>`), 'the wall\'s own line for that photo is the same markup');
+  assert.equal(plain(photoMetaHtml(yao, { eventDate: DATE })), '拍摄于 21:47 · 视角：舞台 · 作者选择', 'without an escaper given it escapes on its own; the text is the meta line');
+  assert.equal(photoMetaHtml(photo('bare', 'man', null, null), { eventDate: DATE, esc }), '');
+  assert.equal(photoMetaHtml({ viewpoint: '<b>x</b>', viewpointSource: 'ai' }, { esc }), '');
+  assert.equal(photoMetaHtml(null), '');
 });
 
 test('moment wall: junk in any photo field never throws and never becomes markup (seeded fuzz)', () => {

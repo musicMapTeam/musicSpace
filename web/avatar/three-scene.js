@@ -3,7 +3,7 @@ import { createBenchmarkCharacter } from '../character-lab/character.js';
 import { createIllustratedPerson } from '../event-room/illustrated-person.js';
 import { loadBlenderVenue } from '../event-room/venue-asset.js';
 import { overviewCameraLayout } from '../event-room/scene-layout.js';
-import { VENUE_PRINT_PALETTE, galleryColumns, GALLERY_PRINT_ASPECT, paintStagePrint, paintGalleryPrint, stagePrintLayout } from '../event-room/venue-art.js';
+import { VENUE_PRINT_PALETTE, CLASSIC_VENUE_PALETTE, DOODLE_COLORS, DOODLE_KRAFT, galleryColumns, GALLERY_PRINT_ASPECT, paintStagePrint, paintGalleryPrint, paintClassicStageSign, paintClassicStagePrint, paintClassicGalleryPrint, stagePrintLayout, loadVenuePrintFonts, createDoodlePass, patchDoodleCel, doodleWanted, DOODLE_CODE } from '../event-room/venue-art.js';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 import { createCelMaterials } from '../js/vendor/sakura/toon.js';
 import { Pipeline } from '../js/vendor/sakura/post.js';
@@ -21,6 +21,11 @@ const PALETTE = {
 const UP = new THREE.Vector3(0, 1, 0);
 const clamp = (n, lo, hi) => Math.min(hi, Math.max(lo, n));
 const validNumber = (n, fallback) => Number.isFinite(Number(n)) ? Number(n) : fallback;
+/** The event room page carries the Doodle tokens (web/event-room/doodle/tokens.css on :root). */
+function pageHasDoodleTokens() {
+  try { return getComputedStyle(document.documentElement).getPropertyValue('--ds-paper').trim() !== ''; }
+  catch { return false; }
+}
 
 /** Local Three r186 compatibility adapter for the existing Sakura cel API.
  * The ramp/tinted-band approach follows Sakura Crossing (MIT, Kenton Wang,
@@ -29,7 +34,7 @@ const validNumber = (n, fallback) => Number.isFinite(Number(n)) ? Number(n) : fa
  * provide hard box faces and smooth curved surfaces instead. No warnings are
  * intercepted or suppressed here.
  */
-function createLivehouseCelMaterials(){
+function createLivehouseCelMaterials(doodle={active:false}){
   const ramps=new Map(),cache=new Map(),owned=new Set();
   const stops={2:[104,255],3:[104,190,255],4:[90,150,205,255],soft:[190,255],soft3:[175,220,255]};
   const ramp=(bands=3)=>{
@@ -50,13 +55,15 @@ function createLivehouseCelMaterials(){
       const source='vec3 irradiance = getGradientIrradiance( geometryNormal, directLight.direction ) * directLight.color;';
       if(chunk?.includes(source)){
         const uniform={value:new THREE.Color(tint)};
-        material.onBeforeCompile=shader=>{shader.uniforms.uLiveShadowTint=uniform;shader.fragmentShader=shader.fragmentShader.replace('#include <lights_toon_pars_fragment>', 'uniform vec3 uLiveShadowTint;\n'+chunk.replace(source,'vec3 band = getGradientIrradiance( geometryNormal, directLight.direction ); vec3 irradiance = band * mix( uLiveShadowTint, vec3(1.0), band ) * directLight.color;'));};
-        material.customProgramCacheKey=()=>`live-cel-r186-${uniform.value.getHexString()}`;
+        // The doodle style swaps the whole program (flat paper colour plus a lit
+        // band code); the classic tinted ramp stays the fallback for ?doodle=0.
+        material.onBeforeCompile=shader=>{if(doodle.active&&patchDoodleCel(shader,{...doodle.uniforms,terminator:material.userData.doodleTerminator||doodle.uniforms.terminator,recolor:material.userData.doodleRecolor}))return;shader.uniforms.uLiveShadowTint=uniform;shader.fragmentShader=shader.fragmentShader.replace('#include <lights_toon_pars_fragment>', 'uniform vec3 uLiveShadowTint;\n'+chunk.replace(source,'vec3 band = getGradientIrradiance( geometryNormal, directLight.direction ); vec3 irradiance = band * mix( uLiveShadowTint, vec3(1.0), band ) * directLight.color;'));};
+        material.customProgramCacheKey=()=>doodle.active?(material.userData.doodleRecolor?'live-cel-r186-doodle-recolor':'live-cel-r186-doodle'):`live-cel-r186-${uniform.value.getHexString()}`;
       }
     }
     owned.add(material);if(key)cache.set(key,material);return material;
   };
-  return {cel:options=>create(options),flat:options=>create(options,true),dispose(){owned.forEach(material=>material.dispose());ramps.forEach(texture=>texture.dispose());cache.clear();owned.clear();ramps.clear();}};
+  return {cel:options=>create(options),flat:options=>create(options,true),recompile(){owned.forEach(material=>{material.needsUpdate=true;});},dispose(){owned.forEach(material=>material.dispose());ramps.forEach(texture=>texture.dispose());cache.clear();owned.clear();ramps.clear();}};
 }
 
 /**
@@ -70,6 +77,12 @@ function createLivehouseCelMaterials(){
 export function mountToonScene(container, initialState = {}) {
   if (!container?.append) throw new TypeError('A scene container is required');
   const liveMode = initialState.mode === 'livehouse';
+  // The Doodle room (docs/design/doodle.md §6) belongs to the event room only:
+  // renderStyle:'doodle' asks for it, and without an explicit choice a page that
+  // carries the Doodle tokens is the event room. Every other page that mounts
+  // the livehouse (the /livehouse/ sample) keeps the classic room as it was.
+  // Decided once per mount; ?doodle=0 only swaps the renderer, not the palette.
+  const doodleStyle = liveMode && initialState.renderStyle !== 'classic' && (initialState.renderStyle === 'doodle' || pageHasDoodleTokens());
   const renderer = new THREE.WebGLRenderer({
     alpha: true, antialias: false, stencil: false,
     preserveDrawingBuffer: true, powerPreference: 'low-power',
@@ -94,7 +107,11 @@ export function mountToonScene(container, initialState = {}) {
   const set = new THREE.Group();
   const people = new THREE.Group();
   scene.add(set, people);
-  const cel=liveMode?createLivehouseCelMaterials():createCelMaterials();
+  // Doodle render style (docs/design/doodle.md §6), live room only. Its pass is
+  // created next to the classic pipeline below; ?doodle=0, a missing WebGL2
+  // feature or a shader that fails to compile keeps the classic renderer.
+  const doodleState={active:false,uniforms:{terminator:{value:.12},key:{value:1}}};
+  const cel=liveMode?createLivehouseCelMaterials(doodleState):createCelMaterials();
   const resources = { geometries: new Set(), materials: new Set(), textures: new Set() };
   const geo = g => (resources.geometries.add(g), g);
   const mat = m => (resources.materials.add(m), m);
@@ -144,12 +161,24 @@ export function mountToonScene(container, initialState = {}) {
   scene.add(warm, moon, fill, poolA, poolB);
 
   const pipeline = new Pipeline(renderer, scene, camera, { pixelBudget: 1900000, maxPixelRatio: 1.65 });
+  let doodle=null,doodleFault=false,exactSize=false,resetClassicSize=()=>{};
+  if(doodleStyle&&doodleWanted()){
+    try{doodle=createDoodlePass(renderer,scene,()=>camera,{ink:DOODLE_COLORS.ink,paper:DOODLE_COLORS.paper});}
+    catch(error){doodle=null;console.warn('Music Space: the doodle renderer is unavailable; using the classic renderer.',error);}
+    if(doodle){
+      doodleState.active=true;
+      if(renderer.debug)renderer.debug.onShaderError=(gl,program,vertex,fragment)=>{doodleFault=true;console.error('Music Space: a doodle shader did not compile; switching to the classic renderer.\n'+[gl.getProgramInfoLog(program),gl.getShaderInfoLog(vertex),gl.getShaderInfoLog(fragment)].filter(Boolean).join('\n'));};
+    }
+  }
+  const doodleOn=()=>doodleState.active&&doodle!==null;
   if(liveMode){
     // A small phone canvas can afford 2× offscreen sampling. Keep canvas/export
     // dimensions unchanged, cap total working pixels, and leave vendor code and
     // the original avatar workspace resolution policy untouched.
     let outputWidth=0,outputHeight=0;
+    resetClassicSize=()=>{outputWidth=outputHeight=0;};
     pipeline.setSize=(w,h)=>{
+      if(doodleOn()){doodle.setSize(w,h,{exact:exactSize});return;}
       const scale=Math.min(2,Math.sqrt(2500000/(w*h)));
       const rw=Math.max(2,Math.floor(w*scale)),rh=Math.max(2,Math.floor(h*scale));
       if(w!==outputWidth||h!==outputHeight){renderer.setPixelRatio(1);renderer.setSize(w,h,true);outputWidth=w;outputHeight=h;}
@@ -195,6 +224,24 @@ export function mountToonScene(container, initialState = {}) {
   const haloTexture = new THREE.CanvasTexture(haloSurface); haloTexture.colorSpace = THREE.SRGBColorSpace; resources.textures.add(haloTexture);
   const haloMaterial = mat(new THREE.SpriteMaterial({ map: haloTexture, transparent: true, depthWrite: false, opacity: .7 }));
   function halo(at, size, parent = set) { const o = new THREE.Sprite(haloMaterial); o.position.set(...at); o.scale.set(size, size, 1); parent.add(o); return o; }
+  // Prints paint at once with fallback faces, then again when the self-hosted
+  // Doodle fonts have arrived (they are sliced, so the texts are named).
+  function repaintWithFonts(surface,paint,texture){loadVenuePrintFonts().then(loaded=>{if(!loaded||disposed)return;paint(surface.getContext('2d'));texture.needsUpdate=true;renderFrame();});}
+  // A wall photo is a taped polaroid: card-white mount with the wide bottom
+  // edge, a square centre view of the photograph (unfiltered; the photo panel
+  // shows it whole), an ink edge and a strip of marker tape.
+  function paintWallPhoto(ctx,image){
+    const D=DOODLE_COLORS,side=452,x=30,y=30;ctx.fillStyle=D.card;ctx.fillRect(0,0,512,640);
+    const crop=Math.min(image.naturalWidth,image.naturalHeight);
+    ctx.drawImage(image,(image.naturalWidth-crop)/2,(image.naturalHeight-crop)/2,crop,crop,x,y,side,side);
+    ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+side,y);ctx.lineTo(x+side,y+side);ctx.lineTo(x,y+side);ctx.closePath();ctx.lineJoin='round';ctx.lineWidth=5;ctx.strokeStyle=D.ink;ctx.stroke();
+    ctx.save();ctx.translate(256,y+2);ctx.rotate(-.06);ctx.globalAlpha=.82;ctx.fillStyle=D.yellow;ctx.fillRect(-70,-18,140,36);ctx.globalAlpha=1;ctx.restore();
+  }
+  // The classic room shows the whole photograph on a plain paper mount.
+  function paintClassicWallPhoto(ctx,image){
+    ctx.fillStyle='#f4f1e7';ctx.fillRect(0,0,512,640);
+    const fit=Math.min(488/image.naturalWidth,588/image.naturalHeight);const w=image.naturalWidth*fit,h=image.naturalHeight*fit;ctx.drawImage(image,(512-w)/2,(604-h)/2,w,h);
+  }
 
   function makeSky() {
     const surface = document.createElement('canvas'); surface.width = 512; surface.height = 1024;
@@ -344,11 +391,13 @@ export function mountToonScene(container, initialState = {}) {
     return root;
   }
 
-  const livePeople=new Map(),liveOccluders=[],livePhotoFrames=[],livePhotoPreviews=[],pendingLivePhotoImages=new Set();
+  const livePeople=new Map(),liveOccluders=[],livePhotoFrames=[],livePhotoPreviews=[],pendingLivePhotoImages=new Set(),liveSpots=[];
   let liveRoom=null,liveRoomSummary=null,liveWallTitle=null,liveTruss=null,livePhotoSignature='',livePhotoGeneration=0;
-  let venueAsset=null,venueReady=Promise.resolve(),venueStatus={status:'procedural'};
+  let venueAsset=null,venueShadows=true,venueReady=Promise.resolve(),venueStatus={status:'procedural'};
   let liveStagePrint=null;
   const venueAbort=new AbortController();
+  // World box of the bench seats at the venue's front-left (venue.glb r2, MS_STATIC_CEL_INK).
+  const BENCH_SEATS={min:{value:new THREE.Vector3(-6.7,.6,.8)},max:{value:new THREE.Vector3(-5.1,.9,5.2)},color:{value:new THREE.Color(DOODLE_COLORS.paperDeep)}};
   const livePhotoSurfaces=[];
   const isEditorial=a=>a.hair===1&&a.top===0&&a.bottom===0&&a.shoes===1&&a.eyewear<=1&&a.accessory==='none'&&a.expression==='neutral'&&a.pose==='listen';
   const photoAnchor = new THREE.Vector3(6.57,2.65,-.3);
@@ -362,23 +411,28 @@ export function mountToonScene(container, initialState = {}) {
     if(liveRoom)return;
     liveRoom=group();liveRoom.name='modeled-livehouse';
     const room=liveRoom;
-    const inkMat=cel.cel({color:'#1a1a22',bands:3,tint:'#716e86',flat:false});
-    const charcoal=cel.cel({color:'#2c2a36',bands:3,tint:'#6b657a',flat:false});
-    const plaster=cel.cel({color:'#c4c2b3',bands:3,tint:'#aaa49c',flat:false});
-    const creamRoom=cel.cel({color:'#f1eee4',bands:'soft3',tint:'#d0d2cb',flat:false});
-    const chartreuse=cel.cel({color:'#dced60',bands:3,tint:'#9caa47',flat:false});
-    const chrome=cel.cel({color:'#82828a',bands:3,tint:'#706d7c',flat:false});
-    const black=flat('#212721'), lit=flat('#e5edb0');
-    const floorMat=cel.cel({color:'#b7b4a7',bands:'soft',tint:'#9e97a5',flat:false});
+    // Doodle paper-diorama colours (tokens.css) in the event room, the classic
+    // charcoal room everywhere else. The Blender venue replaces most of this
+    // procedural room, which stays as the fallback and keeps the frames.
+    const D=DOODLE_COLORS;
+    const inkMat=cel.cel({color:doodleStyle?D.ink:'#1a1a22',bands:3,tint:'#716e86',flat:false});
+    const charcoal=cel.cel({color:doodleStyle?D.ink2:'#2c2a36',bands:3,tint:'#6b657a',flat:false});
+    if(!doodleStyle)cel.cel({color:'#c4c2b3',bands:3,tint:'#aaa49c',flat:false});
+    const creamRoom=cel.cel({color:doodleStyle?D.card:'#f1eee4',bands:'soft3',tint:'#d0d2cb',flat:false});
+    const wallMat=doodleStyle?cel.cel({color:D.paper,bands:'soft3',tint:'#d0d2cb',flat:false}):null;
+    const chartreuse=cel.cel({color:doodleStyle?D.yellow:'#dced60',bands:3,tint:'#9caa47',flat:false});
+    const chrome=cel.cel({color:doodleStyle?D.ink3:'#82828a',bands:3,tint:'#706d7c',flat:false});
+    const black=flat(doodleStyle?D.ink:'#212721'), lit=flat(doodleStyle?D.yellowSoft:'#e5edb0');
+    const floorMat=cel.cel({color:doodleStyle?DOODLE_KRAFT:'#b7b4a7',bands:'soft',tint:'#9e97a5',flat:false});
     // Open-front architectural cutaway: every surface below is real geometry.
     // The camera travels through the open front, never through a billboard.
     box([0,-.16,.7],[14,.3,12.5],floorMat,room).name='livehouse-floor';
     // A single light landing, curved like a record. No bathroom-like floor grid.
     const landing=noShadow(mesh(geo(new THREE.CircleGeometry(4.5,64)),creamRoom,[.1,.006,1.7],[1,.73,1],room));landing.rotation.x=-Math.PI/2;
     const orbit=noShadow(mesh(geo(new THREE.TorusGeometry(3.55,.012,4,96)),chartreuse,[.1,.02,1.65],[1,.76,1],room));orbit.rotation.x=-Math.PI/2;
-    const back=box([0,3.05,-5.56],[14,6.1,.24],charcoal,room);back.name='livehouse-back-wall';liveOccluders.push(back);
-    const left=box([-6.97,2.55,-3.55],[.24,5.1,4.1],inkMat,room);left.name='livehouse-left-wall';liveOccluders.push(left);
-    const right=box([6.97,2.8,-1.9],[.24,5.6,7.5],inkMat,room);right.name='livehouse-photo-wall';liveOccluders.push(right);
+    const back=box([0,3.05,-5.56],[14,6.1,.24],wallMat||charcoal,room);back.name='livehouse-back-wall';liveOccluders.push(back);
+    const left=box([-6.97,2.55,-3.55],[.24,5.1,4.1],wallMat||inkMat,room);left.name='livehouse-left-wall';liveOccluders.push(left);
+    const right=box([6.97,2.8,-1.9],[.24,5.6,7.5],wallMat||inkMat,room);right.name='livehouse-photo-wall';liveOccluders.push(right);
     for(const x of[-6.72,6.72])box([x,2.94,-5.32],[.18,5.88,.22],chrome,room);
     box([0,5.85,-5.27],[13.45,.12,.25],chrome,room);
     // Stage is a raised, solid platform with three climbable modeled steps.
@@ -390,19 +444,16 @@ export function mountToonScene(container, initialState = {}) {
     }
     for(let x=-4.65;x<4.7;x+=.58)noShadow(box([x,.646,-3.28],[.008,.004,4.02],inkMat,room));
     // Cream stage backdrop is a physical panel with original typography only.
+    // The event room shows the same doodle stage poster the Blender venue hangs
+    // (this procedural room is the fallback when the venue file cannot load).
     box([-.28,3.38,-5.335],[7.55,3.53,.07],creamRoom,room).name='livehouse-stage-sign';
+    const SIGN=doodleStyle?{width:1200,height:680,paint:paintStagePrint}:{width:1536,height:720,paint:paintClassicStageSign};
     function printedTexture(kind,index=0){
-      const surface=document.createElement('canvas');surface.width=kind==='sign'?1536:512;surface.height=kind==='sign'?720:640;
+      const surface=document.createElement('canvas');surface.width=kind==='sign'?SIGN.width:512;surface.height=kind==='sign'?SIGN.height:640;
       const ctx=surface.getContext('2d');ctx.fillStyle='#f5f3ec';ctx.fillRect(0,0,surface.width,surface.height);
       ctx.fillStyle='#272b26';ctx.strokeStyle='#272b26';
       if(kind==='sign'){
-        ctx.fillStyle='#ecebdc';ctx.fillRect(0,0,1536,720);
-        ctx.fillStyle='#252329';ctx.save();ctx.translate(84,30);ctx.rotate(-.06);
-        ctx.font='900 250px Arial';ctx.fillText('SIDE',0,280);ctx.fillText('BY SIDE',-7,520);ctx.restore();
-        ctx.fillStyle='#dcec54';ctx.beginPath();ctx.arc(1238,247,183,0,Math.PI*2);ctx.fill();
-        ctx.strokeStyle='#252329';ctx.lineWidth=15;ctx.beginPath();ctx.moveTo(1090,270);ctx.bezierCurveTo(1180,105,1290,400,1380,224);ctx.stroke();
-        ctx.fillStyle='#252329';ctx.font='bold 26px monospace';ctx.fillText('MUSIC SPACE / AFTER THE ENCORE',90,652);
-        ctx.font='bold 21px monospace';ctx.fillText('01',1360,659);
+        SIGN.paint(ctx);
       }else{
         // Six distinct original fictional gig prints. Only these small framed
         // images are 2D; the venue, camera, people and frame depth are modeled.
@@ -449,11 +500,12 @@ export function mountToonScene(container, initialState = {}) {
       }
       const texture=new THREE.CanvasTexture(surface);texture.colorSpace=THREE.SRGBColorSpace;resources.textures.add(texture);return texture;
     }
-    const signMaterial=mat(new THREE.MeshBasicMaterial({map:printedTexture('sign')}));
-    noShadow(mesh(unit.plane,signMaterial,[-.28,3.38,-5.289],[7.4,3.43,1],room));
+    const signPrint=printedTexture('sign');if(doodleStyle)repaintWithFonts(signPrint.image,SIGN.paint,signPrint);
+    const signMaterial=mat(new THREE.MeshBasicMaterial({map:signPrint}));
+    noShadow(mesh(unit.plane,signMaterial,[-.28,3.38,-5.289],[doodleStyle?3.43*SIGN.width/SIGN.height:7.4,3.43,1],room));
     // Truss, stage lights and their real spotlights define the room's depth.
     // Tall folded acoustic drapes frame the hand-set stage typography.
-    const curtainMat=cel.cel({color:'#393244',bands:3,tint:'#645b7c',flat:false});
+    const curtainMat=cel.cel({color:doodleStyle?D.pink:'#393244',bands:3,tint:'#645b7c',flat:false});
     for(const side of[-1,1])for(let i=0;i<9;i++){
       const x=side*(4.18+i*.27);const fold=mesh(geo(new THREE.CylinderGeometry(.19,.19,5.25,10,1,true)),curtainMat,[x,3.0,-5.03],[1,1,.65],room);fold.name='acoustic-curtain-fold';
     }
@@ -468,8 +520,8 @@ export function mountToonScene(container, initialState = {}) {
     for(const [i,x]of[-3.65,-.1,3.55].entries()){
       const lamp=group(room,[x,5.07,-1.28]);lamp.rotation.x=-.25;
       cylinder([0,-.1,0],[.145,.34,.145],inkMat,lamp);cylinder([0,-.28,0],[.126,.016,.126],lit,lamp);
-      const spot=new THREE.SpotLight('#f3f4e9',i===1?22:30,12,.43,.65,1.6);spot.position.set(x,4.9,-1.25);spot.target.position.set(x*.52,.64,-3.2);scene.add(spot,spot.target);
-      const beamMaterial=mat(new THREE.MeshBasicMaterial({color:'#dfe7b6',transparent:true,opacity:.022,depthWrite:false,side:THREE.DoubleSide}));
+      const spot=new THREE.SpotLight('#f3f4e9',i===1?22:30,12,.43,.65,1.6);spot.position.set(x,4.9,-1.25);spot.target.position.set(x*.52,.64,-3.2);spot.userData.classicIntensity=spot.intensity;liveSpots.push(spot);scene.add(spot,spot.target);
+      const beamMaterial=mat(new THREE.MeshBasicMaterial({color:doodleStyle?D.yellowSoft:'#dfe7b6',transparent:true,opacity:.022,depthWrite:false,side:THREE.DoubleSide}));
       const from=spot.position.clone(),to=spot.target.position.clone(),distance=from.distanceTo(to);
       const beam=noShadow(mesh(geo(new THREE.ConeGeometry(.82,distance,24,1,true)),beamMaterial,from.clone().add(to).multiplyScalar(.5).toArray(),[1,1,1],room));
       beam.quaternion.setFromUnitVectors(UP,from.sub(to).normalize());
@@ -512,7 +564,8 @@ export function mountToonScene(container, initialState = {}) {
     // perspective change as the camera moves to the wall.
     const gallery=group(room,[6.795,2.64,-.65]);gallery.rotation.y=-Math.PI/2;
     gallery.name='livehouse-gallery';gallery.userData.hotspot={id:'photos',kind:'photos',label:'照片墙'};
-    const wallSign=document.createElement('canvas');wallSign.width=1024;wallSign.height=160;paintGalleryPrint(wallSign.getContext('2d'));const wallPrint=new THREE.CanvasTexture(wallSign);wallPrint.colorSpace=THREE.SRGBColorSpace;resources.textures.add(wallPrint);const wallTitle=noShadow(mesh(unit.plane,mat(new THREE.MeshBasicMaterial({map:wallPrint})),[6.735,4.68,-.65],[3.76,3.76/GALLERY_PRINT_ASPECT,1],room));wallTitle.rotation.y=-Math.PI/2;wallTitle.rotation.z=-.015;wallTitle.userData.hotspot={id:'photos',kind:'photos',label:'照片墙'};liveWallTitle=wallTitle;
+    const paintGallery=doodleStyle?paintGalleryPrint:paintClassicGalleryPrint;
+    const wallSign=document.createElement('canvas');wallSign.width=1024;wallSign.height=160;paintGallery(wallSign.getContext('2d'));const wallPrint=new THREE.CanvasTexture(wallSign);if(doodleStyle)repaintWithFonts(wallSign,paintGallery,wallPrint);wallPrint.colorSpace=THREE.SRGBColorSpace;resources.textures.add(wallPrint);const wallTitle=noShadow(mesh(unit.plane,mat(new THREE.MeshBasicMaterial({map:wallPrint})),[6.735,4.68,-.65],[3.76,3.76/GALLERY_PRINT_ASPECT,1],room));wallTitle.rotation.y=-Math.PI/2;wallTitle.rotation.z=-.015;wallTitle.userData.hotspot={id:'photos',kind:'photos',label:'照片墙'};liveWallTitle=wallTitle;
 
     for(let row=0;row<2;row++)for(let col=0;col<3;col++){
       const at=[(col-1)*1.12,(.5-row)*1.46,0];const frame=group(gallery,at);frame.rotation.z=(col-1)*.024;
@@ -541,17 +594,18 @@ export function mountToonScene(container, initialState = {}) {
 
   function addLiveStagePrint(){
     if(liveStagePrint)return;
-    const surface=document.createElement('canvas');surface.width=1200;surface.height=680;paintStagePrint(surface.getContext('2d'));
-    const texture=new THREE.CanvasTexture(surface);texture.colorSpace=THREE.SRGBColorSpace;resources.textures.add(texture);
+    const paint=doodleStyle?paintStagePrint:paintClassicStagePrint;
+    const surface=document.createElement('canvas');surface.width=1200;surface.height=680;paint(surface.getContext('2d'));
+    const texture=new THREE.CanvasTexture(surface);texture.colorSpace=THREE.SRGBColorSpace;resources.textures.add(texture);if(doodleStyle)repaintWithFonts(surface,paint,texture);
     liveStagePrint=group(liveRoom,[-.5,3.45,-4.71]);liveStagePrint.name='livehouse-hanging-stage-print';liveStagePrint.rotation.z=-.016;
-    const paper=cel.cel({color:'#d2c7b3',bands:'soft3',tint:'#777184'});
+    const paper=cel.cel({color:doodleStyle?DOODLE_COLORS.ink:'#d2c7b3',bands:'soft3',tint:'#777184'});
     noShadow(box([0,0,-.023],[5.24,2.97,.03],paper,liveStagePrint));
     noShadow(mesh(unit.plane,mat(new THREE.MeshBasicMaterial({map:texture})),[0,0,0],[5.2,5.2*680/1200,1],liveStagePrint));
     for(const x of[-2.36,2.36])rod([x,1.49,-.01],[x,1.94,-.01],.012,colors.dark,liveStagePrint);
     layoutLiveStagePrint();
   }
 
-  function layoutLiveStagePrint(){if(!liveStagePrint)return;const layout=stagePrintLayout(width/height<.85);liveStagePrint.position.set(...layout.position);liveStagePrint.scale.setScalar(layout.scale);}
+  function layoutLiveStagePrint(){if(!liveStagePrint)return;const layout=stagePrintLayout(width/height<1);liveStagePrint.position.set(...layout.position);liveStagePrint.scale.setScalar(layout.scale);}
 
   function makeAvatar(data, slot) {
     const ownedBefore = new Set(resources.geometries);
@@ -951,26 +1005,50 @@ export function mountToonScene(container, initialState = {}) {
   const cameraLook = new THREE.Vector3(0,1.55,-.6);
   const occlusionRay = new THREE.Raycaster();
   let liveView='overview', livePersonId=null, cameraMove=null, cameraInitialized=false;
+  // A near-square tablet canvas frames like a phone (camera presets and the
+  // hanging poster), so the poster is never cut at the window's edge.
+  const portraitCanvas=()=>width/height<1;
+  // The event room's desktop presence card (chrome.css .presence: 440px wide,
+  // 60px in from the frame) covers about the right 461px of a landscape window.
+  const ROOM_CARD={inset:470,left:120,tag:80};
+  // Overview: the preset camera only ever backs away along its own view line
+  // until every person fits the window; in the event room's desktop layout it
+  // then slides along the room just far enough that nobody (name tag included)
+  // stands under the room card, never closer than ROOM_CARD.left to the left edge.
+  function overviewShot(){
+    const overview=overviewCameraLayout(livePeople.size,portraitCanvas(),height);
+    const target=new THREE.Vector3(...overview.target),position=new THREE.Vector3(...overview.position);
+    if(!livePeople.size)return {position,target};
+    const back=position.clone().sub(target),preset=back.length();back.normalize();
+    const right=new THREE.Vector3(back.z,0,-back.x).normalize(),tanH=Math.tan(THREE.MathUtils.degToRad(camera.fov/2))*width/height;
+    const spots=[...livePeople.values()].map(person=>{const q=person.root.position.clone().setY(1.5).sub(target);return {side:q.dot(right),depth:q.dot(back)};});
+    let distance=preset,pan=0;
+    for(const spot of spots)distance=Math.max(distance,(Math.abs(spot.side)+.5)/(tanH*.88)+spot.depth);
+    if(doodleStyle&&width>800&&!portraitCanvas()&&!container.closest?.('.conversation-open')){
+      const xR=1-2*ROOM_CARD.inset/width,xL=-1+2*ROOM_CARD.left/width,tag=2*ROOM_CARD.tag/width;
+      let need=0,room=Infinity;
+      for(const spot of spots){const half=(distance-spot.depth)*tanH;need=Math.max(need,spot.side-(xR-tag)*half);room=Math.min(room,spot.side-(xL+tag)*half);}
+      pan=Math.max(0,Math.min(need,room));
+    }
+    if(distance===preset&&!pan)return {position,target};
+    const slide=right.multiplyScalar(pan);
+    return {position:target.clone().addScaledVector(back,distance).add(slide),target:target.add(slide)};
+  }
   function shotFor(view,id){
-    const portraitAspect=width/height<.85;
+    const portraitAspect=portraitCanvas();
     if(view==='person'){
       const person=livePeople.get(id);if(!person)return null;
       const origin=person.root.position,scale=person.root.scale.x;
       return {position:origin.clone().add(new THREE.Vector3(.6,portraitAspect?2.05:2.65,7).multiplyScalar(scale)),target:origin.clone().add(new THREE.Vector3(0,portraitAspect?1.05:1.65,0).multiplyScalar(scale))};
     }
     if(view==='photos'){
-      const count=Math.max(1,Math.min(6,(state.photos||[]).length)),cols=galleryColumns(count,portraitAspect),rows=Math.ceil(count/cols);
-      const halfFov=Math.tan(THREE.MathUtils.degToRad(camera.fov/2)),photoWidth=Math.max(1.5,cols*1.12);
-      const top=2.64+rows*.73+.42+photoWidth/GALLERY_PRINT_ASPECT/2,bottom=2.64-(rows-1)*.73-.643;
-      const safeTop=88,safeBottom=height-(portraitAspect?186:164),safeHeight=Math.max(120,safeBottom-safeTop);
-      const distance=Math.max(4.3,photoWidth/(2*halfFov*(width/height)*.88),(top-bottom)/(2*halfFov*(safeHeight/height)))*1.04;
+      const {top,bottom,distance,halfFov,safeTop,safeBottom}=photoWallFit(Math.max(1,Math.min(6,(state.photos||[]).length)));
       const targetY=(top+bottom)/2-(height/2-(safeTop+safeBottom)/2)*(2*halfFov*distance)/height;
       return {position:new THREE.Vector3(6.79-distance,targetY+.33,photoWallCenterZ+.15),target:new THREE.Vector3(6.79,targetY,photoWallCenterZ)};
     }
-    const overview=overviewCameraLayout(livePeople.size,portraitAspect,height);
-    return {position:new THREE.Vector3(...overview.position),target:new THREE.Vector3(...overview.target)};
+    return overviewShot();
   }
-  function getState(){return {scene:liveMode?{...liveRoomSummary,peopleCount:livePeople.size,venueAsset:{...venueStatus}}:undefined,view:liveView,id:livePersonId,personId:livePersonId,moving:!!cameraMove,mode:liveMode?'livehouse':'avatar',camera:{type:camera.type,projection:camera.isPerspectiveCamera?'perspective':'orthographic',position:camera.position.toArray(),target:cameraLook.toArray(),fov:camera.fov??null,aspect:width/height}};}
+  function getState(){return {scene:liveMode?{...liveRoomSummary,peopleCount:livePeople.size,venueAsset:{...venueStatus},renderStyle:doodleOn()?'doodle':'classic'}:undefined,view:liveView,id:livePersonId,personId:livePersonId,moving:!!cameraMove,mode:liveMode?'livehouse':'avatar',camera:{type:camera.type,projection:camera.isPerspectiveCamera?'perspective':'orthographic',position:camera.position.toArray(),target:cameraLook.toArray(),fov:camera.fov??null,aspect:width/height}};}
   function reportView(){state.onViewChange?.({view:liveView,id:livePersonId,moving:!!cameraMove});}
   function settleCamera(shot){camera.position.copy(shot.position);cameraLook.copy(shot.target);camera.lookAt(cameraLook);camera.updateMatrixWorld(true);}
   function goTo(view,id=null){
@@ -1000,10 +1078,28 @@ export function mountToonScene(container, initialState = {}) {
     model.root.traverse(o=>{if(o.isMesh){if(o.material?.isMeshBasicMaterial)o.castShadow=false;for(let n=o;n;n=n.parent)if(n.name==='head'){o.receiveShadow=false;break;}}});
     return {root:base,body:model.root,head:null,limbs:[],avatar:a,signature:JSON.stringify(a),phase:0,dispose:model.dispose};
   }
+  // Photo wall framing. A tall wall (three rows on a portrait screen) used to
+  // push the camera back behind the stage lights and microphone stands, which
+  // then covered the photos and the wall title: past PHOTO_SHOT_REACH the
+  // frames shrink instead, so the camera stays in front of the stage.
+  const PHOTO_SHOT_REACH=7.6;
+  function photoWallFit(count){
+    const portraitAspect=width/height<.85,cols=galleryColumns(count,portraitAspect,width/height),rows=Math.max(1,Math.ceil(count/cols));
+    const halfFov=Math.tan(THREE.MathUtils.degToRad(camera.fov/2));
+    const safeTop=88,safeBottom=height-(portraitAspect?186:164),safeHeight=Math.max(120,safeBottom-safeTop);
+    const fit=scale=>{
+      const photoWidth=Math.max(1.5,cols*1.12*scale),titleY=2.64+(rows*.73+.42)*scale;
+      const top=titleY+photoWidth/GALLERY_PRINT_ASPECT/2,bottom=2.64-((rows-1)*.73+.643)*scale;
+      const distance=Math.max(4.3,photoWidth/(2*halfFov*(width/height)*.88),(top-bottom)/(2*halfFov*(safeHeight/height)))*1.04;
+      return {cols,rows,scale,photoWidth,titleY,top,bottom,distance,halfFov,safeTop,safeBottom};
+    };
+    const full=fit(1);
+    return full.distance>PHOTO_SHOT_REACH?fit(PHOTO_SHOT_REACH/full.distance):full;
+  }
   function layoutLivePhotos(count){
-    const columns=galleryColumns(count,width/height<.85),rows=Math.max(1,Math.ceil(count/columns));
-    for(let i=0;i<count;i++){const row=Math.floor(i/columns),rowCount=Math.min(columns,count-row*columns);livePhotoFrames[i].position.set((i%columns-(rowCount-1)/2)*1.12,((rows-1)/2-row)*1.46,0);}
-    if(liveWallTitle){const printWidth=Math.max(1.5,columns*1.12);liveWallTitle.position.y=2.64+rows*.73+.42;liveWallTitle.scale.set(printWidth,printWidth/GALLERY_PRINT_ASPECT,1);}
+    const {cols:columns,rows,scale,photoWidth,titleY}=photoWallFit(Math.max(1,count));
+    for(let i=0;i<count;i++){const row=Math.floor(i/columns),rowCount=Math.min(columns,count-row*columns);livePhotoFrames[i].position.set((i%columns-(rowCount-1)/2)*1.12*scale,((rows-1)/2-row)*1.46*scale,0);livePhotoFrames[i].scale.setScalar(scale);}
+    if(liveWallTitle){liveWallTitle.position.y=titleY;liveWallTitle.scale.set(photoWidth,photoWidth/GALLERY_PRINT_ASPECT,1);}
   }
   function updateLivePhotos(){
     if(!Array.isArray(state.photos))return;
@@ -1017,8 +1113,7 @@ export function mountToonScene(container, initialState = {}) {
     incoming.forEach((photo,i)=>{const image=new Image();pendingLivePhotoImages.add(image);image.onerror=()=>{pendingLivePhotoImages.delete(image);image.onload=image.onerror=null;if(!disposed&&generation===livePhotoGeneration)state.onPhotoError?.({id:photo.id,kind:'protected-photo'});};image.onload=()=>{
       pendingLivePhotoImages.delete(image);image.onload=image.onerror=null;
       if(disposed||generation!==livePhotoGeneration)return;
-      const surface=document.createElement('canvas');surface.width=512;surface.height=640;const ctx=surface.getContext('2d');ctx.fillStyle='#f4f1e7';ctx.fillRect(0,0,512,640);
-      const fit=Math.min(488/image.naturalWidth,588/image.naturalHeight);const w=image.naturalWidth*fit,h=image.naturalHeight*fit;ctx.drawImage(image,(512-w)/2,(604-h)/2,w,h);
+      const surface=document.createElement('canvas');surface.width=512;surface.height=640;(doodleStyle?paintWallPhoto:paintClassicWallPhoto)(surface.getContext('2d'),image);
       const texture=new THREE.CanvasTexture(surface);texture.colorSpace=THREE.SRGBColorSpace;resources.textures.add(texture);livePhotoSurfaces[i].map=texture;livePhotoSurfaces[i].needsUpdate=true;livePhotoFrames[i].visible=true;livePhotoFrames[i].userData.hotspot={id:photo.id,kind:'photo',label:photo.label||'查看现场照片'};
       livePhotoPreviews.push({...photo});renderFrame();
     };image.src=photo.url;});
@@ -1031,7 +1126,7 @@ export function mountToonScene(container, initialState = {}) {
     for(const[index,definition]of definitions.entries()){
       const id=String(definition.id||`person-${index}`),avatar=safeAvatar(definition.avatar),editorial=definition.character==='editorial'&&isEditorial(avatar),illustrated=definition.character==='illustrated',signature=JSON.stringify(avatar)+(illustrated?':illustrated':editorial?':editorial':'');keep.add(id);
       let person=livePeople.get(id);
-      if(!person||person.signature!==signature){if(person)removePerson(person);person=illustrated?createIllustratedPerson(THREE,avatar,{onLoad:()=>renderFrame()}):editorial?makeEditorialAvatar(avatar):makeAvatar(avatar,`live-${id}`);if(illustrated)people.add(person.root);person.signature=signature;livePeople.set(id,person);}
+      if(!person||person.signature!==signature){if(person)removePerson(person);person=illustrated?createIllustratedPerson(THREE,avatar,{onLoad:()=>renderFrame()}):editorial?makeEditorialAvatar(avatar):makeAvatar(avatar,`live-${id}`);if(illustrated)people.add(person.root);doodlePerson(person.root);person.signature=signature;livePeople.set(id,person);}
       const position=definition.position||[index*1.8-2,0,1];
       if(id===livePersonId&&person.root.position.distanceTo(new THREE.Vector3(...position))>.001)selectedMoved=true;
       person.root.position.set(validNumber(position[0],0),validNumber(position[1],0),validNumber(position[2],1));
@@ -1138,6 +1233,14 @@ export function mountToonScene(container, initialState = {}) {
       poolB.color.set('#c8b3ea');poolB.position.set(4.7,3.2,.2);poolB.intensity=9;
       ink.uInk.value.set('#282431');ink.uStrength.value=.24;ink.uSens.value=.0085;ink.uConcaveAmount.value=0;ink.uFadeStart.value=27;ink.uFadeEnd.value=55;
       grade.uShadowTint.value.set('#f0f1ef');grade.uLightTint.value.set('#ffffff');grade.uWarmth.value=0;grade.uSaturation.value=1;grade.uLift.value=0;grade.uVignette.value=.075;
+      for(const spot of liveSpots)spot.intensity=doodleOn()?0:spot.userData.classicIntensity;
+      if(doodleOn()){
+        // One white key light decides the two bands (its cast shadows included);
+        // colour comes from the paper palette, so every other light is off.
+        scene.background=new THREE.Color(DOODLE_COLORS.paper);renderer.setClearColor(DOODLE_COLORS.paper,1);
+        moon.color.set('#ffffff');moon.intensity=1;fill.intensity=0;poolA.intensity=0;poolB.intensity=0;
+        doodleState.uniforms.key.value=moon.intensity;
+      }
       return;
     }
     const photo = state.scene?.kind === 'photo';
@@ -1179,10 +1282,15 @@ export function mountToonScene(container, initialState = {}) {
       // Geometry and membership remain in the scene; return restores them.
       const showForeground=liveView!=='photos';
       if(liveTruss&&liveTruss.visible!==showForeground){liveTruss.visible=showForeground;renderer.shadowMap.needsUpdate=true;}
+      // Doodle: at the photo wall the stage props' long cast shadows would be
+      // hatched across the wall; only the polaroids' own shadows stay there.
+      const venueCasts=showForeground||!doodleOn();
+      if(venueAsset&&venueShadows!==venueCasts){venueShadows=venueCasts;venueAsset.root.traverse(node=>{if(node.isMesh)node.castShadow=venueCasts;});renderer.shadowMap.needsUpdate=true;}
       for(const [id,person] of livePeople)person.root.visible=showForeground&&(liveView!=='person'||id===livePersonId);
     }
     if(liveMode)for(const person of livePeople.values())person.updateFacing?.(camera);
-    pipeline.render();
+    if(doodleOn()){doodle.render();if(doodleFault)leaveDoodle();}
+    if(!doodleOn())pipeline.render();
     if(liveMode)state.onHotspots?.(getHotspots());
   }
   function tick(now) {
@@ -1196,6 +1304,65 @@ export function mountToonScene(container, initialState = {}) {
   }
   function schedule() {
     if (!raf && !disposed) raf = requestAnimationFrame(tick);
+  }
+  // Doodle line boil: about seven times a second the last scene image is
+  // re-inked with a new wobble (one full-screen pass, the scene is not redrawn).
+  // Reduced motion, a hidden tab or a software renderer keep the lines still;
+  // while a sheet covers the window (or it is scrolled away) the boil only
+  // looks again twice a second.
+  let boilTimer = 0, boilCovered = false;
+  const BOIL_PROBES = [[.5, .5], [.18, .22], [.82, .22], [.18, .78], [.82, .78]];
+  function sceneCovered() {
+    const rect = canvas.getBoundingClientRect(), viewWidth = innerWidth, viewHeight = innerHeight;
+    for (const [fx, fy] of BOIL_PROBES) {
+      const x = rect.left + rect.width * fx, y = rect.top + rect.height * fy;
+      if (x < 0 || y < 0 || x >= viewWidth || y >= viewHeight) continue;
+      const hit = document.elementFromPoint(x, y);
+      if (hit === canvas || (hit && container.contains(hit))) return false;
+    }
+    return true;
+  }
+  function scheduleBoil() {
+    if (boilTimer || !doodleOn() || doodle.lowEnd || disposed || state.reducedMotion || document.hidden) return;
+    boilTimer = setTimeout(() => {
+      boilTimer = 0;
+      if (!doodleOn() || disposed || state.reducedMotion || document.hidden || renderer.getContext().isContextLost()) return;
+      boilCovered = sceneCovered();
+      if (!boilCovered) doodle.boil();
+      scheduleBoil();
+    }, boilCovered ? 500 : 1000 / 7);
+  }
+  // A person's flat contact shadow (a plain mesh right under the feet) only
+  // marks the floor as the shade band, so the composite hatches it; its colour
+  // pass leaves the floor untouched. An illustrated plate keeps its own sticker
+  // colours: the classic room's warm tint would dull it against bright paper.
+  function doodlePerson(root) {
+    if (!doodleOn()) return;
+    root.traverse(node => {
+      const m = node.material;
+      if (!node.isMesh || !m) return;
+      if (m.alphaTest > 0 && m.color && !m.userData.doodleColor) { m.userData.doodleColor = m.color.clone(); m.color.set('#ffffff'); return; }
+      if (node.parent !== root || !m.transparent || m.map || m.userData.doodleBlend) return;
+      m.userData.doodleBlend = { blending: m.blending, blendSrc: m.blendSrc, blendDst: m.blendDst, blendSrcAlpha: m.blendSrcAlpha, blendDstAlpha: m.blendDstAlpha, opacity: m.opacity };
+      Object.assign(m, { blending: THREE.CustomBlending, blendSrc: THREE.ZeroFactor, blendDst: THREE.OneFactor, blendSrcAlpha: THREE.OneFactor, blendDstAlpha: THREE.ZeroFactor, opacity: DOODLE_CODE.shade });
+      m.needsUpdate = true;
+    });
+  }
+  /** Classic fallback after a doodle shader failed: same scene, the original shading. */
+  function leaveDoodle() {
+    if (!doodle) return;
+    doodleState.active = false; doodle.dispose(); doodle = null;
+    clearTimeout(boilTimer); boilTimer = 0;
+    if (renderer.debug) renderer.debug.onShaderError = null;
+    cel.recompile?.();
+    people.traverse(node => {
+      const m = node.material, saved = m?.userData?.doodleBlend;
+      if (m?.userData?.doodleColor) { m.color.copy(m.userData.doodleColor); delete m.userData.doodleColor; }
+      if (!saved) return; Object.assign(m, saved); delete m.userData.doodleBlend; m.needsUpdate = true;
+    });
+    venueAsset?.root.traverse(node => { if (node.isMesh) node.receiveShadow = true; });
+    if (disposed) return;
+    updateSet(); resetClassicSize(); pipeline.setSize(width, height); renderer.shadowMap.needsUpdate = true;
   }
   function resize() {
     if (disposed) return;
@@ -1214,7 +1381,7 @@ export function mountToonScene(container, initialState = {}) {
     state = liveMode?{...state,...nextState,mode:'livehouse'}:{...nextState,scene:nextState.scene||{kind:'builtin',id:'rooftop-night'}};
     updateSet();updatePeople();animate(0);
     if(liveMode&&state.reducedMotion&&cameraMove){const move=cameraMove;cameraMove=null;settleCamera({position:move.to,target:move.toLook});move.resolve(true);reportView();}
-    renderer.shadowMap.needsUpdate = true; renderFrame(); schedule();
+    renderer.shadowMap.needsUpdate = true; renderFrame(); schedule(); scheduleBoil();
   }
   function capture(options = {}) {
     if (disposed) throw new Error('The 3D scene has been disposed');
@@ -1224,8 +1391,10 @@ export function mountToonScene(container, initialState = {}) {
     const exportWidth = Math.round(clamp(validNumber(options.width, width), 2, 2400));
     const exportHeight = Math.round(clamp(validNumber(options.height, exportWidth * height / width), 2, 3200));
     if (Math.abs(exportWidth / exportHeight - width / height) > .01) throw new Error('Capture must preserve the artwork aspect ratio');
-    const resized = exportWidth !== width || exportHeight !== height;
+    // The doodle canvas follows the device pixel ratio; an export is exact.
+    const resized = exportWidth !== width || exportHeight !== height || doodleOn();
     try {
+      exactSize = true;
       if (resized) pipeline.setSize(exportWidth, exportHeight);
       renderFrame();
       if (state.scene?.kind !== 'photo') return canvas.toDataURL('image/png');
@@ -1236,6 +1405,7 @@ export function mountToonScene(container, initialState = {}) {
       ctx.drawImage(image, (output.width - w) / 2, (output.height - h) / 2, w, h);
       ctx.drawImage(canvas, 0, 0); return output.toDataURL('image/png');
     } finally {
+      exactSize = false;
       if (resized) { pipeline.setSize(width, height); renderFrame(); }
     }
   }
@@ -1275,7 +1445,7 @@ export function mountToonScene(container, initialState = {}) {
       const targetY = fullBody ? 1.43 : 2.58;
       camera.position.set(0, targetY + .16, 12); camera.lookAt(0, targetY, 0);
       camera.updateProjectionMatrix(); camera.updateMatrixWorld();
-      pipeline.setSize(size, portraitHeight); renderer.shadowMap.needsUpdate = true; renderFrame();
+      exactSize = true; pipeline.setSize(size, portraitHeight); renderer.shadowMap.needsUpdate = true; renderFrame();
       const result = canvas.toDataURL('image/png');
       portraitCache.set(key, result);
       if (portraitCache.size > 48) portraitCache.delete(portraitCache.keys().next().value);
@@ -1289,12 +1459,12 @@ export function mountToonScene(container, initialState = {}) {
       camera.position.copy(saved.cameraPosition); camera.quaternion.copy(saved.cameraQuaternion);
       camera.left = saved.left; camera.right = saved.right; camera.top = saved.top; camera.bottom = saved.bottom;
       camera.updateProjectionMatrix(); camera.updateMatrixWorld();
-      pipeline.setSize(width, height); renderer.shadowMap.needsUpdate = true; renderFrame();
+      exactSize = false; pipeline.setSize(width, height); renderer.shadowMap.needsUpdate = true; renderFrame();
     }
   }
-  const onVisibility = () => { lastFrame = 0; if (!document.hidden) schedule(); };
+  const onVisibility = () => { lastFrame = 0; if (!document.hidden) { schedule(); scheduleBoil(); } };
   const onContextLost = event => { event.preventDefault(); cancelAnimationFrame(raf); raf = 0; container.dispatchEvent(new CustomEvent('toonerror',{detail:{reason:'context-lost'}}));state.onError?.(new Error('WebGL context lost')); };
-  const onContextRestored = () => { if (!disposed) { renderer.shadowMap.needsUpdate = true; resize(); schedule(); } };
+  const onContextRestored = () => { if (!disposed) { renderer.shadowMap.needsUpdate = true; resize(); schedule(); scheduleBoil(); } };
   canvas.addEventListener('webglcontextlost', onContextLost);
   canvas.addEventListener('webglcontextrestored', onContextRestored);
   document.addEventListener('visibilitychange', onVisibility);
@@ -1302,12 +1472,19 @@ export function mountToonScene(container, initialState = {}) {
   update(initialState); resize();
   if(liveMode&&initialState.venueAssetUrl){
     venueStatus={status:'loading'};
-    venueReady=loadBlenderVenue({url:initialState.venueAssetUrl,cel,signal:venueAbort.signal,palette:VENUE_PRINT_PALETTE}).then(asset=>{
+    venueReady=loadBlenderVenue({url:initialState.venueAssetUrl,cel,signal:venueAbort.signal,palette:doodleStyle?VENUE_PRINT_PALETTE:CLASSIC_VENUE_PALETTE}).then(asset=>{
       if(disposed){asset.dispose();return;}
       const gallery=liveRoom.getObjectByName('livehouse-gallery');
       // Retain runtime-owned photo surfaces, frames and title. Only replace
       // static architecture; never attach an asset-owned photo or person.
       for(const child of liveRoom.children)if(child!==gallery&&child!==liveWallTitle)child.visible=false;
+      // Doodle: the curtain behind the people keeps only a narrow hatched band per
+      // fold and takes no cast shadows, so faces never sit on busy hatching.
+      if(doodleOn())asset.root.traverse(node=>{if(node.material?.name!=='CEL_CURTAIN')return;node.material.userData.doodleTerminator={value:.04};node.receiveShadow=false;});
+      // Doodle: the foreground benches are part of the venue's single ink mesh;
+      // their seats take the deep paper tone (ink outlines still draw them), so
+      // the darkest masses stay on the stage instead of the front corner.
+      if(doodleOn())asset.root.traverse(node=>{if(node.material?.name==='CEL_INK')node.material.userData.doodleRecolor=BENCH_SEATS;});
       liveRoom.add(asset.root);venueAsset=asset;liveTruss=asset.cutaway;
       addLiveStagePrint();
       liveOccluders.splice(0,liveOccluders.length,...asset.occluders);
@@ -1332,10 +1509,10 @@ export function mountToonScene(container, initialState = {}) {
     getBounds: () => structuredClone(bounds),
     dispose() {
       if (disposed) return; disposed = true;photoGeneration++;cameraMove?.resolve(false);cameraMove=null;venueAbort.abort();venueAsset?.dispose();
-      cancelAnimationFrame(raf); observer.disconnect();livePhotoGeneration++;stopLivePhotoLoads();for(const person of livePeople.values())if(person.dispose)person.dispose();
+      cancelAnimationFrame(raf); clearTimeout(boilTimer); observer.disconnect();livePhotoGeneration++;stopLivePhotoLoads();for(const person of livePeople.values())if(person.dispose)person.dispose();
       document.removeEventListener('visibilitychange', onVisibility);
       canvas.removeEventListener('webglcontextlost', onContextLost); canvas.removeEventListener('webglcontextrestored', onContextRestored);
-      pipeline.dispose(); cel.dispose();
+      pipeline.dispose(); doodle?.dispose(); cel.dispose();
       resources.geometries.forEach(g => g.dispose()); resources.materials.forEach(m => m.dispose()); resources.textures.forEach(t => t.dispose());
       moon.shadow.dispose(); renderer.dispose(); renderer.forceContextLoss(); canvas.remove();
       scene.clear();sceneGroups.clear();portraitCache.clear();livePeople.clear();liveOccluders.length=0;livePhotoFrames.length=0;livePhotoPreviews.length=0;image=null;

@@ -18,7 +18,7 @@ import { venueTime } from '../../js/moment.js';
 import { TEMPLATES } from '../../avatar/model.js';
 
 export const EVENT_DATE = '2026.09.26';                // moment.js `event.date`: times on this day print as 21:47
-export const SEED_REV = 1;
+export const SEED_REV = 2;                             // 2: man-near.jpg re-encoded with a levels lift (scripts/demo/README.md)
 /** How each seeded group-chat line ends (npc-lines.js closes a private thread with the same words), so nobody can take the cast for people. */
 export const DISCLOSURE = '（示例角色的自动回复：我不是真人。）';
 

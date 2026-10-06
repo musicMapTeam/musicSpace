@@ -1,0 +1,691 @@
+/* doodle · panels-social: the social layer and the extras (owner: social · spec docs/design/doodle.md).
+   Surfaces: ♡ inbox + person card (inside #panel, social markers only), private chat, every paper drawer built on .community-panel
+   (room/community chat, World Cup, games, topics, creation corner, 我的空间, host tools, identity backup), wardrobe and moderation
+   (the 音乐探索 Map is a separate page, see §13). Legacy CSS stays untouched: rules are scoped under .frame (or #panel-body) so they
+   outrank the selector they replace; nothing here renames or hides a hook that scripts or tests use. */
+
+/* ── 0. shared ink: local knobs + a tiling squiggle for dividers (kit.css owns the other masks: --ds-svg-*) ── */
+.frame{
+  --soc-squiggle:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='10' viewBox='0 0 28 10'%3E%3Cpath d='M1 5Q7.5 0 14 5T27 5' fill='none' stroke='black' stroke-width='2.3' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+.frame .community-panel,.frame .private-chat,.frame .room-moderation,.frame .wardrobe{
+  --soc-accent:var(--ds-mint);--soc-accent-soft:var(--ds-mint-soft);--soc-title:var(--ds-pink);
+  font-family:var(--ds-font-body);color:var(--ds-ink);-webkit-font-smoothing:antialiased;
+}
+.frame .worldcup-panel,.frame .music-topics{--soc-accent:var(--ds-yellow);--soc-accent-soft:var(--ds-yellow-soft)}
+.frame .music-games,.frame .space-management,.frame .identity-continuity{--soc-accent:var(--ds-sky);--soc-accent-soft:var(--ds-sky-soft)}
+.frame .corner-panel{--soc-accent:var(--ds-pink);--soc-accent-soft:var(--ds-pink-soft)}
+.frame :is(.community-panel,.private-chat,.room-moderation,.wardrobe) [hidden]{display:none!important}
+
+/* ── 1. paper drawers: dot-grid paper, ink frame, hard shadow, a strip of tape ── */
+.frame .community-panel,.frame .private-chat,.frame .room-moderation{
+  background:var(--ds-paper) var(--ds-dots);border:var(--ds-border);border-radius:var(--ds-radius-card);
+  box-shadow:var(--ds-shadow-lg);font-size:var(--ds-size-body);line-height:1.6;
+}
+.frame .private-chat,.frame .music-community.conversation-layout{overflow:visible}
+.frame .community-panel::before,.frame .private-chat::before,.frame .room-moderation::before{
+  content:"";position:absolute;z-index:6;top:-13px;left:50%;width:104px;height:25px;margin-left:-52px;pointer-events:none;background:var(--ds-tape);
+  -webkit-mask:var(--ds-svg-tape) center/100% 100% no-repeat;mask:var(--ds-svg-tape) center/100% 100% no-repeat;transform:rotate(-2.5deg);
+}
+.frame .corner-panel::before,.frame .personal-space::before{background:var(--ds-tape-pink);transform:rotate(2deg)}
+.frame .music-games::before,.frame .space-management::before,.frame .identity-continuity::before{background:var(--ds-tape-sky)}
+.frame .music-community::before{background:var(--ds-tape-mint)}
+@media (min-width:701px) and (min-height:521px){
+  .frame .community-panel:not(.conversation-layout),.frame .community-panel.music-games,.frame .community-panel.personal-space{inset:104px 56px 136px auto;width:min(600px,calc(100% - 112px))}
+  .frame .music-community.conversation-layout{top:88px;bottom:118px}
+}
+.frame .community-panel>header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:20px 18px 2px 22px;background:none;border:0}
+.frame .community-panel .eyebrow,.frame .community-panel>header .eyebrow{font-family:var(--ds-font-ui);font-size:13px;line-height:1.45;letter-spacing:.05em;color:var(--ds-ink-2);text-transform:none}
+.frame .community-panel .community-scroll{padding:6px 22px 26px;scrollbar-width:thin;scrollbar-color:var(--ds-ink-3) transparent}
+/* long drawers fade out at the lower edge instead of slicing a line in half (the end of the list sits in the bottom padding) */
+.frame .community-panel:not(.conversation-layout)>.community-scroll{-webkit-mask:linear-gradient(#000 calc(100% - 24px),transparent);mask:linear-gradient(#000 calc(100% - 24px),transparent)}
+/* the private chat and host tools cover the room tray on wide screens; hide the sliver that peeked out beside them */
+.frame:has(>:is(.private-chat,.room-moderation):not([hidden]))>.presence{visibility:hidden}
+
+/* round sticker × (and ←): the same recipe as #panel-close in chrome.css */
+.frame .community-panel>header>button,.frame .private-chat>header>button,.frame .room-moderation header>button,.frame .wardrobe .wardrobe-header>button{
+  flex:none;width:44px;height:44px;min-width:44px;min-height:44px;margin:0;padding:0 0 3px;display:inline-grid;place-items:center;
+  background:var(--ds-yellow);color:var(--ds-ink);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:50% 46% 52% 48%/48% 52% 46% 50%;
+  box-shadow:var(--ds-shadow-sm);font:400 26px/1 var(--ds-font-ui);transform:rotate(-4deg);
+  transition:transform var(--ds-fast),box-shadow var(--ds-fast),background-color var(--ds-fast);
+}
+.frame .private-chat>header>.chat-back{background:var(--ds-paper-card);font-size:22px}
+.frame :is(.community-panel>header,.private-chat>header,.room-moderation header,.wardrobe .wardrobe-header)>button:active{transform:translate(2px,2px) rotate(-4deg);box-shadow:1px 1px 0 var(--ds-ink)}
+
+/* ── 2. type inside the drawers: one layered title, clean body ── */
+.frame .community-panel h2,.frame .room-moderation h2{
+  font-family:var(--ds-font-display);font-weight:400;font-size:var(--ds-size-h2);line-height:1.16;letter-spacing:.01em;
+  color:var(--ds-ink);text-shadow:.06em .06em 0 var(--soc-title);margin:6px 0 12px;overflow-wrap:anywhere;
+}
+.frame .community-panel .community-scroll>h2::after{
+  content:"";display:inline-block;width:.62em;height:.62em;margin-left:.22em;vertical-align:.38em;background:var(--ds-ink);
+  -webkit-mask:var(--ds-svg-sparkle) center/contain no-repeat;mask:var(--ds-svg-sparkle) center/contain no-repeat;
+}
+.frame .community-panel h3,.frame .room-moderation h3{font-family:var(--ds-font-ui);font-weight:400;font-size:var(--ds-size-h3);line-height:1.3;color:var(--ds-ink);letter-spacing:0}
+.frame .community-panel p,.frame .room-moderation p{font-size:16px;line-height:1.65;color:var(--ds-ink-2);text-wrap:pretty}
+.frame .community-panel .fine,.frame .community-panel small{font-size:14px;line-height:1.6;color:var(--ds-ink-3)}
+.frame .community-panel b{font-family:var(--ds-font-ui);font-weight:400;color:var(--ds-ink)}
+.frame .community-panel [role=alert]{padding:10px 14px;margin:12px 0;background:var(--ds-pink-soft);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);color:var(--ds-ink);font-size:15px}
+/* a status note only gets its dashed box once it says something (the identity backup keeps an empty live region ready) */
+.frame .community-panel .community-scroll>[role=status]:not(:empty){padding:8px 14px;margin:12px 0;background:var(--ds-paper-card);border:var(--ds-line-thin) dashed var(--ds-ink-3);border-radius:var(--ds-radius-btn);color:var(--ds-ink-2);font-size:15px}
+
+/* ── 3. controls: secondary / primary / quiet link, fields, hand-drawn boxes ── */
+.frame .community-panel button,.frame .room-moderation button{
+  min-height:44px;margin:6px 10px 6px 0;padding:9px 16px;font:400 15px/1.3 var(--ds-font-ui);letter-spacing:.01em;color:var(--ds-ink);
+  white-space:normal;text-align:center;background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);
+  border-radius:var(--ds-radius-btn);box-shadow:4px 4px 0 var(--ds-mint);cursor:pointer;
+  transition:transform var(--ds-fast),box-shadow var(--ds-fast),background-color var(--ds-fast);
+}
+.frame .community-panel button:active:not(:disabled),.frame .room-moderation button:active:not(:disabled){transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ds-mint)}
+.frame .community-panel form button:not([type=button]),.frame .room-moderation .moderation-primary,.frame .room-moderation form>button:not([type=button]){
+  background:var(--ds-ink);color:var(--ds-paper-card);border-color:var(--ds-ink);box-shadow:5px 5px 0 var(--ds-pink);font-size:17px;padding:10px 20px;
+}
+.frame .community-panel form button:not([type=button]):active:not(:disabled),.frame .room-moderation .moderation-primary:active:not(:disabled){box-shadow:3px 3px 0 var(--ds-pink)}
+.frame .community-panel button:disabled,.frame .room-moderation button:disabled,.frame .community-panel form button:not([type=button]):disabled{
+  background:var(--ds-paper-deep);color:var(--ds-ink-3);border:var(--ds-line-thin) dashed var(--ds-ink-3);box-shadow:none;opacity:1;cursor:not-allowed;
+}
+/* utility actions at the foot of a drawer (refresh, history, back) read as hand-underlined links, not more stickers */
+.frame .community-panel .community-scroll>button,.frame .community-panel .community-scroll>section>button:not(.space-record),
+.frame .community-panel [data-group="older"],.frame .community-panel [data-group="read"],.frame .private-chat .chat-older,.frame .private-chat .chat-more,
+.frame .community-panel button[type=button][data-cup-cancel],.frame .community-panel [data-game="clear-choice"],.frame .community-panel [data-group^="cancel-"]{
+  background:none;border:0;box-shadow:none;padding:10px 4px;margin:2px 16px 2px 0;font-size:15px;color:var(--ds-ink);
+  text-decoration:underline wavy var(--ds-pink);text-decoration-thickness:1.5px;text-underline-offset:6px;border-radius:0;
+}
+.frame .community-panel .community-scroll>button:active,.frame .community-panel .community-scroll>section>button:not(.space-record):active{transform:translateY(1px);box-shadow:none}
+.frame .community-panel .community-scroll>button:disabled{background:none;border:0;text-decoration-color:var(--ds-ink-3)}
+.frame .community-panel label,.frame .room-moderation form>label{display:block;margin:14px 0;font:400 15px/1.5 var(--ds-font-ui);color:var(--ds-ink)}
+.frame .community-panel :is(input:not([type=checkbox]):not([type=radio]):not([type=hidden]),select,textarea),
+.frame .room-moderation :is(select,textarea,input:not([type=checkbox]):not([type=radio])),
+.frame .private-chat textarea{
+  display:block;width:100%;min-height:46px;margin-top:6px;padding:10px 13px;font:400 16px/1.5 var(--ds-font-body);color:var(--ds-ink);
+  background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-2);box-shadow:none;
+}
+.frame .community-panel :is(input,select,textarea):focus,.frame .room-moderation :is(select,textarea,input):focus,.frame .private-chat textarea:focus{outline:none;box-shadow:4px 4px 0 var(--ds-mint)}
+.frame .community-panel :is(input,select,textarea)::placeholder,.frame .private-chat textarea::placeholder{color:var(--ds-ink-3);opacity:1}
+.frame .community-panel label:has(>input[type=checkbox]),.frame .room-moderation label:has(>input[type=checkbox]),.frame #panel-body .greeting-row label:has(>input[type=checkbox]){
+  display:flex;align-items:flex-start;gap:12px;min-height:44px;padding:8px 0;cursor:pointer;font:400 15px/1.55 var(--ds-font-body);color:var(--ds-ink-2);
+}
+.frame :is(.community-panel,.room-moderation) input[type=checkbox]{margin:1px 0 0}
+/* the native file picker button (identity restore) becomes a small paper sticker */
+.frame .community-panel input[type=file]{padding:7px 10px;font:400 15px/1.4 var(--ds-font-body);color:var(--ds-ink-2);cursor:pointer}
+.frame .community-panel input[type=file]::file-selector-button{
+  margin:0 12px 0 0;padding:6px 14px;font:400 15px/1.2 var(--ds-font-ui);color:var(--ds-ink);cursor:pointer;
+  background:var(--ds-yellow-soft);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:var(--ds-shadow-sm);
+}
+.frame .community-panel fieldset{margin:14px 0;padding:6px 14px 4px;border:var(--ds-line-thin) dashed var(--ds-ink-3);border-radius:var(--ds-radius-card)}
+.frame .community-panel legend{padding:0 6px;font:400 14px var(--ds-font-ui);color:var(--ds-ink-2)}
+.frame .community-panel details{margin:16px 0}
+.frame .community-panel summary{display:flex;align-items:center;gap:10px;min-height:44px;cursor:pointer;list-style:none;font:400 16px/1.3 var(--ds-font-ui);color:var(--ds-ink)}
+.frame .community-panel summary::-webkit-details-marker{display:none}
+.frame .community-panel summary::before{content:"";flex:none;width:9px;height:9px;margin:0 3px;border:solid var(--ds-ink);border-width:0 2.5px 2.5px 0;transform:rotate(-45deg);transition:transform var(--ds-fast)}
+.frame .community-panel details[open]>summary::before{transform:rotate(45deg)}
+.frame :is(.community-panel,.private-chat,.room-moderation,.wardrobe) :is(button,summary,a):focus-visible{outline:3px dashed var(--ds-ink);outline-offset:3px}
+
+/* list rows (cups, games, communities, corners): paper cards with a drawn chevron */
+.frame .community-panel .entry-list{display:grid;gap:12px;margin:14px 0 18px}
+.frame .community-panel .entry-list>button{
+  position:relative;display:block;width:100%;margin:0;padding:13px 46px 13px 16px;text-align:left;min-height:64px;
+  border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-card);background:var(--ds-paper-card);box-shadow:var(--ds-shadow-sm);
+}
+.frame .community-panel .entry-list>button::after{content:"";position:absolute;right:20px;top:50%;width:10px;height:10px;margin-top:-6px;border:solid var(--ds-ink);border-width:2.5px 2.5px 0 0;transform:rotate(45deg)}
+.frame .community-panel .entry-list>button:active:not(:disabled){transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ds-ink)}
+.frame .community-panel .entry-list b{display:block;font:400 17px/1.35 var(--ds-font-ui);color:var(--ds-ink)}
+.frame .community-panel .entry-list span{display:block;margin-top:4px;font:400 14px/1.5 var(--ds-font-body);color:var(--ds-ink-3)}
+.frame .community-panel .entry-list>p{margin:6px 0;color:var(--ds-ink-3)}
+
+/* ── 4. private chat: name in marker, words in hand, bubbles with tails ── */
+.frame .private-chat>header{gap:10px;padding:16px 14px 10px;border:0;background:none}
+.frame .private-chat>header small{display:block;font:400 12px/1 var(--ds-font-logo);letter-spacing:.12em;color:var(--ds-ink-2)}
+.frame .private-chat h2{margin:6px 0 0;font:400 26px/1.15 var(--ds-font-display);letter-spacing:.01em;color:var(--ds-ink);text-shadow:.06em .06em 0 var(--ds-pink)}
+.frame .private-chat .chat-notice,.frame .private-chat>footer{background:none}
+.frame .private-chat .chat-notice{position:relative;padding:4px 18px 14px;font:400 14px/1.55 var(--ds-font-body);color:var(--ds-ink-2);text-align:center}
+.frame .private-chat .chat-notice::after,.frame .private-chat .chat-composer::before{
+  content:"";position:absolute;left:14px;right:14px;height:10px;background:var(--ds-ink-3);
+  -webkit-mask:var(--soc-squiggle) repeat-x 0 50%/28px 10px;mask:var(--soc-squiggle) repeat-x 0 50%/28px 10px;
+}
+.frame .private-chat .chat-notice::after{bottom:0}
+.frame .private-chat .chat-composer::before{top:-4px}
+.frame .private-chat .chat-thread{padding:16px 16px 20px}
+.frame .private-chat .chat-messages{gap:18px}
+.frame .private-chat .chat-message{max-width:84%;background:none;color:var(--ds-ink)}
+.frame .private-chat .chat-message p{
+  position:relative;margin:0;padding:10px 15px;font:400 16px/1.55 var(--ds-font-body);color:var(--ds-ink);
+  background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:18px 16px 18px 8px/16px 18px 14px 10px;
+}
+.frame .private-chat .chat-message.mine p{background:var(--ds-mint-soft);border-color:var(--ds-ink);border-radius:16px 18px 8px 18px/18px 14px 10px 16px}
+.frame .private-chat .chat-message p::before,.frame .private-chat .chat-message p::after{content:"";position:absolute;top:100%;width:0;height:0;border-style:solid}
+.frame .private-chat .chat-message.theirs p::before{left:16px;border-width:13px 15px 0 0;border-color:var(--ds-ink) transparent transparent}
+.frame .private-chat .chat-message.theirs p::after{left:18px;margin-top:-2px;border-width:10px 11px 0 0;border-color:var(--ds-paper-card) transparent transparent}
+.frame .private-chat .chat-message.mine p::before{right:16px;border-width:13px 0 0 15px;border-color:var(--ds-ink) transparent transparent}
+.frame .private-chat .chat-message.mine p::after{right:18px;margin-top:-2px;border-width:10px 0 0 11px;border-color:var(--ds-mint-soft) transparent transparent}
+.frame .private-chat .chat-message small{padding:6px 4px 0 40px;font:400 12px/1.4 "Doodle Digits",var(--ds-font-ui);letter-spacing:.02em;color:var(--ds-ink-3)}
+.frame .private-chat .chat-message.mine small{padding:6px 40px 0 4px;text-align:right}
+.frame .private-chat .chat-message [data-chat-read]{font:400 14px var(--ds-font-ui);color:var(--ds-ink);text-decoration:underline wavy var(--ds-pink);text-underline-offset:5px}
+.frame .private-chat .chat-older,.frame .private-chat .chat-more{display:block;margin:4px auto}
+.frame .private-chat .chat-first{margin:30px 20px;font:400 16px/1.7 var(--ds-font-body);color:var(--ds-ink-3);text-align:center}
+.frame .private-chat .chat-composer{position:relative;padding:14px 14px 8px;background:none;border:0}
+.frame .private-chat .chat-composer textarea{min-height:56px;margin:0;resize:none}
+.frame .private-chat .chat-composer>div{margin-top:10px;gap:12px}
+.frame .private-chat .chat-composer small{font:400 13px/1.45 var(--ds-font-body);color:var(--ds-ink-3)}
+.frame .private-chat .chat-composer button{
+  flex:none;min-height:46px;padding:10px 20px;font:400 17px/1 var(--ds-font-ui);color:var(--ds-paper-card);background:var(--ds-ink);
+  border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:5px 5px 0 var(--ds-pink);
+  transition:transform var(--ds-fast),box-shadow var(--ds-fast);
+}
+.frame .private-chat .chat-composer button:active:not(:disabled){transform:translate(2px,2px);box-shadow:3px 3px 0 var(--ds-pink)}
+.frame .private-chat .chat-composer button:disabled{background:var(--ds-paper-deep);color:var(--ds-ink-3);border-style:dashed;border-color:var(--ds-ink-3);box-shadow:none}
+.frame .private-chat>footer{padding:4px 12px max(8px,env(safe-area-inset-bottom));font:400 13px/1.5 var(--ds-font-body);color:var(--ds-ink-3);border:0}
+.frame .private-chat>footer .chat-more{display:inline-block;margin:0 0 0 6px;font:400 14px var(--ds-font-ui);color:var(--ds-ink);text-decoration:underline wavy var(--ds-pink);text-underline-offset:5px;background:none;border:0;padding:8px 4px}
+.frame .private-chat .chat-problem{margin:0 14px 8px;padding:8px 12px;font:400 14px/1.5 var(--ds-font-body);color:var(--ds-ink);background:var(--ds-pink-soft);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn)}
+.frame .private-chat .chat-pending{padding:4px 14px;font:400 14px/1.5 var(--ds-font-body);color:var(--ds-ink-2)}
+.frame .private-chat .chat-pending button{font:400 14px var(--ds-font-ui);color:var(--ds-ink);text-decoration:underline wavy var(--ds-pink);text-underline-offset:5px}
+/* conversation list: one sticker card per friend, unread count as a pink dot */
+.frame .private-chat .chat-conversations{padding:14px 16px 10px;display:flex;flex-direction:column;gap:12px}
+.frame .private-chat .chat-conversation{
+  position:relative;min-height:84px;padding:10px 14px;gap:14px;border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-card);
+  background:var(--ds-paper-card);box-shadow:var(--ds-shadow-sm);transition:transform var(--ds-fast),box-shadow var(--ds-fast);
+}
+.frame .private-chat .chat-conversation:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ds-ink)}
+.frame .private-chat .chat-avatar{width:48px;height:64px;border:var(--ds-line-thin) solid var(--ds-ink);border-radius:50% 50% 10px 12px/42% 42% 10px 12px;background:var(--ds-mint-soft)}
+.frame .private-chat .chat-avatar svg{width:52px;height:104px;transform:translate(-4px,-1px)}
+.frame .private-chat .chat-conversation:nth-child(even) .chat-avatar{background:var(--ds-yellow-soft)}
+.frame .private-chat .chat-conversation b{font:400 18px/1.25 var(--ds-font-ui);color:var(--ds-ink)}
+.frame .private-chat .chat-conversation p{margin:3px 0 2px;font:400 15px/1.45 var(--ds-font-body);color:var(--ds-ink-2)}
+.frame .private-chat .chat-conversation small{font:400 12px var(--ds-font-ui);color:var(--ds-ink-3)}
+.frame .private-chat .chat-conversation>i{
+  display:grid;place-items:center;min-width:28px;height:28px;padding:0 7px;font:400 15px/1 "Doodle Digits",var(--ds-font-ui);font-style:normal;color:var(--ds-ink);
+  background:var(--ds-pink);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-pill);box-shadow:2px 2px 0 var(--ds-ink);transform:rotate(-6deg);
+}
+.frame .private-chat .chat-empty{padding:26px 10px;text-align:center}
+.frame .private-chat .chat-empty>span{
+  display:inline-grid;place-items:center;width:76px;height:76px;margin-bottom:8px;font:400 40px/1 var(--ds-font-ui);color:var(--ds-ink);
+  background:var(--ds-mint);border:var(--ds-line) solid var(--ds-ink);border-radius:46% 54% 50% 50%/52% 46% 54% 48%;box-shadow:var(--ds-shadow-sm);transform:rotate(-6deg);
+}
+.frame .private-chat .chat-empty h3{margin:10px 0 6px;font:400 var(--ds-size-h3)/1.25 var(--ds-font-display);color:var(--ds-ink);text-shadow:.06em .06em 0 var(--ds-pink)}
+.frame .private-chat .chat-empty p{font:400 15px/1.7 var(--ds-font-body);color:var(--ds-ink-2)}
+.frame .private-chat .chat-empty .chat-more,.frame .private-chat .chat-conversations>.chat-more{
+  margin:12px auto 4px;padding:10px 18px;font:400 15px var(--ds-font-ui);color:var(--ds-ink);text-decoration:none;
+  background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:4px 4px 0 var(--ds-mint);
+}
+
+/* ── 5. the room / community conversation: a header, ONE scroller (status, tools, messages) and an input bar pinned below.
+   The messages do not scroll on their own: the drawer re-renders every few seconds and restores the scroll position of
+   .conversation-content only (community-panel.js), so a second scroller inside it jumped back to the top on every refresh. ── */
+.frame .music-community.conversation-layout{padding:16px 16px 12px;gap:0}
+/* the script moves the h2 in front of the eyebrow; the grid puts the eyebrow back on top (text only, so no tab-order change) */
+.frame .conversation-layout>header{position:relative;display:grid;grid-template-columns:minmax(0,1fr);min-height:0;padding:0 58px 10px 2px;background:none}
+.frame .conversation-layout>header .eyebrow{position:static;display:block;grid-row:1;margin:0 0 2px;font-size:13px;line-height:1.4}
+.frame .conversation-layout>header h2{margin:0;max-width:none;font-size:24px;line-height:1.25;text-shadow:.06em .06em 0 var(--ds-mint)}
+.frame .conversation-layout>header>button{position:absolute;top:-6px;right:0}
+.frame .conversation-layout .conversation-content{
+  display:grid;grid-template-columns:minmax(0,1fr) auto;align-content:start;column-gap:10px;
+  overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--ds-ink-3) transparent;
+}
+.frame .conversation-layout .conversation-content>*{grid-column:1/-1;min-width:0}
+/* status line and the 本场与管理 menu share the first row; opened, the menu takes a full row of its own below the status */
+.frame .conversation-layout .conversation-content>.conversation-status{grid-column:1;align-self:center}
+.frame .conversation-layout .conversation-content>.conversation-status:has([role=alert],[role=status],button){grid-column:1/-1}
+.frame .conversation-layout .conversation-content>.conversation-management{grid-column:2;align-self:center;margin:0}
+.frame .conversation-status{max-height:none;overflow:visible;padding:4px 0;border:0;font:400 14px/1.45 var(--ds-font-ui);color:var(--ds-ink-2)}
+.frame .conversation-status [role=alert]{margin:6px 0}
+.frame .conversation-management>summary{
+  min-height:44px;padding:0 14px 0 10px;gap:6px;font:400 14px/1.2 var(--ds-font-ui);color:var(--ds-ink);white-space:nowrap;
+  background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-pill);box-shadow:var(--ds-shadow-sm);
+}
+.frame .conversation-management>summary::before{transform:rotate(45deg);margin-top:-4px}
+.frame .conversation-management[open]>summary{box-shadow:none;background:var(--ds-yellow-soft)}
+/* the open menu unfolds in place inside the one scroller. As the legacy floating sheet it became a second, capped scroller
+   that hid its last actions on short screens (320×568: 186px shown of 387px; longer still for a host) and sat on the drawer's
+   side borders. Clicking any action inside still closes it (community-panel.js). The right/bottom margin keeps the shadow. */
+.frame .conversation-layout .conversation-content>.conversation-management[open]{
+  position:static;grid-column:1/-1;width:auto;max-height:none;overflow:visible;margin:4px 6px 12px 0;padding:12px 14px;
+  background:var(--ds-paper-card);border:var(--ds-border);border-radius:var(--ds-radius-card);box-shadow:var(--ds-shadow);
+}
+.frame .conversation-actions{
+  gap:10px;margin:8px 0 2px;padding:4px 28px 12px 2px;scrollbar-width:none;
+  -webkit-mask:linear-gradient(90deg,#000 calc(100% - 34px),transparent);mask:linear-gradient(90deg,#000 calc(100% - 34px),transparent);
+}
+.frame .conversation-actions::-webkit-scrollbar{display:none}
+.frame .conversation-actions button{
+  flex:none;min-height:44px;margin:0;padding:8px 14px;font:400 14px/1.2 var(--ds-font-ui);white-space:nowrap;
+  border-radius:var(--ds-radius-pill);box-shadow:var(--ds-shadow-sm);background:var(--ds-mint-soft);
+}
+.frame .conversation-actions button:nth-child(even){background:var(--ds-yellow-soft)}
+.frame .conversation-actions button:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ds-ink)}
+.frame .conversation-layout .chat-reading,.frame .conversation-layout .conversation-content .chat-reading{position:relative;flex:none;min-height:0;overflow:visible;padding:16px 0 4px}
+.frame .conversation-layout .chat-reading::before{
+  content:"";position:absolute;left:0;right:0;top:0;height:10px;background:var(--ds-ink-3);
+  -webkit-mask:var(--soc-squiggle) repeat-x 0 50%/28px 10px;mask:var(--soc-squiggle) repeat-x 0 50%/28px 10px;
+}
+.frame .community-messages article,.frame .conversation-layout .community-messages article{position:relative;margin:0 0 8px;padding:0 0 0 54px;border:0;min-height:62px}
+.frame .community-messages article>b{display:inline-block;margin:2px 0 4px;font:400 15px/1.3 var(--ds-font-ui);color:var(--ds-ink)}
+.frame .community-messages time{float:right;margin:3px 2px 0 8px;font:400 12px/1.4 "Doodle Digits",var(--ds-font-ui);color:var(--ds-ink-3)}
+.frame .community-messages article>p{
+  clear:both;margin:0;padding:9px 14px;font:400 16px/1.55 var(--ds-font-body);color:var(--ds-ink);
+  background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:6px 18px 16px 18px/8px 16px 18px 14px;
+}
+.frame .community-messages article.own>p{background:var(--ds-mint-soft);border-radius:18px 6px 18px 16px/16px 8px 14px 18px}
+.frame .community-messages .message-avatar{
+  position:absolute;left:0;top:2px;float:none;width:44px;height:58px;margin:0;overflow:hidden;
+  border:var(--ds-line-thin) solid var(--ds-ink);border-radius:50% 50% 10px 12px/42% 42% 10px 12px;background:var(--ds-yellow-soft);
+}
+.frame .community-messages article:nth-child(3n+2) .message-avatar{background:var(--ds-sky-soft)}
+.frame .community-messages article.own .message-avatar{background:var(--ds-mint-soft)}
+.frame .community-messages .message-avatar svg{width:46px;height:96px;transform:translate(-3px,-2px)}
+.frame .community-messages blockquote{margin:6px 0;padding:6px 12px;font:400 14px/1.5 var(--ds-font-body);color:var(--ds-ink-2);background:var(--ds-paper-deep);border:0;border-left:4px solid var(--ds-pink);border-radius:0 8px 8px 0}
+/* 回复 / 撤回 are two characters: min-width keeps the hit area at 44px, left-aligned so the wavy line stays under the word */
+.frame .community-messages article>button{
+  min-height:44px;min-width:44px;margin:0 14px 0 0;padding:4px 2px;text-align:left;font:400 14px var(--ds-font-ui);color:var(--ds-ink-2);background:none;border:0;box-shadow:none;
+  text-decoration:underline wavy var(--ds-ink-3);text-decoration-thickness:1px;text-underline-offset:5px;border-radius:0;
+}
+.frame .community-messages article>button:active{transform:translateY(1px);box-shadow:none}
+.frame .community-messages>p{text-align:center;font:400 16px/1.7 var(--ds-font-body);color:var(--ds-ink-3);margin:24px 10px}
+/* the input bar: words on the left, the ink send button beside them */
+.frame .community-composer{
+  position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:10px;align-items:end;
+  max-height:none;overflow:visible;padding:14px 0 2px;border:0;background:none;
+}
+.frame .community-composer>*{grid-column:1/-1;min-width:0}
+.frame .community-composer::before{
+  content:"";position:absolute;left:0;right:0;top:0;height:10px;background:var(--ds-ink-3);
+  -webkit-mask:var(--soc-squiggle) repeat-x 0 50%/28px 10px;mask:var(--soc-squiggle) repeat-x 0 50%/28px 10px;
+}
+.frame .community-composer>label{grid-column:1;margin:4px 0 0;font:400 14px var(--ds-font-ui);color:var(--ds-ink-2)}
+/* (selectors carry enough weight to beat the generic field and primary-button rules of §3) */
+.frame .music-community.conversation-layout form.community-composer>label>textarea[name=text]{height:62px;min-height:62px;margin:6px 0 0;padding:8px 12px;resize:none}
+.frame .community-panel .community-composer>button[type=submit]{grid-column:2;width:auto;min-height:56px;margin:0 5px 5px 0;padding:8px 16px;font-size:16px;white-space:nowrap}
+.frame .community-composer>p{margin:4px 0;font-size:14px}
+.frame .community-panel .invite-code{font:400 26px/1.2 "Doodle Digits",var(--ds-font-ui);letter-spacing:.12em;color:var(--ds-ink)}
+.frame .community-own-avatar svg{filter:drop-shadow(3px 3px 0 var(--ds-mint))}
+
+/* music cards and topics: notes pinned to the paper */
+.frame .community-panel .music-reference{
+  position:relative;margin:16px 0;padding:14px 16px 12px;background:var(--ds-sky-soft);border:var(--ds-line-thin) solid var(--ds-ink);
+  border-left-width:var(--ds-line-thin);border-radius:var(--ds-radius-card);box-shadow:var(--ds-shadow-sm);
+}
+.frame .community-panel .music-reference h3{margin:6px 0 4px;font:400 22px/1.25 var(--ds-font-display);color:var(--ds-ink)}
+.frame .community-panel .music-reference a{display:inline-flex;align-items:center;min-height:44px;font:400 15px/1.4 var(--ds-font-ui);color:var(--ds-ink);text-decoration:underline wavy var(--ds-pink);text-underline-offset:5px}
+.frame .community-panel .music-reference small{font-size:13px;color:var(--ds-ink-2)}
+.frame .community-panel .music-reference button{margin:8px 10px 2px 0}
+.frame .music-topics article.music-reference{background:var(--ds-yellow-soft);transform:rotate(-.5deg);margin:22px 2px}
+.frame .music-topics article.music-reference:nth-of-type(even){transform:rotate(.6deg)}
+.frame .music-topics article.music-reference::before{
+  content:"";position:absolute;top:-11px;left:24px;width:70px;height:20px;background:var(--ds-pink);opacity:.55;transform:rotate(-3deg);pointer-events:none;
+  clip-path:polygon(4% 0,96% 0,100% 25%,95% 50%,100% 75%,96% 100%,4% 100%,0 75%,5% 50%,0 25%);
+}
+.frame .music-topics article.music-reference>p:first-of-type{font:400 15px var(--ds-font-ui);color:var(--ds-ink-2);margin:0 0 6px}
+/* withdrawing is the quiet second choice on a topic note */
+.frame .music-topics article.music-reference [data-topic-withdraw]{
+  padding:10px 4px;background:none;border:0;box-shadow:none;border-radius:0;font-size:15px;color:var(--ds-ink-2);
+  text-decoration:underline wavy var(--ds-ink-3);text-decoration-thickness:1.5px;text-underline-offset:6px;
+}
+.frame .music-topics article.music-reference [data-topic-withdraw]:disabled{background:none;border:0;color:var(--ds-ink-3)}
+.frame .music-explore summary{min-height:44px}
+.frame .music-thread svg{color:var(--ds-ink)}
+.frame .music-thread text{font:400 13px var(--ds-font-ui);fill:var(--ds-ink)}
+
+/* ── 6. album World Cup: a sticker scoreboard ── */
+.frame .worldcup-panel .community-scroll>h2{font-size:var(--ds-size-h1);color:var(--ds-yellow);-webkit-text-stroke:.06em var(--ds-ink);paint-order:stroke fill;text-shadow:.06em .07em 0 var(--ds-ink);line-height:1.12;margin:6px 0 14px}
+.frame .worldcup-panel .community-scroll>h2::after{background:var(--ds-pink)}
+.frame .worldcup-match{position:relative;margin:30px 0 22px;padding:22px 14px 14px;border:var(--ds-border);border-radius:var(--ds-radius-card);background:var(--ds-paper-card);box-shadow:var(--ds-shadow)}
+.frame .worldcup-match>h3{
+  position:absolute;top:-17px;left:14px;margin:0;padding:4px 14px;font:400 15px/1.3 var(--ds-font-ui);color:var(--ds-ink);
+  background:var(--ds-yellow);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-pill);box-shadow:var(--ds-shadow-sm);transform:rotate(-2deg);
+}
+.frame .worldcup-pair{position:relative;gap:34px}
+.frame .worldcup-pair::after{
+  content:"VS" / "";position:absolute;left:50%;top:74px;width:40px;height:40px;margin:-20px 0 0 -20px;display:grid;place-items:center;pointer-events:none;
+  font:400 17px/1 var(--ds-font-logo);color:var(--ds-ink);background:var(--ds-pink);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:50%;
+  box-shadow:2px 2px 0 var(--ds-ink);transform:rotate(-10deg);
+}
+/* the four album colours map to the soft marker fills the 一起玩 cards use for the same albums (data-tint, as in music-games.js);
+   the inline --album-ink stays for the legacy sheet. Ink type on top; the bottom padding keeps words off the record. */
+.frame .worldcup-cover{
+  --wc-tint:var(--ds-yellow-soft);--wc-dot:var(--ds-yellow);
+  min-height:148px;padding:12px 12px 56px;color:var(--ds-ink);background:var(--wc-tint);
+  border:var(--ds-line-thin) solid var(--ds-ink);border-radius:5px 9px 6px 8px;box-shadow:var(--ds-shadow-sm);transform:rotate(-1.2deg);
+}
+.frame .worldcup-cover[data-tint="1"]{--wc-tint:var(--ds-pink-soft);--wc-dot:var(--ds-pink)}
+.frame .worldcup-cover[data-tint="2"]{--wc-tint:var(--ds-mint-soft);--wc-dot:var(--ds-mint)}
+.frame .worldcup-cover[data-tint="3"]{--wc-tint:var(--ds-sky-soft);--wc-dot:var(--ds-sky)}
+.frame .worldcup-pair>div:nth-child(2) .worldcup-cover{transform:rotate(1.2deg)}
+.frame .worldcup-cover span{display:block;font:400 12px/1.4 var(--ds-font-ui);letter-spacing:.02em;color:var(--ds-ink-2);word-break:keep-all}
+.frame .worldcup-cover h3{margin:10px 0 6px;font:400 24px/1.2 var(--ds-font-display);color:var(--ds-ink);text-shadow:none;overflow-wrap:anywhere;letter-spacing:.01em}
+.frame .worldcup-cover p{margin:0;font:400 14px/1.4 var(--ds-font-body);color:var(--ds-ink-2)}
+.frame .worldcup-cover i{
+  width:84px;height:84px;right:-24px;bottom:-24px;border:var(--ds-line-thin) solid var(--ds-ink);box-shadow:none;
+  background:radial-gradient(circle,var(--wc-dot) 0 15%,var(--ds-ink) 16% 19%,transparent 20%),repeating-radial-gradient(circle,var(--ds-night) 0 3px,var(--ds-ink-2) 3.5px 4.5px);
+}
+.frame .worldcup-pair>div>p{margin:12px 2px 6px;font:400 15px/1.2 var(--ds-font-ui);color:var(--ds-ink-2)}
+.frame .worldcup-votes b{margin-right:3px;font:400 44px/1 var(--ds-font-digits);color:var(--ds-ink);text-shadow:3px 3px 0 var(--ds-yellow);vertical-align:-4px}
+.frame .worldcup-mine{display:block;width:fit-content;margin:8px 0 2px;padding:2px 10px;font:400 13px/1.4 var(--ds-font-ui);color:var(--ds-ink);background:var(--ds-pink-soft);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-pill);box-shadow:2px 2px 0 var(--ds-ink);transform:rotate(-2deg)}
+/* the " · " before the sticker stays for screen readers only */
+.frame .worldcup-mine .worldcup-sep{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.frame .worldcup-pair button{width:100%;margin:6px 0 2px;padding:9px 8px;text-wrap:balance}
+.frame .worldcup-match>p{margin:12px 0 0}
+.frame .worldcup-match>p b{padding:0 .2em;background:linear-gradient(transparent 56%,var(--ds-yellow) 56%,var(--ds-yellow) 92%,transparent 92%)}
+.frame .worldcup-panel form{border-top:0;margin-top:20px;padding:14px 16px;background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-card)}
+
+/* ── 7. games: a thought bubble, name tags, colour-coded choices ── */
+.frame .game-heading{gap:14px;align-items:flex-start;margin-bottom:6px}
+.frame .game-heading>div:first-child{flex:0 0 66px;display:grid;place-items:end center;height:118px;padding-top:6px;border:var(--ds-line-thin) solid var(--ds-ink);border-radius:50% 50% 14px 16px/40% 40% 14px 16px;background:var(--ds-sky-soft);overflow:hidden}
+.frame .game-heading>div:first-child svg{width:62px;height:130px;margin-bottom:-14px}
+.frame .game-heading h2{margin:2px 0 6px}
+.frame .community-panel .game-heading p{font-size:15px;margin:0 0 8px}
+.frame .community-panel .game-avatar-thought{
+  position:relative;display:inline-block;margin:6px 18px 2px 0;padding:8px 14px;font:400 15px/1.5 var(--ds-font-body);color:var(--ds-ink);
+  background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:20px 18px 22px 16px/18px 22px 16px 20px;box-shadow:var(--ds-shadow-sm);
+}
+.frame .game-avatar-thought::before,.frame .game-avatar-thought::after{content:"";position:absolute;border:var(--ds-line-thin) solid var(--ds-ink);border-radius:50%;background:var(--ds-paper-card)}
+.frame .game-avatar-thought::before{right:-13px;top:8px;width:11px;height:11px}
+.frame .game-avatar-thought::after{right:-23px;top:-2px;width:7px;height:7px}
+.frame .community-panel .game-phase{display:inline-block;margin:10px 0 4px;padding:5px 14px;font:400 14px/1.4 var(--ds-font-ui);color:var(--ds-ink);background:var(--ds-sky-soft);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-pill);box-shadow:var(--ds-shadow-sm)}
+.frame .community-panel .game-progress{margin:14px 0 6px;padding-top:0;border-top:0;font:400 15px/1.5 var(--ds-font-ui);color:var(--ds-ink-2)}
+.frame .game-players{gap:12px;margin:14px 0}
+.frame .game-players span{
+  display:inline-flex;align-items:flex-end;gap:6px;padding:4px 12px 6px 6px;border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);
+  background:var(--ds-paper-card);box-shadow:var(--ds-shadow-sm);transform:rotate(-1.2deg);overflow:hidden;height:64px;
+}
+.frame .game-players span:nth-child(even){transform:rotate(1.2deg)}
+.frame .game-players span svg{width:36px;height:74px;margin-bottom:-18px}
+.frame .game-players b{align-self:center;font:400 15px var(--ds-font-ui)}
+.frame .game-round{position:relative;margin-top:26px;padding:20px 14px 12px;border:var(--ds-border);border-radius:var(--ds-radius-card);background:var(--ds-paper-card);box-shadow:var(--ds-shadow)}
+.frame .game-round>h3{position:absolute;top:-17px;left:14px;margin:0;padding:3px 14px;font:400 15px/1.3 var(--ds-font-ui);background:var(--ds-sky);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-pill);box-shadow:var(--ds-shadow-sm);transform:rotate(-2deg)}
+.frame .game-choices,.frame .game-result{gap:14px;margin:12px 0}
+.frame .game-choice-card{
+  position:relative;overflow:hidden;min-height:118px;padding:12px 13px;color:var(--ds-ink);background:var(--soc-tint,var(--ds-yellow-soft));
+  border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-card);box-shadow:var(--ds-shadow-sm);
+}
+.frame .game-choice-card::before{
+  content:"";position:absolute;right:-14px;top:-14px;width:58px;height:58px;border:var(--ds-line-thin) solid var(--ds-ink);border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,var(--soc-tint,var(--ds-yellow-soft)) 0 17%,var(--ds-ink) 18% 23%,transparent 24%),repeating-radial-gradient(circle,var(--ds-night) 0 3px,var(--ds-ink-2) 3.5px 4.5px);
+}
+.frame .game-choice-card h3,.frame .game-choice-card p{max-width:calc(100% - 30px)}
+.frame .game-choice-card[data-tint="1"]{--soc-tint:var(--ds-pink-soft)}
+.frame .game-choice-card[data-tint="2"]{--soc-tint:var(--ds-mint-soft)}
+.frame .game-choice-card[data-tint="3"]{--soc-tint:var(--ds-sky-soft)}
+.frame .game-choice-card small{font:400 12px/1.4 var(--ds-font-ui);color:var(--ds-ink-2)}
+.frame .game-choice-card h3{margin:22px 0 4px;font:400 21px/1.2 var(--ds-font-display);color:var(--ds-ink);overflow-wrap:anywhere;letter-spacing:0}
+.frame .game-choice-card p{margin:0;font:400 14px/1.4 var(--ds-font-body);color:var(--ds-ink-2)}
+.frame .game-choices button,.frame .game-result>div>p{width:100%;margin:10px 0 0}
+/* each choice is a card and its button. The cells share the grid's rows (subgrid), so both buttons of a pair keep one height
+   even when a member-written title wraps; on narrow phones the label steps down a pixel so the four fictional titles stay on
+   one line from 365px up (「最后一盏灯」 broke as 「最后 / 一盏灯」 at 390; ≤360px is one column). */
+.frame .game-choices{row-gap:10px}
+.frame .game-choices>div{display:grid;grid-row:span 2;grid-template-rows:subgrid;row-gap:10px;min-width:0;margin-bottom:6px}
+.frame .game-choices button{margin:0;padding:9px 4px;font-size:clamp(14px,3.85vw,15px);letter-spacing:0;text-wrap:balance;overflow-wrap:anywhere}
+.frame .game-result>div>p{font:400 15px/1.4 var(--ds-font-ui);color:var(--ds-ink)}
+.frame .music-games fieldset{border:var(--ds-line-thin) dashed var(--ds-ink-3)}
+
+/* ── 8. creation corner: a two-sided polaroid ── */
+.frame .corner-art{
+  position:relative;margin:22px 0;padding:22px 16px 14px;background:var(--ds-paper-card);border:var(--ds-border);
+  border-radius:var(--ds-radius-card);box-shadow:var(--ds-shadow-lg);
+}
+.frame .corner-art::before{
+  content:"";position:absolute;top:-13px;left:50%;width:96px;height:25px;margin-left:-48px;background:var(--ds-yellow);opacity:.82;transform:rotate(2deg);pointer-events:none;
+  clip-path:polygon(4% 0,96% 0,100% 20%,95.5% 40%,100% 60%,95.5% 80%,100% 100%,4% 100%,0 80%,4.5% 60%,0 40%,4.5% 20%);
+}
+.frame .corner-art>small{font:400 12px/1 var(--ds-font-logo);letter-spacing:.12em;color:var(--ds-ink-2)}
+.frame .corner-art h3{margin:10px 0 14px;font:400 26px/1.2 var(--ds-font-display);color:var(--ds-ink);text-shadow:.06em .06em 0 var(--ds-pink)}
+.frame .corner-pair{gap:16px}
+.frame .corner-side{border-top:0;padding-top:0}
+.frame .corner-avatar{height:200px;margin-bottom:8px;border-radius:50% 50% 14px 16px/30% 30% 14px 16px;background:var(--ds-mint-soft);border:var(--ds-line-thin) solid var(--ds-ink)}
+.frame .corner-side:nth-child(2) .corner-avatar{background:var(--ds-pink-soft)}
+.frame .corner-side b{display:block;font:400 18px/1.3 var(--ds-font-ui)}
+.frame .corner-side p{margin:4px 0 8px;font:400 15px/1.55 var(--ds-font-body);color:var(--ds-ink)}
+.frame .corner-side img,.frame .corner-photo-preview img{padding:6px 6px 16px;background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);box-shadow:var(--ds-shadow-sm);transform:rotate(-1.4deg)}
+.frame .corner-side:nth-child(2) img{transform:rotate(1.4deg)}
+.frame .corner-art figcaption{margin-top:8px;font:400 13px/1.5 var(--ds-font-body);color:var(--ds-ink-3)}
+.frame .corner-panel form{border-top:0;padding:14px 16px;margin-top:18px;background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-card)}
+.frame .corner-result-preview{margin-top:16px;padding:8px 8px 22px;background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);box-shadow:var(--ds-shadow);transform:rotate(-1deg)}
+
+/* ── 9. 我的空间: a name sticker, shortcut tiles, record cards ── */
+.frame .space-identity{grid-template-columns:118px 1fr;gap:16px;padding-bottom:20px;border-bottom:0;position:relative}
+.frame .space-identity::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:10px;background:var(--ds-mint);
+  -webkit-mask:var(--soc-squiggle) repeat-x 0 50%/28px 10px;mask:var(--soc-squiggle) repeat-x 0 50%/28px 10px;
+}
+.frame .space-identity>div:first-child{display:grid;place-items:end center;height:206px;overflow:hidden;border:var(--ds-line-thin) solid var(--ds-ink);border-radius:50% 50% 16px 18px/32% 32% 16px 18px;background:var(--ds-mint-soft);box-shadow:var(--ds-shadow-sm)}
+.frame .space-identity svg{height:230px;max-width:112px;margin-bottom:-24px}
+.frame .space-identity small{font:400 13px/1.4 var(--ds-font-ui);color:var(--ds-ink-2)}
+.frame .personal-space .space-identity h2{
+  margin:6px 0 8px;font-size:var(--ds-size-h1);line-height:1.08;color:var(--ds-yellow);-webkit-text-stroke:.065em var(--ds-ink);paint-order:stroke fill;text-shadow:.06em .07em 0 var(--ds-ink);
+}
+.frame .personal-space .space-identity h2::after{display:none}
+.frame .space-identity p{font-size:15px;margin:0 0 10px}
+.frame .space-shortcuts{gap:12px;margin:22px 0 26px}
+.frame .space-shortcuts button{
+  position:relative;min-height:58px;margin:0;padding:10px 12px 10px 34px;text-align:left;font-size:16px;border-radius:var(--ds-radius-card);box-shadow:var(--ds-shadow-sm);transform:rotate(-.8deg);
+}
+.frame .space-shortcuts button:nth-child(even){transform:rotate(.8deg)}
+.frame .space-shortcuts button::before{content:"";position:absolute;left:12px;top:50%;width:13px;height:13px;margin-top:-7px;border:var(--ds-line-thin) solid var(--ds-ink);border-radius:50%;background:var(--ds-mint)}
+.frame .space-shortcuts button:nth-child(4n+2)::before,.frame .space-shortcuts button:nth-child(4n+3)::before{background:var(--ds-yellow)}
+.frame .space-shortcuts button:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ds-ink)}
+.frame .personal-space section{margin-bottom:26px}
+.frame .personal-space h3{display:inline-block;margin:6px 0 6px;padding:0 .2em;font:400 22px/1.3 var(--ds-font-display);background:linear-gradient(transparent 58%,var(--ds-mint) 58%,var(--ds-mint) 92%,transparent 92%)}
+.frame .personal-space section:nth-of-type(3) h3,.frame .personal-space section:nth-of-type(4) h3{background:linear-gradient(transparent 58%,var(--ds-yellow) 58%,var(--ds-yellow) 92%,transparent 92%)}
+.frame .personal-space .space-record{
+  display:block;width:100%;margin:10px 0;padding:12px 16px 12px 22px;text-align:left;background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);
+  border-radius:var(--ds-radius-card);box-shadow:var(--ds-shadow-sm),inset 7px 0 0 var(--ds-mint);
+}
+.frame .personal-space .space-record b{font:400 17px/1.35 var(--ds-font-ui)}
+.frame .personal-space .space-record span{display:block;margin-top:4px;font:400 14px/1.5 var(--ds-font-body);color:var(--ds-ink-3)}
+
+/* ── 10. 我的小人 wardrobe: a doodle dressing room ── */
+.frame .wardrobe{background:var(--ds-paper) var(--ds-dots);color:var(--ds-ink)}
+.frame .wardrobe .wardrobe-header{padding:12px 24px;background:none;border-bottom:var(--ds-border)}
+.frame .wardrobe .wardrobe-header small{font:400 12px/1 var(--ds-font-logo);letter-spacing:.14em;color:var(--ds-ink-2)}
+.frame .wardrobe .wardrobe-header h2{margin:6px 0 0;font:400 var(--ds-size-h2)/1.1 var(--ds-font-display);letter-spacing:.01em;color:var(--ds-ink);text-shadow:.06em .06em 0 var(--ds-pink)}
+.frame .wardrobe .wardrobe-look{background:var(--ds-paper-deep) var(--ds-dots);border-right:var(--ds-border)}
+.frame .wardrobe .wardrobe-look::before{
+  content:"YOU" / "";position:absolute;inset:auto;left:6%;top:12%;border:0;transform:rotate(-8deg);pointer-events:none;
+  font:400 clamp(110px,15vw,230px)/1 var(--ds-font-logo);letter-spacing:.02em;color:transparent;-webkit-text-stroke:2.5px var(--ds-ink-3);opacity:.32;
+}
+.frame .wardrobe .wardrobe-orbit{width:56%;height:15%;bottom:10%;background:var(--ds-mint);border:var(--ds-line) solid var(--ds-ink);border-radius:50%;transform:rotate(-5deg);box-shadow:5px 6px 0 var(--ds-ink)}
+.frame .wardrobe .wardrobe-figure svg{filter:drop-shadow(6px 6px 0 color-mix(in srgb,var(--ds-ink) 18%,transparent))}
+.frame .wardrobe .wardrobe-local{
+  writing-mode:horizontal-tb;top:18px;left:20px;padding:4px 12px;font:400 13px/1.4 var(--ds-font-ui);letter-spacing:.02em;color:var(--ds-ink);
+  background:var(--ds-yellow);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-pill);box-shadow:var(--ds-shadow-sm);transform:rotate(-3deg);
+}
+.frame .wardrobe .wardrobe-angle{gap:0;padding:0;background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-pill);box-shadow:var(--ds-shadow-sm);overflow:hidden}
+.frame .wardrobe .wardrobe-angle button{min-width:56px;min-height:44px;padding:0 12px;font:400 14px var(--ds-font-ui);color:var(--ds-ink);background:none;border:0;border-radius:0}
+.frame .wardrobe .wardrobe-angle button+button{border-left:var(--ds-line-thin) solid var(--ds-ink)}
+.frame .wardrobe .wardrobe-angle button[aria-pressed=true]{background:var(--ds-ink);color:var(--ds-paper-card);border-radius:0}
+.frame .wardrobe .wardrobe-tools{background:none;padding:22px 24px}
+.frame .wardrobe .wardrobe-name{gap:12px;font:400 15px var(--ds-font-ui);color:var(--ds-ink)}
+.frame .wardrobe .wardrobe-name input{min-height:46px;height:46px;padding:8px 13px;font:400 17px var(--ds-font-ui);color:var(--ds-ink);background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-2)}
+.frame .wardrobe .wardrobe-name input:focus{outline:none;box-shadow:4px 4px 0 var(--ds-mint)}
+.frame .wardrobe .wardrobe-part-heading{margin:20px 0 12px;font:400 15px var(--ds-font-ui)}
+.frame .wardrobe .wardrobe-part-heading b{font:400 var(--ds-size-h3)/1.2 var(--ds-font-display);padding:0 .2em;background:linear-gradient(transparent 58%,var(--ds-yellow) 58%,var(--ds-yellow) 92%,transparent 92%)}
+.frame .wardrobe .wardrobe-part-heading span,.frame .wardrobe .wardrobe-count{font:400 14px/1.5 var(--ds-font-body);color:var(--ds-ink-3)}
+.frame .wardrobe .wardrobe-tabs{gap:8px;padding:4px 4px 14px;border-bottom:0}
+.frame .wardrobe .wardrobe-tabs button{
+  min-height:44px;padding:6px 14px;font:400 15px var(--ds-font-ui);color:var(--ds-ink);background:var(--ds-paper-card);
+  border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-pill);box-shadow:none;transition:transform var(--ds-fast),box-shadow var(--ds-fast),background-color var(--ds-fast);
+}
+.frame .wardrobe .wardrobe-tabs button[aria-pressed=true]{background:var(--ds-yellow);color:var(--ds-ink);box-shadow:var(--ds-shadow-sm);transform:rotate(-2deg)}
+.frame .wardrobe .wardrobe-pieces{margin-top:6px}
+.frame .wardrobe .wardrobe-options{gap:10px}
+.frame .wardrobe .wardrobe-options button{
+  min-height:50px;gap:10px;padding:8px 10px;background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);
+  border-radius:var(--ds-radius-btn);box-shadow:none;transition:transform var(--ds-fast),box-shadow var(--ds-fast),background-color var(--ds-fast);
+}
+.frame .wardrobe .wardrobe-options button>span{font:400 14px/1 var(--ds-font-digits);color:var(--ds-ink-3)}
+.frame .wardrobe .wardrobe-options b{font:400 15px/1.3 var(--ds-font-ui);color:var(--ds-ink)}
+.frame .wardrobe .wardrobe-options i{
+  display:grid;place-items:center;flex:none;width:26px;height:26px;font:400 16px/1 var(--ds-font-ui);font-style:normal;color:var(--ds-ink);
+  border:var(--ds-line-thin) solid var(--ds-ink);border-radius:50%;background:var(--ds-paper)
+}
+.frame .wardrobe .wardrobe-options button[aria-pressed=true]{background:var(--ds-mint-soft);border-color:var(--ds-ink);box-shadow:var(--ds-shadow-sm);transform:rotate(-1deg)}
+.frame .wardrobe .wardrobe-options button[aria-pressed=true] i{background:var(--ds-pink);color:var(--ds-ink)}
+.frame .wardrobe .palette-row{gap:8px;margin:0 0 14px}
+.frame .wardrobe .palette-row legend{margin-bottom:6px;font:400 14px var(--ds-font-ui);color:var(--ds-ink-2)}
+.frame .wardrobe .palette-row button{width:44px;height:44px;padding:4px;border:var(--ds-line-thin) solid transparent;border-radius:50%;background:none}
+.frame .wardrobe .palette-row button span{border:var(--ds-line-thin) solid var(--ds-ink);border-radius:47% 53% 50% 50%/52% 48% 52% 48%}
+.frame .wardrobe .palette-row button[aria-pressed=true]{border-color:var(--ds-ink);background:var(--ds-paper-card);box-shadow:var(--ds-shadow-sm);transform:rotate(-6deg)}
+.frame .wardrobe .wardrobe-examples{border-top:0;color:var(--ds-ink-2)}
+.frame .wardrobe .wardrobe-examples summary{font:400 15px var(--ds-font-ui);color:var(--ds-ink)}
+.frame .wardrobe .wardrobe-examples p{font:400 14px/1.5 var(--ds-font-body);color:var(--ds-ink-3)}
+.frame .wardrobe .wardrobe-presets{gap:8px}
+.frame .wardrobe .wardrobe-presets button{min-height:44px;padding:6px 14px;font:400 14px var(--ds-font-ui);color:var(--ds-ink);background:var(--ds-paper-card);border:var(--ds-line-thin) dashed var(--ds-ink);border-radius:var(--ds-radius-pill)}
+.frame .wardrobe .wardrobe-error{font:400 14px/1.6 var(--ds-font-body);color:var(--ds-ink)}
+.frame .wardrobe .wardrobe-error:not(:empty){padding:6px 12px;background:var(--ds-pink-soft);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn)}
+.frame .wardrobe .wardrobe-tools footer{gap:14px;padding-top:18px}
+.frame .wardrobe .wardrobe-tools footer button{
+  min-height:50px;padding:10px 18px;font:400 16px var(--ds-font-ui);color:var(--ds-ink);background:var(--ds-paper-card);
+  border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:5px 5px 0 var(--ds-mint);
+  transition:transform var(--ds-fast),box-shadow var(--ds-fast);
+}
+.frame .wardrobe .wardrobe-tools .wardrobe-save{font-size:19px;color:var(--ds-paper-card);background:var(--ds-ink);box-shadow:5px 5px 0 var(--ds-pink)}
+.frame .wardrobe .wardrobe-tools footer button:active:not(:disabled){transform:translate(2px,2px);box-shadow:3px 3px 0 var(--ds-ink)}
+.frame .wardrobe .wardrobe-tools .wardrobe-save:disabled{background:var(--ds-paper-deep);color:var(--ds-ink-3);border-style:dashed;box-shadow:none}
+
+/* ── 11. ♡ inbox and person card (inside the shared #panel: only social markers are touched) ── */
+#panel-body .greeting-row{
+  position:relative;margin:16px 0;padding:14px 16px 8px;background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);
+  border-radius:var(--ds-radius-card);box-shadow:var(--ds-shadow);
+}
+#panel-body .greeting-row>b{display:block;font:400 20px/1.3 var(--ds-font-ui);color:var(--ds-ink)}
+#panel-body .greeting-row>span{display:block;margin-top:2px;font:400 15px/1.5 var(--ds-font-body);color:var(--ds-ink-2)}
+#panel-body .greeting-row .row{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 4px}
+#panel-body .greeting-row .row button{flex:1 1 auto;width:auto;min-height:44px;margin:0;padding:8px 14px;font:400 15px/1.2 var(--ds-font-ui);color:var(--ds-ink);background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:4px 4px 0 var(--ds-mint)}
+#panel-body .greeting-row .row [data-greeting-action="accept"]{background:var(--ds-ink);color:var(--ds-paper-card);box-shadow:4px 4px 0 var(--ds-pink)}
+#panel-body .greeting-row .row [data-open="block-user"]{flex:0 0 auto;background:none;border:0;box-shadow:none;color:var(--ds-ink-2);text-decoration:underline wavy var(--ds-ink-3);text-underline-offset:5px}
+#panel-body .greeting-row .row button:active{transform:translate(2px,2px)}
+/* one ink button per sheet: 私聊 (inbox) and 打开私聊 (friends) stay primary, the way back and the lists become paper buttons */
+#panel-body>.row>button:is([data-open="friends"],[data-open="blocked"]),
+#panel-body:has(>[data-open="chats"]):has(>.entry-list)>button[data-open="social"]{
+  color:var(--ds-ink);background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);box-shadow:5px 5px 0 var(--ds-mint);
+}
+#panel-body>.row>button:is([data-open="friends"],[data-open="blocked"]):active,
+#panel-body:has(>[data-open="chats"]):has(>.entry-list)>button[data-open="social"]:active{transform:translate(2px,2px);box-shadow:3px 3px 0 var(--ds-mint)}
+#panel-body .social-notice,#panel-body .participation-note{
+  padding:10px 14px;margin:14px 0;font:400 15px/1.55 var(--ds-font-body);color:var(--ds-ink);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);
+}
+#panel-body .social-notice{background:var(--ds-pink-soft)}
+#panel-body .participation-note{background:var(--ds-yellow-soft)}
+/* the person card: the name becomes a sticker */
+#panel-body:has(>.quiet[data-open="block-user"],>[data-social-send],>[data-open="remove-friend"],>[data-participation-open])>h2{
+  display:block;width:fit-content;max-width:calc(100% - 52px);margin:6px 52px 14px 2px;font:400 var(--ds-size-h1)/1.1 var(--ds-font-display);letter-spacing:.01em;color:var(--ds-yellow);
+  -webkit-text-stroke:.065em var(--ds-ink);paint-order:stroke fill;text-shadow:.06em .07em 0 var(--ds-ink);transform:rotate(-1.5deg);overflow-wrap:anywhere;
+}
+#panel-body>[data-social-send]{font-size:18px}
+/* experience.css shrinks the person card's privacy and safety notes to 12px and its quiet link to 13px on ≤800px (0,3,0);
+   back to the Doodle scale the other sheets use (chrome.css: .fine 14px, .quiet 15px) */
+.frame .panel[data-kind=person] .fine{font-size:14px;line-height:1.55}
+.frame .panel[data-kind=person] .quiet{font-size:15px}
+#panel-body>[data-open="corners"]{display:block;width:100%;min-height:46px;margin:12px 0 4px;padding:9px 14px;font:400 16px/1.3 var(--ds-font-ui);color:var(--ds-ink);
+  background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:4px 4px 0 var(--ds-mint)}
+#panel-body>[data-open="corners"]:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ds-mint)}
+/* friends (and the block list): sticker rows, a marker heart for every mutual friend */
+#panel-body .entry-list>button:is([data-open="person"],[data-open="unblock-user"]){
+  position:relative;display:block;width:100%;min-height:64px;margin:0 0 12px;padding:12px 16px 12px 54px;text-align:left;background:var(--ds-paper-card);
+  border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-card);box-shadow:var(--ds-shadow-sm)
+}
+#panel-body .entry-list>button[data-open="unblock-user"]{padding-left:16px}
+/* no friends yet: the sentence sits under a small two-tone heart doodle (the friends sheet is the one with 打开私聊 and a list) */
+#panel-body:has(>[data-open="chats"])>.entry-list>p:only-child{position:relative;margin:6px 0 16px;padding:58px 8px 2px;text-align:center;font-size:16px;color:var(--ds-ink-2)}
+#panel-body:has(>[data-open="chats"])>.entry-list>p:only-child::before,#panel-body:has(>[data-open="chats"])>.entry-list>p:only-child::after{
+  content:"";position:absolute;left:50%;top:4px;width:46px;height:43px;margin-left:-23px;pointer-events:none;transform:rotate(-8deg);
+  -webkit-mask:var(--ds-svg-heart) center/contain no-repeat;mask:var(--ds-svg-heart) center/contain no-repeat;background:var(--ds-pink);
+}
+#panel-body:has(>[data-open="chats"])>.entry-list>p:only-child::after{margin:-3px 0 0 -26px;background:var(--ds-ink);-webkit-mask-image:var(--ds-svg-heart-line);mask-image:var(--ds-svg-heart-line)}
+#panel-body .entry-list>button[data-open="person"]::before{content:"";position:absolute;left:14px;top:50%;width:28px;height:26px;margin-top:-13px;background:var(--ds-pink);
+  -webkit-mask:var(--ds-svg-heart) center/contain no-repeat;mask:var(--ds-svg-heart) center/contain no-repeat;transform:rotate(-8deg)}
+/* the ink outline printed slightly off the pink fill: the two-tone sticker heart of kit.css */
+#panel-body .entry-list>button[data-open="person"]::after{content:"";position:absolute;left:12px;top:50%;width:28px;height:26px;margin-top:-15px;background:var(--ds-ink);
+  -webkit-mask:var(--ds-svg-heart-line) center/contain no-repeat;mask:var(--ds-svg-heart-line) center/contain no-repeat;transform:rotate(-8deg)}
+#panel-body .entry-list>button:is([data-open="person"],[data-open="unblock-user"]) b{font:400 18px/1.3 var(--ds-font-ui);color:var(--ds-ink)}
+#panel-body .entry-list>button:is([data-open="person"],[data-open="unblock-user"]) span{margin-top:2px;font:400 14px/1.5 var(--ds-font-body);color:var(--ds-ink-3)}
+#panel-body .entry-list>button:is([data-open="person"],[data-open="unblock-user"]):active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ds-ink)}
+
+/* ── 12. host tools and identity backup (same paper, quieter) ── */
+.frame .space-management .space-status{display:inline-block;padding:5px 14px;background:var(--ds-sky-soft);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-pill);box-shadow:var(--ds-shadow-sm);font:400 14px var(--ds-font-ui);color:var(--ds-ink)}
+.frame .space-management .space-event{margin:14px 0;padding:14px 16px;border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-card);background:var(--ds-paper-card);box-shadow:var(--ds-shadow-sm)}
+.frame .identity-continuity hr{height:10px;margin:22px 0;border:0;background:var(--ds-ink-3);-webkit-mask:var(--soc-squiggle) repeat-x 0 50%/28px 10px;mask:var(--soc-squiggle) repeat-x 0 50%/28px 10px}
+.frame .room-moderation{font-size:15px;line-height:1.6}
+.frame .room-moderation header{padding:16px 18px 10px;border-bottom:0;gap:12px}
+.frame .room-moderation header small{font:400 13px var(--ds-font-ui);letter-spacing:.04em;color:var(--ds-ink-2)}
+.frame .room-moderation .moderation-body nav{gap:8px;flex-wrap:wrap}
+.frame .room-moderation .moderation-body nav button{margin:0;font-size:14px;border-radius:var(--ds-radius-pill);box-shadow:none}
+.frame .room-moderation .moderation-body nav button[aria-pressed=true]{background:var(--ds-yellow);color:var(--ds-ink);box-shadow:var(--ds-shadow-sm);transform:rotate(-1.5deg)}
+.frame .room-moderation .moderation-room{font:400 16px var(--ds-font-ui);border-left:0;padding:0 .2em;display:inline-block;background:linear-gradient(transparent 58%,var(--ds-mint) 58%,var(--ds-mint) 92%,transparent 92%)}
+.frame .room-moderation .moderation-record{margin:12px 0;padding:14px;border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-card);background:var(--ds-paper-card)}
+.frame .room-moderation .moderation-record>small{background:var(--ds-sky-soft);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-pill);font:400 12px var(--ds-font-ui);color:var(--ds-ink)}
+.frame .room-moderation .moderation-quote{background:var(--ds-paper-deep);border-left:4px solid var(--ds-pink);font:400 15px/1.55 var(--ds-font-body);color:var(--ds-ink)}
+.frame .room-moderation :is(.moderation-confirm,.moderation-pending){background:var(--ds-yellow-soft);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-card)}
+.frame .room-moderation .moderation-fine,.frame .room-moderation .moderation-empty{font-size:14px;color:var(--ds-ink-3)}
+.frame .room-moderation .moderation-members>div{border-bottom:var(--ds-line-thin) dashed var(--ds-ink-3)}
+.frame .room-moderation .moderation-problem{color:var(--ds-ink);font-size:14px}
+.frame .room-moderation .moderation-problem:not(:empty){background:var(--ds-pink-soft);border-top:var(--ds-line-thin) solid var(--ds-ink)}
+
+/* ── 13. 音乐探索: the header button and the room chat's "Music Map" pill lead to the full-page original Map (music-map/,
+   web/original-map, untouched; original-map-entry.js). The old in-app .music-map container is not loaded any more, so nothing here. ── */
+
+/* ── 14. phone: bottom paper drawers; narrow screens drop decoration first ── */
+@media (max-width:700px){
+  .frame .community-panel:not(.conversation-layout){
+    inset:auto 0 0 0;width:auto;max-height:calc(100vh - 76px);max-height:calc(100dvh - 76px);
+    border-bottom:0;border-radius:24px 20px 0 0/18px 22px 0 0;box-shadow:0 -4px 0 var(--ds-ink);
+  }
+  .frame .community-panel:not(.conversation-layout) .community-scroll{padding:4px 18px max(24px,env(safe-area-inset-bottom))}
+  .frame .community-panel:not(.conversation-layout)>header{padding:18px 14px 2px 18px}
+  /* the room conversation is the same bottom sheet: full width, down to the bottom edge (the legacy inset left the tab bar peeking out) */
+  .frame .music-community.conversation-layout{
+    left:0;right:0;bottom:0;width:auto;padding:16px 16px max(10px,env(safe-area-inset-bottom));
+    border-bottom:0;border-radius:24px 20px 0 0/18px 22px 0 0;box-shadow:0 -4px 0 var(--ds-ink);
+  }
+  /* drawer titles at the size the photo drawers use on phones (the h2 token bottoms out at 23px here) */
+  .frame .community-panel:not(.worldcup-panel) .community-scroll>h2,.frame .room-moderation h2{font-size:27px}
+  .frame .private-chat{border:0;border-radius:0;box-shadow:none}
+  .frame .private-chat::before,.frame .room-moderation::before{display:none}
+  .frame .room-moderation{border:0;border-radius:0;box-shadow:none}
+  .frame .wardrobe .wardrobe-look{border-right:0;border-bottom:var(--ds-border)}
+  .frame .wardrobe .wardrobe-look::before{font-size:120px;left:8%;top:14%}
+  .frame .wardrobe .wardrobe-header{padding:10px 16px}
+  .frame .wardrobe .wardrobe-tools{padding:14px 16px}
+  .frame .wardrobe .wardrobe-tabs{flex-wrap:nowrap;overflow-x:auto;padding:4px 4px 12px;scrollbar-width:none}
+  .frame .wardrobe .wardrobe-tabs button{flex:none}
+  /* the sticky footer reaches the bottom edge (it stopped 14px short and the count line peeked out underneath) */
+  .frame .wardrobe .wardrobe-tools footer{bottom:-14px;padding-bottom:calc(14px + var(--safe-bottom,0px));background:var(--ds-paper);box-shadow:0 -10px 10px var(--ds-paper)}
+  .frame .worldcup-cover h3{font-size:21px}
+  .frame .worldcup-votes b{font-size:38px}
+}
+/* short phones (and landscape): the legacy drops the eyebrow and shrinks the field; keep the input bar one line tall */
+@media (max-height:680px) and (max-width:700px),(max-height:520px){
+  .frame .conversation-layout>header .eyebrow{display:none}
+  .frame .conversation-layout>header{padding-top:6px}
+  .frame .conversation-layout>header h2{font-size:20px}
+  .frame .music-community.conversation-layout form.community-composer>label>textarea[name=text]{height:48px;min-height:48px}
+  .frame .community-panel .community-composer>button[type=submit]{min-height:48px}
+  .frame .community-composer>label{font-size:13px}
+}
+@media (max-width:360px){
+  .frame .community-panel .community-scroll>h2::after,.frame .worldcup-pair::after{display:none}
+  .frame .community-panel:not(.worldcup-panel) .community-scroll>h2,.frame .room-moderation h2{font-size:24px}
+  .frame .community-panel .community-composer>button[type=submit]{padding:8px 12px;font-size:15px}
+  .frame .worldcup-pair{gap:12px}
+  .frame .worldcup-pair button{padding:9px 3px;font-size:14px}
+  .frame .space-identity{grid-template-columns:92px 1fr;gap:12px}
+  .frame .space-identity>div:first-child{height:170px}
+  .frame .space-identity svg{height:196px;max-width:90px}
+  .frame .space-shortcuts{grid-template-columns:1fr}
+  .frame .game-choices,.frame .game-result,.frame .corner-pair{grid-template-columns:1fr}
+  .frame .wardrobe .wardrobe-look::before{display:none}
+}
+
+/* ── 15. motion: press / hover only for precise pointers, drawers pop in; all of it off on request ── */
+@keyframes soc-pop{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+.frame .community-panel:not([hidden]),.frame .private-chat:not([hidden]),.frame .room-moderation:not([hidden]){animation:soc-pop var(--ds-med) var(--ds-pop) both}
+@media (hover:hover) and (pointer:fine){
+  .frame .community-panel button:not(:disabled):not(.space-record):hover,.frame .room-moderation button:not(:disabled):hover,.frame .private-chat .chat-composer button:not(:disabled):hover,
+  .frame .wardrobe .wardrobe-tools footer button:not(:disabled):hover,.frame #panel-body .greeting-row .row button:hover{transform:rotate(-1deg) translateY(-1px)}
+  .frame .community-panel .entry-list>button:hover,.frame .private-chat .chat-conversation:hover,.frame .personal-space .space-record:hover{transform:translateY(-2px);box-shadow:var(--ds-shadow)}
+  .frame :is(.community-panel>header,.private-chat>header,.room-moderation header,.wardrobe .wardrobe-header)>button:hover{background:var(--ds-pink);transform:rotate(-10deg)}
+  .frame .community-panel .community-scroll>button:hover,.frame .private-chat .chat-more:hover,.frame .community-messages article>button:hover{color:var(--ds-pink);transform:none}
+  .frame .wardrobe .wardrobe-tabs button:not([aria-pressed=true]):hover,.frame .wardrobe .wardrobe-options button:not([aria-pressed=true]):hover{background:var(--ds-yellow-soft)}
+}
+@media (prefers-reduced-motion:reduce){
+  .frame .community-panel,.frame .private-chat,.frame .room-moderation,.frame .wardrobe,.frame .community-panel *,.frame .private-chat *,.frame .room-moderation *,.frame .wardrobe *,#panel-body .greeting-row *{animation:none!important;transition:none!important}
+}

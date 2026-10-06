@@ -71,10 +71,15 @@
         "w": 700,
         "h": 374
       },
+      "tone": {
+        "black": 2,
+        "white": 70,
+        "gamma": 0.85
+      },
       "width": 700,
       "height": 374,
-      "bytes": 21921,
-      "sha256": "2e99c1ce0a751664f986a3ccfde6bc708523619c5dc8ba3302051305a621ab32",
+      "bytes": 75391,
+      "sha256": "0b8f0d6848903920176934c186e0449f3a083ab509ebe483e8586f1ca3047c22",
       "fictionalExifTime": null
     },
     {

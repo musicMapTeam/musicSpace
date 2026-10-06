@@ -1,0 +1,71 @@
+/* doodle kit (owner: shell). Shared decoration and component helpers for every doodle layer.
+   Shapes are data-URI SVG MASKS, so their colour always comes from tokens (background:var(--ds-*)), never from a hex in the SVG.
+   Reuse in any stylesheet:  mask:var(--ds-svg-star) center/contain no-repeat;  -webkit-mask:… (same value);  background:var(--ds-pink)
+   Decorations are aria-hidden spans or pseudo-elements: pointer-events:none, never over text or a tap target, max 2–3 per area,
+   hidden on narrow screens (≤360px) unless marked .ds-keep. Motion is slow, optional, and off under prefers-reduced-motion. */
+:root{
+  /* hand-drawn shapes (alpha masks; the colour is whatever background the element has) */
+  --ds-svg-star:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M20.4 3.2 25.6 14.6 37.4 15.9 28.6 24.1 31.3 36.4 20.2 30.1 8.9 36.6 11.5 24.3 2.6 16.1 14.6 14.4Z' stroke='black' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --ds-svg-star-line:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M20.4 3.2 25.6 14.6 37.4 15.9 28.6 24.1 31.3 36.4 20.2 30.1 8.9 36.6 11.5 24.3 2.6 16.1 14.6 14.4Z' fill='none' stroke='black' stroke-width='2.8' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --ds-svg-sparkle:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M20 1.5C21.4 12.6 27.4 18.6 38.5 20 27.4 21.4 21.4 27.4 20 38.5 18.6 27.4 12.6 21.4 1.5 20 12.6 18.6 18.6 12.6 20 1.5Z'/%3E%3C/svg%3E");
+  --ds-svg-plus:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath d='M15.4 3C14.6 11 15.6 19 14.8 27M3.5 15.4C11 14.4 19 15.6 26.5 14.6' fill='none' stroke='black' stroke-width='3.6' stroke-linecap='round'/%3E%3C/svg%3E");
+  --ds-svg-squiggle:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 24' preserveAspectRatio='none'%3E%3Cpath d='M3 15C12 4 20 4 28 12S44 21 52 12 68 3 76 12 92 21 100 12 112 5 117 9' fill='none' stroke='black' stroke-width='4.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --ds-svg-scribble:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 90' preserveAspectRatio='none'%3E%3Cpath d='M122 7C72 3 18 15 8 41 0 63 52 84 112 82 166 80 196 62 192 40 188 18 142 6 86 9 54 12 30 21 22 29' fill='none' stroke='black' stroke-width='3.6' stroke-linecap='round'/%3E%3C/svg%3E");
+  --ds-svg-arrow:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 70'%3E%3Cpath d='M6 58C30 20 62 8 104 17M87 5l19 12-15 15' fill='none' stroke='black' stroke-width='4.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --ds-svg-note:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 48'%3E%3Cpath d='M15 36V9L37 4v27' fill='none' stroke='black' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M15 13.5 37 8.5' stroke='black' stroke-width='6'/%3E%3Cellipse cx='9.5' cy='36.5' rx='6.6' ry='5' transform='rotate(-20 9.5 36.5)'/%3E%3Cellipse cx='31.5' cy='31.5' rx='6.6' ry='5' transform='rotate(-20 31.5 31.5)'/%3E%3C/svg%3E");
+  --ds-svg-heart:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 30'%3E%3Cpath d='M16 27.2C9 21.8 3 17 3 10.5 3 6.3 6.2 3 10.1 3c2.8 0 4.7 1.6 5.9 4 1.2-2.4 3.3-4 6.1-4C26 3 29 6.3 29 10.3 29 16.9 22.8 21.9 16 27.2Z'/%3E%3C/svg%3E");
+  --ds-svg-heart-line:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 30'%3E%3Cpath d='M16 27.2C9 21.8 3 17 3 10.5 3 6.3 6.2 3 10.1 3c2.8 0 4.7 1.6 5.9 4 1.2-2.4 3.3-4 6.1-4C26 3 29 6.3 29 10.3 29 16.9 22.8 21.9 16 27.2Z' fill='none' stroke='black' stroke-width='2.6' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --ds-svg-check:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3.6 12.6C6 14 8 16.6 9.6 19.8 12.4 12.6 16.2 7.4 21.2 3.4' fill='none' stroke='black' stroke-width='3.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --ds-svg-dot:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12.2 4.4c4.7-.2 7.6 3.3 7.3 7.8-.3 4.6-3.7 7.5-7.9 7.3-4.4-.3-7.2-3.6-6.9-7.9.3-4.2 3.4-7 7.5-7.2Z'/%3E%3C/svg%3E");
+  --ds-svg-tape:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 30' preserveAspectRatio='none'%3E%3Cpath d='M2 0h96l2 5-3 5 3 5-3 5 3 5-2 5H2L0 25l3-5-3-5 3-5-3-5Z'/%3E%3C/svg%3E");
+  /* tape colours: translucent marker over paper (no new hex: mixed from tokens) */
+  --ds-tape:color-mix(in srgb,var(--ds-yellow) 68%,transparent);
+  --ds-tape-pink:color-mix(in srgb,var(--ds-pink) 50%,transparent);
+  --ds-tape-mint:color-mix(in srgb,var(--ds-mint) 60%,transparent);
+  --ds-tape-sky:color-mix(in srgb,var(--ds-sky) 55%,transparent);
+}
+
+/* ---- decorations: <span class="ds-deco ds-star" aria-hidden="true"></span>, positioned by the consumer ---- */
+.ds-deco{position:absolute;display:block;pointer-events:none;user-select:none;width:var(--ds-deco-size,30px);height:var(--ds-deco-size,30px);
+  background:var(--ds-deco-c,var(--ds-ink));-webkit-mask:var(--ds-deco-mask) center/contain no-repeat;mask:var(--ds-deco-mask) center/contain no-repeat;
+  transform:rotate(var(--ds-deco-rot,0deg));z-index:var(--ds-deco-z,1)}
+.ds-sparkle{--ds-deco-mask:var(--ds-svg-sparkle)}
+.ds-plus{--ds-deco-mask:var(--ds-svg-plus);--ds-deco-size:22px}
+.ds-squiggle{--ds-deco-mask:var(--ds-svg-squiggle);--ds-deco-c:var(--ds-mint);width:var(--ds-deco-w,96px);height:var(--ds-deco-h,20px)}
+.ds-scribble{--ds-deco-mask:var(--ds-svg-scribble);--ds-deco-c:var(--ds-pink);width:var(--ds-deco-w,180px);height:var(--ds-deco-h,70px)}
+.ds-arrow{--ds-deco-mask:var(--ds-svg-arrow);width:var(--ds-deco-w,84px);height:var(--ds-deco-h,50px)}
+.ds-music{--ds-deco-mask:var(--ds-svg-note);--ds-deco-size:34px}
+/* two-tone pieces: marker fill printed slightly off the ink line, like a sticker */
+.ds-star,.ds-heart{background:none;-webkit-mask:none;mask:none}
+.ds-star::before,.ds-star::after,.ds-heart::before,.ds-heart::after{content:'';position:absolute;inset:0;-webkit-mask:var(--ds-m) center/contain no-repeat;mask:var(--ds-m) center/contain no-repeat}
+.ds-star::before{--ds-m:var(--ds-svg-star);background:var(--ds-deco-c,var(--ds-yellow));transform:translate(7%,8%)}
+.ds-star::after{--ds-m:var(--ds-svg-star-line);background:var(--ds-ink)}
+.ds-heart::before{--ds-m:var(--ds-svg-heart);background:var(--ds-deco-c,var(--ds-pink));transform:translate(6%,7%)}
+.ds-heart::after{--ds-m:var(--ds-svg-heart-line);background:var(--ds-ink)}
+.ds-deco--pink{--ds-deco-c:var(--ds-pink)}.ds-deco--mint{--ds-deco-c:var(--ds-mint)}.ds-deco--yellow{--ds-deco-c:var(--ds-yellow)}
+.ds-deco--sky{--ds-deco-c:var(--ds-sky)}.ds-deco--ink{--ds-deco-c:var(--ds-ink)}
+
+/* tape strip: <span class="ds-tape" aria-hidden="true"></span>; translucent, torn ends, slightly turned */
+.ds-tape{position:absolute;display:block;pointer-events:none;width:var(--ds-tape-w,86px);height:var(--ds-tape-h,24px);background:var(--ds-tape-c,var(--ds-tape));
+  -webkit-mask:var(--ds-svg-tape) center/100% 100% no-repeat;mask:var(--ds-svg-tape) center/100% 100% no-repeat;transform:rotate(var(--ds-tape-rot,-4deg));z-index:3}
+.ds-tape--pink{--ds-tape-c:var(--ds-tape-pink)}.ds-tape--mint{--ds-tape-c:var(--ds-tape-mint)}.ds-tape--sky{--ds-tape-c:var(--ds-tape-sky)}
+
+/* ---- small component helpers for markup we own (chrome/index.html); other layers restyle existing classes instead ---- */
+.ds-card{background:var(--ds-paper-card);color:var(--ds-ink);border:var(--ds-border);border-radius:var(--ds-radius-card);box-shadow:var(--ds-shadow)}
+.ds-chip{display:inline-flex;align-items:center;gap:6px;min-height:32px;padding:3px 12px;border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-pill);
+  background:var(--ds-chip,var(--ds-paper-card));color:var(--ds-ink);font-family:var(--ds-font-ui);font-size:var(--ds-size-small);line-height:1.2;box-shadow:var(--ds-shadow-sm)}
+.ds-chip--mint{--ds-chip:var(--ds-mint)}.ds-chip--yellow{--ds-chip:var(--ds-yellow)}.ds-chip--pink{--ds-chip:var(--ds-pink-soft)}
+.ds-wavy{color:var(--ds-ink);text-decoration:underline wavy var(--ds-pink);text-decoration-thickness:1.5px;text-underline-offset:.32em;text-decoration-skip-ink:none}
+.ds-tilt-l{transform:rotate(-1.5deg)}.ds-tilt-r{transform:rotate(1.5deg)}
+.ds-defs{position:absolute;width:0;height:0;overflow:hidden;pointer-events:none}
+
+/* ---- motion: slow twinkle for stars, 3–4 fps "boiling line" for doodles; both optional ---- */
+@keyframes ds-twinkle{0%,100%{opacity:1;scale:1}45%{opacity:.55;scale:.82}60%{opacity:1;scale:1.08}}
+@keyframes ds-boil{0%{translate:0 0;rotate:0deg}33%{translate:.6px -.4px;rotate:.8deg}66%{translate:-.5px .5px;rotate:-.7deg}}
+@keyframes ds-pop-in{0%{opacity:0;transform:translate(var(--ds-pop-x,0),6px) scale(.92)}100%{opacity:1;transform:translate(var(--ds-pop-x,0),0) scale(1)}}
+.ds-twinkle{animation:ds-twinkle var(--ds-twinkle-dur,3.6s) ease-in-out var(--ds-twinkle-delay,0s) infinite}
+.ds-boil{animation:ds-boil .9s steps(1,end) infinite}
+
+@media (max-width:360px){.ds-deco:not(.ds-keep),.ds-tape:not(.ds-keep){display:none}}
+@media (prefers-reduced-motion:reduce){.ds-twinkle,.ds-boil{animation:none}}
+@media (forced-colors:active){.ds-deco,.ds-tape{display:none}}

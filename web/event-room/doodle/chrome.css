@@ -1,0 +1,451 @@
+/* doodle chrome (owner: shell): page paper, fonts, generic controls, header, 3D window + overlays, presence, track, dock, footer,
+   panel shell, toast, banner, loading/error and the desktop caption. Later doodle layers (panels-*, showcase) refine on top of this.
+   Specificity rule: geometry is written at the SAME specificity as the legacy rule it replaces (later file wins), so legacy state
+   rules such as .close-camera / .conversation-open / [data-stage] keep working; never set display on something a state rule hides. */
+
+/* ---------------------------------------------------------------- 1. page, legacy palette, fonts */
+:root{--paper:var(--ds-paper-card);--ink:var(--ds-ink);--accent:var(--ds-yellow);--paper-line:var(--ds-ink-3);--muted-ink:var(--ds-ink-2);
+  --ds-caption-w:clamp(380px,32vw,500px);font-family:var(--ds-font-body);color:var(--ds-ink);background:var(--ds-paper)}
+html{background:var(--ds-paper)}
+body{background:var(--ds-paper) var(--ds-dots);color:var(--ds-ink);font-family:var(--ds-font-body);-webkit-font-smoothing:antialiased}
+#app{background:transparent}
+::selection{background:var(--ds-yellow);color:var(--ds-ink)}
+h1,h2,h3{font-family:var(--ds-font-display);font-weight:400}
+button,label,legend,summary,select,input{font-family:var(--ds-font-ui)}
+textarea{font-family:var(--ds-font-body)}
+button{color:inherit}
+a{color:var(--ds-ink);text-decoration-color:var(--ds-pink)}
+button[disabled]{cursor:not-allowed}
+
+/* focus: one dashed ink ring everywhere (beats the legacy coloured rings at their own specificity) */
+:is(button,a,input,select,textarea,summary,[tabindex]):focus-visible,
+.panel :is(button,a,input,select,textarea,summary):focus-visible,
+.private-chat :is(button,textarea):focus-visible,.wardrobe :is(button,input):focus-visible,
+.demo-tour button:focus-visible{outline:3px dashed var(--ds-ink);outline-offset:3px}
+
+/* ---------------------------------------------------------------- 2. generic controls */
+/* primary: ink button, cream letters, pink hard shadow (row actions are secondary, below) */
+.primary,.panel .primary{font-family:var(--ds-font-ui);font-size:17px;font-weight:400;line-height:1.2;letter-spacing:.02em;color:var(--ds-paper-card);
+  background:var(--ds-ink);border:var(--ds-line) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:5px 5px 0 var(--ds-pink);
+  min-height:48px;padding:10px 18px;text-decoration:none;text-align:center;opacity:1;transition:transform var(--ds-fast) ease,box-shadow var(--ds-fast) ease}
+.primary:active,.panel .primary:active{transform:translate(2px,2px);box-shadow:3px 3px 0 var(--ds-pink)}
+.primary:disabled,.panel .primary:disabled,.primary[aria-disabled=true]{background:var(--ds-paper-deep);color:var(--ds-ink-3);border-style:dashed;border-color:var(--ds-ink-3);box-shadow:none;transform:none;opacity:1}
+/* quiet: ink text with a wavy marker underline */
+.panel .quiet,.quiet{font-family:var(--ds-font-ui);font-size:15px;color:var(--ds-ink);background:none;border:0;text-decoration:underline wavy var(--ds-pink);
+  text-decoration-thickness:1.5px;text-underline-offset:.35em;text-decoration-skip-ink:none}
+/* secondary: paper card with a mint shadow (row choices) */
+.panel .row button:where(:not(.primary,.quiet)){font-family:var(--ds-font-ui);font-size:15px;color:var(--ds-ink);background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);
+  border-radius:var(--ds-radius-btn);box-shadow:4px 4px 0 var(--ds-mint);padding:9px 12px;transition:transform var(--ds-fast) ease,box-shadow var(--ds-fast) ease}
+.panel .row button:where(:not(.primary,.quiet)):active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ds-mint)}
+/* row actions: app.js button() marks every way in as .primary; side by side they are secondary paper buttons, content-sized and never broken
+   mid-word (written at the legacy .panel .row .primary weight; width:auto so .panel .primary's 100% is not the flex basis) */
+.panel .row{gap:12px 10px}
+.panel .row .primary{font-size:15px;color:var(--ds-ink);background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);box-shadow:4px 4px 0 var(--ds-mint);
+  padding:9px 12px;flex:1 1 auto;width:auto;margin:0;white-space:nowrap}
+.panel .row .primary:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ds-mint)}
+.panel .row .primary:disabled{background:var(--ds-paper-deep);color:var(--ds-ink-3);border-style:dashed;border-color:var(--ds-ink-3);box-shadow:none;transform:none}
+/* the ··· room sheet and 我的现场 are menus: every way in is a paper sticker; ink stays on real actions (更新参与方式, the pending-sync button,
+   先保存我的小人) */
+.panel:is([data-kind=room],[data-kind=rooms]) #panel-body button.primary[data-open]:not([data-open=pending],[data-open=profile],:disabled){color:var(--ds-ink);background:var(--ds-paper-card);
+  border-width:var(--ds-line-thin);box-shadow:4px 4px 0 var(--ds-mint);font-size:16px;min-height:46px;padding:9px 14px}
+.panel:is([data-kind=room],[data-kind=rooms]) #panel-body button.primary[data-open]:not([data-open=pending],[data-open=profile],:disabled):active{box-shadow:2px 2px 0 var(--ds-mint)}
+@media (hover:hover) and (pointer:fine){
+  .primary:not(:disabled):hover,.panel .row button:not(:disabled):hover{transform:rotate(-1deg) translateY(-1px)}
+  /* hover turns the wave bold pink; the letters stay ink (pink text on paper is under 3:1) */
+  .quiet:hover,.panel .quiet:hover{color:var(--ds-ink);text-decoration-color:var(--ds-pink);text-decoration-thickness:2.5px}
+}
+
+/* fields */
+.panel input:not([type=checkbox]):where(:not([type=radio],[type=file],[type=range])),.panel select,.panel textarea{background:var(--ds-paper-card);color:var(--ds-ink);
+  border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-2);font-family:var(--ds-font-ui);font-size:16px;box-shadow:none;transition:box-shadow var(--ds-fast) ease}
+.panel textarea{font-family:var(--ds-font-body)}
+.panel input:not([type=checkbox]):where(:not([type=radio])):focus,.panel select:focus,.panel textarea:focus{box-shadow:4px 4px 0 var(--ds-mint)}
+.panel input::placeholder,.panel textarea::placeholder{color:var(--ds-ink-3)}
+.panel input[readonly]{background:var(--ds-paper-deep)}
+/* hand-drawn check box and radio: ink frame, marker tick */
+input[type=checkbox],input[type=radio],.panel input[type=checkbox],.panel .participation-choices input[type=radio],.panel input[type=radio]{-webkit-appearance:none;appearance:none;display:inline-grid;place-items:center;flex:none;
+  width:24px;height:24px;min-height:0;margin:1px 0 0;padding:0;background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:5px 7px 4px 8px/7px 4px 8px 5px;
+  box-shadow:2px 2px 0 var(--ds-ink);cursor:pointer;vertical-align:middle;accent-color:auto}
+input[type=radio],.panel .participation-choices input[type=radio],.panel input[type=radio]{border-radius:50% 46% 52% 48%/48% 52% 46% 50%}
+input[type=checkbox]::before,input[type=radio]::before{content:'';width:22px;height:22px;background:var(--ds-pink);-webkit-mask:var(--ds-svg-check) center/contain no-repeat;mask:var(--ds-svg-check) center/contain no-repeat;
+  transform:scale(0) rotate(-12deg);transition:transform var(--ds-med) var(--ds-pop)}
+input[type=checkbox]::before{width:26px;height:26px;margin:-6px -6px 0 0}
+input[type=radio]::before{width:13px;height:13px;background:var(--ds-ink);-webkit-mask-image:var(--ds-svg-dot);mask-image:var(--ds-svg-dot)}
+input[type=checkbox]:checked::before,input[type=radio]:checked::before{transform:scale(1) rotate(0)}
+input[type=checkbox]:checked{background:var(--ds-yellow-soft)}
+input[type=checkbox]:disabled,input[type=radio]:disabled{opacity:.55;cursor:not-allowed}
+
+/* ---------------------------------------------------------------- 3. the frame: paper page, no dark outer border */
+.frame{margin:0;width:100%;height:100vh;height:100dvh;min-height:0;max-width:none;background:transparent;border:0;box-shadow:none;overflow:hidden;color:var(--ds-ink)}
+
+/* ---------------------------------------------------------------- 4. header */
+.frame>header{left:28px;right:28px;height:78px;padding:10px 0 6px;padding-top:max(10px,env(safe-area-inset-top,0px));gap:10px;background:transparent;border:0;color:var(--ds-ink)}
+.frame>header .brand{margin-right:auto;flex:none;display:inline-flex;align-items:center;justify-content:center;gap:.28em;min-width:44px;min-height:44px;font-family:var(--ds-font-logo);
+  font-style:normal;font-weight:400;font-size:31px;line-height:1;letter-spacing:.01em;white-space:nowrap;color:var(--ds-yellow);-webkit-text-stroke:.06em var(--ds-ink);paint-order:stroke fill;
+  text-shadow:.07em .07em 0 var(--ds-ink),.13em .13em 0 var(--ds-pink);text-decoration:none;padding:4px 2px 6px;transform:rotate(-1.5deg)}
+.frame>header .status{margin-left:0;max-width:260px;align-items:center;gap:7px;min-height:32px;padding:3px 12px 3px 10px;font-family:var(--ds-font-ui);font-size:13px;
+  color:var(--ds-ink);background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-pill);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.frame>header .status:before{content:'';flex:none;width:9px;height:9px;margin:0;border-radius:50%;background:var(--ds-mint);border:1.5px solid var(--ds-ink)}
+@media (min-width:701px){.frame>header .status{display:inline-flex}}
+/* sticker chips: 音乐探索 / 我的小人 */
+.frame>header .music-map-entry,.frame>header .my-look{display:inline-flex;align-items:center;justify-content:center;gap:5px;flex:none;min-height:44px;height:44px;padding:0 14px;
+  font-family:var(--ds-font-ui);font-size:15px;font-weight:400;line-height:1;white-space:nowrap;color:var(--ds-ink);background:var(--ds-paper-card);
+  border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:var(--ds-shadow-sm);text-decoration:none;cursor:pointer;
+  transition:transform var(--ds-fast) ease,box-shadow var(--ds-fast) ease}
+.frame>header .my-look{background:var(--ds-mint-soft)}
+.frame>header .my-look span,.frame>header .music-map-entry span{margin:0;color:var(--ds-ink);font-family:var(--ds-font-ui)}
+.frame>header .music-map-entry:active,.frame>header .my-look:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ds-ink)}
+.frame>header .social-inbox:active,.frame>header .menu:active,.frame>header .back:active{transform:translate(2px,2px)}
+/* ♡: the glyph stays for the accessibility tree; a drawn heart sticker shows instead */
+.frame>header .social-inbox{position:relative;display:inline-grid;place-items:center;width:44px;min-width:44px;height:44px;flex:none;padding:0;font-size:0;color:transparent;background:none;border:0;
+  transition:transform var(--ds-fast) ease}
+.frame>header .social-inbox::before,.frame>header .social-inbox::after{content:'';position:absolute;inset:9px 8px 7px 8px;-webkit-mask:var(--ds-svg-heart) center/contain no-repeat;mask:var(--ds-svg-heart) center/contain no-repeat;pointer-events:none}
+.frame>header .social-inbox::before{background:var(--ds-pink);transform:translate(2px,2px)}
+.frame>header .social-inbox::after{background:var(--ds-ink);-webkit-mask-image:var(--ds-svg-heart-line);mask-image:var(--ds-svg-heart-line)}
+.frame>header .social-inbox>span{position:absolute;z-index:1;top:0;right:-3px;min-width:21px;height:21px;padding:0 5px;display:grid;place-items:center;font-family:var(--ds-font-digits);
+  font-size:12px;line-height:1;font-weight:400;color:var(--ds-ink);background:var(--ds-pink);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-pill)}
+.frame>header .menu,.frame>header .back{position:relative;isolation:isolate;display:inline-grid;place-items:center;width:44px;min-width:44px;height:44px;flex:none;margin:0;padding:0 0 4px;
+  font-family:var(--ds-font-ui);font-size:19px;line-height:1;letter-spacing:1px;color:var(--ds-ink);background:none;border:0;box-shadow:none;transition:transform var(--ds-fast) ease}
+.frame>header .menu::before,.frame>header .back::before{content:'';position:absolute;z-index:-1;inset:3px;background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);
+  border-radius:50% 46% 52% 48%/48% 52% 46% 50%;box-shadow:var(--ds-shadow-sm)}
+.frame>header .back{padding:0;font-size:22px}
+@media (hover:hover) and (pointer:fine){
+  .frame>header .music-map-entry:hover,.frame>header .my-look:hover,.frame>header .menu:hover,.frame>header .back:hover{transform:rotate(-2deg) translateY(-1px)}
+  .frame>header .social-inbox:hover{transform:rotate(-6deg) scale(1.06)}
+  .frame>header .brand:hover{transform:rotate(-3deg)}
+}
+
+/* ---------------------------------------------------------------- 5. the 3D window: ink frame, hard shadow, tape; the canvas itself is untouched */
+.world-shell{z-index:0;inset:88px 36px 118px 28px;background:var(--ds-night);border:var(--ds-line-bold) solid var(--ds-ink);border-radius:var(--ds-radius-card);box-shadow:var(--ds-shadow-lg);overflow:visible}
+.world-shell>#world,.world-shell>#hotspots,.world-shell>.loading,.world-shell>.error{border-radius:15px 3px 19px 5px/5px 17px 3px 15px;overflow:hidden}
+.world-shell::before,.world-shell::after{content:'';position:absolute;z-index:8;pointer-events:none;width:92px;height:26px;background:var(--ds-tape);
+  -webkit-mask:var(--ds-svg-tape) center/100% 100% no-repeat;mask:var(--ds-svg-tape) center/100% 100% no-repeat}
+.world-shell::before{left:22%;top:-15px;transform:rotate(-5deg)}
+.world-shell::after{right:12%;top:-13px;transform:rotate(4deg);background:var(--ds-tape-pink)}
+
+/* heading: a tape label + the room title in sticker letters (legible on any render) */
+.scene-heading{top:18px;left:20px;max-width:min(560px,calc(100% - 40px));padding:0;background:transparent;border:0;transform:none;text-shadow:none}
+.scene-heading small{display:inline-block;max-width:100%;margin:0 0 6px 2px;padding:4px 10px 3px;font-family:var(--ds-font-ui);font-size:12px;line-height:1.3;letter-spacing:.08em;color:var(--ds-paper-card);
+  background:var(--ds-ink);border-radius:var(--ds-radius-btn);transform:rotate(-2deg);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.scene-heading h1{margin:0}
+.scene-heading h1 button{min-height:44px;padding:0 6px 2px 0}
+/* the sticker letters sit on a pasted paper label, so their ink outline never merges with the truss and lamps behind them */
+.scene-heading h1 span{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;width:fit-content;max-width:min(560px,100%);padding:0 12px 5px 10px;margin:0;
+  font-family:var(--ds-font-display);font-weight:400;font-size:44px;line-height:1.12;letter-spacing:.01em;color:var(--ds-yellow);background:var(--ds-paper-card);
+  border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:var(--ds-shadow-sm);transform:rotate(-1deg);
+  -webkit-text-stroke:.075em var(--ds-ink);paint-order:stroke fill;text-shadow:.06em .07em 0 var(--ds-ink)}
+/* the chat's mini stage gives the heading 135px (editorial.css): the venue line wraps there instead of losing 「（虚构场地）」 to an ellipsis */
+.frame.conversation-open .scene-heading small{white-space:normal}
+.scene-code{top:124px;left:24px;right:auto;max-width:calc(100% - 48px);width:max-content;padding:5px 13px 4px;font-family:var(--ds-font-ui);font-size:14px;line-height:1.3;color:var(--ds-ink);
+  background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-pill);box-shadow:var(--ds-shadow-sm);transform:rotate(1.2deg);text-align:left}
+
+/* name tags and the wall tag on the projected stage: a tag never ends in 「…」; a long one takes a second line inside the 44px slot the layout
+   reserves (「阿遥·示例」/「· 可招呼」), clamped there so it cannot grow into its neighbours (bottom padding stays within the half-leading) */
+.hotspot .label{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;text-overflow:clip;white-space:normal;word-break:keep-all;overflow-wrap:anywhere;
+  text-wrap:balance;width:100%;max-width:100%;padding:5px 6px 3px;font-family:var(--ds-font-ui);font-size:13px;line-height:1.3;color:var(--ds-ink);background:var(--ds-paper-card);
+  border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:2px 2px 0 var(--ds-ink);text-align:center;transform:rotate(-1deg);
+  transition:transform var(--ds-fast) ease,background-color var(--ds-fast) ease}
+.hotspot:nth-child(even) .label{transform:rotate(1deg)}
+.hotspot.photo .label{background:var(--ds-yellow);color:var(--ds-ink);border:var(--ds-line-thin) solid var(--ds-ink);transform:rotate(-2deg)}
+.hotspot:hover .label,.hotspot:focus-visible .label,.hotspot.selected .label{background:var(--ds-mint);color:var(--ds-ink)}
+.hotspot:focus-visible{outline:none}
+.hotspot:focus-visible .label{outline:3px dashed var(--ds-ink);outline-offset:3px}
+.hotspot:after{width:2px;background:color-mix(in srgb,var(--ds-ink) 70%,transparent)}
+.view-label{bottom:14px;right:14px;padding:4px 10px 3px;font-family:var(--ds-font-ui);font-size:13px;letter-spacing:.02em;color:var(--ds-ink);background:var(--ds-yellow);
+  border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-pill);box-shadow:var(--ds-shadow-sm)}
+/* arrival rail (close views) */
+.world-shell .context-actions{bottom:14px;width:420px;max-width:calc(100% - 28px);min-height:56px;padding:8px 8px 8px 14px;gap:8px;color:var(--ds-ink);background:var(--ds-paper-card);
+  border:var(--ds-line) solid var(--ds-ink);border-radius:var(--ds-radius-card);box-shadow:var(--ds-shadow)}
+.world-shell .context-actions>span{flex:1 1 auto;min-width:0;font-family:var(--ds-font-display);font-size:18px;line-height:1.25;color:var(--ds-ink)}
+.world-shell .context-actions>div{display:flex;gap:8px;flex-wrap:wrap}
+.world-shell .context-actions button{min-height:44px;padding:6px 14px;font-family:var(--ds-font-ui);font-size:15px;color:var(--ds-ink);background:var(--ds-yellow);
+  border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:var(--ds-shadow-sm)}
+.world-shell .context-actions button+button{border-left:var(--ds-line-thin) solid var(--ds-ink);background:var(--ds-paper-card)}
+.world-shell .context-actions button:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ds-ink)}
+
+/* loading 「灯快亮了」: paper, a hero title and three slow stars */
+/* the presence card covers the lower part of the window, so the title sits in the upper part */
+.loading{background:var(--ds-paper) var(--ds-dots);color:var(--ds-ink);justify-content:flex-start;gap:6px;padding:clamp(56px,13%,120px) 24px 24px}
+.loading .loading-mark{padding:4px 12px 3px;font-family:var(--ds-font-logo);font-style:normal;font-weight:400;font-size:15px;letter-spacing:.08em;color:var(--ds-paper-card);
+  background:var(--ds-ink);border-radius:var(--ds-radius-btn);transform:rotate(-3deg)}
+.loading p{margin:18px 0 8px;font-family:var(--ds-font-display);font-size:var(--ds-size-hero);line-height:1.05;color:var(--ds-ink);text-shadow:.06em .06em 0 var(--ds-pink);
+  background:linear-gradient(transparent 60%,var(--ds-yellow) 60%,var(--ds-yellow) 90%,transparent 90%);padding:0 .12em}
+.loading small{font-family:var(--ds-font-body);font-size:16px;color:var(--ds-ink-2)}
+.loading .loading-star{--ds-deco-size:34px}
+.loading .loading-star--a{top:9%;left:14%;--ds-twinkle-delay:-.4s}
+.loading .loading-star--b{top:15%;right:16%;--ds-deco-size:26px;--ds-twinkle-delay:-1.6s;--ds-twinkle-dur:4.2s}
+.loading .loading-star--c{top:40%;left:20%;--ds-deco-size:26px;--ds-twinkle-delay:-2.4s;--ds-twinkle-dur:5s}
+/* error */
+.error{background:var(--ds-paper) var(--ds-dots);color:var(--ds-ink);justify-content:flex-start;padding:clamp(56px,11%,110px) 28px 28px}
+.error>*{max-width:34em}
+.error h2{margin:0 0 10px;font-family:var(--ds-font-display);font-weight:400;font-size:var(--ds-size-h2);line-height:1.25;color:var(--ds-ink);text-shadow:.06em .06em 0 var(--ds-pink)}
+.error p{font-family:var(--ds-font-body);font-size:16px;line-height:1.65;color:var(--ds-ink-2)}
+
+/* ---------------------------------------------------------------- 6. presence: the hero card */
+.presence{right:60px;bottom:136px;max-width:440px;padding:22px 24px 22px;color:var(--ds-ink);background:var(--ds-paper-card);border:var(--ds-line) solid var(--ds-ink);
+  border-radius:var(--ds-radius-card);box-shadow:var(--ds-shadow-lg);font-family:var(--ds-font-body)}
+.presence::before{content:'';position:absolute;z-index:2;top:-13px;left:50%;width:96px;height:26px;margin-left:-48px;background:var(--ds-tape);pointer-events:none;
+  -webkit-mask:var(--ds-svg-tape) center/100% 100% no-repeat;mask:var(--ds-svg-tape) center/100% 100% no-repeat;transform:rotate(-3deg)}
+.presence.welcome{max-width:460px}
+.presence.demo-tour-open::before{display:none}
+/* an open panel is the focus: the card behind it steps away instead of peeking out around the sheet */
+.frame:has(>#panel:not([hidden]))>.presence{visibility:hidden}
+.presence strong#presence-title{display:block;max-width:none;padding:0;margin:0;background:none;font-family:var(--ds-font-display);font-weight:400;font-size:var(--ds-size-h2);
+  line-height:1.15;letter-spacing:.01em;color:var(--ds-ink);text-shadow:.06em .06em 0 var(--ds-pink);text-wrap:balance}
+.presence p#presence-copy{max-width:none;margin:10px 0 0;font-family:var(--ds-font-body);font-size:16px;line-height:1.6;color:var(--ds-ink-2);text-wrap:pretty}
+/* lobby hero: 同一刻，/ 另一面。 on two lines, the second one marked */
+.presence:not(.welcome) strong#presence-title{text-shadow:none}
+.presence.welcome strong#presence-title{position:relative;z-index:0;width:fit-content;font-size:clamp(42px,4.2vw,60px);line-height:1.06}
+html[data-channel] .presence.welcome strong#presence-title{max-width:5em;word-break:keep-all;text-wrap:wrap}
+html[data-channel] .presence.welcome strong#presence-title::after{content:'';position:absolute;z-index:-1;left:-.1em;width:3.42em;bottom:.04em;height:.42em;background:var(--ds-mint);
+  border-radius:3px 9px 4px 10px/6px 3px 8px 4px;transform:rotate(-1.2deg)}
+.presence.welcome p#presence-copy{margin-top:14px}
+.presence-actions{gap:12px;margin-top:16px}
+/* two small doodles beside the lobby hero, nowhere else */
+.presence .presence-star,.presence .presence-sparkle{display:none}
+.presence.welcome .presence-star{display:block;--ds-deco-size:46px;top:22px;right:26px;transform:rotate(14deg)}
+.presence.welcome .presence-sparkle{display:block;--ds-deco-size:20px;top:74px;right:20px}
+/* every action is a sticker button; the two main ones are ink */
+.presence .presence-actions button,.frame .presence-actions #join,.frame .presence-actions #room-recap,.frame .presence-actions #my-participation{min-height:48px;margin:0;padding:9px 12px;font-family:var(--ds-font-ui);font-size:16px;font-weight:400;line-height:1.2;white-space:normal;
+  color:var(--ds-ink);background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:4px 4px 0 var(--ds-mint);
+  text-decoration:none;transition:transform var(--ds-fast) ease,box-shadow var(--ds-fast) ease}
+.presence .presence-actions button:active,.frame .presence-actions #join:active,.frame .presence-actions #room-recap:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ds-mint)}
+.frame .presence .presence-actions #room-first-photo,.frame .presence .presence-actions #join:not(.joined),.frame[data-stage] .presence .presence-actions #join:not(.joined){color:var(--ds-paper-card);background:var(--ds-ink);
+  border:var(--ds-line) solid var(--ds-ink);box-shadow:5px 5px 0 var(--ds-pink);font-size:18px;text-decoration:none;width:auto;min-height:52px;padding:10px 18px;border-radius:var(--ds-radius-btn)}
+.presence .presence-actions #room-first-photo:active,.frame .presence .presence-actions #join:not(.joined):active{transform:translate(2px,2px);box-shadow:3px 3px 0 var(--ds-pink)}
+@media (hover:hover) and (pointer:fine){.presence .presence-actions button:hover{transform:rotate(-1deg) translateY(-1px)}}
+/* the lobby's one button spans the two-column grid and stays on one line (the Node label 「带上小人，进入现场」 broke in half) */
+.frame .presence .presence-actions #join:not(.joined){grid-column:1/-1;justify-self:start;white-space:nowrap}
+/* wide screens, in the room: a narrower card stays right of the visitor's own avatar, its name tag and the photo wall (1440: x 1044-1384).
+   While the route note is open it is the whole card (showcase.css); collapsed, the card's own title, copy and four buttons fit 340px */
+@media (min-width:801px){
+  .frame[data-stage=room] .presence:not(.welcome){right:56px;max-width:340px}
+  .frame[data-stage=room] .presence:not(.welcome):not(.demo-tour-open){padding:16px 18px 18px}
+  .frame[data-stage=room] .presence:not(.welcome) strong#presence-title{font-size:26px}
+  .frame[data-stage=room] .presence:not(.welcome) p#presence-copy{margin-top:6px;font-size:15px;line-height:1.5}
+  /* collapsed: the four buttons keep two to a row at 340px */
+  .frame[data-stage=room] .presence:not(.welcome) .presence-actions{gap:10px;margin-top:12px}
+  .frame[data-stage=room] .presence:not(.welcome) .presence-actions button,.frame[data-stage=room] .presence:not(.welcome) .presence-actions #join,
+  .frame[data-stage=room] .presence:not(.welcome) .presence-actions #my-participation,.frame[data-stage=room] .presence:not(.welcome) .presence-actions #room-recap{min-height:46px;padding:7px 6px;font-size:15px}
+  .frame[data-stage=room] .presence:not(.welcome) .presence-actions #room-first-photo{min-height:46px;padding:7px 6px;font-size:16px}
+  /* the note's two quiet buttons fit on one line at this width (otherwise 「片」 wraps alone) */
+  .frame[data-stage=room] .presence:not(.welcome)>.demo-tour .demo-tour-action.quiet{padding:8px 6px}
+}
+
+/* ---------------------------------------------------------------- 7. track: a ticket stub (wide screens; phones hide it as before) */
+.track{left:48px;bottom:136px;max-width:384px;gap:12px;padding:8px 0 8px 10px;color:var(--ds-ink);background:var(--ds-paper-card);border:var(--ds-line) solid var(--ds-ink);
+  border-radius:6px 4px 6px 4px;box-shadow:var(--ds-shadow);transform:rotate(-1.2deg)}
+.track .record{flex:none;width:34px;height:34px;font-size:18px;color:var(--ds-ink);background:var(--ds-yellow);border:var(--ds-line-thin) solid var(--ds-ink);box-shadow:none;border-radius:50%}
+.track>div{min-width:0}
+.track strong{font-family:var(--ds-font-ui);font-size:15px;font-weight:400;color:var(--ds-ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* room for the lobby's whole line 「进入房间，留下你看到的那个瞬间」 (it lost 「瞬间」 to an ellipsis at 220px inside a 360px stub) */
+.track small{max-width:240px;margin-top:2px;font-family:var(--ds-font-body);font-size:13px;color:var(--ds-ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.frame .track .encore{display:flex;align-self:stretch;align-items:center;flex:none;margin:-8px 0;padding:0 12px;font-family:var(--ds-font-digits);font-size:14px;letter-spacing:.06em;
+  color:var(--ds-ink);background:var(--ds-pink-soft);border-left:var(--ds-line-thin) dashed var(--ds-ink);border-radius:0 4px 6px 0}
+
+/* ---------------------------------------------------------------- 8. camera dock: sticker tabs */
+body .frame .camera-nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;width:600px;max-width:calc(100% - 56px);padding:0;bottom:50px;
+  color:var(--ds-ink);background:transparent;border:0;border-radius:0;box-shadow:none}
+.frame .camera-nav button{min-width:0;min-height:50px;gap:7px;padding:4px 8px;font-family:var(--ds-font-ui);font-size:16px;font-weight:400;color:var(--ds-ink);background:var(--ds-paper-card);
+  border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:var(--ds-shadow-sm);transition:transform var(--ds-fast) ease,box-shadow var(--ds-fast) ease,background-color var(--ds-fast) ease}
+.frame .camera-nav button+button{border:var(--ds-line-thin) solid var(--ds-ink)}
+.frame .camera-nav svg{width:20px;height:20px;flex:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;filter:url(#ds-wobble)}
+.frame .camera-nav button[aria-pressed=true]{background:var(--ds-yellow);color:var(--ds-ink);border:var(--ds-line) solid var(--ds-ink);box-shadow:var(--ds-shadow);transform:rotate(-1.5deg)}
+/* 我的空间: the same sticker tab in ink with a pink shadow, 'mine' (written with the id so it beats personal-space.css's flat 13px slab) */
+.frame .camera-nav #my-space{min-height:50px;padding:4px 8px;font-size:16px;border-radius:var(--ds-radius-btn);color:var(--ds-paper-card);background:var(--ds-ink);border-color:var(--ds-ink);
+  box-shadow:3px 3px 0 var(--ds-pink)}
+.frame .camera-nav button:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ds-ink)}
+.frame .camera-nav #my-space:active{box-shadow:1px 1px 0 var(--ds-pink)}
+@media (hover:hover) and (pointer:fine){.frame .camera-nav button:not([aria-pressed=true]):hover{transform:rotate(-1deg) translateY(-1px)}}
+
+/* ---------------------------------------------------------------- 9. footer */
+.frame>footer,body .frame>footer{left:28px;right:28px;bottom:0;min-height:44px;padding:0;font-family:var(--ds-font-ui);font-size:13px;color:var(--ds-ink-2);background:transparent;border:0}
+body .frame>footer button,body .frame>footer a{font-family:var(--ds-font-ui);font-size:13px;color:var(--ds-ink-2);text-decoration:underline wavy var(--ds-pink);text-decoration-thickness:1.3px;
+  text-underline-offset:.4em;text-decoration-skip-ink:none}
+@media (hover:hover) and (pointer:fine){body .frame>footer button:hover{color:var(--ds-ink)}}
+
+/* ---------------------------------------------------------------- 10. panel shell (#panel): a paper sheet with tape */
+.panel{right:56px;bottom:136px;width:400px;max-height:calc(100% - 236px);padding:34px 24px 24px;font-family:var(--ds-font-body);color:var(--ds-ink);background:var(--ds-paper-card);
+  border:var(--ds-line) solid var(--ds-ink);border-radius:var(--ds-radius-card);box-shadow:var(--ds-shadow-lg);scrollbar-width:thin;scrollbar-color:var(--ds-ink-3) transparent}
+.panel:not([hidden]){animation:ds-pop-in var(--ds-med) var(--ds-pop) backwards}
+.panel::before{content:'';position:absolute;top:5px;left:50%;width:84px;height:20px;margin-left:-42px;background:var(--ds-tape);pointer-events:none;
+  -webkit-mask:var(--ds-svg-tape) center/100% 100% no-repeat;mask:var(--ds-svg-tape) center/100% 100% no-repeat;transform:rotate(-2deg)}
+/* the round ×: sticky, so it stays in the sheet's top-right corner (10px in) however far a long sheet is scrolled. Chrome shrinks the sticky area
+   by the sheet's padding, so top equals the negative top margin (the padding-top less 10px); the side margin puts it 10px from the right edge and
+   the bottom margin takes its 44px back out of the flow, so the body starts where it did. #panel keeps its scroll offset while hidden: app.js
+   sets every sheet that opens back to its top before it focuses the ×. Everything in a sheet scrolls under it, so it sits above the z-index:2
+   tapes and checkboxes of panels-core.css */
+.panel>#panel-close{position:sticky;top:-24px;right:auto;margin:-24px -14px -20px auto;z-index:3;width:44px;height:44px;display:grid;place-items:center;padding:0 0 3px;
+  font-family:var(--ds-font-ui);font-size:26px;line-height:1;color:var(--ds-ink);background:var(--ds-yellow);border:var(--ds-line-thin) solid var(--ds-ink);
+  border-radius:50% 46% 52% 48%/48% 52% 46% 50%;box-shadow:var(--ds-shadow-sm);transform:rotate(-4deg)}
+.panel>#panel-close:active{transform:rotate(-4deg) translate(2px,2px);box-shadow:1px 1px 0 var(--ds-ink)}
+/* the person card is a sheet like the others (experience.css gave it an olive top edge and, on phones, a faint 16% shadow) */
+.panel[data-kind=person]{border-top:var(--ds-line) solid var(--ds-ink);box-shadow:var(--ds-shadow-lg)}
+/* type inside every panel body */
+.panel .eyebrow{display:inline-block;margin:0 52px 2px 0;font-family:var(--ds-font-ui);font-size:13px;letter-spacing:.06em;color:var(--ds-ink-2)}
+.panel h2{margin:6px 52px 12px 0;font-family:var(--ds-font-display);font-weight:400;font-size:28px;line-height:1.2;letter-spacing:.01em;color:var(--ds-ink);text-shadow:.06em .06em 0 var(--ds-yellow)}
+.panel h3{font-family:var(--ds-font-display);font-weight:400;font-size:19px;color:var(--ds-ink)}
+.panel p{font-family:var(--ds-font-body);font-size:16px;line-height:1.6;color:var(--ds-ink-2);text-wrap:pretty}
+.panel .fine{font-family:var(--ds-font-body);font-size:14px;line-height:1.55;color:var(--ds-ink-3)}
+.panel label{font-family:var(--ds-font-ui);font-size:15px;color:var(--ds-ink)}
+.panel .primary{width:100%;margin-top:12px}
+.panel .quiet{font-size:15px}
+/* join form: 「带上小人，进入示例现场」 */
+.panel .quick-identity{gap:16px;margin:16px 0 8px}
+.panel .quick-identity>div:first-child{background:var(--ds-mint-soft);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-card);box-shadow:var(--ds-shadow-sm);transform:rotate(-2deg)}
+.panel .quick-identity label{margin:0}
+.panel .quick-identity .quiet{padding:6px 0;min-height:44px;text-align:left}
+.panel .participation-choices{margin:18px 0 12px}
+.panel .participation-choices legend{font-family:var(--ds-font-display);font-size:19px;font-weight:400;color:var(--ds-ink);margin-bottom:10px}
+.panel .participation-choices label{align-items:flex-start;gap:12px;margin:10px 0;padding:12px 14px;background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);
+  border-radius:var(--ds-radius-btn);box-shadow:var(--ds-shadow-sm);transition:background-color var(--ds-fast) ease,transform var(--ds-fast) ease}
+.panel .participation-choices label:has(input:checked){background:var(--ds-yellow-soft);transform:rotate(-.6deg)}
+.panel .participation-choices span{font-family:var(--ds-font-ui);font-size:16px;line-height:1.4;color:var(--ds-ink)}
+.panel .participation-choices small{margin-top:3px;font-family:var(--ds-font-body);font-size:14px;line-height:1.5;color:var(--ds-ink-2)}
+.panel .consent{position:relative;align-items:flex-start;gap:12px;margin:16px 0 6px;font-family:var(--ds-font-body);font-size:15px;line-height:1.6;color:var(--ds-ink)}
+/* a one-line consent (tablets) is only 25px tall: the label's tap area reaches 10px above and below it without moving anything */
+.panel .consent::before{content:'';position:absolute;z-index:-1;left:0;right:0;top:-10px;bottom:-10px}
+.panel .consent span{font-family:var(--ds-font-body)}
+/* a room's invitation (Node rooms, app.js inviteBlock): the code is a yellow digits sticker; the QR sits on a paper card, its modules black on
+   white and unrotated so it still scans */
+.panel .invite-code{display:block;width:fit-content;max-width:100%;margin:20px auto 0;padding:5px 16px 3px;font-family:var(--ds-font-digits);font-size:28px;font-weight:400;line-height:1.2;
+  letter-spacing:.12em;color:var(--ds-ink);background:var(--ds-yellow);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-pill);box-shadow:var(--ds-shadow-sm);
+  transform:rotate(-1deg);overflow-wrap:anywhere}
+.panel #invite-qr{width:162px;height:162px;margin:18px auto 14px;padding:10px;background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-card);
+  box-shadow:var(--ds-shadow)}
+
+/* ---------------------------------------------------------------- 11. toast speech bubble and connection banner */
+/* text only, so every tap goes through it to the ×, the button or the content underneath */
+#toast{--ds-pop-x:-50%;bottom:calc(122px + var(--safe-bottom,0px));max-width:min(420px,calc(100% - 40px));padding:12px 18px 11px;font-family:var(--ds-font-ui);font-size:15px;line-height:1.45;
+  color:var(--ds-ink);background:var(--ds-paper-card);border:var(--ds-line) solid var(--ds-ink);border-radius:20px 14px 22px 12px/14px 20px 12px 22px;box-shadow:var(--ds-shadow);z-index:90;
+  pointer-events:none}
+#toast::after{content:'';position:absolute;left:30px;bottom:-9px;width:15px;height:15px;background:var(--ds-paper-card);border-right:var(--ds-line) solid var(--ds-ink);
+  border-bottom:var(--ds-line) solid var(--ds-ink);transform:rotate(40deg) skewX(8deg)}
+#toast.visible{animation:ds-pop-in .32s var(--ds-pop) backwards}
+#connection-banner{padding:4px 12px;font-family:var(--ds-font-ui);font-size:13px;color:var(--ds-ink);background:var(--ds-yellow-soft);border-top:var(--ds-line-thin) solid var(--ds-ink)}
+
+/* ---------------------------------------------------------------- 12. desktop caption: the first thing a laptop shows */
+.desktop-caption .caption-tag,.desktop-caption .caption-note,.desktop-caption .ds-deco{display:none}
+@media (min-width:1100px) and (min-height:620px){
+  .frame:not([data-stage=room]){margin-left:var(--ds-caption-w);width:calc(100% - var(--ds-caption-w))}
+  .frame:not([data-stage=room])>header{left:8px}
+  .frame:not([data-stage=room]) .world-shell{left:8px}
+  .frame:not([data-stage=room])>footer{left:8px}
+  .frame:not([data-stage=room])+.desktop-caption{position:fixed;left:0;top:0;bottom:0;z-index:1;display:flex;flex-direction:column;justify-content:center;width:var(--ds-caption-w);
+    max-width:none;padding:48px 34px 56px 56px;color:var(--ds-ink)}
+  /* one hero per screen: the card's 「同一刻，另一面。」 carries the layered lettering; the caption is a plain-ink lede (the header logo is the brand) */
+  .desktop-caption h2{position:relative;margin:26px 0 0;font-family:var(--ds-font-display);font-weight:400;font-size:clamp(26px,2.3vw,34px);line-height:1.12;letter-spacing:.01em;color:var(--ds-ink)}
+  .desktop-caption h2 br{display:none}
+  /* one line each in the fallback face too, so the heading does not re-wrap and jump when Doodle Display arrives */
+  .desktop-caption .caption-line{display:block;white-space:nowrap}
+  .desktop-caption .caption-line--b{margin:.08em 0 .14em;font-size:1.2em;line-height:1.08;text-shadow:none}
+  .desktop-caption .caption-key{background:none;padding:0}
+  .desktop-caption .caption-line--c{font-size:1.05em}
+  .desktop-caption p{margin:26px 0 0;max-width:24em;font-family:var(--ds-font-body);font-size:18px;line-height:1.7;color:var(--ds-ink-2)}
+  .desktop-caption small{display:block;margin:18px 0 0;padding:0;max-width:25em;border:0;font-family:var(--ds-font-body);font-size:16px;line-height:1.7;color:var(--ds-ink-2)}
+  /* pink handwriting with a thin ink edge: the pink alone is 2.6:1 on paper */
+  .desktop-caption .caption-note{display:block;align-self:flex-end;margin:22px 30px 0 0;font-family:var(--ds-font-note);font-size:32px;line-height:1;color:var(--ds-pink);
+    -webkit-text-stroke:.05em var(--ds-ink);paint-order:stroke fill;transform:rotate(-7deg)}
+  /* two doodles here (the note and its arrow); the star and sparkle stay on the hero card */
+  .desktop-caption .caption-arrow{display:block;--ds-deco-w:92px;--ds-deco-h:56px;right:-10px;bottom:calc(50% - 250px);transform:rotate(8deg)}
+  /* beside the caption the window's own title is a quiet ink label (the room and the phone lobby keep sticker letters on it) */
+  .frame:not([data-stage=room]) .scene-heading h1 span{font-size:24px;line-height:1.2;color:var(--ds-ink);-webkit-text-stroke:0;text-shadow:none;padding:4px 12px 5px}
+  html[data-channel] .desktop-caption p{display:none}
+  .frame:not([data-stage=room]) .presence.welcome{max-width:420px}
+  body:has(.frame:not([data-stage=room])) #toast{left:calc(var(--ds-caption-w) + (100% - var(--ds-caption-w))/2)}
+}
+/* a window too narrow for both: the lobby ticket would run under the hero card (beside the caption up to 1379px; alone, below 960px,
+   e.g. a 820px tablet, where it peeked out from under the card cut in half) */
+@media (min-width:1100px) and (max-width:1379px) and (min-height:620px){.frame:not([data-stage=room]) .track{display:none}}
+@media (max-width:959px){.frame:not([data-stage=room]) .track{display:none}}
+
+/* ---------------------------------------------------------------- 13. phones */
+@media (max-width:800px){
+  .presence{left:24px;right:30px;bottom:122px;max-width:none;padding:18px 18px 18px}
+  .panel{left:12px;right:17px;width:auto;bottom:calc(112px + var(--safe-bottom,0px));max-height:calc(100% - 186px - var(--safe-bottom,0px));padding:32px 18px 20px}
+  /* the sticky × for these paddings (§10): 32px 18px here, 16px 18px on the person card (experience.css) */
+  .panel>#panel-close{top:-22px;margin:-22px -8px -22px auto}
+  .panel[data-kind=person]>#panel-close{top:-6px;margin:-6px -8px -38px auto}
+  .world-shell .context-actions{bottom:12px}
+  /* bottom sheets: the bubble drops into the header strip with its tail towards the page, anchored left so it never reaches a sheet's ×
+     (its right edge stays 84px from the screen edge); taps pass through it (§11). For its 5 s it covers the logo and the first header chips,
+     never the sheet's first line or the buttons at its foot */
+  #toast{top:calc(8px + env(safe-area-inset-top,0px));bottom:auto;left:12px;right:auto;transform:none;--ds-pop-x:0;max-width:min(420px,calc(100% - 96px))}
+  /* an open sheet covers the window: the overlays behind it step away and leave the tab order, as the presence card does */
+  .frame:has(>#panel:not([hidden])) :is(.scene-heading,#hotspots,.scene-code,#context-actions){visibility:hidden}
+}
+/* the projected tags are 88px wide whenever the stage is under 700px (scene-layout.js), i.e. viewports up to 770px with these insets */
+@media (max-width:770px){
+  .hotspot .label{font-size:12px;line-height:1.25;padding:4px 4px 2px}
+}
+@media (max-width:700px){
+  .frame>header{left:12px;right:12px;height:64px;padding:8px 0 4px;padding-top:max(8px,env(safe-area-inset-top,0px));gap:6px}
+  .frame>header .brand{flex-direction:column;align-items:flex-start;gap:0;font-size:17px;line-height:.92;padding:2px 2px 4px}
+  .frame>header .music-map-entry,.frame>header .my-look{padding:0 10px;font-size:14px}
+  .frame>header .music-map-entry span,.frame>header .my-look span{display:none}
+  /* the example lobby shows only the logo and ···: give the logo its full one-line size there */
+  html[data-channel] .frame:not([data-stage=room])>header .brand{flex-direction:row;align-items:center;gap:.28em;font-size:25px;line-height:1;padding:4px 2px 6px}
+  .world-shell{inset:68px 17px 106px 12px;border-width:var(--ds-line)}
+  .world-shell::before,.world-shell::after{width:72px;height:20px;top:-8px}
+  .world-shell::before{left:42%}
+  .world-shell::after{right:8%}
+  .scene-heading{top:12px;left:12px;max-width:calc(100% - 24px)}
+  .scene-heading small{margin-bottom:4px}
+  .scene-heading h1 span{font-size:30px;max-width:100%}
+  .scene-code{top:90px;left:14px;font-size:13px;padding:4px 11px 3px}
+  .presence{left:24px;right:29px;box-shadow:6px 7px 0 var(--ds-ink)}
+  .presence.welcome strong#presence-title{font-size:44px}
+  .presence p#presence-copy{font-size:16px;line-height:1.55}
+  /* in the room the card is a compact tool tray: the people on stage stay in view */
+  .presence:not(.welcome){padding:14px 16px 16px}
+  .presence:not(.welcome) strong#presence-title{font-size:21px}
+  .presence:not(.welcome) p#presence-copy{margin-top:6px;font-size:15px;line-height:1.5}
+  .presence:not(.welcome) .presence-actions{gap:10px;margin-top:12px}
+  .presence:not(.welcome) .presence-actions button,.frame .presence:not(.welcome) .presence-actions #join,.frame .presence:not(.welcome) .presence-actions #room-recap,
+  .frame .presence:not(.welcome) .presence-actions #my-participation{min-height:46px;padding:7px 6px;font-size:15px}
+  .frame .presence:not(.welcome) .presence-actions #room-first-photo{min-height:46px;padding:7px 6px;font-size:16px}
+  body .frame .camera-nav{width:auto;left:12px;right:17px;max-width:none;transform:none;bottom:50px;gap:7px}
+  .frame .camera-nav button{min-height:48px;font-size:14px;gap:4px;padding:3px 4px}
+  .frame .camera-nav #my-space{min-height:48px;padding:3px 4px;font-size:14px}
+  .frame .camera-nav svg{width:18px;height:18px}
+  .frame>footer,body .frame>footer{left:12px;right:12px}
+  /* an open sheet IS the 3D window: the same box, so one outline and one shadow (tall sheets cover it exactly, short ones sit on its foot) */
+  .panel{bottom:106px;max-height:calc(100% - 174px)}
+  .panel[data-kind=person]{bottom:106px}
+  /* the window's two tapes would pile up with the sheet's or a drawer's own tape */
+  .frame:has(>#panel:not([hidden]),>.community-panel:not(.conversation-layout):not([hidden])) .world-shell::before,
+  .frame:has(>#panel:not([hidden]),>.community-panel:not(.conversation-layout):not([hidden])) .world-shell::after{visibility:hidden}
+}
+@media (max-width:380px){
+  .frame>header{gap:5px}
+  .frame>header .brand{font-size:15px}
+  .frame>header .music-map-entry,.frame>header .my-look{font-size:13px;width:auto;min-width:44px;padding:0 8px}
+  .frame>header .music-map-entry:before,.frame>header .my-look:before{content:none}
+  .frame.close-camera>header .brand{display:none}
+  .presence.welcome strong#presence-title{font-size:40px}
+  .scene-heading h1 span{font-size:27px}
+  .frame .camera-nav button,.frame .camera-nav #my-space{font-size:13px}
+}
+@media (max-width:360px){
+  .frame .camera-nav svg{display:none}
+  .presence{left:18px;right:22px;padding:16px 14px}
+  .presence.welcome strong#presence-title{font-size:38px}
+}
+@media (max-width:700px) and (max-height:700px){
+  /* short phones: the projected name tags need the band under the heading */
+  .frame[data-stage=room] .scene-code{display:none}
+}
+@media (max-width:800px) and (max-height:650px){
+  .presence.welcome strong#presence-title{font-size:34px}
+  .scene-heading h1 span{font-size:24px}
+}
+
+/* ---------------------------------------------------------------- 14. motion and contrast preferences */
+@media (prefers-reduced-motion:reduce){
+  .panel:not([hidden]),#toast.visible{animation:none}
+  .primary,.presence .presence-actions button,.frame .camera-nav button,.frame>header *,.hotspot .label,input[type=checkbox]::before,input[type=radio]::before{transition:none}
+}
+@media (prefers-contrast:more){
+  .frame>header .brand,.loading .loading-mark{color:var(--ds-ink);-webkit-text-stroke:0;text-shadow:none}
+  .scene-heading h1 span{color:var(--ds-ink);-webkit-text-stroke:0;text-shadow:none}
+}

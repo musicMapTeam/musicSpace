@@ -98,13 +98,13 @@ export async function handleEventSocial(c) {
     const data = await readJSON(request); keys(data, ['recipientId']); validPeer(data.recipientId);
     return mutate(data, async () => {
       const other=data.recipientId,communityId=send[1]==='communities'?send[2]:null,roomId=communityId?(await get('SELECT room_id FROM event_community_rooms WHERE community_id=? ORDER BY room_id LIMIT 1',communityId))?.room_id:send[2],privacy=await allowed(other);
-      if(!roomId)fail(409,'COMMUNITY_EVENT_REQUIRED','请先由主办方关联真实场次，再从社群建立新联系。');
+      if(!roomId)fail(409,'COMMUNITY_EVENT_REQUIRED','主办方关联场次后，才能在乐迷社群里打招呼。');
       const writable=await spaceWriteGuard(get,fail,communityId?'community':'room',communityId||roomId);
       const roomGuard = communityId?{sql:`(${communityWillingnessSQL()}) AND (${writable.sql})`,args:[communityId,user.id,other,...writable.args]}:{ sql: `EXISTS (SELECT 1 FROM event_rooms r JOIN event_members a ON a.room_id = r.id JOIN event_members b ON b.room_id = r.id
         WHERE r.id = ? AND r.closed_at IS NULL AND r.expires_at > ? AND a.user_id = ? AND b.user_id = ? AND a.left_at IS NULL AND b.left_at IS NULL)`, args: [roomId, now(), user.id, other] };
-      if (!await get(`SELECT 1 AS ok WHERE ${roomGuard.sql}`, ...roomGuard.args)) fail(communityId?409:404, communityId?'PARTICIPATION_QUIET':'PERSON_UNAVAILABLE', communityId?'双方需仍是社群成员，并明确愿意打招呼。':'请在同一场未结束的现场中打招呼。');
+      if (!await get(`SELECT 1 AS ok WHERE ${roomGuard.sql}`, ...roomGuard.args)) fail(communityId?409:404, communityId?'PARTICIPATION_QUIET':'PERSON_UNAVAILABLE', communityId?'双方都在社群里、都愿意打招呼，才能招手。':'请在同一场未结束的现场中打招呼。');
       const willingness=communityId?roomGuard:{sql:openParticipationSQL('?','?','?'),args:[roomId,user.id,other]};
-      if(!await get(`SELECT 1 AS ok WHERE ${willingness.sql}`,...willingness.args))fail(409,'PARTICIPATION_QUIET','只有双方都选择愿意打招呼时，才能发起新联系。照片仍可按各自的分享范围查看。');
+      if(!await get(`SELECT 1 AS ok WHERE ${willingness.sql}`,...willingness.args))fail(409,'PARTICIPATION_QUIET','双方都愿意打招呼，才能招手。');
       const previous = await pair(other);
       if (previous?.status === 'pending') fail(409, 'GREETING_PENDING', '你们已有待回应的招呼，请先查看。');
       if (previous?.status === 'accepted') fail(409, 'ALREADY_FRIENDS', '你们已经互为好友。');
@@ -141,7 +141,7 @@ export async function handleEventSocial(c) {
       const updated = { ...row, status: { accept: 'accepted', reject: 'rejected', cancel: 'cancelled' }[action], revision: row.revision + 1, updated_at: now(), friends_at: action === 'accept' ? now() : null, cooldown_until: action === 'accept' ? null : new Date(clock() + COOLDOWN_MS).toISOString() };
       const context=await get('SELECT community_id FROM event_community_greetings WHERE pair_id=? AND greeting_id=?',row.id,row.greeting_id);
       const willingness=context?{sql:communityWillingnessSQL(),args:[context.community_id,user.id,other]}:{sql:openParticipationSQL('?','?','?'),args:[row.room_id,user.id,other]};
-      if(action==='accept'&&!await get(`SELECT 1 AS ok WHERE ${willingness.sql}`,...willingness.args))fail(409,'PARTICIPATION_QUIET','参与方式已变化，请重新核对这次联系。');
+      if(action==='accept'&&!await get(`SELECT 1 AS ok WHERE ${willingness.sql}`,...willingness.args))fail(409,'PARTICIPATION_QUIET','参与方式有变化，暂时不能接受。');
       const profile = await peer(other);
       return { body: { greeting: greetingJSON(updated, profile), ...(action === 'accept' ? { friend: friendJSON(updated, profile) } : {}) },
         guard: combine(pairGuard(row, other), unblocked(other), ...(action==='accept'?[willingness]:[])), statements: [

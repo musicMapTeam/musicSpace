@@ -1,0 +1,104 @@
+/* shell: masthead (logo + 音乐探索 sticker, 返回现场, 关于), the sticker-tab navigation (phone dock, desktop compass, WebGL-off bar),
+   the place caption and pin over the scene, the 关于 sheet and the storage notes. Placement stays the legacy layer's. */
+
+/* ---- brand: MUSIC SPACE in the logo letters, 音乐探索 on a sticker beside it */
+.app-studio-shell .brand,html[data-theme='sakura'] body .app-studio-shell .brand,html[data-theme='sakura'] body:not(.spatial-fallback) .app-studio-shell .brand{
+  gap:10px;padding:0 2px;color:var(--ds-ink);background:none;border:0;isolation:auto}
+.app-studio-shell .brand::before{content:none;display:none}
+.brand-logo{display:inline-block;padding:4px 2px 7px;font-family:var(--ds-font-logo);font-weight:400;font-size:30px;line-height:1;letter-spacing:.01em;white-space:nowrap;color:var(--ds-yellow);
+  -webkit-text-stroke:.06em var(--ds-ink);paint-order:stroke fill;text-shadow:.07em .07em 0 var(--ds-ink),.13em .13em 0 var(--ds-pink);transform:rotate(-1.5deg);
+  transition:transform var(--ds-fast) ease}
+.brand-sticker{display:inline-flex;align-items:center;min-height:30px;padding:3px 12px 2px;font-family:var(--ds-font-ui);font-size:15px;line-height:1.2;white-space:nowrap;color:var(--ds-ink);
+  background:var(--ds-mint);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-pill);box-shadow:var(--ds-shadow-sm);transform:rotate(-3deg)}
+@media (hover:hover) and (pointer:fine){.app-studio-shell .brand:hover .brand-logo{transform:rotate(-3deg)}}
+@media (prefers-contrast:more){.brand-logo{color:var(--ds-ink);-webkit-text-stroke:0;text-shadow:none}}
+
+/* ---- top-right: the 关于 round sticker (44px) */
+html[data-theme='sakura'] body .masthead-tools .demo-help,html[data-theme='sakura'] body:not(.spatial-fallback) .masthead-tools .demo-help{
+  width:44px;height:44px;min-width:44px;min-height:44px;padding:0;color:var(--ds-ink);background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);
+  border-radius:50% 46% 52% 48%/48% 52% 46% 50%;box-shadow:var(--ds-shadow-sm)}
+html[data-theme='sakura'] body .masthead-tools .demo-help .icon{width:22px;height:22px}
+html[data-theme='sakura'] body .masthead-tools .demo-help::after{content:none}
+html[data-theme='sakura'] .masthead-tools{gap:10px}
+
+/* ---- navigation: one row of sticker tabs; the current one is yellow, inked thicker and turned a little */
+:is(.mobile-nav,.world-compass>div,body.spatial-fallback .primary-nav){gap:10px;padding:0;background:none;border:0;border-radius:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+html[data-theme='sakura'] body:not(.spatial-fallback) .mobile-nav,html[data-theme='sakura'] .mobile-nav{gap:8px;padding:0;background:none;border:0;box-shadow:none}
+:is(.mobile-nav .nav-item,.world-compass button,body.spatial-fallback .primary-nav .nav-item),
+html[data-theme='sakura'] body:not(.spatial-fallback) .mobile-nav .nav-item{
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:50px;padding:6px 14px;font-family:var(--ds-font-ui);font-size:16px;font-weight:400;line-height:1.2;
+  color:var(--ds-ink);background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:var(--ds-shadow-sm);
+  transition:transform var(--ds-fast) ease,box-shadow var(--ds-fast) ease,background-color var(--ds-fast) ease;white-space:nowrap}
+:is(.mobile-nav .nav-item,body.spatial-fallback .primary-nav .nav-item)::before,:is(.mobile-nav .nav-item,body.spatial-fallback .primary-nav .nav-item)::after{content:none;display:none}
+:is(.mobile-nav .nav-item,body.spatial-fallback .primary-nav .nav-item)>.icon{display:block;width:21px;height:21px}
+:is(.mobile-nav .nav-item.active,.world-compass button[aria-pressed='true'],body.spatial-fallback .primary-nav .nav-item.active),
+html[data-theme='sakura'] body:not(.spatial-fallback) .mobile-nav .nav-item.active,html[data-theme='sakura'] body .world-compass button[aria-pressed='true']:hover{
+  color:var(--ds-ink);background:var(--ds-yellow);border:var(--ds-line) solid var(--ds-ink);box-shadow:var(--ds-shadow);transform:rotate(-1.5deg);font-weight:400}
+:is(.mobile-nav .nav-item,.world-compass button,body.spatial-fallback .primary-nav .nav-item):active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ds-ink)}
+@media (hover:hover) and (pointer:fine){
+  :is(.mobile-nav .nav-item,.world-compass button,body.spatial-fallback .primary-nav .nav-item):not(.active,[aria-pressed='true']):hover,
+  html[data-theme='sakura'] body .world-compass button:not([aria-pressed='true']):hover{color:var(--ds-ink);background:var(--ds-paper-card);transform:rotate(-1deg) translateY(-1px)}
+}
+.world-compass>div{display:flex}
+.world-compass button{min-height:48px;padding:6px 20px;font-size:16px}
+@media (max-width:760px){
+  html[data-theme='sakura'] body:not(.spatial-fallback) .mobile-nav .nav-item,.mobile-nav .nav-item{flex:1;min-width:0;flex-direction:row;padding:6px 8px;font-size:16px;border-radius:var(--ds-radius-btn)}
+  html[data-theme='sakura'] body:not(.spatial-fallback) .mobile-nav{left:14px;right:14px}
+}
+@media (max-width:360px){
+  html[data-theme='sakura'] body:not(.spatial-fallback) .mobile-nav .nav-item,.mobile-nav .nav-item{flex-direction:column;gap:2px;padding:4px 2px;font-size:14px;min-height:54px}
+  html[data-theme='sakura'] body:not(.spatial-fallback) .mobile-nav{gap:6px}
+}
+
+/* ---- the place caption (我的发现 over the cabinet) and the 唱片店 pin over the courtyard */
+html[data-theme='sakura'] body .world-caption{padding:5px 14px 4px;border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-pill);background:var(--ds-yellow);
+  box-shadow:var(--ds-shadow-sm);transform:rotate(-2deg)}
+html[data-theme='sakura'] body .world-caption>strong{font-family:var(--ds-font-ui);font-size:17px;font-weight:400;letter-spacing:.04em;color:var(--ds-ink)}
+html[data-theme='sakura'] body .world-pin,html[data-theme='sakura'] body .world-pin:hover{min-height:44px;padding:9px 16px 8px 13px;color:var(--ds-ink);background:var(--ds-paper-card);
+  border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);font-family:var(--ds-font-ui);font-size:16px;font-weight:400;box-shadow:var(--ds-shadow-sm)}
+html[data-theme='sakura'] body .world-pin::before{width:10px;height:10px;margin:0 8px 1px 0;background:var(--ds-pink);border:1.5px solid var(--ds-ink);box-shadow:none;vertical-align:0}
+html[data-theme='sakura'] body .world-pin:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ds-ink)}
+
+/* ---- the papers' backdrop: the scene stays readable behind (a light paper veil, no blur) */
+html[data-theme='sakura'] body :is(.map-dialog,.about-dialog)::backdrop,dialog::backdrop{background:color-mix(in srgb,var(--ds-paper) 22%,transparent);-webkit-backdrop-filter:none;backdrop-filter:none}
+
+/* ---- 关于: a paper sheet with tape; the title layered, the facts as marker labels and hand-written lines */
+html[data-theme='sakura'] body dialog.about-dialog,html[data-theme='sakura'] body dialog[open].about-dialog{overflow:auto;overscroll-behavior:contain;padding:26px 24px 22px;color:var(--ds-ink);
+  background:var(--ds-paper-card);border:var(--ds-line) solid var(--ds-ink);border-radius:var(--ds-radius-card);box-shadow:var(--ds-shadow-lg)}
+.about-top,html[data-theme='sakura'] .about-top{position:sticky;top:-26px;z-index:2;margin:-26px -24px 6px;padding:16px 24px 8px;background:var(--ds-paper-card);border-radius:var(--ds-radius-card) var(--ds-radius-card) 0 0}
+html[data-theme] .about-dialog h2,.about-top h2{font-family:var(--ds-font-display);font-weight:400;font-size:var(--ds-size-h2);line-height:1.2;letter-spacing:.01em;color:var(--ds-ink);
+  text-shadow:.06em .06em 0 var(--ds-yellow)}
+.about-top .icon-button{background:var(--ds-yellow);transform:rotate(-4deg)}
+html[data-theme='sakura'] body .about-intro{margin:6px 0 16px;font-family:var(--ds-font-display);font-weight:400;font-size:26px;line-height:1.3;color:var(--ds-ink);text-shadow:.06em .06em 0 var(--ds-pink)}
+.about-intro>span{background:linear-gradient(transparent 58%,var(--ds-mint) 58%,var(--ds-mint) 92%,transparent 92%);padding:0 .1em}
+html[data-theme] .about-facts{margin:0;border:0}
+html[data-theme='sakura'] .about-facts p,html[data-theme] .about-facts p{display:grid;grid-template-columns:52px 1fr;gap:12px;margin:0;padding:10px 0;border-top:var(--ds-line-thin) dashed color-mix(in srgb,var(--ds-ink) 35%,transparent)}
+html[data-theme='sakura'] body .about-facts p b{align-self:start;justify-self:start;padding:2px 8px 1px;font-family:var(--ds-font-ui);font-size:14px;font-weight:400;color:var(--ds-ink);
+  background:var(--ds-yellow-soft);border:1.5px solid var(--ds-ink);border-radius:var(--ds-radius-pill)}
+html[data-theme='sakura'] body .about-facts p span,html[data-theme] .about-facts span{margin:0;font-family:var(--ds-font-body);font-size:15px;line-height:1.6;color:var(--ds-ink-2)}
+/* 数据来源: a ruled card inside 关于 */
+.about-sources{margin:14px 0 4px;padding:12px 14px 10px;background:var(--ds-paper);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-card);outline-offset:4px}
+.about-sources h3{margin:0 0 6px;font-family:var(--ds-font-display);font-weight:400;font-size:20px;color:var(--ds-ink);text-shadow:.06em .06em 0 var(--ds-mint)}
+.about-sources ul{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.about-sources li{display:grid;grid-template-columns:72px 1fr;gap:10px;font-family:var(--ds-font-body);font-size:14px;line-height:1.6;color:var(--ds-ink-2)}
+.about-sources li b{font-family:var(--ds-font-ui);font-size:14px;font-weight:400;color:var(--ds-ink)}
+.about-sources li span{overflow-wrap:anywhere}
+html[data-theme='sakura'] .about-dialog #start-experience{width:100%;margin-top:18px;min-height:48px;font-size:17px}
+@media (max-width:420px){
+  html[data-theme='sakura'] .about-facts p,html[data-theme] .about-facts p{grid-template-columns:1fr;gap:4px}
+  .about-sources li{grid-template-columns:1fr;gap:2px}
+}
+
+/* ---- storage notes and the conflict page: a pink-taped note card */
+html[data-theme] .storage-warning,html[data-theme='sakura'] .storage-warning{position:relative;padding:14px 16px 12px;font-family:var(--ds-font-body);font-size:15px;line-height:1.55;color:var(--ds-ink);
+  background:var(--ds-pink-soft);border:var(--ds-line) solid var(--ds-ink);border-left-width:var(--ds-line);border-radius:var(--ds-radius-card);box-shadow:var(--ds-shadow)}
+.storage-warning__actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+html[data-theme] .storage-warning button{min-height:44px;margin:0;padding:6px 14px;font-family:var(--ds-font-ui);font-size:15px;color:var(--ds-ink);text-decoration:none;
+  background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:3px 3px 0 var(--ds-ink)}
+html[data-theme] .storage-warning,html[data-theme='sakura'] .storage-warning{max-width:min(560px,calc(100vw - 32px));margin:84px auto 12px}
+@media (max-width:760px){html[data-theme] .storage-warning,html[data-theme='sakura'] .storage-warning{margin:66px 14px 12px}}
+/* the conflict page: one card in the middle of the screen, whatever view it replaced */
+.main-content>.map-conflict{position:fixed;z-index:6;left:50%;top:50%;width:min(440px,calc(100vw - 32px));margin:0;padding:24px 22px 20px;transform:translate(-50%,-50%) rotate(-.6deg);
+  text-align:left;pointer-events:auto;background:var(--ds-paper-card);border:var(--ds-line) solid var(--ds-ink);border-radius:var(--ds-radius-card);box-shadow:var(--ds-shadow-lg)}
+.map-conflict h1{margin:0 0 8px;font-size:var(--ds-size-h3);line-height:1.3}
+.map-conflict p{margin:0}

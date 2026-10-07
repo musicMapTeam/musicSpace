@@ -7,7 +7,7 @@ import {renderAvatarSvg} from '../illustrated-avatar/index.js';
 const W=1080,H=1440,X0=100,X1=980;
 const TOKENS={paper:['--ds-paper','#f7efdf'],card:['--ds-paper-card','#fffaf0'],ink:['--ds-ink','#1c1b1a'],ink2:['--ds-ink-2','#3d3a36'],ink3:['--ds-ink-3','#6b655c'],pink:['--ds-pink','#ff5c8a'],mint:['--ds-mint','#5fdcc0'],yellow:['--ds-yellow','#ffd447'],yellowSoft:['--ds-yellow-soft','#fff0b8'],night:['--ds-night','#23212b']};
 const FONTS={logo:['--ds-font-logo','"Doodle Logo","Doodle Display","Arial Black",sans-serif'],display:['--ds-font-display','"Doodle Display","Doodle Marker","PingFang SC","Microsoft YaHei",sans-serif'],ui:['--ds-font-ui','"Doodle Marker","PingFang SC","Microsoft YaHei",system-ui,sans-serif'],body:['--ds-font-body','"Doodle Hand","Doodle Marker","PingFang SC","Microsoft YaHei",system-ui,sans-serif'],digits:['--ds-font-digits','"Doodle Digits","Doodle Logo",ui-monospace,sans-serif']};
-const HEADER='MUSIC SPACE',HEADER_TAIL=' / 这一晚',EMPTY_LINES=['这一晚，','留在手里。'],EMPTY_NOTE='不必交换联系方式，也能留下自己的记忆。',PRIVACY='私人纪念 · 分享副本前，请确认你愿意公开其中内容。';
+const HEADER='MUSIC SPACE',HEADER_TAIL=' / 这一晚',EMPTY_LINES=['这一晚，','留在手里。'],EMPTY_NOTE='散场以后，记忆还在。',PRIVACY='私人纪念';
 
 function readTheme(){
  let style=null;try{style=getComputedStyle(document.documentElement);}catch{style=null;}

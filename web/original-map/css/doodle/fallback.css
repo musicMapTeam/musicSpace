@@ -1,0 +1,41 @@
+/* fallback: without WebGL the record shop is page paper. The 2D table is drawn in the same Doodle: sleeves are ink-framed squares on
+   card, lines are ink, the route orange, a revealed answer dashed sky, the pencilled hint an ink arrow. */
+html[data-theme='sakura'] body.spatial-fallback .sakura-scene__fallback>span{border:var(--ds-line) solid var(--ds-ink);background:radial-gradient(circle,var(--ds-pink) 0 16%,var(--ds-ink) 16.5% 19%,transparent 19.5%),
+  repeating-radial-gradient(circle,var(--ds-ink) 0 3px,var(--ds-ink-2) 4px 6px);box-shadow:8px 8px 0 var(--ds-yellow)}
+html[data-theme='sakura'] body.spatial-fallback .sakura-scene__fallback strong{font-family:var(--ds-font-display);font-weight:400;color:var(--ds-ink)}
+html[data-theme='sakura'] body.spatial-fallback .main-content{color:var(--ds-ink);background:var(--ds-paper-card);border:var(--ds-line) solid var(--ds-ink);border-radius:var(--ds-radius-card);box-shadow:var(--ds-shadow-lg)}
+html[data-theme='sakura'] body.spatial-fallback[data-view='home'] .main-content{background:var(--ds-paper-card)}
+html[data-theme='sakura'] body.spatial-fallback .home-paper{box-shadow:var(--ds-shadow)}
+html[data-theme='sakura'] body.spatial-fallback :is(.home-hero__title>span:last-child){color:var(--ds-ink)}
+/* the table */
+.map-network-fallback,html[data-theme='sakura'] body.spatial-fallback[data-view='explore'] .map-stage{background:var(--ds-paper-card) var(--ds-dots);border:var(--ds-line) solid var(--ds-ink);border-radius:var(--ds-radius-card)}
+.map-network-node i{border:3px solid var(--ds-ink);border-radius:4px;background:var(--node-tone);box-shadow:2px 2px 0 var(--ds-ink)}
+.map-network-node.is-current i{box-shadow:0 0 0 3px var(--ds-paper-card),0 0 0 6px var(--ds-ink)}
+.map-network-node.is-target i{box-shadow:0 0 0 3px var(--ds-paper-card),0 0 0 6px var(--ds-pink)}
+.map-network-node:is(.is-highlighted,.is-route) i{box-shadow:0 0 0 3px var(--ds-paper-card),0 0 0 6px var(--ds-orange)}
+.map-network-node.is-reachable i{box-shadow:0 0 0 2px var(--ds-paper-card),0 0 0 5px var(--ds-mint)}
+.map-network-node strong{font-family:var(--ds-font-ui);font-weight:400;font-size:14px;color:var(--ds-ink);background:var(--ds-paper-card);border:1.5px solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:2px 2px 0 var(--ds-ink)}
+.map-network-node.is-reachable strong{box-shadow:2px 2px 0 var(--ds-mint)}
+.map-network-node.is-selected strong{background:var(--ds-yellow-soft)}
+.map-network-node.is-current strong{color:var(--ds-paper-card);background:var(--ds-ink)}
+.map-network-node.is-target strong{background:var(--ds-pink)}
+.map-network-node small,.map-network-node.is-target small{font-family:var(--ds-font-ui);color:var(--ds-ink);background:var(--ds-yellow);border:1.5px solid var(--ds-ink);border-radius:var(--ds-radius-pill)}
+.map-network-node.is-unknown i{border:2px solid var(--ds-ink);border-radius:3px;background:repeating-linear-gradient(135deg,transparent 0 5px,color-mix(in srgb,var(--ds-ink) 16%,transparent) 5px 6.5px),var(--ds-paper-deep);box-shadow:2px 2px 0 var(--ds-ink)}
+.map-network-node.is-unknown strong{font-family:var(--ds-font-display);color:var(--ds-ink);background:none;border:0;box-shadow:none}
+.map-network-line{stroke:var(--ds-ink-3);stroke-width:2.5}
+.map-network-line.is-active{stroke:var(--ds-ink);stroke-width:3.5}
+.map-network-line.is-route{stroke:var(--ds-orange);stroke-width:6}
+.map-network-line.is-answer{stroke:var(--ds-sky);stroke-width:4}
+.map-network-line.is-stub,.map-network-line.is-stub-tip{stroke:var(--ds-ink)}
+.map-network-node__label.has-leader::after{background:var(--ds-ink);height:2px}
+/* the fallback's tools and hand read as the scene's */
+html[data-theme='sakura'] body.spatial-fallback[data-view='explore'] .map-round-tools{background:linear-gradient(transparent,transparent);border:0;box-shadow:none}
+html[data-theme='sakura'] body.spatial-fallback[data-view='explore'] .map-stage-top .map-network-tools{background:none;border:0;box-shadow:none}
+html[data-theme='sakura'] body.spatial-fallback[data-view='explore'] .map-studio>.map-undo{color:var(--ds-ink);background:var(--ds-yellow-soft);border:var(--ds-line-thin) solid var(--ds-ink);box-shadow:3px 3px 0 var(--ds-ink)}
+html[data-theme='sakura'] body.spatial-fallback[data-view='explore'] .map-round-slip,html[data-theme='sakura'] body.spatial-fallback[data-view='explore'] .map-friend-note{box-shadow:var(--ds-shadow-sm)}
+/* a narrow phone without WebGL: the selection's actions take their own row under the name, as on the scene's dock */
+@media (max-width:400px){
+  html[data-theme='sakura'] body.spatial-fallback[data-view='explore'] .map-network-selection{flex-wrap:wrap;gap:6px 10px}
+  html[data-theme='sakura'] body.spatial-fallback[data-view='explore'] .map-network-selection__actions{width:100%;justify-content:flex-start;margin-left:0}
+  html[data-theme='sakura'] body.spatial-fallback[data-view='explore'] .map-network-selection__actions .button{flex:1;justify-content:center}
+}

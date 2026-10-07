@@ -1,0 +1,15 @@
+/* Music Space Doodle look for 音乐探索 (spec: docs/design/doodle.md). Shared, read-only design system from the event room: tokens, type
+   recipes and the kit (fonts come from the event room's fonts/doodle/fonts.css, linked by the build: never imported here, the single-file
+   page would inline the woff2). Then this page's own layer, by area. Colours only from tokens.css; no new hex. */
+@import '../../../event-room/doodle/tokens.css';
+@import '../../../event-room/doodle/type.css';
+@import '../../../event-room/doodle/kit.css';
+@import './bridge.css';
+@import './controls.css';
+@import './shell.css';
+@import './home.css';
+@import './shop.css';
+@import './tags.css';
+@import './papers.css';
+@import './records.css';
+@import './fallback.css';

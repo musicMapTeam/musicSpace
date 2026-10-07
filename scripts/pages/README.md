@@ -37,12 +37,13 @@ tested preview tree to the root instead of building again.
   (`<version>+<commit>`), `space-ai-base` (`./ai/`);
 - adds a classic (ES5) **rescue script** before the module script runs: after 30 s without `window.__SPACE_BOOT__ === 'ready'`, or at
   once when a module script fails to load, or when the boot calls `window.__SPACE_RESCUE__.show(reason)`, an overlay 「页面没能完整启动」
-  offers 重新载入 / 重置示例数据 / 打开早期原型 (`./classic/`). 重置示例数据 deletes this channel's IndexedDB database and the
+  offers 重新载入 / 重新开始 and links nowhere (`classic/` stays in the tree, unlinked); the reason (`timeout`, `failed:<code>`,
+  `script-load-failed`) is kept in the overlay's `data-reason` attribute for QA, not shown. 重新开始 deletes this channel's IndexedDB database and the
   `RESCUE_PURGE_PREFIXES` localStorage keys (never `music-space-map-*`, `music-map-*`, `music-space:v1`, `music-space-live:v1`,
   `music-space-duet-seen:v1` or Cache Storage), then reloads the bare path. A page that finishes booting late removes the overlay itself;
 - adds `<noscript>` and `<script nomodule>` messages for browsers that cannot run the page;
-- (room page only) rewrites five server-flavoured notices (「服务器已确认」 and friends) to what is true in a page-only site. Each rule
-  must match at least once or the build fails; see `COPY_RULES`.
+- (room page only) rewrites the three server-flavoured confirmations (「服务器已确认」, 「服务已确认」 -> 「已确认」; 「服务已收到」 -> 「已收到」)
+  to what is true in a page-only site. Each rule must match at least once or the build fails; see `COPY_RULES`.
 
 ## Commands
 

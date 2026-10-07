@@ -1,5 +1,5 @@
 /*
- * Static (GitHub Pages) build only: what the example site adds to the event room. Imported by web/static-runtime/profile.js, never by the
+ * Static (GitHub Pages) build only: what the online edition adds to the event room. Imported by web/static-runtime/profile.js, never by the
  * Node server build. It is bundled BEFORE the event room's own stylesheets (profile.js is the first import of app.js), so every rule that
  * has to win against theirs is written with more specificity, not with !important.
  *
@@ -10,9 +10,10 @@
  *   .frame[data-stage='lobby' | 'room']   set by app.js on every render; the lobby hides 音乐探索, the inbox and 我的小人
  *   html[data-channel='preview']          set by the boot; shows the 预览版 pill
  *   .frame > footer > button              the About button (the footer itself ignores the pointer)
- *   .presence > .demo-tour                the example route's host (createTour in showcase/tour.js moves a host that sits just before
+ *   .presence > .demo-tour                the 「第一次来」 card's host (createTour in showcase/tour.js moves a host that sits just before
  *                                         .presence into it, and keeps the class .demo-tour-open on .presence while the card is expanded)
- *   .cast-badge                           optional: wrap castLabel() of the people list in <small class="cast-badge">
+ *   .cast-badge                           optional: wrap castLabel() of the people list in <small class="cast-badge"> (castLabel() is ''
+ *                                         since 2026-10-07, so nothing carries the class; the rule stays for a profile that labels people)
  * Markup classes used by the modules: .demo-entry, .demo-entry-more, .demo-entry-status, .demo-about*, .demo-reset, .demo-room-note.
  */
 
@@ -56,9 +57,9 @@
 }
 
 /*
- * The footer button that opens 「关于这个示例」. The event room's footer is a 27px strip that ignores the pointer; this button is the one
- * honest entry to what the example is, so it gets a 44px target: the footer grows to 44px and the camera dock moves up by the
- * difference (14px wide screens, 17px phones). Nothing else in the layout depends on the dock's exact bottom edge.
+ * The footer button that opens 「关于 Music Space」. The event room's footer is a 27px strip that ignores the pointer; this button is the
+ * way to the About panel (and its one sentence about the online edition), so it gets a 44px target: the footer grows to 44px and the
+ * camera dock moves up by the difference (14px wide screens, 17px phones). Nothing else in the layout depends on the dock's exact bottom edge.
  */
 
 body .frame > footer {
@@ -99,7 +100,7 @@ body .frame .camera-nav {
   }
 }
 
-/* ---- 「示例路线」: a slim card inside .presence, above its text and buttons --------------------------------------------------- */
+/* ---- 「第一次来」: a slim card inside .presence, above its text and buttons --------------------------------------------------- */
 
 .demo-tour {
   display: block;
@@ -316,6 +317,18 @@ body .frame .camera-nav {
   cursor: pointer;
 }
 
+/* The label is one span (one flex item next to the chevron); on a narrow phone it wraps before 「开个房」, never inside it. */
+.demo-entry .demo-entry-more summary > span {
+  min-width: 0;
+  line-height: 1.4;
+}
+
+/* phrases that wrap whole on a 320px phone: 「开个房」 in the host row, 「昵称和小人」 in the consent, each part of About's version line */
+.demo-entry .nowrap,
+.demo-about .nowrap {
+  white-space: nowrap;
+}
+
 /* A flex summary loses the browser's disclosure triangle; this one says the row opens. */
 .demo-entry .demo-entry-more summary::after {
   content: '▾';
@@ -327,25 +340,24 @@ body .frame .camera-nav {
   content: '▴';
 }
 
-/* ---- the room panel's note (it replaces the invitation: nothing here can be shared) ----------------------------------------- */
+/* ---- the room panel's note (it replaces the invitation: nothing here can be shared; it holds the way to About) ---------------- */
 
+/*
+ * Since 2026-10-07 the note holds only the 「关于 Music Space」 link (no text to set on a card), so it is a plain centred row. `body` makes it
+ * more specific than the Doodle sheet's `.panel .demo-room-note` card (web/event-room/doodle/showcase.css), which is bundled after this file.
+ */
+body .panel .demo-room-note,
 .demo-room-note {
-  margin: 12px 0;
-  padding: 4px 12px 8px;
-  background: #eae9da;
-  border-left: 3px solid #a3b14e;
+  margin: 4px 0 10px;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  text-align: center;
 }
 
-.demo-room-note p {
-  font-size: 14px;
-  line-height: 1.65;
-}
-
-.demo-room-note .fine {
-  font-size: 12px;
-}
-
-/* ---- 「关于这个示例」 -------------------------------------------------------------------------------------------------------- */
+/* ---- 「关于 Music Space」 ---------------------------------------------------------------------------------------------------- */
 
 .panel .demo-about-lead {
   margin: 10px 0 4px;
@@ -406,7 +418,7 @@ body .frame .camera-nav {
   cursor: not-allowed;
 }
 
-/* ---- who is an example character ---------------------------------------------------------------------------------------------- */
+/* ---- a label next to a name in the people list (unused since 2026-10-07: castLabel() is '') ------------------------------------ */
 
 .cast-badge {
   display: inline-block;

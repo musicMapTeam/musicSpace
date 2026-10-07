@@ -191,7 +191,9 @@ test('the HTML checks catch each defect they exist for', () => {
   assert.ok(only(room.replace(script, '').replace('<head>', `<head>${script}`), 'root').some(name => /after <body>/.test(name)), 'a module script in the head is caught');
   assert.ok(only(room.replace(/<meta name="space-site-root"[^>]*>/, ''), 'root').some(name => /space-site-root/.test(name)));
   assert.ok(only(room.replace('<!-- sql.js-MIT.txt\n', '<!-- gone\n'), 'root').some(name => /licence notices/.test(name)), 'a dropped licence notice is caught');
-  assert.ok(only(map.replace('<!-- phosphor-MIT.txt\n', '<!-- gone\n'), 'map').some(name => /licence notices/.test(name)));
+  assert.ok(only(map.replace('<!-- gsap-notice.txt\n', '<!-- gone\n'), 'map').some(name => /licence notices/.test(name)));
+  // The Map's icons are first-party drawings (web/original-map/js/icons.js): no Phosphor path data (a 256 grid), so no Phosphor notice.
+  assert.ok(!map.includes('<!-- phosphor-MIT.txt') && !/0 0 256 256/.test(map), 'the Map page carries no Phosphor icons and no Phosphor notice');
   assert.ok(only(room.replace(/<link rel="modulepreload"[^>]*three\.core\.js">/, ''), 'root').some(name => /three\.core\.js/.test(name)));
   assert.ok(only(room.replace(/<link rel="preload"[^>]*sql-wasm\.wasm">/, ''), 'root').some(name => /sql-wasm/.test(name)));
   assert.ok(only(room.replace(/<meta name="space-build" content="[^"]*">/, '<meta name="space-build" content="9.9.9+0000000">'), 'root').some(name => /space-build/.test(name)));

@@ -6,10 +6,10 @@ export function createMusicMap({controller,onShare=()=>{},onRelay=()=>{},onRetur
  let leaving=false,pendingView=null;
  function open(scope=null,_back=null,recordingId=null){
   if(leaving)return;
-  if(globalThis.navigator?.onLine===false){onError(Error('当前离线，恢复连接后再打开音乐探索；聊天草稿会保留。'));return;}
+  if(globalThis.navigator?.onLine===false){onError(Error('离线了，联网后再打开音乐探索。'));return;}
   const actor=controller.getState().identity.user?.id||null;
   const context={actor,view:getView(),scope:scope?{kind:scope.kind,id:scope.id}:null,returnUrl:location.pathname+location.search+location.hash,recordingId:realSongs[recordingId]?recordingId:null};
-  try{sessionStorage.setItem(KEY,JSON.stringify(context));}catch{onError(Error('浏览器无法保留返回位置，请允许本机存储后重试。'));return;}
+  try{sessionStorage.setItem(KEY,JSON.stringify(context));}catch{onError(Error('浏览器不允许存储，请开启后重试。'));return;}
   leaving=true;location.assign(siteUrl('music-map/')+'#/explore');
  }
  // Consume a draft request once, after identity is ready. Existing services

@@ -12,7 +12,8 @@ import { createTransport } from '../web/static-runtime/transport.js';
 import { createMemoryStore } from '../web/static-runtime/idb-store.js';
 import { createEventApiClient } from '../web/event-client/api.js';
 import { createAutopilot, wantsExchange, cupPick, gameChoice, THINK_MS, ARRIVE_MS, INTERVAL_MS } from '../web/static-runtime/showcase/autopilot.js';
-import { WELCOME_LINES, GENERIC_LINES, REPLY_LINES, GROUP_LINES, CHAT_LINES, DISCLOSURE, replyLine } from '../web/static-runtime/showcase/npc-lines.js';
+import * as npcLines from '../web/static-runtime/showcase/npc-lines.js';
+import { WELCOME_LINES, GENERIC_LINES, REPLY_LINES, GROUP_LINES, CHAT_LINES, CORNER_LINES, CORNER_LINE, replyLine, cornerLine } from '../web/static-runtime/showcase/npc-lines.js';
 
 const require = createRequire(import.meta.url);
 let SQL = null, seed = null, roster = null, skip = false;
@@ -141,35 +142,44 @@ async function createWorld({ settle = true } = {}) {
 
 // ---- the lines ----------------------------------------------------------------------------------------------------------------------
 
-test('lines: the welcome says what the sender is, the thread ends on the plain statement, nothing claims to be a person', () => {
-  assert.deepEqual([...WELCOME_LINES], ['嗨，欢迎来到「回声现场」。我是示例角色，由这个页面自动回复。', '你拍到的是哪一面？']);
-  assert.deepEqual([...GENERIC_LINES], ['今晚的返场太好听了。', '你的视角我这边没拍到，谢谢你愿意交换。', '（示例角色的自动回复：我不是真人。）']);
-  assert.equal(DISCLOSURE, GENERIC_LINES.at(-1));
+test('lines: the people talk naturally: a welcome, a question, three replies ending on a farewell; nothing claims to be a person or says it is automatic', () => {
+  assert.deepEqual([...WELCOME_LINES], ['嗨，欢迎来到「回声现场」！', '你拍到的是哪一面？']);
+  assert.deepEqual([...GENERIC_LINES], ['今晚的返场太好听了。', '照片墙上有好几张是同一刻拍的，你看了吗？', '下次月台见！']);
+  for (const line of GENERIC_LINES) assert.doesNotMatch(line, /交换|谢谢/, `a reply is true in any thread, with or without an exchange: ${line}`);
+  assert.equal('DISCLOSURE' in npcLines, false, 'the one disclosure lives in the About panel, not in the people\'s mouths');
   assert.deepEqual([...REPLY_LINES], [...WELCOME_LINES, ...GENERIC_LINES]);
   assert.deepEqual({ welcome: [...CHAT_LINES.welcome], generic: [...CHAT_LINES.generic] }, { welcome: [...WELCOME_LINES], generic: [...GENERIC_LINES] }, 'the prototype shape is kept');
-  assert.match(WELCOME_LINES[0], /示例角色/);
-  assert.match(WELCOME_LINES[0], /自动回复/);
   assert.deepEqual(Object.keys(GROUP_LINES), ['yao', 'man', 'bei']);
-  for (const [key, line] of Object.entries(GROUP_LINES)) assert.ok(line.endsWith(DISCLOSURE), `the group-chat line of ${key} ends with the disclosure`);
-  for (const line of [...REPLY_LINES, ...Object.values(GROUP_LINES)]) {
+  assert.deepEqual({ ...GROUP_LINES }, {
+    yao: '大家好，我是月台的阿遥。今晚舞台这一面，我先放上照片墙啦。',
+    man: '我拍的是人海这一面，手都举起来了。',
+    bei: '我只拍了看台边的一盏灯，算细节。',
+  });
+  assert.deepEqual({ ...CORNER_LINES }, { yao: '舞台这一面，交给我。', man: '人海这一面，手都举起来了。', bei: '看台边那盏灯，留给你。' });
+  assert.equal(cornerLine('man'), CORNER_LINES.man);
+  assert.equal(cornerLine('lin'), CORNER_LINE, 'a character without a line of its own');
+  assert.equal(cornerLine('toString'), CORNER_LINE, 'only its own keys');
+  for (const line of [...Object.values(CORNER_LINES), CORNER_LINE]) assert.ok([...line].length <= 200 && !/[\r\n]/.test(line), `a corner note is one short line: ${line}`);
+  for (const line of [...REPLY_LINES, ...Object.values(GROUP_LINES), ...Object.values(CORNER_LINES), CORNER_LINE]) {
     assert.ok(typeof line === 'string' && line.trim() && [...line].length <= 1000, 'a sendable chat text');
     assert.doesNotMatch(line, /[\u0000-\u0008\u000b-\u001f\u007f-\u009f\u061c\u200e\u200f\u202a-\u202e\u2066-\u2069\ufeff]/u, 'no control characters (the worker would refuse it)');
-    assert.doesNotMatch(line.replaceAll('我不是真人', ''), /真人|本人|活人/, `no line claims to be a person: ${line}`);
+    assert.doesNotMatch(line, /真人|本人|活人/, `no line claims to be a person: ${line}`);
     assert.doesNotMatch(line, /我是(真人|本人|人类)|我是.{0,3}人[。，]/, `no line claims to be a person: ${line}`);
+    assert.doesNotMatch(line, /示例|虚构|自动回复|演示|模拟|这个页面/, `no line talks about what it is: ${line}`);
   }
   assert.ok(Object.isFrozen(WELCOME_LINES) && Object.isFrozen(GENERIC_LINES) && Object.isFrozen(REPLY_LINES) && Object.isFrozen(GROUP_LINES));
 });
 
-test('lines: the line that answers is the number of lines already sent, clamped to the last one', () => {
-  assert.deepEqual([0, 1, 2, 3, 4, 5, 9, 1000].map(replyLine), [...REPLY_LINES, REPLY_LINES.at(-1), REPLY_LINES.at(-1), REPLY_LINES.at(-1)]);
+test('lines: the line that answers is the number of lines already sent; after the farewell there is none', () => {
+  assert.deepEqual([0, 1, 2, 3, 4, 5, 9, 1000].map(replyLine), [...REPLY_LINES, null, null, null]);
   assert.equal(replyLine(-3), REPLY_LINES[0]);
   assert.equal(replyLine(NaN), REPLY_LINES[0]);
   assert.equal(replyLine(undefined), REPLY_LINES[0]);
   assert.equal(replyLine(2.9), REPLY_LINES[2], 'fractions never happen, but never break');
 });
 
-test('lines: the roster (T7) says the same group-chat lines and the same disclosure', { skip: roster ? false : 'roster.js is not in the tree yet' }, () => {
-  assert.equal(roster.DISCLOSURE, DISCLOSURE);
+test('lines: the roster (T7) says the same group-chat lines', { skip: roster ? false : 'roster.js is not in the tree yet' }, () => {
+  assert.equal('DISCLOSURE' in roster, false);
   for (const npc of roster.NPCS) {
     if (npc.joins !== 'seed') continue;
     assert.equal(GROUP_LINES[npc.key], npc.line, `npc-lines.js GROUP_LINES.${npc.key} and roster.js ${npc.key}.line are one text: change both, or let one import the other`);
@@ -239,7 +249,7 @@ worldTest('greeting: nothing before thinkMs, then exactly one accept and the two
   assert.deepEqual(writes[0].body, { revision: greeting.revision });
   assert.deepEqual(writes.slice(1).map(entry => entry.body.text), [...WELCOME_LINES]);
   assert.ok(writes.slice(1).every(entry => entry.path === `/chats/${w.visitor.id}/messages`));
-  assert.deepEqual((await w.visitor.get('/social')).friends.map(friend => friend.peer.name), ['小满·示例']);
+  assert.deepEqual((await w.visitor.get('/social')).friends.map(friend => friend.peer.name), ['小满']);
   assert.deepEqual((await w.thread('man')).map(message => [message.senderId === w.people.man.id, message.text]), WELCOME_LINES.map(text => [true, text]));
 
   for (let i = 0; i < 3; i += 1) await w.tick(pilot, 10_000);
@@ -277,7 +287,7 @@ worldTest('greeting: a visitor who chose to take part quietly cannot greet, so t
 
 // ---- chat ---------------------------------------------------------------------------------------------------------------------------
 
-worldTest('chat: the reply is line N for the N lines the character already sent, stateless across a re-created autopilot, the last line repeated', async () => {
+worldTest('chat: the reply is line N for the N lines the character already sent, stateless across a re-created autopilot, and nothing after the farewell', async () => {
   const w = await createWorld();
   await w.visit();
   await w.greet('man');
@@ -285,7 +295,7 @@ worldTest('chat: the reply is line N for the N lines the character already sent,
   const lines = async () => (await w.thread('man')).filter(message => message.senderId === w.people.man.id).map(message => message.text);
   assert.deepEqual(await lines(), [...WELCOME_LINES]);
 
-  const expected = [...REPLY_LINES.slice(2), REPLY_LINES.at(-1), REPLY_LINES.at(-1)];      // generic 0, 1, 2, then the last line twice more
+  const expected = REPLY_LINES.slice(2);                                       // generic 0, 1, 2: the last one is the farewell
   for (const [index, line] of expected.entries()) {
     await w.visitor.post(`/chats/${w.people.man.id}/messages`, { text: `你好 ${index}` });
     const fresh = w.pilot();                                                     // a "reload": nothing is remembered between autopilots
@@ -299,6 +309,73 @@ worldTest('chat: the reply is line N for the N lines the character already sent,
   }
   assert.deepEqual((await lines()).slice(2), expected);
   assert.equal((await w.visitor.get('/chats')).chats[0].lastMessage.senderId, w.people.man.id);
+  // after the farewell the character stays quiet, however often the visitor writes and whichever autopilot looks
+  for (const text of ['还在吗', '下次见']) {
+    await w.visitor.post(`/chats/${w.people.man.id}/messages`, { text });
+    await w.tick(w.pilot(), 10_000);
+    await w.tick(w.pilot(), 10_000);
+  }
+  assert.deepEqual((await lines()).slice(2), expected, 'no line repeats after the farewell');
+  assert.equal((await w.visitor.get('/chats')).chats[0].lastMessage.senderId, w.visitor.id, 'the visitor wrote last, and that is where it ends');
+});
+
+worldTest('corner: a friend invites a character to a two-sides card; it joins with its line and photo, confirms what the friend confirmed, and leaves saving to the friend', async () => {
+  const w = await createWorld();
+  await w.visit();
+  await w.greet('man');
+  const pilot = w.pilot();
+  await w.tick(pilot, THINK_MS);                                               // friends now
+  const { cornerId } = await w.visitor.post('/corners', { peerId: w.people.man.id, participationConsent: true });
+  const read = async () => w.visitor.get(`/corners/${cornerId}`);
+  assert.equal((await read()).corner.status, 'invited', 'the character has not joined yet');
+  w.sent.length = 0;
+  await w.tick(pilot, INTERVAL_MS);
+  assert.deepEqual(w.writes('man', /^\/corners\//).map(entry => entry.path.replace(cornerId, ':id')), ['/corners/:id/join', '/corners/:id/contribution'], 'it joins and fills its side in one pass');
+  let view = await read();
+  assert.equal(view.corner.status, 'active', 'joined');
+  const side = view.contributions.find(entry => entry.userId === w.people.man.id);
+  assert.equal(side.note, CORNER_LINES.man);
+  const own = (await w.pairPhotos('man')).map(photo => photo.id);
+  assert.ok(side.photo && own.includes(side.photo.id), 'with a photo of its own from the wall');
+  assert.equal(view.corner.peerConfirmed, false, 'it confirms nothing the friend has not confirmed');
+
+  // the friend writes their side and confirms; the character confirms the same version on its next look
+  await w.visitor.post(`/corners/${cornerId}/contribution`, { revision: view.corner.revision, note: '我在二楼。', photoId: null, shareConsent: true });
+  view = await read();
+  await w.visitor.post(`/corners/${cornerId}/confirm`, { revision: view.corner.revision, consent: true });
+  w.sent.length = 0;
+  await w.tick(pilot, INTERVAL_MS);
+  assert.deepEqual(w.writes('man', /^\/corners\//).map(entry => entry.path.replace(cornerId, ':id')), ['/corners/:id/confirm']);
+  view = await read();
+  assert.equal(view.corner.peerConfirmed, true);
+  assert.equal(view.corner.eligible, true, 'both confirmed one version: the friend may save and export it');
+  assert.equal(view.corner.ownSaved, false, 'saving is the friend\'s own choice');
+  await w.visitor.post(`/corners/${cornerId}/save`, { revision: view.corner.revision, saveConsent: true });
+  assert.equal((await read()).corner.ownSaved, true);
+
+  // nothing more: no second line, no second confirmation, no save of its own
+  w.sent.length = 0;
+  for (let i = 0; i < 3; i += 1) await w.tick(w.pilot(), 10_000);
+  assert.deepEqual(w.writes('man', /^\/corners\//), [], 'a finished card is left as it is, by any autopilot');
+  assert.equal((await w.sql('SELECT COUNT(*) AS n FROM event_corner_saves WHERE user_id = ?', w.people.man.id))[0].n, 0);
+
+  // the friend edits again: the old confirmations are gone, and the character confirms the new version once the friend has
+  view = await read();
+  await w.visitor.post(`/corners/${cornerId}/contribution`, { revision: view.corner.revision, note: '我在二楼，你在台前。', photoId: null, shareConsent: true });
+  w.sent.length = 0;
+  await w.tick(pilot, INTERVAL_MS);
+  assert.deepEqual(w.writes('man', /^\/corners\//), [], 'the friend has not confirmed the new version yet');
+  view = await read();
+  await w.visitor.post(`/corners/${cornerId}/confirm`, { revision: view.corner.revision, consent: true });
+  await w.tick(pilot, INTERVAL_MS);
+  assert.equal((await read()).corner.eligible, true);
+
+  // a withdrawn card is left alone
+  view = await read();
+  await w.visitor.post(`/corners/${cornerId}/withdraw`, { revision: view.corner.revision });
+  w.sent.length = 0;
+  await w.tick(pilot, INTERVAL_MS);
+  assert.deepEqual(w.writes(null, /^\/corners\//), []);
 });
 
 worldTest('chat: a character who wrote last waits, and a friend the visitor blocked gets no reply', async () => {
@@ -411,7 +488,7 @@ worldTest('late arrival: 林间 comes in quietly only after a visitor has been i
   await w.tick(pilot, 1);
   const view = await room();
   assert.equal(view.members.length, 5);
-  assert.deepEqual(view.members.filter(member => member.participation === 'quiet').map(member => member.name), ['林间·示例']);
+  assert.deepEqual(view.members.filter(member => member.participation === 'quiet').map(member => member.name), ['林间']);
   assert.equal(view.photos.length, 4, 'she uploads nothing');
   assert.deepEqual(w.writes('lin').map(entry => [entry.path.replace(/[0-9a-f-]{36}/, ':id'), entry.body]), [
     [`/rooms/${w.room.code}/join`, { joinConsent: true, participation: 'quiet' }], ['/rooms/:id/conversation/join', { joinConsent: true }],
@@ -439,7 +516,7 @@ worldTest('late arrival: the timer belongs to this page (a reload restarts it) a
   assert.equal(w.writes('lin').length, 2, 'she arrived although the host cannot see the visitor');
   await w.greet('man');                                                          // 小满 still answers (阿遥 cannot: a block works both ways)
   await w.tick(second, THINK_MS);
-  assert.deepEqual((await w.visitor.get('/social')).friends.map(friend => friend.peer.name), ['小满·示例']);
+  assert.deepEqual((await w.visitor.get('/social')).friends.map(friend => friend.peer.name), ['小满']);
 });
 
 worldTest('the cast goes quiet again when the visitor leaves the room, and starts counting again when they come back', async () => {

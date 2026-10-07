@@ -114,10 +114,11 @@ export function createCelMaterials() {
       : null;
     if (key && matCache.has(key)) return matCache.get(key);
 
+    // Music Map: Three 0.186.1's MeshToonMaterial has no flatShading parameter (it was ignored with a
+    // console warning per material); `flat` stays part of the cache key.
     const mat = new THREE.MeshToonMaterial({
       color,
       gradientMap: gradientMap(bands),
-      flatShading: flat,
       map,
       alphaMap,
       transparent,

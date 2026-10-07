@@ -21,11 +21,11 @@ test('feedback panel requires explicit consent and transmits only the chosen cur
  const call=q.calls.find(c=>c[0]==='submitReport');assert.equal(call[1],r);assert.equal(call[2].targetId,b);assert.equal(call[2].photoId,p);assert.equal(call[2].reportConsent,true);assert.equal(call[2].details,'Synthetic <script> literal');assert.doesNotMatch(q.body.innerHTML,/<script>/);
 });
 test('opening host removal only shows named scope and sends nothing until the distinct confirmation button',async()=>{
- const q=setup(h);await q.panel.openManagement(r);await q.click({modReportRemove:report.id});assert.equal(q.calls.some(c=>c[0]==='exclude'),false);assert.match(q.body.innerHTML,/Target &lt;script&gt;/);assert.match(q.body.innerHTML,/已接受的定向交换和朋友关系仍保留/);
+ const q=setup(h);await q.panel.openManagement(r);await q.click({modReportRemove:report.id});assert.equal(q.calls.some(c=>c[0]==='exclude'),false);assert.match(q.body.innerHTML,/Target &lt;script&gt;/);assert.match(q.body.innerHTML,/只移出这一场，TA 在照片墙上的分享会撤下。/);
  await q.click({modConfirm:''});const call=q.calls.find(c=>c[0]==='exclude');assert.equal(call[1],r);assert.equal(call[2].id,b);assert.equal(call[3].report.id,report.id);assert.equal(call[3].removalConsent,true);
 });
 test('feedback refuses host self-review, unavailable photos and closing an unsent draft makes no submission',()=>{
- const q=setup();assert.throws(()=>q.panel.openFeedback(q.ctx.members[0]),/没有独立平台/);assert.throws(()=>q.panel.openFeedback(q.ctx.members[2],{photoId:id(99)}),/可见范围/);
+ const q=setup();assert.throws(()=>q.panel.openFeedback(q.ctx.members[0]),/这是本场房主，你可以屏蔽 TA 或离场。/);assert.throws(()=>q.panel.openFeedback(q.ctx.members[2],{photoId:id(99)}),/这张照片看不到了。/);
  q.panel.openFeedback(q.ctx.members[2]);q.input('details','Unsent synthetic draft');q.panel.close();assert.equal(q.root.hidden,true);assert.equal(q.calls.some(c=>c[0]==='submitReport'),false);
 });
 
@@ -34,7 +34,7 @@ test('restore admission clearly waits for the original unresolved removal and en
  const q=setup(h);await q.panel.openManagement(r);const exclusion={roomId:r,userId:b,targetName:'Target',revision:1,active:true};
  const management={room:{id:r,title:'Synthetic show'},reports:{items:[report],nextCursor:null,loaded:true},exclusions:{items:[exclusion],nextCursor:null,loaded:true},loaded:true};
  const pending=[{id:id(90),type:'exclude',roomId:r,entityId:b,label:'Target',status:'uncertain',error:{message:'Original response not confirmed',uncertain:true}}];
- q.setState({management,pending});await q.click({modTab:'exclusions'});assert.match(q.body.innerHTML,/data-mod-restore="[^" ]+" disabled/);assert.match(q.body.innerHTML,/请先在下方按原选择重试/);
+ q.setState({management,pending});await q.click({modTab:'exclusions'});assert.match(q.body.innerHTML,/data-mod-restore="[^" ]+" disabled/);assert.match(q.body.innerHTML,/还有一步没完成，请先处理下方的记录。/);
  await q.click({modRestore:b});assert.equal(q.calls.some(call=>call[0]==='restore'),false);assert.doesNotMatch(q.body.innerHTML,/data-mod-confirm/);
  q.setState({pending:[]});await q.click({modRestore:b});assert.match(q.body.innerHTML,/data-mod-confirm >/);
  q.setState({pending});assert.match(q.body.innerHTML,/data-mod-confirm disabled/);await q.click({modConfirm:''});assert.equal(q.calls.some(call=>call[0]==='restore'),false);

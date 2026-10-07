@@ -1,4 +1,4 @@
-# Music Space · 0.22.0-rc.1 预发布
+# Music Space · 0.22.0-rc.2 预发布
 
 > ## 参赛演示：路线 B
 >
@@ -10,10 +10,10 @@
 >
 > - **评审链接是什么。** <https://musicmapteam.github.io/musicSpace/> 的根路径，在「切换」之后是这个应用的静态示例站：事件房间页，加上在浏览器页面里运行的房间服务。**在切换之前，根路径仍是 0.16 页面**；测试用的预览副本放在 `/preview/`。现在走到哪一步，以[项目状态](docs/PROJECT_STATUS.md)为准。
 > - **真的。** 房间规则（同一份房间服务代码，不是演示脚本）、照片拍摄时间的 EXIF 读取、「同一刻」（拍摄时间相差不超过 3 分钟）的规则判断、存在你浏览器里的数据，以及浏览器支持时在本机运行的 AI 视角建议。AI 只建议视角，选择由你；配对、分组、排序和理由是规则，不是 AI。
-> - **模拟的。** 同场的人。阿遥·示例、小满·示例、北屿·示例、林间·示例是虚构角色，由页面里的程序通过和真人相同的接口自动回应，不是真人，也不学习；示例照片是仓库里两张 AI 生成图的裁切，场次、场地和歌曲都是虚构的。
+> - **模拟的。** 同场的人。阿遥、小满、北屿、林间是编出来的角色，由页面里的程序通过和真人相同的接口自动回应，不是真人，也不学习；照片是仓库里两张 AI 生成图的裁切，场次「回声现场」、场地「月台 Livehouse」和歌曲都是编的。产品界面里只在「关于 Music Space」的「在线版」一节说一句「在线版里的场地、观众和照片是演示内容，观众会自动回复。」（用户 2026-10-07 的决定：界面不再处处说明，见 `AGENTS.md` 顶部）；这里和其余文档照旧把事实写清楚。
 > - **单设备。** 房间服务就在你的浏览器页面里运行（sql.js，即 SQLite 的 WebAssembly 版；照片放在 IndexedDB），没有服务器，什么都不会上传。换一台设备或另一个浏览器，看到的是各自独立的一份示例，不互通，也没有二维码、NFC 或邀请链接。这是单设备的模拟，不是跨设备的真实房间，也不是已上线的多人产品。
 > - **没有验证过。** 真机（iPhone Safari、Android Chrome）、微信内置浏览器、大陆网络和真实用户都还没有验证；有了结果才写。
-> - **Map 与旧首页在哪里。** 页内的「音乐探索」进入原版 Music Map，路径 `/musicSpace/music-map/`，带返回条回到房间。0.16 的旧首页在 `/musicSpace/classic/`，没有常驻入口，只在页面启动失败的提示里提供「打开早期原型」。独立的 Music Map（<https://musicmapteam.github.io/musicMap/>）和 `/musicSpace/avatar-preview/` 没有改动。
+> - **Map 与旧首页在哪里。** 页内的「音乐探索」进入原版 Music Map 的页面（0.22.0-rc.2 起换成同一套手绘涂鸦风），路径 `/musicSpace/music-map/`，带返回条回到房间。0.16 的旧首页还在 `/musicSpace/classic/`，界面上没有入口（0.22.0-rc.2 起，页面启动失败的提示也不再链到它）。独立的 Music Map（<https://musicmapteam.github.io/musicMap/>）和 `/musicSpace/avatar-preview/` 没有改动。
 >
 > 构建、预览与发布：`npm run build:pages`、`npm run preview:pages`、`npm run test:static`，详见 [scripts/pages/README.md](scripts/pages/README.md) 和[部署说明](docs/deployment.md)的「静态托管」一节。
 
@@ -43,7 +43,7 @@
 - 明确入场和参与意愿，小人、场景、照片墙、聊天及回顾共用纸签与夜场视觉语言。
 - 私藏、房内展示与定向交换分别授权；撤回、删除、移除和屏蔽按既有权限执行。
 - 个人纪念卡由本人明确选择合法的本人照片、署名及小人，生成实际 PNG 预览后主动下载。
-- 长期音乐社群、散场聊天室、带出处的音乐卡和原始关系图、明确虚构的四专辑世界杯分别经独立 PR 实现。Music Map 保持独立。
+- Livehouse 乐迷社群（场地为每一场演出开房，散场后乐迷留在场地的社群里，下一场预告发在那里）、散场聊天室、带出处的音乐卡和原始关系图、原创专辑卡的四专辑世界杯分别经独立 PR 实现。Music Map 保持独立。
 - 链接、二维码、NDEF 和原生 GATT 适配源码共用无身份凭据的邀请网址，先预览、再本人明确加入。原生适配器未编译、签名或通过设备验收。
 - 双人创作角：双向朋友各自明确参与，选择本人已保存的小人、留言及本人照片。编辑保留本地草稿、检测版本冲突并撤回旧确认；双方确认同一版本后分别保存，另行选择生成署名 PNG。素材变化、关系失效或任一方撤销后，共同内容不能继续读取或导出。
 
@@ -56,10 +56,10 @@
 静态示例站（GitHub Pages）另有三条命令：`npm run build:pages` 生成 `dist-pages/`；`npm run preview:pages` 在 `http://127.0.0.1:4783/musicSpace/` 本地预览，和 github.io 一样，前缀之外一律 404；`npm run test:static` 跑静态运行时的测试，并在 sql.js 上重跑房间服务的测试套件。
 
 - [阶段清单](docs/event/COMMUNITY_ROADMAP.md) · [当前状态](docs/PROJECT_STATUS.md)
-- [静态站的构建、校验与发布](scripts/pages/README.md) · [部署说明：静态托管](docs/deployment.md) · [0.22.0-rc.1 发布说明](docs/release/0.22.0-rc.1.md)
+- [静态站的构建、校验与发布](scripts/pages/README.md) · [部署说明：静态托管](docs/deployment.md) · [0.22.0-rc.2 发布说明](docs/release/0.22.0-rc.2.md) · [0.22.0-rc.1](docs/release/0.22.0-rc.1.md)
 - [共同创作规则与验收](docs/event/evidence/corner-qa.md)
 - [统一入场协议与原生边界](docs/event/ADMISSION-PROTOCOL.md)
 - [产品计划](product/docs/01-product-plan.md) · [交付计划](product/docs/02-delivery-plan.md) · [实施说明](product/docs/03-build-guide.md)
 - [第三方许可](THIRD_PARTY_NOTICES.md)
 
-本轮（0.22.0-rc.1）不修改独立的 Music Map 仓库和页面，不触碰 `/musicSpace/avatar-preview/`，不新增账号、主机、凭据或付费服务。网站部署只走 `scripts/pages/` 的流程：先发到 `/preview/`，经用户明确同意后一次性切换到根路径，之后冻结（见[部署说明](docs/deployment.md)）。新增的依赖只有 devDependency `sql.js` 1.14.2（MIT，见[第三方许可](THIRD_PARTY_NOTICES.md)）；示例照片是仓库里两张 AI 生成图的裁切，没有新的外部素材。
+本轮（0.22.0-rc.1 与 rc.2）不修改独立的 Music Map 仓库和页面，不触碰 `/musicSpace/avatar-preview/`，不新增账号、主机、凭据或付费服务。网站部署只走 `scripts/pages/` 的流程：先发到 `/preview/`，经用户明确同意后一次性切换到根路径，之后冻结（见[部署说明](docs/deployment.md)）。新增的依赖只有 devDependency `sql.js` 1.14.2（MIT，见[第三方许可](THIRD_PARTY_NOTICES.md)）；示例照片是仓库里两张 AI 生成图的裁切，没有新的外部素材。

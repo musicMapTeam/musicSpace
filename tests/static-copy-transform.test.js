@@ -15,13 +15,16 @@ const BUILD = {version: '0.21.0-rc.4', commit: 'abc1234'};
 // ---------------------------------------------------------------------------------------------------------------------------
 // Copy transform (architecture 5.6)
 
-test('each of the five rules rewrites its sentence and leaves the rest of the line alone', () => {
+test('each of the three rules drops the server from its sentence and leaves the rest of the line alone', () => {
+  assert.deepEqual(COPY_RULES.map(rule => [rule.id, rule.from, rule.to]), [
+    ['server-confirmed', '服务器已确认', '已确认'],
+    ['service-confirmed', '服务已确认', '已确认'],
+    ['service-received', '服务已收到', '已收到'],
+  ]);
   const fixtures = [
-    ["notice='服务器已确认；本机记录未清除，下次可按原请求核对。';", "notice='示例已确认；本机记录未清除，下次可按原请求核对。';"],
-    ["notice='服务已确认，但原请求记录未能清理。';", "notice='示例已确认，但原请求记录未能清理。';"],
-    ["'已保存 = 服务已收到，不代表对方已读'", "'已保存 = 示例已收到，不代表对方已读'"],
-    ['<p>结束后该轮不再接受投票，结果按服务器当前票数决定。</p>', '<p>结束后该轮不再接受投票，结果按当前票数决定。</p>'],
-    ["toast('已停止等待。若请求已到达，停止等待不会撤销服务器操作。')", "toast('已停止等待。若请求已到达，停止等待不会撤销已发出的操作。')"],
+    ["notice='服务器已确认。';", "notice='已确认。';"],
+    ["notice='服务已确认。';", "notice='已确认。';"],
+    ["notice='服务已收到，无需重发。';", "notice='已收到，无需重发。';"],
   ];
   assert.equal(fixtures.length, COPY_RULES.length);
   fixtures.forEach(([before, after], index) => {
@@ -34,11 +37,12 @@ test('each of the five rules rewrites its sentence and leaves the rest of the li
 
 test('every occurrence is rewritten and counted, unrelated text is untouched, and the rewrite is stable', () => {
   const counts = newCopyCounts();
-  const code = 'a="服务器已确认";b="服务器已确认。";c="服务已确认";d="服务器连接中";e="房间服务已连接";';
+  const code = 'a="服务器已确认";b="服务器已确认。";c="服务已确认这次操作。";d="服务器连接中";e="房间服务已连接";f="服务已收到上一条，无需重发。";g="服务已收到，无需重发。";';
   const out = applyCopyRules(code, counts);
-  assert.equal(out, 'a="示例已确认";b="示例已确认。";c="示例已确认";d="服务器连接中";e="房间服务已连接";');
+  assert.equal(out, 'a="已确认";b="已确认。";c="已确认这次操作。";d="服务器连接中";e="房间服务已连接";f="已收到上一条，无需重发。";g="已收到，无需重发。";');
   assert.equal(counts.get('server-confirmed'), 2);
   assert.equal(counts.get('service-confirmed'), 1);
+  assert.equal(counts.get('service-received'), 2);
   assert.equal(applyCopyRules(out, newCopyCounts()), out, 'no rewritten sentence matches another rule');
   for (const rule of COPY_RULES) assert.ok(!rule.to.includes(rule.from) && COPY_RULES.every(other => !rule.to.includes(other.from)), `${rule.id} output cannot trigger a rule`);
   assert.equal(applyCopyRules('没有任何相关句子', newCopyCounts()), '没有任何相关句子');
@@ -47,10 +51,10 @@ test('every occurrence is rewritten and counted, unrelated text is untouched, an
 test('the copy plugin rewrites only JavaScript under web/event-room and web/event-client', () => {
   const plugin = staticCopyPlugin({roots: ['/repo/web/event-room/', '/repo/web/event-client']});
   const sentence = "x='服务器已确认';";
-  assert.equal(plugin.transform(sentence, '/repo/web/event-room/music-games.js').code, "x='示例已确认';");
-  assert.equal(plugin.transform(sentence, '/repo/web/event-client/api.js?v=1').code, "x='示例已确认';");
+  assert.equal(plugin.transform(sentence, '/repo/web/event-room/music-games.js').code, "x='已确认';");
+  assert.equal(plugin.transform(sentence, '/repo/web/event-client/api.js?v=1').code, "x='已确认';");
   assert.equal(plugin.transform(sentence, '/elsewhere/web/event-room/panel.mjs'), null, 'a path outside the roots is left alone');
-  assert.equal(staticCopyPlugin({roots: ['C:/repo/web/event-room/']}).transform(sentence, 'C:\\repo\\web\\event-room\\panel.mjs').code, "x='示例已确认';", 'Windows-style ids are normalised');
+  assert.equal(staticCopyPlugin({roots: ['C:/repo/web/event-room/']}).transform(sentence, 'C:\\repo\\web\\event-room\\panel.mjs').code, "x='已确认';", 'Windows-style ids are normalised');
   assert.equal(plugin.transform(sentence, '/repo/web/js/app.js'), null);
   assert.equal(plugin.transform(sentence, '/repo/web/event-room-other/x.js'), null, 'a sibling directory that merely starts with the same name');
   assert.equal(plugin.transform(sentence, '/repo/web/event-room/style.css'), null);
@@ -62,10 +66,11 @@ test('the build fails when a rule matched nothing, and stays quiet when another 
   const plugin = staticCopyPlugin({roots: ['/repo/web/event-room/']});
   const failures = [];
   const context = {error: message => { failures.push(message); throw new Error(message); }};
-  plugin.transform("a='服务器已确认';b='服务已确认';c='服务已收到';d='结果按服务器当前票数决定';", '/repo/web/event-room/a.js');
-  assert.throws(() => plugin.buildEnd.call(context), /stop-waiting/, 'the one rule that never matched is named');
+  plugin.transform("a='服务器已确认。';b='服务已确认。';", '/repo/web/event-room/a.js');
+  assert.throws(() => plugin.buildEnd.call(context), /service-received/, 'the one rule that never matched is named');
   assert.match(failures[0], /matched nothing/);
-  plugin.transform("e='停止等待不会撤销服务器操作';", '/repo/web/event-room/b.js');
+  assert.doesNotMatch(failures[0], /server-confirmed|service-confirmed/);
+  plugin.transform("c='服务已收到，无需重发。';", '/repo/web/event-room/b.js');
   assert.doesNotThrow(() => plugin.buildEnd.call(context));
   const idle = staticCopyPlugin({roots: ['/repo/web/event-room/']});
   assert.doesNotThrow(() => idle.buildEnd.call(context, new Error('some other failure')), 'a failed build is not blamed on the rules');
@@ -116,8 +121,9 @@ test('the root page: module script at the end of body, hints, metas, title, resc
   assert.ok(html.indexOf('<title>Music Space · 同一刻') < html.indexOf('</head>') && html.includes('<svg><title>icon</title></svg>'), 'only the head title is replaced');
   assert.ok(html.indexOf('<meta charset="UTF-8"><meta name="space-site-root"') > 0, 'the hints follow <meta charset>');
   assert.ok(html.indexOf('data-space-static="rescue"') > html.indexOf('<style') && html.indexOf('data-space-static="rescue"') < html.indexOf('</head>'), 'the rescue script closes the head');
-  assert.match(html, /<body><noscript data-space-static="noscript">.*需要开启 JavaScript.*<\/noscript>/s);
-  assert.match(html, /<script nomodule data-space-static="nomodule">.*版本太旧.*<\/script>/s);
+  assert.match(html, /<body><noscript data-space-static="noscript"><div role="alert" style="[^"]*">需要开启 JavaScript 才能打开 Music Space。<\/div><\/noscript>/);
+  assert.match(html, /<script nomodule data-space-static="nomodule">.*"这个浏览器版本太旧，打不开 Music Space。请换用较新的 Chrome、Edge、Safari 或 Firefox。".*<\/script>/s);
+  assert.doesNotMatch(html.slice(html.indexOf('<body>')), /示例/, 'the notices name the product, not an example page');
   assert.ok(html.indexOf('<script nomodule') < html.indexOf(moduleTag), 'the nomodule notice comes before the module script');
   assert.ok(html.endsWith('<!-- three-MIT.txt\nlicense text\n-->\n'), 'text after </html> (the licence comments) is kept');
 });
@@ -130,7 +136,9 @@ test('the Map page: relative hints one directory down, no wasm preload, no rescu
   assert.ok(!html.includes('sql-wasm.wasm') && !html.includes('space-ai-base') && !html.includes('__SPACE_RESCUE__'));
   assert.match(html, /<title>Music Space · 这一场，我们在一起<\/title>/, 'the Map keeps its own title');
   assert.ok(html.indexOf(moduleTag) > html.indexOf('<body>'));
-  assert.match(html, /打不开 Music Map/);
+  assert.match(html, /<body><noscript data-space-static="noscript"><div role="alert" style="[^"]*">需要开启 JavaScript 才能打开音乐探索。<\/div><\/noscript>/);
+  assert.match(html, /<script nomodule data-space-static="nomodule">.*"这个浏览器版本太旧，打不开音乐探索。请换用较新的 Chrome、Edge、Safari 或 Firefox。".*<\/script>/s);
+  assert.doesNotMatch(html.slice(html.indexOf('<body>')), /Music Map|示例/, 'the notices use the page\'s name, 音乐探索');
 });
 
 test('running the transform twice gives the same page', () => {
@@ -238,7 +246,8 @@ test('the watchdog raises the overlay after 30 s without a ready boot, and a rea
   stalled.advance(1);
   assert.ok(stalled.overlay(), 'at 30 s');
   assert.match(stalled.overlay().text, /页面没能完整启动/);
-  assert.match(stalled.overlay().text, /原因：timeout/);
+  assert.equal(stalled.overlay().attrs['data-reason'], 'timeout');
+  assert.doesNotMatch(stalled.overlay().text, /timeout|原因/, 'the reason is for QA, not for the visitor');
   const ready = fakeBrowser({boot: 'ready'});
   ready.run(rescueScript());
   ready.advance(RESCUE_WATCHDOG_MS * 2);
@@ -246,7 +255,7 @@ test('the watchdog raises the overlay after 30 s without a ready boot, and a rea
   const failed = fakeBrowser({boot: 'failed:SNAPSHOT_CORRUPT'});
   failed.run(rescueScript());
   failed.advance(RESCUE_WATCHDOG_MS);
-  assert.match(failed.overlay().text, /原因：failed:SNAPSHOT_CORRUPT/);
+  assert.equal(failed.overlay().attrs['data-reason'], 'failed:SNAPSHOT_CORRUPT');
 });
 
 test('a slow boot that finishes after the overlay appeared removes it by itself', () => {
@@ -260,7 +269,7 @@ test('a slow boot that finishes after the overlay appeared removes it by itself'
   assert.equal(browser.body.children.length, 0);
 });
 
-test('show(reason) from the boot raises the overlay with three actions of at least 44 px', () => {
+test('show(reason) from the boot raises the overlay with two actions of at least 44 px and two short lines; the reason stays off screen', () => {
   const browser = fakeBrowser();
   browser.run(rescueScript());
   browser.sandbox.__SPACE_RESCUE__.show('failed:MIGRATION_CHANGED');
@@ -269,11 +278,16 @@ test('show(reason) from the boot raises the overlay with three actions of at lea
   assert.equal(overlay.attrs['aria-modal'], 'true');
   const flat = node => (node.children || []).flatMap(child => [child, ...flat(child)]);
   const actions = flat(overlay).filter(node => node.tag === 'button' || node.tag === 'a');
-  assert.deepEqual(actions.map(node => node.text), ['重新载入', '重置示例数据', '打开早期原型']);
+  assert.deepEqual(actions.map(node => node.text), ['重新载入', '重新开始']);
+  assert.ok(!flat(overlay).some(node => node.tag === 'a'), 'no link: classic/ (the 0.16 page) stays unlinked');
+  const lines = flat(overlay).filter(node => node.tag === 'p').map(node => node.text);
+  assert.deepEqual(lines, ['先重新载入试试；还不行的话，点「重新开始」。', '「重新开始」会清除你的昵称、小人、照片和交换。']);
+  assert.equal(flat(overlay).find(node => node.tag === 'span').style.cssText.includes('white-space:nowrap'), true, 'the button\'s name never breaks across lines');
+  assert.equal(flat(overlay).find(node => node.tag === 'h2').textContent, '页面没能完整启动');
+  assert.doesNotMatch(overlay.text, /示例|早期原型|经典版|数据库|上传|原因|MIGRATION_CHANGED/);
   for (const node of actions) assert.match(node.style.cssText, /min-height:44px/, node.text);
-  assert.equal(actions[2].href, './classic/');
   assert.ok(actions[0].focused, 'focus lands on the first action');
-  assert.match(overlay.text, /原因：failed:MIGRATION_CHANGED/);
+  assert.equal(overlay.attrs['data-reason'], 'failed:MIGRATION_CHANGED');
   browser.sandbox.__SPACE_RESCUE__.show('again');
   assert.equal(browser.body.children.length, 1, 'a second show does not stack another overlay');
   for (const node of flat(overlay)) {
@@ -284,7 +298,7 @@ test('show(reason) from the boot raises the overlay with three actions of at lea
   }
 });
 
-test('重新载入 reloads; 打开早期原型 is a relative link', () => {
+test('重新载入 reloads', () => {
   const browser = fakeBrowser();
   browser.run(rescueScript());
   browser.sandbox.__SPACE_RESCUE__.show('x');
@@ -292,7 +306,7 @@ test('重新载入 reloads; 打开早期原型 is a relative link', () => {
   assert.equal(browser.calls.reload, 1);
 });
 
-test('重置示例数据 deletes this channel\'s database and the purge-prefix keys only, then reloads without the query', () => {
+test('重新开始 deletes this channel\'s database and the purge-prefix keys only, then reloads without the query', () => {
   const purge = RESCUE_PURGE_PREFIXES.map(prefix => `${prefix}x:1`);
   const keep = ['music-space-map-state:v1', 'music-space-map-saved-music:v1', 'music-space:v1', 'music-space-live:v1', 'music-space-duet-seen:v1', 'music-map-theme', 'unrelated'];
   for (const [pathname, db] of [['/musicSpace/', 'music-space-static:pages:v1'], ['/musicSpace/index.html', 'music-space-static:pages:v1'], ['/musicSpace/preview/', 'music-space-static:preview:v1'], ['/preview/', 'music-space-static:preview:v1'], ['/musicSpace/previews/', 'music-space-static:pages:v1'], ['/musicSpace/preview/classic/', 'music-space-static:pages:v1']]) {
@@ -300,7 +314,7 @@ test('重置示例数据 deletes this channel\'s database and the purge-prefix k
     browser.run(rescueScript());
     assert.equal(browser.sandbox.__SPACE_RESCUE__.dbName, db, pathname);
     browser.sandbox.__SPACE_RESCUE__.show('x');
-    browser.click('重置示例数据');
+    browser.click('重新开始');
     assert.deepEqual(browser.calls.deleted, [db], pathname);
     assert.deepEqual([...browser.storage.keys()].sort(), [...keep].sort(), `${pathname}: only the purge keys went`);
     assert.deepEqual(browser.calls.replaced, [], 'it waits for the database delete');
@@ -315,7 +329,7 @@ test('a blocked database delete does not trap the visitor: the reset goes on aft
   const browser = fakeBrowser({keys: ['music-space-avatar-session:v1']});
   browser.run(rescueScript());
   browser.sandbox.__SPACE_RESCUE__.show('x');
-  browser.click('重置示例数据');
+  browser.click('重新开始');
   browser.advance(1499);
   assert.deepEqual(browser.calls.replaced, []);
   browser.advance(1);
@@ -324,7 +338,7 @@ test('a blocked database delete does not trap the visitor: the reset goes on aft
   noIdb.sandbox.indexedDB = undefined;
   noIdb.run(rescueScript());
   noIdb.sandbox.__SPACE_RESCUE__.show('x');
-  noIdb.click('重置示例数据');
+  noIdb.click('重新开始');
   assert.deepEqual(noIdb.calls.replaced, ['/musicSpace/'], 'no IndexedDB at all: the keys are cleared and the page reloads');
   assert.equal(noIdb.storage.size, 0);
 });
@@ -339,7 +353,8 @@ test('a module script that fails to load raises the overlay at once; other error
   capture.fn({message: 'ordinary runtime error'});
   assert.equal(browser.overlay(), null);
   capture.fn({target: {tagName: 'SCRIPT', type: 'module'}});
-  assert.match(browser.overlay().text, /script-load-failed/);
+  assert.ok(browser.overlay(), 'the overlay is up at once');
+  assert.equal(browser.overlay().attrs['data-reason'], 'script-load-failed');
 });
 
 test('a browser that cannot run modules gets the nomodule notice and no rescue overlay', () => {
@@ -349,7 +364,7 @@ test('a browser that cannot run modules gets the nomodule notice and no rescue o
   browser.run(rescueScript());
   browser.run(notice);
   assert.equal(browser.sandbox.__SPACE_NOMODULE__, true);
-  assert.match(browser.body.children[0].textContent, /打不开 Music Space 示例页/);
+  assert.equal(browser.body.children[0].textContent, '这个浏览器版本太旧，打不开 Music Space。请换用较新的 Chrome、Edge、Safari 或 Firefox。');
   browser.advance(RESCUE_WATCHDOG_MS * 2);
   assert.equal(browser.overlay(), null, 'the watchdog stays quiet: the page can never boot there');
 });

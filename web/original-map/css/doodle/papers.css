@@ -1,0 +1,221 @@
+/* papers: every paper the record shop opens (共同演唱, 作品署名, TA 的歌, TA 的合唱, 找音乐人, 开一局寻声, 出题给朋友, 揭晓, 连线歌单,
+   本次发现 / 探索回顾, 我的发现, the confirmations): a paper sheet with ink, a hard shadow and tape; a round × sticker; one layered title;
+   hand-written body; song rows with 留下 stickers; 作品署名 and 来源 as disclosures. Placement (side paper / bottom drawer) is legacy. */
+
+/* ---- the sheet */
+html[data-theme='sakura'] body dialog[open].map-dialog,html[data-theme='sakura'] body dialog.map-dialog,.map-dialog{color:var(--ds-ink);background:var(--ds-paper-card);
+  border:var(--ds-line) solid var(--ds-ink);border-radius:var(--ds-radius-card);box-shadow:var(--ds-shadow-lg);scrollbar-width:thin;scrollbar-color:var(--ds-ink-3) transparent}
+html[data-theme='sakura'] body dialog.map-dialog[open] .map-dialog__top,.map-dialog__top{position:sticky;top:0;z-index:4;background:var(--ds-paper-card)}
+.map-dialog__top::before{content:'';position:absolute;left:50%;top:4px;width:84px;height:20px;margin-left:-42px;background:var(--ds-tape);pointer-events:none;transform:rotate(-2deg);
+  -webkit-mask:var(--ds-svg-tape) center/100% 100% no-repeat;mask:var(--ds-svg-tape) center/100% 100% no-repeat}
+html[data-theme='sakura'] body dialog.map-dialog .map-dialog__top .icon-button,.map-dialog__top .icon-button{width:44px;height:44px;min-width:44px;min-height:44px;color:var(--ds-ink);background:var(--ds-yellow);
+  border:var(--ds-line-thin) solid var(--ds-ink);border-radius:50% 46% 52% 48%/48% 52% 46% 50%;box-shadow:var(--ds-shadow-sm);transform:rotate(-4deg)}
+.map-dialog__top .icon-button .icon{width:22px;height:22px}
+.map-dialog__top .icon-button:active{transform:rotate(-4deg) translate(2px,2px)}
+
+/* ---- type in a paper */
+html[data-theme='sakura'] body .map-dialog .eyebrow,.map-dialog .eyebrow{display:inline-block;font-family:var(--ds-font-ui);font-size:13px;letter-spacing:.06em;color:var(--ds-ink-2)}
+html[data-theme='sakura'] body dialog.map-dialog[open] h2,html[data-theme='sakura'] body .map-dialog h2,.map-dialog h2{font-family:var(--ds-font-display);font-weight:400;font-size:28px;line-height:1.22;
+  letter-spacing:.01em;color:var(--ds-ink);text-shadow:.06em .06em 0 var(--ds-yellow)}
+.map-dialog h3{font-family:var(--ds-font-display);font-weight:400;color:var(--ds-ink)}
+html[data-theme='sakura'] body .map-dialog .map-panel-description,.map-dialog .map-panel-description{font-family:var(--ds-font-body);font-size:16px;line-height:1.6;color:var(--ds-ink-2)}
+.map-dialog .map-inline-empty,.map-dialog .map-round-sealed-note{font-family:var(--ds-font-body);font-size:15px;color:var(--ds-ink-2)}
+.map-round-sealed-note{padding:9px 12px;background:var(--ds-yellow-soft);border:var(--ds-line-thin) solid var(--ds-ink);border-left-width:var(--ds-line-thin);border-radius:var(--ds-radius-btn)}
+html[data-theme='sakura'] body .map-dialog .map-panel-actions .button{min-height:46px;font-size:15px}
+.map-panel-actions{gap:12px}
+.map-edge-title>span{font-family:var(--ds-font-ui);color:var(--ds-pink)}
+.map-edge-person{font-family:var(--ds-font-display);color:var(--ds-ink);min-height:44px;text-shadow:inherit;text-decoration:underline wavy transparent;text-underline-offset:.2em}
+@media (hover:hover) and (pointer:fine){.map-edge-person:hover{text-decoration-color:var(--ds-pink)}}
+
+/* ---- a song row: title (opens 作品署名), the two singers, its version line, 去 QQ 音乐听, and a round 留下 sticker */
+.map-dialog .map-track{align-items:flex-start;padding:12px 0 8px}
+html[data-theme] .map-track__copy .map-track__title,html[data-theme='sakura'] body .map-dialog .map-track__copy .map-track__title,.map-track__copy strong,html[data-theme='sakura'] body .map-dialog .map-track__copy strong{
+  font-family:var(--ds-font-ui);font-weight:400;font-size:18px;line-height:1.45;color:var(--ds-ink)}
+html[data-theme] .map-track__copy .map-track__title .map-track__name{display:inline;margin:0;font:inherit;color:var(--ds-ink);text-decoration:underline wavy var(--ds-pink);text-decoration-thickness:1.4px;text-underline-offset:.3em;text-decoration-skip-ink:none}
+html[data-theme] .map-track__copy .map-track__title .map-track__more{margin-left:8px;padding:0 7px;font-size:12px;color:var(--ds-ink);background:var(--ds-yellow-soft);border:1.5px solid var(--ds-ink);border-radius:var(--ds-radius-pill);
+  text-decoration:none;display:inline-block;vertical-align:2px;line-height:1.5}
+html[data-theme] .map-track__copy .map-track__title:hover,html[data-theme] .map-track__copy .map-track__title:hover span{color:var(--ds-ink)}
+html[data-theme='sakura'] body .map-dialog .map-track__copy span,.map-track__copy>span{font-family:var(--ds-font-body);font-size:15px;color:var(--ds-ink-2)}
+html[data-theme='sakura'] body .map-dialog .map-track__copy small,html[data-theme='sakura'] body .map-dialog .map-track__copy .map-track__credit-preview,.map-track__copy small{font-family:var(--ds-font-body);font-size:14px;color:var(--ds-ink-3)}
+html[data-theme='sakura'] body .map-dialog .map-track__copy .map-track__source{color:var(--ds-ink-2)}
+.map-track__save,html[data-theme='sakura'] body .map-dialog .map-track__save{width:44px;height:44px;min-width:44px;min-height:44px;color:var(--ds-ink);background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);
+  border-radius:50% 46% 52% 48%/48% 52% 46% 50%;box-shadow:var(--ds-shadow-sm)}
+.map-track__save.is-saved,.map-track__save.is-saved:hover{color:var(--ds-ink);background:var(--ds-mint)}
+.map-track__save svg{width:20px!important;height:20px!important}
+/* 作品署名 and 来源 sit side by side under the row; an open one takes the whole width */
+.map-track__folds{display:flex;flex-wrap:wrap;align-items:flex-start;gap:8px 10px;margin:-2px 0 8px;padding-bottom:10px;border-bottom:var(--ds-line-thin) dashed color-mix(in srgb,var(--ds-ink) 30%,transparent)}
+.map-track__folds>details[open]{flex:1 0 100%}
+html[data-theme] .map-track__folds .map-credits{margin:0}
+html[data-theme] .map-credits>summary,.map-sources>summary{display:inline-flex;align-items:center;gap:6px;width:fit-content;min-height:44px;padding:6px 12px;font-family:var(--ds-font-ui);font-size:15px;line-height:1.2;
+  color:var(--ds-ink);background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:2px 2px 0 var(--ds-ink);cursor:pointer;list-style:none}
+.map-credits>summary small,html[data-theme='sakura'] body .map-dialog .map-credits>summary small{font-family:var(--ds-font-ui);font-size:13px;opacity:1;color:var(--ds-ink-2)}
+.map-credits>summary small .map-num{font-size:14px;color:var(--ds-ink)}
+.map-credits>summary svg{width:14px;height:14px}
+.map-sources>summary::-webkit-details-marker{display:none}
+/* the chevron is decoration: empty alternative text keeps it out of the summary's accessible name */
+.map-sources>summary::after{content:'▾';content:'▾' / '';font-family:var(--ds-font-ui);font-size:15px;line-height:1;transition:transform var(--ds-fast) ease}
+.map-sources[open]>summary::after{transform:rotate(180deg)}
+.map-sources[open]>summary,html[data-theme] .map-credits[open]>summary{background:var(--ds-yellow-soft)}
+@media (hover:hover) and (pointer:fine){.map-sources>summary:hover,html[data-theme] .map-credits>summary:hover{background:var(--ds-yellow-soft)}}
+.map-sources>summary:active{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--ds-ink)}
+/* the 来源 body: a numbered card on kraft, links on a wavy line, dates in digits */
+.map-sources__body{margin:8px 0 2px;padding:10px 12px 8px;background:var(--ds-paper);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-card)}
+.map-sources__body ol{display:grid;gap:10px;margin:0;padding:0;list-style:none;counter-reset:map-source}
+.map-sources__body li{position:relative;padding:0 0 0 30px;font-family:var(--ds-font-body);font-size:15px;line-height:1.55;color:var(--ds-ink-2);counter-increment:map-source;overflow-wrap:anywhere}
+.map-sources__body li::before{content:counter(map-source);position:absolute;left:0;top:1px;display:grid;place-items:center;width:21px;height:21px;font-family:var(--ds-font-digits);font-size:13px;
+  color:var(--ds-ink);background:var(--ds-yellow);border:1.5px solid var(--ds-ink);border-radius:50%}
+.map-sources__body li>b{display:inline-block;margin-right:6px;font-family:var(--ds-font-ui);font-weight:400;font-size:14px;color:var(--ds-ink)}
+.map-sources__body li>a{font-family:var(--ds-font-ui);font-size:15px;color:var(--ds-ink);text-decoration:underline wavy var(--ds-pink);text-decoration-thickness:1.4px;text-underline-offset:.3em;text-decoration-skip-ink:none}
+.map-sources__body li>p{margin:3px 0 0;font-family:var(--ds-font-body);font-size:14px;line-height:1.6;color:var(--ds-ink-2)}
+.map-sources__date{display:block;margin-top:2px;font-family:var(--ds-font-ui);font-size:13px;color:var(--ds-ink-3)}
+.map-sources__kind{display:inline-block;margin-left:6px;padding:0 7px;font-family:var(--ds-font-ui);font-size:12px;line-height:1.6;color:var(--ds-ink-2);border:1.5px dashed var(--ds-ink-3);border-radius:var(--ds-radius-pill);vertical-align:1px}
+.map-sources__date .map-num{color:var(--ds-ink-2)}
+.map-sources__scope{margin:10px 0 0;padding-top:8px;border-top:var(--ds-line-thin) dashed color-mix(in srgb,var(--ds-ink) 30%,transparent);font-family:var(--ds-font-body);font-size:14px;color:var(--ds-ink-3)}
+
+/* ---- the credits table: dashed rules, names in marker, roles hand-written */
+html[data-theme] .map-credit-table,html[data-theme='sakura'] body .map-dialog .map-credit-table{font-family:var(--ds-font-body);font-size:15px}
+html[data-theme] .map-credit-table thead th,html[data-theme='sakura'] body .map-dialog .map-credit-table thead th{font-family:var(--ds-font-ui);font-weight:400;font-size:13px;color:var(--ds-ink-3)}
+html[data-theme] .map-credit-table tbody tr{border-top:var(--ds-line-thin) dashed color-mix(in srgb,var(--ds-ink) 30%,transparent)}
+html[data-theme] .map-credit-table tbody th,html[data-theme='sakura'] body .map-dialog .map-credit-table tbody th{font-family:var(--ds-font-ui);font-weight:400;font-size:15px;color:var(--ds-ink)}
+.map-credit-role,html[data-theme='sakura'] body .map-dialog .map-credit-role{margin:0 10px 3px 0;font-family:var(--ds-font-body);font-size:15px;color:var(--ds-ink-2)}
+.map-credit-heading{margin-bottom:16px}
+.map-credit-heading p,html[data-theme='sakura'] body .map-dialog .map-credit-heading p{font-family:var(--ds-font-body);font-size:15px;color:var(--ds-ink-2)}
+.map-credit-disc{background:radial-gradient(circle,var(--ds-paper-card) 0 3px,var(--ds-ink) 3.5px 5px,var(--credit-tone) 5.5px 17px,var(--ds-ink) 17.5px 19px,transparent 19.5px),
+  repeating-radial-gradient(circle,var(--ds-ink) 0 2px,var(--ds-ink-2) 3px 5px);border:var(--ds-line-thin) solid var(--ds-ink);box-shadow:3px 3px 0 var(--ds-pink)}
+.map-credit-bottom{gap:12px;margin-top:18px;padding-top:12px;border-top:var(--ds-line-thin) dashed color-mix(in srgb,var(--ds-ink) 30%,transparent)}
+.map-dialog--credits .map-sources{margin-top:14px}
+.map-credit-save .icon{width:18px;height:18px}
+
+/* ---- 去 QQ 音乐听 (leaves the site: ↗) and the quiet stamp where there is no link */
+html[data-theme] body .map-listen>a.map-listen__link,html[data-theme] body a.map-round-card__listen,html[data-theme='sakura'] body .map-setlist__actions a.map-setlist__listen{
+  min-height:44px;padding:6px 12px;font-family:var(--ds-font-ui);font-size:15px;font-weight:400;color:var(--ds-ink);background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);
+  border-radius:var(--ds-radius-btn);box-shadow:2px 2px 0 var(--ds-sky)}
+html[data-theme] body :is(.map-listen>a.map-listen__link,a.map-round-card__listen,a.map-setlist__listen):hover{color:var(--ds-ink);background:var(--ds-sky-soft);border-color:var(--ds-ink)}
+html[data-theme] body .map-listen>span.map-listen__none,html[data-theme] body span.map-round-card__listen.is-none{padding:3px 9px;font-family:var(--ds-font-ui);font-size:13px;color:var(--ds-ink-3);
+  border:1.5px dashed var(--ds-ink-3);border-radius:var(--ds-radius-btn);background:none}
+
+/* ---- search, the round form, the share link */
+.map-search-label{font-family:var(--ds-font-ui);color:var(--ds-ink-2)}
+.map-search-result,.map-search-result:hover{min-height:56px;color:var(--ds-ink);background:var(--ds-paper);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:2px 2px 0 var(--ds-ink)}
+@media (hover:hover) and (pointer:fine){.map-search-result:hover{background:var(--ds-yellow-soft)}}
+.map-search-result strong{font-family:var(--ds-font-ui);font-weight:400;font-size:17px;color:var(--ds-ink)}
+.map-search-result small{font-family:var(--ds-font-body);font-size:14px;color:var(--ds-ink-3)}
+.map-search-result__tone{width:20px;height:20px;border:var(--ds-line-thin) solid var(--ds-ink);box-shadow:none;background:var(--node-tone)}
+html[data-theme='sakura'] body .map-dialog .map-form-actions .button--quiet{color:var(--ds-ink);background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink)}
+html[data-theme='sakura'] body .map-dialog .map-share-field input{font-family:var(--ds-font-ui);font-size:15px;color:var(--ds-ink);background:var(--ds-paper);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-2)}
+html[data-theme='sakura'] body .map-dialog .map-share-message{font-family:var(--ds-font-body);font-size:15px;color:var(--ds-ink);background:var(--ds-yellow-soft);border:var(--ds-line-thin) solid var(--ds-ink);border-left-width:var(--ds-line-thin);border-radius:var(--ds-radius-btn)}
+
+/* ---- a roam's 本次发现 / 探索回顾 */
+html[data-theme='sakura'] body .map-dialog .map-recap-overview{border-block:var(--ds-line-thin) dashed var(--ds-ink)}
+html[data-theme='sakura'] body .map-dialog .map-recap-overview>div{border-left:var(--ds-line-thin) dashed color-mix(in srgb,var(--ds-ink) 30%,transparent)}
+html[data-theme='sakura'] body .map-dialog .map-recap-overview>div:first-child{border-left:0}
+html[data-theme='sakura'] body .map-dialog .map-recap-overview dt{font-family:var(--ds-font-ui);font-size:13px;color:var(--ds-ink-3)}
+html[data-theme='sakura'] body .map-dialog .map-recap-overview dd{font-family:var(--ds-font-ui);font-size:16px;color:var(--ds-ink)}
+html[data-theme='sakura'] body .map-dialog .map-recap-overview dd b{font-family:var(--ds-font-digits);font-weight:400;font-size:24px;color:var(--ds-ink)}
+.map-recap-section h3,html[data-theme='sakura'] body .map-dialog .map-recap-section h3{font-size:20px;text-shadow:.06em .06em 0 var(--ds-mint)}
+html[data-theme='sakura'] body .map-dialog .map-recap-kept .map-track{border-bottom:0}
+html[data-theme='sakura'] body .map-dialog .map-route-details>summary,.map-route-details>summary{min-height:48px;font-family:var(--ds-font-ui);font-size:16px;color:var(--ds-ink);
+  border-top:var(--ds-line-thin) dashed color-mix(in srgb,var(--ds-ink) 35%,transparent)}
+.map-route-details>summary::before{color:var(--ds-pink);font-family:var(--ds-font-display)}
+html[data-theme='sakura'] body .map-dialog .map-route-details>summary>span{font-family:var(--ds-font-ui);color:var(--ds-ink-3)}
+html[data-theme='sakura'] body .map-dialog .map-walk__leg{border-left:3px solid var(--ds-orange)}
+html[data-theme='sakura'] body .map-dialog .map-walk__hop::before{border:var(--ds-line-thin) solid var(--ds-ink);box-shadow:none;width:14px;height:14px;left:-29px}
+html[data-theme='sakura'] body .map-dialog .map-walk__hop h4{font-family:var(--ds-font-display);font-weight:400;font-size:18px;color:var(--ds-ink)}
+html[data-theme='sakura'] body .map-dialog .map-walk__hop>p{font-family:var(--ds-font-ui);font-size:14px;color:var(--ds-ink-2)}
+html[data-theme='sakura'] body .map-dialog .map-walk__turn{font-family:var(--ds-font-body);font-size:15px;color:var(--ds-ink);background:var(--ds-pink-soft);border:var(--ds-line-thin) dashed var(--ds-ink);border-radius:var(--ds-radius-btn)}
+html[data-theme='sakura'] body .map-dialog .map-recap-people li{border-bottom:var(--ds-line-thin) dashed color-mix(in srgb,var(--ds-ink) 30%,transparent)}
+html[data-theme='sakura'] body .map-dialog .map-recap-people__sleeve{border:var(--ds-line-thin) solid var(--ds-ink);box-shadow:2px 2px 0 var(--ds-ink)}
+html[data-theme='sakura'] body .map-dialog .map-recap-people__name{font-family:var(--ds-font-display);font-weight:400;font-size:18px;color:var(--ds-ink)}
+html[data-theme='sakura'] body .map-dialog .map-recap-people__name small{font-family:var(--ds-font-ui);font-weight:400;color:var(--ds-ink);background:var(--ds-yellow);border:1.5px solid var(--ds-ink);border-radius:var(--ds-radius-pill)}
+html[data-theme='sakura'] body .map-dialog .map-recap-people__go{color:var(--ds-ink);background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn)}
+html[data-theme='sakura'] body .map-dialog .map-recap-card{padding:0;margin:14px 0 4px;border:0;background:none}
+html[data-theme='sakura'] body .map-dialog :is(.map-setlist__share-actions,.map-recap-card) .button{min-height:46px;font-family:var(--ds-font-ui);font-size:15px;font-weight:400;color:var(--ds-ink);
+  background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:3px 3px 0 var(--ds-yellow)}
+html[data-theme='sakura'] body .map-dialog .map-setlist__share-actions .map-share-round,html[data-theme='sakura'] body .map-dialog .map-setlist__share-actions .map-share-round:hover{color:var(--ds-paper-card);background:var(--ds-ink);border-color:var(--ds-ink);box-shadow:3px 3px 0 var(--ds-pink)}
+/* pinned bars at a paper's foot fade from the paper itself */
+html[data-theme='sakura'] body .map-dialog .map-recap-next{background:linear-gradient(color-mix(in srgb,var(--ds-paper-card) 0%,transparent),var(--ds-paper-card) 16px)}
+html[data-theme='sakura'] body .map-dialog .map-setlist__actions-bar{background:linear-gradient(color-mix(in srgb,var(--ds-paper-card) 0%,transparent),var(--ds-paper-card) 22%)}
+html[data-theme='sakura'] body .map-dialog .map-dialog__content .map-undo{font-family:var(--ds-font-ui);color:var(--ds-ink);background:var(--ds-yellow-soft);border:var(--ds-line-thin) solid var(--ds-ink);
+  box-shadow:3px 3px 0 var(--ds-ink),0 0 0 6px var(--ds-paper-card)}
+/* 进行中的一局 */
+.map-recap-stats>span,html[data-theme='sakura'] body .map-dialog .map-recap-stats>span{font-family:var(--ds-font-ui);font-size:14px;color:var(--ds-ink-3)}
+.map-recap-stats b{font-family:var(--ds-font-digits);font-weight:400;color:var(--ds-ink)}
+.map-current-route{font-family:var(--ds-font-ui);color:var(--ds-ink)}
+.map-round-flipped li{font-family:var(--ds-font-ui);color:var(--ds-ink);background:var(--ds-paper);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn)}
+.map-round-flipped li span{font-family:var(--ds-font-body);color:var(--ds-ink-2)}
+.map-timeline{border-left:2px solid var(--ds-ink-3)}
+.map-timeline__stop::before{background:var(--ds-pink);border:1.5px solid var(--ds-ink);width:9px;height:9px;left:-25px}
+.map-timeline__stop h4,html[data-theme='sakura'] body .map-dialog .map-timeline__stop h4{font-family:var(--ds-font-ui);font-weight:400;color:var(--ds-ink)}
+.map-timeline__stop h4 span{color:var(--ds-ink-3)}
+html[data-theme='sakura'] body .map-dialog .map-timeline__stop>p{font-family:var(--ds-font-body);color:var(--ds-ink-2)}
+html[data-theme='sakura'] body .map-dialog .map-timeline__return{font-family:var(--ds-font-body);color:var(--ds-ink)}
+.map-timeline__tone{color:var(--ds-ink);background:var(--ds-mint);border-color:var(--ds-ink);font-family:var(--ds-font-display);font-weight:400}
+.map-timeline__tone.is-far{color:var(--ds-ink);background:var(--ds-pink)}
+.map-timeline__tone.is-even{color:var(--ds-ink);background:var(--ds-yellow)}
+
+/* ---- 连线歌单: a setlist on ticket stubs */
+.map-setlist-head{border-bottom:var(--ds-line-thin) dashed var(--ds-ink)}
+html[data-theme='sakura'] body .map-dialog .map-setlist-head h2{font-family:var(--ds-font-display);font-weight:400;font-size:30px;line-height:1.3;color:var(--ds-ink);text-shadow:.06em .06em 0 var(--ds-yellow)}
+.map-setlist-head h2 small{font-size:20px;color:var(--ds-ink-2)}
+/* 与 in the marker face: the display face's 与 reads like 5 at this size */
+.map-setlist-head__and{margin:0 .3em;font-family:var(--ds-font-ui);font-size:.7em;color:var(--ds-ink-2);text-shadow:none;vertical-align:.08em}
+.map-setlist-head h2 b{font-family:var(--ds-font-display);font-weight:400;font-size:1.7em;color:var(--ds-pink);-webkit-text-stroke:.05em var(--ds-ink);paint-order:stroke fill;text-shadow:.05em .06em 0 var(--ds-ink)}
+@media (prefers-contrast:more){.map-setlist-head h2 b{color:var(--ds-ink);-webkit-text-stroke:0;text-shadow:none}}
+.map-setlist-head__verdict{font-family:var(--ds-font-ui);font-size:16px;color:var(--ds-ink-2)}
+.map-setlist-head__verdict .map-num{color:var(--ds-ink);font-size:1.1em}
+.map-setlist__own{font-family:var(--ds-font-ui);color:var(--ds-ink-2)}
+.map-setlist::before{border-left:3px solid var(--ds-orange)}
+.map-setlist.is-answer::before{border-left:3px dashed var(--ds-sky)}
+.map-setlist__sleeve{border:var(--ds-line-thin) solid var(--ds-ink);box-shadow:3px 3px 0 var(--ds-ink)}
+.map-setlist__sleeve::before{background:repeating-radial-gradient(var(--ds-ink) 0 2px,var(--ds-ink-2) 3px 4px)}
+.map-setlist__stop strong{font-family:var(--ds-font-display);font-weight:400;font-size:22px;color:var(--ds-ink)}
+.map-setlist__stop small{font-family:var(--ds-font-ui);font-weight:400;font-size:13px;color:var(--ds-ink);background:var(--ds-paper-card);border:1.5px solid var(--ds-ink);border-radius:var(--ds-radius-pill)}
+.map-setlist__stop.is-target small{color:var(--ds-ink);background:var(--ds-pink)}
+.map-setlist__ticket{background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:6px;box-shadow:3px 3px 0 var(--ds-ink)}
+.map-setlist__no{font-family:var(--ds-font-digits);font-weight:400;font-size:19px;color:var(--ds-ink);background:var(--ds-pink-soft);border-right:var(--ds-line-thin) dashed var(--ds-ink)}
+html[data-theme='sakura'] body .map-setlist__title{font-family:var(--ds-font-ui);font-weight:400;font-size:18px;color:var(--ds-ink);text-decoration:underline wavy var(--ds-pink);text-decoration-thickness:1.4px;text-underline-offset:.3em}
+html[data-theme='sakura'] body button.map-setlist__title:hover{text-decoration-color:var(--ds-ink)}
+.map-setlist__version{font-family:var(--ds-font-body);font-size:14px;color:var(--ds-ink-2)}
+.map-setlist__actions{align-items:flex-start}
+.map-setlist__actions>details[open]{flex:1 0 100%}
+html[data-theme='sakura'] body .map-setlist__actions>a.map-setlist__listen{flex:1 1 auto;white-space:nowrap}
+html[data-theme='sakura'] body .map-setlist__actions>.map-setlist__save,.map-setlist__actions>details{flex:0 0 auto}
+html[data-theme='sakura'] body .map-setlist__actions .button{min-height:44px;font-family:var(--ds-font-ui);font-size:14px;font-weight:400;color:var(--ds-ink);background:var(--ds-paper-card);
+  border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:2px 2px 0 var(--ds-mint)}
+html[data-theme='sakura'] body .map-setlist__actions .map-setlist__save.is-saved{color:var(--ds-ink);background:var(--ds-mint);border-color:var(--ds-ink)}
+.map-setlist__actions .map-sources>summary{font-size:14px}
+.map-setlist__stats{gap:0;background:none;border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:3px 3px 0 var(--ds-ink)}
+.map-setlist__stats>div{background:var(--ds-paper-card);border-left:var(--ds-line-thin) dashed color-mix(in srgb,var(--ds-ink) 35%,transparent)}
+.map-setlist__stats>div:first-child{border-left:0}
+.map-setlist__stats dt{font-family:var(--ds-font-ui);font-size:13px;color:var(--ds-ink-3)}
+.map-setlist__stats dd{font-family:var(--ds-font-digits);font-weight:400;font-size:24px;color:var(--ds-ink)}
+.map-setlist__stats dd small{margin-left:3px;font-family:var(--ds-font-ui);font-size:14px;color:var(--ds-ink-2)}
+.map-setlist__alt{border-top:var(--ds-line-thin) dashed color-mix(in srgb,var(--ds-ink) 35%,transparent)}
+.map-setlist__alt>summary{font-family:var(--ds-font-ui);font-weight:400;font-size:16px;color:var(--ds-ink)}
+.map-setlist__alt>summary span{font-family:var(--ds-font-digits);color:var(--ds-ink-3)}
+.map-setlist__alt li{font-family:var(--ds-font-ui);color:var(--ds-ink)}
+.map-setlist__alt li em{color:var(--ds-ink-2);font-family:var(--ds-font-body)}
+html[data-theme='sakura'] body .map-dialog .map-setlist__share{background:var(--ds-yellow-soft);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-card);box-shadow:3px 3px 0 var(--ds-ink)}
+html[data-theme='sakura'] body .map-dialog .map-setlist__share h3{margin-bottom:8px;font-family:var(--ds-font-display);font-weight:400;font-size:19px;color:var(--ds-ink)}
+
+/* ---- 探索记录 rows inside a paper */
+html[data-theme] body .map-dialog .map-record--compact{border-bottom:var(--ds-line-thin) dashed color-mix(in srgb,var(--ds-ink) 30%,transparent);color:var(--ds-ink)}
+html[data-theme] body .map-dialog .map-record--compact h3{font-family:var(--ds-font-display);font-weight:400;font-size:19px;color:var(--ds-ink)}
+html[data-theme] body .map-dialog .map-record--compact .map-record__meta{font-family:var(--ds-font-ui);color:var(--ds-ink-3)}
+html[data-theme] body .map-dialog .map-record--compact p{font-family:var(--ds-font-body);color:var(--ds-ink-2)}
+html[data-theme] body .map-dialog .map-record--compact .map-record__actions .button{min-height:44px;color:var(--ds-ink);background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn)}
+html[data-theme] body .map-dialog .map-record--compact .map-record__actions .icon-button{width:44px;min-width:44px;height:44px;min-height:44px;color:var(--ds-ink)}
+html[data-theme] body .map-dialog .map-record--compact .map-record__disc{border:var(--ds-line-thin) solid var(--ds-ink);background:repeating-radial-gradient(var(--ds-ink) 0 2px,var(--ds-ink-2) 3px 4px);color:var(--ds-ink)}
+html[data-theme] body .map-dialog .map-record--compact .map-record__disc span{font-family:var(--ds-font-digits);color:var(--ds-ink);background:var(--node-tone);border:1.5px solid var(--ds-ink)}
+.map-relation-proof{border-top:var(--ds-line-thin) dashed color-mix(in srgb,var(--ds-ink) 35%,transparent)}
+.map-relation-proof h3{font-family:var(--ds-font-display);font-weight:400;color:var(--ds-ink)}
+.map-relation-proof h3 span{color:var(--ds-pink)}
+.map-relation-proof .map-track,.map-relation-proof .map-track:hover{background:none;padding:6px 0}
+
+@media (max-width:760px){
+  html[data-theme='sakura'] body dialog.map-dialog[open] h2,html[data-theme='sakura'] body .map-dialog h2,.map-dialog h2{font-size:24px}
+  html[data-theme='sakura'] body .map-dialog .map-setlist-head h2{font-size:24px}
+  .map-setlist__stop strong{font-size:20px}
+  html[data-theme] .map-track__copy .map-track__title,html[data-theme='sakura'] body .map-dialog .map-track__copy .map-track__title,.map-track__copy strong{font-size:17px}
+  .map-dialog__top::before{width:70px;margin-left:-35px}
+}

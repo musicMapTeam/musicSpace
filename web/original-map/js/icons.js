@@ -1,33 +1,42 @@
 /**
- * Phosphor Icons regular SVG subset, @phosphor-icons/core 2.1.1.
- * Copyright (c) 2023 Phosphor Icons. MIT License.
- * Fixed upstream commit: 2b75f3ad12b420c9504ef05df8d2564a28f8500e
- * License: ../assets/licenses/phosphor-MIT.txt
- * Provenance: ../assets/licenses/phosphor-sources.json
- * SVG path data is unchanged; display and accessibility attributes are added.
+ * Hand-drawn line icons for the Doodle look (first-party, drawn for Music Space 0.22: 24 px grid, round 2.2 px ink strokes, the
+ * page's #ds-wobble filter adds the marker tremor in CSS). They keep the names of the Phosphor subset they replace, so callers did
+ * not change; no Phosphor path data is left, so the builds no longer append the Phosphor notice (assets/licenses/phosphor-*
+ * stay only as the record of the replaced icons).
  */
-const icons = {
-  "arrow-right": "<svg class=\"icon\" width=\"1em\" height=\"1em\" aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 256 256\" fill=\"currentColor\"><path d=\"M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z\"/></svg>",
-  "arrow-left": "<svg class=\"icon\" width=\"1em\" height=\"1em\" aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 256 256\" fill=\"currentColor\"><path d=\"M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z\"/></svg>",
-  "arrow-up-right": "<svg class=\"icon\" width=\"1em\" height=\"1em\" aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 256 256\" fill=\"currentColor\"><path d=\"M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z\"/></svg>",
-  "plus": "<svg class=\"icon\" width=\"1em\" height=\"1em\" aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 256 256\" fill=\"currentColor\"><path d=\"M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z\"/></svg>",
-  "x": "<svg class=\"icon\" width=\"1em\" height=\"1em\" aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 256 256\" fill=\"currentColor\"><path d=\"M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z\"/></svg>",
-  "check": "<svg class=\"icon\" width=\"1em\" height=\"1em\" aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 256 256\" fill=\"currentColor\"><path d=\"M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z\"/></svg>",
-  "swap": "<svg class=\"icon\" width=\"1em\" height=\"1em\" aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 256 256\" fill=\"currentColor\"><path d=\"M213.66,181.66l-32,32a8,8,0,0,1-11.32-11.32L188.69,184H48a8,8,0,0,1,0-16H188.69l-18.35-18.34a8,8,0,0,1,11.32-11.32l32,32A8,8,0,0,1,213.66,181.66Zm-139.32-64a8,8,0,0,0,11.32-11.32L67.31,88H208a8,8,0,0,0,0-16H67.31L85.66,53.66A8,8,0,0,0,74.34,42.34l-32,32a8,8,0,0,0,0,11.32Z\"/></svg>",
-  "camera": "<svg class=\"icon\" width=\"1em\" height=\"1em\" aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 256 256\" fill=\"currentColor\"><path d=\"M208,56H180.28L166.65,35.56A8,8,0,0,0,160,32H96a8,8,0,0,0-6.65,3.56L75.71,56H48A24,24,0,0,0,24,80V192a24,24,0,0,0,24,24H208a24,24,0,0,0,24-24V80A24,24,0,0,0,208,56Zm8,136a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V80a8,8,0,0,1,8-8H80a8,8,0,0,0,6.66-3.56L100.28,48h55.43l13.63,20.44A8,8,0,0,0,176,72h32a8,8,0,0,1,8,8ZM128,88a44,44,0,1,0,44,44A44.05,44.05,0,0,0,128,88Zm0,72a28,28,0,1,1,28-28A28,28,0,0,1,128,160Z\"/></svg>",
-  "image": "<svg class=\"icon\" width=\"1em\" height=\"1em\" aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 256 256\" fill=\"currentColor\"><path d=\"M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,16V158.75l-26.07-26.06a16,16,0,0,0-22.63,0l-20,20-44-44a16,16,0,0,0-22.62,0L40,149.37V56ZM40,172l52-52,80,80H40Zm176,28H194.63l-36-36,20-20L216,181.38V200ZM144,100a12,12,0,1,1,12,12A12,12,0,0,1,144,100Z\"/></svg>",
-  "heart": "<svg class=\"icon\" width=\"1em\" height=\"1em\" aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 256 256\" fill=\"currentColor\"><path d=\"M178,40c-20.65,0-38.73,8.88-50,23.89C116.73,48.88,98.65,40,78,40a62.07,62.07,0,0,0-62,62c0,70,103.79,126.66,108.21,129a8,8,0,0,0,7.58,0C136.21,228.66,240,172,240,102A62.07,62.07,0,0,0,178,40ZM128,214.8C109.74,204.16,32,155.69,32,102A46.06,46.06,0,0,1,78,56c19.45,0,35.78,10.36,42.6,27a8,8,0,0,0,14.8,0c6.82-16.67,23.15-27,42.6-27a46.06,46.06,0,0,1,46,46C224,155.61,146.24,204.15,128,214.8Z\"/></svg>",
-  "bookmark": "<svg class=\"icon\" width=\"1em\" height=\"1em\" aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 256 256\" fill=\"currentColor\"><path d=\"M184,32H72A16,16,0,0,0,56,48V224a8,8,0,0,0,12.24,6.78L128,193.43l59.77,37.35A8,8,0,0,0,200,224V48A16,16,0,0,0,184,32Zm0,16V161.57l-51.77-32.35a8,8,0,0,0-8.48,0L72,161.56V48ZM132.23,177.22a8,8,0,0,0-8.48,0L72,209.57V180.43l56-35,56,35v29.14Z\"/></svg>",
-  "compass": "<svg class=\"icon\" width=\"1em\" height=\"1em\" aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 256 256\" fill=\"currentColor\"><path d=\"M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216ZM172.42,72.84l-64,32a8.05,8.05,0,0,0-3.58,3.58l-32,64A8,8,0,0,0,80,184a8.1,8.1,0,0,0,3.58-.84l64-32a8.05,8.05,0,0,0,3.58-3.58l32-64a8,8,0,0,0-10.74-10.74ZM138,138,97.89,158.11,118,118l40.15-20.07Z\"/></svg>",
-  "users": "<svg class=\"icon\" width=\"1em\" height=\"1em\" aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 256 256\" fill=\"currentColor\"><path d=\"M117.25,157.92a60,60,0,1,0-66.5,0A95.83,95.83,0,0,0,3.53,195.63a8,8,0,1,0,13.4,8.74,80,80,0,0,1,134.14,0,8,8,0,0,0,13.4-8.74A95.83,95.83,0,0,0,117.25,157.92ZM40,108a44,44,0,1,1,44,44A44.05,44.05,0,0,1,40,108Zm210.14,98.7a8,8,0,0,1-11.07-2.33A79.83,79.83,0,0,0,172,168a8,8,0,0,1,0-16,44,44,0,1,0-16.34-84.87,8,8,0,1,1-5.94-14.85,60,60,0,0,1,55.53,105.64,95.83,95.83,0,0,1,47.22,37.71A8,8,0,0,1,250.14,206.7Z\"/></svg>",
-  "trash": "<svg class=\"icon\" width=\"1em\" height=\"1em\" aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 256 256\" fill=\"currentColor\"><path d=\"M216,48H176V40a24,24,0,0,0-24-24H104A24,24,0,0,0,80,40v8H40a8,8,0,0,0,0,16h8V208a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V64h8a8,8,0,0,0,0-16ZM96,40a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96Zm96,168H64V64H192ZM112,104v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Zm48,0v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Z\"/></svg>",
-  "rotate": "<svg class=\"icon\" width=\"1em\" height=\"1em\" aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 256 256\" fill=\"currentColor\"><path d=\"M224,128a96,96,0,0,1-94.71,96H128A95.38,95.38,0,0,1,62.1,197.8a8,8,0,0,1,11-11.63A80,80,0,1,0,71.43,71.39a3.07,3.07,0,0,1-.26.25L44.59,96H72a8,8,0,0,1,0,16H24a8,8,0,0,1-8-8V56a8,8,0,0,1,16,0V85.8L60.25,60A96,96,0,0,1,224,128Z\"/></svg>",
-  "info": "<svg class=\"icon\" width=\"1em\" height=\"1em\" aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 256 256\" fill=\"currentColor\"><path d=\"M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-40a8,8,0,0,1-8,8,16,16,0,0,1-16-16V128a8,8,0,0,1,0-16,16,16,0,0,1,16,16v40A8,8,0,0,1,144,176ZM112,84a12,12,0,1,1,12,12A12,12,0,0,1,112,84Z\"/></svg>",
-  "chevron-right": "<svg class=\"icon\" width=\"1em\" height=\"1em\" aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 256 256\" fill=\"currentColor\"><path d=\"M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z\"/></svg>",
-  "magnifying-glass": "<svg class=\"icon\" width=\"1em\" height=\"1em\" aria-hidden=\"true\" focusable=\"false\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 256 256\" fill=\"currentColor\"><path d=\"M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z\"/></svg>"
+/** A hand-drawn ring: four quarter arcs, slightly uneven, that overshoot where they meet like a pen stroke. */
+const ring = (cx, cy, r) => {
+  const k = .552 * r; const n = value => Number(value.toFixed(2));
+  const a = r * 1.02; const b = r * .98;
+  return `M${n(cx - .4)} ${n(cy - r)}c${n(k)} ${n(-.1)} ${n(a)} ${n(r - k)} ${n(a)} ${n(r)}`
+    + `c${n(.1)} ${n(k)} ${n(-(b - k))} ${n(b)} ${n(-b)} ${n(b)}`
+    + `c${n(-k)} 0 ${n(-a)} ${n(-(a - k))} ${n(-a)} ${n(-a)}`
+    + `c0 ${n(-k)} ${n(r - k + .3)} ${n(-r - .2)} ${n(r + .9)} ${n(-r + .2)}`;
+};
+const paths = {
+  'arrow-right': 'M4.5 12.4c4.6-.3 9.6-.2 14.8-.5M13.6 6.6c1.9 2 3.7 3.6 5.6 5.3-1.8 1.7-3.6 3.5-5.4 5.6',
+  'arrow-left': 'M19.5 12.2c-4.7.2-9.7.3-14.9.4M10.4 6.5C8.5 8.4 6.7 10.1 4.6 11.9c1.9 1.8 3.8 3.6 5.6 5.7',
+  'arrow-up-right': 'M6.2 17.9c3.8-4 7.6-7.7 11.6-11.6M8.8 6.4c3 .1 6 0 9.1-.1.1 3 .1 6.1-.1 9.2',
+  'plus': 'M12.2 4.6c-.3 5-.1 9.9-.4 14.9M4.7 12.3c5-.3 9.9-.1 14.7-.4',
+  'x': 'M6.2 6.1c3.9 4.1 7.8 7.9 11.7 11.9M17.9 6.3c-4.1 3.9-7.8 7.8-11.8 11.7',
+  'check': 'M4.8 12.9c2 1.3 3.6 3.2 5 5.4 2.5-5.1 5.6-9 9.4-12.3',
+  'swap': 'M5 8.6c4.6-.2 9.3-.1 13.9-.3M15.6 5.1l3.4 3.3-3.3 3.1M19 15.7c-4.7.1-9.3.2-14 .2M8.3 12.4 5 15.8l3.4 3.2',
+  'camera': 'M4.2 8.3c5.2-.3 10.4-.2 15.6-.2.3 3.6.2 7.3.1 10.9-5.2.2-10.4.2-15.6 0-.2-3.6-.2-7.1-.1-10.7ZM8.6 8.1l1.6-2.5c1.3-.1 2.6-.1 3.8 0l1.5 2.4' + ring(12, 13.2, 3.1),
+  'image': 'M4.3 5.4c5.2-.2 10.3-.2 15.5 0 .2 4.4.2 8.8 0 13.2-5.2.2-10.3.2-15.5 0-.2-4.4-.2-8.8 0-13.2ZM4.6 16.1c2.3-2.3 4.2-4.1 6.1-5.6 1.9 1.6 3.6 3.5 5.3 5.4M14.3 13.6c1-1 1.8-1.8 2.7-2.4.9.8 1.8 1.7 2.6 2.6M15.6 8.4v.2',
+  'heart': 'M12 19.6c-3.9-2.6-7.9-5.6-7.6-9.6.2-2.7 2.4-4.5 4.8-4.3 1.4.1 2.3.9 2.9 2.1.7-1.3 1.8-2 3.2-2.1 2.6-.1 4.6 1.9 4.4 4.6-.3 3.8-3.9 6.7-7.7 9.3Z',
+  'bookmark': 'M6.6 4.2c3.6-.2 7.2-.1 10.8-.1.2 5.4.1 10.7.2 16.1-1.9-1.5-3.6-2.9-5.5-4.3-2 1.4-3.8 2.9-5.6 4.4-.1-5.4-.1-10.8.1-16.1Z',
+  'compass': ring(12, 12, 8.1) + 'M15.3 8.7c-.9 2.6-1.8 4.6-3 6.2-1.8.4-3.9.6-6.4.6.9-2.6 1.9-4.6 3.1-6.2 1.8-.4 3.9-.6 6.3-.6Z',
+  'record': ring(12, 12, 8.1) + ring(12, 12, 2.6) + 'M12 11.9v.2',
+  'users': ring(9.2, 9, 3.2) + 'M3.6 18.8c.8-3.2 2.9-4.8 5.6-4.8 2.6 0 4.6 1.6 5.5 4.7M15.4 6c2 .2 3.2 1.7 3.1 3.4-.1 1.6-1.3 2.8-3 3M17 14.2c1.8.5 3 2 3.5 4.3',
+  'trash': 'M5 7.2c4.7-.2 9.3-.1 14-.2M9.6 7V5.1c1.6-.2 3.2-.2 4.8 0V7M6.8 7.4c.4 4.2.6 8.3 1 12.5 2.8.2 5.6.2 8.4 0 .4-4.2.6-8.3 1-12.5M10.3 10.6l.3 6.3M13.7 10.6l-.3 6.3',
+  'rotate': 'M5.3 12.4c.1-4 3.3-7.1 7.2-7 3.9.1 6.8 3.3 6.7 7.1-.1 3.9-3.2 6.8-7 6.8-2 0-3.8-.9-5-2.3M5.1 6.2l.1 4.6 4.6-.3',
+  'info': ring(12, 12, 8.1) + 'M12.1 10.9c0 2.2-.1 4.1 0 6.1M12 7.6v.2',
+  'chevron-right': 'M9.4 5.6c2.1 2.2 4.2 4.3 6.4 6.4-2.1 2.1-4.2 4.3-6.3 6.5',
+  'magnifying-glass': ring(10.6, 10.5, 5.7) + 'M14.7 14.8c1.6 1.5 3.1 3 4.6 4.7',
 };
 
 /** Decorative SVG markup; the enclosing control supplies its accessible label. */
 export function icon(name) {
-  return icons[name] ?? '';
+  const d = paths[name];
+  return d ? `<svg class="icon" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="${d}"/></svg>` : '';
 }

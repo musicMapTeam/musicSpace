@@ -72,10 +72,10 @@ function polaroid(ctx,c,f,image,caption,x,y,w,h,angle){
  ctx.restore();
 }
 export async function renderCornerPng({contributions,revision,photos}){
- if(contributions.length!==2)throw Error('需要双方可用的小人和署名。');
- const {colour:c,font:f}=theme(),footer='小人与留言分别由署名者提供 · 双方确认版 '+revision;
+ if(contributions.length!==2)throw Error('需要双方的小人。');
+ const {colour:c,font:f}=theme(),footer='我们一起做的 · 第 '+revision+' 版';
  await fontsFor(f,{logo:HEADER,display:TITLE,ui:contributions.map(d=>d.name).join(''),body:contributions.map(d=>(d.note||'')+'照片：'+d.name).join('')+footer});
- const canvas=document.createElement('canvas');canvas.width=1200;canvas.height=1600;const ctx=canvas.getContext('2d');if(!ctx)throw Error('浏览器暂不支持导出，可保留已保存的创作记录。');
+ const canvas=document.createElement('canvas');canvas.width=1200;canvas.height=1600;const ctx=canvas.getContext('2d');if(!ctx)throw Error('这个浏览器暂不支持导出。');
  const noteRows=contributions.map(d=>lines(ctx,d.note||'',470,28,f.body));const extra=Math.max(0,...noteRows.map(rows=>rows.length-3))*40;
  // the polaroid band only exists when someone chose a photo: without one the sheet ends under the notes instead of leaving half a page blank
  const shown=contributions.filter(d=>photos.get(d.userId)).length,band=shown?400:0,bottom=1100+band+extra;canvas.height=bottom+100;
@@ -101,5 +101,5 @@ export async function renderCornerPng({contributions,revision,photos}){
  }
  heart(ctx,c,600,566,34);note(ctx,c,1046,bottom+8,40);
  ctx.fillStyle=c.ink3;ctx.textAlign='center';text(ctx,footer,600,bottom,900,23,1,f.body);ctx.textAlign='start';
- return new Promise((yes,no)=>canvas.toBlob(blob=>blob?yes(blob):no(Error('导出未完成，请重新选择导出。')),'image/png'));
+ return new Promise((yes,no)=>canvas.toBlob(blob=>blob?yes(blob):no(Error('导出没完成，请重试。')),'image/png'));
 }

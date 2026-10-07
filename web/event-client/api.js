@@ -43,19 +43,19 @@ export function createEventApiClient({ fetch: fetcher = globalThis.fetch?.bind(g
           ...(bodyJson === undefined ? {} : { body: bodyJson }) });
       } catch {
         const code = abort.signal.aborted ? timedOut ? 'TIMEOUT' : 'ABORTED' : 'NETWORK';
-        throw new EventClientError(code === 'ABORTED' ? '已停止等待；操作可能已送达。' : '连接暂时没有回应。草稿仍在，可用原操作重试。', { code, retryable: true, uncertain: mutation });
+        throw new EventClientError(code === 'ABORTED' ? '已停止等待；操作可能已送达。' : '网络没有回应，请稍后重试', { code, retryable: true, uncertain: mutation });
       }
       // Some injected transports cannot abort. Never adopt their stale response.
-      if (abort.signal.aborted) throw new EventClientError('连接已取消或超时。草稿和原操作仍在。', { code: timedOut ? 'TIMEOUT' : 'ABORTED', retryable: true, uncertain: mutation });
+      if (abort.signal.aborted) throw new EventClientError('连接超时，请重试', { code: timedOut ? 'TIMEOUT' : 'ABORTED', retryable: true, uncertain: mutation });
       if (blob && response.ok) {
-        if (!/^image\/jpeg(?:;|$)/i.test(response.headers.get('Content-Type') || '')) throw new EventClientError('照片服务返回了无法使用的内容。', { status: response.status, code: 'INVALID_RESPONSE', retryable: true });
+        if (!/^image\/jpeg(?:;|$)/i.test(response.headers.get('Content-Type') || '')) throw new EventClientError('照片读取失败', { status: response.status, code: 'INVALID_RESPONSE', retryable: true });
         const result = await response.blob();
         if (abort.signal.aborted) throw new EventClientError('照片读取已取消。', { code: 'ABORTED', retryable: true });
         return result;
       }
       let data;
-      try { data = await response.json(); } catch { throw new EventClientError('服务返回了无法读取的内容。请稍后用原操作重试。', { status: response.status, code: 'INVALID_RESPONSE', retryable: true, uncertain: mutation }); }
-      if (abort.signal.aborted) throw new EventClientError('读取已取消。原操作仍可重试。', { code: timedOut ? 'TIMEOUT' : 'ABORTED', retryable: true, uncertain: mutation });
+      try { data = await response.json(); } catch { throw new EventClientError('读取失败，请稍后重试', { status: response.status, code: 'INVALID_RESPONSE', retryable: true, uncertain: mutation }); }
+      if (abort.signal.aborted) throw new EventClientError('读取已取消，可以重试', { code: timedOut ? 'TIMEOUT' : 'ABORTED', retryable: true, uncertain: mutation });
       if (!response.ok) throw new EventClientError(data.error?.message || '操作没有完成，请重试。', { status: response.status, code: data.error?.code || 'SERVICE_ERROR', retryable: response.status >= 500 || response.status === 429, uncertain: mutation && response.status >= 500, retryAfter: Number(response.headers.get('Retry-After')) || null });
       if (!data || typeof data !== 'object' || Array.isArray(data)) throw new EventClientError('服务响应无效。', { code: 'INVALID_RESPONSE', retryable: true, uncertain: mutation });
       return data;

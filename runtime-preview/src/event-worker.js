@@ -54,7 +54,7 @@ function photoMoment(data, nowMs) {
   return { takenAt: at, takenSource: source, viewpoint: view, viewpointSource: viewSource };
 }
 function visibility(value) { if (!['private', 'members'].includes(value)) fail(400, 'VISIBILITY_REQUIRED', '请明确选择仅自己可见或向本场成员展示。'); return value; }
-function consent(data) { if (data.joinConsent !== true) fail(400, 'JOIN_CONSENT_REQUIRED', '请确认将昵称和分身展示给本场已加入的成员。'); }
+function consent(data) { if (data.joinConsent !== true) fail(400, 'JOIN_CONSENT_REQUIRED', '请先勾选同意，再进入现场。'); }
 function code() { const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567'; return [...randomBytes(12)].map(value => alphabet[value & 31]).join(''); }
 async function readJSON(request) {
   if (request.headers.get('Content-Encoding') && request.headers.get('Content-Encoding') !== 'identity') fail(415, 'ENCODING_UNSUPPORTED', '请提交未压缩的 JSON。');
@@ -114,9 +114,9 @@ export function createEventWorker({ clock = Date.now, rateLimits = true } = {}) 
         return json(200, { preview: roomJSON(room) });
       }
       const match = /^Bearer ([A-Za-z0-9_-]{43})$/.exec(request.headers.get('Authorization') || '');
-      if (!match) fail(401, 'SESSION_REQUIRED', '请先建立你的分身身份。');
+      if (!match) fail(401, 'SESSION_REQUIRED', '请先确认你的小人身份。');
       const user = await get('SELECT * FROM avatar_users WHERE token_hash = ?', hash(match[1]));
-      if (!user) fail(401, 'SESSION_INVALID', '当前浏览器身份已失效。');
+      if (!user) fail(401, 'SESSION_INVALID', '身份已失效，请刷新页面。');
       await rate(`user:${user.id}:${method === 'GET' ? 'read' : 'write'}`, method === 'GET' ? 180 : 40);
       const active = (roomId, userId = user.id) => get('SELECT * FROM event_members WHERE room_id = ? AND user_id = ? AND left_at IS NULL', roomId, userId);
       async function memberRoom(id) {
@@ -143,7 +143,7 @@ export function createEventWorker({ clock = Date.now, rateLimits = true } = {}) 
         if (!key || !env.PHOTOS?.delete) return;
         try { if (!await get('SELECT id FROM event_photos WHERE photo_key = ? UNION ALL SELECT id FROM event_exchanges WHERE preview_key = ? LIMIT 1', key, key)) await env.PHOTOS.delete(key); } catch { /* retention is safer than uncertain deletion */ }
       }
-      async function replayOperation(data){const key=request.headers.get('Idempotency-Key');if(typeof key!=='string'||!/^[A-Za-z0-9_-]{16,128}$/.test(key))fail(400,'IDEMPOTENCY_KEY_REQUIRED','请提供本次操作的原请求编号。');const previous=await get('SELECT * FROM event_idempotency WHERE actor_id=? AND key_hash=?',user.id,hash(key));if(!previous)return null;if(previous.request_hash!==hash(`${method}\n${path}\n${JSON.stringify(data)}`))fail(409,'IDEMPOTENCY_CONFLICT','同一请求编号对应不同内容。');return json(previous.status,JSON.parse(previous.response),{'Idempotency-Replayed':'true'});}
+      async function replayOperation(data){const key=request.headers.get('Idempotency-Key');if(typeof key!=='string'||!/^[A-Za-z0-9_-]{16,128}$/.test(key))fail(400,'IDEMPOTENCY_KEY_REQUIRED','请求缺少编号，请重试。');const previous=await get('SELECT * FROM event_idempotency WHERE actor_id=? AND key_hash=?',user.id,hash(key));if(!previous)return null;if(previous.request_hash!==hash(`${method}\n${path}\n${JSON.stringify(data)}`))fail(409,'IDEMPOTENCY_CONFLICT','同一请求编号对应不同内容。');return json(previous.status,JSON.parse(previous.response),{'Idempotency-Replayed':'true'});}
       async function mutate(data, action) {
         const key = request.headers.get('Idempotency-Key');
         if (typeof key !== 'string' || !/^[A-Za-z0-9_-]{16,128}$/.test(key)) fail(400, 'IDEMPOTENCY_KEY_REQUIRED', '请为此次操作提供唯一重试编号。');
@@ -242,7 +242,7 @@ export function createEventWorker({ clock = Date.now, rateLimits = true } = {}) 
           const room = await get('SELECT * FROM event_rooms WHERE code = ?', join[1]);
           if (!room) fail(404, 'ROOM_NOT_FOUND', '现场不存在。');
           requireOpen(room);
-          if(await get('SELECT 1 AS denied FROM event_room_exclusions WHERE room_id = ? AND user_id = ? AND restored_at IS NULL',room.id,user.id))fail(403,'ROOM_EXCLUDED','房主已将此身份移出本场。自己的照片和既往记录仍保留。');
+          if(await get('SELECT 1 AS denied FROM event_room_exclusions WHERE room_id = ? AND user_id = ? AND restored_at IS NULL',room.id,user.id))fail(403,'ROOM_EXCLUDED','你已被房主移出这一场，你的照片还在。');
           if (await active(room.id)) return { body: { room: roomJSON(room, user.id), actorId: user.id } };
           const count = await get('SELECT COUNT(*) AS total FROM event_members WHERE room_id = ? AND left_at IS NULL', room.id);
           if (count.total >= EVENT_CAPACITY) fail(409, 'ROOM_FULL', '本场已有 24 位成员。');

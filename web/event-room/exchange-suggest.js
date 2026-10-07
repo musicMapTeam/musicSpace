@@ -5,8 +5,7 @@ import { reasonHtml, spanWords } from '../js/moment.js';
 import { photoTime, readingReason } from './moment-model.js';
 
 export const PLACEHOLDER = '选择自己拍的照片';
-export const RULE_NOTE = '规则判断，不是 AI。要不要交换，仍由你和对方决定。';
-export const NO_RECOMMENDATION = '没有找到「同一刻的另一面」。你也可以自己选一张，是否交换由你们双方决定。';
+export const NO_RECOMMENDATION = '没找到同一刻的另一面，自己选一张吧。';
 
 const ESCAPES = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
 const escapeText = value => String(value ?? '').replace(/[&<>"']/g, character => ESCAPES[character]);
@@ -39,7 +38,7 @@ export function reasonText(row, target) {
   if (verdictOf(row) !== 'unknown') return readingReason(row.reading);
   const mine = photoTime(row.photo) !== null;
   const theirs = photoTime(target) !== null;
-  return `${mine ? '对方的这张' : theirs ? '你的这张' : '两张照片都'}没有拍摄时间，无法判断是不是同一刻。`;
+  return `${mine ? '对方的这张' : theirs ? '你的这张' : '两张照片都'}没有拍摄时间。`;
 }
 
 /** The <option>s of the select (the placeholder first), in the order given (best first, see offerSuggestions()). */
@@ -54,5 +53,5 @@ export function suggestionMarkup(rows, { selectedId = null, target = null, esc =
   const row = rows.find(item => item.photo.id === selectedId) || null;
   const text = row ? reasonText(row, target) : rows.length && !rows.some(item => item.recommended) ? NO_RECOMMENDATION : '';
   const mark = row?.recommended ? ' is-recommended' : '';
-  return `<p class="exchange-reason${mark}" id="exchange-reason" data-x-reason${text ? '' : ' hidden'}>${text ? `${row ? reasonHtml(text) : esc(text)}${row ? `<small>${esc(RULE_NOTE)}</small>` : ''}` : ''}</p>`;
+  return `<p class="exchange-reason${mark}" id="exchange-reason" data-x-reason${text ? '' : ' hidden'}>${text ? (row ? reasonHtml(text) : esc(text)) : ''}</p>`;
 }

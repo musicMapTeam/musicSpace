@@ -12,8 +12,8 @@ import { formatTaken, fromInputValue, takenFromExif, takenFromFile, viewpointNam
 
 /** The one sentence that must stay true wherever the model runs, and it is said as it stands only where the photo never leaves the device (the local demo). */
 export const AI_NOTE = 'AI 在本机判断，照片不上传';
-/** The same promise in a room, where saving the card sends its photo to the room server: only the judging is private, and it says when the upload happens. */
-export const AI_NOTE_ROOM = 'AI 在本机判断，判断时照片不上传；保存现场卡时才上传照片';
+/** The same promise in a room, where saving sends the photo to the room server: only the judging is private, so it never says the photo is not uploaded. */
+export const AI_NOTE_ROOM = 'AI 在本机判断，判断时不上传照片';
 /**
  * The line shown while the model is being fetched (the first time only). It names no size that depends on the host's compression: a server
  * that gzips sends about 10 MB, one that does not sends about 23 MB, and the person on a phone plan should be told both.
@@ -23,9 +23,9 @@ const AI_LOADING_SIZE = '（约 10–23 MB）'; // kept on one line when the sen
 export const AI_LOADING = AI_LOADING_LEAD + AI_LOADING_SIZE;
 /** Shown from the moment a picture is handed to the model until its answer (or its silence) arrives: the line is never empty while the person waits. */
 export const AI_THINKING = 'AI 在本机判断视角…';
-export const NO_TIME = '没读到拍摄时间（截图或转发的图常会丢失）';
+export const NO_TIME = '没读到拍摄时间';
 /** A time the person typed that the page cannot use (before 2000 or later than tomorrow): said next to the field instead of being dropped silently. */
-export const TIME_OUT_OF_RANGE = '这个时间不在可选范围内（2000\u00a0年至明天），没有采用；不填也能保存。'; // no break inside "2000 年"
+export const TIME_OUT_OF_RANGE = '时间需在 2000\u00a0年至明天之间。'; // no break inside "2000 年"
 
 /** '' when a typed time is usable or the field is empty; TIME_OUT_OF_RANGE when something was typed that fromInputValue() refuses. */
 export const timeProblem = value => (value && fromInputValue(value) === null ? TIME_OUT_OF_RANGE : '');
@@ -68,13 +68,12 @@ export const AI_OFF_LINES = Object.freeze({
 });
 
 /**
- * The line under the viewpoint chips: what the viewpoint is for and, only while the model can run, where its part starts and stops.
- * `upload`: the editor sends the photo to a room server when the card is saved (the rooms editor), so the sentence says the judging is
- * private and when the upload happens, instead of claiming the photo is never uploaded.
+ * The line under the viewpoint chips: one short hint, what the viewpoint is for and, while the model can run, that the choice is the
+ * person's. Where the model judges (and whether the photo is uploaded) is the AI tag's own note (AI_NOTE / AI_NOTE_ROOM), so the hint
+ * says the same in the demo and in a room; `upload` is accepted for the callers that pass it.
  */
-export function viewpointHint({ upload = false } = {}) {
-  const model = upload ? `${AI_NOTE_ROOM}。` : `${AI_NOTE}，`;
-  return `配对时，用它来找互补的那一面。${aiAvailable() ? `${model}没把握就不替你选，选了也随时可改。` : ''}`;
+export function viewpointHint() {
+  return aiAvailable() ? '配对时用它找另一面，你说了算。' : '配对时用它找另一面。';
 }
 
 /**
@@ -226,19 +225,20 @@ export function answerView(result) {
 
 /**
  * The capture-time line for a card and how the time field should behave.
- *   known   'exif' | 'manual' | 'sample'  → 拍摄于 21:47, the field is offered behind a 修改 button
+ *   known   'exif' | 'manual' | 'sample'  → 拍摄于 21:47, the field is offered behind a 修改 button ('sample' only on the 0.16 page, which
+ *                                          passes its own sampleNote; the event room never sees that source)
  *   guess   'file'                         → 没读到拍摄时间…, the field is open and prefilled, marked approximate
  *   none                                   → 没读到拍摄时间…, the field is open and empty
  * `zone` (from readPhotoTime) is the sentence about the photo's own clock when it is not Beijing time, so the person who sees 4月8日 11:18
  * for a photo shot at 20:18 in another zone is told the time was converted and not misread. It replaces the plain source note.
  */
-export function timeView(card, eventDate = '', { zone = '' } = {}) {
+export function timeView(card, eventDate = '', { zone = '', sampleNote = '照片自带的时间' } = {}) {
   const at = card?.takenAt;
   const source = card?.takenSource;
   if (Number.isFinite(at) && ['exif', 'manual', 'sample'].includes(source)) {
-    const note = { exif: zone || '来自照片自带的信息', manual: '你填写的时间', sample: '示例照片的虚构时间' }[source];
+    const note = { exif: zone || '来自照片自带的信息', manual: '你填写的时间', sample: sampleNote }[source];
     return { mode: 'known', line: `拍摄于 ${formatTaken(at, eventDate)}`, note, editable: source !== 'sample' };
   }
-  if (Number.isFinite(at) && source === 'file') return { mode: 'guess', line: NO_TIME, note: '取自文件信息，只是大概，不一定是拍摄时间；不修改就不用来判断「同一刻」。', editable: true };
-  return { mode: 'none', line: NO_TIME, note: '选填，不填也能保存；填了才能按时间配对「同一刻」。', editable: true };
+  if (Number.isFinite(at) && source === 'file') return { mode: 'guess', line: NO_TIME, note: '文件里的时间，只是大概；改一下才算数。', editable: true };
+  return { mode: 'none', line: NO_TIME, note: '选填；填了才能找「同一刻」。', editable: true };
 }

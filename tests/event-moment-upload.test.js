@@ -1,5 +1,5 @@
 // The event room's photo upload module (web/event-room/moment-upload.js): EXIF capture time, the on-device viewpoint suggestion and the
-// person's final choice, honest chips, example photos, the demo-only time. No browser and no model here: a stand-in model, a fake
+// person's final choice, honest chips, the ready-made photos, the one-press time. No browser and no model here: a stand-in model, a fake
 // document / canvas / createImageBitmap and plain objects for the DOM. What the real DOM and the real model do is checked in a browser
 // (patch() against markup(), the shipped sample photos) and recorded with the task, not here.
 import { test } from 'node:test';
@@ -15,7 +15,7 @@ const ROOM = 'room-1';
 const EVENT_DATE = '2026.09.26';
 const NIGHT = (hour, minute, second = 0) => venueTime(2026, 9, 26, hour, minute, second);
 const DATA_URL = `data:image/jpeg;base64,${'A'.repeat(96)}`;
-const NUDGE = '先选一个视角（AI 还在判断时也可以自己选）。没有视角，就找不到同一刻的另一面。';
+const NUDGE = '先选一个视角，不用等 AI。';
 const nextTick = () => new Promise(resolve => setImmediate(resolve));
 async function until(check, label = 'condition', limit = 2000) {
   const started = Date.now();
@@ -123,10 +123,10 @@ function installModel() {
 }
 
 const SAMPLES = Object.freeze([
-  { id: 'sample-crowd', label: '人海 · 示例照片', note: '虚构的拍摄时间 21:48，写在文件里', thumbUrl: '/demo/sample-crowd.jpg' },
-  { id: 'sample-stage', label: '舞台 · 示例照片', note: '虚构的拍摄时间 21:47，写在文件里', thumbUrl: '/demo/sample-stage.jpg' },
+  { id: 'sample-crowd', label: '人海那张', thumbUrl: '/demo/sample-crowd.jpg' },
+  { id: 'sample-stage', label: '舞台那张', thumbUrl: '/demo/sample-stage.jpg' },
 ]);
-const DEMO_TIME = Object.freeze({ ms: NIGHT(21, 47), label: '演示用：把拍摄时间设成示例现场的 21:47', note: '你填写的时间 · 演示用' });
+const DEMO_TIME = Object.freeze({ ms: NIGHT(21, 47), label: '把拍摄时间设成 21:47', note: '你填写的时间' });
 const SAMPLE_FILES = { 'sample-crowd': () => photo({ bytes: exifJpeg({ original: '2026-09-26T21:48:10', offset: '+08:00' }), name: 'sample-crowd.jpg' }), 'sample-stage': () => photo({ bytes: exifJpeg({ original: '2026-09-26T21:47:50', offset: '+08:00' }), name: 'sample-stage.jpg' }) };
 
 /** A form with every callback recorded; html() renders what the page would show for the latest draft. */
@@ -209,7 +209,7 @@ function fakeForm(room = ROOM) {
   const nodes = {
     '.photo-review': fakeNode(),
     '[data-pick-status]': fakeNode(),
-    '[data-taken-line]': fakeNode({ 'data-taken-none': '' }, '没读到拍摄时间（截图或转发的图常会丢失）'),
+    '[data-taken-line]': fakeNode({ 'data-taken-none': '' }, '没读到拍摄时间'),
     '[data-taken-sep]': Object.assign(fakeNode(), { hidden: true }),     // shut, as markup() draws it before there is a note
     '[data-taken-note]': fakeNode(),
     '[data-taken-edit]': fakeNode({ 'aria-expanded': 'true' }),
@@ -342,40 +342,45 @@ test('markup: the server copy keeps the upload sentence and the picture is calle
   installModel();
   const { upload } = harness({ uploadsToServer: true, samples: [], demoTime: null });
   const html = upload.markup({ draft: { roomId: ROOM, dataUrl: DATA_URL }, roomId: ROOM });
-  assert.ok(html.includes('保存时照片会上传至受权限保护的房间服务。会缩小并去除位置信息；选择分享后，本场已加入成员可以浏览。'));
+  assert.ok(html.includes('<p class="fine" data-moment-fine>照片会缩小、去掉位置信息后上传。</p>'), 'the Node product still says the photo is uploaded on save');
   assert.doesNotMatch(html, /只保存在这个浏览器里/);
   assert.match(html, /alt="本次待上传的照片"/);
-  assert.doesNotMatch(html, /data-sample-photo|没有现场照片|data-demo-time/);
+  assert.match(html, /<\/svg>选照片<input type="file"/, 'without ready-made photos the file button keeps its plain words');
+  assert.doesNotMatch(html, /data-sample-photo|moment-samples|或者挑一张今晚的|用我自己的照片|data-demo-time/);
 });
 
-test('markup: the static copy says the photo stays in this browser and that the cast are automatic example characters', () => {
+test('markup: the static copy says what happens to the photo, and nothing about uploads, examples or automatic replies', () => {
   installModel();
   const { upload } = harness();
   const html = upload.markup({ draft: null, roomId: ROOM });
-  assert.ok(html.includes('照片会缩小并去除位置信息，只保存在这个浏览器里；选择分享后，示例现场里的成员（自动回复的示例角色）可以看到。'));
-  assert.doesNotMatch(plain(html), /上传至|房间服务/);
+  assert.ok(html.includes('<p class="fine" data-moment-fine>照片会缩小，并去掉位置信息。</p>'));
+  assert.doesNotMatch(plain(html), /后上传|上传至|房间服务|示例|虚构|演示|自动回复|这个浏览器/, 'the only word about uploads is the AI line\'s 「照片不上传」, which is true here');
 });
 
 test('markup: example photos are listed with thumbnails and the invitation, and only when there are some', () => {
   installModel();
   const html = harness().upload.markup({ draft: null, roomId: ROOM });
-  assert.ok(html.includes('没有现场照片？用示例照片试试'));
+  assert.ok(html.includes('<p class="moment-samples__title" id="moment-samples-title">或者挑一张今晚的</p>'));
+  assert.match(html, /<\/svg>用我自己的照片<input type="file"/, 'beside the ready-made photos the file button says whose photo it takes');
   for (const sample of SAMPLES) {
     const button = tag(html, 'data-sample-photo', sample.id);
     assert.match(button, /^<button type="button"/);
     assert.match(html, new RegExp(`data-sample-photo="${sample.id}"[^>]*>.*?<img src="${sample.thumbUrl.replace(/\//g, '\\/')}" alt=""`));
-    assert.ok(html.includes(sample.label) && html.includes(sample.note));
+    assert.ok(html.includes(`<b>${sample.label}</b></span></button>`), 'the label alone, with no note under it');
   }
+  const noted = harness({ samples: [{ ...SAMPLES[0], note: '一句说明' }] }).upload.markup({ draft: null, roomId: ROOM });
+  assert.ok(noted.includes('<b>人海那张</b><small>一句说明</small>'), 'a note, when a caller gives one, still goes under the label');
   for (const empty of [[], undefined, null, 'x', [{ label: 'no id' }]]) {
     const none = harness({ samples: empty }).upload.markup({ draft: null, roomId: ROOM });
-    assert.doesNotMatch(none, /data-sample-photo|没有现场照片|moment-samples/);
+    assert.doesNotMatch(none, /data-sample-photo|或者挑一张今晚的|用我自己的照片|moment-samples/);
+    assert.match(none, /<\/svg>选照片<input type="file"/);
   }
 });
 
 test('markup: every dynamic word is escaped, hostile sample labels included', () => {
   installModel();
   const hostile = { id: 'x"><script>alert(1)</script>', label: '<img src=x onerror=alert(1)>', note: '"><b>bold</b>', thumbUrl: 'a" onerror="alert(1)' };
-  const { upload } = harness({ samples: [hostile], eventDate: '2026.09.26"><i>', demoTime: { ms: NIGHT(21, 47), label: '<u>演示</u>', note: '<s>note</s>' } });
+  const { upload } = harness({ samples: [hostile], eventDate: '2026.09.26"><i>', demoTime: { ms: NIGHT(21, 47), label: '<u>按一下</u>', note: '<s>note</s>' } });
   const draft = { roomId: ROOM, dataUrl: DATA_URL, visibility: 'private' };
   for (const html of [upload.markup({ draft: null, roomId: ROOM }), upload.markup({ draft, roomId: `${ROOM}"><x>` }), upload.markup({ draft, roomId: ROOM })]) {
     assert.doesNotMatch(html, /<script|<img src=x|<b>bold|<u>|<s>|<i>|<x>/);
@@ -526,7 +531,7 @@ test('picking says so while it works, and stops saying so', async () => {
   const slow = new Promise(resolve => setImmediate(resolve));
   const sampling = createMomentUpload({ getRoomId: () => ROOM, samples: SAMPLES, loadSample: async () => { await slow; return SAMPLE_FILES['sample-crowd'](); }, onDraft() {} });
   const loading = sampling.pickSample('sample-crowd');
-  assert.match(sampling.markup({ draft: null, roomId: ROOM }), /data-pick-status[^>]*>正在载入示例照片…</);
+  assert.match(sampling.markup({ draft: null, roomId: ROOM }), /data-pick-status[^>]*>正在载入照片…</);
   await loading;
   assert.match(sampling.markup({ draft: null, roomId: ROOM }), /data-pick-status[^>]*><\/p>/);
 });
@@ -541,7 +546,7 @@ test('pickSample = loadSample then pick; an unknown example or a failing load is
   assert.equal(h.rec.drafts[0].facts.takenAt, NIGHT(21, 48, 10), 'the example carries its own EXIF time, read like any photo\'s');
   assert.equal(h.rec.drafts[0].facts.takenSource, 'exif');
   assert.equal(await h.upload.pickSample('nope'), false);
-  assert.match(h.rec.errors.at(-1).message, /找不到这张示例照片/);
+  assert.equal(h.rec.errors.at(-1).message, '找不到这张照片');
   const failing = harness({ loadSample: async () => { throw new Error('网络断了'); } });
   assert.equal(await failing.upload.pickSample('sample-crowd'), false);
   assert.equal(failing.rec.errors[0].message, '网络断了');
@@ -574,7 +579,8 @@ test('a second example picked while the first is still loading wins; the first i
   assert.equal(await first, false);
   assert.equal(h.rec.drafts.length, 1);
   assert.equal(h.rec.drafts[0].facts.takenAt, NIGHT(21, 47, 50));
-  assert.match(plain(h.html()), /示例照片 · 虚构的拍摄时间 21:47，写在文件里/);
+  assert.match(plain(h.html()), /拍摄于 21:47 · 来自照片自带的信息/, 'the ready-made photo\'s time reads like any photo\'s');
+  assert.doesNotMatch(h.html(), /data-sample-flag|moment-sample-flag|示例照片|虚构/, 'and it carries no example flag');
   assert.equal(tag(h.html(), 'data-sample-photo', 'sample-stage').includes('aria-pressed="true"'), true);
   assert.equal(tag(h.html(), 'data-sample-photo', 'sample-crowd').includes('aria-pressed="false"'), true);
 });
@@ -624,10 +630,10 @@ test('time: a weak EXIF time (an editor\'s DateTime) is a guess: shown, not sent
   const h = harness();
   await h.upload.pick(photo({ bytes: exifJpeg({ dateTime: '2026-09-26T21:47:50' }) }));
   const html = h.html();
-  assert.equal(takenLine(html), '没读到拍摄时间（截图或转发的图常会丢失）');
+  assert.equal(takenLine(html), '没读到拍摄时间');
   assert.match(html, /<span class="moment-taken__sep" data-taken-sep hidden> · <\/span><small data-taken-note><\/small>/, 'no note, so no 「 · 」 either');
   assert.match(html, /<span data-taken-line data-taken-none>没读到拍摄时间/, 'no usable time: the line is a sentence, and says so to the Doodle layer');
-  assert.match(plain(html), /取自文件信息，只是大概，不一定是拍摄时间；不修改就不用来判断「同一刻」。/);
+  assert.match(plain(html), /文件里的时间，只是大概；改一下才算数。/);
   assert.match(plain(html), /大约的时间 · 北京时间/);
   assert.match(timeField(html), /value="2026-09-26T21:47"/, 'prefilled, as a suggestion the person can confirm');
   assert.doesNotMatch(html, /data-taken-field hidden/, 'the field is open');
@@ -640,13 +646,13 @@ test('time: a file with no EXIF falls back to its modification time as a guess, 
   installImaging();
   const h = harness();
   await h.upload.pick(photo({ bytes: PLAIN_JPEG }));
-  assert.equal(takenLine(h.html()), '没读到拍摄时间（截图或转发的图常会丢失）');
+  assert.equal(takenLine(h.html()), '没读到拍摄时间');
   assert.match(timeField(h.html()), new RegExp(`value="${toInputValue(MTIME)}"`));
   assert.deepEqual(h.upload.facts(), {}, 'a file time is never sent');
-  assert.match(plain(h.html()), /取自文件信息/);
+  assert.match(plain(h.html()), /文件里的时间/);
   await h.upload.pick(photo({ bytes: PLAIN_JPEG, lastModified: 0 }));
   assert.match(timeField(h.html()), /value=""/);
-  assert.match(plain(h.html()), /选填，不填也能保存；填了才能按时间配对「同一刻」。/);
+  assert.match(plain(h.html()), /选填；填了才能找「同一刻」。/);
   assert.deepEqual(h.upload.facts(), {});
 });
 
@@ -705,7 +711,7 @@ test('time: clearing the field means no time at all (neither key is sent), even 
   const facts = h.upload.facts();
   assert.equal('takenAt' in facts, false);
   assert.equal('takenSource' in facts, false);
-  assert.equal(takenLine(h.html()), '没读到拍摄时间（截图或转发的图常会丢失）');
+  assert.equal(takenLine(h.html()), '没读到拍摄时间');
   assert.match(timeField(h.html()), /value=""/, 'cleared stays cleared');
 });
 
@@ -722,10 +728,26 @@ test('time: 修改时间 opens the field with the current time in it', async () 
   assert.doesNotMatch(html, /data-taken-field hidden/);
   assert.match(el(html, 'data-taken-edit'), / hidden/, 'the button steps aside');
   assert.match(plain(html), /修改拍摄时间 · 北京时间/);
-  assert.match(plain(html), /改过的时间以你填的为准。/);
+  assert.match(html, /<p class="fine" data-taken-hint><\/p>/, 'the hint keeps its place, with nothing to explain');
 });
 
-test('demo-only time: one press sets the example night\'s time as manual, labelled so; a second press undoes it', async () => {
+test('samples and demoTime may be functions of the open room: read whenever the form is drawn, so a room without them shows neither', async () => {
+  installModel();
+  installImaging();
+  const h = harness({ samples: () => (h.where.room === ROOM ? SAMPLES : []), demoTime: () => (h.where.room === ROOM ? DEMO_TIME : null) });
+  assert.match(h.html(), /data-sample-photo="sample-crowd"/);
+  assert.match(h.html(), /用我自己的照片<input/);
+  h.where.room = 'room-2';
+  assert.doesNotMatch(h.html(), /data-sample-photo|moment-samples|或者挑一张今晚的/);
+  assert.match(h.html(), /选照片<input/, 'the plain file button when nothing stands beside it');
+  assert.equal(await h.upload.pickSample('sample-crowd'), false, 'a ready-made photo cannot be loaded where it is not offered');
+  assert.equal(h.rec.errors.at(-1)?.message, '找不到这张照片');
+  await h.upload.pick(photo({ bytes: exifJpeg({ original: '2025-07-10T10:53:00', offset: '+08:00' }) }));
+  assert.doesNotMatch(h.html(), /data-demo-time/, 'no one-tap time in a room of one\'s own');
+  assert.doesNotMatch(plain(h.html()), /不算同一刻/, 'and no 「同一刻」 verdict against a night that is not this room\'s');
+});
+
+test('one-press time: it sets the night\'s time as manual, labelled so; a second press undoes it', async () => {
   installModel();
   installImaging();
   const h = harness();
@@ -733,7 +755,7 @@ test('demo-only time: one press sets the example night\'s time as manual, labell
   h.upload.bind(container);
   await h.upload.pick(photo({ bytes: exifJpeg({ original: '2025-07-10T10:53:00', offset: '+08:00' }) }));
   assert.equal(takenLine(h.html()), '拍摄于 2025年7月10日 10:53');
-  assert.match(plain(h.html()), /这个时间不在示例现场那一晚（2026\.09\.26），按规则不算同一刻。/, 'the form says it is not the same moment');
+  assert.match(plain(h.html()), /这张不是在这一场拍的，不算同一刻。/, 'the form says it is not the same moment, without a date the rest of the page does not show');
   assert.equal(plain(region(h.html(), 'data-demo-time')), DEMO_TIME.label);
   assert.match(el(h.html(), 'data-demo-time'), /aria-pressed="false"/);
   assert.deepEqual(h.upload.facts(), { takenAt: Date.parse('2025-07-10T10:53:00+08:00'), takenSource: 'exif' });
@@ -741,9 +763,10 @@ test('demo-only time: one press sets the example night\'s time as manual, labell
   container.emit('click', control({ demoTime: '' }));
   assert.deepEqual(h.upload.facts(), { takenAt: DEMO_TIME.ms, takenSource: 'manual' });
   assert.equal(takenLine(h.html()), '拍摄于 21:47');
-  assert.equal(takenNote(h.html()), '你填写的时间 · 演示用');
+  assert.equal(takenNote(h.html()), '你填写的时间');
   assert.match(el(h.html(), 'data-demo-time'), /aria-pressed="true"/);
-  assert.match(plain(region(h.html(), 'data-demo-time')), /已把拍摄时间设成 21:47（演示用）· 再按一次撤销/);
+  assert.equal(plain(region(h.html(), 'data-demo-time')), '已设成 21:47 · 再按一次撤销');
+  assert.doesNotMatch(plain(h.html()), /演示|示例/);
   assert.doesNotMatch(plain(h.html()), /不算同一刻/, 'and now it is');
 
   container.emit('click', control({ demoTime: '' }));
@@ -815,17 +838,18 @@ test('sure: the chip is pre-selected, tagged 「AI 判断：人海」 and saved 
   assert.equal(h.upload.requiresViewpoint(), false);
 });
 
-test('sure, in the Node product, says what is uploaded and when', async () => {
+test('sure, in the Node product, only the judging is called private, and the form says the photo is uploaded on save', async () => {
   installModel();
   installImaging();
   const h = harness({ uploadsToServer: true, samples: [], demoTime: null });
   await h.upload.pick(photo());
   await until(() => h.upload.facts().viewpoint, 'the model\'s answer');
-  const photoWords = text => text.replace('保存现场卡时', '保存照片时');
-  assert.ok(AI_NOTE_ROOM.includes('保存现场卡时才上传照片'), 'the shared sentence is still the source');
-  assert.ok(h.html().includes(`title="${photoWords(AI_NOTE_ROOM)}"`), 'in this form what is saved is a photo, not a 现场卡');
-  assert.ok(plain(h.html()).includes(photoWords(viewpointHint({ upload: true }))));
-  assert.ok(plain(h.html()).includes('判断时照片不上传；保存照片时才上传照片。没把握就不替你选，选了也随时可改。'));
+  assert.equal(AI_NOTE_ROOM, 'AI 在本机判断，判断时不上传照片');
+  assert.ok(h.html().includes(`title="${AI_NOTE_ROOM}"`), 'the tag\'s note is the room sentence, the shared source');
+  assert.ok(plain(h.html()).includes(viewpointHint({ upload: true })));
+  assert.equal(plain(region(h.html(), 'data-viewpoint-hint')), '配对时用它找另一面，你说了算。', 'one short hint; the AI tag carries the room sentence');
+  assert.ok(!plain(h.html()).includes('，照片不上传'), 'a room never promises that the photo is not uploaded');
+  assert.match(plain(h.html()), /照片会缩小、去掉位置信息后上传。/, 'it says the photo is uploaded when it is saved');
   assert.doesNotMatch(plain(h.html()), /现场卡/);
 });
 
@@ -1000,7 +1024,7 @@ test('a browser that cannot run the model gets one honest sentence instead of ev
     await h.upload.pick(photo());
     const page = h.html();
     assert.equal(aiLine(page), line);
-    assert.equal(plain(region(page, 'data-viewpoint-hint')), '配对时，用它来找互补的那一面。', 'the hint loses its AI part');
+    assert.equal(plain(region(page, 'data-viewpoint-hint')), '配对时用它找另一面。', 'the hint loses its AI part');
     assert.doesNotMatch(plain(page), /AI 在本机判断|AI 判断|AI 认为|不确定，请选择|首次需下载/);
     assert.doesNotMatch(page, /moment-viewpoint-likely/);
     assert.equal(model.classified.length, 0);
@@ -1009,12 +1033,13 @@ test('a browser that cannot run the model gets one honest sentence instead of ev
   }
 });
 
-test('with the model available the hint carries the AI promise, in the demo and in the room', () => {
+test('with the model available the hint says the choice is the person\'s, the same short line in the demo and in the room', () => {
   installModel();
   const demo = harness().upload.markup({ draft: { roomId: ROOM, dataUrl: DATA_URL }, roomId: ROOM });
-  assert.equal(plain(region(demo, 'data-viewpoint-hint')), '配对时，用它来找互补的那一面。AI 在本机判断，照片不上传，没把握就不替你选，选了也随时可改。');
+  assert.equal(plain(region(demo, 'data-viewpoint-hint')), '配对时用它找另一面，你说了算。');
   const room = harness({ uploadsToServer: true }).upload.markup({ draft: { roomId: ROOM, dataUrl: DATA_URL }, roomId: ROOM });
-  assert.equal(plain(region(room, 'data-viewpoint-hint')), '配对时，用它来找互补的那一面。AI 在本机判断，判断时照片不上传；保存照片时才上传照片。没把握就不替你选，选了也随时可改。');
+  assert.equal(plain(region(room, 'data-viewpoint-hint')), '配对时用它找另一面，你说了算。');
+  assert.ok(!plain(room).includes('照片不上传'), 'a room never promises that the photo is not uploaded');
 });
 
 // ============================================================================================================================
@@ -1050,7 +1075,7 @@ test('the facts belong to this room: another room sees none', async () => {
   assert.equal(h.upload.requiresViewpoint(), false);
   const html = h.upload.markup({ draft: { roomId: 'room-2', dataUrl: DATA_URL }, roomId: 'room-2' });
   assert.deepEqual(pressedChips(html), []);
-  assert.equal(takenLine(html), '没读到拍摄时间（截图或转发的图常会丢失）', 'the other room\'s photo is not described with this one\'s time');
+  assert.equal(takenLine(html), '没读到拍摄时间', 'the other room\'s photo is not described with this one\'s time');
 });
 
 test('requiresViewpoint(): an example is the current draft and no side is chosen; own photos may be saved without one', async () => {
@@ -1103,7 +1128,7 @@ test('nudge() highlights the chips and says what is missing, with and without th
   model.supported = false; model.why = 'browser';
   await h.upload.pickSample('sample-stage');
   h.upload.nudge(container);
-  assert.equal(plain(region(h.html(), 'data-viewpoint-nudge')), '先选一个视角。没有视角，就找不到同一刻的另一面。', 'no AI words when there is no AI');
+  assert.equal(plain(region(h.html(), 'data-viewpoint-nudge')), '先选一个视角。', 'no AI words when there is no AI');
   await h.upload.pick(photo());
   assert.equal(plain(region(h.html(), 'data-viewpoint-nudge')), '', 'a new photo starts without the nudge');
 });
@@ -1310,7 +1335,7 @@ test('patch() updates the AI line, chips and time rows in place and touches noth
   assert.equal(nodes['[data-taken-edit]'].getAttribute('aria-expanded'), 'false');
   assert.equal(nodes['[data-taken-field]'].hidden, true);
   assert.equal(nodes['input[name="takenAt"]'].value, '2025-07-10T10:53');
-  assert.equal(nodes['[data-taken-off]'].textContent, '这个时间不在示例现场那一晚（2026.09.26），按规则不算同一刻。');
+  assert.equal(nodes['[data-taken-off]'].textContent, '这张不是在这一场拍的，不算同一刻。');
   assert.equal(nodes['[data-taken-error]'].hidden, true);
   assert.equal(nodes['[data-demo-time]'].getAttribute('aria-pressed'), 'false');
   // the chips: two dashed, nothing pressed, a description inserted once
@@ -1324,7 +1349,7 @@ test('patch() updates the AI line, chips and time rows in place and touches noth
   // the line and the hint
   assert.equal(nodes['[data-ai-line]'].getAttribute('data-ai-key'), 'unsure:friends,stage');
   assert.match(nodes['[data-ai-line]'].html, /不确定，请选择/);
-  assert.match(nodes['[data-viewpoint-hint]'].textContent, /^配对时，用它来找互补的那一面。AI 在本机判断/);
+  assert.equal(nodes['[data-viewpoint-hint]'].textContent, '配对时用它找另一面，你说了算。');
   assert.equal(nodes['[data-pick-status]'].textContent, '');
 
   // the nudge, then a press: the chip, the line, the description, and the nudge goes
@@ -1378,7 +1403,7 @@ test('patch() writes a typed time into the field only when it differs, so the cu
   h.upload.patch(events);
   assert.equal(current, '2026-09-26T21:47', 'the demo time is written when it changes');
   assert.equal(writes, 1);
-  assert.equal(dom.nodes['[data-demo-time]'].textContent, '已把拍摄时间设成 21:47（演示用）· 再按一次撤销');
+  assert.equal(dom.nodes['[data-demo-time]'].textContent, '已设成 21:47 · 再按一次撤销');
 });
 
 test('patch() does nothing, and breaks nothing, on a page that has no upload form (or no DOM at all)', async () => {

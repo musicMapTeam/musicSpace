@@ -195,7 +195,7 @@ FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
 OTHER DEALINGS IN THE FONT SOFTWARE.
 
 ===== Doodle Hand — derived (subset, renamed) from Yozai Medium 0.868 (OFL-1.1) =====
-NOTE: marker-symbols.woff2 (served as part of Doodle Marker) is also a subset of this font: ℗↔↗↩▴▾☾♡♫✓✦✧
+NOTE: marker-symbols.woff2 (served as part of Doodle Marker) is also a subset of this font: ℗↔↗↩ⓘ▴▾☾♡♫✓✦✧
 
 Copyright 2020, 2024 LXGW (https://github.com/lxgw/yozai-font)
 Copyright (c) 2021-03-07, Y.Oz (Y.OzVox) (http://yozvox.web.fc2.com), words containing "Y.Oz" or "YOz" are reserved as font names.

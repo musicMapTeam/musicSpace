@@ -33,7 +33,7 @@ export function createChatController(options = {}) {
   function getState() { return freeze(clone({ ...state, outbox: summaries(), loading: [...reads.keys(), ...[...running.keys()].filter(id => operations.get(id)?.actorId === state.actorId).map(id => 'operation:' + id)] })); }
   function emit() { if (!disposed) for (const listener of listeners) { try { listener(getState()); } catch { /* View failures never alter a write outcome. */ } } }
   function assertLive() { if (disposed) fail('聊天控制器已关闭。', 'DISPOSED'); }
-  function storageFailure() { state.storage = { ok: false, refreshRecovery: false, message: '本机存储不可用。草稿仍在，但新消息要等重试编号能保存后再发送。' }; }
+  function storageFailure() { state.storage = { ok: false, refreshRecovery: false, message: '浏览器存储不可用，暂时不能发送' }; }
   const operationKey=op=>CHAT_OPERATION_PREFIX+op.actorId+':'+op.id;
   const storedDraftKey=draft=>CHAT_DRAFT_PREFIX+draft.actorId+':'+draft.peerId;
   function persistedOperationDone(op){try{return JSON.parse(storage?.getItem(operationKey(op))||'null')?.done===true;}catch{return false;}}
@@ -92,8 +92,8 @@ export function createChatController(options = {}) {
   syncIdentity();
   function identity() {
     assertLive(); const current = validSession(sourceSession());
-    if (current?.token !== session?.token || current?.user.id !== session?.user.id) { syncIdentity(current); fail('浏览器身份已改变，请重新打开对话。', 'IDENTITY_CHANGED'); }
-    if (!session || state.identityStatus !== 'ready') fail('请先确认当前浏览器身份。', 'IDENTITY_REQUIRED');
+    if (current?.token !== session?.token || current?.user.id !== session?.user.id) { syncIdentity(current); fail('身份已变化，请重新打开对话', 'IDENTITY_CHANGED'); }
+    if (!session || state.identityStatus !== 'ready') fail('请先确认你的小人身份', 'IDENTITY_REQUIRED');
     return { token: session.token, actorId: session.user.id, epoch: identityEpoch };
   }
   function sameIdentity(actor) {
@@ -110,7 +110,7 @@ export function createChatController(options = {}) {
     // over the new identity's data. The durable 'running' record restores as
     // uncertain after reload, and no response payload is exposed to the new UI.
     op.status = 'uncertain';
-    op.error = errorJSON(new EventClientError('身份已切换。原操作仍待原身份确认，不代表已撤回。', { code: 'IDENTITY_CHANGED', retryable: true, uncertain: true, operationId: op.id }));
+    op.error = errorJSON(new EventClientError('身份已变化，请刷新页面', { code: 'IDENTITY_CHANGED', retryable: true, uncertain: true, operationId: op.id }));
     return { operationId: op.id, applied: false };
   }
   function handleError(error, actor, applicable = true) {
@@ -118,7 +118,7 @@ export function createChatController(options = {}) {
     if (!disposed && applicable && actor.actorId === state.actorId) state.error = errorJSON(error);
     emit();
   }
-  function actorResponse(data, actor) { if (data.actorId !== actor.actorId) fail('服务器身份与当前浏览器不一致。', 'ACTOR_MISMATCH'); verifiedToken = actor.token; }
+  function actorResponse(data, actor) { if (data.actorId !== actor.actorId) fail('身份不一致，请刷新页面', 'ACTOR_MISMATCH'); verifiedToken = actor.token; }
   function messageValue(m, actor, peer) {
     if (!m || !ID.test(m.id) || typeof m.text !== 'string' || !((m.senderId === actor && m.recipientId === peer) || (m.senderId === peer && m.recipientId === actor))) fail('消息响应无效。', 'INVALID_RESPONSE');
     return { id: m.id, senderId: m.senderId, recipientId: m.recipientId, text: m.text, createdAt: m.createdAt, readAt: m.readAt || null };
@@ -239,7 +239,7 @@ export function createChatController(options = {}) {
         await verifyActor(actor);
         if (!sameIdentity(actor)) fail('身份已改变。', 'IDENTITY_CHANGED');
         op.mayHaveCommitted = true;
-        if (!persist(op)) fail('发送状态无法保存，请恢复本机存储后用原消息重试。', 'STORAGE_REQUIRED');
+        if (!persist(op)) fail('浏览器存储不可用，请稍后重试', 'STORAGE_REQUIRED');
         postDispatched = true;
         const data = await api.request(`/chats/${op.peerId}/${op.type === 'send' ? 'messages' : 'read'}`, { method: 'POST', token: actor.token, key: op.key,
           bodyJson: JSON.stringify(op.type === 'send' ? { text: op.text } : { messageIds: op.messageIds }) });
@@ -273,7 +273,7 @@ export function createChatController(options = {}) {
       } catch (error) {
         if (!sameIdentity(actor)) return detachedOperation(op);
         if(persistedOperationDone(op)){readJournal();state.error=null;emit();return {operationId:op.id,applied:false,settledElsewhere:true};}
-        if (!error.code) error = new EventClientError('连接没有确认结果，可用原消息重试。', { code: 'NETWORK', retryable: true, uncertain: true });
+        if (!error.code) error = new EventClientError('结果未确认，可以重发原消息', { code: 'NETWORK', retryable: true, uncertain: true });
         if (error.code === 'INVALID_RESPONSE') { error.retryable = true; error.uncertain = true; }
         const definitivePostRejection = postDispatched && !error.uncertain && error.status >= 400 && error.status < 500 && ![401, 403, 429].includes(error.status);
         if (priorUncertain && !definitivePostRejection) { error.uncertain = true; error.retryable = true; }
@@ -288,17 +288,17 @@ export function createChatController(options = {}) {
   function queue(type, payload) {
     const actor = identity(), current = state.current; if (!current?.loaded) fail('请先载入当前对话。', 'CHAT_REQUIRED');
     const existing = [...operations.values()].find(op => op.actorId === actor.actorId && op.peerId === current.peerId && op.type === type);
-    if (existing) { if (running.has(existing.id)) return running.get(existing.id); fail('已有待确认操作，请先用原操作重试。', 'OPERATION_PENDING'); }
+    if (existing) { if (running.has(existing.id)) return running.get(existing.id); fail('还有待确认的消息，请先重试', 'OPERATION_PENDING'); }
     const op = { id: globalThis.crypto.randomUUID(), key: globalThis.crypto.randomUUID(), actorId: actor.actorId, peerId: current.peerId, type, ...payload, mayHaveCommitted: false, status: 'uncertain', error: null };
     operations.set(op.id, op);
     const key=draftKey(actor.actorId,current.peerId),pendingDraft=type==='send'&&unsavedDrafts.has(key)?drafts.get(key):null;
-    if (!persist(op,null,pendingDraft)) { operations.delete(op.id); emit(); fail('重试编号还不能保存，请先恢复本机存储。草稿没有丢失。', 'STORAGE_REQUIRED'); }
+    if (!persist(op,null,pendingDraft)) { operations.delete(op.id); emit(); fail('浏览器存储不可用，草稿还在', 'STORAGE_REQUIRED'); }
     if(pendingDraft)unsavedDrafts.delete(key);
     return run(op);
   }
   function send() {
-    identity(); const current = state.current; if (!current?.loaded || !current.chat?.canSend) fail('当前不能发送新消息，请刷新好友状态。', 'CHAT_UNAVAILABLE');
-    if (!validText(state.draft)) fail('请输入1至1000个字的有效文字。', 'INVALID_MESSAGE');
+    identity(); const current = state.current; if (!current?.loaded || !current.chat?.canSend) fail('现在不能发消息，请刷新', 'CHAT_UNAVAILABLE');
+    if (!validText(state.draft)) fail('请输入1至1000个字', 'INVALID_MESSAGE');
     const draft = drafts.get(draftKey(state.actorId, current.peerId)); return queue('send', { text: state.draft, draftVersion: draft?.version || 0,draftToken:draft?.token||null });
   }
   function acknowledge(ids) {
@@ -307,9 +307,9 @@ export function createChatController(options = {}) {
     const unread = ids.filter(id => !confirmedReads.has(id) && !current.messages.find(m => m.id === id).readAt); if (!unread.length) return Promise.resolve({ acknowledged: [], applied: true });
     return queue('read', { messageIds: [...unread] });
   }
-  function retry(id) { identity(); const op = operations.get(id); if (!op) fail('原操作不存在。', 'OPERATION_NOT_FOUND'); return run(op); }
+  function retry(id) { identity(); const op = operations.get(id); if (!op) fail('这个操作已不存在', 'OPERATION_NOT_FOUND'); return run(op); }
   function discard(id) {
-    identity(); const op = operations.get(id); if (!op || op.actorId !== state.actorId || running.has(id) || op.status !== 'failed' || op.error?.uncertain) fail('结果未确认，必须保留原操作重试。', 'OPERATION_UNCERTAIN');
+    identity(); const op = operations.get(id); if (!op || op.actorId !== state.actorId || running.has(id) || op.status !== 'failed' || op.error?.uncertain) fail('结果未确认，请重试', 'OPERATION_UNCERTAIN');
     operations.delete(id); persist(null,op); state.error = null; emit();
   }
   function close() { assertLive(); navigationEpoch++; reads.get('messages')?.abort(); state.current = null; state.draft = ''; state.error = null; emit(); }

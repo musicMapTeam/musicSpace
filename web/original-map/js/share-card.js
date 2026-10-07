@@ -2,36 +2,47 @@ import qrcode from 'qrcode-generator';
 import { artistById, artistName, songs } from './map-data.js';
 
 /*
- * Music Map's two keepsakes, drawn on this device and never uploaded:
+ * Two keepsakes, drawn on this device and never uploaded:
  * - 寻声战绩卡: the puzzle (start and target) and how the player did. The stops in between are
  *   face-down sleeves, so a friend who scans the code still has the whole puzzle to solve.
  * - 发现卡片 (PRD 5.8): one roam's start, the singers met on the way and the songs kept.
- * Both use the courtyard's language: a night sky with festoon lights and a warm paper ticket.
+ * Both are a Doodle page: dotted paper, an ink-framed ticket with a hard shadow and tape, marker colours read from the page's
+ * tokens.css (the PNG and the page never drift) and the Doodle faces, loaded for the card's own text before it is drawn.
  * 1080 × 1350 (4:5) keeps the portrait crop of WeChat Moments and 小红书.
  */
 const W = 1080;
 const H = 1350;
-const C = {
-  night0: '#0e1228', night1: '#1b2045', night2: '#2b2143',
-  lamp: '#ffc27a', paper: '#fbf1dd', paperTop: '#fff9ec', stub: '#f5e6c9', stubLow: '#f1dfbf', edge: '#d6c09a',
-  ink: '#1f3a2d', inkSoft: '#3d4a40', muted: '#6b6a5c', rose: '#9b5664', target: '#9d3f50', green: '#3d6653', gold: '#b98642',
-  kraft: '#eadcbf', kraftLine: '#cdb98f', kraftInk: '#7a6438', sakura: '#f5b0c1',
-  on: '#fff4e2', onSoft: '#d8cfe2', onFaint: '#aaa2be',
+const FOOTER = '每条连线都是一首合唱录音';
+const FONT = {
+  logo: '"Doodle Logo", "Doodle Display", sans-serif',
+  display: '"Doodle Display", "Doodle Marker", "PingFang SC", "Microsoft YaHei", sans-serif',
+  ui: '"Doodle Marker", "PingFang SC", "Microsoft YaHei", sans-serif',
+  hand: '"Doodle Hand", "Doodle Marker", "PingFang SC", "Microsoft YaHei", sans-serif',
+  digits: '"Doodle Digits", "Doodle Logo", sans-serif',
 };
-const SANS = '"PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif';
-const FALLBACK_SERIF = '"Songti SC", "Noto Serif SC", "Source Han Serif SC", "STSong", "SimSun", serif';
-const FOOTER = '每条连线都是一首真实的合唱录音';
+const TOKENS = ['paper', 'paper-card', 'paper-deep', 'ink', 'ink-2', 'ink-3', 'pink', 'pink-soft', 'mint', 'mint-soft', 'yellow', 'yellow-soft', 'sky', 'sky-soft', 'orange'];
 // Only one preview is open at a time; the next one (or leaving the page) releases the last.
 let closePreview = null;
 
 const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
-const serifFamily = () => getComputedStyle(document.documentElement).getPropertyValue('--font-serif').trim() || FALLBACK_SERIF;
 const pad2 = value => String(value).padStart(2, '0');
 const stampDate = timestamp => { const date = new Date(timestamp); return `${date.getFullYear()}.${pad2(date.getMonth() + 1)}.${pad2(date.getDate())}`; };
 const fileDate = timestamp => { const date = new Date(timestamp); return `${date.getFullYear()}-${pad2(date.getMonth() + 1)}-${pad2(date.getDate())}`; };
 const longDate = timestamp => new Date(timestamp).toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' });
 const slug = id => String(id || '').replace(/^real-/, '').replace(/[^a-z0-9-]/gi, '') || 'map';
-const toneOf = id => artistById[id]?.color || '#b9ad90';
+const toneOf = id => artistById[id]?.color;
+
+/** The Doodle palette from the page's tokens (camelCase keys: paperCard, ink2 …). */
+function palette() {
+  const style = getComputedStyle(document.documentElement);
+  return Object.fromEntries(TOKENS.map(name => [name.replace(/-(\w)/g, (_, c) => c.toUpperCase()), style.getPropertyValue(`--ds-${name}`).trim()]));
+}
+/** Loads the faces, and the slices of them, that the card's own text uses; a face that cannot load falls back, never blocks. */
+async function loadFaces(texts) {
+  const fonts = document.fonts;
+  if (!fonts?.load) return;
+  await Promise.all(Object.entries(texts).map(([role, text]) => fonts.load(`40px ${FONT[role]}`, text || 'A').catch(() => [])));
+}
 
 /* ---------- Links: only the puzzle travels, never the route, the keeps or the history ---------- */
 
@@ -55,7 +66,7 @@ export function shortUrl(href) {
   const url = new URL(href);
   return `${url.host}${url.pathname}`.replace(/\/$/, '') || url.href;
 }
-export const challengeText = (start, target) => `${artistName(start)} 和 ${artistName(target)} 之间隔着几首歌？来 Music Map 翻翻看`;
+export const challengeText = (start, target) => `${artistName(start)} 和 ${artistName(target)} 之间隔着几首歌？来 Music Space 翻翻看`;
 
 /** Hand the puzzle to a friend, only on the player's click: the system share sheet when there is
  *  one, else the clipboard, else `showLink(url, text)` puts the link in a field to copy by hand.
@@ -64,7 +75,7 @@ export async function shareChallengeLink({ start, target }, { toast, showLink })
   const url = challengeUrl(start, target);
   const text = challengeText(start, target);
   if (typeof navigator.share === 'function') {
-    try { await navigator.share({ title: 'Music Map · 寻声', text, url }); return 'shared'; }
+    try { await navigator.share({ title: 'Music Space · 寻声', text, url }); return 'shared'; }
     catch (error) { if (error?.name === 'AbortError') return 'cancelled'; }
   }
   if (navigator.clipboard?.writeText) {
@@ -75,16 +86,16 @@ export async function shareChallengeLink({ start, target }, { toast, showLink })
   return 'shown';
 }
 
-/* ---------- Canvas primitives (from the 0.15 ticket export) ---------- */
+/* ---------- Canvas primitives ---------- */
 
-function setFont(ctx, weight, size, family = SANS) { ctx.font = `${weight} ${size}px ${family}`; }
+function setFont(ctx, size, family = FONT.ui) { ctx.font = `400 ${size}px ${family}`; }
 function spacing(ctx, value) { if ('letterSpacing' in ctx) ctx.letterSpacing = `${value}px`; }
 
-/** Shrinks in the caller's own family; never swaps a serif line to sans. */
-function fitLine(ctx, text, x, y, width, size, { family = SANS, weight = 500, min = 20 } = {}) {
+/** Shrinks in the caller's own family until the line fits. */
+function fitLine(ctx, text, x, y, width, size, { family = FONT.ui, min = 20 } = {}) {
   let current = size;
-  setFont(ctx, weight, current, family);
-  while (ctx.measureText(text).width > width && current > min) { current -= 2; setFont(ctx, weight, current, family); }
+  setFont(ctx, current, family);
+  while (ctx.measureText(text).width > width && current > min) { current -= 2; setFont(ctx, current, family); }
   ctx.fillText(text, x, y, width);
   return current;
 }
@@ -109,205 +120,148 @@ function wrapText(ctx, text, x, y, width, lineHeight, maxRows = Infinity) {
   });
   return Math.min(rows.length, maxRows);
 }
-function roundedPath(ctx, x, y, w, h, r) {
+/** A hand-cut box: each corner a slightly different radius, the way the page's --ds-radius-card is drawn. */
+function handBox(ctx, x, y, w, h, radii = [22, 8, 26, 10]) {
   ctx.beginPath();
-  if (ctx.roundRect) { ctx.roundRect(x, y, w, h, r); return; }
-  ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r);
-  ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
+  if (ctx.roundRect) { ctx.roundRect(x, y, w, h, radii); return; }
+  const [a, b, c, d] = radii;
+  ctx.moveTo(x + a, y); ctx.arcTo(x + w, y, x + w, y + h, b); ctx.arcTo(x + w, y + h, x, y + h, c);
+  ctx.arcTo(x, y + h, x, y, d); ctx.arcTo(x, y, x + w, y, a); ctx.closePath();
 }
-
-/* ---------- Night backdrop: the courtyard sky, festoon lights and the grooves of the table's records ---------- */
-
-function nightBackdrop(ctx) {
-  const sky = ctx.createLinearGradient(0, 0, 0, H);
-  sky.addColorStop(0, C.night0); sky.addColorStop(.36, '#161b3b'); sky.addColorStop(.62, C.night1); sky.addColorStop(1, C.night2);
-  ctx.fillStyle = sky; ctx.fillRect(0, 0, W, H);
-  const glow = (x, y, r, color) => {
-    const g = ctx.createRadialGradient(x, y, 0, x, y, r);
-    g.addColorStop(0, color); g.addColorStop(1, 'rgba(255,194,122,0)');
-    ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
-  };
-  glow(W / 2, H + 140, 760, 'rgba(255,194,122,.22)');
-  glow(40, -40, 420, 'rgba(255,194,122,.12)');
-  glow(W - 40, -40, 420, 'rgba(255,194,122,.12)');
-  const lift = ctx.createRadialGradient(W / 2, 640, 0, W / 2, 640, 680);
-  lift.addColorStop(0, 'rgba(42,49,112,.9)'); lift.addColorStop(1, 'rgba(42,49,112,0)');
-  ctx.fillStyle = lift; ctx.fillRect(0, 0, W, H);
-  // One ring field under the ticket: the grooves of a record on the shop's table.
+/** Ink outline over a fill, with the page's hard offset shadow under it. */
+function inkShape(ctx, P, path, { fill, shadow = P.ink, offset = [10, 11], line = 5 }) {
   ctx.save();
-  ctx.lineWidth = 1.4; ctx.strokeStyle = 'rgba(255,244,226,.045)';
-  for (let r = 24; r < 820; r += 24) { ctx.beginPath(); ctx.arc(W / 2, 700, r, 0, Math.PI * 2); ctx.stroke(); }
-  ctx.restore();
-  bokeh(ctx);
-  festoon(ctx);
-}
-function bokeh(ctx) {
-  [[48, 880, 70, 'rgba(245,176,193,.10)'], [110, 730, 38, 'rgba(255,194,122,.08)'], [1030, 830, 84, 'rgba(255,194,122,.09)'], [980, 990, 36, 'rgba(245,176,193,.12)'], [28, 520, 28, 'rgba(255,194,122,.08)']].forEach(([x, y, r, color]) => {
-    const g = ctx.createRadialGradient(x, y, 0, x, y, r);
-    g.addColorStop(0, color); g.addColorStop(1, 'rgba(0,0,0,0)');
-    ctx.fillStyle = g; ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
-  });
-}
-function festoon(ctx) {
-  const sag = 138;
-  const swags = [[-20, 28, W / 2, 32], [W / 2, 32, W + 20, 28]];
-  ctx.save();
-  ctx.strokeStyle = 'rgba(255,244,226,.26)'; ctx.lineWidth = 2;
-  swags.forEach(([x0, y0, x1, y1]) => {
-    ctx.beginPath(); ctx.moveTo(x0, y0); ctx.quadraticCurveTo((x0 + x1) / 2, sag, x1, y1); ctx.stroke();
-  });
-  swags.forEach(([x0, y0, x1, y1]) => {
-    const cx = (x0 + x1) / 2;
-    for (let i = 1; i <= 6; i += 1) {
-      const t = i / 7;
-      const x = (1 - t) ** 2 * x0 + 2 * t * (1 - t) * cx + t ** 2 * x1;
-      const y = (1 - t) ** 2 * y0 + 2 * t * (1 - t) * sag + t ** 2 * y1 + 12;
-      const halo = ctx.createRadialGradient(x, y, 0, x, y, 38);
-      halo.addColorStop(0, 'rgba(255,194,122,.55)'); halo.addColorStop(.35, 'rgba(255,194,122,.16)'); halo.addColorStop(1, 'rgba(255,194,122,0)');
-      ctx.fillStyle = halo; ctx.beginPath(); ctx.arc(x, y, 38, 0, Math.PI * 2); ctx.fill();
-      ctx.fillStyle = '#5d5870'; ctx.fillRect(x - 3, y - 14, 6, 6);
-      const bulb = ctx.createRadialGradient(x, y - 3, 1, x, y, 9);
-      bulb.addColorStop(0, '#fffaf0'); bulb.addColorStop(.55, C.lamp); bulb.addColorStop(1, '#f0a255');
-      ctx.fillStyle = bulb; ctx.beginPath(); ctx.ellipse(x, y, 6.5, 9, 0, 0, Math.PI * 2); ctx.fill();
-    }
-  });
+  if (offset) { ctx.translate(offset[0], offset[1]); path(); ctx.fillStyle = shadow; ctx.fill(); ctx.translate(-offset[0], -offset[1]); }
+  path(); ctx.fillStyle = fill; ctx.fill();
+  ctx.lineWidth = line; ctx.strokeStyle = P.ink; ctx.lineJoin = 'round'; ctx.stroke();
   ctx.restore();
 }
-function petal(ctx, x, y, size, angle, color) {
-  ctx.save(); ctx.translate(x, y); ctx.rotate(angle); ctx.fillStyle = color;
-  ctx.beginPath(); ctx.moveTo(0, -size);
-  ctx.bezierCurveTo(size * .9, -size * .6, size * .7, size * .7, 0, size);
-  ctx.bezierCurveTo(-size * .7, size * .7, -size * .9, -size * .6, 0, -size);
+
+/* ---------- The page: dotted paper with a few doodles ---------- */
+
+function paperPage(ctx, P) {
+  ctx.fillStyle = P.paper; ctx.fillRect(0, 0, W, H);
+  ctx.save(); ctx.fillStyle = P.ink; ctx.globalAlpha = .14;
+  for (let y = 24; y < H; y += 44) for (let x = 24; x < W; x += 44) { ctx.beginPath(); ctx.arc(x, y, 2.3, 0, Math.PI * 2); ctx.fill(); }
+  ctx.restore();
+  // two doodles above the heading, two in the footer band (the tallest ticket ends at 1234)
+  star(ctx, P, 86, 120, 34, P.yellow, -.2);
+  sparkle(ctx, P, 990, 112, 20);
+  star(ctx, P, 1012, 1294, 24, P.mint, .3);
+  note(ctx, P, 44, 1270, 34, P.pink);
+}
+function star(ctx, P, cx, cy, r, color, turn = 0) {
+  const points = Array.from({ length: 10 }, (_, i) => { const a = turn - Math.PI / 2 + i * Math.PI / 5; const rr = i % 2 ? r * .45 : r; return [cx + Math.cos(a) * rr, cy + Math.sin(a) * rr]; });
+  const path = () => { ctx.beginPath(); points.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y))); ctx.closePath(); };
+  inkShape(ctx, P, path, { fill: color, offset: [4, 4], line: 4 });
+}
+function sparkle(ctx, P, cx, cy, r) {
+  ctx.save(); ctx.fillStyle = P.ink; ctx.beginPath();
+  ctx.moveTo(cx, cy - r); ctx.quadraticCurveTo(cx, cy, cx + r, cy); ctx.quadraticCurveTo(cx, cy, cx, cy + r); ctx.quadraticCurveTo(cx, cy, cx - r, cy); ctx.quadraticCurveTo(cx, cy, cx, cy - r);
   ctx.fill(); ctx.restore();
 }
-function petals(ctx) {
-  [[40, 400, 11, .6, 'rgba(245,176,193,.7)'], [1044, 470, 9, -.8, 'rgba(245,176,193,.55)'], [26, 1040, 8, 1.9, 'rgba(245,176,193,.5)'],
-    [1052, 1120, 12, .3, 'rgba(245,176,193,.65)'], [220, 190, 8, -.4, 'rgba(245,176,193,.45)'], [880, 205, 9, 1.2, 'rgba(245,176,193,.5)']]
-    .forEach(([x, y, size, angle, color]) => petal(ctx, x, y, size, angle, color));
+function note(ctx, P, x, y, size, color) {
+  ctx.save(); ctx.translate(x, y); ctx.rotate(-.18); ctx.fillStyle = color; ctx.strokeStyle = P.ink; ctx.lineWidth = 4; ctx.lineCap = 'round';
+  ctx.beginPath(); ctx.moveTo(size * .3, size * .7); ctx.lineTo(size * .3, -size * .2); ctx.lineTo(size, -size * .36); ctx.lineTo(size, size * .55); ctx.stroke();
+  [[size * .12, size * .74], [size * .82, size * .58]].forEach(([nx, ny]) => { ctx.beginPath(); ctx.ellipse(nx, ny, size * .2, size * .15, -.35, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); });
+  ctx.restore();
+}
+/** Translucent marker tape with torn ends. */
+function tape(ctx, P, cx, cy, w, h, color, turn = -.05) {
+  ctx.save(); ctx.translate(cx, cy); ctx.rotate(turn); ctx.globalAlpha = .7; ctx.fillStyle = color;
+  ctx.beginPath(); ctx.moveTo(-w / 2, -h / 2);
+  for (let i = 0; i <= 6; i += 1) ctx.lineTo(-w / 2 + (i % 2 ? 5 : 0), -h / 2 + h * i / 6);
+  for (let i = 6; i >= 0; i -= 1) ctx.lineTo(w / 2 - (i % 2 ? 5 : 0), -h / 2 + h * i / 6);
+  ctx.closePath(); ctx.fill(); ctx.restore();
 }
 
-/* ---------- Heading: the wordmark as it stands on the masthead ---------- */
+/* ---------- Heading: the MUSIC SPACE letters as on the masthead, the 音乐探索 sticker, the card's kicker ---------- */
 
-/** The three-petal brand mark, as on the masthead at night. */
-function brandMark(ctx, x, y, r) {
-  ctx.save(); ctx.translate(x, y); ctx.rotate(-.26);
-  ['#f0a6b6', '#ffd6c8', '#86b596'].forEach((color, index) => {
-    ctx.save(); ctx.rotate(index * Math.PI * 2 / 3); ctx.fillStyle = color;
-    ctx.beginPath(); ctx.ellipse(0, -r * .55, r * .36, r * .6, 0, 0, Math.PI * 2); ctx.fill(); ctx.restore();
-  });
+function logoLetters(ctx, P, text, cx, y, size) {
+  ctx.save(); ctx.translate(cx, y); ctx.rotate(-.025); ctx.textAlign = 'center'; ctx.lineJoin = 'round';
+  setFont(ctx, size, FONT.logo); spacing(ctx, 1);
+  ctx.fillStyle = P.pink; ctx.fillText(text, size * .13, size * .13);
+  ctx.fillStyle = P.ink; ctx.fillText(text, size * .07, size * .07);
+  ctx.lineWidth = size * .12; ctx.strokeStyle = P.ink; ctx.strokeText(text, 0, 0);
+  ctx.fillStyle = P.yellow; ctx.fillText(text, 0, 0);
   ctx.restore();
+  return (setFont(ctx, size, FONT.logo), ctx.measureText(text).width);
 }
-function heading(ctx, kicker) {
-  ctx.save();
-  setFont(ctx, 700, 46); spacing(ctx, 2);
-  const word = 'Music Map';
-  const mark = 46; const gap = 16;
-  const left = (W - (mark + gap + ctx.measureText(word).width)) / 2;
-  brandMark(ctx, left + mark / 2, 214, 24);
-  ctx.textAlign = 'left'; ctx.fillStyle = C.on;
-  ctx.shadowColor = 'rgba(255,194,122,.3)'; ctx.shadowBlur = 24;
-  ctx.fillText(word, left + mark + gap, 230);
-  ctx.shadowBlur = 0; ctx.shadowColor = 'transparent';
-  ctx.textAlign = 'center'; ctx.fillStyle = C.sakura; setFont(ctx, 500, 25); spacing(ctx, 5);
-  ctx.fillText(kicker, W / 2, 284);
-  ctx.restore();
-}
-
-/* ---------- Paper ticket, seal and sleeves ---------- */
-
-function ticketPaper(ctx, T) {
-  const layer = document.createElement('canvas');
-  layer.width = W; layer.height = H;
-  const lx = layer.getContext('2d');
-  const paper = lx.createLinearGradient(0, T.y, 0, T.tear);
-  paper.addColorStop(0, C.paperTop); paper.addColorStop(1, C.paper);
-  lx.fillStyle = paper; roundedPath(lx, T.x, T.y, T.w, T.h, T.r); lx.fill();
-  const stub = lx.createLinearGradient(0, T.tear, 0, T.y + T.h);
-  stub.addColorStop(0, C.stub); stub.addColorStop(1, C.stubLow);
-  lx.save(); roundedPath(lx, T.x, T.y, T.w, T.h, T.r); lx.clip();
-  lx.fillStyle = stub; lx.fillRect(T.x, T.tear, T.w, T.y + T.h - T.tear);
-  // Fine paper grain.
-  lx.fillStyle = 'rgba(138,122,90,.035)';
-  for (let y = T.y; y < T.y + T.h; y += 4) lx.fillRect(T.x, y, T.w, 1);
-  lx.restore();
-  // Real notches: the night shows through them.
-  lx.globalCompositeOperation = 'destination-out';
-  [[T.x, T.tear, 22], [T.x + T.w, T.tear, 22]].forEach(([x, y, r]) => { lx.beginPath(); lx.arc(x, y, r, 0, Math.PI * 2); lx.fill(); });
-  lx.globalCompositeOperation = 'source-over';
-  ctx.save();
-  ctx.shadowColor = 'rgba(3,5,18,.62)'; ctx.shadowBlur = 80; ctx.shadowOffsetY = 30;
-  ctx.drawImage(layer, 0, 0);
-  ctx.shadowColor = 'rgba(255,194,122,.2)'; ctx.shadowBlur = 130; ctx.shadowOffsetY = 0;
-  ctx.drawImage(layer, 0, 0);
-  ctx.restore();
-  // Tear line between ticket and stub.
-  ctx.save();
-  ctx.strokeStyle = C.edge; ctx.lineWidth = 3; ctx.setLineDash([14, 11]);
-  ctx.beginPath(); ctx.moveTo(T.x + 40, T.tear); ctx.lineTo(T.x + T.w - 40, T.tear); ctx.stroke();
-  ctx.restore();
-}
-function seal(ctx, x, y, title, date) {
-  ctx.save(); ctx.translate(x, y); ctx.rotate(-.14); ctx.globalAlpha = .92;
-  ctx.strokeStyle = C.green; ctx.lineWidth = 3.5; ctx.beginPath(); ctx.arc(0, 0, 66, 0, Math.PI * 2); ctx.stroke();
-  ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(0, 0, 56, 0, Math.PI * 2); ctx.stroke();
-  ctx.fillStyle = '#eaa9ba';
-  for (let i = 0; i < 5; i += 1) {
-    ctx.save(); ctx.translate(0, -29); ctx.rotate(i * Math.PI * 2 / 5);
-    ctx.beginPath(); ctx.ellipse(0, -6.5, 4, 7.5, 0, 0, Math.PI * 2); ctx.fill(); ctx.restore();
-  }
-  ctx.fillStyle = C.green; ctx.beginPath(); ctx.arc(0, -29, 3, 0, Math.PI * 2); ctx.fill();
-  ctx.textAlign = 'center';
-  setFont(ctx, 700, 25); spacing(ctx, 3); ctx.fillText(title, 2, 6);
-  // The date sits where the inner ring is still wide enough for it.
-  setFont(ctx, 500, 16); spacing(ctx, .5); ctx.fillText(date, 0, 32, 84);
-  ctx.restore();
-}
-/** A face-up sleeve: the singer's colour with a record inside, as on the table. */
-function artistSleeve(ctx, cx, cy, size, color, tilt = 0) {
-  ctx.save(); ctx.translate(cx, cy); ctx.rotate(tilt);
-  ctx.shadowColor = 'rgba(58,58,42,.28)'; ctx.shadowBlur = 14; ctx.shadowOffsetY = 5;
-  ctx.fillStyle = '#fffdf3'; roundedPath(ctx, -size / 2, -size / 2, size, size, 3); ctx.fill();
-  ctx.shadowColor = 'transparent';
-  const inset = Math.round(size * .07);
-  ctx.fillStyle = color; roundedPath(ctx, -size / 2 + inset, -size / 2 + inset, size - inset * 2, size - inset * 2, 2); ctx.fill();
-  const disc = size * .31;
-  ctx.fillStyle = '#2c3634'; ctx.beginPath(); ctx.arc(0, 0, disc, 0, Math.PI * 2); ctx.fill();
-  ctx.strokeStyle = 'rgba(132,146,130,.55)'; ctx.lineWidth = 1;
-  for (let r = disc * .42; r < disc - 1; r += 3) { ctx.beginPath(); ctx.arc(0, 0, r, 0, Math.PI * 2); ctx.stroke(); }
-  ctx.fillStyle = color; ctx.beginPath(); ctx.arc(0, 0, disc * .34, 0, Math.PI * 2); ctx.fill();
-  ctx.fillStyle = '#fffdf3'; ctx.beginPath(); ctx.arc(0, 0, 2.5, 0, Math.PI * 2); ctx.fill();
-  ctx.restore();
-}
-/** A face-down sleeve: kraft back, a die-cut ring and a ？. It never says who is inside. */
-function sealedSleeve(ctx, cx, cy, size, tilt = 0, glyph = '？') {
-  ctx.save(); ctx.translate(cx, cy); ctx.rotate(tilt);
-  ctx.shadowColor = 'rgba(58,48,24,.26)'; ctx.shadowBlur = 12; ctx.shadowOffsetY = 5;
-  ctx.fillStyle = C.kraft; roundedPath(ctx, -size / 2, -size / 2, size, size, 3); ctx.fill();
-  ctx.shadowColor = 'transparent';
-  ctx.save(); roundedPath(ctx, -size / 2, -size / 2, size, size, 3); ctx.clip();
-  ctx.strokeStyle = 'rgba(216,198,159,.5)'; ctx.lineWidth = 1;
-  for (let d = -size; d < size; d += 8) { ctx.beginPath(); ctx.moveTo(d, -size / 2); ctx.lineTo(d + size, size / 2); ctx.stroke(); }
-  ctx.restore();
-  ctx.strokeStyle = C.kraftLine; ctx.lineWidth = 2; roundedPath(ctx, -size / 2, -size / 2, size, size, 3); ctx.stroke();
-  ctx.strokeStyle = 'rgba(156,134,87,.55)'; ctx.lineWidth = 1.5; ctx.setLineDash([5, 4]);
-  ctx.beginPath(); ctx.arc(0, 0, size * .34, 0, Math.PI * 2); ctx.stroke(); ctx.setLineDash([]);
-  ctx.fillStyle = C.kraftInk; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-  setFont(ctx, 700, Math.round(size * (glyph.length > 2 ? .26 : .44)), serifFamily());
-  ctx.fillText(glyph, glyph === '？' ? size * .04 : 0, size * .03);
-  ctx.restore();
-}
-/** A small paper tag, e.g. 节选 · 共 9 位. Returns its width. */
-function tag(ctx, text, x, y, { align = 'left', color = C.rose } = {}) {
-  ctx.save();
-  setFont(ctx, 600, 21); spacing(ctx, 2);
-  const width = ctx.measureText(text).width + 26;
-  const left = align === 'right' ? x - width : x;
-  ctx.strokeStyle = color; ctx.lineWidth = 2; roundedPath(ctx, left, y - 25, width, 36, 3); ctx.stroke();
-  ctx.fillStyle = color; ctx.textAlign = 'left'; ctx.fillText(text, left + 13, y);
+/** A marker pill with ink text, turned a little. Returns its width. */
+function pill(ctx, P, text, x, y, { fill = P.mint, size = 26, family = FONT.ui, align = 'left', turn = -.04, ink = P.ink } = {}) {
+  ctx.save(); setFont(ctx, size, family); spacing(ctx, 1);
+  const width = ctx.measureText(text).width + size * 1.1; const height = size * 1.55;
+  const left = align === 'right' ? x - width : align === 'center' ? x - width / 2 : x;
+  ctx.translate(left + width / 2, y); ctx.rotate(turn);
+  inkShape(ctx, P, () => handBox(ctx, -width / 2, -height / 2, width, height, height / 2), { fill, offset: [4, 4], line: 3.5 });
+  ctx.fillStyle = ink; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(text, 0, size * .06);
   ctx.restore();
   return width;
 }
-function drawQr(ctx, text, x, y, size) {
+function heading(ctx, P, kicker) {
+  const width = logoLetters(ctx, P, 'MUSIC SPACE', W / 2 - 70, 176, 84);
+  pill(ctx, P, '音乐探索', W / 2 - 70 + width / 2 + 26, 150, { fill: P.mint, size: 30, turn: -.07 });
+  ctx.save(); ctx.textAlign = 'center'; ctx.fillStyle = P.ink2; setFont(ctx, 30, FONT.ui); spacing(ctx, 3);
+  ctx.fillText(kicker, W / 2, 268, W - 180);
+  ctx.restore();
+}
+
+/* ---------- Ticket, seal and sleeves ---------- */
+
+function ticket(ctx, P, T) {
+  inkShape(ctx, P, () => handBox(ctx, T.x, T.y, T.w, T.h), { fill: P.paperCard, offset: [14, 16], line: 5 });
+  // the stub below the tear is kraft
+  ctx.save(); handBox(ctx, T.x, T.y, T.w, T.h); ctx.clip();
+  ctx.fillStyle = P.paperDeep; ctx.fillRect(T.x, T.tear, T.w, T.y + T.h - T.tear);
+  ctx.restore();
+  ctx.save(); handBox(ctx, T.x, T.y, T.w, T.h); ctx.lineWidth = 5; ctx.strokeStyle = P.ink; ctx.stroke(); ctx.restore();
+  // notches and the perforation
+  ctx.save();
+  [[T.x, T.tear], [T.x + T.w, T.tear]].forEach(([x, y]) => {
+    ctx.fillStyle = P.paper; ctx.beginPath(); ctx.arc(x, y, 22, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = P.ink; ctx.lineWidth = 5; ctx.beginPath(); ctx.arc(x, y, 22, x === T.x ? -Math.PI / 2 : Math.PI / 2, x === T.x ? Math.PI / 2 : Math.PI * 1.5); ctx.stroke();
+  });
+  ctx.strokeStyle = P.ink; ctx.lineWidth = 4; ctx.setLineDash([16, 12]);
+  ctx.beginPath(); ctx.moveTo(T.x + 40, T.tear); ctx.lineTo(T.x + T.w - 40, T.tear); ctx.stroke();
+  ctx.restore();
+  tape(ctx, P, T.x + T.w / 2, T.y + 2, 190, 46, P.yellow, -.04);
+}
+/** The round stamp: 抵达 / 揭晓 / 发现 and the date in digits. */
+function seal(ctx, P, x, y, title, date, fill) {
+  ctx.save(); ctx.translate(x, y); ctx.rotate(-.18);
+  inkShape(ctx, P, () => { ctx.beginPath(); ctx.ellipse(0, 0, 76, 72, .1, 0, Math.PI * 2); }, { fill, offset: [6, 7], line: 5 });
+  ctx.fillStyle = P.ink; ctx.textAlign = 'center';
+  setFont(ctx, 40, FONT.display); spacing(ctx, 4); ctx.fillText(title, 2, 6);
+  setFont(ctx, 20, FONT.digits); spacing(ctx, 1); ctx.fillText(date, 0, 38, 110);
+  ctx.restore();
+}
+/** A face-up sleeve: the singer's colour, an ink frame, the record inside. */
+function artistSleeve(ctx, P, cx, cy, size, color, tilt = 0) {
+  ctx.save(); ctx.translate(cx, cy); ctx.rotate(tilt);
+  inkShape(ctx, P, () => handBox(ctx, -size / 2, -size / 2, size, size, [8, 4, 9, 5]), { fill: color || P.pinkSoft, offset: [6, 7], line: 4.5 });
+  const disc = size * .31;
+  ctx.fillStyle = P.ink; ctx.beginPath(); ctx.arc(0, 0, disc, 0, Math.PI * 2); ctx.fill();
+  ctx.strokeStyle = P.ink2; ctx.lineWidth = 1.6;
+  for (let r = disc * .45; r < disc - 2; r += 4) { ctx.beginPath(); ctx.arc(0, 0, r, 0, Math.PI * 2); ctx.stroke(); }
+  ctx.fillStyle = color || P.pink; ctx.beginPath(); ctx.arc(0, 0, disc * .34, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = P.paperCard; ctx.beginPath(); ctx.arc(0, 0, 3, 0, Math.PI * 2); ctx.fill();
+  ctx.restore();
+}
+/** A face-down sleeve: kraft, ink hatching and a ？. It never says who is inside. */
+function sealedSleeve(ctx, P, cx, cy, size, tilt = 0, glyph = '？') {
+  ctx.save(); ctx.translate(cx, cy); ctx.rotate(tilt);
+  inkShape(ctx, P, () => handBox(ctx, -size / 2, -size / 2, size, size, [8, 4, 9, 5]), { fill: P.paperDeep, offset: [5, 6], line: 4 });
+  ctx.save(); handBox(ctx, -size / 2, -size / 2, size, size, [8, 4, 9, 5]); ctx.clip();
+  ctx.strokeStyle = P.ink; ctx.globalAlpha = .18; ctx.lineWidth = 2;
+  for (let d = -size; d < size; d += 11) { ctx.beginPath(); ctx.moveTo(d, -size / 2); ctx.lineTo(d + size, size / 2); ctx.stroke(); }
+  ctx.restore();
+  ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  setFont(ctx, Math.round(size * (glyph.length > 2 ? .3 : .5)), FONT.display);
+  ctx.fillStyle = P.pink; ctx.fillText(glyph, 3, 5);
+  ctx.fillStyle = P.ink; ctx.fillText(glyph, 0, 2);
+  ctx.restore();
+}
+function drawQr(ctx, P, text, x, y, size) {
   const qr = qrcode(0, 'M');
   qr.addData(text); qr.make();
   const count = qr.getModuleCount();
@@ -315,20 +269,24 @@ function drawQr(ctx, text, x, y, size) {
   const cell = Math.floor(size / (count + quiet * 2));
   const drawn = cell * (count + quiet * 2);
   const ox = Math.round(x + (size - drawn) / 2) + quiet * cell; const oy = Math.round(y + (size - drawn) / 2) + quiet * cell;
-  ctx.save();
-  ctx.fillStyle = '#fffdf6'; roundedPath(ctx, x, y, size, size, 10); ctx.fill();
-  ctx.strokeStyle = C.edge; ctx.lineWidth = 2; roundedPath(ctx, x, y, size, size, 10); ctx.stroke();
-  ctx.fillStyle = C.ink;
+  // The code stays square and unturned, dark on light, so it still scans.
+  inkShape(ctx, P, () => handBox(ctx, x, y, size, size, 12), { fill: P.paperCard, offset: [6, 7], line: 4 });
+  ctx.save(); ctx.fillStyle = P.ink;
   for (let row = 0; row < count; row += 1) for (let col = 0; col < count; col += 1) if (qr.isDark(row, col)) ctx.fillRect(ox + col * cell, oy + row * cell, cell, cell);
   ctx.restore();
 }
-function footer(ctx, address) {
+function footer(ctx, P, address) {
   ctx.save();
   ctx.textAlign = 'center';
-  ctx.fillStyle = C.onSoft; setFont(ctx, 400, 24); spacing(ctx, 1);
-  ctx.fillText(address, W / 2, 1270, W - 160);
-  ctx.fillStyle = C.sakura; setFont(ctx, 600, 28, serifFamily()); spacing(ctx, 4);
-  ctx.fillText(FOOTER, W / 2, 1316);
+  ctx.fillStyle = P.ink3; setFont(ctx, 24, FONT.ui); spacing(ctx, 1);
+  ctx.fillText(address, W / 2, 1278, W - 200);
+  ctx.fillStyle = P.ink; setFont(ctx, 30, FONT.hand); spacing(ctx, 3);
+  ctx.fillText(FOOTER, W / 2, 1322);
+  // a wavy marker line under the footer
+  const width = Math.min(ctx.measureText(FOOTER).width, W - 200); const left = W / 2 - width / 2;
+  ctx.strokeStyle = P.pink; ctx.lineWidth = 3; ctx.lineCap = 'round'; ctx.beginPath();
+  for (let x = 0; x <= width; x += 4) { const yy = 1334 + Math.sin(x / 9) * 3; if (x) ctx.lineTo(left + x, yy); else ctx.moveTo(left, yy); }
+  ctx.stroke();
   ctx.restore();
 }
 function canvasBase() {
@@ -343,7 +301,7 @@ const usedHints = session => (session.hints || []).filter(hint => hint.level < 3
 
 /** The route row: start, the stops in between face down, target. `broken` leaves a dashed gap
  *  before the target (the round was revealed before the player got there). */
-function challengeRow(ctx, { start, target, middle, broken }, x0, x1, cy) {
+function challengeRow(ctx, P, { start, target, middle, broken }, x0, x1, cy) {
   const END = 118; const MID = 86;
   const room = broken ? 5 : 6;
   const items = [{ kind: 'artist', id: start }];
@@ -356,88 +314,91 @@ function challengeRow(ctx, { start, target, middle, broken }, x0, x1, cy) {
   const gap = Math.max(10, ((x1 - x0) - widths.reduce((sum, w) => sum + w, 0)) / Math.max(1, items.length - 1));
   let x = x0;
   const centres = items.map((item, index) => { const centre = x + widths[index] / 2; x += widths[index] + gap; return centre; });
-  // The thread the route hangs on; dashed where the player never walked.
+  // The thread the route hangs on (marker orange, as on the table); dashed ink where the player never walked.
   ctx.save();
-  ctx.lineWidth = 4; ctx.strokeStyle = C.gold; ctx.lineCap = 'round';
+  ctx.lineWidth = 7; ctx.strokeStyle = P.orange; ctx.lineCap = 'round';
   const gapIndex = items.findIndex(item => item.kind === 'gap');
   const solidEnd = gapIndex >= 0 ? centres[gapIndex - 1] : centres[centres.length - 1];
   ctx.beginPath(); ctx.moveTo(centres[0], cy); ctx.lineTo(solidEnd, cy); ctx.stroke();
   if (gapIndex >= 0) {
-    ctx.setLineDash([10, 10]); ctx.strokeStyle = '#8d8676';
+    ctx.setLineDash([12, 12]); ctx.strokeStyle = P.ink; ctx.lineWidth = 4;
     ctx.beginPath(); ctx.moveTo(solidEnd, cy); ctx.lineTo(centres[centres.length - 1], cy); ctx.stroke();
   }
   ctx.restore();
   const tilts = [-.05, .04, -.03, .05, -.04, .03, -.05, .04];
   items.forEach((item, index) => {
     const cx = centres[index]; const tilt = tilts[index % tilts.length];
-    if (item.kind === 'artist') artistSleeve(ctx, cx, cy, END, toneOf(item.id), tilt);
-    else if (item.kind === 'sealed') sealedSleeve(ctx, cx, cy, MID, tilt);
-    else if (item.kind === 'more') sealedSleeve(ctx, cx, cy, MID, tilt, `+${item.count}`);
-    else {
-      ctx.save(); ctx.textAlign = 'center'; ctx.fillStyle = C.muted; setFont(ctx, 500, 22); spacing(ctx, 2);
-      ctx.fillStyle = C.paperTop; ctx.fillRect(cx - 50, cy - 18, 100, 36);
-      ctx.fillStyle = C.muted; ctx.fillText('未走到', cx, cy + 8); ctx.restore();
-    }
+    if (item.kind === 'artist') artistSleeve(ctx, P, cx, cy, END, toneOf(item.id), tilt);
+    else if (item.kind === 'sealed') sealedSleeve(ctx, P, cx, cy, MID, tilt);
+    else if (item.kind === 'more') sealedSleeve(ctx, P, cx, cy, MID, tilt, `+${item.count}`);
+    else pill(ctx, P, '未走到', cx, cy, { fill: P.paperCard, size: 22, align: 'center', turn: .03 });
   });
 }
 
 /** 寻声战绩卡 for a finished round (arrived or revealed). Draws only the start, the target and
  *  face-down sleeves for the stops the player passed: no singer in between, no song title. */
 export async function buildChallengeCard(session) {
-  await document.fonts?.ready;
-  const { canvas, ctx } = canvasBase();
-  const serif = serifFamily();
+  const P = palette();
   const arrived = session.status === 'complete';
   const steps = Math.max(0, session.path.length - 1);
   const hints = usedHints(session);
   const url = challengeUrl(session.start, session.target);
-  nightBackdrop(ctx);
-  petals(ctx);
-  heading(ctx, '寻声 · 两位歌手之间，隔着几首歌？');
-  const T = { x: 64, y: 318, w: 952, h: 900, tear: 930, r: 26 };
-  ticketPaper(ctx, T);
+  const eyebrow = session.friend ? '朋友出的题 · 寻声' : '寻声';
+  const detail = arrived
+    ? `抵达终点 · ${hints ? `用了 ${hints} 次提示` : '没用提示'}`
+    : `已揭晓 · 没有走到终点${hints ? ` · 用了 ${hints} 次提示` : ''}`;
+  await loadFaces({
+    logo: 'MUSIC SPACE', digits: `${stampDate(session.updated || Date.now())}+0123456789`,
+    display: `${artistName(session.start)}${artistName(session.target)}抵达揭晓我走了步？${steps}`,
+    ui: `音乐探索寻声 · 两位歌手之间，隔着几首歌？起点终点我的战绩${eyebrow}未走到${shortUrl(url)}`,
+    hand: `中间的歌手，翻开才知道${detail}扫码走同一道题${FOOTER}`,
+  });
+  const { canvas, ctx } = canvasBase();
+  paperPage(ctx, P);
+  heading(ctx, P, '寻声 · 两位歌手之间，隔着几首歌？');
+  const T = { x: 72, y: 318, w: 936, h: 900, tear: 930 };
+  ticket(ctx, P, T);
   const left = T.x + 64; const right = T.x + T.w - 64;
+  pill(ctx, P, eyebrow, left, T.y + 72, { fill: P.ink, ink: P.paperCard, size: 24, turn: -.04 });
   ctx.save();
-  ctx.textAlign = 'left'; ctx.fillStyle = C.rose; setFont(ctx, 500, 24); spacing(ctx, 5);
-  ctx.fillText(session.friend ? '朋友出的题 · 寻声' : '寻声 · 真实合作精选', left, T.y + 78);
-  spacing(ctx, 2); ctx.fillStyle = C.ink;
-  fitLine(ctx, artistName(session.start), left, T.y + 196, right - left - 190, 92, { family: serif, weight: 700, min: 48 });
-  ctx.fillStyle = C.muted; setFont(ctx, 500, 22); spacing(ctx, 3);
-  ctx.fillText('起点', left + 2, T.y + 238);
+  ctx.textAlign = 'left'; ctx.fillStyle = P.ink; spacing(ctx, 2);
+  fitLine(ctx, artistName(session.start), left, T.y + 204, right - left - 200, 92, { family: FONT.display, min: 48 });
+  ctx.fillStyle = P.ink3; setFont(ctx, 26, FONT.ui); spacing(ctx, 3);
+  ctx.fillText('起点', left + 2, T.y + 246);
   ctx.restore();
-  seal(ctx, right - 66, T.y + 108, arrived ? '抵达' : '揭晓', stampDate(session.updated || Date.now()));
+  seal(ctx, P, right - 74, T.y + 118, arrived ? '抵达' : '揭晓', stampDate(session.updated || Date.now()), arrived ? P.yellow : P.skySoft);
   // An arrival passes steps − 1 singers between start and target; a revealed round passes every stop it walked.
-  challengeRow(ctx, { start: session.start, target: session.target, middle: arrived ? Math.max(0, steps - 1) : steps, broken: !arrived }, left, right, T.y + 338);
+  challengeRow(ctx, P, { start: session.start, target: session.target, middle: arrived ? Math.max(0, steps - 1) : steps, broken: !arrived }, left, right, T.y + 352);
   ctx.save();
-  ctx.textAlign = 'right'; ctx.fillStyle = C.muted; setFont(ctx, 500, 22); spacing(ctx, 3);
-  ctx.fillText('终点', right - 2, T.y + 446);
-  ctx.fillStyle = C.target; spacing(ctx, 2);
-  fitLine(ctx, artistName(session.target), right, T.y + 540, right - left, 92, { family: serif, weight: 700, min: 48 });
-  ctx.fillStyle = C.inkSoft; setFont(ctx, 400, 28); spacing(ctx, 2);
-  ctx.fillText('中间的歌手，翻开才知道', right, T.y + 592);
+  ctx.textAlign = 'right'; ctx.fillStyle = P.ink3; setFont(ctx, 26, FONT.ui); spacing(ctx, 3);
+  ctx.fillText('终点', right - 2, T.y + 462);
+  spacing(ctx, 2);
+  const targetName = artistName(session.target);
+  setFont(ctx, 92, FONT.display);
+  ctx.fillStyle = P.ink; fitLine(ctx, targetName, right + 5, T.y + 549, right - left, 92, { family: FONT.display, min: 48 });
+  ctx.fillStyle = P.pink; fitLine(ctx, targetName, right, T.y + 544, right - left, 92, { family: FONT.display, min: 48 });
+  ctx.fillStyle = P.ink2; setFont(ctx, 30, FONT.hand); spacing(ctx, 2);
+  ctx.fillText('中间的歌手，翻开才知道', right, T.y + 594);
   ctx.restore();
   // Stub: the score, and the code that opens the same puzzle.
   const sy = T.tear;
   const qrSize = 220;
   const textWidth = right - qrSize - 40 - left;
+  pill(ctx, P, '我的战绩', left, sy + 64, { fill: P.yellow, size: 24, turn: -.03 });
   ctx.save();
-  ctx.textAlign = 'left'; ctx.fillStyle = C.rose; setFont(ctx, 500, 24); spacing(ctx, 5);
-  ctx.fillText('我的战绩', left, sy + 66);
-  spacing(ctx, 2); ctx.fillStyle = C.ink;
-  fitLine(ctx, `我走了 ${steps} 步`, left, sy + 146, textWidth, 66, { family: serif, weight: 700, min: 40 });
-  const detail = arrived
-    ? `抵达终点 · ${hints ? `用了 ${hints} 次提示` : '没用提示'}`
-    : `已揭晓 · 没有走到终点${hints ? ` · 用了 ${hints} 次提示` : ''}`;
-  ctx.fillStyle = C.inkSoft; setFont(ctx, 400, 28); spacing(ctx, 1);
-  wrapText(ctx, detail, left, sy + 198, textWidth, 38, 1);
-  ctx.fillStyle = C.muted; setFont(ctx, 400, 23); spacing(ctx, 1);
-  wrapText(ctx, '扫码走同一道题 · 只带起点和终点', left, sy + 254, textWidth, 32, 1);
+  ctx.textAlign = 'left'; spacing(ctx, 2);
+  ctx.fillStyle = P.ink;
+  fitLine(ctx, `我走了 ${steps} 步`, left, sy + 156, textWidth, 66, { family: FONT.display, min: 40 });
+  ctx.fillStyle = P.ink2; setFont(ctx, 30, FONT.hand); spacing(ctx, 1);
+  wrapText(ctx, detail, left, sy + 208, textWidth, 38, 1);
+  ctx.fillStyle = P.ink3; setFont(ctx, 26, FONT.hand); spacing(ctx, 1);
+  wrapText(ctx, '扫码走同一道题', left, sy + 262, textWidth, 32, 1);
   ctx.restore();
-  drawQr(ctx, url, right - qrSize, sy + 36, qrSize);
-  footer(ctx, shortUrl(url));
+  drawQr(ctx, P, url, right - qrSize, sy + 34, qrSize);
+  footer(ctx, P, shortUrl(url));
   return canvas;
 }
-export const challengeCardName = session => `music-map-xunsheng-${slug(session.start)}-${slug(session.target)}.png`;
+export const challengeCardName = session => `music-space-map-xunsheng-${slug(session.start)}-${slug(session.target)}.png`;
 
 /* ---------- 发现卡片 (PRD 5.8) ---------- */
 
@@ -457,51 +418,54 @@ export const discoveryExcerpted = session => metInOrder(session).length > MAX_ME
 
 /** 发现卡片 for a roam: the start, the singers met (an excerpt when long) and up to five kept songs. */
 export async function buildDiscoveryCard(session) {
-  await document.fonts?.ready;
-  const { canvas, ctx } = canvasBase();
-  const serif = serifFamily();
+  const P = palette();
   const met = metInOrder(session);
   const kept = keptSongs(session);
   const when = session.updated || session.created || Date.now();
-  nightBackdrop(ctx);
-  petals(ctx);
-  heading(ctx, '发现卡片 · 从喜欢，走向未知');
-  // The ticket is as tall as what it carries: the singers' row above the tear, and a stub as tall as its
-  // list (five songs and 等 N 首 fill 400px). A short list makes a shorter ticket, centred in the night
-  // between the heading and the footer, so no blank band is left on the paper.
   const listed = kept.slice(0, MAX_KEPT);
+  const status = `探索 · ${session.status === 'ended' ? '回顾' : '进行中'}`;
+  await loadFaces({
+    logo: 'MUSIC SPACE', digits: `${stampDate(when)}0123456789`,
+    display: `从出发发现${artistName(session.start)}`,
+    ui: `音乐探索发现卡片 · 从喜欢，走向未知${status}留下的歌节选 · 共位首等另${met.map(item => artistName(item.id)).join('')}${listed.map(item => songs[item.id].title).join('')}${shortUrl(homeUrl())}`,
+    hand: `途经位 · 留下首${longDate(when)}按遇见的先后 · →：沿合唱走过去 ↩：退回后换个方向这次还没留下歌${listed.map(item => songs[item.id].artists.map(artistName).join(' / ')).join('')}${FOOTER}`,
+  });
+  const { canvas, ctx } = canvasBase();
+  paperPage(ctx, P);
+  heading(ctx, P, '发现卡片 · 从喜欢，走向未知');
+  // The ticket is as tall as what it carries: the singers' row above the tear, and a stub as tall as its
+  // list (five songs and 等 N 首 fill 400px). A short list makes a shorter ticket, centred between the heading and the footer.
   const rows = listed.length ? listed.length + (kept.length > MAX_KEPT ? 1 : 0) : 2;
   const stubHeight = 170 + (rows - 1) * 46;
   const UPPER = 500; const TALLEST = 900;
-  const T = { x: 64, w: 952, r: 26, h: UPPER + stubHeight };
+  const T = { x: 72, w: 936, h: UPPER + stubHeight };
   T.y = 318 + Math.round((TALLEST - T.h) / 2);
   T.tear = T.y + UPPER;
-  ticketPaper(ctx, T);
+  ticket(ctx, P, T);
   const left = T.x + 64; const right = T.x + T.w - 64;
+  pill(ctx, P, status, left, T.y + 72, { fill: P.ink, ink: P.paperCard, size: 24, turn: -.04 });
+  // 从 <start> 出发, the name in the display letters.
   ctx.save();
-  ctx.textAlign = 'left'; ctx.fillStyle = C.rose; setFont(ctx, 500, 24); spacing(ctx, 5);
-  ctx.fillText(`探索 · ${session.status === 'ended' ? '回顾' : '进行中'}`, left, T.y + 78);
-  // 从 <start> 出发, the name in the serif of the shop's slips.
   spacing(ctx, 2);
-  setFont(ctx, 500, 40, serif); ctx.fillStyle = C.muted;
-  ctx.fillText('从', left, T.y + 186);
-  const nameX = left + ctx.measureText('从').width + 14;
-  ctx.fillStyle = C.ink;
-  const size = fitLine(ctx, artistName(session.start), nameX, T.y + 186, right - nameX - 250, 84, { family: serif, weight: 700, min: 44 });
-  setFont(ctx, 700, size, serif);
-  const nameWidth = Math.min(ctx.measureText(artistName(session.start)).width, right - nameX - 250);
-  setFont(ctx, 500, 40, serif); ctx.fillStyle = C.muted;
-  ctx.fillText('出发', nameX + nameWidth + 14, T.y + 186);
-  ctx.fillStyle = C.inkSoft; setFont(ctx, 400, 27); spacing(ctx, 1);
-  ctx.fillText(`途经 ${met.length} 位 · 留下 ${kept.length} 首 · ${longDate(when)}`, left, T.y + 244, right - left - 170);
+  setFont(ctx, 44, FONT.display); ctx.fillStyle = P.ink2; ctx.textAlign = 'left';
+  ctx.fillText('从', left, T.y + 192);
+  const nameX = left + ctx.measureText('从').width + 16;
+  ctx.fillStyle = P.ink;
+  const size = fitLine(ctx, artistName(session.start), nameX, T.y + 192, right - nameX - 260, 84, { family: FONT.display, min: 44 });
+  setFont(ctx, size, FONT.display);
+  const nameWidth = Math.min(ctx.measureText(artistName(session.start)).width, right - nameX - 260);
+  setFont(ctx, 44, FONT.display); ctx.fillStyle = P.ink2;
+  ctx.fillText('出发', nameX + nameWidth + 16, T.y + 192);
+  ctx.fillStyle = P.ink2; setFont(ctx, 28, FONT.hand); spacing(ctx, 1);
+  ctx.fillText(`途经 ${met.length} 位 · 留下 ${kept.length} 首 · ${longDate(when)}`, left, T.y + 250, right - left - 190);
   ctx.restore();
-  seal(ctx, right - 66, T.y + 108, '发现', stampDate(when));
+  seal(ctx, P, right - 74, T.y + 118, '发现', stampDate(when), P.mint);
   // The singers met, first to last. Long walks keep the first three and the last two (节选).
   const excerpt = met.length > MAX_MET;
   const slots = excerpt ? [...met.slice(0, 3), { gap: true }, ...met.slice(-2)] : met;
   const slotWidth = (right - left) / Math.max(slots.length, 4);
   const rowLeft = left + ((right - left) - slotWidth * slots.length) / 2;
-  const cy = T.y + 318; const sleeve = 92;
+  const cy = T.y + 326; const sleeve = 92;
   const tilts = [-.05, .04, -.03, .05, -.04, .03];
   // → between two singers walked one to the next; ↩ where the walk went back before reaching the next one.
   const glyphOf = (slot, index) => index === 0 || slot.gap || slots[index - 1].gap ? '' : slot.walked ? '→' : '↩';
@@ -510,65 +474,62 @@ export async function buildDiscoveryCard(session) {
     const cx = rowLeft + slotWidth * (index + .5);
     const glyph = glyphOf(slot, index);
     if (glyph) {
-      ctx.save(); ctx.textAlign = 'center'; ctx.fillStyle = C.gold; setFont(ctx, 600, 30);
-      ctx.fillText(glyph, cx - slotWidth / 2, cy + 10);
+      ctx.save(); ctx.textAlign = 'center'; ctx.fillStyle = P.orange; setFont(ctx, 34, FONT.ui);
+      ctx.fillText(glyph, cx - slotWidth / 2, cy + 12);
       ctx.restore();
     }
     if (slot.gap) {
-      ctx.save(); ctx.textAlign = 'center'; ctx.fillStyle = C.muted; setFont(ctx, 700, 34); spacing(ctx, 4);
+      ctx.save(); ctx.textAlign = 'center'; ctx.fillStyle = P.ink2; setFont(ctx, 36, FONT.ui); spacing(ctx, 4);
       ctx.fillText('···', cx, cy + 10);
-      setFont(ctx, 500, 21); spacing(ctx, 1); ctx.fillText(`另 ${met.length - 5} 位`, cx, cy + sleeve);
+      setFont(ctx, 22, FONT.ui); spacing(ctx, 1); ctx.fillText(`另 ${met.length - 5} 位`, cx, cy + sleeve);
       ctx.restore();
       return;
     }
-    artistSleeve(ctx, cx, cy, sleeve, toneOf(slot.id), tilts[index % tilts.length]);
-    ctx.save(); ctx.textAlign = 'center'; ctx.fillStyle = slot.id === session.start ? C.ink : C.inkSoft;
-    fitLine(ctx, artistName(slot.id), cx, cy + sleeve, slotWidth - 12, 26, { family: serif, weight: 600, min: 18 });
+    artistSleeve(ctx, P, cx, cy, sleeve, toneOf(slot.id), tilts[index % tilts.length]);
+    ctx.save(); ctx.textAlign = 'center'; ctx.fillStyle = slot.id === session.start ? P.ink : P.ink2;
+    fitLine(ctx, artistName(slot.id), cx, cy + sleeve + 4, slotWidth - 12, 28, { family: FONT.ui, min: 18 });
     ctx.restore();
   });
   // The key under the row names each mark it uses. Beside a 节选 tag a long key drops its opening words.
   ctx.save();
-  setFont(ctx, 600, 21); spacing(ctx, 2);
-  const tagRoom = excerpt ? ctx.measureText(`节选 · 共 ${met.length} 位`).width + 26 + 24 : 0;
-  ctx.textAlign = 'left'; ctx.fillStyle = C.muted; setFont(ctx, 400, 21); spacing(ctx, 1);
+  setFont(ctx, 22, FONT.ui); spacing(ctx, 1);
+  const tagRoom = excerpt ? ctx.measureText(`节选 · 共 ${met.length} 位`).width + 50 : 0;
+  ctx.textAlign = 'left'; ctx.fillStyle = P.ink3; setFont(ctx, 22, FONT.hand); spacing(ctx, 1);
   const walkKey = `→：沿合唱走过去${turned ? ' · ↩：退回后换个方向' : ''}`;
   const legend = ctx.measureText(`按遇见的先后 · ${walkKey}`).width <= right - left - tagRoom ? `按遇见的先后 · ${walkKey}` : walkKey;
-  ctx.fillText(legend, left, T.y + 458, right - left - tagRoom);
+  ctx.fillText(legend, left, T.y + 462, right - left - tagRoom);
   ctx.restore();
-  if (excerpt) tag(ctx, `节选 · 共 ${met.length} 位`, right, T.y + 458, { align: 'right' });
+  if (excerpt) pill(ctx, P, `节选 · 共 ${met.length} 位`, right, T.y + 455, { fill: P.pinkSoft, size: 20, align: 'right', turn: .03 });
   // Stub: the songs kept on the way.
   const sy = T.tear;
-  ctx.save();
-  ctx.textAlign = 'left'; ctx.fillStyle = C.rose; setFont(ctx, 500, 24); spacing(ctx, 5);
-  ctx.fillText('留下的歌', left, sy + 62);
-  ctx.restore();
-  if (kept.length > MAX_KEPT) tag(ctx, `节选 · 共 ${kept.length} 首`, right, sy + 62, { align: 'right' });
+  pill(ctx, P, '留下的歌', left, sy + 60, { fill: P.yellow, size: 24, turn: -.03 });
+  if (kept.length > MAX_KEPT) pill(ctx, P, `节选 · 共 ${kept.length} 首`, right, sy + 60, { fill: P.pinkSoft, size: 20, align: 'right', turn: .03 });
   if (!listed.length) {
-    ctx.save(); ctx.fillStyle = C.muted; setFont(ctx, 400, 27); spacing(ctx, 1);
-    wrapText(ctx, '这次还没有留下歌曲。走过的路，都在网页的探索回顾里。', left, sy + 128, right - left, 40, 2);
+    ctx.save(); ctx.fillStyle = P.ink2; setFont(ctx, 30, FONT.hand); spacing(ctx, 1);
+    wrapText(ctx, '这次还没留下歌', left, sy + 134, right - left, 40, 2);
     ctx.restore();
   }
   listed.forEach((item, index) => {
     const song = songs[item.id];
-    const y = sy + 120 + index * 46;
+    const y = sy + 124 + index * 46;
     ctx.save();
-    ctx.textAlign = 'left'; ctx.fillStyle = C.rose; setFont(ctx, 600, 20, '"SFMono-Regular", Consolas, monospace');
+    ctx.textAlign = 'left'; ctx.fillStyle = P.pink; setFont(ctx, 24, FONT.digits);
     ctx.fillText(pad2(index + 1), left, y);
-    ctx.fillStyle = C.ink; spacing(ctx, 1);
-    fitLine(ctx, `《${song.title}》`, left + 46, y, 470, 29, { family: serif, weight: 600, min: 20 });
-    ctx.textAlign = 'right'; ctx.fillStyle = C.muted; spacing(ctx, 0);
-    fitLine(ctx, song.artists.map(artistName).join(' / '), right, y, 290, 22, { weight: 400, min: 16 });
+    ctx.fillStyle = P.ink; spacing(ctx, 1);
+    fitLine(ctx, `《${song.title}》`, left + 50, y, 470, 30, { family: FONT.ui, min: 20 });
+    ctx.textAlign = 'right'; ctx.fillStyle = P.ink2; spacing(ctx, 0);
+    fitLine(ctx, song.artists.map(artistName).join(' / '), right, y, 290, 24, { family: FONT.hand, min: 16 });
     ctx.restore();
   });
-  if (kept.length > 5) {
-    ctx.save(); ctx.textAlign = 'left'; ctx.fillStyle = C.muted; setFont(ctx, 500, 23); spacing(ctx, 2);
-    ctx.fillText(`等 ${kept.length} 首`, left + 46, sy + 120 + 5 * 46);
+  if (kept.length > MAX_KEPT) {
+    ctx.save(); ctx.textAlign = 'left'; ctx.fillStyle = P.ink2; setFont(ctx, 24, FONT.ui); spacing(ctx, 2);
+    ctx.fillText(`等 ${kept.length} 首`, left + 50, sy + 124 + MAX_KEPT * 46);
     ctx.restore();
   }
-  footer(ctx, shortUrl(homeUrl()));
+  footer(ctx, P, shortUrl(homeUrl()));
   return canvas;
 }
-export const discoveryCardName = session => `music-map-discovery-${fileDate(session.updated || session.created || Date.now())}.png`;
+export const discoveryCardName = session => `music-space-map-discovery-${fileDate(session.updated || session.created || Date.now())}.png`;
 
 /* ---------- Preview: the finished PNG, saved or shared only on the player's click ---------- */
 
@@ -577,7 +538,7 @@ export const discoveryCardName = session => `music-map-discovery-${fileDate(sess
  *  newer preview or leaving the page releases the image. */
 export async function presentPng(canvas, { filename, title, alt, note = '' }) {
   const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
-  if (!blob) throw new Error('图片暂时未能生成，请重试。');
+  if (!blob) throw new Error('图片没生成出来，请重试。');
   closePreview?.();
   const opener = document.activeElement instanceof HTMLElement ? document.activeElement : null;
   const url = URL.createObjectURL(blob);
@@ -585,7 +546,7 @@ export async function presentPng(canvas, { filename, title, alt, note = '' }) {
   dialog.className = 'share-card-export';
   dialog.dataset.motion = 'self';
   dialog.setAttribute('aria-labelledby', 'share-card-export-title');
-  dialog.innerHTML = `<header class="share-card-export__header"><h2 id="share-card-export-title">${escapeHTML(title)}</h2><span>PNG · ${canvas.width} × ${canvas.height}</span></header>
+  dialog.innerHTML = `<header class="share-card-export__header"><h2 id="share-card-export-title">${escapeHTML(title)}</h2></header>
     <img class="share-card-export__poster" alt="${escapeHTML(alt)}" width="${canvas.width}" height="${canvas.height}">
     <p class="share-card-export__hint">也可以长按图片保存</p>
     ${note ? `<p class="share-card-export__note">${escapeHTML(note)}</p>` : ''}

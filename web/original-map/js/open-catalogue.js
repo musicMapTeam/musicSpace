@@ -1,6 +1,6 @@
 import catalogue from '../assets/data/hf-collaborations.json';
 import { icon } from './icons.js';
-import { importLegacyMapMusic, listenHTML } from './map.js';
+import { importLegacyMapMusic, listenHTML, sourcesHTML } from './map.js';
 import { songs } from './map-data.js';
 import { getSavedMusic, toggleSavedMusic, removeSavedMusic, subscribeSavedMusic } from './music-library.js';
 
@@ -8,7 +8,7 @@ const hfSnapshot = track => ({ id: track.id, title: track.title, artists: [...tr
 
 function importPreviousSaves(api) {
   try { importLegacyMapMusic(api); }
-  catch { api.toast('旧探索记录仍保留，歌曲收藏暂未同步到浏览器'); }
+  catch { api.toast('留下的歌暂时没同步'); }
 }
 
 // 留下 / 移除, as in the record shop: the same words wherever a song is kept or let go.
@@ -18,6 +18,16 @@ function updateSaveButton(button, track, saved) {
   button.setAttribute('aria-pressed', String(saved));
   button.setAttribute('aria-label', `${saved ? '移除' : '留下'}《${track.title}》`);
   button.title = saved ? '已留下，点击移除' : '留下这首歌';
+}
+
+/** Where an open-catalogue row comes from: its row in the Hugging Face snapshot (the citation stays one tap away, in the row). */
+function hfCite(track) {
+  const row = catalogue.tracks.find(item => item.id === track.id)?.source?.recordNumber;
+  const cite = document.createElement('p'); cite.className = 'open-catalogue__cite';
+  const link = document.createElement('a'); link.href = catalogue.source.url; link.target = '_blank'; link.rel = 'noopener noreferrer';
+  link.textContent = row ? `Hugging Face 数据集第 ${row.toLocaleString('en-US')} 行 ↗` : 'Hugging Face 数据集 ↗';
+  cite.append('来源：', link);
+  return cite;
 }
 
 /** One song row. The 开放曲库 toggles 留下 / 移除 with an icon; 留下的歌 (`removeOnly`) says 移除 in words.
@@ -56,11 +66,10 @@ export function mountOpenCatalogue(api) {
   const dialog = document.createElement('dialog');
   dialog.className = 'open-catalogue';
   dialog.setAttribute('aria-labelledby', 'open-catalogue-title');
-  dialog.innerHTML = `<header><div><span class="open-catalogue__eyebrow">THE OPEN CRATE</span><h2 id="open-catalogue-title">开放曲库<span>${catalogue.tracks.length}</span></h2></div><button class="icon-button" data-crate-close aria-label="关闭开放曲库">${icon('x')}</button></header>
+  dialog.innerHTML = `<span class="ds-tape open-catalogue__tape" aria-hidden="true"></span><header><div><span class="open-catalogue__eyebrow">THE OPEN CRATE</span><h2 id="open-catalogue-title">开放曲库<span>${catalogue.tracks.length}</span></h2></div><button class="icon-button" data-crate-close aria-label="关闭开放曲库">${icon('x')}</button></header>
     <label class="open-catalogue__search">${icon('magnifying-glass')}<input type="search" placeholder="搜歌曲、艺人" aria-label="搜索开放曲库"></label>
-    <p class="open-catalogue__note">共同署名艺人 · 制作分工未收录</p><div class="open-catalogue__list"></div>
-    <footer><span data-crate-count role="status"></span><a target="_blank" rel="noopener noreferrer">Hugging Face 数据来源 ${icon('arrow-up-right')}</a></footer>`;
-  dialog.querySelector('footer a').href = catalogue.source.url;
+    <p class="open-catalogue__note">共同署名，不一定是合唱</p><div class="open-catalogue__list"></div>
+    <footer><span data-crate-count role="status"></span><button type="button" class="open-catalogue__sources" data-about-sources aria-haspopup="dialog">数据来源</button></footer>`;
   document.body.append(dialog);
   const list = dialog.querySelector('.open-catalogue__list');
   function render(query = '') {
@@ -69,18 +78,20 @@ export function mountOpenCatalogue(api) {
     const savedIds = new Set(getSavedMusic().map(track => track.id));
     list.replaceChildren();
     tracks.forEach((track, index) => {
-      const detail = document.createElement('p'); detail.textContent = `专辑：${track.album} · 原始记录 ${track.source.recordNumber}`;
+      const detail = document.createElement('div'); detail.className = 'open-catalogue__detail';
+      const album = document.createElement('p'); album.textContent = `专辑《${track.album}》`;
+      detail.append(album, hfCite(track));
       const snapshot = hfSnapshot(track);
       list.append(musicRow(snapshot, index, {
         saved: savedIds.has(track.id), detail,
         onSave() {
-          try { api.toast(toggleSavedMusic(snapshot) ? '已留下，可在「我的发现 · 留下的歌」找到' : '已移除'); }
-          catch { api.toast('收藏还未保存，请检查浏览器存储空间后重试'); }
+          try { api.toast(toggleSavedMusic(snapshot) ? '已留下' : '已移除'); }
+          catch { api.toast('没存上，浏览器存储不可用'); }
         },
       }));
     });
-    if (!tracks.length) { const empty = document.createElement('p'); empty.className = 'open-catalogue__empty'; empty.textContent = '这箱唱片里还没有。换个关键词吧。'; list.append(empty); }
-    dialog.querySelector('[data-crate-count]').textContent = `${tracks.length} 首 / 本地全库 ${catalogue.counts.rows.toLocaleString('en-US')} 行`;
+    if (!tracks.length) { const empty = document.createElement('p'); empty.className = 'open-catalogue__empty'; empty.textContent = '没找到，换个词试试。'; list.append(empty); }
+    dialog.querySelector('[data-crate-count]').textContent = `${tracks.length} 首`;
   }
   const unsubscribe = subscribeSavedMusic(tracks => {
     const savedIds = new Set(tracks.map(track => track.id));
@@ -109,29 +120,29 @@ export function mountSavedMusic(container, api) {
   importPreviousSaves(api);
   function render() {
     const tracks = getSavedMusic();
-    container.innerHTML = `<section class="saved-music" aria-label="收藏的歌曲"><header class="saved-music__heading"><h2>留下的歌</h2><span>${tracks.length} 首</span></header><div class="saved-music__list"></div></section>`;
+    container.innerHTML = `<section class="saved-music" aria-label="留下的歌"><header class="saved-music__heading"><h2>留下的歌</h2><span>${tracks.length} 首</span></header><div class="saved-music__list"></div></section>`;
     const list = container.querySelector('.saved-music__list');
     if (!tracks.length) {
-      list.innerHTML = `<div class="saved-music__empty">${icon('bookmark')}<p>遇到喜欢的歌，就留在这里。</p><button type="button" class="button button--primary" data-music-explore>去探索 ${icon('arrow-up-right')}</button></div>`;
+      list.innerHTML = `<div class="saved-music__empty"><span class="ds-deco ds-music saved-music__doodle" aria-hidden="true"></span><p>遇到喜欢的歌，就留在这里。</p><button type="button" class="button button--primary" data-music-explore>去唱片店 ${icon('arrow-right')}</button></div>`;
       list.querySelector('button').addEventListener('click', () => api.navigate('explore')); return;
     }
     tracks.forEach((track, index) => {
-      const detail = document.createElement('p');
+      const detail = document.createElement('div'); detail.className = 'open-catalogue__detail';
       const date = new Date(track.savedAt).toLocaleDateString('zh-CN', { month: 'long', day: 'numeric' });
-      detail.textContent = `${track.dataset === 'hf' ? '开放曲库 · 共同署名' : '真实合作精选'} · ${date}留下`;
-      if (/^https?:\/\//.test(track.source)) {
-        const source = document.createElement('a'); source.href = track.source; source.target = '_blank'; source.rel = 'noopener noreferrer'; source.textContent = '资料来源'; detail.append(' · ', source);
-      }
-      // A kept recording of the verified catalogue offers the same QQ Music link as the record shop.
+      const line = document.createElement('p'); line.textContent = `${track.dataset === 'hf' ? '开放曲库 · ' : ''}${date} 留下`;
+      detail.append(line);
+      // A kept recording of the duet catalogue carries the same 来源 chip as in the record shop, beside 去 QQ 音乐听 (in
+      // sight, not inside the folded row); an open-catalogue row keeps its dataset row in the fold.
       const song = track.dataset === 'real' ? songs[track.id] : null;
+      if (track.dataset === 'hf') detail.append(hfCite(track));
       list.append(musicRow(track, index, {
-        saved: true, detail, removeOnly: true, listen: song?.dataset === 'real' ? listenHTML(song, icon, { reason: true }) : '',
+        saved: true, detail, removeOnly: true, listen: song?.dataset === 'real' ? listenHTML(song, icon) + sourcesHTML(song) : '',
         onSave() {
           try {
             removeSavedMusic(track.id); api.toast('已移除');
             const buttons = [...container.querySelectorAll('[data-music-save]')];
             (buttons[Math.min(index, buttons.length - 1)] || container.querySelector('[data-music-explore]'))?.focus({ preventScroll: true });
-          } catch { api.toast('这首歌尚未移除，请检查浏览器存储空间后重试'); }
+          } catch { api.toast('没移除成功，浏览器存储不可用'); }
         },
       }));
     });

@@ -21,19 +21,20 @@
  *   castNames            optional, the cast's display names: a read-only tab finds the cast's ids by name
  *   acquireWriterLock, reconcile, resetStorage, createMemoryStore   optional, default to the real ones
  *   lockOptions          optional, passed to acquireWriterLock ({ retries, delayMs, sleep }: tests make the retries instant)
- *   timeouts             optional { runtimeMs, wipeMs, resetMs, coalesceMs }
+ *   timeouts             optional { runtimeMs, wipeMs, resetMs, coalesceMs, healToastMs }
+ *   sessionStorage       optional, where a heal leaves its toast for the next load (default window.sessionStorage; null = nowhere)
  *   log(event, detail)   optional, a debug channel (never an error channel)
  *
  * The sequence (each step waits for the one before it)
  *   a  channel from the URL: a path that ends with /preview/ is the preview, anything else is the site root. EXACTLY the rescue script's
- *      rule (scripts/build/static-html-plugin.mjs), so its 「重置示例数据」 deletes the database this boot opened. Sets
+ *      rule (scripts/build/static-html-plugin.mjs), so its 「重新开始」 deletes the database this boot opened. Sets
  *      <html data-channel> and names the IndexedDB database music-space-static:<channel>:v1.
  *   b  writer lock (single-writer.js). Not held = this tab is a read-only copy of another tab's demo (below).
- *   c  open the store. IDB_TIMEOUT, IDB_UNAVAILABLE or anything else = the memory store plus the banner 「示例数据只保存在本页，刷新会重置」.
+ *   c  open the store. IDB_TIMEOUT, IDB_UNAVAILABLE or anything else = the memory store plus the banner 「这个浏览器不能保存，刷新后会重新开始」.
  *      navigator.storage.persist() is never called (Firefox would ask the visitor for permission).
  *   d  createStaticRuntime on a clock that is never behind the build (see createBootClock).
  *   e  reconcile localStorage with the database: an identity the database does not know is purged (no 「身份已失效」 screen).
- *   f  status 「正在布置示例现场…」, then ensureShowcase through a SEPARATE transport bound straight to the runtime (never to the boot
+ *   f  status 「正在布置现场…」, then ensureShowcase through a SEPARATE transport bound straight to the runtime (never to the boot
  *      promise: the page's transport waits for the boot, so seeding through it would wait for itself). Only when writable.
  *   g  the autopilot starts (only when writable); its changes reach the page through notifyChanged. A world laid out by THIS load also drops
  *      a stale ?room= from the address (nothing from before exists any more), so the page opens in the lobby, not on 「找不到这一场」.
@@ -41,8 +42,10 @@
  *   i  window.__SPACE_BOOT__ = 'ready' and window.__SPACE_STATIC__ (the QA handle, see below).
  *
  * Self-heal (writable tab only). The browser's data is disposable, so every kind of bad state ends in the same cure: wipe the store (kv and
- * blobs in one transaction) and the event client's localStorage keys, rebuild from scratch ONCE, toast 「示例已更新，已为你重新布置」
- * (not on a first visit: nothing was thrown away then). Triggers: SNAPSHOT_CORRUPT, MIGRATION_CHANGED, MIGRATION_FAILED, a ShowcaseStaleError
+ * blobs in one transaction) and the event client's localStorage keys, rebuild from scratch ONCE, toast 「现场已更新」
+ * (not on a first visit: nothing was thrown away then). When the wipe took a stored identity with it, app.js reloads the page for that
+ * identity a moment later (see below), which would cut the toast off: the boot then leaves the toast to the next load of this tab instead
+ * (sessionStorage HEALED_KEY, read once) and `site.healReload` tells app.js not to announce that reload. Triggers: SNAPSHOT_CORRUPT, MIGRATION_CHANGED, MIGRATION_FAILED, a ShowcaseStaleError
  * (the roster or the seed changed since the world was laid out), and any seeding failure. A store that cannot be read (STORAGE_UNAVAILABLE) or
  * answers nothing (IDB_HUNG) is not wiped: the page carries on in memory. A second failure is SAFE MODE: window.__SPACE_BOOT__ =
  * 'failed:<code>', window.__SPACE_RESCUE__.show('failed:<code>') (the overlay of scripts/build/static-html-plugin.mjs) and `ready` rejects
@@ -50,11 +53,11 @@
  *
  * Read-only tab (the lock is held elsewhere): the runtime answers every mutation 409 READ_ONLY_COPY and writes nothing; no seeding, no
  * autopilot, no reconcile, NO wipe, whatever the data looks like (this tab must never destroy the first tab's world). Corrupt data there
- * goes to safe mode without wiping. The banner 「示例已在另一个标签页打开，这里不能操作」 says so.
+ * goes to safe mode without wiping. The banner 「已在另一个标签页打开，这里只能看」 says so.
  *
  * A purge makes the page reload once. app.js builds its event controller at module evaluation, which reads the stored identity BEFORE this boot
  * has looked at the database. When reconcile (or a self-heal) then removes an identity the database does not know, the controller sees the
- * change at its first connect(), reloads the page ONCE (its toast 「浏览器身份已变化，正在重新载入」) and the visitor lands in the lobby. That is
+ * change at its first connect(), reloads the page ONCE (with its toast that the identity changed) and the visitor lands in the lobby. That is
  * the controller's own rule for an identity that changed under it; it only happens when such an identity exists (a flip between the preview and
  * the root of the same origin, a browser that cleared IndexedDB but not localStorage, a self-heal). A first visit never reloads.
  *
@@ -66,7 +69,7 @@ import { createTransport } from './transport.js';
 import { createClock } from './clock.js';
 import { createMemoryStore } from './idb-store.js';
 import { acquireWriterLock } from './single-writer.js';
-import { clearEventClientStorage, reconcileLocalStorage, resetStaticStorage } from './storage-guard.js';
+import { AVATAR_SESSION_KEY, clearEventClientStorage, reconcileLocalStorage, resetStaticStorage } from './storage-guard.js';
 
 export const IDB_NAME_PREFIX = 'music-space-static';
 
@@ -76,15 +79,21 @@ export const idbNameOf = channel => `${IDB_NAME_PREFIX}:${channel}:v1`;
 
 /** Words the boot puts on the page. showcase/copy.js repeats the two banners for the About panel; a test keeps them equal. */
 export const TEXT = Object.freeze({
-  preparing: '正在布置示例现场…',
-  memoryOnly: '示例数据只保存在本页，刷新会重置',
-  readOnly: '示例已在另一个标签页打开，这里不能操作',
-  healed: '示例已更新，已为你重新布置',
-  failed: '示例现场没能启动。可以重新载入，或重置示例数据后再试。',
+  preparing: '正在布置现场…',
+  memoryOnly: '这个浏览器不能保存，刷新后会重新开始',
+  readOnly: '已在另一个标签页打开，这里只能看',
+  healed: '现场已更新',
+  failed: '现场没能打开，请重新载入或重新开始。',
   dismiss: '知道了',
 });
 
-export const BOOT_TIMEOUTS = Object.freeze({ runtimeMs: 8000, wipeMs: 4000, resetMs: 5000, coalesceMs: 250 });
+export const BOOT_TIMEOUTS = Object.freeze({ runtimeMs: 8000, wipeMs: 4000, resetMs: 5000, coalesceMs: 250, healToastMs: 2500 });
+
+/**
+ * sessionStorage key (this tab only, read once): a self-heal that wiped a stored identity hands its 「现场已更新」 to the next load, because the
+ * page reloads for that identity right after the boot (app.js). If no reload comes within healToastMs, the toast is shown where it is.
+ */
+export const HEALED_KEY = 'music-space-static-healed:v1';
 
 /** The marker the seed writes (showcase/seed.js META_TABLE and MARKER_KEY); a read-only tab reads the room code from it. */
 const META_TABLE = '_static_meta';
@@ -211,6 +220,7 @@ export function startStaticBoot(deps = {}) {
   const limits = { ...BOOT_TIMEOUTS, ...deps.timeouts };
   const log = (event, detail) => { try { deps.log?.(event, detail); } catch { /* a logger must not break the boot */ } };
   const local = deps.localStorage ?? null;
+  const session = (() => { if (deps.sessionStorage !== undefined) return deps.sessionStorage; try { return win.sessionStorage ?? null; } catch { return null; } })();
   const castNames = Array.isArray(deps.castNames) ? deps.castNames : [];
   const lockFor = deps.acquireWriterLock ?? acquireWriterLock;
   const reconcile = deps.reconcile ?? reconcileLocalStorage;
@@ -230,7 +240,8 @@ export function startStaticBoot(deps = {}) {
 
   const state = {
     phase: 'booting', stage: 'start', lock: null, lockHeld: true, store: null, counted: null, runtime: null, SQL: null, clock: null,
-    memoryOnly: false, persistErrored: false, healed: false, discarded: false, seeded: false, world: null, autopilot: null, autopilotRefresh: null,
+    memoryOnly: false, persistErrored: false, healed: false, discarded: false, identityPurged: false, healReload: false, seeded: false, world: null,
+    autopilot: null, autopilotRefresh: null,
     autopilotError: null, error: null, resetting: null, disposed: false,
   };
   const listeners = [];                                   // the cast's identities (with tokens) are only ever passed on to the autopilot, never kept here
@@ -281,6 +292,22 @@ export function startStaticBoot(deps = {}) {
     node.timer?.unref?.();
   }
 
+  /** The heal's toast, left for the next load of this tab. false when this tab cannot keep it (no sessionStorage): then it is shown now. */
+  function leaveHealedToast() {
+    try { if (!session) return false; session.setItem(HEALED_KEY, '1'); return session.getItem(HEALED_KEY) === '1'; } catch { return false; }
+  }
+  /** Takes the toast an earlier load of this tab left (true once), and forgets it. */
+  function takeHealedToast() {
+    try { if (session?.getItem(HEALED_KEY) !== '1') return false; session.removeItem(HEALED_KEY); return true; } catch { return false; }
+  }
+  /** 「现场已更新」: now, or (a stored identity went with the wipe, so app.js is about to reload) after that reload. */
+  function announceHeal() {
+    if (!state.identityPurged || !leaveHealedToast()) { toast(TEXT.healed); return; }
+    state.healReload = true;
+    const fallback = setTimer(() => { if (!state.disposed && takeHealedToast()) toast(TEXT.healed); }, limits.healToastMs);
+    fallback?.unref?.();
+  }
+
   const loading = { node: null, text: null };
   function showPreparing() {
     const status = find('#render-status');
@@ -311,6 +338,8 @@ export function startStaticBoot(deps = {}) {
     /** The data will not survive a reload: the store is the memory one, or a snapshot could not be saved and none has been saved since. */
     get memoryOnly() { return state.memoryOnly || (state.persistErrored && Boolean(state.runtime?.writable) && !state.runtime.persistent); },
     get healed() { return state.healed; },
+    /** This load healed and wiped a stored identity: app.js is about to reload for it, and the next load says 「现场已更新」. */
+    get healReload() { return state.healReload; },
     get fresh() { return state.seeded; },
     get lockReason() { return state.lock?.reason ?? null; },
     get roomCode() { return state.world?.roomCode ?? null; },
@@ -383,7 +412,7 @@ export function startStaticBoot(deps = {}) {
   async function wipe() {
     try { await bounded(state.store.clear(), limits.wipeMs, 'WIPE_TIMEOUT', timers); }
     catch (error) { log('wipe-failed', error?.code ?? error?.name); useStore(makeMemoryStore(), { memory: true }); }
-    clearEventClientStorage(local);
+    if (clearEventClientStorage(local).includes(AVATAR_SESSION_KEY)) state.identityPurged = true;
   }
 
   /** One try at a runtime (and, for the writer, the world on top of it). Throws what went wrong; `state.runtime` is the runtime that exists. */
@@ -495,7 +524,7 @@ export function startStaticBoot(deps = {}) {
   }
 
   /**
-   * 「重置示例」: stop the cast, forget the world (the runtime's closed flag first, so a late pagehide flush cannot write it back), clear the
+   * 「重新开始」: stop the cast, forget the world (the runtime's closed flag first, so a late pagehide flush cannot write it back), clear the
    * event client's keys, give the lock away, and reload the bare address (this drops ?room= and anything else in the query). A read-only tab
    * refuses: it would destroy the first tab's data. With no runtime (safe mode) the database is deleted without one. Always reloads, and
    * rejects with what went wrong, if anything did.
@@ -585,7 +614,8 @@ export function startStaticBoot(deps = {}) {
     win.__SPACE_BOOT__ = 'ready';                                                                // i
     timings.totalMs = now() - began;
     mark('ready');
-    if (state.healed && state.discarded) toast(TEXT.healed);
+    if (state.healed && state.discarded) announceHeal();
+    else if (takeHealedToast()) toast(TEXT.healed);                                             // the heal of the load before this one
     return site;
   }
 
@@ -677,16 +707,17 @@ export function createByteLoader({ fetch: fetcher, resolve = path => path, retri
 }
 
 /**
- * The two bundled example photos as profile.demo wants them: samples (for the list and the tour) and load(id) -> File. `resolve` turns a
- * site-relative path into an absolute URL (siteUrl); the list is built on every read because that needs the page's <meta> hints.
+ * The two bundled ready-made photos as profile.demo wants them: samples ({ id, label, thumbUrl }, for the list and the tour) and
+ * load(id) -> File. `resolve` turns a site-relative path into an absolute URL (siteUrl); the list is built on every read because that
+ * needs the page's <meta> hints.
  */
 export function createSamples({ samples, fetchBytes, resolve = path => path } = {}) {
   const byId = new Map((samples ?? []).map(sample => [sample.id, sample]));
   return {
-    list: () => (samples ?? []).map(({ id, label, note, file }) => ({ id, label, note, thumbUrl: resolve(`demo/${file}`) })),
+    list: () => (samples ?? []).map(({ id, label, file }) => ({ id, label, thumbUrl: resolve(`demo/${file}`) })),
     async load(id) {
       const sample = byId.get(id);
-      if (!sample) throw new Error('找不到这张示例照片');
+      if (!sample) throw new Error('找不到这张照片');
       return new File([await fetchBytes(`demo/${sample.file}`)], sample.file, { type: 'image/jpeg' });
     },
   };

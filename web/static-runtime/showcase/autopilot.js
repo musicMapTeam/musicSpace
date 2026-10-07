@@ -1,4 +1,4 @@
-// The fictional cast answers back, through the same worker API a real attendee uses. Nothing here bypasses a permission or a consent: every
+// The seeded cast answers back, through the same worker API a real attendee uses. Nothing here bypasses a permission or a consent: every
 // reaction is an ordinary request carrying the character's own bearer token, so a quiet member still cannot be greeted (the worker answers
 // PARTICIPATION_QUIET and nothing overrides it), a decline is a real decline, and every grant is the worker's own. The characters read their own
 // inboxes, and each reaction waits `thinkMs` after the SERVER timestamp of the thing it answers, so a reload loses nothing and nothing fires
@@ -23,14 +23,18 @@
 // while somebody but the cast is in the room: before that a pass reads the room and nothing else, so an idle page asks 1 to 3 questions and
 // writes nothing):
 //   greeting     an incoming one from an open character: accept, then the two welcome lines
-//   chat         the friend wrote last: reply with line number = lines this character already sent in that thread (REPLY_LINES, last repeated)
+//   chat         the friend wrote last: reply with line number = lines this character already sent in that thread (REPLY_LINES); after the
+//                farewell, the last line, nothing more
 //   exchange     pending for this character: accept, unless both photos have a known viewpoint and it is the same, then decline
 //   late arrival 林间 (joins 'after-visitor') joins the room and its chat, quietly, once a visitor has been seen for arriveMs; no photo
 //   album cup    阿遥 and 小满 vote (a hash of their key and the match picks the side); 北屿 and 林间 abstain, so three voters never tie;
 //                the cup's creator advances once the open match has three votes
 //   game         preference game waiting with three players: the host starts; every joined character answers the open round once;
 //                everyone has answered: the host reveals
-import { WELCOME_LINES, replyLine } from './npc-lines.js';
+//   corner       a friend invited a character to a two-sides card (双人纪念): it joins and, in the same pass, writes its line with its own
+//                photo, once; when the friend has confirmed a version the character has not, it confirms that version. It never invites,
+//                saves or exports (each person's own choice), and a withdrawn or no longer allowed corner is left alone
+import { WELCOME_LINES, replyLine, cornerLine } from './npc-lines.js';
 
 export const THINK_MS = 2500;
 export const ARRIVE_MS = 8000;
@@ -43,6 +47,7 @@ const CUP_VOTERS = Object.freeze(['yao', 'man']);
 /** A visitor can open more cups and games than a demo needs; the newest few are answered, so one tick stays small whatever happens. */
 const MAX_CUPS = 3;
 const MAX_GAMES = 3;
+const MAX_CORNERS = 3;
 /** Thrown inside a pass that was stopped; swallowed, never logged. */
 const STOPPED = Symbol('autopilot stopped');
 
@@ -150,7 +155,11 @@ export function createAutopilot({
     }
   }
 
-  /** A friend wrote last and the message is thinkMs old: answer with the line that matches how many this character has sent in the thread. */
+  /**
+   * A friend wrote last and the message is thinkMs old: answer with the line that matches how many this character has sent in the thread.
+   * Once the farewell is out (replyLine gives null) the character says nothing more in that thread. A thread longer than one page (it has
+   * older messages) is long past the five lines of the script: counting only the newest page would start the script over, so it stays quiet.
+   */
   async function chats(person) {
     const list = await read(person, '/chats');
     for (const chat of list.chats ?? []) {
@@ -158,8 +167,11 @@ export function createAutopilot({
       if (!last || last.senderId === person.id || !chat.canSend || !ready(last.createdAt)) continue;
       await safe(`chat:${person.npc.key}`, async () => {
         const thread = await read(person, `/chats/${chat.userId}/messages`);
+        if (thread.olderCursor) return;
         const sent = (thread.messages ?? []).filter(message => message.senderId === person.id).length;
-        await write(person, `/chats/${chat.userId}/messages`, { text: replyLine(sent) }, 'chat-reply');
+        const text = replyLine(sent);
+        if (text === null) return;
+        await write(person, `/chats/${chat.userId}/messages`, { text }, 'chat-reply');
       });
     }
   }
@@ -175,6 +187,32 @@ export function createAutopilot({
       await safe(`${accept ? 'accept' : 'decline'}-exchange:${person.npc.key}`, () => (accept
         ? write(person, `/exchanges/${item.id}/accept`, { revision: item.revision, exchangeConsent: true }, 'exchange-accept')
         : write(person, `/exchanges/${item.id}/decline`, { revision: item.revision }, 'exchange-decline')));
+    }
+  }
+
+  /**
+   * 双人纪念: a two-sides corner a friend invited this character to. A corner carries no timestamps, only its state, so each step is taken from
+   * the state that calls for it and from nothing else (a reload repeats nothing): not joined -> join; joined with an empty side -> write the
+   * line and the character's own photo (in the same pass as the join, so the friend's first look finds the card filled in); the friend has
+   * confirmed this version and the character has not -> confirm it. Saving and exporting stay the friend's.
+   */
+  async function corners(person) {
+    const list = await read(person, '/corners');
+    const open = (list.corners ?? []).filter(item => item.status === 'invited' || item.status === 'active').slice(0, MAX_CORNERS);
+    for (const item of open) {
+      await safe(`corner:${person.npc.key}`, async () => {
+        if (!item.joined) await write(person, `/corners/${item.id}/join`, { revision: item.revision, participationConsent: true }, 'corner-join');
+        const view = await read(person, `/corners/${item.id}`);
+        const corner = view.corner;
+        if (corner?.status !== 'active' || !corner.joined) return;
+        const own = (view.contributions ?? []).find(entry => entry.userId === person.id);
+        if (own && !own.note) {
+          const photo = ((await read(person, roomPath)).photos ?? []).find(entry => entry.ownerId === person.id && entry.visibility === 'members');
+          await write(person, `/corners/${item.id}/contribution`, { revision: corner.revision, note: cornerLine(person.npc.key), photoId: photo?.id ?? null, shareConsent: true }, 'corner-contribution');
+          return;
+        }
+        if (corner.peerConfirmed && !corner.myConfirmed && corner.materialValid) await write(person, `/corners/${item.id}/confirm`, { revision: corner.revision, consent: true }, 'corner-confirm');
+      });
     }
   }
 
@@ -247,6 +285,7 @@ export function createAutopilot({
       await safe(`greetings:${person.npc.key}`, () => greetings(person));
       await safe(`exchanges:${person.npc.key}`, () => exchanges(person));
       await safe(`chats:${person.npc.key}`, () => chats(person));
+      await safe(`corners:${person.npc.key}`, () => corners(person));
     }
     await safe('worldcups', () => worldcups(present));
     await safe('games', () => games(present));

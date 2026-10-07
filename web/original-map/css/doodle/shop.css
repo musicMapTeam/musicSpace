@@ -1,0 +1,293 @@
+/* shop: the record shop over the table. 寻声 (question slip, tools, hint tape, the hand of sleeves, the closed bar, the friend's slip),
+   完整图鉴 (title slip, tools, the dock with the roam bar and the connections), the 目录 paper, − 全图 + and the undo slip.
+   Tool strips stay "painted" for sakura-framing (an invisible gradient): the camera keeps the table clear of them. */
+
+/* ---------------------------------------------------------------- question slip */
+.map-round-slip,html[data-theme='sakura'] body[data-view] .map-round-slip{padding:16px 20px 13px;color:var(--ds-ink);background:var(--ds-paper-card);
+  border:var(--ds-line) solid var(--ds-ink);border-radius:var(--ds-radius-card);box-shadow:var(--ds-shadow)}
+.map-round-slip::before{left:22px;top:-13px;width:88px;height:24px;background:var(--ds-tape);box-shadow:none;transform:rotate(-4deg);
+  -webkit-mask:var(--ds-svg-tape) center/100% 100% no-repeat;mask:var(--ds-svg-tape) center/100% 100% no-repeat}
+.map-round-slip::after{content:none}
+.map-round-slip__eyebrow{display:inline-block;margin:0 0 8px;padding:3px 10px 2px;font-family:var(--ds-font-ui);font-size:13px;font-weight:400;letter-spacing:.08em;line-height:1.3;
+  color:var(--ds-paper-card);background:var(--ds-ink);border-radius:var(--ds-radius-btn);transform:rotate(-2deg)}
+html[data-theme='sakura'] body .map-round-slip__question{font-family:var(--ds-font-display);font-weight:400;font-size:29px;line-height:1.24;letter-spacing:.01em;color:var(--ds-ink);text-wrap:balance}
+.map-round-slip__question>span.is-from{color:var(--ds-ink);background:linear-gradient(transparent 58%,var(--ds-mint) 58%,var(--ds-mint) 92%,transparent 92%);padding:0 .1em;
+  -webkit-box-decoration-break:clone;box-decoration-break:clone}
+.map-round-slip__question>span.is-to{color:var(--ds-pink);background:none;-webkit-text-stroke:.06em var(--ds-ink);paint-order:stroke fill;text-shadow:.06em .07em 0 var(--ds-ink);padding:0 .04em}
+@media (prefers-contrast:more){.map-round-slip__question>span.is-to{color:var(--ds-ink);-webkit-text-stroke:0;text-shadow:none}}
+.map-round-slip__question>i{margin:0 .22em;font-family:var(--ds-font-ui);color:var(--ds-ink-2);transform:translateY(-.04em)}
+.map-round-slip__ask{color:var(--ds-ink)}
+.map-round-slip__status{margin-top:8px;font-family:var(--ds-font-ui);font-size:15px;color:var(--ds-ink-2)}
+.map-round-slip__status>span+span::before{color:var(--ds-ink-3)}
+.map-round-slip__status .map-num{font-size:1.08em;color:var(--ds-ink)}
+.map-round-remaining{margin-left:10px;padding:2px 10px 1px;font-family:var(--ds-font-ui);font-size:14px;font-weight:400;color:var(--ds-ink);background:var(--ds-mint);
+  border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-pill);box-shadow:2px 2px 0 var(--ds-ink)}
+.map-round-remaining .map-num{color:var(--ds-ink)}
+/* 近 / 远 / 平: a round sticker stamped beside the count */
+.map-round-stamp{--tone:var(--ds-mint);font-family:var(--ds-font-ui);font-weight:400;color:var(--ds-ink)}
+.map-round-stamp.is-far{--tone:var(--ds-pink)}
+.map-round-stamp.is-even{--tone:var(--ds-yellow)}
+.map-round-stamp>b{width:32px;height:32px;font-family:var(--ds-font-display);font-weight:400;font-size:17px;color:var(--ds-ink);background:var(--tone);border:var(--ds-line-thin) solid var(--ds-ink);
+  border-radius:50% 46% 52% 48%/48% 52% 46% 50%;box-shadow:2px 2px 0 var(--ds-ink)}
+html[data-theme='sakura'] body .map-round-skip{min-height:44px;margin-top:10px;padding:8px 14px;font-family:var(--ds-font-ui);font-size:15px;color:var(--ds-ink);background:var(--ds-yellow);
+  border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:3px 3px 0 var(--ds-ink)}
+
+/* ---------------------------------------------------------------- tools: three sticker chips (提示 yellow, 换一组, 目录) */
+html[data-theme='sakura'] body .map-studio .map-round-tools{gap:10px;padding:0 6px 6px 0;border:0;border-radius:0;box-shadow:none;background:linear-gradient(transparent,transparent)}
+html[data-theme='sakura'] body .map-studio .map-round-tools>.button,html[data-theme='sakura'] body .map-studio .map-round-tools .map-shop-menu>summary{
+  min-height:46px;padding:8px 15px;gap:7px;font-family:var(--ds-font-ui);font-size:16px;font-weight:400;color:var(--ds-ink);background:var(--ds-paper-card);
+  border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:3px 3px 0 var(--ds-ink)}
+html[data-theme='sakura'] body .map-studio .map-round-tools>.map-round-hint,html[data-theme='sakura'] body .map-studio .map-round-tools>.map-round-hint:hover{background:var(--ds-yellow);box-shadow:3px 3px 0 var(--ds-ink)}
+html[data-theme='sakura'] body .map-studio .map-round-tools>.map-round-hint.is-final{background:var(--ds-pink);color:var(--ds-ink)}
+.map-round-hint>i{width:22px;height:22px;font-family:var(--ds-font-display);font-size:14px;font-style:normal;color:var(--ds-ink);background:var(--ds-paper-card);border:1.5px solid var(--ds-ink)}
+html[data-theme='sakura'] body .map-studio .map-round-tools :is(.button,summary):active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ds-ink)}
+@media (hover:hover) and (pointer:fine){html[data-theme='sakura'] body .map-studio .map-round-tools :is(.button,summary):hover{background-color:var(--ds-paper-card);transform:rotate(-1deg) translateY(-1px)}
+  html[data-theme='sakura'] body .map-studio .map-round-tools>.map-round-hint:hover{background:var(--ds-yellow)}}
+
+/* the hint tape: one hand-written line on a yellow strip */
+.map-round-note,html[data-theme='sakura'] body .map-round-note{padding:9px 14px 8px 12px;font-family:var(--ds-font-body);font-size:16px;line-height:1.5;color:var(--ds-ink);
+  background:var(--ds-yellow-soft);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:3px 3px 0 var(--ds-ink);transform:rotate(-.6deg)}
+.map-round-note::before{right:18px;top:-11px;width:54px;height:18px;background:var(--ds-tape-pink);transform:rotate(5deg);
+  -webkit-mask:var(--ds-svg-tape) center/100% 100% no-repeat;mask:var(--ds-svg-tape) center/100% 100% no-repeat}
+.map-round-note__mark{flex:none;font-family:var(--ds-font-display);font-size:18px;line-height:1.3;color:var(--ds-ink)}
+.map-round-note__text{min-width:0}
+.map-round-note .map-num{font-size:1.1em}
+
+/* 朋友出的题: a pink slip with mint tape and a round × */
+.map-friend-note{padding:10px 4px 10px 16px;color:var(--ds-ink);background:var(--ds-pink-soft);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-card);box-shadow:var(--ds-shadow-sm)}
+.map-friend-note::before{top:-12px;width:70px;height:20px;background:var(--ds-tape-mint);box-shadow:none;-webkit-mask:var(--ds-svg-tape) center/100% 100% no-repeat;mask:var(--ds-svg-tape) center/100% 100% no-repeat}
+.map-friend-note__title{font-family:var(--ds-font-display);font-weight:400;font-size:18px;color:var(--ds-ink)}
+.map-friend-note__title b{font-family:var(--ds-font-ui);font-weight:400;font-size:15px;color:var(--ds-ink);background:var(--ds-paper-card);border:1.5px solid var(--ds-ink);border-radius:var(--ds-radius-pill);padding:1px 8px}
+.map-friend-note__rule{font-family:var(--ds-font-body);font-size:15px;color:var(--ds-ink-2)}
+html[data-theme='sakura'] body .map-friend-note__close{color:var(--ds-ink);background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);box-shadow:var(--ds-shadow-sm);transform:rotate(-4deg)}
+/* the closing ceremony hides the hand where it is (a phone's hand is not centred with translateX) */
+@media (max-width:760px){html[data-theme='sakura'] body[data-view='explore']:not(.spatial-fallback) .map-round.is-ceremony .map-round-hand{transform:translateY(16px)}}
+
+/* ---------------------------------------------------------------- the hand: a kraft tray of record sleeves */
+.map-round-hand,html[data-theme='sakura'] body[data-view] .map-round-hand{color:var(--ds-ink);background:var(--ds-paper-deep);border:var(--ds-line) solid var(--ds-ink);
+  border-radius:var(--ds-radius-card);box-shadow:var(--ds-shadow-lg)}
+.map-round-hand__stamp{width:44px;height:44px;border:var(--ds-line-thin) solid var(--ds-ink);box-shadow:2px 2px 0 var(--ds-ink);transform:rotate(-6deg)}
+.map-round-hand__stamp::before{background:repeating-radial-gradient(var(--ds-ink) 0 2px,var(--ds-ink-2) 3px 4px)}
+.map-round-hand__who h2{font-family:var(--ds-font-display);font-weight:400;font-size:24px;letter-spacing:.02em;color:var(--ds-ink);text-shadow:.06em .06em 0 var(--ds-yellow)}
+.map-round-hand__who>div>span{font-family:var(--ds-font-ui);font-size:14px;color:var(--ds-ink-2)}
+.map-round-hand__who .map-num{color:var(--ds-ink)}
+/* the way back */
+html[data-theme='sakura'] body .map-round-route .button,html[data-theme='sakura'] body .map-round-route .icon-button{min-height:44px;font-family:var(--ds-font-ui);font-size:15px;font-weight:400;color:var(--ds-ink);
+  background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);box-shadow:3px 3px 0 var(--ds-mint)}
+html[data-theme='sakura'] body .map-round-route .button{border-radius:var(--ds-radius-btn)}
+html[data-theme='sakura'] body .map-round-route .icon-button{border-radius:50% 46% 52% 48%/48% 52% 46% 50%;box-shadow:var(--ds-shadow-sm)}
+html[data-theme='sakura'] body .map-round-route :is(.button,.icon-button):disabled{color:var(--ds-ink-3);background:transparent;border-style:dashed;border-color:var(--ds-ink-3);box-shadow:none;opacity:1}
+html[data-theme='sakura'] body .map-round-route .button--primary,html[data-theme='sakura'] body .map-round-route .button--primary:hover:not(:disabled){color:var(--ds-paper-card);background:var(--ds-ink);border-color:var(--ds-ink);box-shadow:3px 3px 0 var(--ds-pink)}
+html[data-theme='sakura'] body .map-round-route .map-round-route__back.is-hinted{outline:3px dashed var(--ds-pink);outline-offset:3px}
+html[data-theme='sakura'] body .map-round .map-round-route__trail{font-family:var(--ds-font-ui);font-size:14px;color:var(--ds-ink-3)}
+html[data-theme='sakura'] body .map-round .map-round-route__trail>span{color:var(--ds-ink-3)}
+html[data-theme='sakura'] body .map-round .map-round-route__trail>i{color:var(--ds-ink-3)}
+html[data-theme='sakura'] body .map-round .map-round-route__trail>[aria-current]{color:var(--ds-ink);background:var(--ds-yellow);padding:0 6px;border-radius:var(--ds-radius-pill)}
+html[data-theme='sakura'] body .map-round-hand :is(.map-round-route,.map-round-hand__done,.map-round-hand__share) button:focus-visible{outline:3px dashed var(--ds-ink);outline-offset:3px}
+
+/* sleeves: an ink-framed card each, turned a little, alternately */
+.map-round-hand__cards{scrollbar-color:var(--ds-ink-3) transparent;padding:12px 6px 10px 4px}
+.map-round-card{border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:3px 3px 0 var(--ds-ink);color:var(--ds-ink);transform:rotate(-.8deg)}
+.map-round-card:nth-child(even){transform:rotate(.8deg)}
+.map-round-card__no{font-family:var(--ds-font-digits);font-size:13px;color:var(--ds-ink-3)}
+.map-round-card__title{font-family:var(--ds-font-ui);font-weight:400;font-size:16px;color:var(--ds-ink)}
+.map-round-card__who{font-family:var(--ds-font-ui);font-size:14px}
+/* face down: kraft with ink hatching and a ？ ring */
+.map-round-card.is-sealed{color:var(--ds-ink);border-color:var(--ds-ink);background:repeating-linear-gradient(135deg,transparent 0 7px,color-mix(in srgb,var(--ds-ink) 13%,transparent) 7px 8.5px),var(--ds-paper-deep);
+  box-shadow:3px 3px 0 var(--ds-ink)}
+.map-round-card.is-sealed .map-round-card__who{color:var(--ds-ink-2)}
+.map-round-card.is-sealed .map-round-card__who>i{width:24px;height:24px;font-family:var(--ds-font-display);font-size:14px;color:var(--ds-ink);background:var(--ds-paper-card);border:1.5px dashed var(--ds-ink)}
+html[data-theme='sakura'] body .map-round-card__flip,html[data-theme='sakura'] body .map-round-card__flip:hover:not(:disabled){min-height:44px;font-family:var(--ds-font-ui);font-size:16px;font-weight:400;letter-spacing:.1em;
+  color:var(--ds-paper-card);background:var(--ds-ink);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:3px 3px 0 var(--ds-pink)}
+html[data-theme='sakura'] body .map-round-card__flip:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ds-pink)}
+.map-round-card__flip-hint{color:var(--ds-yellow)}
+/* face up: paper with the singer's colour on the spine */
+.map-round-card.is-open{background:var(--ds-paper-card);border-color:var(--ds-ink);box-shadow:inset 7px 0 0 var(--node-tone,var(--ds-pink-soft)),inset 9px 0 0 var(--ds-ink),3px 3px 0 var(--ds-ink);padding-left:20px}
+.map-round-card.is-open .map-round-card__who{font-family:var(--ds-font-ui);font-weight:400;font-size:15px;color:var(--ds-ink)}
+.map-round-card__who mark{padding:1px 8px;font-family:var(--ds-font-ui);font-size:13px;font-weight:400;color:var(--ds-ink);background:var(--ds-mint-soft);border:1.5px solid var(--ds-ink);border-radius:var(--ds-radius-pill)}
+.map-round-card__who mark.is-target{color:var(--ds-ink);background:var(--ds-pink)}
+html[data-theme='sakura'] body .map-round-card__go,html[data-theme='sakura'] body .map-round-card__go:hover:not(:disabled){min-height:44px;font-family:var(--ds-font-ui);font-size:15px;font-weight:400;
+  color:var(--ds-paper-card);background:var(--ds-ink);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:3px 3px 0 var(--ds-pink)}
+html[data-theme='sakura'] body .map-round-card__go.is-target,html[data-theme='sakura'] body .map-round-card__go.is-target:hover:not(:disabled){color:var(--ds-ink);background:var(--ds-pink);box-shadow:3px 3px 0 var(--ds-ink)}
+html[data-theme='sakura'] body .map-round-card__go:active{transform:translate(2px,2px)}
+/* 来源: a small paper chip in place of the old ⓘ */
+html[data-theme='sakura'] body .map-round-card__more,html[data-theme='sakura'] body .map-round-card__more:hover{flex:none;width:auto;min-width:52px;height:auto;min-height:44px;padding:4px 10px;
+  font-family:var(--ds-font-ui);font-size:14px;font-weight:400;color:var(--ds-ink);background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:2px 2px 0 var(--ds-mint)}
+html[data-theme='sakura'] body .map-round-card__more:active{transform:translate(2px,2px);box-shadow:0 0 0 var(--ds-mint)}
+.map-round-card.is-target{border-color:var(--ds-ink)}
+.map-round-card.is-hinted{outline:3px dashed var(--ds-pink);outline-offset:4px}
+.map-round-card__hint{padding:2px 9px;font-family:var(--ds-font-ui);font-size:13px;font-weight:400;color:var(--ds-ink);background:var(--ds-yellow);border:1.5px solid var(--ds-ink);border-radius:var(--ds-radius-pill);
+  box-shadow:2px 2px 0 var(--ds-ink);transform:rotate(-4deg)}
+/* the first-visit tip and the dead end: hand-written notes tucked between the sleeves */
+.map-round-hand__tip,.map-round-hand__dead{align-self:center;padding:10px 14px;font-family:var(--ds-font-body);font-size:16px;line-height:1.5;color:var(--ds-ink);
+  border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:2px 2px 0 var(--ds-ink);text-wrap:balance}
+.map-round-hand__tip{flex:0 0 auto;max-width:200px;background:var(--ds-yellow-soft);transform:rotate(1.2deg)}
+.map-round-hand__dead{background:var(--ds-pink-soft);transform:rotate(-1.2deg)}
+.map-round-hand__dead strong{font-family:var(--ds-font-display);font-weight:400;font-size:18px;letter-spacing:.02em;color:var(--ds-ink)}
+
+/* ---------------------------------------------------------------- the closed round: a stamp and the next steps */
+.map-round-seal{width:56px;height:56px;font-family:var(--ds-font-display);font-weight:400;font-size:18px;letter-spacing:.06em;color:var(--ds-ink);background:var(--ds-yellow);
+  border:var(--ds-line) solid var(--ds-ink);border-radius:50% 46% 52% 48%/48% 52% 46% 50%;box-shadow:3px 3px 0 var(--ds-ink);transform:rotate(-12deg)}
+.map-round-seal.is-revealed{color:var(--ds-ink);background:var(--ds-sky-soft);border-color:var(--ds-ink);box-shadow:3px 3px 0 var(--ds-ink)}
+.map-round-hand__trail{font-family:var(--ds-font-ui);font-size:14px;color:var(--ds-ink-2)}
+.map-round-hand__trail i{color:var(--ds-ink-3)}
+html[data-theme='sakura'] body .map-round-hand__done .button,html[data-theme='sakura'] body .map-round-hand__share .button{min-height:46px;padding:8px 14px;font-family:var(--ds-font-ui);font-size:15px;font-weight:400;
+  color:var(--ds-ink);background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:3px 3px 0 var(--ds-mint)}
+html[data-theme='sakura'] body .map-round-hand__done .button--primary,html[data-theme='sakura'] body .map-round-hand__done .button--primary:hover:not(:disabled){color:var(--ds-paper-card);background:var(--ds-ink);
+  border-color:var(--ds-ink);box-shadow:4px 4px 0 var(--ds-pink)}
+html[data-theme='sakura'] body .map-round-hand__share .button{border-style:solid;box-shadow:3px 3px 0 var(--ds-yellow)}
+
+/* ---------------------------------------------------------------- − 全图 + over the table
+   On the scene: one paper pill, three buttons split by dashed rules. It stays as narrow as 0.16's (about 140px at right:32px):
+   the dock and the hand leave 200px on each side (min(…,100vw - 400px)) and throw an 8px shadow, so a wider strip slid under them. */
+html[data-theme='sakura'] body[data-view='explore']:not(.spatial-fallback) .map-stage-top .map-network-tools{gap:0;padding:0;background:var(--ds-paper-card);
+  border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-pill);box-shadow:var(--ds-shadow-sm);overflow:hidden}
+html[data-theme='sakura'] body[data-view='explore']:not(.spatial-fallback) .map-stage-top .map-network-tools>*{width:auto;min-width:44px;height:44px;min-height:44px;padding:0;
+  font-family:var(--ds-font-ui);font-size:16px;color:var(--ds-ink);background:none;border:0;border-radius:0;box-shadow:none}
+html[data-theme='sakura'] body[data-view='explore']:not(.spatial-fallback) .map-stage-top .map-network-tools>.icon-button{width:44px;font-family:var(--ds-font-display);font-size:24px;line-height:1}
+html[data-theme='sakura'] body[data-view='explore']:not(.spatial-fallback) .map-stage-top .map-network-tools>.button{padding:0 10px;
+  border-inline:var(--ds-line-thin) dashed color-mix(in srgb,var(--ds-ink) 40%,transparent)}
+html[data-theme='sakura'] body[data-view='explore']:not(.spatial-fallback) .map-stage-top .map-network-tools>*:hover{color:var(--ds-ink);background:var(--ds-yellow-soft)}
+html[data-theme='sakura'] body[data-view='explore']:not(.spatial-fallback) .map-stage-top .map-network-tools>*:active{background:var(--ds-yellow)}
+html[data-theme='sakura'] body[data-view='explore']:not(.spatial-fallback) .map-stage-top .map-network-tools>*:focus-visible{outline:3px dashed var(--ds-ink);outline-offset:-5px}
+/* Without WebGL they are three sticker chips in the table's corner */
+.map-network-tools{gap:8px;padding:0 4px 4px 0;background:linear-gradient(transparent,transparent);border:0;border-radius:0;box-shadow:none}
+.map-network-tools>*{width:auto;min-width:44px;height:44px;min-height:44px;
+  font-family:var(--ds-font-ui);font-size:16px;color:var(--ds-ink);background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);box-shadow:var(--ds-shadow-sm)}
+.map-network-tools>.icon-button{width:44px;padding:0;font-family:var(--ds-font-display);font-size:24px;line-height:1;border-radius:50% 46% 52% 48%/48% 52% 46% 50%}
+.map-network-tools>.button{padding:0 14px;border-radius:var(--ds-radius-btn)}
+
+/* ---------------------------------------------------------------- 目录: temporary paper under the chip */
+.map-shop-menu>summary .icon{width:16px;height:16px}
+.map-shop-menu>div,html[data-theme='sakura'] body[data-view='explore']:not(.spatial-fallback) .map-round-tools .map-shop-menu>div{padding:8px 14px 12px;color:var(--ds-ink);background:var(--ds-paper-card);
+  border:var(--ds-line) solid var(--ds-ink);border-radius:var(--ds-radius-card);box-shadow:var(--ds-shadow-lg)}
+.map-menu-group{border-top:var(--ds-line-thin) dashed color-mix(in srgb,var(--ds-ink) 35%,transparent)}
+.map-menu-group>h3{font-family:var(--ds-font-ui);font-weight:400;font-size:13px;letter-spacing:.12em;color:var(--ds-ink-3);text-shadow:none}
+html[data-theme] .map-menu-group>.button,html[data-theme] .map-menu-group>.button:hover{min-height:46px;padding:9px 10px;font-family:var(--ds-font-ui);font-size:16px;font-weight:400;color:var(--ds-ink);
+  background:none;border:0;border-radius:var(--ds-radius-btn);box-shadow:none;transform:none}
+@media (hover:hover) and (pointer:fine){html[data-theme] .map-menu-group>.button:hover{background:var(--ds-yellow-soft)}}
+.map-menu-group>.button small{margin-left:8px;font-family:var(--ds-font-body);font-size:14px;color:var(--ds-ink-3)}
+html[data-theme] .map-menu-group .map-network-tools{gap:6px;padding:0;background:none}
+html[data-theme] .map-menu-group .map-network-tools>*{min-height:44px;color:var(--ds-ink);background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:var(--ds-shadow-sm)}
+
+/* ---------------------------------------------------------------- 完整图鉴: title slip, tools and the dock */
+html[data-theme='sakura'] body[data-view='explore']:not(.spatial-fallback) .map-atlas .map-studio-title,.map-atlas .map-studio-title{color:var(--ds-ink);background:var(--ds-paper-card);
+  border:var(--ds-line) solid var(--ds-ink);border-radius:var(--ds-radius-card);box-shadow:var(--ds-shadow)}
+html[data-theme='sakura'] body[data-view='explore']:not(.spatial-fallback) .map-atlas .map-studio-title::before{left:22px;top:-13px;width:86px;height:24px;background:var(--ds-tape-mint);transform:rotate(-4deg);
+  -webkit-mask:var(--ds-svg-tape) center/100% 100% no-repeat;mask:var(--ds-svg-tape) center/100% 100% no-repeat}
+html[data-theme='sakura'] body[data-view] .map-atlas .map-studio-title h1,.map-atlas .map-studio-title h1{font-family:var(--ds-font-display);font-weight:400;font-size:30px;line-height:1.2;letter-spacing:.02em;color:var(--ds-ink);text-shadow:.06em .06em 0 var(--ds-mint)}
+html[data-theme='sakura'] body[data-view] .map-atlas .map-studio-sub,.map-atlas .map-studio-sub{font-family:var(--ds-font-ui);font-size:15px;color:var(--ds-ink-2)}
+html[data-theme='sakura'] body[data-view='explore']:not(.spatial-fallback) .map-atlas .map-studio-tools{gap:10px;padding:0 6px 6px 0;background:linear-gradient(transparent,transparent);border:0;border-radius:0;box-shadow:none}
+html[data-theme='sakura'] body[data-view='explore'] .map-atlas .map-studio-tools>.button,html[data-theme='sakura'] body[data-view='explore'] .map-atlas .map-shop-menu>summary{
+  min-height:46px;padding:8px 15px;gap:7px;font-family:var(--ds-font-ui);font-size:16px;font-weight:400;color:var(--ds-ink);background:var(--ds-paper-card);
+  border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:3px 3px 0 var(--ds-ink)}
+html[data-theme='sakura'] body[data-view='explore'] .map-atlas .map-studio-tools>.map-atlas-play,html[data-theme='sakura'] body[data-view='explore'] .map-atlas .map-studio-tools>.map-atlas-play:hover{
+  color:var(--ds-paper-card);background:var(--ds-ink);border-color:var(--ds-ink);box-shadow:3px 3px 0 var(--ds-pink)}
+html[data-theme='sakura'] body[data-view='explore'] .map-atlas .map-studio-tools :is(.button,summary):active{transform:translate(2px,2px)}
+/* the dock: a paper card with tape */
+html[data-theme='sakura'] body[data-view='explore'] .map-atlas .map-studio-dock,.map-atlas .map-studio-dock{color:var(--ds-ink);background:var(--ds-paper-card);border:var(--ds-line) solid var(--ds-ink);
+  border-radius:var(--ds-radius-card);box-shadow:var(--ds-shadow-lg)}
+html[data-theme='sakura'] body[data-view='explore']:not(.spatial-fallback) .map-atlas .map-studio-dock::before{left:34px;top:-13px;width:86px;height:24px;background:var(--ds-tape);transform:rotate(-3deg);
+  -webkit-mask:var(--ds-svg-tape) center/100% 100% no-repeat;mask:var(--ds-svg-tape) center/100% 100% no-repeat}
+/* the roam bar: two ways back, the route, 本次发现 and 结束探索 */
+.map-roam-bar{border-bottom:var(--ds-line-thin) dashed color-mix(in srgb,var(--ds-ink) 35%,transparent)}
+html[data-theme] .map-studio .map-roam-bar .button,html[data-theme] .map-studio .map-roam-bar .button:hover:not(:disabled){min-height:44px;font-family:var(--ds-font-ui);font-size:15px;font-weight:400;color:var(--ds-ink);
+  background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:3px 3px 0 var(--ds-mint)}
+html[data-theme] .map-studio .map-roam-bar .button:disabled{color:var(--ds-ink-3);background:transparent;border-style:dashed;border-color:var(--ds-ink-3);box-shadow:none;opacity:1}
+html[data-theme] .map-studio .map-roam-bar .map-roam-bar__found,html[data-theme] .map-studio .map-roam-bar .map-roam-bar__found:hover{background:var(--ds-mint-soft);border-color:var(--ds-ink);color:var(--ds-ink)}
+.map-roam-bar__found b{font-family:var(--ds-font-digits);font-weight:400}
+html[data-theme] .map-studio .map-roam-bar .map-roam-bar__end,html[data-theme] .map-studio .map-roam-bar .map-roam-bar__end:hover{color:var(--ds-ink);background:var(--ds-pink-soft);border-color:var(--ds-ink);box-shadow:3px 3px 0 var(--ds-ink)}
+html[data-theme] .map-studio .map-roam-bar .button.map-roam-bar__resume,html[data-theme] .map-studio .map-roam-bar .button.map-roam-bar__resume:hover:not(:disabled){color:var(--ds-paper-card);background:var(--ds-ink);border-color:var(--ds-ink);box-shadow:3px 3px 0 var(--ds-pink)}
+.map-roam-bar__state{font-family:var(--ds-font-ui);font-weight:400;font-size:14px;color:var(--ds-ink);background:var(--ds-pink-soft);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:2px 2px 0 var(--ds-ink)}
+:is(.map-roam-bar__trail,.map-studio-sub__route,.map-atlas .map-route-trail){font-family:var(--ds-font-ui);color:var(--ds-ink-3)}
+:is(.map-roam-bar__trail,.map-studio-sub__route,.map-atlas .map-route-trail) [aria-current]{color:var(--ds-ink);background:var(--ds-yellow);padding:0 6px;border-radius:var(--ds-radius-pill)}
+.map-studio-sub__route small{font-family:var(--ds-font-ui);color:var(--ds-ink);border-color:var(--ds-ink);background:var(--ds-pink-soft)}
+/* the selection: a sleeve, the name in display letters, its duets */
+.map-network-stamp{border:var(--ds-line-thin) solid var(--ds-ink);box-shadow:2px 2px 0 var(--ds-ink)}
+.map-network-stamp::before{background:repeating-radial-gradient(var(--ds-ink) 0 2px,var(--ds-ink-2) 3px 4px)}
+.map-network-selection h2{font-family:var(--ds-font-display);font-weight:400;font-size:26px;letter-spacing:.02em;color:var(--ds-ink);text-shadow:.06em .06em 0 var(--ds-yellow)}
+.map-network-selection>div>span{font-family:var(--ds-font-ui);font-size:14px;color:var(--ds-ink-2)}
+.map-network-selection i{opacity:1;color:var(--ds-ink-3)}
+html[data-theme='sakura'] .map-studio .map-network-selection__actions .button{min-height:44px;font-family:var(--ds-font-ui);font-size:15px;border-radius:var(--ds-radius-btn)}
+html[data-theme='sakura'] .map-studio .map-network-selection__actions .map-round-to,html[data-theme='sakura'] .map-studio .map-network-selection__actions .map-round-to:hover{color:var(--ds-ink);background:var(--ds-yellow);box-shadow:3px 3px 0 var(--ds-ink)}
+/* the connection list */
+.map-network-index>summary{font-family:var(--ds-font-ui);font-weight:400;font-size:16px;color:var(--ds-ink);border-top:var(--ds-line-thin) dashed color-mix(in srgb,var(--ds-ink) 35%,transparent)}
+.map-network-index>summary small{font-family:var(--ds-font-ui);color:var(--ds-ink-3)}
+.map-network-connection,.map-network-connection:hover{color:var(--ds-ink);background:var(--ds-paper);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:2px 2px 0 var(--ds-ink)}
+@media (hover:hover) and (pointer:fine){.map-network-connection:hover{background:var(--ds-yellow-soft)}}
+.map-network-connection span{font-family:var(--ds-font-ui);font-weight:400;font-size:16px}
+.map-network-connection small{font-family:var(--ds-font-body);font-size:14px;color:var(--ds-ink-2)}
+.map-network-index__body{scrollbar-color:var(--ds-ink-3) transparent}
+
+/* ---------------------------------------------------------------- the undo slip and the empty table */
+html[data-theme='sakura'] body[data-view] .map-undo,.map-undo{font-family:var(--ds-font-ui);font-size:15px;color:var(--ds-ink);background:var(--ds-yellow-soft);border:var(--ds-line-thin) solid var(--ds-ink);
+  border-radius:var(--ds-radius-btn);box-shadow:3px 3px 0 var(--ds-ink)}
+html[data-theme] body .map-studio .map-undo .button,.map-undo .button{min-height:44px;color:var(--ds-ink);background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);box-shadow:2px 2px 0 var(--ds-ink)}
+html[data-theme='sakura'] body[data-view='explore']:not(.spatial-fallback) .map-empty{background:var(--ds-paper-card);border:var(--ds-line) solid var(--ds-ink);border-radius:var(--ds-radius-card);box-shadow:var(--ds-shadow-lg)}
+
+/* ---------------------------------------------------------------- phone */
+.map-round-hint>i{flex:none}
+@media (max-width:760px){
+  .map-round-slip,html[data-theme='sakura'] body[data-view] .map-round-slip{padding:11px 14px 9px}
+  .map-round-slip__eyebrow{margin-bottom:5px;font-size:12px}
+  html[data-theme='sakura'] body .map-round-slip__question{font-size:22px;line-height:1.25}
+  .map-round-slip__status{margin-top:5px;font-size:14px}
+  html[data-theme='sakura'] body .map-studio .map-round-tools{gap:8px}
+  html[data-theme='sakura'] body .map-studio .map-round-tools>.button,html[data-theme='sakura'] body .map-studio .map-round-tools .map-shop-menu>summary{padding:6px 8px;font-size:15px;gap:5px}
+  .map-round-note,html[data-theme='sakura'] body .map-round-note{padding:6px 10px;font-size:15px;white-space:normal;transform:none}
+  .map-round-note__text{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+  .map-round-hand__who h2{font-size:18px;line-height:1.2;text-shadow:.05em .05em 0 var(--ds-yellow)}
+  .map-round-card{min-width:132px}
+  .map-round-card__title{font-size:15px}
+  /* the first-visit note fits beside the first sleeve instead of running off the tray */
+  .map-round-hand__tip{max-width:124px;padding:7px 9px;font-size:14px;line-height:1.45}
+  .map-round-hand__dead{flex-basis:auto;max-width:150px;padding:7px 9px;font-size:14px}
+  .map-round-seal{width:46px;height:46px;font-size:15px}
+  html[data-theme='sakura'] body .map-round-hand__done .button,html[data-theme='sakura'] body .map-round-hand__share .button{padding:8px 6px;font-size:15px}
+  html[data-theme='sakura'] body[data-view] .map-atlas .map-studio-title h1,.map-atlas .map-studio-title h1{font-size:22px}
+  .map-network-selection h2{font-size:21px}
+}
+@media (max-width:900px){
+  html[data-theme] .map-studio .map-roam-bar .button,html[data-theme] .map-studio .map-roam-bar .button:hover:not(:disabled){font-size:14px;padding:4px 8px;box-shadow:2px 2px 0 var(--ds-mint)}
+  html[data-theme] .map-studio .map-roam-bar .map-roam-bar__step{font-size:12px;padding:3px 5px}
+  html[data-theme] .map-studio .map-roam-bar .map-roam-bar__end{box-shadow:2px 2px 0 var(--ds-ink)}
+  /* a tablet's dock is 100vw - 400px wide: 本次发现 · N 首 drops the bookmark (as on a phone), and 本次 too below 821px */
+  html[data-theme] .map-studio .map-roam-bar .map-roam-bar__found .icon{display:none}
+}
+@media (min-width:761px) and (max-width:820px){
+  .map-roam-bar .map-roam-bar__found .map-roam-bar__this{display:none}
+}
+/* in the marker face 返回上一位 / 回到起点 are wider than 0.16's: phones up to 380px print 上一位 / 起点 under their arrows (the
+   buttons keep the full names for screen readers), so 本次发现 · N 首 keeps its room */
+@media (max-width:380px){
+  .map-roam-bar .map-roam-bar__long{display:none}
+}
+@media (max-width:380px){
+  html[data-theme='sakura'] body .map-round-slip__question{font-size:19px}
+  .map-round-card{min-width:118px}
+  .map-round-hand__tip{max-width:98px;font-size:13px;padding:6px 7px}
+  html[data-theme='sakura'] body .map-studio .map-round-tools>.button,html[data-theme='sakura'] body .map-studio .map-round-tools .map-shop-menu>summary{font-size:14px;padding:6px 5px}
+}
+@media (max-width:760px) and (max-height:640px){
+  html[data-theme='sakura'] body .map-round-slip__question{font-size:18px}
+  .map-round-slip,html[data-theme='sakura'] body[data-view] .map-round-slip{padding:8px 12px 7px}
+  .map-round-hand__who h2{font-size:16px}
+  /* 38px controls on a short phone grow back to 44px: the one-row hand keeps its height by losing padding instead */
+  html[data-theme='sakura'] body .map-round-route :is(.button,.icon-button){width:44px;min-width:44px;height:44px;min-height:44px}
+  html[data-theme='sakura'] body .map-round-hand :is(.map-round-card__flip,.map-round-card__go){min-height:44px;padding-block:4px}
+  html[data-theme='sakura'] body .map-round-hand .map-round-card__more{min-height:44px;height:44px}
+}
+
+/* ---------------------------------------------------------------- the narrowest phones (320–360 px) */
+@media (max-width:360px){
+  .map-round-hint>i{display:none}
+  html[data-theme='sakura'] body .map-studio .map-round-tools>.button,html[data-theme='sakura'] body .map-studio .map-round-tools .map-shop-menu>summary{font-size:14px;letter-spacing:0;padding:6px 4px}
+  .map-round-card,.map-round-card:nth-child(even){transform:none}
+  html[data-theme='sakura'] body .map-round-card__go{padding-inline:7px;font-size:14px;justify-content:center}
+  html[data-theme='sakura'] body .map-round-card__go .icon{display:none}
+  html[data-theme='sakura'] body .map-round-card__more,html[data-theme='sakura'] body .map-round-card__more:hover{min-width:44px;padding:4px 6px;font-size:13px}
+}
+@media (max-width:400px){
+  .map-round-hand__done{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .map-round-hand__done>.button--primary{grid-column:1/-1}
+}

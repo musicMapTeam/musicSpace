@@ -17,7 +17,8 @@
       "changes": [
         "Wrap material and ramp caches in createCelMaterials() so each mounted scene owns and disposes its resources.",
         "Remove unused world material shortcuts. Retain the cel tint shader patch and customProgramCacheKey.",
-        "Read Three 0.186.1 lights_toon_pars_fragment.glsl.js: the irradiance patch anchor matches the current source."
+        "Read Three 0.186.1 lights_toon_pars_fragment.glsl.js: the irradiance patch anchor matches the current source.",
+        "2026-10-07: stop passing flatShading to the MeshToonMaterial constructor. Three 0.186.1 has no such parameter on that material and ignored it with one console warning per material (72 per load); the `flat` option stays in the cache key, so rendering is unchanged."
       ]
     },
     {

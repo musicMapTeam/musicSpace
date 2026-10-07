@@ -1,0 +1,25 @@
+/* The 0.16 record-shop stylesheets, unchanged, as one cascade layer. They keep the geometry: placement beside the scene, the phone,
+   tablet and short-screen breakpoints, sticky bars, the touch floors and the WebGL-off flow. The Doodle look (css/doodle/, unlayered)
+   wins every property it sets whatever the legacy selector's weight; layered !important rules ([hidden], reduced motion) still win.
+   Order as before (later wins inside the layer). */
+@import './base.css' layer(legacy);
+@import './map.css' layer(legacy);
+@import './themes.css' layer(legacy);
+@import './theme-sakura.css' layer(legacy);
+@import 'overlayscrollbars/overlayscrollbars.css' layer(legacy);
+@import './compact.css' layer(legacy);
+@import './app-studio.css' layer(legacy);
+@import './map-studio.css' layer(legacy);
+@import './map-credits.css' layer(legacy);
+@import './spatial-world.css' layer(legacy);
+@import './open-catalogue.css' layer(legacy);
+@import './product-finish.css' layer(legacy);
+@import './courtyard-ui.css' layer(legacy);
+@import './spatial-objects.css' layer(legacy);
+@import './map-spatial.css' layer(legacy);
+@import './scene-layout.css' layer(legacy);
+@import './map-round.css' layer(legacy);
+@import './home-map.css' layer(legacy);
+@import './night-shell.css' layer(legacy);
+@import './share-card.css' layer(legacy);
+@import './listen.css' layer(legacy);

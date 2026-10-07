@@ -1,0 +1,72 @@
+/* bridge: the page paper, the type roles and the legacy variables pointed at the Doodle tokens. Custom properties are set on the
+   same elements the legacy layer sets them on (:root and the map containers), so the unlayered value wins there. */
+
+/* ---- legacy variables → tokens */
+:root{
+  color-scheme:light;
+  --bg:var(--ds-paper);--surface:var(--ds-paper-card);--surface-raised:var(--ds-paper-deep);--surface-2:var(--ds-paper-deep);
+  --text:var(--ds-ink);--paper:var(--ds-paper-card);--muted:var(--ds-ink-3);--line:color-mix(in srgb,var(--ds-ink) 24%,transparent);
+  --mint:var(--ds-ink);--coral:var(--ds-ink-2);--radius:var(--ds-radius-card);
+  --theme-ink:var(--ds-ink);--theme-paper:var(--ds-paper-card);--theme-accent:var(--ds-yellow);--theme-soft:var(--ds-pink-soft);
+  --button-fill:var(--ds-ink);--button-ink:var(--ds-paper-card);
+  --font-display:var(--ds-font-ui);--font-serif:var(--ds-font-display);--font-mono:var(--ds-font-digits);--fs-hero:var(--ds-size-hero);
+  --studio-panel:var(--ds-paper-card);--studio-well:var(--ds-paper-deep);--studio-border:var(--ds-ink);--studio-radius:var(--ds-radius-card);
+  --studio-shadow:var(--ds-shadow);--studio-soft-shadow:var(--ds-shadow-sm);
+  --sk-ink:var(--ds-ink);--sk-paper:var(--ds-paper-card);--sk-pink:var(--ds-pink-soft);--sk-rose:var(--ds-pink);--sk-green:var(--ds-ink);--sk-line:var(--ds-ink-3);
+  /* the night is gone: paper and ink in its place */
+  --night-sky:var(--ds-paper);--night-ink:var(--ds-ink);--night-ink-soft:var(--ds-ink-2);--night-muted:var(--ds-ink-3);--night-amber:var(--ds-ink);--night-pink:var(--ds-pink);
+  --night-glass:var(--ds-paper-card);--night-glass-strong:var(--ds-paper-card);--night-glass-line:var(--ds-ink);--night-glass-ink:var(--ds-ink);
+  --paper-lit:var(--ds-paper-card);--paper-lit-top:var(--ds-paper-card);--paper-edge:var(--ds-ink);--paper-ink:var(--ds-ink);--paper-muted:var(--ds-ink-3);
+  --paper-shadow-night:var(--ds-shadow);--paper-shadow-night-soft:var(--ds-shadow-sm);--text-glow:none;--text-lift:none;
+  --object-paper:var(--ds-paper-card);--object-line:var(--ds-ink);--object-shadow:var(--ds-shadow);
+  --round-paper:var(--ds-paper-card);--round-ink:var(--ds-ink);--round-muted:var(--ds-ink-3);--round-rose:var(--ds-pink);--round-rose-soft:var(--ds-pink-soft);
+  --round-green:var(--ds-ink);--round-gold:var(--ds-orange);--round-kraft:var(--ds-paper-deep);--round-kraft-line:var(--ds-ink);--round-kraft-ink:var(--ds-ink-2);
+  --round-glass:var(--ds-paper-deep);--round-glass-line:var(--ds-ink);--round-glass-ink:var(--ds-ink);--round-glass-muted:var(--ds-ink-3);--round-serif:var(--ds-font-display);
+  font-family:var(--ds-font-body);color:var(--ds-ink);background:var(--ds-paper);
+}
+:is(.map-experience,.map-records,.map-dialog,.map-studio){
+  --map-ink:var(--ds-ink);--map-muted:var(--ds-ink-3);--map-sea:var(--ds-ink);--map-coral:var(--ds-pink);--map-line:color-mix(in srgb,var(--ds-ink) 24%,transparent);
+  --map-card:var(--ds-paper-card);--map-disc:var(--ds-ink-2);--map-disc-line:var(--ds-ink-3);
+}
+
+/* ---- the page: dotted paper under (and before) the scene; no night scrims, no text glow */
+html,html:not(:has(body.spatial-fallback)){background:var(--ds-paper);scrollbar-color:var(--ds-ink-3) transparent}
+body,body:not(.spatial-fallback),body.spatial-fallback{background:var(--ds-paper) var(--ds-dots);color:var(--ds-ink);font-family:var(--ds-font-body);-webkit-font-smoothing:antialiased}
+.spatial-world{background:var(--ds-paper) var(--ds-dots)}
+.spatial-world::after,.spatial-world::before{content:none;display:none}
+::selection{background:var(--ds-yellow);color:var(--ds-ink)}
+:where(button,summary,select,input,label,legend){font-family:var(--ds-font-ui)}
+:where(h1,h2,h3){font-family:var(--ds-font-display);font-weight:400;letter-spacing:.01em}
+a{color:var(--ds-ink);text-decoration-color:var(--ds-pink)}
+.muted{color:var(--ds-ink-3)}
+/* the Digits face for counts and dates in running copy */
+.map-num{font-family:var(--ds-font-digits);font-weight:400;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.ds-defs{position:absolute;width:0;height:0;overflow:hidden}
+
+/* one dashed ink ring for every focus, on paper and over the scene alike */
+:is(button,a,input,select,textarea,summary,[tabindex]):focus-visible{outline:3px dashed var(--ds-ink);outline-offset:3px}
+.skip-link{font-family:var(--ds-font-ui);color:var(--ds-paper-card);background:var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:4px 4px 0 var(--ds-pink)}
+
+/* ---- the eyebrow: a small marker label above a title */
+.eyebrow{display:inline-block;font-family:var(--ds-font-ui);font-size:13px;font-weight:400;letter-spacing:.06em;line-height:1.5;color:var(--ds-ink-2)}
+
+/* ---- toast: a speech bubble (placement stays app.js / legacy) */
+.toast,html[data-theme] body .toast{font-family:var(--ds-font-ui);font-size:15px;line-height:1.45;color:var(--ds-ink);background:var(--ds-paper-card);
+  border:var(--ds-line) solid var(--ds-ink);border-radius:20px 14px 22px 12px/14px 20px 12px 22px;box-shadow:var(--ds-shadow);padding:11px 18px 10px;text-align:center}
+.toast::after{content:'';position:absolute;left:calc(50% - 8px);bottom:-9px;width:14px;height:14px;background:var(--ds-paper-card);border-right:var(--ds-line) solid var(--ds-ink);
+  border-bottom:var(--ds-line) solid var(--ds-ink);transform:rotate(45deg);border-bottom-right-radius:3px}
+.toast.toast--top::after{bottom:auto;top:-9px;transform:rotate(225deg)}
+body.spatial-fallback[data-view='explore'] .toast::after{bottom:auto;top:-9px;transform:rotate(225deg)}
+
+/* ---- empty states: a doodle, a small layered title, one line */
+.empty-state{border:var(--ds-line-thin) dashed var(--ds-ink-3);border-radius:var(--ds-radius-card);background:var(--ds-paper-card);color:var(--ds-ink-2);font-family:var(--ds-font-body)}
+.empty-state :is(h1,h2,h3){font-family:var(--ds-font-display);font-weight:400;color:var(--ds-ink);text-shadow:.06em .06em 0 var(--ds-yellow)}
+.empty-state p{font-size:16px;line-height:1.6;color:var(--ds-ink-2)}
+
+/* ---- scrollbars: ink on paper */
+.os-theme-music{--os-handle-bg:color-mix(in srgb,var(--ds-ink) 38%,transparent);--os-handle-bg-hover:var(--ds-ink-2);--os-handle-bg-active:var(--ds-ink)}
+dialog:hover,dialog:focus-within{scrollbar-color:var(--ds-ink-3) transparent}
+
+/* ---- icons: hand-drawn strokes with the marker tremor */
+.icon{filter:url(#ds-wobble)}
+@media (forced-colors:active){.icon{filter:none}}

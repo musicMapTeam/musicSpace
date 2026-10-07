@@ -2,7 +2,7 @@
 export const INVITE_CODE = /^[A-Z2-7]{12}$/;
 export const NEARBY_SERVICE = '6d757369-6373-4070-9163-652d696e7669';
 export const NEARBY_URL = '6d757369-6373-4070-9163-652d75726c31';
-const bad = () => { throw new Error('请使用当前 Music Space 的有效邀请链接或 12 位邀请码。'); };
+const bad = () => { throw new Error('邀请码不对，请检查后再试。'); };
 export function invitation(value, { base, kind = 'room', allowCode = true } = {}) {
   if (!['room', 'community'].includes(kind)) bad();
   if (typeof value !== 'string' || value.length > 2048 || /[\p{Cc}\u2028\u2029]/u.test(value)) bad();
@@ -31,7 +31,7 @@ export function previewPath({ kind, code }) {
 }
 export function nfcInvitation(base, target) {
   const url = invitationUrl(base, target);
-  if (new URL(url).protocol !== 'https:') throw new Error('NFC 标签需要可由手机访问的 HTTPS 邀请地址；本机 HTTP 仍可复制链接或二维码。');
+  if (new URL(url).protocol !== 'https:') throw new Error('写 NFC 需要 HTTPS 地址，可以先用链接或二维码');
   return { records: [{ recordType: 'url', data: url }] };
 }
 /** Native transports use these aliases; legacy clients remain compatible. */

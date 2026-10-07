@@ -496,7 +496,7 @@ export function mountToonScene(container, initialState = {}) {
           circle(124,370,19,accent);
         }
         const labels=['THE LAST SONG','FROM THE FRONT ROW','BEHIND THE BEAT','AFTER THE ENCORE','ONE VOICE / ONE ROOM','LEAVE A SEAT'];
-        ctx.fillStyle=ink;ctx.font='700 24px monospace';ctx.fillText(labels[index%6],28,550);ctx.font='17px monospace';ctx.fillText('ORIGINAL FICTIONAL PRINT',28,590);
+        ctx.fillStyle=ink;ctx.font='700 24px monospace';ctx.fillText(labels[index%6],28,550);ctx.font='17px monospace';ctx.fillText('ORIGINAL PRINT',28,590);
       }
       const texture=new THREE.CanvasTexture(surface);texture.colorSpace=THREE.SRGBColorSpace;resources.textures.add(texture);return texture;
     }

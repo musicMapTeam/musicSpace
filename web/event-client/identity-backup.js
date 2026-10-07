@@ -11,8 +11,8 @@ function originValue(value){
  if(!['http:','https:'].includes(url.protocol)||url.username||url.password||url.search||url.hash||url.pathname!=='/'||url.origin!==value)fail('备份只能绑定一个明确的房间服务来源。');
  return value;
 }
-function passwordValue(value){if(typeof value!=='string'||[...value].length<12||[...value].length>128||/[\p{Cs}\u0000-\u001f\u007f]/u.test(value))fail('请选择12至128个字符的独特备份密码。');return value;}
-function cryptoValue(value){if(!value?.subtle||typeof value.getRandomValues!=='function')fail('当前浏览器没有可用的安全加密能力，不能导出或恢复身份。');return value;}
+function passwordValue(value){if(typeof value!=='string'||[...value].length<12||[...value].length>128||/[\p{Cs}\u0000-\u001f\u007f]/u.test(value))fail('备份密码需要12至128个字符');return value;}
+function cryptoValue(value){if(!value?.subtle||typeof value.getRandomValues!=='function')fail('浏览器缺少安全加密能力，无法备份');return value;}
 function base64(bytes){return btoa(String.fromCharCode(...new Uint8Array(bytes)));}
 function decode(value,min,max){
  if(typeof value!=='string'||value.length>max*2||!/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(value))fail('备份文件格式不正确。');
@@ -27,14 +27,14 @@ async function keyFor(crypto,password,salt){
 function parseEnvelope(text,expectedOrigin){
  if(typeof text!=='string'||text.length>8192)fail('请选择有效的 Music Space 身份备份文件。');
  let value;try{value=JSON.parse(text);}catch{fail('备份文件无法读取。');}
- if(!value||Array.isArray(value)||Object.keys(value).sort().join(',')!=='cipher,ciphertext,iterations,kdf,magic,nonce,origin,salt,version'||value.magic!==MAGIC||value.version!==VERSION||value.kdf!=='PBKDF2-SHA-256'||value.iterations!==ITERATIONS||value.cipher!=='AES-GCM-256')fail('不支持这份备份的格式或加密参数。');
- if(originValue(value.origin)!==originValue(expectedOrigin))fail('这份备份属于另一个服务地址。为保护身份，不会向当前地址提交凭据。');
+ if(!value||Array.isArray(value)||Object.keys(value).sort().join(',')!=='cipher,ciphertext,iterations,kdf,magic,nonce,origin,salt,version'||value.magic!==MAGIC||value.version!==VERSION||value.kdf!=='PBKDF2-SHA-256'||value.iterations!==ITERATIONS||value.cipher!=='AES-GCM-256')fail('不支持这份备份的格式');
+ if(originValue(value.origin)!==originValue(expectedOrigin))fail('这份备份属于另一个服务地址');
  return {...value,salt:decode(value.salt,16,16),nonce:decode(value.nonce,12,12),ciphertext:decode(value.ciphertext,16,4096)};
 }
 
 export async function encryptIdentityBackup(session,password,{origin,crypto=globalThis.crypto}={}){
  origin=originValue(origin);crypto=cryptoValue(crypto);passwordValue(password);
- if(!session||!TOKEN.test(session.token)||!ID.test(session.user?.id))fail('当前身份还没有经过核对。');
+ if(!session||!TOKEN.test(session.token)||!ID.test(session.user?.id))fail('请先确认你的小人身份');
  const salt=crypto.getRandomValues(new Uint8Array(16)),nonce=crypto.getRandomValues(new Uint8Array(12)),key=await keyFor(crypto,password,salt);
  const bytes=encoder.encode(JSON.stringify({actorId:session.user.id,token:session.token,origin,createdAt:new Date().toISOString()}));
  try{const ciphertext=await crypto.subtle.encrypt({name:'AES-GCM',iv:nonce,additionalData:aad(origin),tagLength:128},key,bytes);
@@ -48,8 +48,8 @@ export async function decryptIdentityBackup(text,password,{origin,crypto=globalT
  const envelope=parseEnvelope(text,origin);crypto=cryptoValue(crypto);passwordValue(password);
  const key=await keyFor(crypto,password,envelope.salt);let plaintext;
  try{plaintext=new Uint8Array(await crypto.subtle.decrypt({name:'AES-GCM',iv:envelope.nonce,additionalData:aad(envelope.origin),tagLength:128},key,envelope.ciphertext));}
- catch{fail('备份密码不正确，或文件已经损坏。当前身份没有改变。');}
- try{const value=JSON.parse(decoder.decode(plaintext));if(!value||Array.isArray(value)||Object.keys(value).sort().join(',')!=='actorId,createdAt,origin,token'||!ID.test(value.actorId)||!TOKEN.test(value.token)||value.origin!==origin||!Number.isFinite(Date.parse(value.createdAt)))fail('备份内的身份无法核对。');
+ catch{fail('密码不正确或文件已损坏');}
+ try{const value=JSON.parse(decoder.decode(plaintext));if(!value||Array.isArray(value)||Object.keys(value).sort().join(',')!=='actorId,createdAt,origin,token'||!ID.test(value.actorId)||!TOKEN.test(value.token)||value.origin!==origin||!Number.isFinite(Date.parse(value.createdAt)))fail('备份内容无效');
   // The integration must verify /api/avatar/session at this exact origin and
   // require explicit replacement consent before writing SESSION_KEY.
   return {actorId:value.actorId,token:value.token,origin:value.origin,createdAt:value.createdAt};

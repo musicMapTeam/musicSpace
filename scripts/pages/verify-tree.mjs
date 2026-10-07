@@ -112,7 +112,7 @@ export function checkHtml(html, kind, build) {
   const body = html.search(/<body\b/i), script = firstModuleScript(html);
   add(`${page}: module script comes after <body>`, body >= 0 && script > body, `body at ${body}, first module script at ${script}`);
   add(`${page}: the module script is inline`, !/<script\b[^>]*\btype=["']module["'][^>]*\bsrc=/i.test(html), 'a module script still has a src');
-  const notices = kind === 'root' ? ['three-MIT.txt', 'sakura-crossing-MIT.txt', 'qrcode-generator-MIT.txt', 'sql.js-MIT.txt'] : ['three-MIT.txt', 'sakura-crossing-MIT.txt', 'gsap-notice.txt', 'overlayscrollbars-MIT.txt', 'phosphor-MIT.txt', 'qrcode-generator-MIT.txt'];
+  const notices = kind === 'root' ? ['three-MIT.txt', 'sakura-crossing-MIT.txt', 'qrcode-generator-MIT.txt', 'sql.js-MIT.txt'] : ['three-MIT.txt', 'sakura-crossing-MIT.txt', 'gsap-notice.txt', 'overlayscrollbars-MIT.txt', 'qrcode-generator-MIT.txt'];
   const lacking = notices.filter(file => !html.includes(`<!-- ${file}\n`));
   add(`${page}: the ${notices.length} licence notices are kept as HTML comments`, !lacking.length, `missing: ${lacking.join(', ')}`);
   add(`${page}: <noscript> and nomodule messages`, /<noscript\b/i.test(html) && /<script nomodule\b/i.test(html), 'missing');

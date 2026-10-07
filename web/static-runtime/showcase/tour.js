@@ -1,5 +1,5 @@
 /**
- * The four-step 「示例路线」 card of the static build: a slim card above .presence that says what to do next and finishes itself.
+ * The four-step 「第一次来」 card of the static build: a slim card above .presence that says what to do next and finishes itself.
  *
  *   const tour = createTour({ container, esc, onAction, samples?, storage? });
  *   tour.update(view);   // from renderState, as often as you like (it only touches the DOM when the card changes)
@@ -11,10 +11,12 @@
  * onAction    (action, { kind, id }) for a click on a card button. `action` is the button's data-tour-action: 'open:upload' | 'open:wall' |
  *             'open:people' | 'open:recap' | 'sample:<sample id>', or 'skip' for 「跳过路线」. Opening a panel and loading a sample are
  *             the caller's work; the tour only reports.
- * samples     [{ id, label }] the sample buttons of step 1, the first one primary (default: the crowd photo, then the stage photo).
+ * samples     [{ id, label }] the ready-made photo buttons of step 1, the first one primary (default: the crowd photo, then the stage photo).
+ *             They are photos of the seeded show, so they are offered only in its room: a view with showcase === false (a room the visitor
+ *             opened) gets step 1 with the visitor's own photo alone.
  * storage     where the card remembers skip/collapse (default localStorage under 'music-space-tour:v1', a purge-listed key).
  *
- * view = { stage: 'lobby' | 'room', ownPhotos, hasPairing, exchanges: { total }, friends, openedRecap, panel, readOnly? }
+ * view = { stage: 'lobby' | 'room', ownPhotos, hasPairing, exchanges: { total }, friends, openedRecap, panel, readOnly?, showcase? }
  * Completion comes from the view (see tourProgress): the card shows the first step that is not done and, when all four are, the
  * closing card. It is hidden in the lobby, in a read-only tab, while a panel is open (the panel covers it) and after 「跳过路线」.
  *
@@ -26,17 +28,17 @@ import { TOUR_SAMPLES, TOUR_MORE } from './copy.js';
 export const TOUR_STORAGE_KEY = 'music-space-tour:v1';
 
 export const TOUR_STEPS = Object.freeze([
-  Object.freeze({ id: 'photo', title: '放一张你的照片', hint: '选一张示例照片最快；也可以用你自己的照片。' }),
-  Object.freeze({ id: 'other-side', title: '看「同一刻的另一面」', hint: '照片墙会标出和你同一刻、拍到另一面的那张。没看到的话，给照片选好视角并确认拍摄时间，或者换一张示例照片。', action: ['open:wall', '去照片墙看看'] }),
-  Object.freeze({ id: 'exchange', title: '发起交换', hint: '点「和 TA 交换这个视角」，勾选同意再发出；对方接受后，两张照片互相可见。', action: ['open:wall', '回到照片墙'] }),
-  Object.freeze({ id: 'people', title: '招个手 / 私聊 / 回看这一晚', hint: '向同场的示例角色招手，对方接受后可以私聊；散场后还能回看这一晚。', action: ['open:people', '看看同场的人'], extra: ['open:recap', '回看这一晚'] }),
+  Object.freeze({ id: 'photo', title: '放一张今晚的照片', hint: '挑一张，或者用你自己的。', hintOwn: '选一张你自己拍的。' }),
+  Object.freeze({ id: 'other-side', title: '看「同一刻的另一面」', hint: '照片墙会把它标出来。', action: ['open:wall', '去照片墙看看'] }),
+  Object.freeze({ id: 'exchange', title: '发起交换', hint: '在照片墙点「和 TA 交换这个视角」。', action: ['open:wall', '回到照片墙'] }),
+  Object.freeze({ id: 'people', title: '招个手 / 私聊 / 回看这一晚', hint: '向同场的人招个手，TA 接受就能私聊。', action: ['open:people', '看看同场的人'], extra: ['open:recap', '回看这一晚'] }),
 ]);
 
 const positive = value => Number(value) > 0;
 
 /**
  * Which steps are done, which one is current and whether the card shows at all.
- *   1 放一张你的照片        done when the visitor has a photo of their own on the wall
+ *   1 放一张今晚的照片      done when the visitor has a photo of their own on the wall
  *   2 看「同一刻的另一面」  done when that photo has a same-moment partner AND the wall was seen, or when an exchange already exists
  *   3 发起交换              done when any exchange exists
  *   4 招个手 / 私聊 / 回看  done when the visitor has a friend or opened the recap
@@ -64,16 +66,17 @@ export function tourMarkup({ progress, collapsed = false, esc = escape, samples 
   const label = collapsed ? '展开' : '收起';
   const bar = `<span class="demo-tour-bar" aria-hidden="true">${progress.done.map(done => `<i${done ? ' class="on"' : ''}></i>`).join('')}</span>`;
   // The spans only give the sticky note its layers (label sticker with the step dots, then the step in the display face); the text is unchanged.
-  const head = `<div class="demo-tour-head"><p class="demo-tour-title"><strong>示例路线 ${progress.complete ? total : progress.current + 1}/${total}</strong>${bar}`
+  const head = `<div class="demo-tour-head"><p class="demo-tour-title"><strong>第一次来 ${progress.complete ? total : progress.current + 1}/${total}</strong>${bar}`
     + `<span class="demo-tour-sep"> · </span><span class="demo-tour-step">${step ? step.title : '路线走完了'}</span></p>`
-    + `<button type="button" class="demo-tour-toggle" data-tour-toggle aria-expanded="${!collapsed}" aria-label="${label}示例路线">${label}</button></div>`;
+    + `<button type="button" class="demo-tour-toggle" data-tour-toggle aria-expanded="${!collapsed}" aria-label="${label}路线">${label}</button></div>`;
   if (collapsed) return head;
   const button = (action, text, primary) => `<button type="button" class="demo-tour-action ${primary ? 'primary' : 'quiet'}" data-tour-action="${esc(action)}">${esc(text)}</button>`;
+  const offered = Array.isArray(samples) ? samples : [];
   let actions;
   if (!step) actions = '';
-  else if (step.id === 'photo') actions = (Array.isArray(samples) ? samples : []).map((sample, index) => button(`sample:${sample.id}`, sample.label, index === 0)).join('') + button('open:upload', '用我自己的照片', false);
+  else if (step.id === 'photo') actions = offered.map((sample, index) => button(`sample:${sample.id}`, sample.label, index === 0)).join('') + button('open:upload', '用我自己的照片', !offered.length);
   else actions = button(step.action[0], step.action[1], true) + (step.extra ? button(step.extra[0], step.extra[1], false) : '');
-  const hint = step ? step.hint : `更多可以逛：${TOUR_MORE.join('、')}。`;
+  const hint = !step ? `更多可以逛：${TOUR_MORE.join('、')}。` : step.id === 'photo' && !offered.length ? step.hintOwn : step.hint;
   const skip = step ? '<button type="button" class="demo-tour-skip quiet" data-tour-skip>跳过路线</button>' : '<button type="button" class="demo-tour-skip primary" data-tour-skip>知道了，收起路线</button>';
   return `${head}<p class="demo-tour-hint">${hint}</p><div class="demo-tour-actions">${actions}${skip}</div>`;
 }
@@ -97,7 +100,7 @@ export function createTour({ container, esc = escape, onAction, samples, storage
   container.classList?.add('demo-tour');
   container.setAttribute?.('role', 'region');
   container.setAttribute?.('aria-live', 'polite');
-  container.setAttribute?.('aria-label', '示例路线');
+  container.setAttribute?.('aria-label', '第一次来');
 
   let view = {};
   let shown = null;
@@ -105,7 +108,7 @@ export function createTour({ container, esc = escape, onAction, samples, storage
 
   function render() {
     const progress = tourProgress(view, state);
-    const html = tourMarkup({ progress, collapsed: state.collapsed, esc, samples });
+    const html = tourMarkup({ progress, collapsed: state.collapsed, esc, samples: view.showcase === false ? [] : samples });
     container.hidden = !progress.visible;
     // The expanded card takes the place of the presence's own text and buttons (demo.css on phones, the Doodle showcase.css at every
     // width); a class on the parent says so without needing :has(), which some WeChat WebViews do not know yet.

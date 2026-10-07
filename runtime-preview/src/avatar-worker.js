@@ -50,14 +50,14 @@ function allowedKeys(data, allowed) {
  * Read-time normalization must not rewrite stored snapshots or consent revisions.
  */
 function avatar(value = DEFAULT_AVATAR) {
-  if (!plain(value)) fail(400, 'INVALID_AVATAR', '请选择你的分身。');
+  if (!plain(value)) fail(400, 'INVALID_AVATAR', '请选择你的小人。');
   allowedKeys(value, ['version', 'skin', 'hair', 'hairColor', 'outfit', 'accessory', 'pose',
     'top', 'bottom', 'shoes', 'eyewear', 'topColor', 'bottomColor', 'shoeColor', 'expression']);
-  if (value.version !== undefined && value.version !== 2) fail(400, 'INVALID_AVATAR', '分身版本无效，请重新选择。');
+  if (value.version !== undefined && value.version !== 2) fail(400, 'INVALID_AVATAR', '小人版本无效，请重新选择。');
   const result = { version: 2 };
   function index(key, maximum, fallback) {
     const number = value[key] === undefined ? fallback : value[key];
-    if (!Number.isInteger(number) || number < 0 || number > maximum) fail(400, 'INVALID_AVATAR', '分身样式无效，请重新选择。');
+    if (!Number.isInteger(number) || number < 0 || number > maximum) fail(400, 'INVALID_AVATAR', '小人样式无效，请重新选择。');
     return number;
   }
   result.skin = index('skin', 4);
@@ -91,11 +91,11 @@ function avatarResponseJSON(body) {
 }
 
 function transform(value = { x: 35, y: 68, scale: 1, rotation: 0 }) {
-  if (!plain(value)) fail(400, 'INVALID_TRANSFORM', '分身位置无效。');
+  if (!plain(value)) fail(400, 'INVALID_TRANSFORM', '小人位置无效。');
   allowedKeys(value, ['x', 'y', 'scale', 'rotation']);
   const result = {};
   for (const [key, min, max] of [['x', 0, 100], ['y', 0, 100], ['scale', 0.5, 1.5], ['rotation', -20, 20]]) {
-    if (typeof value[key] !== 'number' || !Number.isFinite(value[key]) || value[key] < min || value[key] > max) fail(400, 'INVALID_TRANSFORM', '分身位置超出画面范围。');
+    if (typeof value[key] !== 'number' || !Number.isFinite(value[key]) || value[key] < min || value[key] > max) fail(400, 'INVALID_TRANSFORM', '小人位置超出画面范围。');
     result[key] = Math.round(value[key] * 1000) / 1000;
   }
   return result;
@@ -253,9 +253,9 @@ export function createAvatarWorker({ clock = Date.now, rateLimits = true } = {})
       const capability = async (kind, actor, key) => createHmac('sha256', await secret()).update(`${kind}\0${actor}\0${key}`).digest('base64url');
       async function authenticate() {
         const match = /^Bearer ([A-Za-z0-9_-]{43})$/.exec(request.headers.get('Authorization') || '');
-        if (!match) fail(401, 'SESSION_REQUIRED', '请先建立你的分身身份。');
+        if (!match) fail(401, 'SESSION_REQUIRED', '请先确认你的小人身份。');
         const user = await get('SELECT * FROM avatar_users WHERE token_hash = ?', hash(match[1]));
-        if (!user) fail(401, 'SESSION_INVALID', '此浏览器身份已失效。新建身份无法恢复旧作品。');
+        if (!user) fail(401, 'SESSION_INVALID', '身份已失效，请刷新页面。');
         return user;
       }
       async function requireRoom(id, userId) {
@@ -429,7 +429,7 @@ export function createAvatarWorker({ clock = Date.now, rateLimits = true } = {})
           if (room.host_id === user.id) fail(409, 'DISTINCT_IDENTITY_REQUIRED', '请把邀请交给另一个人的浏览器；不能替对方加入或同意。');
           revision(room, data.revision);
           if (room.guest_id) fail(409, 'COMPOSITION_FULL', '这个双人场景已经有人加入。');
-          if (data.consent !== true) fail(400, 'JOIN_CONSENT_REQUIRED', '请明确同意把你的分身与回应放入这个场景。');
+          if (data.consent !== true) fail(400, 'JOIN_CONSENT_REQUIRED', '请先勾选同意，再放进这个场景。');
           const state = JSON.parse(room.snapshot), currentUser = await get('SELECT * FROM avatar_users WHERE id = ?', user.id);
           state.guest = { id: user.id, name: currentUser.name, avatar: avatar(data.avatar === undefined ? JSON.parse(currentUser.avatar) : data.avatar),
             transform: transform(data.transform || { x: 65, y: 68, scale: 1, rotation: 0 }), response: text(data.response, '回应', 160, '') };

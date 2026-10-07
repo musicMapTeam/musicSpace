@@ -384,7 +384,7 @@ function makeLifecycle(container, api) {
     };
     /** Capture time: what was read, what is only a guess, and the field to say otherwise. */
     const renderTaken = ({ fillInput = false } = {}) => {
-      const view = timeView(draft, SPACE_EVENT.date, { zone });
+      const view = timeView(draft, SPACE_EVENT.date, { zone, sampleNote: '示例照片的虚构时间' });
       const open = view.mode !== 'known' || editTime;
       if (fillInput) form.elements.takenAt.value = draft.takenAt === null ? '' : toInputValue(draft.takenAt);
       // Something typed that cannot be used (before 2000, after tomorrow) is said next to the field, not dropped in silence.

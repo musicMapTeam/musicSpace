@@ -1,4 +1,4 @@
-import { artistById, artistName, artistsInDataset, datasetForArtist } from './map-data.js';
+import { artistById, artistName, artistsInDataset } from './map-data.js';
 import { getSavedMusic, subscribeSavedMusic } from './music-library.js';
 import { recordProgressed } from './map.js';
 
@@ -42,7 +42,7 @@ export function mountHome(container, api) {
   const round = openRound(map);
   const steps = round ? round.path.length - 1 : 0;
   const resume = round && touched(round);
-  const pair = round ? `${datasetForArtist(round.start) === 'fictional' ? '情景示例 · ' : ''}${artistName(round.start)} → ${artistName(round.target)}` : '';
+  const pair = round ? `${artistName(round.start)} → ${artistName(round.target)}` : '';
   const roundTitle = resume ? '继续寻声' : '两位歌手之间，隔着几首歌？';
   const roundMeta = resume ? `${pair} · 已走 ${steps} 步` : round ? `${round.friend ? '朋友出的题' : '寻声'} · ${pair}` : '寻声 · 在唱片店开一局';
   const returning = map.sessions.some(touched) || getSavedMusic().length > 0;
@@ -51,12 +51,13 @@ export function mountHome(container, api) {
   container.innerHTML = `<section class="home-studio${returning ? ' home-studio--returning' : ''}" aria-labelledby="home-title">
     <div class="home-cover">
       <header class="home-hero">
-        <p class="home-hero__kicker"><i aria-hidden="true"></i>音乐探索 · 夜场唱片店</p>
-        <h1 id="home-title" class="home-hero__title"><span>从喜欢，</span><span>走向未知。</span></h1>
-        <p class="home-hero__lede">从一位喜欢的歌手出发，沿着真实的合唱，翻开下一位、找到下一首。</p>
-        <ol class="home-hero__steps" aria-label="怎么探索"><li>选一位歌手</li><li>沿合唱走到下一位</li><li>把路上的歌留下</li></ol>
+        <h1 id="home-title" class="home-hero__title"><span>从喜欢，</span><span><span class="home-hero__key">走向未知</span>。</span></h1>
+        <p class="home-hero__lede">从一位喜欢的歌手出发，沿着合唱找到下一首。</p>
+        <span class="ds-deco ds-star home-hero__star" aria-hidden="true"></span>
+        <span class="ds-deco ds-music home-hero__note" aria-hidden="true"></span>
       </header>
       <div class="home-paper home-paper--compact" data-home-paper>
+        <span class="ds-tape home-paper__tape" aria-hidden="true"></span>
         <form class="home-search" role="search" data-home-search>
           <label class="home-search__label" for="home-artist-search">今天，从谁开始？</label>
           <div class="home-search__field">${api.icon('magnifying-glass')}<input id="home-artist-search" type="search" enterkeyhint="go" autocomplete="off" spellcheck="false" placeholder="如 周杰伦、JJ Lin" aria-describedby="home-search-note"></div>
@@ -71,7 +72,7 @@ export function mountHome(container, api) {
         <div class="home-paper__foot">
           <button type="button" data-home="records">我的发现 <span class="home-count">${map.sessions.filter(recordProgressed).length}</span></button>
           <button type="button" data-home="music">留下的歌 <span class="home-count" data-home-music>${getSavedMusic().length}</span></button>
-          <button type="button" data-open-catalogue aria-haspopup="dialog">开放曲库 ${api.icon('arrow-up-right')}</button>
+          <button type="button" data-open-catalogue aria-haspopup="dialog">开放曲库</button>
         </div>
       </div>
     </div>
@@ -92,7 +93,7 @@ export function mountHome(container, api) {
     picks.dataset.kind = found.length ? 'found' : 'starts';
     picks.setAttribute('aria-label', found.length ? '匹配的歌手' : '可以从这几位出发');
     picks.innerHTML = list.map(artist => `<button type="button" class="home-pick" data-home-start="${escape(artist.id)}" style="--pick-tone:${escape(artist.color)}" aria-label="从${escape(artist.name)}出发">${escape(artist.name)}</button>`).join('');
-    note.textContent = query && !found.length ? `本专题还没收录「${query}」，先从这几位出发试试。` : '';
+    note.textContent = query && !found.length ? `这里还没有「${query}」，先从这几位开始吧。` : '';
   }
   function start(artistId) {
     if (artistById[artistId]?.dataset === 'real') api.navigate('explore', { artistId, newSession: true });

@@ -48,9 +48,9 @@ const BEI = '00000000-0000-4000-8000-0000000000a3';
 const CODE = 'AAAAAAAAAAAA';
 const EVENT_DATE = '2026.09.26';
 const night = (hour, minute, second = 0) => venueTime(2026, 9, 26, hour, minute, second);
-const room = (extra = {}) => ({ id: roomId, code: CODE, title: '回声现场 · 示例场', venue: '月台 Livehouse（虚构场地）', role: 'member', joined: true, revision: 1, status: 'open', createdAt: '2026-09-26T08:00:00.000Z', songId: 'late-train', ...extra });
+const room = (extra = {}) => ({ id: roomId, code: CODE, title: '回声现场', venue: '月台 Livehouse', role: 'member', joined: true, revision: 1, status: 'open', createdAt: '2026-09-26T08:00:00.000Z', songId: 'late-train', ...extra });
 const me = { id: actor, name: '访客1234', participation: 'open' };
-const cast = [{ id: YAO, name: '阿遥·示例', participation: 'open' }, { id: MAN, name: '小满·示例', participation: 'open' }, { id: BEI, name: '北屿·示例', participation: 'open' }];
+const cast = [{ id: YAO, name: '阿遥', participation: 'open' }, { id: MAN, name: '小满', participation: 'open' }, { id: BEI, name: '北屿', participation: 'open' }];
 const photoId = n => `10000000-0000-4000-8000-${String(n).padStart(12, '0')}`;
 /** A room photo as the room API returns it, with the four moment facts. */
 const shot = (n, ownerId, at, viewpoint, extra = {}) => ({
@@ -107,8 +107,8 @@ const SAMPLE_FILES = {
   'sample-stage': () => new File([readFileSync(new URL('../web/static-runtime/demo-assets/sample-stage.jpg', import.meta.url))], 'sample-stage.jpg', { type: 'image/jpeg' }),
 };
 const SAMPLES = [
-  { id: 'sample-crowd', label: '人海 · 示例照片', note: '虚构的拍摄时间', thumbUrl: './demo/sample-crowd.jpg' },
-  { id: 'sample-stage', label: '舞台 · 示例照片', note: '虚构的拍摄时间', thumbUrl: './demo/sample-stage.jpg' },
+  { id: 'sample-crowd', label: '人海那张', thumbUrl: './demo/sample-crowd.jpg' },
+  { id: 'sample-stage', label: '舞台那张', thumbUrl: './demo/sample-stage.jpg' },
 ];
 // The sample's own EXIF time (written into the shipped JPEG): stage 21:47:50, crowd 21:48:10, Beijing time.
 const SAMPLE_TIME = { 'sample-crowd': night(21, 48, 10), 'sample-stage': night(21, 47, 50) };
@@ -159,8 +159,8 @@ function harness({ start = inRoom(), url = 'https://musicspace.test/musicSpace/'
   const exchangeState = { state: exchange };
   const context = vm.createContext({
     console, document: doc, window, location, history, navigator: { clipboard: { writeText: async () => {} } }, URL: SafeURL, Blob, confirm: message => { confirmed.push(message); return confirms; },
-    invitation, invitationUrl, nfcInvitation, createMusicMap: () => ({ open() {}, close() {}, syncIdentity() {}, dispose() {} }), createPersonalSpace: () => ({ open: async () => {}, close() {}, syncIdentity() {}, dispose() {} }), createCornerPanel: () => ({ open: async () => {}, close() {}, syncIdentity() {}, dispose() {} }), createIdentityContinuityPanel: () => ({ open() {}, close() {}, dispose() {} }),
-    createCommunityPanel: () => ({ open: async () => {}, close() {}, syncIdentity() {}, dispose() {} }), createWorldCupPanel: () => ({ open: async () => {}, close() {}, syncIdentity() {}, dispose() {} }),
+    invitation, invitationUrl, nfcInvitation, createMusicMap: () => ({ open() {}, close() {}, syncIdentity() {}, dispose() {} }), createPersonalSpace: options => { created.personal = options; return { open: async () => {}, close() {}, syncIdentity() {}, dispose() {} }; }, createCornerPanel: () => ({ open: async () => {}, close() {}, syncIdentity() {}, dispose() {} }), createIdentityContinuityPanel: () => ({ open() {}, close() {}, dispose() {} }),
+    createCommunityPanel: options => { created.community = options; return { open: async () => {}, close() {}, syncIdentity() {}, dispose() {} }; }, createWorldCupPanel: () => ({ open: async () => {}, close() {}, syncIdentity() {}, dispose() {} }),
     createMusicGames: () => ({ open: async () => {}, close() {}, syncIdentity() {}, dispose() {} }), createMusicTopics: () => ({ open: async () => {}, close() {}, syncIdentity() {}, dispose() {} }), createSpaceManagement: () => ({ open: async () => {}, close() {}, syncIdentity() {}, dispose() {} }),
     createModerationPanel: () => ({ close() {}, syncIdentity() {}, refresh: async () => {}, dispose() {} }),
     createExchangePanel: options => { created.exchange.push(options); return { open: async () => {}, openOffer: async photo => calls.push(['exchangeOffer', clone(photo)]), close() {}, syncIdentity() {}, refresh: async () => {}, invalidate() {}, getState: () => exchangeState.state, dispose() {} }; },
@@ -205,7 +205,8 @@ test('the lobby entry is the example entry: one consent box, no invite code, and
   const consent = html.match(/<input name="consent"[^>]*>/)?.[0];
   assert.ok(consent && /required/.test(consent) && !/checked/.test(consent), 'the consent box is required and starts unticked');
   assert.match(html, /name="participation" value="open" checked/, 'open participation is the default');
-  assert.match(html, /虚构/, 'the entry says the cast is fictional');
+  assert.doesNotMatch(html, /虚构|示例|自动回复/, 'the entry does not explain what the room is made of (About does, once)');
+  assert.match(html, /<button class="primary" type="submit">进入现场<\/button>/);
   assert.equal(h.element('.frame').dataset.stage, 'lobby');
 });
 
@@ -231,7 +232,7 @@ test('while the example world is still being built the entry button is disabled;
   const h = harness({ start: lobby(), profile });
   h.binding.openPanel('entry');
   assert.match(h.html(), /<button class="primary" type="submit" disabled>/, 'no join while the example world is not ready');
-  const submit = { disabled: true }, status = { textContent: '正在布置示例现场…' };
+  const submit = { disabled: true }, status = { textContent: '正在布置现场…' };
   h.body.querySelector = selector => (selector === "form[data-form='demo-entry']" ? { querySelector: inner => (inner === "button[type='submit']" ? submit : inner === '.demo-entry-status' ? status : null) } : null);
   const writes = h.writes();
   gate.resolve();
@@ -302,28 +303,30 @@ test('the room panel of the example site has no code, no QR, no link and no NFC;
   assert.equal(h.calls.some(([method]) => method === 'qrcode'), false);
 });
 
-test('the footer About button opens the About panel: the seven sections, the build stamp and a reset button that carries its own question', async () => {
+test('the footer About button opens the About panel: the six sections, the one disclosure, the build stamp and a reset button that carries its own question', async () => {
   const { profile } = makeProfile();
   const h = harness({ start: inRoom(), profile });
   assert.equal(h.element('#evidence').innerHTML.includes('data-open="about"'), true);
   await h.click({ open: 'about' });
   assert.equal(h.get().panelKind, 'about');
   const html = h.html();
-  for (const id of ['what', 'cast', 'photos', 'ai', 'rules', 'data', 'version']) assert.match(html, new RegExp(`data-about="${id}"`), `section ${id}`);
+  assert.match(h.element('#evidence').innerHTML, /<button type="button" data-open="about">关于 Music Space<\/button>/);
+  assert.deepEqual([...html.matchAll(/data-about="([a-z]+)"/g)].map(match => match[1]), ['what', 'livehouse', 'ai', 'privacy', 'data', 'version']);
   assert.match(html, /0\.21\.0-test/);
   assert.match(html, /预览版/, 'a preview build says so');
   assert.match(html, /data-demo-reset[^>]*data-confirm="[^"]+"/);
-  assert.match(html, /阿遥·示例/, 'the cast is named, with the 「·示例」 mark');
+  assert.equal(html.split('在线版里的场地、观众和照片是演示内容，观众会自动回复。').length, 2, 'the one disclosure of the product, once');
+  assert.doesNotMatch(html, /阿遥|小满|北屿/, 'About names nobody');
 });
 
 test('the About panel is drawn again when what it reports changes (the browser stopped saving)', () => {
   const { profile, flags } = makeProfile();
   const h = harness({ start: inRoom(), profile });
   h.binding.openPanel('about');
-  assert.doesNotMatch(h.html(), /没有让这里保存数据/);
+  assert.doesNotMatch(h.html(), /这个浏览器不能保存，刷新后会重新开始/);
   flags.persistent = false;
   h.emit(inRoom());
-  assert.match(h.html(), /没有让这里保存数据/);
+  assert.match(h.html(), /这个浏览器不能保存，刷新后会重新开始/);
 });
 
 test('a sheet that opens starts at its top, also right after a scrolled one (the round × is sticky, focusing it scrolls nothing); a redraw keeps the place', () => {
@@ -338,7 +341,7 @@ test('a sheet that opens starts at its top, also right after a scrolled one (the
   sheet.scrollTop = 700;
   flags.persistent = false;
   h.emit(inRoom()); // About is drawn again in place
-  assert.match(h.html(), /没有让这里保存数据/);
+  assert.match(h.html(), /这个浏览器不能保存，刷新后会重新开始/);
   assert.equal(sheet.scrollTop, 700, 'a redraw of the open sheet keeps the reader where they were');
   h.binding.openPanel('wall');
   assert.equal(sheet.scrollTop, 0, 'the next sheet starts at its top');
@@ -360,31 +363,35 @@ test('reset asks first: a refusal does nothing, an agreement resets once, a fail
   await settle();
   assert.equal(agreed.seen.resets.length, 1);
 
-  const broken = makeProfile({ overrides: { reset: async () => { throw new Error('这个示例现在不能重置。'); } } });
+  const broken = makeProfile({ overrides: { reset: async () => { throw new Error('现在还不能重新开始，请稍后再试。'); } } });
   const c = harness({ start: inRoom(), profile: broken.profile, confirms: true });
   c.binding.openPanel('about');
   await c.click({ demoReset: '', confirm: question });
   await settle();
-  assert.equal(text(c, '#toast'), '这个示例现在不能重置。');
+  assert.equal(text(c, '#toast'), '现在还不能重新开始，请稍后再试。');
 });
 
-test('the people list labels the cast as example characters; the server profile adds no label', () => {
+test('the people list shows the seeded people like anyone else: no label in either profile', () => {
   const { profile } = makeProfile();
   const h = harness({ start: inRoom(), profile });
   h.binding.openPanel('people');
   const html = h.html();
-  assert.equal((html.match(/<small class="cast-badge">示例角色 · 自动回复<\/small>/g) || []).length, 3, 'one label per cast member');
+  assert.doesNotMatch(html, /cast-badge|示例|自动回复/);
+  for (const person of cast) assert.ok(html.includes(`<b>${person.name}</b>`), person.name);
   const server = harness({ start: inRoom(), profile: serverProfile });
   server.binding.openPanel('people');
   assert.doesNotMatch(server.html(), /cast-badge/);
-  assert.match(server.html(), /<b>阿遥·示例<\/b>/, 'the server markup is the old one, byte for byte');
+  assert.match(server.html(), /<b>阿遥<\/b>/, 'the server markup is the same');
+  const names = markup => [...markup.matchAll(/<button data-person="[^"]+"><b>([^<]*)<\/b>/g)].map(match => match[1]);
+  assert.deepEqual(names(html), names(server.html()), 'both profiles list the same people the same way');
 });
 
 test('alone in a browser-local room the people panel does not tell the visitor to invite friends', () => {
   const { profile } = makeProfile();
   const h = harness({ start: inRoom({ members: [me], photos: [] }), profile });
   h.binding.openPanel('people');
-  assert.doesNotMatch(h.html(), /邀请同场朋友|把邀请发给他们/);
+  assert.doesNotMatch(h.html(), /邀请/, 'a room in this page has nothing to invite anyone to');
+  assert.match(h.html(), /<p>现在只有你，先放一张照片吧。<\/p>/);
   assert.match(h.html(), /data-open="upload"/);
   const server = harness({ start: inRoom({ members: [me], photos: [] }), profile: serverProfile });
   server.binding.openPanel('people');
@@ -424,11 +431,11 @@ test('a photo whose exchange is already open is not offered again; the mark move
   assert.match(h.html(), /已有交换/);
 });
 
-test('the AI ribbon appears only when a photo carries a side the person kept from the model', () => {
+test('a photo that carries a side the person kept from the model says so on its own line; the wall has no ribbon', () => {
   const kept = shot(9, actor, [21, 48, 10], 'crowd', { viewpointSource: 'ai' });
   const h = harness({ start: inRoom({ photos: [...seeded(), kept] }), profile: makeProfile().profile });
   h.binding.openPanel('wall');
-  assert.match(h.html(), /data-moment-ribbon/);
+  assert.doesNotMatch(h.html(), /data-moment-ribbon|moment-ribbon/);
   assert.ok(plain(h.html()).includes('AI 建议，未改动'));
 });
 
@@ -442,7 +449,7 @@ test('without any capture time the wall is exactly today\'s plain grid, in both 
     assert.doesNotMatch(html, /moment-wall|moment-group|data-exchange-offer/);
     assert.match(html, /刷新照片/);
     assert.match(html, /放上我的一张/);
-    assert.match(html, /照片墙只按本场范围展示/);
+    assert.doesNotMatch(html, /照片墙只按本场范围展示/, 'no fine print under the wall');
   }
   const none = harness({ start: inRoom({ photos: [] }), profile: serverProfile });
   none.binding.openPanel('wall');
@@ -505,16 +512,36 @@ test('the upload panel is the module\'s form: sample buttons, the time card, the
   assert.match(html, /name="photo" accept="image\/jpeg,image\/png,image\/webp"/);
   assert.equal((html.match(/data-moment-viewpoint="/g) || []).length, 4);
   assert.match(html, /type="submit" disabled/);
-  assert.match(html, /data-demo-time/, 'the demo-only time button is there for a photo of one\'s own');
-  assert.match(html, /只保存在这个浏览器里/, 'the example site says where the photo stays');
-  assert.doesNotMatch(html, /上传至受权限保护的房间服务/, 'and does not promise an upload to a server that is not there');
+  assert.match(html, /data-demo-time/, 'the one-tap time button is there for a photo of one\'s own');
+  assert.match(html, /<p class="fine" data-moment-fine>照片会缩小，并去掉位置信息。<\/p>/, 'the static site says what happens to the photo, in one line');
+  assert.doesNotMatch(html, /上传至|后上传|只保存在这个浏览器里|示例/, 'and promises no upload to a server that is not there');
+});
+
+test('in a room the visitor opened, the upload form offers no ready-made photos and no one-tap 21:47: they belong to the seeded show', async () => {
+  const ownRoom = '00000000-0000-4000-8000-000000000099';
+  const h = harness({ start: inRoom({ room: room({ id: ownRoom, code: 'BBBBBBBBBBBB', title: '周五专场', venue: '我的 Livehouse', role: 'host', createdAt: '2026-10-07T12:00:00.000Z' }), route: { kind: 'room', target: ownRoom }, members: [me], photos: [] }), profile: makeProfile().profile });
+  h.binding.openPanel('upload');
+  const html = h.html();
+  assert.match(html, /data-form="upload" data-room="00000000-0000-4000-8000-000000000099"/);
+  assert.doesNotMatch(html, /data-sample-photo|moment-samples|data-demo-time|人海那张|舞台那张|或者挑一张今晚的/);
+  assert.match(html, /选照片<input type="file" name="photo"/, 'the file button is the plain one: there is nothing beside it');
+});
+
+test('the static build leaves out what cannot leave this browser: the identity backup in 我的空间, the community\'s invite code and its preview form', () => {
+  const page = harness({ start: inRoom(), profile: makeProfile().profile });
+  assert.equal(page.created.personal.identityBackup, false);
+  assert.equal(page.created.community.shareable, false);
+  assert.equal(typeof page.created.community.onToast, 'function', 'a copy that worked is said (in the Node build)');
+  const server = harness({ start: inRoom(), profile: serverProfile });
+  assert.equal(server.created.personal.identityBackup, true);
+  assert.equal(server.created.community.shareable, true);
 });
 
 test('the server profile keeps the old upload words and the module adds no example photos or demo time', async () => {
   const h = harness({ start: inRoom(), profile: serverProfile });
   h.binding.openPanel('upload');
   const html = h.html();
-  for (const old of ['留一个现场瞬间', '这一张，由你决定给谁看。', '选照片', '可见范围', '仅自己保存', '分享给本场成员', '保存时照片会上传至受权限保护的房间服务。会缩小并去除位置信息；选择分享后，本场已加入成员可以浏览。', '保存这张照片', 'data-form="upload"']) assert.ok(html.includes(old), old);
+  for (const old of ['留一个现场瞬间', '这一张，由你决定给谁看。', '选照片', '可见范围', '仅自己保存', '分享给本场成员', '<p class="fine" data-moment-fine>照片会缩小、去掉位置信息后上传。</p>', '保存这张照片', 'data-form="upload"']) assert.ok(html.includes(old), old);
   assert.doesNotMatch(html, /data-sample-photo|moment-samples|data-demo-time|只保存在这个浏览器里/);
 });
 
@@ -786,12 +813,12 @@ test('the tour card is created once, as the first thing in the presence block, a
   assert.equal(h.created.elements.length >= 1 && h.presence.children[0], mounted[0].container, 'the card\'s host sits first in .presence');
   assert.equal(typeof mounted[0].onAction, 'function');
   assert.equal(mounted[0].esc, esc);
-  assert.deepEqual(views.at(-1), { stage: 'lobby', ownPhotos: 0, hasPairing: false, exchanges: { total: 0 }, friends: 0, openedRecap: false, panel: null });
+  assert.deepEqual(views.at(-1), { stage: 'lobby', ownPhotos: 0, hasPairing: false, exchanges: { total: 0 }, friends: 0, openedRecap: false, panel: null, showcase: false });
   h.emit(inRoom());
-  assert.deepEqual(views.at(-1), { stage: 'room', ownPhotos: 0, hasPairing: false, exchanges: { total: 0 }, friends: 0, openedRecap: false, panel: null });
+  assert.deepEqual(views.at(-1), { stage: 'room', ownPhotos: 0, hasPairing: false, exchanges: { total: 0 }, friends: 0, openedRecap: false, panel: null, showcase: true }, 'the seeded show\'s room: the ready-made photos are offered');
   const mine = shot(9, actor, [21, 48, 10], 'crowd');
   h.emit(inRoom({ photos: [...seeded(), mine], social: { actorId: actor, incoming: [], outgoing: [], friends: [{ userId: YAO, peer: cast[0], revision: 1 }], blocks: [], nextCursors: {}, loaded: true, stale: false } }));
-  assert.deepEqual(views.at(-1), { stage: 'room', ownPhotos: 1, hasPairing: true, exchanges: { total: 0 }, friends: 1, openedRecap: false, panel: null }, 'a crowd photo next to a stage photo of the same minute has a partner');
+  assert.deepEqual(views.at(-1), { stage: 'room', ownPhotos: 1, hasPairing: true, exchanges: { total: 0 }, friends: 1, openedRecap: false, panel: null, showcase: true }, 'a crowd photo next to a stage photo of the same minute has a partner');
 });
 
 test('the tour knows a same-moment partner only when one exists, ignores a private photo of another member and sees the exchange state', () => {

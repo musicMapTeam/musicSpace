@@ -1,5 +1,35 @@
-.space-map-return{display:flex;align-items:center;gap:8px;color:#f6ecd6;border:1px solid #d0ae9466;border-radius:8px;padding:0 8px;font-size:12px}.space-map-return button{min-height:44px;min-width:84px;background:transparent;color:inherit;border:0;font:inherit;cursor:pointer;white-space:nowrap}.space-map-return button:focus-visible{outline:2px solid #e4bc83}.spatial-fallback .space-map-return{color:#26382e;border-color:#65775d}.masthead-tools{display:flex;align-items:center;gap:8px}@media(max-width:700px){.space-map-return{padding:0;border:0}.space-map-return span{display:none}.app-masthead .brand{min-width:0;flex-shrink:1}.brand-wordmark small{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}.masthead-tools{gap:0}}
-.space-map-draft{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0;padding:12px 0;border-top:1px solid #aeb599}.space-map-draft button{min-height:44px;font-size:14px;flex:1;white-space:normal}
-.space-map-status{position:fixed;z-index:100;top:60px;left:12px;right:12px;background:#fff3da;color:#26382e;padding:12px;font-size:14px;border:1px solid #917853}.space-map-status[hidden]{display:none}
+/* The way back to the Livehouse (space-bridge.js): 「← 返回现场」 as a paper sticker beside 关于, the optional 「这首歌」, the offline note
+   and the two draft buttons under a kept song. Loaded after the Doodle layer, so it is written in Doodle directly. */
+.masthead-tools{display:flex;align-items:center;gap:10px}
+.space-map-return{display:flex;align-items:center;gap:8px;padding:0;border:0;color:var(--ds-ink);font-family:var(--ds-font-ui)}
+.space-map-return button{min-height:44px;padding:6px 14px;font-family:var(--ds-font-ui);font-size:15px;line-height:1.2;white-space:nowrap;cursor:pointer;color:var(--ds-ink);
+  background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:3px 3px 0 var(--ds-mint);
+  transition:transform var(--ds-fast) ease,box-shadow var(--ds-fast) ease}
+.space-map-return button:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ds-mint)}
+.space-map-return button:focus-visible{outline:3px dashed var(--ds-ink);outline-offset:3px}
+.space-map-return button.space-map-context{padding:6px 12px;background:var(--ds-yellow-soft);box-shadow:3px 3px 0 var(--ds-ink)}
+@media (hover:hover) and (pointer:fine){.space-map-return button:hover{transform:rotate(-1deg) translateY(-1px)}}
+.space-map-status{position:fixed;z-index:100;top:70px;left:12px;right:12px;max-width:420px;margin:0 0 0 auto;padding:10px 14px;font-family:var(--ds-font-body);font-size:15px;line-height:1.5;
+  color:var(--ds-ink);background:var(--ds-pink-soft);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:var(--ds-shadow-sm)}
+.space-map-status[hidden]{display:none}
+.space-map-draft{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0;padding:10px 0 4px;border-top:var(--ds-line-thin) dashed color-mix(in srgb,var(--ds-ink) 35%,transparent)}
+.space-map-draft button{flex:1;min-height:44px;font-size:15px;white-space:normal}
 .map-round-slip__question>span.is-from,.map-round-slip__question>span.is-to{white-space:nowrap}
-.space-map-return button.space-map-context{min-width:44px;padding:0}@media(max-width:420px){.space-map-has-recording .brand{gap:8px}html[data-theme='sakura'] body .app-studio-shell.space-map-has-recording .brand-wordmark{font-size:14px}html[data-theme='sakura'] body .app-studio-shell.space-map-has-recording .brand-wordmark small{display:none}.space-map-has-recording .brand-mark{width:24px;height:24px}.space-map-has-recording .space-map-return{gap:4px}.space-map-has-recording .space-map-return button:first-child{min-width:76px}}
+/* a phone's masthead: the logo, its sticker, 返回现场 and 关于 on one line (the sticker goes first when room runs out) */
+@media (max-width:760px){
+  .masthead-tools,html[data-theme='sakura'] .masthead-tools{gap:7px}
+  .space-map-return button{min-width:44px;padding:5px 9px;font-size:14px}
+  .app-studio-shell .brand-logo{font-size:19px;padding:3px 1px 6px}
+  .app-studio-shell .brand-sticker{min-height:24px;padding:2px 7px 1px;font-size:12px;box-shadow:2px 2px 0 var(--ds-ink)}
+  .app-studio-shell .brand,html[data-theme='sakura'] body .app-studio-shell .brand{gap:5px}
+}
+@media (max-width:400px){.app-masthead.space-map-has-recording .brand-sticker{display:none}}
+@media (max-width:360px){.app-studio-shell .brand-sticker{display:none}.app-studio-shell .brand-logo{font-size:20px}}
+/* the narrowest phones with 「这首歌」 too: a smaller logo and tighter stickers keep 关于 on screen */
+@media (max-width:360px){
+  html[data-theme='sakura'] .app-masthead.app-studio-shell.space-map-has-recording{left:10px;right:10px}
+  .app-masthead.space-map-has-recording .brand-logo{font-size:16px}
+  .app-masthead.space-map-has-recording .masthead-tools,html[data-theme='sakura'] .app-masthead.space-map-has-recording .masthead-tools{gap:6px}
+  .app-masthead.space-map-has-recording .space-map-return{gap:6px}
+  .app-masthead.space-map-has-recording .space-map-return button{padding:5px 7px;font-size:13px}
+}

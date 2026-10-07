@@ -29,12 +29,14 @@ assert.equal(served.whyUnsupported(), null);
 const P = await import('../../web/js/photo-insight.js'); // imports the shared classifier, which sees an https page and an engine
 assert.equal(P.aiState(), 'on');
 
-// The demo keeps the photo on the device; a room uploads it when the card is saved, so only the judging may be called private there.
-assert.equal(P.viewpointHint(), '配对时，用它来找互补的那一面。AI 在本机判断，照片不上传，没把握就不替你选，选了也随时可改。');
+// One short hint under the chips, the same in the demo and in a room. Where the model judges is the AI tag's note: the demo keeps the photo on
+// the device; a room uploads it when the photo is saved, so only the judging may be called private there.
+assert.equal(P.viewpointHint(), '配对时用它找另一面，你说了算。');
 const roomHint = P.viewpointHint({ upload: true });
-assert.equal(roomHint, '配对时，用它来找互补的那一面。AI 在本机判断，判断时照片不上传；保存现场卡时才上传照片。没把握就不替你选，选了也随时可改。');
-assert.ok(!roomHint.includes('，照片不上传'), 'a room must not promise that the photo is never uploaded');
-assert.equal(P.AI_NOTE_ROOM, 'AI 在本机判断，判断时照片不上传；保存现场卡时才上传照片');
+assert.equal(roomHint, '配对时用它找另一面，你说了算。');
+assert.ok(!roomHint.includes('照片不上传'), 'a room must not promise that the photo is never uploaded');
+assert.equal(P.AI_NOTE, 'AI 在本机判断，照片不上传');
+assert.equal(P.AI_NOTE_ROOM, 'AI 在本机判断，判断时不上传照片');
 
 // Every reason the model can be missing has its own true sentence.
 assert.match(P.AI_OFF_LINES.page, /^从本地文件打开的页面用不了本机 AI/);
@@ -58,6 +60,9 @@ const shifted = '已换算成北京时间，照片自带的是 4月7日 20:18（
 assert.deepEqual([P.timeView(card, '2026.09.26', { zone: shifted }).line, P.timeView(card, '2026.09.26', { zone: shifted }).note], ['拍摄于 4月8日 11:18', shifted]);
 assert.equal(P.timeView({ ...card, takenSource: 'manual' }, '2026.09.26', { zone: shifted }).note, '你填写的时间'); // a time the person typed has no photo clock
 assert.equal(P.timeView({ ...card, takenSource: 'file' }, '2026.09.26', { zone: shifted }).mode, 'guess');
+// 'sample' exists only on the 0.16 page, which passes its own note; the default names no demo, so the event room's bundle carries none.
+assert.equal(P.timeView({ ...card, takenSource: 'sample' }, '2026.09.26', { sampleNote: '示例照片的虚构时间' }).note, '示例照片的虚构时间');
+assert.equal(P.timeView({ ...card, takenSource: 'sample' }, '2026.09.26').note, '照片自带的时间');
 
 // ---- the status line: announced once per phase, not once per percent ------------------------------------------------------
 const loading = P.loadingMarkup('sp-ai-line', { loaded: 250, total: 1000 });

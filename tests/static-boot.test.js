@@ -13,7 +13,7 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   startStaticBoot, bootStaticSite, installStaticFetch, createByteLoader, createSamples, createBootClock, channelOf, idbNameOf,
-  TEXT, StaticBootError, IDB_NAME_PREFIX, BOOT_TIMEOUTS,
+  TEXT, StaticBootError, IDB_NAME_PREFIX, BOOT_TIMEOUTS, HEALED_KEY,
 } from '../web/static-runtime/boot.js';
 import { createStaticRuntime, DB_KEY } from '../web/static-runtime/runtime.js';
 import { createMemoryStore, openIdbStore } from '../web/static-runtime/idb-store.js';
@@ -212,7 +212,7 @@ test('the channel is the preview only when the path ends with /preview/, and nam
   assert.equal(idbNameOf('preview'), 'music-space-static:preview:v1');
 });
 
-test('the boot and the rescue overlay name the same database for every path (its 「重置示例数据」 must delete what the boot opened)', () => {
+test('the boot and the rescue overlay name the same database for every path (its 「重新开始」 must delete what the boot opened)', () => {
   for (const pathname of ['/musicSpace/', '/musicSpace/preview/', '/', '/preview/', '/musicSpace/preview', '/musicSpace/preview/index.html', '/a/b/c/', '/musicSpace/classic/']) {
     const win = new FakeWindow(pathname), doc = new FakeDocument();
     win.setTimeout = () => 0; win.setInterval = () => 0; win.clearInterval = () => {};
@@ -226,9 +226,12 @@ test('the two banners and the status line are the words the About panel and the 
   assert.equal(TEXT.memoryOnly, MEMORY_ONLY_NOTE);
   assert.equal(TEXT.readOnly, READ_ONLY_NOTE);
   assert.equal(TEXT.preparing, copy.statusPreparing);
-  assert.equal(TEXT.memoryOnly, '示例数据只保存在本页，刷新会重置');
-  assert.equal(TEXT.readOnly, '示例已在另一个标签页打开，这里不能操作');
-  assert.equal(TEXT.healed, '示例已更新，已为你重新布置');
+  assert.equal(TEXT.memoryOnly, '这个浏览器不能保存，刷新后会重新开始');
+  assert.equal(TEXT.readOnly, '已在另一个标签页打开，这里只能看');
+  assert.equal(TEXT.healed, '现场已更新');
+  assert.equal(TEXT.preparing, '正在布置现场…');
+  assert.equal(TEXT.failed, '现场没能打开，请重新载入或重新开始。');
+  assert.equal(TEXT.dismiss, '知道了');
 });
 
 test('the marker the read-only tab reads is the one the seed writes', () => {
@@ -272,7 +275,7 @@ test('the status line and the loading screen say the room is being laid out whil
   const seen = [];
   env.deps.ensureShowcase = async options => { seen.push([env.doc.status.textContent, env.doc.loadingSmall.textContent]); return ensureShowcase(options); };
   await env.boot();
-  assert.deepEqual(seen, [['正在布置示例现场…', '正在布置示例现场…']]);
+  assert.deepEqual(seen, [['正在布置现场…', '正在布置现场…']]);
   assert.equal(env.doc.loadingSmall.textContent, '正在准备三维场景', 'the loading screen is the 3D scene\'s again');
 });
 
@@ -765,6 +768,76 @@ test('self-heal: a showcase from another version (the roster or the seed changed
   assert.equal(JSON.parse(marker).version, SHOWCASE_VERSION);
 });
 
+test('self-heal that takes a stored identity with it: app.js reloads for that identity, so 「现场已更新」 waits for the next load of the tab, once', async t => {
+  // a returning visitor: an identity the old world knew, then a build whose showcase is another version
+  const env = makeEnv(t);
+  const started = env.start();
+  const staticFetch = pageFetch(started);
+  const first = await started.ready;
+  const made = await json(await staticFetch('/api/avatar/session', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Idempotency-Key': 'visitor-session-key-0007' }, body: JSON.stringify({ name: '访客7', avatar: AVATAR }) }));
+  assert.equal(made.status, 201);
+  await first.runtime.maintenance(db => db.run(`UPDATE ${META_TABLE} SET value = ? WHERE key = ?`, [JSON.stringify({ version: 'r0000000000', room: { id: 'x', code: 'Y' }, cupId: 'c', gameId: 'g' }), MARKER_KEY]));
+  await first.flush();
+  await first.dispose();
+  env.local.setItem(AVATAR_SESSION_KEY, JSON.stringify({ token: made.body.token, user: made.body.user }));
+  const tab = new FakeStorage();                                                // this tab's sessionStorage, kept across its reloads
+
+  const healing = nextPage(t, env);
+  const site = await healing.boot({ sessionStorage: tab, timeouts: { healToastMs: 60_000 } });
+  assert.equal(site.healed, true);
+  assert.equal(site.healReload, true, 'app.js is told: this reload is the heal\'s, say nothing');
+  assert.equal(env.local.getItem(AVATAR_SESSION_KEY), null, 'the identity went with the old world');
+  assert.equal(healing.doc.toastNode.textContent, '', 'no toast that the identity reload would cut off after a few milliseconds');
+  assert.equal(tab.getItem(HEALED_KEY), '1');
+  await site.dispose();
+
+  const reloaded = nextPage(t, env);                                           // app.js reloaded the page
+  const again = await reloaded.boot({ sessionStorage: tab });
+  assert.equal(again.healed, false);
+  assert.equal(again.healReload, false);
+  assert.equal(reloaded.doc.toastNode.textContent, TEXT.healed, 'the update is announced after the reload');
+  assert.equal(tab.getItem(HEALED_KEY), null, 'once');
+  await again.dispose();
+  const later = nextPage(t, env);
+  await later.boot({ sessionStorage: tab });
+  assert.equal(later.doc.toastNode.textContent, '', 'and never again');
+});
+
+test('self-heal that takes a stored identity with it, in a tab that cannot keep the toast (no sessionStorage): the toast is shown at once', async t => {
+  const env = makeEnv(t);
+  const started = env.start();
+  const staticFetch = pageFetch(started);
+  const first = await started.ready;
+  const made = await json(await staticFetch('/api/avatar/session', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Idempotency-Key': 'visitor-session-key-0008' }, body: JSON.stringify({ name: '访客8', avatar: AVATAR }) }));
+  await first.runtime.maintenance(db => db.run(`UPDATE ${META_TABLE} SET value = ? WHERE key = ?`, [JSON.stringify({ version: 'r0000000000', room: { id: 'x', code: 'Y' }, cupId: 'c', gameId: 'g' }), MARKER_KEY]));
+  await first.flush();
+  await first.dispose();
+  env.local.setItem(AVATAR_SESSION_KEY, JSON.stringify({ token: made.body.token, user: made.body.user }));
+  const next = nextPage(t, env);
+  const site = await next.boot({ sessionStorage: null });
+  assert.equal(site.healed, true);
+  assert.equal(site.healReload, false);
+  assert.equal(next.doc.toastNode.textContent, TEXT.healed);
+});
+
+test('self-heal that takes a stored identity with it, when no reload comes: the toast is shown here after healToastMs, and not left behind', async t => {
+  const env = makeEnv(t);
+  const started = env.start();
+  const staticFetch = pageFetch(started);
+  const first = await started.ready;
+  const made = await json(await staticFetch('/api/avatar/session', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Idempotency-Key': 'visitor-session-key-0009' }, body: JSON.stringify({ name: '访客9', avatar: AVATAR }) }));
+  await first.runtime.maintenance(db => db.run(`UPDATE ${META_TABLE} SET value = ? WHERE key = ?`, [JSON.stringify({ version: 'r0000000000', room: { id: 'x', code: 'Y' }, cupId: 'c', gameId: 'g' }), MARKER_KEY]));
+  await first.flush();
+  await first.dispose();
+  env.local.setItem(AVATAR_SESSION_KEY, JSON.stringify({ token: made.body.token, user: made.body.user }));
+  const tab = new FakeStorage();
+  const next = nextPage(t, env);
+  const site = await next.boot({ sessionStorage: tab, timeouts: { healToastMs: 5 } });
+  assert.equal(site.healReload, true);
+  await until(() => next.doc.toastNode.textContent === TEXT.healed, 'the fallback toast');
+  assert.equal(tab.getItem(HEALED_KEY), null, 'taken here, so the next load does not repeat it');
+});
+
 test('self-heal: a seeding failure halfway (photos already stored) wipes those photos too and tries once more; a first visit gets no 「已更新」 toast', async t => {
   const env = makeEnv(t);
   populate(env.local);
@@ -823,7 +896,7 @@ test('safe mode: a second failure shows the rescue overlay, flags the boot as fa
   assert.equal(env.store.puts, 0);
 });
 
-test('safe mode raises the real rescue overlay with the reason, outside the module graph', async t => {
+test('safe mode raises the real rescue overlay, outside the module graph; the reason is kept for QA, not shown', async t => {
   const env = makeEnv(t);
   env.win.setTimeout = () => 0; env.win.setInterval = () => 0; env.win.clearInterval = () => {};
   delete env.win.__SPACE_RESCUE__;
@@ -833,9 +906,9 @@ test('safe mode raises the real rescue overlay with the reason, outside the modu
   const overlay = env.doc.body.children.find(child => child.id === 'space-rescue');
   assert.ok(overlay, 'the overlay is up');
   assert.match(overlay.textContent, /页面没能完整启动/);
-  assert.match(overlay.textContent, /原因：failed:SEED_FAILED/);
-  assert.match(overlay.textContent, /重置示例数据/);
-  assert.match(overlay.textContent, /打开早期原型/);
+  assert.equal(overlay.getAttribute('data-reason'), 'failed:SEED_FAILED');
+  assert.match(overlay.textContent, /重新开始/);
+  assert.doesNotMatch(overlay.textContent, /原因|failed:|经典版|classic/, 'no developer code and no way to the 0.16 page on screen');
 });
 
 test('safe mode: a new migration that cannot run is wiped once and then reported as MIGRATION_FAILED', async t => {
@@ -1270,7 +1343,7 @@ test('a prefetch that failed is asked again by the fetch that needs the file (an
   assert.equal(calls, 3);
 });
 
-test('createSamples lists the two example photos with their thumbnails and loads one as a JPEG File', async () => {
+test('createSamples lists the two ready-made photos with their thumbnails and loads one as a JPEG File', async () => {
   const asked = [];
   const samples = createSamples({
     samples: SAMPLE_PHOTOS, fetchBytes: async path => { asked.push(path); return readAsset(path); }, resolve: path => `https://example.test/musicSpace/${path}`,
@@ -1278,14 +1351,15 @@ test('createSamples lists the two example photos with their thumbnails and loads
   const list = samples.list();
   assert.deepEqual(list.map(sample => sample.id), ['sample-crowd', 'sample-stage'], 'the crowd photo first: the model is sure about it');
   assert.deepEqual(list.map(sample => sample.thumbUrl), ['https://example.test/musicSpace/demo/sample-crowd.jpg', 'https://example.test/musicSpace/demo/sample-stage.jpg']);
-  for (const sample of list) assert.deepEqual(Object.keys(sample).sort(), ['id', 'label', 'note', 'thumbUrl']);
+  for (const sample of list) assert.deepEqual(Object.keys(sample).sort(), ['id', 'label', 'thumbUrl'], 'a label and a picture, no note');
+  assert.deepEqual(list.map(sample => sample.label), ['人海那张', '舞台那张']);
   const file = await samples.load('sample-stage');
   assert.ok(file instanceof File);
   assert.equal(file.type, 'image/jpeg');
   assert.equal(file.name, 'sample-stage.jpg');
   assert.deepEqual(asked, ['demo/sample-stage.jpg']);
   assert.deepEqual(new Uint8Array(await file.arrayBuffer()), await readAsset('demo/sample-stage.jpg'), 'the bytes carry their own EXIF time untouched');
-  await assert.rejects(samples.load('sample-nope'), /找不到这张示例照片/);
+  await assert.rejects(samples.load('sample-nope'), /^Error: 找不到这张照片$/);
 });
 
 // ---- the shape of the whole -----------------------------------------------------------------------------------------------------------------

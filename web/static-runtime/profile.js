@@ -1,4 +1,4 @@
-// The static (GitHub Pages) profile of the event room: the in-page room service, the fictional cast, and everything the page says about
+// The static (GitHub Pages) profile of the event room: the in-page room service, the seeded cast, and everything the page says about
 // itself. vite.static.config.js aliases web/event-room/runtime-profile.js (the Node-server profile) to this file, and app.js imports the
 // profile FIRST, so this module is evaluated before any API client exists. At evaluation it
 //   1. replaces globalThis.fetch with the in-page transport (every client of the page defaults to it: /api/event and /api/avatar are
@@ -51,7 +51,7 @@ started = startStaticBoot({
 });
 const ready = started.ready.then(() => undefined);
 ready.catch(() => {});                       // app.js and the demo hooks handle a rejection; nobody else should get an unhandled-rejection report
-ready.then(() => fetchBytes.prefetch(SAMPLE_PHOTOS.map(sample => `demo/${sample.file}`)), () => {});    // the two example photos, ready before the tour card asks
+ready.then(() => fetchBytes.prefetch(SAMPLE_PHOTOS.map(sample => `demo/${sample.file}`)), () => {});    // the two ready-made photos, ready before the tour card asks
 
 demo = createDemoProfile({
   getWorld: () => started.site.world,
@@ -63,6 +63,7 @@ demo = createDemoProfile({
   persistent: () => started.site.persistent,
   readOnly: () => !started.site.writable,
   reset: () => started.site.reset(),
+  quietReload: () => started.site.healReload,
   ready,
 });
 

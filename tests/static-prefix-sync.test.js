@@ -6,7 +6,7 @@ import { PURGE_PREFIXES, KEEP_PREFIXES, resetStaticStorage } from '../web/static
 
 // The rescue overlay (scripts/build/static-html-plugin.mjs) is a classic inline script that has to work when the module graph does not load,
 // so it cannot import storage-guard.js. It repeats the purge list instead, and this test is what keeps the two lists from drifting: a prefix
-// missing from the rescue copy leaves a stale identity behind after 「重置示例数据」; an extra one would delete another product's data.
+// missing from the rescue copy leaves a stale identity behind after 「重新开始」; an extra one would delete another product's data.
 const plugin = new URL('../scripts/build/static-html-plugin.mjs', import.meta.url);
 const pluginPath = fileURLToPath(plugin);
 // The plugin belongs to the static-build task. Until that task has landed in a tree neither file exists and there is nothing to compare;

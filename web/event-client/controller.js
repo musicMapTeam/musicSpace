@@ -71,7 +71,7 @@ export function createEventController(options = {}) {
   const visibleOperation=op=>op&&((op.actorId&&op.actorId===session?.user.id)||(!op.actorId&&state.identity.status!=='ready'&&op.replacesActorId===(session?.user.id||meta.lastActorId||null)));
   function getState() { return freeze(clone({ ...state, loading: [...reads.keys(), ...[...running.keys()].filter(id => operations.get(id)?.status === 'running'&&visibleOperation(operations.get(id))).map(id => 'operation:' + id)], pending: [...operations.values()].filter(visibleOperation).map(pendingSummary) })); }
   function emit() { if (!disposed) for (const listener of listeners) { try { listener(getState()); } catch { /* A view callback must not change an operation's outcome. */ } } }
-  function storageFailure() { state.storage = { ok: false, refreshRecovery: false, message: '本机存储不可用或已满。当前草稿仍在，但不能保证刷新后恢复。' }; }
+  function storageFailure() { state.storage = { ok: false, refreshRecovery: false, message: '浏览器存储不可用，刷新可能丢草稿' }; }
   const operationKey = op => EVENT_OPERATION_PREFIX + op.id;
   const savedOperation = ({ id, key, type, namespace, method, path, bodyJson, actorId, replacesActorId, target, draftKind, draftVersion, status, error }) => ({ id, key, type, namespace, method, path, bodyJson, actorId, replacesActorId, target, draftKind, draftVersion, status, error });
   function operationDone(op) { try { const row=JSON.parse(storage?.getItem(operationKey(op))||'null');return row?.version===1&&row.done===true&&row.id===op.id; } catch { return false; } }
@@ -127,7 +127,7 @@ export function createEventController(options = {}) {
     }catch{storageFailure();}
   }
   readOperations({migrate:true});
-  function assertLive() { if (disposed) fail('控制器已关闭。', 'DISPOSED');if(identitySuperseded)fail('浏览器身份已变化，请重新载入以核对新会话。','IDENTITY_CHANGED'); }
+  function assertLive() { if (disposed) fail('控制器已关闭。', 'DISPOSED');if(identitySuperseded)fail('身份已变化，请刷新页面','IDENTITY_CHANGED'); }
   function invalidateRecap() { recapGeneration++; recapReadSequence++; reads.get('recap')?.abort(); reads.delete('recap'); }
   function clearRoomRecap() { invalidateRecap(); state.recap = emptyRecap(); emit(); return getState(); }
   function clearPrivate() { invalidateRecap(); state.recap = emptyRecap(); socialGeneration++; hiddenPeers.clear(); socialPeerChanges.clear(); state.social = emptySocial(); photoChanges.clear(); roomChanges.clear(); state.room = null; state.members = []; state.photos = []; state.myRooms = { items: [], nextCursor: null }; state.myPhotos = { items: [], nextCursor: null }; }
@@ -158,8 +158,8 @@ export function createEventController(options = {}) {
   function storedIdentityMatches() {return !syncStoredIdentity();}
   function identity() {
     assertLive();
-    if (!storedIdentityMatches()) fail('浏览器身份已丢失或改变。请重新检查身份；昵称不能找回旧记录。', 'IDENTITY_CHANGED');
-    if (state.identity.status !== 'ready') fail('请先连接并确认当前浏览器身份。不会自动替换旧身份。', 'IDENTITY_REQUIRED');
+    if (!storedIdentityMatches()) fail('小人身份已变化，请刷新页面', 'IDENTITY_CHANGED');
+    if (state.identity.status !== 'ready') fail('请先确认你的小人身份', 'IDENTITY_REQUIRED');
     return { token: session.token, user: clone(session.user), epoch: identityGeneration };
   }
   function navigate(kind, target) {
@@ -245,7 +245,7 @@ export function createEventController(options = {}) {
           : RECAP_ID.test(item.userId) && item.userId !== actorId && item.peer?.id === item.userId && typeof item.peer.name === 'string' && item.peer.avatar && typeof item.peer.avatar === 'object'))
       && (page.nextCursor === null || page.items.length === 24 && page.nextCursor === page.items.at(-1).id);
     if (result.actorId !== actorId || !result.room || result.room.id !== roomId || typeof result.room.joined !== 'boolean'
-      || !validPage(result.photos, 'photos') || !validPage(result.friends, 'friends')) fail('回顾服务返回了无法核对的身份、现场或分页内容。', 'INVALID_RESPONSE');
+      || !validPage(result.photos, 'photos') || !validPage(result.friends, 'friends')) fail('回顾读取失败，请重试', 'INVALID_RESPONSE');
   }
   async function loadRoomRecap(roomId, { photosCursor = null, friendsCursor = null } = {}) {
     if (!RECAP_ID.test(roomId) || [photosCursor, friendsCursor].some(cursor => cursor !== null && !RECAP_ID.test(cursor))) fail('现场回顾或分页位置无效。');
@@ -310,7 +310,7 @@ export function createEventController(options = {}) {
     if (kind !== null && !socialKinds.includes(kind) || cursor !== null && (!kind || !ID.test(cursor))) fail('社交列表分页位置无效。');
     const actor = identity(), epoch = socialGeneration, sequence = ++socialReadSequence;
     return read('social', signal => api.request('/social' + (cursor ? `?${kind}Cursor=${cursor}` : ''), { token: actor.token, signal }), result => {
-      if (result.actorId !== actor.user.id || socialKinds.some(key => !Array.isArray(result[key])) || !result.nextCursors) fail('社交服务返回了无法核对的身份或列表。', 'INVALID_RESPONSE');
+      if (result.actorId !== actor.user.id || socialKinds.some(key => !Array.isArray(result[key])) || !result.nextCursors) fail('关系列表读取失败，请重试', 'INVALID_RESPONSE');
       const lists = Object.fromEntries(socialKinds.map(key => [key, result[key]]));
       if (cursor) {
         const keyOf = item => kind === 'blocks' ? item.userId : item.id;
@@ -353,7 +353,7 @@ export function createEventController(options = {}) {
       if (lists.blocks.length) hidePeer(userId); else hiddenPeers.delete(userId);
     };
     return read('socialPeer', signal => api.request('/social/peers/' + userId, { token: actor.token, signal }), result => {
-      if (result.actorId !== actor.user.id || result.peer?.id !== userId || socialKinds.some(kind => !Array.isArray(result[kind]) || result[kind].length > 1 || result[kind].some(item => item.peer?.id !== userId))) fail('社交服务返回了无法核对的成员资料。', 'INVALID_RESPONSE');
+      if (result.actorId !== actor.user.id || result.peer?.id !== userId || socialKinds.some(kind => !Array.isArray(result[kind]) || result[kind].length > 1 || result[kind].some(item => item.peer?.id !== userId))) fail('成员资料读取失败，请重试', 'INVALID_RESPONSE');
       merge(result.peer, Object.fromEntries(socialKinds.map(kind => [kind, result[kind]])));
     }, valid, actor.token).catch(error => {
       // A no-longer-visible peer cannot retain an actionable cached relation.
@@ -382,8 +382,8 @@ export function createEventController(options = {}) {
   function socialItem(kind, id, revision) {
     identity();
     const found = state.social[kind].find(item => (kind === 'friends' || kind === 'blocks' ? item.userId : item.id) === id);
-    if ((!state.social.loaded && state.social.focusedPeer?.id !== found?.peer?.id) || state.social.actorId !== session.user.id || !found) fail('请先读取这条招呼、朋友或屏蔽记录。', 'SOCIAL_REQUIRED');
-    if (!Number.isSafeInteger(revision) || revision !== found.revision) fail('这条社交记录已变化，请重新确认。', 'REVIEW_STALE');
+    if ((!state.social.loaded && state.social.focusedPeer?.id !== found?.peer?.id) || state.social.actorId !== session.user.id || !found) fail('请先刷新关系列表', 'SOCIAL_REQUIRED');
+    if (!Number.isSafeInteger(revision) || revision !== found.revision) fail('关系状态已变化，请刷新', 'REVIEW_STALE');
     return found;
   }
   function peerTarget(userId) {
@@ -395,7 +395,7 @@ export function createEventController(options = {}) {
     if (!peer) fail('请先读取要操作的这位观众。', 'PERSON_REQUIRED');
     return { userId, name: peer.name };
   }
-  function requireTarget(id) { if (state.route.kind !== 'room' || state.route.target !== id || state.room?.id !== id) fail('现场已经切换，请重新确认本次操作的目标。', 'TARGET_CHANGED'); }
+  function requireTarget(id) { if (state.route.kind !== 'room' || state.route.target !== id || state.room?.id !== id) fail('现场已切换，请重新选择', 'TARGET_CHANGED'); }
   function photo(id, revision, { recap = false } = {}) {
     const recapPhotos = recap && state.recap.loaded && state.recap.actorId === state.identity.user?.id ? state.recap.photos.items.filter(item => item.roomId === state.recap.roomId) : [];
     const found = [...state.photos, ...state.myPhotos.items, ...recapPhotos].filter(p => p.id === id).sort((a, b) => b.revision - a.revision)[0];
@@ -410,7 +410,7 @@ export function createEventController(options = {}) {
     const replacesActorId = bootstrap ? session?.user.id || meta.lastActorId || null : null;
     const existing = [...operations.values()].find(op => op.type === type && op.path === path && op.bodyJson === bodyJson && op.actorId === (actor?.user.id || null) && op.replacesActorId === replacesActorId && op.status !== 'failed');
     if (existing) { existing.routeGeneration = generation; existing.identityGeneration = identityGeneration; return existing; }
-    if (operations.size >= 8) fail('请先重试或处理尚未确认的操作。', 'PENDING_LIMIT');
+    if (operations.size >= 8) fail('还有未完成的操作，请先处理', 'PENDING_LIMIT');
     const op = { id: uuid(), key: uuid(), type, namespace: rule[0], method: rule[1], path, bodyJson, actorId: actor?.user.id || null, replacesActorId,
       target, draftKind, draftVersion: draftKind ? state.draftVersions[draftKind] : null, status: 'prepared', error: null, durable: true,
       routeGeneration: generation, identityGeneration };
@@ -418,11 +418,11 @@ export function createEventController(options = {}) {
   }
   function operationIdentity(op) {
     if (op.type === 'establishIdentity') {
-      if ((session?.user.id || meta.lastActorId || null) !== op.replacesActorId || state.identity.status === 'ready') fail('身份已经改变。旧操作不能建立或替换当前身份，请重新确认。', 'IDENTITY_CHANGED');
+      if ((session?.user.id || meta.lastActorId || null) !== op.replacesActorId || state.identity.status === 'ready') fail('身份已变化，请刷新页面', 'IDENTITY_CHANGED');
       return undefined;
     }
     const actor = identity();
-    if (actor.user.id !== op.actorId) fail('此操作属于之前的身份，不能改用当前身份重试。草稿仍在，请重新确认一个新操作。', 'IDENTITY_CHANGED');
+    if (actor.user.id !== op.actorId) fail('这是之前身份的操作，不能重试', 'IDENTITY_CHANGED');
     return actor.token;
   }
   function clearSubmittedDraft(op) {
@@ -457,7 +457,7 @@ export function createEventController(options = {}) {
       const priorActor=session?.user.id||meta.lastActorId;
       // Identity durability is required: retrying the same bootstrap key can recover
       // this exact capability if saving the response was interrupted or failed.
-      try { storage.setItem(SESSION_KEY, JSON.stringify({ token: result.token, user: result.user })); } catch { storageFailure(); throw new EventClientError('身份已经建立，但浏览器未能保存。请保留原操作重试，不要新建另一份身份。', { code: 'IDENTITY_NOT_SAVED', retryable: true, uncertain: true }); }
+      try { storage.setItem(SESSION_KEY, JSON.stringify({ token: result.token, user: result.user })); } catch { storageFailure(); throw new EventClientError('小人没能存进浏览器，请重试', { code: 'IDENTITY_NOT_SAVED', retryable: true, uncertain: true }); }
       session = { token: result.token, user: clone(result.user) }; identityGeneration++; meta.lastActorId = result.user.id;
       state.identity = { status: 'ready', user: clone(result.user) }; clearPrivate();if(priorActor&&priorActor!==result.user.id)clearVisibleDrafts();
       if (!state.dirty.profile) state.drafts.profile = { name: result.user.name, avatar: clone(result.user.avatar) };
@@ -502,17 +502,17 @@ export function createEventController(options = {}) {
     const priorUncertain = ['uncertain','cancelled'].includes(op.status) || Boolean(op.error?.uncertain);
     let token; try { token = operationIdentity(op); } catch (error) { error.operationId = op.id; report(error); return Promise.reject(error); }
     if (!persist(op)) {
-      const error = new EventClientError('浏览器无法保存原操作的重试信息，请先恢复本机存储。当前草稿仍在，尚未发送新的请求。', { code: 'STORAGE_REQUIRED', retryable: true, operationId: op.id }); report(error); return Promise.reject(error);
+      const error = new EventClientError('浏览器存储不可用，暂时不能发送', { code: 'STORAGE_REQUIRED', retryable: true, operationId: op.id }); report(error); return Promise.reject(error);
     }
     if (socialTypes.has(op.type)) invalidateSocial();
     const abort = new AbortController(); op.status = 'running'; op.error = null; state.error = null;
-    if(!persist(op)){const error=new EventClientError('发送状态无法保存，请恢复本机存储后用原操作重试。',{code:'STORAGE_REQUIRED',retryable:true,operationId:op.id});report(error);return Promise.reject(error);}
+    if(!persist(op)){const error=new EventClientError('浏览器存储不可用，请稍后重试',{code:'STORAGE_REQUIRED',retryable:true,operationId:op.id});report(error);return Promise.reject(error);}
     const entry = { abort, promise: null };
     entry.promise = (async () => {
       try {
         const result = await api.request(op.path, { namespace: op.namespace, method: op.method, bodyJson: op.bodyJson, token, key: op.key, signal: abort.signal });
-        if(syncStoredIdentity()||identitySuperseded)throw new EventClientError('身份已变化，原操作保留给原身份确认。',{code:'IDENTITY_CHANGED',retryable:true,uncertain:true});
-        if (abort.signal.aborted || disposed) throw new EventClientError('已停止等待。原操作仍可重试。', { code: 'ABORTED', retryable: true, uncertain: true });
+        if(syncStoredIdentity()||identitySuperseded)throw new EventClientError('身份已变化，请刷新页面',{code:'IDENTITY_CHANGED',retryable:true,uncertain:true});
+        if (abort.signal.aborted || disposed) throw new EventClientError('已停止等待，可以重试', { code: 'ABORTED', retryable: true, uncertain: true });
         const applied = await adopt(op, result);
         if (op.type === 'establishIdentity' ? applied : op.actorId === session?.user.id) clearSubmittedDraft(op);
         operations.delete(op.id); if (!socialTypes.has(op.type) || !state.social.stale) state.connection = 'connected'; state.lastResult = { operationId: op.id, type: op.type, target: op.target, applied };
@@ -541,32 +541,32 @@ export function createEventController(options = {}) {
   function retainDraft(kind, value) { if (!state.dirty[kind] || state.drafts[kind] === null) setDraft(kind, value); }
   function establishIdentity(profile, { replaceInvalid = false } = {}) {
     assertLive();
-    if (state.identity.status === 'ready' || state.identity.status === 'unverified') fail('当前已有浏览器身份，请先连接核对，不会自动新建。', 'IDENTITY_EXISTS');
-    if (state.identity.status !== 'missing' && !replaceInvalid) fail('旧身份不能凭昵称恢复。新身份无法带回旧记录；请明确确认新建。', 'IDENTITY_REPLACEMENT_REQUIRED');
-    if (!profile?.name || !profile.avatar) fail('请明确选择昵称和分身。');
+    if (state.identity.status === 'ready' || state.identity.status === 'unverified') fail('这个浏览器已经有小人了', 'IDENTITY_EXISTS');
+    if (state.identity.status !== 'missing' && !replaceInvalid) fail('请先勾选确认，再新建小人', 'IDENTITY_REPLACEMENT_REQUIRED');
+    if (!profile?.name || !profile.avatar) fail('请填写昵称并选好小人');
     retainDraft('profile', { name: profile.name, avatar: clone(profile.avatar) });
     return execute(capture('establishIdentity', '/session', { name: profile.name, avatar: clone(profile.avatar) }, 'identity', 'profile'));
   }
   function saveProfile(profile, { revision } = {}) {
-    const actor = identity(); if (revision !== actor.user.revision) fail('身份资料版本已变化，请重新确认。', 'REVIEW_STALE');
+    const actor = identity(); if (revision !== actor.user.revision) fail('小人资料已变化，请刷新', 'REVIEW_STALE');
     retainDraft('profile', { name: profile.name, avatar: clone(profile.avatar) });
     return execute(capture('saveProfile', '/profile', { name: profile.name, avatar: clone(profile.avatar), revision }, 'identity', 'profile'));
   }
   function createRoom(payload) {
-    identity(); if (payload?.joinConsent !== true) fail('请确认向本场成员展示昵称和分身。', 'JOIN_CONSENT_REQUIRED');
+    identity(); if (payload?.joinConsent !== true) fail('请先勾选同意展示昵称和小人', 'JOIN_CONSENT_REQUIRED');
     retainDraft('room', { title: payload.title, venue: payload.venue || '', songId: payload.songId });
     navigate('create', null);
     return execute(capture('createRoom', '/rooms', { title: payload.title, venue: payload.venue || '', songId: payload.songId, joinConsent: true,participation:payload.participation||'quiet' }, 'create', 'room'));
   }
   function joinRoom(value, { joinConsent,participation='quiet' } = {}) {
     const code = String(value).trim().toUpperCase(); identity();
-    if (state.route.kind !== 'preview' || state.route.target !== code || state.preview?.code !== code) fail('现场已经切换，请先查看这个邀请码的预览。', 'TARGET_CHANGED');
-    if (joinConsent !== true) fail('请确认向本场成员展示昵称和分身。', 'JOIN_CONSENT_REQUIRED');
+    if (state.route.kind !== 'preview' || state.route.target !== code || state.preview?.code !== code) fail('现场已切换，请重新输入邀请码', 'TARGET_CHANGED');
+    if (joinConsent !== true) fail('请先勾选同意展示昵称和小人', 'JOIN_CONSENT_REQUIRED');
     return execute(capture('joinRoom', '/rooms/' + code + '/join', { joinConsent: true,participation }, code));
   }
   function setParticipation(mode,{roomId=state.room?.id,revision}={}){requireTarget(roomId);const actor=identity(),member=state.members.find(m=>m.id===actor.user.id);if(!['quiet','open'].includes(mode)||!member||revision!==member.participationRevision)fail('参与方式已变化，请重新确认。','REVIEW_STALE');return execute(capture('setParticipation',`/rooms/${roomId}/participation`,{mode,revision},roomId));}
   function uploadPhoto(dataUrl, value, { roomId = state.room?.id, meta } = {}) {
-    requireTarget(roomId); if (!['private', 'members'].includes(value)) fail('请明确选择仅自己可见或向本场成员展示。', 'VISIBILITY_REQUIRED');
+    requireTarget(roomId); if (!['private', 'members'].includes(value)) fail('请选择照片给谁看', 'VISIBILITY_REQUIRED');
     const facts = photoMeta(meta);
     retainDraft('photo', { roomId, dataUrl, visibility: value, ...facts });
     return execute(capture('uploadPhoto', `/rooms/${roomId}/photos`, { dataUrl, visibility: value, ...facts }, roomId, 'photo'));
@@ -577,18 +577,18 @@ export function createEventController(options = {}) {
   function leaveRoom(roomId = state.room?.id) { requireTarget(roomId); return execute(capture('leaveRoom', `/rooms/${roomId}/leave`, {}, roomId)); }
   function closeRoom(roomId = state.room?.id, { revision } = {}) {
     const room = state.room?.id === roomId ? state.room : state.myRooms.items.find(r => r.id === roomId);
-    if (!room || room.role !== 'host' || revision !== room.revision) fail('请先读取自己创建的现场并确认当前版本。', 'REVIEW_STALE');
+    if (!room || room.role !== 'host' || revision !== room.revision) fail('请先刷新这一场', 'REVIEW_STALE');
     return execute(capture('closeRoom', `/rooms/${roomId}/close`, { revision }, roomId));
   }
   function sendGreeting(recipientId, { roomId = state.room?.id } = {}) {
     requireTarget(roomId); const target = peerTarget(recipientId);
-    if (!state.room.joined || state.room.status !== 'open' || !state.members.some(member => member.id === recipientId)) fail('请先进入双方都在的开放现场。', 'PERSON_REQUIRED');
-    if(state.members.find(m=>m.id===state.identity.user.id)?.participation!=='open'||state.members.find(m=>m.id===recipientId)?.participation!=='open')fail('双方都选择愿意打招呼后，才可发起新联系。','PARTICIPATION_QUIET');
+    if (!state.room.joined || state.room.status !== 'open' || !state.members.some(member => member.id === recipientId)) fail('只能在同一场里招手', 'PERSON_REQUIRED');
+    if(state.members.find(m=>m.id===state.identity.user.id)?.participation!=='open'||state.members.find(m=>m.id===recipientId)?.participation!=='open')fail('双方都愿意打招呼才能招手','PARTICIPATION_QUIET');
     return execute(capture('sendGreeting', `/rooms/${roomId}/greetings`, { recipientId }, { ...target, roomId }));
   }
   function respondGreeting(type, id, { revision } = {}) {
     const found = socialItem(type === 'cancelGreeting' ? 'outgoing' : 'incoming', id, revision);
-    if (found.status !== 'pending') fail('这条招呼已经处理，请刷新后再确认。', 'REVIEW_STALE');
+    if (found.status !== 'pending') fail('这条招呼已处理过了', 'REVIEW_STALE');
     const target = { userId: found.peer.id, name: found.peer.name, roomId: found.roomId, greetingId: found.id, revision };
     return execute(capture(type, `/greetings/${id}/${type.replace('Greeting', '')}`, { revision }, target));
   }
@@ -605,15 +605,15 @@ export function createEventController(options = {}) {
     const actor = identity(), gen = generation, privacyEpoch = photoPrivacyGeneration, recapEpoch = recapGeneration;
     const validRecap = () => recapRoomId === null || state.recap.loaded && state.recap.actorId === actor.user.id && state.recap.roomId === recapRoomId
       && state.recap.photos.items.some(photo => photo.id === id && photo.roomId === recapRoomId && !hiddenPeers.has(photo.ownerId));
-    if (recapRoomId !== null && (!RECAP_ID.test(recapRoomId) || !validRecap())) fail('这张照片已不在当前现场回顾中。', 'TARGET_CHANGED');
+    if (recapRoomId !== null && (!RECAP_ID.test(recapRoomId) || !validRecap())) fail('这张照片已不在回顾里', 'TARGET_CHANGED');
     try {
       const blob = await api.photoBlob(id, { token: actor.token, signal });
       syncStoredIdentity();
-      if (gen !== generation || actor.epoch !== identityGeneration || disposed || privacyEpoch !== photoPrivacyGeneration || recapRoomId !== null && (recapEpoch !== recapGeneration || !validRecap())) fail('现场或可见范围已变化，旧照片不会展示。', 'TARGET_CHANGED');
+      if (gen !== generation || actor.epoch !== identityGeneration || disposed || privacyEpoch !== photoPrivacyGeneration || recapRoomId !== null && (recapEpoch !== recapGeneration || !validRecap())) fail('照片已变化，请刷新', 'TARGET_CHANGED');
       return blob;
     } catch (error) { syncStoredIdentity();report(error, actor.token, gen === generation && actor.epoch === identityGeneration); throw error; }
   }
-  function retry(id) { const op = operations.get(id); if (!op) fail('原操作已完成或不存在。', 'OPERATION_NOT_FOUND'); return execute(op); }
+  function retry(id) { const op = operations.get(id); if (!op) fail('这个操作已完成或已移除', 'OPERATION_NOT_FOUND'); return execute(op); }
   function cancel(id) {
     const op = operations.get(id); if (!visibleOperation(op)) return;
     if (op.status === 'failed' && !op.error?.uncertain) {operations.delete(id);persist(null,op);}
@@ -626,37 +626,37 @@ export function createEventController(options = {}) {
     return freeze({ ...pendingSummary(op), payload: JSON.parse(op.bodyJson) });
   }
   async function exportIdentityBackup(password,{consent,origin=globalThis.location?.origin}={}) {
-    if(consent!==true)fail('请明确同意导出当前身份的加密备份。','BACKUP_CONSENT_REQUIRED');
-    if(origin!==(options.baseUrl?new URL(options.baseUrl).origin:globalThis.location?.origin))fail('备份只能绑定当前实际服务地址。','ORIGIN_MISMATCH');
+    if(consent!==true)fail('请先勾选同意导出备份','BACKUP_CONSENT_REQUIRED');
+    if(origin!==(options.baseUrl?new URL(options.baseUrl).origin:globalThis.location?.origin))fail('备份地址与当前网址不符','ORIGIN_MISMATCH');
     const actor=identity(),epoch=identityGeneration;
     const verified=await api.request('/session',{namespace:'avatar',token:actor.token}).catch(error=>{report(error,actor.token);throw error;});
-    if(verified.user?.id!==actor.user.id||syncStoredIdentity()||epoch!==identityGeneration)fail('核对期间身份已变化，没有导出备份。','IDENTITY_CHANGED');
+    if(verified.user?.id!==actor.user.id||syncStoredIdentity()||epoch!==identityGeneration)fail('身份已变化，未导出备份','IDENTITY_CHANGED');
     const result=await encryptIdentityBackup({token:actor.token,user:verified.user},password,{origin});
-    if(syncStoredIdentity()||epoch!==identityGeneration)fail('加密期间身份已变化，没有导出备份。','IDENTITY_CHANGED');
+    if(syncStoredIdentity()||epoch!==identityGeneration)fail('身份已变化，未导出备份','IDENTITY_CHANGED');
     return result;
   }
   async function restoreIdentityBackup(text,password,{consent,signal,origin=globalThis.location?.origin}={}) {
-    assertLive();if(consent!==true)fail('请明确同意核对后替换本浏览器身份。','RESTORE_CONSENT_REQUIRED');
-    if(origin!==(options.baseUrl?new URL(options.baseUrl).origin:globalThis.location?.origin))fail('恢复只能使用当前实际服务地址。','ORIGIN_MISMATCH');
+    assertLive();if(consent!==true)fail('请先勾选同意替换身份','RESTORE_CONSENT_REQUIRED');
+    if(origin!==(options.baseUrl?new URL(options.baseUrl).origin:globalThis.location?.origin))fail('备份地址与当前网址不符','ORIGIN_MISMATCH');
     const previous=storage?.getItem(SESSION_KEY),epoch=identityGeneration;
     const restored=await decryptIdentityBackup(text,password,{origin});
-    if(signal?.aborted)fail('已取消恢复，当前身份没有改变。','ABORTED');
+    if(signal?.aborted)fail('已取消恢复','ABORTED');
     const result=await api.request('/session',{namespace:'avatar',token:restored.token,signal});
-    if(result.user?.id!==restored.actorId)fail('服务没有认可这份身份，当前身份没有改变。','IDENTITY_INVALID');
-    if(signal?.aborted||disposed||epoch!==identityGeneration||storage?.getItem(SESSION_KEY)!==previous)fail('浏览器身份已变化或恢复已取消，没有替换身份。','IDENTITY_CHANGED');
+    if(result.user?.id!==restored.actorId)fail('这份备份已失效，身份未改变','IDENTITY_INVALID');
+    if(signal?.aborted||disposed||epoch!==identityGeneration||storage?.getItem(SESSION_KEY)!==previous)fail('恢复未完成，身份未改变','IDENTITY_CHANGED');
     storage.setItem(SESSION_KEY,JSON.stringify({token:restored.token,user:result.user}));
     syncStoredIdentity();return {restored:true};
   }
   async function communityRequest(path, {method='GET',data,key,signal}={}) {
     if(!/^\/(?:games\/[0-9a-f-]{36}(?:\/(?:join|leave|start|answer|reveal|next|skip|cancel))?|(?:rooms|communities)\/[0-9a-f-]{36}\/(?:games|topics(?:\/[0-9a-f-]{36})?)|communities\/[0-9a-f-]{36}\/(?:space|events(?:\/[0-9a-f-]{36})?)|worldcups\/[0-9a-f-]{36}(?:\/matches\/[0-9a-f-]{36}\/(?:vote|advance))?|music|communities(?:\/preview\/[A-Z2-7]{12})?|(?:rooms|communities)\/[0-9a-f-]{36}\/(?:worldcups|community|greetings|conversation(?:\/(?:join|leave|settings|messages|read|members\/[0-9a-f-]{36}|messages\/[0-9a-f-]{36}))?))(?:\?(?:before=[0-9a-f-]{36}|status=(?:all|active|completed)(?:&before=[0-9a-f-]{36})?))?$/.test(path))fail('社群路径无效。');
     const actor=identity(),epoch=identityGeneration;
-    try {const result=await api.request(path,{method,bodyJson:data===undefined?undefined:JSON.stringify(data),token:actor.token,key,signal});syncStoredIdentity();if(disposed||epoch!==identityGeneration||identity().user.id!==actor.user.id)fail('身份已变化，旧内容不会显示。','TARGET_CHANGED');return result;}
+    try {const result=await api.request(path,{method,bodyJson:data===undefined?undefined:JSON.stringify(data),token:actor.token,key,signal});syncStoredIdentity();if(disposed||epoch!==identityGeneration||identity().user.id!==actor.user.id)fail('身份已变化，请刷新页面','TARGET_CHANGED');return result;}
     catch(error){syncStoredIdentity();report(error,actor.token,epoch===identityGeneration);throw error;}
   }
   async function cornerRequest(path,{method='GET',data,key,signal,blob=false}={}) {
     if(!/^\/corners(?:\/[0-9a-f-]{36}(?:\/(?:join|contribution|confirm|save|withdraw|photos\/[0-9a-f-]{36}\/image))?)?$/.test(path)||!['GET','POST'].includes(method)||blob&&(method!=='GET'||!path.endsWith('/image')))fail('共同创作路径无效。');
     const actor=identity(),epoch=identityGeneration;
-    try{const result=await api.request(path,{method,bodyJson:data===undefined?undefined:JSON.stringify(data),token:actor.token,key,signal,blob});syncStoredIdentity();if(disposed||epoch!==identityGeneration||identity().user.id!==actor.user.id)fail('身份已变化，旧创作内容不再显示。','TARGET_CHANGED');return result;}
+    try{const result=await api.request(path,{method,bodyJson:data===undefined?undefined:JSON.stringify(data),token:actor.token,key,signal,blob});syncStoredIdentity();if(disposed||epoch!==identityGeneration||identity().user.id!==actor.user.id)fail('身份已变化，请刷新页面','TARGET_CHANGED');return result;}
     catch(error){syncStoredIdentity();report(error,actor.token,epoch===identityGeneration);throw error;}
   }
   function dispose() { if (disposed) return; disposed = true; generation++; identityGeneration++; for (const abort of reads.values()) abort.abort(); for (const entry of running.values()) entry.abort.abort(); listeners.clear(); }

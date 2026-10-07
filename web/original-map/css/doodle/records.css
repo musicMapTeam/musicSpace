@@ -1,0 +1,93 @@
+/* records: 我的发现 (a paper sheet beside the cabinet: sticker tabs, record sleeves, 留下的歌), the 开放曲库 crate and the PNG preview. */
+
+/* ---- the sheet (only on 我的发现: on the shop and the courtyard .main-content is a transparent frame) */
+html[data-theme='sakura'] body[data-spatial-section='records'] .main-content,html[data-theme='sakura'] body[data-view='records'] .main-content{color:var(--ds-ink);background:var(--ds-paper-card);
+  border:var(--ds-line) solid var(--ds-ink);border-radius:var(--ds-radius-card);box-shadow:var(--ds-shadow-lg);scrollbar-color:var(--ds-ink-3) transparent}
+.collection-page{position:relative}
+html[data-theme] .records-heading h1,html[data-theme='sakura'] body[data-spatial-section='records'] .records-heading h1,html[data-theme='sakura'] .collection-page .records-heading h1{
+  font-family:var(--ds-font-display);font-weight:400;font-size:30px;line-height:1.2;letter-spacing:.02em;color:var(--ds-ink);text-shadow:.06em .06em 0 var(--ds-yellow)}
+html[data-theme='sakura'] body .collection-page .records-heading>.button{min-height:44px;padding:6px 14px;font-size:15px;color:var(--ds-ink);background:var(--ds-paper-card);
+  border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:3px 3px 0 var(--ds-mint)}
+/* the two tabs: sticker tabs, the open one yellow */
+html[data-theme='sakura'] .collection-page .records-filters{gap:10px;padding:0 4px 4px 0;margin:0 0 18px;border:0;background:none}
+html[data-theme='sakura'] .collection-page .records-filters button,html[data-theme='sakura'] .collection-page .records-filters button:hover{flex:1;min-height:46px;padding:6px 10px;font-family:var(--ds-font-ui);font-size:16px;
+  font-weight:400;letter-spacing:.02em;color:var(--ds-ink);background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:var(--ds-shadow-sm)}
+html[data-theme='sakura'] .collection-page .records-filters button::after{content:none;display:none}
+html[data-theme='sakura'] .collection-page .records-filters button[aria-pressed='true']{color:var(--ds-ink);background:var(--ds-yellow);border:var(--ds-line) solid var(--ds-ink);box-shadow:var(--ds-shadow);transform:rotate(-1deg);font-weight:400}
+html[data-theme='sakura'] .collection-page .records-filters button:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ds-ink)}
+
+/* ---- 探索记录: each record a sleeve card with its number on the label */
+html[data-theme] .map-records .map-records-heading h2{font-family:var(--ds-font-display);font-weight:400;font-size:20px;color:var(--ds-ink);text-shadow:.06em .06em 0 var(--ds-mint)}
+html[data-theme] .map-records-heading>span{font-family:var(--ds-font-ui);color:var(--ds-ink-3)}
+html[data-theme] .map-records .map-record{color:var(--ds-ink);background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:3px 3px 0 var(--ds-ink)}
+html[data-theme] .map-records .map-record:nth-child(even){transform:rotate(.4deg)}
+html[data-theme] .map-records .map-record:nth-child(odd){transform:rotate(-.4deg)}
+html[data-theme] .map-record__disc,html[data-theme] .map-records .map-record__disc{color:var(--ds-ink);border:var(--ds-line-thin) solid var(--ds-ink);background:repeating-radial-gradient(var(--ds-ink) 0 2px,var(--ds-ink-2) 3px 4px)}
+html[data-theme] .map-record__disc span,html[data-theme] .map-records .map-record__disc span{font-family:var(--ds-font-digits);font-size:13px;color:var(--ds-ink);background:var(--node-tone);border:1.5px solid var(--ds-ink)}
+html[data-theme] .map-record h3,html[data-theme='sakura'] body .map-records .map-record h3{font-family:var(--ds-font-display);font-weight:400;font-size:19px;color:var(--ds-ink)}
+html[data-theme] .map-record__meta,html[data-theme='sakura'] body .map-records .map-record__meta{font-family:var(--ds-font-ui);font-size:13px;color:var(--ds-ink-3)}
+html[data-theme] .map-record p,html[data-theme='sakura'] body .map-records .map-record p{font-family:var(--ds-font-body);font-size:15px;color:var(--ds-ink-2)}
+html[data-theme] .map-records .map-record__actions .button{min-height:44px;padding:6px 14px;font-size:15px}
+html[data-theme] .map-records .map-record__actions .icon-button{color:var(--ds-ink)}
+html[data-theme] .records-page .empty-state,html[data-theme] .map-records .empty-state{background:var(--ds-paper);border:var(--ds-line-thin) dashed var(--ds-ink);border-radius:var(--ds-radius-card)}
+
+/* ---- 留下的歌 and the crate's rows: numbered cards */
+.saved-music__heading h2{font-family:var(--ds-font-display);font-weight:400;font-size:20px;color:var(--ds-ink);text-shadow:.06em .06em 0 var(--ds-mint)}
+.saved-music__heading>span{font-family:var(--ds-font-ui);color:var(--ds-ink-3)}
+.open-catalogue__record,.saved-music__list .open-catalogue__record{border-top:var(--ds-line-thin) dashed color-mix(in srgb,var(--ds-ink) 32%,transparent)}
+.open-catalogue__record:hover{background:color-mix(in srgb,var(--ds-yellow-soft) 60%,transparent)}
+.open-catalogue__record>details>summary{min-height:64px}
+.open-catalogue__number{display:grid;place-items:center;flex:0 0 32px;height:32px;font-family:var(--ds-font-digits);font-size:14px;color:var(--ds-ink);background:var(--ds-pink-soft);border:1.5px solid var(--ds-ink);border-radius:50%}
+.open-catalogue__copy strong{font-family:var(--ds-font-ui);font-weight:400;font-size:16px;color:var(--ds-ink)}
+.open-catalogue__copy small{font-family:var(--ds-font-body);font-size:14px;color:var(--ds-ink-2)}
+.open-catalogue__detail{margin:0 10px 14px 48px}
+.open-catalogue__record .open-catalogue__detail p{margin:0 0 4px;font-family:var(--ds-font-body);font-size:15px;line-height:1.6;color:var(--ds-ink-2)}
+.open-catalogue__detail .map-sources{margin:6px 0 2px}
+.open-catalogue__cite a{color:var(--ds-ink);text-decoration:underline wavy var(--ds-pink);text-decoration-thickness:1.3px;text-underline-offset:.3em;text-decoration-skip-ink:none}
+html[data-theme] body .music-row__actions .music-row__save{color:var(--ds-ink);background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);box-shadow:var(--ds-shadow-sm)}
+.music-row__save.is-saved,.music-row__save.is-saved:hover{color:var(--ds-ink);background:var(--ds-mint)}
+html[data-theme] body .music-row__actions .music-row__remove{min-height:44px;font-size:15px}
+.saved-music__empty{background:var(--ds-paper);border:var(--ds-line-thin) dashed var(--ds-ink);border-radius:var(--ds-radius-card)}
+.saved-music__empty p{font-family:var(--ds-font-body);font-size:16px;color:var(--ds-ink-2)}
+.saved-music__doodle{position:static;--ds-deco-c:var(--ds-pink);--ds-deco-size:40px}
+@media (max-width:600px){.open-catalogue__detail{margin-left:34px}}
+
+/* ---- 开放曲库: a crate of records on paper */
+.open-catalogue{color:var(--ds-ink);background:var(--ds-paper-card);border:var(--ds-line) solid var(--ds-ink);border-radius:var(--ds-radius-card);box-shadow:var(--ds-shadow-lg);overflow:hidden}
+.open-catalogue__tape{left:50%;top:6px;margin-left:-43px;--ds-tape-rot:-2deg}
+.open-catalogue__eyebrow{display:inline-block;padding:3px 10px 2px;font-family:var(--ds-font-logo);font-size:13px;letter-spacing:.08em;color:var(--ds-paper-card);background:var(--ds-ink);border-radius:var(--ds-radius-btn);transform:rotate(-2deg)}
+.open-catalogue h2{font-family:var(--ds-font-display);font-weight:400;font-size:30px;color:var(--ds-ink);text-shadow:.06em .06em 0 var(--ds-yellow)}
+.open-catalogue h2 span{display:inline-grid;place-items:center;min-width:34px;padding:2px 8px;font-family:var(--ds-font-digits);font-size:15px;font-weight:400;color:var(--ds-ink);background:var(--ds-pink);
+  border:1.5px solid var(--ds-ink);border-radius:var(--ds-radius-pill);text-shadow:none}
+.open-catalogue header .icon-button{background:var(--ds-yellow);transform:rotate(-4deg)}
+.open-catalogue__search{min-height:48px;padding:1px 14px;background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-2)}
+.open-catalogue__search:focus-within{border-color:var(--ds-ink);box-shadow:4px 4px 0 var(--ds-mint)}
+.open-catalogue__search input{min-height:44px;font-family:var(--ds-font-ui);font-size:16px;color:var(--ds-ink)}
+.open-catalogue__search input::placeholder{color:var(--ds-ink-3)}
+.open-catalogue__search .icon{width:20px;height:20px}
+.open-catalogue__note{display:inline-block;margin:14px 0 10px;padding:2px 10px;font-family:var(--ds-font-body);font-size:15px;color:var(--ds-ink);background:var(--ds-yellow-soft);border:1.5px solid var(--ds-ink);border-radius:var(--ds-radius-pill)}
+.open-catalogue__list{scrollbar-color:var(--ds-ink-3) transparent}
+.open-catalogue__empty{font-family:var(--ds-font-body);font-size:16px;color:var(--ds-ink-2)}
+.open-catalogue footer{align-items:center;font-family:var(--ds-font-ui);font-size:15px;color:var(--ds-ink-2);border-top:var(--ds-line-thin) dashed color-mix(in srgb,var(--ds-ink) 32%,transparent);padding-top:6px}
+.open-catalogue__sources{min-height:44px;padding:6px 2px;font-family:var(--ds-font-ui);font-size:15px;color:var(--ds-ink);background:none;border:0;cursor:pointer;
+  text-decoration:underline wavy var(--ds-pink);text-decoration-thickness:1.3px;text-underline-offset:.4em;text-decoration-skip-ink:none}
+
+/* ---- the PNG preview: the card held up on paper */
+.share-card-export{color:var(--ds-ink);background:var(--ds-paper-card);border:var(--ds-line) solid var(--ds-ink);border-radius:var(--ds-radius-card);box-shadow:var(--ds-shadow-lg)}
+.share-card-export::backdrop{background:color-mix(in srgb,var(--ds-ink) 55%,transparent)}
+.share-card-export__header h2{font-family:var(--ds-font-display);font-weight:400;font-size:24px;color:var(--ds-ink);text-shadow:.06em .06em 0 var(--ds-yellow)}
+.share-card-export__poster{border:var(--ds-line-thin) solid var(--ds-ink);border-radius:6px;box-shadow:4px 4px 0 var(--ds-ink)}
+.share-card-export__hint,.share-card-export__note{font-family:var(--ds-font-body);font-size:15px;color:var(--ds-ink-2)}
+html[data-theme] .share-card-export__actions .button{min-height:48px;font-family:var(--ds-font-ui);font-size:16px;font-weight:400}
+html[data-theme] .share-card-export__actions .button:not(.button--primary){color:var(--ds-ink);background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink)}
+html[data-theme] .share-card-export :focus-visible{outline:3px dashed var(--ds-ink);outline-offset:3px}
+.share-card-export__error{font-family:var(--ds-font-body);color:var(--ds-ink);background:var(--ds-pink-soft);border:1.5px solid var(--ds-ink);border-radius:var(--ds-radius-btn);padding:6px 10px}
+
+/* ---- a kept duet's line: 去 QQ 音乐听 and its 来源 chip side by side (an open 来源 takes the whole width); a row that folds open
+   (its date, album or dataset row) carries a chevron */
+.music-row__listen{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:flex-start;gap:8px 10px}
+.music-row__listen>details[open]{flex:1 0 100%}
+.music-row__listen .map-sources{margin:0}
+.open-catalogue__record>details>summary::after{content:'▾';content:'▾' / '';flex:none;margin-left:auto;padding:0 4px;font-family:var(--ds-font-ui);font-size:15px;line-height:1;color:var(--ds-ink-2);
+  transition:transform var(--ds-fast) ease}
+.open-catalogue__record>details[open]>summary::after{transform:rotate(180deg)}

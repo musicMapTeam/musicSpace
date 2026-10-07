@@ -103,7 +103,7 @@ node scripts/ops/data-backup.mjs restore --input /private/backups/musicspace-202
 
 - 页面里运行的是同一份房间服务代码（`runtime-preview/src/event-worker.js` 与 `avatar-worker.js`，一行没改）：页面替换全局 `fetch`，把发往 `/api/event`、`/api/avatar` 的请求交给页面内的运行时。数据库是 sql.js（SQLite 的 WebAssembly 版），照片存在 IndexedDB。其他网址（模型、wasm、图片）走原生 `fetch`，都是同源文件，不访问第三方。
 - **没有服务器端接口。** Pages 上 `/api/event/health` 是 404，这是预期；页面发出的请求里没有 `/api`。不要把它当成「部署了房间服务」：没有账号，没有服务端数据，没有跨设备的房间。
-- 同场的人是标明「·示例」的虚构角色，由页面里的程序用普通的带令牌请求自动回应；没有二维码、NFC 或邀请链接。这是单设备的浏览器内模拟，不是已上线的多人产品。真机、微信和大陆网络尚未验证，没有用户的报告就不写成通过。
+- 同场的人是编出来的角色（0.22.0-rc.2 起界面上不再标「·示例」，只在「关于 Music Space」里用一句话说明），由页面里的程序用普通的带令牌请求自动回应；没有二维码、NFC 或邀请链接。这是单设备的浏览器内模拟，不是已上线的多人产品。真机、微信和大陆网络尚未验证，没有用户的报告就不写成通过。
 - 浏览器里的数据是一次性的：快照读不出、迁移或示例世界的版本变了、播种失败，页面清掉示例数据后重来一次；第二个标签页只读，不写数据。
 
 ### 站点树与子路径
@@ -113,10 +113,11 @@ node scripts/ops/data-backup.mjs restore --input /private/backups/musicspace-202
 | 路径 | 内容 |
 | --- | --- |
 | `index.html` | 事件房间页（静态版，脚本与样式内联，约 2.2 MB），作为站点根 |
-| `music-map/` | 原版 Music Map，链接相对站点根，带返回条 |
-| `classic/` | 0.16 的旧首页，没有常驻入口，只在页面启动失败的救援提示里出现；它的模型文件指向共享的 `ai/` |
+| `music-map/` | 音乐探索（原版 Music Map 的页面，0.22.0-rc.2 起是手绘涂鸦风），链接相对站点根，带返回条；字体链接站点根的 `fonts/doodle/` |
+| `classic/` | 0.16 的旧首页，界面上没有入口（0.22.0-rc.2 起页面启动失败的救援提示也不再链到它）；它的模型文件指向共享的 `ai/` |
 | `ai/` | 端侧模型与 onnxruntime-web 文件，整个站点一份（约 23 MB，传输约 10 MB） |
 | `shared/three-0.186.1/` | 房间页与 Map 共用的 three.js 模块 |
+| `fonts/doodle/` | Doodle 字体切片、`fonts.css` 和许可文本 `LICENSES.txt`，房间页和音乐探索共用 |
 | `sql/` | sql.js 的 `sql-wasm.wasm` 和许可文本，从本站同源取 |
 | `demo/` | 六张示例照片和 `manifest.json` |
 | `build.json` | `{version, commit, builtAt, files: [{path, bytes, sha256}]}`，这份字节的身份；没有渠道字段 |

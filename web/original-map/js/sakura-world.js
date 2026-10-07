@@ -1,11 +1,23 @@
 import { createSakuraPrintwork } from './sakura-printwork.js';
+import { PAPER_SET } from './sakura-doodle.js';
+
+// Night values of the courtyard's own parts; the shared cel palette lives in sakura-scene.js and the
+// paper look takes every value from the Doodle tokens (sakura-doodle.js).
+const NIGHT_SET = {
+  strings: '#eee2bf', eyes: '#3e514c', bulb: '#ffe3a6', label: '#f9f0df', window: '#f7d59a', wood: '#b49179',
+  meadow: ['#aabd9d', '#c1cdb0'], blossom: ['#fbc6d8', '#fedde2', '#fff0f4'], fallenPetal: '#8e6f93', driftingPetal: '#e7b4c8',
+};
 
 /**
  * Original procedural set for the music courtyard.
  * World units are metres; the shop faces +Z. The owner controls the camera,
  * lights, animation clock and disposal of the supplied resources.
  */
-export function buildSakuraWorld({ THREE, world, mesh, box, cylinder, ball, rod, label, geometry, toon, cel, materials, textures }) {
+export function buildSakuraWorld({ THREE, world, mesh, box, cylinder, ball, rod, label, geometry, toon, cel, materials, textures, look = 'night' }) {
+  // On paper the yard is a pop-up model on the dotted page: no neighbourhood, hills or night glow,
+  // whose busy depth edges the doodle pass would ink at full strength.
+  const onPaper = look === 'paper';
+  const colors = onPaper ? PAPER_SET : NIGHT_SET;
   const group = (name, position = [0, 0, 0], parent = world) => {
     const object = new THREE.Group(); object.name = name;
     object.position.set(...position); parent.add(object); return object;
@@ -13,15 +25,17 @@ export function buildSakuraWorld({ THREE, world, mesh, box, cylinder, ball, rod,
   const action = (object, value) => { object.userData.action = value; return object; };
   const registerMaterial = material => { materials.add(material); return material; };
   const basic = color => registerMaterial(new THREE.MeshBasicMaterial({ color }));
-  const creamInk = basic('#eee2bf');
-  const darkInk = basic('#3e514c');
+  const creamInk = basic(colors.strings);
+  const darkInk = basic(colors.eyes);
   // Night values: bulbs are warm, label paper is softened so it does not glare
-  // against the dark yard, and the shop windows glow from inside.
-  const warmLamp = basic('#ffe3a6');
-  const paper = basic('#f9f0df');
-  const windowGlow = cel({ color: '#f7d59a', emissive: '#ffb45c', emissiveIntensity: .85, bands: 'soft', flat: false });
-  const prints = createSakuraPrintwork({ THREE, textures, materials });
-  const warmWood = registerMaterial(cel({ color: '#b49179', map: prints.woodGrain, bands: 3, flat: false }));
+  // against the dark yard, and the shop windows glow from inside. On paper the
+  // bulbs are yellow marker dots and the windows plain yellow card.
+  const warmLamp = basic(colors.bulb);
+  const paper = basic(colors.label);
+  const windowGlow = onPaper ? cel({ color: colors.window, bands: 'soft', flat: false })
+    : cel({ color: colors.window, emissive: '#ffb45c', emissiveIntensity: .85, bands: 'soft', flat: false });
+  const prints = createSakuraPrintwork({ THREE, textures, materials, look });
+  const warmWood = registerMaterial(cel({ color: colors.wood, map: prints.woodGrain, bands: 3, flat: false }));
 
   let seed = 267;
   const random = () => { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; };
@@ -54,8 +68,10 @@ export function buildSakuraWorld({ THREE, world, mesh, box, cylinder, ball, rod,
   // Ground continues beyond the composition. A winding, slightly imperfect
   // sequence of stone pavers leads from the foreground into the open shop.
   // At night the outer ground is a dim violet grey; the paved yard reads as a lit island.
-  noShadow(box([0, -.16, -1], [58, .22, 48], cel({ color: '#938da6', bands: 3, flat: false })));
-  noShadow(roundBox([-.2, -.015, .1], [13.8, .16, 10.7], toon.cream));
+  // On paper the yard stands on a kraft board, the one piece of card set on the page.
+  if (onPaper) noShadow(roundBox([-.2, -.2, .1], [14.25, .26, 11.15], cel({ color: colors.board, bands: 3, flat: false }))).receiveShadow = false;
+  else noShadow(box([0, -.16, -1], [58, .22, 48], cel({ color: '#938da6', bands: 3, flat: false })));
+  noShadow(roundBox([-.2, -.015, .1], [13.8, .16, 10.7], toon.yard));
   const stoneColors = [toon.plaster, toon.sand, toon.cream];
   for (let i = 0; i < 7; i++) {
     const stone = roundBox([Math.sin(i * .54) * .4, .095, 5.45 - i * .69], [.94 + (i % 2) * .18, .09, .56], stoneColors[i % 3]);
@@ -142,7 +158,7 @@ export function buildSakuraWorld({ THREE, world, mesh, box, cylinder, ball, rod,
   const roofSlope = Math.atan2(.78, 2.65);
   const roofLength = Math.hypot(2.65, .78);
   for (const side of [-1, 1]) {
-    const pitch = box([side * 1.325, 3.43, 0], [roofLength, .13, 4.32], toon.green, roof);
+    const pitch = box([side * 1.325, 3.43, 0], [roofLength, .13, 4.32], toon.roof, roof);
     pitch.rotation.z = -side * roofSlope;
     for (let i = 0; i < 9; i++) {
       const seam = box([side * 1.325, 3.505, -1.97 + i * .493], [roofLength, .024, .032], toon.leaf, roof);
@@ -364,10 +380,7 @@ export function buildSakuraWorld({ THREE, world, mesh, box, cylinder, ball, rod,
 
   // Broad, low leaves read as a planted border from the elevated camera.
   // Solid curved leaves avoid the ink-like edge of upright single-sided grass.
-  const meadowMaterials = [
-    registerMaterial(cel({ color: '#aabd9d', bands: 'soft', flat: false })),
-    registerMaterial(cel({ color: '#c1cdb0', bands: 'soft', flat: false })),
-  ];
+  const meadowMaterials = colors.meadow.map(color => registerMaterial(cel({ color, bands: 'soft', flat: false })));
   const bladeTransform = new THREE.Object3D();
   const meadow = [[], []];
   const flowerCenters = [];
@@ -456,15 +469,16 @@ export function buildSakuraWorld({ THREE, world, mesh, box, cylinder, ball, rod,
   }
   cherryTree([-4.5, .045, -1.5], 1.06, 90);
   cherryTree([5.3, .02, -3.5], .88, 70);
-  cherryTree([-9.2, -.02, -6.7], .95, 39);
-  cherryTree([9.4, -.02, -7.4], 1.08, 39);
+  if (!onPaper) {
+    cherryTree([-9.2, -.02, -6.7], .95, 39);
+    cherryTree([9.4, -.02, -7.4], 1.08, 39);
+  }
   const transform = new THREE.Object3D();
   // Night blossom has its own faint self-light; curtains, pots and flowers keep the plain rose materials.
-  const blossomMaterials = [
-    cel({ color: '#fbc6d8', bands: 'soft', flat: false, emissive: '#7a3d5e', emissiveIntensity: .75 }),
-    cel({ color: '#fedde2', bands: 'soft', flat: false, emissive: '#7a3d5e', emissiveIntensity: .7 }),
-    cel({ color: '#fff0f4', bands: 'soft', flat: false, emissive: '#8f5a78', emissiveIntensity: .6 }),
-  ];
+  // Paper blossom is flat marker colour: the doodle pass would add any emissive to the paper colour.
+  const blossomGlow = [['#7a3d5e', .75], ['#7a3d5e', .7], ['#8f5a78', .6]];
+  const blossomMaterials = colors.blossom.map((color, index) => onPaper ? cel({ color, bands: 'soft', flat: false })
+    : cel({ color, bands: 'soft', flat: false, emissive: blossomGlow[index][0], emissiveIntensity: blossomGlow[index][1] }));
   blossomMaterials.forEach((material, index) => {
     const data = crownBins[index];
     const canopies = new THREE.InstancedMesh(crownGeometry, material, data.length);
@@ -488,72 +502,75 @@ export function buildSakuraWorld({ THREE, world, mesh, box, cylinder, ball, rod,
     for (let i = 1; i < 8; i++) roundBox([x, .4, -4.5 + i * .89], [.11, .81, .11], toon.mint, fence);
     for (const y of [.3, .67]) box([x, y, -.94], [.055, .065, 7.1], toon.leaf, fence);
   }
-  const quietPlaster = basic('#3d4166');
-  const quietRoof = basic('#2c3052');
-  const quietGlass = basic('#ffc978');
-  const quietGlassDark = basic('#2a2f52');
-  const quietTrim = basic('#4b4f75');
-  const quietJoinery = basic('#353a5f');
-  const quietRose = basic('#6a4a66');
-  const distantGable = new THREE.Shape();
-  distantGable.moveTo(-1.7, 0); distantGable.lineTo(1.7, 0); distantGable.lineTo(0, .52); distantGable.closePath();
-  const distantGableGeometry = geometry(new THREE.ExtrudeGeometry(distantGable, { depth: .035, bevelEnabled: false }));
-  for (let i = 0; i < 5; i++) {
-    const neighbour = group(`quiet-neighbour-${i}`, [-11 + i * 5.2, -.08, -10.8 - (i % 2) * 1.4]);
-    const h = 2.1 + (i % 3) * .43;
-    noShadow(roundBox([0, h / 2, 0], [3.4, h, 2.6], quietPlaster, neighbour));
-    for (const z of [-1.3, 1.3]) noShadow(mesh(distantGableGeometry, quietPlaster, [0, h, z], [1, 1, 1], neighbour));
-    for (const side of [-1, 1]) {
-      const pitch = noShadow(box([side * .89, h + .26, 0], [1.95, .1, 3], quietRoof, neighbour)); pitch.rotation.z = side * -.27;
-      noShadow(box([side * 1.83, h + .028, 0], [.067, .11, 3.08], quietJoinery, neighbour));
-      for (const z of [-1.17, -.58, .01, .6, 1.19]) {
-        const seam = noShadow(box([side * .89, h + .323, z], [1.95, .016, .024], quietTrim, neighbour)); seam.rotation.z = side * -.27;
+  // The quiet lane, its neighbours and the hills belong to the night venue only.
+  if (!onPaper) {
+    const quietPlaster = basic('#3d4166');
+    const quietRoof = basic('#2c3052');
+    const quietGlass = basic('#ffc978');
+    const quietGlassDark = basic('#2a2f52');
+    const quietTrim = basic('#4b4f75');
+    const quietJoinery = basic('#353a5f');
+    const quietRose = basic('#6a4a66');
+    const distantGable = new THREE.Shape();
+    distantGable.moveTo(-1.7, 0); distantGable.lineTo(1.7, 0); distantGable.lineTo(0, .52); distantGable.closePath();
+    const distantGableGeometry = geometry(new THREE.ExtrudeGeometry(distantGable, { depth: .035, bevelEnabled: false }));
+    for (let i = 0; i < 5; i++) {
+      const neighbour = group(`quiet-neighbour-${i}`, [-11 + i * 5.2, -.08, -10.8 - (i % 2) * 1.4]);
+      const h = 2.1 + (i % 3) * .43;
+      noShadow(roundBox([0, h / 2, 0], [3.4, h, 2.6], quietPlaster, neighbour));
+      for (const z of [-1.3, 1.3]) noShadow(mesh(distantGableGeometry, quietPlaster, [0, h, z], [1, 1, 1], neighbour));
+      for (const side of [-1, 1]) {
+        const pitch = noShadow(box([side * .89, h + .26, 0], [1.95, .1, 3], quietRoof, neighbour)); pitch.rotation.z = side * -.27;
+        noShadow(box([side * 1.83, h + .028, 0], [.067, .11, 3.08], quietJoinery, neighbour));
+        for (const z of [-1.17, -.58, .01, .6, 1.19]) {
+          const seam = noShadow(box([side * .89, h + .323, z], [1.95, .016, .024], quietTrim, neighbour)); seam.rotation.z = side * -.27;
+        }
       }
-    }
-    noShadow(box([0, h + .553, 0], [.1, .082, 3.1], quietTrim, neighbour));
-    noShadow(box([0, .136, 1.364], [3.5, .21, .12], quietTrim, neighbour));
-    noShadow(box([0, h - .08, 1.357], [3.46, .082, .08], quietTrim, neighbour));
-    for (const x of [-.83, .8]) {
-      noShadow(box([x, h - .72, 1.319], [.83, 1.015, .036], quietTrim, neighbour));
-      noShadow(box([x, h - .72, 1.348], [.71, .9, .019], (i + (x > 0 ? 1 : 0)) % 3 === 1 ? quietGlassDark : quietGlass, neighbour));
-      noShadow(box([x, h - .72, 1.37], [.036, .94, .022], quietTrim, neighbour));
-      noShadow(box([x, h - .69, 1.37], [.74, .036, .022], quietTrim, neighbour));
-      noShadow(box([x, h - 1.2, 1.388], [.9, .056, .22], quietJoinery, neighbour));
-      if ((i + (x > 0 ? 1 : 0)) % 3 === 0) {
-        for (const side of [-1, 1]) noShadow(box([x + side * .445, h - .72, 1.354], [.12, .98, .049], quietRose, neighbour));
+      noShadow(box([0, h + .553, 0], [.1, .082, 3.1], quietTrim, neighbour));
+      noShadow(box([0, .136, 1.364], [3.5, .21, .12], quietTrim, neighbour));
+      noShadow(box([0, h - .08, 1.357], [3.46, .082, .08], quietTrim, neighbour));
+      for (const x of [-.83, .8]) {
+        noShadow(box([x, h - .72, 1.319], [.83, 1.015, .036], quietTrim, neighbour));
+        noShadow(box([x, h - .72, 1.348], [.71, .9, .019], (i + (x > 0 ? 1 : 0)) % 3 === 1 ? quietGlassDark : quietGlass, neighbour));
+        noShadow(box([x, h - .72, 1.37], [.036, .94, .022], quietTrim, neighbour));
+        noShadow(box([x, h - .69, 1.37], [.74, .036, .022], quietTrim, neighbour));
+        noShadow(box([x, h - 1.2, 1.388], [.9, .056, .22], quietJoinery, neighbour));
+        if ((i + (x > 0 ? 1 : 0)) % 3 === 0) {
+          for (const side of [-1, 1]) noShadow(box([x + side * .445, h - .72, 1.354], [.12, .98, .049], quietRose, neighbour));
+        }
       }
+      noShadow(box([0, .682, 1.365], [.67, 1.31, .081], quietTrim, neighbour));
+      noShadow(box([0, .665, 1.415], [.51, 1.19, .027], quietJoinery, neighbour));
+      noShadow(box([0, .975, 1.434], [.33, .37, .015], quietGlass, neighbour));
+      noShadow(ball([.165, .604, 1.455], [.023, .023, .012], quietRoof, neighbour));
+      noShadow(box([0, .072, 1.499], [.77, .094, .39], quietTrim, neighbour));
+      // One shallow balcony and a few flower boxes keep the row varied.
+      if (i === 1 || i === 3) {
+        const balconyY = h - 1.23;
+        noShadow(box([.8, balconyY, 1.54], [1.04, .066, .48], quietTrim, neighbour));
+        noShadow(box([.8, balconyY + .31, 1.756], [1.02, .031, .031], quietJoinery, neighbour));
+        for (let bar = 0; bar < 5; bar++) noShadow(box([.365 + bar * .218, balconyY + .17, 1.755], [.028, .29, .028], quietJoinery, neighbour));
+      } else {
+        noShadow(box([-.83, h - 1.13, 1.479], [.62, .14, .17], quietRose, neighbour));
+        for (const x of [-1.03, -.83, -.63]) noShadow(ball([x, h - 1.035, 1.47], [.113, .071, .081], quietJoinery, neighbour));
+      }
+      // The right side is visible in the main shot, with a complete inset window.
+      noShadow(box([1.726, h - .72, .12], [.048, .86, .76], quietTrim, neighbour));
+      noShadow(box([1.758, h - .72, .12], [.022, .71, .62], i % 2 ? quietGlassDark : quietGlass, neighbour));
+      noShadow(box([1.774, h - .72, .12], [.018, .75, .031], quietTrim, neighbour));
+      noShadow(box([1.781, h - 1.167, .12], [.16, .053, .83], quietJoinery, neighbour));
     }
-    noShadow(box([0, .682, 1.365], [.67, 1.31, .081], quietTrim, neighbour));
-    noShadow(box([0, .665, 1.415], [.51, 1.19, .027], quietJoinery, neighbour));
-    noShadow(box([0, .975, 1.434], [.33, .37, .015], quietGlass, neighbour));
-    noShadow(ball([.165, .604, 1.455], [.023, .023, .012], quietRoof, neighbour));
-    noShadow(box([0, .072, 1.499], [.77, .094, .39], quietTrim, neighbour));
-    // One shallow balcony and a few flower boxes keep the row varied.
-    if (i === 1 || i === 3) {
-      const balconyY = h - 1.23;
-      noShadow(box([.8, balconyY, 1.54], [1.04, .066, .48], quietTrim, neighbour));
-      noShadow(box([.8, balconyY + .31, 1.756], [1.02, .031, .031], quietJoinery, neighbour));
-      for (let bar = 0; bar < 5; bar++) noShadow(box([.365 + bar * .218, balconyY + .17, 1.755], [.028, .29, .028], quietJoinery, neighbour));
-    } else {
-      noShadow(box([-.83, h - 1.13, 1.479], [.62, .14, .17], quietRose, neighbour));
-      for (const x of [-1.03, -.83, -.63]) noShadow(ball([x, h - 1.035, 1.47], [.113, .071, .081], quietJoinery, neighbour));
-    }
-    // The right side is visible in the main shot, with a complete inset window.
-    noShadow(box([1.726, h - .72, .12], [.048, .86, .76], quietTrim, neighbour));
-    noShadow(box([1.758, h - .72, .12], [.022, .71, .62], i % 2 ? quietGlassDark : quietGlass, neighbour));
-    noShadow(box([1.774, h - .72, .12], [.018, .75, .031], quietTrim, neighbour));
-    noShadow(box([1.781, h - 1.167, .12], [.16, .053, .83], quietJoinery, neighbour));
+    // Atmospheric shapes sit beyond the neighbours, below the main shop's
+    // silhouette. A low rolling horizon replaces the empty end of the ground.
+    const farHill = basic('#2f2b55');
+    const nearHill = basic('#27264b');
+    [[-15, -.8, -23, 12, 3.8, 4], [3, -1, -24, 14, 4.7, 4.2], [21, -.8, -24, 12, 3.7, 4]].forEach(([x, y, z, sx, sy, sz]) => {
+      const hill = noShadow(ball([x, y, z], [sx, sy, sz], farHill)); hill.receiveShadow = false;
+    });
+    [[-15, -.8, -18.9, 9, 2.7, 2.9], [9, -.8, -19.5, 12, 2.9, 2.9]].forEach(([x, y, z, sx, sy, sz]) => {
+      const hill = noShadow(ball([x, y, z], [sx, sy, sz], nearHill)); hill.receiveShadow = false;
+    });
   }
-  // Atmospheric shapes sit beyond the neighbours, below the main shop's
-  // silhouette. A low rolling horizon replaces the empty end of the ground.
-  const farHill = basic('#2f2b55');
-  const nearHill = basic('#27264b');
-  [[-15, -.8, -23, 12, 3.8, 4], [3, -1, -24, 14, 4.7, 4.2], [21, -.8, -24, 12, 3.7, 4]].forEach(([x, y, z, sx, sy, sz]) => {
-    const hill = noShadow(ball([x, y, z], [sx, sy, sz], farHill)); hill.receiveShadow = false;
-  });
-  [[-15, -.8, -18.9, 9, 2.7, 2.9], [9, -.8, -19.5, 12, 2.9, 2.9]].forEach(([x, y, z, sx, sy, sz]) => {
-    const hill = noShadow(ball([x, y, z], [sx, sy, sz], nearHill)); hill.receiveShadow = false;
-  });
   const shrubGeometry = geometry(new THREE.IcosahedronGeometry(1, 1));
   const shrubMaterials = [toon.mint, toon.leaf];
   for (let i = 0; i < 20; i++) {
@@ -577,8 +594,8 @@ export function buildSakuraWorld({ THREE, world, mesh, box, cylinder, ball, rod,
   petalShape.moveTo(0, -.5); petalShape.bezierCurveTo(-.49, -.17, -.42, .33, -.12, .48);
   petalShape.lineTo(0, .33); petalShape.lineTo(.12, .48); petalShape.bezierCurveTo(.42, .33, .49, -.17, 0, -.5);
   const petalGeometry = geometry(new THREE.ShapeGeometry(petalShape, 4));
-  const petalMaterial = registerMaterial(new THREE.MeshBasicMaterial({ color: '#8e6f93', side: THREE.DoubleSide }));
-  const driftMaterial = registerMaterial(new THREE.MeshBasicMaterial({ color: '#e7b4c8', side: THREE.DoubleSide }));
+  const petalMaterial = registerMaterial(new THREE.MeshBasicMaterial({ color: colors.fallenPetal, side: THREE.DoubleSide }));
+  const driftMaterial = registerMaterial(new THREE.MeshBasicMaterial({ color: colors.driftingPetal, side: THREE.DoubleSide }));
   const petals = new THREE.InstancedMesh(petalGeometry, petalMaterial, 65);
   petals.name = 'fallen-petals';
   for (let i = 0; i < 65; i++) {
@@ -654,53 +671,63 @@ export function buildSakuraWorld({ THREE, world, mesh, box, cylinder, ball, rod,
     rod([x, .09, 1.1], [x, 3.48, 1.1], .036, toon.green);
     ball([x, 3.49, 1.1], [.059, .059, .059], toon.gold);
   }
+  // The strand and its bulbs are one group: the record-table camera looks down past it from close above, where the wire
+  // would print as a heavy ink stroke across the table, so that view leaves the strand out (sakura-scene).
+  const festoon = group('festoon-strand');
   wires.forEach(points => {
-    tube(points, .012, toon.ink);
+    tube(points, .012, toon.ink, festoon);
     const path = new THREE.CatmullRomCurve3(points.map(point => new THREE.Vector3(...point)));
     for (let i = 1; i < 8; i++) {
       const point = path.getPoint(i / 8);
-      rod(point.toArray(), [point.x, point.y - .12, point.z], .008, toon.ink);
-      cylinder([point.x, point.y - .13, point.z], [.031, .038, .031], toon.green);
-      noShadow(ball([point.x, point.y - .187, point.z], [.06, .075, .06], warmLamp));
+      rod(point.toArray(), [point.x, point.y - .12, point.z], .008, toon.ink, festoon);
+      cylinder([point.x, point.y - .13, point.z], [.031, .038, .031], toon.green, festoon);
+      noShadow(ball([point.x, point.y - .187, point.z], [.06, .075, .06], warmLamp, festoon));
     }
   });
 
   // Additive halos and the stage beam carry the night glow. They never take a
   // click, never cast shadows and skip fog so the ink pass leaves them unlined.
-  const haloSurface = document.createElement('canvas'); haloSurface.width = haloSurface.height = 64;
-  const haloContext = haloSurface.getContext('2d');
-  const haloGradient = haloContext.createRadialGradient(32, 32, 0, 32, 32, 32);
-  haloGradient.addColorStop(0, 'rgba(255,226,170,1)'); haloGradient.addColorStop(.22, 'rgba(255,190,110,.5)'); haloGradient.addColorStop(1, 'rgba(255,150,80,0)');
-  haloContext.fillStyle = haloGradient; haloContext.fillRect(0, 0, 64, 64);
-  const haloTexture = new THREE.CanvasTexture(haloSurface); haloTexture.colorSpace = THREE.SRGBColorSpace; textures.add(haloTexture);
-  const haloMaterial = registerMaterial(new THREE.SpriteMaterial({ map: haloTexture, color: '#ffc27a', blending: THREE.AdditiveBlending, transparent: true, depthWrite: false, fog: false, opacity: .8 }));
-  function halo(position, size, parent = world) {
-    const sprite = new THREE.Sprite(haloMaterial); sprite.position.set(...position); sprite.scale.setScalar(size);
-    sprite.raycast = () => {}; parent.add(sprite); return sprite;
+  // On paper there is no glow (additive light would also corrupt the doodle
+  // pass's shading code); the par can stays as a prop.
+  let haloMaterial = null; let beamMaterial = null; let halo = () => {};
+  if (!onPaper) {
+    const haloSurface = document.createElement('canvas'); haloSurface.width = haloSurface.height = 64;
+    const haloContext = haloSurface.getContext('2d');
+    const haloGradient = haloContext.createRadialGradient(32, 32, 0, 32, 32, 32);
+    haloGradient.addColorStop(0, 'rgba(255,226,170,1)'); haloGradient.addColorStop(.22, 'rgba(255,190,110,.5)'); haloGradient.addColorStop(1, 'rgba(255,150,80,0)');
+    haloContext.fillStyle = haloGradient; haloContext.fillRect(0, 0, 64, 64);
+    const haloTexture = new THREE.CanvasTexture(haloSurface); haloTexture.colorSpace = THREE.SRGBColorSpace; textures.add(haloTexture);
+    haloMaterial = registerMaterial(new THREE.SpriteMaterial({ map: haloTexture, color: '#ffc27a', blending: THREE.AdditiveBlending, transparent: true, depthWrite: false, fog: false, opacity: .8 }));
+    halo = (position, size, parent = world) => {
+      const sprite = new THREE.Sprite(haloMaterial); sprite.position.set(...position); sprite.scale.setScalar(size);
+      sprite.raycast = () => {}; parent.add(sprite); return sprite;
+    };
+    wires.forEach(points => {
+      const path = new THREE.CatmullRomCurve3(points.map(point => new THREE.Vector3(...point)));
+      for (let i = 1; i < 8; i++) { const point = path.getPoint(i / 8); halo([point.x, point.y - .187, point.z], .62); }
+    });
+    for (const x of [-1.15, 1.15]) halo([x, 2.5, .48], 1.1, roof);
   }
-  wires.forEach(points => {
-    const path = new THREE.CatmullRomCurve3(points.map(point => new THREE.Vector3(...point)));
-    for (let i = 1; i < 8; i++) { const point = path.getPoint(i / 8); halo([point.x, point.y - .187, point.z], .62); }
-  });
-  for (const x of [-1.15, 1.15]) halo([x, 2.5, .48], 1.1, roof);
   // A small par can on the left festoon pole lights the listening corner; its beam is a soft additive cone.
   const head = new THREE.Vector3(-5.82, 3.3, 1.1); const aim = new THREE.Vector3(-4, .32, .35);
   const can = group('stage-par-can', head.toArray());
   can.quaternion.setFromUnitVectors(new THREE.Vector3(0, -1, 0), aim.clone().sub(head).normalize());
   cylinder([0, .02, 0], [.095, .2, .095], toon.black, can);
   noShadow(cylinder([0, -.085, 0], [.08, .012, .08], warmLamp, can));
-  halo(head.toArray(), .7);
-  const beamLength = head.distanceTo(aim);
-  const beamGeometry = geometry(new THREE.ConeGeometry(Math.tan(.36) * beamLength, beamLength, 32, 1, true));
-  beamGeometry.translate(0, -beamLength / 2, 0);
-  const beamAlpha = document.createElement('canvas'); beamAlpha.width = 2; beamAlpha.height = 64;
-  const beamContext = beamAlpha.getContext('2d'); const beamGradient = beamContext.createLinearGradient(0, 0, 0, 64);
-  beamGradient.addColorStop(0, '#fff'); beamGradient.addColorStop(1, '#000'); beamContext.fillStyle = beamGradient; beamContext.fillRect(0, 0, 2, 64);
-  const beamTexture = new THREE.CanvasTexture(beamAlpha); textures.add(beamTexture);
-  const beamMaterial = registerMaterial(new THREE.MeshBasicMaterial({ color: '#ffc9ae', alphaMap: beamTexture, transparent: true, opacity: .2, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide, fog: false }));
-  const beam = new THREE.Mesh(beamGeometry, beamMaterial);
-  beam.name = 'stage-beam'; beam.position.copy(head); beam.quaternion.copy(can.quaternion); beam.raycast = () => {}; beam.castShadow = false; beam.receiveShadow = false; beam.userData.dynamic = true;
-  world.add(beam);
+  if (!onPaper) {
+    halo(head.toArray(), .7);
+    const beamLength = head.distanceTo(aim);
+    const beamGeometry = geometry(new THREE.ConeGeometry(Math.tan(.36) * beamLength, beamLength, 32, 1, true));
+    beamGeometry.translate(0, -beamLength / 2, 0);
+    const beamAlpha = document.createElement('canvas'); beamAlpha.width = 2; beamAlpha.height = 64;
+    const beamContext = beamAlpha.getContext('2d'); const beamGradient = beamContext.createLinearGradient(0, 0, 0, 64);
+    beamGradient.addColorStop(0, '#fff'); beamGradient.addColorStop(1, '#000'); beamContext.fillStyle = beamGradient; beamContext.fillRect(0, 0, 2, 64);
+    const beamTexture = new THREE.CanvasTexture(beamAlpha); textures.add(beamTexture);
+    beamMaterial = registerMaterial(new THREE.MeshBasicMaterial({ color: '#ffc9ae', alphaMap: beamTexture, transparent: true, opacity: .2, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide, fog: false }));
+    const beam = new THREE.Mesh(beamGeometry, beamMaterial);
+    beam.name = 'stage-beam'; beam.position.copy(head); beam.quaternion.copy(can.quaternion); beam.raycast = () => {}; beam.castShadow = false; beam.receiveShadow = false; beam.userData.dynamic = true;
+    world.add(beam);
+  }
 
   // A sleeping cat by the entrance has a breathing body and a separate tail.
   const cat = group('sleeping-shop-cat', [2.42, .24, .58]);
@@ -716,10 +743,12 @@ export function buildSakuraWorld({ THREE, world, mesh, box, cylinder, ball, rod,
   ball([.168, .048, .141], [.118, .041, .05], toon.cream, cat);
 
   return {
-    roof, record, shelf,
+    roof, record, shelf, festoon,
     exploreShadowBlockers: [shopLeftWall, shopFrontBeam],
     // Handles for the one-time opening light-up; values at rest are the night look.
-    night: { haloMaterial, beamMaterial, windowGlow, warmLamp, lampColor: warmLamp.color.clone() },
+    night: onPaper ? null : { haloMaterial, beamMaterial, windowGlow, warmLamp, lampColor: warmLamp.color.clone() },
+    // On paper: the prints are painted again once the Doodle faces arrive.
+    prints,
     update(time) {
       record.rotation.y = time * .27;
       catBody.scale.y = .16 * (1 + Math.sin(time * 1.35) * .035);

@@ -8,7 +8,8 @@ import vm from 'node:vm';
 import { venueTime } from '../web/js/moment.js';
 import { escape as esc } from '../web/avatar/model.js';
 import { offerSuggestions } from '../web/event-room/moment-model.js';
-import { NO_RECOMMENDATION, PLACEHOLDER, RULE_NOTE, optionLabel, optionsMarkup, reasonText, suggestionMarkup, verdictLabel, verdictOf } from '../web/event-room/exchange-suggest.js';
+import * as SUGGEST from '../web/event-room/exchange-suggest.js';
+import { NO_RECOMMENDATION, PLACEHOLDER, optionLabel, optionsMarkup, reasonText, suggestionMarkup, verdictLabel, verdictOf } from '../web/event-room/exchange-suggest.js';
 
 const DATE = '2026.09.26';
 const at = (hour, minute, second = 0) => venueTime(2026, 9, 26, hour, minute, second);
@@ -81,11 +82,11 @@ test('reason text: the whole sentence for a 同一刻, the first clause for anyt
   assert.equal(reasonText(rows.same, target), '同一刻 · 21:48，几乎同时；你们都拍了人海');
   assert.equal(reasonText(rows.late, target), '不是同一刻（拍摄时间隔了 1 小时）');
   assert.ok(!reasonText(rows.late, target).includes('；'), 'no hope for an other side that the rule did not find');
-  assert.equal(reasonText(rows['no-time'], target), '你的这张没有拍摄时间，无法判断是不是同一刻。');
+  assert.equal(reasonText(rows['no-time'], target), '你的这张没有拍摄时间。');
   const noTimeTheirs = rowsFor([photo('mine', 'me', at(21, 48, 0), 'stage')], photo('t', 'man', null, 'crowd'))[0];
-  assert.equal(reasonText(noTimeTheirs, photo('t', 'man', null, 'crowd')), '对方的这张没有拍摄时间，无法判断是不是同一刻。');
+  assert.equal(reasonText(noTimeTheirs, photo('t', 'man', null, 'crowd')), '对方的这张没有拍摄时间。');
   const noTimeEither = rowsFor([photo('mine', 'me', null, 'stage')], photo('t', 'man', null, 'crowd'))[0];
-  assert.equal(reasonText(noTimeEither, photo('t', 'man', null, 'crowd')), '两张照片都没有拍摄时间，无法判断是不是同一刻。');
+  assert.equal(reasonText(noTimeEither, photo('t', 'man', null, 'crowd')), '两张照片都没有拍摄时间。');
 });
 
 test('options markup: placeholder first, best first, the chosen one selected, text escaped', () => {
@@ -108,16 +109,18 @@ test('suggestion markup: the reason of the chosen option, a note when nothing is
   const chosen = suggestionMarkup(rows, { selectedId: 'stage', target, esc });
   assert.match(chosen, /^<p class="exchange-reason is-recommended" id="exchange-reason" data-x-reason>/);
   assert.match(chosen, /同一刻 · <span class="nowrap">21:47<\/span>，<span class="nowrap">相差不到 1 分钟<\/span>；<span class="nowrap">你拍舞台，<\/span><span class="nowrap">TA 拍人海<\/span>/);
-  assert.ok(chosen.includes(`<small>${RULE_NOTE}</small>`));
-  assert.equal(RULE_NOTE, '规则判断，不是 AI。要不要交换，仍由你和对方决定。');
+  assert.ok(!chosen.includes('<small>'), 'the reason stands alone: no note about how it was worked out');
+  assert.equal(SUGGEST.RULE_NOTE, undefined);
+  assert.doesNotMatch(chosen, /规则判断|不是 AI/);
   const apart = suggestionMarkup(rows, { selectedId: 'late', target, esc });
   assert.ok(!apart.includes('is-recommended'));
-  assert.equal(plain(apart), '不是同一刻（拍摄时间隔了 1 小时）' + RULE_NOTE);
+  assert.equal(plain(apart), '不是同一刻（拍摄时间隔了 1 小时）');
   assert.match(apart, /<span class="nowrap">不是同一刻<\/span>（<span class="nowrap">拍摄时间<\/span><span class="nowrap">隔了 1 小时<\/span>）/, 'moment.js reasonHtml keeps the small units whole');
   assert.equal(suggestionMarkup(rows, { selectedId: null, target, esc }), '<p class="exchange-reason" id="exchange-reason" data-x-reason hidden></p>', 'the recommendation is shown by selecting it, not by a second line');
   const nothing = rows.filter(row => !row.recommended);
   assert.equal(suggestionMarkup(nothing, { selectedId: null, target, esc }), `<p class="exchange-reason" id="exchange-reason" data-x-reason>${NO_RECOMMENDATION}</p>`);
   assert.equal(suggestionMarkup([], { selectedId: null, target, esc }), '<p class="exchange-reason" id="exchange-reason" data-x-reason hidden></p>');
+  assert.equal(NO_RECOMMENDATION, '没找到同一刻的另一面，自己选一张吧。');
   assert.ok(!NO_RECOMMENDATION.includes('AI'));
 });
 
@@ -154,7 +157,7 @@ function setup({ photos, pollMs, eventDate = DATE, fetchPhoto } = {}) {
     async list() { calls.push(['list']); }, async refreshList() { calls.push(['refreshList']); }, async refresh() { calls.push(['refresh']); },
     async create(roomId, payload) { calls.push(['create', roomId, payload]); return { applied: true, committed: true, permissionConfirmed: true }; },
   };
-  const context = { actorId: me, room: { id: 'room', joined: true, status: 'open' }, photos, members: [{ id: 'man', name: '小满·示例' }, { id: me, name: '我' }], eventDate };
+  const context = { actorId: me, room: { id: 'room', joined: true, status: 'open' }, photos, members: [{ id: 'man', name: '小满' }, { id: me, name: '我' }], eventDate };
   const fetched = [];
   const document = {
     createElement: tag => (tag === 'canvas' ? { width: 0, height: 0, getContext: () => ({ drawImage() {} }), toDataURL: () => 'data:image/jpeg;base64,AAAA' } : root),
@@ -234,13 +237,16 @@ test('panel: compose lists my photos best first and pre-selects the recommended 
   assert.equal(shownText(html), '我的第 2 张 · 未上墙 · 同一刻的另一面（推荐）', 'the chosen option is written out too, so a phone wraps it instead of cutting it');
   assert.match(html, /<\/select><span class="exchange-select__shown" aria-hidden="true"><span class="pc-dots"><span class="pc-dots__in"><span class="pc-dots__item"><span class="nowrap">我的第 2 张 · 未上墙<\/span><\/span><span class="exchange-select__sep"> · <\/span><span class="pc-dots__item exchange-select__verdict is-recommended">同一刻的另一面（推荐）<\/span><\/span><\/span><\/span>/);
   assert.match(html, /<p class="exchange-reason is-recommended" id="exchange-reason" data-x-reason>同一刻 · <span class="nowrap">21:47<\/span>/);
-  assert.ok(html.includes(RULE_NOTE));
+  assert.doesNotMatch(html, /规则判断|不是 AI/, 'the rule is never called AI, and needs no disclaimer either');
 });
 
 test('panel: the consent box and the send button stay manual; nothing is sent until both are done', async () => {
   const run = setup({ photos: roomPhotos });
   await run.panel.openOffer(target);
   assert.match(run.html(), /<input data-x-consent type="checkbox" >/, 'not ticked for the person');
+  assert.match(run.html(), /<div class="exchange-agreement"><label><input data-x-consent type="checkbox" >我同意先给小图，TA 接受后再给原图<\/label><\/div>/, 'one short consent, and no sentence that repeats it');
+  assert.doesNotMatch(run.html(), /发出后/);
+  assert.doesNotMatch(run.html(), /exchange-fine|原件|在线访问|无法远程收回/, 'no legal fine print under the consent');
   assert.match(run.html(), /data-x-send disabled>/, 'send is disabled until the box is ticked');
   await run.send();
   assert.equal(run.calls.some(call => call[0] === 'create'), false, 'a click on a disabled send sends nothing');
@@ -300,11 +306,11 @@ test('panel: without a recommendation nothing is pre-selected and the select say
   assert.match(run.html(), /data-x-send disabled>/);
 });
 
-test('panel: no photos of mine, no pre-selection and the old message', async () => {
+test('panel: no photos of mine, no pre-selection and a short next step', async () => {
   const run = setup({ photos: [target] });
   await run.panel.openOffer(target);
   assert.equal(run.selected(), null);
-  assert.ok(run.html().includes('你在这一场还没有照片。先保存一张自己的，再回来交换。'));
+  assert.ok(run.html().includes('<p>先放一张自己的照片，再来交换。</p>'));
   assert.ok(run.html().includes('<p class="exchange-reason" id="exchange-reason" data-x-reason hidden></p>'));
 });
 
@@ -316,7 +322,7 @@ test('panel: photos without capture time keep the old labels and say why they ca
   assert.match(run.html(), />我的第 1 张 · 已上墙<\/option>/);
   assert.match(run.html(), />我的第 2 张 · 未上墙<\/option>/);
   await run.choose('m1');
-  assert.ok(plain(run.html()).includes('两张照片都没有拍摄时间，无法判断是不是同一刻。'));
+  assert.ok(plain(run.html()).includes('两张照片都没有拍摄时间。'));
 });
 
 test('panel: eventDate from getContext() decides how times read', async () => {

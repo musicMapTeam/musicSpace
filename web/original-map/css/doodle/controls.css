@@ -1,0 +1,44 @@
+/* controls: the button family, round stickers, fields and disclosures. Contexts below (menus, bars, rows) refine these. */
+
+/* secondary (the default and .button--quiet): a paper sticker with a mint hard shadow */
+.button{font-family:var(--ds-font-ui);font-weight:400;font-size:15px;line-height:1.2;letter-spacing:.02em;color:var(--ds-ink);background:var(--ds-paper-card);
+  border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:3px 3px 0 var(--ds-mint);text-decoration:none;opacity:1;
+  transition:transform var(--ds-fast) ease,box-shadow var(--ds-fast) ease,background-color var(--ds-fast) ease}
+.button:hover:not(:disabled){color:var(--ds-ink);background:var(--ds-paper-card);border-color:var(--ds-ink)}
+.button:active:not(:disabled){transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ds-mint)}
+/* primary: ink, cream letters, pink shadow */
+.button--primary,.button--primary:hover:not(:disabled){color:var(--ds-paper-card);background:var(--ds-ink);border:var(--ds-line) solid var(--ds-ink);box-shadow:4px 4px 0 var(--ds-pink)}
+.button--primary:active:not(:disabled){box-shadow:2px 2px 0 var(--ds-pink)}
+/* disabled: dashed, flat */
+.button:disabled,.button[aria-disabled=true]{color:var(--ds-ink-3);background:var(--ds-paper-deep);border-style:dashed;border-color:var(--ds-ink-3);box-shadow:none;transform:none;opacity:1}
+.button .icon{width:1.15em;height:1.15em}
+@media (hover:hover) and (pointer:fine){.button:not(:disabled,[aria-disabled=true]):hover{transform:rotate(-1deg) translateY(-1px)}}
+
+/* round stickers: icon-only buttons (close, zoom, delete, keep) */
+.icon-button{color:var(--ds-ink);background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:50% 46% 52% 48%/48% 52% 46% 50%;
+  box-shadow:var(--ds-shadow-sm);min-width:44px;min-height:44px;transition:transform var(--ds-fast) ease,box-shadow var(--ds-fast) ease,background-color var(--ds-fast) ease}
+.icon-button:hover:not(:disabled){color:var(--ds-ink);background:var(--ds-paper-card);border-color:var(--ds-ink)}
+.icon-button:active:not(:disabled){transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ds-ink)}
+.icon-button:disabled{color:var(--ds-ink-3);background:var(--ds-paper-deep);border-style:dashed;border-color:var(--ds-ink-3);box-shadow:none;opacity:1}
+.icon-button .icon{width:20px;height:20px}
+@media (hover:hover) and (pointer:fine){.icon-button:not(:disabled):hover{transform:rotate(-4deg)}}
+
+/* fields: paper card, ink line, mint shadow on focus; 16px so phones never zoom */
+.map-input,.map-field select,.map-field input,.map-share-field input{min-height:48px;font-family:var(--ds-font-ui);font-size:16px;color:var(--ds-ink);background:var(--ds-paper-card);
+  border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-2);box-shadow:none;color-scheme:light;transition:box-shadow var(--ds-fast) ease}
+.map-input:focus,.map-field select:focus,.map-share-field input:focus{box-shadow:4px 4px 0 var(--ds-mint);outline:none}
+.map-input:focus-visible,.map-field select:focus-visible{outline:3px dashed var(--ds-ink);outline-offset:3px}
+.map-input::placeholder{color:var(--ds-ink-3);font-size:15px}
+.map-field{font-family:var(--ds-font-ui);font-size:15px;color:var(--ds-ink)}
+.map-form-error{font-family:var(--ds-font-body);font-size:15px;color:var(--ds-ink)}
+.map-form-error:not(:empty){padding:6px 10px;background:var(--ds-pink-soft);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn)}
+
+/* text links inside copy: ink with a wavy marker line */
+:is(.map-dialog,.about-dialog,.open-catalogue,.saved-music) :is(p,li,span,small) a:not(.button){color:var(--ds-ink);text-decoration:underline wavy var(--ds-pink);
+  text-decoration-thickness:1.4px;text-underline-offset:.32em;text-decoration-skip-ink:none}
+@media (hover:hover) and (pointer:fine){:is(.map-dialog,.about-dialog,.open-catalogue,.saved-music) :is(p,li,span,small) a:not(.button):hover{text-decoration-thickness:2.4px}}
+/* a link on its own line in a source list or the 数据来源 card gets a full 44px tap band without moving a line */
+:is(.map-sources__body li>a,.about-sources li a,.open-catalogue__cite a){display:inline-block;padding-block:12px;margin-block:-12px}
+
+/* disclosures: a summary is a marker label with a drawn chevron; at least 44px to tap */
+:is(.map-route-details,.map-setlist__alt,.map-credits,.map-recap-fold)>summary{font-family:var(--ds-font-ui);color:var(--ds-ink)}

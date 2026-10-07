@@ -13,9 +13,9 @@ const errorValue = e => ({ message: e.message || '操作未完成', code: e.code
 const sessionValue = value => value && TOKEN.test(value.token) && ID.test(value.user?.id) ? { token: value.token, actorId: value.user.id } : null;
 const positive = value => Number.isSafeInteger(value) && value > 0;
 function createPayload(value) {
-  if (!value || ![value.recipientId, value.offeredPhotoId, value.requestedPhotoId].every(id => ID.test(id)) || value.offeredPhotoId === value.requestedPhotoId || !positive(value.offeredRevision) || !positive(value.requestedRevision)) fail('请核对双方的两张照片及版本。');
-  if (value.offerPreviewConsent !== true || value.offerOriginalConsent !== true) fail('请明确同意预览，以及对方接受后的指定原图分享。', 'EXCHANGE_CONSENT_REQUIRED');
-  if (typeof value.offeredPreviewDataUrl !== 'string' || !/^data:image\/jpeg;base64,[A-Za-z0-9+/]+={0,2}$/.test(value.offeredPreviewDataUrl) || value.offeredPreviewDataUrl.length > 43715) fail('请从选中的照片生成限尺寸 JPEG 预览。', 'INVALID_PREVIEW');
+  if (!value || ![value.recipientId, value.offeredPhotoId, value.requestedPhotoId].every(id => ID.test(id)) || value.offeredPhotoId === value.requestedPhotoId || !positive(value.offeredRevision) || !positive(value.requestedRevision)) fail('照片已变化，请重新选择');
+  if (value.offerPreviewConsent !== true || value.offerOriginalConsent !== true) fail('请先勾选同意交换', 'EXCHANGE_CONSENT_REQUIRED');
+  if (typeof value.offeredPreviewDataUrl !== 'string' || !/^data:image\/jpeg;base64,[A-Za-z0-9+/]+={0,2}$/.test(value.offeredPreviewDataUrl) || value.offeredPreviewDataUrl.length > 43715) fail('小图生成失败，请换一张照片', 'INVALID_PREVIEW');
   return Object.fromEntries(['recipientId', 'offeredPhotoId', 'requestedPhotoId', 'offeredRevision', 'requestedRevision', 'offerPreviewConsent', 'offerOriginalConsent', 'offeredPreviewDataUrl'].map(key => [key, value[key]]));
 }
 function validOperation(op) {
@@ -45,7 +45,7 @@ export function createExchangeController(options = {}) {
     loading: [...reads.keys(), ...[...running.keys()].filter(id => operations.get(id)?.actorId === state.actorId).map(id => 'operation:' + id)] })); }
   function emit() { if (!disposed) for (const listener of listeners) { try { listener(getState()); } catch { /* UI cannot change operation outcomes. */ } } }
   function assertLive() { if (disposed) fail('交换已关闭。', 'DISPOSED'); }
-  function storageFailure() { state.storage = { ok: false, refreshRecovery: false, message: '无法保存原操作的重试编号。恢复本机存储后才能发送。' }; }
+  function storageFailure() { state.storage = { ok: false, refreshRecovery: false, message: '浏览器存储不可用，暂时不能发送' }; }
   function loadOperations(actorId) {
     if (!actorId) return;
     try {
@@ -76,8 +76,8 @@ export function createExchangeController(options = {}) {
   }
   function identity() {
     assertLive(); const found = sessionValue(sourceSession());
-    if (found?.token !== session?.token || found?.actorId !== session?.actorId) { syncIdentity(); fail('浏览器身份已变化，请重新打开交换。', 'IDENTITY_CHANGED'); }
-    if (!session || state.identityStatus !== 'ready') fail('请先核对当前浏览器身份。', 'IDENTITY_REQUIRED');
+    if (found?.token !== session?.token || found?.actorId !== session?.actorId) { syncIdentity(); fail('身份已变化，请重新打开', 'IDENTITY_CHANGED'); }
+    if (!session || state.identityStatus !== 'ready') fail('请先确认你的小人身份', 'IDENTITY_REQUIRED');
     return { ...session, epoch: identityEpoch };
   }
   function persist(actor, op = null, removeId = null) {
@@ -100,7 +100,7 @@ export function createExchangeController(options = {}) {
   function rowValue(row, actorId) {
     if (!row || ![row.id, row.roomId, row.senderId, row.recipientId, row.offeredPhotoId, row.requestedPhotoId].every(id => ID.test(id)) || row.senderId === row.recipientId || row.offeredPhotoId === row.requestedPhotoId
       || ![row.senderId, row.recipientId].includes(actorId) || ![row.revision, row.offeredRevision, row.requestedRevision].every(positive) || !statuses.has(row.status)
-      || !Number.isFinite(Date.parse(row.createdAt)) || !Number.isFinite(Date.parse(row.expiresAt)) || row.peer?.id !== (row.senderId === actorId ? row.recipientId : row.senderId) || typeof row.peer.name !== 'string' || !row.peer.avatar) fail('交换响应无法核对。', 'INVALID_RESPONSE');
+      || !Number.isFinite(Date.parse(row.createdAt)) || !Number.isFinite(Date.parse(row.expiresAt)) || row.peer?.id !== (row.senderId === actorId ? row.recipientId : row.senderId) || typeof row.peer.name !== 'string' || !row.peer.avatar) fail('交换读取失败，请重试', 'INVALID_RESPONSE');
     return Object.fromEntries(['id', 'roomId', 'senderId', 'recipientId', 'offeredPhotoId', 'requestedPhotoId', 'offeredRevision', 'requestedRevision', 'status', 'revision', 'createdAt', 'updatedAt', 'expiresAt', 'acceptedAt', 'endedAt', 'endReason', 'peer'].map(key => [key, clone(row[key])]));
   }
   function actorResponse(data, actor) { if (data.actorId !== actor.actorId) fail('服务返回的身份与当前身份不一致。', 'ACTOR_MISMATCH'); }
@@ -147,19 +147,19 @@ export function createExchangeController(options = {}) {
     if (matches(state.current?.exchange)) state.current.confirmed = false;
     state.list.loaded = false; emit();
   }
-  function detached(op) { op.status = 'uncertain'; op.error = errorValue(new EventClientError('身份已变化，原操作留给原身份确认。', { code: 'IDENTITY_CHANGED', retryable: true, uncertain: true })); return { operationId: op.id, applied: false }; }
+  function detached(op) { op.status = 'uncertain'; op.error = errorValue(new EventClientError('身份已变化，请刷新页面', { code: 'IDENTITY_CHANGED', retryable: true, uncertain: true })); return { operationId: op.id, applied: false }; }
   function validateReceipt(op, data, actor) {
     const row = rowValue(data.exchange, actor.actorId), payload = JSON.parse(op.bodyJson);
-    if (op.type === 'create' ? row.senderId !== actor.actorId || row.roomId !== op.roomId || row.recipientId !== payload.recipientId || row.offeredPhotoId !== payload.offeredPhotoId || row.requestedPhotoId !== payload.requestedPhotoId || row.offeredRevision !== payload.offeredRevision || row.requestedRevision !== payload.requestedRevision : row.id !== op.exchangeId) fail('操作回执与原选择不一致。', 'INVALID_RESPONSE');
+    if (op.type === 'create' ? row.senderId !== actor.actorId || row.roomId !== op.roomId || row.recipientId !== payload.recipientId || row.offeredPhotoId !== payload.offeredPhotoId || row.requestedPhotoId !== payload.requestedPhotoId || row.offeredRevision !== payload.offeredRevision || row.requestedRevision !== payload.requestedRevision : row.id !== op.exchangeId) fail('操作回执不一致，请刷新', 'INVALID_RESPONSE');
     return row.id;
   }
   function run(op) {
-    const actor = identity(); if (op.actorId !== actor.actorId) fail('只能由原身份重试原操作。', 'IDENTITY_CHANGED');
+    const actor = identity(); if (op.actorId !== actor.actorId) fail('这是之前身份的操作，不能重试', 'IDENTITY_CHANGED');
     if (running.has(op.id)) return running.get(op.id).promise;
     const nav = navigationEpoch, abort = new AbortController(), priorUncertain = op.mayHaveCommitted === true; let postDispatched = false;
     mutationEpoch++; privacyEpoch++; abortReads(); if (state.current) state.current.confirmed = false;
     op.status = 'running'; op.error = null;
-    if (!persist(actor, op)) { op.status = 'uncertain'; emit(); fail('原操作尚不能可靠保存，请恢复本机存储后重试。', 'STORAGE_REQUIRED'); }
+    if (!persist(actor, op)) { op.status = 'uncertain'; emit(); fail('浏览器存储不可用，请稍后重试', 'STORAGE_REQUIRED'); }
     const entry = { abort, promise: null };
     entry.promise = (async () => {
       try {
@@ -168,7 +168,7 @@ export function createExchangeController(options = {}) {
         const check = await api.request('/exchanges', { token: actor.token, signal: abort.signal });
         if (!sameIdentity(actor)) return detached(op); actorResponse(check, actor);
         op.mayHaveCommitted = true;
-        if (!persist(actor, op)) fail('原操作的发送状态不能保存，请恢复本机存储后重试。', 'STORAGE_REQUIRED');
+        if (!persist(actor, op)) fail('浏览器存储不可用，请稍后重试', 'STORAGE_REQUIRED');
         postDispatched = true;
         const data = await api.request(op.path, { method: 'POST', token: actor.token, key: op.key, bodyJson: op.bodyJson, signal: abort.signal });
         if (!sameIdentity(actor)) return detached(op);
@@ -184,7 +184,7 @@ export function createExchangeController(options = {}) {
         emit(); return { ...clone(receipt), applied: nav === navigationEpoch };
       } catch (error) {
         if (!sameIdentity(actor)) return detached(op);
-        if (!error.code) error = new EventClientError('连接没有确认结果，可用原操作重试。', { code: 'NETWORK', retryable: true, uncertain: true });
+        if (!error.code) error = new EventClientError('结果未确认，可以重试', { code: 'NETWORK', retryable: true, uncertain: true });
         if (error.code === 'INVALID_RESPONSE') { error.retryable = true; error.uncertain = true; }
         // A failed preflight says nothing about an earlier POST whose response
         // was lost. Preserve that original key until its own result is known.
@@ -199,24 +199,24 @@ export function createExchangeController(options = {}) {
   function queue(type, path, payload, target) {
     const actor = identity(), bodyJson = JSON.stringify(payload); loadOperations(actor.actorId);
     const existing = [...operations.values()].find(op => op.actorId === actor.actorId && (type === 'create' ? op.type === 'create' && op.roomId === target.roomId && JSON.parse(op.bodyJson).recipientId === payload.recipientId : op.exchangeId === target.exchangeId));
-    if (existing) { if (existing.type === type && existing.bodyJson === bodyJson && running.has(existing.id)) return running.get(existing.id).promise; fail('已有待确认操作，请先确认原操作。', 'OPERATION_PENDING'); }
+    if (existing) { if (existing.type === type && existing.bodyJson === bodyJson && running.has(existing.id)) return running.get(existing.id).promise; fail('还有待确认的操作，请先处理', 'OPERATION_PENDING'); }
     if ([...operations.values()].filter(op => op.actorId === actor.actorId).length >= 8) fail('请先处理待确认操作。', 'OPERATION_PENDING');
     const op = { id: globalThis.crypto.randomUUID(), key: globalThis.crypto.randomUUID(), actorId: actor.actorId, type, path, bodyJson, ...target, mayHaveCommitted: false, status: 'uncertain', error: null };
-    operations.set(op.id, op); if (!persist(actor, op)) { operations.delete(op.id); emit(); fail('重试编号无法保存，尚未发送。', 'STORAGE_REQUIRED'); } return run(op);
+    operations.set(op.id, op); if (!persist(actor, op)) { operations.delete(op.id); emit(); fail('浏览器存储不可用，尚未发送', 'STORAGE_REQUIRED'); } return run(op);
   }
   function create(roomId, payload) { const actor = identity(); if (!ID.test(roomId)) fail('现场编号无效。'); const data = createPayload(payload); if (data.recipientId === actor.actorId) fail('不能与自己交换。'); return queue('create', `/rooms/${roomId}/exchanges`, data, { roomId }); }
   function respond(action, { revision, exchangeConsent = false } = {}) {
     const actor = identity(), current = state.current, row = current?.exchange;
     const existing = [...operations.values()].find(op => op.actorId === actor.actorId && op.exchangeId === current?.id && op.type === action && JSON.parse(op.bodyJson).revision === revision);
     if (existing && running.has(existing.id) && (action !== 'accept' || exchangeConsent === true)) return running.get(existing.id).promise;
-    if (!['accept', 'decline', 'cancel', 'revoke'].includes(action) || !current?.confirmed || !row || row.revision !== revision) fail('请重新读取并核对这项交换。', 'REVIEW_STALE');
+    if (!['accept', 'decline', 'cancel', 'revoke'].includes(action) || !current?.confirmed || !row || row.revision !== revision) fail('交换状态已变化，请刷新', 'REVIEW_STALE');
     if (row.status !== (action === 'revoke' ? 'accepted' : 'pending') || action === 'cancel' && row.senderId !== actor.actorId || ['accept', 'decline'].includes(action) && row.recipientId !== actor.actorId) fail('当前不能进行这项操作。', 'EXCHANGE_UNAVAILABLE');
-    if (action === 'accept' && exchangeConsent !== true) fail('请明确同意交换这两张指定照片。', 'EXCHANGE_CONSENT_REQUIRED');
+    if (action === 'accept' && exchangeConsent !== true) fail('请先勾选同意交换', 'EXCHANGE_CONSENT_REQUIRED');
     return queue(action, `/exchanges/${row.id}/${action}`, { revision, ...(action === 'accept' ? { exchangeConsent: true } : {}) }, { exchangeId: row.id });
   }
   function imageScope(kind, photoId) {
     const current = state.current, row = current?.exchange;
-    if (!current?.confirmed || !row || (kind === 'preview' ? row.status !== 'pending' : kind !== 'photo' || row.status !== 'accepted' || ![row.offeredPhotoId, row.requestedPhotoId].includes(photoId))) fail('当前尚无可确认的照片访问权限。', 'EXCHANGE_UNAVAILABLE');
+    if (!current?.confirmed || !row || (kind === 'preview' ? row.status !== 'pending' : kind !== 'photo' || row.status !== 'accepted' || ![row.offeredPhotoId, row.requestedPhotoId].includes(photoId))) fail('还不能查看这两张照片', 'EXCHANGE_UNAVAILABLE');
     return { id: row.id, revision: row.revision, status: row.status };
   }
   function imageKey({ kind = 'photo', photoId = null } = {}) { const actor = identity(), scope = imageScope(kind, photoId); return `${actor.actorId}:${scope.id}:${scope.revision}:${privacyEpoch}:${kind}:${photoId || ''}`; }
@@ -225,7 +225,7 @@ export function createExchangeController(options = {}) {
     const cancel = () => abort.abort(); if (signal?.aborted) cancel(); else signal?.addEventListener('abort', cancel, { once: true }); reads.set(label, abort);
     try {
       const blob = await api.request(`/exchanges/${scope.id}/${kind === 'preview' ? 'preview' : `photos/${photoId}/image`}`, { token: actor.token, signal: abort.signal, blob: true });
-      if (!sameIdentity(actor) || abort.signal.aborted || nav !== navigationEpoch || key !== imageKey({ kind, photoId })) fail('身份或访问范围已变化，不展示旧照片。', 'TARGET_CHANGED');
+      if (!sameIdentity(actor) || abort.signal.aborted || nav !== navigationEpoch || key !== imageKey({ kind, photoId })) fail('照片已变化，请刷新', 'TARGET_CHANGED');
       return blob;
     } catch (error) { if (sameIdentity(actor) && state.current?.id === scope.id && [403, 404].includes(error.status)) { state.current.confirmed = false; privacyEpoch++; emit(); } throw error; }
     finally { reads.delete(label); signal?.removeEventListener('abort', cancel); }
@@ -233,9 +233,9 @@ export function createExchangeController(options = {}) {
   syncIdentity();
   return { getState, syncIdentity, list, open, refresh: loadCurrent, refreshList: () => list({ cursor: state.list.cursor }), create, respond, close, invalidatePermissions, imageKey, fetchImage,
     subscribe(listener) { assertLive(); listeners.add(listener); listener(getState()); return () => listeners.delete(listener); },
-    retry(id) { const op = operations.get(id); if (!op) fail('原操作不存在。', 'OPERATION_NOT_FOUND'); return run(op); },
+    retry(id) { const op = operations.get(id); if (!op) fail('这个操作已不存在', 'OPERATION_NOT_FOUND'); return run(op); },
     stopWaiting(id) { identity(); const op = operations.get(id); if (op?.actorId === state.actorId) running.get(id)?.abort.abort(); },
-    discard(id) { const actor = identity(), op = operations.get(id); if (!op || op.actorId !== actor.actorId || running.has(id) || op.status !== 'failed' || op.error?.uncertain) fail('结果未确认，请保留原操作。', 'OPERATION_UNCERTAIN'); operations.delete(id); persist(actor, null, id); emit(); },
+    discard(id) { const actor = identity(), op = operations.get(id); if (!op || op.actorId !== actor.actorId || running.has(id) || op.status !== 'failed' || op.error?.uncertain) fail('结果未确认，请先重试', 'OPERATION_UNCERTAIN'); operations.delete(id); persist(actor, null, id); emit(); },
     dispose() { if (disposed) return; disposed = true; identityEpoch++; navigationEpoch++; abortReads(); listeners.clear(); },
   };
 }

@@ -1,5 +1,7 @@
 import * as THREE from 'three';
 import { gsap } from 'gsap';
+import { PAPER_TABLE } from './sakura-doodle.js';
+import { paintCover, paintBack } from './sakura-doodle-prints.js';
 
 const PAPER = { x: 1.86, z: 1.25 };
 const MIN_ZOOM = 1;
@@ -21,11 +23,39 @@ const needsName = data => Boolean(data && !data.unknown && (data.current || data
 const LEADER_ANGLES = [90, 270, 0, 180, 30, 150, 210, 330, 60, 120, 240, 300].map(degrees => degrees * Math.PI / 180);
 const LEADER_REACH = [8, 20, 34, 50, 70, 95, 125];
 const covers = (box, rect) => box.left < rect.right && box.right > rect.left && box.top < rect.bottom && box.bottom > rect.top;
+// Night values of the table; the paper look takes its values from the Doodle tokens (sakura-doodle.js).
+const NIGHT_TABLE = {
+  wood: '#b4967b', skirt: '#688278', sheet: '#ecebe4', brass: '#c8a774', card: '#eeeee5', back: '#e2d7c0',
+  vinyl: '#39484b', groove: '#70877c', label: '#c8a774', selected: '#3f6d5f', target: '#c0606f', path: '#b98642',
+  edges: { quiet: '#8d8f7d', active: '#2f5e4e', visited: '#a57f5a', highlighted: '#b0525f', style: '#95768f', answer: '#3a4a63', stub: '#3f3b33' },
+  unknownTone: '#d9d4c7', fallbackTone: '#a78896',
+};
+/** On paper a quiet record's face fades toward the card it is printed on, by this much. */
+const PAPER_FADE = .42;
+/** A marker circle round a record on paper: one stroke of a little more than a turn whose radius wobbles,
+ *  tapering at both ends. Unit radius in the XY plane, like the night's torus it replaces. */
+function markerRing() {
+  const turns = 1.12; const steps = 96; const width = .2; const positions = []; const index = [];
+  for (let i = 0; i <= steps; i++) {
+    const t = i / steps; const angle = .4 + t * turns * Math.PI * 2;
+    const radius = 1 + .035 * Math.sin(angle * 2 + .7) + .02 * Math.sin(angle * 5) + .05 * (t - .5);
+    const half = width / 2 * Math.min(1, Math.sqrt(Math.min(t, 1 - t) / .06));
+    const x = Math.cos(angle); const y = Math.sin(angle);
+    positions.push((radius - half) * x, (radius - half) * y, 0, (radius + half) * x, (radius + half) * y, 0);
+    if (i) { const a = (i - 1) * 2; index.push(a, a + 1, a + 2, a + 1, a + 3, a + 2); }
+  }
+  const shape = new THREE.BufferGeometry();
+  shape.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3)); shape.setIndex(index); shape.computeVertexNormals();
+  return shape;
+}
+const spin = id => [...String(id)].reduce((sum, char) => sum * 31 + char.charCodeAt(0) >>> 0, 7) % 628 / 100;
 
 /** One persistent graph printed on the record shop's real table. In a 寻声 round,
  *  unknown artists lie face down (a shared paper back, no name, no colour) and only
  *  flipped songs are inked; the page never receives more than the player uncovered. */
-export function createSakuraMusic({ world, cel, host, canvas, camera, reduced, onAction, onChange, isActive, framing }) {
+export function createSakuraMusic({ world, cel, host, canvas, camera, reduced, onAction, onChange, isActive, framing, look = 'night' }) {
+  const onPaper = look === 'paper';
+  const colors = onPaper ? PAPER_TABLE : NIGHT_TABLE;
   const furniture = new THREE.Group();
   furniture.name = 'record-connection-table'; furniture.position.set(0, 1.19, -1.3); furniture.visible = false;
   world.add(furniture);
@@ -44,33 +74,52 @@ export function createSakuraMusic({ world, cel, host, canvas, camera, reduced, o
     if (clipped) { item.clippingPlanes = clipping; item.clipShadows = true; }
     materials.add(item); return item;
   }
-  const wood = material({ color: '#b4967b' });
-  const green = material({ color: '#688278' });
-  const paper = material({ color: '#ecebe4', bands: 'soft' });
-  const brass = material({ color: '#c8a774' });
-  const cardStock = material({ color: '#eeeee5', bands: 'soft' }, true);
-  const backStock = material({ color: '#e2d7c0', bands: 'soft' }, true);
-  const vinyl = material({ color: '#39484b' }, true);
-  const grooveInk = material({ color: '#70877c' }, true);
-  const recordCenter = material({ color: '#c8a774' }, true);
-  const selectedInk = material({ color: '#3f6d5f', bands: 'soft' }, true);
-  const targetInk = material({ color: '#c0606f', bands: 'soft' }, true);
-  const pathInk = material({ color: '#b98642', bands: 'soft' }, true);
+  /** Unlit, clipped to the paper: a print or a marker stroke the doodle pass leaves untouched (no
+   *  hatching, no ink drawn over its colours). */
+  function printMaterial(color = '#ffffff') {
+    const item = new THREE.MeshBasicMaterial({ color }); item.clippingPlanes = clipping;
+    materials.add(item); return item;
+  }
+  /** Ink on the table: marker strokes on paper, soft cel ink at night. */
+  const inkMaterial = color => (onPaper ? printMaterial(color) : material({ color, bands: 'soft' }, true));
+  /** A sleeve face on paper: unlit, and a quiet record fades toward the card. */
+  const fadeTo = { value: new THREE.Color(PAPER_TABLE.card) };
+  function facePrint() {
+    const item = printMaterial(); const fade = { value: 0 }; item.userData.fade = fade;
+    item.onBeforeCompile = shader => {
+      shader.uniforms.uFade = fade; shader.uniforms.uFadeTo = fadeTo;
+      shader.fragmentShader = 'uniform float uFade;\nuniform vec3 uFadeTo;\n' + shader.fragmentShader.replace('#include <map_fragment>', '#include <map_fragment>\n\tdiffuseColor.rgb = mix( diffuseColor.rgb, uFadeTo, uFade );');
+    };
+    item.customProgramCacheKey = () => 'map-face-print';
+    return item;
+  }
+  const wood = material({ color: colors.wood });
+  const green = material({ color: colors.skirt });
+  const paper = material({ color: colors.sheet, bands: 'soft' });
+  const brass = material({ color: colors.brass });
+  const cardStock = material({ color: colors.card, bands: 'soft' }, true);
+  const backStock = material({ color: colors.back, bands: 'soft' }, true);
+  const vinyl = material({ color: colors.vinyl }, true);
+  const grooveInk = material({ color: colors.groove }, true);
+  const recordCenter = material({ color: colors.label }, true);
+  const selectedInk = inkMaterial(colors.selected);
+  const targetInk = inkMaterial(colors.target);
+  const pathInk = inkMaterial(colors.path);
   const edgeInks = {
-    quiet: material({ color: '#8d8f7d', bands: 'soft' }, true),
-    active: material({ color: '#2f5e4e', bands: 'soft' }, true),
-    visited: material({ color: '#a57f5a', bands: 'soft' }, true),
-    highlighted: material({ color: '#b0525f', bands: 'soft' }, true),
-    style: material({ color: '#95768f', bands: 'soft' }, true),
+    quiet: inkMaterial(colors.edges.quiet),
+    active: inkMaterial(colors.edges.active),
+    visited: inkMaterial(colors.edges.visited),
+    highlighted: inkMaterial(colors.edges.highlighted),
+    style: inkMaterial(colors.edges.style),
     route: pathInk,
-    answer: material({ color: '#3a4a63', bands: 'soft' }, true),
-    stub: material({ color: '#3f3b33', bands: 'soft' }, true),
+    answer: inkMaterial(colors.edges.answer),
+    stub: inkMaterial(colors.edges.stub),
   };
   const cube = geometry(new THREE.BoxGeometry(1, 1, 1));
   const disc = geometry(new THREE.CylinderGeometry(1, 1, 1, 32));
   const face = geometry(new THREE.PlaneGeometry(1, 1));
   const ring = geometry(new THREE.TorusGeometry(1, .021, 4, 40));
-  const haloRing = geometry(new THREE.TorusGeometry(1, .032, 4, 48));
+  const haloRing = geometry(onPaper ? markerRing() : new THREE.TorusGeometry(1, .032, 4, 48));
   function object(shape, paint, xyz, scale, parent = furniture) {
     const item = new THREE.Mesh(shape, paint);
     item.position.set(...xyz); item.scale.set(...scale); item.castShadow = true; item.receiveShadow = true;
@@ -81,7 +130,8 @@ export function createSakuraMusic({ world, cel, host, canvas, camera, reduced, o
   for (const x of [-1.66, 1.66]) for (const z of [-1.08, 1.08]) {
     object(cube, wood, [x, -.57, z], [.15, .95, .15]); object(cube, green, [x, -.94, z], [.16, .18, .16]);
   }
-  object(cube, paper, [0, .008, 0], [PAPER.x * 2, .025, PAPER.z * 2]);
+  // On paper the sheet takes no cast shadows: in the doodle pass they would hatch the records' table.
+  object(cube, paper, [0, .008, 0], [PAPER.x * 2, .025, PAPER.z * 2]).receiveShadow = !onPaper;
   for (const x of [-1.39, 1.39]) {
     object(cube, brass, [x, .035, -1.25], [.26, .045, .11]); object(cube, green, [x, .061, -1.285], [.14, .016, .035]);
   }
@@ -100,6 +150,11 @@ export function createSakuraMusic({ world, cel, host, canvas, camera, reduced, o
 
   function coverTexture(artist) {
     const surface = document.createElement('canvas'); surface.width = 256; surface.height = 256;
+    if (onPaper) {
+      paintCover(surface.getContext('2d'), artist);
+      const texture = new THREE.CanvasTexture(surface); texture.colorSpace = THREE.SRGBColorSpace; texture.anisotropy = 2;
+      textures.add(texture); return texture;
+    }
     const ctx = surface.getContext('2d'); const tone = artist.color || '#ab8c99';
     ctx.fillStyle = '#f7f3eb'; ctx.fillRect(0, 0, 256, 256);
     ctx.fillStyle = tone; ctx.fillRect(12, 12, 232, 232);
@@ -119,11 +174,17 @@ export function createSakuraMusic({ world, cel, host, canvas, camera, reduced, o
     textures.add(texture); return texture;
   }
   // One shared paper back for every face-down record: no name, no colour, no count.
-  let backTexture = null;
+  let backTexture = null; let repaintBack = null;
   function sleeveBack() {
     if (backTexture) return backTexture;
     const surface = document.createElement('canvas'); surface.width = 256; surface.height = 256;
     const ctx = surface.getContext('2d');
+    if (onPaper) {
+      // Its 「?」 is lettered, so it is painted again once the Doodle faces arrive.
+      paintBack(ctx); backTexture = new THREE.CanvasTexture(surface); backTexture.colorSpace = THREE.SRGBColorSpace; backTexture.anisotropy = 2;
+      repaintBack = () => { paintBack(ctx); backTexture.needsUpdate = true; };
+      return backTexture;
+    }
     ctx.fillStyle = '#efe5cf'; ctx.fillRect(0, 0, 256, 256);
     ctx.strokeStyle = '#d6c7a6'; ctx.lineWidth = 1.5;
     for (let y = -256; y < 256; y += 9) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(256, y + 256); ctx.stroke(); }
@@ -146,16 +207,20 @@ export function createSakuraMusic({ world, cel, host, canvas, camera, reduced, o
     }
     record.push(object(disc, recordCenter, [.07, .041, -.01], [.047, .007, .047], group));
     const stock = object(cube, cardStock, [-.035, .047, 0], [SLEEVE, .025, SLEEVE], group);
-    const cover = material({ color: '#ffffff', bands: 'soft' }, true);
+    // On paper a sleeve face is a print (unlit): never hatched, its pattern never inked over.
+    const cover = onPaper ? facePrint() : material({ color: '#ffffff', bands: 'soft' }, true);
     const panel = object(face, cover, [-.035, .062, 0], [SLEEVE * .96, SLEEVE * .96, 1], group);
     panel.rotation.x = -Math.PI / 2; panel.castShadow = false;
     const halo = object(haloRing, selectedInk, [0, .029, 0], [.249, .249, .249], group);
     halo.rotation.x = -Math.PI / 2; halo.castShadow = false;
+    // Each marker circle starts somewhere else round its record.
+    if (onPaper) halo.rotation.z = spin(data.id);
     const button = document.createElement('button'); button.type = 'button';
     // The <i> is the tag's invisible touch band (map-spatial.css); project() trims it to the free room.
     button.className = 'world-music-label world-music-label--node'; button.innerHTML = '<small></small><strong></strong><i class="world-music-hit" aria-hidden="true"></i>';
     button.hidden = true; button.style.touchAction = 'none'; host.append(button);
     const node = { group, record, stock, panel, halo, button, data: null, texture: null, identity: '', screen: null, flip: null, turning: false, releaseLabel: framing.watchLabel(button) };
+    if (onPaper) group.traverse(part => { if (part.isMesh) part.receiveShadow = false; });
     button.addEventListener('click', event => { if (!consumeClick(event) && node.data && !node.data.unknown) activate({ type: 'music', action: 'select', id: node.data.id }); });
     nodes.set(data.id, node); return node;
   }
@@ -189,7 +254,8 @@ export function createSakuraMusic({ world, cel, host, canvas, camera, reduced, o
     }
     node.group.userData.action = unknown ? { type: 'music', action: 'sealed', id: data.id } : data.disabled ? null : { type: 'music', action: 'select', id: data.id };
     const muted = unknown || (!data.selected && !data.adjacent && !data.highlighted && !data.current && !data.target && !data.route);
-    node.panel.material.color.set(unknown ? '#f2ecde' : muted ? '#d8d4c9' : '#ffffff');
+    if (onPaper) node.panel.material.userData.fade.value = muted && !unknown ? PAPER_FADE : 0;
+    else node.panel.material.color.set(unknown ? '#f2ecde' : muted ? '#d8d4c9' : '#ffffff');
     node.halo.visible = !unknown && Boolean(data.selected || data.highlighted || data.current || data.target);
     node.halo.material = data.target ? targetInk : data.highlighted ? pathInk : selectedInk;
     const small = node.button.querySelector('small');
@@ -203,7 +269,7 @@ export function createSakuraMusic({ world, cel, host, canvas, camera, reduced, o
       node.button.setAttribute('aria-pressed', String(Boolean(data.selected)));
       node.button.setAttribute('aria-label', data.target ? `终点：${data.name}` : `查看 ${data.name}，${data.count || 0} 首收录${data.current ? '，你在这里' : ''}`);
     }
-    node.button.style.setProperty('--record-tone', unknown ? '#d9d4c7' : data.color || '#a78896');
+    node.button.style.setProperty('--record-tone', unknown ? colors.unknownTone : data.color || colors.fallbackTone);
     for (const state of ['selected', 'adjacent', 'visited', 'highlighted', 'current', 'target', 'route']) node.button.classList.toggle(`is-${state}`, !unknown && Boolean(data[state]));
     node.button.classList.toggle('is-muted', muted);
     node.group.position.x = data.x; node.group.position.z = data.z;
@@ -321,7 +387,7 @@ export function createSakuraMusic({ world, cel, host, canvas, camera, reduced, o
       return;
     }
     edge.button.removeAttribute('aria-hidden'); edge.button.tabIndex = 0;
-    edge.button.setAttribute('aria-label', `查看${a.name}与${b.name}的${data.kind === 'style' ? '策展标签' : '合作'}：${data.title || '连接'}`);
+    edge.button.setAttribute('aria-label', `查看${a.name}与${b.name}的${data.kind === 'style' ? '连接' : '合作'}：${data.title || '连接'}`);
     edge.button.title = data.title || `${a.name} × ${b.name}`;
     edge.button.querySelector('span').textContent = data.kind === 'style' ? data.title || '连接' : `《${data.title || '连接'}》`;
     for (const state of ['active', 'visited', 'highlighted', 'route', 'answer']) edge.button.classList.toggle(`is-${state}`, Boolean(data[state]));
@@ -756,6 +822,8 @@ export function createSakuraMusic({ world, cel, host, canvas, camera, reduced, o
   host.addEventListener('pointermove', onPointerMove); host.addEventListener('pointerup', onPointerUp); host.addEventListener('pointercancel', onPointerUp);
   canvas.addEventListener('wheel', onWheel, { passive: false }); host.addEventListener('wheel', onWheel, { passive: false });
   return { setMusic, project, activate, control, acceptHit, consumeClick, get dragging() { return pointers.size > 0 && moved; },
+    /** The Doodle faces have arrived: letter the shared back again (the faces carry no text). */
+    repaint() { repaintBack?.(); },
     finish() {
       gsap.getTweensOf(view).forEach(tween => tween.totalProgress(1));
       finishCeremony();

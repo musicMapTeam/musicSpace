@@ -1,0 +1,84 @@
+/* home: the courtyard's front door. The layered hero (从喜欢，/ 走向未知。) on the page beside the diorama, and the search card with tape:
+   the singer search, its start picks, the 寻声 ticket and the foot links with their counts. Placement stays legacy (left column on a
+   desktop, hero on top and card at the foot on a phone). */
+
+/* ---- hero */
+html[data-theme='sakura'] body .home-hero{color:var(--ds-ink)}
+html[data-theme='sakura'] body .home-hero::before{content:none;display:none}
+html[data-theme='sakura'] body .home-hero__title{margin:0 0 14px;font-family:var(--ds-font-display);font-weight:400;font-size:clamp(46px,4.5vw,66px);line-height:1.08;letter-spacing:.01em;
+  color:var(--ds-ink);text-shadow:.06em .06em 0 var(--ds-pink)}
+html[data-theme='sakura'] body .home-hero__title>span:last-child{margin-left:.85em;color:var(--ds-ink)}
+.home-hero__key{background:linear-gradient(transparent 58%,var(--ds-mint) 58%,var(--ds-mint) 92%,transparent 92%);padding:0 .08em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+html[data-theme='sakura'] body .home-hero__lede{max-width:22em;margin:0;font-family:var(--ds-font-body);font-size:19px;line-height:1.6;color:var(--ds-ink-2);text-shadow:none}
+.home-hero__star{--ds-deco-size:40px;top:-14px;left:min(380px,calc(100% - 30px));transform:rotate(14deg)}
+.home-hero__note{--ds-deco-c:var(--ds-pink);--ds-deco-size:32px;top:64px;left:min(410px,calc(100% - 10px));transform:rotate(-10deg)}
+
+/* ---- the search card (a little wider than 0.16's, so four start picks keep their names) */
+@media (min-width:761px){html[data-theme='sakura'] body .home-cover .home-paper{width:376px}}
+html[data-theme='sakura'] body .home-paper,html[data-theme='sakura'] body .home-paper.home-paper--compact{padding:20px 18px 8px;color:var(--ds-ink);background:var(--ds-paper-card);
+  border:var(--ds-line) solid var(--ds-ink);border-radius:var(--ds-radius-card);box-shadow:var(--ds-shadow-lg)}
+html[data-theme='sakura'] body .home-paper::before{content:none;display:none}
+.home-paper__tape{left:50%;top:-14px;margin-left:-43px;--ds-tape-rot:-3deg}
+html[data-theme='sakura'] body .home-search__label{margin:0 0 10px;font-family:var(--ds-font-display);font-weight:400;font-size:24px;line-height:1.25;letter-spacing:.01em;color:var(--ds-ink);text-shadow:.06em .06em 0 var(--ds-yellow)}
+html[data-theme='sakura'] body .home-search__field>.icon{left:13px;width:20px;height:20px;color:var(--ds-ink)}
+html[data-theme='sakura'] body .home-search__field input{min-height:48px;padding:10px 12px 10px 42px;font-family:var(--ds-font-ui);font-size:16px;color:var(--ds-ink);background:var(--ds-paper-card);
+  border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-2);transition:box-shadow var(--ds-fast) ease}
+html[data-theme='sakura'] body .home-search__field input::placeholder{color:var(--ds-ink-3)}
+html[data-theme='sakura'] body .home-search__field input:focus{box-shadow:4px 4px 0 var(--ds-mint)}
+html[data-theme='sakura'] body .home-search__field input:focus-visible{outline:3px dashed var(--ds-ink);outline-offset:3px}
+/* picks: marker chips with the singer's colour as a dot, a little turned */
+html[data-theme='sakura'] body .home-search__picks{gap:8px;margin-top:12px}
+html[data-theme='sakura'] body .home-pick,html[data-theme='sakura'] body .home-pick:hover{min-height:44px;padding:5px 12px 5px 10px;font-family:var(--ds-font-ui);font-size:16px;font-weight:400;color:var(--ds-ink);
+  background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-pill);box-shadow:2px 2px 0 var(--ds-ink);transform:rotate(-1deg)}
+html[data-theme='sakura'] body .home-pick:nth-child(even){transform:rotate(1deg)}
+html[data-theme='sakura'] body .home-pick::before,html[data-theme='sakura'] body .home-search__picks[data-kind='starts'] .home-pick::before{width:11px;height:11px;background:var(--pick-tone);box-shadow:none;border:1.5px solid var(--ds-ink)}
+html[data-theme='sakura'] body .home-pick:active{transform:translate(2px,2px);box-shadow:0 0 0 var(--ds-ink)}
+@media (hover:hover) and (pointer:fine){html[data-theme='sakura'] body .home-pick:hover{background:var(--ds-yellow-soft)}}
+html[data-theme='sakura'] body .home-search__note{font-family:var(--ds-font-body);font-size:15px;color:var(--ds-ink-2)}
+/* the 寻声 ticket */
+html[data-theme='sakura'] body .home-paper .home-paper__actions{padding-top:14px;border-top:var(--ds-line-thin) dashed color-mix(in srgb,var(--ds-ink) 35%,transparent)}
+html[data-theme='sakura'] body .home-paper .home-paper__actions .button.home-round,html[data-theme='sakura'] body .home-paper .home-paper__actions .button--secondary,
+html[data-theme='sakura'] body .home-paper .home-paper__actions .button--secondary:hover:not(:disabled){min-height:60px;padding:9px 12px 9px 16px;color:var(--ds-ink);background:var(--ds-yellow-soft);
+  border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:4px 4px 0 var(--ds-ink)}
+html[data-theme='sakura'] body .home-round__copy strong{font-family:var(--ds-font-display);font-weight:400;font-size:19px;line-height:1.25;color:var(--ds-ink)}
+html[data-theme='sakura'] body .home-round__copy small{font-family:var(--ds-font-ui);font-size:14px;color:var(--ds-ink-2)}
+html[data-theme='sakura'] body .home-paper .home-paper__actions .icon{flex:none;width:34px;height:34px;padding:6px;color:var(--ds-ink);background:var(--ds-paper-card);border:var(--ds-line-thin) solid var(--ds-ink);border-radius:50%}
+/* foot: wavy text links with pink count badges */
+html[data-theme='sakura'] body .home-paper .home-paper__foot{gap:0 18px;margin-top:6px}
+html[data-theme='sakura'] body .home-paper .home-paper__foot button,html[data-theme='sakura'] body .home-paper .home-paper__foot button:hover{min-height:44px;padding:8px 0;font-family:var(--ds-font-ui);font-size:15px;
+  color:var(--ds-ink);text-decoration:underline wavy var(--ds-pink);text-decoration-thickness:1.3px;text-underline-offset:.4em;text-decoration-skip-ink:none}
+html[data-theme='sakura'] body .home-count{display:inline-grid;place-items:center;min-width:22px;height:22px;margin-left:4px;padding:0 5px;font-family:var(--ds-font-digits);font-size:13px;font-weight:400;
+  color:var(--ds-ink);background:var(--ds-pink);border:1.5px solid var(--ds-ink);border-radius:var(--ds-radius-pill);text-decoration:none;vertical-align:1px}
+
+/* ---- tablet, short desktop and phone (the legacy layer places them; type follows) */
+@media (min-width:761px) and (max-height:780px){
+  html[data-theme='sakura'] body .home-hero__title{font-size:clamp(40px,3.6vw,52px)}
+  html[data-theme='sakura'] body .home-hero__title>span:last-child{margin-left:0}
+}
+@media (max-width:760px){
+  html[data-theme='sakura'] body .home-hero__title{margin-bottom:6px;font-size:clamp(32px,9.4vw,40px);line-height:1.12}
+  html[data-theme='sakura'] body .home-hero__title>span:last-child{margin-left:0}
+  html[data-theme='sakura'] body .home-hero__lede{font-size:16px}
+  .home-hero__star{--ds-deco-size:30px;top:-4px;left:auto;right:8px}
+  .home-hero__note{display:none}
+  html[data-theme='sakura'] body .home-paper,html[data-theme='sakura'] body .home-paper.home-paper--compact{padding:16px 14px 4px}
+  html[data-theme='sakura'] body .home-search__label{font-size:21px}
+  html[data-theme='sakura'] body .home-search__picks[data-kind='starts'] .home-pick{padding-inline:6px}
+}
+@media (max-width:760px) and (max-height:760px){html[data-theme='sakura'] body .home-paper .home-paper__actions .button.home-round{min-height:54px}}
+@media (max-width:760px) and (max-height:700px){
+  html[data-theme='sakura'] body .home-hero__lede{display:none}
+  html[data-theme='sakura'] body .home-paper,html[data-theme='sakura'] body .home-paper.home-paper--compact{padding-top:12px}
+}
+@media (max-width:360px){
+  html[data-theme='sakura'] body .home-round__copy strong{font-size:16px}
+  html[data-theme='sakura'] body .home-paper .home-paper__foot{gap:0 12px}
+  html[data-theme='sakura'] body .home-paper .home-paper__foot button{font-size:14px}
+  html[data-theme='sakura'] body .home-paper .home-paper__actions .icon{width:30px;height:30px;padding:5px}
+}
+/* the shortest phones (≤600px tall, e.g. 320×568) leave the courtyard a sliver: the paper's foot links step aside (我的发现 is in the
+   bottom bar, 留下的歌 inside it, 开放曲库 in the shop's 目录) */
+@media (max-width:760px) and (max-height:600px){
+  html[data-theme='sakura'] body:not(.spatial-fallback) .home-paper .home-paper__foot{display:none}
+  html[data-theme='sakura'] body:not(.spatial-fallback) .home-paper,html[data-theme='sakura'] body:not(.spatial-fallback) .home-paper.home-paper--compact{padding-bottom:14px}
+}

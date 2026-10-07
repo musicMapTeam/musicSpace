@@ -9,7 +9,7 @@ const dimension = (value, fallback) => Number.isFinite(Number(value)) && Number(
 export function renderAvatarSvg(avatar, options = {}) {
   const a = normalizeIllustratedLook(avatar);
   const view = ILLUSTRATED_VIEWS.includes(options.view) ? options.view : 'quarter';
-  const label = escape(options.label || 'Music Space 的插画分身');
+  const label = escape(options.label || 'Music Space 的小人');
   const { width, height } = ILLUSTRATED_SIZE;
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" width="${dimension(options.width,width)}" height="${dimension(options.height,height)}" role="img" aria-label="${label}" data-illustrated-avatar="1" data-view="${view}"><title>${label}</title>${options.shadow ? '<ellipse cx="117" cy="477" rx="67" ry="7" fill="#292c33" opacity=".17"/>' : ''}${renderIllustratedLayers(a,view)}</svg>`;
 }

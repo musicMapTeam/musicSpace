@@ -1,6 +1,6 @@
 # 手绘涂鸦风（Doodle）设计规范
 
-产品负责人 2026-10-06 选定：整套界面、三维场馆和比赛视频统一为手绘涂鸦风。参考图：`/tmp/space-style-refs/11-doodle/mockup.png`（只看风格，不照抄版式）；字体选型：`/tmp/space-fonts/board/BOARD.png`。
+用户 2026-10-06 选定（与队友即产品负责人 igohomealone216 的对齐没有记录，不写成队友已同意）：整套界面、三维场馆和比赛视频统一为手绘涂鸦风。参考图：`/tmp/space-style-refs/11-doodle/mockup.png`（只看风格，不照抄版式）；字体选型：`/tmp/space-fonts/board/BOARD.png`。
 
 一句话：**米色点阵纸上的马克笔涂鸦**。墨黑手绘线框、硬边错位阴影、粉/薄荷/黄三色马克笔点缀、贴纸和胶带、拍立得照片。用户特别要求文字「有色彩、有层次、有大小」：标题要有错位彩色阴影或描边贴纸效果，关键词放大变色，正文和标题的字号差距拉开。
 
@@ -72,9 +72,9 @@
 
 ## 5. 运行与截图
 
-- 共享开发服务器（已启动，热更新，带示例角色的评委版）：`http://127.0.0.1:5190/`。如果不通，用 `npx vite --config /tmp/space-doodle/vite.dev-static.config.mjs --port <空闲端口>` 自己起一个，不要停别人的进程。
-- 截图：`require('/tmp/space-video-prep/tools/node_modules/playwright-core')`，`chromium.launch({executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'})`；手机 `{width:390,height:844,deviceScaleFactor:2}`，桌面 `{width:1440,height:900}`。每次新开 context 就是一个全新的示例世界。等 `window.__SPACE_BOOT__==='ready'` 再操作。
-- 评委路线（到达各界面的方法）：「进入示例现场」→ 勾选同意 →「进入示例现场」→ 示例路线卡「人海 · 示例照片」→ 上传表单 →「保存这张照片」→ 照片墙 →「和 TA 交换这个视角」→ 勾选 →「把这两张交给对方确认 ↗」→ 几秒后「交换已接受」。底部导航「同场的人」「照片墙」「我的空间」，顶部「音乐探索」「♡」「我的小人」「···」。
+- 共享开发服务器（已启动，热更新，带种子角色的评委版）：`http://127.0.0.1:5190/`。如果不通，用 `npx vite --config /tmp/space-doodle/vite.dev-static.config.mjs --port <空闲端口>` 自己起一个，不要停别人的进程。
+- 截图：`require('/tmp/space-video-prep/tools/node_modules/playwright-core')`，`chromium.launch({executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'})`；手机 `{width:390,height:844,deviceScaleFactor:2}`，桌面 `{width:1440,height:900}`。每次新开 context 就是一个全新的种子世界。等 `window.__SPACE_BOOT__==='ready'` 再操作。
+- 评委路线（到达各界面的方法）：「进入现场」→ 勾选同意 →「进入现场」→「第一次来」卡片「人海那张」→ 上传表单 →「保存这张照片」→ 照片墙 →「和 TA 交换这个视角」→ 勾选 →「把这两张交给对方确认 ↗」→ 几秒后「交换已接受」。底部导航「同场的人」「照片墙」「我的空间」，顶部「音乐探索」「♡」「我的小人」「···」。
 - 截图存到 `/tmp/space-doodle/shots/<你的代号>/`，文件名写清界面和视口。
 
 ## 6. 三维场馆方向
@@ -95,3 +95,12 @@
 - 低端设备（软件渲染器，或不超过两个处理器核心）不退回旧着色：画风保留，只是不抖线、不超采样、像素比为 1。
 - `?doodle=0`（`off`、`false`、`classic` 同义）只把渲染换回旧的卡通着色，配色和界面不变；同一标签页重新载入仍记得这个选择（`sessionStorage` 的 `music-space-event-doodle`），`?doodle=1` 换回来。缺少所需能力（WebGL1、没有 highp、最大纹理小于 4096）或涂鸦着色器编译失败时，自动用旧着色。
 - 只在活动房间（事件房间页带着 tokens.css，或调用方明确要 `renderStyle:'doodle'`）启用；`/livehouse/` 样张保持原样。
+
+## 7. 音乐探索（Music Map，`web/original-map/`）
+
+用户 2026-10-07 决定保留 Music Map，并入同一个产品：`/music-map/` 的页面叫「音乐探索」，界面和三维小院都按本规范画，§2–§4 同样适用。实现细节记在 `web/original-map/README.md`，这里只记和活动房间不同或要注意的地方。
+
+- 样式：`web/original-map/css/doodle/` 直接共用事件房间的 `tokens.css`、`type.css`、`kit.css`（只读，不改）；颜色只从 tokens 取，样式表里不写新的十六进制颜色（`tests/original-map-copy.test.js` 检查）。0.16 的样式表放在 `css/legacy.css` 的 `@layer legacy` 里，只管布局。图标是自绘的线条图标（`js/icons.js`，24px 网格、2.2px 圆头墨线，加 `#ds-wobble`），不用 Phosphor。
+- 字体：两套构建在 `<head>` 里链接事件房间的 `fonts/doodle/fonts.css`（Pages 是 `../fonts/doodle/`，Node 是 `../event-room/fonts/doodle/`），预加载 `marker-0`、`display-0`；不从代码导入，单文件页面里没有字体数据。用 Logo、Display、Marker、Hand、Digits 五种，不用 Note。字体脚本扫描整个 `web/`，音乐探索的字也在切片里（2026-10-08 核对：Marker 和 Hand 覆盖源码里的全部汉字；Display 缺的 24 个繁体字是上游字体本来没有的，退回 Marker）。
+- 三维：小院和唱片店用 §6 的同一个渲染（`web/avatar/doodle-pass.js`，不改它），接法在 `js/sakura-doodle.js`，色值同样来自 `venue-art.js` 的 `DOODLE_COLORS` / `DOODLE_KRAFT`。招牌、封套、徽章、海报这些印刷品用 Doodle 字体重画（`js/sakura-doodle-prints.js`），字体到了再画一次。抖线约 7 帧/秒，减少动态或标签页隐藏时不抖，低端设备不抖。
+- 回退：`?doodle=0`（`off`、`false`、`classic` 同义）给旧的渲染：同一套纸面配色，走原来的 Sakura 卡通着色和描线（`js/vendor/sakura/`），界面不变；浏览器缺少所需能力或涂鸦着色器编译失败时也自动这样。和活动房间不同，音乐探索只读自己地址里的参数，不读也不写 `sessionStorage`：房间里用了 `?doodle=0`，进到音乐探索仍是涂鸦渲染，要在音乐探索的地址上另加。

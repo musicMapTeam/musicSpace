@@ -25,9 +25,12 @@ import { TAKEN_MIN, VIEWPOINTS, formatTaken, fromInputValue, onEventDay, takenFi
  *     getRoomId,        () => the open room's id ('' when none)
  *     eventDate,        '2026.09.26' (or '' / a function returning it): times on that day print as 21:47
  *     uploadsToServer,  true in the Node product (the photo is sent to the room service on save), false on the static site
- *     samples,          [{ id, label, note, thumbUrl }] bundled example photos ([] = no sample list, the Node product)
- *     loadSample,       async id => File (a JPEG that carries its own, fictional, EXIF time)
- *     demoTime,         null | { ms, label, note }: a labelled, reversible "set the time to the example night" button for the person's own photo
+ *     samples,          [{ id, label, note, thumbUrl }] bundled ready-made photos ([] = no sample list, the Node product), or a function that
+ *                       returns them for the open room (read each time the form is drawn: the static build offers them in the seeded
+ *                       show's room only)
+ *     loadSample,       async id => File (a JPEG that carries its own EXIF time)
+ *     demoTime,         null | { ms, label, note }: a labelled, reversible "set the time to the show's night" button for the person's own
+ *                       photo; or a function returning it for the open room, like samples
  *     onDraft,          ({ roomId, dataUrl, facts, visibility }) the photo is ready: store it as the draft (visibility is 'members' for an
  *                       example, 'private' for the person's own file) and draw the form again from markup()
  *     onChange,         () the form changed on its own (an answer, a press, a typed time): re-sync the page's copy of the panel markup. The module has
@@ -95,15 +98,15 @@ export async function preparePhoto(file) {
 // ---- words ------------------------------------------------------------------------------------------------------------------
 const EYEBROW = '留一个现场瞬间';
 const TITLE = '这一张，由你决定给谁看。';
-const SAMPLES_TITLE = '没有现场照片？用示例照片试试';
-const SAMPLE_NOTE_FALLBACK = '时间为虚构';
-const WORKING = Object.freeze({ photo: '正在处理照片…', sample: '正在载入示例照片…' });
-const DEMO_NOTE = '你填写的时间 · 演示用';
-const DEMO_LABEL = '演示用：把拍摄时间设成示例现场的时间';
-const NUDGE_WITH_AI = '先选一个视角（AI 还在判断时也可以自己选）。没有视角，就找不到同一刻的另一面。';
-const NUDGE_PLAIN = '先选一个视角。没有视角，就找不到同一刻的另一面。';
-const FINE_STATIC = '照片会缩小并去除位置信息，只保存在这个浏览器里；选择分享后，示例现场里的成员（自动回复的示例角色）可以看到。';
-const FINE_SERVER = '保存时照片会上传至受权限保护的房间服务。会缩小并去除位置信息；选择分享后，本场已加入成员可以浏览。';
+const SAMPLES_TITLE = '或者挑一张今晚的';
+const OWN_PHOTO = Object.freeze({ plain: '选照片', besideSamples: '用我自己的照片' });   // the file button's words; beside the ready-made photos it says whose it is
+const WORKING = Object.freeze({ photo: '正在处理照片…', sample: '正在载入照片…' });
+const DEMO_NOTE = '你填写的时间';
+const DEMO_LABEL = '把拍摄时间设成这一场的时间';
+const NUDGE_WITH_AI = '先选一个视角，不用等 AI。';
+const NUDGE_PLAIN = '先选一个视角。';
+const FINE_STATIC = '照片会缩小，并去掉位置信息。';
+const FINE_SERVER = '照片会缩小、去掉位置信息后上传。';
 const VISIBILITY = Object.freeze([['private', '仅自己保存'], ['members', '分享给本场成员']]);
 const VISIBILITY_VALUES = VISIBILITY.map(([value]) => value);
 
@@ -136,15 +139,14 @@ function scrollerOf(node) {
 const AI_LINE_ROOM = 56;
 // The longest a new photo's reveal waits for the photo to decode and the sheet to stop moving.
 const REVEAL_WAIT_MS = 600;
-// photo-insight.js words the room's promise for the 0.16 live page, where what is saved is a 「现场卡」; here it is a photo. The shared sentence stays
-// the one source (so a change there reaches this form); only the noun is swapped, and a sentence without it passes through unchanged.
-const forPhoto = sentence => sentence.replace('保存现场卡时', '保存照片时');
 const stringOr = (value, fallback = '') => (typeof value === 'string' && value ? value : fallback);
 
 export function createMomentUpload(options = {}) {
   const { getRoomId, eventDate = '', uploadsToServer = false, loadSample = null, onDraft, onChange, onBusy, onError } = options;
-  const sampleList = (Array.isArray(options.samples) ? options.samples : []).filter(item => item && typeof item.id === 'string' && item.id);
-  const demo = options.demoTime && validTakenAt(options.demoTime.ms) ? options.demoTime : null;
+  // The ready-made photos and the one-tap time can depend on the open room, so they are read whenever they are needed, never kept.
+  const optionOf = value => { try { return typeof value === 'function' ? value() : value; } catch { return null; } };
+  const samplesNow = () => { const list = optionOf(options.samples); return (Array.isArray(list) ? list : []).filter(item => item && typeof item.id === 'string' && item.id); };
+  const demoNow = () => { const given = optionOf(options.demoTime); return given && validTakenAt(given.ms) ? given : null; };
   // The picker's own bounds, fixed when the form is made so that markup() does not change from one minute to the next.
   const inputMin = toInputValue(TAKEN_MIN);
   const inputMax = toInputValue(takenMax());
@@ -164,12 +166,13 @@ export function createMomentUpload(options = {}) {
   const owns = room => state.kind !== '' && state.roomId === String(room ?? '');
   const fail = error => { try { onError?.(error instanceof Error ? error : new Error(String(error))); } catch { /* the page's handler is its own business */ } };
   const setBusy = next => { if (busy !== next) { busy = next; try { onBusy?.(next); } catch { /* same */ } } };
-  const sampleById = id => sampleList.find(item => item.id === id) || null;
+  const sampleById = id => samplesNow().find(item => item.id === id) || null;
 
   // ---- what the person's time and side currently are ----------------------------------------------------------------------
   /** The time in force: the demo-only time over the typed one over what the photo said. `source` is what facts() may send. */
   function timeOf(s) {
-    if (s.demo && demo) return { at: Math.round(demo.ms), source: 'manual', zone: '', demo: true };
+    const demo = s.demo ? demoNow() : null;
+    if (demo) return { at: Math.round(demo.ms), source: 'manual', zone: '', demo: true };
     if (s.typed !== null) { const at = fromInputValue(s.typed); return { at, source: at === null ? null : 'manual', zone: '', demo: false }; }
     return { at: s.base.at, source: s.base.source, zone: s.base.zone, demo: false };
   }
@@ -190,7 +193,7 @@ export function createMomentUpload(options = {}) {
     const result = answer.phase === 'done' ? answerView(answer.result) : null;
     if (result && view.from !== 'user') {
       if (result.sure && view.from === 'ai') {
-        return { key: `sure:${result.label}`, html: `<span class="moment-ai-tag" title="${esc(uploadsToServer ? forPhoto(AI_NOTE_ROOM) : AI_NOTE)}">${esc(result.tag)}</span>` };
+        return { key: `sure:${result.label}`, html: `<span class="moment-ai-tag" title="${esc(uploadsToServer ? AI_NOTE_ROOM : AI_NOTE)}">${esc(result.tag)}</span>` };
       }
       // The dashed chips are for the eyes; the hidden words name the two sides for everyone else (the chips point to a description too).
       if (!result.sure && !view.value) {
@@ -382,7 +385,7 @@ export function createMomentUpload(options = {}) {
   /** Use a bundled example photo: its file carries a fictional capture time like any other photo's EXIF. */
   async function pickSample(id) {
     const sample = sampleById(id);
-    if (!sample || typeof loadSample !== 'function') { fail(new Error('找不到这张示例照片')); return false; }
+    if (!sample || typeof loadSample !== 'function') { fail(new Error('找不到这张照片')); return false; }
     pickGeneration += 1;
     const generation = pickGeneration;
     working = 'sample';
@@ -428,7 +431,7 @@ export function createMomentUpload(options = {}) {
   }
 
   function toggleDemo() {
-    if (!demo) return;
+    if (!demoNow()) return;
     adopt();
     state.demo = !state.demo;
     notify();
@@ -463,6 +466,7 @@ export function createMomentUpload(options = {}) {
   // ---- the view: one description of the dynamic parts, drawn by markup() and applied by patch() ------------------------------
   function model(room, live, esc) {
     const s = live && owns(room) ? state : freshState();
+    const demo = demoNow();
     const time = timeOf(s);
     const view = timeView({ takenAt: time.at, takenSource: time.source }, dateOf(), { zone: time.zone });
     const known = view.mode === 'known';
@@ -484,13 +488,13 @@ export function createMomentUpload(options = {}) {
         editHidden: !(known && view.editable && !s.edit),
         open,
         label: view.mode === 'guess' ? '大约的时间 · 北京时间' : known ? '修改拍摄时间 · 北京时间' : '拍摄时间 · 北京时间',
-        hint: known ? '改过的时间以你填的为准。' : view.note,
+        hint: known ? '' : view.note,
         value: time.demo ? toInputValue(time.at) : s.typed !== null ? s.typed : time.at === null ? '' : toInputValue(time.at),
         problem,
-        offNight: off ? `这个时间不在示例现场那一晚（${date}），按规则不算同一刻。` : '',
+        offNight: off ? '这张不是在这一场拍的，不算同一刻。' : '',
         demoShown: Boolean(demo) && s.kind !== 'sample',
         demoOn: time.demo,
-        demoText: time.demo ? `已把拍摄时间设成 ${formatTaken(time.at, date)}（演示用）· 再按一次撤销` : stringOr(demo?.label, DEMO_LABEL),
+        demoText: time.demo ? `已设成 ${formatTaken(time.at, date)} · 再按一次撤销` : stringOr(demo?.label, DEMO_LABEL),
       },
       chips: VIEWPOINTS.map(item => {
         const pressed = s.view.value === item.id;
@@ -500,7 +504,7 @@ export function createMomentUpload(options = {}) {
       aiKey: line.key,
       aiHtml: line.html,
       aiLoading: s.answer,
-      hint: forPhoto(viewpointHint({ upload: uploadsToServer })),
+      hint: viewpointHint({ upload: uploadsToServer }),
       nudge: nudged ? (aiAvailable() ? NUDGE_WITH_AI : NUDGE_PLAIN) : '',
       sampleId: s.kind === 'sample' ? s.sampleId : '',
     };
@@ -516,18 +520,17 @@ export function createMomentUpload(options = {}) {
   }
 
   /**
-   * The photo and when it was taken, one card: the picture, its time (and the way to change it), what it is if it is an example, the time field.
+   * The photo and when it was taken, one card: the picture, its time (and the way to change it), the time field.
    * It is always in the page and shut (hidden) until there is a photo to talk about; the picture itself exists only for a valid draft.
    * The status line reads 「拍摄于 21:47 · 来自照片自带的信息」; its 「 · 」 is a span of its own (shut while there is no note), so the Doodle layer can
    * set the note on a line under the clock without a line that starts with a lone 「·」, while a screen reader still hears the one sentence.
    */
-  function takenMarkup(taken, esc, { photo, flag }) {
+  function takenMarkup(taken, esc, { photo }) {
     return `<div class="moment-taken" data-taken${photo ? '' : ' hidden'}>`
       + (photo ? `<img class="photo-review" src="${esc(photo.dataUrl)}" alt="${uploadsToServer ? '本次待上传的照片' : '待保存的照片'}">` : '')
       + `<div class="moment-taken__row"><p class="moment-taken__line" role="status" aria-live="polite"><span data-taken-line${taken.none ? ' data-taken-none' : ''}>${esc(taken.line)}</span>`
       + `<span class="moment-taken__sep" data-taken-sep${taken.note ? '' : ' hidden'}> · </span><small data-taken-note>${esc(taken.note)}</small></p>`
       + `<button type="button" class="moment-taken__edit" data-taken-edit aria-controls="moment-taken-field" aria-expanded="${taken.open}"${taken.editHidden ? ' hidden' : ''}>修改时间</button></div>`
-      + flag
       + `<div class="moment-taken__field" id="moment-taken-field" data-taken-field${taken.open ? '' : ' hidden'}>`
       + `<label><span data-taken-label>${esc(taken.label)}</span><input type="datetime-local" name="takenAt" min="${inputMin}" max="${inputMax}" step="60" value="${esc(taken.value)}"${taken.problem ? ' aria-invalid="true" aria-describedby="moment-taken-error"' : ''}></label>`
       + `<p class="fine" data-taken-hint>${esc(taken.hint)}</p>`
@@ -553,14 +556,14 @@ export function createMomentUpload(options = {}) {
     const sample = m.s.kind === 'sample' ? sampleById(m.s.sampleId) : null;
     const visibility = m.s.visibility || (sample ? 'members' : VISIBILITY_VALUES.includes(photo?.visibility) ? photo.visibility : 'private');
     const select = `<select name="visibility">${VISIBILITY.map(([value, label]) => `<option value="${value}" ${value === visibility ? 'selected' : ''}>${esc(label)}</option>`).join('')}</select>`;
-    const samples = sampleList.length
-      ? `<div class="moment-samples" role="group" aria-labelledby="moment-samples-title"><p class="moment-samples__title" id="moment-samples-title">${esc(SAMPLES_TITLE)}</p><div class="moment-samples__list">${sampleList.map(item => sampleMarkup(item, m.sampleId === item.id, esc)).join('')}</div></div>`
+    const offered = samplesNow();
+    const samples = offered.length
+      ? `<div class="moment-samples" role="group" aria-labelledby="moment-samples-title"><p class="moment-samples__title" id="moment-samples-title">${esc(SAMPLES_TITLE)}</p><div class="moment-samples__list">${offered.map(item => sampleMarkup(item, m.sampleId === item.id, esc)).join('')}</div></div>`
       : '';
-    const flag = sample ? `<p class="moment-sample-flag" data-sample-flag><b class="moment-sample-flag__tag">示例照片</b><span class="moment-sample-flag__sep"> · </span>${esc(stringOr(sample.note, SAMPLE_NOTE_FALLBACK))}</p>` : '';
     return `${heading ? `<small class="eyebrow">${EYEBROW}</small><h2>${TITLE}</h2>` : ''}`
       + `<form class="${photo ? 'moment-upload has-photo' : 'moment-upload'}" data-form="upload" data-room="${esc(room)}" novalidate>`
-      + `<label class="file-choice"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5h16v15H4zM4 16l5-5 4 4 3-3 4 4M8 8h.1"/></svg>选照片<input type="file" name="photo" accept="image/jpeg,image/png,image/webp"></label>${samples}`
-      + `<p class="moment-status" data-pick-status role="status" aria-live="polite">${esc(m.status)}</p>${takenMarkup(m.taken, esc, { photo, flag })}${viewMarkup(m, esc, !photo)}`
+      + `<label class="file-choice"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5h16v15H4zM4 16l5-5 4 4 3-3 4 4M8 8h.1"/></svg>${offered.length ? OWN_PHOTO.besideSamples : OWN_PHOTO.plain}<input type="file" name="photo" accept="image/jpeg,image/png,image/webp"></label>${samples}`
+      + `<p class="moment-status" data-pick-status role="status" aria-live="polite">${esc(m.status)}</p>${takenMarkup(m.taken, esc, { photo })}${viewMarkup(m, esc, !photo)}`
       + `<label>可见范围${select}</label><p class="fine" data-moment-fine>${uploadsToServer ? FINE_SERVER : FINE_STATIC}</p>`
       + `<button class="primary" type="submit" ${photo ? '' : 'disabled'}>保存这张照片</button></form>`;
   }

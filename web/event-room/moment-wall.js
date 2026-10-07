@@ -1,13 +1,11 @@
 // The room's photo wall as markup (no DOM, no styles: wall-moments.css is imported by app.js). The rules come from moment-model.js, which reads
 // web/js/moment.js; nothing here is AI. Buttons carry the attributes app.js already routes: data-photo (inside renderItem), data-exchange-offer
 // and data-show-more. When no photo has a trusted capture time the output is exactly today's plain grid.
-import { SAME_MOMENT_MS, reasonHtml, viewpointName } from '../js/moment.js';
+import { SAME_MOMENT_MS, reasonHtml } from '../js/moment.js';
 import { groupTitle, momentGroups, photoMetaLine, photoTime, viewpointByline, wallReadings } from './moment-model.js';
 
-export const GROUP_NOTE = `按拍摄时间分组（相差不超过 ${SAME_MOMENT_MS / 60_000} 分钟），规则判断，不是 AI`;
+export const GROUP_NOTE = `${SAME_MOMENT_MS / 60_000} 分钟内拍下`;
 export const UNTIMED_TITLE = '没有拍摄时间';
-export const UNTIMED_NOTE = '没有拍摄时间，无法按时间配对';
-export const PIPELINE_RIBBON = 'AI 建议视角 → 规则找同一刻 → 双方同意才交换';
 export const BADGE_TITLE = '同一刻的另一面';
 export const OFFER_LABEL = '和 TA 交换这个视角';
 export const SAME_TAG = '同一刻';
@@ -22,7 +20,7 @@ const escapeText = value => String(value ?? '').replace(/[&<>"']/g, character =>
 // date (「2025年7月10日 10:53」) breaks between its day and its clock. Applied to text that is already escaped, like moment.js reasonHtml does.
 const TITLE_UNITS = /(\d{4}年|\d{1,2}月\d{1,2}日|\d{2}:\d{2}|同一刻|\d+ 个视角：|\d+ 张照片|舞台|人海|身边|细节)/g;
 const META_UNITS = /(拍摄于 \d{2}:\d{2}|拍摄于|\d{4}年|\d{1,2}月\d{1,2}日|\d{2}:\d{2}|视角：(?:舞台|人海|身边|细节)|AI 建议，未改动|作者选择)/g;
-const NOTE_UNITS = /(（相差不超过 \d+ 分钟）|规则判断，不是 AI)/g;
+const NOTE_UNITS = /(\d+ 分钟内)/g;
 const units = (escaped, pattern) => escaped.replace(pattern, '<span class="nowrap">$1</span>');
 
 // The 「 · 」 between the parts of a heading or a meta line is its own span: screen readers still read it, the Doodle layer hides it on screen and spaces
@@ -85,7 +83,6 @@ export function wallMarkup({ photos = [], members = [], ownId = '', eventDate = 
   const handled = new Set(Array.isArray(exchanged) || exchanged instanceof Set ? exchanged : []);
   const readings = wallReadings(all.filter(own), visible.filter(photo => !own(photo) && photo.visibility === 'members'), { eventDate, skip: handled });
   const nameOf = photo => (Array.isArray(members) ? members.find(member => member?.id === photo.ownerId)?.name : '') || '';
-  const ribbon = visible.some(photo => photo.viewpointSource === 'ai' && viewpointName(photo.viewpoint));
 
   const badge = photo => {
     const name = nameOf(photo);
@@ -116,8 +113,8 @@ export function wallMarkup({ photos = [], members = [], ownId = '', eventDate = 
     + `<div class="photo-grid moment-grid">${list.map(card).join('')}</div></section>`;
 
   const { groups, untimed } = momentGroups(visible, { eventDate });
-  return `<div class="moment-wall" data-moment-wall>${ribbon ? `<p class="moment-ribbon" data-moment-ribbon>${PIPELINE_RIBBON}</p>` : ''}`
+  return '<div class="moment-wall" data-moment-wall>'
     + groups.map(group => section(group.key, titleHtml(group, safe), group.sameMoment ? GROUP_NOTE : '', bestFirst(group.photos))).join('')
-    + (untimed.length ? section('untimed', units(safe(UNTIMED_TITLE), TITLE_UNITS), UNTIMED_NOTE, untimed) : '')
+    + (untimed.length ? section('untimed', units(safe(UNTIMED_TITLE), TITLE_UNITS), '', untimed) : '')
     + `</div>${more}`;
 }

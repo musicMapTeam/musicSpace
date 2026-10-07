@@ -6,8 +6,9 @@
 //                     downloads early, the page-relative metas (space-site-root, space-event-room, space-build, space-ai-base)
 //                     replace every root-absolute assumption, a classic rescue script lives outside the module graph, and
 //                     <noscript> / <script nomodule> explain themselves to browsers that cannot run the page.
-//   staticCopyPlugin  rewrites the sentences that say a "server" confirmed or received something, so the static site does not claim
-//                     a server answered. Only the room's static config uses it; every rule must match at least once or the build fails.
+//   staticCopyPlugin  rewrites the sentences that say a "server" or "service" confirmed or received something to plain 已确认 / 已收到,
+//                     so the static site does not claim a server answered. Only the room's static config uses it; every rule must match
+//                     at least once or the build fails.
 //
 // Pure functions (transformStaticHtml, applyCopyRules, rescueScript, buildInfo) are exported for tests/static-copy-transform.test.js.
 import {execFileSync} from 'node:child_process';
@@ -55,15 +56,14 @@ export function buildInfo({root = ROOT, env = process.env, now = () => Date.now(
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------
-// Copy transform (architecture 5.6): sentences in the panels say the server confirmed or received something. In the static site the
-// "server" is the page itself, so the sentences are re-worded to what is true there. The Node-server build never loads this.
+// Copy transform (architecture 5.6): sentences in the panels say the server (服务器) or the service (服务) confirmed or received something.
+// In the static site there is no server, so the build drops the subject and says what is true there: 「服务器已确认。」 -> 「已确认。」,
+// 「服务已收到，无需重发。」 -> 「已收到，无需重发。」. The Node-server build never loads this and keeps its own words.
 
 export const COPY_RULES = Object.freeze([
-  {id: 'server-confirmed', from: '服务器已确认', to: '示例已确认'},
-  {id: 'service-confirmed', from: '服务已确认', to: '示例已确认'},
-  {id: 'service-received', from: '服务已收到', to: '示例已收到'},
-  {id: 'vote-count', from: '结果按服务器当前票数决定', to: '结果按当前票数决定'},
-  {id: 'stop-waiting', from: '停止等待不会撤销服务器操作', to: '停止等待不会撤销已发出的操作'},
+  {id: 'server-confirmed', from: '服务器已确认', to: '已确认'},
+  {id: 'service-confirmed', from: '服务已确认', to: '已确认'},
+  {id: 'service-received', from: '服务已收到', to: '已收到'},
 ]);
 
 /** Fresh per-build match counters, one per rule. */
@@ -116,7 +116,9 @@ const FONT = "'Microsoft YaHei','PingFang SC',system-ui,sans-serif";
 
 /**
  * The text of the rescue script. window.__SPACE_RESCUE__.show(reason) raises the overlay; the 30 s watchdog raises it when the
- * page never reports window.__SPACE_BOOT__ === 'ready'; a module script that fails to load raises it at once. 重置示例数据 deletes
+ * page never reports window.__SPACE_BOOT__ === 'ready'; a module script that fails to load raises it at once. The reason (a code such as
+ * failed:SEED_FAILED) is for QA: it is kept in the overlay's data-reason attribute, never shown. The overlay offers two actions, 重新载入 and
+ * 重新开始, and links nowhere (classic/, the 0.16 page, stays in the tree unlinked). 重新开始 deletes
  * this channel's IndexedDB database (music-space-static:<channel>:v1, the channel taken from the URL exactly as the boot does: a path
  * ending in /preview/ is the preview, anything else the site root) and every localStorage key under RESCUE_PURGE_PREFIXES, then reloads without
  * the query string. It needs no runtime.
@@ -143,18 +145,17 @@ function show(reason){
  if(box||w.__SPACE_NOMODULE__)return;
  var card=el('div','box-sizing:border-box;width:100%;max-width:440px;margin:auto;padding:24px;background:#f0e9d8;color:#203b32;border:1px solid #b1a587;border-left:3px solid #a65a40;font-family:'+${JSON.stringify(FONT)}+';line-height:1.7');
  card.appendChild(el('h2','margin:0 0 8px;font-size:22px;line-height:1.4;font-weight:700','页面没能完整启动'));
- card.appendChild(el('p','margin:0;font-size:15px','这个示例在你的浏览器里运行，需要先启动一个本地小数据库。可以先重新载入；如果还是这样，重置示例数据会清除本页保存的示例内容，再重新开始。'));
- if(reason)card.appendChild(el('p','margin:8px 0 0;font-size:12px;color:#596b50;word-break:break-all','原因：'+String(reason).slice(0,160)));
+ var lead=el('p','margin:0;font-size:15px','先重新载入试试；还不行的话，点');
+ lead.appendChild(el('span','white-space:nowrap;font-size:15px','「重新开始」。'));card.appendChild(lead);
  var primary='background:#294c3e;color:#f0e9d8;border:1px solid #294c3e;';
  var plain='background:#e4e4cb;color:#294c3e;border:1px solid #b2b99c;';
  var first=button('重新载入',primary,function(){w.location.reload();});
  card.appendChild(first);
- card.appendChild(button('重置示例数据',plain,function(){wipe(function(){w.location.replace(w.location.pathname);});}));
- var classic=el('a','display:block;box-sizing:border-box;width:100%;min-height:44px;margin:10px 0 0;padding:10px 14px;font:15px '+${JSON.stringify(FONT)}+';text-align:center;text-decoration:none;border-radius:2px;'+plain,'打开早期原型');
- classic.href='./classic/';card.appendChild(classic);
- card.appendChild(el('p','margin:12px 0 0;font-size:12px;color:#596b50','重置只清除这个浏览器里本页的示例数据和身份，不会上传任何内容。'));
+ card.appendChild(button('重新开始',plain,function(){wipe(function(){w.location.replace(w.location.pathname);});}));
+ card.appendChild(el('p','margin:12px 0 0;font-size:12px;color:#596b50','「重新开始」会清除你的昵称、小人、照片和交换。'));
  box=el('div','position:fixed;left:0;top:0;right:0;bottom:0;z-index:2147483647;display:flex;overflow:auto;padding:16px;box-sizing:border-box;background:rgba(24,45,38,.96)');
  box.id='space-rescue';box.setAttribute('role','alertdialog');box.setAttribute('aria-modal','true');box.setAttribute('aria-label','页面没能完整启动');
+ if(reason)box.setAttribute('data-reason',String(reason).slice(0,160));
  box.appendChild(card);(d.body||d.documentElement).appendChild(box);
  try{first.focus();}catch(e){}
  // A slow network is not a failure: if the page does finish booting later, the overlay goes away by itself.
@@ -173,14 +174,14 @@ const PAGES = {
   // The room is the site root (and /preview/ of it); everything else is a directory below.
   root: {
     siteRoot: './', eventRoom: './', aiBase: './ai/', preload: './shared/three-0.186.1/', wasm: './sql/sql-wasm.wasm', title: SITE_TITLE, rescue: true,
-    noModule: '这个浏览器版本太旧，打不开 Music Space 示例页。请换用较新的 Chrome、Edge、Safari 或 Firefox。',
-    noScript: '需要开启 JavaScript 才能打开 Music Space 示例页。',
+    noModule: '这个浏览器版本太旧，打不开 Music Space。请换用较新的 Chrome、Edge、Safari 或 Firefox。',
+    noScript: '需要开启 JavaScript 才能打开 Music Space。',
   },
-  // The original Map at music-map/ (one directory down).
+  // The original Map at music-map/ (one directory down). Its notices use the page's name, 音乐探索.
   map: {
     siteRoot: '../', eventRoom: '../', aiBase: '', preload: '../shared/three-0.186.1/', wasm: '', title: '', rescue: false,
-    noModule: '这个浏览器版本太旧，打不开 Music Map。请换用较新的 Chrome、Edge、Safari 或 Firefox。',
-    noScript: '需要开启 JavaScript 才能打开 Music Map。',
+    noModule: '这个浏览器版本太旧，打不开音乐探索。请换用较新的 Chrome、Edge、Safari 或 Firefox。',
+    noScript: '需要开启 JavaScript 才能打开音乐探索。',
   },
 };
 

@@ -179,7 +179,7 @@ test('joined room menu exposes recovery for an uncertain operation after refresh
 test('a definitive failure menu is labelled unfinished rather than awaiting confirmation',()=>{
  const h=harness(initial({room:room(),route:{kind:'room',target:roomId},pending:[{id:'failed-op',type:'uploadPhoto',status:'failed',durable:true,error:{uncertain:false,message:'Synthetic429'}}]}));
  h.binding.openPanel('room');assert.match(h.body.innerHTML,/1 个操作未完成/);assert.doesNotMatch(h.body.innerHTML,/操作待确认/);
- h.binding.openPanel('pending');assert.match(h.body.innerHTML,/已明确失败/);assert.match(h.body.innerHTML,/移除失败记录/);
+ h.binding.openPanel('pending');assert.match(h.body.innerHTML,/没有成功/);assert.match(h.body.innerHTML,/移除失败记录/);
 });
 
 test('host management and member feedback route to the reviewed room/person while removed history does not offer rejoin',async()=>{
@@ -204,8 +204,8 @@ test('corrupt persisted photo draft cannot inject markup into the upload review'
 
 test('resolved unapplied retry repaints the current pending list without forcing navigation',async()=>{
   const s=initial({room:room(),route:{kind:'room',target:roomId},pending:[{id:'saved-op',type:'uploadPhoto',status:'uncertain',durable:true}]}),h=harness(s);
-  h.controller.retry=async()=>{h.emit({...s,pending:[]});return {applied:false};};h.binding.openPanel('pending');await h.click({retry:'saved-op'});
-  assert.equal(h.get().panelKind,'pending');assert.match(h.body.innerHTML,/没有待确认的操作/);assert.equal(h.calls.some(c=>c[0]==='openRoom'),false);
+  h.controller.retry=async()=>{h.emit({...s,pending:[]});return {applied:false};};h.binding.openPanel('pending');assert.match(h.body.innerHTML,/重试不会重复提交/);await h.click({retry:'saved-op'});
+  assert.equal(h.get().panelKind,'pending');assert.match(h.body.innerHTML,/没有待确认的操作/);assert.doesNotMatch(h.body.innerHTML,/重试不会重复提交|没有成功/,'an empty list has no intro line');assert.equal(h.calls.some(c=>c[0]==='openRoom'),false);
 });
 
 const socialState=extra=>({actorId:actor,incoming:[],outgoing:[],friends:[],blocks:[],nextCursors:{incoming:null,outgoing:null,friends:null,blocks:null},loaded:true,stale:false,...extra});
@@ -300,7 +300,7 @@ test('background scene loads only six shared wall images while explicit gallery 
 
 test('stale person relation is explicitly last confirmed rather than asserted current friendship',()=>{
   const h=harness(initial({social:socialState({friends:[{userId:otherId,peer,revision:1}],stale:true})}));h.binding.openPanel('person',otherId);
-  assert.match(h.body.innerHTML,/上次确认/);assert.doesNotMatch(h.body.innerHTML,/你们已经互相同意成为朋友/);
+  assert.match(h.body.innerHTML,/上次确认/);assert.doesNotMatch(h.body.innerHTML,/你们已经是朋友了/);
 });
 
 test('ignored duplicate block confirmation never invalidates the original success feedback',async()=>{
@@ -444,7 +444,7 @@ test('opening and paging recap does not navigate the active room and close resto
  const h=harness(initial({room:active,route:{kind:'room',target:otherId},photos:[]}));
  h.controller.loadRoomRecap=async(id,options)=>{requests.push([id,clone(options)]);const recap={roomId:id,room:{...past,joined:false},actorId:actor,loaded:true,photos:{items:[p],nextCursor:options.photosCursor?null:p.id},friends:{items:[],nextCursor:null},...options};h.emit({...h.get().state,recap});return {applied:true,...recap};};
  let cleared=0;h.controller.clearRoomRecap=()=>{cleared++;h.emit({...h.get().state,recap:null});};
- await h.click({open:'recap',id:roomId});await tick();assert.equal(h.get().panelKind,'recap');assert.equal(h.get().state.room.id,otherId);assert.match(h.body.innerHTML,/离场后只保留自己的照片/);assert.match(h.body.innerHTML,/输入另一个现场的邀请码/);
+ await h.click({open:'recap',id:roomId});await tick();assert.equal(h.get().panelKind,'recap');assert.equal(h.get().state.room.id,otherId);assert.match(h.body.innerHTML,/离场后只保留自己的照片/);assert.match(h.body.innerHTML,/去另一个现场/);
  await h.click({recapPage:'photos',recapDir:'next'});await tick();assert.deepEqual(requests.at(-1),[roomId,{photosCursor:p.id,friendsCursor:null}]);assert.equal(h.get().state.route.target,otherId);
  h.binding.closePanel();await tick();assert.equal(cleared,1);assert.equal(h.get().panelKind,null);assert.equal(h.get().state.room.id,otherId);assert.equal(h.get().urls.length,0);
 });

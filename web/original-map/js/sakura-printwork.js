@@ -1,5 +1,8 @@
-/** Original print artwork, drawn once and placed on the courtyard's 3D props. */
-export function createSakuraPrintwork({ THREE, textures, materials }) {
+import { paintMarquee, paintSleeve, paintBadge, paintPoster } from './sakura-doodle-prints.js';
+
+/** Original print artwork, drawn once and placed on the courtyard's 3D props. On paper the prints
+ *  are marker prints (sakura-doodle-prints.js), painted again once the Doodle faces arrive. */
+export function createSakuraPrintwork({ THREE, textures, materials, look = 'night' }) {
   const ink = '#365c59';
   const paper = '#f5ebd6';
   const rose = '#cf8190';
@@ -38,6 +41,35 @@ export function createSakuraPrintwork({ THREE, textures, materials }) {
     context.fillStyle = color; context.textAlign = align;
     context.font = `600 ${size}px Arial, "Microsoft YaHei", sans-serif`;
     context.fillText(text, x, y);
+  }
+  const woodGrain = surface(512, 256, context => {
+    context.fillStyle = '#fffdf8'; context.fillRect(0, 0, 512, 256);
+    context.strokeStyle = '#e4ddd4'; context.lineWidth = .7;
+    for (let i = 0; i < 25; i++) {
+      const y = 7 + i * 10;
+      context.beginPath(); context.moveTo(0, y);
+      context.bezierCurveTo(149, y + Math.sin(i) * 7, 325, y - Math.sin(i * .7) * 6, 512, y + 2); context.stroke();
+    }
+    context.strokeStyle = '#e7dfd5'; context.lineWidth = 1;
+    for (let i = 0; i < 3; i++) {
+      context.beginPath(); context.ellipse(172, 123, 20 + i * 10, 3 + i * 2, .03, 0, Math.PI * 2); context.stroke();
+    }
+  });
+  if (look === 'paper') {
+    // Unlit marker prints: the doodle pass never hatches them or inks their patterns.
+    const repaints = [];
+    const marker = (width, height, paint) => {
+      const canvas = document.createElement('canvas'); canvas.width = width; canvas.height = height;
+      const texture = new THREE.CanvasTexture(canvas); texture.colorSpace = THREE.SRGBColorSpace; texture.anisotropy = 4; textures.add(texture);
+      const redo = () => { paint(canvas.getContext('2d')); texture.needsUpdate = true; };
+      redo(); repaints.push(redo);
+      const material = new THREE.MeshBasicMaterial({ map: texture }); materials.add(material); return material;
+    };
+    return {
+      sleeves: [0, 1, 2].map(edition => marker(512, 512, context => paintSleeve(context, edition))),
+      marquee: marker(1024, 256, paintMarquee), badge: marker(256, 256, paintBadge), poster: marker(384, 512, paintPoster),
+      woodGrain, repaint() { repaints.forEach(redo => redo()); },
+    };
   }
   const sleeves = [0, 1, 2].map(edition => print(512, 512, context => {
     context.fillStyle = [paper, ink, rose][edition]; context.fillRect(0, 0, 512, 512);
@@ -95,18 +127,5 @@ export function createSakuraPrintwork({ THREE, textures, materials }) {
     context.fillStyle = rose; context.fillRect(27, 461, 192, 4);
     type(context, 'SIDE B', 358, 482, 22, ink, 'right');
   });
-  const woodGrain = surface(512, 256, context => {
-    context.fillStyle = '#fffdf8'; context.fillRect(0, 0, 512, 256);
-    context.strokeStyle = '#e4ddd4'; context.lineWidth = .7;
-    for (let i = 0; i < 25; i++) {
-      const y = 7 + i * 10;
-      context.beginPath(); context.moveTo(0, y);
-      context.bezierCurveTo(149, y + Math.sin(i) * 7, 325, y - Math.sin(i * .7) * 6, 512, y + 2); context.stroke();
-    }
-    context.strokeStyle = '#e7dfd5'; context.lineWidth = 1;
-    for (let i = 0; i < 3; i++) {
-      context.beginPath(); context.ellipse(172, 123, 20 + i * 10, 3 + i * 2, .03, 0, Math.PI * 2); context.stroke();
-    }
-  });
-  return { sleeves, marquee, badge, poster, woodGrain };
+  return { sleeves, marquee, badge, poster, woodGrain, repaint() {} };
 }

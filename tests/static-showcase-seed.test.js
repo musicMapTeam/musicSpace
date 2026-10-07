@@ -2,7 +2,7 @@
 // (web/static-runtime/demo-assets, cut by scripts/demo/build-demo-photos.mjs). Real sql.js, the real worker code through the in-page runtime
 // and transport, a memory store that counts writes, and a fake clock. Nothing here touches the network or a browser.
 //
-//   roster       the version is derived from the roster, every edit changes it, the cast and the three seeded lines are what the scene needs
+//   roster       the version is derived from the roster, every edit changes it, the people and the three seeded lines are what the scene needs
 //   demo-assets  manifest, hashes, worker sanitizer limits, crop overlap, EXIF of the two samples, the pixels the AI was measured on
 //   seed         first seed, replay, one write, crash, stale marker, read-only copy, expiry, the pairing rules the walkthrough relies on
 import test from 'node:test';
@@ -19,7 +19,8 @@ import { createMemoryStore } from '../web/static-runtime/idb-store.js';
 import * as shimCrypto from '../web/static-runtime/shims/node-crypto.js';
 import { createEventApiClient } from '../web/event-client/api.js';
 import { ensureShowcase, actor, toDataUrl, ShowcaseStaleError, META_TABLE, MARKER_KEY, SHOWCASE_EXPIRES_AT, CUP_TITLE, GAME_TITLE } from '../web/static-runtime/showcase/seed.js';
-import { ROOM, NPCS, SAMPLE_PHOTOS, SEED_REV, SHOWCASE_VERSION, EVENT_DATE, DISCLOSURE, canonicalJSON, showcaseVersion } from '../web/static-runtime/showcase/roster.js';
+import * as rosterModule from '../web/static-runtime/showcase/roster.js';
+import { ROOM, NPCS, SAMPLE_PHOTOS, SEED_REV, SHOWCASE_VERSION, EVENT_DATE, canonicalJSON, showcaseVersion } from '../web/static-runtime/showcase/roster.js';
 import { orderWall, readPair, venueTime, takenFromExif, SAME_MOMENT_MS } from '../web/js/moment.js';
 import { readCaptureTime } from '../web/js/ai/exif-time.js';
 import { safeAvatar } from '../web/avatar/model.js';
@@ -68,7 +69,9 @@ test('roster: any edit changes the version by itself (a browser holding the old 
     'room title': p => { p.ROOM.title += '！'; },
     'room venue': p => { p.ROOM.venue = '月台'; },
     'room song': p => { p.ROOM.songId = 'moon-window'; },
-    'a name': p => { p.NPCS[1].name = '小满'; },
+    'the community title': p => { p.ROOM.community.title = '月台乐迷社群'; },
+    'the next show': p => { p.ROOM.community.next.note = '下周见。'; },
+    'a name': p => { p.NPCS[1].name = '小满二'; },
     'the host flag': p => { delete p.NPCS[0].host; },
     'a participation': p => { p.NPCS[2].participation = 'quiet'; },
     'when 林间 joins': p => { p.NPCS[3].joins = 'seed'; },
@@ -83,7 +86,7 @@ test('roster: any edit changes the version by itself (a browser holding the old 
     'a person added': p => { p.NPCS.push({ ...p.NPCS[3], key: 'extra' }); },
     'a seeded line': p => { p.NPCS[0].line += '。'; },
     'a sample label': p => { p.SAMPLE_PHOTOS[0].label += ' '; },
-    'a sample note': p => { p.SAMPLE_PHOTOS[1].note = '虚构的拍摄时间 21:50，写在文件里'; },
+    'a note added to a sample': p => { p.SAMPLE_PHOTOS[1].note = '21:50'; },
     'a sample file': p => { p.SAMPLE_PHOTOS[0].file = 'sample-other.jpg'; },
     'a sample id': p => { p.SAMPLE_PHOTOS[0].id = 'sample-x'; },
     'the order of the samples': p => { p.SAMPLE_PHOTOS.reverse(); },
@@ -100,11 +103,16 @@ test('roster: any edit changes the version by itself (a browser holding the old 
   }
 });
 
-test('roster: four labelled fictional people, three there before the visitor with four photos, 林间 quiet and late with none', () => {
+test('roster: four plainly named people, three there before the visitor with four photos, 林间 quiet and late with none', () => {
   assert.equal(EVENT_DATE, '2026.09.26');
-  assert.deepEqual({ ...ROOM }, { title: '回声现场 · 示例场', venue: '月台 Livehouse（虚构场地）', songId: 'late-train' });
+  assert.equal(SEED_REV, 3);
+  assert.deepEqual(structuredClone(ROOM), { title: '回声现场', venue: '月台 Livehouse', songId: 'late-train', community: {
+    title: '月台 Livehouse 乐迷社群', description: '散场后，乐迷留在这里；下一场的预告也发在这里。',
+    next: { title: '回声现场 Vol.2', venue: '月台 Livehouse', startsAt: null, note: '时间定了就在这里说。' },
+  } });
+  assert.ok(Object.isFrozen(ROOM.community) && Object.isFrozen(ROOM.community.next));
   assert.deepEqual(NPCS.map(npc => npc.key), ['yao', 'man', 'bei', 'lin']);
-  assert.deepEqual(NPCS.map(npc => npc.name), ['阿遥·示例', '小满·示例', '北屿·示例', '林间·示例']);
+  assert.deepEqual(NPCS.map(npc => npc.name), ['阿遥', '小满', '北屿', '林间']);
   assert.deepEqual(NPCS.filter(npc => npc.host).map(npc => npc.key), ['yao'], 'one host, and it is the first');
   assert.equal(NPCS[0].host, true);
   const present = NPCS.filter(npc => npc.joins === 'seed'), late = NPCS.filter(npc => npc.joins === 'after-visitor');
@@ -116,7 +124,7 @@ test('roster: four labelled fictional people, three there before the visitor wit
     ['man', 'man-near.jpg', 'friends', at(22, 21, 10)],
     ['bei', 'bei-balcony.jpg', 'detail', at(21, 49, 30)],
   ]);
-  // all of it on the fictional night, on the Asia/Shanghai clock
+  // all of it on the seeded night, on the Asia/Shanghai clock
   assert.deepEqual(present.flatMap(npc => npc.photos.map(photo => clockText(photo.takenAt))),
     ['2026-09-26T21:47:20', '2026-09-26T21:48:05', '2026-09-26T22:21:10', '2026-09-26T21:49:30']);
   assert.ok(Object.isFrozen(NPCS) && Object.isFrozen(NPCS[1].photos[0]) && Object.isFrozen(NPCS[0].avatar) && Object.isFrozen(ROOM) && Object.isFrozen(SAMPLE_PHOTOS[0]));
@@ -125,20 +133,26 @@ test('roster: four labelled fictional people, three there before the visitor wit
   assert.equal(new Set(NPCS.map(npc => JSON.stringify(npc.avatar))).size, 4);
 });
 
-test('roster: the samples, and the lines the cast says on its own, which always say they are automatic', () => {
+test('roster: the samples carry a name and no note, and the people talk naturally: no line claims to be a person or says it is automatic', () => {
   assert.deepEqual(SAMPLE_PHOTOS.map(sample => ({ ...sample })), [
-    { id: 'sample-crowd', file: 'sample-crowd.jpg', label: '人海 · 示例照片', note: '虚构的拍摄时间 21:48，写在文件里' },
-    { id: 'sample-stage', file: 'sample-stage.jpg', label: '舞台 · 示例照片', note: '虚构的拍摄时间 21:47，写在文件里' },
+    { id: 'sample-crowd', file: 'sample-crowd.jpg', label: '人海那张' },
+    { id: 'sample-stage', file: 'sample-stage.jpg', label: '舞台那张' },
   ]);
-  const lines = NPCS.filter(npc => npc.line).map(npc => npc.line);
-  assert.equal(lines.length, 3);
-  for (const line of lines) {
-    assert.ok(line.endsWith(DISCLOSURE), line);
-    assert.ok(line.length > DISCLOSURE.length + 8 && [...line].length <= 120, line);
-    assert.ok(!/我是真人|真实观众|真实用户/.test(line), line);
+  assert.equal('DISCLOSURE' in rosterModule, false, 'the one disclosure lives in the About panel, not in the people\'s mouths');
+  assert.deepEqual(NPCS.filter(npc => npc.line).map(npc => [npc.key, npc.line]), [
+    ['yao', '大家好，我是月台的阿遥。今晚舞台这一面，我先放上照片墙啦。'],
+    ['man', '我拍的是人海这一面，手都举起来了。'],
+    ['bei', '我只拍了看台边的一盏灯，算细节。'],
+  ]);
+  for (const npc of NPCS) {
+    assert.doesNotMatch(npc.name, /·|示例/, npc.key);
+    if (!npc.line) continue;
+    assert.ok([...npc.line].length >= 8 && [...npc.line].length <= 120, npc.line);
+    assert.doesNotMatch(npc.line, /真人|本人|活人|真实观众|真实用户|我是(真人|本人|人类)|我是.{0,3}人[。，]/, `no line claims to be a person: ${npc.line}`);
+    assert.doesNotMatch(npc.line, /示例|虚构|自动回复|演示|模拟/, `no line talks about what it is: ${npc.line}`);
   }
-  assert.match(DISCLOSURE, /自动回复/);
-  assert.match(DISCLOSURE, /不是真人/);
+  const room = `${ROOM.title} ${ROOM.venue}`;
+  assert.doesNotMatch(room, /示例|虚构|（|）/, 'the room and the venue are named plainly');
 });
 
 // ---- demo-assets -----------------------------------------------------------------------------------------------------------------------
@@ -194,7 +208,7 @@ test('demo-assets: crops come from the two recorded sources, match the build scr
   t.diagnostic(`largest overlap of two crops of one source: ${(worst * 100).toFixed(1)} percent of the smaller`);
 });
 
-test('demo-assets: the two samples carry their fictional capture time in EXIF (21:47:50 and 21:48:10, +08:00) and the reader trusts it', async () => {
+test('demo-assets: the two samples carry their capture time in EXIF (21:47:50 and 21:48:10, +08:00) and the reader trusts it', async () => {
   const expected = { 'sample-stage.jpg': [at(21, 47, 50), '2026-09-26T21:47:50'], 'sample-crowd.jpg': [at(21, 48, 10), '2026-09-26T21:48:10'] };
   for (const [file, [ms, local]] of Object.entries(expected)) {
     const found = await readCaptureTime(new File([asset(file)], file, { type: 'image/jpeg' }));
@@ -207,8 +221,8 @@ test('demo-assets: the two samples carry their fictional capture time in EXIF (2
     assert.deepEqual([taken.takenAt, taken.origin, taken.zoneAssumed], [ms, 'exif', false], file);
     assert.equal(entryOf(file).fictionalExifTime, `${local}+08:00`);
   }
-  assert.ok(SAMPLE_PHOTOS.find(sample => sample.id === 'sample-stage').note.includes('21:47'));
-  assert.ok(SAMPLE_PHOTOS.find(sample => sample.id === 'sample-crowd').note.includes('21:48'));
+  // the time row shows these like any photo's own time (「拍摄于 21:48 · 来自照片自带的信息」): the roster adds no note of its own
+  assert.ok(SAMPLE_PHOTOS.every(sample => !('note' in sample)));
   // the four cast photos have no capture time of their own: their facts travel as API fields, set by the person they belong to
   for (const entry of manifest.files.filter(item => !item.file.startsWith('sample-'))) {
     assert.equal(await readCaptureTime(new File([asset(entry.file)], entry.file, { type: 'image/jpeg' })), null, entry.file);
@@ -322,7 +336,7 @@ test('seed: the first run lays out 4 identities, 1 open room that never expires,
   const view = await host.get(`/rooms/${roomId}`);
   assert.equal(view.room.createdAt, new Date(T0).toISOString(), 'the seed ran on the runtime clock');
   assert.equal(view.room.songId, ROOM.songId);
-  assert.deepEqual(view.members.map(member => [member.name, member.participation]).sort(), [['北屿·示例', 'open'], ['小满·示例', 'open'], ['阿遥·示例', 'open']]);
+  assert.deepEqual(view.members.map(member => [member.name, member.participation]).sort(), [['北屿', 'open'], ['小满', 'open'], ['阿遥', 'open']]);
   const keys = keyOf(seeded);
   assert.deepEqual(view.photos.map(photo => [keys.get(photo.ownerId), photo.viewpoint, photo.takenAt, photo.takenSource, photo.viewpointSource, photo.visibility]).sort((a, b) => a[2] - b[2]), [
     ['yao', 'stage', at(21, 47, 20), 'manual', 'manual', 'members'],
@@ -463,14 +477,14 @@ test('seed: a database laid out by one roster is stale for a build whose roster 
   try {
     const source = new URL('web/static-runtime/showcase/', here);
     const rewrite = text => text.replace(/from '(\.{1,2}\/[^']+)'/g, (match, spec) => (spec === './roster.js' ? match : `from '${new URL(spec, source).href}'`));
-    const roster = rewrite(readBytes('web/static-runtime/showcase/roster.js').toString('utf8')).replace("name: '小满·示例'", "name: '小满·示例二'");
-    assert.ok(roster.includes("'小满·示例二'"), 'the copy carries the edited name');
+    const roster = rewrite(readBytes('web/static-runtime/showcase/roster.js').toString('utf8')).replace("name: '小满'", "name: '小满二'");
+    assert.ok(roster.includes("name: '小满二'"), 'the copy carries the edited name');
     writeFileSync(join(dir, 'roster.js'), roster);
     writeFileSync(join(dir, 'seed.js'), rewrite(readBytes('web/static-runtime/showcase/seed.js').toString('utf8')));
     const edited = await import(pathToFileURL(join(dir, 'seed.js')).href);
     const editedRoster = await import(pathToFileURL(join(dir, 'roster.js')).href);
     assert.notEqual(editedRoster.SHOWCASE_VERSION, SHOWCASE_VERSION, 'one edited name is another version');
-    assert.equal(editedRoster.NPCS[1].name, '小满·示例二');
+    assert.equal(editedRoster.NPCS[1].name, '小满二');
 
     // the world the real build laid out, opened by the edited build
     const world = await openWorld();
@@ -589,15 +603,40 @@ test('seed: the visitor is one of the first four people and the visitor\'s own p
   const stage = await addSample(visitor, seeded.room, 'sample-stage.jpg', 'stage');
   const view = await visitor.get(`/rooms/${seeded.room.id}`);
   // portrait phones draw the first four people: three characters were there first, 林间 comes later
-  assert.deepEqual(view.members.map(member => member.name).sort(), ['北屿·示例', '小满·示例', '评委', '阿遥·示例']);
+  assert.deepEqual(view.members.map(member => member.name).sort(), ['北屿', '小满', '评委', '阿遥']);
   assert.equal(view.members.at(-1).id, me.id, 'members come in the order they joined: the visitor after the three characters');
   assert.ok(view.members.slice(0, 4).some(member => member.id === me.id));
-  assert.ok(!view.members.some(member => member.name === '林间·示例'));
+  assert.ok(!view.members.some(member => member.name === '林间'));
   // the 3D wall shows the first six member photos, oldest first: four are the cast's, so both of the visitor's fit
   assert.equal(view.photos.length, 6);
   const firstSix = view.photos.slice(0, 6).map(photo => photo.id);
   assert.ok(firstSix.includes(crowd.id) && firstSix.includes(stage.id));
   assert.deepEqual(view.photos.slice(0, 4).every(photo => photo.ownerId !== me.id), true, 'the cast\'s photos come first');
+});
+
+test('seed: the room is linked to the venue\'s fan community, which 阿遥 hosts with the next show posted; a visitor finds it from the room and can join', async () => {
+  const world = await openWorld();
+  const seeded = await world.seed();
+  const host = seeded.people.yao.api;
+  const { community } = await host.get(`/rooms/${seeded.room.id}/community`);
+  assert.equal(community.title, ROOM.community.title);
+  const { space, events, linkedRooms, host: isHost } = await host.get(`/communities/${community.id}/events`);
+  assert.equal(isHost, true);
+  assert.deepEqual([space.title, space.description, space.archived, space.hostId], [ROOM.community.title, ROOM.community.description, false, seeded.people.yao.id]);
+  assert.deepEqual(events.map(item => [item.title, item.venue, item.startsAt, item.note, item.status, item.room]), [[ROOM.community.next.title, ROOM.community.next.venue, null, ROOM.community.next.note, 'planned', null]]);
+  assert.deepEqual(linkedRooms.map(item => [item.id, item.title, item.venue]), [[seeded.room.id, ROOM.title, ROOM.venue]]);
+  assert.deepEqual(await world.sql("SELECT user_id FROM event_conversation_members WHERE kind = 'community' AND left_at IS NULL"), [[seeded.people.yao.id]], 'only the host is in it before anyone arrives');
+  assert.deepEqual(await world.sql("SELECT COUNT(*) FROM event_group_messages WHERE kind = 'community'"), [[0]], 'nobody has said anything there yet');
+
+  // the visitor opens 「这家 Livehouse 的乐迷社群」 from the room's chat, joins it and sees the next show
+  world.advance(60_000);
+  const { visitor } = await visitorJoins(world, seeded);
+  const found = (await visitor.get(`/rooms/${seeded.room.id}/community`)).community;
+  assert.equal(found.id, community.id);
+  assert.equal((await visitor.get(`/communities/${community.id}/conversation`)).conversation.joined, false, 'joining is the visitor\'s own choice');
+  await visitor.post(`/communities/${community.id}/conversation/join`, { joinConsent: true });
+  assert.deepEqual((await visitor.get(`/communities/${community.id}/events`)).events.map(item => item.title), [ROOM.community.next.title]);
+  assert.deepEqual((await visitor.get('/communities')).communities.map(item => [item.title, item.joined]), [[ROOM.community.title, true]]);
 });
 
 /** What the room holds once seeded, as text that does not depend on ids or the clock: names, facts, the bytes of every photo, lines, titles. */
@@ -611,6 +650,8 @@ async function worldDigest(seeded) {
   }
   photos.sort((a, b) => a.takenAt - b.takenAt);
   const game = await host.get(`/games/${seeded.gameId}`);
+  const { community } = await host.get(`/rooms/${roomId}/community`);
+  const space = community ? await host.get(`/communities/${community.id}/events`) : null;
   return sha256(canonicalJSON({
     room: { title: view.room.title, venue: view.room.venue, songId: view.room.songId, status: view.room.status, expiresAt: view.room.expiresAt },
     members: view.members.map(member => [member.name, member.participation, member.avatar]).sort(),
@@ -619,12 +660,14 @@ async function worldDigest(seeded) {
     cups: (await host.get(`/rooms/${roomId}/worldcups`)).worldcups.map(cup => [cup.title, cup.creatorId === seeded.people.yao.id, cup.fictional]),
     games: (await host.get(`/rooms/${roomId}/games`)).games.map(item => [item.type, item.title, item.roundLimit, item.phase]),
     players: game.players.map(player => keys.get(player.id)).sort(),
+    // SEED_REV 3 on: the venue's fan community the room is linked to, and the next show posted in it (absent before, so older pins keep their meaning)
+    ...(space ? { community: { title: space.space.title, description: space.space.description, host: keys.get(space.space.hostId), events: space.events.map(item => [item.title, item.venue, item.startsAt, item.note, item.status]) } } : {}),
   })).slice(0, 16);
 }
 
 // One entry per SEED_REV, never edited afterwards: when the seeded world changes (a line, a title, a photo re-cut, the order of the steps) this fails
 // until SEED_REV is raised and the new fingerprint is added under the new number. That is what makes browsers that hold the old world lay out the new one.
-const PINNED_WORLD = { 1: '9e81cc5d430d093c', 2: '6cec44198f031a7f' };
+const PINNED_WORLD = { 1: '9e81cc5d430d093c', 2: '6cec44198f031a7f', 3: 'e54b95e8f3c7d32f' };
 
 test('seed: the seeded world is pinned to SEED_REV (the fingerprint of what the room holds changes only together with SEED_REV)', async () => {
   const world = await openWorld();

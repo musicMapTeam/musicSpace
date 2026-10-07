@@ -6,7 +6,7 @@ import {escape as esc} from '../web/avatar/model.js';
 import {pendingSavedMessageNotice} from '../web/event-room/chat-panel.js';
 const confirmed={type:'send',saved:true,peerId:'peer-a',messageId:'message-a'};
 test('a confirmed server save remains explicit when its history refresh has not arrived',()=>{
- assert.match(pendingSavedMessageNotice({lastResult:confirmed,current:{peerId:'peer-a',messages:[]},error:{message:'网络断开'}}),/已由服务保存.*不必重发/);
+ assert.match(pendingSavedMessageNotice({lastResult:confirmed,current:{peerId:'peer-a',messages:[]},error:{message:'网络断开'}}),/服务已收到上一条.*无需重发/);
 });
 test('pending or unrelated messages never claim server confirmation',()=>{
  assert.equal(pendingSavedMessageNotice({lastResult:null,current:{peerId:'peer-a',messages:[]}}),null);
@@ -41,7 +41,7 @@ function chatShell(){
   setDraft(text){state.draft=text;emit();},
   // The controller's emits for one confirmed send: the pending row, then the saved notice, then the refreshed history.
   async send(){const text=state.draft;state.outbox=[{id:'op',type:'send',peerId:PEER,text,status:'running',error:null,durable:true}];emit();await null;
-   if(unconfirmed){unconfirmed=false;const error={message:'连接暂时没有回应。草稿仍在，可用原操作重试。',code:'NETWORK',status:0,retryable:true,uncertain:true};state.outbox=[{...state.outbox[0],status:'uncertain',error}];state.error=error;emit();throw Object.assign(new Error(error.message),error);}
+   if(unconfirmed){unconfirmed=false;const error={message:'网络没有回应，请稍后重试',code:'NETWORK',status:0,retryable:true,uncertain:true};state.outbox=[{...state.outbox[0],status:'uncertain',error}];state.error=error;emit();throw Object.assign(new Error(error.message),error);}
    return this.retry('op');},
   async retry(op){const id=`own-${++sends}`,text=state.outbox.find(p=>p.id===op).text;state.outbox=[{id:op,type:'send',peerId:PEER,text,status:'running',error:null,durable:true}];state.error=null;emit();await null;
    state.outbox=[];state.draft='';state.lastResult={type:'send',operationId:op,peerId:PEER,messageId:id,saved:true};emit();await null;
@@ -69,7 +69,7 @@ test('the pending row and saved notice shrinking the thread never leave the sent
 });
 test('a reader resting at the bottom stays there when another status line shrinks the thread before the reply',async()=>{
  const h=chatShell();await h.panel.open(PEER);await h.say('second');
- h.fail('连接没有确认结果，可用原消息重试。');h.reply('reply-2');assert.equal(h.gap(),0);
+ h.fail('结果未确认，可以重发原消息');h.reply('reply-2');assert.equal(h.gap(),0);
  await h.ack();assert.deepEqual(h.acknowledged,['reply-2']);
 });
 test('a reader who scrolled up to read history is not moved by a reply, and the reply stays unread until seen',async()=>{

@@ -7,6 +7,8 @@ import { createSakuraMusic } from './sakura-music.js';
 import { createSakuraFraming } from './sakura-framing.js';
 import { createCelMaterials } from './vendor/sakura/toon.js';
 import { Pipeline } from './vendor/sakura/post.js';
+import { D, pageLook, doodleRequested, PAPER_TOON, mapCelMaterials, createMapDoodle, keyLightFor, lineWidthFor } from './sakura-doodle.js';
+import { paintSign, watchPrintFonts } from './sakura-doodle-prints.js';
 
 // Night venue values live here so the vendored palette stays untouched.
 const NIGHT = {
@@ -27,6 +29,17 @@ const SHOP_GLOW_AT = { night: [0, 2.35, -.55], explore: [0, 2.35, -.55], records
 const SHOTS = new Set(['home', 'explore', 'records']);
 const LEGACY_SHOTS = { space: 'home', live: 'home' };
 const shotFor = (view, fallback = 'home') => LEGACY_SHOTS[view] || (SHOTS.has(view) ? view : fallback);
+// The night set's cel palette. Yard and roof share the cream and green materials there; on paper
+// every role takes a Doodle token (sakura-doodle.js PAPER_TOON).
+const NIGHT_TOON = {
+  cream: '#f2e7d3', plaster: '#faf6ef', sand: '#e3ddd8', green: '#42696a',
+  leaf: '#6b9694', mint: '#b0c5ab', rose: '#fbc6d8', blush: '#fedde2',
+  petal: '#fff0f4', coral: '#d28091', wood: '#ac8480', ink: '#39324f',
+  glass: '#94baca', black: '#3c394c', gold: '#e8c576', road: '#a4a2b8',
+  yard: '#f2e7d3', roof: '#42696a',
+};
+// The 「唱片店」 pin. On paper the shop sign is lettered, so the pin stands at the counter, under the awning.
+const SHOP_PIN = { night: [0, 2.6, 1], paper: [0, 1.3, 2.55] };
 let introPlayed = false;
 
 /** Original music street, rendered with Sakura Crossing's MIT cel/ink pipeline. */
@@ -45,11 +58,15 @@ export function mountSakuraScene(host, { onAction, view = 'home', onShot } = {})
     return { setView: () => Promise.resolve(true), setContent() {}, setMusic() {}, musicControl() {}, focus: () => Promise.resolve(true), restore: () => Promise.resolve(true), dispose() { fallback.remove(); host.classList.remove('sakura-scene--fallback'); document.body.classList.remove('spatial-fallback'); } };
   }
 
+  // Decided once per mount (sakura-doodle.js): paper when the page carries the Doodle tokens, drawn
+  // by the event room's doodle pass unless ?doodle=0 or this browser lacks its features.
+  const paper = pageLook() === 'paper';
   host.classList.add('sakura-scene');
   const canvas = renderer.domElement;
   canvas.className = 'sakura-scene__canvas';
   canvas.setAttribute('role', 'img');
-  canvas.setAttribute('aria-label', '夜晚的樱下音乐小院，串灯亮着，唱片店开着门。可通过物件标记或下方导航前往小院、唱片店与我的发现。');
+  canvas.setAttribute('aria-label', paper ? '纸做的音乐小院，唱片店开着门。点「唱片店」标记或下方导航前往。'
+    : '夜晚的樱下音乐小院，串灯亮着，唱片店开着门。可通过物件标记或下方导航前往小院、唱片店与我的发现。');
   host.append(canvas);
   const compass = document.createElement('nav');
   compass.className = 'world-compass';
@@ -64,7 +81,7 @@ export function mountSakuraScene(host, { onAction, view = 'home', onShot } = {})
   const caption = document.createElement('div'); caption.className = 'world-caption';
   caption.innerHTML = '<strong>小院</strong>';
   host.append(caption);
-  renderer.setClearColor(NIGHT.clear, 1);
+  renderer.setClearColor(paper ? D.paper : NIGHT.clear, 1);
   renderer.setPixelRatio(1);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.NoToneMapping;
@@ -74,33 +91,44 @@ export function mountSakuraScene(host, { onAction, view = 'home', onShot } = {})
   renderer.localClippingEnabled = true;
 
   const scene = new THREE.Scene();
-  scene.fog = new THREE.Fog(NIGHT.fog, 24, 46);
+  // No haze on paper: the page itself is the background, and the yard stands on it.
+  scene.fog = paper ? null : new THREE.Fog(NIGHT.fog, 24, 46);
   const camera = new THREE.PerspectiveCamera(39, 1, .1, 80);
   camera.position.set(8.5, 6.6, 13);
   camera.lookAt(0, 1.55, 0);
   const world = new THREE.Group();
   scene.add(world);
+  // The doodle pass is created before any material compiles; its cel programs follow doodleState.
+  const doodleState = { active: false, uniforms: { terminator: { value: .12 }, key: { value: 1 } } };
+  let doodle = paper && doodleRequested() ? createMapDoodle(renderer, scene, () => camera) : null;
+  let doodleFault = false;
+  if (doodle) {
+    doodleState.active = true;
+    if (renderer.debug) renderer.debug.onShaderError = (gl, program, vertex, fragment) => {
+      if (!doodleFault) console.error('Music Space: a doodle shader did not compile; switching the courtyard to the classic renderer.\n' + [gl.getProgramInfoLog(program), gl.getShaderInfoLog(vertex), gl.getShaderInfoLog(fragment)].filter(Boolean).join('\n'));
+      doodleFault = true;
+    };
+  }
+  host.dataset.renderStyle = doodle ? 'doodle' : paper ? 'classic' : 'night';
   const textures = new Set();
   const geometries = new Set();
   const materials = new Set();
-  // A world-fixed equirectangular sky: the horizon glow follows the camera's pitch.
-  const skySurface = document.createElement('canvas');
-  skySurface.width = 4; skySurface.height = 256;
-  const skyContext = skySurface.getContext('2d');
-  const skyGradient = skyContext.createLinearGradient(0, 0, 0, 256);
-  NIGHT.sky.forEach(([stop, color]) => skyGradient.addColorStop(stop, color));
-  skyContext.fillStyle = skyGradient; skyContext.fillRect(0, 0, 4, 256);
-  const skyTexture = new THREE.CanvasTexture(skySurface);
-  skyTexture.colorSpace = THREE.SRGBColorSpace;
-  skyTexture.mapping = THREE.EquirectangularReflectionMapping;
-  textures.add(skyTexture); scene.background = skyTexture;
-  const celMaterials = createCelMaterials();
-  const palette = {
-    cream: '#f2e7d3', plaster: '#faf6ef', sand: '#e3ddd8', green: '#42696a',
-    leaf: '#6b9694', mint: '#b0c5ab', rose: '#fbc6d8', blush: '#fedde2',
-    petal: '#fff0f4', coral: '#d28091', wood: '#ac8480', ink: '#39324f',
-    glass: '#94baca', black: '#3c394c', gold: '#e8c576', road: '#a4a2b8',
-  };
+  if (paper) scene.background = new THREE.Color(D.paper);
+  else {
+    // A world-fixed equirectangular sky: the horizon glow follows the camera's pitch.
+    const skySurface = document.createElement('canvas');
+    skySurface.width = 4; skySurface.height = 256;
+    const skyContext = skySurface.getContext('2d');
+    const skyGradient = skyContext.createLinearGradient(0, 0, 0, 256);
+    NIGHT.sky.forEach(([stop, color]) => skyGradient.addColorStop(stop, color));
+    skyContext.fillStyle = skyGradient; skyContext.fillRect(0, 0, 4, 256);
+    const skyTexture = new THREE.CanvasTexture(skySurface);
+    skyTexture.colorSpace = THREE.SRGBColorSpace;
+    skyTexture.mapping = THREE.EquirectangularReflectionMapping;
+    textures.add(skyTexture); scene.background = skyTexture;
+  }
+  const celMaterials = mapCelMaterials(createCelMaterials(), doodleState, { paper });
+  const palette = paper ? PAPER_TOON : NIGHT_TOON;
   const toon = Object.fromEntries(Object.entries(palette).map(([name, color]) => {
     const material = celMaterials.cel({ color, bands: ['rose', 'blush', 'petal'].includes(name) ? 'soft' : 3, flat: false });
     return [name, material];
@@ -129,9 +157,18 @@ export function mountSakuraScene(host, { onAction, view = 'home', onShot } = {})
     item.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), to.sub(from).normalize());
     return item;
   }
+  const signRepaints = [];
   function label(text, width, height, color, background) {
     const surface = document.createElement('canvas'); surface.width = 768; surface.height = 192;
     const context = surface.getContext('2d');
+    if (paper) {
+      // A marker print lettered in the Doodle faces, painted again once they arrive.
+      paintSign(context, text);
+      const texture = new THREE.CanvasTexture(surface); texture.colorSpace = THREE.SRGBColorSpace; textures.add(texture);
+      signRepaints.push(() => { paintSign(context, text); texture.needsUpdate = true; });
+      const material = new THREE.MeshBasicMaterial({ map: texture }); materials.add(material);
+      return mesh(geometry(new THREE.PlaneGeometry(width, height)), material, [0, 0, 0]);
+    }
     context.fillStyle = background; context.fillRect(0, 0, 768, 192);
     context.fillStyle = color; context.font = '800 75px Arial, "Microsoft YaHei", sans-serif';
     context.textAlign = 'center'; context.textBaseline = 'middle'; context.fillText(text, 384, 101, 705);
@@ -141,29 +178,42 @@ export function mountSakuraScene(host, { onAction, view = 'home', onShot } = {})
     return mesh(geometry(new THREE.PlaneGeometry(width, height)), material, [0, 0, 0]);
   }
 
-  // Eight permanent lights. The moon is the only shadow caster and never moves.
-  const hemi = new THREE.HemisphereLight(NIGHT.hemiSky, NIGHT.hemiGround, PRESETS.night.hemi); scene.add(hemi);
+  // Eight permanent lights at night. The moon is the only shadow caster and never moves.
+  const hemi = new THREE.HemisphereLight(NIGHT.hemiSky, NIGHT.hemiGround, PRESETS.night.hemi);
   const sun = new THREE.DirectionalLight(NIGHT.moon, PRESETS.night.sun);
   sun.position.set(7.5, 12, 2); sun.castShadow = true;
   sun.shadow.mapSize.set(2048, 2048);
   Object.assign(sun.shadow.camera, { left: -12, right: 12, top: 12, bottom: -12, near: .5, far: 32 });
   sun.shadow.bias = -.0004;
   sun.shadow.normalBias = .007;
-  scene.add(sun);
   const fill = new THREE.DirectionalLight(NIGHT.fill, PRESETS.night.fill);
-  fill.position.set(2, 3, 9); scene.add(fill);
-  const shopGlow = new THREE.PointLight(NIGHT.lamp, PRESETS.night.shopGlow, 6.5, 2); shopGlow.position.set(0, 2.35, -.55); scene.add(shopGlow);
-  const festoonL = new THREE.PointLight(NIGHT.bulb, PRESETS.night.festoonL, 4.5, 2); festoonL.position.set(-3.3, 2.7, 2.45); scene.add(festoonL);
-  const festoonR = new THREE.PointLight(NIGHT.bulb, PRESETS.night.festoonR, 4.5, 2); festoonR.position.set(3.4, 2.65, 2.35); scene.add(festoonR);
+  fill.position.set(2, 3, 9);
+  const shopGlow = new THREE.PointLight(NIGHT.lamp, PRESETS.night.shopGlow, 6.5, 2); shopGlow.position.set(0, 2.35, -.55);
+  const festoonL = new THREE.PointLight(NIGHT.bulb, PRESETS.night.festoonL, 4.5, 2); festoonL.position.set(-3.3, 2.7, 2.45);
+  const festoonR = new THREE.PointLight(NIGHT.bulb, PRESETS.night.festoonR, 4.5, 2); festoonR.position.set(3.4, 2.65, 2.35);
   // A par can on the left festoon pole lights the platform of the listening corner.
   const stageSpot = new THREE.SpotLight(NIGHT.stage, PRESETS.night.stageSpot, 9, .38, .5, 2); stageSpot.position.set(-5.82, 3.3, 1.1);
-  stageSpot.target.position.set(-4, .32, .35); scene.add(stageSpot, stageSpot.target);
+  stageSpot.target.position.set(-4, .32, .35);
   // Kept dark except in the record-shop view, where it lights the pull-out table from above.
   const tableSpot = new THREE.SpotLight(NIGHT.table, PRESETS.night.tableSpot, 0, .42, .3, 2); tableSpot.position.set(0, 9.5, -1.1);
-  tableSpot.target.position.set(0, 1.2, -1.3); scene.add(tableSpot, tableSpot.target);
+  tableSpot.target.position.set(0, 1.2, -1.3);
   const rig = { hemi, sun, fill, shopGlow, festoonL, festoonR, stageSpot, tableSpot };
+  // On paper one white key light decides the bands, its cast shadows included (sakura-doodle.js turns it
+  // per camera stop); the classic renderer adds a neutral sky and fill. The night's lamps are not added:
+  // even at intensity 0 a light costs per-pixel work, and a lit lamp would flip pixels to the pass's lit band.
+  function paperLights() {
+    sun.color.setScalar(1); sun.intensity = 1;
+    hemi.color.setScalar(1); hemi.groundColor.set(D.paperDeep); hemi.intensity = 1.25;
+    fill.color.setScalar(1); fill.intensity = .25;
+    if (doodle) { scene.remove(hemi, fill); doodleState.uniforms.key.value = sun.intensity; }
+    else scene.add(hemi, fill);
+  }
+  if (paper) { scene.add(sun); paperLights(); }
+  else scene.add(hemi, sun, fill, shopGlow, festoonL, festoonR, stageSpot, stageSpot.target, tableSpot, tableSpot.target);
 
-  const model = buildSakuraWorld({ THREE, world, mesh, box, cylinder, ball, rod, label, geometry, toon, cel: celMaterials.cel, materials, textures });
+  const model = buildSakuraWorld({ THREE, world, mesh, box, cylinder, ball, rod, label, geometry, toon, cel: celMaterials.cel, materials, textures, look: paper ? 'paper' : 'night' });
+  // On paper the roof casts shadows only over the courtyard: inside, it would hatch the whole shop.
+  model.roof.traverse(part => { if (part.isMesh) part.userData.castsShadow = part.castShadow; });
   // Capture original object bounds before static meshes are moved into batches.
   world.updateMatrixWorld(true);
   // A missing object gives an empty box (the camera then keeps its authored shot) instead of throwing.
@@ -189,8 +239,9 @@ export function mountSakuraScene(host, { onAction, view = 'home', onShot } = {})
       if (Math.abs(canopyCenter.x) < 7 && canopyCenter.z > -5.8) subjectBounds.home.union(canopyBox);
     }
   });
-  batchStaticMeshes(THREE, world, { exclude: [model.roof, model.record, model.shelf, ...model.exploreShadowBlockers] });
+  batchStaticMeshes(THREE, world, { exclude: [model.roof, model.record, model.shelf, model.festoon, ...model.exploreShadowBlockers] });
   batchStaticMeshes(THREE, model.shelf);
+  batchStaticMeshes(THREE, model.festoon);
   const pipeline = new Pipeline(renderer, scene, camera, { pixelBudget: 2e6, maxPixelRatio: 1.5 });
   const ink = pipeline.ink.mat.uniforms;
   ink.uFadeStart.value = 23; ink.uFadeEnd.value = 43; ink.uSkyDepth.value = 65;
@@ -199,12 +250,19 @@ export function mountSakuraScene(host, { onAction, view = 'home', onShot } = {})
   const grade = pipeline.grade.mat.uniforms;
   grade.uVignette.value = .2; grade.uSaturation.value = 1.12; grade.uLift.value = .02; grade.uWarmth.value = .035;
   grade.uShadowTint.value.set(NIGHT.gradeShadow);
+  // The classic renderer on paper: ink lines, no split tone, vignette or haze fade.
+  if (paper) {
+    grade.uVignette.value = 0; grade.uSaturation.value = 1; grade.uLift.value = 0; grade.uWarmth.value = 0;
+    grade.uShadowTint.value.setScalar(1); grade.uLightTint.value.setScalar(1);
+    ink.uInk.value.set(D.ink); ink.uStrength.value = .9; ink.uFadeStart.value = 60; ink.uFadeEnd.value = 90;
+  }
 
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   let lighting = '';
   let intro = null;
   const presetName = key => PRESETS[key] ? key : 'night';
   function applyLighting(key, immediate) {
+    if (paper) return;
     const name = presetName(key);
     // onShot runs at departure and arrival; a repeated preset must not restart the fade.
     if (name === lighting) return;
@@ -220,8 +278,15 @@ export function mountSakuraScene(host, { onAction, view = 'home', onShot } = {})
     if (immediate) shopGlow.position.set(x, y, z);
     else gsap.to(shopGlow.position, { x, y, z, duration: .9, ease: 'power2.inOut' });
   }
-  /** First mount only: the courtyard switches its lamps on once, in under 1.4 seconds. */
+  /** First mount only: the courtyard switches its lamps on once, in under 1.4 seconds. On paper the
+   *  ink draws itself in instead (0.7 seconds). */
   function playIntro() {
+    if (doodle && !introPlayed && !reduced.matches) {
+      introPlayed = true; doodle.uniforms.uLine.value = 0;
+      intro = gsap.timeline({ paused: true, onComplete: () => { intro = null; } }).to(doodle.uniforms.uLine, { value: 1, duration: .7, ease: 'power2.out' });
+      requestAnimationFrame(() => requestAnimationFrame(() => { if (intro && !disposed) intro.play(); }));
+      return;
+    }
     const glow = model.night;
     if (introPlayed || reduced.matches || !glow) return;
     introPlayed = true;
@@ -259,7 +324,7 @@ export function mountSakuraScene(host, { onAction, view = 'home', onShot } = {})
   let frame = 0; let lastTime = 0; let sceneTime = 0; let queuedDraw = 0;
   const pins = [];
   const staticPins = [
-    ['唱片店', new THREE.Vector3(0, 2.6, 1), { type: 'navigate', view: 'explore' }],
+    ['唱片店', new THREE.Vector3(...SHOP_PIN[paper ? 'paper' : 'night']), { type: 'navigate', view: 'explore' }],
   ];
   for (const [title, position, action] of staticPins) {
     const button = document.createElement('button'); button.className = 'world-pin'; button.textContent = title;
@@ -273,10 +338,15 @@ export function mountSakuraScene(host, { onAction, view = 'home', onShot } = {})
     onLabelsChange() { if (!disposed) { projectPins(); if (reduced.matches) requestDraw(); } },
   });
   pins.forEach(pin => framing.watchLabel(pin.button));
-  const music = createSakuraMusic({ world, cel: celMaterials.cel, host: hotspots, canvas, camera, reduced, onAction, framing,
+  const music = createSakuraMusic({ world, cel: celMaterials.cel, host: hotspots, canvas, camera, reduced, onAction, framing, look: paper ? 'paper' : 'night',
     isActive: () => director.active.key === 'explore' && !director.travelling && !framing.layout.blocked,
     onChange() { renderer.shadowMap.needsUpdate = true; if (reduced.matches) requestDraw(); },
   });
+  // The prints are lettered in the Doodle faces: paint them again once the faces have arrived.
+  const stopFonts = paper ? watchPrintFonts(() => {
+    if (disposed) return;
+    model.prints?.repaint(); signRepaints.forEach(redo => redo()); music.repaint?.(); requestDraw();
+  }) : () => {};
   function boundsForShot(key) {
     if (key === 'explore' && width <= 760) return subjectBounds.explorePhone;
     return subjectBounds[key] || subjectBounds.home;
@@ -295,13 +365,23 @@ export function mountSakuraScene(host, { onAction, view = 'home', onShot } = {})
     if (disposed || !visible || !width || !height) return;
     // Reframing can move the camera back on small screens; keep haze beyond the venue.
     const distance = camera.position.distanceTo(courtyardCenter);
-    scene.fog.near = Math.max(24, distance + 7);
-    scene.fog.far = scene.fog.near + 22;
+    if (scene.fog) { scene.fog.near = Math.max(24, distance + 7); scene.fog.far = scene.fog.near + 22; }
     // A short phone leaves a thin band between headline and paper; the far plane follows the camera
     // back so the courtyard is small there, never clipped away.
     const far = Math.max(80, Math.ceil(distance + 32));
     if (camera.far !== far) { camera.far = far; camera.updateProjectionMatrix(); }
-    pipeline.render();
+    if (doodle) { doodle.render(); if (doodleFault) leaveDoodle(); }
+    if (!doodle) pipeline.render();
+  }
+  /** A doodle shader failed: the same paper set from now on, through the classic cel pipeline. */
+  function leaveDoodle() {
+    if (!doodle) return;
+    if (intro) { intro.progress(1); intro = null; }
+    doodleState.active = false; doodle.dispose(); doodle = null;
+    if (renderer.debug) renderer.debug.onShaderError = null;
+    celMaterials.recompile(); paperLights();
+    host.dataset.renderStyle = 'classic';
+    pipeline.setSize(width, height); renderer.shadowMap.needsUpdate = true;
   }
   const projected = new THREE.Vector3();
   function positionPin(button, point, offsetY = 0) {
@@ -325,14 +405,29 @@ export function mountSakuraScene(host, { onAction, view = 'home', onShot } = {})
     onFrame() { projectPins(); if (reduced.matches) requestDraw(); },
     onShot(key, travelling) {
       applyLighting(key, !travelling || reduced.matches);
-      model.roof.visible = key !== 'explore';
+      // Inside the shop (the record table and 我的发现) the roof lifts off, sign and awning with it: a phone or a
+      // portrait tablet frames the cabinet from far enough back that the sign would sit right behind the masthead.
+      model.roof.visible = key === 'home';
+      model.festoon.visible = key !== 'explore';
+      if (paper) {
+        // One key light per stop keeps each subject in the lit band (sakura-doodle.js); it swings
+        // across with the camera, so the shading never jumps at departure.
+        const [x, y, z] = keyLightFor(key);
+        gsap.killTweensOf(sun.position);
+        if (travelling && !reduced.matches) gsap.to(sun.position, { x, y, z, duration: 1, ease: 'power2.inOut', onUpdate() { renderer.shadowMap.needsUpdate = true; } });
+        else sun.position.set(x, y, z);
+        model.roof.traverse(part => { if (part.isMesh) part.castShadow = key === 'home' && part.userData.castsShadow; });
+        if (doodle) doodle.uniforms.uLineWidth.value = lineWidthFor(key, width);
+      }
       model.exploreShadowBlockers.forEach(object => { object.castShadow = key !== 'explore'; });
       // The close view makes room at the back for the pull-out record table.
       model.shelf.position.z = key === 'explore' ? -2.99 : -2.3;
       renderer.shadowMap.needsUpdate = true;
       const distantPortrait = width <= 760 && key === 'home';
-      scene.fog.near = distantPortrait ? 43 : 24; scene.fog.far = distantPortrait ? 78 : 46;
-      ink.uFadeStart.value = distantPortrait ? 42 : 23; ink.uFadeEnd.value = distantPortrait ? 70 : 43;
+      if (!paper) {
+        scene.fog.near = distantPortrait ? 43 : 24; scene.fog.far = distantPortrait ? 78 : 46;
+        ink.uFadeStart.value = distantPortrait ? 42 : 23; ink.uFadeEnd.value = distantPortrait ? 70 : 43;
+      }
       host.dataset.shot = key;
       if (travelling) host.dataset.travelling = 'true'; else delete host.dataset.travelling;
       compass.querySelectorAll('button').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.worldView === key)));
@@ -378,6 +473,8 @@ export function mountSakuraScene(host, { onAction, view = 'home', onShot } = {})
     if (!lastTime) lastTime = now;
     if (now - lastTime >= 1000 / (director.moving || intro?.isActive() ? 60 : 30)) {
       sceneTime += Math.min((now - lastTime) / 1000, .1); lastTime = now;
+      // The ink boils about seven times a second (a new noise seed); reduced motion has no tick, so it stays still.
+      if (doodle && !doodle.lowEnd) { const seed = Math.floor(now / (1000 / 7)) % 64; if (doodle.uniforms.uSeed.value !== seed) doodle.uniforms.uSeed.value = seed; }
       model.update?.(sceneTime); projectPins(); draw();
     }
     frame = requestAnimationFrame(tick);
@@ -385,14 +482,17 @@ export function mountSakuraScene(host, { onAction, view = 'home', onShot } = {})
   function updateMotion() {
     cancelAnimationFrame(frame); frame = 0; lastTime = 0;
     if (disposed || !visible || document.hidden) return;
-    if (reduced.matches) { intro?.progress(1); gsap.getTweensOf([...Object.values(rig), shopGlow.position]).forEach(tween => tween.progress(1)); director.finish(); music.finish(); model.update?.(0); projectPins(); draw(); }
+    if (reduced.matches) { intro?.progress(1); gsap.getTweensOf([...Object.values(rig), shopGlow.position, sun.position]).forEach(tween => tween.progress(1)); director.finish(); music.finish(); model.update?.(0); projectPins(); draw(); }
     else { draw(); frame = requestAnimationFrame(tick); }
   }
   function resize() {
     const bounds = host.getBoundingClientRect();
     width = Math.max(1, Math.round(bounds.width)); height = Math.max(1, Math.round(bounds.height));
-    grade.uVignette.value = width <= 760 ? .12 : .2;
-    framing.measure(director.active.key); director.resize(); pipeline.setSize(width, height); renderer.shadowMap.needsUpdate = true; projectPins(); draw();
+    if (!paper) grade.uVignette.value = width <= 760 ? .12 : .2;
+    framing.measure(director.active.key); director.resize();
+    if (doodle) { doodle.setSize(width, height); doodle.uniforms.uLineWidth.value = lineWidthFor(director.active.key, width); }
+    else pipeline.setSize(width, height);
+    renderer.shadowMap.needsUpdate = true; projectPins(); draw();
   }
   const resizeObserver = new ResizeObserver(resize); resizeObserver.observe(host);
   const intersectionObserver = new IntersectionObserver(entries => { visible = entries[0]?.isIntersecting ?? false; updateMotion(); }, { threshold: .01 });
@@ -401,7 +501,7 @@ export function mountSakuraScene(host, { onAction, view = 'home', onShot } = {})
   resize(); director.go(currentView, { immediate: true, force: true }); model.update?.(0); playIntro(); updateMotion();
   return { setView, setContent, setMusic: music.setMusic, musicControl: music.control, focus, restore, dispose() {
     disposed = true; cancelAnimationFrame(frame); cancelAnimationFrame(queuedDraw); director.dispose();
-    intro?.kill(); gsap.killTweensOf([...Object.values(rig), shopGlow.position]);
+    intro?.kill(); gsap.killTweensOf([...Object.values(rig), shopGlow.position, sun.position]);
     music.dispose();
     framing.dispose();
     resizeObserver.disconnect(); intersectionObserver.disconnect();
@@ -409,7 +509,8 @@ export function mountSakuraScene(host, { onAction, view = 'home', onShot } = {})
     canvas.removeEventListener('pointermove', onPointerMove); canvas.removeEventListener('pointerleave', onPointerLeave); canvas.removeEventListener('click', onCanvasClick);
     world.traverse(object => { if (object.isInstancedMesh) object.dispose(); });
     geometries.forEach(item => item.dispose()); materials.forEach(item => item.dispose()); textures.forEach(item => item.dispose());
-    celMaterials.dispose(); pipeline.dispose(); sun.shadow.dispose(); scene.clear(); renderer.renderLists.dispose(); renderer.dispose(); renderer.forceContextLoss();
-    canvas.remove(); compass.remove(); hotspots.remove(); caption.remove(); host.classList.remove('sakura-scene');
+    stopFonts(); if (renderer.debug) renderer.debug.onShaderError = null;
+    celMaterials.dispose(); pipeline.dispose(); doodle?.dispose(); sun.shadow.dispose(); scene.clear(); renderer.renderLists.dispose(); renderer.dispose(); renderer.forceContextLoss();
+    canvas.remove(); compass.remove(); hotspots.remove(); caption.remove(); host.classList.remove('sakura-scene'); delete host.dataset.renderStyle;
   } };
 }

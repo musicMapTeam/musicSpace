@@ -1,10 +1,11 @@
 // The photo wall's markup. The rules are tested in event-moment-model.test.js; here: what the viewer sees (group headers, the badge, the tags,
-// the meta lines, the ribbon), that the plain wall is exactly today's grid, pagination, and that nothing a person typed can carry markup.
+// the meta lines, and no pipeline ribbon), that the plain wall is exactly today's grid, pagination, and that nothing a person typed can carry markup.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { venueTime } from '../web/js/moment.js';
 import { escape as esc } from '../web/avatar/model.js';
-import { BADGE_TITLE, EMPTY_WALL, EXCHANGED_TAG, GROUP_NOTE, OFFER_LABEL, PIPELINE_RIBBON, UNTIMED_NOTE, UNTIMED_TITLE, photoMetaHtml, wallMarkup } from '../web/event-room/moment-wall.js';
+import * as WALL from '../web/event-room/moment-wall.js';
+import { BADGE_TITLE, EMPTY_WALL, EXCHANGED_TAG, GROUP_NOTE, OFFER_LABEL, UNTIMED_TITLE, photoMetaHtml, wallMarkup } from '../web/event-room/moment-wall.js';
 
 const DATE = '2026.09.26';
 const at = (hour, minute, second = 0) => venueTime(2026, 9, 26, hour, minute, second);
@@ -14,7 +15,7 @@ const photo = (id, ownerId, takenAt, viewpoint, extra = {}) => ({
   createdAt: new Date(Date.UTC(2026, 9, 5, 10, 0, serial++)).toISOString(),
   takenAt, takenSource: takenAt === null ? null : 'manual', viewpoint: viewpoint ?? null, viewpointSource: viewpoint ? 'manual' : null, ...extra,
 });
-const members = [{ id: 'me', name: '我自己' }, { id: 'yao', name: '阿遥·示例' }, { id: 'man', name: '小满·示例' }, { id: 'bei', name: '北屿·示例' }];
+const members = [{ id: 'me', name: '我自己' }, { id: 'yao', name: '阿遥' }, { id: 'man', name: '小满' }, { id: 'bei', name: '北屿' }];
 
 // app.js's own photo button (its photoCards item), which the wall must wrap and never rewrite
 const nameOf = ownerId => members.find(member => member.id === ownerId)?.name || '观众';
@@ -43,7 +44,7 @@ test('plain wall: with no trusted capture time the output is exactly the grid ap
   const fileTime = noTime.map(item => ({ ...item, takenAt: at(21, 47), takenSource: 'file' }));
   assert.equal(wall(fileTime), legacy(fileTime), 'a file modification time is not a trusted time');
   const withAi = noTime.map(item => ({ ...item, viewpoint: 'crowd', viewpointSource: 'ai' }));
-  assert.equal(wall(withAi), legacy(withAi), 'no times: no ribbon either, the wall stays plain');
+  assert.equal(wall(withAi), legacy(withAi), 'no times: the wall stays plain, whoever chose the sides');
   assert.equal(wall([]), legacy([]));
   assert.equal(wall([]), EMPTY_WALL);
   assert.equal(wallMarkup(), EMPTY_WALL);
@@ -65,10 +66,11 @@ test('moment wall: one section per moment, header with the sides, one note, the 
   const sections = sectionsOf(html);
   assert.deepEqual(sections.map(section => section.key), [`m${at(21, 47, 20)}`, `m${at(22, 21, 10)}`]);
   assert.deepEqual(sections.map(section => plain(/<h3[^>]*>([\s\S]*?)<\/h3>/.exec(section.html)[1])), ['21:47 · 同一刻 · 3 个视角：舞台 · 人海 · 细节', '22:21']);
-  assert.equal(GROUP_NOTE, '按拍摄时间分组（相差不超过 3 分钟），规则判断，不是 AI');
+  assert.equal(GROUP_NOTE, '3 分钟内拍下');
   assert.equal(count(plain(html), GROUP_NOTE), 1, 'the note sits under the header of the group that claims 同一刻, not under a lone photo');
   assert.equal(plain(/<p class="moment-group__note">(.*?)<\/p>/.exec(sections[0].html)[1]), GROUP_NOTE);
-  assert.match(sections[0].html, /<p class="moment-group__note">按拍摄时间分组<span class="nowrap">（相差不超过 3 分钟）<\/span>，<span class="nowrap">规则判断，不是 AI<\/span><\/p>/, 'a line never ends with a lone 「AI」');
+  assert.match(sections[0].html, /<p class="moment-group__note"><span class="nowrap">3 分钟内<\/span>拍下<\/p>/, 'the 「3」 never ends a line alone');
+  assert.doesNotMatch(html, /规则判断|不是 AI|按拍摄时间分组/, 'the note says what the group is, not how it was worked out');
   assert.ok(!sections[1].html.includes('moment-group__note'));
   assert.deepEqual(cardsOf(sections[0].html).map(entry => entry.id), ['man-crowd', 'yao-stage', 'me-stage', 'bei-detail'], 'the best other side first, the rest in time order');
   assert.deepEqual(cardsOf(sections[1].html).map(entry => entry.id), ['man-near']);
@@ -92,7 +94,7 @@ test('moment wall: only the best other side carries the 同一刻的另一面 bl
   assert.equal(BADGE_TITLE, '同一刻的另一面');
   assert.equal(plain(/<p class="moment-badge__reason">([\s\S]*?)<\/p>/.exec(badge)[1]), '同一刻 · 21:47，相差不到 1 分钟；你拍舞台，TA 拍人海');
   assert.match(badge, /<span class="nowrap">21:47<\/span>/, 'the reason is moment.js reasonHtml: small units do not break');
-  assert.match(badge, /<button type="button" class="primary" data-exchange-offer="man-crowd" aria-label="和 TA 交换这个视角（小满·示例 的照片）">和 TA 交换这个视角<\/button>/);
+  assert.match(badge, /<button type="button" class="primary" data-exchange-offer="man-crowd" aria-label="和 TA 交换这个视角（小满 的照片）">和 TA 交换这个视角<\/button>/);
   assert.equal(OFFER_LABEL, '和 TA 交换这个视角');
   // the block leads the best card (it is drawn there, so focus meets the button first too): the block, then the item, then its meta line
   assert.ok(owner[0].html.indexOf('data-moment-badge') < owner[0].html.indexOf('class="photo-item"'), 'the block, then the item');
@@ -167,27 +169,27 @@ test('moment wall: photos without a trusted time come last, in their own section
   assert.equal(sections.length, 2);
   assert.equal(plain(/<h3[^>]*>([\s\S]*?)<\/h3>/.exec(sections.at(-1).html)[1]), UNTIMED_TITLE);
   assert.equal(UNTIMED_TITLE, '没有拍摄时间');
-  assert.equal(plain(/<p class="moment-group__note">(.*?)<\/p>/.exec(sections.at(-1).html)[1]), UNTIMED_NOTE);
+  assert.ok(!sections.at(-1).html.includes('moment-group__note'), 'the heading 没有拍摄时间 says it all: no note under it');
+  assert.ok(!/无法按时间配对/.test(html));
   assert.deepEqual(cardsOf(sections.at(-1).html).map(entry => entry.id), ['no-time', 'file-time'], 'in the order given');
   assert.ok(!/data-moment-badge|data-moment-tag|data-exchange-offer/.test(sections.at(-1).html));
   assert.ok(!sections.at(-1).html.includes('同一刻'), 'no claim about the moment for a photo without a time');
   assert.deepEqual(metaLines(sections.at(-1).html), ['视角：人海 · 作者选择', '视角：舞台 · 作者选择'], 'the side is still shown, and a file time is not shown as a capture time');
 });
 
-test('moment wall: the ribbon appears only when some photo carries a side the model suggested', () => {
+test('moment wall: no pipeline ribbon, even when some photo carries a side the model suggested; that photo\'s own line says so', () => {
+  assert.equal(WALL.PIPELINE_RIBBON, undefined, 'the ribbon sentence is gone');
+  assert.equal(WALL.UNTIMED_NOTE, undefined, 'and so is the note under 没有拍摄时间');
   const manual = wall([yao, manCrowd, bei, mine]);
-  assert.equal(count(manual, 'data-moment-ribbon'), 0, 'seeded photos are the authors\' own choices');
-  assert.ok(!manual.includes(PIPELINE_RIBBON));
+  assert.equal(count(manual, 'moment-ribbon'), 0, 'seeded photos are the authors\' own choices');
   const withAi = wall([yao, manCrowd, bei, { ...mine, viewpointSource: 'ai' }]);
-  assert.equal(count(withAi, 'data-moment-ribbon'), 1);
-  assert.ok(withAi.includes('<p class="moment-ribbon" data-moment-ribbon>AI 建议视角 → 规则找同一刻 → 双方同意才交换</p>'));
-  assert.equal(PIPELINE_RIBBON, 'AI 建议视角 → 规则找同一刻 → 双方同意才交换');
-  assert.ok(withAi.indexOf('data-moment-ribbon') < withAi.indexOf('<section'), 'the ribbon is above the first group');
-  assert.deepEqual(metaLines(cardsOf(withAi).find(entry => entry.id === 'me-stage').html), ['拍摄于 21:47 · 视角：舞台 · AI 建议，未改动']);
+  assert.equal(count(withAi, 'moment-ribbon'), 0, 'no strip above the groups');
+  assert.ok(!/AI 建议视角|规则找同一刻|双方同意才交换/.test(withAi));
+  assert.ok(withAi.startsWith('<div class="moment-wall" data-moment-wall><section'), 'the first group opens the wall');
+  assert.deepEqual(metaLines(cardsOf(withAi).find(entry => entry.id === 'me-stage').html), ['拍摄于 21:47 · 视角：舞台 · AI 建议，未改动'], 'the AI byline stays on the photo itself');
   const aiWithoutSide = wall([yao, manCrowd, { ...mine, viewpoint: null, viewpointSource: 'ai' }]);
-  assert.equal(count(aiWithoutSide, 'data-moment-ribbon'), 0, 'a source without a side claims nothing');
-  const onlyBeyondTheWall = wall([yao, manCrowd, mine, { ...bei, viewpointSource: 'ai' }], { shown: 3 });
-  assert.equal(count(onlyBeyondTheWall, 'data-moment-ribbon'), 0, 'only photos on the wall count');
+  assert.equal(count(aiWithoutSide, 'moment-ribbon'), 0);
+  assert.ok(!/AI 建议/.test(aiWithoutSide), 'a source without a side claims nothing');
 });
 
 test('moment wall: respects shown, keeps the 再看 24 张 button, and renders only the photos on the wall', () => {
@@ -252,7 +254,8 @@ test('moment wall: the escaper and renderItem given are the ones used; a missing
 test('moment wall: only attributes app.js already routes or that are the wall\'s own', () => {
   const html = wall([yao, manCrowd, manNear, bei, mine, photo('x', 'yao', null, null)], { renderItem: () => '', exchanged: ['man-near'] });
   const names = new Set([...html.matchAll(/ (data-[a-z-]+)/g)].map(match => match[1]));
-  assert.deepEqual([...names].sort(), ['data-exchange-offer', 'data-moment-badge', 'data-moment-exchanged', 'data-moment-group', 'data-moment-photo', 'data-moment-ribbon', 'data-moment-tag', 'data-moment-wall'].filter(name => names.has(name)).sort());
+  assert.deepEqual([...names].sort(), ['data-exchange-offer', 'data-moment-badge', 'data-moment-exchanged', 'data-moment-group', 'data-moment-photo', 'data-moment-tag', 'data-moment-wall'].filter(name => names.has(name)).sort());
+  assert.ok(!names.has('data-moment-ribbon'), 'the ribbon hook is gone with its text');
   assert.ok(names.has('data-exchange-offer') && names.has('data-moment-group'));
   assert.ok(!/ id="(?!moment-title-)/.test(html), 'the only ids are the section heading ids');
 });

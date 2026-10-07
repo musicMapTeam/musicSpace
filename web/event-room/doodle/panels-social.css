@@ -689,3 +689,6 @@
 @media (prefers-reduced-motion:reduce){
   .frame .community-panel,.frame .private-chat,.frame .room-moderation,.frame .wardrobe,.frame .community-panel *,.frame .private-chat *,.frame .room-moderation *,.frame .wardrobe *,#panel-body .greeting-row *{animation:none!important;transition:none!important}
 }
+
+/* ── 16. words that stay together: a consent never breaks inside 「小人和发言」 (community-panel.js marks it .nowrap) ── */
+.frame .community-panel .nowrap{white-space:nowrap}

@@ -33,7 +33,7 @@ export const META_KEY = 'meta';
 export const SNAPSHOT_FORMAT = 1;
 export const DEFAULT_PERSIST_TIMEOUT_MS = 10_000;
 export const READ_ONLY_CODE = 'READ_ONLY_COPY';
-export const READ_ONLY_MESSAGE = '示例已在另一个标签页打开，这个标签页不能操作。请回到那个标签页，或关闭它后刷新本页。';
+export const READ_ONLY_MESSAGE = '已在另一个标签页打开，请回到那里操作。';
 
 export class StaticRuntimeError extends Error {
   constructor(code, message, details = {}) {

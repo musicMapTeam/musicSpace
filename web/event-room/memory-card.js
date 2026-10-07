@@ -1,10 +1,10 @@
 /** A local download, never a sharing mutation. Only the viewer's own photos
  * from the explicitly reviewed recap page can enter the card. */
-const changed=()=>Object.assign(new Error('所选内容已变化，请重新核对后保存。'),{code:'MEMORY_REVIEW_CHANGED'});
+const changed=()=>Object.assign(new Error('内容有变化，请重新选择。'),{code:'MEMORY_REVIEW_CHANGED'});
 function snapshot(state,selection){
  const user=state.identity?.user,recap=state.recap,room=recap?.room;
  if(state.identity?.status!=='ready'||!user||!room||!recap.loaded||recap.stale||state.connection==='offline'||recap.actorId!==user.id)throw changed();
- if(selection.consent!==true)throw Object.assign(new Error('请确认仅将所选内容下载到你的设备。'),{code:'MEMORY_CONSENT_REQUIRED'});
+ if(selection.consent!==true)throw Object.assign(new Error('请先勾选确认。'),{code:'MEMORY_CONSENT_REQUIRED'});
  const ids=selection.photoIds||[];
  if(!Array.isArray(ids)||ids.length>2||new Set(ids).size!==ids.length)throw Object.assign(new Error('最多选择两张自己的照片。'),{code:'MEMORY_SELECTION_REQUIRED'});
  const photos=ids.map(id=>{const p=recap.photos.items.find(p=>p.id===id);if(!p||p.ownerId!==user.id||p.roomId!==room.id)throw changed();return{id:p.id,roomId:p.roomId,ownerId:p.ownerId,revision:p.revision};});
@@ -28,7 +28,7 @@ export function createMemoryCardExporter({getState,refresh,fetchPhotoBlob,render
    await refresh();current();
    await save(blob,'MusicSpace-memory-'+now().toISOString().slice(0,10)+'.png');
    onState({busy:false,saved:true,error:null});return {downloaded:true};
-  }catch(error){if(!active||active.token!==token||error.code==='MEMORY_CANCELLED'||abort.signal.aborted)return {cancelled:true};onState({busy:false,error:{code:error.code||'MEMORY_EXPORT_FAILED',message:error.message||'暂未保存，恢复连接后可重试。'}});throw error;}
+  }catch(error){if(!active||active.token!==token||error.code==='MEMORY_CANCELLED'||abort.signal.aborted)return {cancelled:true};onState({busy:false,error:{code:error.code||'MEMORY_EXPORT_FAILED',message:error.message||'没保存成功，请重试。'}});throw error;}
   finally{if(active?.token===token){active=null;onState({busy:false});}}
  }
  return {run,cancel,isBusy:()=>!!active};

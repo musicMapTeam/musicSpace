@@ -1,5 +1,6 @@
-// What the static (GitHub Pages) build shows that the server product does not: copy, entry panel, About, the example route and the
-// profile.demo assembly (web/static-runtime/showcase/{copy,entry-panel,about-panel,tour,demo-hooks}.js and demo.css).
+// What the static (GitHub Pages) build shows that the server product does not: copy, entry panel, About, the 「第一次来」 card and the
+// profile.demo assembly (web/static-runtime/showcase/{copy,entry-panel,about-panel,tour,demo-hooks}.js and demo.css), plus the audit of
+// every word they (and the seeded people) can say: no server wording, and no demo wording outside the one About sentence.
 // String markup and fake controllers only: this is NOT a browser, layout, screen-reader or touch test.
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -15,11 +16,17 @@ import { removeTempAfterTests } from './helpers/temp-directory.js';
 import { createAvatarApi } from '../server/avatar-api.js';
 import { createEventApi } from '../server/event-api.js';
 import { createEventController } from '../web/event-client/controller.js';
-import { copy, createCopy, COPY_KEYS, CAST_LABEL, RESET_CONFIRM, MEMORY_ONLY_NOTE, READ_ONLY_NOTE, DEMO_TIME_COPY, TOUR_SAMPLES, TOUR_MORE } from '../web/static-runtime/showcase/copy.js';
+import * as copyModule from '../web/static-runtime/showcase/copy.js';
+import { copy, createCopy, COPY_KEYS, RESET_CONFIRM, MEMORY_ONLY_NOTE, READ_ONLY_NOTE, DEMO_TIME_COPY, TOUR_SAMPLES, TOUR_MORE } from '../web/static-runtime/showcase/copy.js';
 import { entryMarkup, enter } from '../web/static-runtime/showcase/entry-panel.js';
 import { aboutMarkup, roomInviteMarkup, ABOUT_SECTIONS } from '../web/static-runtime/showcase/about-panel.js';
 import { createTour, tourProgress, tourMarkup, TOUR_STEPS, TOUR_STORAGE_KEY } from '../web/static-runtime/showcase/tour.js';
 import { createDemoProfile, randomAvatar, randomName } from '../web/static-runtime/showcase/demo-hooks.js';
+import { ROOM as SEEDED_ROOM, NPCS, SAMPLE_PHOTOS } from '../web/static-runtime/showcase/roster.js';
+import * as npcLines from '../web/static-runtime/showcase/npc-lines.js';
+import { TEXT as BOOT_TEXT } from '../web/static-runtime/boot.js';
+import { READ_ONLY_MESSAGE } from '../web/static-runtime/runtime.js';
+import { rescueScript } from '../scripts/build/static-html-plugin.mjs';
 import { renderAvatarSvg } from '../web/illustrated-avatar/index.js';
 import { TEMPLATES, SKINS, safeAvatar, escape as esc } from '../web/avatar/model.js';
 import { SAME_MOMENT_MS } from '../web/js/moment.js';
@@ -30,13 +37,19 @@ const MODULES = ['copy', 'entry-panel', 'about-panel', 'tour', 'demo-hooks'];
 const sourceOf = name => readFileSync(path.join(showcase, `${name}.js`), 'utf8');
 const css = readFileSync(path.join(root, 'web/static-runtime/demo.css'), 'utf8');
 
-const WITH_AI = '同一晚，你拍了舞台，TA 拍了人海。AI 在本机给你一个视角建议，规则帮你找到同一刻的另一面，双方同意才交换。';
-const WITHOUT_AI = '同一晚，你拍了舞台，TA 拍了人海。规则帮你找到同一刻的另一面，双方同意才交换。';
+const WITH_AI = '同一晚，你拍了舞台，TA 拍了人海。AI 在本机给你一个视角建议，照片墙帮你找到同一刻的另一面，双方同意就交换。';
+const WITHOUT_AI = '同一晚，你拍了舞台，TA 拍了人海。照片墙帮你找到同一刻的另一面，双方同意就交换。';
 
-// Phrases the static build must never show: server wording that is false here (the design's list and the five the build transform
-// rewrites elsewhere), plus claims about real users or a launch. A character disclaimer such as 「不是真人」 is not on the list.
+// Phrases the static build must never show: server wording that is false here (the design's list, the three confirmations the build
+// transform rewrites elsewhere and two sentences the panels dropped), plus claims about real users or a launch.
 const BANNED = ['房间服务已连接', '上传至', '服务器已确认', '服务已收到', '邀请同场朋友', '真实房间',
   '服务已确认', '结果按服务器当前票数决定', '停止等待不会撤销服务器操作', 'AI 认出', '已上线', '正式上线', '真实用户', '真实观众'];
+
+// The product says what the online edition is made of exactly once, in this sentence of the About panel, and nowhere else (user decision
+// 2026-10-07). DEMO_WORDS are the words that sentence may use and nothing else may.
+const DISCLOSURE = '在线版里的场地、观众和照片是演示内容，观众会自动回复。';
+const DEMO_WORDS = /示例|虚构|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器/;
+const PEOPLE = ['阿遥', '小满', '北屿', '林间'];
 
 const deferred = () => { let resolve; let reject; const promise = new Promise((a, b) => { resolve = a; reject = b; }); return { promise, resolve, reject }; };
 const tick = () => new Promise(resolve => setImmediate(resolve));
@@ -44,12 +57,12 @@ const textOf = html => html.replace(/<[^>]*>/g, '');
 const count = (html, pattern) => (html.match(pattern) || []).length;
 
 const WORLD = { people: {
-  yao: { id: 'u-yao', token: 'SECRET-TOKEN-yao', npc: { key: 'yao', name: '阿遥·示例' } },
-  man: { id: 'u-man', token: 'SECRET-TOKEN-man', npc: { key: 'man', name: '小满·示例' } },
-  bei: { id: 'u-bei', token: 'SECRET-TOKEN-bei', npc: { key: 'bei', name: '北屿·示例' } },
-  lin: { id: 'u-lin', token: 'SECRET-TOKEN-lin', npc: { key: 'lin', name: '林间·示例' } },
+  yao: { id: 'u-yao', token: 'SECRET-TOKEN-yao', npc: { key: 'yao', name: '阿遥' } },
+  man: { id: 'u-man', token: 'SECRET-TOKEN-man', npc: { key: 'man', name: '小满' } },
+  bei: { id: 'u-bei', token: 'SECRET-TOKEN-bei', npc: { key: 'bei', name: '北屿' } },
+  lin: { id: 'u-lin', token: 'SECRET-TOKEN-lin', npc: { key: 'lin', name: '林间' } },
 }, room: { id: 'room-1', code: 'ABCDEFGHIJKL' } };
-const SAMPLES = [{ id: 'sample-crowd', label: '人海 · 示例照片', note: 'n1', thumbUrl: './demo/sample-crowd.jpg' }, { id: 'sample-stage', label: '舞台 · 示例照片', note: 'n2', thumbUrl: './demo/sample-stage.jpg' }];
+const SAMPLES = [{ id: 'sample-crowd', label: '人海那张', thumbUrl: './demo/sample-crowd.jpg' }, { id: 'sample-stage', label: '舞台那张', thumbUrl: './demo/sample-stage.jpg' }];
 const BUILD = { version: '0.22.0-rc.1', commit: 'abc1234', builtAt: '2026-10-06T02:15:30.123Z' };
 
 /** The client calls enter() uses, recorded in order; each can be made to fail. */
@@ -79,21 +92,21 @@ test('copy has exactly the keys of design 10.3 and the specified words', () => {
   assert.deepEqual(Object.keys(copy), [...COPY_KEYS]);
   assert.deepEqual(Object.keys(off), [...COPY_KEYS]);
   assert.deepEqual({ ...off }, {
-    statusReady: '示例现场 · 在本页运行',
-    statusPreparing: '正在布置示例现场…',
-    reconnectLabel: '重新连接示例现场',
-    reconnectToast: '示例现场已就绪',
+    statusReady: '现场进行中',
+    statusPreparing: '正在布置现场…',
+    reconnectLabel: '重新连接',
+    reconnectToast: '已重新连接',
     presenceTitleLobby: '同一刻，另一面。',
     presenceCopyLobby: WITHOUT_AI,
     presenceTitleAlone: '先留下你的这一晚。',
     presenceCopyAlone: '放一张照片，看看你拍到的是哪一面。',
     presenceTitleRoom: '同一晚，各自的视角。',
     presenceCopyRoom: '先放一张你的照片，看看你拍到的是哪一面。',
-    joinLabelLobby: '进入示例现场',
-    joinLabelRoom: '本场与示例说明',
-    trackNote: '原创示例声景 · 不代表真实演出',
-    evidenceButton: '示例站 · 数据只存在这个浏览器 · 关于这个示例',
-    nonHttpToast: '请通过网址打开；离线 HTML 无法运行示例现场',
+    joinLabelLobby: '进入现场',
+    joinLabelRoom: '本场信息',
+    trackNote: '本场原创声景',
+    evidenceButton: '关于 Music Space',
+    nonHttpToast: '请用网址打开 Music Space',
     keepRoomInUrl: true,
     pollMs: 2000,
     exchangePollMs: 2000,
@@ -130,14 +143,14 @@ test('the exported copy object reads the real classifier: no model here, then a 
 });
 
 test('the shared strings say what they are for', () => {
-  assert.equal(CAST_LABEL, '示例角色 · 自动回复');
-  assert.match(RESET_CONFIRM, /清除/);
-  assert.match(RESET_CONFIRM, /确定/);
-  assert.equal(MEMORY_ONLY_NOTE, '示例数据只保存在本页，刷新会重置');
-  assert.equal(READ_ONLY_NOTE, '示例已在另一个标签页打开，这里不能操作');
-  assert.deepEqual({ ...DEMO_TIME_COPY }, { label: '演示用：把拍摄时间设成示例现场的 21:47', note: '你填写的时间 · 演示用' });
-  assert.deepEqual(TOUR_SAMPLES.map(sample => [sample.id, sample.label]), [['sample-crowd', '人海 · 示例照片'], ['sample-stage', '舞台 · 示例照片']]);
-  assert.deepEqual([...TOUR_MORE], ['我的空间', '音乐社群', '专辑世界杯', '一起玩', '音乐探索']);
+  assert.equal('CAST_LABEL' in copyModule, false, 'no label marks the seeded people any more');
+  assert.equal(RESET_CONFIRM, '重新开始会清除你的昵称、小人、照片和交换，确定吗？');
+  assert.equal(MEMORY_ONLY_NOTE, '这个浏览器不能保存，刷新后会重新开始');
+  assert.equal(READ_ONLY_NOTE, '已在另一个标签页打开，这里只能看');
+  assert.deepEqual({ ...DEMO_TIME_COPY }, { label: '把拍摄时间设成 21:47', note: '你填写的时间' });
+  assert.deepEqual(TOUR_SAMPLES.map(sample => [sample.id, sample.label]), [['sample-crowd', '人海那张'], ['sample-stage', '舞台那张']]);
+  assert.deepEqual(TOUR_SAMPLES.map(sample => [sample.id, sample.label]), SAMPLE_PHOTOS.map(sample => [sample.id, sample.label]), 'the tour offers the roster\'s own photos by the same names');
+  assert.deepEqual([...TOUR_MORE], ['我的空间', '乐迷社群', '专辑世界杯', '一起玩', '音乐探索']);
 });
 
 // ---------------------------------------------------------------------------------------------------------------------------
@@ -148,16 +161,16 @@ function everything() {
   const out = new Map();
   const add = (label, text) => out.set(label, String(text));
   for (const on of [true, false]) for (const [key, value] of Object.entries({ ...createCopy({ aiAvailable: () => on }) })) add(`copy.${key} (model ${on ? 'on' : 'off'})`, value);
-  for (const [name, value] of Object.entries({ CAST_LABEL, RESET_CONFIRM, MEMORY_ONLY_NOTE, READ_ONLY_NOTE, ...DEMO_TIME_COPY })) add(`copy.js ${name}`, value);
+  for (const [name, value] of Object.entries({ RESET_CONFIRM, MEMORY_ONLY_NOTE, READ_ONLY_NOTE, ...DEMO_TIME_COPY })) add(`copy.js ${name}`, value);
   add('copy.js TOUR_MORE', TOUR_MORE.join('、'));
   add('copy.js TOUR_SAMPLES', TOUR_SAMPLES.map(sample => sample.label).join(' '));
   const avatar = randomAvatar(() => 0.5);
-  for (const known of [null, { name: '访客1', avatar }]) for (const preparing of [false, true]) for (const castNames of [[], ['阿遥·示例', '小满·示例']]) for (const participation of ['open', 'quiet']) {
+  for (const known of [null, { name: '访客1', avatar }]) for (const preparing of [false, true]) for (const castNames of [[], ['阿遥', '小满']]) for (const participation of ['open', 'quiet']) {
     add(`entry known=${Boolean(known)} preparing=${preparing} cast=${castNames.length} ${participation}`,
       entryMarkup({ state: { identity: known ? { status: 'ready', user: known } : { status: 'missing' } }, esc, avatarSvg: renderAvatarSvg, defaults: { name: '访客1234', avatar, preparing, castNames, participation } }));
   }
   for (const persistent of [true, false]) for (const readOnly of [false, true]) for (const ai of ['on', 'unsupported', 'page', 'failed']) for (const channel of ['', 'pages', 'preview']) {
-    add(`about persistent=${persistent} readOnly=${readOnly} ai=${ai} channel=${channel}`, aboutMarkup({ build: BUILD, castNames: ['阿遥·示例', '小满·示例', '北屿·示例', '林间·示例'], persistent, channel, readOnly, ai }));
+    add(`about persistent=${persistent} readOnly=${readOnly} ai=${ai} channel=${channel}`, aboutMarkup({ build: BUILD, castNames: PEOPLE, persistent, channel, readOnly, ai }));
   }
   add('about without anything', aboutMarkup({ ai: 'on' }));
   add('roomInvite showcase', roomInviteMarkup({ isShowcase: true }));
@@ -167,6 +180,20 @@ function everything() {
     const progress = tourProgress({ stage: 'room', ownPhotos: photo ? 1 : 0, hasPairing: other, exchanges: { total: exchange ? 1 : 0 }, friends: people ? 1 : 0, panel: null }, { seenWall: other });
     add(`tour ${[photo, other, exchange, people, collapsed]}`, tourMarkup({ progress, collapsed, esc }));
   }
+  return out;
+}
+
+/** What the seeded people, the boot and the rescue overlay say: names, the room, the lines, the photo labels, banners, toasts, errors. */
+function spoken() {
+  const out = new Map();
+  const add = (label, text) => out.set(label, String(text));
+  add('roster ROOM', `${SEEDED_ROOM.title} ${SEEDED_ROOM.venue}`);
+  for (const npc of NPCS) { add(`roster ${npc.key} name`, npc.name); if (npc.line) add(`roster ${npc.key} line`, npc.line); }
+  for (const sample of SAMPLE_PHOTOS) add(`roster sample ${sample.id}`, Object.values(sample).join(' '));
+  for (const [name, value] of Object.entries(npcLines)) if (typeof value !== 'function') add(`npc-lines ${name}`, JSON.stringify(value));
+  for (const [name, value] of Object.entries(BOOT_TEXT)) add(`boot TEXT.${name}`, value);
+  add('runtime READ_ONLY_MESSAGE', READ_ONLY_MESSAGE);
+  add('rescue overlay', rescueScript());
   return out;
 }
 
@@ -182,6 +209,20 @@ test('no banned phrase appears in the source of the demo modules', () => {
     for (const phrase of BANNED) assert.ok(!source.includes(phrase), `${name}.js contains the banned phrase 「${phrase}」`);
   }
   for (const phrase of BANNED) assert.ok(!css.includes(phrase), `demo.css contains the banned phrase 「${phrase}」`);
+});
+
+test('no demo word appears anywhere but in the one About sentence, and that sentence is in About only, exactly once', () => {
+  const corpus = new Map([...everything(), ...spoken()]);
+  assert.ok(corpus.size > 120, 'the audit covers the rendered states and the exports');
+  for (const [label, text] of corpus) {
+    const about = /^about/.test(label);
+    assert.equal(text.split(DISCLOSURE).length - 1, about ? 1 : 0, `${label}: the disclosure ${about ? 'exactly once' : 'never'}`);
+    // The avatar drawing comes from web/illustrated-avatar and sits in an aria-hidden box here: only the words of these modules are audited.
+    const rest = text.replace(DISCLOSURE, '').replace(/<svg\b[\s\S]*?<\/svg>/g, '');
+    assert.doesNotMatch(rest, DEMO_WORDS, `${label} says 「${rest.match(DEMO_WORDS)?.[0]}」`);
+    for (const word of ['不代表', '不是到场认证', '原件仍归', '不订阅营销', '规则判断', '分身', '核对', '原操作', '原请求', '长期空间', '本地体验版']) assert.ok(!rest.includes(word), `${label} says 「${word}」`);
+  }
+  for (const npc of NPCS) assert.doesNotMatch(npc.name, /·|示例/, `${npc.key} is named plainly`);
 });
 
 test('AI words appear only where the model may be spoken of', () => {
@@ -205,46 +246,46 @@ test('entry markup: one required consent checkbox, participation open by default
   assert.equal(count(html, /<input\b[^>]*\brequired\b/g), 2, 'the nickname and the consent are the only required inputs');
   const consent = html.match(/<input name="consent" type="checkbox" required>/);
   assert.ok(consent, 'the consent checkbox is named consent, is a checkbox and is required');
-  assert.match(html, /我愿意向本场成员（示例角色）展示我的昵称和小人。数据只存在这个浏览器里。/);
+  assert.match(html, /<label class="consent"><input name="consent" type="checkbox" required><span>我愿意向本场成员展示我的<span class="nowrap">昵称和小人<\/span><\/span><\/label>/);
+  assert.equal(textOf(html.match(/<label class="consent">([\s\S]*?)<\/label>/)[1]), '我愿意向本场成员展示我的昵称和小人', 'the consent the Node entry asks for, word for word');
   assert.match(html, /<input type="radio" name="participation" value="open" checked>/);
   assert.doesNotMatch(html, /value="quiet" checked/);
   assert.match(html, /value="quiet"/);
-  assert.match(html, /愿意打招呼<small>别人可以招手；成为朋友仍需我明确接受。<\/small>/);
-  assert.match(html, /安静参与<small>照样保存和分享照片，不接收新招呼。<\/small>/);
-  assert.match(html, /<small class="eyebrow">示例现场 · 回声现场（虚构）<\/small><h2>带上小人，进入示例现场<\/h2>/);
+  assert.match(html, /愿意打招呼<small>别人可以向我招手<\/small>/);
+  assert.match(html, /安静参与<small>照片照常分享，不接新招呼<\/small>/);
+  assert.match(html, /<small class="eyebrow">月台 Livehouse · 回声现场<\/small><h2>带上小人，进入现场<\/h2><p>进去后先放一张今晚的照片，看看你拍到的是哪一面。<\/p>/);
   assert.match(html, /<input name="name" maxlength="18" value="访客2468" autocomplete="nickname" required>/);
+  assert.match(html, /<p class="fine">入场后随时能换装。<\/p>/);
   assert.match(html, /<button type="button" class="quiet" data-open="wardrobe">现在换个造型 ↗<\/button>/);
-  assert.match(html, /<button class="primary" type="submit">进入示例现场<\/button>/);
+  assert.match(html, /<button class="primary" type="submit">进入现场<\/button>/);
   assert.match(html, /<div class="demo-entry-actions"><label class="consent">[^]*?<\/label><button class="primary" type="submit">[^<]*<\/button><p class="fine demo-entry-status" role="status"><\/p><\/div>/, 'the consent, the button and its status line stay together (the sheet pins them to its bottom)');
-  assert.match(html, /<button type="button" class="quiet" data-open="about">关于这个示例<\/button>/);
-  assert.match(html, /<details class="demo-entry-more"><summary>自己开个房<\/summary>[\s\S]*data-open="create"/);
-  assert.match(html, /没有服务器，也没有账号/);
+  assert.match(html, /<\/div><button type="button" class="quiet" data-open="about">关于 Music Space<\/button><details/, 'the About button follows the pinned footer: no fine print in between');
+  assert.match(html, /<details class="demo-entry-more"><summary><span>我是 Livehouse \/ 主办方，<span class="nowrap">开个房<\/span><\/span><\/summary><p class="fine">为每一场演出开一个房间；散场后，乐迷留在你的乐迷社群里。<\/p><button type="button" class="quiet" data-open="create">开一个房间<\/button><\/details><\/form>$/);
+  assert.equal(textOf(html.match(/<summary>([\s\S]*?)<\/summary>/)[1]), '我是 Livehouse / 主办方，开个房', 'the host entry the Node page and the recap use, word for word');
   assert.match(html, /<div aria-hidden="true"><svg data-preview="1"><\/svg><\/div>/);
   assert.deepEqual(seen, [[avatar, { view: 'quarter', width: 92, height: 192 }]]);
-  const paragraph = textOf(html.match(/<p>(同场的[\s\S]*?)<\/p>/)[1]);
-  assert.match(paragraph, /虚构/);
-  assert.match(paragraph, /自动回复/);
-  assert.match(paragraph, /不是真人/);
-  assert.match(paragraph, /先放一张你的照片/);
+  assert.doesNotMatch(html, /虚构|自动回复|不是真人|没有服务器|示例/, 'the entry says nothing about what the room is made of');
+  assert.equal(count(html, /class="fine"/g), 2, 'two short hints and no fine print: the look line and the host line');
 });
 
-test('entry markup: quiet default, preparing disables only the submit button, names are listed and escaped', () => {
+test('entry markup: quiet default, preparing disables only the submit button, the nickname is escaped and nobody is named', () => {
   const quiet = entryMarkup({ esc, avatarSvg: () => '', defaults: { name: 'a', participation: 'quiet' } });
   assert.match(quiet, /value="quiet" checked/);
   assert.doesNotMatch(quiet, /value="open" checked/);
   assert.equal(count(quiet, /type="radio"/g), 2);
   const preparing = entryMarkup({ esc, avatarSvg: () => '', defaults: { name: 'a', preparing: true } });
-  assert.match(preparing, /<button class="primary" type="submit" disabled>进入示例现场<\/button>/);
-  assert.match(preparing, /role="status">正在布置示例现场…<\/p>/);
+  assert.match(preparing, /<button class="primary" type="submit" disabled>进入现场<\/button>/);
+  assert.match(preparing, /role="status">正在布置现场…<\/p>/);
+  assert.equal(copy.statusPreparing, '正在布置现场…', 'the same words as the header pill');
   assert.equal(count(preparing, /\bdisabled\b/g), 1);
   const ready = entryMarkup({ esc, avatarSvg: () => '', defaults: { name: 'a', preparing: false } });
   assert.doesNotMatch(ready, /\bdisabled\b/);
   assert.match(ready, /role="status"><\/p>/, 'the status line keeps its place so nothing moves when it fills');
-  const hostile = entryMarkup({ esc, avatarSvg: () => '', defaults: { name: '"><script>alert(1)</script>', castNames: ['<img src=x onerror=alert(1)>', '小满·示例'] } });
+  const hostile = entryMarkup({ esc, avatarSvg: () => '', defaults: { name: '"><script>alert(1)</script>', castNames: ['<img src=x onerror=alert(1)>', '小满'] } });
   assert.doesNotMatch(hostile, /<script|<img/);
   assert.match(hostile, /value="&quot;&gt;&lt;script&gt;alert\(1\)&lt;\/script&gt;"/);
-  assert.match(hostile, /同场的&lt;img src=x onerror=alert\(1\)&gt;、小满·示例都是虚构的/);
-  assert.match(entryMarkup({ esc, avatarSvg: () => '', defaults: { name: 'a' } }), /同场的几位示例角色都是虚构的/);
+  assert.doesNotMatch(hostile, /img src|小满/, 'names handed in are not listed: one of the people arrives only after the visitor');
+  assert.equal(hostile, entryMarkup({ esc, avatarSvg: () => '', defaults: { name: '"><script>alert(1)</script>' } }));
   assert.doesNotThrow(() => entryMarkup());
 });
 
@@ -254,7 +295,7 @@ test('entry markup shows the identity this browser already holds and does not of
   const html = entryMarkup({ state: { identity: { status: 'ready', user } }, esc, avatarSvg: avatar => { seen.push(avatar); return ''; }, defaults: { name: '访客1', avatar: randomAvatar(() => 0.1) } });
   assert.match(html, /<input name="name" maxlength="18" value="阿晴" autocomplete="nickname" required readonly>/);
   assert.deepEqual(seen, [user.avatar]);
-  assert.match(html, /已经有你的小人/);
+  assert.match(html, /<p class="fine">已经有你的小人了，直接带它进去。<\/p>/);
 });
 
 test('enter(): nothing is called without consent === true', async () => {
@@ -262,7 +303,7 @@ test('enter(): nothing is called without consent === true', async () => {
     const controller = fakeController();
     let awaited = false;
     const ready = { then(resolve) { awaited = true; resolve(); } };
-    await assert.rejects(() => enter({ name: 'a', avatar: {}, participation: 'open', consent }, controller, { ready, roomCode: 'ABCDEFGHIJKL' }), error => error.code === 'JOIN_CONSENT_REQUIRED');
+    await assert.rejects(() => enter({ name: 'a', avatar: {}, participation: 'open', consent }, controller, { ready, roomCode: 'ABCDEFGHIJKL' }), error => error.code === 'JOIN_CONSENT_REQUIRED' && error.message === '请先勾选同意，再进入现场。');
     assert.deepEqual(controller.calls, [], `consent ${String(consent)}`);
     assert.equal(awaited, false, 'it does not even wait for the room');
   }
@@ -309,7 +350,7 @@ test('enter(): the first error is thrown unchanged and nothing is retried or con
   const controller = fakeController();
   await assert.rejects(() => enter({ name: 'a', avatar: {}, consent: true }, controller, { ready: Promise.reject(boom), roomCode: 'ABCDEFGHIJKL' }), caught => caught === boom);
   assert.deepEqual(controller.calls, []);
-  await assert.rejects(() => enter({ name: 'a', avatar: {}, consent: true }, fakeController(), { ready: Promise.resolve(), roomCode: () => null }), error => error.code === 'SHOWCASE_NOT_READY');
+  await assert.rejects(() => enter({ name: 'a', avatar: {}, consent: true }, fakeController(), { ready: Promise.resolve(), roomCode: () => null }), error => error.code === 'SHOWCASE_NOT_READY' && error.message === '现场还在布置，请稍后再试。');
 });
 
 // ---------------------------------------------------------------------------------------------------------------------------
@@ -336,7 +377,7 @@ async function realRoom(t) {
   };
   const host = client().controller;
   await host.connect();
-  await host.establishIdentity({ name: '阿遥·示例', avatar: randomAvatar(() => 0.2) });
+  await host.establishIdentity({ name: '阿遥', avatar: randomAvatar(() => 0.2) });
   const room = (await host.createRoom({ title: 'Synthetic show', venue: 'Synthetic venue', songId: 'late-train', joinConsent: true, participation: 'open' })).room;
   return { room, client, host };
 }
@@ -353,7 +394,7 @@ test('enter() through the real client: identity, preview, join, with the partici
   assert.equal(state.identity.user.name, '访客1234');
   assert.deepEqual(state.identity.user.avatar, demo.defaultAvatar, 'the random look is a valid avatar for the worker as it stands');
   assert.equal(state.room.joined, true);
-  assert.deepEqual(state.members.map(member => [member.name, member.participation]), [['阿遥·示例', 'open'], ['访客1234', 'quiet']]);
+  assert.deepEqual(state.members.map(member => [member.name, member.participation]), [['阿遥', 'open'], ['访客1234', 'quiet']]);
   assert.equal(joined.room.code, room.code, 'the join result is returned');
   assert.deepEqual(calls.filter(call => !call.startsWith('GET /api/event/rooms/')), ['GET /api/event/health', 'POST /api/avatar/session', `GET /api/event/preview/${room.code}`, `POST /api/event/rooms/${room.code}/join`]);
 });
@@ -396,95 +437,88 @@ test('enter() through the real client: without consent not one request is made',
 // about-panel.js
 // ---------------------------------------------------------------------------------------------------------------------------
 
-test('About has every section, in order, with the facts the design lists', () => {
-  const html = aboutMarkup({ build: BUILD, castNames: WORLD.people ? Object.values(WORLD.people).map(person => person.npc.name) : [], persistent: true, channel: 'pages', readOnly: false, ai: 'on' });
+test('About has every section, in order, in the words of the plan', () => {
+  const html = aboutMarkup({ build: BUILD, castNames: PEOPLE, persistent: true, channel: 'pages', readOnly: false, ai: 'on' });
   const headings = [...html.matchAll(/<section class="demo-about-section" data-about="([a-z]+)"><h3>([^<]+)<\/h3>/g)].map(match => [match[1], match[2]]);
   assert.deepEqual(headings, [...ABOUT_SECTIONS.map(([id, title]) => [id, title])]);
-  assert.deepEqual(headings.map(item => item[1]), ['这是什么', '同场的人', '照片', 'AI', '规则', '数据', '版本']);
-  const section = id => textOf(html.match(new RegExp(`data-about="${id}">([\\s\\S]*?)</section>`))[1]);
-  assert.match(section('what'), /SQLite 被编译成 WebAssembly/);
-  assert.match(section('what'), /没有服务器，没有账号，什么都不会上传/);
-  assert.match(section('cast'), /阿遥·示例、小满·示例、北屿·示例、林间·示例/);
-  assert.match(section('cast'), /4 位角色/);
-  assert.match(section('cast'), /自动回复，不是真人/);
-  assert.match(section('cast'), /招呼要双方都愿意/);
-  assert.match(section('cast'), /交换要照片的主人同意/);
-  assert.match(section('cast'), /选了安静参与的人不能被招呼/);
-  assert.match(section('cast'), /他们的回应是固定的规则，不是 AI：比如你提议交换的视角和 TA 自己的一样，TA 会婉拒/);
-  assert.match(section('cast'), /不会学习/);
-  assert.match(section('cast'), /不会记录或发送任何关于你的信息/);
-  assert.match(section('photos'), /2026 年 9 月 26 日生成的虚构演唱会 AI 图像的裁切/);
-  assert.match(section('photos'), /你放的照片只留在这个浏览器里，不会上传/);
-  for (const fact of ['TinyCLIP-ViT-8M/16', 'MIT', 'int8', '8.8 MB', 'onnxruntime-web', 'WASM', '舞台', '人海', '身边', '细节', '「不确定」', '约 10 MB', '后台', '省流量', '公开的演唱会照片', '不能当作产品的准确率']) assert.ok(section('ai').includes(fact), `the AI section says ${fact}`);
-  assert.match(section('rules'), /相差不超过 3 分钟/);
-  assert.match(section('rules'), /EXIF/);
-  assert.match(section('rules'), /自己填写的时间/);
-  assert.match(section('rules'), /规则计算，不是 AI/);
-  assert.match(section('data'), /IndexedDB/);
-  assert.match(section('data'), /重置示例/);
-  assert.match(section('data'), /换一台设备也看不到/);
-  assert.match(section('data'), /完整的房间服务/);
-  assert.match(section('data'), /第二个标签页.*只读/);
-  assert.match(section('version'), /版本 0\.22\.0-rc\.1 · 提交 abc1234 · 构建于 2026-10-06 02:15 UTC · 渠道 pages/);
-  assert.match(section('version'), /早期原型/);
-  assert.doesNotMatch(html, /href=/, 'About links nowhere (the early prototype is named, never linked)');
-  assert.doesNotMatch(html, /classic/);
-  assert.equal(count(html, /早期原型/g), 1);
-  assert.equal(count(html, /0\.16/g), 1);
+  assert.deepEqual(headings, [['what', '这是什么'], ['livehouse', '给 Livehouse'], ['ai', 'AI'], ['privacy', '隐私'], ['data', '在线版'], ['version', '版本']]);
+  assert.ok(html.startsWith('<small class="eyebrow">同一刻，另一面</small><h2>关于 Music Space</h2><p class="demo-about-lead">同一晚，你拍了舞台，TA 拍了人海。Music\u00a0Space 让这两面在同一个房间里相遇。</p><div class="demo-about">'), 'the brand never breaks across two lines');
+  const section = id => html.match(new RegExp(`data-about="${id}"><h3>[^<]+</h3>([\\s\\S]*?)</section>`))[1];
+  assert.equal(section('what'), '<p>同场的人带着手绘小人，走进同一个三维 Livehouse 房间。放一张今晚的照片，照片墙会把同一刻、拍到另一面的照片排在一起；双方都同意，就能交换。还能向同场的人招手、私聊，一起玩专辑世界杯。散场后，回顾和纪念卡都留着。</p>');
+  assert.equal(section('livehouse'), '<p>为每一场演出开一个房间，乐迷带着小人入场。散场后，乐迷留在你的乐迷社群里，下一场的预告也直接发在那里。</p>');
+  assert.equal(section('ai'), '<p>放照片时，AI 在你的设备上建议它拍的是舞台、人海、身边还是细节；没把握就说「不确定」，由你来选。</p><p class="fine">第一次进入现场后，模型（约 10 MB）会在后台下载；开了省流量，就等你放照片时再下载。</p>');
+  assert.equal(section('privacy'), '<p>不用真名，也不用手机号。照片给谁看由你决定，放进来时会缩小、去掉位置信息。交换照片、成为朋友，都要双方同意。</p>');
+  assert.equal(section('data'), `<p>${DISCLOSURE}</p><button type="button" class="quiet demo-reset" data-demo-reset data-confirm="${esc(RESET_CONFIRM)}">重新开始</button>`);
+  assert.equal(section('version'), '<p class="demo-about-stamp" data-version="0.22.0-rc.1" data-commit="abc1234" data-built-at="2026-10-06 02:15 UTC" data-channel="pages"><span class="nowrap">版本 <code>0.22.0</code></span></p>');
+  assert.equal(textOf(section('version')), '版本 0.22.0', 'a visitor reads the release; the whole stamp is in data-* for QA');
+  assert.equal(count(html, new RegExp(DISCLOSURE, 'g')), 1, 'the one disclosure of the product, once');
+  assert.ok(html.endsWith('</section></div>'));
 });
 
-test('About: the capture-time window in the text is the rule the product uses', () => {
-  assert.equal(SAME_MOMENT_MS, 3 * 60_000);
-  assert.match(textOf(aboutMarkup({ ai: 'on' })), /拍摄时间相差不超过 3 分钟/);
+test('About keeps to the product: no cast, no photo source, no rule internals, no storage engine, no model name, no prototype, no link', () => {
+  for (const ai of ['on', 'unsupported', 'page', 'failed']) for (const readOnly of [false, true]) for (const persistent of [true, false]) {
+    const html = aboutMarkup({ build: BUILD, castNames: PEOPLE, persistent, channel: 'preview', readOnly, ai });
+    const label = `ai=${ai} readOnly=${readOnly} persistent=${persistent}`;
+    for (const name of PEOPLE) assert.ok(!html.includes(name), `${label}: names nobody (${name})`);
+    for (const word of ['AI 图像', '生成', `${SAME_MOMENT_MS / 60_000} 分钟`, 'EXIF', 'IndexedDB', 'SQLite', 'WebAssembly', 'TinyCLIP', 'onnxruntime', 'int8', '早期原型', '0.16', '准确率', '规则计算']) assert.ok(!html.includes(word), `${label}: does not say ${word}`);
+    assert.doesNotMatch(html, /href=|classic|<a\b/, `${label}: links nowhere`);
+  }
 });
 
-test('About escapes the build stamp, the channel and the names', () => {
+test('About escapes the build stamp and the channel, and lists no names whatever it is given', () => {
   const html = aboutMarkup({ build: { version: '<b>1</b>', commit: '"><img src=x onerror=alert(1)>', builtAt: '<script>alert(2)</script>' }, castNames: ['<i>阿遥</i>'], channel: '<svg onload=alert(3)>', ai: 'on' });
   assert.doesNotMatch(html, /<script|<img|<svg|<b>|<i>/);
-  for (const escaped of ['&lt;b&gt;1&lt;/b&gt;', '&quot;&gt;&lt;img src=x onerror=alert(1)&gt;', '&lt;script&gt;alert(2)&lt;/script&gt;', '&lt;i&gt;阿遥&lt;/i&gt;', '&lt;svg onload=alert(3)&gt;']) assert.ok(html.includes(escaped), escaped);
+  for (const escaped of ['&lt;b&gt;1&lt;/b&gt;', '&quot;&gt;&lt;img src=x onerror=alert(1)&gt;', '&lt;script&gt;alert(2)&lt;/script&gt;', '&lt;svg onload=alert(3)&gt;']) assert.ok(html.includes(escaped), escaped);
+  assert.ok(!html.includes('阿遥'), 'the castNames option is ignored');
   assert.doesNotThrow(() => aboutMarkup({ ai: 'on' }));
-  assert.match(aboutMarkup({ ai: 'on' }), /这次构建没有留下版本信息/);
-  assert.match(aboutMarkup({ castNames: [], ai: 'on' }), /同场的几位角色都是虚构的/);
-  assert.match(aboutMarkup({ build: { version: '1', builtAt: '2026-10-06' }, ai: 'on' }), /构建于 <code>2026-10-06<\/code>/);
+  assert.match(aboutMarkup({ ai: 'on' }), /<p class="demo-about-stamp">这次构建没有留下版本信息<\/p>/);
+  assert.equal(aboutMarkup({ castNames: [], ai: 'on' }), aboutMarkup({ ai: 'on' }));
+  assert.match(aboutMarkup({ build: { version: '1', builtAt: '2026-10-06' }, ai: 'on' }), /data-version="1" data-built-at="2026-10-06"><span class="nowrap">版本 <code>1<\/code><\/span><\/p>/);
+  assert.match(aboutMarkup({ build: { version: '0.22.0-rc.2+abc' }, ai: 'on' }), /版本 <code>0\.22\.0<\/code>/, 'a pre-release or build suffix is not shown');
 });
 
 test('About: the preview label, the memory-only warning, the other-tab note and the reset button', () => {
   const plain = aboutMarkup({ build: BUILD, channel: 'pages', ai: 'on' });
   assert.doesNotMatch(plain, /预览版/);
   assert.doesNotMatch(plain, /demo-about-warn/);
-  assert.match(aboutMarkup({ build: BUILD, channel: 'preview', ai: 'on' }), /<strong class="demo-about-channel">预览版<\/strong>：发布前的测试副本，不是最终版本/);
+  assert.match(aboutMarkup({ build: BUILD, channel: 'preview', ai: 'on' }), /data-channel="preview"><span class="nowrap">版本 <code>0\.22\.0<\/code><\/span>\u00a0· <strong class="demo-about-channel">预览版<\/strong>：发布前的测试副本，不是最终版本<\/p>/, 'the preview note may wrap: it is not a nowrap part');
   const memory = aboutMarkup({ persistent: false, ai: 'on' });
-  assert.match(memory, /<p class="demo-about-warn" role="note">这个浏览器没有让这里保存数据：示例数据只保存在本页，刷新会重置。<\/p>/);
+  assert.match(memory, /<p>在线版里的场地、观众和照片是演示内容，观众会自动回复。<\/p><p class="demo-about-warn" role="note">这个浏览器不能保存，刷新后会重新开始。<\/p><button/);
   const readOnly = aboutMarkup({ readOnly: true, ai: 'on' });
-  assert.match(readOnly, /<p class="demo-about-warn" role="note">这个标签页是只读的：示例已在另一个标签页打开，这里不能操作。/);
-  assert.match(readOnly, /data-demo-reset[^>]* disabled>重置示例<\/button>/, 'a read-only tab cannot wipe the data the other tab is using');
+  assert.match(readOnly, /<p class="demo-about-warn" role="note">已在另一个标签页打开，这里只能看。要重新开始，请回到先打开的那个标签页。<\/p>/);
+  assert.match(readOnly, /data-demo-reset[^>]* disabled>重新开始<\/button>/, 'a read-only tab cannot wipe the data the other tab is using');
   const open = aboutMarkup({ ai: 'on' });
-  assert.match(open, /<button type="button" class="quiet demo-reset" data-demo-reset data-confirm="[^"]+">重置示例<\/button>/);
+  assert.match(open, /<button type="button" class="quiet demo-reset" data-demo-reset data-confirm="[^"]+">重新开始<\/button>/);
   assert.doesNotMatch(open, /data-demo-reset[^>]* disabled/);
   assert.ok(open.includes(`data-confirm="${esc(RESET_CONFIRM)}"`), 'the confirm sentence travels with the button');
   assert.equal(count(open, /data-demo-reset/g), 1);
+  assert.doesNotMatch(open, /class="fine">[^<]*重新开始/, 'no fine print explains the button');
+  const both = aboutMarkup({ persistent: false, readOnly: true, ai: 'on' });
+  assert.equal(count(both, /demo-about-warn/g), 2);
+  assert.ok(both.indexOf('这个浏览器不能保存') < both.indexOf('已在另一个标签页打开'));
 });
 
-test('About names why the model is absent in the product\'s own sentence, and only then', async () => {
+test('About names why the model is absent in the product\'s own sentence, and only then; the download line only when it can run', async () => {
   const { AI_OFF_LINES } = await import('../web/js/photo-insight.js');
   assert.doesNotMatch(aboutMarkup({ ai: 'on' }), /用不了本机 AI|没能载入/);
-  for (const state of ['unsupported', 'page', 'failed']) assert.ok(aboutMarkup({ ai: state }).includes(`<p class="fine">${AI_OFF_LINES[state]}</p>`), state);
+  assert.match(aboutMarkup({ ai: 'on' }), /约 10 MB/);
+  for (const state of ['unsupported', 'page', 'failed']) {
+    assert.ok(aboutMarkup({ ai: state }).includes(`<p class="fine">${AI_OFF_LINES[state]}</p>`), state);
+    assert.doesNotMatch(aboutMarkup({ ai: state }), /约 10 MB|后台下载/, `${state}: nothing downloads, so nothing says it does`);
+  }
   assert.ok(aboutMarkup({ ai: 'nonsense' }).includes(AI_OFF_LINES.unsupported));
   assert.ok(aboutMarkup().includes(AI_OFF_LINES.unsupported), 'by default it asks the real classifier, which has no page in Node');
 });
 
-test('roomInviteMarkup has no code, no QR, no link and nothing to copy', () => {
-  for (const isShowcase of [true, false]) {
+test('roomInviteMarkup has no code, no QR, no link and nothing to copy: only the way to About, the same in every room', () => {
+  for (const isShowcase of [true, false, undefined]) {
     const html = roomInviteMarkup({ room: { code: 'ABCDEFGHIJKL', id: 'room-1' }, isShowcase });
+    assert.equal(html, '<div class="demo-room-note"><button type="button" class="quiet" data-open="about">关于 Music Space</button></div>');
     assert.doesNotMatch(html, /ABCDEFGHIJKL/);
     assert.doesNotMatch(html, /qr|invite|copy|href|nfc/i);
     assert.doesNotMatch(html, /邀请码|二维码/);
-    assert.match(html, /别的设备.*进不来/);
-    assert.match(html, /data-open="about"/);
-    assert.match(html, /完整的房间服务/);
   }
-  assert.match(roomInviteMarkup({ isShowcase: true }), /示例角色都是自动回复的虚构角色/);
-  assert.match(roomInviteMarkup({ isShowcase: false }), /自己开的房间.*示例角色不会来/);
+  assert.equal(roomInviteMarkup(), roomInviteMarkup({ isShowcase: false }));
 });
 
 // ---------------------------------------------------------------------------------------------------------------------------
@@ -527,34 +561,40 @@ test('tour visibility: hidden in the lobby, in a read-only tab, behind a panel a
 });
 
 test('tour markup: the title line, the four steps and the sample buttons of step 1', () => {
-  assert.deepEqual(TOUR_STEPS.map(step => step.title), ['放一张你的照片', '看「同一刻的另一面」', '发起交换', '招个手 / 私聊 / 回看这一晚']);
+  assert.deepEqual(TOUR_STEPS.map(step => step.title), ['放一张今晚的照片', '看「同一刻的另一面」', '发起交换', '招个手 / 私聊 / 回看这一晚']);
+  assert.deepEqual(TOUR_STEPS.map(step => step.hint), ['挑一张，或者用你自己的。', '照片墙会把它标出来。', '在照片墙点「和 TA 交换这个视角」。', '向同场的人招个手，TA 接受就能私聊。']);
+  for (const step of TOUR_STEPS) assert.ok([...step.hint].length <= 20, `one short sentence: ${step.hint}`);
+  assert.equal(TOUR_STEPS[0].hintOwn, '选一张你自己拍的。', 'step 1 without ready-made photos (a room the visitor opened)');
   const first = tourMarkup({ progress: tourProgress({ ...ROOM }), esc });
-  assert.equal(textOf(first.match(/<p class="demo-tour-title">([\s\S]*?)<\/p>/)[1]), '示例路线 1/4 · 放一张你的照片');
+  assert.equal(textOf(first.match(/<p class="demo-tour-title">([\s\S]*?)<\/p>/)[1]), '第一次来 1/4 · 放一张今晚的照片');
+  assert.match(first, /<p class="demo-tour-hint">挑一张，或者用你自己的。<\/p>/);
   const buttons = [...first.matchAll(/<button type="button" class="demo-tour-action (primary|quiet)" data-tour-action="([^"]+)">([^<]+)<\/button>/g)].map(match => [match[1], match[2], match[3]]);
-  assert.deepEqual(buttons, [['primary', 'sample:sample-crowd', '人海 · 示例照片'], ['quiet', 'sample:sample-stage', '舞台 · 示例照片'], ['quiet', 'open:upload', '用我自己的照片']]);
+  assert.deepEqual(buttons, [['primary', 'sample:sample-crowd', '人海那张'], ['quiet', 'sample:sample-stage', '舞台那张'], ['quiet', 'open:upload', '用我自己的照片']]);
   assert.match(first, /<button type="button" class="demo-tour-skip quiet" data-tour-skip>跳过路线<\/button>/);
-  assert.match(first, /<button type="button" class="demo-tour-toggle" data-tour-toggle aria-expanded="true" aria-label="收起示例路线">收起<\/button>/);
+  assert.match(first, /<button type="button" class="demo-tour-toggle" data-tour-toggle aria-expanded="true" aria-label="收起路线">收起<\/button>/);
   const own = tourMarkup({ progress: tourProgress({ ...ROOM }), esc, samples: [{ id: 'a"b', label: '<b>x</b>' }] });
   assert.match(own, /data-tour-action="sample:a&quot;b">&lt;b&gt;x&lt;\/b&gt;<\/button>/);
   assert.doesNotMatch(own, /<b>/);
   const none = tourMarkup({ progress: tourProgress({ ...ROOM }), esc, samples: [] });
-  assert.doesNotMatch(none, /sample:/);
-  assert.match(none, /data-tour-action="open:upload"/);
+  assert.doesNotMatch(none, /sample:|挑一张/);
+  assert.match(none, /<p class="demo-tour-hint">选一张你自己拍的。<\/p>/);
+  assert.match(none, /<button type="button" class="demo-tour-action primary" data-tour-action="open:upload">用我自己的照片<\/button>/, 'alone, the own photo is the primary action');
 
   const second = tourMarkup({ progress: tourProgress({ ...ROOM, ownPhotos: 1, hasPairing: true }), esc });
-  assert.equal(textOf(second.match(/<p class="demo-tour-title">([\s\S]*?)<\/p>/)[1]), '示例路线 2/4 · 看「同一刻的另一面」');
+  assert.equal(textOf(second.match(/<p class="demo-tour-title">([\s\S]*?)<\/p>/)[1]), '第一次来 2/4 · 看「同一刻的另一面」');
   assert.deepEqual([...second.matchAll(/data-tour-action="([^"]+)"/g)].map(match => match[1]), ['open:wall']);
   const third = tourMarkup({ progress: tourProgress({ ...ROOM, ownPhotos: 1, hasPairing: true }, { seenWall: true }), esc });
-  assert.match(textOf(third), /示例路线 3\/4 · 发起交换/);
+  assert.match(textOf(third), /第一次来 3\/4 · 发起交换/);
   assert.deepEqual([...third.matchAll(/data-tour-action="([^"]+)"/g)].map(match => match[1]), ['open:wall']);
   const fourth = tourMarkup({ progress: tourProgress({ ...ROOM, ownPhotos: 1, hasPairing: true, exchanges: { total: 1 } }), esc });
-  assert.match(textOf(fourth), /示例路线 4\/4 · 招个手 \/ 私聊 \/ 回看这一晚/);
+  assert.match(textOf(fourth), /第一次来 4\/4 · 招个手 \/ 私聊 \/ 回看这一晚/);
   assert.deepEqual([...fourth.matchAll(/data-tour-action="([^"]+)"/g)].map(match => match[1]), ['open:people', 'open:recap']);
   for (const html of [first, second, third, fourth]) assert.equal(count(html, /class="[^"]*\bprimary\b[^"]*" data-tour-action/g), 1, 'one primary action');
 
   const last = tourMarkup({ progress: tourProgress({ ...ROOM, ownPhotos: 1, hasPairing: true, exchanges: { total: 1 }, friends: 1 }), esc });
-  assert.match(textOf(last), /示例路线 4\/4 · 路线走完了/);
-  assert.match(textOf(last), /更多可以逛：我的空间、音乐社群、专辑世界杯、一起玩、音乐探索。/);
+  assert.match(textOf(last), /第一次来 4\/4 · 路线走完了/);
+  assert.match(textOf(last), /更多可以逛：我的空间、乐迷社群、专辑世界杯、一起玩、音乐探索。/);
+  assert.match(last, /<button type="button" class="demo-tour-skip primary" data-tour-skip>知道了，收起路线<\/button>/);
   assert.doesNotMatch(last, /data-tour-action/);
   assert.match(last, /data-tour-skip/);
   assert.equal(count(first, /<i( class="on")?><\/i>/g), 4, 'four progress segments');
@@ -563,9 +603,9 @@ test('tour markup: the title line, the four steps and the sample buttons of step
 
 test('tour markup, collapsed: the title and the toggle only', () => {
   const html = tourMarkup({ progress: tourProgress({ ...ROOM }), esc, collapsed: true });
-  assert.match(html, /aria-expanded="false" aria-label="展开示例路线">展开<\/button>/);
+  assert.match(html, /aria-expanded="false" aria-label="展开路线">展开<\/button>/);
   assert.doesNotMatch(html, /data-tour-action|data-tour-skip|demo-tour-hint/);
-  assert.match(textOf(html), /示例路线 1\/4 · 放一张你的照片/);
+  assert.match(textOf(html), /第一次来 1\/4 · 放一张今晚的照片/);
 });
 
 function fakeContainer() {
@@ -595,14 +635,14 @@ test('tour: the container becomes the live region, the card follows the view and
   const container = fakeContainer();
   const tour = createTour({ container, esc, onAction() {}, storage: memoryStorage() });
   assert.ok(container.classes.has('demo-tour'));
-  assert.deepEqual([container.attrs.role, container.attrs['aria-live'], container.attrs['aria-label']], ['region', 'polite', '示例路线']);
+  assert.deepEqual([container.attrs.role, container.attrs['aria-live'], container.attrs['aria-label']], ['region', 'polite', '第一次来']);
   assert.equal(typeof container.listeners.click, 'function');
   assert.deepEqual(tour.update({ ...ROOM, stage: 'lobby' }), { visible: false, step: 1, complete: false, done: [false, false, false, false] });
   assert.equal(container.hidden, true);
   assert.equal(container.html, '');
   assert.deepEqual(tour.update(ROOM), { visible: true, step: 1, complete: false, done: [false, false, false, false] });
   assert.equal(container.hidden, false);
-  assert.match(container.html, /示例路线 1\/4/);
+  assert.match(container.html, /第一次来 1\/4/);
   const writes = container.writes;
   for (let i = 0; i < 5; i += 1) tour.update({ ...ROOM });
   assert.equal(container.writes, writes, 'a poll that changes nothing writes nothing');
@@ -617,6 +657,21 @@ test('tour: the container becomes the live region, the card follows the view and
   assert.equal(container.listeners.click, undefined);
   assert.equal(tour.update(ROOM).visible, false, 'a disposed tour stays quiet');
   assert.doesNotThrow(() => tour.dispose());
+});
+
+test('tour: the ready-made photos are offered in the seeded show\'s room only; a room the visitor opened gets step 1 with the own photo alone', () => {
+  const container = fakeContainer();
+  const tour = createTour({ container, esc, onAction() {}, samples: SAMPLES, storage: memoryStorage() });
+  tour.update({ ...ROOM, showcase: true });
+  assert.match(container.html, /data-tour-action="sample:sample-crowd">人海那张</);
+  assert.match(container.html, /挑一张，或者用你自己的。/);
+  tour.update({ ...ROOM, showcase: false });
+  assert.doesNotMatch(container.html, /sample:|人海那张|舞台那张|挑一张/);
+  assert.match(container.html, /<p class="demo-tour-hint">选一张你自己拍的。<\/p>/);
+  assert.match(container.html, /class="demo-tour-action primary" data-tour-action="open:upload">用我自己的照片</);
+  tour.update({ ...ROOM });
+  assert.match(container.html, /人海那张/, 'a view that does not say (the tests, an older caller) keeps the photos');
+  tour.dispose();
 });
 
 test('tour: a host placed just before .presence moves in as its first child; any other place is left alone', () => {
@@ -761,15 +816,20 @@ test('createDemoProfile: the shape of profile.demo, with options read when neede
   let persistent = true;
   let readOnly = false;
   const demo = createDemoProfile({ getWorld: () => world, eventDate: '2026.09.26', samples: SAMPLES, loadSample: async id => ({ file: id }), reset: async () => 'reset', ready: Promise.resolve(), build: BUILD, channel: 'preview', persistent: () => persistent, readOnly: () => readOnly, random: () => 0.25 });
-  for (const key of ['mode', 'roomCode', 'eventDate', 'isCast', 'castLabel', 'samples', 'loadSample', 'demoTime', 'entryMarkup', 'enter', 'roomInviteMarkup', 'aboutMarkup', 'reset', 'createTour', 'onWorldChanged', 'notifyChanged']) assert.ok(key in demo, key);
+  for (const key of ['mode', 'roomCode', 'eventDate', 'isCast', 'castLabel', 'samples', 'loadSample', 'demoTime', 'entryMarkup', 'enter', 'roomInviteMarkup', 'aboutMarkup', 'reset', 'createTour', 'onWorldChanged', 'notifyChanged', 'inShowcase', 'quietReload']) assert.ok(key in demo, key);
   assert.equal(demo.mode, 'static');
   assert.equal(demo.eventDate, '2026.09.26');
   assert.equal(demo.roomCode(), null, 'no world yet');
   assert.deepEqual(demo.castNames(), []);
   assert.equal(demo.isCast('u-yao'), false);
+  assert.equal(demo.inShowcase({ id: 'room-1', code: 'ABCDEFGHIJKL' }), false, 'no world yet: no room is the show\'s');
+  assert.equal(demo.quietReload(), false, 'nothing told it otherwise');
   world = WORLD;
   assert.equal(demo.roomCode(), 'ABCDEFGHIJKL');
-  assert.deepEqual(demo.castNames(), ['阿遥·示例', '小满·示例', '北屿·示例', '林间·示例']);
+  assert.equal(demo.inShowcase({ code: 'ABCDEFGHIJKL' }), true, 'the seeded show\'s room, by its code');
+  assert.equal(demo.inShowcase({ id: 'room-1' }), true, 'or by its id');
+  for (const other of [{ id: 'room-2', code: 'MNOPQRSTUVWX' }, {}, null, undefined, 'ABCDEFGHIJKL']) assert.equal(demo.inShowcase(other), false, `${JSON.stringify(other)} is a room the visitor opened, or none`);
+  assert.deepEqual(demo.castNames(), ['阿遥', '小满', '北屿', '林间']);
   assert.equal(demo.samples, SAMPLES);
   assert.deepEqual(await demo.loadSample('sample-crowd'), { file: 'sample-crowd' });
   assert.equal(await demo.reset(), 'reset');
@@ -778,10 +838,16 @@ test('createDemoProfile: the shape of profile.demo, with options read when neede
   persistent = false;
   readOnly = true;
   const about = demo.aboutMarkup({ ai: 'on' });
-  assert.match(about, /这个浏览器没有让这里保存数据/);
-  assert.match(about, /这个标签页是只读的/);
-  assert.match(about, /阿遥·示例、小满·示例、北屿·示例、林间·示例/);
-  assert.match(about, /版本 <code>0\.22\.0-rc\.1<\/code>/);
+  assert.match(about, /这个浏览器不能保存，刷新后会重新开始。/);
+  assert.match(about, /已在另一个标签页打开，这里只能看。/);
+  assert.match(about, /data-demo-reset[^>]* disabled>重新开始/);
+  for (const name of PEOPLE) assert.ok(!about.includes(name), `About names nobody (${name})`);
+  assert.match(about, /版本 <code>0\.22\.0<\/code>/);
+  assert.match(about, /data-version="0\.22\.0-rc\.1"/);
+  let healing = true;
+  assert.equal(createDemoProfile({ quietReload: () => healing }).quietReload(), true, 'the boot\'s heal reload, read when asked');
+  healing = false;
+  assert.equal(createDemoProfile({ quietReload: () => healing }).quietReload(), false);
 });
 
 test('createDemoProfile: values may also arrive as plain values or getters, and a missing reset says so', () => {
@@ -792,51 +858,46 @@ test('createDemoProfile: values may also arrive as plain values or getters, and 
   assert.match(demo.aboutMarkup({ ai: 'on' }), /demo-about-warn/);
   assert.equal(demo.samples, SAMPLES);
   assert.deepEqual(createDemoProfile().samples, []);
-  assert.throws(() => demo.reset(), /不能重置/);
+  assert.throws(() => demo.reset(), error => error.message === '现在还不能重新开始，请稍后再试。');
   assert.equal(demo.isReady(), true, 'no ready promise means ready');
 });
 
-test('createDemoProfile: castLabel tells the cast from everyone else, and no token ever reaches a screen', () => {
+test('createDemoProfile: castLabel labels nobody (the people list shows the seeded people like anyone), isCast still knows them, and no token ever reaches a screen', () => {
   const demo = createDemoProfile({ getWorld: () => WORLD, build: BUILD, channel: 'pages' });
-  assert.equal(demo.castLabel({ id: 'u-yao', name: '阿遥·示例' }), CAST_LABEL);
-  assert.equal(demo.castLabel({ id: 'u-lin' }), CAST_LABEL, 'the quiet member who arrives later is cast too');
-  assert.equal(demo.castLabel({ id: 'u-visitor', name: '访客1234' }), '');
-  assert.equal(demo.castLabel({ id: 'u-visitor', name: '阿遥·示例' }), '', 'a name is not an identity');
-  assert.equal(demo.castLabel(null), '');
-  assert.equal(demo.castLabel(undefined), '');
-  assert.equal(demo.castLabel({}), '');
+  for (const member of [{ id: 'u-yao', name: '阿遥' }, { id: 'u-lin' }, { id: 'u-visitor', name: '访客1234' }, { id: 'u-visitor', name: '阿遥' }, null, undefined, {}]) assert.equal(demo.castLabel(member), '');
   assert.equal(demo.isCast('u-man'), true);
+  assert.equal(demo.isCast('u-lin'), true, 'the quiet member who arrives later is one of them too');
+  assert.equal(demo.isCast('u-visitor'), false);
   assert.equal(demo.isCast(''), false);
-  assert.equal(CAST_LABEL.includes('&') || CAST_LABEL.includes('<'), false, 'plain text, safe to escape once');
   const surfaces = [demo.aboutMarkup({ ai: 'on' }), demo.entryMarkup({ state: { identity: { status: 'missing' } }, esc, avatarSvg: renderAvatarSvg }), demo.roomInviteMarkup({ code: 'ABCDEFGHIJKL' }), JSON.stringify(demo.castNames()), demo.castLabel({ id: 'u-yao' })];
   for (const text of surfaces) assert.doesNotMatch(text, /SECRET-TOKEN/);
   assert.ok(!JSON.stringify(Object.keys(demo)).includes('token'));
 });
 
 test('createDemoProfile: a plainer world (ids, names and the room code only) works as well, and an array of people too', () => {
-  const plain = createDemoProfile({ getWorld: () => ({ castIds: ['u-yao', 'u-lin'], castNames: ['阿遥·示例', '林间·示例'], roomCode: 'ABCDEFGHIJKL' }) });
+  const plain = createDemoProfile({ getWorld: () => ({ castIds: ['u-yao', 'u-lin'], castNames: ['阿遥', '林间'], roomCode: 'ABCDEFGHIJKL' }) });
   assert.equal(plain.roomCode(), 'ABCDEFGHIJKL');
-  assert.deepEqual(plain.castNames(), ['阿遥·示例', '林间·示例']);
+  assert.deepEqual(plain.castNames(), ['阿遥', '林间']);
   assert.equal(plain.isCast('u-lin'), true);
   assert.equal(plain.isCast('u-man'), false);
-  assert.equal(plain.castLabel({ id: 'u-yao' }), CAST_LABEL);
-  assert.match(plain.roomInviteMarkup({ code: 'ABCDEFGHIJKL' }), /示例现场/);
-  const listed = createDemoProfile({ getWorld: () => ({ people: [{ id: 'a', name: '甲·示例' }, { id: 'b', npc: { name: '乙·示例' } }, null], room: { code: 'QQQQQQQQQQQQ' } }) });
-  assert.deepEqual(listed.castNames(), ['甲·示例', '乙·示例']);
+  assert.equal(plain.castLabel({ id: 'u-yao' }), '');
+  assert.equal(plain.roomInviteMarkup({ code: 'ABCDEFGHIJKL' }), roomInviteMarkup());
+  const listed = createDemoProfile({ getWorld: () => ({ people: [{ id: 'a', name: '甲' }, { id: 'b', npc: { name: '乙' } }, null], room: { code: 'QQQQQQQQQQQQ' } }) });
+  assert.deepEqual(listed.castNames(), ['甲', '乙']);
   assert.equal(listed.isCast('b'), true);
   assert.equal(listed.roomCode(), 'QQQQQQQQQQQQ');
   const none = createDemoProfile({ getWorld: () => null });
   assert.deepEqual([none.roomCode(), none.castNames(), none.isCast('a')], [null, [], false]);
 });
 
-test('createDemoProfile: roomInviteMarkup tells the showcase room from the visitor\'s own', () => {
+test('createDemoProfile: roomInviteMarkup is the same way to About for the show\'s room, the visitor\'s own and a room it cannot place', () => {
   const demo = createDemoProfile({ getWorld: () => WORLD });
   const showcase = demo.roomInviteMarkup({ code: 'ABCDEFGHIJKL', id: 'room-1' });
   const own = demo.roomInviteMarkup({ code: 'ZZZZZZZZZZZZ', id: 'room-2' });
-  assert.match(showcase, /只在这个浏览器里的示例现场/);
-  assert.match(own, /自己开的房间/);
+  assert.equal(showcase, '<div class="demo-room-note"><button type="button" class="quiet" data-open="about">关于 Music Space</button></div>');
+  assert.equal(own, showcase);
+  assert.equal(demo.roomInviteMarkup(undefined), showcase);
   assert.doesNotMatch(showcase + own, /ABCDEFGHIJKL|ZZZZZZZZZZZZ/);
-  assert.match(demo.roomInviteMarkup(undefined), /自己开的房间/, 'a room it cannot place is not claimed to be the cast\'s');
 });
 
 test('createDemoProfile: the entry form starts with the random look and a saved draft wins over it', () => {
@@ -844,14 +905,14 @@ test('createDemoProfile: the entry form starts with the random look and a saved 
   assert.match(demo.defaultName, /^访客\d{4}$/);
   assert.deepEqual(demo.defaultAvatar, randomAvatar(() => 0.5));
   const first = demo.entryDefaults({});
-  assert.deepEqual(first, { name: demo.defaultName, avatar: demo.defaultAvatar, preparing: true, castNames: ['阿遥·示例', '小满·示例', '北屿·示例', '林间·示例'] });
+  assert.deepEqual(first, { name: demo.defaultName, avatar: demo.defaultAvatar, preparing: true });
   const draft = { name: '阿晴', avatar: randomAvatar(() => 0.9) };
   assert.deepEqual(demo.entryDefaults({ drafts: { profile: draft } }), { ...first, name: '阿晴', avatar: draft.avatar });
   assert.equal(demo.entryDefaults({ drafts: { profile: draft } }).name, '阿晴');
   assert.equal(demo.entryDefaults(undefined).name, demo.defaultName);
   const html = demo.entryMarkup({ state: { identity: { status: 'missing' } }, esc, avatarSvg: renderAvatarSvg });
   assert.ok(html.includes(`value="${demo.defaultName}"`));
-  assert.match(html, /同场的阿遥·示例、小满·示例、北屿·示例、林间·示例都是虚构的/);
+  for (const name of PEOPLE) assert.ok(!html.includes(name), `the entry names nobody (${name})`);
   assert.match(html, /<button class="primary" type="submit" disabled>/, 'not ready yet in this tick');
   assert.match(demo.entryMarkup({ state: {}, esc, avatarSvg: () => '', defaults: { name: '给定', preparing: undefined } }), /value="给定"/, 'an undefined default does not override');
 });
@@ -891,11 +952,11 @@ test('createDemoProfile: syncEntry patches an open entry form without replacing 
   const ready = deferred();
   const demo = createDemoProfile({ getWorld: () => WORLD, ready: ready.promise });
   const submit = { disabled: true };
-  const status = { textContent: '正在布置示例现场…' };
+  const status = { textContent: '正在布置现场…' };
   const form = { querySelector: selector => ({ "button[type='submit']": submit, '.demo-entry-status': status })[selector] ?? null };
   const root = { querySelector: selector => (selector === "form[data-form='demo-entry']" ? form : null) };
   assert.equal(demo.syncEntry(root), true);
-  assert.deepEqual([submit.disabled, status.textContent], [true, '正在布置示例现场…']);
+  assert.deepEqual([submit.disabled, status.textContent], [true, '正在布置现场…']);
   ready.resolve();
   await tick();
   assert.equal(demo.syncEntry(root), true);
@@ -951,7 +1012,7 @@ test('createDemoProfile: demoTime defaults to 21:47 on the event day with the pr
 
 test('createDemoProfile: its tour gets the samples and knows when this tab is read-only', () => {
   let readOnly = false;
-  const demo = createDemoProfile({ getWorld: () => WORLD, samples: [{ id: 'sample-stage', label: '舞台 · 示例照片' }, { id: 'sample-crowd', label: '人海 · 示例照片' }], readOnly: () => readOnly });
+  const demo = createDemoProfile({ getWorld: () => WORLD, samples: [{ id: 'sample-stage', label: '舞台那张' }, { id: 'sample-crowd', label: '人海那张' }], readOnly: () => readOnly });
   const container = fakeContainer();
   const actions = [];
   const tour = demo.createTour({ container, esc, onAction: action => actions.push(action), storage: memoryStorage() });

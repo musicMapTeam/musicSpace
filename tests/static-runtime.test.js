@@ -803,8 +803,8 @@ sqlTest('runtime: setWritable(false) answers every non-GET/HEAD request 409 READ
   const mutation = await transport('/api/avatar/session', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Idempotency-Key': uuid() }, body: JSON.stringify({ name: 'intruder', avatar: AVATAR }) });
   assert.equal(mutation.status, 409);
   assert.match(mutation.headers.get('Content-Type'), /^application\/json/);
-  assert.deepEqual(await mutation.json(), { error: { code: 'READ_ONLY_COPY', message: '示例已在另一个标签页打开，这个标签页不能操作。请回到那个标签页，或关闭它后刷新本页。' } });
-  assert.equal(READ_ONLY_MESSAGE, '示例已在另一个标签页打开，这个标签页不能操作。请回到那个标签页，或关闭它后刷新本页。');
+  assert.deepEqual(await mutation.json(), { error: { code: 'READ_ONLY_COPY', message: '已在另一个标签页打开，请回到那里操作。' } });
+  assert.equal(READ_ONLY_MESSAGE, '已在另一个标签页打开，请回到那里操作。');
   for (const method of ['POST', 'PUT', 'PATCH', 'DELETE']) {
     for (const path of ['/api/event/rooms', '/api/avatar/session', '/api/event/photos/00000000-0000-4000-8000-000000000000']) {
       const response = await transport(path, { method, headers: { Authorization: `Bearer ${me.token}`, 'Idempotency-Key': uuid(), 'Content-Type': 'application/json' }, body: '{}' });

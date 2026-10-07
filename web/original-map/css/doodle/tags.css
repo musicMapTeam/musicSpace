@@ -1,0 +1,47 @@
+/* tags: the name and song tags the 3D table lays over its records (sakura-music.js makes them; their size stays within a few px of the
+   legacy tag, so the label engine's estimates hold), the touch bands and leader lines. The 2D table (WebGL off) is in fallback.css. */
+
+/* a name tag: a paper sticker with an ink line and a small hard shadow; 你在这里 / 终点 ride in front as chips */
+.world-music-label{color:var(--ds-ink)}
+.world-music-label::before{border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);background:var(--ds-paper-card);box-shadow:2px 2px 0 var(--ds-ink)}
+.world-music-label strong{font-family:var(--ds-font-ui);font-weight:400;font-size:14px;letter-spacing:.02em}
+.world-music-label small{padding:1px 7px;font-family:var(--ds-font-ui);font-weight:400;font-size:12px;letter-spacing:.04em;color:var(--ds-ink);background:var(--ds-yellow);
+  border:1.5px solid var(--ds-ink);border-radius:var(--ds-radius-pill)}
+/* where you stand: an ink tag; the goal: a pink one */
+.world-music-label.is-current{color:var(--ds-paper-card)}
+.world-music-label.is-current::before,.world-music-label.is-current:hover::before{border-color:var(--ds-ink);background:var(--ds-ink);box-shadow:2px 2px 0 var(--ds-pink)}
+.world-music-label.is-current small{color:var(--ds-ink);background:var(--ds-yellow);border-color:var(--ds-paper-card)}
+.world-music-label.is-target{color:var(--ds-ink)}
+.world-music-label.is-target::before,.world-music-label.is-target:hover::before{border-color:var(--ds-ink);background:var(--ds-pink);box-shadow:2px 2px 0 var(--ds-ink)}
+.world-music-label.is-target small{color:var(--ds-ink);background:var(--ds-paper-card)}
+/* the selection lifts: thicker ink and a mint shadow */
+.world-music-label.is-selected strong{font-size:16px}
+.world-music-label.is-selected::before{border-top:var(--ds-line-thin) solid var(--ds-ink);border-width:var(--ds-line);box-shadow:3px 3px 0 var(--ds-mint)}
+.world-music-label.is-selected:not(.is-current,.is-target)::before{background:var(--ds-yellow-soft)}
+.world-music-label.is-highlighted:not(.is-current,.is-target)::before{background:var(--ds-yellow-soft);border-color:var(--ds-ink)}
+.world-music-label.is-muted{color:var(--ds-ink-2)}
+.world-music-label.is-muted::before{background:var(--ds-paper);box-shadow:1px 1px 0 var(--ds-ink-3);border-color:var(--ds-ink-2)}
+.world-music-label.is-muted strong{font-weight:400}
+@media (hover:hover) and (pointer:fine){.world-music-label:not(.is-current,.is-target):hover::before{border-color:var(--ds-ink);background:var(--ds-yellow-soft)}}
+.world-music-label.has-leader::after{height:2px;background:var(--ds-ink)}
+.world-music-label:focus-visible::before{outline:3px dashed var(--ds-ink);outline-offset:3px;box-shadow:0 0 0 7px var(--ds-paper-card)}
+
+/* a song tag on an ink line: a small paper strip; the route in orange, a revealed answer dashed sky, like the lines under them */
+.world-music-link{font-family:var(--ds-font-ui);font-weight:400;font-size:13px;color:var(--ds-ink)}
+.world-music-link::before{border:1.5px solid var(--ds-ink);border-left:5px solid var(--ds-ink-3);border-radius:4px 6px 5px 3px;background:var(--ds-paper-card);box-shadow:2px 2px 0 var(--ds-ink)}
+.world-music-link.is-route::before{border-left-color:var(--ds-orange)}
+.world-music-link.is-answer::before{border-left:5px dashed var(--ds-sky)}
+.world-music-link:focus-visible::before{outline:3px dashed var(--ds-ink);outline-offset:3px;box-shadow:0 0 0 7px var(--ds-paper-card)}
+@media (hover:hover) and (pointer:fine){.world-music-link:hover::before{background:var(--ds-yellow-soft)}}
+
+@media (max-width:760px){
+  /* a phone prints the name only (aria-label keeps 你在这里 / 终点): ink for where you stand, pink for the goal */
+  .world-music-label:is(.is-current){color:var(--ds-paper-card)}
+  .world-music-label:is(.is-target){color:var(--ds-ink)}
+  .world-music-label.is-current::before,.world-music-label.is-current:hover::before{border-color:var(--ds-ink);background:var(--ds-ink)}
+  .world-music-label.is-target::before,.world-music-label.is-target:hover::before{border-color:var(--ds-ink);background:var(--ds-pink)}
+  .world-music-label strong{font-size:13px}
+  .world-music-label.is-selected strong{font-size:14px}
+  .world-music-link{font-size:12px}
+}
+@media (forced-colors:active){.world-music-label::before,.world-music-link::before{forced-color-adjust:auto;border-color:CanvasText}}

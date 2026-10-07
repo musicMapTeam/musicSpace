@@ -1,24 +1,7 @@
-import '../css/base.css';
-import '../css/map.css';
-import '../css/themes.css';
-import '../css/theme-sakura.css';
-import 'overlayscrollbars/overlayscrollbars.css';
-import '../css/compact.css';
-import '../css/app-studio.css';
-import '../css/map-studio.css';
-import '../css/map-credits.css';
-import '../css/spatial-world.css';
-import '../css/open-catalogue.css';
-import '../css/product-finish.css';
-import '../css/courtyard-ui.css';
-import '../css/spatial-objects.css';
-import '../css/map-spatial.css';
-import '../css/scene-layout.css';
-import '../css/map-round.css';
-import '../css/home-map.css';
-import '../css/night-shell.css';
-import '../css/share-card.css';
-import '../css/listen.css';
+// The 0.16 stylesheets are one cascade layer (geometry: placement beside the scene, breakpoints, the WebGL-off flow); the Doodle layer
+// (css/doodle/, unlayered, so it wins every visual property it sets) is the look. Nothing else in the page imports CSS before them.
+import '../css/legacy.css';
+import '../css/doodle/index.css';
 import { OverlayScrollbars } from 'overlayscrollbars';
 import { mountThemes } from './themes.js';
 import { icon } from './icons.js';
@@ -26,7 +9,10 @@ import { createMapState, mountMap, mountMapRecords } from './map.js';
 import { mountHome } from './home.js';
 import { mountMotion } from './motion.js';
 import { mountOpenCatalogue, mountSavedMusic } from './open-catalogue.js';
-import { qqLinkedCount } from './map-catalogue.js';
+import { qqLinkedCount, realSongs } from './map-catalogue.js';
+import { artists } from './map-data.js';
+import openCatalogue from '../assets/data/hf-collaborations.json';
+import { eventRoomUrl } from '../../shared/site-base.js';
 import { createExplorationStorage, EXPLORATION_KEY } from './exploration-storage.js';
 
 // The key and version stay from 0.15 so a returning visitor keeps every exploration.
@@ -148,6 +134,12 @@ function placeToast() {
   }
 }
 
+// Opening the shop's 目录 paper clears a toast, which would otherwise lie over its first items for a moment.
+document.addEventListener('toggle', event => {
+  if (!event.target.open || !event.target.matches?.('.map-shop-menu')) return;
+  clearTimeout(toastTimer); cancelAnimationFrame(toastFrame); toastElement.classList.remove('visible');
+}, true);
+
 function toast(message) {
   clearTimeout(toastTimer);
   cancelAnimationFrame(toastFrame);
@@ -229,20 +221,20 @@ function updateChrome() {
     storageNote.hidden = !(explorationStorage.failed || explorationStorage.conflict);
     const message = document.querySelector('#storage-message');
     message.textContent = explorationStorage.conflict
-      ? '另一标签页已更新或清除了探索记录，本页已停止写入，避免覆盖。当前页内容仍保留；请重载最新记录后继续。'
-      : '这次修改尚未保存。请检查浏览器存储空间，并使用支持 Web Locks 的现代浏览器（HTTPS 或本地文件）。当前页内容仍保留，可先下载备份。';
+      ? '另一个标签页改了探索记录，这一页先不保存了。重新载入后继续。'
+      : '这次修改没存上：浏览器存储不可用。可以先下载备份。';
     document.querySelector('#retry-save').hidden = explorationStorage.conflict;
     document.querySelector('#reload-records').hidden = !explorationStorage.conflict;
   }
-  const sectionNames = { home: '从喜欢，走向未知', explore: '唱片店', records: '我的发现' };
-  // The brand comes first in the tab, as it does on the wordmark.
-  document.title = `Music Map · ${sectionNames[state.view]}`;
+  const sectionNames = { home: '音乐探索', explore: '唱片店', records: '我的发现' };
+  // The brand comes first in the tab, as it does on the masthead.
+  document.title = `Music Space · ${sectionNames[state.view]}`;
 }
 
 function navItems() {
   return [
     ['home', 'heart', '小院'],
-    ['explore', 'compass', '唱片店'],
+    ['explore', 'record', '唱片店'],
     ['records', 'bookmark', '我的发现'],
   ].map(([view, name, title]) => `
     <button class="nav-item" data-nav="${view}">
@@ -250,25 +242,52 @@ function navItems() {
     </button>`).join('');
 }
 
+/** 关于 · 数据来源: what the table, the listening links and the open catalogue are made of, counted from the data itself. */
+function dataSourcesHTML() {
+  const recordings = Object.values(realSongs);
+  const day = iso => iso.split('-').map(Number);
+  const span = dates => {
+    const sorted = [...new Set(dates)].sort(); const [y, m, d] = day(sorted[0]); const [y2, m2, d2] = day(sorted[sorted.length - 1]);
+    return y === y2 && m === m2 ? `${y} 年 ${m} 月 ${d === d2 ? d : `${d}–${d2}`} 日` : `${sorted[0]} 至 ${sorted[sorted.length - 1]}`;
+  };
+  const source = openCatalogue.source;
+  // The Doodle fonts live with the event room: its own fonts/doodle/ on every build (site root on Pages, /event-room/ on Node).
+  const fontsLicence = new URL('fonts/doodle/LICENSES.txt', eventRoomUrl()).href;
+  const out = (href, label) => `<a href="${href}" target="_blank" rel="noopener noreferrer">${label}<span aria-hidden="true"> ↗</span><span class="sr-only">（新标签页）</span></a>`;
+  return `<section class="about-sources" id="about-sources" aria-labelledby="about-sources-title" tabindex="-1">
+      <h3 id="about-sources-title">数据来源</h3>
+      <ul>
+        <li><b>合唱目录</b><span>${artists.length} 位音乐人、${recordings.length} 首共同演唱录音，每首都附有出处，资料访问于 ${span(recordings.flatMap(song => [song.checkedAt, ...song.creditSources.map(source => source.checkedAt)]))}；出处在每首歌的「来源」里。路线和「最短」只算这 ${recordings.length} 首。</span></li>
+        <li><b>QQ 音乐</b><span>${qqLinkedCount} 首在 QQ 音乐有同一录音的页面（${span(recordings.flatMap(song => song.listenLinks.map(link => link.checkedAt)))}按页面信息确认）；另外 ${recordings.length - qqLinkedCount} 首的原因写在「来源」里。</span></li>
+        <li><b>开放曲库</b><span>${openCatalogue.tracks.length} 首，取自 Hugging Face 数据集 ${source.repository}（快照 ${source.revision.slice(0, 7)}）里 ${openCatalogue.genres.join('、')} 的共同署名记录（全库 ${openCatalogue.counts.rows.toLocaleString('en-US')} 行）。数据卡标注的许可是 ${source.licenseLabel}，没有写明具体版本；这里只取曲名、艺人、专辑和行号，不含音频。${out(source.url, '数据集')}</span></li>
+        <li><b>字体</b><span>ZCOOL QingKe HuangYou、LXGW Marker Gothic、Yozai、Luckiest Guy、Smiley Sans 的子集（SIL OFL 1.1、Apache 2.0）。${out(fontsLicence, '许可全文')}</span></li>
+        <li><b>代码</b><span>three.js、Sakura Crossing、OverlayScrollbars、qrcode-generator（MIT），GSAP（Standard No Charge 许可）；许可全文附在网页源码里。</span></li>
+        <li><b>来历</b><span>唱片店、寻声和合唱目录来自 Music Map。</span></li>
+      </ul>
+    </section>`;
+}
+
 function shell() {
   root.innerHTML = `
     <header class="app-masthead app-studio-shell">
-      <button class="brand" data-nav="home" aria-label="Music Map · 樱下放映 · 夜场唱片店，回到小院">
-        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
-        <span class="brand-wordmark">Music Map<small>樱下放映 · 夜场唱片店</small></span>
+      <button class="brand" data-nav="home" aria-label="Music Space 音乐探索，回到小院">
+        <span class="brand-logo" aria-hidden="true">Music Space</span>
+        <span class="brand-sticker" aria-hidden="true">音乐探索</span>
       </button>
       <nav class="primary-nav" aria-label="主要导航">${navItems()}</nav>
-      <div class="masthead-tools"><button class="demo-help icon-button" id="demo-help" aria-label="关于 Music Map" aria-haspopup="dialog" aria-controls="about-dialog">${icon('info')}</button></div>
+      <div class="masthead-tools"><button class="demo-help icon-button" id="demo-help" aria-label="关于音乐探索" aria-haspopup="dialog" aria-controls="about-dialog">${icon('info')}</button></div>
     </header>
     <div id="sakura-world" class="spatial-world" hidden></div>
     <div class="app-body">
-      <div id="storage-warning" class="storage-warning" role="alert" hidden><span id="storage-message"></span><button id="retry-save">重试保存</button><button id="reload-records" hidden>重载最新记录</button><button id="backup-records">下载本页探索备份</button></div>
+      <div id="storage-warning" class="storage-warning" role="alert" hidden><span id="storage-message"></span><span class="storage-warning__actions"><button id="retry-save">重试</button><button id="reload-records" hidden>重新载入</button><button id="backup-records">下载备份</button></span></div>
       <main id="main-content" class="main-content" tabindex="-1"></main>
     </div>
     <nav class="mobile-nav" aria-label="手机导航">${navItems()}</nav>
     <dialog id="about-dialog" class="about-dialog" aria-labelledby="about-title">
-      <div class="about-top"><h2 id="about-title">Music Map</h2><button class="icon-button" id="close-about" aria-label="关闭关于">${icon('x')}</button></div>
-      <p class="about-intro">从喜欢，走向未知。</p><div class="about-facts"><p><b>寻声</b><span>在唱片店选好起点和终点，只能翻开所在歌手手边的合唱；沿翻开的合唱前往才算一步，翻开、提示和查看都不计步。</span></p><p><b>图鉴</b><span>唱片店里的完整图鉴摊开收录的全部合唱，可从任意一位歌手出发自由漫游。</span></p><p><b>来源</b><span>每条连线都是一首真实的共同演唱录音，附有来源；制作署名只列已核实的部分。</span></p><p><b>曲库</b><span>开放曲库只列公开数据集里的共同署名，不一定是合唱，也不连入关系图。</span></p><p><b>音频</b><span>站内没有音频；${qqLinkedCount} 首可在 QQ 音乐打开同一录音，其余标明原因。</span></p><p><b>数据</b><span>探索记录和留下的歌只存在这个浏览器里，清除网站数据后无法找回。</span></p></div>
+      <div class="about-top"><h2 id="about-title">关于音乐探索</h2><button class="icon-button" id="close-about" aria-label="关闭">${icon('x')}</button></div>
+      <p class="about-intro">从喜欢，<span>走向未知。</span></p>
+      <div class="about-facts"><p><b>寻声</b><span>选好起点和终点，翻开手边的合唱，沿它走到下一位；翻开和提示不算步数。</span></p><p><b>图鉴</b><span>摊开全部合唱，从任意一位歌手出发随便走。</span></p><p><b>来源</b><span>每条连线是一首合唱录音，点歌旁的「来源」看出处。</span></p><p><b>曲库</b><span>开放曲库是公开数据集里的共同署名，不一定是合唱，不进入连线。</span></p><p><b>音频</b><span>这里不播放音乐；${qqLinkedCount} 首可以去 QQ 音乐听同一录音。</span></p></div>
+      ${dataSourcesHTML()}
       <button class="button button--primary" id="start-experience">知道了</button>
     </dialog>`;
   root.addEventListener('click', event => {
@@ -287,15 +306,27 @@ function shell() {
   });
   const dialog = document.querySelector('#about-dialog');
   document.querySelector('#demo-help').addEventListener('click', () => dialog.showModal());
+  // 「数据来源」 (the open catalogue's footer) opens 关于 at its data-sources section, from any paper.
+  document.addEventListener('click', event => {
+    if (!event.target.closest('[data-about-sources]')) return;
+    event.target.closest('dialog[open]')?.close();
+    if (!dialog.open) dialog.showModal();
+    const section = dialog.querySelector('#about-sources');
+    section.scrollIntoView({ block: 'start' });
+    // The sheet's title bar is sticky: step back until the section (its heading and first line) sits just under it.
+    const covered = dialog.querySelector('.about-top').getBoundingClientRect().bottom + 10 - section.getBoundingClientRect().top;
+    if (covered > 0) dialog.scrollTop -= covered;
+    section.focus({ preventScroll: true });
+  });
   document.querySelector('#close-about').addEventListener('click', () => dialog.close());
   document.querySelector('#start-experience').addEventListener('click', () => dialog.close());
   dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
   document.querySelector('#retry-save').addEventListener('click', async () => {
     const saved = await persist();
-    toast(saved ? '已保存到当前浏览器' : '仍未保存，当前页内容保留，请查看存储提示');
+    toast(saved ? '已保存' : '还是没存上');
   });
   document.querySelector('#reload-records').addEventListener('click', () => {
-    if (explorationStorage.dirty && !window.confirm('本页还有未保存的探索。请先下载本页备份；重载会放弃本页未保存的修改。确定重载最新记录吗？')) return;
+    if (explorationStorage.dirty && !window.confirm('重新载入会丢掉这一页没保存的探索，确定吗？')) return;
     location.reload();
   });
   document.querySelector('#backup-records').addEventListener('click', () => {
@@ -303,7 +334,7 @@ function shell() {
     const url = URL.createObjectURL(file);
     const link = document.createElement('a');
     link.href = url;
-    link.download = 'music-map-exploration-backup.json';
+    link.download = 'music-space-map-exploration-backup.json';
     document.body.append(link);
     link.click();
     link.remove();
@@ -316,7 +347,7 @@ function mountRecords(container) {
   const section = state.routePayload?.section;
   if (section === 'map' || section === 'music') recordsFilter = section;
   const filters = [['map', '探索记录'], ['music', '留下的歌']];
-  container.innerHTML = `<div class="records-page collection-page"><header class="records-heading"><h1>我的发现</h1><button class="button" data-records-explore>${icon('compass')}去唱片店</button></header><div class="records-filters" role="group" aria-label="我的发现分类">${filters.map(([value, label]) => `<button data-records-filter="${value}" aria-pressed="${recordsFilter === value}">${label}</button>`).join('')}</div><div id="collection-content"></div></div>`;
+  container.innerHTML = `<div class="records-page collection-page"><header class="records-heading"><h1>我的发现</h1><button class="button" data-records-explore>${icon('record')}去唱片店</button></header><div class="records-filters" role="group" aria-label="我的发现分类">${filters.map(([value, label]) => `<button data-records-filter="${value}" aria-pressed="${recordsFilter === value}">${label}</button>`).join('')}</div><div id="collection-content"></div></div>`;
   container.querySelector('[data-records-explore]').onclick = () => navigate('explore');
   const content = container.querySelector('#collection-content');
   return recordsFilter === 'music' ? mountSavedMusic(content, api) : mountMapRecords(content, api);
@@ -335,7 +366,7 @@ function render() {
   themeController?.setView(state.view);
   if (explorationStorage.conflict) {
     themeController?.setMusic(null);
-    container.innerHTML = '<section class="empty-state"><h1>探索记录已在另一页更新</h1><p>本页暂时停止编辑。请用上方「重载最新记录」继续；未保存的内容可先下载备份，取消重载会留在本页。</p></section>';
+    container.innerHTML = '<section class="empty-state map-conflict"><h1>探索记录在别的标签页更新了</h1><p>重新载入后继续。</p></section>';
     updateChrome();
     return;
   }

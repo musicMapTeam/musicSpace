@@ -1,0 +1,1095 @@
+{
+ "fps": 60,
+ "W": 1920,
+ "H": 1080,
+ "duration": 28.617073170731707,
+ "frames": 1717,
+ "bpm": 123,
+ "offset": 0,
+ "events": [
+  {
+   "t": 0,
+   "label": "cut H1-collage"
+  },
+  {
+   "t": 0,
+   "label": "slap polaroid room"
+  },
+  {
+   "t": 0.4878,
+   "label": "stamp stamp 进场"
+  },
+  {
+   "t": 0.9756,
+   "label": "slap sticker avatar"
+  },
+  {
+   "t": 1.4634,
+   "label": "stamp stamp 换装"
+  },
+  {
+   "t": 1.9512,
+   "label": "slap cutout 3D wall"
+  },
+  {
+   "t": 2.439,
+   "label": "stamp stamp 上墙"
+  },
+  {
+   "t": 2.439,
+   "label": "pop star"
+  },
+  {
+   "t": 2.9268,
+   "label": "slap cutout AI chip"
+  },
+  {
+   "t": 2.9268,
+   "label": "pop sparkle"
+  },
+  {
+   "t": 3.4146,
+   "label": "stamp stamp 视角"
+  },
+  {
+   "t": 3.4146,
+   "label": "pop heart"
+  },
+  {
+   "t": 3.9024,
+   "label": "slap cutout badge"
+  },
+  {
+   "t": 3.9024,
+   "label": "pop star"
+  },
+  {
+   "t": 4.3902,
+   "label": "stamp stamp 同一刻"
+  },
+  {
+   "t": 4.3902,
+   "label": "pop plus"
+  },
+  {
+   "t": 4.878,
+   "label": "slap cutout 交换已接受"
+  },
+  {
+   "t": 4.878,
+   "label": "pop sparkle"
+  },
+  {
+   "t": 5.3659,
+   "label": "stamp stamp 交换"
+  },
+  {
+   "t": 5.3659,
+   "label": "pop note"
+  },
+  {
+   "t": 5.8537,
+   "label": "slap cutout chat"
+  },
+  {
+   "t": 6.3415,
+   "label": "stamp stamp 招手"
+  },
+  {
+   "t": 6.8293,
+   "label": "slap cutout memory card"
+  },
+  {
+   "t": 7.3171,
+   "label": "stamp stamp 留念"
+  },
+  {
+   "t": 7.561,
+   "label": "wipe W1"
+  },
+  {
+   "t": 7.8049,
+   "label": "cut H2-title"
+  },
+  {
+   "t": 7.8049,
+   "label": "slam 同一刻，"
+  },
+  {
+   "t": 8.0488,
+   "label": "pop star"
+  },
+  {
+   "t": 8.2927,
+   "label": "slam 另一面。"
+  },
+  {
+   "t": 8.2927,
+   "label": "pop plus"
+  },
+  {
+   "t": 8.4146,
+   "label": "swipe 另一面。"
+  },
+  {
+   "t": 8.5366,
+   "label": "pop star"
+  },
+  {
+   "t": 8.7805,
+   "label": "slap polaroid stage"
+  },
+  {
+   "t": 8.7805,
+   "label": "pop sparkle"
+  },
+  {
+   "t": 9.0244,
+   "label": "pop star"
+  },
+  {
+   "t": 9.2683,
+   "label": "slap polaroid crowd"
+  },
+  {
+   "t": 9.2683,
+   "label": "pop squiggle"
+  },
+  {
+   "t": 9.7561,
+   "label": "pop H2-title:36"
+  },
+  {
+   "t": 10,
+   "label": "pop chip 舞台视角"
+  },
+  {
+   "t": 10.4878,
+   "label": "pop chip "
+  },
+  {
+   "t": 10.7317,
+   "label": "draw wavy underline"
+  },
+  {
+   "t": 10.7317,
+   "label": "pop chip 同一刻的另一面 · 21:47"
+  },
+  {
+   "t": 10.8537,
+   "label": "draw scribble ring"
+  },
+  {
+   "t": 10.9756,
+   "label": "pop swap"
+  },
+  {
+   "t": 11.7073,
+   "label": "cut P-pain"
+  },
+  {
+   "t": 11.7073,
+   "label": "slam 散场了。"
+  },
+  {
+   "t": 13.1707,
+   "label": "slap polaroid yours"
+  },
+  {
+   "t": 13.6585,
+   "label": "slap polaroid theirs"
+  },
+  {
+   "t": 14.6341,
+   "label": "draw phone outline A"
+  },
+  {
+   "t": 14.6341,
+   "label": "type 每部手机里，"
+  },
+  {
+   "t": 14.7561,
+   "label": "draw phone outline B"
+  },
+  {
+   "t": 15.122,
+   "label": "slam 只有自己那一面。"
+  },
+  {
+   "t": 16.0976,
+   "label": "draw dashed line"
+  },
+  {
+   "t": 16.3415,
+   "label": "pop cross"
+  },
+  {
+   "t": 16.8293,
+   "label": "type 要是……"
+  },
+  {
+   "t": 17.0732,
+   "label": "slam 能把那一面，换回来？"
+  },
+  {
+   "t": 18.5366,
+   "label": "pop swap"
+  },
+  {
+   "t": 18.7805,
+   "label": "pop sparkle"
+  },
+  {
+   "t": 18.9024,
+   "label": "pop star"
+  },
+  {
+   "t": 19.0244,
+   "label": "pop sparkle"
+  },
+  {
+   "t": 19.1463,
+   "label": "pop heart"
+  },
+  {
+   "t": 19.2683,
+   "label": "wipe W2"
+  },
+  {
+   "t": 19.5122,
+   "label": "cut E1-phone"
+  },
+  {
+   "t": 19.5122,
+   "label": "slam phone"
+  },
+  {
+   "t": 19.5122,
+   "label": "confetti"
+  },
+  {
+   "t": 19.5122,
+   "label": "slam 同场的人，"
+  },
+  {
+   "t": 20.4878,
+   "label": "slam 再进同一间"
+  },
+  {
+   "t": 20.9756,
+   "label": "pop E1-phone:85"
+  },
+  {
+   "t": 21.7073,
+   "label": "draw arrow to the card"
+  },
+  {
+   "t": 22.439,
+   "label": "tap"
+  },
+  {
+   "t": 23.4146,
+   "label": "slam 带上你的小人，"
+  },
+  {
+   "t": 23.9024,
+   "label": "pop heart"
+  },
+  {
+   "t": 24.3902,
+   "label": "slam 看看谁也在。"
+  },
+  {
+   "t": 24.3902,
+   "label": "pop star"
+  },
+  {
+   "t": 24.5122,
+   "label": "slide avatar 0"
+  },
+  {
+   "t": 24.6341,
+   "label": "slide avatar 1"
+  },
+  {
+   "t": 24.7561,
+   "label": "slide avatar 2"
+  },
+  {
+   "t": 24.878,
+   "label": "slide avatar 3"
+  },
+  {
+   "t": 24.878,
+   "label": "pop sparkle"
+  },
+  {
+   "t": 25.3659,
+   "label": "cut E4-room"
+  },
+  {
+   "t": 25.3659,
+   "label": "slap laptop room"
+  },
+  {
+   "t": 25.3659,
+   "label": "draw circle 阿遥"
+  },
+  {
+   "t": 25.6098,
+   "label": "draw circle 小满"
+  },
+  {
+   "t": 25.8537,
+   "label": "draw circle 北屿"
+  },
+  {
+   "t": 25.8537,
+   "label": "stamp stamp 示例角色 · 自动回复"
+  },
+  {
+   "t": 26.0976,
+   "label": "draw circle 林间"
+  },
+  {
+   "t": 26.3415,
+   "label": "pop heart"
+  },
+  {
+   "t": 27.0732,
+   "label": "wipe W3"
+  },
+  {
+   "t": 27.3171,
+   "label": "cut X-button"
+  },
+  {
+   "t": 27.3171,
+   "label": "slam 同一刻，"
+  },
+  {
+   "t": 27.439,
+   "label": "pop star"
+  },
+  {
+   "t": 27.561,
+   "label": "swipe 另一面。"
+  },
+  {
+   "t": 27.561,
+   "label": "slam 另一面。"
+  },
+  {
+   "t": 27.561,
+   "label": "pop heart"
+  },
+  {
+   "t": 27.6829,
+   "label": "pop sparkle"
+  },
+  {
+   "t": 27.8049,
+   "label": "pop X-button:111"
+  },
+  {
+   "t": 27.8049,
+   "label": "pop star"
+  }
+ ],
+ "cues": [
+  {
+   "t": 0,
+   "kind": "slap",
+   "gain": 0,
+   "pan": -0.11249999999999999,
+   "note": 0
+  },
+  {
+   "t": 0.4878,
+   "kind": "stamp",
+   "gain": -2,
+   "pan": -0.025000000000000012,
+   "note": 0
+  },
+  {
+   "t": 0.9756,
+   "kind": "slap",
+   "gain": 0,
+   "pan": 0.050000000000000024,
+   "note": 1
+  },
+  {
+   "t": 1.4634,
+   "kind": "stamp",
+   "gain": -2,
+   "pan": 0.07187499999999998,
+   "note": 1
+  },
+  {
+   "t": 1.9512,
+   "kind": "slap",
+   "gain": 0,
+   "pan": -0.22187499999999996,
+   "note": 2
+  },
+  {
+   "t": 2.439,
+   "kind": "stamp",
+   "gain": -2,
+   "pan": -0.20625,
+   "note": 2
+  },
+  {
+   "t": 2.439,
+   "kind": "pop",
+   "gain": -9,
+   "pan": 0,
+   "note": 0
+  },
+  {
+   "t": 2.9268,
+   "kind": "slap",
+   "gain": 0,
+   "pan": -0.06250000000000001,
+   "note": 3
+  },
+  {
+   "t": 3.4146,
+   "kind": "stamp",
+   "gain": -2,
+   "pan": 0,
+   "note": 3
+  },
+  {
+   "t": 3.4146,
+   "kind": "pop",
+   "gain": -9,
+   "pan": 0.012500000000000022,
+   "note": 2
+  },
+  {
+   "t": 3.9024,
+   "kind": "slap",
+   "gain": 0,
+   "pan": 0.1875,
+   "note": 4
+  },
+  {
+   "t": 4.3902,
+   "kind": "stamp",
+   "gain": -2,
+   "pan": 0.21249999999999997,
+   "note": 4
+  },
+  {
+   "t": 4.3902,
+   "kind": "pop",
+   "gain": -9,
+   "pan": -0.153125,
+   "note": 4
+  },
+  {
+   "t": 4.878,
+   "kind": "slap",
+   "gain": 0,
+   "pan": 0.21562499999999998,
+   "note": 5
+  },
+  {
+   "t": 5.3659,
+   "kind": "stamp",
+   "gain": -2,
+   "pan": 0.24375,
+   "note": 5
+  },
+  {
+   "t": 5.3659,
+   "kind": "pop",
+   "gain": -9,
+   "pan": -0.278125,
+   "note": 6
+  },
+  {
+   "t": 5.8537,
+   "kind": "slap",
+   "gain": 0,
+   "pan": 0.07812500000000001,
+   "note": 6
+  },
+  {
+   "t": 6.3415,
+   "kind": "stamp",
+   "gain": -2,
+   "pan": 0.10625000000000002,
+   "note": 6
+  },
+  {
+   "t": 6.8293,
+   "kind": "slap",
+   "gain": 0,
+   "pan": 0.121875,
+   "note": 7
+  },
+  {
+   "t": 7.3171,
+   "kind": "stamp",
+   "gain": -2,
+   "pan": 0.14375000000000002,
+   "note": 7
+  },
+  {
+   "t": 7.511,
+   "kind": "whoosh",
+   "gain": -3,
+   "pan": 0,
+   "note": 0
+  },
+  {
+   "t": 7.8049,
+   "kind": "impact",
+   "gain": 0,
+   "pan": -0.25625,
+   "note": 0
+  },
+  {
+   "t": 8.0488,
+   "kind": "pop",
+   "gain": -9,
+   "pan": 0,
+   "note": 0
+  },
+  {
+   "t": 8.2927,
+   "kind": "impact",
+   "gain": -2,
+   "pan": -0.25625,
+   "note": 2
+  },
+  {
+   "t": 8.4146,
+   "kind": "squeak",
+   "gain": -4,
+   "pan": 0,
+   "note": 0
+  },
+  {
+   "t": 8.5366,
+   "kind": "pop",
+   "gain": -9,
+   "pan": 0.27812499999999996,
+   "note": 2
+  },
+  {
+   "t": 8.7805,
+   "kind": "slap",
+   "gain": 0,
+   "pan": 0.09062499999999997,
+   "note": 3
+  },
+  {
+   "t": 9.0244,
+   "kind": "pop",
+   "gain": -9,
+   "pan": -0.27499999999999997,
+   "note": 4
+  },
+  {
+   "t": 9.2683,
+   "kind": "slap",
+   "gain": 0,
+   "pan": 0.20781249999999998,
+   "note": 5
+  },
+  {
+   "t": 9.7561,
+   "kind": "pop",
+   "gain": 0,
+   "pan": -0.253125,
+   "note": 4
+  },
+  {
+   "t": 10,
+   "kind": "pop",
+   "gain": -6,
+   "pan": 0.05312499999999998,
+   "note": 7
+  },
+  {
+   "t": 10.4878,
+   "kind": "pop",
+   "gain": -6,
+   "pan": 0.1875,
+   "note": 9
+  },
+  {
+   "t": 10.7317,
+   "kind": "squeak",
+   "gain": -6,
+   "pan": 0,
+   "note": 0
+  },
+  {
+   "t": 10.7317,
+   "kind": "pop",
+   "gain": -6,
+   "pan": 0.1625,
+   "note": 11
+  },
+  {
+   "t": 10.8537,
+   "kind": "squeak",
+   "gain": -8,
+   "pan": 0,
+   "note": 0
+  },
+  {
+   "t": 10.9756,
+   "kind": "swap",
+   "gain": -6,
+   "pan": 0.15,
+   "note": 0
+  },
+  {
+   "t": 11.7073,
+   "kind": "impact",
+   "gain": -4,
+   "pan": -0.2625,
+   "note": 0
+  },
+  {
+   "t": 13.1707,
+   "kind": "slap",
+   "gain": 0,
+   "pan": -0.12499999999999999,
+   "note": 2
+  },
+  {
+   "t": 13.6585,
+   "kind": "slap",
+   "gain": 0,
+   "pan": 0.12500000000000003,
+   "note": 4
+  },
+  {
+   "t": 14.6341,
+   "kind": "squeak",
+   "gain": -6,
+   "pan": 0,
+   "note": 0
+  },
+  {
+   "t": 15.122,
+   "kind": "impact",
+   "gain": -5,
+   "pan": -0.2625,
+   "note": 1
+  },
+  {
+   "t": 16.0976,
+   "kind": "squeak",
+   "gain": -6,
+   "pan": 0,
+   "note": 0
+  },
+  {
+   "t": 16.3415,
+   "kind": "pop",
+   "gain": -4,
+   "pan": 0,
+   "note": -3
+  },
+  {
+   "t": 17.0732,
+   "kind": "impact",
+   "gain": -4,
+   "pan": -0.2625,
+   "note": 3
+  },
+  {
+   "t": 18.0488,
+   "kind": "riser",
+   "gain": -6,
+   "pan": 0,
+   "note": 0
+  },
+  {
+   "t": 18.5366,
+   "kind": "swap",
+   "gain": -1,
+   "pan": 0,
+   "note": 0
+  },
+  {
+   "t": 18.7805,
+   "kind": "pop",
+   "gain": -9,
+   "pan": -0.04999999999999999,
+   "note": 0
+  },
+  {
+   "t": 19.0244,
+   "kind": "pop",
+   "gain": -9,
+   "pan": 0.056249999999999994,
+   "note": 2
+  },
+  {
+   "t": 19.2183,
+   "kind": "whoosh",
+   "gain": -3,
+   "pan": 0,
+   "note": 0
+  },
+  {
+   "t": 19.5122,
+   "kind": "boom",
+   "gain": 0,
+   "pan": 0,
+   "note": 0
+  },
+  {
+   "t": 19.5122,
+   "kind": "impact",
+   "gain": -2,
+   "pan": 0,
+   "note": 0
+  },
+  {
+   "t": 20.4878,
+   "kind": "impact",
+   "gain": -5,
+   "pan": 0.0046875,
+   "note": 2
+  },
+  {
+   "t": 20.9756,
+   "kind": "pop",
+   "gain": 0,
+   "pan": 0.11249999999999999,
+   "note": 5
+  },
+  {
+   "t": 21.7073,
+   "kind": "squeak",
+   "gain": -6,
+   "pan": 0,
+   "note": 0
+  },
+  {
+   "t": 22.439,
+   "kind": "click",
+   "gain": -2,
+   "pan": 0,
+   "note": 0
+  },
+  {
+   "t": 23.4146,
+   "kind": "impact",
+   "gain": -4,
+   "pan": -0.009375,
+   "note": 4
+  },
+  {
+   "t": 23.9024,
+   "kind": "pop",
+   "gain": -9,
+   "pan": 0.24999999999999997,
+   "note": 0
+  },
+  {
+   "t": 24.3902,
+   "kind": "impact",
+   "gain": -5,
+   "pan": -0.009375,
+   "note": 5
+  },
+  {
+   "t": 24.5122,
+   "kind": "pop",
+   "gain": -10,
+   "pan": 0.050000000000000024,
+   "note": 4
+  },
+  {
+   "t": 24.6341,
+   "kind": "pop",
+   "gain": -10,
+   "pan": 0.103125,
+   "note": 6
+  },
+  {
+   "t": 24.7561,
+   "kind": "pop",
+   "gain": -10,
+   "pan": 0.15624999999999997,
+   "note": 8
+  },
+  {
+   "t": 24.878,
+   "kind": "pop",
+   "gain": -10,
+   "pan": 0.209375,
+   "note": 10
+  },
+  {
+   "t": 24.878,
+   "kind": "pop",
+   "gain": -9,
+   "pan": 0.25625000000000003,
+   "note": 2
+  },
+  {
+   "t": 25.3659,
+   "kind": "slap",
+   "gain": 0,
+   "pan": 0,
+   "note": 0
+  },
+  {
+   "t": 25.3659,
+   "kind": "squeak",
+   "gain": -9,
+   "pan": 0,
+   "note": 0
+  },
+  {
+   "t": 25.6098,
+   "kind": "squeak",
+   "gain": -9,
+   "pan": 0,
+   "note": 0
+  },
+  {
+   "t": 25.8537,
+   "kind": "squeak",
+   "gain": -9,
+   "pan": 0,
+   "note": 0
+  },
+  {
+   "t": 25.8537,
+   "kind": "stamp",
+   "gain": -3,
+   "pan": -0.153125,
+   "note": 0
+  },
+  {
+   "t": 26.0976,
+   "kind": "squeak",
+   "gain": -9,
+   "pan": 0,
+   "note": 0
+  },
+  {
+   "t": 26.3415,
+   "kind": "heart",
+   "gain": -4,
+   "pan": 0.012188368055555543,
+   "note": 0
+  },
+  {
+   "t": 27.0232,
+   "kind": "whoosh",
+   "gain": -3,
+   "pan": 0,
+   "note": 0
+  },
+  {
+   "t": 27.3171,
+   "kind": "boom",
+   "gain": -2,
+   "pan": 0,
+   "note": 0
+  },
+  {
+   "t": 27.439,
+   "kind": "pop",
+   "gain": -9,
+   "pan": -0.1875,
+   "note": 0
+  },
+  {
+   "t": 27.561,
+   "kind": "squeak",
+   "gain": -4,
+   "pan": 0,
+   "note": 0
+  },
+  {
+   "t": 27.561,
+   "kind": "impact",
+   "gain": -5,
+   "pan": 0,
+   "note": 0
+  },
+  {
+   "t": 27.6829,
+   "kind": "pop",
+   "gain": -9,
+   "pan": -0.20625,
+   "note": 2
+  },
+  {
+   "t": 27.8049,
+   "kind": "pop",
+   "gain": 0,
+   "pan": 0,
+   "note": 0
+  }
+ ],
+ "marks": {
+  "coldOpen": 0,
+  "title": 7.804878048780488,
+  "pain": 11.707317073170731,
+  "drop": 19.51219512195122,
+  "room": 25.365853658536587,
+  "button": 27.317073170731707,
+  "end": 28.617073170731707
+ },
+ "texts": [
+  {
+   "text": "同一刻，",
+   "font": "display",
+   "size": 280,
+   "t0": 7.805,
+   "t1": 11.727,
+   "shot": "H2-title"
+  },
+  {
+   "text": "另一面。",
+   "font": "display",
+   "size": 280,
+   "t0": 8.293,
+   "t1": 11.727,
+   "shot": "H2-title"
+  },
+  {
+   "text": "散场了。",
+   "font": "display",
+   "size": 190,
+   "t0": 11.707,
+   "t1": 14.734,
+   "shot": "P-pain"
+  },
+  {
+   "text": "?",
+   "font": "logo",
+   "size": 80,
+   "t0": 15.854,
+   "t1": 18.637,
+   "shot": "P-pain"
+  },
+  {
+   "text": "?",
+   "font": "logo",
+   "size": 80,
+   "t0": 16.098,
+   "t1": 18.637,
+   "shot": "P-pain"
+  },
+  {
+   "text": "每部手机里，",
+   "font": "marker",
+   "size": 84,
+   "t0": 14.634,
+   "t1": 16.929,
+   "shot": "P-pain"
+  },
+  {
+   "text": "只有自己那一面。",
+   "font": "display",
+   "size": 150,
+   "t0": 15.122,
+   "t1": 17.051,
+   "shot": "P-pain"
+  },
+  {
+   "text": "要是……",
+   "font": "note",
+   "size": 112,
+   "t0": 16.829,
+   "t1": 19.532,
+   "shot": "P-pain"
+  },
+  {
+   "text": "能把那一面，换回来？",
+   "font": "display",
+   "size": 140,
+   "t0": 17.073,
+   "t1": 19.532,
+   "shot": "P-pain"
+  },
+  {
+   "text": "同场的人，",
+   "font": "display",
+   "size": 180,
+   "t0": 19.512,
+   "t1": 23.515,
+   "shot": "E1-phone"
+  },
+  {
+   "text": "再进同一间",
+   "font": "display",
+   "size": 150,
+   "t0": 20.488,
+   "t1": 23.515,
+   "shot": "E1-phone"
+  },
+  {
+   "text": "真实界面 · 示例现场",
+   "font": "hand",
+   "size": 42,
+   "t0": 21.463,
+   "t1": 23.515,
+   "shot": "E1-phone"
+  },
+  {
+   "text": "带上你的小人，",
+   "font": "display",
+   "size": 128,
+   "t0": 23.415,
+   "t1": 25.386,
+   "shot": "E1-phone"
+  },
+  {
+   "text": "看看谁也在。",
+   "font": "display",
+   "size": 128,
+   "t0": 24.39,
+   "t1": 25.386,
+   "shot": "E1-phone"
+  },
+  {
+   "text": "我！",
+   "font": "note",
+   "size": 72,
+   "t0": 26.341,
+   "t1": 27.337,
+   "shot": "E4-room"
+  },
+  {
+   "text": "看看谁也在。",
+   "font": "display",
+   "size": 96,
+   "t0": 25.366,
+   "t1": 27.337,
+   "shot": "E4-room"
+  },
+  {
+   "text": "同一刻，",
+   "font": "display",
+   "size": 230,
+   "t0": 27.317,
+   "t1": 28.717,
+   "shot": "X-button"
+  },
+  {
+   "text": "另一面。",
+   "font": "display",
+   "size": 230,
+   "t0": 27.561,
+   "t1": 28.717,
+   "shot": "X-button"
+  }
+ ]
+}

@@ -1,0 +1,148 @@
+{
+  "info": {
+    "status": "房间服务已连接",
+    "rooms": false,
+    "dsPaper": "",
+    "bodyBg": "rgb(24, 45, 38)",
+    "bodyBgImg": "none",
+    "bodyFont": "\"Microsoft YaHei\", \"PingFang SC\", system-ui, sans-serif",
+    "fams": {},
+    "check": {
+      "Doodle Display": true,
+      "Doodle Marker": true,
+      "Doodle Hand": true,
+      "Doodle Logo": true,
+      "Doodle Digits": true,
+      "Doodle Note": true
+    },
+    "samples": [
+      {
+        "sel": "header",
+        "font": "\"Microsoft YaHei\", \"PingFang SC\", system-ui, sans-serif",
+        "size": "16px",
+        "color": "rgb(32, 59, 50)",
+        "bg": "rgb(240, 233, 216)",
+        "bgImg": "none",
+        "shadow": "none",
+        "border": "0px none rgb(32, 59, 50)"
+      },
+      {
+        "sel": ".brand",
+        "font": "Arial, sans-serif",
+        "size": "32px",
+        "color": "rgb(32, 59, 50)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImg": "none",
+        "shadow": "none",
+        "border": "0px none rgb(32, 59, 50)"
+      },
+      {
+        "sel": "#render-status",
+        "font": "\"Microsoft YaHei\", \"PingFang SC\", system-ui, sans-serif",
+        "size": "12px",
+        "color": "rgb(83, 102, 75)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImg": "none",
+        "shadow": "none",
+        "border": "0px none rgb(83, 102, 75)"
+      },
+      {
+        "sel": "h1",
+        "font": "\"Microsoft YaHei\", \"PingFang SC\", system-ui, sans-serif",
+        "size": "28px",
+        "color": "rgb(32, 59, 50)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImg": "none",
+        "shadow": "none",
+        "border": "0px none rgb(32, 59, 50)"
+      },
+      {
+        "sel": "h2",
+        "font": "\"Microsoft YaHei\", \"PingFang SC\", system-ui, sans-serif",
+        "size": "21px",
+        "color": "rgb(32, 59, 50)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImg": "none",
+        "shadow": "none",
+        "border": "0px none rgb(32, 59, 50)"
+      },
+      {
+        "sel": "#join",
+        "font": "\"Microsoft YaHei\", \"PingFang SC\", system-ui, sans-serif",
+        "size": "13px",
+        "color": "rgb(32, 59, 50)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImg": "none",
+        "shadow": "none",
+        "border": "1px solid rgba(0, 0, 0, 0)"
+      },
+      {
+        "sel": "nav button",
+        "font": "\"Microsoft YaHei\", \"PingFang SC\", system-ui, sans-serif",
+        "size": "12px",
+        "color": "rgb(36, 61, 48)",
+        "bg": "rgb(220, 226, 190)",
+        "bgImg": "none",
+        "shadow": "none",
+        "border": "0px none rgb(36, 61, 48)"
+      },
+      {
+        "sel": ".presence",
+        "font": "\"Microsoft YaHei\", \"PingFang SC\", system-ui, sans-serif",
+        "size": "16px",
+        "color": "rgb(32, 59, 50)",
+        "bg": "rgba(240, 233, 216, 0.96)",
+        "bgImg": "none",
+        "shadow": "none",
+        "border": "0px none rgb(32, 59, 50)"
+      },
+      {
+        "sel": "footer",
+        "font": "\"Microsoft YaHei\", \"PingFang SC\", system-ui, sans-serif",
+        "size": "12px",
+        "color": "rgb(119, 129, 109)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImg": "none",
+        "shadow": "none",
+        "border": "1px solid rgb(179, 185, 157)"
+      }
+    ],
+    "venue": {
+      "id": "blender-venue-r2",
+      "sha256": "68f2b5991115dac38580e44f38277e9ca93be70d3bdf8e5806bbc64d59c85b8e",
+      "bytes": 1158336,
+      "status": "ready",
+      "meshCount": 12,
+      "triangles": 19728,
+      "materialCount": 8,
+      "bounds": {
+        "min": [
+          -7.000000238418579,
+          -0.3100000023841858,
+          -5.680000967775378
+        ],
+        "max": [
+          7.0899999141693115,
+          6.099999732026131,
+          6.949999988079071
+        ]
+      }
+    },
+    "identity": "missing",
+    "ready": true,
+    "canvas": {
+      "w": 348,
+      "h": 658,
+      "cw": 348,
+      "ch": 658
+    },
+    "ms": 4289
+  },
+  "log": {
+    "console": [],
+    "pageerror": [],
+    "failed": [],
+    "bad": [],
+    "fonts": []
+  }
+}

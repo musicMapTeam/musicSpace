@@ -1,0 +1,44 @@
+{
+  "hash": "6e8c6e6f",
+  "configHash": "b4a979ce",
+  "lockfileHash": "6c7dfcb3",
+  "browserHash": "435288c0",
+  "optimized": {
+    "qrcode-generator": {
+      "src": "../../../../../Users/alakazan/workplace/tme/musicSpace/node_modules/qrcode-generator/dist/qrcode.mjs",
+      "file": "qrcode-generator.js",
+      "fileHash": "54f2e2e3",
+      "needsInterop": false
+    },
+    "three": {
+      "src": "../../../../../Users/alakazan/workplace/tme/musicSpace/node_modules/three/build/three.module.js",
+      "file": "three.js",
+      "fileHash": "b2df3284",
+      "needsInterop": false
+    },
+    "three/addons/geometries/RoundedBoxGeometry.js": {
+      "src": "../../../../../Users/alakazan/workplace/tme/musicSpace/node_modules/three/examples/jsm/geometries/RoundedBoxGeometry.js",
+      "file": "three_addons_geometries_RoundedBoxGeometry__js.js",
+      "fileHash": "4442bb15",
+      "needsInterop": false
+    },
+    "three/addons/loaders/GLTFLoader.js": {
+      "src": "../../../../../Users/alakazan/workplace/tme/musicSpace/node_modules/three/examples/jsm/loaders/GLTFLoader.js",
+      "file": "three_addons_loaders_GLTFLoader__js.js",
+      "fileHash": "51881cb7",
+      "needsInterop": false
+    },
+    "three/addons/postprocessing/Pass.js": {
+      "src": "../../../../../Users/alakazan/workplace/tme/musicSpace/node_modules/three/examples/jsm/postprocessing/Pass.js",
+      "file": "three_addons_postprocessing_Pass__js.js",
+      "fileHash": "58cbd90e",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "three.module-Bj7iJlUn": {
+      "file": "three.module-Bj7iJlUn.js",
+      "isDynamicEntry": false
+    }
+  }
+}

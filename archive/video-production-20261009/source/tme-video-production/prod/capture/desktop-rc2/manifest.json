@@ -1,0 +1,3109 @@
+{
+ "what": "Music Space Doodle video: desktop takes re-captured on build 0.22.0-rc.2 (same shot ids as ../desktop/manifest.json: D-01..D-04 + desktop spares D-03s, D-05 exchange, D-06 chat)",
+ "made": "2026-10-08",
+ "replaces": "/tmp/space-video-doodle/prod/capture/desktop/manifest.json (rc1 footage, build 0.22.0-rc.1, old explanatory copy)",
+ "build": {
+  "path": "/tmp/space-final/dist-pages",
+  "version": "0.22.0-rc.2",
+  "commit": "8fa52f0",
+  "builtAt": "2026-10-07T20:18:33.163Z",
+  "served": "node scripts/pages/serve-prefix.mjs /tmp/space-final/dist-pages /musicSpace/ 48931 (root route, like GitHub Pages), 127.0.0.1:48931, stopped after capture"
+ },
+ "capture": {
+  "rig": "/tmp/space-video-doodle/prod/capture/desktop-rc2/tools/rig.mjs (copy of ../desktop/tools/rig.mjs; same recorder: Playwright fake clock, 16 ms of virtual time per frame, CSS/WAAPI animations pinned to the same clock, one CDP PNG screenshot per frame (lossless), seeded Math.random 20261009; plus a visible-text audit every 12 recorded frames); takes: /tmp/space-video-doodle/prod/capture/desktop-rc2/tools/takes.mjs",
+  "browser": "system Google Chrome, headless, --use-angle=metal --enable-gpu (real GPU), --force-color-profile=srgb, --hide-scrollbars",
+  "viewport": "CSS 1440x810, deviceScaleFactor 8/3 -> 3840x2160 device px; locale zh-CN, Asia/Shanghai",
+  "clock_start": "2026-10-08T22:40:00+08:00 = the first evening after the rc2 build (SHOTS.md: \"an evening after the build time\"). The static runtime clamps its clock to the build time (createClock, buildAtMs = 2026-10-08 04:18 +08:00), so rc1's 2026-10-07 22:40 would print 04:19 on screen. On-screen times: chat 22:40, 有效至 10/9 22:40 (rc1: 10/8 22:40)",
+  "visitor": "nickname 阿宁, look preset 失真 ([data-preset=\"4\"], the wardrobe group is now 「试试现成搭配」), participation 愿意打招呼, consent ticked; fresh browser context (= fresh world) per take, D-04 in D-02's world as SHOTS.md asks",
+  "playback_speed": "virtual time advances 16 ms per frame and the files are 60 fps: playback is 4 % slower than real time (62.5 -> 60), as in every clip made with this rig; all times here are video times (frame / 60)",
+  "pointer": "no cursor: the rig's doodle tap ring (yellow ring, ink outline, pink offset; 30 frames) marks each UI tap; camera glides are started with a plain element.click() on the product's own nav button / person label (no ring)",
+  "three_d_resolution": "the product renders its 3D canvas at 2x CSS (its own cap), so in the 3840x2160 master the 3D layer is a 1.33x upscale while all DOM/type is native 4K; punch-ins on the 3D up to 1.5x of the 1080 frame stay at native 3D resolution",
+  "ai_timing": "the on-device AI runs in real time while the virtual clock is stepped frame by frame, so the chip 「AI 判断：人海」 lands a few frames after the tap in the video; the result itself is the model's real answer",
+  "text_audit": "before the first frame of every clip and every 12 frames while recording: document.body.innerText (rendered text only) + title/aria-label/placeholder/alt/value of rendered elements grepped for 示例|虚构|本页|演示|自动回复|不是真人|没有服务器|只存在这个浏览器|模拟|本地体验版|在线访问|等待本人回应; a hit fails the take. The 3D canvas (stage sign, prints) cannot be grepped and was checked by eye on the stills and contact sheet."
+ },
+ "encoding": {
+  "master": "H.264 High, CRF 15, preset slow, tune animation, yuv420p, BT.709 primaries/transfer/matrix, limited range, 60 fps CFR, +faststart, no audio, 3840x2160",
+  "edit": "same settings, 1920x1080, Lanczos downscale (accurate_rnd, full_chroma_int) made from the same lossless PNG frames in the same ffmpeg pass (not from the H.264 master)",
+  "folders": {
+   "master": "/tmp/space-video-doodle/prod/capture/desktop-rc2/master",
+   "edit": "/tmp/space-video-doodle/prod/capture/desktop-rc2/1080",
+   "stills": "/tmp/space-video-doodle/prod/capture/desktop-rc2/stills",
+   "qc": "/tmp/space-video-doodle/prod/capture/desktop-rc2/qc",
+   "tools": "/tmp/space-video-doodle/prod/capture/desktop-rc2/tools",
+   "review": "/tmp/space-video-doodle/prod/capture/desktop-rc2/review",
+   "probe": "/tmp/space-video-doodle/prod/capture/desktop-rc2/probe",
+   "logs": "/tmp/space-video-doodle/prod/capture/desktop-rc2/logs"
+  }
+ },
+ "conventions": {
+  "time": "seconds of video time from the first frame of the file (frame / 60)",
+  "boxes": "[x, y, w, h] in master pixels (3840x2160); divide by 2 for the 1080 edit copy",
+  "taps": "frame = the ring appears (mousedown); dom_click_frame = frame + 3 (mouseup, the product reacts from here)",
+  "beat_grid": "taps that follow each other are placed on a 123 BPM grid (Flipping In): beat k at frame zero + round(k * 29.268); other tempos: re-time by cutting between taps",
+  "people": "per person: label box in master px; the figure stands below the label stem (about 80 x 170 CSS px = 213 x 453 master px at the overview camera)",
+  "vs_rc1": "per clip: frame counts, tap frames and every mark box that moved more than 4 master px (or was added/removed) compared with the rc1 manifest; scenes that address rc1 footage by source pixels should re-read these"
+ },
+ "clips": [
+  {
+   "id": "D-01-landing",
+   "take": "TAKE-D1",
+   "storyboard": [
+    "H3"
+   ],
+   "what": "landing page, untouched (no pointer); only the product line boil moves (6.7 steps/s on the 3D stage); the push is left to the edit",
+   "files": {
+    "master": "/tmp/space-video-doodle/prod/capture/desktop-rc2/master/D-01-landing.mp4",
+    "edit": "/tmp/space-video-doodle/prod/capture/desktop-rc2/1080/D-01-landing.mp4",
+    "rec": "/tmp/space-video-doodle/prod/capture/desktop-rc2/master/D-01-landing.rec.json",
+    "qc": "/tmp/space-video-doodle/prod/capture/desktop-rc2/qc/D-01-landing.qc.json"
+   },
+   "frames": 480,
+   "seconds": 8,
+   "duration_tc": "0:08.000",
+   "bytes": {
+    "master": 5499628,
+    "edit": 2753774
+   },
+   "sha256": {
+    "master": "51e04efe94a0abe110db478b37595c0609836c2e686d60a78947fbd5e35389cc",
+    "edit": "9b8ebeb2354cbdc74a995f5acced426fca10ca1b75a98b5c81f83eb96f53b920"
+   },
+   "marks": [
+    {
+     "label": "landing",
+     "frame": 0,
+     "t": 0,
+     "titleLines": [
+      [
+       2629,
+       973,
+       496,
+       160
+      ],
+      [
+       2629,
+       1143,
+       496,
+       160
+      ]
+     ],
+     "note": "titleLines = the two lines of 「同一刻，另一面。」 (#presence-title) for the H2 -> H3 match cut",
+     "boxes_master_px": {
+      "title": [
+       2629,
+       971,
+       800,
+       339
+      ],
+      "titleCard": [
+       2560,
+       907,
+       1120,
+       891
+      ],
+      "captionNote": [
+       527,
+       1326,
+       534,
+       149
+      ],
+      "enterButton": [
+       2629,
+       1595,
+       306,
+       139
+      ],
+      "leftTitle": [
+       149,
+       875,
+       410,
+       107
+      ],
+      "stage3D": [
+       1258,
+       243,
+       2477,
+       1595
+      ],
+      "footer": [
+       2306,
+       2043,
+       403,
+       117
+      ],
+      "headerPill": [
+       3411,
+       92,
+       173,
+       35
+      ]
+     }
+    },
+    {
+     "label": "end",
+     "frame": 480,
+     "t": 8
+    }
+   ],
+   "taps": [],
+   "presses_without_ring": [],
+   "text_audit": {
+    "pattern": "示例|虚构|本页|演示|自动回复|不是真人|没有服务器|只存在这个浏览器|模拟|本地体验版|在线访问|等待本人回应",
+    "before_first_frame": "clean (277 characters of visible text)",
+    "while_recording": "40 checks (every 12 frames): clean"
+   },
+   "qc": {
+    "master": "h264 High 3840x2160 60/1 yuv420p bt709/bt709/bt709/tv 5.5 Mb/s",
+    "edit": "h264 High 1920x1080 60/1 yuv420p bt709/bt709/bt709/tv 2.8 Mb/s",
+    "audio_streams": 0,
+    "frames_master": 480,
+    "frames_edit": 480,
+    "same_frame_count": true,
+    "longest_still": {
+     "frames": 9,
+     "at_s": 0.017
+    },
+    "still_over_1s": [],
+    "stutters": 0,
+    "camera_glides": [],
+    "change_gap_histogram": {
+     "8": 4,
+     "9": 48
+    },
+    "capture_ms_per_frame": {
+     "step": 3,
+     "grab": 107.5,
+     "write": 6.6
+    },
+    "wall_s_per_video_s": 7.03
+   },
+   "vs_rc1": {
+    "frames": {
+     "rc1": 480,
+     "rc2": 480
+    },
+    "taps_same_frames": true,
+    "taps": {
+     "rc1": [],
+     "rc2": []
+    },
+    "changes": [
+     {
+      "mark": "landing",
+      "box": "enterButton",
+      "change": "moved/resized",
+      "rc1": [
+       2629,
+       1595,
+       406,
+       139
+      ],
+      "rc2": [
+       2629,
+       1595,
+       306,
+       139
+      ]
+     },
+     {
+      "mark": "landing",
+      "box": "footer",
+      "change": "moved/resized",
+      "rc1": [
+       2079,
+       2043,
+       857,
+       117
+      ],
+      "rc2": [
+       2306,
+       2043,
+       403,
+       117
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "D-02-room-hero",
+   "take": "TAKE-D2",
+   "storyboard": [
+    "E4",
+    "W5",
+    "H1 (CUT-01)",
+    "+2 glide"
+   ],
+   "what": "room overview, all five present (林间 included), route card 「第一次来」 skipped; 8 s overview hold, then four product camera glides at half speed: wall, overview, 阿遥 close-up, overview",
+   "files": {
+    "master": "/tmp/space-video-doodle/prod/capture/desktop-rc2/master/D-02-room-hero.mp4",
+    "edit": "/tmp/space-video-doodle/prod/capture/desktop-rc2/1080/D-02-room-hero.mp4",
+    "rec": "/tmp/space-video-doodle/prod/capture/desktop-rc2/master/D-02-room-hero.rec.json",
+    "qc": "/tmp/space-video-doodle/prod/capture/desktop-rc2/qc/D-02-room-hero.qc.json"
+   },
+   "frames": 1560,
+   "seconds": 26,
+   "duration_tc": "0:26.000",
+   "bytes": {
+    "master": 55458649,
+    "edit": 26966553
+   },
+   "sha256": {
+    "master": "1ba2e6dc812cf6c3e23b78c3d2ee303b06c891e9654e11b24c0588196aa802a0",
+    "edit": "b9e63b2bccd440d7e90f469f1803698e9ebecd660644a63c14edbe7b82a804b5"
+   },
+   "marks": [
+    {
+     "label": "overview",
+     "frame": 0,
+     "t": 0,
+     "boxes_master_px": {
+      "roomTitle": [
+       135,
+       374,
+       436,
+       163
+      ],
+      "joined": [
+       216,
+       594,
+       150,
+       40
+      ],
+      "venue": [
+       167,
+       300,
+       254,
+       41
+      ],
+      "presenceCard": [
+       2837,
+       1287,
+       484,
+       69
+      ],
+      "songCard": [
+       442,
+       1681,
+       161,
+       43
+      ],
+      "footer": [
+       1719,
+       2043,
+       403,
+       117
+      ],
+      "nav": [
+       1120,
+       1893,
+       1600,
+       133
+      ],
+      "photosHotspot": [
+       1993,
+       506,
+       341,
+       117
+      ],
+      "world": [
+       83,
+       243,
+       3653,
+       1595
+      ],
+      "headerMusicMap": [
+       2936,
+       89,
+       160,
+       40
+      ]
+     },
+     "people_master_px": [
+      {
+       "name": "阿遥 · 可招呼",
+       "label": [
+        1116,
+        807,
+        341,
+        117
+       ],
+       "dot": [
+        0,
+        0
+       ]
+      },
+      {
+       "name": "小满 · 可招呼",
+       "label": [
+        1339,
+        675,
+        341,
+        117
+       ],
+       "dot": [
+        0,
+        0
+       ]
+      },
+      {
+       "name": "北屿 · 可招呼",
+       "label": [
+        1550,
+        807,
+        341,
+        117
+       ],
+       "dot": [
+        0,
+        0
+       ]
+      },
+      {
+       "name": "阿宁 · 我",
+       "label": [
+        1764,
+        675,
+        341,
+        117
+       ],
+       "dot": [
+        0,
+        0
+       ]
+      },
+      {
+       "name": "林间 · 安静",
+       "label": [
+        1983,
+        807,
+        341,
+        117
+       ],
+       "dot": [
+        0,
+        0
+       ]
+      }
+     ]
+    },
+    {
+     "label": "glide-photos-start",
+     "frame": 480,
+     "t": 8
+    },
+    {
+     "label": "photos",
+     "frame": 600,
+     "t": 10,
+     "boxes_master_px": {
+      "contextBar": [
+       1349,
+       1629,
+       1120,
+       171
+      ],
+      "nav": [
+       1120,
+       1893,
+       1600,
+       133
+      ]
+     }
+    },
+    {
+     "label": "glide-overview-start",
+     "frame": 780,
+     "t": 13
+    },
+    {
+     "label": "overview-2",
+     "frame": 900,
+     "t": 15,
+     "people_master_px": [
+      {
+       "name": "阿遥 · 可招呼",
+       "label": [
+        1116,
+        807,
+        341,
+        117
+       ],
+       "dot": [
+        0,
+        0
+       ]
+      },
+      {
+       "name": "小满 · 可招呼",
+       "label": [
+        1339,
+        675,
+        341,
+        117
+       ],
+       "dot": [
+        0,
+        0
+       ]
+      },
+      {
+       "name": "北屿 · 可招呼",
+       "label": [
+        1550,
+        807,
+        341,
+        117
+       ],
+       "dot": [
+        0,
+        0
+       ]
+      },
+      {
+       "name": "阿宁 · 我",
+       "label": [
+        1764,
+        675,
+        341,
+        117
+       ],
+       "dot": [
+        0,
+        0
+       ]
+      },
+      {
+       "name": "林间 · 安静",
+       "label": [
+        1983,
+        807,
+        341,
+        117
+       ],
+       "dot": [
+        0,
+        0
+       ]
+      }
+     ]
+    },
+    {
+     "label": "glide-yao-start",
+     "frame": 1020,
+     "t": 17
+    },
+    {
+     "label": "yao-close-up",
+     "frame": 1140,
+     "t": 19,
+     "boxes_master_px": {
+      "contextBar": [
+       1349,
+       1629,
+       1120,
+       171
+      ],
+      "meetButton": [
+       2197,
+       1656,
+       245,
+       117
+      ]
+     }
+    },
+    {
+     "label": "glide-overview2-start",
+     "frame": 1320,
+     "t": 22
+    },
+    {
+     "label": "overview-3",
+     "frame": 1440,
+     "t": 24
+    },
+    {
+     "label": "end",
+     "frame": 1560,
+     "t": 26
+    }
+   ],
+   "taps": [],
+   "presses_without_ring": [
+    {
+     "t": 8,
+     "frame": 480,
+     "label": "照片墙 (nav)",
+     "selector": "nav.camera-nav button[data-view=photos]"
+    },
+    {
+     "t": 13,
+     "frame": 780,
+     "label": "全景 (nav)",
+     "selector": "nav.camera-nav button[data-view=overview]"
+    },
+    {
+     "t": 17,
+     "frame": 1020,
+     "label": "阿遥 label",
+     "selector": "#hotspots .hotspot[data-kind=person][title^=\"阿遥\"]"
+    },
+    {
+     "t": 22,
+     "frame": 1320,
+     "label": "全景 (nav)",
+     "selector": "nav.camera-nav button[data-view=overview]"
+    }
+   ],
+   "figures_overview_master_px": {
+    "valid_for": "every overview hold (D-02 0-8 s, 15-17 s, 24-26 s; D-04 0-1 s): the overview camera is the same position in all of them (rig camera probe)",
+    "method": "D-02-room-hero frames 479/480 (vanish frame, camera unchanged); overlay boxes masked out, split by label column; accurate to about 10 master px",
+    "people": [
+     {
+      "name": "阿遥 · 可招呼",
+      "figure": [
+       1253,
+       978,
+       126,
+       387
+      ],
+      "label": [
+       1116,
+       807,
+       341,
+       117
+      ]
+     },
+     {
+      "name": "小满 · 可招呼",
+      "figure": [
+       1439,
+       955,
+       136,
+       406
+      ],
+      "label": [
+       1339,
+       675,
+       341,
+       117
+      ]
+     },
+     {
+      "name": "北屿 · 可招呼",
+      "figure": [
+       1656,
+       966,
+       120,
+       375
+      ],
+      "label": [
+       1550,
+       807,
+       341,
+       117
+      ]
+     },
+     {
+      "name": "阿宁 · 我",
+      "figure": [
+       1887,
+       944,
+       118,
+       413
+      ],
+      "label": [
+       1764,
+       675,
+       341,
+       117
+      ]
+     },
+     {
+      "name": "林间 · 安静",
+      "figure": [
+       2087,
+       966,
+       115,
+       384
+      ],
+      "label": [
+       1983,
+       807,
+       341,
+       117
+      ]
+     }
+    ]
+   },
+   "camera_glide_speed": "product camera moves recorded at rAF warp 0.5 (half speed)",
+   "text_audit": {
+    "pattern": "示例|虚构|本页|演示|自动回复|不是真人|没有服务器|只存在这个浏览器|模拟|本地体验版|在线访问|等待本人回应",
+    "before_first_frame": "clean (243 characters of visible text)",
+    "while_recording": "130 checks (every 12 frames): clean"
+   },
+   "qc": {
+    "master": "h264 High 3840x2160 60/1 yuv420p bt709/bt709/bt709/tv 17.1 Mb/s",
+    "edit": "h264 High 1920x1080 60/1 yuv420p bt709/bt709/bt709/tv 8.3 Mb/s",
+    "audio_streams": 0,
+    "frames_master": 1560,
+    "frames_edit": 1560,
+    "same_frame_count": true,
+    "longest_still": {
+     "frames": 9,
+     "at_s": 0.117
+    },
+    "still_over_1s": [],
+    "stutters": 0,
+    "camera_glides": [
+     {
+      "start_s": 8.0,
+      "frames": 119,
+      "seconds": 1.983,
+      "view_to": "photos",
+      "camera_static_frames_inside": 0,
+      "picture_still_frames_inside": 0,
+      "min_picture_change": 0.498,
+      "step_ratio_range": [
+       0.994,
+       1.009
+      ]
+     },
+     {
+      "start_s": 13.0,
+      "frames": 119,
+      "seconds": 1.983,
+      "view_to": "overview",
+      "camera_static_frames_inside": 0,
+      "picture_still_frames_inside": 0,
+      "min_picture_change": 0.698,
+      "step_ratio_range": [
+       0.998,
+       1.006
+      ]
+     },
+     {
+      "start_s": 17.0,
+      "frames": 119,
+      "seconds": 1.983,
+      "view_to": "person",
+      "camera_static_frames_inside": 0,
+      "picture_still_frames_inside": 0,
+      "min_picture_change": 0.32,
+      "step_ratio_range": [
+       0.994,
+       1.01
+      ]
+     },
+     {
+      "start_s": 22.0,
+      "frames": 119,
+      "seconds": 1.983,
+      "view_to": "overview",
+      "camera_static_frames_inside": 0,
+      "picture_still_frames_inside": 0,
+      "min_picture_change": 0.41,
+      "step_ratio_range": [
+       0.995,
+       1.012
+      ]
+     }
+    ],
+    "change_gap_histogram": {
+     "1": 477,
+     "3": 3,
+     "6": 8,
+     "8": 6,
+     "9": 106
+    },
+    "capture_ms_per_frame": {
+     "step": 3.8,
+     "grab": 146.6,
+     "write": 10.1
+    },
+    "wall_s_per_video_s": 9.77
+   },
+   "vs_rc1": {
+    "frames": {
+     "rc1": 1560,
+     "rc2": 1560
+    },
+    "taps_same_frames": true,
+    "taps": {
+     "rc1": [],
+     "rc2": []
+    },
+    "changes": [
+     {
+      "mark": "overview",
+      "box": "footer",
+      "change": "moved/resized",
+      "rc1": [
+       1491,
+       2043,
+       857,
+       117
+      ],
+      "rc2": [
+       1719,
+       2043,
+       403,
+       117
+      ]
+     },
+     {
+      "mark": "overview",
+      "box": "roomTitle",
+      "change": "moved/resized",
+      "rc1": [
+       167,
+       382,
+       713,
+       130
+      ],
+      "rc2": [
+       135,
+       374,
+       436,
+       163
+      ]
+     },
+     {
+      "mark": "overview",
+      "box": "venue",
+      "change": "moved/resized",
+      "rc1": [
+       247,
+       303,
+       175,
+       38
+      ],
+      "rc2": [
+       167,
+       300,
+       254,
+       41
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "D-03a-wall-before",
+   "take": "TAKE-D3",
+   "storyboard": [
+    "A4 36:1"
+   ],
+   "what": "3D photo wall (photos view) with the cast's four photos, panel closed",
+   "files": {
+    "master": "/tmp/space-video-doodle/prod/capture/desktop-rc2/master/D-03a-wall-before.mp4",
+    "edit": "/tmp/space-video-doodle/prod/capture/desktop-rc2/1080/D-03a-wall-before.mp4",
+    "rec": "/tmp/space-video-doodle/prod/capture/desktop-rc2/master/D-03a-wall-before.rec.json",
+    "qc": "/tmp/space-video-doodle/prod/capture/desktop-rc2/qc/D-03a-wall-before.qc.json"
+   },
+   "frames": 240,
+   "seconds": 4,
+   "duration_tc": "0:04.000",
+   "bytes": {
+    "master": 1194386,
+    "edit": 588206
+   },
+   "sha256": {
+    "master": "45064fe47b316d98188c0cd51a81c5fc9a0d9f59fe9e89b63a1c6e1fa0366bc5",
+    "edit": "308fe1d4cbf92d0d37318a3cac34be908f831985f9cc957016cffd7fa1f4bf0c"
+   },
+   "marks": [
+    {
+     "label": "wall-4",
+     "frame": 0,
+     "t": 0,
+     "boxes_master_px": {
+      "contextBar": [
+       1349,
+       1629,
+       1120,
+       171
+      ],
+      "viewPhotos": [
+       1947,
+       1656,
+       269,
+       117
+      ]
+     }
+    },
+    {
+     "label": "end",
+     "frame": 240,
+     "t": 4
+    }
+   ],
+   "taps": [],
+   "presses_without_ring": [],
+   "text_audit": {
+    "pattern": "示例|虚构|本页|演示|自动回复|不是真人|没有服务器|只存在这个浏览器|模拟|本地体验版|在线访问|等待本人回应",
+    "before_first_frame": "clean (92 characters of visible text)",
+    "while_recording": "20 checks (every 12 frames): clean"
+   },
+   "qc": {
+    "master": "h264 High 3840x2160 60/1 yuv420p bt709/bt709/bt709/tv 2.4 Mb/s",
+    "edit": "h264 High 1920x1080 60/1 yuv420p bt709/bt709/bt709/tv 1.2 Mb/s",
+    "audio_streams": 0,
+    "frames_master": 240,
+    "frames_edit": 240,
+    "same_frame_count": true,
+    "longest_still": {
+     "frames": 9,
+     "at_s": 0.067
+    },
+    "still_over_1s": [],
+    "stutters": 0,
+    "camera_glides": [],
+    "change_gap_histogram": {
+     "9": 25
+    },
+    "capture_ms_per_frame": {
+     "step": 3.8,
+     "grab": 144.4,
+     "write": 10.1
+    },
+    "wall_s_per_video_s": 9.5
+   },
+   "vs_rc1": {
+    "frames": {
+     "rc1": 240,
+     "rc2": 240
+    },
+    "taps_same_frames": true,
+    "taps": {
+     "rc1": [],
+     "rc2": []
+    },
+    "changes": []
+   }
+  },
+  {
+   "id": "D-03s-wall-save",
+   "take": "TAKE-D3",
+   "storyboard": [
+    "A4 (desktop alternative)",
+    "spare"
+   ],
+   "what": "desktop upload of 「人海那张」 from the wall: sheet, 「✦ AI 判断：人海」, save, toast 「已分享给本场成员」, wall panel with the badge; the 3D wall re-frames to five photos",
+   "files": {
+    "master": "/tmp/space-video-doodle/prod/capture/desktop-rc2/master/D-03s-wall-save.mp4",
+    "edit": "/tmp/space-video-doodle/prod/capture/desktop-rc2/1080/D-03s-wall-save.mp4",
+    "rec": "/tmp/space-video-doodle/prod/capture/desktop-rc2/master/D-03s-wall-save.rec.json",
+    "qc": "/tmp/space-video-doodle/prod/capture/desktop-rc2/qc/D-03s-wall-save.qc.json"
+   },
+   "frames": 540,
+   "seconds": 9,
+   "duration_tc": "0:09.000",
+   "bytes": {
+    "master": 4956563,
+    "edit": 2307532
+   },
+   "sha256": {
+    "master": "f5c95c616b16ec4801890aea4e09851f56851764d4bcf8d23462d40c37bc9224",
+    "edit": "281d8fd13609d60b754ce404214326f82c31af970350d4bc85eae01c39a5b6f2"
+   },
+   "marks": [
+    {
+     "label": "wall-4",
+     "frame": 0,
+     "t": 0
+    },
+    {
+     "label": "upload-sheet",
+     "frame": 39,
+     "t": 0.65,
+     "boxes_master_px": {
+      "panel": [
+       2653,
+       319,
+       1008,
+       1447
+      ],
+      "samples": [
+       2719,
+       865,
+       877,
+       202
+      ]
+     }
+    },
+    {
+     "label": "ai-chip",
+     "frame": 157,
+     "t": 2.617,
+     "framesAfterTap": 1,
+     "aiText": "AI 判断：人海",
+     "boxes_master_px": {
+      "aiTag": [
+       2692,
+       1477,
+       454,
+       117
+      ],
+      "chips": [
+       2693,
+       1051,
+       448,
+       183
+      ],
+      "takenAt": [
+       3186,
+       436,
+       218,
+       85
+      ]
+     }
+    },
+    {
+     "label": "ai-chip-centred",
+     "frame": 219,
+     "t": 3.65,
+     "boxes_master_px": {
+      "aiTag": [
+       2692,
+       973,
+       454,
+       117
+      ],
+      "chips": [
+       2693,
+       547,
+       448,
+       183
+      ],
+      "hint": [
+       2693,
+       1122,
+       336,
+       45
+      ]
+     }
+    },
+    {
+     "label": "saved-wall-panel",
+     "frame": 390,
+     "t": 6.5,
+     "boxes_master_px": {
+      "toast": [
+       1767,
+       1760,
+       305,
+       38
+      ],
+      "panel": [
+       2624,
+       267,
+       1067,
+       1531
+      ],
+      "badge": [
+       2724,
+       991,
+       851,
+       508
+      ],
+      "groupTime": [
+       2693,
+       564,
+       233,
+       155
+      ]
+     }
+    },
+    {
+     "label": "camera-settled",
+     "frame": 390,
+     "t": 6.5,
+     "framesWaited": 0
+    },
+    {
+     "label": "end",
+     "frame": 540,
+     "t": 9
+    }
+   ],
+   "taps": [
+    {
+     "t": 0.6,
+     "frame": 36,
+     "dom_click_frame": 39,
+     "label": "放一张",
+     "xy_master": [
+      2340,
+      1715
+     ]
+    },
+    {
+     "t": 2.55,
+     "frame": 153,
+     "dom_click_frame": 156,
+     "label": "人海那张",
+     "xy_master": [
+      3157,
+      950
+     ]
+    },
+    {
+     "t": 6.45,
+     "frame": 387,
+     "dom_click_frame": 390,
+     "label": "保存这张照片",
+     "xy_master": [
+      3157,
+      1656
+     ]
+    }
+   ],
+   "presses_without_ring": [],
+   "beat_grid": {
+    "bpm": 123,
+    "zero": 36,
+    "beats": [
+     {
+      "beat": 0,
+      "frame": 36,
+      "t": 0.6,
+      "label": "放一张"
+     },
+     {
+      "beat": 4,
+      "frame": 153,
+      "t": 2.55,
+      "label": "人海那张"
+     },
+     {
+      "beat": 12,
+      "frame": 387,
+      "t": 6.45,
+      "label": "保存这张照片"
+     }
+    ]
+   },
+   "text_audit": {
+    "pattern": "示例|虚构|本页|演示|自动回复|不是真人|没有服务器|只存在这个浏览器|模拟|本地体验版|在线访问|等待本人回应",
+    "before_first_frame": "clean (92 characters of visible text)",
+    "while_recording": "45 checks (every 12 frames): clean"
+   },
+   "qc": {
+    "master": "h264 High 3840x2160 60/1 yuv420p bt709/bt709/bt709/tv 4.4 Mb/s",
+    "edit": "h264 High 1920x1080 60/1 yuv420p bt709/bt709/bt709/tv 2.1 Mb/s",
+    "audio_streams": 0,
+    "frames_master": 540,
+    "frames_edit": 540,
+    "same_frame_count": true,
+    "longest_still": {
+     "frames": 9,
+     "at_s": 0.083
+    },
+    "still_over_1s": [],
+    "stutters": 0,
+    "camera_glides": [],
+    "change_gap_histogram": {
+     "1": 52,
+     "4": 3,
+     "8": 4,
+     "9": 44
+    },
+    "capture_ms_per_frame": {
+     "step": 5.2,
+     "grab": 158.8,
+     "write": 12.2
+    },
+    "wall_s_per_video_s": 10.7
+   },
+   "vs_rc1": {
+    "frames": {
+     "rc1": 540,
+     "rc2": 540
+    },
+    "taps_same_frames": true,
+    "taps": {
+     "rc1": [
+      [
+       "放一张",
+       36
+      ],
+      [
+       "人海 · 示例照片",
+       153
+      ],
+      [
+       "保存这张照片",
+       387
+      ]
+     ],
+     "rc2": [
+      [
+       "放一张",
+       36
+      ],
+      [
+       "人海那张",
+       153
+      ],
+      [
+       "保存这张照片",
+       387
+      ]
+     ]
+    },
+    "changes": [
+     {
+      "mark": "ai-chip",
+      "change": "frame",
+      "rc1": 158,
+      "rc2": 157
+     },
+     {
+      "mark": "ai-chip",
+      "box": "aiTag",
+      "change": "moved/resized",
+      "rc1": [
+       2692,
+       1587,
+       454,
+       117
+      ],
+      "rc2": [
+       2692,
+       1477,
+       454,
+       117
+      ]
+     },
+     {
+      "mark": "ai-chip",
+      "box": "chips",
+      "change": "moved/resized",
+      "rc1": [
+       2693,
+       1161,
+       448,
+       183
+      ],
+      "rc2": [
+       2693,
+       1051,
+       448,
+       183
+      ]
+     },
+     {
+      "mark": "ai-chip-centred",
+      "change": "frame",
+      "rc1": 221,
+      "rc2": 219
+     },
+     {
+      "mark": "ai-chip-centred",
+      "box": "hint",
+      "change": "moved/resized",
+      "rc1": [
+       3253,
+       1122,
+       240,
+       45
+      ],
+      "rc2": [
+       2693,
+       1122,
+       336,
+       45
+      ]
+     },
+     {
+      "mark": "saved-wall-panel",
+      "box": "badge",
+      "change": "moved/resized",
+      "rc1": [
+       2724,
+       1277,
+       851,
+       508
+      ],
+      "rc2": [
+       2724,
+       991,
+       851,
+       508
+      ]
+     },
+     {
+      "mark": "saved-wall-panel",
+      "box": "groupTime",
+      "change": "moved/resized",
+      "rc1": [
+       2693,
+       792,
+       233,
+       155
+      ],
+      "rc2": [
+       2693,
+       564,
+       233,
+       155
+      ]
+     },
+     {
+      "mark": "saved-wall-panel",
+      "box": "toast",
+      "change": "moved/resized",
+      "rc1": [
+       1773,
+       1768,
+       294,
+       37
+      ],
+      "rc2": [
+       1767,
+       1760,
+       305,
+       38
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "D-03b-wall-after",
+   "take": "TAKE-D3",
+   "storyboard": [
+    "A4 36:3",
+    "H1 (CUT-03)"
+   ],
+   "what": "the photos view after the upload: five photos (yours included, 人海那张); the product frames five photos wider than four; recorded after the save toast had gone",
+   "files": {
+    "master": "/tmp/space-video-doodle/prod/capture/desktop-rc2/master/D-03b-wall-after.mp4",
+    "edit": "/tmp/space-video-doodle/prod/capture/desktop-rc2/1080/D-03b-wall-after.mp4",
+    "rec": "/tmp/space-video-doodle/prod/capture/desktop-rc2/master/D-03b-wall-after.rec.json",
+    "qc": "/tmp/space-video-doodle/prod/capture/desktop-rc2/qc/D-03b-wall-after.qc.json"
+   },
+   "frames": 240,
+   "seconds": 4,
+   "duration_tc": "0:04.000",
+   "bytes": {
+    "master": 2051082,
+    "edit": 976268
+   },
+   "sha256": {
+    "master": "b71df7d262f3b436b124225329ccf31e696a35f01ee8f04a5e354c96a5c8ee3b",
+    "edit": "e4dd08cc4d9e19f36d80be8b3e9e3b624cedd358349d0ba098f141bb7620d9fd"
+   },
+   "marks": [
+    {
+     "label": "wall-5",
+     "frame": 0,
+     "t": 0,
+     "boxes_master_px": {
+      "contextBar": [
+       1349,
+       1629,
+       1120,
+       171
+      ],
+      "viewPhotos": [
+       1949,
+       1656,
+       267,
+       117
+      ]
+     }
+    },
+    {
+     "label": "end",
+     "frame": 240,
+     "t": 4
+    }
+   ],
+   "taps": [],
+   "presses_without_ring": [],
+   "text_audit": {
+    "pattern": "示例|虚构|本页|演示|自动回复|不是真人|没有服务器|只存在这个浏览器|模拟|本地体验版|在线访问|等待本人回应",
+    "before_first_frame": "clean (92 characters of visible text)",
+    "while_recording": "20 checks (every 12 frames): clean"
+   },
+   "qc": {
+    "master": "h264 High 3840x2160 60/1 yuv420p bt709/bt709/bt709/tv 4.1 Mb/s",
+    "edit": "h264 High 1920x1080 60/1 yuv420p bt709/bt709/bt709/tv 2.0 Mb/s",
+    "audio_streams": 0,
+    "frames_master": 240,
+    "frames_edit": 240,
+    "same_frame_count": true,
+    "longest_still": {
+     "frames": 9,
+     "at_s": 0.067
+    },
+    "still_over_1s": [],
+    "stutters": 0,
+    "camera_glides": [],
+    "change_gap_histogram": {
+     "9": 24
+    },
+    "capture_ms_per_frame": {
+     "step": 2.8,
+     "grab": 145.7,
+     "write": 9.9
+    },
+    "wall_s_per_video_s": 9.51
+   },
+   "vs_rc1": {
+    "frames": {
+     "rc1": 240,
+     "rc2": 240
+    },
+    "taps_same_frames": true,
+    "taps": {
+     "rc1": [],
+     "rc2": []
+    },
+    "changes": []
+   }
+  },
+  {
+   "id": "D-04-linjian-quiet",
+   "take": "TAKE-D4",
+   "storyboard": [
+    "S3"
+   ],
+   "what": "overview -> glide (half speed) to the 3D close-up 「林间 · 近景 / 认识一下」 -> tap 认识一下 -> her card 「TA 选择安静参与，不接新招呼。」",
+   "files": {
+    "master": "/tmp/space-video-doodle/prod/capture/desktop-rc2/master/D-04-linjian-quiet.mp4",
+    "edit": "/tmp/space-video-doodle/prod/capture/desktop-rc2/1080/D-04-linjian-quiet.mp4",
+    "rec": "/tmp/space-video-doodle/prod/capture/desktop-rc2/master/D-04-linjian-quiet.rec.json",
+    "qc": "/tmp/space-video-doodle/prod/capture/desktop-rc2/qc/D-04-linjian-quiet.qc.json"
+   },
+   "frames": 561,
+   "seconds": 9.35,
+   "duration_tc": "0:09.350",
+   "bytes": {
+    "master": 16932442,
+    "edit": 8478626
+   },
+   "sha256": {
+    "master": "489b0a8bbbee845bc164ce06d2f759c7975a59baa5e0df967e4307e1948701a0",
+    "edit": "433395c6670cf614abd430dbacc11d903ee8c7b08e673dfb4e8663ce8493505f"
+   },
+   "marks": [
+    {
+     "label": "overview",
+     "frame": 0,
+     "t": 0,
+     "people_master_px": [
+      {
+       "name": "阿遥 · 可招呼",
+       "label": [
+        1116,
+        807,
+        341,
+        117
+       ],
+       "dot": [
+        0,
+        0
+       ]
+      },
+      {
+       "name": "小满 · 可招呼",
+       "label": [
+        1339,
+        675,
+        341,
+        117
+       ],
+       "dot": [
+        0,
+        0
+       ]
+      },
+      {
+       "name": "北屿 · 可招呼",
+       "label": [
+        1550,
+        807,
+        341,
+        117
+       ],
+       "dot": [
+        0,
+        0
+       ]
+      },
+      {
+       "name": "阿宁 · 我",
+       "label": [
+        1764,
+        675,
+        341,
+        117
+       ],
+       "dot": [
+        0,
+        0
+       ]
+      },
+      {
+       "name": "林间 · 安静",
+       "label": [
+        1983,
+        807,
+        341,
+        117
+       ],
+       "dot": [
+        0,
+        0
+       ]
+      }
+     ]
+    },
+    {
+     "label": "glide-linjian-start",
+     "frame": 60,
+     "t": 1
+    },
+    {
+     "label": "linjian-close-up",
+     "frame": 180,
+     "t": 3,
+     "boxes_master_px": {
+      "contextBar": [
+       1349,
+       1629,
+       1120,
+       171
+      ],
+      "meetButton": [
+       2197,
+       1656,
+       245,
+       117
+      ]
+     }
+    },
+    {
+     "label": "card-in",
+     "frame": 333,
+     "t": 5.55,
+     "boxes_master_px": {
+      "card": [
+       2667,
+       995,
+       981,
+       785
+      ],
+      "quietLine": [
+       2770,
+       1364,
+       506,
+       44
+      ],
+      "name": [
+       2733,
+       1141,
+       217,
+       157
+      ]
+     }
+    },
+    {
+     "label": "card-settled",
+     "frame": 405,
+     "t": 6.75,
+     "boxes_master_px": {
+      "card": [
+       2624,
+       944,
+       1067,
+       853
+      ],
+      "quietLine": [
+       2736,
+       1346,
+       550,
+       48
+      ],
+      "name": [
+       2697,
+       1104,
+       236,
+       170
+      ]
+     }
+    },
+    {
+     "label": "end",
+     "frame": 561,
+     "t": 9.35
+    }
+   ],
+   "taps": [
+    {
+     "t": 5.5,
+     "frame": 330,
+     "dom_click_frame": 333,
+     "label": "认识一下",
+     "xy_master": [
+      2320,
+      1715
+     ]
+    }
+   ],
+   "presses_without_ring": [
+    {
+     "t": 1,
+     "frame": 60,
+     "label": "林间 label",
+     "selector": "#hotspots .hotspot[data-kind=person][title^=\"林间\"]"
+    }
+   ],
+   "beat_grid": {
+    "bpm": 123,
+    "zero": 330,
+    "beats": [
+     {
+      "beat": 0,
+      "frame": 330,
+      "t": 5.5,
+      "label": "认识一下"
+     }
+    ]
+   },
+   "camera_glide_speed": "product camera moves recorded at rAF warp 0.5 (half speed)",
+   "text_audit": {
+    "pattern": "示例|虚构|本页|演示|自动回复|不是真人|没有服务器|只存在这个浏览器|模拟|本地体验版|在线访问|等待本人回应",
+    "before_first_frame": "clean (243 characters of visible text)",
+    "while_recording": "47 checks (every 12 frames): clean"
+   },
+   "qc": {
+    "master": "h264 High 3840x2160 60/1 yuv420p bt709/bt709/bt709/tv 14.5 Mb/s",
+    "edit": "h264 High 1920x1080 60/1 yuv420p bt709/bt709/bt709/tv 7.3 Mb/s",
+    "audio_streams": 0,
+    "frames_master": 561,
+    "frames_edit": 561,
+    "same_frame_count": true,
+    "longest_still": {
+     "frames": 9,
+     "at_s": 0.117
+    },
+    "still_over_1s": [],
+    "stutters": 0,
+    "camera_glides": [
+     {
+      "start_s": 1.0,
+      "frames": 119,
+      "seconds": 1.983,
+      "view_to": "person",
+      "camera_static_frames_inside": 0,
+      "picture_still_frames_inside": 0,
+      "min_picture_change": 0.291,
+      "step_ratio_range": [
+       0.979,
+       1.012
+      ]
+     }
+    ],
+    "change_gap_histogram": {
+     "1": 132,
+     "6": 3,
+     "8": 4,
+     "9": 40
+    },
+    "capture_ms_per_frame": {
+     "step": 3.3,
+     "grab": 153.3,
+     "write": 10.6
+    },
+    "wall_s_per_video_s": 10.19
+   },
+   "vs_rc1": {
+    "frames": {
+     "rc1": 561,
+     "rc2": 561
+    },
+    "taps_same_frames": true,
+    "taps": {
+     "rc1": [
+      [
+       "认识一下",
+       330
+      ]
+     ],
+     "rc2": [
+      [
+       "认识一下",
+       330
+      ]
+     ]
+    },
+    "changes": [
+     {
+      "mark": "card-in",
+      "box": "card",
+      "change": "moved/resized",
+      "rc1": [
+       2667,
+       809,
+       981,
+       963
+      ],
+      "rc2": [
+       2667,
+       995,
+       981,
+       785
+      ]
+     },
+     {
+      "mark": "card-in",
+      "box": "name",
+      "change": "moved/resized",
+      "rc1": [
+       2733,
+       952,
+       464,
+       163
+      ],
+      "rc2": [
+       2733,
+       1141,
+       217,
+       157
+      ]
+     },
+     {
+      "mark": "card-in",
+      "box": "quietLine",
+      "change": "moved/resized",
+      "rc1": [
+       2770,
+       1178,
+       543,
+       44
+      ],
+      "rc2": [
+       2770,
+       1364,
+       506,
+       44
+      ]
+     },
+     {
+      "mark": "card-settled",
+      "box": "card",
+      "change": "moved/resized",
+      "rc1": [
+       2624,
+       751,
+       1067,
+       1047
+      ],
+      "rc2": [
+       2624,
+       944,
+       1067,
+       853
+      ]
+     },
+     {
+      "mark": "card-settled",
+      "box": "name",
+      "change": "moved/resized",
+      "rc1": [
+       2697,
+       907,
+       505,
+       177
+      ],
+      "rc2": [
+       2697,
+       1104,
+       236,
+       170
+      ]
+     },
+     {
+      "mark": "card-settled",
+      "box": "quietLine",
+      "change": "moved/resized",
+      "rc1": [
+       2736,
+       1152,
+       590,
+       48
+      ],
+      "rc2": [
+       2736,
+       1346,
+       550,
+       48
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "D-05-exchange",
+   "take": "TAKE-D5 (desktop spare)",
+   "storyboard": [
+    "M3-M7 desktop alternative",
+    "spare"
+   ],
+   "what": "wall badge -> 「和 TA 交换这个视角」 -> compose (two polaroids, recommended pick, reason card) -> consent tick 「我同意先给小图，TA 接受后再给原图」 -> 「把这两张交给对方确认 ↗」 -> 「等待对方回应」 (the real wait, uncut) -> 「交换已接受」 -> 「散场后也能在「照片交换」里看。」 + 「撤销这次交换」",
+   "files": {
+    "master": "/tmp/space-video-doodle/prod/capture/desktop-rc2/master/D-05-exchange.mp4",
+    "edit": "/tmp/space-video-doodle/prod/capture/desktop-rc2/1080/D-05-exchange.mp4",
+    "rec": "/tmp/space-video-doodle/prod/capture/desktop-rc2/master/D-05-exchange.rec.json",
+    "qc": "/tmp/space-video-doodle/prod/capture/desktop-rc2/qc/D-05-exchange.qc.json"
+   },
+   "frames": 917,
+   "seconds": 15.283,
+   "duration_tc": "0:15.283",
+   "bytes": {
+    "master": 16699201,
+    "edit": 8246189
+   },
+   "sha256": {
+    "master": "3eff540d044418ce524e5063430df8b9f916010efff1560fdeb2aef3ed03dd38",
+    "edit": "cb89d139498e203f83aa4c55795fdd3ab7df7d262fa6b1fa3b4525a688d73827"
+   },
+   "marks": [
+    {
+     "label": "wall-badge",
+     "frame": 0,
+     "t": 0,
+     "boxes_master_px": {
+      "badge": [
+       2724,
+       623,
+       851,
+       508
+      ],
+      "offer": [
+       2730,
+       967,
+       845,
+       164
+      ],
+      "panel": [
+       2624,
+       267,
+       1067,
+       1531
+      ],
+      "reason": [
+       2728,
+       874,
+       172,
+       54
+      ]
+     }
+    },
+    {
+     "label": "compose",
+     "frame": 93,
+     "t": 1.55,
+     "boxes_master_px": {
+      "pair": [
+       2587,
+       710,
+       1035,
+       616
+      ],
+      "intro": [
+       2576,
+       587,
+       227,
+       53
+      ],
+      "select": [
+       2576,
+       1485,
+       1056,
+       133
+      ],
+      "body": [
+       2523,
+       518,
+       1163,
+       1274
+      ]
+     }
+    },
+    {
+     "label": "reason",
+     "frame": 241,
+     "t": 4.017,
+     "boxes_master_px": {
+      "select": [
+       2576,
+       848,
+       1056,
+       133
+      ],
+      "reason": [
+       2576,
+       1050,
+       1056,
+       239
+      ],
+      "recommended": [
+       2576,
+       1050,
+       1056,
+       239
+      ]
+     }
+    },
+    {
+     "label": "consent",
+     "frame": 343,
+     "t": 5.717,
+     "boxes_master_px": {
+      "consent": [
+       2576,
+       1423,
+       1056,
+       117
+      ],
+      "send": [
+       2576,
+       1588,
+       1056,
+       155
+      ],
+      "reason": [
+       2576,
+       1088,
+       1056,
+       239
+      ]
+     }
+    },
+    {
+     "label": "pending",
+     "frame": 423,
+     "t": 7.05,
+     "boxes_master_px": {
+      "status": [
+       2575,
+       577,
+       392,
+       101
+      ],
+      "pair": [
+       2587,
+       850,
+       1035,
+       616
+      ],
+      "waitingLine": [
+       2576,
+       1639,
+       243,
+       48
+      ],
+      "validUntil": [
+       2576,
+       1541,
+       104,
+       40
+      ]
+     }
+    },
+    {
+     "label": "accepted",
+     "frame": 543,
+     "t": 9.05,
+     "framesAfterSend": 157,
+     "secondsAfterSend": 2.617,
+     "boxes_master_px": {
+      "status": [
+       2883,
+       616,
+       442,
+       166
+      ],
+      "pair": [
+       2587,
+       968,
+       1035,
+       622
+      ],
+      "title": [
+       3078,
+       830,
+       224,
+       59
+      ]
+     }
+    },
+    {
+     "label": "accepted-top",
+     "frame": 571,
+     "t": 9.517,
+     "boxes_master_px": {
+      "status": [
+       2879,
+       575,
+       451,
+       169
+      ],
+      "pair": [
+       2587,
+       928,
+       1035,
+       622
+      ]
+     }
+    },
+    {
+     "label": "revoke",
+     "frame": 767,
+     "t": 12.783,
+     "boxes_master_px": {
+      "afterShow": [
+       2576,
+       1293,
+       240,
+       48
+      ],
+      "revoke": [
+       2576,
+       1423,
+       1056,
+       128
+      ]
+     }
+    },
+    {
+     "label": "end",
+     "frame": 917,
+     "t": 15.283
+    }
+   ],
+   "taps": [
+    {
+     "t": 1.5,
+     "frame": 90,
+     "dom_click_frame": 93,
+     "label": "和 TA 交换这个视角",
+     "xy_master": [
+      3152,
+      1049
+     ]
+    },
+    {
+     "t": 5.883,
+     "frame": 353,
+     "dom_click_frame": 356,
+     "label": "勾选同意",
+     "xy_master": [
+      2608,
+      1487
+     ]
+    },
+    {
+     "t": 6.383,
+     "frame": 383,
+     "dom_click_frame": 386,
+     "label": "把这两张交给对方确认 ↗",
+     "xy_master": [
+      3104,
+      1666
+     ]
+    }
+   ],
+   "presses_without_ring": [],
+   "beat_grid": {
+    "bpm": 123,
+    "zero": 90,
+    "beats": [
+     {
+      "beat": 0,
+      "frame": 90,
+      "t": 1.5,
+      "label": "和 TA 交换这个视角"
+     },
+     {
+      "beat": 4,
+      "frame": 207,
+      "t": 3.45,
+      "label": "scroll to the reason"
+     },
+     {
+      "beat": 8,
+      "frame": 324,
+      "t": 5.4,
+      "label": "scroll to the consent"
+     },
+     {
+      "beat": 9,
+      "frame": 353,
+      "t": 5.883,
+      "label": "勾选同意"
+     },
+     {
+      "beat": 10,
+      "frame": 383,
+      "t": 6.383,
+      "label": "把这两张交给对方确认 ↗"
+     }
+    ]
+   },
+   "text_audit": {
+    "pattern": "示例|虚构|本页|演示|自动回复|不是真人|没有服务器|只存在这个浏览器|模拟|本地体验版|在线访问|等待本人回应",
+    "before_first_frame": "clean (545 characters of visible text)",
+    "while_recording": "77 checks (every 12 frames): clean"
+   },
+   "qc": {
+    "master": "h264 High 3840x2160 60/1 yuv420p bt709/bt709/bt709/tv 8.7 Mb/s",
+    "edit": "h264 High 1920x1080 60/1 yuv420p bt709/bt709/bt709/tv 4.3 Mb/s",
+    "audio_streams": 0,
+    "frames_master": 917,
+    "frames_edit": 917,
+    "same_frame_count": true,
+    "longest_still": {
+     "frames": 9,
+     "at_s": 0.067
+    },
+    "still_over_1s": [],
+    "stutters": 1,
+    "camera_glides": [],
+    "change_gap_histogram": {
+     "1": 131,
+     "3": 3,
+     "4": 3,
+     "7": 3,
+     "8": 10,
+     "9": 71
+    },
+    "capture_ms_per_frame": {
+     "step": 3.9,
+     "grab": 165.3,
+     "write": 12.4
+    },
+    "wall_s_per_video_s": 11.04
+   },
+   "vs_rc1": {
+    "frames": {
+     "rc1": 919,
+     "rc2": 917
+    },
+    "taps_same_frames": true,
+    "taps": {
+     "rc1": [
+      [
+       "和 TA 交换这个视角",
+       90
+      ],
+      [
+       "勾选同意",
+       353
+      ],
+      [
+       "把这两张交给对方确认 ↗",
+       383
+      ]
+     ],
+     "rc2": [
+      [
+       "和 TA 交换这个视角",
+       90
+      ],
+      [
+       "勾选同意",
+       353
+      ],
+      [
+       "把这两张交给对方确认 ↗",
+       383
+      ]
+     ]
+    },
+    "changes": [
+     {
+      "mark": "reason",
+      "change": "frame",
+      "rc1": 246,
+      "rc2": 241
+     },
+     {
+      "mark": "reason",
+      "box": "reason",
+      "change": "moved/resized",
+      "rc1": [
+       2619,
+       1002,
+       501,
+       40
+      ],
+      "rc2": [
+       2576,
+       1050,
+       1056,
+       239
+      ]
+     },
+     {
+      "mark": "reason",
+      "box": "recommended",
+      "change": "missing on one side",
+      "rc1": null,
+      "rc2": [
+       2576,
+       1050,
+       1056,
+       239
+      ]
+     },
+     {
+      "mark": "reason",
+      "box": "select",
+      "change": "moved/resized",
+      "rc1": [
+       2576,
+       570,
+       1056,
+       133
+      ],
+      "rc2": [
+       2576,
+       848,
+       1056,
+       133
+      ]
+     },
+     {
+      "mark": "consent",
+      "change": "frame",
+      "rc1": 347,
+      "rc2": 343
+     },
+     {
+      "mark": "consent",
+      "box": "agreement",
+      "change": "removed (element no longer in the product)",
+      "rc1": [
+       2576,
+       1013,
+       160,
+       48
+      ]
+     },
+     {
+      "mark": "consent",
+      "box": "consent",
+      "change": "moved/resized",
+      "rc1": [
+       2576,
+       1213,
+       1056,
+       181
+      ],
+      "rc2": [
+       2576,
+       1423,
+       1056,
+       117
+      ]
+     },
+     {
+      "mark": "consent",
+      "box": "fine",
+      "change": "removed (element no longer in the product)",
+      "rc1": [
+       2576,
+       1429,
+       1056,
+       111
+      ]
+     },
+     {
+      "mark": "consent",
+      "box": "reason",
+      "change": "added",
+      "rc2": [
+       2576,
+       1088,
+       1056,
+       239
+      ]
+     },
+     {
+      "mark": "pending",
+      "change": "frame",
+      "rc1": 424,
+      "rc2": 423
+     },
+     {
+      "mark": "pending",
+      "box": "validUntil",
+      "change": "added",
+      "rc2": [
+       2576,
+       1541,
+       104,
+       40
+      ]
+     },
+     {
+      "mark": "accepted",
+      "change": "frame",
+      "rc1": 544,
+      "rc2": 543
+     },
+     {
+      "mark": "accepted",
+      "box": "status",
+      "change": "moved/resized",
+      "rc1": [
+       2875,
+       613,
+       458,
+       172
+      ],
+      "rc2": [
+       2883,
+       616,
+       442,
+       166
+      ]
+     },
+     {
+      "mark": "accepted",
+      "box": "title",
+      "change": "moved/resized",
+      "rc1": [
+       3130,
+       830,
+       224,
+       59
+      ],
+      "rc2": [
+       3078,
+       830,
+       224,
+       59
+      ]
+     },
+     {
+      "mark": "accepted-top",
+      "change": "frame",
+      "rc1": 572,
+      "rc2": 571
+     },
+     {
+      "mark": "revoke",
+      "change": "frame",
+      "rc1": 769,
+      "rc2": 767
+     },
+     {
+      "mark": "revoke",
+      "box": "afterShow",
+      "change": "added",
+      "rc2": [
+       2576,
+       1293,
+       240,
+       48
+      ]
+     },
+     {
+      "mark": "revoke",
+      "box": "agreed",
+      "change": "removed (element no longer in the product)",
+      "rc1": [
+       2576,
+       1227,
+       280,
+       48
+      ]
+     },
+     {
+      "mark": "revoke",
+      "box": "fine",
+      "change": "removed (element no longer in the product)",
+      "rc1": [
+       2576,
+       1601,
+       1056,
+       111
+      ]
+     },
+     {
+      "mark": "end",
+      "change": "frame",
+      "rc1": 919,
+      "rc2": 917
+     }
+    ]
+   }
+  },
+  {
+   "id": "D-06-greet-chat",
+   "take": "TAKE-D6 (desktop spare)",
+   "storyboard": [
+    "S1-S2 desktop alternative",
+    "spare"
+   ],
+   "what": "小满 close-up + card -> 「向 小满 招个手」 -> toast 「招呼已送达，等待对方回应」, the real wait (uncut) -> 「你们已经认识了」 -> 「和 小满 私聊 ↗」 -> ONE TO ONE chat: welcome bubbles, typing (16ths), send, the real wait (uncut) -> reply 「今晚的返场太好听了。」",
+   "files": {
+    "master": "/tmp/space-video-doodle/prod/capture/desktop-rc2/master/D-06-greet-chat.mp4",
+    "edit": "/tmp/space-video-doodle/prod/capture/desktop-rc2/1080/D-06-greet-chat.mp4",
+    "rec": "/tmp/space-video-doodle/prod/capture/desktop-rc2/master/D-06-greet-chat.rec.json",
+    "qc": "/tmp/space-video-doodle/prod/capture/desktop-rc2/qc/D-06-greet-chat.qc.json"
+   },
+   "frames": 1124,
+   "seconds": 18.733,
+   "duration_tc": "0:18.733",
+   "bytes": {
+    "master": 13873810,
+    "edit": 7030227
+   },
+   "sha256": {
+    "master": "bd067dcb3dfac072797d12d0b75d3409ea6268c24349ba7cb46da2a9f5c9ed24",
+    "edit": "e5fdbed68ca9c3d21810f01fe627ec594f1bed9c35146fe85e660b3792f8e50a"
+   },
+   "marks": [
+    {
+     "label": "person-card",
+     "frame": 0,
+     "t": 0,
+     "boxes_master_px": {
+      "card": [
+       2624,
+       826,
+       1067,
+       971
+      ],
+      "greet": [
+       2693,
+       1333,
+       928,
+       128
+      ],
+      "rule": [
+       2693,
+       1198,
+       171,
+       51
+      ],
+      "name": [
+       2697,
+       986,
+       236,
+       170
+      ],
+      "contextBar": null
+     }
+    },
+    {
+     "label": "greet-sent",
+     "frame": 93,
+     "t": 1.55,
+     "boxes_master_px": {
+      "toast": [
+       1699,
+       1768,
+       184,
+       37
+      ],
+      "state": [
+       2741,
+       1188,
+       120,
+       48
+      ]
+     }
+    },
+    {
+     "label": "friends",
+     "frame": 302,
+     "t": 5.033,
+     "framesAfterGreet": 209,
+     "secondsAfterGreet": 3.483,
+     "boxes_master_px": {
+      "eyebrow": [
+       2693,
+       656,
+       257,
+       35
+      ],
+      "chat": [
+       2693,
+       1078,
+       928,
+       128
+      ],
+      "corner": [
+       2693,
+       913,
+       928,
+       123
+      ],
+      "heart": [
+       75,
+       0,
+       3691,
+       208
+      ]
+     }
+    },
+    {
+     "label": "chat-open",
+     "frame": 401,
+     "t": 6.683,
+     "boxes_master_px": {
+      "chat": [
+       2718,
+       222,
+       1048,
+       1649
+      ],
+      "messages": [
+       2766,
+       567,
+       954,
+       422
+      ],
+      "welcome": [
+       2894,
+       604,
+       168,
+       50
+      ],
+      "composer": [
+       2724,
+       1326,
+       1038,
+       393
+      ]
+     }
+    },
+    {
+     "label": "typed",
+     "frame": 654,
+     "t": 10.9,
+     "boxes_master_px": {
+      "composer": [
+       2715,
+       1331,
+       1056,
+       400
+      ],
+      "textarea": [
+       2752,
+       1368,
+       981,
+       192
+      ]
+     }
+    },
+    {
+     "label": "sent",
+     "frame": 694,
+     "t": 11.567,
+     "boxes_master_px": {
+      "mine": [
+       3000,
+       1074,
+       384,
+       51
+      ],
+      "messages": [
+       2757,
+       559,
+       971,
+       669
+      ]
+     }
+    },
+    {
+     "label": "reply",
+     "frame": 944,
+     "t": 15.733,
+     "framesAfterSend": 250,
+     "secondsAfterSend": 4.167,
+     "boxes_master_px": {
+      "reply": [
+       2803,
+       1124,
+       384,
+       51
+      ],
+      "mine": [
+       3000,
+       885,
+       384,
+       51
+      ],
+      "chat": [
+       2709,
+       208,
+       1067,
+       1677
+      ]
+     }
+    },
+    {
+     "label": "reply-settled",
+     "frame": 1004,
+     "t": 16.733,
+     "boxes_master_px": {
+      "reply": [
+       2803,
+       1124,
+       384,
+       51
+      ],
+      "mine": [
+       3000,
+       885,
+       384,
+       51
+      ],
+      "chat": [
+       2709,
+       208,
+       1067,
+       1677
+      ]
+     }
+    },
+    {
+     "label": "end",
+     "frame": 1124,
+     "t": 18.733
+    }
+   ],
+   "taps": [
+    {
+     "t": 1.5,
+     "frame": 90,
+     "dom_click_frame": 93,
+     "label": "向 小满 招个手",
+     "xy_master": [
+      3157,
+      1397
+     ]
+    },
+    {
+     "t": 6.633,
+     "frame": 398,
+     "dom_click_frame": 401,
+     "label": "和 小满 私聊 ↗",
+     "xy_master": [
+      3157,
+      1142
+     ]
+    },
+    {
+     "t": 8.583,
+     "frame": 515,
+     "dom_click_frame": 518,
+     "label": "composer",
+     "xy_master": [
+      3243,
+      1464
+     ]
+    },
+    {
+     "t": 11.517,
+     "frame": 691,
+     "dom_click_frame": 694,
+     "label": "发送 ↗",
+     "xy_master": [
+      3612,
+      1648
+     ]
+    }
+   ],
+   "presses_without_ring": [],
+   "beat_grid": [
+    {
+     "bpm": 123,
+     "zero": 90,
+     "beats": [
+      {
+       "beat": 0,
+       "frame": 90,
+       "t": 1.5,
+       "label": "向 小满 招个手"
+      }
+     ]
+    },
+    {
+     "bpm": 123,
+     "zero": 398,
+     "beats": [
+      {
+       "beat": 0,
+       "frame": 398,
+       "t": 6.633,
+       "label": "和 小满 私聊 ↗"
+      },
+      {
+       "beat": 4,
+       "frame": 515,
+       "t": 8.583,
+       "label": "tap the composer"
+      },
+      {
+       "beat": 5,
+       "frame": 544,
+       "t": 9.067,
+       "label": "type (16ths)"
+      },
+      {
+       "beat": 10,
+       "frame": 691,
+       "t": 11.517,
+       "label": "发送 ↗"
+      }
+     ]
+    }
+   ],
+   "text_audit": {
+    "pattern": "示例|虚构|本页|演示|自动回复|不是真人|没有服务器|只存在这个浏览器|模拟|本地体验版|在线访问|等待本人回应",
+    "before_first_frame": "clean (123 characters of visible text)",
+    "while_recording": "94 checks (every 12 frames): clean"
+   },
+   "qc": {
+    "master": "h264 High 3840x2160 60/1 yuv420p bt709/bt709/bt709/tv 5.9 Mb/s",
+    "edit": "h264 High 1920x1080 60/1 yuv420p bt709/bt709/bt709/tv 3.0 Mb/s",
+    "audio_streams": 0,
+    "frames_master": 1124,
+    "frames_edit": 1124,
+    "same_frame_count": true,
+    "longest_still": {
+     "frames": 9,
+     "at_s": 0.117
+    },
+    "still_over_1s": [],
+    "stutters": 2,
+    "camera_glides": [],
+    "change_gap_histogram": {
+     "1": 16,
+     "2": 4,
+     "3": 3,
+     "6": 5,
+     "8": 8,
+     "9": 108
+    },
+    "capture_ms_per_frame": {
+     "step": 8,
+     "grab": 230.7,
+     "write": 19.9
+    },
+    "wall_s_per_video_s": 15.85
+   },
+   "vs_rc1": {
+    "frames": {
+     "rc1": 1122,
+     "rc2": 1124
+    },
+    "taps_same_frames": false,
+    "taps": {
+     "rc1": [
+      [
+       "向 小满·示例 招个手",
+       90
+      ],
+      [
+       "和 小满·示例 私聊 ↗",
+       396
+      ],
+      [
+       "composer",
+       513
+      ],
+      [
+       "发送 ↗",
+       689
+      ]
+     ],
+     "rc2": [
+      [
+       "向 小满 招个手",
+       90
+      ],
+      [
+       "和 小满 私聊 ↗",
+       398
+      ],
+      [
+       "composer",
+       515
+      ],
+      [
+       "发送 ↗",
+       691
+      ]
+     ]
+    },
+    "changes": [
+     {
+      "mark": "person-card",
+      "box": "card",
+      "change": "moved/resized",
+      "rc1": [
+       2624,
+       626,
+       1067,
+       1171
+      ],
+      "rc2": [
+       2624,
+       826,
+       1067,
+       971
+      ]
+     },
+     {
+      "mark": "person-card",
+      "box": "greet",
+      "change": "moved/resized",
+      "rc1": [
+       2693,
+       1202,
+       928,
+       128
+      ],
+      "rc2": [
+       2693,
+       1333,
+       928,
+       128
+      ]
+     },
+     {
+      "mark": "person-card",
+      "box": "name",
+      "change": "moved/resized",
+      "rc1": [
+       2697,
+       782,
+       505,
+       177
+      ],
+      "rc2": [
+       2697,
+       986,
+       236,
+       170
+      ]
+     },
+     {
+      "mark": "person-card",
+      "box": "rule",
+      "change": "moved/resized",
+      "rc1": [
+       2693,
+       999,
+       171,
+       51
+      ],
+      "rc2": [
+       2693,
+       1198,
+       171,
+       51
+      ]
+     },
+     {
+      "mark": "greet-sent",
+      "box": "state",
+      "change": "moved/resized",
+      "rc1": [
+       2741,
+       1056,
+       120,
+       48
+      ],
+      "rc2": [
+       2741,
+       1188,
+       120,
+       48
+      ]
+     },
+     {
+      "mark": "friends",
+      "change": "frame",
+      "rc1": 300,
+      "rc2": 302
+     },
+     {
+      "mark": "friends",
+      "box": "chat",
+      "change": "moved/resized",
+      "rc1": [
+       2693,
+       879,
+       928,
+       128
+      ],
+      "rc2": [
+       2693,
+       1078,
+       928,
+       128
+      ]
+     },
+     {
+      "mark": "friends",
+      "box": "corner",
+      "change": "moved/resized",
+      "rc1": [
+       2693,
+       713,
+       928,
+       123
+      ],
+      "rc2": [
+       2693,
+       913,
+       928,
+       123
+      ]
+     },
+     {
+      "mark": "friends",
+      "box": "eyebrow",
+      "change": "moved/resized",
+      "rc1": [
+       2693,
+       456,
+       257,
+       35
+      ],
+      "rc2": [
+       2693,
+       656,
+       257,
+       35
+      ]
+     },
+     {
+      "mark": "chat-open",
+      "change": "frame",
+      "rc1": 399,
+      "rc2": 401
+     },
+     {
+      "mark": "chat-open",
+      "box": "chat",
+      "change": "moved/resized",
+      "rc1": [
+       2724,
+       231,
+       1038,
+       1632
+      ],
+      "rc2": [
+       2718,
+       222,
+       1048,
+       1649
+      ]
+     },
+     {
+      "mark": "chat-open",
+      "box": "composer",
+      "change": "moved/resized",
+      "rc1": [
+       2729,
+       1323,
+       1027,
+       389
+      ],
+      "rc2": [
+       2724,
+       1326,
+       1038,
+       393
+      ]
+     },
+     {
+      "mark": "chat-open",
+      "box": "messages",
+      "change": "moved/resized",
+      "rc1": [
+       2771,
+       572,
+       944,
+       482
+      ],
+      "rc2": [
+       2766,
+       567,
+       954,
+       422
+      ]
+     },
+     {
+      "mark": "chat-open",
+      "box": "welcome",
+      "change": "moved/resized",
+      "rc1": [
+       2815,
+       609,
+       664,
+       114
+      ],
+      "rc2": [
+       2894,
+       604,
+       168,
+       50
+      ]
+     },
+     {
+      "mark": "typed",
+      "change": "frame",
+      "rc1": 652,
+      "rc2": 654
+     },
+     {
+      "mark": "sent",
+      "change": "frame",
+      "rc1": 692,
+      "rc2": 694
+     },
+     {
+      "mark": "sent",
+      "box": "messages",
+      "change": "moved/resized",
+      "rc1": [
+       2757,
+       540,
+       971,
+       735
+      ],
+      "rc2": [
+       2757,
+       559,
+       971,
+       669
+      ]
+     },
+     {
+      "mark": "sent",
+      "box": "mine",
+      "change": "moved/resized",
+      "rc1": [
+       3000,
+       1122,
+       384,
+       51
+      ],
+      "rc2": [
+       3000,
+       1074,
+       384,
+       51
+      ]
+     },
+     {
+      "mark": "reply",
+      "change": "frame",
+      "rc1": 942,
+      "rc2": 944
+     },
+     {
+      "mark": "reply-settled",
+      "change": "frame",
+      "rc1": 1002,
+      "rc2": 1004
+     },
+     {
+      "mark": "end",
+      "change": "frame",
+      "rc1": 1122,
+      "rc2": 1124
+     }
+    ]
+   }
+  }
+ ],
+ "stills": [
+  {
+   "file": "/tmp/space-video-doodle/prod/capture/desktop-rc2/stills/D-01-landing.png",
+   "what": "D-01 first frame: the landing page, clean (H2 -> H3 match cut reference; title boxes in D-01 marks)",
+   "bytes": 1920027
+  },
+  {
+   "file": "/tmp/space-video-doodle/prod/capture/desktop-rc2/stills/CUT-01-room-overview.png",
+   "what": "CUT-01 (H1 collage, S11): the 3D room overview, all five present, route card skipped",
+   "bytes": 2785448
+  },
+  {
+   "file": "/tmp/space-video-doodle/prod/capture/desktop-rc2/stills/D-03a-wall-4-photos.png",
+   "what": "D-03a: 3D photo wall with the cast's four photos",
+   "bytes": 2435955
+  },
+  {
+   "file": "/tmp/space-video-doodle/prod/capture/desktop-rc2/stills/D-03s-saved-wall-panel.png",
+   "what": "D-03s: after saving 「人海那张」: wall panel (21:47 同一刻, 3 分钟内拍下, the pink badge) beside the re-framed 3D wall",
+   "bytes": 2310626
+  },
+  {
+   "file": "/tmp/space-video-doodle/prod/capture/desktop-rc2/stills/CUT-03-wall-5-photos.png",
+   "what": "CUT-03 (H1 collage): 3D photo wall with five photos (yours included)",
+   "bytes": 2443903
+  },
+  {
+   "file": "/tmp/space-video-doodle/prod/capture/desktop-rc2/stills/D-04-linjian-card.png",
+   "what": "D-04 last frame: 林间 close-up + her card 「TA 选择安静参与，不接新招呼。」",
+   "bytes": 2801131
+  },
+  {
+   "file": "/tmp/space-video-doodle/prod/capture/desktop-rc2/stills/D-05-exchange-accepted.png",
+   "what": "D-05: 「交换已接受」 with both polaroids (desktop)",
+   "bytes": 2852575
+  },
+  {
+   "file": "/tmp/space-video-doodle/prod/capture/desktop-rc2/stills/D-06-chat-reply.png",
+   "what": "D-06 last frame: ONE TO ONE chat with your line and the reply 「今晚的返场太好听了。」",
+   "bytes": 2438891
+  }
+ ],
+ "contact_sheet": "/tmp/space-video-doodle/prod/capture/desktop-rc2/contact-desktop.png",
+ "storyboard_map": {
+  "H3 (bar 8)": "D-01-landing: hold; the title card position for the match cut is in its 'landing' mark (titleLines = the two lines of 「同一刻，另一面。」, titleCard, captionNote 「就是这一刻！」 for the 8:3 circle). rc2 copy on this page: header pill 「现场进行中」, card text 「同一晚，你拍了舞台，TA 拍了人海。AI 在本机给你一个视角建议，照片墙帮你找到同一刻的另一面，双方同意就交换。」, button 「进入现场」, left caption 「Livehouse 为每一场演出开一个房间，乐迷带着小人入场；散场后，留在场地的乐迷社群里。」, footer 「关于 Music Space」",
+  "E4 (bars 27-28) and W5 (bars 81-82)": "D-02-room-hero 0.00-8.00 s: the overview hold with all five (labels 阿遥 · 可招呼, 小满 · 可招呼, 北屿 · 可招呼, 阿宁 · 我, 林间 · 安静: same label boxes as rc1); figure boxes in clips[D-02-room-hero].figures_overview_master_px (the cast stands where it stood in rc1: label boxes identical, figure boxes within ~25 master px, the new mask trims the feet slightly); header sign 「月台 Livehouse / 回声现场」, footer 「关于 Music Space」",
+  "+2 (optional glide after bar 28)": "D-02-room-hero 22.00-24.00 s: the pull-back from the 阿遥 close-up to the overview reveals all five with their labels; 13.00-15.00 s is the move from the wall back to the overview (cast visible from its first frame); 8.00-10.00 s (overview -> wall) shows the room without the cast (product hides figures on the way to the wall)",
+  "H1 / S11 collage": "stills/CUT-01-room-overview.png, stills/CUT-03-wall-5-photos.png (3840x2160)",
+  "A4 36:1 / 36:3": "D-03a-wall-before (4 photos) then D-03b-wall-after (5 photos): the wall layout is pixel-identical to rc1 (the polaroid constants measured on rc1's CUT-03 stay valid); D-03s-wall-save is the continuous desktop save if the edit prefers it (sample button now 「人海那张」; the AI hint under the chip now reads 「配对时用它找另一面，你说了算。」)",
+  "S3 (bar 59)": "D-04-linjian-quiet: close-up settled from 3.00 s ('linjian-close-up'), tap 认识一下 at 5.50 s, card in 5.55 s, settled 6.75 s. Her card now holds only 「TA 选择安静参与，不接新招呼。」 in a yellow box (rc1: 「…不接收新招呼。仍可查看 TA 已分享给本场的照片。」): re-aim the 59:4 mint underline from the 'card-settled' quietLine box (act-A5 still has rc1's x0 2740 / x1 3320 / y 1205)",
+  "M3-M7 desktop alternative (spare)": "D-05-exchange",
+  "S1-S2 desktop alternative (spare)": "D-06-greet-chat",
+  "about sheet": "not captured: it is the one place in rc2 that carries the disclosure sentence 「在线版里的场地、观众和照片是演示内容，观众会自动回复。」, and the storyboard never opens it"
+ },
+ "notes": [
+  "Same shot ids, same takes, same timeline as rc1 (../desktop/manifest.json): holds, beats and the five camera glides land on the same frames; the few differences come from the product's own (seeded) waits and are listed per clip in vs_rc1 (D-05 is 2 frames shorter: 阿遥 accepts 2 frames sooner; D-06 is 2 frames longer: 小满 accepts 2 frames later, so its second beat grid starts 2 frames later).",
+  "Clock: 2026-10-08 22:40 +08:00 (first evening after the rc2 build; the runtime clock cannot run earlier than the build). Chat times read 22:40 as in rc1; D-05's pending card reads 「有效至 10/9 22:40」 (rc1: 10/8). The rc2 phone takes (P1-rc2, P2P3-rc2) use the same clock; the rc2 host and map takes use 2026-10-09 22:40 (same time of day).",
+  "Copy now on screen in these takes (rc2): cast labels 阿遥 / 小满 / 北屿 / 林间 without 「·示例」; room header 「月台 Livehouse」 + 「回声现场」; tour card 「第一次来 1/4」 (skipped before every take, never filmed); samples 「人海那张」 / 「舞台那张」 / 「用我自己的照片」 under 「或者挑一张今晚的」; upload fine print 「照片会缩小，并去掉位置信息。」; wall note 「3 分钟内拍下」 (no pipeline ribbon); exchange 「我同意先给小图，TA 接受后再给原图」, 「等待对方回应」, 「等 TA 接受后，就能互看原图。」, 「散场后也能在「照片交换」里看。」, 「撤销这次交换」; person cards 「先招个手，TA 接受了就是朋友。」 and 「TA 选择安静参与，不接新招呼。」; toast 「招呼已送达，等待对方回应」; chat 「你们已经是朋友了。」, 「嗨，欢迎来到「回声现场」！」, status 「已发送」.",
+  "Privacy wording: 「AI 在本机判断，照片不上传」 is no longer visible in rc2's upload sheet (it is only the tooltip of the 「AI 判断：人海」 chip; the visible hint is 「配对时用它找另一面，你说了算。」); the landing card says 「AI 在本机给你一个视角建议」 and 「双方同意就交换」. The film's own type can keep the line (it is still the product's wording), but no rc2 desktop frame shows it.",
+  "Product behaviour, not a capture fault: while the camera heads to the photo wall or to one person, the product hides the other figures and the overlay labels/cards at once (first frame of the glide) and shows a small 「正在靠近」 chip; glides back to the overview show everyone from their first frame. In D-02 the vanish frames are 8.00 s (cast) and 17.00 s (all but 阿遥).",
+  "Product behaviour: the photos view frames four photos close (one row) and five photos wider (two rows), so D-03a -> D-03b is a re-frame plus the new polaroid; in D-03s the re-frame happens on the frame the panel switches to the wall (6.50 s).",
+  "The desktop header shows the product's 「音乐探索 ↗」 pill (entry to the Doodle Music Map) in every room frame; the map itself is not part of these takes. Its box is 'headerMusicMap' in the D-02 marks.",
+  "Playback is 4 % slower than real time (rig: 16 ms of virtual time per 60 fps frame). Waits shown uncut: 阿遥 accepting the exchange and 小满 accepting the greeting / replying take their real (seeded) times on the virtual clock.",
+  "The on-device AI answers in real time while the virtual clock is stepped: 「AI 判断：人海」 appears 1 frame after the DOM click in D-03s (2.617 s). The answer is the model's real output on 「人海那张」. rc2 fetches the model off the main thread, so the rig now confirms the download from the prefix server's own request log.",
+  "Holds change on the product's line boil (every 8.9 frames on the virtual clock = 6.7 boils per second); between boils most frames differ by 1-4 pixels of 3D render noise (invisible). The edit's PUSH keeps holds moving as the storyboard asks.",
+  "Tap rings are the rig's doodle ring (yellow, ink outline, pink offset, 30 frames); there is no pointer arrow anywhere. Camera glides are started without a ring."
+ ],
+ "problems": [
+  "None blocking. All 8 clips: visible-text audit clean before the first frame and every 12 frames while recording (0 hits in 473 checks); OCR (macOS Vision, zh-Hans) of every 30th master frame + the last frame (198 frames) and all 8 stills: no old copy ( positive control: the same reader finds 「示例」 3 times in rc1's d06 probe still); QC: no frozen stretch over 9 frames, no stutter inside the 5 camera glides (every frame moves, step ratio 0.98-1.01), master and 1080 copy have identical frame counts, H.264 High yuv420p BT.709 tv range, 60/1, no audio.",
+  "QC heuristic flags checked frame by frame, none is a freeze: D-05 1.517 s and D-06 6.667 s = the tap ring growing on a frame where nothing else moves (6,900-13,300 changed pixels around the tap); D-06 9.05 s = the frame between a line-boil step and the first typed character (typing on 16ths).",
+  "figures.py needed one change: in rc2 the line boil steps on the vanish frame itself (D-02 frame 480), so the difference image also held thin boiling plank strokes; an extra 11x11 opening removes strokes before the per-person split (overlay: review/D-02-figures.png).",
+  "Film text vs rc2 product wording (for the edit, not the footage): T096 「【不接收新招呼】。」 quotes rc1; rc2's card says 「不接新招呼」. W3's 「AI 在本机判断，照片不上传」 is now only a tooltip in the product (see notes)."
+ ]
+}

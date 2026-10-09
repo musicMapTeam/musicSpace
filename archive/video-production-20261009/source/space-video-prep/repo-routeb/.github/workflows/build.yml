@@ -1,0 +1,81 @@
+name: Build and verify release candidate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      # `npm run build` first runs `npm run ai:ort` (prebuild), which copies the onnxruntime-web 1.30.0 runtime into
+      # web/public/ai/ort/; Vite then copies web/public (model pack + runtime) to dist/ai/ without inlining it.
+      - run: npm run build:all
+      # dist/ai must hold the model pack and exactly the three runtime files, sized as labels.json says; index.html must stay small.
+      - run: npm run ai:check
+      - run: node --check server/index.js && node --check server/db.js
+      # The rules of 「同一刻」 (web/js/moment.js) and the card API of the room server (on a free port, throw-away data dir). node:assert only.
+      - run: npm test
+      - run: npm run test:release && npm run test:character
+      # The GitHub Pages tree (the event room as the site root, music-map/, classic/, ai/, demo/): built from the same sources and
+      # checked by verify-tree and the static suites. The artifact below is what scripts/pages/publish.mjs would publish; there is no deploy step.
+      - run: npm run build:pages
+      - run: npm run test:static
+      - run: npm run release:pack
+      - run: docker build -t musicspace-candidate .
+      # Without the ai/ folder next to it, web/js/ai/space-ai.js reports status 'failed' (it never throws), so ship dist/ whole.
+      - uses: actions/upload-artifact@v7.0.1
+        with:
+          name: music-space-static
+          path: dist/
+          retention-days: 14
+      - uses: actions/upload-artifact@v7.0.1
+        with:
+          name: music-space-pages
+          path: dist-pages/
+          retention-days: 14
+      - uses: actions/upload-artifact@v7.0.1
+        with:
+          name: music-space-runtime
+          path: |
+            delivery/releases/*.tar.gz
+            delivery/releases/SHA256SUMS.txt
+          retention-days: 14
+
+  prerelease:
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/download-artifact@v7.0.0
+        with:
+          name: music-space-runtime
+          path: release-assets
+      - name: Publish authorized prerelease once
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          version=$(node -p "require('./package.json').version")
+          [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+-rc\.[0-9]+$ ]] || exit 0
+          tag="v$version"
+          if gh release view "$tag" >/dev/null 2>&1; then
+            echo "Release exists; preserving tag and assets."
+            exit 0
+          fi
+          gh release create "$tag" release-assets/* --target "$GITHUB_SHA" --prerelease --title "Music Space $version — 场次房间预发布" --notes-file "docs/release/$version.md"

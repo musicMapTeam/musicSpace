@@ -1,0 +1,269 @@
+
+===== exchange-list-empty [.photo-exchanges]
+H	button	←
+	small	同一晚 / 另一面
+	h2	交换一个视角
+	button	×
+	p.exchange-intro	照片交换与交朋友分开决定。这里留下双方明确选中的两张照片。
+	p	还没有交换。照片分享不要求交换；想交换时，双方各自选择一张。
+	button.exchange-primary	回到本场照片墙
+	button	上一页
+	span	第 1 页
+	button	下一页
+	button	刷新这一页
+@aria-label	section	照片交换
+@aria-label	button	返回交换列表
+@aria-label	button	关闭照片交换
+
+===== chat-list-empty [.private-chat]
+H	button.chat-back	←
+	small	ONE TO ONE
+	h2	我们的对话
+	button.chat-close	×
+	div.chat-notice	从朋友的小人旁开始，接着聊刚才的那首歌。
+	span	↗
+	h3	还有话想和 TA 说。
+	p	先在同场的人里打个招呼，双方接受后就能私聊。
+	button.chat-more	看看同场的人
+H	button.chat-older	更早的消息
+H	label	留一句话
+H	small	对方明确接受后才能私聊
+H	button	发送 ↗
+	footer	仅文字 · 照片仍由各自决定分享范围
+	button.chat-more	回看这一晚
+@aria-label	section	私聊
+@aria-label	button	返回对话列表
+@aria-label	button	关闭私聊
+@aria-label	div	消息记录
+@placeholder	textarea	比如，刚刚哪首歌最喜欢？
+
+===== my-feedback-empty [.room-moderation]
+	small	这一场 / 彼此尊重
+	h2	我提交的反馈
+	button	×
+	p	你提交给各场房主的反馈。它们只由对应房主处理，其他普通观众看不到。
+	p.moderation-empty	你还没有提交过现场反馈。
+	button	上一页
+	span	第 1 页
+	button	下一页
+	button	刷新这一页
+@aria-label	section	本场反馈与管理
+@aria-label	button	关闭反馈与管理
+
+===== corner-list-empty [.corner-panel]
+	span.eyebrow	TWO SIDES / 两个人的创作角
+	button	×
+	h2	一起留张纪念。
+	button	重新读取
+	p	共同成果是独立、私有的选择，不展示到现场或社群。显示最近50份。
+	p	还没有共同创作。可从一位双向朋友的人物卡发出邀请。
+	button	我的创作与邀请
+@aria-label	section	私有双人创作角
+@aria-label	button	关闭创作角
+
+===== create-room [#panel]
+	button	×
+	small.eyebrow	主办方 / 开一个现场
+	h2	今晚叫什么名字？
+	label	场次名称
+	label	场地
+	label	场景声景
+H	option	晚班列车（原创示例）
+H	option	月亮靠窗（原创示例）
+H	option	樱下回声（原创示例）
+	legend	这一场，我想怎样参与
+	span	安静参与
+	small	照样保存和分享照片，不接收新招呼。
+	span	愿意打招呼
+	small	别人可以招手；成为朋友仍需我明确接受。
+	span	我愿意向本场成员展示我的昵称和小人。照片默认仅自己可见，由我另行选择分享。
+	button.primary	开房并进入现场
+	p.fine	可加入 24 人，入场窗口 24 小时。关闭后不再加入或上传，已有成员仍可查看获得授权的照片。
+@aria-label	section	场景操作
+@aria-label	button	关闭操作面板
+@placeholder	input	例如：周五的最后一首
+@placeholder	input	例如：月台 Livehouse
+
+===== own-room-shell [.presence, .track, footer, #scene-heading, #scene-code, .demo-tour]
+	small	月台 Livehouse
+	span	周五的最后一首
+@aria-label	button	查看场次详情：周五的最后一首
+	span	1 位已加入 · 正在进行
+H	span.record	♪
+H	span	这一晚 · 晚班列车
+H	span	原创示例声景 · 不代表真实演出
+H	span.encore	ENCORE / 01
+	strong	示例路线 1/4
+	span.demo-tour-sep	·
+	span.demo-tour-step	放一张你的照片
+	button.demo-tour-toggle	收起
+H	p.demo-tour-hint	选一张示例照片最快；也可以用你自己的照片。
+	button.demo-tour-action	人海 · 示例照片
+	button.demo-tour-action	舞台 · 示例照片
+	button.demo-tour-action	用我自己的照片
+	button.demo-tour-skip	跳过路线
+H	strong	先留下你的这一晚。
+H	p	放一张照片，看看你拍到的是哪一面。
+H	button.joined	本场与示例说明
+H	button	安静参与 · 更改
+H	button	留下第一张照片
+H	button	回看这一晚
+@aria-label	div	示例路线
+@aria-label	button	收起示例路线
+	button	示例站 · 数据只存在这个浏览器 · 关于这个示例
+H	footer	仅文字 · 照片仍由各自决定分享范围
+H	button.chat-more	回看这一晚
+
+===== moderation-manage-reports [.room-moderation]
+	small	这一场 / 彼此尊重
+	h2	管理这一场
+	button	×
+	p.moderation-room	周五的最后一首
+	button	现场反馈
+	button	同场成员
+	button	移出记录
+	p.moderation-fine	下面是观众反馈，尚不代表事实已经核实。你不因此获得私藏或私聊读取权。
+	p.moderation-empty	目前没有现场反馈。
+	button	上一页
+	span	第 1 页
+	button	下一页
+	button	核对最新状态
+@aria-label	section	本场反馈与管理
+@aria-label	button	关闭反馈与管理
+@aria-label	nav	本场管理分类
+
+===== moderation-manage-members [.room-moderation]
+	small	这一场 / 彼此尊重
+	h2	管理这一场
+	button	×
+	p.moderation-room	周五的最后一首
+	button	现场反馈
+	button	同场成员
+	button	移出记录
+	p	你需要仍在本场，才能从当前名单选择成员。离场后可继续处理已有反馈和排除记录。
+	p.moderation-fine	只移出这一场：撤下其照片墙分享，取消待回应的交换。本人原件、已接受的定向交换和朋友关系仍保留；个人仍可自行屏蔽或撤销交换。
+	button	核对最新状态
+@aria-label	section	本场反馈与管理
+@aria-label	button	关闭反馈与管理
+@aria-label	nav	本场管理分类
+
+===== moderation-manage-exclusions [.room-moderation]
+	small	这一场 / 彼此尊重
+	h2	管理这一场
+	button	×
+	p.moderation-room	周五的最后一首
+	button	现场反馈
+	button	同场成员
+	button	移出记录
+	p.moderation-empty	本场没有移出记录。
+	button	上一页
+	span	第 1 页
+	button	下一页
+	p.moderation-fine	这是对本场匿名身份的限制，不是现实身份认证或全站封禁。
+	button	核对最新状态
+@aria-label	section	本场反馈与管理
+@aria-label	button	关闭反馈与管理
+@aria-label	nav	本场管理分类
+
+===== own-room-chat [.music-community]
+	span.eyebrow	散场以后，也留一个位置
+	button	×
+	h2	周五的最后一首
+H	title	Music Space 的插画分身
+	p	加入后，成员能看到你的昵称、小人与主动发送的文字。安静参与不会改变，不自动加好友，不订阅营销。
+	label	我愿意加入这个聊天室
+	button	明确加入，继续聊
+	button	本场主办方的长期社群
+	button	刷新聊天室
+	button	我的长期音乐社群
+	label	绑定我维护的长期空间
+	button	关联这个场次
+@aria-label	section	音乐社群与聊天室
+@aria-label	button	关闭聊天室
+@aria-label	svg	Music Space 的插画分身
+
+===== own-room-chat-joined [.music-community]
+	h2	周五的最后一首
+	span.eyebrow	散场以后，也留一个位置
+	button	×
+H	title	Music Space 的插画分身
+	span	未静音 · 0 条未读
+	summary	本场与管理 ···
+	button	静音
+	button	退出聊天室
+	p.fine	停止入场和上传后仍可聊；离开现场会失去聊天室资格，原好友私聊保留。文字仍由作者和房主管理。
+	summary	管理成员
+	p	还没有其他成员。
+	button	本场主办方的长期社群
+	button	刷新聊天室
+	button	我的长期音乐社群
+	label	绑定我维护的长期空间
+	button	关联这个场次
+	button	Music Map · 沿音乐探索 ↗
+	button	一起玩 · 默契局／音乐关系接龙
+	button	成员音乐话题 · 发布与讨论
+	button	专辑世界杯 · 一起选张来聊
+	p	还没有发言。可以安静坐一会儿，也可以主动留一句。
+	button	把这一页收到的消息标为已读
+	label	留一句
+	button	发送到聊天室
+@aria-label	section	音乐社群与聊天室
+@aria-label	button	关闭聊天室
+@aria-label	svg	Music Space 的插画分身
+@aria-label	nav	音乐与聊天入口
+
+===== own-recap [#panel]
+	button	×
+	small.eyebrow	这一晚 · 仍在进行
+	h2	周五的最后一首
+	span.pc-dots__item	月台 Livehouse
+	span.recap-venue__sep	·
+	span.pc-dots__item	你仍是本场成员
+	h3	散场以后，继续聊。
+	button.primary	回到这一场的聊天室
+	button	我的长期音乐社群
+	p.fine	聊天室需明确加入；不改变照片权限或自动添加好友。
+	h3	把这一晚，留在手里。
+	p	选择自己的照片和小人，做一张带署名的私人纪念卡。
+	button.primary	保存我的纪念卡 ↗
+	p.fine	不包含私聊、朋友名单或他人的照片，不自动公开。
+	h3	留下的视角
+	p.fine	自己的照片，以及读取时仍获授权的共享照片。
+	b	还没有照片。
+	p	别急，今晚总有一个瞬间值得留下。
+	button	上一页
+	span	第 1 页
+	button	下一页
+	h3	交换过的另一面
+	p.fine	已经双方同意的定向交换有独立权限。散场后仍可查看，也可以随时撤销。
+	button.quiet	查看我的照片交换 ↗
+	h3	从本场开始的联系
+	p.fine	现在仍互为朋友。关系变化后，这里也会更新。
+	p	这里还没有当前有效的双向联系。
+	p.fine	只显示当前有权查看的内容；刷新和切页会重新核对。
+	button.quiet	刷新这一晚
+	h3	再见，在下一场。
+	button.primary	输入另一个现场的邀请码
+	button	自己开一场
+	button	我的现场记录
+@aria-label	section	场景操作
+@aria-label	button	关闭操作面板
+
+===== own-memory-card [#panel]
+	button	×
+	small.eyebrow	这一晚 / 留在手里
+	h2	保存我的纪念卡
+	p.memory-room	周五的最后一首 · 署名：访客2128
+	p.fine	只选自己的照片，最多两张。也可以不选照片，保存一张文字纪念票。
+	legend	选择要留下的内容
+	p.memory-empty	这一页还没有自己的照片。文字纪念票仍可保存；回到回顾可选择其他页。
+H	title	Music Space 的插画分身
+	span	带上已保存的小人
+	small	造型和署名以你现在确认的内容为准。
+	span	确认仅将所选内容下载到我的设备。照片可见范围不变。
+	button.primary	下载纪念卡 PNG
+	button.quiet	返回这一晚的回顾
+	p.fine	不会上传或自动公开。已下载的副本无法通过撤销召回，分享前请确认你愿意公开其中内容。
+@aria-label	section	场景操作
+@aria-label	button	关闭操作面板
+@aria-label	svg	Music Space 的插画分身

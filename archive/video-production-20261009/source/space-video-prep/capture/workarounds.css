@@ -1,0 +1,6 @@
+/* PREVIEW-ONLY workaround for an RC4 layout defect seen on camera (create-room and join consent panels):
+   ".panel input:not([type=checkbox])" (web/event-room/style.css) also matches type=radio, so each participation option becomes a 46px-high
+   full-width block and the label text is squeezed into a vertical strip.  Proper fix in the repo: ".panel input:not([type=checkbox]):not([type=radio])".
+   Final footage must be captured on a build that has the real fix; set SPACE_WORKAROUNDS=1 only for rehearsals. */
+.panel input[type=radio]{display:inline-block;width:auto;height:auto;margin:3px 10px 0 0;vertical-align:top}
+.participation-choices label{display:flex;align-items:flex-start;gap:6px}

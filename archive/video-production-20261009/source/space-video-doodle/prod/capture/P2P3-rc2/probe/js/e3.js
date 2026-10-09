@@ -1,0 +1,16 @@
+const s = await get('phone');
+const p = s.page;
+const out = {};
+const t0 = Date.now();
+await p.locator('[data-tour-action="sample:sample-stage"]').click();
+await p.waitForFunction(() => !!document.querySelector('.moment-ai-tag') && document.querySelector('#panel').scrollTop > 40, null, { timeout: 60000 });
+out.ms = Date.now() - t0;
+await sleep(1200);
+out.state = await p.evaluate(() => ({ tag: document.querySelector('.moment-ai-tag')?.textContent.trim(), cls: document.querySelector('.moment-ai-tag')?.className, line: document.querySelector('[data-ai-line]')?.textContent.replace(/\s+/g, ' ').trim(), chips: [...document.querySelectorAll('[data-moment-viewpoint]')].map(c => c.dataset.momentViewpoint + (c.classList.contains('is-suggested') ? ' suggested' : '') + (c.getAttribute('aria-pressed') === 'true' ? ' selected' : '')), taken: document.querySelector('.moment-taken')?.textContent.replace(/\s+/g, ' ').trim(), scrollTop: document.querySelector('#panel').scrollTop }));
+out.panel = await H.text(p, '#panel');
+out.audit = await H.audit(p);
+await shot(p, 'e3-stage-unsure');
+await p.evaluate(() => { document.querySelector('#panel').scrollTop = 0; });
+await sleep(400);
+await shot(p, 'e3-stage-top');
+return out;

@@ -1,0 +1,15 @@
+import { launch, newPage, sleep, BASE } from './lib.mjs';
+import { hostCreatesRoom, guestJoins, visibleUI } from './flows.mjs';
+const browser = await launch();
+const A = await newPage(browser, { width: 390, height: 844, dpr: 2 });
+const B = await newPage(browser, { width: 390, height: 844, dpr: 2 });
+await hostCreatesRoom(A.page, { name: '阿遥', title: '返场夜', venue: '月台 Livehouse' });
+await guestJoins(B.page, new URL(A.page.url()).search, { name: 'Lin' });
+await sleep(5500);
+console.log('hotspots', JSON.stringify(await A.page.evaluate(() => [...document.querySelectorAll('.hotspot')].map(h => ({ t: h.innerText, hidden: h.hidden, vis: !!h.offsetParent })))));
+await A.page.locator('.hotspot', { hasText: 'Lin' }).first().click(); await sleep(1800);
+const u = await visibleUI(A.page);
+console.log(JSON.stringify(u.overlays.filter(o => !/world-shell|presence/.test(o.cls))).slice(0, 600));
+console.log(JSON.stringify(u.buttons.filter(b => !/camera-nav|header/.test(b)).slice(0, 12)));
+await A.page.screenshot({ path: '/tmp/space-video-prep/stills/phone-person.png' });
+await browser.close();

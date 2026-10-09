@@ -1,0 +1,138 @@
+{
+ "states": [
+  {
+   "vp": "phone",
+   "label": "seeded-community-willing",
+   "selector": ".music-community",
+   "visible": "月台 Livehouse 乐迷社群\n散场以后，也留一个位置\n×\n未静音 · 0 条未读\n设置与管理 ···\n\n散场后，乐迷留在这里；下一场的预告也发在这里。\n\n开放中\n\n下一场预告\n静音\n退出聊天室\n改为安静参与\n社群成员\n\n访客8901 · 愿意打招呼\n\n阿遥 · 安静参与\n\nTN6NQR3DRGQR\n\n复制社群邀请链接 刷新聊天室我的乐迷社群\n音乐探索 ↗\n一起玩\n音乐话题\n专辑世界杯\n\n还没有人说话，来说第一句吧。\n\n标为已读\n留一句\n发送",
+   "attrs": [
+    "@aria-label=乐迷社群与聊天室",
+    "@aria-label=关闭聊天室",
+    "@aria-label=Music Space 的插画分身 (hidden el)",
+    "@aria-label=音乐与聊天入口"
+   ],
+   "hidden": [
+    "Music Space 的插画分身"
+   ],
+   "at": 1791386207632
+  },
+  {
+   "vp": "phone",
+   "label": "own-community-willing",
+   "selector": ".music-community",
+   "visible": "小酒馆乐迷社群\n散场以后，也留一个位置\n×\n未静音 · 0 条未读\n设置与管理 ···\n\n开放中\n\n下一场预告\n静音\n退出聊天室\n改为安静参与\n社群成员\n\n访客8901 · 愿意打招呼\n\n管理成员\n\n还没有其他成员。\n\nKTTE6YTSDJ62\n\n复制社群邀请链接 刷新聊天室我的乐迷社群\n音乐探索 ↗\n一起玩\n音乐话题\n专辑世界杯\n\n还没有人说话，来说第一句吧。\n\n标为已读\n留一句\n发送",
+   "attrs": [
+    "@aria-label=乐迷社群与聊天室",
+    "@aria-label=关闭聊天室",
+    "@aria-label=Music Space 的插画分身 (hidden el)",
+    "@aria-label=音乐与聊天入口"
+   ],
+   "hidden": [
+    "Music Space 的插画分身"
+   ],
+   "at": 1791386216527
+  },
+  {
+   "vp": "phone",
+   "label": "own-community-archived",
+   "selector": ".space-management",
+   "visible": "LIVEHOUSE / 下一场见\n×\n小酒馆乐迷社群\n\n已确认。\n\n已归档\n\n每周五的小酒馆，散场后在这儿接着聊。\n\n编辑社群资料\n社群名称\n社群介绍\n开放状态\n开放\n归档\n确认更新社群资料\n保存放弃修改\n下一场\n\n还没有下一场预告。\n\n刷新回到社群聊天",
+   "attrs": [
+    "@aria-label=下一场预告",
+    "@aria-label=返回社群"
+   ],
+   "hidden": [
+    "开放",
+    "归档"
+   ],
+   "at": 1791386220600
+  },
+  {
+   "vp": "phone",
+   "label": "own-community-archived-chat",
+   "selector": ".music-community",
+   "visible": "小酒馆乐迷社群\n散场以后，也留一个位置\n×\n未静音 · 0 条未读\n设置与管理 ···\n音乐探索 ↗\n一起玩\n音乐话题\n专辑世界杯\n\n还没有人说话，来说第一句吧。\n\n标为已读\n留一句\n发送",
+   "attrs": [
+    "@aria-label=乐迷社群与聊天室",
+    "@aria-label=关闭聊天室",
+    "@aria-label=Music Space 的插画分身 (hidden el)",
+    "@aria-label=音乐与聊天入口"
+   ],
+   "hidden": [
+    "Music Space 的插画分身"
+   ],
+   "at": 1791386222753
+  }
+ ],
+ "logs": {
+  "phone w11-a": [
+   "load: /musicSpace/",
+   "title: Music Space · 同一刻，另一面",
+   "live:loading(hidden): Music Space灯快亮了正在准备三维场景",
+   "live:render-status(hidden): 正在布置现场…",
+   "live:loading(hidden): Music Space灯快亮了正在布置现场…",
+   "live:loading(hidden): Music Space灯快亮了正在准备三维场景",
+   "live:render-status(hidden): 正在布置现场…",
+   "live:render-status(hidden): 现场进行中",
+   "live:view-label: 正在靠近",
+   "live:render-status(hidden): 现场进行中",
+   "live:demo-tour: 第一次来 1/4 · 放一张今晚的照片收起挑一张，或者用你自己的。人海那张舞台那张用我自己的照片跳过路线",
+   "live:view-label: 正在靠近",
+   "live:render-status(hidden): 4 位同场",
+   "live:status: 正在读取聊天室…",
+   "live:render-status(hidden): 4 位同场",
+   "live:status: 正在读取聊天室…",
+   "live:render-status(hidden): 4 位同场",
+   "live:status: 上一步还没确认，可以重试。",
+   "live:render-status(hidden): 2 位乐迷",
+   "live:status: 上一步还没确认，可以重试。",
+   "live:render-status(hidden): 2 位乐迷",
+   "live:render-status(hidden): 4 位同场",
+   "live:render-status(hidden): 5 位同场",
+   "live:status: 上一步还没确认，可以重试。",
+   "live:render-status(hidden): 5 位同场",
+   "live:status: 正在读取聊天室…",
+   "live:render-status(hidden): 1 位乐迷",
+   "live:status: 上一步还没确认，可以重试。",
+   "live:render-status(hidden): 1 位乐迷"
+  ],
+  "phone w11": [
+   "load: /musicSpace/",
+   "title: Music Space · 同一刻，另一面",
+   "live:loading(hidden): Music Space灯快亮了正在准备三维场景",
+   "live:render-status(hidden): 正在布置现场…",
+   "live:loading(hidden): Music Space灯快亮了正在布置现场…",
+   "live:loading(hidden): Music Space灯快亮了正在准备三维场景",
+   "live:render-status(hidden): 正在布置现场…",
+   "live:render-status(hidden): 现场进行中",
+   "live:view-label: 正在靠近",
+   "live:render-status(hidden): 现场进行中",
+   "live:demo-tour: 第一次来 1/4 · 放一张今晚的照片收起挑一张，或者用你自己的。人海那张舞台那张用我自己的照片跳过路线",
+   "live:view-label: 正在靠近",
+   "live:render-status(hidden): 4 位同场",
+   "live:status: 正在读取聊天室…",
+   "live:render-status(hidden): 4 位同场",
+   "live:status: 正在读取聊天室…",
+   "live:render-status(hidden): 4 位同场",
+   "live:status: 上一步还没确认，可以重试。",
+   "live:render-status(hidden): 2 位乐迷",
+   "live:status: 上一步还没确认，可以重试。",
+   "live:render-status(hidden): 2 位乐迷",
+   "live:render-status(hidden): 4 位同场",
+   "live:render-status(hidden): 5 位同场",
+   "live:status: 上一步还没确认，可以重试。",
+   "live:render-status(hidden): 5 位同场",
+   "live:status: 正在读取聊天室…",
+   "live:render-status(hidden): 1 位乐迷",
+   "live:status: 上一步还没确认，可以重试。",
+   "live:render-status(hidden): 1 位乐迷",
+   "live:status: 正在读取…",
+   "live:render-status(hidden): 1 位乐迷",
+   "live:status: 上一步还没确认，可以重试。",
+   "live:status: 已确认。",
+   "live:render-status(hidden): 1 位乐迷",
+   "live:status: 已确认。",
+   "live:render-status(hidden): 1 位乐迷"
+  ]
+ }
+}

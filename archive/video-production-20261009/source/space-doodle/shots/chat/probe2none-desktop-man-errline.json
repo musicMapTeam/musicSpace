@@ -1,0 +1,62 @@
+{
+  "vp": "desktop",
+  "base": "http://127.0.0.1:47412/musicSpace/",
+  "who": "小满",
+  "label": "probe2none",
+  "results": {
+    "boot": "ready",
+    "welcome": {
+      "st": 0,
+      "sh": 395,
+      "ch": 395,
+      "gap": 0,
+      "theirs": 2,
+      "mine": 0,
+      "lastTheirsVisible": true,
+      "lastMineVisible": null,
+      "lastTheirs": "你拍到的是哪一面？",
+      "lastTheirsUnread": false,
+      "unreadInThread": [],
+      "badge": "0"
+    },
+    "error-line": {
+      "settled": {
+        "st": 96,
+        "gap": 0
+      },
+      "line": {
+        "text": "连接暂时没有回应。草稿仍在，可用原操作重试。",
+        "h": 49
+      },
+      "shrunk": {
+        "st": 96,
+        "ch": 346,
+        "gap": 49
+      },
+      "reply": {
+        "st": 210,
+        "ch": 395,
+        "gap": 0,
+        "visible": true,
+        "unread": false
+      },
+      "problemAfter": ""
+    },
+    "badge-after-close": "0",
+    "chat-list": [
+      "小满·示例 unread=0"
+    ],
+    "badge-final": "0",
+    "errors": []
+  },
+  "failures": [],
+  "shots": [
+    "/tmp/space-doodle/shots/chat/probe2none-desktop-man-errline-0-welcome.png",
+    "/tmp/space-doodle/shots/chat/probe2none-desktop-man-errline-h1-error-line.png",
+    "/tmp/space-doodle/shots/chat/probe2none-desktop-man-errline-h2-error-line-reply.png",
+    "/tmp/space-doodle/shots/chat/probe2none-desktop-man-errline-6-chat-list.png",
+    "/tmp/space-doodle/shots/chat/probe2none-desktop-man-errline-7-closed.png"
+  ],
+  "errors": [],
+  "ok": true
+}

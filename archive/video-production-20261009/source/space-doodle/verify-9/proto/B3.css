@@ -1,0 +1,9 @@
+/* B3: card 同一刻，另一面。 stays the one hero on every device; the desktop-only caption becomes a quiet plain-ink lede one step down */
+@media (min-width:1100px) and (min-height:620px){
+  .desktop-caption h2{font-size:clamp(26px,2.3vw,34px)}
+  .desktop-caption .caption-line--b{font-size:1.2em;text-shadow:none}
+  .desktop-caption .caption-key{background:none;padding:0}
+  .desktop-caption .caption-tag,.desktop-caption .caption-star,.desktop-caption .caption-sparkle{display:none}
+  .frame:not([data-stage=room]) .scene-heading h1 span{font-size:24px;line-height:1.2;color:var(--ds-ink);-webkit-text-stroke:0;text-shadow:none;background:var(--ds-paper-card);
+    padding:4px 12px 5px;border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:var(--ds-shadow-sm)}
+}

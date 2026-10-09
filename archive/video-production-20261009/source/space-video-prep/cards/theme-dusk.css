@@ -1,0 +1,25 @@
+/* Plan A theme: the courtyard at dusk (indigo sky -> plum -> lantern amber) with sakura pink as the highlight, as in the live 0.16 page.
+   Loaded on top of cards.css by render-card.mjs when CARD_CSS=theme-dusk.css (the card HTML stays shared with the Route B look). */
+:root{ --accent:#f2a2c1; --accent2:#e58aa8; --cream:#fbf3df; --amber:#ffd27d; --deep:#14112e; --green:#2f5d4a; --muted:#a79bc2 }
+.dark{background:
+  radial-gradient(1100px 600px at 50% -12%,rgba(255,170,120,.34),transparent 64%),
+  radial-gradient(1300px 800px at 50% 128%,rgba(122,74,150,.55),transparent 62%),
+  linear-gradient(#15122f,#201a49 60%,#2c2158)!important}
+.dark .frame{border-color:#0c0a20!important}
+.dark .frame::after{border-color:rgba(251,243,223,.16)!important}
+.eyebrow{color:rgba(251,243,223,.6)!important}
+.tape{background:rgba(242,162,193,.82)!important}
+.lock{box-shadow:0 0 0 6px rgba(242,162,193,.92)!important;background:rgba(21,18,47,.86)!important}
+.spark{background:linear-gradient(90deg,rgba(242,162,193,0),var(--accent),rgba(242,162,193,0))!important}
+.veil{background:radial-gradient(ellipse 60% 45% at 50% 50%,rgba(14,11,34,.88),rgba(14,11,34,.45) 70%,transparent)!important}
+.vignette{background:radial-gradient(ellipse at 50% 50%,transparent 55%,rgba(6,4,20,.5))!important}
+.note{color:rgba(251,243,223,.5)!important}
+/* string lights across the top (as on the product's ceremony page) - optional decoration, any card can add <div class="lights"> */
+.lights{position:absolute;left:0;right:0;top:0;height:120px;pointer-events:none;z-index:5}
+.lights i{position:absolute;top:46px;width:12px;height:16px;border-radius:50% 50% 55% 55%;background:var(--amber);box-shadow:0 0 18px 6px rgba(255,210,125,.55),0 0 46px 14px rgba(255,170,90,.25)}
+.lights::before{content:"";position:absolute;left:-2%;right:-2%;top:6px;height:70px;border-top:2px solid rgba(251,243,223,.28);border-radius:50%/100% 100% 0 0}
+/* the product's petal mark (three petals, rotated) */
+.petal{position:relative;display:inline-block;width:132px;height:136px;transform:rotate(-15deg)}
+.petal i{position:absolute;width:52px;height:88px;left:40px;top:0;border-radius:80% 30% 60% 35%;transform-origin:50% 78%;background:#c97f90}
+.petal i:nth-child(2){transform:rotate(120deg);background:#e2b3b0}
+.petal i:nth-child(3){transform:rotate(240deg);background:#5b9a7c}

@@ -1,0 +1,1 @@
+@layer legacy{html body p.x{color:red}@media (width<=700px){html body p.x{color:orange}}:root{--c:blue}html body .x span{color:green}}.x{color:purple}

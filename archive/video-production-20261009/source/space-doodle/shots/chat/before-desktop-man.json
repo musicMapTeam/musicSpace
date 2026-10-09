@@ -1,0 +1,163 @@
+{
+  "vp": "desktop",
+  "base": "http://127.0.0.1:47411/musicSpace/",
+  "who": "小满",
+  "label": "before",
+  "results": {
+    "boot": "ready",
+    "welcome": {
+      "st": 0,
+      "sh": 395,
+      "ch": 395,
+      "gap": 0,
+      "theirs": 2,
+      "mine": 0,
+      "lastTheirsVisible": true,
+      "lastMineVisible": null,
+      "lastTheirs": "你拍到的是哪一面？",
+      "lastTheirsUnread": false,
+      "unreadInThread": [],
+      "badge": "0"
+    },
+    "send-1": {
+      "own": {
+        "st": 0,
+        "sh": 395,
+        "ch": 395,
+        "gap": 0,
+        "visible": true
+      },
+      "reply": {
+        "st": 6,
+        "sh": 401,
+        "ch": 395,
+        "gap": 0,
+        "visible": true,
+        "text": "今晚的返场太好听了。",
+        "unread": []
+      },
+      "badge": "0"
+    },
+    "send-2": {
+      "own": {
+        "st": 6,
+        "sh": 491,
+        "ch": 395,
+        "gap": 90,
+        "visible": false
+      },
+      "reply": {
+        "st": 6,
+        "sh": 605,
+        "ch": 395,
+        "gap": 204,
+        "visible": false,
+        "text": "你的视角我这边没拍到，谢谢你愿意交换。",
+        "unread": [
+          "你的视角我这边没拍到，谢谢你"
+        ]
+      },
+      "badge": "0"
+    },
+    "send-3": {
+      "own": {
+        "st": 6,
+        "sh": 695,
+        "ch": 395,
+        "gap": 294,
+        "visible": false
+      },
+      "reply": {
+        "st": 6,
+        "sh": 809,
+        "ch": 395,
+        "gap": 408,
+        "visible": false,
+        "text": "（示例角色的自动回复：我不是真人。）",
+        "unread": [
+          "你的视角我这边没拍到，谢谢你",
+          "（示例角色的自动回复：我不是"
+        ]
+      },
+      "badge": "0"
+    },
+    "scrolled-up": {
+      "upBefore": {
+        "st": 0,
+        "gap": 618
+      },
+      "afterReply": {
+        "st": 0,
+        "gap": 618,
+        "replyVisible": false,
+        "replyUnread": true,
+        "unread": [
+          "你的视角我这边没拍到，谢谢你",
+          "（示例角色的自动回复：我不是",
+          "（示例角色的自动回复：我不是"
+        ]
+      },
+      "badge": "0"
+    },
+    "scrolled-back-down": {
+      "st": 618,
+      "gap": 0,
+      "replyVisible": true,
+      "unread": [
+        "你的视角我这边没拍到，谢谢你"
+      ],
+      "badge": "1"
+    },
+    "send-while-up": {
+      "upBefore": {
+        "st": 0,
+        "gap": 618
+      },
+      "own": {
+        "st": 0,
+        "gap": 708,
+        "visible": false
+      },
+      "reply": {
+        "st": 0,
+        "gap": 822,
+        "visible": false,
+        "unread": [
+          "你的视角我这边没拍到，谢谢你",
+          "（示例角色的自动回复：我不是"
+        ]
+      },
+      "badge": "1"
+    },
+    "badge-after-close": "2",
+    "chat-list": [
+      "小满·示例 unread=2"
+    ],
+    "badge-final": "2",
+    "errors": []
+  },
+  "failures": [
+    "send 2: own message not in view",
+    "send 2: reply not in view",
+    "send 2: reply still unread in thread",
+    "send 3: own message not in view",
+    "send 3: reply not in view",
+    "send 3: reply still unread in thread",
+    "send-while-up: own message not in view",
+    "send-while-up: reply not read",
+    "badge after close 2",
+    "chat list still shows unread"
+  ],
+  "shots": [
+    "/tmp/space-doodle/shots/chat/before-desktop-man-0-welcome.png",
+    "/tmp/space-doodle/shots/chat/before-desktop-man-1-reply.png",
+    "/tmp/space-doodle/shots/chat/before-desktop-man-2-reply.png",
+    "/tmp/space-doodle/shots/chat/before-desktop-man-3-reply.png",
+    "/tmp/space-doodle/shots/chat/before-desktop-man-4-scrolled-up-after-reply.png",
+    "/tmp/space-doodle/shots/chat/before-desktop-man-5-send-while-up-reply.png",
+    "/tmp/space-doodle/shots/chat/before-desktop-man-6-chat-list.png",
+    "/tmp/space-doodle/shots/chat/before-desktop-man-7-closed.png"
+  ],
+  "errors": [],
+  "ok": false
+}

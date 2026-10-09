@@ -1,0 +1,13 @@
+const s = await get('phone');
+const p = s.page;
+await p.locator('#panel-close').click(); await sleep(800);
+const r = {};
+r.tour = await H.buttons(p, b => /tour/.test(b));
+await p.locator('#scene-details').click(); await sleep(1200);
+r.panel1 = (await H.text(p, '#panel')).slice(0, 800);
+r.b1 = await H.buttons(p, b => /data-open/.test(b));
+await p.locator('#panel [data-open="conversation"]').first().click(); await sleep(2500);
+r.shotJoin = await shot(p, 'e04-conversation-join');
+r.conv = (await H.text(p, '.community-panel')).slice(0, 1200);
+r.b2 = await H.buttons(p, b => /group|consent|join|submit|conversation/.test(b));
+return r;

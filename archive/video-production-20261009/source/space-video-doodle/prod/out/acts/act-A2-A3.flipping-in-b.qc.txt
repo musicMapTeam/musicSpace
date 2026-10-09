@@ -1,0 +1,23 @@
+QC act-A2-A3.flipping-in-b.mp4  range 39.03-78.05 s  act preview  ->  WARN
+  PASS  container.video h264 High 1920x1080 60/1 yuv420p bt709/bt709/bt709/tv
+  PASS  container.audio aac LC 48000 Hz 2 ch 255 kb/s
+  PASS  duration        39.017 s (range 39.017 s)
+  PASS  size            48.8 MB (10.0 Mb/s)
+  PASS  loudness        I -16.2 LUFS (target -16), LRA 1.7 LU (act excerpt: informational; the full cut is normalised)
+  PASS  true_peak       -1.4 dBTP (limit -1.0)
+  PASS  silence         0 silent stretches over 0.8 s
+  PASS  frozen          0 frozen stretches over 2.5 s
+  PASS  black           0 black stretches over 0.4 s
+  PASS  motion          longest low-motion stretch 0.07 s at 0.55 s (mean |dI| < 0.15 on 160x90), mean motion 1.94
+  PASS  event_gaps      138 visual events, 3.54/s; longest gap 1.22 s after 57.56 s (limit 2.5)
+  PASS  beat_alignment  138/138 visual events on the 16th grid (<= half a frame), 135/138 on 8ths; frames quantise by <= 8.3 ms
+  PASS  reading_time    29 lines, measured (geometry samples every 50 ms); titles/notes failing 0, labels/fine short 0
+  PASS  safe_area       0 texts outside the 5% title-safe area for > 0.5 s, 0 only briefly (entrances, camera moves)
+  PASS  glyphs          120 font/character pairs; 0 drawn by a system font
+  PASS  qr              no end card in range (not applicable)
+  PASS  placeholders    no placeholders
+  PASS  scene_warnings  0 warnings
+  PASS  sfx_level       SFX -9.0 LU vs music (target -8..-10), 134 sounds {'whoosh': 4, 'boom': 1, 'impact': 2, 'pop': 16, 'slam': 13, 'thump': 5, 'squeak': 20, 'click': 16, 'ding': 4, 'slap': 12, 'typetick': 27, 'pencil': 1, 'boop': 1, 'swish': 3, 'shutter': 1, 'chime': 1, 'hmm': 1, 'tape': 1, 'highlighter': 4, 'stamp': 1}
+  WARN  script_lines    24/26 SCRIPT lines in range are on screen
+            - T049 27:3 「示例角色 · 自动回复」
+            - T053 30:3 「示例照片 · 拍摄时间为虚构」

@@ -1,0 +1,172 @@
+{
+ "map": "grab-a-partner",
+ "label": "Loyalty Freak Music《Grab A Partner》130 BPM — 93 bars (+3 ADD bars); the song's final chord is the title, the wait and the end",
+ "track": {
+  "audio": "/tmp/space-video-doodle/music-cc0/01-grab-a-partner__Loyalty-Freak-Music/Loyalty_Freak_Music_-_05_-_Grab_A_Partner.mp3",
+  "beats": "/tmp/space-video-doodle/music-cc0/01-grab-a-partner__Loyalty-Freak-Music/beats.json",
+  "title": "Grab A Partner",
+  "artist": "Loyalty Freak Music",
+  "licence": "CC0 1.0 Universal",
+  "sha256": "2ed4f5ac5e537aa47e18c52286ba0e7f46efa01b88951329881a1387acf7e4ca",
+  "proof": "/tmp/space-video-doodle/music-cc0/01-grab-a-partner__Loyalty-Freak-Music/LICENCE-PROOF.md",
+  "credit": "配乐：Loyalty Freak Music《Grab A Partner》（CC0 1.0 公共领域）"
+ },
+ "duration_s": 174.09,
+ "bars": 93,
+ "cut": [],
+ "added": [
+  "28+1",
+  "54+1",
+  "90+1"
+ ],
+ "splices": [
+  {
+   "t": 12.923,
+   "at": "8:1",
+   "from_trk": 103,
+   "to_trk": 9,
+   "xfade_ms": 20.0,
+   "hf_spike_db": 3.3,
+   "natural_spike_db": 3.4,
+   "click": false
+  },
+  {
+   "t": 25.846,
+   "at": "15:1",
+   "from_trk": 15,
+   "to_trk": 10,
+   "xfade_ms": 20.0,
+   "hf_spike_db": 3.6,
+   "natural_spike_db": 3.6,
+   "click": false
+  },
+  {
+   "t": 90.461,
+   "at": "49:1",
+   "from_trk": 44,
+   "to_trk": 102,
+   "xfade_ms": 60.0,
+   "hf_spike_db": -2.5,
+   "natural_spike_db": -0.4,
+   "click": false
+  },
+  {
+   "t": 94.153,
+   "at": "51:1",
+   "from_trk": 103,
+   "to_trk": 47,
+   "xfade_ms": 20.0,
+   "hf_spike_db": 4.9,
+   "natural_spike_db": 4.9,
+   "click": false
+  },
+  {
+   "t": 129.229,
+   "at": "69:1",
+   "from_trk": 65,
+   "to_trk": 89,
+   "xfade_ms": 20.0,
+   "hf_spike_db": 3.9,
+   "natural_spike_db": 3.9,
+   "click": false
+  },
+  {
+   "t": 136.614,
+   "at": "73:1",
+   "from_trk": 92,
+   "to_trk": 14,
+   "xfade_ms": 20.0,
+   "hf_spike_db": 1.9,
+   "natural_spike_db": 2.0,
+   "click": false
+  },
+  {
+   "t": 140.306,
+   "at": "75:1",
+   "from_trk": 15,
+   "to_trk": 85,
+   "xfade_ms": 20.0,
+   "hf_spike_db": 0.8,
+   "natural_spike_db": 0.8,
+   "click": false
+  }
+ ],
+ "loudness": {
+  "gain_db": -4.5,
+  "before": {
+   "I": -11.5,
+   "TP": -0.2,
+   "LRA": 4.8
+  },
+  "after": {
+   "I": -16.0,
+   "TP": -4.7,
+   "LRA": 4.8
+  },
+  "limiter_max_reduction_db": 0.0,
+  "ceiling_db": -1.5
+ },
+ "onsets_vs_grid": {
+  "beats": 372,
+  "median_offset_ms": 4.1,
+  "p10_ms": -1.9,
+  "p90_ms": 7.8,
+  "within_20ms": "183/186",
+  "note": "strongest onset within +-70 ms of every beat of the output grid (5 ms hop), upper half by strength, corrected for the detector bias (-10.3 ms, calibrated on synthetic hits); + = music after the grid"
+ },
+ "moments": {
+  "title_stop": {
+   "verdict": "drop-on-5",
+   "silence_before_5_1_db": 2.8,
+   "hit_5_1_db": -3.2,
+   "level_5_6_vs_3_4_db": -6.2
+  },
+  "pain_sparse": {
+   "verdict": "partial",
+   "level_vs_film_median_db": -2.8,
+   "onset_density_vs_film": 0.9
+  },
+  "drop": {
+   "verdict": "weak",
+   "hit_21_1_db": 0.4,
+   "hit_21_1_low_db": 2.0,
+   "level_21_28_vs_pain_db": 2.2,
+   "rank_among_downbeats": 46
+  },
+  "ai_chime": {
+   "verdict": "sfx",
+   "at_s": 58.2
+  },
+  "payoff": {
+   "verdict": "yes",
+   "hit_51_1_db": 13.7,
+   "rank_among_downbeats": 1,
+   "of": 92,
+   "gap_50_4_db": 1.4,
+   "biggest_downbeat": "51:1 (+13.7 dB)"
+  },
+  "social_groove": {
+   "verdict": "yes",
+   "level_vs_film_median_db": 1.2
+  },
+  "break": {
+   "verdict": "yes",
+   "level_73_74_vs_2_bars_before_db": -4.9
+  },
+  "lift": {
+   "verdict": "yes",
+   "hit_75_1_db": 3.5,
+   "hit_75_1_low_db": 4.3,
+   "level_75_82_vs_break_db": 3.8
+  },
+  "end_resolve": {
+   "verdict": "natural (ends in silence)",
+   "last_100ms_db": -55.2,
+   "end_card_level_db": -17.7
+  }
+ },
+ "files": {
+  "wav": "/private/tmp/space-video-doodle/prod/audio/beds/grab-a-partner.wav",
+  "m4a": "/private/tmp/space-video-doodle/prod/audio/beds/grab-a-partner.m4a"
+ }
+}

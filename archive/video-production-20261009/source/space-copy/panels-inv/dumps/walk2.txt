@@ -1,0 +1,566 @@
+
+===== people [#panel]
+	button	×
+	small.eyebrow	同一晚，同一场
+	h2	看看同场的人
+	b	阿遥·示例
+	small.cast-badge	示例角色 · 自动回复
+	span	愿意打招呼 · 看看 TA 的视角 →
+	b	小满·示例
+	b	北屿·示例
+	p.fine	你的小人在场景里。这里列出其他成员，不会把自己当作交友对象。
+@aria-label	section	场景操作
+@aria-label	button	关闭操作面板
+
+===== person-before-wave [#panel]
+	button	×
+	small.eyebrow	同场的人
+	h2	阿遥·示例
+	p	先招个手，对方愿意回应后，你们才会成为朋友。
+	button.primary	向 阿遥·示例 招个手
+	p.fine	这是本场房主。目前没有独立平台申诉渠道，仍可选择个人屏蔽或离场。
+	button.quiet	屏蔽这个人
+	p.fine	不展示手机号或社交账号。没有公开聊天，也不会自动添加好友。
+@aria-label	section	场景操作
+@aria-label	button	关闭操作面板
+
+===== person-friend [#panel]
+	button	×
+	small.eyebrow	你们已经认识了
+	h2	阿遥·示例
+	button	邀请共同创作
+	button.primary	和 阿遥·示例 私聊 ↗
+	p	你们已经互相同意成为朋友。照片仍按原场次授权，不会因此开放私藏。
+	button.quiet	移除朋友
+	p.fine	这是本场房主。目前没有独立平台申诉渠道，仍可选择个人屏蔽或离场。
+	button.quiet	屏蔽这个人
+	p.fine	不展示手机号或社交账号。没有公开聊天，也不会自动添加好友。
+@aria-label	section	场景操作
+@aria-label	button	关闭操作面板
+
+===== chat-thread-welcome [.private-chat]
+	button.chat-back	←
+	small	ONE TO ONE
+	h2	阿遥·示例
+	button.chat-close	×
+	div.chat-notice	已互相接受联系。这里只保存文字，不展示在线状态。
+H	title	Music Space 的插画分身
+H	b	阿遥·示例
+H	p	你拍到的是哪一面？
+H	small	朋友
+H	button.chat-older	更早的消息
+	p	嗨，欢迎来到「回声现场」。我是示例角色，由这个页面自动回复。
+	small	20:50
+	p	你拍到的是哪一面？
+	label	留一句话
+	small	已保存 = 服务已收到，不代表对方已读
+	button	发送 ↗
+	footer	仅文字 · 照片仍由各自决定分享范围
+	button.chat-more	回看这一晚
+@aria-label	section	私聊
+@aria-label	button	返回对话列表
+@aria-label	button	关闭私聊
+@aria-label	svg	Music Space 的插画分身
+@aria-label	div	消息记录
+@placeholder	textarea	比如，刚刚哪首歌最喜欢？
+
+===== chat-thread-replies [.private-chat]
+	button.chat-back	←
+	small	ONE TO ONE
+	h2	阿遥·示例
+	button.chat-close	×
+	div.chat-notice	已互相接受联系。这里只保存文字，不展示在线状态。
+H	title	Music Space 的插画分身
+H	b	阿遥·示例
+H	p	（示例角色的自动回复：我不是真人。）
+H	small	朋友
+H	button.chat-older	更早的消息
+	p	嗨，欢迎来到「回声现场」。我是示例角色，由这个页面自动回复。
+	small	20:50
+	p	你拍到的是哪一面？
+	p	你好呀
+	small	20:50 · 已保存
+	p	今晚的返场太好听了。
+	p	我拍的是人海
+	p	你的视角我这边没拍到，谢谢你愿意交换。
+	p	下次见
+	p	（示例角色的自动回复：我不是真人。）
+	label	留一句话
+	small	已保存 = 服务已收到，不代表对方已读
+	button	发送 ↗
+	footer	仅文字 · 照片仍由各自决定分享范围
+	button.chat-more	回看这一晚
+@aria-label	section	私聊
+@aria-label	button	返回对话列表
+@aria-label	button	关闭私聊
+@aria-label	svg	Music Space 的插画分身
+@aria-label	div	消息记录
+@placeholder	textarea	比如，刚刚哪首歌最喜欢？
+
+===== chat-list [.private-chat]
+H	button.chat-back	←
+	small	ONE TO ONE
+	h2	我们的对话
+	button.chat-close	×
+	div.chat-notice	从朋友的小人旁开始，接着聊刚才的那首歌。
+H	title	Music Space 的插画分身
+	b	阿遥·示例
+	p	（示例角色的自动回复：我不是真人。）
+	small	朋友
+H	button.chat-older	更早的消息
+H	p	嗨，欢迎来到「回声现场」。我是示例角色，由这个页面自动回复。
+H	small	20:50
+H	p	你拍到的是哪一面？
+H	p	你好呀
+H	small	20:50 · 已保存
+H	p	今晚的返场太好听了。
+H	p	我拍的是人海
+H	p	你的视角我这边没拍到，谢谢你愿意交换。
+H	p	下次见
+H	p	（示例角色的自动回复：我不是真人。）
+H	label	留一句话
+H	small	已保存 = 服务已收到，不代表对方已读
+H	button	发送 ↗
+	footer	仅文字 · 照片仍由各自决定分享范围
+	button.chat-more	回看这一晚
+@aria-label	section	私聊
+@aria-label	button	返回对话列表
+@aria-label	button	关闭私聊
+@aria-label	svg	Music Space 的插画分身
+@aria-label	div	消息记录
+@placeholder	textarea	比如，刚刚哪首歌最喜欢？
+
+===== room-chat-join [.music-community]
+	span.eyebrow	散场以后，也留一个位置
+	button	×
+	h2	回声现场 · 示例场
+H	title	Music Space 的插画分身
+	p	加入后，成员能看到你的昵称、小人与主动发送的文字。安静参与不会改变，不自动加好友，不订阅营销。
+	label	我愿意加入这个聊天室
+	button	明确加入，继续聊
+	button	本场主办方的长期社群
+	button	刷新聊天室
+	button	我的长期音乐社群
+@aria-label	section	音乐社群与聊天室
+@aria-label	button	关闭聊天室
+@aria-label	svg	Music Space 的插画分身
+
+===== room-chat-joined [.music-community]
+	h2	回声现场 · 示例场
+	span.eyebrow	散场以后，也留一个位置
+	button	×
+H	title	Music Space 的插画分身
+	span	未静音 · 3 条未读
+	summary	本场与管理 ···
+	button	静音
+	button	退出聊天室
+	p.fine	停止入场和上传后仍可聊；离开现场会失去聊天室资格，原好友私聊保留。文字仍由作者和房主管理。
+	button	本场主办方的长期社群
+	button	刷新聊天室
+	button	我的长期音乐社群
+	button	Music Map · 沿音乐探索 ↗
+	button	一起玩 · 默契局／音乐关系接龙
+	button	成员音乐话题 · 发布与讨论
+	button	专辑世界杯 · 一起选张来聊
+	b	阿遥·示例
+	time	20:49
+	p	大家好，今晚我把舞台这一面放上了照片墙。（示例角色的自动回复：我不是真人。）
+	button	回复
+	b	小满·示例
+	p	我拍的是人海这一面，手都举起来了。（示例角色的自动回复：我不是真人。）
+	b	北屿·示例
+	p	我只拍了看台边的一盏灯，算细节。（示例角色的自动回复：我不是真人。）
+	button	把这一页收到的消息标为已读
+	label	留一句
+	button	发送到聊天室
+@aria-label	section	音乐社群与聊天室
+@aria-label	button	关闭聊天室
+@aria-label	svg	Music Space 的插画分身
+@aria-label	nav	音乐与聊天入口
+
+===== games-list [.music-games]
+	span.eyebrow	PLAY / 音乐让我们接着聊
+	button	×
+H	title	Music Space 的插画分身
+	h2	一起玩一小局
+H	p	自愿参与，可随时退出。这里没有人格、匹配分或品味排名。
+	p.game-avatar-thought	我在这里，等愿意一起玩的人。
+	p.fine	默契局先各自选，再揭晓本轮合计；关系接龙使用留档关系卡或明确的个人自述，不猜受版权限制的歌曲。
+	b	今晚谁和你同一首
+	span	音乐偏好默契局 · 等待自愿加入 · 阿遥·示例
+	summary	邀请大家自愿玩一局
+	label	玩法
+H	option	音乐偏好默契局
+H	option	音乐关系接龙
+	label	这局的名字
+	label	轮数（最多三轮）
+	label	我自己填写四个文字选项
+	p	使用四个原创虚构专辑示例；没有音频、真实封面或真实音乐人。
+	label	明确向本聊天室发起小游戏；不代替任何人加入
+	button	发起这局，等待自愿参与
+	button	刷新游戏状态
+	button	回到聊天室
+@aria-label	section	自愿音乐小游戏
+@aria-label	button	返回聊天室
+@aria-label	svg	Music Space 的插画分身
+
+===== games-create-relay [.music-games]
+	span.eyebrow	PLAY / 音乐让我们接着聊
+	button	×
+H	title	Music Space 的插画分身
+	h2	一起玩一小局
+H	p	自愿参与，可随时退出。这里没有人格、匹配分或品味排名。
+	p.game-avatar-thought	我在这里，等愿意一起玩的人。
+	p.fine	默契局先各自选，再揭晓本轮合计；关系接龙使用留档关系卡或明确的个人自述，不猜受版权限制的歌曲。
+	b	今晚谁和你同一首
+	span	音乐偏好默契局 · 等待自愿加入 · 阿遥·示例
+	summary	邀请大家自愿玩一局
+	label	玩法
+H	option	音乐偏好默契局
+H	option	音乐关系接龙
+	label	这局的名字
+	label	接龙步数（最多六步）
+	label	接龙起点
+H	option	已留档关系卡
+H	option	我自填的音乐文字
+	label	关系卡
+H	option	不该 · 周杰伦 / 张惠妹
+H	option	千里之外 · 周杰伦 / 费玉清
+H	option	说好不哭 · 周杰伦 / 阿信
+H	option	等你下课 · 周杰伦 / 杨瑞代
+H	option	画沙 · 袁咏琳 / 周杰伦
+H	option	一眼瞬间 · 张惠妹 / 萧敬腾
+H	option	Hello · 萧敬腾 / 林俊杰
+H	option	小酒窝 · 林俊杰 / 蔡卓妍
+H	option	被风吹过的夏天 · 林俊杰 / 金莎
+H	option	手心的蔷薇 · 林俊杰 / 邓紫棋
+H	option	黑暗骑士 · 林俊杰 / 阿信
+H	option	稻香 / Stay With You · 周杰伦 / 林俊杰
+H	option	Stay With You（英文版） · 林俊杰 / 孙燕姿
+H	option	给我一首歌的时间 · 周杰伦 / 蔡依林
+H	option	屋顶 · 温岚 / 周杰伦
+H	option	珊瑚海 · 周杰伦 / 梁心颐
+H	option	Try · 周杰伦 / 派伟俊
+H	option	对等关系 · 李荣浩 / 张惠妹
+H	option	我有多么喜欢你 · 萧敬腾 / 林宥嘉
+H	option	致姗姗来迟的你 · 阿肆 / 林宥嘉
+H	option	别勉强 · 邓紫棋 / 周兴哲
+H	option	爱我的时候 · 周兴哲 / 单依纯
+H	option	温柔 #MaydayBlue20th · 五月天 / 孙燕姿
+H	option	私奔到月球 · 阿信 / 陈绮贞
+H	option	（......醉鬼阿Q） · 吴青峰 / 孙燕姿
+H	option	今天你要嫁给我 · 陶喆 / 蔡依林
+H	option	我是谁 · 蔡依林 / Jony J
+H	option	再也没有你 · 梁心颐 / 陈势安
+H	option	凡人歌 · 五月天 / 萧敬腾
+H	option	别说没爱过 (Live) · 林宥嘉 / 周兴哲
+H	option	后来的我们 · 五月天 / 张惠妹
+H	option	你不是真正的快乐 + 天空 · 五月天 / 蔡依林
+H	option	离开地球表面 · 五月天 / 李荣浩
+H	option	年少有为 · 林俊杰 / 李荣浩
+H	option	爱我还是他 · 林俊杰 / 陶喆
+H	option	双影 · 张惠妹 / 林忆莲
+H	option	过 · 王嘉尔 / 林俊杰
+	label	明确向本聊天室发起小游戏；不代替任何人加入
+	button	发起这局，等待自愿参与
+	button	刷新游戏状态
+	button	回到聊天室
+@aria-label	section	自愿音乐小游戏
+@aria-label	button	返回聊天室
+@aria-label	svg	Music Space 的插画分身
+
+===== game-detail [.music-games]
+	span.eyebrow	PLAY / 音乐让我们接着聊
+	button	×
+H	title	Music Space 的插画分身
+	h2	今晚谁和你同一首
+H	p	自愿参与，可随时退出。这里没有人格、匹配分或品味排名。
+	p.game-avatar-thought	我在这里，等愿意一起玩的人。
+	p.game-phase	音乐偏好默契局 · 等待加入 · 2 位目前仍有资格的参与者
+	p.game-progress	等待本人自愿加入
+	b	阿遥·示例
+	b	小满·示例
+	p	选择仅用于这一局；不会改变联系意愿、照片权限或加好友。
+	label	我自愿参加这一局
+	button	明确加入小游戏
+	button	本聊天室的小游戏与历史
+	button	刷新游戏状态
+	button	回到聊天室
+@aria-label	section	自愿音乐小游戏
+@aria-label	button	返回聊天室
+@aria-label	svg	Music Space 的插画分身
+
+===== game-joined [.music-games]
+	span.eyebrow	PLAY / 音乐让我们接着聊
+	button	×
+H	title	Music Space 的插画分身
+	h2	今晚谁和你同一首
+H	p	自愿参与，可随时退出。这里没有人格、匹配分或品味排名。
+	p.game-avatar-thought	我在这里，等愿意一起玩的人。
+	p	服务器已确认这次操作。
+	p.game-phase	音乐偏好默契局 · 等待加入 · 3 位目前仍有资格的参与者
+	p.game-progress	等待本人自愿加入
+	b	阿遥·示例
+	b	小满·示例
+	b	访客6428（我）
+	button	退出这一局
+	p.fine	退出删除未揭晓选择；已揭晓合计和已发布接龙保留在本聊天室，不进入下一局。
+	button	本聊天室的小游戏与历史
+	button	刷新游戏状态
+	button	回到聊天室
+@aria-label	section	自愿音乐小游戏
+@aria-label	button	返回聊天室
+@aria-label	svg	Music Space 的插画分身
+
+===== game-choice [.music-games]
+	span.eyebrow	PLAY / 音乐让我们接着聊
+	button	×
+H	title	Music Space 的插画分身
+	h2	今晚谁和你同一首
+H	p	自愿参与，可随时退出。这里没有人格、匹配分或品味排名。
+	p.game-avatar-thought	我在这里，等愿意一起玩的人。
+	p	服务器已确认这次操作。
+	p.game-phase	音乐偏好默契局 · 进行中 · 3 位目前仍有资格的参与者
+	p.game-progress	本局进度 · 1 / 1
+	h3	第 1 轮
+	p	2 人已提交；揭晓前只显示你自己的选择。
+	small	原创虚构示例
+	h3	午夜站台
+	p	纸灯乐队
+	button	我选「午夜站台」
+	h3	樱花电波
+	p	薄荷收音机
+	button	我选「樱花电波」
+	h3	小院回声
+	p	月光邮局
+	button	我选「小院回声」
+	h3	最后一盏灯
+	p	夜航纸片
+	button	我选「最后一盏灯」
+	p	你的选择：午夜站台
+	label	确认提交本轮选择；本轮不能改票
+	button	先保留我的选择
+	button	取消，尚未提交
+	button	本聊天室的小游戏与历史
+	button	刷新游戏状态
+	button	回到聊天室
+	summary	参与者与退出
+	b	阿遥·示例
+	b	小满·示例
+	b	访客6428（我）
+	button	退出这一局
+	p.fine	退出删除未揭晓选择；已揭晓合计和已发布接龙保留在本聊天室，不进入下一局。
+@aria-label	section	自愿音乐小游戏
+@aria-label	button	返回聊天室
+@aria-label	svg	Music Space 的插画分身
+
+===== game-result [.music-games]
+	span.eyebrow	PLAY / 音乐让我们接着聊
+	button	×
+H	title	Music Space 的插画分身
+	h2	今晚谁和你同一首
+H	p	自愿参与，可随时退出。这里没有人格、匹配分或品味排名。
+	p.game-avatar-thought	这一局，留一句话接着聊。
+	p	服务器已确认这次操作。
+	p.game-phase	音乐偏好默契局 · 本局完成 · 3 位目前仍有资格的参与者
+	p.game-progress	本局进度 · 1 / 1
+	h3	第 1 轮
+	small	原创虚构示例
+	h3	午夜站台
+	p	纸灯乐队
+	p	2 人选择 · 本轮有共同选择
+	h3	樱花电波
+	p	薄荷收音机
+	p	0 人选择
+	h3	小院回声
+	p	月光邮局
+	h3	最后一盏灯
+	p	夜航纸片
+	p	1 人选择
+	p	只描述这一局出现的共同选择，不代表人格或匹配程度。
+	h3	把这一局带回讨论
+	label	我想说的一句话
+	label	明确把本局结果入口和我的话发到聊天室
+	button	回到聊天室接着聊
+	button	本聊天室的小游戏与历史
+	button	刷新游戏状态
+	button	回到聊天室
+	summary	参与者与退出
+	b	阿遥·示例
+	b	小满·示例
+	b	访客6428（我）
+	button	退出这一局
+	p.fine	退出删除未揭晓选择；已揭晓合计和已发布接龙保留在本聊天室，不进入下一局。
+@aria-label	section	自愿音乐小游戏
+@aria-label	button	返回聊天室
+@aria-label	svg	Music Space 的插画分身
+
+===== topics [.music-topics]
+	span.eyebrow	MUSIC / 从一首歌接着说
+	button	×
+	h2	成员的音乐话题
+	p.fine	下列名称、音乐人和话语由成员自填，未核实。四张留档关系卡是通往独立 Music Map 的小桥，不是完整 Map 集成；这里没有抓取封面、音频或歌词。
+	p	还没有成员话题。留一首让你想到现场的歌，也留一句你想聊的话。
+	summary	留下我的音乐话题
+	label	音乐名称
+	label	音乐人（可留空）
+	label	我想聊的一句话
+	label	明确向当前聊天室发布我的自填文字
+	button	发布音乐话题
+	button	刷新话题
+	button	回到聊天室
+@aria-label	section	成员音乐话题
+@aria-label	button	回到聊天室
+
+===== worldcup-list [.worldcup-panel]
+	span.eyebrow	这一晚，选张专辑来聊
+	button	×
+	h2	专辑世界杯
+	p.fine	可以使用四张原创虚构专辑示例，也可以自己填写四个文字选项。投票只描述本聊天室的选择，不是榜单或品味评分，不展示别人的个人选择。
+	label	当前与历史
+H	option	全部
+H	option	进行中
+H	option	已经完成的结果
+	b	今晚的专辑世界杯
+	span	阿遥·示例发起 · 原创虚构示例 · 进行中
+	label	发起一个小小的选择
+	label	我自己填写四个文字选项
+	label	确认向当前聊天室发布上面的四个文字选项并发起投票
+	button	发起四张专辑的世界杯
+	button	刷新轮次
+	button	回到聊天室讨论
+@aria-label	section	虚构专辑世界杯
+@aria-label	button	返回聊天室
+@placeholder	input	今晚想先选哪张？
+
+===== worldcup-create-custom [.worldcup-panel]
+	span.eyebrow	这一晚，选张专辑来聊
+	button	×
+	h2	专辑世界杯
+	p.fine	可以使用四张原创虚构专辑示例，也可以自己填写四个文字选项。投票只描述本聊天室的选择，不是榜单或品味评分，不展示别人的个人选择。
+	label	当前与历史
+H	option	全部
+H	option	进行中
+H	option	已经完成的结果
+	b	今晚的专辑世界杯
+	span	阿遥·示例发起 · 原创虚构示例 · 进行中
+	label	发起一个小小的选择
+	label	我自己填写四个文字选项
+	legend	选项 1 · 成员自填，未核实
+	label	名称
+	label	音乐人（可留空）
+	legend	选项 2 · 成员自填，未核实
+	legend	选项 3 · 成员自填，未核实
+	legend	选项 4 · 成员自填，未核实
+	label	确认向当前聊天室发布上面的四个文字选项并发起投票
+	button	发起四张专辑的世界杯
+	button	刷新轮次
+	button	回到聊天室讨论
+@aria-label	section	虚构专辑世界杯
+@aria-label	button	返回聊天室
+@placeholder	input	今晚想先选哪张？
+
+===== worldcup-detail [.worldcup-panel]
+	span.eyebrow	这一晚，选张专辑来聊
+	button	×
+	h2	今晚的专辑世界杯
+	p.fine	可以使用四张原创虚构专辑示例，也可以自己填写四个文字选项。投票只描述本聊天室的选择，不是榜单或品味评分，不展示别人的个人选择。
+	p	阿遥·示例发起 · 每轮每个身份一票，投后不能改票
+	h3	第一轮 · 第1组
+	span	01 · 原创虚构专辑
+	h3	午夜站台
+	p	纸灯乐队
+	b	1
+	p.worldcup-votes	票
+	button	选《午夜站台》
+	span	02 · 原创虚构专辑
+	h3	樱花电波
+	p	薄荷收音机
+	button	选《樱花电波》
+	p.fine	由发起者明确结束这一轮；离开或被移除时暂停晋级。
+	h3	第一轮 · 第2组
+	span	03 · 原创虚构专辑
+	h3	小院回声
+	p	月光邮局
+	b	0
+	button	选《小院回声》
+	span	04 · 原创虚构专辑
+	h3	最后一盏灯
+	p	夜航纸片
+	button	选《最后一盏灯》
+	button	本聊天室的世界杯与历史
+	button	刷新轮次
+	button	回到聊天室讨论
+@aria-label	section	虚构专辑世界杯
+@aria-label	button	返回聊天室
+
+===== worldcup-vote [.worldcup-panel]
+	span.eyebrow	这一晚，选张专辑来聊
+	button	×
+	h2	今晚的专辑世界杯
+	p.fine	可以使用四张原创虚构专辑示例，也可以自己填写四个文字选项。投票只描述本聊天室的选择，不是榜单或品味评分，不展示别人的个人选择。
+	p	阿遥·示例发起 · 每轮每个身份一票，投后不能改票
+	h3	第一轮 · 第1组
+	span	01 · 原创虚构专辑
+	h3	午夜站台
+	p	纸灯乐队
+	b	1
+	p.worldcup-votes	票
+	button	选《午夜站台》
+	span	02 · 原创虚构专辑
+	h3	樱花电波
+	p	薄荷收音机
+	button	选《樱花电波》
+	p.fine	由发起者明确结束这一轮；离开或被移除时暂停晋级。
+	h3	第一轮 · 第2组
+	span	03 · 原创虚构专辑
+	h3	小院回声
+	p	月光邮局
+	b	0
+	button	选《小院回声》
+	span	04 · 原创虚构专辑
+	h3	最后一盏灯
+	p	夜航纸片
+	button	选《最后一盏灯》
+	p	确认把这一票计入《午夜站台》？
+	label	确认投票，提交后这一轮不能改票
+	button	确认这一票
+	button	取消，不投票
+	button	本聊天室的世界杯与历史
+	button	刷新轮次
+	button	回到聊天室讨论
+@aria-label	section	虚构专辑世界杯
+@aria-label	button	返回聊天室
+
+===== room-chat-after [.music-community]
+	h2	回声现场 · 示例场
+	span.eyebrow	散场以后，也留一个位置
+	button	×
+H	title	Music Space 的插画分身
+	span	未静音 · 3 条未读
+	summary	本场与管理 ···
+	button	静音
+	button	退出聊天室
+	p.fine	停止入场和上传后仍可聊；离开现场会失去聊天室资格，原好友私聊保留。文字仍由作者和房主管理。
+	button	本场主办方的长期社群
+	button	刷新聊天室
+	button	我的长期音乐社群
+	button	Music Map · 沿音乐探索 ↗
+	button	一起玩 · 默契局／音乐关系接龙
+	button	成员音乐话题 · 发布与讨论
+	button	专辑世界杯 · 一起选张来聊
+	b	阿遥·示例
+	time	20:49
+	p	大家好，今晚我把舞台这一面放上了照片墙。（示例角色的自动回复：我不是真人。）
+	button	回复
+	b	小满·示例
+	p	我拍的是人海这一面，手都举起来了。（示例角色的自动回复：我不是真人。）
+	b	北屿·示例
+	p	我只拍了看台边的一盏灯，算细节。（示例角色的自动回复：我不是真人。）
+	button	把这一页收到的消息标为已读
+	label	留一句
+	button	发送到聊天室
+@aria-label	section	音乐社群与聊天室
+@aria-label	button	关闭聊天室
+@aria-label	svg	Music Space 的插画分身
+@aria-label	nav	音乐与聊天入口

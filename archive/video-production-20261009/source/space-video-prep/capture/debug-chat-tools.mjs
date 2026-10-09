@@ -1,0 +1,13 @@
+import { launch, newPage, sleep, BASE, ensureDir } from './lib.mjs';
+import { hostCreatesRoom, visibleUI } from './flows.mjs';
+const browser = await launch();
+const A = await newPage(browser, { width: 1440, height: 744, dpr: 1 });
+await hostCreatesRoom(A.page, { name: '阿遥', title: '返场夜', venue: '月台 Livehouse' });
+await A.page.locator('#room-recap').click(); await sleep(1500);
+await A.page.getByRole('button', { name: /回到这一场的聊天室/ }).click(); await sleep(1500);
+await A.page.locator('.music-community input[name=consent]').check();
+await A.page.getByRole('button', { name: /明确加入，继续聊/ }).click(); await sleep(2500);
+const dump = async (tag) => { const u = await visibleUI(A.page); console.log('---', tag, JSON.stringify(u.overlays.filter(o => !/world-shell|presence/.test(o.cls)).map(o => o.cls + ' :: ' + o.text.slice(0, 260)))); console.log('   btns', JSON.stringify(u.buttons.filter(b => !/camera-nav|presence|header|hotspot|scene-details/.test(b)).slice(0, 22))); };
+await A.page.getByRole('button', { name: /专辑世界杯/ }).click(); await sleep(2500); await dump('worldcup'); await A.page.screenshot({ path: '/tmp/space-video-prep/stills/worldcup.png' });
+await A.page.keyboard.press('Escape'); await sleep(800); await dump('after Escape');
+await browser.close();

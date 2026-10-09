@@ -1,0 +1,389 @@
+{
+ "video": "/private/tmp/space-video-doodle/prod/out/acts/act-A2-A3.tea-party.mp4",
+ "range_s": [
+  37.083333333333336,
+  76.36666666666666
+ ],
+ "full": false,
+ "overall": "FAIL",
+ "checks": [
+  {
+   "check": "container.video",
+   "status": "PASS",
+   "msg": "h264 High 1920x1080 60/1 yuv420p bt709/bt709/bt709/tv"
+  },
+  {
+   "check": "container.audio",
+   "status": "PASS",
+   "msg": "aac LC 48000 Hz 2 ch 265 kb/s"
+  },
+  {
+   "check": "duration",
+   "status": "PASS",
+   "msg": "39.283 s (range 39.283 s)",
+   "seconds": 39.283333
+  },
+  {
+   "check": "size",
+   "status": "PASS",
+   "msg": "53.3 MB (10.9 Mb/s)",
+   "mb": 53.3
+  },
+  {
+   "check": "loudness",
+   "status": "PASS",
+   "msg": "I -15.7 LUFS (target -16), LRA 3.0 LU (act excerpt: informational; the full cut is normalised)",
+   "I": -15.7,
+   "LRA": 3.0
+  },
+  {
+   "check": "true_peak",
+   "status": "FAIL",
+   "msg": "0.5 dBTP (limit -1.0)",
+   "TP": 0.5
+  },
+  {
+   "check": "silence",
+   "status": "PASS",
+   "msg": "0 silent stretches over 0.8 s"
+  },
+  {
+   "check": "frozen",
+   "status": "PASS",
+   "msg": "0 frozen stretches over 2.5 s"
+  },
+  {
+   "check": "black",
+   "status": "PASS",
+   "msg": "0 black stretches over 0.4 s"
+  },
+  {
+   "check": "motion",
+   "status": "PASS",
+   "msg": "longest low-motion stretch 0.07 s at 0.42 s (mean |dI| < 0.15 on 160x90), mean motion 1.88",
+   "longest_s": 0.07,
+   "at_s": 0.42
+  },
+  {
+   "check": "event_gaps",
+   "status": "PASS",
+   "msg": "129 visual events, 3.28/s; longest gap 1.09 s after 75.27 s (limit 2.5)",
+   "longest_gap_s": 1.095
+  },
+  {
+   "check": "beat_alignment",
+   "status": "PASS",
+   "msg": "129/129 visual events on the 16th grid (<= half a frame), 127/129 on 8ths; frames quantise by <= 8.3 ms",
+   "off_grid": []
+  },
+  {
+   "check": "reading_time",
+   "status": "PASS",
+   "msg": "30 lines, measured (geometry samples every 50 ms); titles/notes failing 0, labels/fine short 0",
+   "failing": [],
+   "short_labels": [],
+   "lines": [
+    {
+     "text": "同场的人，",
+     "kind": "title",
+     "units": 4,
+     "on_s": 4.45,
+     "need_s": 1.0,
+     "ok": true
+    },
+    {
+     "text": "再进同一间\nLivehouse。",
+     "kind": "title",
+     "units": 6,
+     "on_s": 3.35,
+     "need_s": 1.5,
+     "ok": true
+    },
+    {
+     "text": "带上你的小人，",
+     "kind": "title",
+     "units": 6,
+     "on_s": 4.4,
+     "need_s": 1.5,
+     "ok": true
+    },
+    {
+     "text": "断拍",
+     "kind": "label",
+     "units": 2,
+     "on_s": 4.4,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "循迹",
+     "kind": "label",
+     "units": 2,
+     "on_s": 3.85,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "回声",
+     "kind": "label",
+     "units": 2,
+     "on_s": 3.3,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "失真",
+     "kind": "label",
+     "units": 2,
+     "on_s": 2.75,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "今晚，我这样。",
+     "kind": "note",
+     "units": 5,
+     "on_s": 2.25,
+     "need_s": 1.25,
+     "ok": true
+    },
+    {
+     "text": "愿意打招呼，",
+     "kind": "title",
+     "units": 5,
+     "on_s": 2.25,
+     "need_s": 1.25,
+     "ok": true
+    },
+    {
+     "text": "还是\n安静参与？",
+     "kind": "title",
+     "units": 6,
+     "on_s": 3.15,
+     "need_s": 1.5,
+     "ok": true
+    },
+    {
+     "text": "自己选。",
+     "kind": "title",
+     "units": 3,
+     "on_s": 2.05,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "看看谁也在。",
+     "kind": "title",
+     "units": 5,
+     "on_s": 4.4,
+     "need_s": 1.25,
+     "ok": true
+    },
+    {
+     "text": "照片为 AI 生成的示例图",
+     "kind": "fine",
+     "units": 10,
+     "on_s": 20.6,
+     "need_s": 2.5,
+     "ok": true
+    },
+    {
+     "text": "示例角色 · 自动回复",
+     "kind": "label",
+     "units": 8,
+     "on_s": 3.3,
+     "need_s": 2.0,
+     "ok": true
+    },
+    {
+     "text": "放一张你的照片。",
+     "kind": "title",
+     "units": 7,
+     "on_s": 2.2,
+     "need_s": 1.75,
+     "ok": true
+    },
+    {
+     "text": "21:48",
+     "kind": "title",
+     "units": 1,
+     "on_s": 2.2,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "拍摄时间，\n照片自己记得。",
+     "kind": "title",
+     "units": 10,
+     "on_s": 3.35,
+     "need_s": 2.5,
+     "ok": true
+    },
+    {
+     "text": "示例照片 · 拍摄时间为虚构",
+     "kind": "label",
+     "units": 11,
+     "on_s": 3.3,
+     "need_s": 2.75,
+     "ok": true
+    },
+    {
+     "text": "拍的是哪一面？",
+     "kind": "title",
+     "units": 6,
+     "on_s": 2.25,
+     "need_s": 1.5,
+     "ok": true
+    },
+    {
+     "text": "人海。",
+     "kind": "title",
+     "units": 2,
+     "on_s": 2.25,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "AI 在本机判断，",
+     "kind": "title",
+     "units": 6,
+     "on_s": 2.25,
+     "need_s": 1.5,
+     "ok": true
+    },
+    {
+     "text": "照片不上传。",
+     "kind": "title",
+     "units": 5,
+     "on_s": 2.25,
+     "need_s": 1.25,
+     "ok": true
+    },
+    {
+     "text": "没把握的时候，",
+     "kind": "title",
+     "units": 6,
+     "on_s": 2.25,
+     "need_s": 1.5,
+     "ok": true
+    },
+    {
+     "text": "它就说不确定。",
+     "kind": "title",
+     "units": 6,
+     "on_s": 2.25,
+     "need_s": 1.5,
+     "ok": true
+    },
+    {
+     "text": "你来选。",
+     "kind": "title",
+     "units": 3,
+     "on_s": 2.2,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "保存，上墙。",
+     "kind": "title",
+     "units": 4,
+     "on_s": 2.2,
+     "need_s": 1.0,
+     "ok": true
+    },
+    {
+     "text": "按拍摄时间，",
+     "kind": "title",
+     "units": 5,
+     "on_s": 3.35,
+     "need_s": 1.25,
+     "ok": true
+    },
+    {
+     "text": "3 分钟以内，",
+     "kind": "title",
+     "units": 5,
+     "on_s": 2.2,
+     "need_s": 1.25,
+     "ok": true
+    },
+    {
+     "text": "就是同一刻。",
+     "kind": "title",
+     "units": 5,
+     "on_s": 2.25,
+     "need_s": 1.25,
+     "ok": true
+    },
+    {
+     "text": "规则判断，不是 AI。",
+     "kind": "title",
+     "units": 7,
+     "on_s": 2.2,
+     "need_s": 1.75,
+     "ok": true
+    }
+   ]
+  },
+  {
+   "check": "safe_area",
+   "status": "WARN",
+   "msg": "0 texts outside the 5% title-safe area for > 0.5 s, 2 only briefly (entrances, camera moves)",
+   "sustained": [],
+   "brief": [
+    "「同场的人，」 0.05s from 37.08s box [872, 171, 1984, 523]",
+    "「规则判断，不是 AI。」 0.05s from 74.18s box [38, 365, 1028, 566]"
+   ]
+  },
+  {
+   "check": "glyphs",
+   "status": "PASS",
+   "msg": "142 font/character pairs; 0 drawn by a system font",
+   "fonts": {
+    "display": [
+     "Doodle Display"
+    ],
+    "note": [
+     "Long Cang"
+    ],
+    "marker": [
+     "Doodle Marker"
+    ],
+    "hand": [
+     "Doodle Hand"
+    ],
+    "digits": [
+     "Smiley Sans Oblique"
+    ]
+   },
+   "fallback": []
+  },
+  {
+   "check": "qr",
+   "status": "PASS",
+   "msg": "no end card in range (not applicable)"
+  },
+  {
+   "check": "placeholders",
+   "status": "PASS",
+   "msg": "no placeholders",
+   "placeholders": []
+  },
+  {
+   "check": "scene_warnings",
+   "status": "PASS",
+   "msg": "0 warnings"
+  },
+  {
+   "check": "sfx_level",
+   "status": "PASS",
+   "msg": "SFX -9.0 LU vs music (target -8..-10), 120 sounds {'whoosh': 3, 'boom': 1, 'impact': 2, 'pop': 12, 'slam': 13, 'thump': 4, 'squeak': 15, 'click': 16, 'ding': 4, 'slap': 11, 'typetick': 23, 'pencil': 1, 'stamp': 2, 'boop': 1, 'swish': 3, 'shutter': 1, 'chime': 1, 'highlighter': 6, 'hmm': 1}"
+  },
+  {
+   "check": "script_lines",
+   "status": "PASS",
+   "msg": "25/25 SCRIPT lines in range are on screen",
+   "missing": []
+  }
+ ]
+}

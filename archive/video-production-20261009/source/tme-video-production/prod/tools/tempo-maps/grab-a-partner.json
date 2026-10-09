@@ -1,0 +1,149 @@
+{
+ "id": "grab-a-partner",
+ "label": "Loyalty Freak Music《Grab A Partner》130 BPM — 93 bars (+3 ADD bars); the song's final chord is the title, the wait and the end",
+ "track": {
+  "audio": "/tmp/space-video-doodle/music-cc0/01-grab-a-partner__Loyalty-Freak-Music/Loyalty_Freak_Music_-_05_-_Grab_A_Partner.mp3",
+  "beats": "/tmp/space-video-doodle/music-cc0/01-grab-a-partner__Loyalty-Freak-Music/beats.json",
+  "title": "Grab A Partner",
+  "artist": "Loyalty Freak Music",
+  "licence": "CC0 1.0 Universal",
+  "sha256": "2ed4f5ac5e537aa47e18c52286ba0e7f46efa01b88951329881a1387acf7e4ca",
+  "proof": "/tmp/space-video-doodle/music-cc0/01-grab-a-partner__Loyalty-Freak-Music/LICENCE-PROOF.md",
+  "credit": "配乐：Loyalty Freak Music《Grab A Partner》（CC0 1.0 公共领域）"
+ },
+ "plan": [
+  {
+   "sb": "1-4",
+   "trk": "97-100",
+   "why": "cold open on the end of the last chorus (GP 100 = the loudest fill bar)"
+  },
+  {
+   "sb": "5-7",
+   "trk": "101-103",
+   "why": "title on the song's final chord (no drums) which rings and decays: the only stop in the song"
+  },
+  {
+   "sb": "8",
+   "trk": "9",
+   "why": "H3 match cut: the band restarts (verse lead-in)"
+  },
+  {
+   "sb": "9-14",
+   "trk": "10-15",
+   "why": "pain: the lightest verse (3 dB under the chorus, lighter bass; drums keep playing)"
+  },
+  {
+   "sb": "15-20",
+   "trk": "10-15",
+   "why": "pain: the light verse again (12 bars of the quietest groove)"
+  },
+  {
+   "sb": "21-28",
+   "trk": "16-23",
+   "why": "DROP on 21:1 = the fill bar GP 16 (+2.5 dB out of the light verse)"
+  },
+  {
+   "sb": "28+1",
+   "trk": "24",
+   "why": "ADD-2 (inserted bar after 28: E4b camera glide)"
+  },
+  {
+   "sb": "29-40",
+   "trk": "25-36",
+   "why": "AI section: chorus 1 thins into verse 2 from sb 37"
+  },
+  {
+   "sb": "41-48",
+   "trk": "37-44",
+   "why": "build: verse 2 -> pre-chorus"
+  },
+  {
+   "sb": "49-50",
+   "trk": "102-103",
+   "why": "the wait: the song's final chord ringing out (-20 -> -27 dB), the band has stopped"
+  },
+  {
+   "sb": "51-54",
+   "trk": "47-50",
+   "why": "PAYOFF on the chorus-2 section start (the largest section step in the song, +1.4 dB)"
+  },
+  {
+   "sb": "54+1",
+   "trk": "51",
+   "why": "ADD-3 (inserted bar after 54: M7b 3D wall)"
+  },
+  {
+   "sb": "55-68",
+   "trk": "52-65",
+   "why": "social groove: chorus 2 (peak fills GP 56, 64)"
+  },
+  {
+   "sb": "69-72",
+   "trk": "89-92",
+   "why": "social groove: jump into chorus 3 (peak fill GP 92 on sb 72 = the 8th-note fill bar)"
+  },
+  {
+   "sb": "73-74",
+   "trk": "14-15",
+   "why": "break: the two lightest verse bars (no stop exists in the song)"
+  },
+  {
+   "sb": "75-82",
+   "trk": "85-92",
+   "why": "LIFT out of the light verse bars into chorus 3 (+3.5 dB); contiguous to the end of the song"
+  },
+  {
+   "sb": "83-90",
+   "trk": "93-100",
+   "why": "end card: the last chorus, straight into the final chord"
+  },
+  {
+   "sb": "90+1",
+   "trk": "101",
+   "why": "ADD-1 (end card +1 bar): the final chord; it rings into the tail = the natural end of the song"
+  }
+ ],
+ "cut": [],
+ "tail_s": 2.4,
+ "fade": null,
+ "xfade_ms": 20,
+ "music_has": [],
+ "moments": {
+  "title_stop": {
+   "verdict": "partial",
+   "note": "no stop in the song: the title sits on the final chord (GP 101) and its decay; the groove ends on 5:1 instead of a silence before it"
+  },
+  "pain_sparse": {
+   "verdict": "no",
+   "note": "the song never drops its drums; the pain uses the lightest verse (about 3 dB under the chorus)"
+  },
+  "drop": {
+   "verdict": "weak",
+   "note": "+2.5 dB fill bar out of the light verse"
+  },
+  "ai_chime": {
+   "verdict": "sfx",
+   "note": "SFX chime on 31:3"
+  },
+  "payoff": {
+   "verdict": "yes",
+   "note": "the band stops on 49:1 (the final chord rings out under the wait) and slams back into chorus 2 on 51:1"
+  },
+  "social_groove": {
+   "verdict": "yes",
+   "note": "chorus 2 + chorus 3"
+  },
+  "break": {
+   "verdict": "no",
+   "note": "no stop-time break in the song; two light verse bars"
+  },
+  "lift": {
+   "verdict": "partial",
+   "note": "chorus-3 start, no key change"
+  },
+  "end_resolve": {
+   "verdict": "natural",
+   "note": "the song's own final chord on 90+1:1 and its decay"
+  }
+ }
+}

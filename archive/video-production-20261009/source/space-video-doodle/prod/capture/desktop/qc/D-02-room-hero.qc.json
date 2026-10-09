@@ -1,0 +1,129 @@
+{
+ "id": "D-02-room-hero",
+ "master": {
+  "file": "/tmp/space-video-doodle/prod/capture/desktop/master/D-02-room-hero.mp4",
+  "bytes": 55097188,
+  "duration_s": 26.0,
+  "video": "h264 High 3840x2160 60/1 yuv420p",
+  "colour": "bt709/bt709/bt709/tv",
+  "frames": 1560,
+  "bitrate_mbps": 17.0,
+  "audio_streams": 0
+ },
+ "edit": {
+  "file": "/tmp/space-video-doodle/prod/capture/desktop/1080/D-02-room-hero.mp4",
+  "bytes": 26796372,
+  "duration_s": 26.0,
+  "video": "h264 High 1920x1080 60/1 yuv420p",
+  "colour": "bt709/bt709/bt709/tv",
+  "frames": 1560,
+  "bitrate_mbps": 8.2,
+  "audio_streams": 0
+ },
+ "frames_decoded": 1560,
+ "longest_still": {
+  "frames": 9,
+  "at_s": 0.017
+ },
+ "still_over_1s": [],
+ "stutters": {
+  "count": 1,
+  "at_s": [
+   16.983
+  ],
+  "rule": "still step (<0.15) between two moving steps (>0.6)"
+ },
+ "camera_glides": [
+  {
+   "start_s": 8.0,
+   "frames": 119,
+   "seconds": 1.983,
+   "view_to": "photos",
+   "camera_static_frames_inside": 0,
+   "picture_still_frames_inside": 0,
+   "min_picture_change": 0.501,
+   "step_ratio_range": [
+    0.994,
+    1.009
+   ]
+  },
+  {
+   "start_s": 13.0,
+   "frames": 119,
+   "seconds": 1.983,
+   "view_to": "overview",
+   "camera_static_frames_inside": 0,
+   "picture_still_frames_inside": 0,
+   "min_picture_change": 0.683,
+   "step_ratio_range": [
+    0.998,
+    1.006
+   ]
+  },
+  {
+   "start_s": 17.0,
+   "frames": 119,
+   "seconds": 1.983,
+   "view_to": "person",
+   "camera_static_frames_inside": 0,
+   "picture_still_frames_inside": 0,
+   "min_picture_change": 0.326,
+   "step_ratio_range": [
+    0.994,
+    1.01
+   ]
+  },
+  {
+   "start_s": 22.0,
+   "frames": 119,
+   "seconds": 1.983,
+   "view_to": "overview",
+   "camera_static_frames_inside": 0,
+   "picture_still_frames_inside": 0,
+   "min_picture_change": 0.376,
+   "step_ratio_range": [
+    0.995,
+    1.012
+   ]
+  }
+ ],
+ "change_gap_histogram": {
+  "1": 475,
+  "8": 11,
+  "9": 107
+ },
+ "taps": [],
+ "presses_no_ring": [
+  {
+   "t": 8,
+   "label": "照片墙 (nav)"
+  },
+  {
+   "t": 13,
+   "label": "全景 (nav)"
+  },
+  {
+   "t": 17,
+   "label": "阿遥·示例 label"
+  },
+  {
+   "t": 22,
+   "label": "全景 (nav)"
+  }
+ ],
+ "master_frames": 1560,
+ "master_edit_same_frame_count": true,
+ "master_edit_motion_correlation": 0.9958,
+ "rec": {
+  "frames": 1560,
+  "seconds": 26,
+  "wallPerVideoSecond": 13.81,
+  "msPerFrame": {
+   "step": 6.7,
+   "grab": 203.7,
+   "write": 17.1
+  },
+  "clockStart": "2026-10-07T22:40:00+08:00",
+  "seed": 20261009
+ }
+}

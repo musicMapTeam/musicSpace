@@ -1,0 +1,80 @@
+{
+ "map": "flipping-in",
+ "bed": "/tmp/space-video-doodle/prod/audio/beds/flipping-in.wav",
+ "range": [
+  0.0,
+  174.6667
+ ],
+ "full": true,
+ "music": {
+  "I": -16.0,
+  "TP": -1.5,
+  "LRA": 4.8
+ },
+ "sfx_before_gain": {
+  "I": -27.9,
+  "TP": -0.9,
+  "LRA": 9.8
+ },
+ "sfx_gain_db": 2.9,
+ "sfx": {
+  "I": -25.0,
+  "TP": 2.0,
+  "LRA": 9.8
+ },
+ "sfx_vs_music_LU": -9.0,
+ "mix": {
+  "I": -16.0,
+  "TP": -1.5,
+  "LRA": 4.4
+ },
+ "normalisation": {
+  "gain_db": -0.3,
+  "before": {
+   "I": -15.7,
+   "TP": 2.5,
+   "LRA": 4.4
+  },
+  "after": {
+   "I": -16.0,
+   "TP": -1.5,
+   "LRA": 4.4
+  },
+  "limiter_max_reduction_db": -3.68,
+  "ceiling_db": -1.5
+ },
+ "sfx_counts": {
+  "slap": 50,
+  "stamp": 13,
+  "tape": 8,
+  "pop": 78,
+  "whoosh": 21,
+  "impact": 20,
+  "typetick": 210,
+  "zip": 6,
+  "squeak": 31,
+  "highlighter": 13,
+  "slam": 47,
+  "scribble": 2,
+  "swish": 24,
+  "pencil": 9,
+  "click": 29,
+  "boop": 10,
+  "riser": 2,
+  "boom": 3,
+  "thump": 9,
+  "ding": 5,
+  "shutter": 1,
+  "chime": 1,
+  "hmm": 1,
+  "sparkle": 9,
+  "tick": 20,
+  "heartbeat": 7,
+  "blip": 7,
+  "crackle": 1,
+  "flip": 1,
+  "scratch": 1
+ },
+ "sfx_placed": 639,
+ "note": "all SFX synthesized in tools/sfx.py from noise/oscillators; no samples"
+}

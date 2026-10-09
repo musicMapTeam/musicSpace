@@ -1,0 +1,3 @@
+{ "_comment": "cut WITHOUT the optional two-device insert M3 (155 s, 62 bars): everything after M2 moves 10 s (4 bars) earlier.",
+  "bars": 62,
+  "cues": { "title": 5, "drop": 14, "ai_chime": 27, "reveal": 32, "consent_first": 36, "consent_swell": 40, "light_first": 42, "build": 47, "lift": 49, "end_card": 59, "drums_out": 60 } }

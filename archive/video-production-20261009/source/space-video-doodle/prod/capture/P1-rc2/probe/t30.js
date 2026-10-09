@@ -1,0 +1,11 @@
+const out = {};
+await page.evaluate(() => { const b = document.querySelector('#panel [data-open="memory-card"]'); const p = document.querySelector('#panel'); p.scrollTo({ top: p.scrollTop + b.getBoundingClientRect().top - 470, behavior: 'instant' }); });
+await sleep(400);
+await shot('47-recap-scrolled');
+await page.click('#panel [data-open="memory-card"]'); await sleep(1500);
+await shot('48-memory-form');
+out.form = await txt('#panel');
+out.pinfo = await page.evaluate(() => { const p = document.querySelector('#panel'); return { sh: p.scrollHeight, ch: p.clientHeight, st: p.scrollTop }; });
+out.inputs = await page.evaluate(() => ['memory-photo', 'memory-avatar', 'memory-confirm'].map(n => { const i = document.querySelector(`#panel input[name="${n}"]`); if (!i) return n + ' none'; const l = i.closest('label'); const r = i.getBoundingClientRect(); return n + ' ' + i.type + ' checked=' + i.checked + ' label=' + (l?.innerText || '').replace(/\s+/g, ' ').slice(0, 40) + ' @' + Math.round(r.y); }));
+out.buttons = await page.evaluate(() => [...document.querySelectorAll('#panel button')].filter(b => b.getClientRects().length).map(b => b.innerText.replace(/\s+/g, ' ')));
+return out;

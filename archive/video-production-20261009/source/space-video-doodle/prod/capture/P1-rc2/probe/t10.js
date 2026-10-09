@@ -1,0 +1,13 @@
+const out = {};
+await page.evaluate(() => document.querySelector('#panel').scrollTo({ top: 13, behavior: 'instant' })); await sleep(300);
+await shot('15-wall-13');
+await page.click('[data-exchange-offer]');
+await page.waitForFunction(() => !!document.querySelector('[data-x-send]'), null, { timeout: 20000 });
+await sleep(1200);
+await shot('16-compose');
+out.x = await txt('.photo-exchanges');
+out.xbody = await page.evaluate(() => { const b = document.querySelector('.exchange-body'); return b ? { sh: b.scrollHeight, ch: b.clientHeight, st: b.scrollTop } : null; });
+out.choice = await page.evaluate(() => [...(document.querySelector('select[data-x-choice]')?.options || [])].map(o => o.textContent + (o.selected ? ' *' : '')));
+out.items = await page.evaluate(() => { const b = document.querySelector('.exchange-body'); const br = b.getBoundingClientRect(); return [...b.querySelectorAll('*')].filter(e => e.children.length === 0 && e.textContent.trim()).map(e => Math.round(e.getBoundingClientRect().top - br.top + b.scrollTop) + ' ' + e.tagName + ' ' + e.textContent.trim().slice(0, 40)); });
+out.consent = await page.evaluate(() => { const c = document.querySelector('[data-x-consent]'); const l = c.closest('label'); return l?.innerText; });
+return out;

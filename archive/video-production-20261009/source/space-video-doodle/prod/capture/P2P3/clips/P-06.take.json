@@ -1,0 +1,115 @@
+{
+ "take": "TAKE-P2",
+ "clip": "P-06",
+ "clock": "2026-10-07T22:40:00+08:00",
+ "workBpm": 123,
+ "beatFrames": 29.268,
+ "roomText": [
+  "阿遥·示例 · 可招呼",
+  "小满·示例 · 可招呼",
+  "北屿·示例 · 可招呼",
+  "阿宁 · 我"
+ ],
+ "ai": null,
+ "freeze": {
+  "kept": 1,
+  "done": 1
+ },
+ "aiLine": {
+  "tag": "不确定，请选择",
+  "cls": "moment-ai-tag moment-ai-tag--unsure",
+  "line": "不确定，请选择，AI 认为更可能是舞台或人海",
+  "chips": [
+   "stage suggested",
+   "crowd suggested",
+   "friends",
+   "detail"
+  ],
+  "taken": "拍摄于 21:47 · 来自照片自带的信息修改时间示例照片 · 虚构的拍摄时间 21:47，写在文件里修改拍摄时间 · 北京时间改过的时间以你填的为准。"
+ },
+ "afterTap": [
+  "stage selected",
+  "crowd",
+  "friends",
+  "detail"
+ ],
+ "rec": {
+  "file": "/tmp/space-video-doodle/prod/capture/P2P3/clips/P-06.mp4",
+  "frames": 326,
+  "seconds": 5.433,
+  "bytes": 1985291,
+  "wallSeconds": 44.3,
+  "wallPerVideoSecond": 8.16,
+  "msPerFrame": {
+   "step": 12.4,
+   "grab": 114.4,
+   "write": 8
+  },
+  "dup": {
+   "frames": 326,
+   "unique": 173,
+   "consecutiveDuplicates": 112,
+   "longestStill": 11,
+   "stillRuns": [
+    "0.67s+9f",
+    "0.97s+6f",
+    "1.27s+9f",
+    "1.57s+9f",
+    "1.72s+9f",
+    "2.85s+11f",
+    "3.23s+6f",
+    "5.12s+7f"
+   ]
+  }
+ },
+ "timeline": [
+  {
+   "label": "room (route card 示例路线 1/4)",
+   "frame": 0,
+   "t": 0
+  },
+  {
+   "label": "tap 舞台 · 示例照片",
+   "frame": 120,
+   "t": 2,
+   "down": 117,
+   "up": 120,
+   "x": 116,
+   "y": 627
+  },
+  {
+   "label": "AI line 「不确定，请选择」 + dashed 舞台/人海 on screen (sync point 33:4)",
+   "frame": 134,
+   "t": 2.233
+  },
+  {
+   "label": "upload sheet first frame (fading in over the room)",
+   "frame": 120,
+   "t": 2
+  },
+  {
+   "label": "tap 舞台 chip (3 beats after the AI line = 34:3)",
+   "frame": 222,
+   "t": 3.7,
+   "down": 219,
+   "up": 222,
+   "x": 109,
+   "y": 434
+  },
+  {
+   "label": "end",
+   "frame": 326,
+   "t": 5.433
+  }
+ ],
+ "probeRuns": [
+  "0+120:-",
+  "120+1:P0|T|scfd|img",
+  "121+13:P0|Uh|s~c~fd|img",
+  "134+88:P219|Uv|s~c~fd|img",
+  "222+104:P219|0|s*cfd|img"
+ ],
+ "savedPhotos": 0,
+ "errors": [],
+ "console": []
+}

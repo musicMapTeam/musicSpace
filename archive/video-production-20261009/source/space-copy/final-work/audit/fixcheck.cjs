@@ -1,0 +1,150 @@
+// Focused check of the fixes on any served tree: 我的空间 (no backup), the venue community (no invite code, community wording),
+// the private chat (farewell, no repeat), a room of one's own (no ready-made photos), the corner with a cast friend (join, confirm, PNG).
+const L = require('./lib.cjs');
+L.watchdog(290);
+const vp = process.argv[2] || 'phone';
+L.setCorpus(`fix-${vp}`);
+(async () => {
+  const browser = await L.launch();
+  try {
+    const run = await L.open(browser, vp);
+    const { page } = run; page.__vp = vp;
+    await L.ready(run);
+    await L.enter(run);
+    // 1. 我的空间
+    await L.clickHidden(page, { open: 'personal' });
+    await page.waitForSelector('.personal-space', { timeout: 20000 });
+    await L.sleep(1500);
+    const space = await page.evaluate(() => document.querySelector('.personal-space')?.innerText || '');
+    console.log('personal-space backup button:', /身份备份/.test(space) ? 'PRESENT (bad)' : 'absent (good)');
+    await L.shot(page, 'fix-01-personal');
+    await page.evaluate(() => document.querySelector('.personal-space [data-space="close"]')?.click());
+    await L.sleep(500);
+    // 2. the venue community from the show's chat
+    await L.clickHidden(page, { open: 'conversation' });
+    await page.waitForSelector('.music-community:not([hidden])', { timeout: 20000 });
+    await page.waitForFunction(() => document.querySelector('.music-community [data-group-join]') || document.querySelector('.music-community .community-messages'), null, { timeout: 20000 }).catch(() => {});
+    const roomJoin = page.locator('.music-community form[data-group-join]');
+    if (await roomJoin.count()) {
+      console.log('room chat consent:', await page.evaluate(() => document.querySelector('.music-community form[data-group-join] label')?.innerText));
+      await page.locator('.music-community form[data-group-join] input[name="consent"]').check({ force: true });
+      await page.locator('.music-community form[data-group-join] button[type="submit"]').first().evaluate(b => b.click());
+      await page.waitForSelector('.music-community .community-messages article', { timeout: 30000 }).catch(() => {});
+      await L.sleep(1200);
+    }
+    await page.evaluate(() => document.querySelector('.music-community [data-group="linked"]')?.click());
+    await L.sleep(2500);
+    console.log('community join consent:', await page.evaluate(() => document.querySelector('.music-community form[data-group-join] label')?.innerText));
+    await L.shot(page, 'fix-02-community-join');
+    await page.locator('.music-community form[data-group-join] input[name="consent"]').check({ force: true });
+    await page.locator('.music-community form[data-group-join] button[type="submit"]').first().evaluate(b => b.click());
+    await L.sleep(2500);
+    await page.evaluate(() => document.querySelectorAll('.music-community details').forEach(d => d.open = true));
+    await L.sleep(400);
+    const settings = await page.evaluate(() => document.querySelector('.music-community')?.innerText || '');
+    console.log('community settings: invite code', /[A-Z2-7]{12}/.test(settings) ? 'PRESENT (bad)' : 'absent (good)', '| copy', /复制社群邀请链接/.test(settings) ? 'PRESENT (bad)' : 'absent (good)', '| leave:', (settings.match(/退出(社群|聊天室)/) || ['?'])[0]);
+    await L.shotScroll(page, 'fix-03-community-settings', '.music-community .conversation-content', 3);
+    await page.evaluate(() => document.querySelectorAll('.music-community details').forEach(d => d.open = false));
+    await page.evaluate(() => document.querySelector('.music-community [data-group="close"]')?.click());
+    await L.sleep(600);
+    await L.clickHidden(page, { open: 'communities' });
+    await page.waitForSelector('.music-community form[data-community-create]', { timeout: 20000 });
+    await L.sleep(1000);
+    const list = await page.evaluate(() => document.querySelector('.music-community')?.innerText || '');
+    console.log('community list preview form:', /社群邀请码或邀请链接/.test(list) ? 'PRESENT (bad)' : 'absent (good)');
+    await L.check(page, 'communities-list', '.music-community');
+    await L.shot(page, 'fix-04-community-list');
+    await page.evaluate(() => document.querySelector('.music-community [data-group="close"]')?.click());
+    await L.sleep(600);
+    // 3. befriend 北屿, chat to the farewell and beyond
+    await L.clickHidden(page, { open: 'people' });
+    await page.waitForFunction(() => document.querySelector('#panel')?.dataset.kind === 'people' && !document.querySelector('#panel').hidden, null, { timeout: 15000 });
+    const bei = await page.evaluate(() => [...document.querySelectorAll('#panel [data-person]')].find(b => /北屿/.test(b.innerText))?.dataset.person);
+    await page.locator(`#panel [data-person="${bei}"]`).evaluate(b => b.click());
+    await page.waitForSelector('#panel [data-social-send]', { timeout: 20000 });
+    await page.locator('#panel [data-social-send]').evaluate(b => b.click());
+    await page.waitForFunction(() => /你们已经是朋友了/.test(document.querySelector('#panel')?.innerText || ''), null, { timeout: 30000 });
+    await L.clickHidden(page, { open: 'chats' });
+    await page.waitForSelector('.private-chat:not([hidden])', { timeout: 15000 }).catch(() => {});
+    await L.sleep(800);
+    const inThread = await page.evaluate(() => { const t = document.querySelector('.chat-thread'); return t && !t.hidden; });
+    if (!inThread) await page.locator(`[data-chat-peer="${bei}"]`).first().evaluate(b => b.click());
+    await page.waitForFunction(() => /你拍到的是哪一面/.test(document.querySelector('.chat-messages')?.innerText || ''), null, { timeout: 30000 });
+    const say = async (text, expect) => {
+      await page.locator('#chat-text').fill(text);
+      await page.locator('.chat-composer button[type="submit"]').evaluate(b => b.click());
+      if (expect) await page.waitForFunction(e => (document.querySelector('.chat-messages')?.innerText || '').includes(e), expect, { timeout: 30000 }).catch(() => console.log('no reply', expect));
+      else await L.sleep(8000);
+    };
+    await say('你好呀', '今晚的返场太好听了。');
+    await say('你也在二楼吗？', '照片墙上有好几张是同一刻拍的，你看了吗？');
+    await say('看了，很神奇', '下次月台见！');
+    await say('下次见', null);
+    const thread = await page.evaluate(() => document.querySelector('.chat-messages')?.innerText.replace(/\n+/g, ' | '));
+    console.log('thread:', thread);
+    console.log('farewell repeated:', (thread.match(/下次月台见/g) || []).length > 1 ? 'YES (bad)' : 'no (good)');
+    await L.shot(page, 'fix-05-chat');
+    // 4. the corner with 北屿
+    await page.locator('.private-chat .chat-close').first().evaluate(el => el.click()).catch(() => {});
+    await L.sleep(600);
+    await L.clickHidden(page, { open: 'people' });
+    await page.waitForFunction(() => document.querySelector('#panel')?.dataset.kind === 'people' && !document.querySelector('#panel').hidden, null, { timeout: 15000 });
+    await page.locator(`#panel [data-person="${bei}"]`).evaluate(b => b.click());
+    await page.waitForFunction(() => /邀请共同创作/.test(document.querySelector('#panel')?.innerText || ''), null, { timeout: 20000 });
+    await page.locator('#panel button', { hasText: '邀请共同创作' }).first().evaluate(b => b.click());
+    await page.waitForSelector('.corner-panel', { timeout: 20000 });
+    await L.sleep(1200);
+    await page.locator('.corner-panel form[data-corner-create] input[type=checkbox]').check({ force: true });
+    await page.locator('.corner-panel form[data-corner-create] button').first().evaluate(b => b.click());
+    await L.sleep(1500);
+    console.log('corner after invite:', (await page.evaluate(() => document.querySelector('.corner-panel')?.innerText.replace(/\n+/g, ' | ')))?.slice(0, 300));
+    await L.shot(page, 'fix-06-corner-invited');
+    await page.waitForFunction(() => document.querySelector('.corner-panel form[data-corner-edit]'), null, { timeout: 30000 }).catch(() => console.log('cast never joined'));
+    await page.waitForFunction(() => /看台边那盏灯/.test(document.querySelector('.corner-panel')?.innerText || ''), null, { timeout: 20000 }).catch(() => console.log('no cast line yet'));
+    await L.sleep(800);
+    console.log('corner joined:', (await page.evaluate(() => document.querySelector('.corner-panel')?.innerText.replace(/\n+/g, ' | ')))?.slice(0, 500));
+    await L.shotScroll(page, 'fix-07-corner-joined', '.corner-panel .community-scroll', 3);
+    // write my side, confirm
+    await page.fill('.corner-panel form[data-corner-edit] [name=note]', '我在二楼。').catch(() => {});
+    await page.locator('.corner-panel form[data-corner-edit] input[type=checkbox]').check({ force: true }).catch(() => {});
+    await page.locator('.corner-panel form[data-corner-edit] button[type=submit], .corner-panel form[data-corner-edit] button').first().evaluate(b => b.click()).catch(e => console.log('edit submit', e.message));
+    await L.sleep(2000);
+    await page.locator('.corner-panel form[data-corner-confirm] input[type=checkbox]').check({ force: true }).catch(() => console.log('no confirm form'));
+    await page.locator('.corner-panel form[data-corner-confirm] button').first().evaluate(b => b.click()).catch(() => {});
+    await page.waitForSelector('.corner-panel form[data-corner-save]', { timeout: 30000 }).catch(() => console.log('no save form'));
+    await L.sleep(800);
+    console.log('corner confirmed:', (await page.evaluate(() => document.querySelector('.corner-panel')?.innerText.replace(/\n+/g, ' | ')))?.slice(0, 600));
+    await page.locator('.corner-panel form[data-corner-save] input[type=checkbox]').check({ force: true }).catch(() => {});
+    await page.locator('.corner-panel form[data-corner-save] button').first().evaluate(b => b.click()).catch(() => {});
+    await page.waitForSelector('.corner-panel form[data-corner-export]', { timeout: 30000 }).catch(() => console.log('no export form'));
+    await page.locator('.corner-panel form[data-corner-export] input[type=checkbox]').check({ force: true }).catch(() => {});
+    await page.locator('.corner-panel form[data-corner-export] button').first().evaluate(b => b.click()).catch(() => {});
+    await page.waitForSelector('.corner-panel img[alt="我们的共同纪念图"]', { timeout: 40000 }).catch(() => console.log('no PNG preview'));
+    await L.sleep(1000);
+    console.log('corner png:', await page.evaluate(() => Boolean(document.querySelector('.corner-panel img[alt="我们的共同纪念图"]'))));
+    await L.shotScroll(page, 'fix-08-corner-png', '.corner-panel .community-scroll', 4);
+    await page.evaluate(() => document.querySelector('.corner-panel [data-corner-close]')?.click());
+    await L.sleep(600);
+    // 5. a room of my own
+    await L.clickHidden(page, { open: 'create' });
+    await page.waitForSelector('#panel form[data-form="create"]', { timeout: 20000 });
+    await page.fill('#panel form[data-form="create"] input[name="title"]', '周五专场').catch(() => {});
+    await page.fill('#panel form[data-form="create"] input[name="venue"]', '我的 Livehouse').catch(() => {});
+    await page.locator('#panel form[data-form="create"] input[type=checkbox]').first().check({ force: true }).catch(() => {});
+    await page.locator('#panel form[data-form="create"] button[type="submit"]').first().evaluate(b => b.click());
+    await L.sleep(3000);
+    await L.closeSheet(page);
+    await L.sleep(800);
+    console.log('own room tour:', await page.evaluate(() => document.querySelector('#demo-tour')?.innerText.replace(/\n+/g, ' | ')));
+    await L.shot(page, 'fix-09-own-room');
+    await L.clickHidden(page, { open: 'upload' });
+    await page.waitForSelector('form[data-form="upload"]', { timeout: 20000 });
+    await L.sleep(800);
+    const upload = await page.evaluate(() => document.querySelector('#panel')?.innerText.replace(/\n+/g, ' | '));
+    console.log('own room upload:', upload.slice(0, 300));
+    console.log('own room samples:', /人海那张|舞台那张|或者挑一张/.test(upload) ? 'PRESENT (bad)' : 'absent (good)');
+    await L.shot(page, 'fix-10-own-upload');
+    await L.log(page, 'fixcheck');
+    console.log('page errors:', page.__errors);
+  } catch (e) { console.log('FAILED', e.message.split('\n')[0]); } finally { L.flush(); await browser.close(); }
+})();

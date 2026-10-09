@@ -1,0 +1,274 @@
+{
+  "roomSearch": "?room=2CG5S6VTJJ3I",
+  "invite": "http://127.0.0.1:8891/event-room/?room=2CG5S6VTJJ3I",
+  "B": {
+    "text": "← | 同一晚 / 另一面 | 交换一个视角 | × | 交换已接受 | 和 阿遥 的两张照片 | 阿遥提供的 | 这次确定的一张 | 我提供的 | 这次确定的一张 | 双方已明确同意。退出房间后，还能从「照片交换」回来查看。 | 撤销这次交换的在线访问 | 任一方撤销，会同时结束本次两张照片的在线访问；原件仍归各自。已下载或截图的副本无法远程收回。 | 核对最新状态",
+    "imgs": [
+      {
+        "ok": true,
+        "w": 1500,
+        "alt": "阿遥提供的照片"
+      },
+      {
+        "ok": true,
+        "w": 1500,
+        "alt": "我提供的照片"
+      }
+    ]
+  },
+  "A": {
+    "text": "← | 同一晚 / 另一面 | 交换一个视角 | × | 交换已接受 | 和 Lin 的两张照片 | 我提供的 | 这次确定的一张 | Lin提供的 | 这次确定的一张 | 双方已明确同意。退出房间后，还能从「照片交换」回来查看。 | 撤销这次交换的在线访问 | 任一方撤销，会同时结束本次两张照片的在线访问；原件仍归各自。已下载或截图的副本无法远程收回。 | 核对最新状态",
+    "imgs": [
+      {
+        "ok": true,
+        "w": 1500,
+        "alt": "我提供的照片"
+      },
+      {
+        "ok": true,
+        "w": 1500,
+        "alt": "Lin提供的照片"
+      }
+    ]
+  },
+  "accepted": {
+    "A": true,
+    "B": true
+  },
+  "logs": {
+    "A": {
+      "console": [],
+      "pageerror": [],
+      "failed": [],
+      "bad": [],
+      "fonts": []
+    },
+    "B": {
+      "console": [],
+      "pageerror": [],
+      "failed": [],
+      "bad": [],
+      "fonts": []
+    }
+  },
+  "qa": {
+    "A": {
+      "ready": true,
+      "poll": {
+        "visible": true,
+        "inFlight": false,
+        "intervalMs": 5000
+      },
+      "route": {
+        "kind": "room",
+        "target": "652941df-95f3-47bb-961c-cd3f626fcc3b"
+      },
+      "identityStatus": "ready",
+      "actorId": "d27985b1-f1e7-4984-84d1-980353eafd79",
+      "roomId": "652941df-95f3-47bb-961c-cd3f626fcc3b",
+      "members": [
+        {
+          "id": "d27985b1-f1e7-4984-84d1-980353eafd79",
+          "name": "阿遥"
+        },
+        {
+          "id": "734450b2-6224-4566-a97b-3ece2b3400a0",
+          "name": "Lin"
+        }
+      ],
+      "photos": [
+        {
+          "id": "47b82c3c-07de-4e40-98d8-4ea27e59a7ac",
+          "ownerId": "d27985b1-f1e7-4984-84d1-980353eafd79",
+          "visibility": "members"
+        },
+        {
+          "id": "251ee8eb-7107-4f77-b421-27eea7bb563b",
+          "ownerId": "734450b2-6224-4566-a97b-3ece2b3400a0",
+          "visibility": "members"
+        }
+      ],
+      "camera": {
+        "scene": {
+          "roomMeshCount": 12,
+          "photoFrameCount": 6,
+          "roomBounds": {
+            "min": [
+              -7.000000238418579,
+              -0.3100000023841858,
+              -5.680000967775378
+            ],
+            "max": [
+              7.0899999141693115,
+              6.099999732026131,
+              6.949999988079071
+            ]
+          },
+          "depthSpan": 12.630000955854449,
+          "usesRoomImage": false,
+          "artDirection": "printed-livehouse-v1",
+          "stagePrint": true,
+          "peopleCount": 2,
+          "venueAsset": {
+            "id": "blender-venue-r2",
+            "sha256": "68f2b5991115dac38580e44f38277e9ca93be70d3bdf8e5806bbc64d59c85b8e",
+            "bytes": 1158336,
+            "status": "ready",
+            "meshCount": 12,
+            "triangles": 19728,
+            "materialCount": 8,
+            "bounds": {
+              "min": [
+                -7.000000238418579,
+                -0.3100000023841858,
+                -5.680000967775378
+              ],
+              "max": [
+                7.0899999141693115,
+                6.099999732026131,
+                6.949999988079071
+              ]
+            }
+          }
+        },
+        "view": "photos",
+        "id": null,
+        "personId": null,
+        "moving": false,
+        "mode": "livehouse",
+        "camera": {
+          "type": "PerspectiveCamera",
+          "projection": "perspective",
+          "position": [
+            0.43643014852299244,
+            2.938251828631139,
+            -1.6500000000000004
+          ],
+          "target": [
+            6.79,
+            2.608251828631139,
+            -1.7999999999999998
+          ],
+          "fov": 43,
+          "aspect": 0.5288753799392097
+        }
+      },
+      "pending": [],
+      "social": {
+        "incoming": [],
+        "outgoing": [],
+        "friends": [],
+        "blocks": []
+      }
+    },
+    "B": {
+      "ready": true,
+      "poll": {
+        "visible": true,
+        "inFlight": false,
+        "intervalMs": 5000
+      },
+      "route": {
+        "kind": "room",
+        "target": "652941df-95f3-47bb-961c-cd3f626fcc3b"
+      },
+      "identityStatus": "ready",
+      "actorId": "734450b2-6224-4566-a97b-3ece2b3400a0",
+      "roomId": "652941df-95f3-47bb-961c-cd3f626fcc3b",
+      "members": [
+        {
+          "id": "d27985b1-f1e7-4984-84d1-980353eafd79",
+          "name": "阿遥"
+        },
+        {
+          "id": "734450b2-6224-4566-a97b-3ece2b3400a0",
+          "name": "Lin"
+        }
+      ],
+      "photos": [
+        {
+          "id": "47b82c3c-07de-4e40-98d8-4ea27e59a7ac",
+          "ownerId": "d27985b1-f1e7-4984-84d1-980353eafd79",
+          "visibility": "members"
+        },
+        {
+          "id": "251ee8eb-7107-4f77-b421-27eea7bb563b",
+          "ownerId": "734450b2-6224-4566-a97b-3ece2b3400a0",
+          "visibility": "members"
+        }
+      ],
+      "camera": {
+        "scene": {
+          "roomMeshCount": 12,
+          "photoFrameCount": 6,
+          "roomBounds": {
+            "min": [
+              -7.000000238418579,
+              -0.3100000023841858,
+              -5.680000967775378
+            ],
+            "max": [
+              7.0899999141693115,
+              6.099999732026131,
+              6.949999988079071
+            ]
+          },
+          "depthSpan": 12.630000955854449,
+          "usesRoomImage": false,
+          "artDirection": "printed-livehouse-v1",
+          "stagePrint": true,
+          "peopleCount": 2,
+          "venueAsset": {
+            "id": "blender-venue-r2",
+            "sha256": "68f2b5991115dac38580e44f38277e9ca93be70d3bdf8e5806bbc64d59c85b8e",
+            "bytes": 1158336,
+            "status": "ready",
+            "meshCount": 12,
+            "triangles": 19728,
+            "materialCount": 8,
+            "bounds": {
+              "min": [
+                -7.000000238418579,
+                -0.3100000023841858,
+                -5.680000967775378
+              ],
+              "max": [
+                7.0899999141693115,
+                6.099999732026131,
+                6.949999988079071
+              ]
+            }
+          }
+        },
+        "view": "photos",
+        "id": null,
+        "personId": null,
+        "moving": false,
+        "mode": "livehouse",
+        "camera": {
+          "type": "PerspectiveCamera",
+          "projection": "perspective",
+          "position": [
+            2.3180000000000005,
+            3.1099802685162135,
+            -1.6500000000000004
+          ],
+          "target": [
+            6.79,
+            2.7799802685162134,
+            -1.7999999999999998
+          ],
+          "fov": 43,
+          "aspect": 2.039039039039039
+        }
+      },
+      "pending": [],
+      "social": {
+        "incoming": [],
+        "outgoing": [],
+        "friends": [],
+        "blocks": []
+      }
+    }
+  }
+}

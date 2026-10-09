@@ -1,0 +1,12 @@
+const out = {};
+await page.locator('[data-game="close"]').first().click(); await sleep(700);
+out.gameClosed = await page.evaluate(() => ![...document.querySelectorAll('.music-games')].some(e => e.getClientRects().length));
+await page.locator('.community-panel [data-group="close"]').first().click(); await sleep(700);
+out.commClosed = await page.evaluate(() => ![...document.querySelectorAll('.community-panel')].some(e => e.getClientRects().length));
+await page.click('#scene-details'); await sleep(1200);
+await page.click('#panel [data-open="communities"]'); await sleep(1500);
+await shot('40-communities');
+out.comm = await page.evaluate(() => { const c = [...document.querySelectorAll('.community-panel')].find(e => e.getClientRects().length); return c ? c.className + ' || ' + c.innerText.replace(/\n{2,}/g, '\n').slice(0, 2500) : null; });
+out.btns = (await btns()).filter(b => !/view=|#my-space|#social-inbox|#room-info|music-map|#my-look|Music Space/.test(b));
+out.form = await page.evaluate(() => { const f = document.querySelector('form[data-community-create]'); if (!f) return null; return f.innerText + ' | inputs: ' + [...f.querySelectorAll('input')].map(i => i.name + ':' + i.type + ':' + i.placeholder).join(', '); });
+return out;

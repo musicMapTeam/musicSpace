@@ -1,0 +1,59 @@
+{
+  "checkedAt": "2026-09-30T06:50:28.653Z",
+  "origin": "https://music-space-studio-kx.k2ctliuhan.chatgpt.site",
+  "scope": "Real hosted HTTP/D1/R2; synthetic 2x2 image and fictional QA identities. This does not claim physical-device or separate-browser UI testing.",
+  "results": [
+    {
+      "name": "Hosted API and storage bindings respond",
+      "status": "passed"
+    },
+    {
+      "name": "Independent anonymous identities are created",
+      "status": "passed"
+    },
+    {
+      "name": "Photo persists in private R2 and duplicate creation is idempotent",
+      "status": "passed"
+    },
+    {
+      "name": "Private photo is readable only by the owner before invitation",
+      "status": "passed"
+    },
+    {
+      "name": "Scoped invitation exposes only its intended scene/photo",
+      "status": "passed"
+    },
+    {
+      "name": "Different identity joins with its own avatar and explicit consent",
+      "status": "passed"
+    },
+    {
+      "name": "Guest cannot accept as host; export blocked before approval",
+      "status": "passed"
+    },
+    {
+      "name": "One participant cannot substitute the second export consent",
+      "status": "passed"
+    },
+    {
+      "name": "Both current-version consents unlock the authorized export snapshot",
+      "status": "passed"
+    },
+    {
+      "name": "Fresh HTTP request restores persistent shared composition",
+      "status": "passed"
+    },
+    {
+      "name": "Editing clears prior acceptance and both consents",
+      "status": "passed"
+    },
+    {
+      "name": "Revocation closes the capability link",
+      "status": "passed"
+    },
+    {
+      "name": "Guest withdrawal removes their snapshot and access",
+      "status": "passed"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "revision": "r2",
+  "group": "MS_FOREGROUND_CUTAWAY",
+  "members": [
+    "PA cabinet.002",
+    "PA grille recess.002",
+    "PA driver surround.004",
+    "PA driver cone.004",
+    "PA driver surround.005",
+    "PA driver cone.005",
+    "PA protective grille.006",
+    "PA protective grille.007",
+    "PA protective grille.008",
+    "PA recessed side handle.002",
+    "PA cabinet.003",
+    "PA grille recess.003",
+    "PA driver surround.006",
+    "PA driver cone.006",
+    "PA driver surround.007",
+    "PA driver cone.007",
+    "PA protective grille.009",
+    "PA protective grille.010",
+    "PA protective grille.011",
+    "PA recessed side handle.003",
+    "Gallery perimeter trim",
+    "Gallery perimeter trim.001"
+  ],
+  "memberCount": 22,
+  "reason": "right PA and both gallery perimeter trims obstruct runtime photo view",
+  "geometryChanges": false,
+  "transformChanges": false,
+  "materialChanges": false
+}

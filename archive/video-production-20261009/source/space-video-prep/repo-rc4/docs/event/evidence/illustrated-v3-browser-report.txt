@@ -1,0 +1,14 @@
+MusicSpace candidate 3 limited retest — PASS for requested scope
+Frozen Library package v3; HTML SHA256 f3f588b05035d833249fbde8448d2df2791fa23d1983f85deb9b8e796ee895bc matched.
+Existing Chromium / Node; synthetic anonymous-origin sessions; loopback only. No installation, public service, real photos, or other-service changes.
+
+1. Fresh empty data directory: 8787 was already occupied by an unrelated service. Launcher successfully bound 127.0.0.1:8788, returned HTTP 200, and only then persisted 8788. Restart kept the same origin. An owned temporary listener occupying remembered 8788 caused explicit exit 1; listener remained alive and saved port unchanged. Unrelated 8787 was never stopped.
+2. Same identity offline/online: dialogue, pending original operation, and newer draft stayed visible.
+3. REAL native storage event: a second tab in the SAME browser context wrote a valid C anonymous session. A tab purged old messages, pending retry UI and draft, then loaded C. A message POST had already committed 201 and an A session GET returned 200, both held until C loaded; both delayed responses were then fulfilled. C remained C with no A content, no retry UI and no extra message POST. This tests the anonymous-origin protocol, not a product account switch.
+4. Writing tab focus audit detected C. Returning to valid A allowed the existing original retry button to confirm the SAME idempotency key/body. Database message count stayed exactly 1; newer draft survived. Playwright physical click initially timed out because the button was rebuilt; resumed using the existing button's native click. No app source or state was patched.
+5. Same-tag online audit detected a real storage write to C. Focus/online events here were synthetically dispatched to exercise their handlers; actual OS background visibility and real network-adapter transitions were NOT tested.
+6. Real second-tab localStorage.clear followed by actual about:blank navigation/pagehide on both tabs: reopening this origin had identityStatus missing, no actor/session, no old stored message text, no dialogue and zero old message DOM. No old identity resurrected.
+7. Console: one expected net::ERR_INTERNET_DISCONNECTED during intentional offline send; no other captured warning/error and no JavaScript pageerror.
+
+Screenshots: 01 same-identity recovery; 02 native C clean state; 03 original A confirmation and surviving draft; 04 cleared-origin home.
+Cleanup: owned browser, service and temporary listener closed; package data and private resume files retained locally, excluded from evidence archive. No beauty, previous full-chain, or extra product tests rerun.

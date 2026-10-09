@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "parts": 6,
+  "part_boundary": 117,
+  "gzip_roundtrip": true,
+  "regular_contents": true,
+  "duplicate_hardlink": true,
+  "symlink_preserved": true,
+  "embedded_manifest": true,
+  "counts": {
+    "regular": 1,
+    "hardlinks": 1,
+    "symlinks": 1,
+    "dirs": 1,
+    "bytes_verified": 5700
+  }
+}

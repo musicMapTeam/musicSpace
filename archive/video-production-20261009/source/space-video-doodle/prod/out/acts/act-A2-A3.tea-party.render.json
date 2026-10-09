@@ -1,0 +1,19 @@
+{
+ "scene": "act-A2-A3",
+ "map": "tea-party",
+ "frames": [
+  2225,
+  4582
+ ],
+ "seconds": [
+  37.083333333333336,
+  76.36666666666666
+ ],
+ "crf": 18,
+ "bytes": 53292927,
+ "audio": "/tmp/space-video-doodle/prod/out/acts/act-A2-A3.tea-party.mix.wav",
+ "workers": 4,
+ "chunk": 240,
+ "mezz": "hq",
+ "render_fps": 40.62
+}

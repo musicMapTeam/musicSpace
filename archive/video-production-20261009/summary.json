@@ -1,0 +1,197 @@
+{
+  "created_utc": "2026-10-09T03:24:18Z",
+  "roots": [
+    {
+      "root": "/Users/alakazan/workplace/tme/video-production",
+      "included_regular_files": 328,
+      "included_regular_bytes": 382541244,
+      "symlinks": 0,
+      "directory_entries": 32,
+      "excluded_regular_bytes": 6459400852,
+      "excluded_directory_count": 5
+    },
+    {
+      "root": "/private/tmp/space-video-doodle",
+      "included_regular_files": 9864,
+      "included_regular_bytes": 10908416635,
+      "symlinks": 0,
+      "directory_entries": 436,
+      "excluded_regular_bytes": 8779586499,
+      "excluded_directory_count": 12
+    },
+    {
+      "root": "/private/tmp/space-video-prep",
+      "included_regular_files": 5234,
+      "included_regular_bytes": 3038142407,
+      "symlinks": 1,
+      "directory_entries": 251,
+      "excluded_regular_bytes": 368600556,
+      "excluded_directory_count": 3
+    },
+    {
+      "root": "/private/tmp/space-doodle",
+      "included_regular_files": 11930,
+      "included_regular_bytes": 3094120584,
+      "symlinks": 40,
+      "directory_entries": 499,
+      "excluded_regular_bytes": 0,
+      "excluded_directory_count": 0
+    },
+    {
+      "root": "/private/tmp/space-map",
+      "included_regular_files": 3662,
+      "included_regular_bytes": 2191749355,
+      "symlinks": 30,
+      "directory_entries": 464,
+      "excluded_regular_bytes": 0,
+      "excluded_directory_count": 0
+    },
+    {
+      "root": "/private/tmp/space-copy",
+      "included_regular_files": 2584,
+      "included_regular_bytes": 1022516753,
+      "symlinks": 0,
+      "directory_entries": 176,
+      "excluded_regular_bytes": 0,
+      "excluded_directory_count": 0
+    },
+    {
+      "root": "/private/tmp/space-final",
+      "included_regular_files": 656,
+      "included_regular_bytes": 414252429,
+      "symlinks": 0,
+      "directory_entries": 50,
+      "excluded_regular_bytes": 7644,
+      "excluded_directory_count": 1
+    },
+    {
+      "root": "/private/tmp/space-fonts",
+      "included_regular_files": 52,
+      "included_regular_bytes": 117167466,
+      "symlinks": 0,
+      "directory_entries": 11,
+      "excluded_regular_bytes": 47332758,
+      "excluded_directory_count": 1
+    },
+    {
+      "root": "/private/tmp/space-publish",
+      "included_regular_files": 90,
+      "included_regular_bytes": 68832258,
+      "symlinks": 0,
+      "directory_entries": 26,
+      "excluded_regular_bytes": 0,
+      "excluded_directory_count": 0
+    },
+    {
+      "root": "/private/tmp/music-space-font-cache",
+      "included_regular_files": 12,
+      "included_regular_bytes": 34645744,
+      "symlinks": 0,
+      "directory_entries": 1,
+      "excluded_regular_bytes": 0,
+      "excluded_directory_count": 0
+    },
+    {
+      "root": "/Users/alakazan/workplace/tme/musicSpace/.claude-wf",
+      "included_regular_files": 2,
+      "included_regular_bytes": 35516,
+      "symlinks": 0,
+      "directory_entries": 1,
+      "excluded_regular_bytes": 0,
+      "excluded_directory_count": 0,
+      "scope": "Only the two explicitly requested unique video workflow scripts"
+    }
+  ],
+  "included_regular_bytes": 21272420391,
+  "unique_sha256_regular_bytes": 17689613822,
+  "duplicate_regular_bytes": 3582806569,
+  "excluded_regular_bytes": 15654928309,
+  "included_file_entries": 34485,
+  "included_directory_entries": 1947,
+  "standard_tar_bytes_before_longname_pax_headers": null,
+  "archive_size_note": "Logical payload exact; actual compressed archive size cannot be known before compression. Standard tar estimate excludes extended path headers and end block padding.",
+  "potential_secret_files": [
+    {
+      "path": "/private/tmp/space-video-prep/repo-rc4/tests/event-identity-continuity.test.js",
+      "potential_secret_types": [
+        "credential_assignment"
+      ],
+      "context_note": "Confirmed fixed password literals in local fixture-driven identity encryption tests (lines 33,45,50); no user credential or API secret detected"
+    },
+    {
+      "path": "/private/tmp/space-video-prep/repo-routeb/tests/event-identity-continuity.test.js",
+      "potential_secret_types": [
+        "credential_assignment"
+      ],
+      "context_note": "Confirmed fixed password literals in local fixture-driven identity encryption tests (lines 33,45,50); no user credential or API secret detected"
+    }
+  ],
+  "errors": [],
+  "dismissed_secret_scan_false_positives": [
+    {
+      "path": "/private/tmp/space-video-prep/repo-rc4/delivery/recording-source/README.md",
+      "reason": "regex token matched within a longer ordinary identifier; not a standalone secret token"
+    },
+    {
+      "path": "/private/tmp/space-video-prep/repo-rc4/references/official/2026-09-26/spreadsheet/01-navigation-overview.json",
+      "reason": "regex token matched within a longer ordinary identifier; not a standalone secret token"
+    },
+    {
+      "path": "/private/tmp/space-video-prep/repo-rc4/references/official/2026-09-26/spreadsheet/02-submission-cells.json",
+      "reason": "regex token matched within a longer ordinary identifier; not a standalone secret token"
+    },
+    {
+      "path": "/private/tmp/space-video-prep/repo-rc4/references/official/2026-09-26/spreadsheet/02-submission-top.json",
+      "reason": "regex token matched within a longer ordinary identifier; not a standalone secret token"
+    },
+    {
+      "path": "/private/tmp/space-video-prep/repo-rc4/references/official/2026-09-26/spreadsheet/03-topics-cells.json",
+      "reason": "regex token matched within a longer ordinary identifier; not a standalone secret token"
+    },
+    {
+      "path": "/private/tmp/space-video-prep/repo-rc4/references/official/2026-09-26/spreadsheet/04-schedule-top.json",
+      "reason": "regex token matched within a longer ordinary identifier; not a standalone secret token"
+    },
+    {
+      "path": "/private/tmp/space-video-prep/repo-rc4/references/official/2026-09-26/spreadsheet/05-scoring-cells.json",
+      "reason": "regex token matched within a longer ordinary identifier; not a standalone secret token"
+    },
+    {
+      "path": "/private/tmp/space-video-prep/repo-rc4/references/official/2026-09-26/spreadsheet/06-faq-bottom.json",
+      "reason": "regex token matched within a longer ordinary identifier; not a standalone secret token"
+    },
+    {
+      "path": "/private/tmp/space-video-prep/repo-rc4/references/official/2026-09-26/spreadsheet/06-faq-cells.json",
+      "reason": "regex token matched within a longer ordinary identifier; not a standalone secret token"
+    },
+    {
+      "path": "/private/tmp/space-video-prep/repo-rc4/references/official/2026-09-26/spreadsheet/06-faq-middle.json",
+      "reason": "regex token matched within a longer ordinary identifier; not a standalone secret token"
+    },
+    {
+      "path": "/private/tmp/space-video-prep/repo-rc4/references/official/2026-09-26/spreadsheet/export-menu.json",
+      "reason": "regex token matched within a longer ordinary identifier; not a standalone secret token"
+    },
+    {
+      "path": "/private/tmp/space-video-prep/repo-rc4/references/official/2026-09-26/website/complete-expanded-page.json",
+      "reason": "regex token matched within a longer ordinary identifier; not a standalone secret token"
+    },
+    {
+      "path": "/private/tmp/space-video-prep/repo-rc4/references/official/2026-09-26/website/expanded-page.json",
+      "reason": "regex token matched within a longer ordinary identifier; not a standalone secret token"
+    },
+    {
+      "path": "/private/tmp/space-video-prep/repo-rc4/references/official/2026-09-26/website/requirements-visible.json",
+      "reason": "regex token matched within a longer ordinary identifier; not a standalone secret token"
+    },
+    {
+      "path": "/private/tmp/space-video-prep/repo-rc4/references/official/2026-09-26/website/visible-page.json",
+      "reason": "regex token matched within a longer ordinary identifier; not a standalone secret token"
+    }
+  ],
+  "confirmed_secret_files": [],
+  "secret_scan_note": "Pattern-based scan of retained text/source files up to 16 MiB; no confirmed secrets. Two test fixtures contain fixed test passwords; 15 matches inside task identifiers dismissed.",
+  "reproducibility_note": "Kept 346404948-byte downloaded AST model because no verified pinned download revision was established; retained all raw capture, source music, fonts/licenses, review evidence, and distinct output versions.",
+  "branch_source_file_count": 6380,
+  "branch_source_logicalbytes": 228292515
+}

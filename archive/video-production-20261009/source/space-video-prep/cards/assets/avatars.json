@@ -1,0 +1,170 @@
+[
+ {
+  "id": "static",
+  "name": "留白",
+  "avatar": {
+   "version": 2,
+   "skin": 0,
+   "hair": 1,
+   "hairColor": 3,
+   "outfit": 0,
+   "top": 0,
+   "bottom": 0,
+   "shoes": 1,
+   "eyewear": 0,
+   "topColor": 0,
+   "bottomColor": 1,
+   "shoeColor": 0,
+   "expression": "neutral",
+   "accessory": "none",
+   "pose": "listen"
+  }
+ },
+ {
+  "id": "break",
+  "name": "断拍",
+  "avatar": {
+   "version": 2,
+   "skin": 0,
+   "hair": 0,
+   "hairColor": 0,
+   "outfit": 1,
+   "top": 1,
+   "bottom": 1,
+   "shoes": 0,
+   "eyewear": 0,
+   "topColor": 2,
+   "bottomColor": 1,
+   "shoeColor": 0,
+   "expression": "neutral",
+   "accessory": "none",
+   "pose": "sway"
+  }
+ },
+ {
+  "id": "loop",
+  "name": "循迹",
+  "avatar": {
+   "version": 2,
+   "skin": 0,
+   "hair": 5,
+   "hairColor": 0,
+   "outfit": 2,
+   "top": 2,
+   "bottom": 2,
+   "shoes": 2,
+   "eyewear": 2,
+   "topColor": 3,
+   "bottomColor": 0,
+   "shoeColor": 1,
+   "expression": "neutral",
+   "accessory": "none",
+   "pose": "listen"
+  }
+ },
+ {
+  "id": "echo",
+  "name": "回声",
+  "avatar": {
+   "version": 2,
+   "skin": 0,
+   "hair": 4,
+   "hairColor": 0,
+   "outfit": 3,
+   "top": 3,
+   "bottom": 3,
+   "shoes": 2,
+   "eyewear": 0,
+   "topColor": 4,
+   "bottomColor": 0,
+   "shoeColor": 1,
+   "expression": "neutral",
+   "accessory": "none",
+   "pose": "wave"
+  }
+ },
+ {
+  "id": "fuzz",
+  "name": "失真",
+  "avatar": {
+   "version": 2,
+   "skin": 0,
+   "hair": 2,
+   "hairColor": 2,
+   "outfit": 4,
+   "top": 4,
+   "bottom": 4,
+   "shoes": 3,
+   "eyewear": 3,
+   "topColor": 6,
+   "bottomColor": 1,
+   "shoeColor": 0,
+   "expression": "neutral",
+   "accessory": "none",
+   "pose": "sing"
+  }
+ },
+ {
+  "id": "pulse",
+  "name": "脉冲",
+  "avatar": {
+   "version": 2,
+   "skin": 0,
+   "hair": 3,
+   "hairColor": 1,
+   "outfit": 5,
+   "top": 5,
+   "bottom": 5,
+   "shoes": 0,
+   "eyewear": 2,
+   "topColor": 2,
+   "bottomColor": 3,
+   "shoeColor": 0,
+   "expression": "neutral",
+   "accessory": "none",
+   "pose": "sway"
+  }
+ },
+ {
+  "id": "cap",
+  "name": "鸭舌帽",
+  "avatar": {
+   "version": 2,
+   "skin": 0,
+   "hair": 7,
+   "hairColor": 1,
+   "outfit": 0,
+   "top": 3,
+   "bottom": 2,
+   "shoes": 1,
+   "eyewear": 4,
+   "topColor": 5,
+   "bottomColor": 1,
+   "shoeColor": 0,
+   "expression": "smile",
+   "accessory": "cap",
+   "pose": "wave"
+  }
+ },
+ {
+  "id": "phones",
+  "name": "大耳机",
+  "avatar": {
+   "version": 2,
+   "skin": 0,
+   "hair": 3,
+   "hairColor": 2,
+   "outfit": 0,
+   "top": 4,
+   "bottom": 4,
+   "shoes": 3,
+   "eyewear": 1,
+   "topColor": 3,
+   "bottomColor": 0,
+   "shoeColor": 0,
+   "expression": "wink",
+   "accessory": "headphones",
+   "pose": "sway"
+  }
+ }
+]

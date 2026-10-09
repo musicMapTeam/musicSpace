@@ -1,0 +1,14 @@
+const s = await get('phone');
+const p = s.page;
+const out = {};
+const t0 = Date.now();
+await p.locator('[data-social-send]').first().click();
+await sleep(600);
+out.afterSend = await H.text(p, '#panel');
+await p.waitForFunction(() => /你们已经是朋友了|已是朋友|私聊/.test(document.querySelector('#panel')?.innerText || ''), null, { timeout: 30000 });
+out.ms = Date.now() - t0;
+await sleep(1000);
+out.friends = await H.text(p, '#panel');
+out.buttons = await H.buttons(p, b => /data-open|data-corner|corner/.test(b));
+await shot(p, 'e9-friends');
+return out;

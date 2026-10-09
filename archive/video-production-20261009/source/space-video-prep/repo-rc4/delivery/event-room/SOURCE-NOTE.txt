@@ -1,0 +1,5 @@
+The launchers, README and sample files are copied to the portable runtime ZIP root with server/, runtime-preview/src/, all current drizzle migrations through0005_event_moderation.sql, and dist/event-room/.
+In this source repository, build with npm run build:event and run npm run start:local from the repository root. Do not run the package-root launcher from this source-template directory.
+The runtime is loopback-only and requires an existing Node24+ installation. Preserve the existing instance's data directory and origin when upgrading. Close old pages before opening a new version.
+Program-drawn fixtures and labelled AI-original fictional concert samples are not real attendee photographs. No credentials, browser storage, private uploads or service databases are distributed.
+Exact build provenance and actual verification limits belong in the generated package's CANDIDATE.json/版本说明.md and source evidence files; these templates are not proof of a completed browser test.

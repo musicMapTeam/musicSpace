@@ -1,0 +1,327 @@
+{
+  "label": "route-root-phone",
+  "vp": "phone",
+  "channel": "root",
+  "ok": true,
+  "static": {
+    "channel": "pages",
+    "idbName": "music-space-static:pages:v1",
+    "writable": true,
+    "persistent": true,
+    "memoryOnly": false,
+    "fresh": true,
+    "roomCode": "DSEAO5CAPX2E"
+  },
+  "aiCrowd": "sure:crowd | AI 判断：人海",
+  "tapsToAccepted": 8,
+  "taps": [
+    {
+      "n": 1,
+      "desc": "进入示例现场 (lobby)",
+      "inView": true,
+      "covered": "",
+      "w": 297,
+      "h": 52,
+      "text": "进入示例现场",
+      "at": 1791283877598
+    },
+    {
+      "n": 2,
+      "desc": "同意 checkbox (input)",
+      "inView": true,
+      "covered": "button#.",
+      "w": 24,
+      "h": 24,
+      "text": "on",
+      "at": 1791283878137
+    },
+    {
+      "n": 3,
+      "desc": "进入示例现场 (submit)",
+      "inView": true,
+      "covered": "",
+      "w": 321,
+      "h": 48,
+      "text": "进入示例现场",
+      "at": 1791283878178
+    },
+    {
+      "n": 4,
+      "desc": "人海 · 示例照片 (tour)",
+      "inView": true,
+      "covered": "",
+      "w": 297,
+      "h": 52,
+      "text": "人海 · 示例照片",
+      "at": 1791283879773
+    },
+    {
+      "n": 5,
+      "desc": "保存这张照片",
+      "inView": false,
+      "covered": "",
+      "w": 321,
+      "h": 58,
+      "text": "保存这张照片",
+      "at": 1791283880479
+    },
+    {
+      "n": 6,
+      "desc": "和 TA 交换这个视角",
+      "inView": false,
+      "covered": "",
+      "w": 290,
+      "h": 61,
+      "text": "和 TA 交换这个视角",
+      "at": 1791283882310
+    },
+    {
+      "n": 7,
+      "desc": "交换同意 (input)",
+      "inView": true,
+      "covered": "",
+      "w": 24,
+      "h": 24,
+      "text": "on",
+      "at": 1791283883458
+    },
+    {
+      "n": 8,
+      "desc": "把这两张交给对方确认 ↗",
+      "inView": false,
+      "covered": "",
+      "w": 354,
+      "h": 58,
+      "text": "把这两张交给对方确认 ↗",
+      "at": 1791283883520
+    }
+  ],
+  "tours": [
+    [
+      "in room",
+      "示例路线 1/4 · 放一张你的照片 [○○○○]"
+    ],
+    [
+      "accepted, exchange panel open",
+      "示例路线 4/4 · 招个手 / 私聊 / 回看这一晚 [●●●○]"
+    ],
+    [
+      "exchange closed",
+      "示例路线 4/4 · 招个手 / 私聊 / 回看这一晚 [●●●○]"
+    ],
+    [
+      "recap open",
+      "(hidden) "
+    ],
+    [
+      "recap closed",
+      "示例路线 4/4 · 路线走完了 [●●●●]"
+    ],
+    [
+      "recap closed +6s",
+      "示例路线 4/4 · 路线走完了 [●●●●]"
+    ],
+    [
+      "after reload",
+      "示例路线 3/4 · 发起交换 [●●○○]"
+    ]
+  ],
+  "notes": [
+    "boot ready in 409 ms",
+    "entry submit enabled after 1 ms",
+    "AI line after 114 ms: sure:crowd | AI 判断：人海",
+    "chips: stage:false crowd:true(ai) friends:false detail:false",
+    "taken row: 拍摄于 21:48 · 来自照片自带的信息修改时间示例照片 · 虚构的拍摄时间 21:48，写在文件里修改拍摄时间 · 北京时间改过的时间以你填的为准。",
+    "save button text: 保存这张照片",
+    "wall offer text: 和 TA 交换这个视角",
+    "send text: 把这两张交给对方确认 ↗",
+    "交换已接受 2763 ms after send",
+    "panel after exchange close: {\"kind\":\"wall\",\"hidden\":true}"
+  ],
+  "net": {
+    "total": 113,
+    "external": [],
+    "api": [],
+    "bad": [],
+    "aborted": [],
+    "fonts": [
+      {
+        "file": "fonts.css",
+        "status": 200,
+        "bytes": 68015
+      },
+      {
+        "file": "marker-0.woff2",
+        "status": 200,
+        "bytes": 43408
+      },
+      {
+        "file": "display-0.woff2",
+        "status": 200,
+        "bytes": 81900
+      },
+      {
+        "file": "logo-0.woff2",
+        "status": 200,
+        "bytes": 16820
+      },
+      {
+        "file": "digits-0.woff2",
+        "status": 200,
+        "bytes": 14400
+      },
+      {
+        "file": "marker-1.woff2",
+        "status": 200,
+        "bytes": 35580
+      },
+      {
+        "file": "marker-2.woff2",
+        "status": 200,
+        "bytes": 48044
+      },
+      {
+        "file": "display-1.woff2",
+        "status": 200,
+        "bytes": 102156
+      },
+      {
+        "file": "hand-1.woff2",
+        "status": 200,
+        "bytes": 115920
+      },
+      {
+        "file": "hand-0.woff2",
+        "status": 200,
+        "bytes": 197956
+      },
+      {
+        "file": "hand-2.woff2",
+        "status": 200,
+        "bytes": 158244
+      },
+      {
+        "file": "hand-3.woff2",
+        "status": 200,
+        "bytes": 109976
+      },
+      {
+        "file": "display-2.woff2",
+        "status": 200,
+        "bytes": 137384
+      },
+      {
+        "file": "marker-0.woff2",
+        "status": 200,
+        "bytes": 43408
+      },
+      {
+        "file": "display-0.woff2",
+        "status": 200,
+        "bytes": 81900
+      },
+      {
+        "file": "fonts.css",
+        "status": 200,
+        "bytes": 68015
+      },
+      {
+        "file": "logo-0.woff2",
+        "status": 200,
+        "bytes": 16820
+      },
+      {
+        "file": "marker-1.woff2",
+        "status": 200,
+        "bytes": 35580
+      },
+      {
+        "file": "marker-2.woff2",
+        "status": 200,
+        "bytes": 48044
+      },
+      {
+        "file": "display-1.woff2",
+        "status": 200,
+        "bytes": 102156
+      },
+      {
+        "file": "hand-1.woff2",
+        "status": 200,
+        "bytes": 115920
+      },
+      {
+        "file": "hand-0.woff2",
+        "status": 200,
+        "bytes": 197956
+      },
+      {
+        "file": "digits-0.woff2",
+        "status": 200,
+        "bytes": 14400
+      },
+      {
+        "file": "hand-2.woff2",
+        "status": 200,
+        "bytes": 158244
+      }
+    ]
+  },
+  "console": [],
+  "pageErrors": [],
+  "serverLog": [
+    "GET /musicSpace/",
+    "GET /musicSpace/shared/three-0.186.1/three.module.js",
+    "GET /musicSpace/shared/three-0.186.1/three.core.js",
+    "GET /musicSpace/sql/sql-wasm.wasm",
+    "GET /musicSpace/fonts/doodle/marker-0.woff2",
+    "GET /musicSpace/fonts/doodle/fonts.css",
+    "GET /musicSpace/fonts/doodle/display-0.woff2",
+    "GET /musicSpace/demo/yao-stage.jpg",
+    "GET /musicSpace/demo/man-crowd.jpg",
+    "GET /musicSpace/demo/man-near.jpg",
+    "GET /musicSpace/demo/bei-balcony.jpg",
+    "GET /musicSpace/fonts/doodle/logo-0.woff2",
+    "GET /musicSpace/fonts/doodle/hand-0.woff2",
+    "GET /musicSpace/fonts/doodle/digits-0.woff2",
+    "GET /musicSpace/fonts/doodle/display-1.woff2",
+    "GET /musicSpace/fonts/doodle/marker-1.woff2",
+    "GET /musicSpace/fonts/doodle/hand-1.woff2",
+    "GET /musicSpace/fonts/doodle/marker-2.woff2",
+    "GET /musicSpace/fonts/doodle/hand-2.woff2",
+    "GET /musicSpace/demo/sample-crowd.jpg",
+    "GET /musicSpace/demo/sample-stage.jpg",
+    "GET /musicSpace/ai/tc8/labels.json",
+    "GET /musicSpace/ai/ort/ort.wasm.min.mjs",
+    "GET /musicSpace/ai/ort/ort-wasm-simd-threaded.mjs",
+    "GET /musicSpace/ai/tc8/vision.onnx",
+    "GET /musicSpace/ai/ort/ort-wasm-simd-threaded.wasm",
+    "GET /musicSpace/demo/sample-crowd.jpg",
+    "GET /musicSpace/demo/sample-stage.jpg",
+    "GET /musicSpace/fonts/doodle/hand-3.woff2",
+    "GET /musicSpace/fonts/doodle/display-2.woff2",
+    "GET /musicSpace/",
+    "GET /musicSpace/shared/three-0.186.1/three.module.js",
+    "GET /musicSpace/shared/three-0.186.1/three.core.js",
+    "GET /musicSpace/sql/sql-wasm.wasm",
+    "GET /musicSpace/fonts/doodle/marker-0.woff2",
+    "GET /musicSpace/fonts/doodle/display-0.woff2",
+    "GET /musicSpace/fonts/doodle/fonts.css",
+    "GET /musicSpace/fonts/doodle/logo-0.woff2",
+    "GET /musicSpace/fonts/doodle/display-1.woff2",
+    "GET /musicSpace/fonts/doodle/hand-0.woff2",
+    "GET /musicSpace/fonts/doodle/marker-1.woff2",
+    "GET /musicSpace/fonts/doodle/hand-1.woff2",
+    "GET /musicSpace/fonts/doodle/marker-2.woff2",
+    "GET /musicSpace/demo/yao-stage.jpg",
+    "GET /musicSpace/demo/man-crowd.jpg",
+    "GET /musicSpace/demo/man-near.jpg",
+    "GET /musicSpace/demo/bei-balcony.jpg",
+    "GET /musicSpace/fonts/doodle/digits-0.woff2",
+    "GET /musicSpace/fonts/doodle/hand-2.woff2",
+    "GET /musicSpace/demo/sample-crowd.jpg",
+    "GET /musicSpace/demo/sample-stage.jpg",
+    "GET /musicSpace/ai/tc8/labels.json",
+    "GET /__log"
+  ]
+}

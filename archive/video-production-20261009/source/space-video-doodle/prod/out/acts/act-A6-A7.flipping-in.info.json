@@ -1,0 +1,1773 @@
+{
+ "scene": "act-A6-A7",
+ "range_frames": [
+  8429,
+  10480
+ ],
+ "fps": 60,
+ "W": 1920,
+ "H": 1080,
+ "map": {
+  "id": "flipping-in",
+  "label": "Wax Lyricist《Flipping In》123 BPM — the animatic proposal, bar 90 cut (✂1) to stay under 175 s",
+  "end_s": 174.659,
+  "grid_end_s": 173.659,
+  "bpm": 123,
+  "beat_s": 0.4878,
+  "bar_s": 1.9512
+ },
+ "duration": 174.659,
+ "frames": 10480,
+ "shots": [
+  {
+   "id": "A6-W1-stack",
+   "t0": 140.489,
+   "t1": 144.391,
+   "z": 10
+  },
+  {
+   "id": "A6-W1-type",
+   "t0": 140.489,
+   "t1": 144.391,
+   "z": 30
+  },
+  {
+   "id": "A6-W2-vision",
+   "t0": 144.391,
+   "t1": 148.293,
+   "z": 10
+  },
+  {
+   "id": "A6-W2-type",
+   "t0": 144.391,
+   "t1": 148.293,
+   "z": 30
+  },
+  {
+   "id": "A6-W3-cards",
+   "t0": 148.293,
+   "t1": 152.196,
+   "z": 10
+  },
+  {
+   "id": "A6-W3-type",
+   "t0": 148.293,
+   "t1": 152.196,
+   "z": 30
+  },
+  {
+   "id": "A6-X-W3-W4",
+   "t0": 151.9421,
+   "t1": 152.326,
+   "z": 90
+  },
+  {
+   "id": "A6-W4-stay",
+   "t0": 152.196,
+   "t1": 156.098,
+   "z": 10
+  },
+  {
+   "id": "A6-W4-type",
+   "t0": 152.196,
+   "t1": 156.098,
+   "z": 30
+  },
+  {
+   "id": "A6-W5-room",
+   "t0": 156.098,
+   "t1": 160.001,
+   "z": 10
+  },
+  {
+   "id": "A6-W5-type",
+   "t0": 156.098,
+   "t1": 160.001,
+   "z": 30
+  },
+  {
+   "id": "A6-X-W5-C1",
+   "t0": 159.7471,
+   "t1": 160.131,
+   "z": 90
+  },
+  {
+   "id": "A7-C1-end",
+   "t0": 160.001,
+   "t1": 174.659,
+   "z": 10
+  },
+  {
+   "id": "A7-C1-type",
+   "t0": 160.001,
+   "t1": 174.659,
+   "z": 30
+  }
+ ],
+ "events": [
+  {
+   "t": 140.489,
+   "kind": "cut",
+   "label": "A6-W1-stack",
+   "pos": "73:1",
+   "sfx": "none",
+   "shot": "A6-W1-stack"
+  },
+  {
+   "t": 140.489,
+   "kind": "slap",
+   "label": "ticket 演出",
+   "pos": "73:1",
+   "sfx": "slap",
+   "pan": -0.39375,
+   "note": 0,
+   "shot": "A6-W1-stack",
+   "id": "A6-W1-stack:2"
+  },
+  {
+   "t": 140.489,
+   "kind": "slam",
+   "label": "每一场演出，",
+   "pos": "73:1",
+   "pan": -0.259375,
+   "size": 128,
+   "shot": "A6-W1-type",
+   "id": "A6-W1-type:14"
+  },
+  {
+   "t": 140.73288,
+   "kind": "pop",
+   "label": "plus",
+   "pos": "73:1.5",
+   "sfx": "none",
+   "gain": -6,
+   "pan": -0.153125,
+   "note": 0,
+   "shot": "A6-W1-stack",
+   "id": "A6-W1-stack:12"
+  },
+  {
+   "t": 140.97675,
+   "kind": "slap",
+   "label": "card 散场",
+   "pos": "73:2",
+   "sfx": "slap",
+   "pan": -0.3125,
+   "note": 3,
+   "shot": "A6-W1-stack",
+   "id": "A6-W1-stack:3"
+  },
+  {
+   "t": 140.97678,
+   "kind": "pop",
+   "label": "squiggle",
+   "pos": "73:2",
+   "sfx": "none",
+   "gain": -6,
+   "pan": -0.08125,
+   "note": 1,
+   "shot": "A6-W1-stack",
+   "id": "A6-W1-stack:13"
+  },
+  {
+   "t": 141.4645,
+   "kind": "pop",
+   "label": "star",
+   "pos": "73:3",
+   "gain": -10,
+   "pan": -0.12499999999999999,
+   "note": 0,
+   "shot": "A6-W1-stack",
+   "id": "A6-W1-stack:10"
+  },
+  {
+   "t": 141.95225,
+   "kind": "slap",
+   "label": "tape",
+   "pos": "73:4",
+   "sfx": "tape",
+   "gain": -1,
+   "pan": -0.378125,
+   "shot": "A6-W1-stack",
+   "id": "A6-W1-stack:6"
+  },
+  {
+   "t": 142.44,
+   "kind": "slap",
+   "label": "phone: the product on top",
+   "pos": "74:1",
+   "sfx": "slap",
+   "pan": -0.196875,
+   "note": 7,
+   "shot": "A6-W1-stack",
+   "id": "A6-W1-stack:5"
+  },
+  {
+   "t": 142.44,
+   "kind": "slam",
+   "label": "都可以多一层。",
+   "pos": "74:1",
+   "pan": -0.2625,
+   "size": 180,
+   "shot": "A6-W1-type",
+   "id": "A6-W1-type:15"
+  },
+  {
+   "t": 142.92775,
+   "kind": "slap",
+   "label": "tape on the phone",
+   "pos": "74:2",
+   "sfx": "tape",
+   "pan": -0.24375,
+   "shot": "A6-W1-stack",
+   "id": "A6-W1-stack:8"
+  },
+  {
+   "t": 143.4155,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "74:3",
+   "gain": -10,
+   "pan": 0.275,
+   "note": 0,
+   "shot": "A6-W1-stack",
+   "id": "A6-W1-stack:11"
+  },
+  {
+   "t": 143.90325,
+   "kind": "draw",
+   "label": "arrow 散场 -> phone",
+   "pos": "74:4",
+   "sfx": "squeak",
+   "shot": "A6-W1-stack",
+   "id": "A6-W1-stack:9",
+   "dur": 0.26829000000000003
+  },
+  {
+   "t": 144.391,
+   "kind": "cut",
+   "label": "A6-W2-vision",
+   "pos": "75:1",
+   "sfx": "none",
+   "shot": "A6-W2-vision"
+  },
+  {
+   "t": 144.391,
+   "kind": "enter-slide",
+   "label": "A6-W2-vision",
+   "pos": "75:1",
+   "sfx": "whoosh",
+   "shot": "A6-W2-vision"
+  },
+  {
+   "t": 144.391,
+   "kind": "enter-slide",
+   "label": "A6-W2-type",
+   "pos": "75:1",
+   "sfx": "none",
+   "shot": "A6-W2-type"
+  },
+  {
+   "t": 144.391,
+   "kind": "pop",
+   "label": "设想",
+   "pos": "75:1",
+   "pan": -0.21812499999999999,
+   "size": 104,
+   "shot": "A6-W2-type",
+   "id": "A6-W2-type:17"
+  },
+  {
+   "t": 144.391,
+   "kind": "type",
+   "label": "QQ音乐、酷狗",
+   "pos": "75:1",
+   "note": 7,
+   "shot": "A6-W2-type",
+   "id": "A6-W2-type:18",
+   "dur": 0.85365
+  },
+  {
+   "t": 144.87875,
+   "kind": "pop",
+   "label": "note",
+   "pos": "75:2",
+   "sfx": "none",
+   "gain": -6,
+   "pan": -0.05312500000000001,
+   "note": 0,
+   "shot": "A6-W2-vision",
+   "id": "A6-W2-vision:31"
+  },
+  {
+   "t": 145.3665,
+   "kind": "slam",
+   "label": "听完现场，",
+   "pos": "75:3",
+   "pan": -0.259375,
+   "size": 128,
+   "shot": "A6-W2-type",
+   "id": "A6-W2-type:19"
+  },
+  {
+   "t": 145.3665,
+   "kind": "punch",
+   "label": "stack card zooms",
+   "pos": "75:3",
+   "sfx": "thump",
+   "gain": -6
+  },
+  {
+   "t": 145.36655,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "75:3",
+   "sfx": "none",
+   "gain": -6,
+   "pan": 0.015624999999999977,
+   "note": 1,
+   "shot": "A6-W2-vision",
+   "id": "A6-W2-vision:32"
+  },
+  {
+   "t": 146.342,
+   "kind": "slam",
+   "label": "顺手换一面。",
+   "pos": "76:1",
+   "pan": -0.2625,
+   "size": 180,
+   "shot": "A6-W2-type",
+   "id": "A6-W2-type:20"
+  },
+  {
+   "t": 146.342,
+   "kind": "draw",
+   "label": "looping arrow into ⇄",
+   "pos": "76:1",
+   "sfx": "squeak",
+   "shot": "A6-W2-vision",
+   "id": "A6-W2-vision:26",
+   "dur": 0.46341
+  },
+  {
+   "t": 146.82975,
+   "kind": "pop",
+   "label": "⇄",
+   "pos": "76:2",
+   "sfx": "zip",
+   "gain": -3,
+   "pan": 0.20625,
+   "shot": "A6-W2-vision",
+   "id": "A6-W2-vision:27"
+  },
+  {
+   "t": 147.3175,
+   "kind": "pop",
+   "label": "⇄ spins",
+   "pos": "76:3",
+   "sfx": "zip",
+   "gain": -6
+  },
+  {
+   "t": 147.56138,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "76:3.5",
+   "gain": -10,
+   "pan": 0.15624999999999997,
+   "note": 0,
+   "shot": "A6-W2-vision",
+   "id": "A6-W2-vision:28"
+  },
+  {
+   "t": 147.68333,
+   "kind": "pop",
+   "label": "star",
+   "pos": "76:3.75",
+   "sfx": "none",
+   "gain": -10,
+   "pan": 0.26875,
+   "note": 1,
+   "shot": "A6-W2-vision",
+   "id": "A6-W2-vision:29"
+  },
+  {
+   "t": 147.80528,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "76:4",
+   "gain": -10,
+   "pan": 0.2625,
+   "note": 2,
+   "shot": "A6-W2-vision",
+   "id": "A6-W2-vision:30"
+  },
+  {
+   "t": 148.293,
+   "kind": "cut",
+   "label": "A6-W3-cards",
+   "pos": "77:1",
+   "sfx": "none",
+   "shot": "A6-W3-cards"
+  },
+  {
+   "t": 148.293,
+   "kind": "enter-slap",
+   "label": "A6-W3-cards",
+   "pos": "77:1",
+   "sfx": "none",
+   "shot": "A6-W3-cards"
+  },
+  {
+   "t": 148.293,
+   "kind": "enter-slap",
+   "label": "A6-W3-type",
+   "pos": "77:1",
+   "sfx": "none",
+   "shot": "A6-W3-type"
+  },
+  {
+   "t": 148.293,
+   "kind": "slap",
+   "label": "cutout CUT-04c.opaque",
+   "pos": "77:1",
+   "sfx": "slap",
+   "pan": -0.17499999999999996,
+   "note": 0,
+   "shot": "A6-W3-cards",
+   "id": "A6-W3-cards:33"
+  },
+  {
+   "t": 148.293,
+   "kind": "pop",
+   "label": "pillar 隐私",
+   "pos": "77:1",
+   "pan": -0.1775,
+   "size": 180,
+   "shot": "A6-W3-type",
+   "id": "A6-W3-type:35"
+  },
+  {
+   "t": 148.293,
+   "kind": "type",
+   "label": "AI 在本机 · 你决定给谁看",
+   "pos": "77:1",
+   "note": 15,
+   "shot": "A6-W3-type",
+   "id": "A6-W3-type:36",
+   "dur": 0.914625
+  },
+  {
+   "t": 148.781,
+   "kind": "slap",
+   "label": "cutout CUT-11.opaque",
+   "pos": "77:2",
+   "sfx": "slap",
+   "pan": 0,
+   "note": 2,
+   "shot": "A6-W3-cards",
+   "id": "A6-W3-cards:38"
+  },
+  {
+   "t": 148.781,
+   "kind": "pop",
+   "label": "pillar 同意",
+   "pos": "77:2",
+   "pan": -0.002499999999999991,
+   "size": 180,
+   "shot": "A6-W3-type",
+   "id": "A6-W3-type:40"
+  },
+  {
+   "t": 148.781,
+   "kind": "type",
+   "label": "双方同意，才交换",
+   "pos": "77:2",
+   "sfx": "none",
+   "note": 8,
+   "shot": "A6-W3-type",
+   "id": "A6-W3-type:41",
+   "dur": 0.4878
+  },
+  {
+   "t": 149.269,
+   "kind": "slap",
+   "label": "cutout CUT-12.opaque",
+   "pos": "77:3",
+   "sfx": "slap",
+   "pan": 0.17499999999999996,
+   "note": 4,
+   "shot": "A6-W3-cards",
+   "id": "A6-W3-cards:43"
+  },
+  {
+   "t": 149.269,
+   "kind": "pop",
+   "label": "pillar 好玩",
+   "pos": "77:3",
+   "pan": 0.1725,
+   "size": 180,
+   "shot": "A6-W3-type",
+   "id": "A6-W3-type:45"
+  },
+  {
+   "t": 149.269,
+   "kind": "type",
+   "label": "世界杯 · 默契局 · 创作角",
+   "pos": "77:3",
+   "sfx": "none",
+   "note": 15,
+   "shot": "A6-W3-type",
+   "id": "A6-W3-type:46",
+   "dur": 0.914625
+  },
+  {
+   "t": 149.757,
+   "kind": "pop",
+   "label": "lock",
+   "pos": "77:4",
+   "gain": -8,
+   "pan": -0.09125000000000001,
+   "note": 0,
+   "shot": "A6-W3-cards",
+   "id": "A6-W3-cards:48"
+  },
+  {
+   "t": 149.87895,
+   "kind": "pop",
+   "label": "check",
+   "pos": "77:4.25",
+   "sfx": "none",
+   "gain": -8,
+   "pan": 0.09437500000000003,
+   "note": 1,
+   "shot": "A6-W3-cards",
+   "id": "A6-W3-cards:49"
+  },
+  {
+   "t": 150.0009,
+   "kind": "pop",
+   "label": "heart",
+   "pos": "77:4.5",
+   "gain": -8,
+   "pan": 0.25937499999999997,
+   "note": 2,
+   "shot": "A6-W3-cards",
+   "id": "A6-W3-cards:50"
+  },
+  {
+   "t": 150.245,
+   "kind": "draw",
+   "label": "underline T126s",
+   "pos": "78:1",
+   "sfx": "squeak",
+   "shot": "A6-W3-type",
+   "id": "A6-W3-type:37",
+   "dur": 0.21951
+  },
+  {
+   "t": 150.48888,
+   "kind": "draw",
+   "label": "underline T127s",
+   "pos": "78:1.5",
+   "sfx": "none",
+   "shot": "A6-W3-type",
+   "id": "A6-W3-type:42",
+   "dur": 0.21951
+  },
+  {
+   "t": 150.73275,
+   "kind": "draw",
+   "label": "underline T128s",
+   "pos": "78:2",
+   "sfx": "none",
+   "shot": "A6-W3-type",
+   "id": "A6-W3-type:47",
+   "dur": 0.21951
+  },
+  {
+   "t": 151.2205,
+   "kind": "pop",
+   "label": "all three wiggle",
+   "pos": "78:3",
+   "sfx": "boop",
+   "gain": -8
+  },
+  {
+   "t": 151.2205,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "78:3",
+   "gain": -12,
+   "pan": -0.05312500000000001,
+   "note": 0,
+   "shot": "A6-W3-cards",
+   "id": "A6-W3-cards:51"
+  },
+  {
+   "t": 151.34245,
+   "kind": "pop",
+   "label": "star",
+   "pos": "78:3.25",
+   "sfx": "none",
+   "gain": -12,
+   "pan": 0.06875000000000002,
+   "note": 1,
+   "shot": "A6-W3-cards",
+   "id": "A6-W3-cards:52"
+  },
+  {
+   "t": 151.4644,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "78:3.5",
+   "gain": -12,
+   "pan": 0.27812499999999996,
+   "note": 2,
+   "shot": "A6-W3-cards",
+   "id": "A6-W3-cards:53"
+  },
+  {
+   "t": 151.95212,
+   "kind": "wipe",
+   "label": "A6-X-W3-W4",
+   "pos": "78:4.5",
+   "shot": "A6-X-W3-W4"
+  },
+  {
+   "t": 152.196,
+   "kind": "cut",
+   "label": "A6-W4-stay",
+   "pos": "79:1",
+   "sfx": "none",
+   "shot": "A6-W4-stay"
+  },
+  {
+   "t": 152.196,
+   "kind": "slam",
+   "label": "曲终，",
+   "pos": "79:1",
+   "pan": -0.259375,
+   "size": 240,
+   "shot": "A6-W4-type",
+   "id": "A6-W4-type:54"
+  },
+  {
+   "t": 152.196,
+   "kind": "pop",
+   "label": "you",
+   "pos": "79:1",
+   "sfx": "none",
+   "pan": -0.021874999999999988,
+   "shot": "A6-W4-stay",
+   "id": "A6-W4-stay:61"
+  },
+  {
+   "t": 152.43988,
+   "kind": "slide",
+   "label": "comes back 北屿",
+   "pos": "79:1.5",
+   "sfx": "swish",
+   "gain": -6,
+   "pan": 0.043749999999999976,
+   "shot": "A6-W4-stay",
+   "id": "A6-W4-stay:63"
+  },
+  {
+   "t": 152.68375,
+   "kind": "slide",
+   "label": "comes back 小满",
+   "pos": "79:2",
+   "sfx": "swish",
+   "gain": -6,
+   "pan": -0.08749999999999998,
+   "shot": "A6-W4-stay",
+   "id": "A6-W4-stay:59"
+  },
+  {
+   "t": 152.92763,
+   "kind": "slide",
+   "label": "comes back person",
+   "pos": "79:2.5",
+   "sfx": "swish",
+   "gain": -6,
+   "pan": 0.10937499999999997,
+   "shot": "A6-W4-stay",
+   "id": "A6-W4-stay:65"
+  },
+  {
+   "t": 153.1715,
+   "kind": "slam",
+   "label": "人不散。",
+   "pos": "79:3",
+   "pan": 0.265625,
+   "size": 240,
+   "shot": "A6-W4-type",
+   "id": "A6-W4-type:55"
+  },
+  {
+   "t": 153.1715,
+   "kind": "slide",
+   "label": "comes back 阿遥",
+   "pos": "79:3",
+   "sfx": "swish",
+   "gain": -6,
+   "pan": -0.153125,
+   "shot": "A6-W4-stay",
+   "id": "A6-W4-stay:57"
+  },
+  {
+   "t": 153.41538,
+   "kind": "pop",
+   "label": "star",
+   "pos": "79:3.5",
+   "gain": -12,
+   "pan": 0.17499999999999996,
+   "note": 0,
+   "shot": "A6-W4-stay",
+   "id": "A6-W4-stay:70"
+  },
+  {
+   "t": 153.53733,
+   "kind": "pop",
+   "label": "note",
+   "pos": "79:3.75",
+   "sfx": "none",
+   "gain": -12,
+   "pan": -0.20625,
+   "note": 1,
+   "shot": "A6-W4-stay",
+   "id": "A6-W4-stay:71"
+  },
+  {
+   "t": 153.65928,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "79:4",
+   "gain": -12,
+   "pan": 0.23124999999999996,
+   "note": 2,
+   "shot": "A6-W4-stay",
+   "id": "A6-W4-stay:72"
+  },
+  {
+   "t": 154.147,
+   "kind": "bob",
+   "label": "avatars hop",
+   "pos": "80:1",
+   "sfx": "none"
+  },
+  {
+   "t": 154.63475,
+   "kind": "bob",
+   "label": "avatars hop",
+   "pos": "80:2",
+   "sfx": "none"
+  },
+  {
+   "t": 155.1225,
+   "kind": "pop",
+   "label": "heart",
+   "pos": "80:3",
+   "sfx": "boop",
+   "gain": -4,
+   "pan": -0.12031249999999999,
+   "note": 0,
+   "shot": "A6-W4-stay",
+   "id": "A6-W4-stay:66"
+  },
+  {
+   "t": 155.24444,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "80:3.25",
+   "sfx": "none",
+   "gain": -6,
+   "pan": -0.054687499999999986,
+   "note": 0,
+   "shot": "A6-W4-stay",
+   "id": "A6-W4-stay:68"
+  },
+  {
+   "t": 155.3664,
+   "kind": "pop",
+   "label": "heart",
+   "pos": "80:3.5",
+   "sfx": "boop",
+   "gain": -4,
+   "pan": 0.010937499999999977,
+   "note": 1,
+   "shot": "A6-W4-stay",
+   "id": "A6-W4-stay:67"
+  },
+  {
+   "t": 155.48834,
+   "kind": "pop",
+   "label": "heart",
+   "pos": "80:3.75",
+   "sfx": "none",
+   "gain": -6,
+   "pan": 0.07656249999999998,
+   "note": 1,
+   "shot": "A6-W4-stay",
+   "id": "A6-W4-stay:69"
+  },
+  {
+   "t": 155.61025,
+   "kind": "bob",
+   "label": "avatars hop",
+   "pos": "80:4",
+   "sfx": "none"
+  },
+  {
+   "t": 156.098,
+   "kind": "cut",
+   "label": "A6-W5-room",
+   "pos": "81:1",
+   "sfx": "none",
+   "shot": "A6-W5-room"
+  },
+  {
+   "t": 156.098,
+   "kind": "slap",
+   "label": "die card 1",
+   "pos": "81:1",
+   "sfx": "slap",
+   "pan": -0.26875,
+   "shot": "A6-W5-type",
+   "id": "A6-W5-type:80"
+  },
+  {
+   "t": 156.098,
+   "kind": "slam",
+   "label": "打开链接，",
+   "pos": "81:1",
+   "pan": -0.284375,
+   "size": 128,
+   "shot": "A6-W5-type",
+   "id": "A6-W5-type:81"
+  },
+  {
+   "t": 157.074,
+   "kind": "slam",
+   "label": "一人 就能走完全程。",
+   "pos": "81:3",
+   "pan": -0.28375,
+   "size": 128,
+   "shot": "A6-W5-type",
+   "id": "A6-W5-type:83"
+  },
+  {
+   "t": 157.318,
+   "kind": "pop",
+   "label": "star",
+   "pos": "81:3.5",
+   "gain": -12,
+   "pan": -0.0375,
+   "note": 0,
+   "shot": "A6-W5-type",
+   "id": "A6-W5-type:84"
+  },
+  {
+   "t": 158.05,
+   "kind": "draw",
+   "label": "circle 数据只存在这个浏览器",
+   "pos": "82:1",
+   "shot": "A6-W5-room",
+   "id": "A6-W5-room:76",
+   "dur": 0.34146
+  },
+  {
+   "t": 158.05,
+   "kind": "slap",
+   "label": "footer, magnified",
+   "pos": "82:1",
+   "sfx": "slap",
+   "gain": -2,
+   "pan": 0.17031249999999998,
+   "shot": "A6-W5-room",
+   "id": "A6-W5-room:77"
+  },
+  {
+   "t": 158.53775,
+   "kind": "draw",
+   "label": "zoom line left",
+   "pos": "82:2",
+   "sfx": "pencil",
+   "gain": -3,
+   "shot": "A6-W5-room",
+   "id": "A6-W5-room:78",
+   "dur": 0.21951
+  },
+  {
+   "t": 158.53775,
+   "kind": "draw",
+   "label": "zoom line right",
+   "pos": "82:2",
+   "sfx": "none",
+   "gain": -3,
+   "shot": "A6-W5-room",
+   "id": "A6-W5-room:79",
+   "dur": 0.21951
+  },
+  {
+   "t": 159.75713,
+   "kind": "wipe",
+   "label": "A6-X-W5-C1",
+   "pos": "82:4.5",
+   "shot": "A6-X-W5-C1"
+  },
+  {
+   "t": 160.001,
+   "kind": "cut",
+   "label": "A7-C1-end",
+   "pos": "83:1",
+   "sfx": "none",
+   "shot": "A7-C1-end"
+  },
+  {
+   "t": 160.001,
+   "kind": "slam",
+   "label": "同一刻，",
+   "pos": "83:1",
+   "pan": -0.2625,
+   "size": 240,
+   "shot": "A7-C1-type",
+   "id": "A7-C1-type:86"
+  },
+  {
+   "t": 160.73263,
+   "kind": "slam",
+   "label": "另一面。",
+   "pos": "83:2.5",
+   "pan": -0.2625,
+   "size": 240,
+   "shot": "A7-C1-type",
+   "id": "A7-C1-type:87"
+  },
+  {
+   "t": 160.73263,
+   "kind": "swipe",
+   "label": "另一面。",
+   "pos": "83:2.5",
+   "shot": "A7-C1-type",
+   "id": "A7-C1-type:87",
+   "dur": 0.4878
+  },
+  {
+   "t": 160.73263,
+   "kind": "pop",
+   "label": "⇄ holds the QR spot",
+   "pos": "83:2.5",
+   "sfx": "none",
+   "pan": 0.16874999999999998,
+   "shot": "A7-C1-end",
+   "id": "A7-C1-end:90"
+  },
+  {
+   "t": 161.46425,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "83:4",
+   "sfx": "none",
+   "gain": -6,
+   "pan": 0.22812500000000002,
+   "note": 0,
+   "shot": "A7-C1-end",
+   "id": "A7-C1-end:91"
+  },
+  {
+   "t": 161.70815,
+   "kind": "pop",
+   "label": "star",
+   "pos": "83:4.5",
+   "sfx": "none",
+   "gain": -6,
+   "pan": 0.11562500000000002,
+   "note": 1,
+   "shot": "A7-C1-end",
+   "id": "A7-C1-end:92"
+  },
+  {
+   "t": 161.952,
+   "kind": "pop",
+   "label": "logo",
+   "pos": "84:1",
+   "pan": -0.15875,
+   "size": 112,
+   "shot": "A7-C1-type",
+   "id": "A7-C1-type:88"
+  },
+  {
+   "t": 162.68363,
+   "kind": "pop",
+   "label": "link",
+   "pos": "84:2.5",
+   "pan": 0.26625,
+   "size": 56,
+   "shot": "A7-C1-type",
+   "id": "A7-C1-type:89"
+  },
+  {
+   "t": 162.68363,
+   "kind": "type",
+   "label": "link",
+   "pos": "84:2.5",
+   "note": 34,
+   "shot": "A7-C1-type",
+   "dur": 1.036575
+  },
+  {
+   "t": 162.9275,
+   "kind": "pop",
+   "label": "star",
+   "pos": "84:3",
+   "gain": -12,
+   "pan": 0.034374999999999975,
+   "note": 0,
+   "shot": "A7-C1-end",
+   "id": "A7-C1-end:104"
+  },
+  {
+   "t": 163.1714,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "84:3.5",
+   "sfx": "none",
+   "gain": -12,
+   "pan": 0.05312499999999998,
+   "note": 1,
+   "shot": "A7-C1-end",
+   "id": "A7-C1-end:105"
+  },
+  {
+   "t": 163.4153,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "84:4",
+   "gain": -12,
+   "pan": -0.017187499999999988,
+   "note": 2,
+   "shot": "A7-C1-end",
+   "id": "A7-C1-end:106"
+  },
+  {
+   "t": 163.903,
+   "kind": "pop",
+   "label": "QR",
+   "pos": "85:1",
+   "sfx": "pop",
+   "pan": 0.16874999999999998,
+   "shot": "A7-C1-end",
+   "id": "A7-C1-end:93"
+  },
+  {
+   "t": 163.903,
+   "kind": "type",
+   "label": "浏览器直接打开 · 无需安装",
+   "pos": "85:1",
+   "note": 14,
+   "shot": "A7-C1-type",
+   "id": "A7-C1-type:95",
+   "dur": 0.85365
+  },
+  {
+   "t": 164.14687,
+   "kind": "slap",
+   "label": "A7-C1-end:94",
+   "pos": "85:1.5",
+   "sfx": "tape",
+   "gain": -4,
+   "pan": -0.22874999999999998,
+   "shot": "A7-C1-end",
+   "id": "A7-C1-end:94"
+  },
+  {
+   "t": 164.8785,
+   "kind": "slide",
+   "label": "avatar peeks",
+   "pos": "85:3",
+   "sfx": "pop",
+   "gain": -8,
+   "pan": -0.2453125,
+   "note": 0,
+   "shot": "A7-C1-end",
+   "id": "A7-C1-end:98"
+  },
+  {
+   "t": 165.12238,
+   "kind": "slide",
+   "label": "avatar peeks",
+   "pos": "85:3.5",
+   "sfx": "none",
+   "gain": -8,
+   "pan": -0.19218749999999998,
+   "note": 2,
+   "shot": "A7-C1-end",
+   "id": "A7-C1-end:99"
+  },
+  {
+   "t": 165.36625,
+   "kind": "slide",
+   "label": "avatar peeks",
+   "pos": "85:4",
+   "sfx": "pop",
+   "gain": -8,
+   "pan": -0.13906249999999998,
+   "note": 4,
+   "shot": "A7-C1-end",
+   "id": "A7-C1-end:100"
+  },
+  {
+   "t": 165.61012,
+   "kind": "slide",
+   "label": "avatar peeks",
+   "pos": "85:4.5",
+   "sfx": "none",
+   "gain": -8,
+   "pan": -0.08593750000000001,
+   "note": 6,
+   "shot": "A7-C1-end",
+   "id": "A7-C1-end:101"
+  },
+  {
+   "t": 165.854,
+   "kind": "type",
+   "label": "示例角色与照片为虚构（照片由 A",
+   "pos": "86:1",
+   "sfx": "none",
+   "note": 41,
+   "shot": "A7-C1-type",
+   "id": "A7-C1-type:96",
+   "dur": 1.2499875
+  },
+  {
+   "t": 165.854,
+   "kind": "slide",
+   "label": "avatar peeks",
+   "pos": "86:1",
+   "sfx": "pop",
+   "gain": -8,
+   "pan": -0.0328125,
+   "note": 8,
+   "shot": "A7-C1-end",
+   "id": "A7-C1-end:102"
+  },
+  {
+   "t": 166.342,
+   "kind": "pop",
+   "label": "twinkle",
+   "pos": "86:2",
+   "sfx": "none",
+   "pan": 0.046875,
+   "shot": "A7-C1-end",
+   "id": "A7-C1-end:107"
+  },
+  {
+   "t": 166.83,
+   "kind": "bob",
+   "label": "avatars hop",
+   "pos": "86:3",
+   "sfx": "none"
+  },
+  {
+   "t": 166.83,
+   "kind": "pop",
+   "label": "twinkle",
+   "pos": "86:3",
+   "sfx": "none",
+   "pan": 0.27968750000000003,
+   "shot": "A7-C1-end",
+   "id": "A7-C1-end:108"
+  },
+  {
+   "t": 167.318,
+   "kind": "pop",
+   "label": "twinkle",
+   "pos": "86:4",
+   "sfx": "none",
+   "pan": 0.02656250000000002,
+   "shot": "A7-C1-end",
+   "id": "A7-C1-end:109"
+  },
+  {
+   "t": 167.806,
+   "kind": "type",
+   "label": "配乐：Wax Lyricist《",
+   "pos": "87:1",
+   "sfx": "none",
+   "note": 42,
+   "shot": "A7-C1-type",
+   "id": "A7-C1-type:97",
+   "dur": 1.280475
+  },
+  {
+   "t": 167.806,
+   "kind": "bob",
+   "label": "avatars hop",
+   "pos": "87:1",
+   "sfx": "none"
+  },
+  {
+   "t": 168.7815,
+   "kind": "bob",
+   "label": "avatars hop",
+   "pos": "87:3",
+   "sfx": "none"
+  },
+  {
+   "t": 169.757,
+   "kind": "bob",
+   "label": "avatars hop",
+   "pos": "88:1",
+   "sfx": "none"
+  },
+  {
+   "t": 169.757,
+   "kind": "pop",
+   "label": "heart",
+   "pos": "88:1",
+   "sfx": "boop",
+   "gain": -6,
+   "pan": 0.007812500000000023,
+   "note": 0,
+   "shot": "A7-C1-end",
+   "id": "A7-C1-end:103"
+  },
+  {
+   "t": 170.7325,
+   "kind": "bob",
+   "label": "avatars hop",
+   "pos": "88:3",
+   "sfx": "none"
+  },
+  {
+   "t": 171.708,
+   "kind": "bob",
+   "label": "avatars hop",
+   "pos": "89:1",
+   "sfx": "none"
+  },
+  {
+   "t": 171.708,
+   "kind": "pop",
+   "label": "logo wiggle",
+   "pos": "89:1",
+   "sfx": "none"
+  },
+  {
+   "t": 172.6835,
+   "kind": "bob",
+   "label": "avatars hop",
+   "pos": "89:3",
+   "sfx": "none"
+  },
+  {
+   "t": 173.659,
+   "kind": "bob",
+   "label": "avatars hop",
+   "pos": "89:5",
+   "sfx": "none"
+  },
+  {
+   "t": 173.659,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "89:5",
+   "sfx": "none",
+   "gain": -6,
+   "pan": 0.275,
+   "note": 0,
+   "shot": "A7-C1-end",
+   "id": "A7-C1-end:110"
+  },
+  {
+   "t": 173.9029,
+   "kind": "pop",
+   "label": "star",
+   "pos": "89:5.5",
+   "sfx": "none",
+   "gain": -6,
+   "pan": 0.01875,
+   "note": 1,
+   "shot": "A7-C1-end",
+   "id": "A7-C1-end:111"
+  },
+  {
+   "t": 174.1468,
+   "kind": "bob",
+   "label": "avatars hop",
+   "pos": "89:6",
+   "sfx": "none"
+  }
+ ],
+ "texts": [
+  {
+   "id": "A6-W1-stack:2:t",
+   "shot": "A6-W1-stack",
+   "t0": 140.489,
+   "t1": 144.391,
+   "text": "演出",
+   "role": "display",
+   "kind": "label",
+   "size": 96
+  },
+  {
+   "id": "A6-W1-stack:4",
+   "shot": "A6-W1-stack",
+   "t0": 140.9768,
+   "t1": 144.391,
+   "text": "散场",
+   "role": "display",
+   "kind": "label",
+   "size": 124,
+   "recipe": "ink-pink",
+   "script": null,
+   "inFootage": false
+  },
+  {
+   "id": "A6-W1-type:14",
+   "shot": "A6-W1-type",
+   "t0": 140.489,
+   "t1": 143.5155,
+   "text": "每一场演出，",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-pink",
+   "script": "T120",
+   "inFootage": false
+  },
+  {
+   "id": "A6-W1-type:15",
+   "shot": "A6-W1-type",
+   "t0": 142.44,
+   "t1": 144.391,
+   "text": "都可以多一层。",
+   "role": "display",
+   "kind": "title",
+   "size": 180,
+   "recipe": "ink-pink",
+   "script": "T121",
+   "inFootage": false
+  },
+  {
+   "id": "A6-W2-type:17",
+   "shot": "A6-W2-type",
+   "t0": 144.391,
+   "t1": 148.293,
+   "text": "设想",
+   "role": "marker",
+   "kind": "label",
+   "size": 104,
+   "recipe": "st-yellow",
+   "script": "T122",
+   "inFootage": false
+  },
+  {
+   "id": "A6-W2-type:18",
+   "shot": "A6-W2-type",
+   "t0": 144.391,
+   "t1": 146.442,
+   "text": "QQ音乐、酷狗",
+   "role": "marker",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink",
+   "script": "T123",
+   "inFootage": false
+  },
+  {
+   "id": "A6-W2-type:19",
+   "shot": "A6-W2-type",
+   "t0": 145.3665,
+   "t1": 148.293,
+   "text": "听完现场，",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-pink",
+   "script": "T124",
+   "inFootage": false
+  },
+  {
+   "id": "A6-W2-type:20",
+   "shot": "A6-W2-type",
+   "t0": 146.342,
+   "t1": 148.293,
+   "text": "顺手换一面。",
+   "role": "display",
+   "kind": "title",
+   "size": 180,
+   "recipe": "ink-pink",
+   "script": "T125",
+   "inFootage": false
+  },
+  {
+   "id": "A6-W2-vision:22:t",
+   "shot": "A6-W2-vision",
+   "t0": 144.391,
+   "t1": 148.293,
+   "text": "演出",
+   "role": "display",
+   "kind": "label",
+   "size": 96
+  },
+  {
+   "id": "A6-W2-vision:24",
+   "shot": "A6-W2-vision",
+   "t0": 144.391,
+   "t1": 148.293,
+   "text": "散场",
+   "role": "display",
+   "kind": "label",
+   "size": 124,
+   "recipe": "ink-pink",
+   "script": null,
+   "inFootage": false
+  },
+  {
+   "id": "A6-W3-type:35",
+   "shot": "A6-W3-type",
+   "t0": 148.293,
+   "t1": 152.196,
+   "text": "隐私",
+   "role": "display",
+   "kind": "label",
+   "size": 180,
+   "recipe": "pillar-mint",
+   "script": "T126"
+  },
+  {
+   "id": "A6-W3-type:36",
+   "shot": "A6-W3-type",
+   "t0": 148.293,
+   "t1": 152.196,
+   "text": "AI 在本机 · 你决定给谁看",
+   "role": "marker",
+   "kind": "label",
+   "size": 56,
+   "recipe": "ink",
+   "script": "T126s",
+   "inFootage": false
+  },
+  {
+   "id": "A6-W3-type:40",
+   "shot": "A6-W3-type",
+   "t0": 148.781,
+   "t1": 152.196,
+   "text": "同意",
+   "role": "display",
+   "kind": "label",
+   "size": 180,
+   "recipe": "pillar-pink",
+   "script": "T127"
+  },
+  {
+   "id": "A6-W3-type:41",
+   "shot": "A6-W3-type",
+   "t0": 148.781,
+   "t1": 152.196,
+   "text": "双方同意，才交换",
+   "role": "marker",
+   "kind": "label",
+   "size": 56,
+   "recipe": "ink",
+   "script": "T127s",
+   "inFootage": false
+  },
+  {
+   "id": "A6-W3-type:45",
+   "shot": "A6-W3-type",
+   "t0": 149.269,
+   "t1": 152.196,
+   "text": "好玩",
+   "role": "display",
+   "kind": "label",
+   "size": 180,
+   "recipe": "pillar-yellow",
+   "script": "T128"
+  },
+  {
+   "id": "A6-W3-type:46",
+   "shot": "A6-W3-type",
+   "t0": 149.269,
+   "t1": 152.196,
+   "text": "世界杯 · 默契局 · 创作角",
+   "role": "marker",
+   "kind": "label",
+   "size": 56,
+   "recipe": "ink",
+   "script": "T128s",
+   "inFootage": false
+  },
+  {
+   "id": "A6-W4-type:54",
+   "shot": "A6-W4-type",
+   "t0": 152.196,
+   "t1": 156.098,
+   "text": "曲终，",
+   "role": "display",
+   "kind": "title",
+   "size": 240,
+   "recipe": "ink-pink",
+   "script": "T129",
+   "inFootage": false
+  },
+  {
+   "id": "A6-W4-type:55",
+   "shot": "A6-W4-type",
+   "t0": 153.1715,
+   "t1": 156.098,
+   "text": "人不散。",
+   "role": "display",
+   "kind": "title",
+   "size": 240,
+   "recipe": "ink-pink",
+   "script": "T130",
+   "inFootage": false
+  },
+  {
+   "id": "A6-W5-type:81",
+   "shot": "A6-W5-type",
+   "t0": 156.098,
+   "t1": 159.1255,
+   "text": "打开链接，",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-yellow",
+   "script": "T131",
+   "inFootage": false
+  },
+  {
+   "id": "A6-W5-type:83",
+   "shot": "A6-W5-type",
+   "t0": 157.074,
+   "t1": 160.001,
+   "text": "一人\n就能走完全程。",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-yellow",
+   "script": "T132",
+   "inFootage": false
+  },
+  {
+   "id": "A6-W5-type:85",
+   "shot": "A6-W5-type",
+   "t0": 156.098,
+   "t1": 160.001,
+   "text": "照片为 AI 生成的示例图",
+   "role": "hand",
+   "kind": "fine",
+   "size": 30,
+   "recipe": "fine",
+   "script": null,
+   "inFootage": false
+  },
+  {
+   "id": "A7-C1-type:86",
+   "shot": "A7-C1-type",
+   "t0": 160.001,
+   "t1": 174.659,
+   "text": "同一刻，",
+   "role": "display",
+   "kind": "title",
+   "size": 240,
+   "recipe": "ink-pink",
+   "script": "T140",
+   "inFootage": false
+  },
+  {
+   "id": "A7-C1-type:87",
+   "shot": "A7-C1-type",
+   "t0": 160.7326,
+   "t1": 174.659,
+   "text": "另一面。",
+   "role": "display",
+   "kind": "title",
+   "size": 240,
+   "recipe": "hl-mint",
+   "script": "T141",
+   "inFootage": false
+  },
+  {
+   "id": "A7-C1-type:88",
+   "shot": "A7-C1-type",
+   "t0": 161.952,
+   "t1": 174.659,
+   "text": "MUSIC SPACE",
+   "role": "logo",
+   "kind": "label",
+   "size": 112,
+   "recipe": "logo",
+   "script": "T142"
+  },
+  {
+   "id": "A7-C1-type:89",
+   "shot": "A7-C1-type",
+   "t0": 162.6836,
+   "t1": 174.659,
+   "text": "musicmapteam.github.io/musicSpace/",
+   "role": "digits",
+   "kind": "label",
+   "size": 56,
+   "recipe": "link-pill",
+   "script": "T143"
+  },
+  {
+   "id": "A7-C1-type:95",
+   "shot": "A7-C1-type",
+   "t0": 163.903,
+   "t1": 174.659,
+   "text": "浏览器直接打开 · 无需安装",
+   "role": "marker",
+   "kind": "label",
+   "size": 56,
+   "recipe": "ink",
+   "script": "T144",
+   "inFootage": false
+  },
+  {
+   "id": "A7-C1-type:96",
+   "shot": "A7-C1-type",
+   "t0": 165.854,
+   "t1": 174.659,
+   "text": "示例角色与照片为虚构（照片由 AI 生成）·\n角色自动回复 · 数据只存在你的浏览器",
+   "role": "hand",
+   "kind": "fine",
+   "size": 32,
+   "recipe": "fine",
+   "script": "T145",
+   "inFootage": false
+  },
+  {
+   "id": "A7-C1-type:97",
+   "shot": "A7-C1-type",
+   "t0": 167.806,
+   "t1": 174.659,
+   "text": "配乐：Wax Lyricist《Flipping In》（CC0 1.0 公共领域）",
+   "role": "hand",
+   "kind": "fine",
+   "size": 32,
+   "recipe": "fine",
+   "script": "T146",
+   "inFootage": false
+  }
+ ],
+ "marks": {
+  "qr": 165.854
+ },
+ "warnings": [],
+ "assets": {
+  "CUT-13": {
+   "name": "CUT-13",
+   "path": "/tmp/space-video-doodle/prod/capture/P2P3/stills/CUT-13_phone-landing.png",
+   "kind": "capture",
+   "candidates": 1
+  },
+  "CUT-04c.opaque": {
+   "name": "CUT-04c.opaque",
+   "path": "/tmp/space-video-doodle/prod/capture/P2P3/cut/CUT-04c_viewpoint-block.opaque.png",
+   "kind": "capture",
+   "candidates": 1
+  },
+  "avatar:you": {
+   "name": "avatar:you",
+   "path": "/tmp/space-video-doodle/script/probe/avatars/look-4-shizhen-front.svg",
+   "kind": "alias"
+  },
+  "CUT-11.opaque": {
+   "name": "CUT-11.opaque",
+   "path": "/tmp/space-video-doodle/prod/capture/P2P3/cut/CUT-11_consent-tick-send.opaque.png",
+   "kind": "capture",
+   "candidates": 1
+  },
+  "CUT-12.opaque": {
+   "name": "CUT-12.opaque",
+   "path": "/tmp/space-video-doodle/prod/capture/P2P3/cut/CUT-12_worldcup-vs-card.opaque.png",
+   "kind": "capture",
+   "candidates": 1
+  },
+  "avatar:yao": {
+   "name": "avatar:yao",
+   "path": "/tmp/space-video-doodle/script/probe/avatars/cast-yao.svg",
+   "kind": "alias"
+  },
+  "avatar:man": {
+   "name": "avatar:man",
+   "path": "/tmp/space-video-doodle/script/probe/avatars/cast-man.svg",
+   "kind": "alias"
+  },
+  "avatar:maichong": {
+   "name": "avatar:maichong",
+   "path": "/tmp/space-video-doodle/script/probe/avatars/look-5-maichong-front.svg",
+   "kind": "alias"
+  },
+  "qr": {
+   "name": "qr",
+   "path": "/tmp/space-video-doodle/prod/dm/assets/qr.svg",
+   "kind": "alias"
+  },
+  "avatar:bei": {
+   "name": "avatar:bei",
+   "path": "/tmp/space-video-doodle/script/probe/avatars/cast-bei.svg",
+   "kind": "alias"
+  }
+ },
+ "clips": {
+  "P-01": {
+   "name": "P-01",
+   "path": "/tmp/space-video-doodle/prod/capture/P1/clips/P-01.mp4",
+   "kind": "capture",
+   "candidates": 1,
+   "fps": 60,
+   "frames": 513,
+   "w": 1080,
+   "h": 2340,
+   "duration": 8.55,
+   "key": "f9270839a8"
+  },
+  "D-02-room-hero": {
+   "name": "D-02-room-hero",
+   "path": "/tmp/space-video-doodle/prod/capture/desktop/master/D-02-room-hero.mp4",
+   "kind": "capture",
+   "candidates": 2,
+   "fps": 60,
+   "frames": 1560,
+   "w": 3840,
+   "h": 2160,
+   "duration": 26,
+   "key": "87374ecab8"
+  }
+ },
+ "script": [
+  "T120",
+  "T121",
+  "T122",
+  "T123",
+  "T124",
+  "T125",
+  "T126",
+  "T126s",
+  "T127",
+  "T127s",
+  "T128",
+  "T128s",
+  "T129",
+  "T130",
+  "T131",
+  "T132",
+  "T140",
+  "T141",
+  "T142",
+  "T143",
+  "T144",
+  "T145",
+  "T146"
+ ],
+ "scenes": [
+  "act-A6-A7"
+ ]
+}

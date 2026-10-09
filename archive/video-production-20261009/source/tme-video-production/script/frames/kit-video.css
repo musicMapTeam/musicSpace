@@ -1,0 +1,69 @@
+/* Doodle VIDEO kit: the product's own tokens/type/kit recipes (read-only imports from the repo) scaled up for a 1920x1080 frame.
+   Fonts: the raw OFL/Apache TTFs from /tmp/music-space-font-cache under the product's role names, so .ds-title/.ds-sticker/.ds-logo work as-is.
+   Raw Display (站酷庆科黄油体) traps: 入 renders like 几, 个 like 卜, no ·  -> never use them in Display text (or load the product's patched slices). */
+@import url("file:///Users/alakazan/workplace/tme/musicSpace/web/event-room/doodle/tokens.css");
+@import url("file:///Users/alakazan/workplace/tme/musicSpace/web/event-room/doodle/type.css");
+@import url("file:///Users/alakazan/workplace/tme/musicSpace/web/event-room/doodle/kit.css");
+@font-face{font-family:"Doodle Logo";src:url("file:///tmp/music-space-font-cache/logo.ttf")}
+@font-face{font-family:"Doodle Display";src:url("file:///tmp/music-space-font-cache/display.ttf")}
+@font-face{font-family:"Doodle Marker";src:url("file:///tmp/music-space-font-cache/marker.ttf")}
+@font-face{font-family:"Doodle Hand";src:url("file:///tmp/music-space-font-cache/hand.ttf")}
+@font-face{font-family:"Doodle Digits";src:url("file:///tmp/music-space-font-cache/digits.ttf")}
+@font-face{font-family:"Doodle Note";src:url("file:///tmp/music-space-font-cache/note.ttf")}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1920px;height:1080px;overflow:hidden;background:var(--ds-paper)}
+/* paper: product dots scaled for video (1.6 px dots every 32 px) + a faint fibre grain */
+.frame{position:relative;width:1920px;height:1080px;overflow:hidden;color:var(--ds-ink);
+  background:radial-gradient(rgba(28,27,26,.17) 1.7px,transparent 1.9px) 0 0/32px 32px,var(--ds-paper)}
+.frame::after{content:'';position:absolute;inset:0;pointer-events:none;opacity:.35;mix-blend-mode:multiply;
+  background:repeating-linear-gradient(17deg,rgba(120,100,70,.035) 0 2px,transparent 2px 5px)}
+.abs{position:absolute}
+
+/* type sizes (font-size at 1080p) */
+.xxl{font-size:240px}.xl{font-size:180px}.l{font-size:128px}.m{font-size:84px}.s{font-size:56px}.xs{font-size:36px}
+.t{font-family:var(--ds-font-display);line-height:1.02;white-space:nowrap}
+.ds-title.big{text-shadow:.055em .055em 0 var(--ds-shadow-color,var(--ds-pink))}
+.mk{font-family:var(--ds-font-ui);white-space:nowrap}
+.hand{font-family:var(--ds-font-body)}
+.dg{font-family:var(--ds-font-digits);letter-spacing:.01em}
+.key-pink{color:var(--ds-pink);-webkit-text-stroke:.045em var(--ds-ink);paint-order:stroke fill;text-shadow:.05em .06em 0 var(--ds-ink)}
+.key-mint{color:var(--ds-mint);-webkit-text-stroke:.045em var(--ds-ink);paint-order:stroke fill;text-shadow:.05em .06em 0 var(--ds-ink)}
+.key-yellow{color:var(--ds-yellow);-webkit-text-stroke:.045em var(--ds-ink);paint-order:stroke fill;text-shadow:.05em .06em 0 var(--ds-ink)}
+.hlm{background:linear-gradient(transparent 58%,var(--ds-mint) 58%,var(--ds-mint) 93%,transparent 93%);padding:0 .12em}
+.hly{background:linear-gradient(transparent 55%,var(--ds-yellow) 55%,var(--ds-yellow) 95%,transparent 95%);padding:0 .1em}
+
+/* stickers, stamps, chips */
+.chipv{display:inline-flex;align-items:center;gap:12px;padding:10px 28px;border:4px solid var(--ds-ink);border-radius:999px;background:var(--ds-paper-card);
+  font-family:var(--ds-font-ui);box-shadow:6px 6px 0 var(--ds-ink);white-space:nowrap}
+.chipv.mint{background:var(--ds-mint)}.chipv.yellow{background:var(--ds-yellow)}.chipv.pink{background:var(--ds-pink-soft)}
+.stamp{display:inline-block;padding:6px 22px;border:5px solid currentColor;border-radius:14px 6px 16px 8px;font-family:var(--ds-font-ui);
+  transform:rotate(-7deg);opacity:.92;background:color-mix(in srgb,var(--ds-paper-card) 55%,transparent)}
+.stamp.pink{color:#e9396b}.stamp.mint{color:#1f9f83}.stamp.ink{color:var(--ds-ink)}
+.die{background:var(--ds-paper-card);border:5px solid var(--ds-ink);border-radius:var(--ds-radius-card);box-shadow:10px 10px 0 var(--ds-ink);padding:18px 26px}
+
+/* polaroid: white frame, wider bottom, ink line, hard shadow, tape */
+.pol{position:absolute;background:#fffdf6;border:4px solid var(--ds-ink);padding:18px 18px 70px;box-shadow:12px 13px 0 var(--ds-ink)}
+.pol img{display:block;width:100%;height:100%;object-fit:cover;border:3px solid var(--ds-ink)}
+.pol .cap{position:absolute;left:24px;right:24px;bottom:14px;font-family:var(--ds-font-body);font-size:34px;white-space:nowrap}
+.tapev{position:absolute;width:190px;height:52px;background:var(--ds-tape);-webkit-mask:var(--ds-svg-tape) center/100% 100% no-repeat;mask:var(--ds-svg-tape) center/100% 100% no-repeat}
+.tapev.pink{background:var(--ds-tape-pink)}.tapev.mint{background:var(--ds-tape-mint)}
+
+/* hand-drawn phone frame: ink bezel, wobbly outer line (SVG), hard colour shadow; screen = 1080x2340 capture */
+.phone{position:absolute;width:480px;height:986px;border-radius:64px 58px 66px 60px/60px 66px 58px 64px;background:var(--ds-ink);
+  box-shadow:16px 18px 0 var(--ph-shadow,var(--ds-pink));padding:24px}
+.phone::before{content:'';position:absolute;left:50%;top:13px;width:92px;height:9px;border-radius:9px;background:#4a4640;transform:translateX(-50%)}
+.phone .scr{position:relative;width:432px;height:936px;border-radius:40px;overflow:hidden;background:var(--ds-paper)}
+.phone .scr img{position:absolute;left:0;top:0;width:100%}
+.phone .btn{position:absolute;right:-9px;top:190px;width:9px;height:90px;border-radius:0 6px 6px 0;background:var(--ds-ink)}
+/* the "zoomed" variant shows a crop of the capture larger (punch-in) */
+.scr.zoom img{transform-origin:0 0}
+
+/* swap sticker (pink circle, ink ring, the product's arrows) */
+.swap{position:absolute;width:150px;height:150px;border-radius:50%;background:var(--ds-pink);border:6px solid var(--ds-ink);box-shadow:8px 8px 0 var(--ds-ink);display:grid;place-items:center}
+.swap svg{width:92px;height:92px}
+
+/* marker strokes drawn with inline SVG: class .mkline on <path> */
+svg.ov{position:absolute;inset:0;width:1920px;height:1080px;pointer-events:none;overflow:visible}
+.mkline{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.fine{font-family:var(--ds-font-body);font-size:26px;color:var(--ds-ink-2)}

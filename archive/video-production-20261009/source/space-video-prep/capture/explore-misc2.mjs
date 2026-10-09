@@ -1,0 +1,12 @@
+import { launch, newPage, sleep, BASE, ensureDir } from './lib.mjs';
+import { hostCreatesRoom, guestJoins, uploadPhoto, panelInfo, visibleUI } from './flows.mjs';
+const out = ensureDir('/tmp/space-video-prep/stills/journey');
+const browser = await launch();
+const A = await newPage(browser);
+await hostCreatesRoom(A.page, { name: '阿遥', title: '返场夜', venue: '月台 Livehouse' });
+let n = 50;
+const snap = async (p, tag) => { const i = String(n++).padStart(2, '0'); await p.screenshot({ path: `${out}/${i}-${tag}.png` }); const info = await visibleUI(p); console.log(`--- ${i} ${tag}`, JSON.stringify(info.overlays.filter(o => !/world-shell|presence/.test(o.cls))).slice(0, 1100)); };
+const tryStep = async (label, fn) => { try { await fn(); } catch (e) { console.log('!! step failed:', label, e.message.split('\n')[0].slice(0, 160)); } };
+await tryStep('my space', async () => { await A.page.locator('#my-space').click(); await sleep(2500); await snap(A.page, 'my-space'); });
+console.log('buttons', JSON.stringify((await visibleUI(A.page)).buttons.filter(b => !/camera-nav|presence|header|hotspot/.test(b)).slice(0, 30)));
+await browser.close();

@@ -1,0 +1,75 @@
+{
+ "states": [
+  {
+   "vp": "phone",
+   "label": "own-room-demo-time",
+   "selector": "form[data-form=\"upload\"] .moment-taken",
+   "visible": "没读到拍摄时间\n\n大约的时间 · 北京时间\n\n文件里的时间，只是大概；改一下才算数。",
+   "attrs": [
+    "@alt=待保存的照片"
+   ],
+   "hidden": [
+    "修改时间"
+   ],
+   "at": 1791390631237
+  }
+ ],
+ "logs": {
+  "phone after-copy": [
+   "load: /musicSpace/",
+   "title: Music Space · 同一刻，另一面",
+   "live:loading(hidden): Music Space灯快亮了正在准备三维场景",
+   "live:render-status(hidden): 正在布置现场…",
+   "live:loading(hidden): Music Space灯快亮了正在布置现场…",
+   "live:loading(hidden): Music Space灯快亮了正在准备三维场景",
+   "live:render-status(hidden): 正在布置现场…",
+   "live:render-status(hidden): 现场进行中",
+   "live:view-label: 正在靠近",
+   "live:render-status(hidden): 现场进行中",
+   "live:demo-tour: 第一次来 1/4 · 放一张今晚的照片收起挑一张，或者用你自己的。人海那张舞台那张用我自己的照片跳过路线",
+   "live:view-label: 正在靠近",
+   "live:render-status(hidden): 4 位同场",
+   "live:status: 正在读取聊天室…",
+   "live:render-status(hidden): 4 位同场",
+   "live:status: 正在读取聊天室…",
+   "live:render-status(hidden): 4 位同场",
+   "live:status: 上一步还没确认，可以重试。",
+   "live:render-status(hidden): 2 位乐迷"
+  ],
+  "phone w13": [
+   "load: /musicSpace/",
+   "title: Music Space · 同一刻，另一面",
+   "live:loading(hidden): Music Space灯快亮了正在准备三维场景",
+   "live:render-status(hidden): 正在布置现场…",
+   "live:loading(hidden): Music Space灯快亮了正在布置现场…",
+   "live:loading(hidden): Music Space灯快亮了正在准备三维场景",
+   "live:render-status(hidden): 正在布置现场…",
+   "live:render-status(hidden): 现场进行中",
+   "live:view-label: 正在靠近",
+   "live:render-status(hidden): 现场进行中",
+   "live:demo-tour: 第一次来 1/4 · 放一张今晚的照片收起挑一张，或者用你自己的。人海那张舞台那张用我自己的照片跳过路线",
+   "live:view-label: 正在靠近",
+   "live:render-status(hidden): 4 位同场",
+   "live:status: 正在读取聊天室…",
+   "live:render-status(hidden): 4 位同场",
+   "live:status: 正在读取聊天室…",
+   "live:render-status(hidden): 4 位同场",
+   "live:status: 上一步还没确认，可以重试。",
+   "live:render-status(hidden): 2 位乐迷",
+   "live:render-status(hidden): 4 位同场",
+   "live:view-label: 正在靠近",
+   "live:render-status(hidden): 现场进行中",
+   "live:demo-tour: 第一次来 1/4 · 放一张今晚的照片收起选一张你自己拍的。用我自己的照片跳过路线",
+   "live:view-label: 正在靠近",
+   "live:render-status(hidden): 1 位同场",
+   "live:status(hidden): 没读到拍摄时间 ·",
+   "live:status: 正在处理照片…",
+   "live:render-status(hidden): 1 位同场",
+   "live:status: 没读到拍摄时间 ·",
+   "live:status: AI 在本机判断视角…",
+   "live:status: 没读到拍摄时间 ·",
+   "live:status: AI 判断：细节",
+   "live:render-status(hidden): 1 位同场"
+  ]
+ }
+}

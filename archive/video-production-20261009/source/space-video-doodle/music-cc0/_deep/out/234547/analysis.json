@@ -1,0 +1,827 @@
+{
+ "file": "234547__Zane-Little-Electronic-Outlaw.mp3",
+ "title": "Zane-Little-Electronic-Outlaw",
+ "duration_s": 173.61,
+ "loudness": {
+  "I": -11.0,
+  "LRA": 6.4,
+  "TP": 0.7
+ },
+ "tempo": {
+  "bpm": 90.0,
+  "beat_s": 0.6667,
+  "bar_s": 2.6666,
+  "autocorr_conf": 0.493,
+  "octave_note": "",
+  "drift_ms": {
+   "windows": 31,
+   "aligned_windows": 31,
+   "resid_sd": 21.2,
+   "resid_max_abs": 110.3
+  }
+ },
+ "grid": {
+  "first_beat_s": 0.257,
+  "downbeat_offset_beats": 1,
+  "downbeat_scores": [
+   {
+    "kick": 0.01,
+    "chord_change": 0.016,
+    "backbeat": 0.148
+   },
+   {
+    "kick": 0.156,
+    "chord_change": 0.16,
+    "backbeat": -0.148
+   },
+   {
+    "kick": -0.147,
+    "chord_change": -0.088,
+    "backbeat": 0.148
+   },
+   {
+    "kick": -0.019,
+    "chord_change": -0.088,
+    "backbeat": -0.148
+   }
+  ],
+  "downbeat_margin": 0.141,
+  "first_downbeat_s": 0.924,
+  "first_active_downbeat_s": 6.257,
+  "n_bars": 65,
+  "bar_starts_s": [
+   0.924,
+   3.591,
+   6.257,
+   8.924,
+   11.59,
+   14.257,
+   16.924,
+   19.59,
+   22.257,
+   24.923,
+   27.59,
+   30.257,
+   32.923,
+   35.59,
+   38.257,
+   40.923,
+   43.59,
+   46.256,
+   48.923,
+   51.59,
+   54.256,
+   56.923,
+   59.589,
+   62.256,
+   64.923,
+   67.589,
+   70.256,
+   72.922,
+   75.589,
+   78.256,
+   80.922,
+   83.589,
+   86.256,
+   88.922,
+   91.589,
+   94.255,
+   96.922,
+   99.589,
+   102.255,
+   104.922,
+   107.588,
+   110.255,
+   112.922,
+   115.588,
+   118.255,
+   120.921,
+   123.588,
+   126.255,
+   128.921,
+   131.588,
+   134.255,
+   136.921,
+   139.588,
+   142.254,
+   144.921,
+   147.588,
+   150.254,
+   152.921,
+   155.587,
+   158.254,
+   160.921,
+   163.587,
+   166.254,
+   168.92,
+   171.587
+  ]
+ },
+ "bars": [
+  {
+   "t": 0.924,
+   "rms_db": -33.0,
+   "onsets": 7,
+   "perc": 0.272,
+   "centroid": 3397
+  },
+  {
+   "t": 3.591,
+   "rms_db": -35.2,
+   "onsets": 3,
+   "perc": 0.343,
+   "centroid": 3589
+  },
+  {
+   "t": 6.257,
+   "rms_db": -30.0,
+   "onsets": 8,
+   "perc": 0.351,
+   "centroid": 3268
+  },
+  {
+   "t": 8.924,
+   "rms_db": -30.0,
+   "onsets": 8,
+   "perc": 0.357,
+   "centroid": 3356
+  },
+  {
+   "t": 11.59,
+   "rms_db": -28.1,
+   "onsets": 8,
+   "perc": 0.168,
+   "centroid": 3481
+  },
+  {
+   "t": 14.257,
+   "rms_db": -14.6,
+   "onsets": 13,
+   "perc": 0.135,
+   "centroid": 3365
+  },
+  {
+   "t": 16.924,
+   "rms_db": -14.0,
+   "onsets": 15,
+   "perc": 0.156,
+   "centroid": 3169
+  },
+  {
+   "t": 19.59,
+   "rms_db": -12.3,
+   "onsets": 17,
+   "perc": 0.118,
+   "centroid": 3074
+  },
+  {
+   "t": 22.257,
+   "rms_db": -9.2,
+   "onsets": 17,
+   "perc": 0.085,
+   "centroid": 2670
+  },
+  {
+   "t": 24.923,
+   "rms_db": -8.5,
+   "onsets": 15,
+   "perc": 0.089,
+   "centroid": 2642
+  },
+  {
+   "t": 27.59,
+   "rms_db": -12.8,
+   "onsets": 14,
+   "perc": 0.368,
+   "centroid": 3475
+  },
+  {
+   "t": 30.257,
+   "rms_db": -14.0,
+   "onsets": 14,
+   "perc": 0.278,
+   "centroid": 3490
+  },
+  {
+   "t": 32.923,
+   "rms_db": -13.4,
+   "onsets": 17,
+   "perc": 0.258,
+   "centroid": 3382
+  },
+  {
+   "t": 35.59,
+   "rms_db": -13.8,
+   "onsets": 15,
+   "perc": 0.312,
+   "centroid": 3375
+  },
+  {
+   "t": 38.257,
+   "rms_db": -13.5,
+   "onsets": 17,
+   "perc": 0.385,
+   "centroid": 3325
+  },
+  {
+   "t": 40.923,
+   "rms_db": -13.2,
+   "onsets": 17,
+   "perc": 0.219,
+   "centroid": 3608
+  },
+  {
+   "t": 43.59,
+   "rms_db": -12.3,
+   "onsets": 13,
+   "perc": 0.161,
+   "centroid": 3217
+  },
+  {
+   "t": 46.256,
+   "rms_db": -12.9,
+   "onsets": 14,
+   "perc": 0.187,
+   "centroid": 3172
+  },
+  {
+   "t": 48.923,
+   "rms_db": -13.0,
+   "onsets": 15,
+   "perc": 0.212,
+   "centroid": 3260
+  },
+  {
+   "t": 51.59,
+   "rms_db": -12.3,
+   "onsets": 15,
+   "perc": 0.157,
+   "centroid": 3308
+  },
+  {
+   "t": 54.256,
+   "rms_db": -14.1,
+   "onsets": 11,
+   "perc": 0.147,
+   "centroid": 3097
+  },
+  {
+   "t": 56.923,
+   "rms_db": -13.3,
+   "onsets": 15,
+   "perc": 0.263,
+   "centroid": 3329
+  },
+  {
+   "t": 59.589,
+   "rms_db": -13.0,
+   "onsets": 18,
+   "perc": 0.203,
+   "centroid": 3153
+  },
+  {
+   "t": 62.256,
+   "rms_db": -11.0,
+   "onsets": 20,
+   "perc": 0.164,
+   "centroid": 3046
+  },
+  {
+   "t": 64.923,
+   "rms_db": -10.0,
+   "onsets": 17,
+   "perc": 0.103,
+   "centroid": 2731
+  },
+  {
+   "t": 67.589,
+   "rms_db": -9.2,
+   "onsets": 14,
+   "perc": 0.089,
+   "centroid": 2719
+  },
+  {
+   "t": 70.256,
+   "rms_db": -9.9,
+   "onsets": 15,
+   "perc": 0.164,
+   "centroid": 3114
+  },
+  {
+   "t": 72.922,
+   "rms_db": -9.4,
+   "onsets": 21,
+   "perc": 0.117,
+   "centroid": 2800
+  },
+  {
+   "t": 75.589,
+   "rms_db": -9.9,
+   "onsets": 20,
+   "perc": 0.113,
+   "centroid": 2942
+  },
+  {
+   "t": 78.256,
+   "rms_db": -9.3,
+   "onsets": 17,
+   "perc": 0.1,
+   "centroid": 2744
+  },
+  {
+   "t": 80.922,
+   "rms_db": -8.8,
+   "onsets": 17,
+   "perc": 0.095,
+   "centroid": 2751
+  },
+  {
+   "t": 83.589,
+   "rms_db": -10.0,
+   "onsets": 16,
+   "perc": 0.218,
+   "centroid": 3077
+  },
+  {
+   "t": 86.256,
+   "rms_db": -13.3,
+   "onsets": 14,
+   "perc": 0.3,
+   "centroid": 3236
+  },
+  {
+   "t": 88.922,
+   "rms_db": -13.1,
+   "onsets": 16,
+   "perc": 0.298,
+   "centroid": 3231
+  },
+  {
+   "t": 91.589,
+   "rms_db": -13.1,
+   "onsets": 18,
+   "perc": 0.323,
+   "centroid": 3221
+  },
+  {
+   "t": 94.255,
+   "rms_db": -13.0,
+   "onsets": 17,
+   "perc": 0.316,
+   "centroid": 3233
+  },
+  {
+   "t": 96.922,
+   "rms_db": -14.2,
+   "onsets": 17,
+   "perc": 0.34,
+   "centroid": 3436
+  },
+  {
+   "t": 99.589,
+   "rms_db": -12.3,
+   "onsets": 13,
+   "perc": 0.165,
+   "centroid": 3409
+  },
+  {
+   "t": 102.255,
+   "rms_db": -12.4,
+   "onsets": 13,
+   "perc": 0.174,
+   "centroid": 3093
+  },
+  {
+   "t": 104.922,
+   "rms_db": -13.5,
+   "onsets": 15,
+   "perc": 0.267,
+   "centroid": 3101
+  },
+  {
+   "t": 107.588,
+   "rms_db": -12.9,
+   "onsets": 15,
+   "perc": 0.202,
+   "centroid": 3328
+  },
+  {
+   "t": 110.255,
+   "rms_db": -14.6,
+   "onsets": 12,
+   "perc": 0.217,
+   "centroid": 3553
+  },
+  {
+   "t": 112.922,
+   "rms_db": -9.2,
+   "onsets": 8,
+   "perc": 0.093,
+   "centroid": 3269
+  },
+  {
+   "t": 115.588,
+   "rms_db": -7.5,
+   "onsets": 8,
+   "perc": 0.032,
+   "centroid": 2229
+  },
+  {
+   "t": 118.255,
+   "rms_db": -7.9,
+   "onsets": 7,
+   "perc": 0.038,
+   "centroid": 2170
+  },
+  {
+   "t": 120.921,
+   "rms_db": -8.8,
+   "onsets": 12,
+   "perc": 0.048,
+   "centroid": 2167
+  },
+  {
+   "t": 123.588,
+   "rms_db": -7.4,
+   "onsets": 14,
+   "perc": 0.039,
+   "centroid": 2382
+  },
+  {
+   "t": 126.255,
+   "rms_db": -8.5,
+   "onsets": 13,
+   "perc": 0.068,
+   "centroid": 2940
+  },
+  {
+   "t": 128.921,
+   "rms_db": -16.2,
+   "onsets": 16,
+   "perc": 0.191,
+   "centroid": 3541
+  },
+  {
+   "t": 131.588,
+   "rms_db": -13.8,
+   "onsets": 20,
+   "perc": 0.367,
+   "centroid": 3283
+  },
+  {
+   "t": 134.255,
+   "rms_db": -13.5,
+   "onsets": 17,
+   "perc": 0.265,
+   "centroid": 3256
+  },
+  {
+   "t": 136.921,
+   "rms_db": -12.8,
+   "onsets": 17,
+   "perc": 0.248,
+   "centroid": 3103
+  },
+  {
+   "t": 139.588,
+   "rms_db": -13.2,
+   "onsets": 17,
+   "perc": 0.268,
+   "centroid": 3105
+  },
+  {
+   "t": 142.254,
+   "rms_db": -11.1,
+   "onsets": 19,
+   "perc": 0.289,
+   "centroid": 3321
+  },
+  {
+   "t": 144.921,
+   "rms_db": -10.9,
+   "onsets": 23,
+   "perc": 0.168,
+   "centroid": 3097
+  },
+  {
+   "t": 147.588,
+   "rms_db": -11.0,
+   "onsets": 22,
+   "perc": 0.18,
+   "centroid": 3174
+  },
+  {
+   "t": 150.254,
+   "rms_db": -10.7,
+   "onsets": 21,
+   "perc": 0.15,
+   "centroid": 3055
+  },
+  {
+   "t": 152.921,
+   "rms_db": -10.4,
+   "onsets": 20,
+   "perc": 0.178,
+   "centroid": 3080
+  },
+  {
+   "t": 155.587,
+   "rms_db": -9.1,
+   "onsets": 18,
+   "perc": 0.163,
+   "centroid": 3233
+  },
+  {
+   "t": 158.254,
+   "rms_db": -9.3,
+   "onsets": 23,
+   "perc": 0.127,
+   "centroid": 2991
+  },
+  {
+   "t": 160.921,
+   "rms_db": -9.4,
+   "onsets": 21,
+   "perc": 0.117,
+   "centroid": 2952
+  },
+  {
+   "t": 163.587,
+   "rms_db": -9.7,
+   "onsets": 21,
+   "perc": 0.125,
+   "centroid": 2872
+  },
+  {
+   "t": 166.254,
+   "rms_db": -8.5,
+   "onsets": 19,
+   "perc": 0.115,
+   "centroid": 2953
+  },
+  {
+   "t": 168.92,
+   "rms_db": -16.2,
+   "onsets": 21,
+   "perc": 0.041,
+   "centroid": 3029
+  },
+  {
+   "t": 171.587,
+   "rms_db": -16.9,
+   "onsets": 9,
+   "perc": 0.083,
+   "centroid": 2970
+  }
+ ],
+ "sections": [
+  {
+   "bars": [
+    1,
+    2
+   ],
+   "t": [
+    0.924,
+    6.258
+   ],
+   "rms_db": -34.1,
+   "onsets_per_bar": 5.0,
+   "perc": 0.307,
+   "level": "low"
+  },
+  {
+   "bars": [
+    3,
+    5
+   ],
+   "t": [
+    6.257,
+    14.257
+   ],
+   "rms_db": -29.4,
+   "onsets_per_bar": 8.0,
+   "perc": 0.292,
+   "level": "low"
+  },
+  {
+   "bars": [
+    6,
+    10
+   ],
+   "t": [
+    14.257,
+    27.59
+   ],
+   "rms_db": -11.7,
+   "onsets_per_bar": 15.4,
+   "perc": 0.117,
+   "level": "high"
+  },
+  {
+   "bars": [
+    11,
+    28
+   ],
+   "t": [
+    27.59,
+    75.589
+   ],
+   "rms_db": -12.3,
+   "onsets_per_bar": 15.7,
+   "perc": 0.21,
+   "level": "high"
+  },
+  {
+   "bars": [
+    29,
+    38
+   ],
+   "t": [
+    75.589,
+    102.256
+   ],
+   "rms_db": -11.7,
+   "onsets_per_bar": 16.5,
+   "perc": 0.227,
+   "level": "high"
+  },
+  {
+   "bars": [
+    39,
+    42
+   ],
+   "t": [
+    102.255,
+    112.922
+   ],
+   "rms_db": -13.3,
+   "onsets_per_bar": 13.8,
+   "perc": 0.215,
+   "level": "mid"
+  },
+  {
+   "bars": [
+    43,
+    44
+   ],
+   "t": [
+    112.922,
+    118.255
+   ],
+   "rms_db": -8.3,
+   "onsets_per_bar": 8.0,
+   "perc": 0.062,
+   "level": "peak"
+  },
+  {
+   "bars": [
+    45,
+    48
+   ],
+   "t": [
+    118.255,
+    128.922
+   ],
+   "rms_db": -8.2,
+   "onsets_per_bar": 11.5,
+   "perc": 0.048,
+   "level": "peak"
+  },
+  {
+   "bars": [
+    49,
+    50
+   ],
+   "t": [
+    128.921,
+    134.255
+   ],
+   "rms_db": -15.0,
+   "onsets_per_bar": 18.0,
+   "perc": 0.279,
+   "level": "mid"
+  },
+  {
+   "bars": [
+    51,
+    59
+   ],
+   "t": [
+    134.255,
+    158.254
+   ],
+   "rms_db": -11.4,
+   "onsets_per_bar": 19.3,
+   "perc": 0.212,
+   "level": "high"
+  },
+  {
+   "bars": [
+    60,
+    65
+   ],
+   "t": [
+    158.254,
+    174.254
+   ],
+   "rms_db": -11.7,
+   "onsets_per_bar": 19.0,
+   "perc": 0.101,
+   "level": "high"
+  }
+ ],
+ "strongest_window": {
+  "start_bar": 53,
+  "start_s": 139.588,
+  "end_s": 169.588,
+  "bars": 11,
+  "bars_exact_s": 29.333,
+  "mean_rms_db": -10.3
+ },
+ "key": {
+  "key": "F major",
+  "r": 0.865,
+  "alt": "D minor",
+  "r_alt": 0.609
+ },
+ "stems": {
+  "stem_lag_ms": 25.1,
+  "energy_share": {
+   "drums": 0.143,
+   "bass": 0.508,
+   "other": 0.34,
+   "vocals": 0.01
+  },
+  "vocals": {
+   "rel_db_overall": -20.0,
+   "median_db": -60.7,
+   "p95_db": -19.4,
+   "frac_seconds_above_m10db": 0.012,
+   "frac_seconds_above_m15db": 0.035
+  },
+  "drum_grid_16": {
+   "kick": [
+    0.61,
+    0.11,
+    0.1,
+    0.1,
+    0.26,
+    0.19,
+    0.12,
+    0.43,
+    0.31,
+    0.1,
+    0.27,
+    0.25,
+    1.0,
+    0.11,
+    0.14,
+    0.11
+   ],
+   "snare": [
+    0.39,
+    0.06,
+    0.07,
+    0.14,
+    0.19,
+    0.09,
+    0.18,
+    0.04,
+    1.0,
+    0.02,
+    0.48,
+    0.06,
+    0.63,
+    0.04,
+    0.15,
+    0.03
+   ],
+   "hats": [
+    0.5,
+    0.06,
+    0.31,
+    0.16,
+    0.35,
+    0.12,
+    0.19,
+    0.06,
+    1.0,
+    0.02,
+    0.55,
+    0.04,
+    0.51,
+    0.05,
+    0.17,
+    0.04
+   ]
+  },
+  "drums_onset_rate": 3.5,
+  "bass_onset_rate": 5.13,
+  "other_onset_rate": 4.78,
+  "bass_peak_hz": 53.8,
+  "other_centroid_hz": 3196,
+  "other_percussive_share": 0.173,
+  "other_flatness": 0.534
+ },
+ "note": "Constant-tempo grid fitted to the whole track (comb + drift regression). downbeat chosen from kick-on-1, chord-change and backbeat evidence; a small margin means check one bar by eye on the waveform. Nobody listened to the track."
+}

@@ -1,0 +1,222 @@
+{
+ "file": "P-22.mp4",
+ "codec": "h264 High",
+ "size": "1080x2340",
+ "fps": "60/1",
+ "frames": 1816,
+ "seconds": 30.267,
+ "pix_fmt": "yuv420p",
+ "colour": "bt709/bt709/bt709/tv",
+ "bytes": 8236448,
+ "kbps": 2177,
+ "changedFrames": 331,
+ "staticFrames": 1484,
+ "stutter_dupInsideMotion": [
+  {
+   "frame": 54,
+   "dupFrames": 3,
+   "diffBefore": 0.65,
+   "diffAfter": 1.77
+  }
+ ],
+ "holds_over_0.5s": [
+  {
+   "from": 461,
+   "frames": 68,
+   "at_s": 7.68,
+   "seconds": 1.13
+  },
+  {
+   "from": 557,
+   "frames": 89,
+   "at_s": 9.28,
+   "seconds": 1.48
+  },
+  {
+   "from": 674,
+   "frames": 30,
+   "at_s": 11.23,
+   "seconds": 0.5
+  },
+  {
+   "from": 709,
+   "frames": 84,
+   "at_s": 11.82,
+   "seconds": 1.4
+  },
+  {
+   "from": 909,
+   "frames": 89,
+   "at_s": 15.15,
+   "seconds": 1.48
+  },
+  {
+   "from": 1087,
+   "frames": 350,
+   "at_s": 18.12,
+   "seconds": 5.83
+  },
+  {
+   "from": 1699,
+   "frames": 118,
+   "at_s": 28.32,
+   "seconds": 1.97
+  }
+ ],
+ "motionSegments_over_4f": [
+  {
+   "from": 58,
+   "to": 73,
+   "at_s": 0.97,
+   "seconds": 0.25,
+   "minDiff": 0.17,
+   "medDiff": 1.19
+  },
+  {
+   "from": 117,
+   "to": 122,
+   "at_s": 1.95,
+   "seconds": 0.08,
+   "minDiff": 0.16,
+   "medDiff": 0.19
+  },
+  {
+   "from": 144,
+   "to": 151,
+   "at_s": 2.4,
+   "seconds": 0.12,
+   "minDiff": 0.18,
+   "medDiff": 0.29
+  },
+  {
+   "from": 527,
+   "to": 556,
+   "at_s": 8.78,
+   "seconds": 0.48,
+   "minDiff": 3.32,
+   "medDiff": 9.46
+  },
+  {
+   "from": 644,
+   "to": 673,
+   "at_s": 10.73,
+   "seconds": 0.48,
+   "minDiff": 4.52,
+   "medDiff": 22.83
+  },
+  {
+   "from": 702,
+   "to": 706,
+   "at_s": 11.7,
+   "seconds": 0.07,
+   "minDiff": 0.18,
+   "medDiff": 0.19
+  },
+  {
+   "from": 819,
+   "to": 824,
+   "at_s": 13.65,
+   "seconds": 0.08,
+   "minDiff": 0.16,
+   "medDiff": 0.19
+  },
+  {
+   "from": 846,
+   "to": 852,
+   "at_s": 14.1,
+   "seconds": 0.1,
+   "minDiff": 0.18,
+   "medDiff": 0.31
+  },
+  {
+   "from": 879,
+   "to": 908,
+   "at_s": 14.65,
+   "seconds": 0.48,
+   "minDiff": 4.24,
+   "medDiff": 18.81
+  },
+  {
+   "from": 996,
+   "to": 1025,
+   "at_s": 16.6,
+   "seconds": 0.48,
+   "minDiff": 6.05,
+   "medDiff": 27.26
+  },
+  {
+   "from": 1053,
+   "to": 1058,
+   "at_s": 17.55,
+   "seconds": 0.08,
+   "minDiff": 0.16,
+   "medDiff": 0.19
+  },
+  {
+   "from": 1080,
+   "to": 1086,
+   "at_s": 18.0,
+   "seconds": 0.1,
+   "minDiff": 0.16,
+   "medDiff": 0.32
+  },
+  {
+   "from": 1435,
+   "to": 1464,
+   "at_s": 23.92,
+   "seconds": 0.48,
+   "minDiff": 4.51,
+   "medDiff": 24.74
+  },
+  {
+   "from": 1492,
+   "to": 1497,
+   "at_s": 24.87,
+   "seconds": 0.08,
+   "minDiff": 0.16,
+   "medDiff": 0.19
+  },
+  {
+   "from": 1519,
+   "to": 1525,
+   "at_s": 25.32,
+   "seconds": 0.1,
+   "minDiff": 0.17,
+   "medDiff": 0.37
+  },
+  {
+   "from": 1552,
+   "to": 1581,
+   "at_s": 25.87,
+   "seconds": 0.48,
+   "minDiff": 4.23,
+   "medDiff": 14.25
+  },
+  {
+   "from": 1609,
+   "to": 1614,
+   "at_s": 26.82,
+   "seconds": 0.08,
+   "minDiff": 0.16,
+   "medDiff": 0.19
+  },
+  {
+   "from": 1636,
+   "to": 1642,
+   "at_s": 27.27,
+   "seconds": 0.1,
+   "minDiff": 0.17,
+   "medDiff": 0.35
+  },
+  {
+   "from": 1669,
+   "to": 1698,
+   "at_s": 27.82,
+   "seconds": 0.48,
+   "minDiff": 4.47,
+   "medDiff": 26.98
+  }
+ ],
+ "blankFrames": [],
+ "meanDiff": 2.398
+}

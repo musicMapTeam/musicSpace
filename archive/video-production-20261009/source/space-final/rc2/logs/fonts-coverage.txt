@@ -1,0 +1,32 @@
+code points per family: {'Doodle Display': 1631, 'Doodle Marker': 4300, 'Doodle Hand': 4315, 'Doodle Note': 43, 'Doodle Logo': 206, 'Doodle Digits': 207}
+room-source CJK: 1197, map-source CJK: 1127, map-only: 282, map vendor CJK not scanned: 坂杉柳裏
+Doodle Marker   room missing   0 
+Doodle Marker   map  missing   0 
+Doodle Hand     room missing   0 
+Doodle Hand     map  missing   0 
+Doodle Display  room missing   9 傑別吳寗彣暐溫玓詠
+Doodle Display  map  missing  24 係傑別吳呂喚姍寗強彣彥暐沒溫玓箏粵綠裡註詠說麼黃
+   display lacks 係 ['web/original-map/assets/data/hf-collaborations.json']
+   display lacks 傑 ['runtime-preview/src/map-catalogue.js', 'web/original-map/assets/data/hf-collaborations.json', 'web/original-map/js/map-catalogue.js']
+   display lacks 別 ['runtime-preview/src/map-catalogue.js', 'web/original-map/assets/data/hf-collaborations.json', 'web/original-map/js/map-catalogue.js']
+   display lacks 吳 ['runtime-preview/src/map-catalogue.js', 'web/original-map/assets/data/hf-collaborations.json', 'web/original-map/js/map-catalogue.js']
+   display lacks 呂 ['web/original-map/assets/data/hf-collaborations.json']
+   display lacks 喚 ['web/original-map/assets/data/hf-collaborations.json']
+   display lacks 姍 ['web/original-map/assets/data/hf-collaborations.json']
+   display lacks 寗 ['runtime-preview/src/map-catalogue.js', 'web/original-map/js/map-catalogue.js']
+   display lacks 強 ['web/original-map/assets/data/hf-collaborations.json']
+   display lacks 彣 ['runtime-preview/src/map-catalogue.js', 'web/original-map/js/map-catalogue.js']
+   display lacks 彥 ['web/original-map/assets/data/hf-collaborations.json']
+   display lacks 暐 ['runtime-preview/src/map-catalogue.js', 'web/original-map/js/map-catalogue.js']
+   display lacks 沒 ['web/original-map/assets/data/hf-collaborations.json']
+   display lacks 溫 ['runtime-preview/src/map-catalogue.js', 'web/original-map/assets/data/hf-collaborations.json', 'web/original-map/js/map-catalogue.js']
+   display lacks 玓 ['runtime-preview/src/map-catalogue.js', 'web/original-map/js/map-catalogue.js']
+   display lacks 箏 ['web/original-map/assets/data/hf-collaborations.json']
+   display lacks 粵 ['web/original-map/assets/data/hf-collaborations.json']
+   display lacks 綠 ['web/original-map/assets/data/hf-collaborations.json']
+   display lacks 裡 ['web/original-map/assets/data/hf-collaborations.json']
+   display lacks 註 ['web/original-map/assets/data/hf-collaborations.json']
+   display lacks 詠 ['runtime-preview/src/map-catalogue.js', 'web/original-map/assets/data/hf-collaborations.json', 'web/original-map/js/map-catalogue.js']
+   display lacks 說 ['web/original-map/assets/data/hf-collaborations.json']
+   display lacks 麼 ['web/original-map/assets/data/hf-collaborations.json']
+   display lacks 黃 ['web/original-map/assets/data/hf-collaborations.json']

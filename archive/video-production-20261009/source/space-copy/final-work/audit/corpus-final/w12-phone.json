@@ -1,0 +1,65 @@
+{
+ "states": [
+  {
+   "vp": "phone",
+   "label": "after-remove-friend",
+   "selector": "#panel",
+   "visible": "×\n互相愿意 / 成为朋友\n从音乐开始认识的人\n\n还没有朋友，从招个手开始。\n\n打开私聊查看招呼",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板"
+   ],
+   "hidden": [],
+   "at": 1791390582612
+  },
+  {
+   "vp": "phone",
+   "label": "chat-after-remove",
+   "selector": ".private-chat",
+   "visible": "←\nONE TO ONE\n阿遥\n×\n你们已经不是朋友了，只能看以前的消息。\n\n嗨，欢迎来到「回声现场」！\n\n00:29\n\n你拍到的是哪一面？\n\n00:29\n留一句话\n已不能发消息\n发送 ↗\n回看这一晚",
+   "attrs": [
+    "@aria-label=私聊",
+    "@aria-label=返回对话列表",
+    "@aria-label=关闭私聊",
+    "@aria-label=Music Space 的小人 (hidden el)",
+    "@aria-label=消息记录",
+    "@placeholder=比如，刚刚哪首歌最喜欢？"
+   ],
+   "hidden": [
+    "Music Space 的小人",
+    "阿遥",
+    "你拍到的是哪一面？",
+    "以前的对话",
+    "更早的消息"
+   ],
+   "at": 1791390585139
+  },
+  {
+   "vp": "phone",
+   "label": "person-after-remove",
+   "selector": "#panel",
+   "visible": "×\n同场的人\n阿遥\n\n先招个手，TA 接受了就是朋友。\n\n向 阿遥 招个手\n\n这是本场房主。\n\n屏蔽这个人",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板"
+   ],
+   "hidden": [],
+   "at": 1791390586708
+  },
+  {
+   "vp": "phone",
+   "label": "own-room-tour",
+   "selector": ".demo-tour",
+   "visible": "第一次来 1/4\n·\n放一张今晚的照片\n\n收起\n用我自己的照片\n跳过路线",
+   "attrs": [
+    "@aria-label=第一次来",
+    "@aria-label=收起路线"
+   ],
+   "hidden": [
+    "选一张你自己拍的。"
+   ],
+   "at": 1791390589187
+  }
+ ],
+ "logs": {}
+}

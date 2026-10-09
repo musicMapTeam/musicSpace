@@ -1,0 +1,42 @@
+{
+ "02-flipping-in groove bars 53-60": {
+  "onbeat_salience": 8.74,
+  "beats_with_clear_onset": 1.0,
+  "pulse_autocorr": 0.78
+ },
+ "02-flipping-in groove+bass bars 75-84": {
+  "onbeat_salience": 8.96,
+  "beats_with_clear_onset": 1.0,
+  "pulse_autocorr": 0.57
+ },
+ "02-flipping-in pain (no drums) bars 67-74": {
+  "onbeat_salience": 40.11,
+  "beats_with_clear_onset": 1.0,
+  "pulse_autocorr": 0.26
+ },
+ "04-consternation groove bars 17-24": {
+  "onbeat_salience": 5.47,
+  "beats_with_clear_onset": 1.0,
+  "pulse_autocorr": 0.46
+ },
+ "04-consternation breakdown bars 25-28": {
+  "onbeat_salience": 3.03,
+  "beats_with_clear_onset": 1.0,
+  "pulse_autocorr": 0.37
+ },
+ "01-grab-a-partner groove bars 47-54": {
+  "onbeat_salience": 4.35,
+  "beats_with_clear_onset": 1.0,
+  "pulse_autocorr": 0.31
+ },
+ "03-tea-party groove bars 81-88": {
+  "onbeat_salience": 7.31,
+  "beats_with_clear_onset": 1.0,
+  "pulse_autocorr": 0.7
+ },
+ "05-love-love-love groove bars 17-24": {
+  "onbeat_salience": 5.39,
+  "beats_with_clear_onset": 1.0,
+  "pulse_autocorr": 0.61
+ }
+}

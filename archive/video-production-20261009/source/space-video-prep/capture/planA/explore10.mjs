@@ -1,0 +1,13 @@
+import { launch, Session, sleep, BASE, PHOTOS, dump } from './lib.mjs';
+import * as F from './flow.mjs';
+const browser = await launch();
+const s = await Session.open(browser, { url: BASE, width: 1440, height: 744, dpr: 1, name: 'live' });
+const p = s.page; p.on('console', m => { if (m.type() === 'error') console.log('console.error', m.text().slice(0, 160)); });
+const nav = /^(a "跳到内容"|button(\(submit\))?\[data-(nav|worldView|worldEditor))/;
+const dumpQ = async (label) => { const lines = []; const orig = console.log; console.log = (...a) => lines.push(a.join(' ')); await dump(p, label); console.log = orig; console.log(lines.filter(l => !nav.test(l)).join('\n')); };
+await sleep(5000);
+await F.toDemo(p); await F.openMake(p);
+await p.locator('#sp-song-input').fill('晴天').catch(() => {});
+await F.pickFile(p, PHOTOS.stage); await F.saveCard(p); await F.toRequest(p); await F.send(p); await F.asYao(p); await F.viewRequest(p); await F.agree(p); await sleep(4000);
+await p.getByRole('button', { name: /保存双联图片/ }).click(); await sleep(3500); await dumpQ('15-png'); 
+await browser.close();

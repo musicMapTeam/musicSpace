@@ -1,0 +1,340 @@
+{
+ "conditions": "Chrome (Playwright) phone 390x844@2, CDP Network 9 Mbps down / 1.5 Mbps up / 150 ms RTT, CPU 4x, fresh browser per run, Pages-like gzip server (tools/serve-gz.mjs); GPU: Apple M4 (ANGLE Metal)",
+ "head_7cbe4d3": {
+  "runs": 3,
+  "fcp_ms": [
+   276,
+   272,
+   336
+  ],
+  "loadingHidden_ms": [
+   2193,
+   2161,
+   2609
+  ],
+  "ready_ms": [
+   2472,
+   2419,
+   3066
+  ],
+  "htmlDone_ms": [
+   1449,
+   1447,
+   1444
+  ],
+  "cls": [
+   0.0569,
+   0.0569,
+   0.0569
+  ],
+  "bytesByTypeKB": {
+   "Document": 592,
+   "Script": 410,
+   "Other": 643,
+   "Fetch": 348
+  },
+  "totalKB": 1993,
+  "fontSlices": []
+ },
+ "current_tree": {
+  "runs": 3,
+  "fcp_ms": [
+   924,
+   932,
+   912
+  ],
+  "loadingHidden_ms": [
+   3164,
+   3132,
+   3157
+  ],
+  "ready_ms": [
+   3659,
+   3656,
+   3691
+  ],
+  "htmlDone_ms": [
+   2102,
+   2079,
+   2110
+  ],
+  "cls": [
+   0.0604,
+   0.0604,
+   0.0604
+  ],
+  "bytesByTypeKB": {
+   "Document": 628,
+   "Script": 410,
+   "Other": 643,
+   "Font": 797,
+   "Stylesheet": 12,
+   "Fetch": 348
+  },
+  "totalKB": 2838,
+  "fontSlices": [
+   {
+    "file": "marker-0.woff2",
+    "KB": 43,
+    "start": 172,
+    "end": 561
+   },
+   {
+    "file": "display-0.woff2",
+    "KB": 80,
+    "start": 173,
+    "end": 732
+   },
+   {
+    "file": "logo-0.woff2",
+    "KB": 17,
+    "start": 824,
+    "end": 1053
+   },
+   {
+    "file": "display-1.woff2",
+    "KB": 100,
+    "start": 826,
+    "end": 1465
+   },
+   {
+    "file": "hand-0.woff2",
+    "KB": 194,
+    "start": 826,
+    "end": 1933
+   },
+   {
+    "file": "marker-1.woff2",
+    "KB": 35,
+    "start": 826,
+    "end": 1394
+   },
+   {
+    "file": "hand-1.woff2",
+    "KB": 113,
+    "start": 877,
+    "end": 1993
+   },
+   {
+    "file": "marker-2.woff2",
+    "KB": 47,
+    "start": 880,
+    "end": 1834
+   },
+   {
+    "file": "digits-0.woff2",
+    "KB": 14,
+    "start": 2549,
+    "end": 2737
+   },
+   {
+    "file": "hand-2.woff2",
+    "KB": 155,
+    "start": 2904,
+    "end": 3200
+   }
+  ]
+ },
+ "exp_no_webfonts": {
+  "runs": 3,
+  "fcp_ms": [
+   304,
+   288,
+   288
+  ],
+  "loadingHidden_ms": [
+   2283,
+   2168,
+   2177
+  ],
+  "ready_ms": [
+   2651,
+   2445,
+   2426
+  ],
+  "htmlDone_ms": [
+   1518,
+   1510,
+   1512
+  ],
+  "cls": [
+   0.0602,
+   0.0602,
+   0.0602
+  ],
+  "bytesByTypeKB": {
+   "Document": 628,
+   "Script": 410,
+   "Other": 643,
+   "Fetch": 348
+  },
+  "totalKB": 2029,
+  "fontSlices": []
+ },
+ "exp_fontscss_inlined": {
+  "runs": 3,
+  "fcp_ms": [
+   428,
+   424,
+   448
+  ],
+  "loadingHidden_ms": [
+   2977,
+   2964,
+   3003
+  ],
+  "ready_ms": [
+   3436,
+   3385,
+   3404
+  ],
+  "htmlDone_ms": [
+   2117,
+   2113,
+   2116
+  ],
+  "cls": [
+   0.0638,
+   0.0638,
+   0.0638
+  ],
+  "bytesByTypeKB": {
+   "Document": 642,
+   "Script": 410,
+   "Other": 643,
+   "Font": 797,
+   "Fetch": 348
+  },
+  "totalKB": 2841,
+  "fontSlices": [
+   {
+    "file": "marker-0.woff2",
+    "KB": 43,
+    "start": 171,
+    "end": 555
+   },
+   {
+    "file": "display-0.woff2",
+    "KB": 80,
+    "start": 172,
+    "end": 732
+   },
+   {
+    "file": "logo-0.woff2",
+    "KB": 17,
+    "start": 259,
+    "end": 790
+   },
+   {
+    "file": "display-1.woff2",
+    "KB": 100,
+    "start": 260,
+    "end": 1369
+   },
+   {
+    "file": "hand-0.woff2",
+    "KB": 194,
+    "start": 260,
+    "end": 1849
+   },
+   {
+    "file": "marker-1.woff2",
+    "KB": 35,
+    "start": 260,
+    "end": 1265
+   },
+   {
+    "file": "hand-1.woff2",
+    "KB": 113,
+    "start": 393,
+    "end": 1904
+   },
+   {
+    "file": "marker-2.woff2",
+    "KB": 47,
+    "start": 396,
+    "end": 1764
+   },
+   {
+    "file": "digits-0.woff2",
+    "KB": 14,
+    "start": 2486,
+    "end": 2682
+   },
+   {
+    "file": "hand-2.woff2",
+    "KB": 155,
+    "start": 2773,
+    "end": 3067
+   }
+  ]
+ },
+ "exp_inlined_plus_first_screen_slices": {
+  "runs": 3,
+  "fcp_ms": [
+   400,
+   392,
+   428
+  ],
+  "loadingHidden_ms": [
+   2439,
+   2409,
+   2490
+  ],
+  "ready_ms": [
+   2697,
+   2655,
+   2746
+  ],
+  "htmlDone_ms": [
+   1784,
+   1787,
+   1784
+  ],
+  "cls": [
+   0.0632,
+   0.0632,
+   0.0632
+  ],
+  "bytesByTypeKB": {
+   "Document": 642,
+   "Script": 410,
+   "Other": 643,
+   "Font": 278,
+   "Fetch": 348
+  },
+  "totalKB": 2321,
+  "fontSlices": [
+   {
+    "file": "marker-0.woff2",
+    "KB": 40,
+    "start": 168,
+    "end": 539
+   },
+   {
+    "file": "display-0.woff2",
+    "KB": 80,
+    "start": 168,
+    "end": 726
+   },
+   {
+    "file": "logo-0.woff2",
+    "KB": 17,
+    "start": 247,
+    "end": 776
+   },
+   {
+    "file": "hand-0.woff2",
+    "KB": 127,
+    "start": 248,
+    "end": 1348
+   },
+   {
+    "file": "digits-0.woff2",
+    "KB": 14,
+    "start": 2057,
+    "end": 2260
+   }
+  ]
+ }
+}

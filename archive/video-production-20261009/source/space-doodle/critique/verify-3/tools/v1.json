@@ -1,0 +1,4 @@
+{
+ "base": {"css": ""},
+ "judge330": {"css": ".frame[data-stage=room] .presence:not(.welcome){max-width:330px}", "vps": ["desktop", "phone"]}
+}

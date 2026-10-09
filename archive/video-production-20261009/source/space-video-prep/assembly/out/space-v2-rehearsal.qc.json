@@ -1,0 +1,137 @@
+{
+ "file": "out/space-v2-rehearsal.mp4",
+ "rows": [
+  {
+   "name": "Duration",
+   "value": "165.00 s (2:45)",
+   "status": "PASS",
+   "note": "limit 3:00 (180 s); aim <= 2:55 so a player rounding cannot exceed it"
+  },
+  {
+   "name": "File size",
+   "value": "37.2 MB",
+   "status": "PASS",
+   "note": "limit 500 MB; <= 350 MB keeps uploads comfortable"
+  },
+  {
+   "name": "Container",
+   "value": "mov,mp4,m4a,3gp,3g2,mj2",
+   "status": "PASS",
+   "note": "mp4 recommended"
+  },
+  {
+   "name": "Video codec",
+   "value": "h264 High yuv420p",
+   "status": "PASS",
+   "note": "H.264 / yuv420p plays everywhere"
+  },
+  {
+   "name": "Resolution",
+   "value": "1920x1080",
+   "status": "PASS",
+   "note": "1920x1080 target"
+  },
+  {
+   "name": "Frame rate",
+   "value": "60.00 fps",
+   "status": "PASS",
+   "note": "constant rate expected"
+  },
+  {
+   "name": "Bitrate",
+   "value": "1.81 Mbps",
+   "status": "INFO",
+   "note": ""
+  },
+  {
+   "name": "Color tags",
+   "value": "bt709 / tv / bt709",
+   "status": "PASS",
+   "note": "bt709 tv-range expected"
+  },
+  {
+   "name": "Audio",
+   "value": "aac 48000 Hz 2 ch",
+   "status": "PASS",
+   "note": "form wants voice-over OR subtitles; here music + burned-in subtitles"
+  },
+  {
+   "name": "Integrated loudness",
+   "value": "-16.1 LUFS",
+   "status": "PASS",
+   "note": "target -16 LUFS (music-only bed; -14..-18 accepted)"
+  },
+  {
+   "name": "True peak",
+   "value": "-6.4 dBFS",
+   "status": "PASS",
+   "note": "<= -1 dBTP to avoid inter-sample clipping"
+  },
+  {
+   "name": "Loudness range",
+   "value": "5.6 LU",
+   "status": "PASS",
+   "note": ""
+  },
+  {
+   "name": "Silent gaps (>0.8 s, -50 dB)",
+   "value": "none",
+   "status": "PASS",
+   "note": "unexpected dead air / noise gate"
+  },
+  {
+   "name": "Black frames (>0.4 s inside)",
+   "value": "none",
+   "status": "PASS",
+   "note": "accidental black gaps between shots"
+  },
+  {
+   "name": "Frozen picture (>3 s)",
+   "value": "[\"33.0s +4.5s\",\"55.4s +6.5s\",\"91.2s +3.1s\",\"107.6s +3.9s\",\"122.8s +4.2s\",\"135.0s +3.3s\"]",
+   "status": "WARN",
+   "note": "holds >3 s are expected only on the end card; anything else = stuck recording"
+  },
+  {
+   "name": "End-card QR",
+   "value": "https://musicmapteam.github.io/musicSpace/",
+   "status": "PASS",
+   "note": "must decode to https://musicmapteam.github.io/musicSpace/"
+  },
+  {
+   "name": "SHA-256",
+   "value": "8659b92584d0c4bf…",
+   "status": "INFO",
+   "note": "8659b92584d0c4bfcfc393fda5d30b667680d151670cd9e574d9a7dc3692cdd2"
+  },
+  {
+   "name": "Watermark / overlays",
+   "value": "manual",
+   "status": "MANUAL",
+   "note": "open the contact sheet: no browser chrome, no Playwright/Tabbit tray, no recorder logos, no third-party marks. Our pipeline adds none."
+  },
+  {
+   "name": "Music provenance",
+   "value": "manual",
+   "status": "MANUAL",
+   "note": "music/*/LICENCE-PROOF.md present for the chosen track (or original generated score); no commercial recording, no lyrics."
+  },
+  {
+   "name": "Subtitles legible",
+   "value": "manual",
+   "status": "MANUAL",
+   "note": "play at 100 % on a phone-size window: every caption readable, none over a control that matters, none cut off."
+  },
+  {
+   "name": "Disclosure",
+   "value": "manual",
+   "status": "MANUAL",
+   "note": "\"示例角色、场次与照片均为虚构（AI 生成）\" visible; no claim of real-phone/real-audience validation; AI described as on-device viewpoint suggestion only."
+  },
+  {
+   "name": "Contact sheet",
+   "value": "out/space-v2-rehearsal.qc-contact.png",
+   "status": "INFO",
+   "note": ""
+  }
+ ]
+}

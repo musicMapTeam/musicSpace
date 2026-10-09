@@ -1,0 +1,8 @@
+/* B2: B, plus the lobby room title becomes a quiet ink label on paper (one layered title left on the screen besides the logo) */
+@media (min-width:1100px) and (min-height:620px){
+  .desktop-caption .caption-line--b{text-shadow:none;font-size:1.2em}
+  .desktop-caption .caption-key{background:none;padding:0}
+  .desktop-caption .caption-star,.desktop-caption .caption-sparkle,.desktop-caption .caption-tag{display:none}
+  .frame:not([data-stage=room]) .scene-heading h1 span{font-size:24px;line-height:1.2;color:var(--ds-ink);-webkit-text-stroke:0;text-shadow:none;background:var(--ds-paper-card);
+    padding:4px 12px 5px;border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:var(--ds-shadow-sm)}
+}

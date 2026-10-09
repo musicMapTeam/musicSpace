@@ -1,0 +1,605 @@
+
+===== lobby-presence [.presence, .track, footer, #scene-heading, #room-code-label]
+	small	MUSIC SPACE / LIVEHOUSE
+	span	进到同一个现场
+@aria-label	button	进入现场
+	span	这一晚，从这里开始
+H	span.record	♪
+H	span	这一晚的歌
+H	span	进入房间，留下你看到的那个瞬间
+H	span.encore	ENCORE / 01
+	strong	同一刻，另一面。
+	p	同一晚，你拍了舞台，TA 拍了人海。AI 在本机给你一个视角建议，规则帮你找到同一刻的另一面，双方同意才交换。
+	button	进入示例现场
+H	button	安静参与 · 更改
+H	button	留下第一张照片
+H	button	回看这一晚
+@aria-label	div	示例路线
+	button	示例站 · 数据只存在这个浏览器 · 关于这个示例
+H	footer	仅文字 · 照片仍由各自决定分享范围
+H	button.chat-more	回看这一晚
+
+===== room-after-enter [.presence, .track, footer, #scene-heading, #scene-code, .demo-tour]
+	small	月台 Livehouse（虚构场地）
+	span	回声现场 · 示例场
+@aria-label	button	查看场次详情：回声现场 · 示例场
+	span	4 位已加入 · 正在进行
+H	span.record	♪
+H	span	这一晚 · 晚班列车
+H	span	原创示例声景 · 不代表真实演出
+H	span.encore	ENCORE / 01
+	strong	示例路线 1/4
+	span.demo-tour-sep	·
+	span.demo-tour-step	放一张你的照片
+	button.demo-tour-toggle	收起
+H	p.demo-tour-hint	选一张示例照片最快；也可以用你自己的照片。
+	button.demo-tour-action	人海 · 示例照片
+	button.demo-tour-action	舞台 · 示例照片
+	button.demo-tour-action	用我自己的照片
+	button.demo-tour-skip	跳过路线
+H	strong	同一晚，各自的视角。
+H	p	先放一张你的照片，看看你拍到的是哪一面。
+H	button.joined	本场与示例说明
+H	button	愿意打招呼 · 更改
+H	button	留下第一张照片
+H	button	回看这一晚
+@aria-label	div	示例路线
+@aria-label	button	收起示例路线
+	button	示例站 · 数据只存在这个浏览器 · 关于这个示例
+H	footer	仅文字 · 照片仍由各自决定分享范围
+H	button.chat-more	回看这一晚
+
+===== upload-empty [#panel]
+	button	×
+	small.eyebrow	留一个现场瞬间
+	h2	这一张，由你决定给谁看。
+	label.file-choice	选照片
+	p.moment-samples__title	没有现场照片？用示例照片试试
+	b	人海 · 示例照片
+	small	虚构的拍摄时间 21:48，写在文件里
+	b	舞台 · 示例照片
+	small	虚构的拍摄时间 21:47，写在文件里
+H	span	没读到拍摄时间（截图或转发的图常会丢失）
+H	span.moment-taken__sep	·
+H	button.moment-taken__edit	修改时间
+H	span	拍摄时间 · 北京时间
+H	p.fine	选填，不填也能保存；填了才能按时间配对「同一刻」。
+H	button.moment-demo	演示用：把拍摄时间设成示例现场的 21:47
+H	legend	我拍的这一面
+H	b	舞台
+H	small	灯光下的那一面
+H	b	人海
+H	small	一起举手的那一面
+H	b	身边
+H	small	陪你听歌的那一面
+H	b	细节
+H	small	只有你留意的那一面
+H	p.fine	配对时，用它来找互补的那一面。AI 在本机判断，照片不上传，没把握就不替你选，选了也随时可改。
+	label	可见范围
+H	option	仅自己保存
+H	option	分享给本场成员
+	p.fine	照片会缩小并去除位置信息，只保存在这个浏览器里；选择分享后，示例现场里的成员（自动回复的示例角色）可以看到。
+	button.primary	保存这张照片
+@aria-label	section	场景操作
+@aria-label	button	关闭操作面板
+
+===== upload-own-photo [#panel]
+	button	×
+	small.eyebrow	留一个现场瞬间
+	h2	这一张，由你决定给谁看。
+	label.file-choice	选照片
+	p.moment-samples__title	没有现场照片？用示例照片试试
+	b	人海 · 示例照片
+H	small	虚构的拍摄时间 21:48，写在文件里
+	b	舞台 · 示例照片
+H	small	虚构的拍摄时间 21:47，写在文件里
+	span	没读到拍摄时间（截图或转发的图常会丢失）
+H	span.moment-taken__sep	·
+H	button.moment-taken__edit	修改时间
+	span	大约的时间 · 北京时间
+	p.fine	取自文件信息，只是大概，不一定是拍摄时间；不修改就不用来判断「同一刻」。
+	button.moment-demo	演示用：把拍摄时间设成示例现场的 21:47
+	legend	我拍的这一面
+	b	舞台
+	small	灯光下的那一面
+	b	人海
+	small	一起举手的那一面
+	b	身边
+	small	陪你听歌的那一面
+	b	细节
+	small	只有你留意的那一面
+	span.moment-ai-tag	AI 判断：细节
+	p.fine	配对时，用它来找互补的那一面。AI 在本机判断，照片不上传，没把握就不替你选，选了也随时可改。
+	label	可见范围
+H	option	仅自己保存
+H	option	分享给本场成员
+	p.fine	照片会缩小并去除位置信息，只保存在这个浏览器里；选择分享后，示例现场里的成员（自动回复的示例角色）可以看到。
+	button.primary	保存这张照片
+@aria-label	section	场景操作
+@aria-label	button	关闭操作面板
+@alt	img	待保存的照片
+@title	span	AI 在本机判断，照片不上传
+
+===== upload-own-demo-time-on [#panel]
+	button	×
+	small.eyebrow	留一个现场瞬间
+	h2	这一张，由你决定给谁看。
+	label.file-choice	选照片
+	p.moment-samples__title	没有现场照片？用示例照片试试
+	b	人海 · 示例照片
+H	small	虚构的拍摄时间 21:48，写在文件里
+	b	舞台 · 示例照片
+H	small	虚构的拍摄时间 21:47，写在文件里
+	span	拍摄于 21:47
+	span.moment-taken__sep	·
+	small	你填写的时间 · 演示用
+	button.moment-taken__edit	修改时间
+H	span	修改拍摄时间 · 北京时间
+H	p.fine	改过的时间以你填的为准。
+	button.moment-demo	已把拍摄时间设成 21:47（演示用）· 再按一次撤销
+	legend	我拍的这一面
+	b	舞台
+	small	灯光下的那一面
+	b	人海
+	small	一起举手的那一面
+	b	身边
+	small	陪你听歌的那一面
+	b	细节
+	small	只有你留意的那一面
+	span.moment-ai-tag	AI 判断：细节
+	p.fine	配对时，用它来找互补的那一面。AI 在本机判断，照片不上传，没把握就不替你选，选了也随时可改。
+	label	可见范围
+H	option	仅自己保存
+H	option	分享给本场成员
+	p.fine	照片会缩小并去除位置信息，只保存在这个浏览器里；选择分享后，示例现场里的成员（自动回复的示例角色）可以看到。
+	button.primary	保存这张照片
+@aria-label	section	场景操作
+@aria-label	button	关闭操作面板
+@alt	img	待保存的照片
+@title	span	AI 在本机判断，照片不上传
+
+===== upload-sample-stage [#panel]
+	button	×
+	small.eyebrow	留一个现场瞬间
+	h2	这一张，由你决定给谁看。
+	label.file-choice	选照片
+	p.moment-samples__title	没有现场照片？用示例照片试试
+	b	人海 · 示例照片
+H	small	虚构的拍摄时间 21:48，写在文件里
+	b	舞台 · 示例照片
+H	small	虚构的拍摄时间 21:47，写在文件里
+	span	拍摄于 21:47
+	span.moment-taken__sep	·
+	small	来自照片自带的信息
+	button.moment-taken__edit	修改时间
+	b.moment-sample-flag__tag	示例照片
+	span.moment-sample-flag__sep	·
+	p.moment-sample-flag	虚构的拍摄时间 21:47，写在文件里
+H	span	修改拍摄时间 · 北京时间
+H	p.fine	改过的时间以你填的为准。
+	legend	我拍的这一面
+	b	舞台
+	small	灯光下的那一面
+	b	人海
+	small	一起举手的那一面
+	b	身边
+	small	陪你听歌的那一面
+	b	细节
+	small	只有你留意的那一面
+	span.sr-only	AI 认为这一面更可能
+	span.moment-ai-tag	不确定，请选择
+	span.sr-only	，AI 认为更可能是舞台或人海
+	p.fine	配对时，用它来找互补的那一面。AI 在本机判断，照片不上传，没把握就不替你选，选了也随时可改。
+	label	可见范围
+H	option	仅自己保存
+H	option	分享给本场成员
+	p.fine	照片会缩小并去除位置信息，只保存在这个浏览器里；选择分享后，示例现场里的成员（自动回复的示例角色）可以看到。
+	button.primary	保存这张照片
+@aria-label	section	场景操作
+@aria-label	button	关闭操作面板
+@alt	img	待保存的照片
+
+===== upload-sample-offnight [#panel]
+	button	×
+	small.eyebrow	留一个现场瞬间
+	h2	这一张，由你决定给谁看。
+	label.file-choice	选照片
+	p.moment-samples__title	没有现场照片？用示例照片试试
+	b	人海 · 示例照片
+H	small	虚构的拍摄时间 21:48，写在文件里
+	b	舞台 · 示例照片
+H	small	虚构的拍摄时间 21:47，写在文件里
+	span	拍摄于 9月20日 21:00
+	span.moment-taken__sep	·
+	small	你填写的时间
+H	button.moment-taken__edit	修改时间
+	b.moment-sample-flag__tag	示例照片
+	span.moment-sample-flag__sep	·
+	p.moment-sample-flag	虚构的拍摄时间 21:47，写在文件里
+	span	修改拍摄时间 · 北京时间
+	p.fine	改过的时间以你填的为准。
+	p.fine	这个时间不在示例现场那一晚（2026.09.26），按规则不算同一刻。
+	legend	我拍的这一面
+	b	舞台
+	small	灯光下的那一面
+	b	人海
+	small	一起举手的那一面
+	b	身边
+	small	陪你听歌的那一面
+	b	细节
+	small	只有你留意的那一面
+	span.sr-only	AI 认为这一面更可能
+	span.moment-ai-tag	不确定，请选择
+	span.sr-only	，AI 认为更可能是舞台或人海
+	p.fine	配对时，用它来找互补的那一面。AI 在本机判断，照片不上传，没把握就不替你选，选了也随时可改。
+	label	可见范围
+H	option	仅自己保存
+H	option	分享给本场成员
+	p.fine	照片会缩小并去除位置信息，只保存在这个浏览器里；选择分享后，示例现场里的成员（自动回复的示例角色）可以看到。
+	button.primary	保存这张照片
+@aria-label	section	场景操作
+@aria-label	button	关闭操作面板
+@alt	img	待保存的照片
+
+===== upload-sample-badtime [#panel]
+	button	×
+	small.eyebrow	留一个现场瞬间
+	h2	这一张，由你决定给谁看。
+	label.file-choice	选照片
+	p.moment-samples__title	没有现场照片？用示例照片试试
+	b	人海 · 示例照片
+H	small	虚构的拍摄时间 21:48，写在文件里
+	b	舞台 · 示例照片
+H	small	虚构的拍摄时间 21:47，写在文件里
+	span	暂无可用的拍摄时间
+H	span.moment-taken__sep	·
+H	button.moment-taken__edit	修改时间
+	b.moment-sample-flag__tag	示例照片
+	span.moment-sample-flag__sep	·
+	p.moment-sample-flag	虚构的拍摄时间 21:47，写在文件里
+	span	拍摄时间 · 北京时间
+	p.fine	选填，不填也能保存；填了才能按时间配对「同一刻」。
+	p.fine	这个时间不在可选范围内（2000 年至明天），没有采用；不填也能保存。
+	legend	我拍的这一面
+	b	舞台
+	small	灯光下的那一面
+	b	人海
+	small	一起举手的那一面
+	b	身边
+	small	陪你听歌的那一面
+	b	细节
+	small	只有你留意的那一面
+	span.sr-only	AI 认为这一面更可能
+	span.moment-ai-tag	不确定，请选择
+	span.sr-only	，AI 认为更可能是舞台或人海
+	p.fine	配对时，用它来找互补的那一面。AI 在本机判断，照片不上传，没把握就不替你选，选了也随时可改。
+	label	可见范围
+H	option	仅自己保存
+H	option	分享给本场成员
+	p.fine	照片会缩小并去除位置信息，只保存在这个浏览器里；选择分享后，示例现场里的成员（自动回复的示例角色）可以看到。
+	button.primary	保存这张照片
+@aria-label	section	场景操作
+@aria-label	button	关闭操作面板
+@alt	img	待保存的照片
+
+===== upload-sample-crowd [#panel]
+	button	×
+	small.eyebrow	留一个现场瞬间
+	h2	这一张，由你决定给谁看。
+	label.file-choice	选照片
+	p.moment-samples__title	没有现场照片？用示例照片试试
+	b	人海 · 示例照片
+H	small	虚构的拍摄时间 21:48，写在文件里
+	b	舞台 · 示例照片
+H	small	虚构的拍摄时间 21:47，写在文件里
+	span	拍摄于 21:48
+	span.moment-taken__sep	·
+	small	来自照片自带的信息
+	button.moment-taken__edit	修改时间
+	b.moment-sample-flag__tag	示例照片
+	span.moment-sample-flag__sep	·
+	p.moment-sample-flag	虚构的拍摄时间 21:48，写在文件里
+H	span	修改拍摄时间 · 北京时间
+H	p.fine	改过的时间以你填的为准。
+	legend	我拍的这一面
+	b	舞台
+	small	灯光下的那一面
+	b	人海
+	small	一起举手的那一面
+	b	身边
+	small	陪你听歌的那一面
+	b	细节
+	small	只有你留意的那一面
+	span.moment-ai-tag	AI 判断：人海
+	p.fine	配对时，用它来找互补的那一面。AI 在本机判断，照片不上传，没把握就不替你选，选了也随时可改。
+	label	可见范围
+H	option	仅自己保存
+H	option	分享给本场成员
+	p.fine	照片会缩小并去除位置信息，只保存在这个浏览器里；选择分享后，示例现场里的成员（自动回复的示例角色）可以看到。
+	button.primary	保存这张照片
+@aria-label	section	场景操作
+@aria-label	button	关闭操作面板
+@alt	img	待保存的照片
+@title	span	AI 在本机判断，照片不上传
+
+===== wall-after-save [#panel]
+	button	×
+	small.eyebrow	同一场 / 不同视角
+	h2	这一晚，大家看到了什么？
+	p.moment-ribbon	AI 建议视角 → 规则找同一刻 → 双方同意才交换
+	span.nowrap	21:47
+	span.moment-group__sep	·
+	span.nowrap	同一刻
+	span.nowrap	3 个视角：
+	span.nowrap	舞台
+	span.nowrap	人海
+	span.nowrap	细节
+	p.moment-group__note	按拍摄时间分组
+	span.nowrap	（相差不超过 3 分钟）
+	p.moment-group__note	，
+	span.nowrap	规则判断，不是 AI
+	b.moment-badge__title	同一刻的另一面
+	p.moment-badge__reason	同一刻 ·
+	p.moment-badge__reason	，
+	span.nowrap	相差不到 1 分钟
+	p.moment-badge__reason	；
+	span.nowrap	你拍人海，
+	span.nowrap	TA 拍舞台
+	button.primary	和 TA 交换这个视角
+	strong	阿遥·示例
+	small	照片墙：本场成员可见
+	span.nowrap	拍摄于 21:47
+	span.moment-meta__sep	·
+	span.nowrap	视角：舞台
+	span.nowrap	作者选择
+	strong	小满·示例
+	span.nowrap	拍摄于 21:48
+	span.nowrap	视角：人海
+	span.moment-tag	同一刻
+	strong	访客3961
+	span.nowrap	AI 建议，未改动
+	strong	北屿·示例
+	span.nowrap	拍摄于 21:49
+	span.nowrap	视角：细节
+	span.nowrap	22:21
+	span.nowrap	拍摄于 22:21
+	span.nowrap	视角：身边
+	button.quiet	刷新照片
+	button.primary	放上我的一张
+	button.primary	照片交换
+	p.fine	照片墙只按本场范围展示。未上墙的本人照片也能在此看到；若另行同意过交换，那份定向授权仍有效。
+@aria-label	section	场景操作
+@aria-label	button	关闭操作面板
+@aria-label	button	和 TA 交换这个视角（阿遥·示例 的照片）
+@alt	img	同场观众拍摄的现场照片
+@alt	img	我拍摄的现场照片
+
+===== exchange-compose [.photo-exchanges]
+	button	←
+	small	同一晚 / 另一面
+	h2	交换一个视角
+	button	×
+	p.exchange-intro	用我拍下的，换
+	b	阿遥·示例
+	p.exchange-intro	看到的。
+	span.exchange-who	我
+	span.nowrap	提供的
+	small	我选中的这一张
+	span.exchange-who	阿遥·示例的
+	small	照片墙上的这一张
+	label.exchange-choice	我提供哪一张
+H	option	选择自己拍的照片
+H	option	我的第 1 张 · 已上墙 · 同一刻的另一面（推荐）
+	span.nowrap	我的第 1 张 · 已上墙
+H	span.exchange-select__sep	·
+	span.pc-dots__item	同一刻的另一面（推荐）
+	p.exchange-reason	同一刻 ·
+	span.nowrap	21:47
+	p.exchange-reason	，
+	span.nowrap	相差不到 1 分钟
+	p.exchange-reason	；
+	span.nowrap	你拍人海，
+	span.nowrap	TA 拍舞台
+	small	规则判断，不是 AI。要不要交换，仍由你和对方决定。
+	p	发送后，阿遥·示例 可以看并保存我的小图预览。TA 明确接受后，我们才能通过这次交换继续查看两张原图，散场后也可以。
+	label	我同意提供选中照片的预览，并在对方接受后分享这张原图
+	p.exchange-fine	任一方撤销，会同时结束本次两张照片的在线访问；原件仍归各自。已下载或截图的副本无法远程收回。
+	button.exchange-primary	把这两张交给对方确认 ↗
+@aria-label	section	照片交换
+@aria-label	button	返回交换列表
+@aria-label	button	关闭照片交换
+@alt	img	我选择提供的现场照片
+@alt	img	希望交换的对方现场照片
+
+===== exchange-sent [.photo-exchanges]
+	button	←
+	small	同一晚 / 另一面
+	h2	交换一个视角
+	button	×
+	p.exchange-status	等待本人回应
+	h3	和
+	b	阿遥·示例
+	h3	的两张照片
+	span.exchange-who	我
+	span.nowrap	提供的
+	small	这次确定的一张
+	span.exchange-who	阿遥·示例
+	p.exchange-fine	申请有效至 10/8 20:47。换另一张图需要结束此申请后重新发起。
+	p	对方尚未同意，原图还没有通过本次交换开放。
+	button	撤回这个申请
+	p.exchange-fine	任一方撤销，会同时结束本次两张照片的在线访问；原件仍归各自。已下载或截图的副本无法远程收回。
+	button	核对最新状态
+@aria-label	section	照片交换
+@aria-label	button	返回交换列表
+@aria-label	button	关闭照片交换
+@alt	img	我提供的照片
+@alt	img	阿遥·示例提供的照片
+
+===== exchange-accepted [.photo-exchanges]
+	button	←
+	small	同一晚 / 另一面
+	h2	交换一个视角
+	button	×
+	p.exchange-status	交换已接受
+	h3	和
+	b	阿遥·示例
+	h3	的两张照片
+	span.exchange-who	我
+	span.nowrap	提供的
+	small	这次确定的一张
+	span.exchange-who	阿遥·示例
+	p	双方已明确同意。退出房间后，还能从「照片交换」回来查看。
+	button	撤销这次交换的在线访问
+	p.exchange-fine	任一方撤销，会同时结束本次两张照片的在线访问；原件仍归各自。已下载或截图的副本无法远程收回。
+	button	核对最新状态
+@aria-label	section	照片交换
+@aria-label	button	返回交换列表
+@aria-label	button	关闭照片交换
+@alt	img	我提供的照片
+@alt	img	阿遥·示例提供的照片
+
+===== exchange-revoke-confirm [.photo-exchanges]
+	button	←
+	small	同一晚 / 另一面
+	h2	交换一个视角
+	button	×
+	p.exchange-status	交换已接受
+	h3	和
+	b	阿遥·示例
+	h3	的两张照片
+	span.exchange-who	我
+	span.nowrap	提供的
+	small	这次确定的一张
+	span.exchange-who	阿遥·示例
+	p	双方已明确同意。退出房间后，还能从「照片交换」回来查看。
+	button	撤销这次交换的在线访问
+	p.exchange-fine	任一方撤销，会同时结束本次两张照片的在线访问；原件仍归各自。已下载或截图的副本无法远程收回。
+	p	确认结束本次两张照片的双向在线访问？不会删除各自原件。
+	button.exchange-primary	确认撤销
+	button	返回查看
+	button	核对最新状态
+@aria-label	section	照片交换
+@aria-label	button	返回交换列表
+@aria-label	button	关闭照片交换
+@alt	img	我提供的照片
+@alt	img	阿遥·示例提供的照片
+
+===== exchange-list [.photo-exchanges]
+H	button	←
+	small	同一晚 / 另一面
+	h2	交换一个视角
+	button	×
+	p.exchange-intro	照片交换与交朋友分开决定。这里留下双方明确选中的两张照片。
+	b	阿遥·示例
+	small	我发起的 · 交换已接受
+	span	↗
+	button	上一页
+	span	第 1 页
+	button	下一页
+	button	刷新这一页
+@aria-label	section	照片交换
+@aria-label	button	返回交换列表
+@aria-label	button	关闭照片交换
+
+===== recap [#panel]
+	button	×
+	small.eyebrow	这一晚 · 仍在进行
+	h2	回声现场 · 示例场
+	span.pc-dots__item	月台 Livehouse（虚构场地）
+	span.recap-venue__sep	·
+	span.pc-dots__item	你仍是本场成员
+	h3	散场以后，继续聊。
+	button.primary	回到这一场的聊天室
+	button	我的长期音乐社群
+	p.fine	聊天室需明确加入；不改变照片权限或自动添加好友。
+	h3	把这一晚，留在手里。
+	p	选择自己的照片和小人，做一张带署名的私人纪念卡。
+	button.primary	保存我的纪念卡 ↗
+	p.fine	不包含私聊、朋友名单或他人的照片，不自动公开。
+	h3	留下的视角
+	p.fine	自己的照片，以及读取时仍获授权的共享照片。
+	strong	访客3961
+	small	照片墙：本场成员可见
+	span.nowrap	拍摄于 21:48
+	span.moment-meta__sep	·
+	span.nowrap	视角：人海
+	span.nowrap	AI 建议，未改动
+	strong	小满·示例
+	span.nowrap	拍摄于 22:21
+	span.nowrap	视角：身边
+	span.nowrap	作者选择
+	strong	北屿·示例
+	span.nowrap	拍摄于 21:49
+	span.nowrap	视角：细节
+	strong	阿遥·示例
+	span.nowrap	拍摄于 21:47
+	span.nowrap	视角：舞台
+	button	上一页
+	span	第 1 页
+	button	下一页
+	h3	交换过的另一面
+	p.fine	已经双方同意的定向交换有独立权限。散场后仍可查看，也可以随时撤销。
+	button.quiet	查看我的照片交换 ↗
+	h3	从本场开始的联系
+	p.fine	现在仍互为朋友。关系变化后，这里也会更新。
+	p	这里还没有当前有效的双向联系。
+	p.fine	只显示当前有权查看的内容；刷新和切页会重新核对。
+	button.quiet	刷新这一晚
+	h3	再见，在下一场。
+	button.primary	输入另一个现场的邀请码
+	button	自己开一场
+	button	我的现场记录
+@aria-label	section	场景操作
+@aria-label	button	关闭操作面板
+@alt	img	我拍摄的现场照片
+@alt	img	同场观众拍摄的现场照片
+
+===== memory-card [#panel]
+	button	×
+	small.eyebrow	这一晚 / 留在手里
+	h2	保存我的纪念卡
+	p.memory-room	回声现场 · 示例场 · 署名：访客3961
+	p.fine	只选自己的照片，最多两张。也可以不选照片，保存一张文字纪念票。
+	legend	选择要留下的内容
+	b	照片 1
+	span.nowrap	本场成员可见
+	span.memory-sep	·
+	span.nowrap	署名保留
+H	title	Music Space 的插画分身
+	span	带上已保存的小人
+	small	造型和署名以你现在确认的内容为准。
+	span	确认仅将所选内容下载到我的设备。照片可见范围不变。
+	button.primary	下载纪念卡 PNG
+	button.quiet	返回这一晚的回顾
+	p.fine	不会上传或自动公开。已下载的副本无法通过撤销召回，分享前请确认你愿意公开其中内容。
+@aria-label	section	场景操作
+@aria-label	button	关闭操作面板
+@alt	img	我的第1张现场照片
+@aria-label	svg	Music Space 的插画分身
+
+===== memory-card-done [#panel]
+	button	×
+	small.eyebrow	这一晚 / 留在手里
+	h2	保存我的纪念卡
+	p.memory-room	回声现场 · 示例场 · 署名：访客3961
+	p.fine	只选自己的照片，最多两张。也可以不选照片，保存一张文字纪念票。
+	legend	选择要留下的内容
+	b	照片 1
+	span.nowrap	本场成员可见
+	span.memory-sep	·
+	span.nowrap	署名保留
+H	title	Music Space 的插画分身
+	span	带上已保存的小人
+	small	造型和署名以你现在确认的内容为准。
+	span	确认仅将所选内容下载到我的设备。照片可见范围不变。
+	div.memory-progress	已发起下载，请查看设备的下载列表。
+	button.primary	下载纪念卡 PNG
+	button.quiet	返回这一晚的回顾
+	h3	你的纪念卡
+	button.quiet	再次下载这张成品
+	p.fine	不会上传或自动公开。已下载的副本无法通过撤销召回，分享前请确认你愿意公开其中内容。
+@aria-label	section	场景操作
+@aria-label	button	关闭操作面板
+@alt	img	我的第1张现场照片
+@aria-label	svg	Music Space 的插画分身
+@alt	img	刚刚生成的私人纪念卡，可长按保存

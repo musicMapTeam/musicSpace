@@ -1,0 +1,84 @@
+[
+ {
+  "label": "MAP-D3-push master",
+  "file": "/tmp/space-video-doodle/prod/capture/map-rc2/desktop/master/MAP-D3-push.mp4",
+  "bytes": 22814538,
+  "MB": 22.8,
+  "duration_s": 7.1,
+  "video": "h264 High 3840x2160 60/1 yuv420p",
+  "colour": "bt709/bt709/bt709/tv",
+  "frames": 426,
+  "bitrate_mbps": 25.7,
+  "audio_streams": 0,
+  "frames_decoded": 426,
+  "frames_rig": 426,
+  "same_count": true,
+  "longest_still": {
+   "frames": 10,
+   "at_s": 0.117
+  },
+  "still_over_1s": [],
+  "stutters": {
+   "count": 0,
+   "at_s": []
+  },
+  "exact_repeat_runs_over_9f": [],
+  "exact_unique": 379,
+  "motion_windows": [
+   {
+    "kind": "push",
+    "label": "push 300 f (moving from f48)",
+    "from": 48,
+    "to": 335,
+    "allow": 1,
+    "frames": 288,
+    "exactRepeats": 0,
+    "longestRepeat": 1,
+    "minChange": 0.015,
+    "ok": true
+   }
+  ],
+  "motion_ok": true
+ },
+ {
+  "label": "MAP-D3-push edit 1080",
+  "file": "/tmp/space-video-doodle/prod/capture/map-rc2/desktop/1080/MAP-D3-push.mp4",
+  "bytes": 10949470,
+  "MB": 10.9,
+  "duration_s": 7.1,
+  "video": "h264 High 1920x1080 60/1 yuv420p",
+  "colour": "bt709/bt709/bt709/tv",
+  "frames": 426,
+  "bitrate_mbps": 12.3,
+  "audio_streams": 0,
+  "frames_decoded": 426,
+  "frames_rig": 426,
+  "same_count": true,
+  "longest_still": {
+   "frames": 10,
+   "at_s": 0.117
+  },
+  "still_over_1s": [],
+  "stutters": {
+   "count": 0,
+   "at_s": []
+  },
+  "exact_repeat_runs_over_9f": [],
+  "exact_unique": 379,
+  "motion_windows": [
+   {
+    "kind": "push",
+    "label": "push 300 f (moving from f48)",
+    "from": 48,
+    "to": 335,
+    "allow": 1,
+    "frames": 288,
+    "exactRepeats": 0,
+    "longestRepeat": 1,
+    "minChange": 0.023,
+    "ok": true
+   }
+  ],
+  "motion_ok": true
+ }
+]

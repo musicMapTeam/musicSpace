@@ -1,0 +1,106 @@
+{
+ "map": "flipping-in-b",
+ "bed": "/tmp/space-video-doodle/prod/audio/beds/flipping-in-b.wav",
+ "range": [
+  0.0,
+  174.6667
+ ],
+ "full": true,
+ "music": {
+  "I": -16.0,
+  "TP": -1.5,
+  "LRA": 4.9
+ },
+ "sfx_before_gain": {
+  "I": -27.3,
+  "TP": 1.6,
+  "LRA": 10.4
+ },
+ "sfx_gain_db": 2.3,
+ "sfx": {
+  "I": -25.0,
+  "TP": 3.9,
+  "LRA": 10.4
+ },
+ "sfx_vs_music_LU": -9.0,
+ "mix": {
+  "I": -16.0,
+  "TP": -1.5,
+  "LRA": 4.6
+ },
+ "normalisation": {
+  "gain_db": -0.2,
+  "before": {
+   "I": -15.8,
+   "TP": 4.7,
+   "LRA": 4.6
+  },
+  "after": {
+   "I": -16.0,
+   "TP": -1.5,
+   "LRA": 4.6
+  },
+  "limiter_max_reduction_db": -6.01,
+  "ceiling_db": -1.5
+ },
+ "sfx_counts": {
+  "slap": 47,
+  "stamp": 12,
+  "tape": 10,
+  "pop": 80,
+  "whoosh": 20,
+  "impact": 19,
+  "typetick": 186,
+  "zip": 4,
+  "swish": 25,
+  "squeak": 37,
+  "highlighter": 10,
+  "slam": 52,
+  "scribble": 2,
+  "pencil": 8,
+  "click": 35,
+  "boop": 12,
+  "riser": 2,
+  "boom": 5,
+  "thump": 9,
+  "ding": 7,
+  "shutter": 1,
+  "chime": 1,
+  "hmm": 1,
+  "sparkle": 11,
+  "tick": 20,
+  "heartbeat": 7,
+  "blip": 7,
+  "crackle": 1,
+  "flip": 1,
+  "scratch": 1
+ },
+ "sfx_placed": 633,
+ "bed_automation": [
+  {
+   "label": "stop under the title wipe (4:4.5 -> 5:1)",
+   "db": -60,
+   "a": 7.5491,
+   "b": 7.5611,
+   "c": 7.801,
+   "d": 7.805
+  },
+  {
+   "label": "stop under the wipe into the collision (40:4.5 -> 41:1)",
+   "db": -60,
+   "a": 77.7931,
+   "b": 77.8051,
+   "c": 78.045,
+   "d": 78.049
+  },
+  {
+   "label": "duck under 「曲终，」 (79:1 -> swell back by 79:3)",
+   "db": -20,
+   "a": 152.182,
+   "b": 152.201,
+   "c": 152.929,
+   "d": 153.173
+  }
+ ],
+ "note": "all SFX synthesized in tools/sfx.py from noise/oscillators; no samples; bed automation from scenes/film.js (DM.film.bed)"
+}

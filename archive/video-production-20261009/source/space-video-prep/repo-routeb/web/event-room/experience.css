@@ -1,0 +1,40 @@
+/* One stage-side note system: memory is useful without social participation. */
+:root{--paper:#f5f0df;--ink:#22242a;--accent:#dbe873;font-family:Arial,'PingFang SC','Microsoft YaHei',sans-serif}
+.presence{max-width:440px;align-items:flex-end;gap:12px;right:28px;bottom:112px;background:var(--paper);color:var(--ink);padding:16px 18px;border-radius:3px;box-shadow:3px 4px 0 #15151a44}
+.presence>div:first-child{min-width:0}.presence strong{background:none;color:var(--ink);padding:0;max-width:none;font-size:16px;font-weight:700;line-height:1.5}
+.presence p{display:block;margin:6px 0 0;color:#53545b;font-size:14px;line-height:1.6;max-width:270px}
+.presence-actions{display:flex;flex-direction:column;gap:6px;min-width:140px}.presence-actions button{margin:0;min-height:44px;font-size:14px;padding:9px 12px}
+.presence-actions button:not(:first-child){background:transparent;color:var(--ink);border:1px solid #a6a797}
+.presence{display:block}.presence p{max-width:none}.presence-actions{display:grid;grid-template-columns:1fr 1fr;margin-top:12px;gap:8px}.presence-actions #room-first-photo{background:var(--accent);border-color:#a6b359}.presence-actions button{white-space:normal}
+.presence.welcome{max-width:480px}.presence.welcome .presence-actions{min-width:160px}
+.panel p,.panel .fine,.entry-list span,.chat-notice,.chat-empty p,.private-chat>footer,.photo-exchanges p{font-size:14px;line-height:1.65}
+.panel .eyebrow,.private-chat>header small{font-size:12px;letter-spacing:1px}.panel .quiet,.panel .row .primary{font-size:14px}
+.panel button,.private-chat button,.photo-exchanges button{min-height:44px}
+.panel .row{display:flex;flex-wrap:wrap;gap:8px}.panel .row .primary{border:1px solid #a6a797;padding:10px 12px}
+.photo-item strong{font-size:14px}.photo-item small{font-size:12px}.entry-list .own-presence{padding:14px 0;color:#63646a}
+.participation-note{border-left:3px solid #a3b14e;padding:10px 12px;background:#eae9da;margin:12px 0}
+.participation-choices{border:0;margin:16px 0;padding:0}.participation-choices legend{font-size:14px;font-weight:700;margin-bottom:8px}
+.participation-choices label{display:flex;align-items:flex-start;gap:10px;margin:8px 0;padding:10px;border:1px solid #b6bbaa;cursor:pointer}
+.participation-choices input{width:20px;height:20px;flex:none;margin:2px 0}.participation-choices span{font-size:14px;line-height:1.6}.participation-choices small{display:block;font-size:12px;color:#60616a}
+.presence-state{font-size:12px;display:block;color:#65666d;margin-top:5px}.memory-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.memory-toolbar button{font-size:14px;min-height:44px;padding:8px 10px;border:1px solid #a6a797}
+@media(max-width:800px){.presence{left:16px;right:16px;bottom:110px;max-width:none;padding:12px;align-items:flex-start;gap:10px}.presence strong{font-size:15px;max-width:none}.presence p{font-size:13px;line-height:1.5;max-width:none}.presence-actions{min-width:126px}.presence-actions button{font-size:13px;padding:8px}.presence.welcome .presence-actions{min-width:130px}.panel{right:12px;left:12px;width:auto;bottom:110px;max-height:calc(100dvh - 190px);padding:24px 18px 18px}.panel h2{font-size:23px}.track{max-width:190px}.frame{min-height:100dvh;height:100dvh}.camera-nav{bottom:30px}.close-camera .presence{display:none}}
+@media(max-width:420px){.presence{display:block}.presence p{margin-bottom:10px}.presence-actions{display:grid;grid-template-columns:1fr 1fr}.presence.welcome .presence-actions{grid-template-columns:1fr}.presence-actions button{white-space:normal}.presence-actions #room-recap{min-height:44px}}
+
+/* Keep the reading tools in the same printed stage language. */
+:root{--paper:#f1eadb;--ink:#282633;--accent:#dce982;--paper-line:#cfc5b3;--muted-ink:#625e68}
+.panel,.private-chat,.photo-exchanges,.moderation-panel{background:var(--paper);color:var(--ink);border-color:var(--paper-line)}
+.panel p,.panel label,.private-chat>footer,.chat-notice,.photo-exchanges p{color:var(--muted-ink)}
+.panel .primary,.private-chat .chat-composer button,.photo-exchanges .x-primary{background:var(--accent);color:var(--ink)}
+.panel[data-kind=person]{border-top:3px solid #b6c572}.panel[data-kind=person] .participation-note{margin:8px 0;padding:7px 10px;border-left-width:2px;background:#e5e4d2;font-size:13px}
+.panel[data-kind=person] .eyebrow{color:var(--muted-ink)}
+button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}.panel button:focus-visible,.private-chat button:focus-visible{outline-color:#52613c}
+@media(max-width:800px){.presence{padding:10px 12px}.presence p{margin:4px 0 0;font-size:12px}.presence-actions{margin-top:8px;gap:6px}.presence-actions #join,.presence-actions #room-recap{background:transparent;border-color:transparent;box-shadow:none;text-decoration:underline;text-underline-offset:4px;font-weight:400}.presence-actions #room-first-photo{font-weight:700}.presence-actions #my-participation{border-color:#b9b8a5}.panel[data-kind=person]{max-height:42dvh;padding:16px 18px 14px;bottom:110px;box-shadow:3px 4px 0 #1d1b2928}.panel[data-kind=person] h2{font-size:21px;margin:4px 0 8px}.panel[data-kind=person] .fine{font-size:12px}.panel[data-kind=person] .quiet{font-size:13px}.panel[data-kind=person] button.primary{margin:8px 0}.close-camera:has(.panel[data-kind=person]:not([hidden])) .camera-nav{opacity:.75}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0s!important;transition-duration:0s!important;scroll-behavior:auto!important}}
+
+@media(max-width:800px){.presence-actions #join,.presence-actions #room-recap{color:var(--ink)}}
+
+@media(max-width:800px) and (max-height:650px){.presence:not(.welcome)>div:first-child{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.presence:not(.welcome) .presence-actions{margin-top:0}.presence:not(.welcome){padding:8px 10px}.presence-actions button{font-size:12px}}
+@media(max-width:360px){.frame>header{gap:8px;padding-left:12px;padding-right:12px}.brand{font-size:28px}.my-look{white-space:nowrap;flex-shrink:0;font-size:12px}}
+
+@media(max-width:800px) and (max-height:650px){.scene-heading{padding:6px 8px}.scene-heading h1 button{min-height:24px}.scene-heading h1 span{font-size:18px;-webkit-line-clamp:1}.scene-heading small{font-size:9px}}
+.invite-address{overflow-wrap:anywhere;user-select:all}

@@ -1,0 +1,10 @@
+const out = {};
+await page.locator('.community-panel summary', { hasText: '设置与管理' }).first().click(); await sleep(600);
+await shot('55-settings-open');
+out.menu = await page.evaluate(() => { const d = [...document.querySelectorAll('.community-panel details')].find(e => e.getClientRects().length); return d ? d.innerText : null; });
+await page.locator('.community-panel [data-group="linked"]').first().click(); await sleep(2000);
+await shot('56-linked');
+out.after = await page.evaluate(() => [...document.querySelectorAll('.community-panel')].filter(e => e.getClientRects().length).map(c => c.className + ' || ' + c.innerText.replace(/\n{2,}/g, '\n').slice(0, 1500)));
+out.toast = await page.evaluate(() => document.querySelector('#toast')?.textContent);
+out.btns = (await btns()).filter(b => !/view=|#my-space|#social-inbox|#room-info|music-map|#my-look|Music Space/.test(b));
+return out;

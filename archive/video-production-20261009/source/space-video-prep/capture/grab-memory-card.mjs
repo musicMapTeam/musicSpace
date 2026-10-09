@@ -1,0 +1,15 @@
+import { launch, newPage, sleep, BASE, ensureDir } from './lib.mjs';
+import { hostCreatesRoom, uploadPhoto } from './flows.mjs';
+const browser = await launch();
+const A = await newPage(browser);
+await hostCreatesRoom(A.page, { name: '阿遥', title: '返场夜', venue: '月台 Livehouse' });
+await uploadPhoto(A.page, '/tmp/space-video-prep/repo-rc4/web/assets/stage-scene.png', { visibility: 'room' });
+await A.page.locator('#panel-close').click(); await sleep(500);
+await A.page.getByRole('button', { name: '回看这一晚' }).first().click(); await sleep(1500);
+await A.page.getByRole('button', { name: /保存我的纪念卡/ }).click(); await sleep(1500);
+await A.page.locator('.memory-photo-options input').first().check().catch(()=>{});
+await A.page.locator('.memory-materials .consent input').check();
+const [dl] = await Promise.all([A.page.waitForEvent('download'), A.page.getByRole('button', { name: /下载纪念卡 PNG/ }).click()]);
+await dl.saveAs('/tmp/space-video-prep/stills/memory-card-A.png');
+console.log('saved', dl.suggestedFilename());
+await browser.close();

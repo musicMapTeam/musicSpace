@@ -1,0 +1,14 @@
+const out = {};
+out.pill = await page.evaluate(() => { const sc = [...document.querySelectorAll('.worldcup-panel .community-scroll')].find(e => e.getClientRects().length); const w = document.createTreeWalker(sc, NodeFilter.SHOW_TEXT); let n; while ((n = w.nextNode())) { if (n.textContent.trim() === '你选了这张') { const el = n.parentElement; const r = el.getBoundingClientRect(); return el.tagName + '.' + el.className + ' @' + Math.round(r.y) + ' st=' + sc.scrollTop + ' children=' + el.children.length; } } return null; });
+await page.click('[data-cup-close]'); await sleep(800);
+await page.evaluate(() => { const e = [...document.querySelectorAll('.conversation-actions')].find(x => x.getClientRects().length); e.scrollTo({ left: 0, behavior: 'instant' }); });
+await page.click('[data-group-games]'); await sleep(1500);
+await shot('35-games-list');
+const g = () => page.evaluate(() => { const c = [...document.querySelectorAll('.music-games')].find(e => e.getClientRects().length); return c ? c.innerText.replace(/\n{2,}/g, '\n').slice(0, 2000) : null; });
+out.list = await g();
+out.listBtns = await page.evaluate(() => [...document.querySelectorAll('.music-games .entry-list button')].map(b => b.innerText.replace(/\s+/g, ' ')));
+await page.locator('.music-games .entry-list button', { hasText: '今晚谁和你同一首' }).first().click(); await sleep(1500);
+await shot('36-game-join');
+out.joinView = await g();
+out.joinForm = await page.evaluate(() => { const f = document.querySelector('form[data-game-form="join"]'); return f ? f.innerText + ' | buttons: ' + [...f.querySelectorAll('button')].map(b => b.innerText).join(' / ') : null; });
+return out;

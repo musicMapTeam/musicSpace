@@ -1,0 +1,1500 @@
+[
+ {
+  "view": "phone",
+  "n": 1,
+  "label": "home",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-01-home.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 唱片店 从喜欢，走向未知。 从一位喜欢的歌手出发，沿着合唱找到下一首。 今天，从谁开始？ 周杰伦 林俊杰 邓紫棋 孙燕姿 两位歌手之间，隔着几首歌？ 寻声 · 费玉清 → 邓紫棋 我的发现 0 留下的歌 0 开放曲库 小院 唱片店 我的发现",
+  "dialogs": [],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 2,
+  "label": "home-search-typed",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-02-home-search-typed.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 唱片店 从喜欢，走向未知。 从一位喜欢的歌手出发，沿着合唱找到下一首。 今天，从谁开始？ 周杰伦 林俊杰 邓紫棋 孙燕姿 这里还没有「王菲」，先从这几位开始吧。 两位歌手之间，隔着几首歌？ 寻声 · 费玉清 → 邓紫棋 我的发现 0 留下的歌 0 开放曲库 小院 唱片店 我的发现",
+  "dialogs": [],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 3,
+  "label": "home-search-found",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-03-home-search-found.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 唱片店 从喜欢，走向未知。 从一位喜欢的歌手出发，沿着合唱找到下一首。 今天，从谁开始？ 林俊杰 林宥嘉 林忆莲 蔡依林 两位歌手之间，隔着几首歌？ 寻声 · 费玉清 → 邓紫棋 我的发现 0 留下的歌 0 开放曲库 小院 唱片店 我的发现",
+  "dialogs": [],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 4,
+  "label": "about",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-04-about.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 唱片店 从喜欢，走向未知。 从一位喜欢的歌手出发，沿着合唱找到下一首。 今天，从谁开始？ 周杰伦 林俊杰 邓紫棋 孙燕姿 两位歌手之间，隔着几首歌？ 寻声 · 费玉清 → 邓紫棋 我的发现 0 留下的歌 0 开放曲库 关于音乐探索 从喜欢，走向未知。 寻声 选好起点和终点，翻开手边的合唱，沿它走到下一位；翻开和提示不算步数。 图鉴 摊开全部合唱，从任意一位歌手出发随便走。 来源 每条连线是一首合唱录音，点歌旁的「来源」看出处。 曲库 开放曲库是公开数据集里的共同署名，不一定是合唱，不进入连线。 音频 这里不播放音乐；31 首可以去 QQ 音乐听同一录音。 数据来源 合唱目录 29 位音乐人、37 首共同演唱录音，每首都附有出处，资料访问于 2026 年 9 月 27–28 日；出处在每首歌的「来源」里。路线和「最短」只算这 37 首。 QQ 音乐 31 首在 QQ 音乐有同一录音的页面（2026 年 9 月 29 日按页面信息确认）；另外 6 首的原因写在「来源」里。 开放曲库 126 首，取自 Hugging Face 数据集 maharshipandya/spotify-tracks-dataset（快照 635b034）里 mandopop、cantopop 的共同署名记录（全库 114,000 行）。数据卡标注的许可是 bsd，没有写明具体版本；这里只取曲名、艺人、专辑和行号，不含音频。数据集 ↗ （新标签页） 字体 站酷庆科黄油体、霞鹜漫黑、悠哉、Luckiest Guy、得意黑的子集（SIL OFL 1.1、Apache 2.0）。许可全文 ↗ （新标签页） 代码 three.js、Sakura Crossing、OverlayScrollbars、qrcode-generator（MIT），GSAP（Standard No Charge 许可）；许可全文附在网页源码里。 来历 唱片店、寻声和合唱目录来自 Music Map。 知道了",
+  "dialogs": [
+   "[dialog about-dialog] 关于音乐探索 从喜欢，走向未知。 寻声 选好起点和终点，翻开手边的合唱，沿它走到下一位；翻开和提示不算步数。 图鉴 摊开全部合唱，从任意一位歌手出发随便走。 来源 每条连线是一首合唱录音，点歌旁的「来源」看出处。 曲库 开放曲库是公开数据集里的共同署名，不一定是合唱，不进入连线。 音频 这里不播放音乐；31 首可以去 QQ 音乐听同一录音。 数据来源 合唱目录 29 位音乐人、37 首共同演唱录音，每首都附有出处，资料访问于 2026 年 9 月 27–28 日；出处在每首歌的「来源」里。路线和「最短」只算这 37 首。 QQ 音乐 31 首在 QQ 音乐有同一录音的页面（2026 年 9 月 29 日按页面信息确认）；另外 6 首的原因写在「来源」里。 开放曲库 126 首，取自 Hugging Face 数据集 maharshipandya/spotify-tracks-dataset（快照 635b034）里 mandopop、cantopop 的共同署名记录（全库 114,000 行）。数据卡标注的许可是 bsd，没有写明具体版本；这里只取曲名、艺人、专辑和行号，不含音频。数据集 ↗ （新标签页） 字体 站酷庆科黄油体、霞鹜漫黑、悠哉、Luckiest Guy、得意黑的子集（SIL OFL 1.1、Apache 2.0）。许可全文 ↗ （新标签页） 代码 three.js、Sakura Crossing、OverlayScrollbars、qrcode-generator（MIT），GSAP（Standard No Charge 许可）；许可全文附在网页源码里。 来历 唱片店、寻声和合唱目录来自 Music Map。 知道了"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [
+   "Music Map"
+  ],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 5,
+  "label": "about-sources",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-05-about-sources.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 唱片店 从喜欢，走向未知。 从一位喜欢的歌手出发，沿着合唱找到下一首。 今天，从谁开始？ 周杰伦 林俊杰 邓紫棋 孙燕姿 两位歌手之间，隔着几首歌？ 寻声 · 费玉清 → 邓紫棋 我的发现 0 留下的歌 0 开放曲库 关于音乐探索 从喜欢，走向未知。 寻声 选好起点和终点，翻开手边的合唱，沿它走到下一位；翻开和提示不算步数。 图鉴 摊开全部合唱，从任意一位歌手出发随便走。 来源 每条连线是一首合唱录音，点歌旁的「来源」看出处。 曲库 开放曲库是公开数据集里的共同署名，不一定是合唱，不进入连线。 音频 这里不播放音乐；31 首可以去 QQ 音乐听同一录音。 数据来源 合唱目录 29 位音乐人、37 首共同演唱录音，每首都附有出处，资料访问于 2026 年 9 月 27–28 日；出处在每首歌的「来源」里。路线和「最短」只算这 37 首。 QQ 音乐 31 首在 QQ 音乐有同一录音的页面（2026 年 9 月 29 日按页面信息确认）；另外 6 首的原因写在「来源」里。 开放曲库 126 首，取自 Hugging Face 数据集 maharshipandya/spotify-tracks-dataset（快照 635b034）里 mandopop、cantopop 的共同署名记录（全库 114,000 行）。数据卡标注的许可是 bsd，没有写明具体版本；这里只取曲名、艺人、专辑和行号，不含音频。数据集 ↗ （新标签页） 字体 站酷庆科黄油体、霞鹜漫黑、悠哉、Luckiest Guy、得意黑的子集（SIL OFL 1.1、Apache 2.0）。许可全文 ↗ （新标签页） 代码 three.js、Sakura Crossing、OverlayScrollbars、qrcode-generator（MIT），GSAP（Standard No Charge 许可）；许可全文附在网页源码里。 来历 唱片店、寻声和合唱目录来自 Music Map。 知道了",
+  "dialogs": [
+   "[dialog about-dialog] 关于音乐探索 从喜欢，走向未知。 寻声 选好起点和终点，翻开手边的合唱，沿它走到下一位；翻开和提示不算步数。 图鉴 摊开全部合唱，从任意一位歌手出发随便走。 来源 每条连线是一首合唱录音，点歌旁的「来源」看出处。 曲库 开放曲库是公开数据集里的共同署名，不一定是合唱，不进入连线。 音频 这里不播放音乐；31 首可以去 QQ 音乐听同一录音。 数据来源 合唱目录 29 位音乐人、37 首共同演唱录音，每首都附有出处，资料访问于 2026 年 9 月 27–28 日；出处在每首歌的「来源」里。路线和「最短」只算这 37 首。 QQ 音乐 31 首在 QQ 音乐有同一录音的页面（2026 年 9 月 29 日按页面信息确认）；另外 6 首的原因写在「来源」里。 开放曲库 126 首，取自 Hugging Face 数据集 maharshipandya/spotify-tracks-dataset（快照 635b034）里 mandopop、cantopop 的共同署名记录（全库 114,000 行）。数据卡标注的许可是 bsd，没有写明具体版本；这里只取曲名、艺人、专辑和行号，不含音频。数据集 ↗ （新标签页） 字体 站酷庆科黄油体、霞鹜漫黑、悠哉、Luckiest Guy、得意黑的子集（SIL OFL 1.1、Apache 2.0）。许可全文 ↗ （新标签页） 代码 three.js、Sakura Crossing、OverlayScrollbars、qrcode-generator（MIT），GSAP（Standard No Charge 许可）；许可全文附在网页源码里。 来历 唱片店、寻声和合唱目录来自 Music Map。 知道了"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [
+   "数据集 ↗ （新标签页）(54x17)"
+  ],
+  "offscreen": [],
+  "banned": [
+   "Music Map"
+  ],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 6,
+  "label": "catalogue",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-06-catalogue.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 从喜欢，走向未知。 从一位喜欢的歌手出发，沿着合唱找到下一首。 今天，从谁开始？ 周杰伦 林俊杰 邓紫棋 孙燕姿 两位歌手之间，隔着几首歌？ 寻声 · 费玉清 → 邓紫棋 我的发现 0 留下的歌 0 开放曲库 THE OPEN CRATE 开放曲库 126 共同署名，不一定是合唱 01 I'm Alive W.M.L · Vicky Chen 02 手心的薔薇 JJ Lin · G.E.M. 03 感谢你曾来过 阿涵 · Ayo97 04 珊瑚海 Jay Chou · Lara Liang 05 不得不愛 Will Pan · Xian Zi 06 飄流教室 Leo Ku · Edan 呂爵安 07 說好不哭 Jay Chou · Ashin Chen 08 Drowning 高爾宣 OSN · 李浩瑋 Howard Lee 09 自我安慰 Leo Ku · MC 張天賦 10 Frenemy MC 張天賦 · Kaho Hung 11 開始懂了 Stefanie Sun · Jerry · Lin Zheng-Zhong 12 愛我的時候 Eric Chou · 單依純 13 Work 高爾宣 OSN · sunkis 14 今天陽光就是特別耀眼特別和諧 feat. 韋禮安 Pets Tseng · WeiBird 15 不該 Jay Chou · A-Mei Chang 16 你被寫在我的歌裡 Sodagreen · Ella Chen 17 對等關係 (feat. 張惠妹) Ronghao Li · A-Mei Chang 18 好心分手 Candy Lo · Leehom Wang 19 一表人才 Edan 呂爵安 · Feng Ze 20 凉凉 - 電視劇《三生三世十里桃花》片尾曲 Aska Yang · Zhang Bichen 21 小酒窩 JJ Lin · Charlene Choi 22 再也沒有你 Lara Liang · Andrew Tan 23 知否知否 - \"知否知否应是绿肥红瘦\" 电视剧主题曲 Hu Xia · Yisa Yu 24 你最珍貴 Jacky Cheung · 高慧君 25 私奔到月球 Mayday · Cheer Chen 26 Without You - Acoustic Version 高爾宣 OSN · Vicky Chen 27 Bedroom (feat. Anne-Marie) JJ Lin · Anne-Marie 28 溫柔 #MaydayBlue20th - feat.孫燕姿 Mayday · Stefanie Sun 29 別勉強 G.E.M. · Eric Chou 30 你那麼愛她 林隆璇 · Sam Lee 31 相愛很難 - 電影\"男人四十\"歌曲 Jacky Cheung · Anita Mui 32 隔離 - Studio Live Duet Jace Chan · Terence Lam 33 我也難過的 吳林峰 · 謝芊彤 34 如果的事 Christine Fan · Angela Chang 35 致姗姗来迟的你 A Si · Yoga Lin 36 Black Out (feat. 9m88) ØZI · 9m88 37 How Many Times - Studio Live MC 張天賦 · Jay Fung 38 屋頂 Landy Wen · Jay Chou 39 不是我不明白 Fish Leong · Crowd Lu 40 另一個天堂 Leehom Wang · Jane Zhang 41 羅生門 Juno Mak · Kay Tse 42 戀愛頻率 Andy Hui · 許慧欣 43 目黑 - 合唱版 Endy Chow · Fiona Sit 44 廣島之戀 Karen Mok · 張洪量 45 jagi (feat. KIRE) Shi Shi · KIRE 46 聽海浪 Byejack · Midnight. 47 Storm - English Version 吳青峰 · AURORA 48 友情歲月 Jordan Chan · Ekin Cheng · 謝天華 · 林曉峰 49 綠光 Stefanie Sun · Shen Darren 50 今天妳要嫁給我 Jolin Tsai · David Tao 51 現代愛情故事 Chilam · Xu Qiu Yi 52 畫沙 Cindy Yen · Jay Chou 53 I'm not yours (feat. 安室奈美惠) Jolin Tsai · Namie Amuro 54 堅強的理由 Karen Mok · Wu Bai 55 我是誰 (電視劇《狼殿下》主題曲) Jolin Tsai · Jony J 56 (......小王子)(feat. ohashiTrio) 吳青峰 · 大橋三重唱 57 我們萬歲 Eason Chan · eason and the duo band 58 年少無知 - (劇集 \"天與地\" 片尾曲) Bowie Lam · 陳豪 · 黃德斌 59 獨一無二 AGA · Gin Lee 60 Don't Wanna Lie (feat. 8lak & Hosea) Patrick Brasca · 8lak · Hosea 61 輕熟女27 (我只在乎你) MC HotDog · 關彥淳 62 Take It Slow Crispy脆樂團 · 恐龍的皮 63 Moonlight (feat. 袁婭維) Will Pan · TIA RAY 64 (......醉鬼阿Q)(feat. 孫燕姿) 吳青峰 · Stefanie Sun 65 敢愛敢做 George Lam · David Ling Jr 66 漸漸 Eason Chan · eason and the duo band 67 敏感(LH x Z.TAO) Lu Han · Z.TAO 68 石徑 Hins Cheung · Keeva Mak 69 月球上碰面 Fiona Sit · Juno Mak 70 自知之明 Pong Nan · Tang Siu Hau 71 [Jiang Yanli & Jin Zixuan] Yong Ge Lara Liang · Yang Qiyu 72 樓下有人 Leo Ku · 葉巧琳 73 兩旬之歌 Byejack · Slizznico 74 漩渦 Anthony Wong · Cass Phang 75 Try - Kung Fu Panda 3 Official Theme Song Patrick Brasca · Jay Chou 76 眠眠 Yisa Yu · 霍尊 77 情未了 Christopher Wong · Vivian Chow 78 把歌談心 林姍姍 · David Ling Jr 79 無言的結局 Daniel Lo · 林淑容 80 螢火 Firefly Byejack · Trickie Bonnie 81 鴛鴦酒杯 Jody Chiang · Hong Ronghong 82 舞伴 陳盈潔 · 袁小迪 83 情難斷夢袂醒 陳中 · 邱芸子 84 千個太陽 Deanie Ip · Elisa Chan · 散芬芳合唱團 85 就要揮別 楊芳儀 · 徐曉菁 86 鐵幕誘惑 Aaron Kwok · Frankie 87 不懂愛你 Daniel Chan · 林京燁 88 真愛在明天 Vivian Chow · Leon Lai 89 In Love With You Jacky Cheung · Regine Velasquez 90 常在我心間...愛你不分早晚 Michael Kwan · Tracy Huang 91 放過自己 - Acoustic Version G5SH · Marz23 92 嫁妝 陳中 · 邱芸子 93 出來面對 魏嘉瑩 Arrow Wei · WONFU 94 相思夢難圓 - 修復版 麗莎 · 郭炳堅 95 茫茫到深更 陳中 · 邱芸子 96 我現在會好好的 - TVBS「女力報到愛的故事」片尾曲 陳威全 · Danny Koo 97 有意 - (劇集 \"烈火雄心III\" 片尾曲) Kevin Cheng · Myolie Wu 98 I LOVE YOU SO太愛妳 Aaron Kwok · Beta Soul 99 紫釵恨 張偉文 · 胡美儀 100 回頭看看我 Feng Ze · 采子 101 出嫁 Zhang Qing Fang · 優客李林 102 我有多麼喜歡你 (feat. 林宥嘉) Jam Hsiao · Yoga Lin 103 心痛不再有 方季惟 · Pan Mei Chen 104 別弄花我的妝 (feat. Karencici) Sharon Kwan · Karencici 105 你我相逢 Jody Chiang · 施文彬 106 心仍是冷 倫永亮 · Anita Mui 107 愛的呼喚 Aaron Kwok · Beta Soul 108 受傷的心 Jacky Wu · Huang Yee Ling 109 一生何求 Danny Chan · Bryan Choy Hin Lok · David Ling Jr 110 甲乙丙丁 Andy Hui · Jacky Cheung · 鄭中基 111 將冰山劈開 ",
+  "dialogs": [
+   "[dialog open-catalogue] THE OPEN CRATE 开放曲库 126 共同署名，不一定是合唱 01 I'm Alive W.M.L · Vicky Chen 02 手心的薔薇 JJ Lin · G.E.M. 03 感谢你曾来过 阿涵 · Ayo97 04 珊瑚海 Jay Chou · Lara Liang 05 不得不愛 Will Pan · Xian Zi 06 飄流教室 Leo Ku · Edan 呂爵安 07 說好不哭 Jay Chou · Ashin Chen 08 Drowning 高爾宣 OSN · 李浩瑋 Howard Lee 09 自我安慰 Leo Ku · MC 張天賦 10 Frenemy MC 張天賦 · Kaho Hung 11 開始懂了 Stefanie Sun · Jerry · Lin Zheng-Zhong 12 愛我的時候 Eric Chou · 單依純 13 Work 高爾宣 OSN · sunkis 14 今天陽光就是特別耀眼特別和諧 feat. 韋禮安 Pets Tseng · WeiBird 15 不該 Jay Chou · A-Mei Chang 16 你被寫在我的歌裡 Sodagreen · Ella Chen 17 對等關係 (feat. 張惠妹) Ronghao Li · A-Mei Chang 18 好心分手 Candy Lo · Leehom Wang 19 一表人才 Edan 呂爵安 · Feng Ze 20 凉凉 - 電視劇《三生三世十里桃花》片尾曲 Aska Yang · Zhang Bichen 21 小酒窩 JJ Lin · Charlene Choi 22 再也沒有你 Lara Liang · Andrew Tan 23 知否知否 - \"知否知否应是绿肥红瘦\" 电视剧主题曲 Hu Xia · Yisa Yu 24 你最珍貴 Jacky Cheung · 高慧君 25 私奔到月球 Mayday · Cheer Chen 26 Without You - Acoustic Version 高爾宣 OSN · Vicky Chen 27 Bedroom (feat. Anne-Marie) JJ Lin · Anne-Marie 28 溫柔 #MaydayBlue20th - feat.孫燕姿 Mayday · Stefanie Sun 29 別勉強 G.E.M. · Eric Chou 30 你那麼愛她 林隆璇 · Sam Lee 31 相愛很難 - 電影\"男人四十\"歌曲 Jacky Cheung · Anita Mui 32 隔離 - Studio Live Duet Jace Chan · Terence Lam 33 我也難過的 吳林峰 · 謝芊彤 34 如果的事 Christine Fan · Angela Chang 35 致姗姗来迟的你 A Si · Yoga Lin 36 Black Out (feat. 9m88) ØZI · 9m88 37 How Many Times - Studio Live MC 張天賦 · Jay Fung 38 屋頂 Landy Wen · Jay Chou 39 不是我不明白 Fish Leong · Crowd Lu 40 另一個天堂 Leehom Wang · Jane Zhang 41 羅生門 Juno Mak · Kay Tse 42 戀愛頻率 Andy Hui · 許慧欣 43 目黑 - 合唱版 Endy Chow · Fiona Sit 44 廣島之戀 Karen Mok · 張洪量 45 jagi (feat. KIRE) Shi Shi · KIRE 46 聽海浪 Byejack · Midnight. 47 Storm - English Version 吳青峰 · AURORA 48 友情歲月 Jordan Chan · Ekin Cheng · 謝天華 · 林曉峰 49 綠光 Stefanie Sun · Shen Darren 50 今天妳要嫁給我 Jolin Tsai · David Tao 51 現代愛情故事 Chilam · Xu Qiu Yi 52 畫沙 Cindy Yen · Jay Chou 53 I'm not yours (feat. 安室奈美惠) Jolin Tsai · Namie Amuro 54 堅強的理由 Karen Mok · Wu Bai 55 我是誰 (電視劇《狼殿下》主題曲) Jolin Tsai · Jony J 56 (......小王子)(feat. ohashiTrio) 吳青峰 · 大橋三重唱 57 我們萬歲 Eason Chan · eason and the duo band 58 年少無知 - (劇集 \"天與地\" 片尾曲) Bowie Lam · 陳豪 · 黃德斌 59 獨一無二 AGA · Gin Lee 60 Don't Wanna Lie (feat. 8lak & Hosea) Patrick Brasca · 8lak · Hosea 61 輕熟女27 (我只在乎你) MC HotDog · 關彥淳 62 Take It Slow Crispy脆樂團 · 恐龍的皮 63 Moonlight (feat. 袁婭維) Will Pan · TIA RAY 64 (......醉鬼阿Q)(feat. 孫燕姿) 吳青峰 · Stefanie Sun 65 敢愛敢做 George Lam · David Ling Jr 66 漸漸 Eason Chan · eason and the duo band 67 敏感(LH x Z.TAO) Lu Han · Z.TAO 68 石徑 Hins Cheung · Keeva Mak 69 月球上碰面 Fiona Sit · Juno Mak 70 自知之明 Pong Nan · Tang Siu Hau 71 [Jiang Yanli & Jin Zixuan] Yong Ge Lara Liang · Yang Qiyu 72 樓下有人 Leo Ku · 葉巧琳 73 兩旬之歌 Byejack · Slizznico 74 漩渦 Anthony Wong · Cass Phang 75 Try - Kung Fu Panda 3 Official Theme Song Patrick Brasca · Jay Chou 76 眠眠 Yisa Yu · 霍尊 77 情未了 Christopher Wong · Vivian Chow 78 把歌談心 林姍姍 · David Ling Jr 79 無言的結局 Daniel Lo · 林淑容 80 螢火 Firefly Byejack · Trickie Bonnie 81 鴛鴦酒杯 Jody Chiang · Hong Ronghong 82 舞伴 陳盈潔 · 袁小迪 83 情難斷夢袂醒 陳中 · 邱芸子 84 千個太陽 Deanie Ip · Elisa Chan · 散芬芳合唱團 85 就要揮別 楊芳儀 · 徐曉菁 86 鐵幕誘惑 Aaron Kwok · Frankie 87 不懂愛你 Daniel Chan · 林京燁 88 真愛在明天 Vivian Chow · Leon Lai 89 In Love With You Jacky Cheung · Regine Velasquez 90 常在我心間...愛你不分早晚 Michael Kwan · Tracy Huang 91 放過自己 - Acoustic Version G5SH · Marz23 92 嫁妝 陳中 · 邱芸子 93 出來面對 魏嘉瑩 Arrow Wei · WONFU 94 相思夢難圓 - 修復版 麗莎 · 郭炳堅 95 茫茫到深更 陳中 · 邱芸子 96 我現在會好好的 - TVBS「女力報到愛的故事」片尾曲 陳威全 · Danny Koo 97 有意 - (劇集 \"烈火雄心III\" 片尾曲) Kevin Cheng · Myolie Wu 98 I LOVE YOU SO太愛妳 Aaron Kwok · Beta Soul 99 紫釵恨 張偉文 · 胡美儀 100 回頭看看我 Feng Ze · 采子 101 出嫁 Zhang Qing Fang · 優客李林 102 我有多麼喜歡你 (feat. 林宥嘉) Jam Hsiao · Yoga Lin 103 心痛不再有 方季惟 · Pan Mei Chen 104 別弄花我的妝 (feat. Karencici) Sharon Kwan · Karencici 105 你我相逢 Jody Chiang · 施文彬 106 心仍是冷 倫永亮 · Anita Mui 107 愛的呼喚 Aaron Kwok · Beta Soul 108 受傷的心 Jacky Wu · Huang Yee Ling 109 一生何求 Danny Chan · Bryan Choy Hin Lok · David Ling Jr 110 甲乙丙丁 Andy Hui · Jacky Cheung · 鄭中基 111 將冰山劈開 Andy Hui · Anita Mui 112 熱力節拍Wou Bom Ba Grasshopper · Shirley Kwan · 湯寶如 · Winnie Lau 113 註定 -電視劇: 愛在有情天 主題曲(粵語) 陳秀雯 · Ruco Chan 114 前塵 Sandy Lam · Wong Kei Wah 115 帝女花之香夭(Live) 張偉文 · May Ho 116 笑容入我眼 劉珺兒 · Jia Liang Luo 117 幻影/ 霧之戀 Leslie Cheung · Alan Tam 118 流離所愛 Christopher Wong · 余劍明 119 追憶 George Lam · David Ling Jr 120 @princejoyce (feat. ANSONBEAN) Joyce Cheng · ANSONBEAN 121 要走的始終都要走 蔣志光 · 王利名 122 舊居中的鋼琴 George Lam · David Ling 123 依然相愛 Hacken Lee · Shirley Kwan 124 一刀了斷 Chilam · Myolie Wu 125 一起衝一起闖 (電影\"黃金兄弟\"主題曲) Ekin Cheng · Jordan Chan · 謝天華 · 錢嘉樂 · 林曉峰 126 苦口良藥 陳慧珊 · Andy Hui 126 首 数据来源"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [
+   "搜索开放曲库(250x34)",
+   "(203x42)",
+   "(203x42)",
+   "(203x42)",
+   "(203x42)",
+   "(203x42)",
+   "(203x42)"
+  ],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 7,
+  "label": "catalogue-row",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-07-catalogue-row.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 从喜欢，走向未知。 从一位喜欢的歌手出发，沿着合唱找到下一首。 今天，从谁开始？ 周杰伦 林俊杰 邓紫棋 孙燕姿 两位歌手之间，隔着几首歌？ 寻声 · 费玉清 → 邓紫棋 我的发现 0 留下的歌 0 开放曲库 THE OPEN CRATE 开放曲库 126 共同署名，不一定是合唱 01 I'm Alive W.M.L · Vicky Chen 专辑《I'm Alive》 来源：Hugging Face 数据集第 70,190 行 ↗ 02 手心的薔薇 JJ Lin · G.E.M. 03 感谢你曾来过 阿涵 · Ayo97 04 珊瑚海 Jay Chou · Lara Liang 05 不得不愛 Will Pan · Xian Zi 06 飄流教室 Leo Ku · Edan 呂爵安 07 說好不哭 Jay Chou · Ashin Chen 08 Drowning 高爾宣 OSN · 李浩瑋 Howard Lee 09 自我安慰 Leo Ku · MC 張天賦 10 Frenemy MC 張天賦 · Kaho Hung 11 開始懂了 Stefanie Sun · Jerry · Lin Zheng-Zhong 12 愛我的時候 Eric Chou · 單依純 13 Work 高爾宣 OSN · sunkis 14 今天陽光就是特別耀眼特別和諧 feat. 韋禮安 Pets Tseng · WeiBird 15 不該 Jay Chou · A-Mei Chang 16 你被寫在我的歌裡 Sodagreen · Ella Chen 17 對等關係 (feat. 張惠妹) Ronghao Li · A-Mei Chang 18 好心分手 Candy Lo · Leehom Wang 19 一表人才 Edan 呂爵安 · Feng Ze 20 凉凉 - 電視劇《三生三世十里桃花》片尾曲 Aska Yang · Zhang Bichen 21 小酒窩 JJ Lin · Charlene Choi 22 再也沒有你 Lara Liang · Andrew Tan 23 知否知否 - \"知否知否应是绿肥红瘦\" 电视剧主题曲 Hu Xia · Yisa Yu 24 你最珍貴 Jacky Cheung · 高慧君 25 私奔到月球 Mayday · Cheer Chen 26 Without You - Acoustic Version 高爾宣 OSN · Vicky Chen 27 Bedroom (feat. Anne-Marie) JJ Lin · Anne-Marie 28 溫柔 #MaydayBlue20th - feat.孫燕姿 Mayday · Stefanie Sun 29 別勉強 G.E.M. · Eric Chou 30 你那麼愛她 林隆璇 · Sam Lee 31 相愛很難 - 電影\"男人四十\"歌曲 Jacky Cheung · Anita Mui 32 隔離 - Studio Live Duet Jace Chan · Terence Lam 33 我也難過的 吳林峰 · 謝芊彤 34 如果的事 Christine Fan · Angela Chang 35 致姗姗来迟的你 A Si · Yoga Lin 36 Black Out (feat. 9m88) ØZI · 9m88 37 How Many Times - Studio Live MC 張天賦 · Jay Fung 38 屋頂 Landy Wen · Jay Chou 39 不是我不明白 Fish Leong · Crowd Lu 40 另一個天堂 Leehom Wang · Jane Zhang 41 羅生門 Juno Mak · Kay Tse 42 戀愛頻率 Andy Hui · 許慧欣 43 目黑 - 合唱版 Endy Chow · Fiona Sit 44 廣島之戀 Karen Mok · 張洪量 45 jagi (feat. KIRE) Shi Shi · KIRE 46 聽海浪 Byejack · Midnight. 47 Storm - English Version 吳青峰 · AURORA 48 友情歲月 Jordan Chan · Ekin Cheng · 謝天華 · 林曉峰 49 綠光 Stefanie Sun · Shen Darren 50 今天妳要嫁給我 Jolin Tsai · David Tao 51 現代愛情故事 Chilam · Xu Qiu Yi 52 畫沙 Cindy Yen · Jay Chou 53 I'm not yours (feat. 安室奈美惠) Jolin Tsai · Namie Amuro 54 堅強的理由 Karen Mok · Wu Bai 55 我是誰 (電視劇《狼殿下》主題曲) Jolin Tsai · Jony J 56 (......小王子)(feat. ohashiTrio) 吳青峰 · 大橋三重唱 57 我們萬歲 Eason Chan · eason and the duo band 58 年少無知 - (劇集 \"天與地\" 片尾曲) Bowie Lam · 陳豪 · 黃德斌 59 獨一無二 AGA · Gin Lee 60 Don't Wanna Lie (feat. 8lak & Hosea) Patrick Brasca · 8lak · Hosea 61 輕熟女27 (我只在乎你) MC HotDog · 關彥淳 62 Take It Slow Crispy脆樂團 · 恐龍的皮 63 Moonlight (feat. 袁婭維) Will Pan · TIA RAY 64 (......醉鬼阿Q)(feat. 孫燕姿) 吳青峰 · Stefanie Sun 65 敢愛敢做 George Lam · David Ling Jr 66 漸漸 Eason Chan · eason and the duo band 67 敏感(LH x Z.TAO) Lu Han · Z.TAO 68 石徑 Hins Cheung · Keeva Mak 69 月球上碰面 Fiona Sit · Juno Mak 70 自知之明 Pong Nan · Tang Siu Hau 71 [Jiang Yanli & Jin Zixuan] Yong Ge Lara Liang · Yang Qiyu 72 樓下有人 Leo Ku · 葉巧琳 73 兩旬之歌 Byejack · Slizznico 74 漩渦 Anthony Wong · Cass Phang 75 Try - Kung Fu Panda 3 Official Theme Song Patrick Brasca · Jay Chou 76 眠眠 Yisa Yu · 霍尊 77 情未了 Christopher Wong · Vivian Chow 78 把歌談心 林姍姍 · David Ling Jr 79 無言的結局 Daniel Lo · 林淑容 80 螢火 Firefly Byejack · Trickie Bonnie 81 鴛鴦酒杯 Jody Chiang · Hong Ronghong 82 舞伴 陳盈潔 · 袁小迪 83 情難斷夢袂醒 陳中 · 邱芸子 84 千個太陽 Deanie Ip · Elisa Chan · 散芬芳合唱團 85 就要揮別 楊芳儀 · 徐曉菁 86 鐵幕誘惑 Aaron Kwok · Frankie 87 不懂愛你 Daniel Chan · 林京燁 88 真愛在明天 Vivian Chow · Leon Lai 89 In Love With You Jacky Cheung · Regine Velasquez 90 常在我心間...愛你不分早晚 Michael Kwan · Tracy Huang 91 放過自己 - Acoustic Version G5SH · Marz23 92 嫁妝 陳中 · 邱芸子 93 出來面對 魏嘉瑩 Arrow Wei · WONFU 94 相思夢難圓 - 修復版 麗莎 · 郭炳堅 95 茫茫到深更 陳中 · 邱芸子 96 我現在會好好的 - TVBS「女力報到愛的故事」片尾曲 陳威全 · Danny Koo 97 有意 - (劇集 \"烈火雄心III\" 片尾曲) Kevin Cheng · Myolie Wu 98 I LOVE YOU SO太愛妳 Aaron Kwok · Beta Soul 99 紫釵恨 張偉文 · 胡美儀 100 回頭看看我 Feng Ze · 采子 101 出嫁 Zhang Qing Fang · 優客李林 102 我有多麼喜歡你 (feat. 林宥嘉) Jam Hsiao · Yoga Lin 103 心痛不再有 方季惟 · Pan Mei Chen 104 別弄花我的妝 (feat. Karencici) Sharon Kwan · Karencici 105 你我相逢 Jody Chiang · 施文彬 106 心仍是冷 倫永亮 · Anita Mui 107 愛的呼喚 Aaron Kwok · Beta Soul 108 受傷的心 Jacky Wu · Huang Yee Ling 109 一生何求 Danny Chan · Bryan Choy Hin Lok · David Ling Jr 110",
+  "dialogs": [
+   "[dialog open-catalogue] THE OPEN CRATE 开放曲库 126 共同署名，不一定是合唱 01 I'm Alive W.M.L · Vicky Chen 专辑《I'm Alive》 来源：Hugging Face 数据集第 70,190 行 ↗ 02 手心的薔薇 JJ Lin · G.E.M. 03 感谢你曾来过 阿涵 · Ayo97 04 珊瑚海 Jay Chou · Lara Liang 05 不得不愛 Will Pan · Xian Zi 06 飄流教室 Leo Ku · Edan 呂爵安 07 說好不哭 Jay Chou · Ashin Chen 08 Drowning 高爾宣 OSN · 李浩瑋 Howard Lee 09 自我安慰 Leo Ku · MC 張天賦 10 Frenemy MC 張天賦 · Kaho Hung 11 開始懂了 Stefanie Sun · Jerry · Lin Zheng-Zhong 12 愛我的時候 Eric Chou · 單依純 13 Work 高爾宣 OSN · sunkis 14 今天陽光就是特別耀眼特別和諧 feat. 韋禮安 Pets Tseng · WeiBird 15 不該 Jay Chou · A-Mei Chang 16 你被寫在我的歌裡 Sodagreen · Ella Chen 17 對等關係 (feat. 張惠妹) Ronghao Li · A-Mei Chang 18 好心分手 Candy Lo · Leehom Wang 19 一表人才 Edan 呂爵安 · Feng Ze 20 凉凉 - 電視劇《三生三世十里桃花》片尾曲 Aska Yang · Zhang Bichen 21 小酒窩 JJ Lin · Charlene Choi 22 再也沒有你 Lara Liang · Andrew Tan 23 知否知否 - \"知否知否应是绿肥红瘦\" 电视剧主题曲 Hu Xia · Yisa Yu 24 你最珍貴 Jacky Cheung · 高慧君 25 私奔到月球 Mayday · Cheer Chen 26 Without You - Acoustic Version 高爾宣 OSN · Vicky Chen 27 Bedroom (feat. Anne-Marie) JJ Lin · Anne-Marie 28 溫柔 #MaydayBlue20th - feat.孫燕姿 Mayday · Stefanie Sun 29 別勉強 G.E.M. · Eric Chou 30 你那麼愛她 林隆璇 · Sam Lee 31 相愛很難 - 電影\"男人四十\"歌曲 Jacky Cheung · Anita Mui 32 隔離 - Studio Live Duet Jace Chan · Terence Lam 33 我也難過的 吳林峰 · 謝芊彤 34 如果的事 Christine Fan · Angela Chang 35 致姗姗来迟的你 A Si · Yoga Lin 36 Black Out (feat. 9m88) ØZI · 9m88 37 How Many Times - Studio Live MC 張天賦 · Jay Fung 38 屋頂 Landy Wen · Jay Chou 39 不是我不明白 Fish Leong · Crowd Lu 40 另一個天堂 Leehom Wang · Jane Zhang 41 羅生門 Juno Mak · Kay Tse 42 戀愛頻率 Andy Hui · 許慧欣 43 目黑 - 合唱版 Endy Chow · Fiona Sit 44 廣島之戀 Karen Mok · 張洪量 45 jagi (feat. KIRE) Shi Shi · KIRE 46 聽海浪 Byejack · Midnight. 47 Storm - English Version 吳青峰 · AURORA 48 友情歲月 Jordan Chan · Ekin Cheng · 謝天華 · 林曉峰 49 綠光 Stefanie Sun · Shen Darren 50 今天妳要嫁給我 Jolin Tsai · David Tao 51 現代愛情故事 Chilam · Xu Qiu Yi 52 畫沙 Cindy Yen · Jay Chou 53 I'm not yours (feat. 安室奈美惠) Jolin Tsai · Namie Amuro 54 堅強的理由 Karen Mok · Wu Bai 55 我是誰 (電視劇《狼殿下》主題曲) Jolin Tsai · Jony J 56 (......小王子)(feat. ohashiTrio) 吳青峰 · 大橋三重唱 57 我們萬歲 Eason Chan · eason and the duo band 58 年少無知 - (劇集 \"天與地\" 片尾曲) Bowie Lam · 陳豪 · 黃德斌 59 獨一無二 AGA · Gin Lee 60 Don't Wanna Lie (feat. 8lak & Hosea) Patrick Brasca · 8lak · Hosea 61 輕熟女27 (我只在乎你) MC HotDog · 關彥淳 62 Take It Slow Crispy脆樂團 · 恐龍的皮 63 Moonlight (feat. 袁婭維) Will Pan · TIA RAY 64 (......醉鬼阿Q)(feat. 孫燕姿) 吳青峰 · Stefanie Sun 65 敢愛敢做 George Lam · David Ling Jr 66 漸漸 Eason Chan · eason and the duo band 67 敏感(LH x Z.TAO) Lu Han · Z.TAO 68 石徑 Hins Cheung · Keeva Mak 69 月球上碰面 Fiona Sit · Juno Mak 70 自知之明 Pong Nan · Tang Siu Hau 71 [Jiang Yanli & Jin Zixuan] Yong Ge Lara Liang · Yang Qiyu 72 樓下有人 Leo Ku · 葉巧琳 73 兩旬之歌 Byejack · Slizznico 74 漩渦 Anthony Wong · Cass Phang 75 Try - Kung Fu Panda 3 Official Theme Song Patrick Brasca · Jay Chou 76 眠眠 Yisa Yu · 霍尊 77 情未了 Christopher Wong · Vivian Chow 78 把歌談心 林姍姍 · David Ling Jr 79 無言的結局 Daniel Lo · 林淑容 80 螢火 Firefly Byejack · Trickie Bonnie 81 鴛鴦酒杯 Jody Chiang · Hong Ronghong 82 舞伴 陳盈潔 · 袁小迪 83 情難斷夢袂醒 陳中 · 邱芸子 84 千個太陽 Deanie Ip · Elisa Chan · 散芬芳合唱團 85 就要揮別 楊芳儀 · 徐曉菁 86 鐵幕誘惑 Aaron Kwok · Frankie 87 不懂愛你 Daniel Chan · 林京燁 88 真愛在明天 Vivian Chow · Leon Lai 89 In Love With You Jacky Cheung · Regine Velasquez 90 常在我心間...愛你不分早晚 Michael Kwan · Tracy Huang 91 放過自己 - Acoustic Version G5SH · Marz23 92 嫁妝 陳中 · 邱芸子 93 出來面對 魏嘉瑩 Arrow Wei · WONFU 94 相思夢難圓 - 修復版 麗莎 · 郭炳堅 95 茫茫到深更 陳中 · 邱芸子 96 我現在會好好的 - TVBS「女力報到愛的故事」片尾曲 陳威全 · Danny Koo 97 有意 - (劇集 \"烈火雄心III\" 片尾曲) Kevin Cheng · Myolie Wu 98 I LOVE YOU SO太愛妳 Aaron Kwok · Beta Soul 99 紫釵恨 張偉文 · 胡美儀 100 回頭看看我 Feng Ze · 采子 101 出嫁 Zhang Qing Fang · 優客李林 102 我有多麼喜歡你 (feat. 林宥嘉) Jam Hsiao · Yoga Lin 103 心痛不再有 方季惟 · Pan Mei Chen 104 別弄花我的妝 (feat. Karencici) Sharon Kwan · Karencici 105 你我相逢 Jody Chiang · 施文彬 106 心仍是冷 倫永亮 · Anita Mui 107 愛的呼喚 Aaron Kwok · Beta Soul 108 受傷的心 Jacky Wu · Huang Yee Ling 109 一生何求 Danny Chan · Bryan Choy Hin Lok · David Ling Jr 110 甲乙丙丁 Andy Hui · Jacky Cheung · 鄭中基 111 將冰山劈開 Andy Hui · Anita Mui 112 熱力節拍Wou Bom Ba Grasshopper · Shirley Kwan · 湯寶如 · Winnie Lau 113 註定 -電視劇: 愛在有情天 主題曲(粵語) 陳秀雯 · Ruco Chan 114 前塵 Sandy Lam · Wong Kei Wah 115 帝女花之香夭(Live) 張偉文 · May Ho 116 笑容入我眼 劉珺兒 · Jia Liang Luo 117 幻影/ 霧之戀 Leslie Cheung · Alan Tam 118 流離所愛 Christopher Wong · 余劍明 119 追憶 George Lam · David Ling Jr 120 @princejoyce (feat. ANSONBEAN) Joyce Cheng · ANSONBEAN 121 要走的始終都要走 蔣志光 · 王利名 122 舊居中的鋼琴 George Lam · David Ling 123 依然相愛 Hacken Lee · Shirley Kwan 124 一刀了斷 Chilam · Myolie Wu 125 一起衝一起闖 (電影\"黃金兄弟\"主題曲) Ekin Cheng · Jordan Chan · 謝天華 · 錢嘉樂 · 林曉峰 126 苦口良藥 陳慧珊 · Andy Hui 126 首 数据来源"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [
+   "搜索开放曲库(250x34)",
+   "Hugging Face 数据集第 70,190 行 ↗(203x42)",
+   "(203x42)",
+   "(203x42)",
+   "(203x42)",
+   "(203x42)"
+  ],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 8,
+  "label": "catalogue-to-sources",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-08-catalogue-to-sources.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 唱片店 从喜欢，走向未知。 从一位喜欢的歌手出发，沿着合唱找到下一首。 今天，从谁开始？ 周杰伦 林俊杰 邓紫棋 孙燕姿 两位歌手之间，隔着几首歌？ 寻声 · 费玉清 → 邓紫棋 我的发现 0 留下的歌 0 开放曲库 关于音乐探索 从喜欢，走向未知。 寻声 选好起点和终点，翻开手边的合唱，沿它走到下一位；翻开和提示不算步数。 图鉴 摊开全部合唱，从任意一位歌手出发随便走。 来源 每条连线是一首合唱录音，点歌旁的「来源」看出处。 曲库 开放曲库是公开数据集里的共同署名，不一定是合唱，不进入连线。 音频 这里不播放音乐；31 首可以去 QQ 音乐听同一录音。 数据来源 合唱目录 29 位音乐人、37 首共同演唱录音，每首都附有出处，资料访问于 2026 年 9 月 27–28 日；出处在每首歌的「来源」里。路线和「最短」只算这 37 首。 QQ 音乐 31 首在 QQ 音乐有同一录音的页面（2026 年 9 月 29 日按页面信息确认）；另外 6 首的原因写在「来源」里。 开放曲库 126 首，取自 Hugging Face 数据集 maharshipandya/spotify-tracks-dataset（快照 635b034）里 mandopop、cantopop 的共同署名记录（全库 114,000 行）。数据卡标注的许可是 bsd，没有写明具体版本；这里只取曲名、艺人、专辑和行号，不含音频。数据集 ↗ （新标签页） 字体 站酷庆科黄油体、霞鹜漫黑、悠哉、Luckiest Guy、得意黑的子集（SIL OFL 1.1、Apache 2.0）。许可全文 ↗ （新标签页） 代码 three.js、Sakura Crossing、OverlayScrollbars、qrcode-generator（MIT），GSAP（Standard No Charge 许可）；许可全文附在网页源码里。 来历 唱片店、寻声和合唱目录来自 Music Map。 知道了",
+  "dialogs": [
+   "[dialog about-dialog] 关于音乐探索 从喜欢，走向未知。 寻声 选好起点和终点，翻开手边的合唱，沿它走到下一位；翻开和提示不算步数。 图鉴 摊开全部合唱，从任意一位歌手出发随便走。 来源 每条连线是一首合唱录音，点歌旁的「来源」看出处。 曲库 开放曲库是公开数据集里的共同署名，不一定是合唱，不进入连线。 音频 这里不播放音乐；31 首可以去 QQ 音乐听同一录音。 数据来源 合唱目录 29 位音乐人、37 首共同演唱录音，每首都附有出处，资料访问于 2026 年 9 月 27–28 日；出处在每首歌的「来源」里。路线和「最短」只算这 37 首。 QQ 音乐 31 首在 QQ 音乐有同一录音的页面（2026 年 9 月 29 日按页面信息确认）；另外 6 首的原因写在「来源」里。 开放曲库 126 首，取自 Hugging Face 数据集 maharshipandya/spotify-tracks-dataset（快照 635b034）里 mandopop、cantopop 的共同署名记录（全库 114,000 行）。数据卡标注的许可是 bsd，没有写明具体版本；这里只取曲名、艺人、专辑和行号，不含音频。数据集 ↗ （新标签页） 字体 站酷庆科黄油体、霞鹜漫黑、悠哉、Luckiest Guy、得意黑的子集（SIL OFL 1.1、Apache 2.0）。许可全文 ↗ （新标签页） 代码 three.js、Sakura Crossing、OverlayScrollbars、qrcode-generator（MIT），GSAP（Standard No Charge 许可）；许可全文附在网页源码里。 来历 唱片店、寻声和合唱目录来自 Music Map。 知道了"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [
+   "数据集 ↗ （新标签页）(54x17)"
+  ],
+  "offscreen": [],
+  "banned": [
+   "Music Map"
+  ],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 9,
+  "label": "explore-round",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-09-explore-round.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 费玉清 邓紫棋 寻声 费玉清→邓紫棋，隔着几首歌？ 第 0 步 认识 2/29 翻开 0/37 ? 提示 · 还隔几首 换一组 目录 费玉清 01 《千里之外》 和 ? 合唱 翻开 先翻开一首，看 TA 和谁合唱 小院 唱片店 我的发现",
+  "dialogs": [],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 10,
+  "label": "round-flip",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-10-round-flip.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 周杰伦 费玉清 邓紫棋 寻声 费玉清→邓紫棋，隔着几首歌？ 第 0 步 认识 3/29 翻开 1/37 ? 提示 · 还隔几首 换一组 目录 费玉清 01 《千里之外》 × 周杰伦 去 QQ 音乐听 前往 周杰伦 来源 小院 唱片店 我的发现 《千里之外》：费玉清 × 周杰伦 · 认识 3/29",
+  "dialogs": [],
+  "toast": "《千里之外》：费玉清 × 周杰伦 · 认识 3/29",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 11,
+  "label": "round-hint1",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-11-round-hint1.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 周杰伦 费玉清 邓紫棋 寻声 费玉清→邓紫棋，隔着几首歌？ 第 0 步 认识 3/29 翻开 1/37 还隔 3 首 ? 提示 · 往哪翻 换一组 目录 ① 还隔 3 首 · 面前 1 首里 1 首更近 费玉清 01 《千里之外》 × 周杰伦 去 QQ 音乐听 前往 周杰伦 来源 小院 唱片店 我的发现 提示 ①：还隔 3 首，面前 1 首会更近",
+  "dialogs": [],
+  "toast": "提示 ①：还隔 3 首，面前 1 首会更近",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 12,
+  "label": "round-menu",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-12-round-menu.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 周杰伦 费玉清 邓紫棋 寻声 费玉清→邓紫棋，隔着几首歌？ 第 0 步 认识 3/29 翻开 1/37 还隔 3 首 ? 提示 · 往哪翻 换一组 目录 寻声 自选起点和终点 把这道题发给朋友 放弃并揭晓 图谱 完整图鉴 全部摊开 资料 开放曲库 我的发现 视野 − 全图 + ① 还隔 3 首 · 面前 1 首里 1 首更近 费玉清 01 《千里之外》 × 周杰伦 去 QQ 音乐听 前往 周杰伦 来源 小院 唱片店 我的发现 提示 ①：还隔 3 首，面前 1 首会更近",
+  "dialogs": [],
+  "toast": "提示 ①：还隔 3 首，面前 1 首会更近",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 13,
+  "label": "round-sources",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-13-round-sources.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 共同演唱 周杰伦 × 费玉清 千里之外 周杰伦 / 费玉清 《依然范特西》· 合唱录音室版 去 QQ 音乐听 来源 ：《千里之外》 演唱周杰伦官方频道 · MV 署名 ↗ （新标签页） 周杰伦官方频道的 MV 标题署名 feat. 费玉清；官方说明明确费玉清参与合唱。 访问于 2026-09-27 QQ 音乐同一录音 ↗ （新标签页） 访问于 2026-09-29 完整署名在这一局结束后可看。 前往周杰伦 提示 ①：还隔 3 首，面前 1 首会更近",
+  "dialogs": [
+   "[dialog map-dialog map-dialog--edge] 共同演唱 周杰伦 × 费玉清 千里之外 周杰伦 / 费玉清 《依然范特西》· 合唱录音室版 去 QQ 音乐听 来源 ：《千里之外》 演唱周杰伦官方频道 · MV 署名 ↗ （新标签页） 周杰伦官方频道的 MV 标题署名 feat. 费玉清；官方说明明确费玉清参与合唱。 访问于 2026-09-27 QQ 音乐同一录音 ↗ （新标签页） 访问于 2026-09-29 完整署名在这一局结束后可看。 前往周杰伦"
+  ],
+  "toast": "提示 ①：还隔 3 首，面前 1 首会更近",
+  "overflow": "",
+  "small": [
+   "周杰伦官方频道 · MV 署名 ↗ （新标签页）(184x15)",
+   "同一录音 ↗ （新标签页）(71x15)"
+  ],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 14,
+  "label": "round-sources-end",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-14-round-sources-end.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 共同演唱 周杰伦 × 费玉清 千里之外 周杰伦 / 费玉清 《依然范特西》· 合唱录音室版 去 QQ 音乐听 来源 ：《千里之外》 演唱周杰伦官方频道 · MV 署名 ↗ （新标签页） 周杰伦官方频道的 MV 标题署名 feat. 费玉清；官方说明明确费玉清参与合唱。 访问于 2026-09-27 QQ 音乐同一录音 ↗ （新标签页） 访问于 2026-09-29 完整署名在这一局结束后可看。 前往周杰伦 提示 ①：还隔 3 首，面前 1 首会更近",
+  "dialogs": [
+   "[dialog map-dialog map-dialog--edge] 共同演唱 周杰伦 × 费玉清 千里之外 周杰伦 / 费玉清 《依然范特西》· 合唱录音室版 去 QQ 音乐听 来源 ：《千里之外》 演唱周杰伦官方频道 · MV 署名 ↗ （新标签页） 周杰伦官方频道的 MV 标题署名 feat. 费玉清；官方说明明确费玉清参与合唱。 访问于 2026-09-27 QQ 音乐同一录音 ↗ （新标签页） 访问于 2026-09-29 完整署名在这一局结束后可看。 前往周杰伦"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [
+   "周杰伦官方频道 · MV 署名 ↗ （新标签页）(184x15)",
+   "同一录音 ↗ （新标签页）(71x15)"
+  ],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 15,
+  "label": "round-moved",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-15-round-moved.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 周杰伦 费玉清 邓紫棋 寻声 费玉清→邓紫棋，隔着几首歌？ 第 1 步 认识 3/29 翻开 1/37 还隔 2 首 近 更近了 ? 提示 · 往哪翻 换一组 目录 周杰伦 01 《不该》 和 ? 合唱 翻开 02 《千里之外》 × 费玉清 来过 去 QQ 音乐听 前往 费玉清 来源 03 《说好不哭》 和 ? 合唱 翻开 04 《等你下课》 和 ? 合唱 翻开 05 《画沙》 和 ? 合唱 翻开 06 《稻香 / Stay With You》 和 ? 合唱 翻开 07 《给我一首歌的时间》 和 ? 合唱 翻开 08 《屋顶》 和 ? 合唱 翻开 09 《珊瑚海》 和 ? 合唱 翻开 10 《Try》 和 ? 合唱 翻开 小院 唱片店 我的发现 前往周杰伦 · 第 1 步 · 近 · 更近了，还隔 2 首",
+  "dialogs": [],
+  "toast": "前往周杰伦 · 第 1 步 · 近 · 更近了，还隔 2 首",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 16,
+  "label": "round-reveal-confirm",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-16-round-reveal-confirm.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 寻声 · 揭晓 放弃并揭晓答案？ 这一局记为已揭晓，翻开的唱片还在。 揭晓答案 再想想 前往周杰伦 · 第 1 步 · 近 · 更近了，还隔 2 首",
+  "dialogs": [
+   "[dialog map-dialog map-dialog--reveal] 寻声 · 揭晓 放弃并揭晓答案？ 这一局记为已揭晓，翻开的唱片还在。 揭晓答案 再想想"
+  ],
+  "toast": "前往周杰伦 · 第 1 步 · 近 · 更近了，还隔 2 首",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 17,
+  "label": "ceremony",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-17-ceremony.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 周杰伦 张惠妹 林俊杰 费玉清 阿信 杨瑞代 袁咏琳 邓紫棋 蔡依林 温岚 梁心颐 派伟俊 林宥嘉 阿肆 周兴哲 五月天 寻声 · 已揭晓 费玉清→邓紫棋，隔着几首歌？ 你停在周杰伦（1 步） 本专题最短 3 首 跳过 目录 揭晓 已揭晓 费玉清 → 周杰伦 再来一局 连线歌单 完整图鉴 出题给朋友 保存战绩卡 小院 唱片店 我的发现 前往周杰伦 · 第 1 步 · 近 · 更近了，还隔 2 首",
+  "dialogs": [],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [
+   "再来一局",
+   "连线歌单",
+   "出题给朋友"
+  ],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 18,
+  "label": "setlist",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-18-setlist.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 揭晓 揭晓：费玉清与邓紫棋， 最少隔着 3 首歌 你停在周杰伦（1 步） 这道题，也给朋友走一走 出题给朋友 保存战绩卡 换个起点再出一题 费玉清 起点 01 《千里之外》 《依然范特西》· 合唱录音室版 去 QQ 音乐听 留下 来源 ：《千里之外》 周杰伦 第 1 站 02 《稻香 / Stay With You》 2020 官方发布 · 双人联唱现场版 暂无 QQ 音乐链接 留下 来源 ：《稻香 / Stay With You》 林俊杰 第 2 站 03 《手心的蔷薇》 《新地球》· 录音室版 去 QQ 音乐听 留下 来源 ：《手心的蔷薇》 邓紫棋 终点 步数 1 本专题最短 3 提示 1 次 分支记录 1 次前往 再来一局 留下这 3 首 看完整图鉴 前往周杰伦 · 第 1 步 · 近 · 更近了，还隔 2 首",
+  "dialogs": [
+   "[dialog map-dialog map-dialog--recap map-dialog--setlist] 揭晓 揭晓：费玉清与邓紫棋， 最少隔着 3 首歌 你停在周杰伦（1 步） 这道题，也给朋友走一走 出题给朋友 保存战绩卡 换个起点再出一题 费玉清 起点 01 《千里之外》 《依然范特西》· 合唱录音室版 去 QQ 音乐听 留下 来源 ：《千里之外》 周杰伦 第 1 站 02 《稻香 / Stay With You》 2020 官方发布 · 双人联唱现场版 暂无 QQ 音乐链接 留下 来源 ：《稻香 / Stay With You》 林俊杰 第 2 站 03 《手心的蔷薇》 《新地球》· 录音室版 去 QQ 音乐听 留下 来源 ：《手心的蔷薇》 邓紫棋 终点 步数 1 本专题最短 3 提示 1 次 分支记录 1 次前往 再来一局 留下这 3 首 看完整图鉴"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [
+   "(19x282)"
+  ],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 19,
+  "label": "setlist-sources",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-19-setlist-sources.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 揭晓 揭晓：费玉清与邓紫棋， 最少隔着 3 首歌 你停在周杰伦（1 步） 这道题，也给朋友走一走 出题给朋友 保存战绩卡 换个起点再出一题 费玉清 起点 01 《千里之外》 《依然范特西》· 合唱录音室版 去 QQ 音乐听 留下 来源 ：《千里之外》 演唱周杰伦官方频道 · MV 署名 ↗ （新标签页） 周杰伦官方频道的 MV 标题署名 feat. 费玉清；官方说明明确费玉清参与合唱。 访问于 2026-09-27 署名Qobuz ·《依然范特西》曲目 3 ↗ （新标签页） 作曲 周杰伦 · 制作人 周杰伦 · 作词 方文山 · 编曲 林迈可 · 混音 林迈可 · 录音 杨瑞代 访问于 2026-09-27 QQ 音乐同一录音 ↗ （新标签页） 访问于 2026-09-29 只列有出处的署名，参与者可能更多。 周杰伦 第 1 站 02 《稻香 / Stay With You》 2020 官方发布 · 双人联唱现场版 暂无 QQ 音乐链接 留下 来源 ：《稻香 / Stay With You》 林俊杰 第 2 站 03 《手心的蔷薇》 《新地球》· 录音室版 去 QQ 音乐听 留下 来源 ：《手心的蔷薇》 邓紫棋 终点 步数 1 本专题最短 3 提示 1 次 分支记录 1 次前往 再来一局 留下这 3 首 看完整图鉴 前往周杰伦 · 第 1 步 · 近 · 更近了，还隔 2 首",
+  "dialogs": [
+   "[dialog map-dialog map-dialog--recap map-dialog--setlist] 揭晓 揭晓：费玉清与邓紫棋， 最少隔着 3 首歌 你停在周杰伦（1 步） 这道题，也给朋友走一走 出题给朋友 保存战绩卡 换个起点再出一题 费玉清 起点 01 《千里之外》 《依然范特西》· 合唱录音室版 去 QQ 音乐听 留下 来源 ：《千里之外》 演唱周杰伦官方频道 · MV 署名 ↗ （新标签页） 周杰伦官方频道的 MV 标题署名 feat. 费玉清；官方说明明确费玉清参与合唱。 访问于 2026-09-27 署名Qobuz ·《依然范特西》曲目 3 ↗ （新标签页） 作曲 周杰伦 · 制作人 周杰伦 · 作词 方文山 · 编曲 林迈可 · 混音 林迈可 · 录音 杨瑞代 访问于 2026-09-27 QQ 音乐同一录音 ↗ （新标签页） 访问于 2026-09-29 只列有出处的署名，参与者可能更多。 周杰伦 第 1 站 02 《稻香 / Stay With You》 2020 官方发布 · 双人联唱现场版 暂无 QQ 音乐链接 留下 来源 ：《稻香 / Stay With You》 林俊杰 第 2 站 03 《手心的蔷薇》 《新地球》· 录音室版 去 QQ 音乐听 留下 来源 ：《手心的蔷薇》 邓紫棋 终点 步数 1 本专题最短 3 提示 1 次 分支记录 1 次前往 再来一局 留下这 3 首 看完整图鉴"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [
+   "周杰伦官方频道 · MV 署名 ↗ （新标签页）(192x39)"
+  ],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 20,
+  "label": "setlist-full",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-20-setlist-full.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 揭晓 揭晓：费玉清与邓紫棋， 最少隔着 3 首歌 你停在周杰伦（1 步） 这道题，也给朋友走一走 出题给朋友 保存战绩卡 换个起点再出一题 费玉清 起点 01 《千里之外》 《依然范特西》· 合唱录音室版 去 QQ 音乐听 留下 来源 ：《千里之外》 演唱周杰伦官方频道 · MV 署名 ↗ （新标签页） 周杰伦官方频道的 MV 标题署名 feat. 费玉清；官方说明明确费玉清参与合唱。 访问于 2026-09-27 署名Qobuz ·《依然范特西》曲目 3 ↗ （新标签页） 作曲 周杰伦 · 制作人 周杰伦 · 作词 方文山 · 编曲 林迈可 · 混音 林迈可 · 录音 杨瑞代 访问于 2026-09-27 QQ 音乐同一录音 ↗ （新标签页） 访问于 2026-09-29 只列有出处的署名，参与者可能更多。 周杰伦 第 1 站 02 《稻香 / Stay With You》 2020 官方发布 · 双人联唱现场版 暂无 QQ 音乐链接 留下 来源 ：《稻香 / Stay With You》 林俊杰 第 2 站 03 《手心的蔷薇》 《新地球》· 录音室版 去 QQ 音乐听 留下 来源 ：《手心的蔷薇》 邓紫棋 终点 步数 1 本专题最短 3 提示 1 次 分支记录 1 次前往 再来一局 留下这 3 首 看完整图鉴 前往周杰伦 · 第 1 步 · 近 · 更近了，还隔 2 首",
+  "dialogs": [
+   "[dialog map-dialog map-dialog--recap map-dialog--setlist] 揭晓 揭晓：费玉清与邓紫棋， 最少隔着 3 首歌 你停在周杰伦（1 步） 这道题，也给朋友走一走 出题给朋友 保存战绩卡 换个起点再出一题 费玉清 起点 01 《千里之外》 《依然范特西》· 合唱录音室版 去 QQ 音乐听 留下 来源 ：《千里之外》 演唱周杰伦官方频道 · MV 署名 ↗ （新标签页） 周杰伦官方频道的 MV 标题署名 feat. 费玉清；官方说明明确费玉清参与合唱。 访问于 2026-09-27 署名Qobuz ·《依然范特西》曲目 3 ↗ （新标签页） 作曲 周杰伦 · 制作人 周杰伦 · 作词 方文山 · 编曲 林迈可 · 混音 林迈可 · 录音 杨瑞代 访问于 2026-09-27 QQ 音乐同一录音 ↗ （新标签页） 访问于 2026-09-29 只列有出处的署名，参与者可能更多。 周杰伦 第 1 站 02 《稻香 / Stay With You》 2020 官方发布 · 双人联唱现场版 暂无 QQ 音乐链接 留下 来源 ：《稻香 / Stay With You》 林俊杰 第 2 站 03 《手心的蔷薇》 《新地球》· 录音室版 去 QQ 音乐听 留下 来源 ：《手心的蔷薇》 邓紫棋 终点 步数 1 本专题最短 3 提示 1 次 分支记录 1 次前往 再来一局 留下这 3 首 看完整图鉴"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [
+   "(15x403)",
+   "(15x330)"
+  ],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 21,
+  "label": "credits",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-21-credits.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 作品署名 千里之外 《依然范特西》· 合唱录音室版 姓名 负责内容 周杰伦 演唱作曲制作人 费玉清 演唱 方文山 作词 林迈可 编曲混音 杨瑞代 录音 来源 ：《千里之外》 去 QQ 音乐听 留下 前往周杰伦 · 第 1 步 · 近 · 更近了，还隔 2 首",
+  "dialogs": [
+   "[dialog map-dialog map-dialog--credits] 作品署名 千里之外 《依然范特西》· 合唱录音室版 姓名 负责内容 周杰伦 演唱作曲制作人 费玉清 演唱 方文山 作词 林迈可 编曲混音 杨瑞代 录音 来源 ：《千里之外》 去 QQ 音乐听 留下"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 22,
+  "label": "credits-sources",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-22-credits-sources.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 作品署名 千里之外 《依然范特西》· 合唱录音室版 姓名 负责内容 周杰伦 演唱作曲制作人 费玉清 演唱 方文山 作词 林迈可 编曲混音 杨瑞代 录音 来源 ：《千里之外》 演唱周杰伦官方频道 · MV 署名 ↗ （新标签页） 周杰伦官方频道的 MV 标题署名 feat. 费玉清；官方说明明确费玉清参与合唱。 访问于 2026-09-27 署名Qobuz ·《依然范特西》曲目 3 ↗ （新标签页） 作曲 周杰伦 · 制作人 周杰伦 · 作词 方文山 · 编曲 林迈可 · 混音 林迈可 · 录音 杨瑞代 访问于 2026-09-27 QQ 音乐同一录音 ↗ （新标签页） 访问于 2026-09-29 只列有出处的署名，参与者可能更多。 去 QQ 音乐听 留下 前往周杰伦 · 第 1 步 · 近 · 更近了，还隔 2 首",
+  "dialogs": [
+   "[dialog map-dialog map-dialog--credits] 作品署名 千里之外 《依然范特西》· 合唱录音室版 姓名 负责内容 周杰伦 演唱作曲制作人 费玉清 演唱 方文山 作词 林迈可 编曲混音 杨瑞代 录音 来源 ：《千里之外》 演唱周杰伦官方频道 · MV 署名 ↗ （新标签页） 周杰伦官方频道的 MV 标题署名 feat. 费玉清；官方说明明确费玉清参与合唱。 访问于 2026-09-27 署名Qobuz ·《依然范特西》曲目 3 ↗ （新标签页） 作曲 周杰伦 · 制作人 周杰伦 · 作词 方文山 · 编曲 林迈可 · 混音 林迈可 · 录音 杨瑞代 访问于 2026-09-27 QQ 音乐同一录音 ↗ （新标签页） 访问于 2026-09-29 只列有出处的署名，参与者可能更多。 去 QQ 音乐听 留下"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [
+   "周杰伦官方频道 · MV 署名 ↗ （新标签页）(184x15)",
+   "Qobuz ·《依然范特西》曲目 3 ↗ （新标签页）(214x15)",
+   "同一录音 ↗ （新标签页）(71x15)"
+  ],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 23,
+  "label": "share-card",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-23-share-card.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 寻声 · 已揭晓 费玉清→邓紫棋，隔着几首歌？ 你停在周杰伦（1 步） 本专题最短 3 首 目录 揭晓 已揭晓 费玉清 → 周杰伦 再来一局 连线歌单 完整图鉴 出题给朋友 保存战绩卡 前往周杰伦 · 第 1 步 · 近 · 更近了，还隔 2 首 寻声战绩卡 PNG · 1080 × 1350 也可以长按图片保存 下载图片 分享图片 关闭",
+  "dialogs": [
+   "[dialog share-card-export] 寻声战绩卡 PNG · 1080 × 1350 也可以长按图片保存 下载图片 分享图片 关闭"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 24,
+  "label": "closed-bar",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-24-closed-bar.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 周杰伦 张惠妹 萧敬腾 林俊杰 费玉清 阿信 杨瑞代 袁咏琳 蔡卓妍 邓紫棋 蔡依林 温岚 梁心颐 派伟俊 阿肆 周兴哲 五月天 寻声 · 已揭晓 费玉清→邓紫棋，隔着几首歌？ 你停在周杰伦（1 步） 本专题最短 3 首 目录 揭晓 已揭晓 费玉清 → 周杰伦 再来一局 连线歌单 完整图鉴 出题给朋友 保存战绩卡 小院 唱片店 我的发现 前往周杰伦 · 第 1 步 · 近 · 更近了，还隔 2 首",
+  "dialogs": [],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 25,
+  "label": "atlas",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-25-atlas.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 周杰伦 张惠妹 萧敬腾 林俊杰 费玉清 阿信 杨瑞代 袁咏琳 蔡卓妍 孙燕姿 蔡依林 温岚 梁心颐 派伟俊 李荣浩 五月天 完整图鉴 从周杰伦出发 · 途经 1 位 开一局寻声 找音乐人 目录 返回上一位 回到起点 本次发现 · 0 首 结束探索 周杰伦 10 首合唱 · 你在这里 TA 的歌 10 首合唱 小院 唱片店 我的发现 前往周杰伦 · 第 1 步 · 近 · 更近了，还隔 2 首",
+  "dialogs": [],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 26,
+  "label": "atlas-index",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-26-atlas-index.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 周杰伦 张惠妹 林俊杰 费玉清 阿信 杨瑞代 袁咏琳 蔡依林 温岚 梁心颐 派伟俊 完整图鉴 从周杰伦出发 · 途经 1 位 开一局寻声 找音乐人 目录 返回上一位 回到起点 本次发现 · 0 首 结束探索 周杰伦 10 首合唱 · 你在这里 TA 的歌 10 首合唱 张惠妹 不该 费玉清 千里之外 阿信 说好不哭 杨瑞代 等你下课 袁咏琳 画沙 林俊杰 稻香 / Stay With You 蔡依林 给我一首歌的时间 温岚 屋顶 梁心颐 珊瑚海 派伟俊 Try 小院 唱片店 我的发现 前往周杰伦 · 第 1 步 · 近 · 更近了，还隔 2 首",
+  "dialogs": [],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 27,
+  "label": "atlas-edge",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-27-atlas-edge.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 共同演唱 周杰伦 × 张惠妹 不该 署名 › 周杰伦 / 张惠妹 《周杰伦的床边故事》· 录音室版（同一录音亦收于《幻城》原声带） 去 QQ 音乐听 作品署名 20 位 来源 ：《不该》 前往张惠妹 前往周杰伦 · 第 1 步 · 近 · 更近了，还隔 2 首",
+  "dialogs": [
+   "[dialog map-dialog map-dialog--edge] 共同演唱 周杰伦 × 张惠妹 不该 署名 › 周杰伦 / 张惠妹 《周杰伦的床边故事》· 录音室版（同一录音亦收于《幻城》原声带） 去 QQ 音乐听 作品署名 20 位 来源 ：《不该》 前往张惠妹"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [
+   "(15x452)"
+  ],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 28,
+  "label": "atlas-artist",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-28-atlas-artist.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 10 首合唱 周杰伦 不该 署名 › 周杰伦 / 张惠妹 《周杰伦的床边故事》· 录音室版（同一录音亦收于《幻城》原声带） 去 QQ 音乐听 作品署名 20 位 来源 ：《不该》 千里之外 署名 › 周杰伦 / 费玉清 《依然范特西》· 合唱录音室版 去 QQ 音乐听 作品署名 5 位 来源 ：《千里之外》 说好不哭 署名 › 周杰伦 / 阿信 2019 单曲 · 录音室版 去 QQ 音乐听 作品署名 6 位 来源 ：《说好不哭》 等你下课 署名 › 周杰伦 / 杨瑞代 《最伟大的作品》· 录音室版 去 QQ 音乐听 作品署名 3 位 来源 ：《等你下课》 画沙 署名 › 袁咏琳 / 周杰伦 《袁咏琳同名专辑》· 录音室版 去 QQ 音乐听 作品署名 8 位 来源 ：《画沙》 稻香 / Stay With You 署名 › 周杰伦 / 林俊杰 2020 官方发布 · 双人联唱现场版 暂无 QQ 音乐链接 作品署名 4 位 来源 ：《稻香 / Stay With You》 给我一首歌的时间 署名 › 周杰伦 / 蔡依林 2011《超时代演唱会》DVD / Blu-ray 现场曲目 · 非《魔杰座》录音室独唱原版 暂无 QQ 音乐链接 作品署名 2 位 来源 ：《给我一首歌的时间》 屋顶 署名 › 温岚 / 周杰伦 《有点野》第 11 首 · 录音室版（℗ 2001 阿尔发音乐） 暂无 QQ 音乐链接 作品署名 2 位 来源 ：《屋顶》 珊瑚海 署名 › 周杰伦 / 梁心颐 《十一月的萧邦》第 10 首 · 录音室对唱版 去 QQ 音乐听 作品署名 6 位 来源 ：《珊瑚海》 Try 署名 › 周杰伦 / 派伟俊 2016 单曲 · 录音室版（杰威尔音乐） 去 QQ 音乐听 作品署名 4 位 来源 ：《Try》 前往周杰伦 · 第 1 步 · 近 · 更近了，还隔 2 首",
+  "dialogs": [
+   "[dialog map-dialog map-dialog--artist] 10 首合唱 周杰伦 不该 署名 › 周杰伦 / 张惠妹 《周杰伦的床边故事》· 录音室版（同一录音亦收于《幻城》原声带） 去 QQ 音乐听 作品署名 20 位 来源 ：《不该》 千里之外 署名 › 周杰伦 / 费玉清 《依然范特西》· 合唱录音室版 去 QQ 音乐听 作品署名 5 位 来源 ：《千里之外》 说好不哭 署名 › 周杰伦 / 阿信 2019 单曲 · 录音室版 去 QQ 音乐听 作品署名 6 位 来源 ：《说好不哭》 等你下课 署名 › 周杰伦 / 杨瑞代 《最伟大的作品》· 录音室版 去 QQ 音乐听 作品署名 3 位 来源 ：《等你下课》 画沙 署名 › 袁咏琳 / 周杰伦 《袁咏琳同名专辑》· 录音室版 去 QQ 音乐听 作品署名 8 位 来源 ：《画沙》 稻香 / Stay With You 署名 › 周杰伦 / 林俊杰 2020 官方发布 · 双人联唱现场版 暂无 QQ 音乐链接 作品署名 4 位 来源 ：《稻香 / Stay With You》 给我一首歌的时间 署名 › 周杰伦 / 蔡依林 2011《超时代演唱会》DVD / Blu-ray 现场曲目 · 非《魔杰座》录音室独唱原版 暂无 QQ 音乐链接 作品署名 2 位 来源 ：《给我一首歌的时间》 屋顶 署名 › 温岚 / 周杰伦 《有点野》第 11 首 · 录音室版（℗ 2001 阿尔发音乐） 暂无 QQ 音乐链接 作品署名 2 位 来源 ：《屋顶》 珊瑚海 署名 › 周杰伦 / 梁心颐 《十一月的萧邦》第 10 首 · 录音室对唱版 去 QQ 音乐听 作品署名 6 位 来源 ：《珊瑚海》 Try 署名 › 周杰伦 / 派伟俊 2016 单曲 · 录音室版（杰威尔音乐） 去 QQ 音乐听 作品署名 4 位 来源 ：《Try》"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [
+   "(15x452)"
+  ],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 29,
+  "label": "atlas-search",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-29-atlas-search.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 找音乐人 29 位音乐人 周杰伦 10 首合唱 张惠妹 5 首合唱 萧敬腾 4 首合唱 林俊杰 10 首合唱 费玉清 1 首合唱 阿信 3 首合唱 杨瑞代 1 首合唱 袁咏琳 1 首合唱 蔡卓妍 1 首合唱 金莎 1 首合唱 邓紫棋 2 首合唱 孙燕姿 3 首合唱 蔡依林 4 首合唱 温岚 1 首合唱 梁心颐 2 首合唱 派伟俊 1 首合唱 李荣浩 3 首合唱 林宥嘉 3 首合唱 阿肆 1 首合唱 周兴哲 3 首合唱 单依纯 1 首合唱 五月天 乐团 · 5 首合唱 陈绮贞 1 首合唱 吴青峰 1 首合唱 陶喆 2 首合唱 Jony J 1 首合唱 陈势安 1 首合唱 林忆莲 1 首合唱 王嘉尔 1 首合唱 前往周杰伦 · 第 1 步 · 近 · 更近了，还隔 2 首",
+  "dialogs": [
+   "[dialog map-dialog map-dialog--search] 找音乐人 29 位音乐人 周杰伦 10 首合唱 张惠妹 5 首合唱 萧敬腾 4 首合唱 林俊杰 10 首合唱 费玉清 1 首合唱 阿信 3 首合唱 杨瑞代 1 首合唱 袁咏琳 1 首合唱 蔡卓妍 1 首合唱 金莎 1 首合唱 邓紫棋 2 首合唱 孙燕姿 3 首合唱 蔡依林 4 首合唱 温岚 1 首合唱 梁心颐 2 首合唱 派伟俊 1 首合唱 李荣浩 3 首合唱 林宥嘉 3 首合唱 阿肆 1 首合唱 周兴哲 3 首合唱 单依纯 1 首合唱 五月天 乐团 · 5 首合唱 陈绮贞 1 首合唱 吴青峰 1 首合唱 陶喆 2 首合唱 Jony J 1 首合唱 陈势安 1 首合唱 林忆莲 1 首合唱 王嘉尔 1 首合唱"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 30,
+  "label": "atlas-search-typed",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-30-atlas-search-typed.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 找音乐人 29 位音乐人 周杰伦 10 首合唱 周兴哲 3 首合唱 前往周杰伦 · 第 1 步 · 近 · 更近了，还隔 2 首",
+  "dialogs": [
+   "[dialog map-dialog map-dialog--search] 找音乐人 29 位音乐人 周杰伦 10 首合唱 周兴哲 3 首合唱"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 31,
+  "label": "atlas-relations",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-31-atlas-relations.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 周杰伦 的合唱 周杰伦 ↔ 和 张惠妹 不该 署名 › 周杰伦 / 张惠妹 《周杰伦的床边故事》· 录音室版（同一录音亦收于《幻城》原声带） 去 QQ 音乐听 作品署名 20 位 来源 ：《不该》 周杰伦 ↔ 和 费玉清 千里之外 署名 › 周杰伦 / 费玉清 《依然范特西》· 合唱录音室版 去 QQ 音乐听 作品署名 5 位 来源 ：《千里之外》 周杰伦 ↔ 和 阿信 说好不哭 署名 › 周杰伦 / 阿信 2019 单曲 · 录音室版 去 QQ 音乐听 作品署名 6 位 来源 ：《说好不哭》 周杰伦 ↔ 和 杨瑞代 等你下课 署名 › 周杰伦 / 杨瑞代 《最伟大的作品》· 录音室版 去 QQ 音乐听 作品署名 3 位 来源 ：《等你下课》 周杰伦 ↔ 和 袁咏琳 画沙 署名 › 袁咏琳 / 周杰伦 《袁咏琳同名专辑》· 录音室版 去 QQ 音乐听 作品署名 8 位 来源 ：《画沙》 周杰伦 ↔ 和 林俊杰 稻香 / Stay With You 署名 › 周杰伦 / 林俊杰 2020 官方发布 · 双人联唱现场版 暂无 QQ 音乐链接 作品署名 4 位 来源 ：《稻香 / Stay With You》 周杰伦 ↔ 和 蔡依林 给我一首歌的时间 署名 › 周杰伦 / 蔡依林 2011《超时代演唱会》DVD / Blu-ray 现场曲目 · 非《魔杰座》录音室独唱原版 暂无 QQ 音乐链接 作品署名 2 位 来源 ：《给我一首歌的时间》 周杰伦 ↔ 和 温岚 屋顶 署名 › 温岚 / 周杰伦 《有点野》第 11 首 · 录音室版（℗ 2001 阿尔发音乐） 暂无 QQ 音乐链接 作品署名 2 位 来源 ：《屋顶》 周杰伦 ↔ 和 梁心颐 珊瑚海 署名 › 周杰伦 / 梁心颐 《十一月的萧邦》第 10 首 · 录音室对唱版 去 QQ 音乐听 作品署名 6 位 来源 ：《珊瑚海》 周杰伦 ↔ 和 派伟俊 Try 署名 › 周杰伦 / 派伟俊 2016 单曲 · 录音室版（杰威尔音乐） 去 QQ 音乐听 作品署名 4 位 来源 ：《Try》 前往周杰伦 · 第 1 步 · 近 · 更近了，还隔 2 首",
+  "dialogs": [
+   "[dialog map-dialog map-dialog--relations] 周杰伦 的合唱 周杰伦 ↔ 和 张惠妹 不该 署名 › 周杰伦 / 张惠妹 《周杰伦的床边故事》· 录音室版（同一录音亦收于《幻城》原声带） 去 QQ 音乐听 作品署名 20 位 来源 ：《不该》 周杰伦 ↔ 和 费玉清 千里之外 署名 › 周杰伦 / 费玉清 《依然范特西》· 合唱录音室版 去 QQ 音乐听 作品署名 5 位 来源 ：《千里之外》 周杰伦 ↔ 和 阿信 说好不哭 署名 › 周杰伦 / 阿信 2019 单曲 · 录音室版 去 QQ 音乐听 作品署名 6 位 来源 ：《说好不哭》 周杰伦 ↔ 和 杨瑞代 等你下课 署名 › 周杰伦 / 杨瑞代 《最伟大的作品》· 录音室版 去 QQ 音乐听 作品署名 3 位 来源 ：《等你下课》 周杰伦 ↔ 和 袁咏琳 画沙 署名 › 袁咏琳 / 周杰伦 《袁咏琳同名专辑》· 录音室版 去 QQ 音乐听 作品署名 8 位 来源 ：《画沙》 周杰伦 ↔ 和 林俊杰 稻香 / Stay With You 署名 › 周杰伦 / 林俊杰 2020 官方发布 · 双人联唱现场版 暂无 QQ 音乐链接 作品署名 4 位 来源 ：《稻香 / Stay With You》 周杰伦 ↔ 和 蔡依林 给我一首歌的时间 署名 › 周杰伦 / 蔡依林 2011《超时代演唱会》DVD / Blu-ray 现场曲目 · 非《魔杰座》录音室独唱原版 暂无 QQ 音乐链接 作品署名 2 位 来源 ：《给我一首歌的时间》 周杰伦 ↔ 和 温岚 屋顶 署名 › 温岚 / 周杰伦 《有点野》第 11 首 · 录音室版（℗ 2001 阿尔发音乐） 暂无 QQ 音乐链接 作品署名 2 位 来源 ：《屋顶》 周杰伦 ↔ 和 梁心颐 珊瑚海 署名 › 周杰伦 / 梁心颐 《十一月的萧邦》第 10 首 · 录音室对唱版 去 QQ 音乐听 作品署名 6 位 来源 ：《珊瑚海》 周杰伦 ↔ 和 派伟俊 Try 署名 › 周杰伦 / 派伟俊 2016 单曲 · 录音室版（杰威尔音乐） 去 QQ 音乐听 作品署名 4 位 来源 ：《Try》"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [
+   "(15x452)"
+  ],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 32,
+  "label": "challenge-form",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-32-challenge-form.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 开一局寻声 开局前不告诉你答案。 起点 周杰伦 张惠妹 萧敬腾 林俊杰 费玉清 阿信 杨瑞代 袁咏琳 蔡卓妍 金莎 邓紫棋 孙燕姿 蔡依林 温岚 梁心颐 派伟俊 李荣浩 林宥嘉 阿肆 周兴哲 单依纯 五月天（乐团） 陈绮贞 吴青峰 陶喆 Jony J 陈势安 林忆莲 王嘉尔 终点 周杰伦 张惠妹 萧敬腾 林俊杰 费玉清 阿信 杨瑞代 袁咏琳 蔡卓妍 金莎 邓紫棋 孙燕姿 蔡依林 温岚 梁心颐 派伟俊 李荣浩 林宥嘉 阿肆 周兴哲 单依纯 五月天（乐团） 陈绮贞 吴青峰 陶喆 Jony J 陈势安 林忆莲 王嘉尔 开局 出题给朋友",
+  "dialogs": [
+   "[dialog map-dialog map-dialog--challenge] 开一局寻声 开局前不告诉你答案。 起点 周杰伦 张惠妹 萧敬腾 林俊杰 费玉清 阿信 杨瑞代 袁咏琳 蔡卓妍 金莎 邓紫棋 孙燕姿 蔡依林 温岚 梁心颐 派伟俊 李荣浩 林宥嘉 阿肆 周兴哲 单依纯 五月天（乐团） 陈绮贞 吴青峰 陶喆 Jony J 陈势安 林忆莲 王嘉尔 终点 周杰伦 张惠妹 萧敬腾 林俊杰 费玉清 阿信 杨瑞代 袁咏琳 蔡卓妍 金莎 邓紫棋 孙燕姿 蔡依林 温岚 梁心颐 派伟俊 李荣浩 林宥嘉 阿肆 周兴哲 单依纯 五月天（乐团） 陈绮贞 吴青峰 陶喆 Jony J 陈势安 林忆莲 王嘉尔 开局 出题给朋友"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 33,
+  "label": "roam-start",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-33-roam-start.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 周杰伦 张惠妹 萧敬腾 林俊杰 费玉清 阿信 杨瑞代 袁咏琳 蔡卓妍 孙燕姿 蔡依林 温岚 梁心颐 派伟俊 李荣浩 五月天 完整图鉴 从周杰伦出发 · 途经 1 位 开一局寻声 找音乐人 目录 返回上一位 回到起点 本次发现 · 0 首 结束探索 周杰伦 10 首合唱 · 你在这里 TA 的歌 10 首合唱 小院 唱片店 我的发现 从周杰伦出发 · 点相连的歌手就走过去",
+  "dialogs": [],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 34,
+  "label": "roam-walked",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-34-roam-walked.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 周杰伦 张惠妹 萧敬腾 袁咏琳 孙燕姿 蔡依林 李荣浩 五月天 吴青峰 陶喆 Jony J 林忆莲 完整图鉴 周杰伦 → 张惠妹 开一局寻声 找音乐人 目录 返回上一位 回到起点 本次发现 · 0 首 结束探索 张惠妹 5 首合唱 · 你在这里 TA 的歌 5 首合唱 小院 唱片店 我的发现 沿《不该》走到张惠妹",
+  "dialogs": [],
+  "toast": "沿《不该》走到张惠妹",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 35,
+  "label": "roam-kept",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-35-roam-kept.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 本次发现 · 进行中 本次发现 日期 10月7日 起点 周杰伦 途经 2 位 留下 0 首 留下的歌 这次还没留下歌。 我走过的路 1 段 途经的歌手 2 位 保存发现卡片 继续本次探索 开始新探索 回到小院 沿《不该》走到张惠妹",
+  "dialogs": [
+   "[dialog map-dialog map-dialog--recap] 本次发现 · 进行中 本次发现 日期 10月7日 起点 周杰伦 途经 2 位 留下 0 首 留下的歌 这次还没留下歌。 我走过的路 1 段 途经的歌手 2 位 保存发现卡片 继续本次探索 开始新探索 回到小院"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "label": "roam-kept-save",
+  "fail": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n  - waiting for locator('.map-dialog [data-map-action=\"save\"]').first()\n    - locator resolved to <button type=\"button\" title=\"留下这首歌\" aria-label=\"留下《不该》\" aria-pressed=\"false\" data-id=\"real-bu-gai\" data-map-action=\"save\" data-source=\"沿周杰"
+ },
+ {
+  "view": "phone",
+  "n": 36,
+  "label": "roam-recap-full",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-36-roam-recap-full.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 本次发现 · 进行中 本次发现 日期 10月7日 起点 周杰伦 途经 2 位 留下 0 首 留下的歌 这次还没留下歌。 我走过的路 1 段 途经的歌手 2 位 保存发现卡片 继续本次探索 开始新探索 回到小院 沿《不该》走到张惠妹",
+  "dialogs": [
+   "[dialog map-dialog map-dialog--recap] 本次发现 · 进行中 本次发现 日期 10月7日 起点 周杰伦 途经 2 位 留下 0 首 留下的歌 这次还没留下歌。 我走过的路 1 段 途经的歌手 2 位 保存发现卡片 继续本次探索 开始新探索 回到小院"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 37,
+  "label": "roam-end",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-37-roam-end.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 探索回顾 · 已结束 这一路，留下的喜欢 日期 10月7日 起点 周杰伦 途经 2 位 留下 0 首 留下的歌 这次还没留下歌。 我走过的路 1 段 途经的歌手 2 位 保存发现卡片 继续本次探索 开始新探索 回到小院 沿《不该》走到张惠妹",
+  "dialogs": [
+   "[dialog map-dialog map-dialog--recap] 探索回顾 · 已结束 这一路，留下的喜欢 日期 10月7日 起点 周杰伦 途经 2 位 留下 0 首 留下的歌 这次还没留下歌。 我走过的路 1 段 途经的歌手 2 位 保存发现卡片 继续本次探索 开始新探索 回到小院"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 38,
+  "label": "roam-ended-bar",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-38-roam-ended-bar.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 周杰伦 张惠妹 萧敬腾 袁咏琳 孙燕姿 蔡依林 李荣浩 五月天 吴青峰 陶喆 Jony J 林忆莲 完整图鉴 周杰伦 → 张惠妹 已结束 开一局寻声 找音乐人 目录 已结束 回顾 · 0 首 继续本次探索 张惠妹 5 首合唱 · 停在这里 TA 的歌 5 首合唱 小院 唱片店 我的发现 沿《不该》走到张惠妹",
+  "dialogs": [],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 39,
+  "label": "records",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-39-records.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 我的发现 我的发现 去唱片店 探索记录 留下的歌 探索记录 2 次探索 01 漫游 · 已结束 · 10月7日 起点 周杰伦 途经 2 位 · 留下 0 首 回顾 继续 02 寻声 · 已揭晓 · 10月7日 费玉清 → 邓紫棋 翻开 1 首 · 提示 1 次 · 1 步 回顾 小院 唱片店 我的发现 沿《不该》走到张惠妹",
+  "dialogs": [],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 40,
+  "label": "records-music",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-40-records-music.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 我的发现 我的发现 去唱片店 探索记录 留下的歌 留下的歌 0 首 遇到喜欢的歌，就留在这里。 去唱片店 小院 唱片店 我的发现 沿《不该》走到张惠妹",
+  "dialogs": [],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "label": "records-music-row",
+  "fail": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n  - waiting for locator('.saved-music .open-catalogue__record summary').first()\n"
+ },
+ {
+  "view": "phone",
+  "n": 41,
+  "label": "records-recap",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-41-records-recap.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 我的发现 探索回顾 · 已结束 这一路，留下的喜欢 日期 10月7日 起点 周杰伦 途经 2 位 留下 0 首 留下的歌 这次还没留下歌。 我走过的路 1 段 途经的歌手 2 位 保存发现卡片 继续本次探索 开始新探索 回到小院 沿《不该》走到张惠妹",
+  "dialogs": [
+   "[dialog map-dialog map-dialog--recap] 探索回顾 · 已结束 这一路，留下的喜欢 日期 10月7日 起点 周杰伦 途经 2 位 留下 0 首 留下的歌 这次还没留下歌。 我走过的路 1 段 途经的歌手 2 位 保存发现卡片 继续本次探索 开始新探索 回到小院"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 42,
+  "label": "records-delete",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-42-records-delete.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 我的发现 删除这次探索？ 删除后无法恢复。 删除记录 保留 沿《不该》走到张惠妹",
+  "dialogs": [
+   "[dialog map-dialog map-dialog--delete] 删除这次探索？ 删除后无法恢复。 删除记录 保留"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 43,
+  "label": "home-returning",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-43-home-returning.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 唱片店 从喜欢，走向未知。 从一位喜欢的歌手出发，沿着合唱找到下一首。 今天，从谁开始？ 周杰伦 林俊杰 邓紫棋 孙燕姿 两位歌手之间，隔着几首歌？ 寻声 · 在唱片店开一局 我的发现 2 留下的歌 0 开放曲库 小院 唱片店 我的发现 沿《不该》走到张惠妹",
+  "dialogs": [],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 44,
+  "label": "offline-back",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-44-offline-back.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 离线了，联网后再返回现场。 唱片店 从喜欢，走向未知。 从一位喜欢的歌手出发，沿着合唱找到下一首。 今天，从谁开始？ 周杰伦 林俊杰 邓紫棋 孙燕姿 两位歌手之间，隔着几首歌？ 寻声 · 在唱片店开一局 我的发现 2 留下的歌 0 开放曲库 小院 唱片店 我的发现 沿《不该》走到张惠妹",
+  "dialogs": [],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "phone",
+  "n": 45,
+  "label": "storage-conflict",
+  "file": "/tmp/space-map/shots/ui-wip1/phone-45-storage-conflict.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 唱片店 另一个标签页改了探索记录，这一页先不保存了。重新载入后继续。 重新载入 下载备份 探索记录在别的标签页更新了 重新载入后继续。 小院 唱片店 我的发现 沿《不该》走到张惠妹",
+  "dialogs": [],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 1,
+  "label": "home",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-01-home.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 唱片店 从喜欢， 走向未知。 从一位喜欢的歌手出发，沿着合唱找到下一首。 今天，从谁开始？ 周杰伦 林俊杰 邓紫棋 孙燕姿 两位歌手之间，隔着几首歌？ 寻声 · 费玉清 → 邓紫棋 我的发现 0 留下的歌 0 开放曲库",
+  "dialogs": [],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 2,
+  "label": "home-search-typed",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-02-home-search-typed.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 唱片店 从喜欢， 走向未知。 从一位喜欢的歌手出发，沿着合唱找到下一首。 今天，从谁开始？ 周杰伦 林俊杰 邓紫棋 孙燕姿 这里还没有「王菲」，先从这几位开始吧。 两位歌手之间，隔着几首歌？ 寻声 · 费玉清 → 邓紫棋 我的发现 0 留下的歌 0 开放曲库",
+  "dialogs": [],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 3,
+  "label": "home-search-found",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-03-home-search-found.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 唱片店 从喜欢， 走向未知。 从一位喜欢的歌手出发，沿着合唱找到下一首。 今天，从谁开始？ 林俊杰 林宥嘉 林忆莲 蔡依林 两位歌手之间，隔着几首歌？ 寻声 · 费玉清 → 邓紫棋 我的发现 0 留下的歌 0 开放曲库",
+  "dialogs": [],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 4,
+  "label": "about",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-04-about.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 唱片店 从喜欢， 走向未知。 从一位喜欢的歌手出发，沿着合唱找到下一首。 今天，从谁开始？ 周杰伦 林俊杰 邓紫棋 孙燕姿 两位歌手之间，隔着几首歌？ 寻声 · 费玉清 → 邓紫棋 我的发现 0 留下的歌 0 开放曲库 关于音乐探索 从喜欢，走向未知。 寻声 选好起点和终点，翻开手边的合唱，沿它走到下一位；翻开和提示不算步数。 图鉴 摊开全部合唱，从任意一位歌手出发随便走。 来源 每条连线是一首合唱录音，点歌旁的「来源」看出处。 曲库 开放曲库是公开数据集里的共同署名，不一定是合唱，不进入连线。 音频 这里不播放音乐；31 首可以去 QQ 音乐听同一录音。 数据来源 合唱目录 29 位音乐人、37 首共同演唱录音，每首都附有出处，资料访问于 2026 年 9 月 27–28 日；出处在每首歌的「来源」里。路线和「最短」只算这 37 首。 QQ 音乐 31 首在 QQ 音乐有同一录音的页面（2026 年 9 月 29 日按页面信息确认）；另外 6 首的原因写在「来源」里。 开放曲库 126 首，取自 Hugging Face 数据集 maharshipandya/spotify-tracks-dataset（快照 635b034）里 mandopop、cantopop 的共同署名记录（全库 114,000 行）。数据卡标注的许可是 bsd，没有写明具体版本；这里只取曲名、艺人、专辑和行号，不含音频。数据集 ↗ （新标签页） 字体 站酷庆科黄油体、霞鹜漫黑、悠哉、Luckiest Guy、得意黑的子集（SIL OFL 1.1、Apache 2.0）。许可全文 ↗ （新标签页） 代码 three.js、Sakura Crossing、OverlayScrollbars、qrcode-generator（MIT），GSAP（Standard No Charge 许可）；许可全文附在网页源码里。 来历 唱片店、寻声和合唱目录来自 Music Map。 知道了",
+  "dialogs": [
+   "[dialog about-dialog] 关于音乐探索 从喜欢，走向未知。 寻声 选好起点和终点，翻开手边的合唱，沿它走到下一位；翻开和提示不算步数。 图鉴 摊开全部合唱，从任意一位歌手出发随便走。 来源 每条连线是一首合唱录音，点歌旁的「来源」看出处。 曲库 开放曲库是公开数据集里的共同署名，不一定是合唱，不进入连线。 音频 这里不播放音乐；31 首可以去 QQ 音乐听同一录音。 数据来源 合唱目录 29 位音乐人、37 首共同演唱录音，每首都附有出处，资料访问于 2026 年 9 月 27–28 日；出处在每首歌的「来源」里。路线和「最短」只算这 37 首。 QQ 音乐 31 首在 QQ 音乐有同一录音的页面（2026 年 9 月 29 日按页面信息确认）；另外 6 首的原因写在「来源」里。 开放曲库 126 首，取自 Hugging Face 数据集 maharshipandya/spotify-tracks-dataset（快照 635b034）里 mandopop、cantopop 的共同署名记录（全库 114,000 行）。数据卡标注的许可是 bsd，没有写明具体版本；这里只取曲名、艺人、专辑和行号，不含音频。数据集 ↗ （新标签页） 字体 站酷庆科黄油体、霞鹜漫黑、悠哉、Luckiest Guy、得意黑的子集（SIL OFL 1.1、Apache 2.0）。许可全文 ↗ （新标签页） 代码 three.js、Sakura Crossing、OverlayScrollbars、qrcode-generator（MIT），GSAP（Standard No Charge 许可）；许可全文附在网页源码里。 来历 唱片店、寻声和合唱目录来自 Music Map。 知道了"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [
+   "Music Map"
+  ],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 5,
+  "label": "about-sources",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-05-about-sources.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 唱片店 从喜欢， 走向未知。 从一位喜欢的歌手出发，沿着合唱找到下一首。 今天，从谁开始？ 周杰伦 林俊杰 邓紫棋 孙燕姿 两位歌手之间，隔着几首歌？ 寻声 · 费玉清 → 邓紫棋 我的发现 0 留下的歌 0 开放曲库 关于音乐探索 从喜欢，走向未知。 寻声 选好起点和终点，翻开手边的合唱，沿它走到下一位；翻开和提示不算步数。 图鉴 摊开全部合唱，从任意一位歌手出发随便走。 来源 每条连线是一首合唱录音，点歌旁的「来源」看出处。 曲库 开放曲库是公开数据集里的共同署名，不一定是合唱，不进入连线。 音频 这里不播放音乐；31 首可以去 QQ 音乐听同一录音。 数据来源 合唱目录 29 位音乐人、37 首共同演唱录音，每首都附有出处，资料访问于 2026 年 9 月 27–28 日；出处在每首歌的「来源」里。路线和「最短」只算这 37 首。 QQ 音乐 31 首在 QQ 音乐有同一录音的页面（2026 年 9 月 29 日按页面信息确认）；另外 6 首的原因写在「来源」里。 开放曲库 126 首，取自 Hugging Face 数据集 maharshipandya/spotify-tracks-dataset（快照 635b034）里 mandopop、cantopop 的共同署名记录（全库 114,000 行）。数据卡标注的许可是 bsd，没有写明具体版本；这里只取曲名、艺人、专辑和行号，不含音频。数据集 ↗ （新标签页） 字体 站酷庆科黄油体、霞鹜漫黑、悠哉、Luckiest Guy、得意黑的子集（SIL OFL 1.1、Apache 2.0）。许可全文 ↗ （新标签页） 代码 three.js、Sakura Crossing、OverlayScrollbars、qrcode-generator（MIT），GSAP（Standard No Charge 许可）；许可全文附在网页源码里。 来历 唱片店、寻声和合唱目录来自 Music Map。 知道了",
+  "dialogs": [
+   "[dialog about-dialog] 关于音乐探索 从喜欢，走向未知。 寻声 选好起点和终点，翻开手边的合唱，沿它走到下一位；翻开和提示不算步数。 图鉴 摊开全部合唱，从任意一位歌手出发随便走。 来源 每条连线是一首合唱录音，点歌旁的「来源」看出处。 曲库 开放曲库是公开数据集里的共同署名，不一定是合唱，不进入连线。 音频 这里不播放音乐；31 首可以去 QQ 音乐听同一录音。 数据来源 合唱目录 29 位音乐人、37 首共同演唱录音，每首都附有出处，资料访问于 2026 年 9 月 27–28 日；出处在每首歌的「来源」里。路线和「最短」只算这 37 首。 QQ 音乐 31 首在 QQ 音乐有同一录音的页面（2026 年 9 月 29 日按页面信息确认）；另外 6 首的原因写在「来源」里。 开放曲库 126 首，取自 Hugging Face 数据集 maharshipandya/spotify-tracks-dataset（快照 635b034）里 mandopop、cantopop 的共同署名记录（全库 114,000 行）。数据卡标注的许可是 bsd，没有写明具体版本；这里只取曲名、艺人、专辑和行号，不含音频。数据集 ↗ （新标签页） 字体 站酷庆科黄油体、霞鹜漫黑、悠哉、Luckiest Guy、得意黑的子集（SIL OFL 1.1、Apache 2.0）。许可全文 ↗ （新标签页） 代码 three.js、Sakura Crossing、OverlayScrollbars、qrcode-generator（MIT），GSAP（Standard No Charge 许可）；许可全文附在网页源码里。 来历 唱片店、寻声和合唱目录来自 Music Map。 知道了"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [
+   "数据集 ↗ （新标签页）(54x17)",
+   "许可全文 ↗ （新标签页）(68x17)"
+  ],
+  "offscreen": [],
+  "banned": [
+   "Music Map"
+  ],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 6,
+  "label": "catalogue",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-06-catalogue.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 唱片店 从喜欢， 走向未知。 从一位喜欢的歌手出发，沿着合唱找到下一首。 今天，从谁开始？ 周杰伦 林俊杰 邓紫棋 孙燕姿 两位歌手之间，隔着几首歌？ 寻声 · 费玉清 → 邓紫棋 我的发现 0 留下的歌 0 开放曲库 THE OPEN CRATE 开放曲库 126 共同署名，不一定是合唱 01 I'm Alive W.M.L · Vicky Chen 02 手心的薔薇 JJ Lin · G.E.M. 03 感谢你曾来过 阿涵 · Ayo97 04 珊瑚海 Jay Chou · Lara Liang 05 不得不愛 Will Pan · Xian Zi 06 飄流教室 Leo Ku · Edan 呂爵安 07 說好不哭 Jay Chou · Ashin Chen 08 Drowning 高爾宣 OSN · 李浩瑋 Howard Lee 09 自我安慰 Leo Ku · MC 張天賦 10 Frenemy MC 張天賦 · Kaho Hung 11 開始懂了 Stefanie Sun · Jerry · Lin Zheng-Zhong 12 愛我的時候 Eric Chou · 單依純 13 Work 高爾宣 OSN · sunkis 14 今天陽光就是特別耀眼特別和諧 feat. 韋禮安 Pets Tseng · WeiBird 15 不該 Jay Chou · A-Mei Chang 16 你被寫在我的歌裡 Sodagreen · Ella Chen 17 對等關係 (feat. 張惠妹) Ronghao Li · A-Mei Chang 18 好心分手 Candy Lo · Leehom Wang 19 一表人才 Edan 呂爵安 · Feng Ze 20 凉凉 - 電視劇《三生三世十里桃花》片尾曲 Aska Yang · Zhang Bichen 21 小酒窩 JJ Lin · Charlene Choi 22 再也沒有你 Lara Liang · Andrew Tan 23 知否知否 - \"知否知否应是绿肥红瘦\" 电视剧主题曲 Hu Xia · Yisa Yu 24 你最珍貴 Jacky Cheung · 高慧君 25 私奔到月球 Mayday · Cheer Chen 26 Without You - Acoustic Version 高爾宣 OSN · Vicky Chen 27 Bedroom (feat. Anne-Marie) JJ Lin · Anne-Marie 28 溫柔 #MaydayBlue20th - feat.孫燕姿 Mayday · Stefanie Sun 29 別勉強 G.E.M. · Eric Chou 30 你那麼愛她 林隆璇 · Sam Lee 31 相愛很難 - 電影\"男人四十\"歌曲 Jacky Cheung · Anita Mui 32 隔離 - Studio Live Duet Jace Chan · Terence Lam 33 我也難過的 吳林峰 · 謝芊彤 34 如果的事 Christine Fan · Angela Chang 35 致姗姗来迟的你 A Si · Yoga Lin 36 Black Out (feat. 9m88) ØZI · 9m88 37 How Many Times - Studio Live MC 張天賦 · Jay Fung 38 屋頂 Landy Wen · Jay Chou 39 不是我不明白 Fish Leong · Crowd Lu 40 另一個天堂 Leehom Wang · Jane Zhang 41 羅生門 Juno Mak · Kay Tse 42 戀愛頻率 Andy Hui · 許慧欣 43 目黑 - 合唱版 Endy Chow · Fiona Sit 44 廣島之戀 Karen Mok · 張洪量 45 jagi (feat. KIRE) Shi Shi · KIRE 46 聽海浪 Byejack · Midnight. 47 Storm - English Version 吳青峰 · AURORA 48 友情歲月 Jordan Chan · Ekin Cheng · 謝天華 · 林曉峰 49 綠光 Stefanie Sun · Shen Darren 50 今天妳要嫁給我 Jolin Tsai · David Tao 51 現代愛情故事 Chilam · Xu Qiu Yi 52 畫沙 Cindy Yen · Jay Chou 53 I'm not yours (feat. 安室奈美惠) Jolin Tsai · Namie Amuro 54 堅強的理由 Karen Mok · Wu Bai 55 我是誰 (電視劇《狼殿下》主題曲) Jolin Tsai · Jony J 56 (......小王子)(feat. ohashiTrio) 吳青峰 · 大橋三重唱 57 我們萬歲 Eason Chan · eason and the duo band 58 年少無知 - (劇集 \"天與地\" 片尾曲) Bowie Lam · 陳豪 · 黃德斌 59 獨一無二 AGA · Gin Lee 60 Don't Wanna Lie (feat. 8lak & Hosea) Patrick Brasca · 8lak · Hosea 61 輕熟女27 (我只在乎你) MC HotDog · 關彥淳 62 Take It Slow Crispy脆樂團 · 恐龍的皮 63 Moonlight (feat. 袁婭維) Will Pan · TIA RAY 64 (......醉鬼阿Q)(feat. 孫燕姿) 吳青峰 · Stefanie Sun 65 敢愛敢做 George Lam · David Ling Jr 66 漸漸 Eason Chan · eason and the duo band 67 敏感(LH x Z.TAO) Lu Han · Z.TAO 68 石徑 Hins Cheung · Keeva Mak 69 月球上碰面 Fiona Sit · Juno Mak 70 自知之明 Pong Nan · Tang Siu Hau 71 [Jiang Yanli & Jin Zixuan] Yong Ge Lara Liang · Yang Qiyu 72 樓下有人 Leo Ku · 葉巧琳 73 兩旬之歌 Byejack · Slizznico 74 漩渦 Anthony Wong · Cass Phang 75 Try - Kung Fu Panda 3 Official Theme Song Patrick Brasca · Jay Chou 76 眠眠 Yisa Yu · 霍尊 77 情未了 Christopher Wong · Vivian Chow 78 把歌談心 林姍姍 · David Ling Jr 79 無言的結局 Daniel Lo · 林淑容 80 螢火 Firefly Byejack · Trickie Bonnie 81 鴛鴦酒杯 Jody Chiang · Hong Ronghong 82 舞伴 陳盈潔 · 袁小迪 83 情難斷夢袂醒 陳中 · 邱芸子 84 千個太陽 Deanie Ip · Elisa Chan · 散芬芳合唱團 85 就要揮別 楊芳儀 · 徐曉菁 86 鐵幕誘惑 Aaron Kwok · Frankie 87 不懂愛你 Daniel Chan · 林京燁 88 真愛在明天 Vivian Chow · Leon Lai 89 In Love With You Jacky Cheung · Regine Velasquez 90 常在我心間...愛你不分早晚 Michael Kwan · Tracy Huang 91 放過自己 - Acoustic Version G5SH · Marz23 92 嫁妝 陳中 · 邱芸子 93 出來面對 魏嘉瑩 Arrow Wei · WONFU 94 相思夢難圓 - 修復版 麗莎 · 郭炳堅 95 茫茫到深更 陳中 · 邱芸子 96 我現在會好好的 - TVBS「女力報到愛的故事」片尾曲 陳威全 · Danny Koo 97 有意 - (劇集 \"烈火雄心III\" 片尾曲) Kevin Cheng · Myolie Wu 98 I LOVE YOU SO太愛妳 Aaron Kwok · Beta Soul 99 紫釵恨 張偉文 · 胡美儀 100 回頭看看我 Feng Ze · 采子 101 出嫁 Zhang Qing Fang · 優客李林 102 我有多麼喜歡你 (feat. 林宥嘉) Jam Hsiao · Yoga Lin 103 心痛不再有 方季惟 · Pan Mei Chen 104 別弄花我的妝 (feat. Karencici) Sharon Kwan · Karencici 105 你我相逢 Jody Chiang · 施文彬 106 心仍是冷 倫永亮 · Anita Mui 107 愛的呼喚 Aaron Kwok · Beta Soul 108 受傷的心 Jacky Wu · Huang Yee Ling 109 一生何求 Danny Chan · Bryan Choy Hin Lok · David Ling Jr 110 甲乙丙丁 Andy Hui · Jacky Cheung",
+  "dialogs": [
+   "[dialog open-catalogue] THE OPEN CRATE 开放曲库 126 共同署名，不一定是合唱 01 I'm Alive W.M.L · Vicky Chen 02 手心的薔薇 JJ Lin · G.E.M. 03 感谢你曾来过 阿涵 · Ayo97 04 珊瑚海 Jay Chou · Lara Liang 05 不得不愛 Will Pan · Xian Zi 06 飄流教室 Leo Ku · Edan 呂爵安 07 說好不哭 Jay Chou · Ashin Chen 08 Drowning 高爾宣 OSN · 李浩瑋 Howard Lee 09 自我安慰 Leo Ku · MC 張天賦 10 Frenemy MC 張天賦 · Kaho Hung 11 開始懂了 Stefanie Sun · Jerry · Lin Zheng-Zhong 12 愛我的時候 Eric Chou · 單依純 13 Work 高爾宣 OSN · sunkis 14 今天陽光就是特別耀眼特別和諧 feat. 韋禮安 Pets Tseng · WeiBird 15 不該 Jay Chou · A-Mei Chang 16 你被寫在我的歌裡 Sodagreen · Ella Chen 17 對等關係 (feat. 張惠妹) Ronghao Li · A-Mei Chang 18 好心分手 Candy Lo · Leehom Wang 19 一表人才 Edan 呂爵安 · Feng Ze 20 凉凉 - 電視劇《三生三世十里桃花》片尾曲 Aska Yang · Zhang Bichen 21 小酒窩 JJ Lin · Charlene Choi 22 再也沒有你 Lara Liang · Andrew Tan 23 知否知否 - \"知否知否应是绿肥红瘦\" 电视剧主题曲 Hu Xia · Yisa Yu 24 你最珍貴 Jacky Cheung · 高慧君 25 私奔到月球 Mayday · Cheer Chen 26 Without You - Acoustic Version 高爾宣 OSN · Vicky Chen 27 Bedroom (feat. Anne-Marie) JJ Lin · Anne-Marie 28 溫柔 #MaydayBlue20th - feat.孫燕姿 Mayday · Stefanie Sun 29 別勉強 G.E.M. · Eric Chou 30 你那麼愛她 林隆璇 · Sam Lee 31 相愛很難 - 電影\"男人四十\"歌曲 Jacky Cheung · Anita Mui 32 隔離 - Studio Live Duet Jace Chan · Terence Lam 33 我也難過的 吳林峰 · 謝芊彤 34 如果的事 Christine Fan · Angela Chang 35 致姗姗来迟的你 A Si · Yoga Lin 36 Black Out (feat. 9m88) ØZI · 9m88 37 How Many Times - Studio Live MC 張天賦 · Jay Fung 38 屋頂 Landy Wen · Jay Chou 39 不是我不明白 Fish Leong · Crowd Lu 40 另一個天堂 Leehom Wang · Jane Zhang 41 羅生門 Juno Mak · Kay Tse 42 戀愛頻率 Andy Hui · 許慧欣 43 目黑 - 合唱版 Endy Chow · Fiona Sit 44 廣島之戀 Karen Mok · 張洪量 45 jagi (feat. KIRE) Shi Shi · KIRE 46 聽海浪 Byejack · Midnight. 47 Storm - English Version 吳青峰 · AURORA 48 友情歲月 Jordan Chan · Ekin Cheng · 謝天華 · 林曉峰 49 綠光 Stefanie Sun · Shen Darren 50 今天妳要嫁給我 Jolin Tsai · David Tao 51 現代愛情故事 Chilam · Xu Qiu Yi 52 畫沙 Cindy Yen · Jay Chou 53 I'm not yours (feat. 安室奈美惠) Jolin Tsai · Namie Amuro 54 堅強的理由 Karen Mok · Wu Bai 55 我是誰 (電視劇《狼殿下》主題曲) Jolin Tsai · Jony J 56 (......小王子)(feat. ohashiTrio) 吳青峰 · 大橋三重唱 57 我們萬歲 Eason Chan · eason and the duo band 58 年少無知 - (劇集 \"天與地\" 片尾曲) Bowie Lam · 陳豪 · 黃德斌 59 獨一無二 AGA · Gin Lee 60 Don't Wanna Lie (feat. 8lak & Hosea) Patrick Brasca · 8lak · Hosea 61 輕熟女27 (我只在乎你) MC HotDog · 關彥淳 62 Take It Slow Crispy脆樂團 · 恐龍的皮 63 Moonlight (feat. 袁婭維) Will Pan · TIA RAY 64 (......醉鬼阿Q)(feat. 孫燕姿) 吳青峰 · Stefanie Sun 65 敢愛敢做 George Lam · David Ling Jr 66 漸漸 Eason Chan · eason and the duo band 67 敏感(LH x Z.TAO) Lu Han · Z.TAO 68 石徑 Hins Cheung · Keeva Mak 69 月球上碰面 Fiona Sit · Juno Mak 70 自知之明 Pong Nan · Tang Siu Hau 71 [Jiang Yanli & Jin Zixuan] Yong Ge Lara Liang · Yang Qiyu 72 樓下有人 Leo Ku · 葉巧琳 73 兩旬之歌 Byejack · Slizznico 74 漩渦 Anthony Wong · Cass Phang 75 Try - Kung Fu Panda 3 Official Theme Song Patrick Brasca · Jay Chou 76 眠眠 Yisa Yu · 霍尊 77 情未了 Christopher Wong · Vivian Chow 78 把歌談心 林姍姍 · David Ling Jr 79 無言的結局 Daniel Lo · 林淑容 80 螢火 Firefly Byejack · Trickie Bonnie 81 鴛鴦酒杯 Jody Chiang · Hong Ronghong 82 舞伴 陳盈潔 · 袁小迪 83 情難斷夢袂醒 陳中 · 邱芸子 84 千個太陽 Deanie Ip · Elisa Chan · 散芬芳合唱團 85 就要揮別 楊芳儀 · 徐曉菁 86 鐵幕誘惑 Aaron Kwok · Frankie 87 不懂愛你 Daniel Chan · 林京燁 88 真愛在明天 Vivian Chow · Leon Lai 89 In Love With You Jacky Cheung · Regine Velasquez 90 常在我心間...愛你不分早晚 Michael Kwan · Tracy Huang 91 放過自己 - Acoustic Version G5SH · Marz23 92 嫁妝 陳中 · 邱芸子 93 出來面對 魏嘉瑩 Arrow Wei · WONFU 94 相思夢難圓 - 修復版 麗莎 · 郭炳堅 95 茫茫到深更 陳中 · 邱芸子 96 我現在會好好的 - TVBS「女力報到愛的故事」片尾曲 陳威全 · Danny Koo 97 有意 - (劇集 \"烈火雄心III\" 片尾曲) Kevin Cheng · Myolie Wu 98 I LOVE YOU SO太愛妳 Aaron Kwok · Beta Soul 99 紫釵恨 張偉文 · 胡美儀 100 回頭看看我 Feng Ze · 采子 101 出嫁 Zhang Qing Fang · 優客李林 102 我有多麼喜歡你 (feat. 林宥嘉) Jam Hsiao · Yoga Lin 103 心痛不再有 方季惟 · Pan Mei Chen 104 別弄花我的妝 (feat. Karencici) Sharon Kwan · Karencici 105 你我相逢 Jody Chiang · 施文彬 106 心仍是冷 倫永亮 · Anita Mui 107 愛的呼喚 Aaron Kwok · Beta Soul 108 受傷的心 Jacky Wu · Huang Yee Ling 109 一生何求 Danny Chan · Bryan Choy Hin Lok · David Ling Jr 110 甲乙丙丁 Andy Hui · Jacky Cheung · 鄭中基 111 將冰山劈開 Andy Hui · Anita Mui 112 熱力節拍Wou Bom Ba Grasshopper · Shirley Kwan · 湯寶如 · Winnie Lau 113 註定 -電視劇: 愛在有情天 主題曲(粵語) 陳秀雯 · Ruco Chan 114 前塵 Sandy Lam · Wong Kei Wah 115 帝女花之香夭(Live) 張偉文 · May Ho 116 笑容入我眼 劉珺兒 · Jia Liang Luo 117 幻影/ 霧之戀 Leslie Cheung · Alan Tam 118 流離所愛 Christopher Wong · 余劍明 119 追憶 George Lam · David Ling Jr 120 @princejoyce (feat. ANSONBEAN) Joyce Cheng · ANSONBEAN 121 要走的始終都要走 蔣志光 · 王利名 122 舊居中的鋼琴 George Lam · David Ling 123 依然相愛 Hacken Lee · Shirley Kwan 124 一刀了斷 Chilam · Myolie Wu 125 一起衝一起闖 (電影\"黃金兄弟\"主題曲) Ekin Cheng · Jordan Chan · 謝天華 · 錢嘉樂 · 林曉峰 126 苦口良藥 陳慧珊 · Andy Hui 126 首 数据来源"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [
+   "搜索开放曲库(498x34)",
+   "(243x18)",
+   "(243x18)",
+   "(243x18)",
+   "(243x18)",
+   "(243x18)",
+   "(243x18)"
+  ],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 7,
+  "label": "catalogue-row",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-07-catalogue-row.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 唱片店 从喜欢， 走向未知。 从一位喜欢的歌手出发，沿着合唱找到下一首。 今天，从谁开始？ 周杰伦 林俊杰 邓紫棋 孙燕姿 两位歌手之间，隔着几首歌？ 寻声 · 费玉清 → 邓紫棋 我的发现 0 留下的歌 0 开放曲库 THE OPEN CRATE 开放曲库 126 共同署名，不一定是合唱 01 I'm Alive W.M.L · Vicky Chen 专辑《I'm Alive》 来源：Hugging Face 数据集第 70,190 行 ↗ 02 手心的薔薇 JJ Lin · G.E.M. 03 感谢你曾来过 阿涵 · Ayo97 04 珊瑚海 Jay Chou · Lara Liang 05 不得不愛 Will Pan · Xian Zi 06 飄流教室 Leo Ku · Edan 呂爵安 07 說好不哭 Jay Chou · Ashin Chen 08 Drowning 高爾宣 OSN · 李浩瑋 Howard Lee 09 自我安慰 Leo Ku · MC 張天賦 10 Frenemy MC 張天賦 · Kaho Hung 11 開始懂了 Stefanie Sun · Jerry · Lin Zheng-Zhong 12 愛我的時候 Eric Chou · 單依純 13 Work 高爾宣 OSN · sunkis 14 今天陽光就是特別耀眼特別和諧 feat. 韋禮安 Pets Tseng · WeiBird 15 不該 Jay Chou · A-Mei Chang 16 你被寫在我的歌裡 Sodagreen · Ella Chen 17 對等關係 (feat. 張惠妹) Ronghao Li · A-Mei Chang 18 好心分手 Candy Lo · Leehom Wang 19 一表人才 Edan 呂爵安 · Feng Ze 20 凉凉 - 電視劇《三生三世十里桃花》片尾曲 Aska Yang · Zhang Bichen 21 小酒窩 JJ Lin · Charlene Choi 22 再也沒有你 Lara Liang · Andrew Tan 23 知否知否 - \"知否知否应是绿肥红瘦\" 电视剧主题曲 Hu Xia · Yisa Yu 24 你最珍貴 Jacky Cheung · 高慧君 25 私奔到月球 Mayday · Cheer Chen 26 Without You - Acoustic Version 高爾宣 OSN · Vicky Chen 27 Bedroom (feat. Anne-Marie) JJ Lin · Anne-Marie 28 溫柔 #MaydayBlue20th - feat.孫燕姿 Mayday · Stefanie Sun 29 別勉強 G.E.M. · Eric Chou 30 你那麼愛她 林隆璇 · Sam Lee 31 相愛很難 - 電影\"男人四十\"歌曲 Jacky Cheung · Anita Mui 32 隔離 - Studio Live Duet Jace Chan · Terence Lam 33 我也難過的 吳林峰 · 謝芊彤 34 如果的事 Christine Fan · Angela Chang 35 致姗姗来迟的你 A Si · Yoga Lin 36 Black Out (feat. 9m88) ØZI · 9m88 37 How Many Times - Studio Live MC 張天賦 · Jay Fung 38 屋頂 Landy Wen · Jay Chou 39 不是我不明白 Fish Leong · Crowd Lu 40 另一個天堂 Leehom Wang · Jane Zhang 41 羅生門 Juno Mak · Kay Tse 42 戀愛頻率 Andy Hui · 許慧欣 43 目黑 - 合唱版 Endy Chow · Fiona Sit 44 廣島之戀 Karen Mok · 張洪量 45 jagi (feat. KIRE) Shi Shi · KIRE 46 聽海浪 Byejack · Midnight. 47 Storm - English Version 吳青峰 · AURORA 48 友情歲月 Jordan Chan · Ekin Cheng · 謝天華 · 林曉峰 49 綠光 Stefanie Sun · Shen Darren 50 今天妳要嫁給我 Jolin Tsai · David Tao 51 現代愛情故事 Chilam · Xu Qiu Yi 52 畫沙 Cindy Yen · Jay Chou 53 I'm not yours (feat. 安室奈美惠) Jolin Tsai · Namie Amuro 54 堅強的理由 Karen Mok · Wu Bai 55 我是誰 (電視劇《狼殿下》主題曲) Jolin Tsai · Jony J 56 (......小王子)(feat. ohashiTrio) 吳青峰 · 大橋三重唱 57 我們萬歲 Eason Chan · eason and the duo band 58 年少無知 - (劇集 \"天與地\" 片尾曲) Bowie Lam · 陳豪 · 黃德斌 59 獨一無二 AGA · Gin Lee 60 Don't Wanna Lie (feat. 8lak & Hosea) Patrick Brasca · 8lak · Hosea 61 輕熟女27 (我只在乎你) MC HotDog · 關彥淳 62 Take It Slow Crispy脆樂團 · 恐龍的皮 63 Moonlight (feat. 袁婭維) Will Pan · TIA RAY 64 (......醉鬼阿Q)(feat. 孫燕姿) 吳青峰 · Stefanie Sun 65 敢愛敢做 George Lam · David Ling Jr 66 漸漸 Eason Chan · eason and the duo band 67 敏感(LH x Z.TAO) Lu Han · Z.TAO 68 石徑 Hins Cheung · Keeva Mak 69 月球上碰面 Fiona Sit · Juno Mak 70 自知之明 Pong Nan · Tang Siu Hau 71 [Jiang Yanli & Jin Zixuan] Yong Ge Lara Liang · Yang Qiyu 72 樓下有人 Leo Ku · 葉巧琳 73 兩旬之歌 Byejack · Slizznico 74 漩渦 Anthony Wong · Cass Phang 75 Try - Kung Fu Panda 3 Official Theme Song Patrick Brasca · Jay Chou 76 眠眠 Yisa Yu · 霍尊 77 情未了 Christopher Wong · Vivian Chow 78 把歌談心 林姍姍 · David Ling Jr 79 無言的結局 Daniel Lo · 林淑容 80 螢火 Firefly Byejack · Trickie Bonnie 81 鴛鴦酒杯 Jody Chiang · Hong Ronghong 82 舞伴 陳盈潔 · 袁小迪 83 情難斷夢袂醒 陳中 · 邱芸子 84 千個太陽 Deanie Ip · Elisa Chan · 散芬芳合唱團 85 就要揮別 楊芳儀 · 徐曉菁 86 鐵幕誘惑 Aaron Kwok · Frankie 87 不懂愛你 Daniel Chan · 林京燁 88 真愛在明天 Vivian Chow · Leon Lai 89 In Love With You Jacky Cheung · Regine Velasquez 90 常在我心間...愛你不分早晚 Michael Kwan · Tracy Huang 91 放過自己 - Acoustic Version G5SH · Marz23 92 嫁妝 陳中 · 邱芸子 93 出來面對 魏嘉瑩 Arrow Wei · WONFU 94 相思夢難圓 - 修復版 麗莎 · 郭炳堅 95 茫茫到深更 陳中 · 邱芸子 96 我現在會好好的 - TVBS「女力報到愛的故事」片尾曲 陳威全 · Danny Koo 97 有意 - (劇集 \"烈火雄心III\" 片尾曲) Kevin Cheng · Myolie Wu 98 I LOVE YOU SO太愛妳 Aaron Kwok · Beta Soul 99 紫釵恨 張偉文 · 胡美儀 100 回頭看看我 Feng Ze · 采子 101 出嫁 Zhang Qing Fang · 優客李林 102 我有多麼喜歡你 (feat. 林宥嘉) Jam Hsiao · Yoga Lin 103 心痛不再有 方季惟 · Pan Mei Chen 104 別弄花我的妝 (feat. Karencici) Sharon Kwan · Karencici 105 你我相逢 Jody Chiang · 施文彬 106 心仍是冷 倫永亮 · Anita Mui 107 愛的呼喚 Aaron Kwok · Beta Soul 108 受傷的心 Jacky Wu · Huang Yee Ling 109 一生何求 Danny Chan · Bryan Choy Hin Lok · ",
+  "dialogs": [
+   "[dialog open-catalogue] THE OPEN CRATE 开放曲库 126 共同署名，不一定是合唱 01 I'm Alive W.M.L · Vicky Chen 专辑《I'm Alive》 来源：Hugging Face 数据集第 70,190 行 ↗ 02 手心的薔薇 JJ Lin · G.E.M. 03 感谢你曾来过 阿涵 · Ayo97 04 珊瑚海 Jay Chou · Lara Liang 05 不得不愛 Will Pan · Xian Zi 06 飄流教室 Leo Ku · Edan 呂爵安 07 說好不哭 Jay Chou · Ashin Chen 08 Drowning 高爾宣 OSN · 李浩瑋 Howard Lee 09 自我安慰 Leo Ku · MC 張天賦 10 Frenemy MC 張天賦 · Kaho Hung 11 開始懂了 Stefanie Sun · Jerry · Lin Zheng-Zhong 12 愛我的時候 Eric Chou · 單依純 13 Work 高爾宣 OSN · sunkis 14 今天陽光就是特別耀眼特別和諧 feat. 韋禮安 Pets Tseng · WeiBird 15 不該 Jay Chou · A-Mei Chang 16 你被寫在我的歌裡 Sodagreen · Ella Chen 17 對等關係 (feat. 張惠妹) Ronghao Li · A-Mei Chang 18 好心分手 Candy Lo · Leehom Wang 19 一表人才 Edan 呂爵安 · Feng Ze 20 凉凉 - 電視劇《三生三世十里桃花》片尾曲 Aska Yang · Zhang Bichen 21 小酒窩 JJ Lin · Charlene Choi 22 再也沒有你 Lara Liang · Andrew Tan 23 知否知否 - \"知否知否应是绿肥红瘦\" 电视剧主题曲 Hu Xia · Yisa Yu 24 你最珍貴 Jacky Cheung · 高慧君 25 私奔到月球 Mayday · Cheer Chen 26 Without You - Acoustic Version 高爾宣 OSN · Vicky Chen 27 Bedroom (feat. Anne-Marie) JJ Lin · Anne-Marie 28 溫柔 #MaydayBlue20th - feat.孫燕姿 Mayday · Stefanie Sun 29 別勉強 G.E.M. · Eric Chou 30 你那麼愛她 林隆璇 · Sam Lee 31 相愛很難 - 電影\"男人四十\"歌曲 Jacky Cheung · Anita Mui 32 隔離 - Studio Live Duet Jace Chan · Terence Lam 33 我也難過的 吳林峰 · 謝芊彤 34 如果的事 Christine Fan · Angela Chang 35 致姗姗来迟的你 A Si · Yoga Lin 36 Black Out (feat. 9m88) ØZI · 9m88 37 How Many Times - Studio Live MC 張天賦 · Jay Fung 38 屋頂 Landy Wen · Jay Chou 39 不是我不明白 Fish Leong · Crowd Lu 40 另一個天堂 Leehom Wang · Jane Zhang 41 羅生門 Juno Mak · Kay Tse 42 戀愛頻率 Andy Hui · 許慧欣 43 目黑 - 合唱版 Endy Chow · Fiona Sit 44 廣島之戀 Karen Mok · 張洪量 45 jagi (feat. KIRE) Shi Shi · KIRE 46 聽海浪 Byejack · Midnight. 47 Storm - English Version 吳青峰 · AURORA 48 友情歲月 Jordan Chan · Ekin Cheng · 謝天華 · 林曉峰 49 綠光 Stefanie Sun · Shen Darren 50 今天妳要嫁給我 Jolin Tsai · David Tao 51 現代愛情故事 Chilam · Xu Qiu Yi 52 畫沙 Cindy Yen · Jay Chou 53 I'm not yours (feat. 安室奈美惠) Jolin Tsai · Namie Amuro 54 堅強的理由 Karen Mok · Wu Bai 55 我是誰 (電視劇《狼殿下》主題曲) Jolin Tsai · Jony J 56 (......小王子)(feat. ohashiTrio) 吳青峰 · 大橋三重唱 57 我們萬歲 Eason Chan · eason and the duo band 58 年少無知 - (劇集 \"天與地\" 片尾曲) Bowie Lam · 陳豪 · 黃德斌 59 獨一無二 AGA · Gin Lee 60 Don't Wanna Lie (feat. 8lak & Hosea) Patrick Brasca · 8lak · Hosea 61 輕熟女27 (我只在乎你) MC HotDog · 關彥淳 62 Take It Slow Crispy脆樂團 · 恐龍的皮 63 Moonlight (feat. 袁婭維) Will Pan · TIA RAY 64 (......醉鬼阿Q)(feat. 孫燕姿) 吳青峰 · Stefanie Sun 65 敢愛敢做 George Lam · David Ling Jr 66 漸漸 Eason Chan · eason and the duo band 67 敏感(LH x Z.TAO) Lu Han · Z.TAO 68 石徑 Hins Cheung · Keeva Mak 69 月球上碰面 Fiona Sit · Juno Mak 70 自知之明 Pong Nan · Tang Siu Hau 71 [Jiang Yanli & Jin Zixuan] Yong Ge Lara Liang · Yang Qiyu 72 樓下有人 Leo Ku · 葉巧琳 73 兩旬之歌 Byejack · Slizznico 74 漩渦 Anthony Wong · Cass Phang 75 Try - Kung Fu Panda 3 Official Theme Song Patrick Brasca · Jay Chou 76 眠眠 Yisa Yu · 霍尊 77 情未了 Christopher Wong · Vivian Chow 78 把歌談心 林姍姍 · David Ling Jr 79 無言的結局 Daniel Lo · 林淑容 80 螢火 Firefly Byejack · Trickie Bonnie 81 鴛鴦酒杯 Jody Chiang · Hong Ronghong 82 舞伴 陳盈潔 · 袁小迪 83 情難斷夢袂醒 陳中 · 邱芸子 84 千個太陽 Deanie Ip · Elisa Chan · 散芬芳合唱團 85 就要揮別 楊芳儀 · 徐曉菁 86 鐵幕誘惑 Aaron Kwok · Frankie 87 不懂愛你 Daniel Chan · 林京燁 88 真愛在明天 Vivian Chow · Leon Lai 89 In Love With You Jacky Cheung · Regine Velasquez 90 常在我心間...愛你不分早晚 Michael Kwan · Tracy Huang 91 放過自己 - Acoustic Version G5SH · Marz23 92 嫁妝 陳中 · 邱芸子 93 出來面對 魏嘉瑩 Arrow Wei · WONFU 94 相思夢難圓 - 修復版 麗莎 · 郭炳堅 95 茫茫到深更 陳中 · 邱芸子 96 我現在會好好的 - TVBS「女力報到愛的故事」片尾曲 陳威全 · Danny Koo 97 有意 - (劇集 \"烈火雄心III\" 片尾曲) Kevin Cheng · Myolie Wu 98 I LOVE YOU SO太愛妳 Aaron Kwok · Beta Soul 99 紫釵恨 張偉文 · 胡美儀 100 回頭看看我 Feng Ze · 采子 101 出嫁 Zhang Qing Fang · 優客李林 102 我有多麼喜歡你 (feat. 林宥嘉) Jam Hsiao · Yoga Lin 103 心痛不再有 方季惟 · Pan Mei Chen 104 別弄花我的妝 (feat. Karencici) Sharon Kwan · Karencici 105 你我相逢 Jody Chiang · 施文彬 106 心仍是冷 倫永亮 · Anita Mui 107 愛的呼喚 Aaron Kwok · Beta Soul 108 受傷的心 Jacky Wu · Huang Yee Ling 109 一生何求 Danny Chan · Bryan Choy Hin Lok · David Ling Jr 110 甲乙丙丁 Andy Hui · Jacky Cheung · 鄭中基 111 將冰山劈開 Andy Hui · Anita Mui 112 熱力節拍Wou Bom Ba Grasshopper · Shirley Kwan · 湯寶如 · Winnie Lau 113 註定 -電視劇: 愛在有情天 主題曲(粵語) 陳秀雯 · Ruco Chan 114 前塵 Sandy Lam · Wong Kei Wah 115 帝女花之香夭(Live) 張偉文 · May Ho 116 笑容入我眼 劉珺兒 · Jia Liang Luo 117 幻影/ 霧之戀 Leslie Cheung · Alan Tam 118 流離所愛 Christopher Wong · 余劍明 119 追憶 George Lam · David Ling Jr 120 @princejoyce (feat. ANSONBEAN) Joyce Cheng · ANSONBEAN 121 要走的始終都要走 蔣志光 · 王利名 122 舊居中的鋼琴 George Lam · David Ling 123 依然相愛 Hacken Lee · Shirley Kwan 124 一刀了斷 Chilam · Myolie Wu 125 一起衝一起闖 (電影\"黃金兄弟\"主題曲) Ekin Cheng · Jordan Chan · 謝天華 · 錢嘉樂 · 林曉峰 126 苦口良藥 陳慧珊 · Andy Hui 126 首 数据来源"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [
+   "搜索开放曲库(498x34)",
+   "Hugging Face 数据集第 70,190 行 ↗(243x18)",
+   "(243x18)",
+   "(243x18)",
+   "(243x18)",
+   "(243x18)",
+   "(243x18)"
+  ],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 8,
+  "label": "catalogue-to-sources",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-08-catalogue-to-sources.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 唱片店 从喜欢， 走向未知。 从一位喜欢的歌手出发，沿着合唱找到下一首。 今天，从谁开始？ 周杰伦 林俊杰 邓紫棋 孙燕姿 两位歌手之间，隔着几首歌？ 寻声 · 费玉清 → 邓紫棋 我的发现 0 留下的歌 0 开放曲库 关于音乐探索 从喜欢，走向未知。 寻声 选好起点和终点，翻开手边的合唱，沿它走到下一位；翻开和提示不算步数。 图鉴 摊开全部合唱，从任意一位歌手出发随便走。 来源 每条连线是一首合唱录音，点歌旁的「来源」看出处。 曲库 开放曲库是公开数据集里的共同署名，不一定是合唱，不进入连线。 音频 这里不播放音乐；31 首可以去 QQ 音乐听同一录音。 数据来源 合唱目录 29 位音乐人、37 首共同演唱录音，每首都附有出处，资料访问于 2026 年 9 月 27–28 日；出处在每首歌的「来源」里。路线和「最短」只算这 37 首。 QQ 音乐 31 首在 QQ 音乐有同一录音的页面（2026 年 9 月 29 日按页面信息确认）；另外 6 首的原因写在「来源」里。 开放曲库 126 首，取自 Hugging Face 数据集 maharshipandya/spotify-tracks-dataset（快照 635b034）里 mandopop、cantopop 的共同署名记录（全库 114,000 行）。数据卡标注的许可是 bsd，没有写明具体版本；这里只取曲名、艺人、专辑和行号，不含音频。数据集 ↗ （新标签页） 字体 站酷庆科黄油体、霞鹜漫黑、悠哉、Luckiest Guy、得意黑的子集（SIL OFL 1.1、Apache 2.0）。许可全文 ↗ （新标签页） 代码 three.js、Sakura Crossing、OverlayScrollbars、qrcode-generator（MIT），GSAP（Standard No Charge 许可）；许可全文附在网页源码里。 来历 唱片店、寻声和合唱目录来自 Music Map。 知道了",
+  "dialogs": [
+   "[dialog about-dialog] 关于音乐探索 从喜欢，走向未知。 寻声 选好起点和终点，翻开手边的合唱，沿它走到下一位；翻开和提示不算步数。 图鉴 摊开全部合唱，从任意一位歌手出发随便走。 来源 每条连线是一首合唱录音，点歌旁的「来源」看出处。 曲库 开放曲库是公开数据集里的共同署名，不一定是合唱，不进入连线。 音频 这里不播放音乐；31 首可以去 QQ 音乐听同一录音。 数据来源 合唱目录 29 位音乐人、37 首共同演唱录音，每首都附有出处，资料访问于 2026 年 9 月 27–28 日；出处在每首歌的「来源」里。路线和「最短」只算这 37 首。 QQ 音乐 31 首在 QQ 音乐有同一录音的页面（2026 年 9 月 29 日按页面信息确认）；另外 6 首的原因写在「来源」里。 开放曲库 126 首，取自 Hugging Face 数据集 maharshipandya/spotify-tracks-dataset（快照 635b034）里 mandopop、cantopop 的共同署名记录（全库 114,000 行）。数据卡标注的许可是 bsd，没有写明具体版本；这里只取曲名、艺人、专辑和行号，不含音频。数据集 ↗ （新标签页） 字体 站酷庆科黄油体、霞鹜漫黑、悠哉、Luckiest Guy、得意黑的子集（SIL OFL 1.1、Apache 2.0）。许可全文 ↗ （新标签页） 代码 three.js、Sakura Crossing、OverlayScrollbars、qrcode-generator（MIT），GSAP（Standard No Charge 许可）；许可全文附在网页源码里。 来历 唱片店、寻声和合唱目录来自 Music Map。 知道了"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [
+   "数据集 ↗ （新标签页）(54x17)",
+   "许可全文 ↗ （新标签页）(68x17)"
+  ],
+  "offscreen": [],
+  "banned": [
+   "Music Map"
+  ],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 9,
+  "label": "explore-round",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-09-explore-round.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 你在这里 费玉清 终点 邓紫棋 寻声 费玉清→邓紫棋，隔着几首歌？ 第 0 步 认识 2/29 翻开 0/37 ? 提示 · 还隔几首 换一组 目录 − 全图 + 费玉清 1 首合唱 · 翻开 0 01 《千里之外》 和 ? 合唱 翻开 先翻开一首，看 TA 和谁合唱 退一步",
+  "dialogs": [],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 10,
+  "label": "round-flip",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-10-round-flip.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 周杰伦 你在这里 费玉清 终点 邓紫棋 寻声 费玉清→邓紫棋，隔着几首歌？ 第 0 步 认识 3/29 翻开 1/37 ? 提示 · 还隔几首 换一组 目录 − 全图 + 费玉清 1 首合唱 · 翻开 1 01 《千里之外》 × 周杰伦 去 QQ 音乐听 前往 周杰伦 来源 退一步 《千里之外》：费玉清 × 周杰伦 · 认识 3/29",
+  "dialogs": [],
+  "toast": "《千里之外》：费玉清 × 周杰伦 · 认识 3/29",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 11,
+  "label": "round-hint1",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-11-round-hint1.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 周杰伦 你在这里 费玉清 终点 邓紫棋 寻声 费玉清→邓紫棋，隔着几首歌？ 第 0 步 认识 3/29 翻开 1/37 还隔 3 首 ? 提示 · 往哪翻 换一组 目录 ① 还隔 3 首 · 面前 1 首里 1 首更近 − 全图 + 费玉清 1 首合唱 · 翻开 1 01 《千里之外》 × 周杰伦 去 QQ 音乐听 前往 周杰伦 来源 退一步 提示 ①：还隔 3 首，面前 1 首会更近",
+  "dialogs": [],
+  "toast": "提示 ①：还隔 3 首，面前 1 首会更近",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 12,
+  "label": "round-menu",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-12-round-menu.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 周杰伦 你在这里 费玉清 终点 邓紫棋 寻声 费玉清→邓紫棋，隔着几首歌？ 第 0 步 认识 3/29 翻开 1/37 还隔 3 首 ? 提示 · 往哪翻 换一组 目录 寻声 自选起点和终点 把这道题发给朋友 放弃并揭晓 图谱 完整图鉴 全部摊开 资料 开放曲库 我的发现 ① 还隔 3 首 · 面前 1 首里 1 首更近 − 全图 + 费玉清 1 首合唱 · 翻开 1 01 《千里之外》 × 周杰伦 去 QQ 音乐听 前往 周杰伦 来源 退一步 提示 ①：还隔 3 首，面前 1 首会更近",
+  "dialogs": [],
+  "toast": "提示 ①：还隔 3 首，面前 1 首会更近",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 13,
+  "label": "round-sources",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-13-round-sources.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 共同演唱 周杰伦 × 费玉清 千里之外 周杰伦 / 费玉清 《依然范特西》· 合唱录音室版 去 QQ 音乐听 来源 ：《千里之外》 演唱周杰伦官方频道 · MV 署名 ↗ （新标签页） 周杰伦官方频道的 MV 标题署名 feat. 费玉清；官方说明明确费玉清参与合唱。 访问于 2026-09-27 QQ 音乐同一录音 ↗ （新标签页） 访问于 2026-09-29 完整署名在这一局结束后可看。 前往周杰伦 提示 ①：还隔 3 首，面前 1 首会更近",
+  "dialogs": [
+   "[dialog map-dialog map-dialog--edge] 共同演唱 周杰伦 × 费玉清 千里之外 周杰伦 / 费玉清 《依然范特西》· 合唱录音室版 去 QQ 音乐听 来源 ：《千里之外》 演唱周杰伦官方频道 · MV 署名 ↗ （新标签页） 周杰伦官方频道的 MV 标题署名 feat. 费玉清；官方说明明确费玉清参与合唱。 访问于 2026-09-27 QQ 音乐同一录音 ↗ （新标签页） 访问于 2026-09-29 完整署名在这一局结束后可看。 前往周杰伦"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [
+   "周杰伦官方频道 · MV 署名 ↗ （新标签页）(184x15)",
+   "同一录音 ↗ （新标签页）(71x15)"
+  ],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 14,
+  "label": "round-sources-end",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-14-round-sources-end.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 共同演唱 周杰伦 × 费玉清 千里之外 周杰伦 / 费玉清 《依然范特西》· 合唱录音室版 去 QQ 音乐听 来源 ：《千里之外》 演唱周杰伦官方频道 · MV 署名 ↗ （新标签页） 周杰伦官方频道的 MV 标题署名 feat. 费玉清；官方说明明确费玉清参与合唱。 访问于 2026-09-27 QQ 音乐同一录音 ↗ （新标签页） 访问于 2026-09-29 完整署名在这一局结束后可看。 前往周杰伦 提示 ①：还隔 3 首，面前 1 首会更近",
+  "dialogs": [
+   "[dialog map-dialog map-dialog--edge] 共同演唱 周杰伦 × 费玉清 千里之外 周杰伦 / 费玉清 《依然范特西》· 合唱录音室版 去 QQ 音乐听 来源 ：《千里之外》 演唱周杰伦官方频道 · MV 署名 ↗ （新标签页） 周杰伦官方频道的 MV 标题署名 feat. 费玉清；官方说明明确费玉清参与合唱。 访问于 2026-09-27 QQ 音乐同一录音 ↗ （新标签页） 访问于 2026-09-29 完整署名在这一局结束后可看。 前往周杰伦"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [
+   "周杰伦官方频道 · MV 署名 ↗ （新标签页）(184x15)",
+   "同一录音 ↗ （新标签页）(71x15)"
+  ],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 15,
+  "label": "round-moved",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-15-round-moved.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 你在这里 周杰伦 费玉清 终点 邓紫棋 寻声 费玉清→邓紫棋，隔着几首歌？ 第 1 步 认识 3/29 翻开 1/37 还隔 2 首 近 更近了 ? 提示 · 往哪翻 换一组 目录 − 全图 + 周杰伦 10 首合唱 · 翻开 1 01 《不该》 和 ? 合唱 翻开 02 《千里之外》 × 费玉清 来过 去 QQ 音乐听 前往 费玉清 来源 03 《说好不哭》 和 ? 合唱 翻开 04 《等你下课》 和 ? 合唱 翻开 05 《画沙》 和 ? 合唱 翻开 06 《稻香 / Stay With You》 和 ? 合唱 翻开 07 《给我一首歌的时间》 和 ? 合唱 翻开 08 《屋顶》 和 ? 合唱 翻开 09 《珊瑚海》 和 ? 合唱 翻开 10 《Try》 和 ? 合唱 翻开 退一步 费玉清 → 周杰伦 前往周杰伦 · 第 1 步 · 近 · 更近了，还隔 2 首",
+  "dialogs": [],
+  "toast": "前往周杰伦 · 第 1 步 · 近 · 更近了，还隔 2 首",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 16,
+  "label": "round-reveal-confirm",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-16-round-reveal-confirm.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 寻声 · 揭晓 放弃并揭晓答案？ 这一局记为已揭晓，翻开的唱片还在。 揭晓答案 再想想 前往周杰伦 · 第 1 步 · 近 · 更近了，还隔 2 首",
+  "dialogs": [
+   "[dialog map-dialog map-dialog--reveal] 寻声 · 揭晓 放弃并揭晓答案？ 这一局记为已揭晓，翻开的唱片还在。 揭晓答案 再想想"
+  ],
+  "toast": "前往周杰伦 · 第 1 步 · 近 · 更近了，还隔 2 首",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 17,
+  "label": "ceremony",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-17-ceremony.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 你在这里 周杰伦 张惠妹 萧敬腾 林俊杰 费玉清 阿信 杨瑞代 袁咏琳 蔡卓妍 金莎 终点 邓紫棋 孙燕姿 蔡依林 温岚 梁心颐 派伟俊 李荣浩 林宥嘉 阿肆 周兴哲 单依纯 五月天 陈绮贞 吴青峰 陶喆 Jony J 王嘉尔 寻声 · 已揭晓 费玉清→邓紫棋，隔着几首歌？ 你停在周杰伦（1 步） 本专题最短 3 首 跳过 目录 − 全图 + 揭晓 已揭晓 费玉清 → 周杰伦 再来一局 连线歌单 完整图鉴 出题给朋友 保存战绩卡 前往周杰伦 · 第 1 步 · 近 · 更近了，还隔 2 首",
+  "dialogs": [],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 18,
+  "label": "setlist",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-18-setlist.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 你在这里 周杰伦 林俊杰 费玉清 终点 邓紫棋 揭晓 揭晓：费玉清与邓紫棋， 最少隔着 3 首歌 你停在周杰伦（1 步） 这道题，也给朋友走一走 出题给朋友 保存战绩卡 换个起点再出一题 费玉清 起点 01 《千里之外》 《依然范特西》· 合唱录音室版 去 QQ 音乐听 留下 来源 ：《千里之外》 周杰伦 第 1 站 02 《稻香 / Stay With You》 2020 官方发布 · 双人联唱现场版 暂无 QQ 音乐链接 留下 来源 ：《稻香 / Stay With You》 林俊杰 第 2 站 03 《手心的蔷薇》 《新地球》· 录音室版 去 QQ 音乐听 留下 来源 ：《手心的蔷薇》 邓紫棋 终点 步数 1 本专题最短 3 提示 1 次 分支记录 1 次前往 再来一局 留下这 3 首 看完整图鉴 前往周杰伦 · 第 1 步 · 近 · 更近了，还隔 2 首",
+  "dialogs": [
+   "[dialog map-dialog map-dialog--recap map-dialog--setlist] 揭晓 揭晓：费玉清与邓紫棋， 最少隔着 3 首歌 你停在周杰伦（1 步） 这道题，也给朋友走一走 出题给朋友 保存战绩卡 换个起点再出一题 费玉清 起点 01 《千里之外》 《依然范特西》· 合唱录音室版 去 QQ 音乐听 留下 来源 ：《千里之外》 周杰伦 第 1 站 02 《稻香 / Stay With You》 2020 官方发布 · 双人联唱现场版 暂无 QQ 音乐链接 留下 来源 ：《稻香 / Stay With You》 林俊杰 第 2 站 03 《手心的蔷薇》 《新地球》· 录音室版 去 QQ 音乐听 留下 来源 ：《手心的蔷薇》 邓紫棋 终点 步数 1 本专题最短 3 提示 1 次 分支记录 1 次前往 再来一局 留下这 3 首 看完整图鉴"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [
+   "(19x282)"
+  ],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 19,
+  "label": "setlist-sources",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-19-setlist-sources.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 你在这里 周杰伦 林俊杰 费玉清 终点 邓紫棋 揭晓 揭晓：费玉清与邓紫棋， 最少隔着 3 首歌 你停在周杰伦（1 步） 这道题，也给朋友走一走 出题给朋友 保存战绩卡 换个起点再出一题 费玉清 起点 01 《千里之外》 《依然范特西》· 合唱录音室版 去 QQ 音乐听 留下 来源 ：《千里之外》 演唱周杰伦官方频道 · MV 署名 ↗ （新标签页） 周杰伦官方频道的 MV 标题署名 feat. 费玉清；官方说明明确费玉清参与合唱。 访问于 2026-09-27 署名Qobuz ·《依然范特西》曲目 3 ↗ （新标签页） 作曲 周杰伦 · 制作人 周杰伦 · 作词 方文山 · 编曲 林迈可 · 混音 林迈可 · 录音 杨瑞代 访问于 2026-09-27 QQ 音乐同一录音 ↗ （新标签页） 访问于 2026-09-29 只列有出处的署名，参与者可能更多。 周杰伦 第 1 站 02 《稻香 / Stay With You》 2020 官方发布 · 双人联唱现场版 暂无 QQ 音乐链接 留下 来源 ：《稻香 / Stay With You》 林俊杰 第 2 站 03 《手心的蔷薇》 《新地球》· 录音室版 去 QQ 音乐听 留下 来源 ：《手心的蔷薇》 邓紫棋 终点 步数 1 本专题最短 3 提示 1 次 分支记录 1 次前往 再来一局 留下这 3 首 看完整图鉴 前往周杰伦 · 第 1 步 · 近 · 更近了，还隔 2 首",
+  "dialogs": [
+   "[dialog map-dialog map-dialog--recap map-dialog--setlist] 揭晓 揭晓：费玉清与邓紫棋， 最少隔着 3 首歌 你停在周杰伦（1 步） 这道题，也给朋友走一走 出题给朋友 保存战绩卡 换个起点再出一题 费玉清 起点 01 《千里之外》 《依然范特西》· 合唱录音室版 去 QQ 音乐听 留下 来源 ：《千里之外》 演唱周杰伦官方频道 · MV 署名 ↗ （新标签页） 周杰伦官方频道的 MV 标题署名 feat. 费玉清；官方说明明确费玉清参与合唱。 访问于 2026-09-27 署名Qobuz ·《依然范特西》曲目 3 ↗ （新标签页） 作曲 周杰伦 · 制作人 周杰伦 · 作词 方文山 · 编曲 林迈可 · 混音 林迈可 · 录音 杨瑞代 访问于 2026-09-27 QQ 音乐同一录音 ↗ （新标签页） 访问于 2026-09-29 只列有出处的署名，参与者可能更多。 周杰伦 第 1 站 02 《稻香 / Stay With You》 2020 官方发布 · 双人联唱现场版 暂无 QQ 音乐链接 留下 来源 ：《稻香 / Stay With You》 林俊杰 第 2 站 03 《手心的蔷薇》 《新地球》· 录音室版 去 QQ 音乐听 留下 来源 ：《手心的蔷薇》 邓紫棋 终点 步数 1 本专题最短 3 提示 1 次 分支记录 1 次前往 再来一局 留下这 3 首 看完整图鉴"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [
+   "周杰伦官方频道 · MV 署名 ↗ （新标签页）(184x15)",
+   "Qobuz ·《依然范特西》曲目 3 ↗ （新标签页）(214x15)"
+  ],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 20,
+  "label": "setlist-full",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-20-setlist-full.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 你在这里 周杰伦 林俊杰 费玉清 终点 邓紫棋 揭晓 揭晓：费玉清与邓紫棋， 最少隔着 3 首歌 你停在周杰伦（1 步） 这道题，也给朋友走一走 出题给朋友 保存战绩卡 换个起点再出一题 费玉清 起点 01 《千里之外》 《依然范特西》· 合唱录音室版 去 QQ 音乐听 留下 来源 ：《千里之外》 演唱周杰伦官方频道 · MV 署名 ↗ （新标签页） 周杰伦官方频道的 MV 标题署名 feat. 费玉清；官方说明明确费玉清参与合唱。 访问于 2026-09-27 署名Qobuz ·《依然范特西》曲目 3 ↗ （新标签页） 作曲 周杰伦 · 制作人 周杰伦 · 作词 方文山 · 编曲 林迈可 · 混音 林迈可 · 录音 杨瑞代 访问于 2026-09-27 QQ 音乐同一录音 ↗ （新标签页） 访问于 2026-09-29 只列有出处的署名，参与者可能更多。 周杰伦 第 1 站 02 《稻香 / Stay With You》 2020 官方发布 · 双人联唱现场版 暂无 QQ 音乐链接 留下 来源 ：《稻香 / Stay With You》 林俊杰 第 2 站 03 《手心的蔷薇》 《新地球》· 录音室版 去 QQ 音乐听 留下 来源 ：《手心的蔷薇》 邓紫棋 终点 步数 1 本专题最短 3 提示 1 次 分支记录 1 次前往 再来一局 留下这 3 首 看完整图鉴 前往周杰伦 · 第 1 步 · 近 · 更近了，还隔 2 首",
+  "dialogs": [
+   "[dialog map-dialog map-dialog--recap map-dialog--setlist] 揭晓 揭晓：费玉清与邓紫棋， 最少隔着 3 首歌 你停在周杰伦（1 步） 这道题，也给朋友走一走 出题给朋友 保存战绩卡 换个起点再出一题 费玉清 起点 01 《千里之外》 《依然范特西》· 合唱录音室版 去 QQ 音乐听 留下 来源 ：《千里之外》 演唱周杰伦官方频道 · MV 署名 ↗ （新标签页） 周杰伦官方频道的 MV 标题署名 feat. 费玉清；官方说明明确费玉清参与合唱。 访问于 2026-09-27 署名Qobuz ·《依然范特西》曲目 3 ↗ （新标签页） 作曲 周杰伦 · 制作人 周杰伦 · 作词 方文山 · 编曲 林迈可 · 混音 林迈可 · 录音 杨瑞代 访问于 2026-09-27 QQ 音乐同一录音 ↗ （新标签页） 访问于 2026-09-29 只列有出处的署名，参与者可能更多。 周杰伦 第 1 站 02 《稻香 / Stay With You》 2020 官方发布 · 双人联唱现场版 暂无 QQ 音乐链接 留下 来源 ：《稻香 / Stay With You》 林俊杰 第 2 站 03 《手心的蔷薇》 《新地球》· 录音室版 去 QQ 音乐听 留下 来源 ：《手心的蔷薇》 邓紫棋 终点 步数 1 本专题最短 3 提示 1 次 分支记录 1 次前往 再来一局 留下这 3 首 看完整图鉴"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [
+   "(15x403)",
+   "(15x330)"
+  ],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 21,
+  "label": "credits",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-21-credits.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 作品署名 千里之外 《依然范特西》· 合唱录音室版 姓名 负责内容 周杰伦 演唱作曲制作人 费玉清 演唱 方文山 作词 林迈可 编曲混音 杨瑞代 录音 来源 ：《千里之外》 去 QQ 音乐听 留下 前往周杰伦 · 第 1 步 · 近 · 更近了，还隔 2 首",
+  "dialogs": [
+   "[dialog map-dialog map-dialog--credits] 作品署名 千里之外 《依然范特西》· 合唱录音室版 姓名 负责内容 周杰伦 演唱作曲制作人 费玉清 演唱 方文山 作词 林迈可 编曲混音 杨瑞代 录音 来源 ：《千里之外》 去 QQ 音乐听 留下"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [
+   "(184x15)",
+   "(214x15)",
+   "(71x15)"
+  ],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 22,
+  "label": "credits-sources",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-22-credits-sources.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 作品署名 千里之外 《依然范特西》· 合唱录音室版 姓名 负责内容 周杰伦 演唱作曲制作人 费玉清 演唱 方文山 作词 林迈可 编曲混音 杨瑞代 录音 来源 ：《千里之外》 演唱周杰伦官方频道 · MV 署名 ↗ （新标签页） 周杰伦官方频道的 MV 标题署名 feat. 费玉清；官方说明明确费玉清参与合唱。 访问于 2026-09-27 署名Qobuz ·《依然范特西》曲目 3 ↗ （新标签页） 作曲 周杰伦 · 制作人 周杰伦 · 作词 方文山 · 编曲 林迈可 · 混音 林迈可 · 录音 杨瑞代 访问于 2026-09-27 QQ 音乐同一录音 ↗ （新标签页） 访问于 2026-09-29 只列有出处的署名，参与者可能更多。 去 QQ 音乐听 留下 前往周杰伦 · 第 1 步 · 近 · 更近了，还隔 2 首",
+  "dialogs": [
+   "[dialog map-dialog map-dialog--credits] 作品署名 千里之外 《依然范特西》· 合唱录音室版 姓名 负责内容 周杰伦 演唱作曲制作人 费玉清 演唱 方文山 作词 林迈可 编曲混音 杨瑞代 录音 来源 ：《千里之外》 演唱周杰伦官方频道 · MV 署名 ↗ （新标签页） 周杰伦官方频道的 MV 标题署名 feat. 费玉清；官方说明明确费玉清参与合唱。 访问于 2026-09-27 署名Qobuz ·《依然范特西》曲目 3 ↗ （新标签页） 作曲 周杰伦 · 制作人 周杰伦 · 作词 方文山 · 编曲 林迈可 · 混音 林迈可 · 录音 杨瑞代 访问于 2026-09-27 QQ 音乐同一录音 ↗ （新标签页） 访问于 2026-09-29 只列有出处的署名，参与者可能更多。 去 QQ 音乐听 留下"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [
+   "周杰伦官方频道 · MV 署名 ↗ （新标签页）(184x15)",
+   "Qobuz ·《依然范特西》曲目 3 ↗ （新标签页）(214x15)",
+   "同一录音 ↗ （新标签页）(71x15)"
+  ],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 23,
+  "label": "share-card",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-23-share-card.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 寻声 · 已揭晓 费玉清→邓紫棋，隔着几首歌？ 你停在周杰伦（1 步） 本专题最短 3 首 目录 − 全图 + 揭晓 已揭晓 费玉清 → 周杰伦 再来一局 连线歌单 完整图鉴 出题给朋友 保存战绩卡 前往周杰伦 · 第 1 步 · 近 · 更近了，还隔 2 首 寻声战绩卡 PNG · 1080 × 1350 下载图片 分享图片 关闭",
+  "dialogs": [
+   "[dialog share-card-export] 寻声战绩卡 PNG · 1080 × 1350 下载图片 分享图片 关闭"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 24,
+  "label": "closed-bar",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-24-closed-bar.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 你在这里 周杰伦 张惠妹 萧敬腾 林俊杰 费玉清 阿信 杨瑞代 袁咏琳 蔡卓妍 金莎 终点 邓紫棋 孙燕姿 蔡依林 温岚 梁心颐 派伟俊 李荣浩 林宥嘉 阿肆 周兴哲 单依纯 五月天 陈绮贞 吴青峰 Jony J 王嘉尔 寻声 · 已揭晓 费玉清→邓紫棋，隔着几首歌？ 你停在周杰伦（1 步） 本专题最短 3 首 目录 − 全图 + 揭晓 已揭晓 费玉清 → 周杰伦 再来一局 连线歌单 完整图鉴 出题给朋友 保存战绩卡 前往周杰伦 · 第 1 步 · 近 · 更近了，还隔 2 首",
+  "dialogs": [],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 25,
+  "label": "atlas",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-25-atlas.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 你在这里 周杰伦 张惠妹 萧敬腾 林俊杰 费玉清 阿信 杨瑞代 袁咏琳 蔡卓妍 金莎 邓紫棋 孙燕姿 蔡依林 温岚 梁心颐 派伟俊 林宥嘉 阿肆 周兴哲 单依纯 五月天 陈绮贞 吴青峰 陶喆 Jony J 王嘉尔 完整图鉴 从周杰伦出发 · 途经 1 位 开一局寻声 找音乐人 目录 − 全图 + 返回上一位 回到起点 周杰伦 本次发现 · 0 首 结束探索 周杰伦 10 首合唱 · 你在这里 TA 的歌 10 首合唱 前往周杰伦 · 第 1 步 · 近 · 更近了，还隔 2 首",
+  "dialogs": [],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 26,
+  "label": "atlas-index",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-26-atlas-index.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 你在这里 周杰伦 张惠妹 萧敬腾 林俊杰 费玉清 阿信 杨瑞代 袁咏琳 蔡卓妍 蔡依林 温岚 梁心颐 派伟俊 林宥嘉 阿肆 周兴哲 单依纯 五月天 完整图鉴 从周杰伦出发 · 途经 1 位 开一局寻声 找音乐人 目录 − 全图 + 返回上一位 回到起点 周杰伦 本次发现 · 0 首 结束探索 周杰伦 10 首合唱 · 你在这里 TA 的歌 10 首合唱 张惠妹 不该 费玉清 千里之外 阿信 说好不哭 杨瑞代 等你下课 袁咏琳 画沙 林俊杰 稻香 / Stay With You 蔡依林 给我一首歌的时间 温岚 屋顶 梁心颐 珊瑚海 派伟俊 Try 前往周杰伦 · 第 1 步 · 近 · 更近了，还隔 2 首",
+  "dialogs": [],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 27,
+  "label": "atlas-edge",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-27-atlas-edge.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 共同演唱 周杰伦 × 张惠妹 不该 署名 › 周杰伦 / 张惠妹 《周杰伦的床边故事》· 录音室版（同一录音亦收于《幻城》原声带） 去 QQ 音乐听 作品署名 20 位 来源 ：《不该》 前往张惠妹 前往周杰伦 · 第 1 步 · 近 · 更近了，还隔 2 首",
+  "dialogs": [
+   "[dialog map-dialog map-dialog--edge] 共同演唱 周杰伦 × 张惠妹 不该 署名 › 周杰伦 / 张惠妹 《周杰伦的床边故事》· 录音室版（同一录音亦收于《幻城》原声带） 去 QQ 音乐听 作品署名 20 位 来源 ：《不该》 前往张惠妹"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [
+   "(15x452)"
+  ],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 28,
+  "label": "atlas-artist",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-28-atlas-artist.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 10 首合唱 周杰伦 不该 署名 › 周杰伦 / 张惠妹 《周杰伦的床边故事》· 录音室版（同一录音亦收于《幻城》原声带） 去 QQ 音乐听 作品署名 20 位 来源 ：《不该》 千里之外 署名 › 周杰伦 / 费玉清 《依然范特西》· 合唱录音室版 去 QQ 音乐听 作品署名 5 位 来源 ：《千里之外》 说好不哭 署名 › 周杰伦 / 阿信 2019 单曲 · 录音室版 去 QQ 音乐听 作品署名 6 位 来源 ：《说好不哭》 等你下课 署名 › 周杰伦 / 杨瑞代 《最伟大的作品》· 录音室版 去 QQ 音乐听 作品署名 3 位 来源 ：《等你下课》 画沙 署名 › 袁咏琳 / 周杰伦 《袁咏琳同名专辑》· 录音室版 去 QQ 音乐听 作品署名 8 位 来源 ：《画沙》 稻香 / Stay With You 署名 › 周杰伦 / 林俊杰 2020 官方发布 · 双人联唱现场版 暂无 QQ 音乐链接 作品署名 4 位 来源 ：《稻香 / Stay With You》 给我一首歌的时间 署名 › 周杰伦 / 蔡依林 2011《超时代演唱会》DVD / Blu-ray 现场曲目 · 非《魔杰座》录音室独唱原版 暂无 QQ 音乐链接 作品署名 2 位 来源 ：《给我一首歌的时间》 屋顶 署名 › 温岚 / 周杰伦 《有点野》第 11 首 · 录音室版（℗ 2001 阿尔发音乐） 暂无 QQ 音乐链接 作品署名 2 位 来源 ：《屋顶》 珊瑚海 署名 › 周杰伦 / 梁心颐 《十一月的萧邦》第 10 首 · 录音室对唱版 去 QQ 音乐听 作品署名 6 位 来源 ：《珊瑚海》 Try 署名 › 周杰伦 / 派伟俊 2016 单曲 · 录音室版（杰威尔音乐） 去 QQ 音乐听 作品署名 4 位 来源 ：《Try》 前往周杰伦 · 第 1 步 · 近 · 更近了，还隔 2 首",
+  "dialogs": [
+   "[dialog map-dialog map-dialog--artist] 10 首合唱 周杰伦 不该 署名 › 周杰伦 / 张惠妹 《周杰伦的床边故事》· 录音室版（同一录音亦收于《幻城》原声带） 去 QQ 音乐听 作品署名 20 位 来源 ：《不该》 千里之外 署名 › 周杰伦 / 费玉清 《依然范特西》· 合唱录音室版 去 QQ 音乐听 作品署名 5 位 来源 ：《千里之外》 说好不哭 署名 › 周杰伦 / 阿信 2019 单曲 · 录音室版 去 QQ 音乐听 作品署名 6 位 来源 ：《说好不哭》 等你下课 署名 › 周杰伦 / 杨瑞代 《最伟大的作品》· 录音室版 去 QQ 音乐听 作品署名 3 位 来源 ：《等你下课》 画沙 署名 › 袁咏琳 / 周杰伦 《袁咏琳同名专辑》· 录音室版 去 QQ 音乐听 作品署名 8 位 来源 ：《画沙》 稻香 / Stay With You 署名 › 周杰伦 / 林俊杰 2020 官方发布 · 双人联唱现场版 暂无 QQ 音乐链接 作品署名 4 位 来源 ：《稻香 / Stay With You》 给我一首歌的时间 署名 › 周杰伦 / 蔡依林 2011《超时代演唱会》DVD / Blu-ray 现场曲目 · 非《魔杰座》录音室独唱原版 暂无 QQ 音乐链接 作品署名 2 位 来源 ：《给我一首歌的时间》 屋顶 署名 › 温岚 / 周杰伦 《有点野》第 11 首 · 录音室版（℗ 2001 阿尔发音乐） 暂无 QQ 音乐链接 作品署名 2 位 来源 ：《屋顶》 珊瑚海 署名 › 周杰伦 / 梁心颐 《十一月的萧邦》第 10 首 · 录音室对唱版 去 QQ 音乐听 作品署名 6 位 来源 ：《珊瑚海》 Try 署名 › 周杰伦 / 派伟俊 2016 单曲 · 录音室版（杰威尔音乐） 去 QQ 音乐听 作品署名 4 位 来源 ：《Try》"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [
+   "(15x452)",
+   "(19x282)"
+  ],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 29,
+  "label": "atlas-search",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-29-atlas-search.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 找音乐人 29 位音乐人 周杰伦 10 首合唱 张惠妹 5 首合唱 萧敬腾 4 首合唱 林俊杰 10 首合唱 费玉清 1 首合唱 阿信 3 首合唱 杨瑞代 1 首合唱 袁咏琳 1 首合唱 蔡卓妍 1 首合唱 金莎 1 首合唱 邓紫棋 2 首合唱 孙燕姿 3 首合唱 蔡依林 4 首合唱 温岚 1 首合唱 梁心颐 2 首合唱 派伟俊 1 首合唱 李荣浩 3 首合唱 林宥嘉 3 首合唱 阿肆 1 首合唱 周兴哲 3 首合唱 单依纯 1 首合唱 五月天 乐团 · 5 首合唱 陈绮贞 1 首合唱 吴青峰 1 首合唱 陶喆 2 首合唱 Jony J 1 首合唱 陈势安 1 首合唱 林忆莲 1 首合唱 王嘉尔 1 首合唱 前往周杰伦 · 第 1 步 · 近 · 更近了，还隔 2 首",
+  "dialogs": [
+   "[dialog map-dialog map-dialog--search] 找音乐人 29 位音乐人 周杰伦 10 首合唱 张惠妹 5 首合唱 萧敬腾 4 首合唱 林俊杰 10 首合唱 费玉清 1 首合唱 阿信 3 首合唱 杨瑞代 1 首合唱 袁咏琳 1 首合唱 蔡卓妍 1 首合唱 金莎 1 首合唱 邓紫棋 2 首合唱 孙燕姿 3 首合唱 蔡依林 4 首合唱 温岚 1 首合唱 梁心颐 2 首合唱 派伟俊 1 首合唱 李荣浩 3 首合唱 林宥嘉 3 首合唱 阿肆 1 首合唱 周兴哲 3 首合唱 单依纯 1 首合唱 五月天 乐团 · 5 首合唱 陈绮贞 1 首合唱 吴青峰 1 首合唱 陶喆 2 首合唱 Jony J 1 首合唱 陈势安 1 首合唱 林忆莲 1 首合唱 王嘉尔 1 首合唱"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 30,
+  "label": "atlas-search-typed",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-30-atlas-search-typed.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 找音乐人 29 位音乐人 周杰伦 10 首合唱 周兴哲 3 首合唱 前往周杰伦 · 第 1 步 · 近 · 更近了，还隔 2 首",
+  "dialogs": [
+   "[dialog map-dialog map-dialog--search] 找音乐人 29 位音乐人 周杰伦 10 首合唱 周兴哲 3 首合唱"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 31,
+  "label": "atlas-relations",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-31-atlas-relations.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 周杰伦 的合唱 周杰伦 ↔ 和 张惠妹 不该 署名 › 周杰伦 / 张惠妹 《周杰伦的床边故事》· 录音室版（同一录音亦收于《幻城》原声带） 去 QQ 音乐听 作品署名 20 位 来源 ：《不该》 周杰伦 ↔ 和 费玉清 千里之外 署名 › 周杰伦 / 费玉清 《依然范特西》· 合唱录音室版 去 QQ 音乐听 作品署名 5 位 来源 ：《千里之外》 周杰伦 ↔ 和 阿信 说好不哭 署名 › 周杰伦 / 阿信 2019 单曲 · 录音室版 去 QQ 音乐听 作品署名 6 位 来源 ：《说好不哭》 周杰伦 ↔ 和 杨瑞代 等你下课 署名 › 周杰伦 / 杨瑞代 《最伟大的作品》· 录音室版 去 QQ 音乐听 作品署名 3 位 来源 ：《等你下课》 周杰伦 ↔ 和 袁咏琳 画沙 署名 › 袁咏琳 / 周杰伦 《袁咏琳同名专辑》· 录音室版 去 QQ 音乐听 作品署名 8 位 来源 ：《画沙》 周杰伦 ↔ 和 林俊杰 稻香 / Stay With You 署名 › 周杰伦 / 林俊杰 2020 官方发布 · 双人联唱现场版 暂无 QQ 音乐链接 作品署名 4 位 来源 ：《稻香 / Stay With You》 周杰伦 ↔ 和 蔡依林 给我一首歌的时间 署名 › 周杰伦 / 蔡依林 2011《超时代演唱会》DVD / Blu-ray 现场曲目 · 非《魔杰座》录音室独唱原版 暂无 QQ 音乐链接 作品署名 2 位 来源 ：《给我一首歌的时间》 周杰伦 ↔ 和 温岚 屋顶 署名 › 温岚 / 周杰伦 《有点野》第 11 首 · 录音室版（℗ 2001 阿尔发音乐） 暂无 QQ 音乐链接 作品署名 2 位 来源 ：《屋顶》 周杰伦 ↔ 和 梁心颐 珊瑚海 署名 › 周杰伦 / 梁心颐 《十一月的萧邦》第 10 首 · 录音室对唱版 去 QQ 音乐听 作品署名 6 位 来源 ：《珊瑚海》 周杰伦 ↔ 和 派伟俊 Try 署名 › 周杰伦 / 派伟俊 2016 单曲 · 录音室版（杰威尔音乐） 去 QQ 音乐听 作品署名 4 位 来源 ：《Try》 前往周杰伦 · 第 1 步 · 近 · 更近了，还隔 2 首",
+  "dialogs": [
+   "[dialog map-dialog map-dialog--relations] 周杰伦 的合唱 周杰伦 ↔ 和 张惠妹 不该 署名 › 周杰伦 / 张惠妹 《周杰伦的床边故事》· 录音室版（同一录音亦收于《幻城》原声带） 去 QQ 音乐听 作品署名 20 位 来源 ：《不该》 周杰伦 ↔ 和 费玉清 千里之外 署名 › 周杰伦 / 费玉清 《依然范特西》· 合唱录音室版 去 QQ 音乐听 作品署名 5 位 来源 ：《千里之外》 周杰伦 ↔ 和 阿信 说好不哭 署名 › 周杰伦 / 阿信 2019 单曲 · 录音室版 去 QQ 音乐听 作品署名 6 位 来源 ：《说好不哭》 周杰伦 ↔ 和 杨瑞代 等你下课 署名 › 周杰伦 / 杨瑞代 《最伟大的作品》· 录音室版 去 QQ 音乐听 作品署名 3 位 来源 ：《等你下课》 周杰伦 ↔ 和 袁咏琳 画沙 署名 › 袁咏琳 / 周杰伦 《袁咏琳同名专辑》· 录音室版 去 QQ 音乐听 作品署名 8 位 来源 ：《画沙》 周杰伦 ↔ 和 林俊杰 稻香 / Stay With You 署名 › 周杰伦 / 林俊杰 2020 官方发布 · 双人联唱现场版 暂无 QQ 音乐链接 作品署名 4 位 来源 ：《稻香 / Stay With You》 周杰伦 ↔ 和 蔡依林 给我一首歌的时间 署名 › 周杰伦 / 蔡依林 2011《超时代演唱会》DVD / Blu-ray 现场曲目 · 非《魔杰座》录音室独唱原版 暂无 QQ 音乐链接 作品署名 2 位 来源 ：《给我一首歌的时间》 周杰伦 ↔ 和 温岚 屋顶 署名 › 温岚 / 周杰伦 《有点野》第 11 首 · 录音室版（℗ 2001 阿尔发音乐） 暂无 QQ 音乐链接 作品署名 2 位 来源 ：《屋顶》 周杰伦 ↔ 和 梁心颐 珊瑚海 署名 › 周杰伦 / 梁心颐 《十一月的萧邦》第 10 首 · 录音室对唱版 去 QQ 音乐听 作品署名 6 位 来源 ：《珊瑚海》 周杰伦 ↔ 和 派伟俊 Try 署名 › 周杰伦 / 派伟俊 2016 单曲 · 录音室版（杰威尔音乐） 去 QQ 音乐听 作品署名 4 位 来源 ：《Try》"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [
+   "(15x452)",
+   "(19x282)"
+  ],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 32,
+  "label": "challenge-form",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-32-challenge-form.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 开一局寻声 开局前不告诉你答案。 起点 周杰伦 张惠妹 萧敬腾 林俊杰 费玉清 阿信 杨瑞代 袁咏琳 蔡卓妍 金莎 邓紫棋 孙燕姿 蔡依林 温岚 梁心颐 派伟俊 李荣浩 林宥嘉 阿肆 周兴哲 单依纯 五月天（乐团） 陈绮贞 吴青峰 陶喆 Jony J 陈势安 林忆莲 王嘉尔 终点 周杰伦 张惠妹 萧敬腾 林俊杰 费玉清 阿信 杨瑞代 袁咏琳 蔡卓妍 金莎 邓紫棋 孙燕姿 蔡依林 温岚 梁心颐 派伟俊 李荣浩 林宥嘉 阿肆 周兴哲 单依纯 五月天（乐团） 陈绮贞 吴青峰 陶喆 Jony J 陈势安 林忆莲 王嘉尔 开局 出题给朋友 前往周杰伦 · 第 1 步 · 近 · 更近了，还隔 2 首",
+  "dialogs": [
+   "[dialog map-dialog map-dialog--challenge] 开一局寻声 开局前不告诉你答案。 起点 周杰伦 张惠妹 萧敬腾 林俊杰 费玉清 阿信 杨瑞代 袁咏琳 蔡卓妍 金莎 邓紫棋 孙燕姿 蔡依林 温岚 梁心颐 派伟俊 李荣浩 林宥嘉 阿肆 周兴哲 单依纯 五月天（乐团） 陈绮贞 吴青峰 陶喆 Jony J 陈势安 林忆莲 王嘉尔 终点 周杰伦 张惠妹 萧敬腾 林俊杰 费玉清 阿信 杨瑞代 袁咏琳 蔡卓妍 金莎 邓紫棋 孙燕姿 蔡依林 温岚 梁心颐 派伟俊 李荣浩 林宥嘉 阿肆 周兴哲 单依纯 五月天（乐团） 陈绮贞 吴青峰 陶喆 Jony J 陈势安 林忆莲 王嘉尔 开局 出题给朋友"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 33,
+  "label": "roam-start",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-33-roam-start.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 你在这里 周杰伦 张惠妹 萧敬腾 林俊杰 费玉清 阿信 杨瑞代 袁咏琳 蔡卓妍 金莎 邓紫棋 孙燕姿 蔡依林 温岚 梁心颐 派伟俊 林宥嘉 阿肆 周兴哲 单依纯 五月天 陈绮贞 吴青峰 陶喆 Jony J 王嘉尔 完整图鉴 从周杰伦出发 · 途经 1 位 开一局寻声 找音乐人 目录 − 全图 + 返回上一位 回到起点 周杰伦 本次发现 · 0 首 结束探索 周杰伦 10 首合唱 · 你在这里 TA 的歌 10 首合唱 从周杰伦出发 · 点相连的歌手就走过去",
+  "dialogs": [],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 34,
+  "label": "roam-walked",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-34-roam-walked.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 周杰伦 你在这里 张惠妹 萧敬腾 林俊杰 费玉清 阿信 杨瑞代 袁咏琳 蔡卓妍 金莎 邓紫棋 孙燕姿 蔡依林 温岚 梁心颐 派伟俊 李荣浩 林宥嘉 阿肆 周兴哲 单依纯 五月天 陈绮贞 吴青峰 Jony J 陈势安 林忆莲 完整图鉴 从周杰伦出发 · 途经 2 位 开一局寻声 找音乐人 目录 − 全图 + 返回上一位 回到起点 周杰伦 → 张惠妹 本次发现 · 0 首 结束探索 张惠妹 5 首合唱 · 你在这里 TA 的歌 5 首合唱 沿《不该》走到张惠妹",
+  "dialogs": [],
+  "toast": "沿《不该》走到张惠妹",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 35,
+  "label": "roam-kept",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-35-roam-kept.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 本次发现 · 进行中 本次发现 日期 10月7日 起点 周杰伦 途经 2 位 留下 0 首 留下的歌 这次还没留下歌。 我走过的路 1 段 途经的歌手 2 位 保存发现卡片 继续本次探索 开始新探索 回到小院 沿《不该》走到张惠妹",
+  "dialogs": [
+   "[dialog map-dialog map-dialog--recap] 本次发现 · 进行中 本次发现 日期 10月7日 起点 周杰伦 途经 2 位 留下 0 首 留下的歌 这次还没留下歌。 我走过的路 1 段 途经的歌手 2 位 保存发现卡片 继续本次探索 开始新探索 回到小院"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [
+   "(15x452)"
+  ],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "label": "roam-kept-save",
+  "fail": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n  - waiting for locator('.map-dialog [data-map-action=\"save\"]').first()\n    - locator resolved to <button type=\"button\" title=\"留下这首歌\" aria-label=\"留下《不该》\" aria-pressed=\"false\" data-id=\"real-bu-gai\" data-map-action=\"save\" data-source=\"沿周杰"
+ },
+ {
+  "view": "desktop",
+  "n": 36,
+  "label": "roam-recap-full",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-36-roam-recap-full.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 本次发现 · 进行中 本次发现 日期 10月7日 起点 周杰伦 途经 2 位 留下 0 首 留下的歌 这次还没留下歌。 我走过的路 1 段 途经的歌手 2 位 保存发现卡片 继续本次探索 开始新探索 回到小院 沿《不该》走到张惠妹",
+  "dialogs": [
+   "[dialog map-dialog map-dialog--recap] 本次发现 · 进行中 本次发现 日期 10月7日 起点 周杰伦 途经 2 位 留下 0 首 留下的歌 这次还没留下歌。 我走过的路 1 段 途经的歌手 2 位 保存发现卡片 继续本次探索 开始新探索 回到小院"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [
+   "(15x452)"
+  ],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 37,
+  "label": "roam-end",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-37-roam-end.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 探索回顾 · 已结束 这一路，留下的喜欢 日期 10月7日 起点 周杰伦 途经 2 位 留下 0 首 留下的歌 这次还没留下歌。 我走过的路 1 段 途经的歌手 2 位 保存发现卡片 继续本次探索 开始新探索 回到小院 沿《不该》走到张惠妹",
+  "dialogs": [
+   "[dialog map-dialog map-dialog--recap] 探索回顾 · 已结束 这一路，留下的喜欢 日期 10月7日 起点 周杰伦 途经 2 位 留下 0 首 留下的歌 这次还没留下歌。 我走过的路 1 段 途经的歌手 2 位 保存发现卡片 继续本次探索 开始新探索 回到小院"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [
+   "(15x452)"
+  ],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 38,
+  "label": "roam-ended-bar",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-38-roam-ended-bar.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 周杰伦 你在这里 张惠妹 萧敬腾 林俊杰 费玉清 阿信 杨瑞代 袁咏琳 蔡卓妍 金莎 邓紫棋 孙燕姿 蔡依林 温岚 梁心颐 派伟俊 李荣浩 林宥嘉 阿肆 周兴哲 单依纯 五月天 陈绮贞 吴青峰 Jony J 陈势安 林忆莲 完整图鉴 从周杰伦出发 · 途经 2 位 · 已结束 开一局寻声 找音乐人 目录 − 全图 + 已结束 周杰伦 → 张惠妹 回顾 · 0 首 继续本次探索 张惠妹 5 首合唱 · 停在这里 TA 的歌 5 首合唱 沿《不该》走到张惠妹",
+  "dialogs": [],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 39,
+  "label": "records",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-39-records.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 我的发现 我的发现 去唱片店 探索记录 留下的歌 探索记录 2 次探索 01 漫游 · 已结束 · 10月7日 起点 周杰伦 途经 2 位 · 留下 0 首 回顾 继续 02 寻声 · 已揭晓 · 10月7日 费玉清 → 邓紫棋 翻开 1 首 · 提示 1 次 · 1 步 回顾 沿《不该》走到张惠妹",
+  "dialogs": [],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 40,
+  "label": "records-music",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-40-records-music.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 我的发现 我的发现 去唱片店 探索记录 留下的歌 留下的歌 0 首 遇到喜欢的歌，就留在这里。 去唱片店 沿《不该》走到张惠妹",
+  "dialogs": [],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "label": "records-music-row",
+  "fail": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n  - waiting for locator('.saved-music .open-catalogue__record summary').first()\n"
+ },
+ {
+  "view": "desktop",
+  "n": 41,
+  "label": "records-recap",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-41-records-recap.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 我的发现 探索回顾 · 已结束 这一路，留下的喜欢 日期 10月7日 起点 周杰伦 途经 2 位 留下 0 首 留下的歌 这次还没留下歌。 我走过的路 1 段 途经的歌手 2 位 保存发现卡片 继续本次探索 开始新探索 回到小院 沿《不该》走到张惠妹",
+  "dialogs": [
+   "[dialog map-dialog map-dialog--recap] 探索回顾 · 已结束 这一路，留下的喜欢 日期 10月7日 起点 周杰伦 途经 2 位 留下 0 首 留下的歌 这次还没留下歌。 我走过的路 1 段 途经的歌手 2 位 保存发现卡片 继续本次探索 开始新探索 回到小院"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [
+   "(15x452)"
+  ],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 42,
+  "label": "records-delete",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-42-records-delete.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 我的发现 删除这次探索？ 删除后无法恢复。 删除记录 保留 沿《不该》走到张惠妹",
+  "dialogs": [
+   "[dialog map-dialog map-dialog--delete] 删除这次探索？ 删除后无法恢复。 删除记录 保留"
+  ],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 43,
+  "label": "home-returning",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-43-home-returning.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 唱片店 从喜欢， 走向未知。 从一位喜欢的歌手出发，沿着合唱找到下一首。 今天，从谁开始？ 周杰伦 林俊杰 邓紫棋 孙燕姿 两位歌手之间，隔着几首歌？ 寻声 · 在唱片店开一局 我的发现 2 留下的歌 0 开放曲库 沿《不该》走到张惠妹",
+  "dialogs": [],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 44,
+  "label": "offline-back",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-44-offline-back.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 离线了，联网后再返回现场。 小院 唱片店 我的发现 唱片店 从喜欢， 走向未知。 从一位喜欢的歌手出发，沿着合唱找到下一首。 今天，从谁开始？ 周杰伦 林俊杰 邓紫棋 孙燕姿 两位歌手之间，隔着几首歌？ 寻声 · 在唱片店开一局 我的发现 2 留下的歌 0 开放曲库 沿《不该》走到张惠妹",
+  "dialogs": [],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ },
+ {
+  "view": "desktop",
+  "n": 45,
+  "label": "storage-conflict",
+  "file": "/tmp/space-map/shots/ui-wip1/desktop-45-storage-conflict.png",
+  "body": "跳到内容 Music Space 音乐探索 ← 返回现场 小院 唱片店 我的发现 唱片店 另一个标签页改了探索记录，这一页先不保存了。重新载入后继续。 重新载入 下载备份 探索记录在别的标签页更新了 重新载入后继续。 沿《不该》走到张惠妹",
+  "dialogs": [],
+  "toast": "",
+  "overflow": "",
+  "small": [],
+  "offscreen": [],
+  "banned": [],
+  "errors": []
+ }
+]

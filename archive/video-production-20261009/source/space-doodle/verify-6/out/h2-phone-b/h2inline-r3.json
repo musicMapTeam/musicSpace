@@ -1,0 +1,217 @@
+{
+ "label": "h2inline",
+ "round": 3,
+ "ok": true,
+ "fcp": 392,
+ "ready": 2970,
+ "loadingHidden": 2698,
+ "proto": "h2",
+ "docEnd": 2121,
+ "css": null,
+ "firstOtherFontStart": 250,
+ "frames": 162,
+ "fontsLoaded": 10,
+ "net": [
+  {
+   "url": "/musicSpace/",
+   "proto": "h2",
+   "prio": "VeryHigh",
+   "bytes": 660915,
+   "start": 1,
+   "resp": 159,
+   "end": 2121
+  },
+  {
+   "url": "/musicSpace/shared/three-0.186.1/three.module.js",
+   "proto": "h2",
+   "prio": "High",
+   "bytes": 131661,
+   "start": 166,
+   "resp": 1270,
+   "end": 1269
+  },
+  {
+   "url": "/musicSpace/shared/three-0.186.1/three.core.js",
+   "proto": "h2",
+   "prio": "High",
+   "bytes": 288162,
+   "start": 167,
+   "resp": 1780,
+   "end": 1778
+  },
+  {
+   "url": "/musicSpace/sql/sql-wasm.wasm",
+   "proto": "h2",
+   "prio": "High",
+   "bytes": 658822,
+   "start": 167,
+   "resp": 323,
+   "end": 2280
+  },
+  {
+   "url": "/musicSpace/fonts/doodle/marker-0.woff2",
+   "proto": "h2",
+   "prio": "High",
+   "bytes": 43474,
+   "start": 167,
+   "resp": 658,
+   "end": 657
+  },
+  {
+   "url": "/musicSpace/fonts/doodle/display-0.woff2",
+   "proto": "h2",
+   "prio": "High",
+   "bytes": 81975,
+   "start": 168,
+   "resp": 981,
+   "end": 979
+  },
+  {
+   "url": "/musicSpace/fonts/doodle/logo-0.woff2",
+   "proto": "h2",
+   "prio": "VeryHigh",
+   "bytes": 16868,
+   "start": 250,
+   "resp": 562,
+   "end": 561
+  },
+  {
+   "url": "/musicSpace/fonts/doodle/display-1.woff2",
+   "proto": "h2",
+   "prio": "VeryHigh",
+   "bytes": 102249,
+   "start": 250,
+   "resp": 1209,
+   "end": 1206
+  },
+  {
+   "url": "/musicSpace/fonts/doodle/hand-0.woff2",
+   "proto": "h2",
+   "prio": "VeryHigh",
+   "bytes": 198104,
+   "start": 251,
+   "resp": 1583,
+   "end": 1580
+  },
+  {
+   "url": "/musicSpace/fonts/doodle/marker-1.woff2",
+   "proto": "h2",
+   "prio": "VeryHigh",
+   "bytes": 35637,
+   "start": 251,
+   "resp": 737,
+   "end": 736
+  },
+  {
+   "url": "/musicSpace/fonts/doodle/hand-1.woff2",
+   "proto": "h2",
+   "prio": "VeryHigh",
+   "bytes": 116022,
+   "start": 367,
+   "resp": 1341,
+   "end": 1338
+  },
+  {
+   "url": "/musicSpace/fonts/doodle/marker-2.woff2",
+   "proto": "h2",
+   "prio": "VeryHigh",
+   "bytes": 48101,
+   "start": 369,
+   "resp": 954,
+   "end": 953
+  },
+  {
+   "url": "/musicSpace/demo/yao-stage.jpg",
+   "proto": "h2",
+   "prio": "Low",
+   "bytes": 70135,
+   "start": 2290,
+   "resp": 2625,
+   "end": 2626
+  },
+  {
+   "url": "/musicSpace/demo/man-crowd.jpg",
+   "proto": "h2",
+   "prio": "Low",
+   "bytes": 56908,
+   "start": 2291,
+   "resp": 2626,
+   "end": 2614
+  },
+  {
+   "url": "/musicSpace/demo/man-near.jpg",
+   "proto": "h2",
+   "prio": "Low",
+   "bytes": 21969,
+   "start": 2291,
+   "resp": 2625,
+   "end": 2531
+  },
+  {
+   "url": "/musicSpace/demo/bei-balcony.jpg",
+   "proto": "h2",
+   "prio": "Low",
+   "bytes": 34099,
+   "start": 2291,
+   "resp": 2625,
+   "end": 2573
+  },
+  {
+   "url": "/musicSpace/fonts/doodle/digits-0.woff2",
+   "proto": "h2",
+   "prio": "VeryHigh",
+   "bytes": 14448,
+   "start": 2353,
+   "resp": 2598,
+   "end": 2566
+  },
+  {
+   "url": "/musicSpace/fonts/doodle/hand-2.woff2",
+   "proto": "h2",
+   "prio": "VeryHigh",
+   "bytes": 158365,
+   "start": 2586,
+   "resp": 2888,
+   "end": 2882
+  },
+  {
+   "url": "/musicSpace/demo/sample-crowd.jpg",
+   "proto": "h2",
+   "prio": "Low",
+   "bytes": 81367,
+   "start": 2955,
+   "resp": 3113,
+   "end": 3257
+  },
+  {
+   "url": "/musicSpace/demo/sample-stage.jpg",
+   "proto": "h2",
+   "prio": "Low",
+   "bytes": 90629,
+   "start": 2955,
+   "resp": 3112,
+   "end": 3265
+  }
+ ],
+ "perf": {
+  "origin": 1791300195229.9,
+  "paints": [
+   {
+    "name": "first-paint",
+    "t": 392
+   },
+   {
+    "name": "first-contentful-paint",
+    "t": 392
+   }
+  ],
+  "log": {
+   "ready": 2970.400000035763,
+   "loadingHidden": 2698.300000011921,
+   "firstStyled": null
+  },
+  "boot": "ready",
+  "fontsLoaded": 10,
+  "title": "Music Space · 同一刻，另一面"
+ }
+}

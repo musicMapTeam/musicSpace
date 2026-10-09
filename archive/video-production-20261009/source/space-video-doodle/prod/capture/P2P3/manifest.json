@@ -1,0 +1,2161 @@
+{
+ "what": "Music Space doodle video, capture pass P2/P3: TAKE-P2 (P-06, the honest AI case), TAKE-P3 (P-21, spare 成员音乐话题) and SHOTS.md §5 cut-outs and exports",
+ "build": {
+  "dir": "/tmp/space-publish/dist-pages",
+  "commit": "8fa52f0",
+  "version": "0.22.0-rc.1",
+  "served": "node scripts/pages/serve-prefix.mjs <dist> /musicSpace/ 48311 (root path, not /preview/)"
+ },
+ "rig": "/tmp/space-video-doodle/capture-test/rec2.mjs (read-only): Chrome headless --use-angle=metal --enable-gpu, Playwright fake clock, 16 ms virtual step per frame labelled 60 fps (product motion plays at 0.96x), PNG frames -> ffmpeg; seeded Math.random 20261009; plus tools/lib.mjs freezeKeep() (existing animations keep their time at freeze, finished ones are not replayed)",
+ "clock": "2026-10-07T22:40:00+08:00 (same as TAKE-P1 and the desktop takes; chat times read 22:40, memory card 保存于 2026.10.07)",
+ "phone": "390x845 CSS @ 36/13 = 1080x2340",
+ "desktop": "1440x810 CSS @ 8/3 = 3840x2160",
+ "honesty": [
+  "real product states only: real taps/typing, no injected product DOM, no edited storage; the only page-level CSS added are the rig tap ring, the hidden text caret (P-21) and, for die-cut stills only, a temporary style that hides every box except the target (removed right after the shot)",
+  "cast labelled 示例 in every room shot; sample photos are AI-generated examples (keep 照片为 AI 生成的示例图 on screen); albums are 原创虚构专辑; 晚班列车 / 纸灯乐队 is the example's own fictional song",
+  "not produced: a creation-corner co-created PNG (「生成共同纪念PNG」 needs the friend to join; the example cast never joins, the build's autopilot has no corner handler) -> CORNER-01/02 are stills of the real invitation state"
+ ],
+ "clips": {
+  "P-06": {
+   "file": "clips/P-06.mp4",
+   "bytes": 1985291,
+   "sha256": "c0663dbc0c6935bfc52946564e1fc1398447213cb1dc0fc88362bde0f36c1cbf",
+   "take": "TAKE-P2",
+   "storyboard": "A3 (33:3 -> 35:1); SHOTS TAKE-P2",
+   "video": "h264 High 1080x2340 60/1 fps yuv420p bt709/bt709/bt709/tv, x264 CRF 15 preset slow tune animation, no audio",
+   "frames": 326,
+   "duration_s": 5.433,
+   "clock": "2026-10-07T22:40:00+08:00",
+   "beatGrid": "123 BPM = 29.268 frames per beat",
+   "timeline": [
+    {
+     "label": "room (route card 示例路线 1/4)",
+     "frame": 0,
+     "t": 0
+    },
+    {
+     "label": "tap 舞台 · 示例照片",
+     "frame": 120,
+     "t": 2,
+     "down": 117,
+     "up": 120
+    },
+    {
+     "label": "upload sheet first frame (fading in over the room)",
+     "frame": 120,
+     "t": 2
+    },
+    {
+     "label": "AI line 「不确定，请选择」 + dashed 舞台/人海 on screen (sync point 33:4)",
+     "frame": 134,
+     "t": 2.233
+    },
+    {
+     "label": "tap 舞台 chip (3 beats after the AI line = 34:3)",
+     "frame": 222,
+     "t": 3.7,
+     "down": 219,
+     "up": 222
+    },
+    {
+     "label": "end",
+     "frame": 326,
+     "t": 5.433
+    }
+   ],
+   "qc": {
+    "stutter_dupInsideMotion": [],
+    "blankFrames": [],
+    "holds_over_0.5s": [
+     {
+      "from": 135,
+      "frames": 85,
+      "at_s": 2.25,
+      "seconds": 1.42
+     },
+     {
+      "from": 229,
+      "frames": 98,
+      "at_s": 3.82,
+      "seconds": 1.63
+     }
+    ],
+    "motionSegments": [
+     {
+      "from": 116,
+      "to": 134,
+      "at_s": 1.93,
+      "seconds": 0.3,
+      "minDiff": 0.38,
+      "medDiff": 5.1
+     },
+     {
+      "from": 218,
+      "to": 228,
+      "at_s": 3.63,
+      "seconds": 0.17,
+      "minDiff": 0.26,
+      "medDiff": 0.46
+     }
+    ],
+    "note": "holds are the product standing still (static within H.264 noise): safe to trim or extend for another tempo"
+   },
+   "perFrameState": "clips/P-06.take.json (probeRuns) and clips/P-06.rec.json (frame hashes, per-frame probe)",
+   "notes": [
+    "fresh example world, visitor 阿宁 in 失真, never saved (sheet closed with ×, checked: no photo saved)",
+    "the build answers 「不确定，请选择」 (dashed tag) with 舞台 and 人海 as dashed suggestions, nothing selected, as in SHOTS.md; after the tap the AI line is removed by the product and 舞台 turns yellow with a check",
+    "the AI runs in real time (~0.17 s) while the rig steps virtual time, so the thinking state lasts 1 frame (f120, below the fold); the chips and the AI line come into view with the product's own jump-scroll when the sheet animation ends (f134 = sync point 33:4)",
+    "the doodle tap ring (rig, 0.48 s) stays where the finger touched: f117-f146 it sits over the newly opened form (near the 舞台 chip)"
+   ]
+  },
+  "P-21": {
+   "file": "clips/P-21.mp4",
+   "bytes": 1892947,
+   "sha256": "cfbe215acdcdeb3325f21244ce0820fda5bef75f0ff80e6af0c7304b3dbc1892",
+   "take": "TAKE-P3",
+   "storyboard": "elastic +4 (2 bars after bar 60): 成员音乐话题; SHOTS TAKE-P3",
+   "video": "h264 High 1080x2340 60/1 fps yuv420p bt709/bt709/bt709/tv, x264 CRF 15 preset slow tune animation, no audio",
+   "frames": 528,
+   "duration_s": 8.8,
+   "clock": "2026-10-07T22:40:00+08:00",
+   "beatGrid": "123 BPM = 29.268 frames per beat",
+   "timeline": [
+    {
+     "label": "chat room (after-show), actions row shows 成员音乐话题",
+     "frame": 0,
+     "t": 0
+    },
+    {
+     "label": "b0 tap 成员音乐话题 · 发布与讨论",
+     "frame": 60,
+     "t": 1,
+     "down": 57,
+     "up": 60
+    },
+    {
+     "label": "b2 tap 留下我的音乐话题 (form opens)",
+     "frame": 119,
+     "t": 1.983,
+     "down": 116,
+     "up": 119
+    },
+    {
+     "label": "b4 tap 音乐名称 晚班列车",
+     "frame": 177,
+     "t": 2.95,
+     "down": 174,
+     "up": 177
+    },
+    {
+     "label": "音乐名称 晚班列车 typed (4 chars, 1/16 notes)",
+     "frame": 206,
+     "t": 3.433
+    },
+    {
+     "label": "b6 tap 音乐人 纸灯乐队",
+     "frame": 236,
+     "t": 3.933,
+     "down": 233,
+     "up": 236
+    },
+    {
+     "label": "音乐人 纸灯乐队 typed (4 chars, 1/16 notes)",
+     "frame": 265,
+     "t": 4.417
+    },
+    {
+     "label": "b8 tap 我想聊的一句话",
+     "frame": 294,
+     "t": 4.9,
+     "down": 291,
+     "up": 294
+    },
+    {
+     "label": "我想聊的一句话 typed (20 chars, 1/32 notes)",
+     "frame": 367,
+     "t": 6.117
+    },
+    {
+     "label": "b11 tick 明确向当前聊天室发布我的自填文字",
+     "frame": 382,
+     "t": 6.367,
+     "down": 379,
+     "up": 382
+    },
+    {
+     "label": "b12 tap 发布音乐话题",
+     "frame": 411,
+     "t": 6.85,
+     "down": 408,
+     "up": 411
+    },
+    {
+     "label": "posted card on screen (成员自填 · 未核实 / 晚班列车 / 纸灯乐队 / 阿宁 留下的话题)",
+     "frame": 411,
+     "t": 6.85
+    },
+    {
+     "label": "end (4 beats of hold on the card)",
+     "frame": 528,
+     "t": 8.8
+    }
+   ],
+   "qc": {
+    "stutter_dupInsideMotion": [],
+    "blankFrames": [],
+    "holds_over_0.5s": [
+     {
+      "from": 123,
+      "frames": 54,
+      "at_s": 2.05,
+      "seconds": 0.9
+     },
+     {
+      "from": 181,
+      "frames": 55,
+      "at_s": 3.02,
+      "seconds": 0.92
+     },
+     {
+      "from": 240,
+      "frames": 54,
+      "at_s": 4.0,
+      "seconds": 0.9
+     },
+     {
+      "from": 299,
+      "frames": 83,
+      "at_s": 4.98,
+      "seconds": 1.38
+     },
+     {
+      "from": 414,
+      "frames": 115,
+      "at_s": 6.9,
+      "seconds": 1.92
+     }
+    ],
+    "motionSegments": [
+     {
+      "from": 55,
+      "to": 74,
+      "at_s": 0.92,
+      "seconds": 0.32,
+      "minDiff": 0.36,
+      "medDiff": 1.08
+     },
+     {
+      "from": 117,
+      "to": 122,
+      "at_s": 1.95,
+      "seconds": 0.08,
+      "minDiff": 0.17,
+      "medDiff": 0.2
+     },
+     {
+      "from": 175,
+      "to": 180,
+      "at_s": 2.92,
+      "seconds": 0.08,
+      "minDiff": 0.17,
+      "medDiff": 0.18
+     },
+     {
+      "from": 234,
+      "to": 239,
+      "at_s": 3.9,
+      "seconds": 0.08,
+      "minDiff": 0.16,
+      "medDiff": 0.18
+     },
+     {
+      "from": 292,
+      "to": 296,
+      "at_s": 4.87,
+      "seconds": 0.07,
+      "minDiff": 0.18,
+      "medDiff": 0.19
+     },
+     {
+      "from": 380,
+      "to": 385,
+      "at_s": 6.33,
+      "seconds": 0.08,
+      "minDiff": 0.16,
+      "medDiff": 0.18
+     },
+     {
+      "from": 407,
+      "to": 413,
+      "at_s": 6.78,
+      "seconds": 0.1,
+      "minDiff": 0.18,
+      "medDiff": 0.32
+     }
+    ],
+    "note": "holds are the product standing still (static within H.264 noise): safe to trim or extend for another tempo"
+   },
+   "perFrameState": "clips/P-21.take.json (probeRuns) and clips/P-21.rec.json (frame hashes, per-frame probe)",
+   "notes": [
+    "fresh example world (P1-like: 阿宁 in 失真, entered, waited 9.5 s, route skipped, joined the after-show chat room in real time, not recorded)",
+    "the chat room's action row was pre-scrolled so 「成员音乐话题」 is first and the 「Music Map · 沿音乐探索 ↗」 chip is off-screen; the topics panel copy itself mentions Music Map (product text: 「四张留档关系卡是通往独立 Music Map 的小桥…」), and the header button 「音乐探索」 is on every phone screen",
+    "text caret hidden (caret-color: transparent; Chrome blinks it on real time, which frame-stepping turns into flicker), same as TAKE-P1",
+    "f60-f118 the half-height topics sheet leaves an empty dotted gap under the 3D header (real layout); b2 opens the form and the sheet goes full height in one frame",
+    "the ring of the 发布音乐话题 tap stays over the reset 音乐名称 field after the card appears (ring f408-f437)"
+   ]
+  }
+ },
+ "assets": {
+  "CUT-13": {
+   "world": "phone world S1: fresh, walked like TAKE-P1 (upload, wall, exchange, greet, chat, chat room, World Cup, corner, recap)",
+   "storyboard": "W1 (and E1 reference)",
+   "notes": "first screen before entering; 3D doodle stage, 进到同一个现场, card 同一刻，另一面。, 进入示例现场",
+   "file": "stills/CUT-13_phone-landing.png",
+   "size": [
+    1080,
+    2340
+   ],
+   "bytes": 786597,
+   "sha256": "9c68620585e4ec866d8d62b5579b1127df94f797e2859525a04133dc728bece6",
+   "alpha": false,
+   "kind": "full-screen still"
+  },
+  "CUT-02": {
+   "world": "phone world S1: fresh, walked like TAKE-P1 (upload, wall, exchange, greet, chat, chat room, World Cup, corner, recap)",
+   "storyboard": "H1 (avatar), E2 reference",
+   "notes": "the real wardrobe stand: YOU lettering, mint orbit, figure 失真 at 3/4, 试穿中 · 仅自己可见, angle switch",
+   "file": "cut/CUT-02_wardrobe-stand-shizhen-quarter.opaque.png",
+   "size": [
+    1080,
+    936
+   ],
+   "bytes": 87112,
+   "sha256": "a608aba6c814a14e04b7f93f812dd4512a01c5d988cfaf3deacd37a8775d931f",
+   "alpha": false,
+   "kind": "region still (opaque)",
+   "clipCss": {
+    "x": 0,
+    "y": 62,
+    "width": 390,
+    "height": 338
+   },
+   "selectors": [
+    ".wardrobe .wardrobe-look"
+   ]
+  },
+  "CUT-02s": {
+   "world": "phone world S1: fresh, walked like TAKE-P1 (upload, wall, exchange, greet, chat, chat room, World Cup, corner, recap)",
+   "storyboard": "H1 die-cut sticker",
+   "notes": "figure + mint orbit only (alpha die-cut)",
+   "file": "cut/CUT-02s_wardrobe-figure-on-orbit.png",
+   "size": [
+    641,
+    828
+   ],
+   "bytes": 43826,
+   "sha256": "2dee72f373807c2e163da98ab3b6341753db13c69260fd79e20607c11bc83e74",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.69,
+    "opaque": 0.275
+   },
+   "kind": "die-cut (alpha) + opaque twin",
+   "opaqueTwin": {
+    "file": "cut/CUT-02s_wardrobe-figure-on-orbit.opaque.png",
+    "size": [
+     641,
+     828
+    ],
+    "bytes": 63754,
+    "sha256": "11a9fe8e9bd8918845ce4a51f27560901880d28cdff66a772f37ae303a931035",
+    "alpha": false
+   },
+   "verify": {
+    "vsOpaqueTwin_blurredDiff_p99": 227.0,
+    "note": "the opaque twin also shows the angle switch and the 试穿中 sticker overlapping the orbit/hair; the cut is the figure + orbit alone"
+   },
+   "clipCss": {
+    "x": 6,
+    "y": 55,
+    "width": 378,
+    "height": 333
+   },
+   "selectors": [
+    ".wardrobe .wardrobe-orbit",
+    ".wardrobe .wardrobe-figure"
+   ]
+  },
+  "CUT-04a": {
+   "world": "phone world S1: fresh, walked like TAKE-P1 (upload, wall, exchange, greet, chat, chat room, World Cup, corner, recap)",
+   "storyboard": "H1, W3 (隐私)",
+   "notes": "「✦ AI 判断：人海」 chip (P-05 state)",
+   "file": "cut/CUT-04a_ai-tag-renhai.png",
+   "size": [
+    502,
+    151
+   ],
+   "bytes": 21228,
+   "sha256": "3730a4afb4dc5fd89548d68f94a62a786998a623303890b8150c3258955dce45",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.313,
+    "opaque": 0.662
+   },
+   "kind": "die-cut (alpha) + opaque twin",
+   "opaqueTwin": {
+    "file": "cut/CUT-04a_ai-tag-renhai.opaque.png",
+    "size": [
+     502,
+     151
+    ],
+    "bytes": 13461,
+    "sha256": "e5302afe73c6dcde16ad825252a0dc827df6a87d58225746def28ea0872a36cf",
+    "alpha": false
+   },
+   "verify": {
+    "vsOpaqueTwin_blurredDiff_p99": 11.0,
+    "note": "re-rendered alone; same pixels up to sub-pixel anti-aliasing (twin may also show overlapping neighbours)"
+   },
+   "clipCss": {
+    "x": 17,
+    "y": 367,
+    "width": 199,
+    "height": 73
+   },
+   "selectors": [
+    ".moment-ai-tag"
+   ]
+  },
+  "CUT-04b": {
+   "world": "phone world S1: fresh, walked like TAKE-P1 (upload, wall, exchange, greet, chat, chat room, World Cup, corner, recap)",
+   "storyboard": "H1, W3",
+   "notes": "the four viewpoint chips, 人海 pre-selected by the AI suggestion",
+   "file": "cut/CUT-04b_viewpoint-chips-renhai-selected.png",
+   "size": [
+    928,
+    449
+   ],
+   "bytes": 59536,
+   "sha256": "6c3287dcdba36d8ac8f0201633934b35eafb83062f0dfa8a2845023dfbd03d96",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.169,
+    "opaque": 0.819
+   },
+   "kind": "die-cut (alpha) + opaque twin",
+   "opaqueTwin": {
+    "file": "cut/CUT-04b_viewpoint-chips-renhai-selected.opaque.png",
+    "size": [
+     928,
+     449
+    ],
+    "bytes": 54530,
+    "sha256": "15d604cac534506894b835785e4ee9971434e7a6ce64af85b6782b018128dee0",
+    "alpha": false
+   },
+   "verify": {
+    "vsOpaqueTwin_blurredDiff_p99": 0.0,
+    "note": "re-rendered alone; same pixels up to sub-pixel anti-aliasing (twin may also show overlapping neighbours)"
+   },
+   "clipCss": {
+    "x": 18,
+    "y": 314,
+    "width": 349,
+    "height": 179
+   },
+   "selectors": [
+    ".moment-chips"
+   ]
+  },
+  "CUT-04c": {
+   "world": "phone world S1: fresh, walked like TAKE-P1 (upload, wall, exchange, greet, chat, chat room, World Cup, corner, recap)",
+   "storyboard": "W3 polaroid (隐私)",
+   "notes": "我拍的这一面 + chips + AI chip + hint 「AI 在本机判断，照片不上传…」",
+   "file": "cut/CUT-04c_viewpoint-block.png",
+   "size": [
+    928,
+    887
+   ],
+   "bytes": 139166,
+   "sha256": "9a6c209ee54bdfa9f205bc11c9849dba84c03bb5c84f0ce4698eb48b744ed689",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.475,
+    "opaque": 0.501
+   },
+   "kind": "die-cut (alpha) + opaque twin",
+   "opaqueTwin": {
+    "file": "cut/CUT-04c_viewpoint-block.opaque.png",
+    "size": [
+     928,
+     887
+    ],
+    "bytes": 127468,
+    "sha256": "13e65830be2b3cd347f61d0f8ffe97814e86af4651495dacb8e0a4d20cf18e3b",
+    "alpha": false
+   },
+   "verify": {
+    "vsOpaqueTwin_blurredDiff_p99": 0.0,
+    "note": "re-rendered alone; same pixels up to sub-pixel anti-aliasing (twin may also show overlapping neighbours)"
+   },
+   "clipCss": {
+    "x": 18,
+    "y": 238,
+    "width": 349,
+    "height": 350
+   },
+   "selectors": [
+    ".moment-view"
+   ]
+  },
+  "POL-01": {
+   "world": "phone world S1: fresh, walked like TAKE-P1 (upload, wall, exchange, greet, chat, chat room, World Cup, corner, recap)",
+   "storyboard": "A1/M1 polaroid",
+   "notes": "upload form polaroid of 人海 · 示例照片 with 拍摄于 21:48 and the 示例照片 note",
+   "file": "cut/POL-01_upload-polaroid-crowd-2148.png",
+   "size": [
+    918,
+    735
+   ],
+   "bytes": 276541,
+   "sha256": "ebe7b99c556e56ac01b7c9b2d69f3e6f535ca80b38f61869d386a25177a4d569",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.497,
+    "opaque": 0.479
+   },
+   "kind": "die-cut (alpha) + opaque twin",
+   "opaqueTwin": {
+    "file": "cut/POL-01_upload-polaroid-crowd-2148.opaque.png",
+    "size": [
+     918,
+     735
+    ],
+    "bytes": 245178,
+    "sha256": "80eb58f0f8c9350b58e8bb2f366b1a3f84a9e5f4faa7012a53dcdae70408edf9",
+    "alpha": false
+   },
+   "verify": {
+    "vsOpaqueTwin_blurredDiff_p99": 1.0,
+    "note": "re-rendered alone; same pixels up to sub-pixel anti-aliasing (twin may also show overlapping neighbours)"
+   },
+   "clipCss": {
+    "x": 14,
+    "y": 271,
+    "width": 357,
+    "height": 283
+   },
+   "selectors": [
+    ".moment-taken"
+   ]
+  },
+  "CUT-05": {
+   "world": "phone world S1: fresh, walked like TAKE-P1 (upload, wall, exchange, greet, chat, chat room, World Cup, corner, recap)",
+   "storyboard": "H1, M2",
+   "notes": "「同一刻的另一面」 + reason 「同一刻 · 21:47，相差不到 1 分钟；你拍人海，TA 拍舞台」 + 「和 TA 交换这个视角」",
+   "file": "cut/CUT-05_badge-other-side.png",
+   "size": [
+    858,
+    595
+   ],
+   "bytes": 107700,
+   "sha256": "6cbbfe1727f392742b208362a15918b0ecc4eea63716054c113936cfb0b291a7",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.598,
+    "opaque": 0.364
+   },
+   "kind": "die-cut (alpha) + opaque twin",
+   "opaqueTwin": {
+    "file": "cut/CUT-05_badge-other-side.opaque.png",
+    "size": [
+     858,
+     595
+    ],
+    "bytes": 69934,
+    "sha256": "b2a4b1ef30251d81e2009f713f398c888cafca89b9499410738969657acd013a",
+    "alpha": false
+   },
+   "verify": {
+    "vsOpaqueTwin_blurredDiff_p99": 21.0,
+    "note": "re-rendered alone; same pixels up to sub-pixel anti-aliasing (twin may also show overlapping neighbours)"
+   },
+   "clipCss": {
+    "x": 27,
+    "y": 291,
+    "width": 325,
+    "height": 224
+   },
+   "selectors": [
+    "[data-moment-badge=\"other-side\"]"
+   ]
+  },
+  "POL-02": {
+   "world": "phone world S1: fresh, walked like TAKE-P1 (upload, wall, exchange, greet, chat, chat room, World Cup, corner, recap)",
+   "storyboard": "M2 / H1 polaroid",
+   "notes": "the wall card with tapes: badge, button, 阿遥·示例 stage photo, 拍摄于 21:47 · 视角：舞台 · 作者选择",
+   "file": "cut/POL-02_wall-best-card-yao-stage.png",
+   "size": [
+    945,
+    1583
+   ],
+   "bytes": 756082,
+   "sha256": "e570976246f3b1b2a3c79e96e51585b26139815d9d5cd9deab90745ae2ffabab",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.087,
+    "opaque": 0.899
+   },
+   "kind": "die-cut (alpha) + opaque twin",
+   "opaqueTwin": {
+    "file": "cut/POL-02_wall-best-card-yao-stage.opaque.png",
+    "size": [
+     945,
+     1583
+    ],
+    "bytes": 633321,
+    "sha256": "1d2b1e59db748e90b28b565ce41535e1680d3c3283857f4c584c79171e0a23f4",
+    "alpha": false
+   },
+   "verify": {
+    "vsOpaqueTwin_blurredDiff_p99": 9.0,
+    "note": "re-rendered alone; same pixels up to sub-pixel anti-aliasing (twin may also show overlapping neighbours)"
+   },
+   "clipCss": {
+    "x": 9,
+    "y": 111,
+    "width": 367,
+    "height": 584
+   },
+   "selectors": [
+    "#panel .moment-card--best"
+   ]
+  },
+  "WALL-01": {
+   "world": "phone world S1: fresh, walked like TAKE-P1 (upload, wall, exchange, greet, chat, chat room, World Cup, corner, recap)",
+   "storyboard": "A5",
+   "notes": "21:47 同一刻 · 3 个视角 + 「按拍摄时间分组（相差不超过 3 分钟），规则判断，不是 AI」",
+   "file": "cut/WALL-01_group-header-2147-rule.png",
+   "size": [
+    787,
+    369
+   ],
+   "bytes": 66749,
+   "sha256": "986cdcc1ac000b1e423561727fa89762875301b685a83b860be19da906ac680d",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.815,
+    "opaque": 0.14
+   },
+   "kind": "die-cut (alpha) + opaque twin",
+   "opaqueTwin": {
+    "file": "cut/WALL-01_group-header-2147-rule.opaque.png",
+    "size": [
+     787,
+     369
+    ],
+    "bytes": 61769,
+    "sha256": "bc4c4a686299c4f2214147fc06304bae505e7c4841f805a53fa83961b1e27e58",
+    "alpha": false
+   },
+   "verify": {
+    "vsOpaqueTwin_blurredDiff_p99": 20.0,
+    "note": "re-rendered alone; same pixels up to sub-pixel anti-aliasing (twin may also show overlapping neighbours)"
+   },
+   "clipCss": {
+    "x": 18,
+    "y": 254,
+    "width": 350,
+    "height": 162
+   },
+   "selectors": [
+    "#panel .moment-group[data-moment-group=\"m1790430440000\"] > .moment-group__title",
+    "#panel .moment-group[data-moment-group=\"m1790430440000\"] > .moment-group__note"
+   ]
+  },
+  "POL-03": {
+   "world": "phone world S1: fresh, walked like TAKE-P1 (upload, wall, exchange, greet, chat, chat room, World Cup, corner, recap)",
+   "storyboard": "polaroid stickers (H1/S11/M1)",
+   "notes": "小满·示例 照片墙：本场成员可见 拍摄于 21:48 · 视角：人海 · 作者选择 同一刻",
+   "file": "cut/POL-03_wall-card-man-crowd-2148.png",
+   "size": [
+    482,
+    936
+   ],
+   "bytes": 251691,
+   "sha256": "397487b632a7e5764436a987076fee1dd994201039a7566e9e4cc5f0ba0f0d68",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.13,
+    "opaque": 0.862
+   },
+   "kind": "die-cut (alpha) + opaque twin",
+   "opaqueTwin": {
+    "file": "cut/POL-03_wall-card-man-crowd-2148.opaque.png",
+    "size": [
+     482,
+     936
+    ],
+    "bytes": 211492,
+    "sha256": "c18fdd9ca2a00c91e4e4f30afe85f2a3b8add3e3710028c34d25d7baf912c5b7",
+    "alpha": false
+   },
+   "verify": {
+    "vsOpaqueTwin_blurredDiff_p99": 14.0,
+    "note": "re-rendered alone; same pixels up to sub-pixel anti-aliasing (twin may also show overlapping neighbours)"
+   },
+   "clipCss": {
+    "x": 11,
+    "y": 225,
+    "width": 194,
+    "height": 357
+   },
+   "selectors": [
+    "#panel .moment-card[data-moment-photo=\"91331a15-f7ac-4f90-9555-f20f76792629\"]"
+   ]
+  },
+  "POL-04": {
+   "world": "phone world S1: fresh, walked like TAKE-P1 (upload, wall, exchange, greet, chat, chat room, World Cup, corner, recap)",
+   "storyboard": "polaroid stickers (H1/S11/M1)",
+   "notes": "阿宁 照片墙：本场成员可见 拍摄于 21:48 · 视角：人海 · AI 建议，未改动",
+   "file": "cut/POL-04_wall-card-aning-crowd-2148-ai.png",
+   "size": [
+    483,
+    936
+   ],
+   "bytes": 243735,
+   "sha256": "533347b7fc2d34c963c0071b15d78a72f93e774abd2146f29ed0926a0959b36e",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.132,
+    "opaque": 0.86
+   },
+   "kind": "die-cut (alpha) + opaque twin",
+   "opaqueTwin": {
+    "file": "cut/POL-04_wall-card-aning-crowd-2148-ai.opaque.png",
+    "size": [
+     483,
+     936
+    ],
+    "bytes": 213712,
+    "sha256": "b679861a283b9d10b8deba17e362c998e326e154280f1a19cf35f7104e852990",
+    "alpha": false
+   },
+   "verify": {
+    "vsOpaqueTwin_blurredDiff_p99": 14.0,
+    "note": "re-rendered alone; same pixels up to sub-pixel anti-aliasing (twin may also show overlapping neighbours)"
+   },
+   "clipCss": {
+    "x": 180,
+    "y": 225,
+    "width": 194,
+    "height": 357
+   },
+   "selectors": [
+    "#panel .moment-card[data-moment-photo=\"cca0cad1-60d9-4c04-8521-a47b9f15ce80\"]"
+   ]
+  },
+  "POL-05": {
+   "world": "phone world S1: fresh, walked like TAKE-P1 (upload, wall, exchange, greet, chat, chat room, World Cup, corner, recap)",
+   "storyboard": "polaroid stickers (H1/S11/M1)",
+   "notes": "北屿·示例 照片墙：本场成员可见 拍摄于 21:49 · 视角：细节 · 作者选择 同一刻",
+   "file": "cut/POL-05_wall-card-bei-detail-2149.png",
+   "size": [
+    482,
+    936
+   ],
+   "bytes": 224196,
+   "sha256": "e2df0204f4b55024dbbb8458787a8af7cd4588f8fb52878421112fdfb6d04dd9",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.13,
+    "opaque": 0.862
+   },
+   "kind": "die-cut (alpha) + opaque twin",
+   "opaqueTwin": {
+    "file": "cut/POL-05_wall-card-bei-detail-2149.opaque.png",
+    "size": [
+     482,
+     936
+    ],
+    "bytes": 187945,
+    "sha256": "fd81877f30d00995356634307740d60a2080b2367dee63658a4fd12e487bf15a",
+    "alpha": false
+   },
+   "verify": {
+    "vsOpaqueTwin_blurredDiff_p99": 14.0,
+    "note": "re-rendered alone; same pixels up to sub-pixel anti-aliasing (twin may also show overlapping neighbours)"
+   },
+   "clipCss": {
+    "x": 11,
+    "y": 225,
+    "width": 194,
+    "height": 357
+   },
+   "selectors": [
+    "#panel .moment-card[data-moment-photo=\"af59b7f3-7d6d-4820-810b-a8f82bda92c3\"]"
+   ]
+  },
+  "POL-06": {
+   "world": "phone world S1: fresh, walked like TAKE-P1 (upload, wall, exchange, greet, chat, chat room, World Cup, corner, recap)",
+   "storyboard": "polaroid stickers (H1/S11/M1)",
+   "notes": "小满·示例 照片墙：本场成员可见 拍摄于 22:21 · 视角：身边 · 作者选择",
+   "file": "cut/POL-06_wall-card-man-friends-2221.png",
+   "size": [
+    480,
+    836
+   ],
+   "bytes": 250274,
+   "sha256": "4b713627229bd239d7926a1562496be7c211b6578a76fd17ebf0437160d7c7ed",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.129,
+    "opaque": 0.861
+   },
+   "kind": "die-cut (alpha) + opaque twin",
+   "opaqueTwin": {
+    "file": "cut/POL-06_wall-card-man-friends-2221.opaque.png",
+    "size": [
+     480,
+     836
+    ],
+    "bytes": 226115,
+    "sha256": "a58653f99c18d4c60f5f6c86868f516e739243e6a1cfeac108d05ac2ce51a400",
+    "alpha": false
+   },
+   "verify": {
+    "vsOpaqueTwin_blurredDiff_p99": 15.0,
+    "note": "re-rendered alone; same pixels up to sub-pixel anti-aliasing (twin may also show overlapping neighbours)"
+   },
+   "clipCss": {
+    "x": 12,
+    "y": 243,
+    "width": 193,
+    "height": 322
+   },
+   "selectors": [
+    "#panel .moment-card[data-moment-photo=\"f61f32ac-22ee-4a50-9cc5-6efb283fb2d6\"]"
+   ]
+  },
+  "POL-08": {
+   "world": "phone world S1: fresh, walked like TAKE-P1 (upload, wall, exchange, greet, chat, chat room, World Cup, corner, recap)",
+   "storyboard": "M3",
+   "notes": "「我提供的 / 我选中的这一张」 ⇄ 「阿遥·示例的 / 照片墙上的这一张」",
+   "file": "cut/POL-08_exchange-pair-compose.png",
+   "size": [
+    1018,
+    663
+   ],
+   "bytes": 416154,
+   "sha256": "a49b068b1dc6e82212f38b6498cda1c91f6af97e54b82081ec5a3476d508b535",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.182,
+    "opaque": 0.802
+   },
+   "kind": "die-cut (alpha) + opaque twin",
+   "opaqueTwin": {
+    "file": "cut/POL-08_exchange-pair-compose.opaque.png",
+    "size": [
+     1018,
+     663
+    ],
+    "bytes": 369920,
+    "sha256": "3b7fe777b97a384bf77bce281d094772a9184dde23177865b0d7f62e2d439783",
+    "alpha": false
+   },
+   "verify": {
+    "vsOpaqueTwin_blurredDiff_p99": 26.0,
+    "note": "re-rendered alone; same pixels up to sub-pixel anti-aliasing (twin may also show overlapping neighbours)"
+   },
+   "clipCss": {
+    "x": 4,
+    "y": 140,
+    "width": 382,
+    "height": 247
+   },
+   "selectors": [
+    ".photo-exchanges .exchange-pair"
+   ]
+  },
+  "CUT-11": {
+   "world": "phone world S1: fresh, walked like TAKE-P1 (upload, wall, exchange, greet, chat, chat room, World Cup, corner, recap)",
+   "storyboard": "W3 (同意), M4",
+   "notes": "tick 「我同意提供选中照片的预览，并在对方接受后分享这张原图」 + 「把这两张交给对方确认 ↗」",
+   "file": "cut/CUT-11_consent-tick-send.png",
+   "size": [
+    1018,
+    562
+   ],
+   "bytes": 51020,
+   "sha256": "17e6c634f125b6fe7cc02959a068aaec5359fcd9bc4870a082104e8d2e15d58c",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.655,
+    "opaque": 0.324
+   },
+   "kind": "die-cut (alpha) + opaque twin",
+   "opaqueTwin": {
+    "file": "cut/CUT-11_consent-tick-send.opaque.png",
+    "size": [
+     1018,
+     562
+    ],
+    "bytes": 108199,
+    "sha256": "eff8905441b8b67b5e60f74fcf00a76a4fdd532391f29ca013daa41c61c4de0f",
+    "alpha": false
+   },
+   "verify": {
+    "vsOpaqueTwin_blurredDiff_p99": 0.0,
+    "note": "re-rendered alone; same pixels up to sub-pixel anti-aliasing (twin may also show overlapping neighbours)"
+   },
+   "clipCss": {
+    "x": 4,
+    "y": 600,
+    "width": 382,
+    "height": 227
+   },
+   "selectors": [
+    ".photo-exchanges label:has([data-x-consent])",
+    ".photo-exchanges [data-x-send]"
+   ]
+  },
+  "CUT-11b": {
+   "world": "phone world S1: fresh, walked like TAKE-P1 (upload, wall, exchange, greet, chat, chat room, World Cup, corner, recap)",
+   "storyboard": "M4",
+   "notes": "agreement text 「发送后，阿遥·示例 可以看并保存我的小图预览…」 + tick + send",
+   "file": "cut/CUT-11b_consent-agreement-block.png",
+   "size": [
+    1019,
+    850
+   ],
+   "bytes": 134827,
+   "sha256": "1c8256f6f4de4cd489ee4887a893ff66cb6053cb149d7e0f781aab0b656ccf53",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.731,
+    "opaque": 0.233
+   },
+   "kind": "die-cut (alpha) + opaque twin",
+   "opaqueTwin": {
+    "file": "cut/CUT-11b_consent-agreement-block.opaque.png",
+    "size": [
+     1019,
+     850
+    ],
+    "bytes": 194773,
+    "sha256": "b30b56398d9c0a684bf8ca31f0428532b34a69cc70d02a4656f2295bc7ebde58",
+    "alpha": false
+   },
+   "verify": {
+    "vsOpaqueTwin_blurredDiff_p99": 0.0,
+    "note": "re-rendered alone; same pixels up to sub-pixel anti-aliasing (twin may also show overlapping neighbours)"
+   },
+   "clipCss": {
+    "x": 4,
+    "y": 505,
+    "width": 382,
+    "height": 322
+   },
+   "selectors": [
+    ".photo-exchanges .exchange-agreement",
+    ".photo-exchanges [data-x-send]"
+   ]
+  },
+  "EXCH-01": {
+   "world": "phone world S1: fresh, walked like TAKE-P1 (upload, wall, exchange, greet, chat, chat room, World Cup, corner, recap)",
+   "storyboard": "M5",
+   "notes": "等待本人回应 + 和 阿遥·示例 的两张照片 (before 阿遥 answers)",
+   "file": "cut/EXCH-01_pending-status-pair.png",
+   "size": [
+    1018,
+    911
+   ],
+   "bytes": 449101,
+   "sha256": "4dbb9e0640e646865960c5d6b8031ac5cc3a69c2a9d073cf33038e872715ab3a",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.343,
+    "opaque": 0.64
+   },
+   "kind": "die-cut (alpha) + opaque twin",
+   "opaqueTwin": {
+    "file": "cut/EXCH-01_pending-status-pair.opaque.png",
+    "size": [
+     1018,
+     911
+    ],
+    "bytes": 406767,
+    "sha256": "226b7e02e788ad52ebb784322353deb0141d77f78426f5f95bc7023453385bc7",
+    "alpha": false
+   },
+   "verify": {
+    "vsOpaqueTwin_blurredDiff_p99": 28.0,
+    "note": "re-rendered alone; same pixels up to sub-pixel anti-aliasing (twin may also show overlapping neighbours)"
+   },
+   "clipCss": {
+    "x": 0,
+    "y": 90,
+    "width": 390,
+    "height": 350
+   },
+   "selectors": [
+    ".photo-exchanges .exchange-status",
+    ".photo-exchanges .exchange-body > h3",
+    ".photo-exchanges .exchange-pair"
+   ]
+  },
+  "CUT-06": {
+   "world": "phone world S1: fresh, walked like TAKE-P1 (upload, wall, exchange, greet, chat, chat room, World Cup, corner, recap)",
+   "storyboard": "H1, M6",
+   "notes": "「交换已接受」 sticker with star + 「和 阿遥·示例 的两张照片」 + both polaroids (我提供的 / 阿遥·示例提供的)",
+   "file": "cut/CUT-06_exchange-accepted-pair.png",
+   "size": [
+    1016,
+    1053
+   ],
+   "bytes": 488622,
+   "sha256": "906373ddc37bd66b8e2c7331d4856240c9363e7e4e89527f48a9c550a07553f7",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.379,
+    "opaque": 0.6
+   },
+   "kind": "die-cut (alpha) + opaque twin",
+   "opaqueTwin": {
+    "file": "cut/CUT-06_exchange-accepted-pair.opaque.png",
+    "size": [
+     1016,
+     1053
+    ],
+    "bytes": 435705,
+    "sha256": "9b06a90f14408b00c3856768af81a42a8cdd9a416d7f5c3fc5f583d482e89c7e",
+    "alpha": false
+   },
+   "verify": {
+    "vsOpaqueTwin_blurredDiff_p99": 26.0,
+    "note": "re-rendered alone; same pixels up to sub-pixel anti-aliasing (twin may also show overlapping neighbours)"
+   },
+   "clipCss": {
+    "x": 0,
+    "y": 85,
+    "width": 390,
+    "height": 405
+   },
+   "selectors": [
+    ".photo-exchanges .exchange-status",
+    ".photo-exchanges .exchange-body > h3",
+    ".photo-exchanges .exchange-pair"
+   ]
+  },
+  "CUT-06s": {
+   "world": "phone world S1: fresh, walked like TAKE-P1 (upload, wall, exchange, greet, chat, chat room, World Cup, corner, recap)",
+   "storyboard": "M6 punch-in",
+   "notes": "the mint 「交换已接受」 sticker alone (star + sparkles are its own pseudo-elements)",
+   "file": "cut/CUT-06s_exchange-accepted-sticker.png",
+   "size": [
+    548,
+    258
+   ],
+   "bytes": 37757,
+   "sha256": "79fc6b8aac5dc8281ce1c3275dfb4700f0e992c4c37e2f478a0bad10471a5bb8",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.432,
+    "opaque": 0.545
+   },
+   "kind": "die-cut (alpha) + opaque twin",
+   "opaqueTwin": {
+    "file": "cut/CUT-06s_exchange-accepted-sticker.opaque.png",
+    "size": [
+     548,
+     258
+    ],
+    "bytes": 35725,
+    "sha256": "553cc64905693fa643b4661760f759dbab9cd20567c9806103c61ea2ee922e14",
+    "alpha": false
+   },
+   "verify": {
+    "vsOpaqueTwin_blurredDiff_p99": 27.0,
+    "note": "re-rendered alone; same pixels up to sub-pixel anti-aliasing (twin may also show overlapping neighbours)"
+   },
+   "clipCss": {
+    "x": 40,
+    "y": 83,
+    "width": 280,
+    "height": 128
+   },
+   "selectors": [
+    ".photo-exchanges .exchange-status"
+   ]
+  },
+  "EXCH-02": {
+   "world": "phone world S1: fresh, walked like TAKE-P1 (upload, wall, exchange, greet, chat, chat room, World Cup, corner, recap)",
+   "storyboard": "M7, W3",
+   "notes": "双方已明确同意… + 撤销这次交换的在线访问 + fine print",
+   "file": "cut/EXCH-02_revoke-button-fineprint.png",
+   "size": [
+    1017,
+    706
+   ],
+   "bytes": 125606,
+   "sha256": "5f89714efcc95899dc9e635f0603a29412f6c9fa3d19d8adbce3be336bafc9b1",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.745,
+    "opaque": 0.219
+   },
+   "kind": "die-cut (alpha) + opaque twin",
+   "opaqueTwin": {
+    "file": "cut/EXCH-02_revoke-button-fineprint.opaque.png",
+    "size": [
+     1017,
+     706
+    ],
+    "bytes": 130345,
+    "sha256": "eb94a49e27b185c6ecd029ac9aa018cdd59509dadd6648d76e6a8f201c6714f3",
+    "alpha": false
+   },
+   "verify": {
+    "vsOpaqueTwin_blurredDiff_p99": 50.0,
+    "note": "re-rendered alone; same pixels up to sub-pixel anti-aliasing (twin may also show overlapping neighbours)"
+   },
+   "clipCss": {
+    "x": 4,
+    "y": 479,
+    "width": 382,
+    "height": 287
+   },
+   "selectors": [
+    ".photo-exchanges .exchange-body > p:not(.exchange-status):not(.exchange-fine)",
+    ".photo-exchanges .exchange-body > button",
+    ".photo-exchanges .exchange-fine"
+   ]
+  },
+  "CUT-07": {
+   "world": "phone world S1: fresh, walked like TAKE-P1 (upload, wall, exchange, greet, chat, chat room, World Cup, corner, recap)",
+   "storyboard": "H1, S2",
+   "notes": "the four bubbles: welcome (示例角色，由这个页面自动回复), 你拍到的是哪一面？, yours (mint), reply 今晚的返场太好听了。",
+   "file": "cut/CUT-07_chat-bubbles.png",
+   "size": [
+    1016,
+    1023
+   ],
+   "bytes": 128403,
+   "sha256": "e5ab1ffb6e2b35fc89c78463b5094f90ab177e63c33bd1a833d24ec758bfe882",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.597,
+    "opaque": 0.395
+   },
+   "kind": "die-cut (alpha) + opaque twin",
+   "opaqueTwin": {
+    "file": "cut/CUT-07_chat-bubbles.opaque.png",
+    "size": [
+     1016,
+     1023
+    ],
+    "bytes": 136262,
+    "sha256": "c340a4a99825a53f3d54062c6d48f5616a3dcb7fc41c081e08332397bc2f1cbe",
+    "alpha": false
+   },
+   "verify": {
+    "vsOpaqueTwin_blurredDiff_p99": 52.0,
+    "note": "re-rendered alone; same pixels up to sub-pixel anti-aliasing (twin may also show overlapping neighbours)"
+   },
+   "clipCss": {
+    "x": 0,
+    "y": 113,
+    "width": 390,
+    "height": 398
+   },
+   "selectors": [
+    ".private-chat .chat-message"
+   ]
+  },
+  "CUT-07h": {
+   "world": "phone world S1: fresh, walked like TAKE-P1 (upload, wall, exchange, greet, chat, chat room, World Cup, corner, recap)",
+   "storyboard": "S2",
+   "notes": "ONE TO ONE 小满·示例 header",
+   "file": "cut/CUT-07h_chat-header.png",
+   "size": [
+    1037,
+    162
+   ],
+   "bytes": 23708,
+   "sha256": "4d07fa4d6340516c63f301ffb359fbec62dcf47e8a6a653ee88bde65578ac428",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.753,
+    "opaque": 0.225
+   },
+   "kind": "die-cut (alpha) + opaque twin",
+   "opaqueTwin": {
+    "file": "cut/CUT-07h_chat-header.opaque.png",
+    "size": [
+     1037,
+     162
+    ],
+    "bytes": 32857,
+    "sha256": "33423ddf961bedc76121e503800582c65b08a9034980e2834bff4419cb2f1f67",
+    "alpha": false
+   },
+   "verify": {
+    "vsOpaqueTwin_blurredDiff_p99": 15.0,
+    "note": "re-rendered alone; same pixels up to sub-pixel anti-aliasing (twin may also show overlapping neighbours)"
+   },
+   "clipCss": {
+    "x": 0,
+    "y": 0,
+    "width": 390,
+    "height": 86
+   },
+   "selectors": [
+    ".private-chat > header"
+   ]
+  },
+  "CUT-12": {
+   "world": "phone world S1: fresh, walked like TAKE-P1 (upload, wall, exchange, greet, chat, chat room, World Cup, corner, recap)",
+   "storyboard": "W3 (好玩), S5",
+   "notes": "第一轮 · 第1组: 01 原创虚构专辑 午夜站台 / 纸灯乐队 VS 02 樱花电波 / 薄荷收音机, before the visitor votes (the cast votes already counted)",
+   "file": "cut/CUT-12_worldcup-vs-card.png",
+   "size": [
+    1007,
+    1053
+   ],
+   "bytes": 173953,
+   "sha256": "67f80871421bfa231066ce26ce59b6b46dec9f291ec28a81c8ee42bf0d9ac18b",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.065,
+    "opaque": 0.931
+   },
+   "kind": "die-cut (alpha) + opaque twin",
+   "opaqueTwin": {
+    "file": "cut/CUT-12_worldcup-vs-card.opaque.png",
+    "size": [
+     1007,
+     1053
+    ],
+    "bytes": 163606,
+    "sha256": "664eb91fc7ce1eea00db89609d66171cc1e7cf6c714c9975a225106c7f88aa9f",
+    "alpha": false
+   },
+   "verify": {
+    "vsOpaqueTwin_blurredDiff_p99": 0.0,
+    "note": "re-rendered alone; same pixels up to sub-pixel anti-aliasing (twin may also show overlapping neighbours)"
+   },
+   "clipCss": {
+    "x": 4,
+    "y": 300,
+    "width": 382,
+    "height": 387
+   },
+   "selectors": [
+    ".worldcup-panel section.worldcup-match:has([data-album=\"night-platform\"])"
+   ]
+  },
+  "CORNER-01": {
+   "world": "phone world S1: fresh, walked like TAKE-P1 (upload, wall, exchange, greet, chat, chat room, World Cup, corner, recap)",
+   "storyboard": "S8",
+   "notes": "3D close-up of 小满·示例 + 「TWO SIDES / 两个人的创作角 · 一起留张纪念。」 + 「等待朋友本人明确参与。你不能替对方同意，也不会自动分享照片。」 (product has no invitation-image export; this is a full-resolution still of the real state)",
+   "file": "exports/CORNER-01_creation-corner-invitation-phone.png",
+   "size": [
+    1080,
+    2340
+   ],
+   "bytes": 869910,
+   "sha256": "f3aa43e2bd8ae49057fb628f18eb06c7f2dce1c625afa38ecfb43e209930e061",
+   "alpha": false,
+   "kind": "full-screen still"
+  },
+  "CORNER-02": {
+   "world": "phone world S1: fresh, walked like TAKE-P1 (upload, wall, exchange, greet, chat, chat room, World Cup, corner, recap)",
+   "storyboard": "S8",
+   "notes": "the corner sheet alone (alpha die-cut + opaque)",
+   "file": "exports/CORNER-02_creation-corner-panel.png",
+   "size": [
+    1080,
+    1080
+   ],
+   "bytes": 149656,
+   "sha256": "b8c30ffa6f5a36fa373f84a78a6e5c3d93b9acfa8c0eb4d0f3126fed7cf6b40b",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.009,
+    "opaque": 0.988
+   },
+   "kind": "die-cut (alpha) + opaque twin",
+   "opaqueTwin": {
+    "file": "exports/CORNER-02_creation-corner-panel.opaque.png",
+    "size": [
+     1080,
+     1080
+    ],
+    "bytes": 144312,
+    "sha256": "7d52678429064d51ce4c8cddbc33ab6169cc8dcd9800552e55cac317c962443f",
+    "alpha": false
+   },
+   "verify": {
+    "vsOpaqueTwin_blurredDiff_p99": 0.0,
+    "note": "re-rendered alone; same pixels up to sub-pixel anti-aliasing (twin may also show overlapping neighbours)"
+   },
+   "clipCss": {
+    "x": 0,
+    "y": 455,
+    "width": 390,
+    "height": 390
+   },
+   "selectors": [
+    ".corner-panel"
+   ]
+  },
+  "CUT-08ui": {
+   "world": "phone world S1: fresh, walked like TAKE-P1 (upload, wall, exchange, greet, chat, chat room, World Cup, corner, recap)",
+   "storyboard": "S9",
+   "notes": "phone after the download: 已发起下载… + preview 你的纪念卡",
+   "file": "stills/CUT-08ui_memory-card-result-phone.png",
+   "size": [
+    1080,
+    2340
+   ],
+   "bytes": 695737,
+   "sha256": "6b16b65b00a47be2b0b710d5591e23b1121932df47e24b590f51ef4019250577",
+   "alpha": false,
+   "kind": "full-screen still"
+  },
+  "CUT-04u": {
+   "world": "phone world S3: fresh, 舞台 sample opened, never saved (TAKE-P2 state)",
+   "storyboard": "A3, W3",
+   "notes": "「✦ 不确定，请选择」 (dashed) — the honest case, stage sample, nothing selected",
+   "file": "cut/CUT-04u_ai-tag-unsure.png",
+   "size": [
+    526,
+    138
+   ],
+   "bytes": 27759,
+   "sha256": "a024faecbc3a2c14a20ed50a9833614b2c60465f477426cf9865cab4f42aa40e",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.292,
+    "opaque": 0.682
+   },
+   "kind": "die-cut (alpha) + opaque twin",
+   "opaqueTwin": {
+    "file": "cut/CUT-04u_ai-tag-unsure.opaque.png",
+    "size": [
+     526,
+     138
+    ],
+    "bytes": 12703,
+    "sha256": "4add0e0d58ac113cbe439c61d7b997330d670dbbd788da07d6bcf8f60e5084d5",
+    "alpha": false
+   },
+   "verify": {
+    "vsOpaqueTwin_blurredDiff_p99": 16.0,
+    "note": "re-rendered alone; same pixels up to sub-pixel anti-aliasing (twin may also show overlapping neighbours)"
+   },
+   "clipCss": {
+    "x": 17,
+    "y": 368,
+    "width": 210,
+    "height": 71
+   },
+   "selectors": [
+    ".moment-ai-tag"
+   ]
+  },
+  "CUT-04v": {
+   "world": "phone world S3: fresh, 舞台 sample opened, never saved (TAKE-P2 state)",
+   "storyboard": "A3",
+   "notes": "the four chips: 舞台 and 人海 dashed with sparkles (AI suggestions), nothing selected",
+   "file": "cut/CUT-04v_viewpoint-chips-unsure-dashed.png",
+   "size": [
+    923,
+    446
+   ],
+   "bytes": 52148,
+   "sha256": "29f04e3e622dd9d9050b4c26f7251eff836a88df33ecfd7b6600ef9d48d480ac",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.189,
+    "opaque": 0.799
+   },
+   "kind": "die-cut (alpha) + opaque twin",
+   "opaqueTwin": {
+    "file": "cut/CUT-04v_viewpoint-chips-unsure-dashed.opaque.png",
+    "size": [
+     923,
+     446
+    ],
+    "bytes": 47279,
+    "sha256": "2492ab06fd7e0e2f84e94908f8c5c5bbb849d0c88dd8160e80f8100a3a373279",
+    "alpha": false
+   },
+   "verify": {
+    "vsOpaqueTwin_blurredDiff_p99": 0.0,
+    "note": "re-rendered alone; same pixels up to sub-pixel anti-aliasing (twin may also show overlapping neighbours)"
+   },
+   "clipCss": {
+    "x": 18,
+    "y": 314,
+    "width": 349,
+    "height": 179
+   },
+   "selectors": [
+    ".moment-chips"
+   ]
+  },
+  "CUT-04w": {
+   "world": "phone world S3: fresh, 舞台 sample opened, never saved (TAKE-P2 state)",
+   "storyboard": "A3",
+   "notes": "我拍的这一面 + dashed suggestions + 不确定，请选择 + hint",
+   "file": "cut/CUT-04w_viewpoint-block-unsure.png",
+   "size": [
+    922,
+    887
+   ],
+   "bytes": 132509,
+   "sha256": "003e5ba868bb95b61d8e612bebfa660c2a159f27af719c657f8caf013e3ff055",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.488,
+    "opaque": 0.488
+   },
+   "kind": "die-cut (alpha) + opaque twin",
+   "opaqueTwin": {
+    "file": "cut/CUT-04w_viewpoint-block-unsure.opaque.png",
+    "size": [
+     922,
+     887
+    ],
+    "bytes": 119530,
+    "sha256": "21507381176679e31e3eda6ccd7c5e09dd1de3f56cbc49b9e25c548a4190d442",
+    "alpha": false
+   },
+   "verify": {
+    "vsOpaqueTwin_blurredDiff_p99": 0.0,
+    "note": "re-rendered alone; same pixels up to sub-pixel anti-aliasing (twin may also show overlapping neighbours)"
+   },
+   "clipCss": {
+    "x": 18,
+    "y": 238,
+    "width": 349,
+    "height": 350
+   },
+   "selectors": [
+    ".moment-view"
+   ]
+  },
+  "POL-09": {
+   "world": "phone world S3: fresh, 舞台 sample opened, never saved (TAKE-P2 state)",
+   "storyboard": "A3 / M1 polaroid",
+   "notes": "upload form polaroid of 舞台 · 示例照片 with 拍摄于 21:47 and the 示例照片 note",
+   "file": "cut/POL-09_upload-polaroid-stage-2147.png",
+   "size": [
+    918,
+    735
+   ],
+   "bytes": 281121,
+   "sha256": "77fb485344141966715bc5da6f54d8e99f8faa98357196ca5906407f5b168724",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.497,
+    "opaque": 0.479
+   },
+   "kind": "die-cut (alpha) + opaque twin",
+   "opaqueTwin": {
+    "file": "cut/POL-09_upload-polaroid-stage-2147.opaque.png",
+    "size": [
+     918,
+     735
+    ],
+    "bytes": 248525,
+    "sha256": "7a70e991a569c6d1390e4130d430ebd84ae928c6fafe84bdfeda7eb96e401f88",
+    "alpha": false
+   },
+   "verify": {
+    "vsOpaqueTwin_blurredDiff_p99": 1.0,
+    "note": "re-rendered alone; same pixels up to sub-pixel anti-aliasing (twin may also show overlapping neighbours)"
+   },
+   "clipCss": {
+    "x": 14,
+    "y": 271,
+    "width": 357,
+    "height": 283
+   },
+   "selectors": [
+    ".moment-taken"
+   ]
+  },
+  "CUT-01": {
+   "world": "desktop world D: fresh, CSS 1440x810 @ 8/3",
+   "storyboard": "H1 (polaroid), E4/W5 reference",
+   "notes": "desktop 3D room overview, five present with labels (林间·示例 · 安静 included), 阿宁 · 我; no pointer",
+   "file": "stills/CUT-01_room-overview-4k.png",
+   "size": [
+    3840,
+    2160
+   ],
+   "bytes": 2791490,
+   "sha256": "dfd1ea978fbc0684e1024d9f7bfe12729f191c3d1c863494276b099901f60a99",
+   "alpha": false,
+   "kind": "full-screen still"
+  },
+  "CUT-03a": {
+   "world": "desktop world D: fresh, CSS 1440x810 @ 8/3",
+   "storyboard": "A4 36:1 reference",
+   "notes": "3D photo wall (sign 同一晚，另一面。) with the four example photos",
+   "file": "stills/CUT-03a_3d-wall-4-photos-4k.png",
+   "size": [
+    3840,
+    2160
+   ],
+   "bytes": 2443584,
+   "sha256": "86f1551836b22dd5899bd0fafaba8bb050b11df3b4b6a3706e57e017f27475bb",
+   "alpha": false,
+   "kind": "full-screen still"
+  },
+  "CUT-03": {
+   "world": "desktop world D: fresh, CSS 1440x810 @ 8/3",
+   "storyboard": "H1 (polaroid), A4 36:3 reference",
+   "notes": "the same photos view after saving the 人海 sample: five photos (yours included)",
+   "file": "stills/CUT-03_3d-wall-5-photos-4k.png",
+   "size": [
+    3840,
+    2160
+   ],
+   "bytes": 2455599,
+   "sha256": "3efef0fe8baba99df220cee1e27d8d423f589f30bafb4198bba429e6afd16076",
+   "alpha": false,
+   "kind": "full-screen still"
+  },
+  "CUT-08": {
+   "file": "exports/CUT-08_memory-card.png",
+   "size": [
+    1080,
+    1440
+   ],
+   "bytes": 856934,
+   "sha256": "e8dea91cbff7c5564369998e7e7715fcfaf54346cf2575a9a516cec2bea34aee",
+   "alpha": false,
+   "kind": "product export (download)",
+   "storyboard": "H1, S9 (the real PNG that flies out of the phone)",
+   "notes": "downloaded by the product itself from 回看这一晚 -> 保存我的纪念卡 -> photo + avatar + confirm -> 下载纪念卡 PNG; suggested name MusicSpace-memory-2026-10-07.png; visitor 阿宁 in 失真, your 人海 photo, 保存于 2026.10.07 (clock 22:40 +08:00); opaque: the product draws the card on its own dotted paper",
+   "world": "phone world S1"
+  },
+  "CUT-09/sample-crowd.jpg": {
+   "file": "exports/CUT-09/sample-crowd.jpg",
+   "size": [
+    700,
+    600
+   ],
+   "bytes": 81292,
+   "sha256": "0c02a35a31445f06cb26a49cfa2493d0e4b78a801448b244deed7afcdba3f64f",
+   "alpha": false,
+   "kind": "build file (copied, unmodified)",
+   "storyboard": "M1 collision polaroids",
+   "notes": "yours: 人海 · 示例照片, fictional EXIF time 21:48:10; AI-generated example image (label 照片为 AI 生成的示例图 on screen)",
+   "matchesBuildJson": true
+  },
+  "CUT-09/yao-stage.jpg": {
+   "file": "exports/CUT-09/yao-stage.jpg",
+   "size": [
+    620,
+    413
+   ],
+   "bytes": 70016,
+   "sha256": "678c67cb7e62780d586f22f0e6c1a7dc1ccba165146b910fd95bb0d0079fe2ad",
+   "alpha": false,
+   "kind": "build file (copied, unmodified)",
+   "storyboard": "M1 collision polaroids",
+   "notes": "阿遥·示例 stage photo on the wall (21:47:20); AI-generated example image (label 照片为 AI 生成的示例图 on screen)",
+   "matchesBuildJson": true
+  },
+  "CUT-09/sample-stage.jpg": {
+   "file": "exports/CUT-09/sample-stage.jpg",
+   "size": [
+    840,
+    560
+   ],
+   "bytes": 90522,
+   "sha256": "b0b9f035aa9fdcb349ef4a648052228fb23bd12c732c585decd3983440bffeb3",
+   "alpha": false,
+   "kind": "build file (copied, unmodified)",
+   "storyboard": "M1 collision polaroids",
+   "notes": "舞台 · 示例照片 used in P-06, fictional EXIF time 21:47:50; AI-generated example image (label 照片为 AI 生成的示例图 on screen)",
+   "matchesBuildJson": true
+  },
+  "AV-yao-front": {
+   "file": "avatars/png/cast-yao-front.png",
+   "size": [
+    960,
+    2000
+   ],
+   "bytes": 79883,
+   "sha256": "0b4d1d6c95bcbc39c2f249d2a71a46d13bb0911d5e120623cffe09fb1d10ea36",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.719,
+    "opaque": 0.278
+   },
+   "svg": {
+    "file": "avatars/svg/cast-yao-front.svg",
+    "viewBox": "0 0 240 500",
+    "bytes": 8967,
+    "sha256": "4a4c8a296942f9229ee6e79e07d93ac048c6facea2910de92609c1dfd5dc3998",
+    "vector": true
+   },
+   "kind": "avatar sticker (product SVG rasterised 4x, alpha)",
+   "storyboard": "P3, W4, C1 (CUT-10)",
+   "notes": "阿遥·示例, front view. Rebuilt in the product wardrobe from the definition in the build; quarter view verified identical to the chat-room drawing (identical to the chat-room drawing). 960x2000 canvas = the SVG viewBox 240x500 at 4x: all avatars share scale and baseline (do not trim)."
+  },
+  "AV-yao-side": {
+   "file": "avatars/png/cast-yao-side.png",
+   "size": [
+    960,
+    2000
+   ],
+   "bytes": 70353,
+   "sha256": "c16bad3f30838d003ad15e757a5b5e9a854abe5a8c696cc313e8bd15166afaee",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.771,
+    "opaque": 0.227
+   },
+   "svg": {
+    "file": "avatars/svg/cast-yao-side.svg",
+    "viewBox": "0 0 240 500",
+    "bytes": 8176,
+    "sha256": "f7e2a73a4b9f77a3a0e416f14d4e748de0d3a19704c9d96b189f3e731d3453aa",
+    "vector": true
+   },
+   "kind": "avatar sticker (product SVG rasterised 4x, alpha)",
+   "storyboard": "P3, W4, C1 (CUT-10)",
+   "notes": "阿遥·示例, side view. Rebuilt in the product wardrobe from the definition in the build; quarter view verified identical to the chat-room drawing (identical to the chat-room drawing). 960x2000 canvas = the SVG viewBox 240x500 at 4x: all avatars share scale and baseline (do not trim)."
+  },
+  "AV-yao-back": {
+   "file": "avatars/png/cast-yao-back.png",
+   "size": [
+    960,
+    2000
+   ],
+   "bytes": 78318,
+   "sha256": "d7a8017bdc2cf4a0d570111edaacce2c6c5e07768cbc9122d4cfd534260d9f54",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.719,
+    "opaque": 0.278
+   },
+   "svg": {
+    "file": "avatars/svg/cast-yao-back.svg",
+    "viewBox": "0 0 240 500",
+    "bytes": 7746,
+    "sha256": "e1922182f124f98cb54aa4a9381fe888c9f257bb2cb1e940447a1faf653feaaa",
+    "vector": true
+   },
+   "kind": "avatar sticker (product SVG rasterised 4x, alpha)",
+   "storyboard": "P3, W4, C1 (CUT-10)",
+   "notes": "阿遥·示例, back view. Rebuilt in the product wardrobe from the definition in the build; quarter view verified identical to the chat-room drawing (identical to the chat-room drawing). 960x2000 canvas = the SVG viewBox 240x500 at 4x: all avatars share scale and baseline (do not trim)."
+  },
+  "AV-yao-quarter": {
+   "file": "avatars/png/cast-yao-quarter.png",
+   "size": [
+    960,
+    2000
+   ],
+   "bytes": 81150,
+   "sha256": "6df7e6a44bb28626cd4bd43824ff2f66ed4f7fd50eabba95a540fd19a619aa1f",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.718,
+    "opaque": 0.279
+   },
+   "svg": {
+    "file": "avatars/svg/cast-yao-quarter.svg",
+    "viewBox": "0 0 240 500",
+    "bytes": 9001,
+    "sha256": "a83617d67c258561c6072ed0a85c9bac8e119b486076cb0effd99150433fb40f",
+    "vector": true
+   },
+   "kind": "avatar sticker (product SVG rasterised 4x, alpha)",
+   "storyboard": "P3, W4, C1 (CUT-10)",
+   "notes": "阿遥·示例, quarter view. Rebuilt in the product wardrobe from the definition in the build; quarter view verified identical to the chat-room drawing (identical to the chat-room drawing). 960x2000 canvas = the SVG viewBox 240x500 at 4x: all avatars share scale and baseline (do not trim)."
+  },
+  "AV-yao-quarter-chatroom": {
+   "file": "avatars/png/cast-yao-quarter.chatroom.png",
+   "size": [
+    960,
+    2000
+   ],
+   "bytes": 81150,
+   "sha256": "6df7e6a44bb28626cd4bd43824ff2f66ed4f7fd50eabba95a540fd19a619aa1f",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.718,
+    "opaque": 0.279
+   },
+   "svg": {
+    "file": "avatars/svg/cast-yao-quarter.chatroom.svg",
+    "viewBox": "0 0 240 500",
+    "bytes": 9011,
+    "sha256": "92ba3c21c9515cabaf49f9f137608c434d06a0e8ea247d3131e36fe808c856ee",
+    "vector": true
+   },
+   "kind": "avatar sticker (reference)",
+   "storyboard": "CUT-10",
+   "notes": "阿遥·示例 exactly as the product draws it in the after-show chat room (quarter view); pixel-identical to AV-yao-quarter"
+  },
+  "AV-man-front": {
+   "file": "avatars/png/cast-man-front.png",
+   "size": [
+    960,
+    2000
+   ],
+   "bytes": 75510,
+   "sha256": "6c902ab19eb6f5916ce7b09af4a08d9b9ac647dd416d4924365b25d2871826a0",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.66,
+    "opaque": 0.336
+   },
+   "svg": {
+    "file": "avatars/svg/cast-man-front.svg",
+    "viewBox": "0 0 240 500",
+    "bytes": 7237,
+    "sha256": "17a23c9751af8e62e2fcfef3b848169e4a7c6e37b6b2d9e138391b89b2220dce",
+    "vector": true
+   },
+   "kind": "avatar sticker (product SVG rasterised 4x, alpha)",
+   "storyboard": "P3, W4, C1 (CUT-10)",
+   "notes": "小满·示例, front view. Rebuilt in the product wardrobe from the definition in the build; quarter view verified identical to the chat-room drawing (identical to the chat-room drawing). 960x2000 canvas = the SVG viewBox 240x500 at 4x: all avatars share scale and baseline (do not trim)."
+  },
+  "AV-man-side": {
+   "file": "avatars/png/cast-man-side.png",
+   "size": [
+    960,
+    2000
+   ],
+   "bytes": 68454,
+   "sha256": "5ef6718b708220b460186b2a4571bfcc0fb5c3363164c16e53adb913c0ad63da",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.733,
+    "opaque": 0.264
+   },
+   "svg": {
+    "file": "avatars/svg/cast-man-side.svg",
+    "viewBox": "0 0 240 500",
+    "bytes": 6626,
+    "sha256": "8e43d220d0a1ce0ea2a77d53b85211b4d30e9f289c88b31b8b4bf6b78ddd55bc",
+    "vector": true
+   },
+   "kind": "avatar sticker (product SVG rasterised 4x, alpha)",
+   "storyboard": "P3, W4, C1 (CUT-10)",
+   "notes": "小满·示例, side view. Rebuilt in the product wardrobe from the definition in the build; quarter view verified identical to the chat-room drawing (identical to the chat-room drawing). 960x2000 canvas = the SVG viewBox 240x500 at 4x: all avatars share scale and baseline (do not trim)."
+  },
+  "AV-man-back": {
+   "file": "avatars/png/cast-man-back.png",
+   "size": [
+    960,
+    2000
+   ],
+   "bytes": 70768,
+   "sha256": "10b7138829a14f400d74f310e8c6f0a081532c854117808b9c457629d292e72c",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.66,
+    "opaque": 0.336
+   },
+   "svg": {
+    "file": "avatars/svg/cast-man-back.svg",
+    "viewBox": "0 0 240 500",
+    "bytes": 6082,
+    "sha256": "ee79c903da539d8faf705a3bf970ed382482f388390ccbcdb4507e02a6c36250",
+    "vector": true
+   },
+   "kind": "avatar sticker (product SVG rasterised 4x, alpha)",
+   "storyboard": "P3, W4, C1 (CUT-10)",
+   "notes": "小满·示例, back view. Rebuilt in the product wardrobe from the definition in the build; quarter view verified identical to the chat-room drawing (identical to the chat-room drawing). 960x2000 canvas = the SVG viewBox 240x500 at 4x: all avatars share scale and baseline (do not trim)."
+  },
+  "AV-man-quarter": {
+   "file": "avatars/png/cast-man-quarter.png",
+   "size": [
+    960,
+    2000
+   ],
+   "bytes": 78471,
+   "sha256": "c8c29a6d4c3d4a3fda0d2f0903f28d9200d657f118adeefecbde853f9978215c",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.66,
+    "opaque": 0.337
+   },
+   "svg": {
+    "file": "avatars/svg/cast-man-quarter.svg",
+    "viewBox": "0 0 240 500",
+    "bytes": 7276,
+    "sha256": "2260b829d53d8b1e04f5b1a620172f45a3070a8066ec96cbc2dbf0d9a01c97ae",
+    "vector": true
+   },
+   "kind": "avatar sticker (product SVG rasterised 4x, alpha)",
+   "storyboard": "P3, W4, C1 (CUT-10)",
+   "notes": "小满·示例, quarter view. Rebuilt in the product wardrobe from the definition in the build; quarter view verified identical to the chat-room drawing (identical to the chat-room drawing). 960x2000 canvas = the SVG viewBox 240x500 at 4x: all avatars share scale and baseline (do not trim)."
+  },
+  "AV-man-quarter-chatroom": {
+   "file": "avatars/png/cast-man-quarter.chatroom.png",
+   "size": [
+    960,
+    2000
+   ],
+   "bytes": 78471,
+   "sha256": "c8c29a6d4c3d4a3fda0d2f0903f28d9200d657f118adeefecbde853f9978215c",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.66,
+    "opaque": 0.337
+   },
+   "svg": {
+    "file": "avatars/svg/cast-man-quarter.chatroom.svg",
+    "viewBox": "0 0 240 500",
+    "bytes": 7286,
+    "sha256": "e4aa9e96be63883a5c9fe3866e63fdec5daa0e9466c68e34ee5eb0166c3c7e1b",
+    "vector": true
+   },
+   "kind": "avatar sticker (reference)",
+   "storyboard": "CUT-10",
+   "notes": "小满·示例 exactly as the product draws it in the after-show chat room (quarter view); pixel-identical to AV-man-quarter"
+  },
+  "AV-bei-front": {
+   "file": "avatars/png/cast-bei-front.png",
+   "size": [
+    960,
+    2000
+   ],
+   "bytes": 72717,
+   "sha256": "00c532604648139e5db625907c10d3a6557070ded98b2e077a376f99b4f4f2d4",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.718,
+    "opaque": 0.278
+   },
+   "svg": {
+    "file": "avatars/svg/cast-bei-front.svg",
+    "viewBox": "0 0 240 500",
+    "bytes": 6773,
+    "sha256": "d4ea6e86b0e982f9dbb7b3af47dcc12061b36874de458701f13ba034d3988b03",
+    "vector": true
+   },
+   "kind": "avatar sticker (product SVG rasterised 4x, alpha)",
+   "storyboard": "P3, W4, C1 (CUT-10)",
+   "notes": "北屿·示例, front view. Rebuilt in the product wardrobe from the definition in the build; quarter view verified identical to the chat-room drawing (identical to the chat-room drawing). 960x2000 canvas = the SVG viewBox 240x500 at 4x: all avatars share scale and baseline (do not trim)."
+  },
+  "AV-bei-side": {
+   "file": "avatars/png/cast-bei-side.png",
+   "size": [
+    960,
+    2000
+   ],
+   "bytes": 63072,
+   "sha256": "e7c7902fb09c098361c927285e0e5b83ae87a71f996542c913e18b462b5c5309",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.786,
+    "opaque": 0.212
+   },
+   "svg": {
+    "file": "avatars/svg/cast-bei-side.svg",
+    "viewBox": "0 0 240 500",
+    "bytes": 6166,
+    "sha256": "7915f61b7fe5fda407d2ca1231e324b19d31b001aa7f4a812d9fb888685a35da",
+    "vector": true
+   },
+   "kind": "avatar sticker (product SVG rasterised 4x, alpha)",
+   "storyboard": "P3, W4, C1 (CUT-10)",
+   "notes": "北屿·示例, side view. Rebuilt in the product wardrobe from the definition in the build; quarter view verified identical to the chat-room drawing (identical to the chat-room drawing). 960x2000 canvas = the SVG viewBox 240x500 at 4x: all avatars share scale and baseline (do not trim)."
+  },
+  "AV-bei-back": {
+   "file": "avatars/png/cast-bei-back.png",
+   "size": [
+    960,
+    2000
+   ],
+   "bytes": 64964,
+   "sha256": "82d67450c38afb6c56fb654f5ce61882b8f27cbe205ac3d1d8aaf9e5d741f101",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.72,
+    "opaque": 0.277
+   },
+   "svg": {
+    "file": "avatars/svg/cast-bei-back.svg",
+    "viewBox": "0 0 240 500",
+    "bytes": 5355,
+    "sha256": "1fa3b0729b49728e4aaf45896aa1da133afc05360048285106c527ec49cdb7df",
+    "vector": true
+   },
+   "kind": "avatar sticker (product SVG rasterised 4x, alpha)",
+   "storyboard": "P3, W4, C1 (CUT-10)",
+   "notes": "北屿·示例, back view. Rebuilt in the product wardrobe from the definition in the build; quarter view verified identical to the chat-room drawing (identical to the chat-room drawing). 960x2000 canvas = the SVG viewBox 240x500 at 4x: all avatars share scale and baseline (do not trim)."
+  },
+  "AV-bei-quarter": {
+   "file": "avatars/png/cast-bei-quarter.png",
+   "size": [
+    960,
+    2000
+   ],
+   "bytes": 73252,
+   "sha256": "e744e4648a6ed90dd5d58e10edf89c106a258494e91b285434ded0df4b869fb3",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.721,
+    "opaque": 0.276
+   },
+   "svg": {
+    "file": "avatars/svg/cast-bei-quarter.svg",
+    "viewBox": "0 0 240 500",
+    "bytes": 6810,
+    "sha256": "537954fd92da104298b2f37f00a5d67984f04a68b24b1bd5fdc7a4eb42f59105",
+    "vector": true
+   },
+   "kind": "avatar sticker (product SVG rasterised 4x, alpha)",
+   "storyboard": "P3, W4, C1 (CUT-10)",
+   "notes": "北屿·示例, quarter view. Rebuilt in the product wardrobe from the definition in the build; quarter view verified identical to the chat-room drawing (identical to the chat-room drawing). 960x2000 canvas = the SVG viewBox 240x500 at 4x: all avatars share scale and baseline (do not trim)."
+  },
+  "AV-bei-quarter-chatroom": {
+   "file": "avatars/png/cast-bei-quarter.chatroom.png",
+   "size": [
+    960,
+    2000
+   ],
+   "bytes": 73252,
+   "sha256": "e744e4648a6ed90dd5d58e10edf89c106a258494e91b285434ded0df4b869fb3",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.721,
+    "opaque": 0.276
+   },
+   "svg": {
+    "file": "avatars/svg/cast-bei-quarter.chatroom.svg",
+    "viewBox": "0 0 240 500",
+    "bytes": 6820,
+    "sha256": "9e7bceeb98dbb7e3627349baf21342e05983096f0430df3996198d91e9db4253",
+    "vector": true
+   },
+   "kind": "avatar sticker (reference)",
+   "storyboard": "CUT-10",
+   "notes": "北屿·示例 exactly as the product draws it in the after-show chat room (quarter view); pixel-identical to AV-bei-quarter"
+  },
+  "AV-lin-front": {
+   "file": "avatars/png/cast-lin-front.png",
+   "size": [
+    960,
+    2000
+   ],
+   "bytes": 69514,
+   "sha256": "9a2a52d75530784ef64b0dfce33bf9581f8b4fc348aea6b1962922ef5908a7b4",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.719,
+    "opaque": 0.276
+   },
+   "svg": {
+    "file": "avatars/svg/cast-lin-front.svg",
+    "viewBox": "0 0 240 500",
+    "bytes": 6202,
+    "sha256": "c8f9b65a718b39e3e731f18703208830f165f65735c7781f000ba92502ae468f",
+    "vector": true
+   },
+   "kind": "avatar sticker (product SVG rasterised 4x, alpha)",
+   "storyboard": "P3, W4, C1 (CUT-10)",
+   "notes": "林间·示例, front view. Rebuilt in the product wardrobe from her definition in the build (preset 脉冲 + skin 0, neutral, no accessory, pose listen); the same rebuild gives identical drawings for 阿遥/小满/北屿 (same SVG geometry as the chat room, pixel-identical rasters), so this is her exact look (she never posts, so no 2D avatar of her appears in the product DOM; she is only drawn in the 3D room). 960x2000 canvas = the SVG viewBox 240x500 at 4x: all avatars share scale and baseline (do not trim)."
+  },
+  "AV-lin-side": {
+   "file": "avatars/png/cast-lin-side.png",
+   "size": [
+    960,
+    2000
+   ],
+   "bytes": 61179,
+   "sha256": "75ee18d5e9f1c906cce4e6a857e39cb47305e1d44a446ecb08312bbcf7cf5899",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.776,
+    "opaque": 0.222
+   },
+   "svg": {
+    "file": "avatars/svg/cast-lin-side.svg",
+    "viewBox": "0 0 240 500",
+    "bytes": 5594,
+    "sha256": "99092d2cf05f426ebfced7faa1ee3b76465dd5a325268704fb58a07fc5f13e7c",
+    "vector": true
+   },
+   "kind": "avatar sticker (product SVG rasterised 4x, alpha)",
+   "storyboard": "P3, W4, C1 (CUT-10)",
+   "notes": "林间·示例, side view. Rebuilt in the product wardrobe from her definition in the build (preset 脉冲 + skin 0, neutral, no accessory, pose listen); the same rebuild gives identical drawings for 阿遥/小满/北屿 (same SVG geometry as the chat room, pixel-identical rasters), so this is her exact look (she never posts, so no 2D avatar of her appears in the product DOM; she is only drawn in the 3D room). 960x2000 canvas = the SVG viewBox 240x500 at 4x: all avatars share scale and baseline (do not trim)."
+  },
+  "AV-lin-back": {
+   "file": "avatars/png/cast-lin-back.png",
+   "size": [
+    960,
+    2000
+   ],
+   "bytes": 64603,
+   "sha256": "36a639c2efd129a76a44397ca66d7ceca6b9d3eb05ca6d8f69f558e62b7002ee",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.732,
+    "opaque": 0.255
+   },
+   "svg": {
+    "file": "avatars/svg/cast-lin-back.svg",
+    "viewBox": "0 0 240 500",
+    "bytes": 4867,
+    "sha256": "58bc4bf95fe43e16caa5ee4c13d83bf521d5d3fc040971f02c8d7bbfcd8616e2",
+    "vector": true
+   },
+   "kind": "avatar sticker (product SVG rasterised 4x, alpha)",
+   "storyboard": "P3, W4, C1 (CUT-10)",
+   "notes": "林间·示例, back view. Rebuilt in the product wardrobe from her definition in the build (preset 脉冲 + skin 0, neutral, no accessory, pose listen); the same rebuild gives identical drawings for 阿遥/小满/北屿 (same SVG geometry as the chat room, pixel-identical rasters), so this is her exact look (she never posts, so no 2D avatar of her appears in the product DOM; she is only drawn in the 3D room). 960x2000 canvas = the SVG viewBox 240x500 at 4x: all avatars share scale and baseline (do not trim)."
+  },
+  "AV-lin-quarter": {
+   "file": "avatars/png/cast-lin-quarter.png",
+   "size": [
+    960,
+    2000
+   ],
+   "bytes": 70770,
+   "sha256": "d88dcbc0c8509e31a61eb54b645c9cc60505458daf980cbb9925589a1e068baa",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.721,
+    "opaque": 0.273
+   },
+   "svg": {
+    "file": "avatars/svg/cast-lin-quarter.svg",
+    "viewBox": "0 0 240 500",
+    "bytes": 6237,
+    "sha256": "dca1471214b60f299738f3ae93147c30162e39b73dcdcec4162789fb2c650017",
+    "vector": true
+   },
+   "kind": "avatar sticker (product SVG rasterised 4x, alpha)",
+   "storyboard": "P3, W4, C1 (CUT-10)",
+   "notes": "林间·示例, quarter view. Rebuilt in the product wardrobe from her definition in the build (preset 脉冲 + skin 0, neutral, no accessory, pose listen); the same rebuild gives identical drawings for 阿遥/小满/北屿 (same SVG geometry as the chat room, pixel-identical rasters), so this is her exact look (she never posts, so no 2D avatar of her appears in the product DOM; she is only drawn in the 3D room). 960x2000 canvas = the SVG viewBox 240x500 at 4x: all avatars share scale and baseline (do not trim)."
+  },
+  "AV-aning-front": {
+   "file": "avatars/png/visitor-aning-shizhen-front.png",
+   "size": [
+    960,
+    2000
+   ],
+   "bytes": 75288,
+   "sha256": "e811ed4bbdba6f7df2c912a955afa6d603592b9e54ed4167d039f6f4ab0e520f",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.709,
+    "opaque": 0.286
+   },
+   "svg": {
+    "file": "avatars/svg/visitor-aning-shizhen-front.svg",
+    "viewBox": "0 0 240 500",
+    "bytes": 7149,
+    "sha256": "006e13abb2270e3ed8174b5d0b78e3fb3e620d8485065cfbce78ba47ded504e0",
+    "vector": true
+   },
+   "kind": "avatar sticker (product SVG rasterised 4x, alpha)",
+   "storyboard": "P3, W4, C1, H1 (CUT-02 alt)",
+   "notes": "visitor 阿宁, look 失真 (preset 4; skin 0, neutral, pose listen from the rig seed 20261009, identical in every world of this pass and in the clips), front view, exported from the wardrobe stand; 960x2000, shared baseline"
+  },
+  "AV-aning-side": {
+   "file": "avatars/png/visitor-aning-shizhen-side.png",
+   "size": [
+    960,
+    2000
+   ],
+   "bytes": 60260,
+   "sha256": "e50442311cd71cdf67b3651508366f60affd8dca3a078a4a78cc5f9926bd392e",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.782,
+    "opaque": 0.215
+   },
+   "svg": {
+    "file": "avatars/svg/visitor-aning-shizhen-side.svg",
+    "viewBox": "0 0 240 500",
+    "bytes": 6511,
+    "sha256": "b090e794b8f9c68b9458a246a5836973be1ce524bdda94dbaa55db1ee0e800a2",
+    "vector": true
+   },
+   "kind": "avatar sticker (product SVG rasterised 4x, alpha)",
+   "storyboard": "P3, W4, C1, H1 (CUT-02 alt)",
+   "notes": "visitor 阿宁, look 失真 (preset 4; skin 0, neutral, pose listen from the rig seed 20261009, identical in every world of this pass and in the clips), side view, exported from the wardrobe stand; 960x2000, shared baseline"
+  },
+  "AV-aning-back": {
+   "file": "avatars/png/visitor-aning-shizhen-back.png",
+   "size": [
+    960,
+    2000
+   ],
+   "bytes": 74722,
+   "sha256": "995201d4c692af1d4776af02cbc7ed8c9974ac175c8a59e06f7f76cf3701bdc5",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.709,
+    "opaque": 0.286
+   },
+   "svg": {
+    "file": "avatars/svg/visitor-aning-shizhen-back.svg",
+    "viewBox": "0 0 240 500",
+    "bytes": 5774,
+    "sha256": "d9450700d88677165c2c3061a6e5eb1b2f79baf23e734ad1736926941a323bcb",
+    "vector": true
+   },
+   "kind": "avatar sticker (product SVG rasterised 4x, alpha)",
+   "storyboard": "P3, W4, C1, H1 (CUT-02 alt)",
+   "notes": "visitor 阿宁, look 失真 (preset 4; skin 0, neutral, pose listen from the rig seed 20261009, identical in every world of this pass and in the clips), back view, exported from the wardrobe stand; 960x2000, shared baseline"
+  },
+  "AV-aning-quarter": {
+   "file": "avatars/png/visitor-aning-shizhen-quarter.png",
+   "size": [
+    960,
+    2000
+   ],
+   "bytes": 76085,
+   "sha256": "aadcae4e472421f0bfd98d822bf140b8b69a37e56fe838d65ffa8917543c3649",
+   "alpha": true,
+   "alphaShare": {
+    "transparent": 0.714,
+    "opaque": 0.281
+   },
+   "svg": {
+    "file": "avatars/svg/visitor-aning-shizhen-quarter.svg",
+    "viewBox": "0 0 240 500",
+    "bytes": 7188,
+    "sha256": "7bec3e9f726689b45040313bc0366830f45e6ac82f50d1c40246bec267ff6e24",
+    "vector": true
+   },
+   "kind": "avatar sticker (product SVG rasterised 4x, alpha)",
+   "storyboard": "P3, W4, C1, H1 (CUT-02 alt)",
+   "notes": "visitor 阿宁, look 失真 (preset 4; skin 0, neutral, pose listen from the rig seed 20261009, identical in every world of this pass and in the clips), quarter view, exported from the wardrobe stand; 960x2000, shared baseline"
+  }
+ },
+ "contactSheet": "contact-sheet.png",
+ "review": [
+  "review/P-06.qc.json",
+  "review/P-21.qc.json",
+  "review/avatars-lineup.png",
+  "logs/alpha_check.jsonl"
+ ],
+ "rebuild": [
+  "node tools/take-p2.mjs P-06",
+  "node tools/take-p3.mjs P-21",
+  "node tools/stills-phone.mjs",
+  "node tools/stills-unsure.mjs",
+  "node tools/avatars.mjs",
+  "node tools/desk-stills.mjs",
+  "python tools/alpha_check.py --margin 12 <bases>",
+  "python tools/qc_clip.py clips/P-06.mp4 review/P-06.qc.json",
+  "python tools/contact.py contact-sheet.png",
+  "python tools/manifest.py"
+ ]
+}

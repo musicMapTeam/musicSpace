@@ -1,0 +1,28 @@
+const s = await get('phone');
+const p = s.page;
+const out = {};
+const ed = p.locator('.corner-panel form[data-corner-edit]');
+await ed.locator('input[name=note]').fill('返场那首我在人海里，手都举酸了！');
+out.photo = await p.evaluate(() => { const sel = document.querySelector('.corner-panel form[data-corner-edit] select[name=photoId]'); const o = [...sel.options].find(o => o.value); if (!o) return null; sel.value = o.value; sel.dispatchEvent(new Event('input', { bubbles: true })); sel.dispatchEvent(new Event('change', { bubbles: true })); return o.text; });
+await sleep(500);
+out.noteAfterSelect = await p.evaluate(() => document.querySelector('.corner-panel form[data-corner-edit] input[name=note]')?.value);
+out.selAfter = await p.evaluate(() => document.querySelector('.corner-panel form[data-corner-edit] select[name=photoId]')?.value);
+await ed.locator('input[name=share]').check();
+await ed.locator('button[type=submit]').click();
+await sleep(1500);
+out.afterSaveMine = (await H.text(p, '.corner-panel')).slice(0, 900);
+const cf = p.locator('.corner-panel form[data-corner-confirm]');
+await cf.locator('input[name=confirm]').check();
+await cf.locator('button[type=submit]').click();
+await p.waitForFunction(() => /你已确认 · 对方已确认/.test(document.querySelector('.corner-panel')?.innerText || ''), null, { timeout: 30000 });
+await sleep(800);
+out.forms1 = await p.evaluate(() => [...document.querySelectorAll('.corner-panel form')].map(f => [...f.attributes].map(a => a.name).join(' ')));
+const sv = p.locator('.corner-panel form[data-corner-save]');
+await sv.locator('input[name=save]').check();
+await sv.locator('button[type=submit]').click();
+const seen = [];
+const t0 = Date.now();
+for (let i = 0; i < 20; i++) { const f = await p.evaluate(() => [...document.querySelectorAll('.corner-panel form')].map(f => [...f.attributes].map(a => a.name).join(' ')).join(',') + ' | ' + (document.querySelector('.corner-panel [role=status]')?.textContent || '')); if (!seen.length || seen[seen.length - 1].f !== f) seen.push({ ms: Date.now() - t0, f }); await sleep(250); }
+out.seen = seen;
+await shot(p, 'c4-after-save');
+return out;

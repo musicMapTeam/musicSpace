@@ -1,0 +1,43 @@
+▶ toon renderer: geometry and lifecycle only, with a mocked GPU surface
+  ✔ outfit 0, pose sway: finite geometry, projected feet, portraits, export (30.607503ms)
+  ✔ outfit 0, pose wave: finite geometry, projected feet, portraits, export (14.706583ms)
+  ✔ outfit 0, pose sing: finite geometry, projected feet, portraits, export (8.571262ms)
+  ✔ outfit 0, pose listen: finite geometry, projected feet, portraits, export (8.017368ms)
+  ✔ outfit 1, pose sway: finite geometry, projected feet, portraits, export (22.421696ms)
+  ✔ outfit 1, pose wave: finite geometry, projected feet, portraits, export (10.130545ms)
+  ✔ outfit 1, pose sing: finite geometry, projected feet, portraits, export (9.408974ms)
+  ✔ outfit 1, pose listen: finite geometry, projected feet, portraits, export (7.49506ms)
+  ✔ outfit 2, pose sway: finite geometry, projected feet, portraits, export (17.293627ms)
+  ✔ outfit 2, pose wave: finite geometry, projected feet, portraits, export (8.974896ms)
+  ✔ outfit 2, pose sing: finite geometry, projected feet, portraits, export (9.796574ms)
+  ✔ outfit 2, pose listen: finite geometry, projected feet, portraits, export (7.969869ms)
+  ✔ outfit 3, pose sway: finite geometry, projected feet, portraits, export (15.57556ms)
+  ✔ outfit 3, pose wave: finite geometry, projected feet, portraits, export (7.540497ms)
+  ✔ outfit 3, pose sing: finite geometry, projected feet, portraits, export (6.383586ms)
+  ✔ outfit 3, pose listen: finite geometry, projected feet, portraits, export (8.758137ms)
+  ✔ outfit 4, pose sway: finite geometry, projected feet, portraits, export (16.933037ms)
+  ✔ outfit 4, pose wave: finite geometry, projected feet, portraits, export (8.509101ms)
+  ✔ outfit 4, pose sing: finite geometry, projected feet, portraits, export (7.640343ms)
+  ✔ outfit 4, pose listen: finite geometry, projected feet, portraits, export (9.518214ms)
+  ✔ outfit 5, pose sway: finite geometry, projected feet, portraits, export (15.403218ms)
+  ✔ outfit 5, pose wave: finite geometry, projected feet, portraits, export (8.016988ms)
+  ✔ outfit 5, pose sing: finite geometry, projected feet, portraits, export (6.174268ms)
+  ✔ outfit 5, pose listen: finite geometry, projected feet, portraits, export (6.51573ms)
+  ✔ headphones and accessory-free variants keep every hair geometry finite (69.253914ms)
+  ✔ capture preserves aspect ratio and rejects a recrop (0.531852ms)
+  ✔ resize and transform changes preserve exact projected feet (3.70673ms)
+  ✔ paused and reduced-motion states settle; playing schedules movement (5.68595ms)
+  ✔ photo waits for decoding, ignores a stale image, and composites the current cover crop (1.572993ms)
+  ✔ photo failures and unsupported URLs do not export an incomplete image (0.954694ms)
+  ✔ dispose is idempotent, releases observed geometry/listeners, and ignores a late image (0.969927ms)
+✔ toon renderer: geometry and lifecycle only, with a mocked GPU surface (420.251628ms)
+ℹ Structure only: 2763 finite geometries, 444296 vertices, 568 mock render calls; no GPU or pixel validation
+ℹ Existing vendor r186 flatShading warnings observed: 55
+ℹ tests 32
+ℹ suites 0
+ℹ pass 32
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 556.382527

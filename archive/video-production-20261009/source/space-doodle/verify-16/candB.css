@@ -1,0 +1,8 @@
+/* room (···) and 我的现场 (rooms): navigation is paper stickers, like the wall/social sheets; the only ink button left
+   in the room sheet is the form submit 「更新参与方式」 (no data-open), and 我的现场 is a pure menu */
+.panel:is([data-kind=room],[data-kind=rooms]) #panel-body button.primary[data-open]{color:var(--ds-ink);background:var(--ds-paper-card);
+  border-width:var(--ds-line-thin);box-shadow:4px 4px 0 var(--ds-mint);font-size:16px;min-height:46px;padding:9px 14px;white-space:nowrap}
+.panel:is([data-kind=room],[data-kind=rooms]) #panel-body button.primary[data-open]:active{box-shadow:2px 2px 0 var(--ds-mint)}
+/* the 3-up row: natural widths, wrap whole buttons (2+1 on a phone), never break a label mid-word */
+.panel[data-kind=room] #panel-body>.row{display:flex;flex-wrap:wrap;gap:12px 10px;margin-top:16px}
+.panel[data-kind=room] #panel-body>.row>.primary{flex:1 1 auto;width:auto;margin-top:0}

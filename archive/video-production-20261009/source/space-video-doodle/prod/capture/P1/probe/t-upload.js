@@ -1,0 +1,22 @@
+const S = await fresh();
+const p = S.page;
+await sleep(1500);
+await p.locator('#join').click();
+await p.waitForSelector('form[data-form="demo-entry"] button.primary:not([disabled])', { timeout: 30000 });
+await sleep(600);
+await p.locator('form[data-form="demo-entry"] input[name=consent]').check();
+await p.locator('form[data-form="demo-entry"] button[type=submit]').click();
+await p.waitForFunction(() => document.querySelector('#panel')?.hidden && document.querySelector('.demo-tour:not([hidden])'), null, { timeout: 30000 });
+await sleep(1000);
+await S.freeze();
+// step ~10 s of virtual time without capture (cast timers), while real time passes for the model download
+const tA = Date.now();
+await S.step(600);
+const stepMs = Date.now() - tA;
+S.frameProbe = () => { const pn = document.querySelector('#panel'); const ai = document.querySelector('.moment-ai-tag'); const f = document.querySelector('form[data-form="upload"]'); const tr = pn ? getComputedStyle(pn).transform : ''; return [pn && !pn.hidden ? 'O' : '-', f ? 'F' : '', Math.round(pn?.scrollTop || 0), ai ? ai.textContent.trim().replace(/\s+/g, '') : '', /AI 在本机判断视角/.test(pn?.innerText || '') ? 'T' : '', tr.slice(0, 40), [...document.querySelectorAll('[data-moment-viewpoint]')].map(b => b.getAttribute('aria-pressed') === 'true' ? b.dataset.momentViewpoint : '').join('')].join(' '); };
+S.startRecording('/tmp/space-video-doodle/prod/capture/P1/probe/t-upload.mp4');
+await S.hold(0.5);
+await S.click(p.locator('[data-tour-action="sample:sample-crowd"]'), { move: 0, pre: 0.1, post: 0 });
+await S.hold(2.0);
+const r = await S.stopRecording();
+return { stepMs, frames: r.frames, ms: r.msPerFrame, events: r.events, probe: S.probeLog.map((x, i) => i + ':' + x).join('\n') };

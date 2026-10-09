@@ -1,0 +1,14 @@
+import { launch, newPage, sleep, ensureDir } from './lib.mjs';
+import { hostCreatesRoom, guestJoins, uploadPhoto } from './flows.mjs';
+const browser = await launch();
+const A = await newPage(browser, { width: 390, height: 844, dpr: 3 });
+await hostCreatesRoom(A.page, { name: '阿遥', title: '返场夜', venue: '月台 Livehouse' });
+const url = A.page.url();
+await A.page.screenshot({ path: '/tmp/space-video-prep/stills/phone-A-room.png' });
+await uploadPhoto(A.page, '/tmp/space-video-prep/repo-rc4/web/assets/stage-scene.png', { visibility: 'room' });
+await A.page.screenshot({ path: '/tmp/space-video-prep/stills/phone-A-wall.png' });
+const B = await newPage(browser, { width: 390, height: 844, dpr: 3 });
+await guestJoins(B.page, new URL(url).search, { name: 'Lin' });
+await uploadPhoto(B.page, '/tmp/space-video-prep/repo-rc4/web/assets/crowd-scene.png', { visibility: 'room' });
+await B.page.screenshot({ path: '/tmp/space-video-prep/stills/phone-B-wall.png' });
+await browser.close();

@@ -1,0 +1,235 @@
+{
+  "kind": "phone",
+  "base": "http://127.0.0.1:5471/musicSpace/",
+  "steps": [
+    {
+      "name": "boot ready",
+      "ok": true,
+      "detail": "__SPACE_BOOT__=ready, visibility=visible",
+      "t": "1.9"
+    },
+    {
+      "name": "lobby button",
+      "ok": true,
+      "detail": "#join reads 「进入现场」",
+      "t": "3.2"
+    },
+    {
+      "name": "entry consent",
+      "ok": true,
+      "detail": "checked by tapping the label: true",
+      "t": "4.0"
+    },
+    {
+      "name": "entry submit",
+      "ok": true,
+      "detail": "submit reads 「进入现场」",
+      "t": "4.1"
+    },
+    {
+      "name": "tour card",
+      "ok": true,
+      "detail": "title 「第一次来 1/4 · 放一张今晚的照片」",
+      "t": "5.7"
+    },
+    {
+      "name": "tour sample button",
+      "ok": true,
+      "detail": "button reads 「人海那张」",
+      "t": "6.3"
+    },
+    {
+      "name": "upload AI settled",
+      "ok": true,
+      "detail": "data-ai-key=sure:crowd; line 「AI 判断：人海」",
+      "t": "7.0"
+    },
+    {
+      "name": "upload save button",
+      "ok": true,
+      "detail": "submit reads 「保存这张照片」 (a viewpoint was preselected)",
+      "t": "8.2"
+    },
+    {
+      "name": "wall after save",
+      "ok": true,
+      "detail": "panel after save: wall",
+      "t": "8.3"
+    },
+    {
+      "name": "wall offer button",
+      "ok": true,
+      "detail": "button reads 「和 TA 交换这个视角」",
+      "t": "9.6"
+    },
+    {
+      "name": "exchange send button",
+      "ok": true,
+      "detail": "button reads 「把这两张交给对方确认 ↗」",
+      "t": "11.1"
+    },
+    {
+      "name": "exchange accepted",
+      "ok": true,
+      "detail": "status 「交换已接受」 after 3.4 s",
+      "t": "14.5"
+    },
+    {
+      "name": "wave button",
+      "ok": true,
+      "detail": "button reads 「向 北屿 招个手」",
+      "t": "21.0"
+    },
+    {
+      "name": "wave accepted",
+      "ok": true,
+      "detail": "× | 你们已经认识了 | 北屿 | 邀请共同创作 | 和 北屿 私聊 ↗ | 你们已经是朋友了。 | 移除朋友 | 向本场房主反馈 | 屏蔽这个人",
+      "t": "25.8"
+    },
+    {
+      "name": "welcome lines",
+      "ok": true,
+      "detail": "嗨，欢迎来到「回声现场」！ | 22:55 | 你拍到的是哪一面？ | 22:55",
+      "t": "27.1"
+    },
+    {
+      "name": "chat reply",
+      "ok": true,
+      "detail": "嗨，欢迎来到「回声现场」！ | 22:55 | 你拍到的是哪一面？ | 22:55 | 我在二楼拍到了人海，你呢？ | 22:56 · 已发送 | 今晚的返场太好听了。 | 22:56",
+      "t": "32.4"
+    },
+    {
+      "name": "done",
+      "ok": true,
+      "detail": "0 /api requests, 0 third-party, 0 console errors, 0 page errors",
+      "t": "50.7"
+    }
+  ],
+  "api": [],
+  "thirdParty": [],
+  "failedResponses": [
+    "FAILED net::ERR_ABORTED http://127.0.0.1:5471/musicSpace/ai/ort/ort-wasm-simd-threaded.wasm"
+  ],
+  "consoleErrors": [],
+  "consoleWarnings": [
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+    "THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial."
+  ],
+  "pageErrors": [],
+  "programmaticClicks": [],
+  "texts": {
+    "lobby": "Music\nSpace\n···\nMUSIC SPACE / LIVEHOUSE\n进到同一个现场\n这一晚，从这里开始\n同一刻，另一面。\n\n同一晚，你拍了舞台，TA 拍了人海。AI 在本机给你一个视角建议，照片墙帮你找到同一刻的另一面，双方同意就交换。\n\n进入现场\n全景\n同场的人\n照片墙\n我的空间\n关于 Music Space\n@aria-label: 房间信息\n@aria-label: 三维 Livehouse 场景\n@aria-label: 进入现场\n@aria-label: 场景内可访问的地点\n@aria-label: 场景机位\n@aria-label: 我的音乐空间",
+    "entry": "×\n月台 Livehouse · 回声现场\n带上小人，进入现场\n\n进去后先放一张今晚的照片，看看你拍到的是哪一面。\n\n大家怎么叫你\n\n入场后随时能换装。\n\n现在换个造型 ↗\n这一场，我想怎样参与\n愿意打招呼\n别人可以向我招手\n安静参与\n照片照常分享，不接新招呼\n我愿意向本场成员展示我的昵称和小人\n进入现场\n\n关于 Music Space\n我是 Livehouse / 主办方，开个房\n@aria-label: 场景操作\n@aria-label: 关闭操作面板\n@aria-label: Music Space 的插画分身",
+    "entry-more": "×\n月台 Livehouse · 回声现场\n带上小人，进入现场\n\n进去后先放一张今晚的照片，看看你拍到的是哪一面。\n\n大家怎么叫你\n\n入场后随时能换装。\n\n现在换个造型 ↗\n这一场，我想怎样参与\n愿意打招呼\n别人可以向我招手\n安静参与\n照片照常分享，不接新招呼\n我愿意向本场成员展示我的昵称和小人\n进入现场\n\n关于 Music Space\n我是 Livehouse / 主办方，开个房\n\n为每一场演出开一个房间；散场后，乐迷留在你的乐迷社群里。\n\n开一个房间\n@aria-label: 场景操作\n@aria-label: 关闭操作面板\n@aria-label: Music Space 的插画分身",
+    "room-tour": "Music\nSpace\n音乐探索\n♡\n我的小人\n···\n月台 Livehouse\n回声现场\n4 位已加入 · 正在进行\n阿遥 · 可招呼\n小满 · 可招呼\n北屿 · 可招呼\n访客5276 · 我\n\n第一次来 1/4\n·\n放一张今晚的照片\n\n收起\n人海那张\n舞台那张\n用我自己的照片\n跳过路线\n全景\n同场的人\n照片墙\n我的空间\n关于 Music Space\n@aria-label: 音乐探索\n@aria-label: 招呼、朋友和私聊\n@aria-label: 我的小人 · 换装\n@aria-label: 房间信息\n@aria-label: 三维 Livehouse 场景\n@aria-label: 查看场次详情：回声现场\n@aria-label: 场景内可访问的地点\n@aria-label: 走近阿遥 · 可招呼\n@title: 阿遥 · 可招呼\n@aria-label: 走近小满 · 可招呼\n@title: 小满 · 可招呼\n@aria-label: 走近北屿 · 可招呼\n@title: 北屿 · 可招呼\n@aria-label: 走近访客5276 · 我\n@title: 访客5276 · 我\n@aria-label: 第一次来\n@aria-label: 收起路线\n@aria-label: 场景机位\n@aria-label: 我的音乐空间",
+    "render-status": "4 位同场",
+    "upload": "×\n留一个现场瞬间\n这一张，由你决定给谁看。\n用我自己的照片\n\n或者挑一张今晚的\n\n人海那张\n舞台那张\n\n拍摄于 21:48\n·\n来自照片自带的信息\n\n修改时间\n我拍的这一面\n舞台\n灯光下的那一面\n人海\n一起举手的那一面\n身边\n陪你听歌的那一面\n细节\n只有你留意的那一面\n\nAI 判断：人海\n\n配对时，用它找另一面。AI 在本机判断，照片不上传，你说了算。\n\n可见范围\n仅自己保存\n分享给本场成员\n\n照片会缩小，并去掉位置信息。\n\n保存这张照片\n@aria-label: 场景操作\n@aria-label: 关闭操作面板\n@alt: 待保存的照片\n@title: AI 在本机判断，照片不上传",
+    "wall": "×\n同一场 / 不同视角\n这一晚，大家看到了什么？\n21:47\n·\n同一刻\n·\n3 个视角：舞台\n·\n人海\n·\n细节\n\n3 分钟内拍下\n\n同一刻的另一面\n\n同一刻 · 21:47，相差不到 1 分钟；你拍人海，TA 拍舞台\n\n和 TA 交换这个视角\n阿遥\n照片墙：本场成员可见\n\n拍摄于 21:47\n·\n视角：舞台\n·\n作者选择\n\n小满\n照片墙：本场成员可见\n\n拍摄于 21:48\n·\n视角：人海\n·\n作者选择\n\n同一刻\n访客5276\n照片墙：本场成员可见\n\n拍摄于 21:48\n·\n视角：人海\n·\nAI 建议，未改动\n\n北屿\n照片墙：本场成员可见\n\n拍摄于 21:49\n·\n视角：细节\n·\n作者选择\n\n同一刻\n22:21\n小满\n照片墙：本场成员可见\n\n拍摄于 22:21\n·\n视角：身边\n·\n作者选择\n\n刷新照片\n放上我的一张\n照片交换\n@aria-label: 场景操作\n@aria-label: 关闭操作面板\n@aria-label: 和 TA 交换这个视角（阿遥 的照片）\n@alt: 同场观众拍摄的现场照片\n@alt: 同场观众拍摄的现场照片\n@alt: 我拍摄的现场照片\n@alt: 同场观众拍摄的现场照片\n@alt: 同场观众拍摄的现场照片",
+    "exchange-compose": "←\n同一晚 / 另一面\n交换一个视角\n×\n\n用我拍下的，换 阿遥 看到的。\n\n我提供的\n我选中的这一张\n阿遥的\n照片墙上的这一张\n我提供哪一张\n选择自己拍的照片\n我的第 1 张 · 已上墙 · 同一刻的另一面（推荐）\n我的第 1 张 · 已上墙\n同一刻的另一面（推荐）\n\n同一刻 · 21:47，相差不到 1 分钟；你拍人海，TA 拍舞台\n\n发出后，TA 先看到小图；TA 接受后，你们互看原图。\n\n我同意先给小图，TA 接受后再给原图\n把这两张交给对方确认 ↗\n@aria-label: 照片交换\n@aria-label: 返回交换列表\n@aria-label: 关闭照片交换\n@alt: 我选择提供的现场照片\n@alt: 希望交换的对方现场照片",
+    "exchange-pending": "←\n同一晚 / 另一面\n交换一个视角\n×\n\n等待对方回应\n\n和 阿遥 的两张照片\n我提供的\n这次确定的一张\n阿遥提供的\n这次确定的一张\n\n有效至 10/8 22:55\n\n等 TA 接受后，就能互看原图。\n\n撤回这个申请刷新\n@aria-label: 照片交换\n@aria-label: 返回交换列表\n@aria-label: 关闭照片交换\n@alt: 我提供的照片\n@alt: 阿遥提供的照片",
+    "exchange-accepted": "←\n同一晚 / 另一面\n交换一个视角\n×\n\n交换已接受\n\n和 阿遥 的两张照片\n我提供的\n这次确定的一张\n阿遥提供的\n这次确定的一张\n\n散场后也能在「照片交换」里看。\n\n撤销这次交换刷新\n@aria-label: 照片交换\n@aria-label: 返回交换列表\n@aria-label: 关闭照片交换\n@alt: 我提供的照片\n@alt: 阿遥提供的照片",
+    "room-after-exchange": "Music\nSpace\n音乐探索\n♡\n我的小人\n···\n月台 Livehouse\n回声现场\n5 位已加入 · 正在进行\n阿遥 · 可招呼\n小满 · 可招呼\n北屿 · 可招呼\n访客5276 · 我\n\n第一次来 4/4\n·\n招个手 / 私聊 / 回看这一晚\n\n收起\n看看同场的人\n回看这一晚\n跳过路线\n全景\n同场的人\n照片墙\n我的空间\n关于 Music Space\n@aria-label: 音乐探索\n@aria-label: 招呼、朋友和私聊\n@aria-label: 我的小人 · 换装\n@aria-label: 房间信息\n@aria-label: 三维 Livehouse 场景\n@aria-label: 查看场次详情：回声现场\n@aria-label: 场景内可访问的地点\n@aria-label: 走近阿遥 · 可招呼\n@title: 阿遥 · 可招呼\n@aria-label: 走近小满 · 可招呼\n@title: 小满 · 可招呼\n@aria-label: 走近北屿 · 可招呼\n@title: 北屿 · 可招呼\n@aria-label: 走近访客5276 · 我\n@title: 访客5276 · 我\n@aria-label: 第一次来\n@aria-label: 收起路线\n@aria-label: 场景机位\n@aria-label: 我的音乐空间",
+    "render-status-after": "5 位同场",
+    "people": "×\n同一晚，同一场\n看看同场的人\n阿遥\n愿意打招呼 · 看看 TA 的视角 →\n小满\n愿意打招呼 · 看看 TA 的视角 →\n北屿\n愿意打招呼 · 看看 TA 的视角 →\n林间\n安静参与 · 看看 TA 的视角 →\n@aria-label: 场景操作\n@aria-label: 关闭操作面板",
+    "people-list": "[{\"id\":\"77712919-0831-4c44-842e-023807366bb7\",\"text\":\"阿遥 愿意打招呼 · 看看 TA 的视角 →\"},{\"id\":\"a944d0cc-563d-4131-aa95-53744a67afb1\",\"text\":\"小满 愿意打招呼 · 看看 TA 的视角 →\"},{\"id\":\"6cb00100-eb7c-4b01-b53e-17c1df0e831c\",\"text\":\"北屿 愿意打招呼 · 看看 TA 的视角 →\"},{\"id\":\"66110c38-5596-4d21-a37e-7e6988afa31b\",\"text\":\"林间 安静参与 · 看看 TA 的视角 →\"}]",
+    "person": "×\n同场的人\n北屿\n\n先招个手，TA 接受了就是朋友。\n\n向 北屿 招个手\n向本场房主反馈\n屏蔽这个人\n@aria-label: 场景操作\n@aria-label: 关闭操作面板",
+    "person-waved": "×\n同场的人\n北屿\n北屿\n已招手，等待对方回应\n撤回招呼\n屏蔽\n向本场房主反馈\n屏蔽这个人\n@aria-label: 场景操作\n@aria-label: 关闭操作面板",
+    "person-friend": "×\n你们已经认识了\n北屿\n邀请共同创作\n和 北屿 私聊 ↗\n\n你们已经是朋友了。\n\n移除朋友\n向本场房主反馈\n屏蔽这个人\n@aria-label: 场景操作\n@aria-label: 关闭操作面板",
+    "chat-welcome": "←\nONE TO ONE\n北屿\n×\n你们已经是朋友了。\n\n嗨，欢迎来到「回声现场」！\n\n22:55\n\n你拍到的是哪一面？\n\n22:55\n留一句话\n发送 ↗\n回看这一晚\n@aria-label: 私聊\n@aria-label: 返回对话列表\n@aria-label: 关闭私聊\n@aria-label: 消息记录\n@placeholder: 比如，刚刚哪首歌最喜欢？",
+    "chat-reply": "←\nONE TO ONE\n北屿\n×\n你们已经是朋友了。\n\n嗨，欢迎来到「回声现场」！\n\n22:55\n\n你拍到的是哪一面？\n\n22:55\n\n我在二楼拍到了人海，你呢？\n\n22:56 · 已发送\n\n今晚的返场太好听了。\n\n22:56\n留一句话\n发送 ↗\n回看这一晚\n@aria-label: 私聊\n@aria-label: 返回对话列表\n@aria-label: 关闭私聊\n@aria-label: 消息记录\n@placeholder: 比如，刚刚哪首歌最喜欢？",
+    "about": "×\n同一刻，另一面\n关于 Music Space\n\n同一晚，你拍了舞台，TA 拍了人海。Music Space 让这两面在同一个房间里相遇。\n\n这是什么\n\n同场的人带着手绘小人，走进同一个三维 Livehouse 房间。放一张今晚的照片，照片墙会把同一刻、拍到另一面的照片排在一起；双方都同意，就能交换。还能向同场的人招手、私聊，一起玩专辑世界杯。散场后，回顾和纪念卡都留着。\n\n给 Livehouse\n\n为每一场演出开一个房间，乐迷带着小人入场。散场后，乐迷留在你的乐迷社群里，下一场的预告直接发到这里。\n\nAI\n\n放照片时，AI 在你的设备上建议它拍的是舞台、人海、身边还是细节；没把握就说「不确定」，由你来选。\n\n第一次进入现场后，模型（约 10 MB）会在后台下载；开了省流量，就等你放照片时再下载。\n\n隐私\n\n不用真名，也不用手机号。照片给谁看由你决定，放进来时会缩小、去掉位置信息。交换照片、成为朋友，都要双方同意。\n\n在线版\n\n在线版里的场地、观众和照片是演示内容，观众会自动回复。\n\n重新开始\n版本\n\n版本 0.22.0-rc.1 · 提交 8fa52f0 · 构建于 2026-10-07 14:49 UTC · 渠道 pages\n@aria-label: 场景操作\n@aria-label: 关闭操作面板\n@data-confirm: 重新开始会清除你的昵称、小人、照片和交换，确定吗？",
+    "nav-my-space": "←\nMusic\nSpace\n音乐探索\n♡\n我的小人\n···\n北屿 · 近景\n认识一下\n全景\n同场的人\n照片墙\n我的空间\n关于 Music Space\nMY SPACE / 长期留在这里\n×\n我的小人\n访客5276\n\n现场是认识的起点，散场后仍有地方回来。\n\n装扮我的小人\n我的乐迷社群\n我的现场与回顾\n好友与新招呼\n私聊\n共同记忆\n身份备份与恢复\n我的乐迷社群\n\n还没有加入乐迷社群。\n\n加入或创建社群\n我的现场\n回声现场\n进行中 · 已加入 · 回顾\n进场或开个房全部现场和照片\n我的音乐朋友\n北屿\n朋友 · 私聊\n全部好友与招呼\n刷新我的空间\n@aria-label: 返回全景\n@aria-label: 音乐探索\n@aria-label: 招呼、朋友和私聊\n@aria-label: 我的小人 · 换装\n@aria-label: 房间信息\n@aria-label: 三维 Livehouse 场景\n@aria-label: 查看场次详情：回声现场\n@aria-label: 场景内可访问的地点\n@title: 返回全景看看大家\n@aria-label: 场景机位\n@aria-label: 我的音乐空间\n@aria-label: 我的音乐空间\n@aria-label: 关闭我的空间\n@aria-label: Music Space 的插画分身\n@aria-label: 我的空间入口",
+    "nav-people-view": "←\nMusic\nSpace\n音乐探索\n♡\n我的小人\n···\n全景\n同场的人\n照片墙\n我的空间\n关于 Music Space\n×\n同一晚，同一场\n看看同场的人\n阿遥\n愿意打招呼 · 看看 TA 的视角 →\n小满\n愿意打招呼 · 看看 TA 的视角 →\n北屿\n愿意打招呼 · 看看 TA 的视角 →\n林间\n安静参与 · 看看 TA 的视角 →\n@aria-label: 返回全景\n@aria-label: 音乐探索\n@aria-label: 招呼、朋友和私聊\n@aria-label: 我的小人 · 换装\n@aria-label: 房间信息\n@aria-label: 三维 Livehouse 场景\n@aria-label: 查看场次详情：回声现场\n@aria-label: 场景内可访问的地点\n@title: 返回全景看看大家\n@aria-label: 场景机位\n@aria-label: 我的音乐空间\n@aria-label: 场景操作\n@aria-label: 关闭操作面板",
+    "nav-photos-view": "←\nMusic\nSpace\n音乐探索\n♡\n我的小人\n···\n同一场，不同视角\n看照片 · 5\n放一张\n全景\n同场的人\n照片墙\n我的空间\n关于 Music Space\n@aria-label: 返回全景\n@aria-label: 音乐探索\n@aria-label: 招呼、朋友和私聊\n@aria-label: 我的小人 · 换装\n@aria-label: 房间信息\n@aria-label: 三维 Livehouse 场景\n@aria-label: 查看场次详情：回声现场\n@aria-label: 场景内可访问的地点\n@title: 点照片看大图\n@aria-label: 场景机位\n@aria-label: 我的音乐空间",
+    "nav-overview": "Music\nSpace\n音乐探索\n♡\n我的小人\n···\n月台 Livehouse\n回声现场\n5 位已加入 · 正在进行\n阿遥 · 可招呼\n小满 · 可招呼\n北屿 · 可招呼\n访客5276 · 我\n\n第一次来 4/4\n·\n路线走完了\n\n收起\n\n更多可以逛：我的空间、乐迷社群、专辑世界杯、一起玩、音乐探索。\n\n知道了，收起路线\n全景\n同场的人\n照片墙\n我的空间\n关于 Music Space\n@aria-label: 音乐探索\n@aria-label: 招呼、朋友和私聊\n@aria-label: 我的小人 · 换装\n@aria-label: 房间信息\n@aria-label: 三维 Livehouse 场景\n@aria-label: 查看场次详情：回声现场\n@aria-label: 场景内可访问的地点\n@aria-label: 走近阿遥 · 可招呼\n@title: 阿遥 · 可招呼\n@aria-label: 走近小满 · 可招呼\n@title: 小满 · 可招呼\n@aria-label: 走近北屿 · 可招呼\n@title: 北屿 · 可招呼\n@aria-label: 走近访客5276 · 我\n@title: 访客5276 · 我\n@aria-label: 第一次来\n@aria-label: 收起路线\n@aria-label: 场景机位\n@aria-label: 我的音乐空间",
+    "nav-music-explore": "跳到内容\nMusic Map\n樱下放映 · 夜场唱片店\n← 返回现场\n费玉清\n邓紫棋\n寻声 · 真实合作精选\n费玉清→邓紫棋，隔着几首歌？\n\n第 0 步\n认识 2/29\n翻开 0/37\n\n?\n提示 · 还隔几首\n换一组\n目录\n费玉清\n01\n《千里之外》\n和\n?\n合唱\n翻开\n怎么玩\n翻开一首，才知道 TA 和谁合唱；沿翻开的歌「前往」，才算走一步。\n小院\n唱片店\n我的发现\n@aria-label: Music Map · 樱下放映 · 夜场唱片店，回到小院\n@aria-label: 返回 Music Space\n@aria-label: 关于 Music Map\n@aria-label: 夜晚的樱下音乐小院，串灯亮着，唱片店开着门。可通过物件标记或下方导航前往小院、唱片店与我的发现。\n@aria-label: 查看 费玉清，1 首收录，你在这里\n@aria-label: 终点：邓紫棋\n@aria-label: 寻声：费玉清到邓紫棋\n@aria-label: 费玉清到邓紫棋，隔着几首歌？\n@aria-label: 寻声工具\n@aria-label: 提示第一级：还隔几首\n@aria-label: 费玉清的合作手牌\n@aria-label: 费玉清的 1 首合作\n@aria-label: 翻开《千里之外》，看看费玉清和谁合唱\n@aria-label: 退一步：返回上一位并撤销一步\n@aria-label: 回到起点\n@aria-label: 手机导航",
+    "nav-social-inbox": "(not visible)",
+    "nav-my-look": "(not visible)",
+    "nav-room-info": "(not visible)",
+    "nav-room-panel": "(not visible)"
+  },
+  "visibleNav": [
+    "back:←",
+    "music-map-entry:音乐探索",
+    "social-inbox:♡",
+    "my-look:我的小人",
+    "room-info:···",
+    "scene-details:查看场次详情：回声现场",
+    "person:认识一下",
+    "overview:全景",
+    "person:同场的人",
+    "photos:照片墙",
+    "my-space:我的空间",
+    "about:关于 Music Space"
+  ]
+}

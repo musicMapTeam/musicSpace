@@ -1,0 +1,14 @@
+{
+ "fonts": [],
+ "glyphs": [
+  "button>span [Doodle Marker] missing «↗» in «月台 Livehouse（虚构场地） · 进行中»"
+ ],
+ "colors": [
+  "div.entry-list>div.event-history-row borderBottom=rgb(210, 197, 214) (nearest deep d44)"
+ ],
+ "tiny": [],
+ "whiteOnMarker": [],
+ "clipped": [],
+ "blurShadow": [],
+ "renderStyle": "doodle"
+}

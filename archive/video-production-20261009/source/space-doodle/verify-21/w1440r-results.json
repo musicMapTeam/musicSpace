@@ -1,0 +1,720 @@
+{
+ "enter": {
+  "meTagHit": "presence",
+  "presence": [
+   940,
+   183,
+   1380,
+   764
+  ],
+  "presVisible": true,
+  "presenceClass": "presence demo-tour-open",
+  "presenceWidth": 440,
+  "tour": [
+   966,
+   207,
+   1354,
+   521
+  ],
+  "tourTitle": "示例路线 1/4 · 放一张你的照片",
+  "panelOpen": false,
+  "camView": "overview",
+  "camPos": [
+   -5.32,
+   4.31,
+   10.4
+  ],
+  "world": [
+   31,
+   91,
+   1401,
+   779
+  ],
+  "members": 4,
+  "tags": [
+   {
+    "label": "照片墙",
+    "rect": [
+     882,
+     258,
+     1010,
+     302
+    ],
+    "coveredPct": 54
+   },
+   {
+    "label": "阿遥·示例 · 可招呼",
+    "rect": [
+     414,
+     323,
+     542,
+     367
+    ],
+    "coveredPct": 0
+   },
+   {
+    "label": "小满·示例 · 可招呼",
+    "rect": [
+     605,
+     321,
+     733,
+     365
+    ],
+    "coveredPct": 0
+   },
+   {
+    "label": "北屿·示例 · 可招呼",
+    "rect": [
+     794,
+     323,
+     922,
+     367
+    ],
+    "coveredPct": 0
+   },
+   {
+    "label": "访客8083 · 我",
+    "rect": [
+     976,
+     320,
+     1104,
+     364
+    ],
+    "coveredPct": 100
+   }
+  ],
+  "avatars": [
+   {
+    "name": "阿遥·示例",
+    "me": false,
+    "box": [
+     451,
+     485,
+     518,
+     626
+    ],
+    "coveredPct": 0
+   },
+   {
+    "name": "小满·示例",
+    "me": false,
+    "box": [
+     637,
+     481,
+     697,
+     620
+    ],
+    "coveredPct": 0
+   },
+   {
+    "name": "北屿·示例",
+    "me": false,
+    "box": [
+     817,
+     485,
+     881,
+     626
+    ],
+    "coveredPct": 0
+   },
+   {
+    "name": "访客8083",
+    "me": true,
+    "box": [
+     991,
+     481,
+     1060,
+     620
+    ],
+    "coveredPct": 100
+   }
+  ]
+ },
+ "collapsed": {
+  "meTagHit": "tag",
+  "presence": [
+   966,
+   401,
+   1380,
+   764
+  ],
+  "presVisible": true,
+  "presenceClass": "presence",
+  "presenceWidth": 414,
+  "tour": [
+   992,
+   425,
+   1354,
+   521
+  ],
+  "tourTitle": "示例路线 1/4 · 放一张你的照片",
+  "panelOpen": false,
+  "camView": "overview",
+  "camPos": [
+   -5.32,
+   4.31,
+   10.4
+  ],
+  "world": [
+   31,
+   91,
+   1401,
+   779
+  ],
+  "members": 4,
+  "tags": [
+   {
+    "label": "照片墙",
+    "rect": [
+     882,
+     258,
+     1010,
+     302
+    ],
+    "coveredPct": 0
+   },
+   {
+    "label": "阿遥·示例 · 可招呼",
+    "rect": [
+     414,
+     323,
+     542,
+     367
+    ],
+    "coveredPct": 0
+   },
+   {
+    "label": "小满·示例 · 可招呼",
+    "rect": [
+     605,
+     321,
+     733,
+     365
+    ],
+    "coveredPct": 0
+   },
+   {
+    "label": "北屿·示例 · 可招呼",
+    "rect": [
+     794,
+     323,
+     922,
+     367
+    ],
+    "coveredPct": 0
+   },
+   {
+    "label": "访客8083 · 我",
+    "rect": [
+     976,
+     320,
+     1104,
+     364
+    ],
+    "coveredPct": 0
+   }
+  ],
+  "avatars": [
+   {
+    "name": "阿遥·示例",
+    "me": false,
+    "box": [
+     451,
+     485,
+     518,
+     626
+    ],
+    "coveredPct": 0
+   },
+   {
+    "name": "小满·示例",
+    "me": false,
+    "box": [
+     637,
+     481,
+     697,
+     620
+    ],
+    "coveredPct": 0
+   },
+   {
+    "name": "北屿·示例",
+    "me": false,
+    "box": [
+     817,
+     485,
+     881,
+     626
+    ],
+    "coveredPct": 0
+   },
+   {
+    "name": "访客8083",
+    "me": true,
+    "box": [
+     991,
+     481,
+     1060,
+     620
+    ],
+    "coveredPct": 100
+   }
+  ]
+ },
+ "step2": {
+  "meTagHit": "tag",
+  "presence": [
+   940,
+   216,
+   1380,
+   764
+  ],
+  "presVisible": true,
+  "presenceClass": "presence demo-tour-open",
+  "presenceWidth": 440,
+  "tour": [
+   966,
+   240,
+   1354,
+   521
+  ],
+  "tourTitle": "示例路线 3/4 · 发起交换",
+  "panelOpen": false,
+  "camView": "overview",
+  "camPos": [
+   -7.1,
+   5.03,
+   13.53
+  ],
+  "world": [
+   31,
+   91,
+   1401,
+   779
+  ],
+  "members": 5,
+  "tags": [
+   {
+    "label": "照片墙",
+    "rect": [
+     840,
+     226,
+     968,
+     270
+    ],
+    "coveredPct": 22
+   },
+   {
+    "label": "阿遥·示例 · 可招呼",
+    "rect": [
+     499,
+     341,
+     627,
+     385
+    ],
+    "coveredPct": 0
+   },
+   {
+    "label": "小满·示例 · 可招呼",
+    "rect": [
+     594,
+     291,
+     722,
+     335
+    ],
+    "coveredPct": 0
+   },
+   {
+    "label": "北屿·示例 · 可招呼",
+    "rect": [
+     687,
+     341,
+     815,
+     385
+    ],
+    "coveredPct": 0
+   },
+   {
+    "label": "访客8083 · 我",
+    "rect": [
+     777,
+     291,
+     905,
+     335
+    ],
+    "coveredPct": 0
+   },
+   {
+    "label": "林间·示例 · 安静",
+    "rect": [
+     873,
+     341,
+     1001,
+     385
+    ],
+    "coveredPct": 48
+   }
+  ],
+  "avatars": [
+   {
+    "name": "阿遥·示例",
+    "me": false,
+    "box": [
+     542,
+     472,
+     589,
+     577
+    ],
+    "coveredPct": 0
+   },
+   {
+    "name": "小满·示例",
+    "me": false,
+    "box": [
+     635,
+     469,
+     679,
+     572
+    ],
+    "coveredPct": 0
+   },
+   {
+    "name": "北屿·示例",
+    "me": false,
+    "box": [
+     725,
+     472,
+     769,
+     577
+    ],
+    "coveredPct": 0
+   },
+   {
+    "name": "访客8083",
+    "me": true,
+    "box": [
+     813,
+     469,
+     859,
+     572
+    ],
+    "coveredPct": 0
+   },
+   {
+    "name": "林间·示例",
+    "me": false,
+    "box": [
+     904,
+     472,
+     953,
+     577
+    ],
+    "coveredPct": 26
+   }
+  ]
+ },
+ "step4": {
+  "meTagHit": "tag",
+  "presence": [
+   940,
+   160,
+   1380,
+   764
+  ],
+  "presVisible": true,
+  "presenceClass": "presence demo-tour-open",
+  "presenceWidth": 440,
+  "tour": [
+   966,
+   184,
+   1354,
+   521
+  ],
+  "tourTitle": "示例路线 4/4 · 招个手 / 私聊 / 回看这一晚",
+  "panelOpen": false,
+  "camView": "overview",
+  "camPos": [
+   -7.1,
+   5.03,
+   13.53
+  ],
+  "world": [
+   31,
+   91,
+   1401,
+   779
+  ],
+  "members": 5,
+  "tags": [
+   {
+    "label": "照片墙",
+    "rect": [
+     840,
+     226,
+     968,
+     270
+    ],
+    "coveredPct": 22
+   },
+   {
+    "label": "阿遥·示例 · 可招呼",
+    "rect": [
+     499,
+     341,
+     627,
+     385
+    ],
+    "coveredPct": 0
+   },
+   {
+    "label": "小满·示例 · 可招呼",
+    "rect": [
+     594,
+     291,
+     722,
+     335
+    ],
+    "coveredPct": 0
+   },
+   {
+    "label": "北屿·示例 · 可招呼",
+    "rect": [
+     687,
+     341,
+     815,
+     385
+    ],
+    "coveredPct": 0
+   },
+   {
+    "label": "访客8083 · 我",
+    "rect": [
+     777,
+     291,
+     905,
+     335
+    ],
+    "coveredPct": 0
+   },
+   {
+    "label": "林间·示例 · 安静",
+    "rect": [
+     873,
+     341,
+     1001,
+     385
+    ],
+    "coveredPct": 48
+   }
+  ],
+  "avatars": [
+   {
+    "name": "阿遥·示例",
+    "me": false,
+    "box": [
+     542,
+     472,
+     589,
+     577
+    ],
+    "coveredPct": 0
+   },
+   {
+    "name": "小满·示例",
+    "me": false,
+    "box": [
+     635,
+     469,
+     679,
+     572
+    ],
+    "coveredPct": 0
+   },
+   {
+    "name": "北屿·示例",
+    "me": false,
+    "box": [
+     725,
+     472,
+     769,
+     577
+    ],
+    "coveredPct": 0
+   },
+   {
+    "name": "访客8083",
+    "me": true,
+    "box": [
+     813,
+     469,
+     859,
+     572
+    ],
+    "coveredPct": 0
+   },
+   {
+    "name": "林间·示例",
+    "me": false,
+    "box": [
+     904,
+     472,
+     953,
+     577
+    ],
+    "coveredPct": 26
+   }
+  ]
+ },
+ "done": {
+  "meTagHit": "tag",
+  "presence": [
+   940,
+   272,
+   1380,
+   764
+  ],
+  "presVisible": true,
+  "presenceClass": "presence demo-tour-open",
+  "presenceWidth": 440,
+  "tour": [
+   966,
+   296,
+   1354,
+   521
+  ],
+  "tourTitle": "示例路线 4/4 · 路线走完了",
+  "panelOpen": false,
+  "camView": "overview",
+  "camPos": [
+   -7.1,
+   5.03,
+   13.53
+  ],
+  "world": [
+   31,
+   91,
+   1401,
+   779
+  ],
+  "members": 5,
+  "tags": [
+   {
+    "label": "照片墙",
+    "rect": [
+     840,
+     226,
+     968,
+     270
+    ],
+    "coveredPct": 0
+   },
+   {
+    "label": "阿遥·示例 · 可招呼",
+    "rect": [
+     499,
+     341,
+     627,
+     385
+    ],
+    "coveredPct": 0
+   },
+   {
+    "label": "小满·示例 · 可招呼",
+    "rect": [
+     594,
+     291,
+     722,
+     335
+    ],
+    "coveredPct": 0
+   },
+   {
+    "label": "北屿·示例 · 可招呼",
+    "rect": [
+     687,
+     341,
+     815,
+     385
+    ],
+    "coveredPct": 0
+   },
+   {
+    "label": "访客8083 · 我",
+    "rect": [
+     777,
+     291,
+     905,
+     335
+    ],
+    "coveredPct": 0
+   },
+   {
+    "label": "林间·示例 · 安静",
+    "rect": [
+     873,
+     341,
+     1001,
+     385
+    ],
+    "coveredPct": 48
+   }
+  ],
+  "avatars": [
+   {
+    "name": "阿遥·示例",
+    "me": false,
+    "box": [
+     542,
+     472,
+     589,
+     577
+    ],
+    "coveredPct": 0
+   },
+   {
+    "name": "小满·示例",
+    "me": false,
+    "box": [
+     635,
+     469,
+     679,
+     572
+    ],
+    "coveredPct": 0
+   },
+   {
+    "name": "北屿·示例",
+    "me": false,
+    "box": [
+     725,
+     472,
+     769,
+     577
+    ],
+    "coveredPct": 0
+   },
+   {
+    "name": "访客8083",
+    "me": true,
+    "box": [
+     813,
+     469,
+     859,
+     572
+    ],
+    "coveredPct": 0
+   },
+   {
+    "name": "林间·示例",
+    "me": false,
+    "box": [
+     904,
+     472,
+     953,
+     577
+    ],
+    "coveredPct": 26
+   }
+  ]
+ }
+}

@@ -1,0 +1,23 @@
+QC music-space-video-v1.mp4  range 0.00-174.67 s  FULL CUT  ->  WARN
+  PASS  container.video h264 High 1920x1080 60/1 yuv420p bt709/bt709/bt709/tv
+  PASS  container.audio aac LC 48000 Hz 2 ch 257 kb/s
+  PASS  duration        174.667 s (limit 175.0; target 172-176)
+  PASS  size            228.4 MB (target 150-300, limit 500)
+  PASS  loudness        I -16.1 LUFS (target -16), LRA 4.3 LU
+  PASS  true_peak       -1.4 dBTP (limit -1.0)
+  PASS  silence         0 silent stretches over 0.8 s
+  PASS  frozen          0 frozen stretches over 2.5 s
+  PASS  black           0 black stretches over 0.4 s
+  PASS  motion          longest low-motion stretch 0.08 s at 38.90 s (mean |dI| < 0.15 on 160x90), mean motion 2.00
+  PASS  event_gaps      591 visual events, 3.38/s; longest gap 1.46 s after 33.17 s (limit 2.5)
+  PASS  beat_alignment  591/591 visual events on the 16th grid (<= half a frame), 572/591 on 8ths; frames quantise by <= 8.3 ms
+  WARN  reading_time    125 lines, measured (geometry samples every 50 ms); titles/notes failing 0, labels/fine short 2
+            - 「留念」 label 0.60s < 0.80s
+            - 「不到 1 分钟」 label 0.80s < 1.25s
+  WARN  safe_area       0 texts outside the 5% title-safe area for > 0.5 s, 14 only briefly (entrances, camera moves)
+  PASS  glyphs          439 font/character pairs; 0 drawn by a system font
+  PASS  qr              decoded at 8/8 sampled frames: https://musicmapteam.github.io/musicSpace/ (first at 165.85 s)
+  PASS  placeholders    no placeholders
+  PASS  scene_warnings  0 warnings
+  PASS  sfx_level       SFX -9.0 LU vs music (target -8..-10), 639 sounds {'slap': 50, 'stamp': 13, 'tape': 8, 'pop': 78, 'whoosh': 21, 'impact': 20, 'typetick': 210, 'zip': 6, 'squeak': 31, 'highlighter': 13, 'slam': 47, 'scribble': 2, 'swish': 24, 'pencil': 9, 'click': 29, 'boop': 10, 'riser': 2, 'boom': 3, 'thump': 9, 'ding': 5, 'shutter': 1, 'chime': 1, 'hmm': 1, 'sparkle': 9, 'tick': 20, 'heartbeat': 7, 'blip': 7, 'crackle': 1, 'flip': 1, 'scratch': 1}
+  PASS  script_lines    117/117 SCRIPT lines in range are on screen

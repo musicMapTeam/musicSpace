@@ -1,0 +1,1 @@
+globalThis.KIND='phone';

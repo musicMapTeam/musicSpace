@@ -1,0 +1,16 @@
+const out = {};
+await page.click('#panel [data-open="conversation"]'); await sleep(1500);
+await shot('27-join-card');
+out.join = await page.evaluate(() => { const f = document.querySelector('form[data-group-join]'); return f ? f.innerText : null; });
+out.commCls = await page.evaluate(() => [...document.querySelectorAll('.community-panel')].map(c => c.className + ' vis=' + !!c.getClientRects().length));
+out.joinPanel = await page.evaluate(() => { const c = [...document.querySelectorAll('.community-panel')].find(e => e.getClientRects().length); return c ? c.innerText.replace(/\n{2,}/g, '\n').slice(0, 1500) : null; });
+await page.locator('form[data-group-join] input[name=consent]').check(); await sleep(300);
+await page.click('form[data-group-join] button[type=submit]');
+await sleep(2500);
+await shot('28-chatroom');
+out.commCls2 = await page.evaluate(() => [...document.querySelectorAll('.community-panel')].map(c => c.className + ' vis=' + !!c.getClientRects().length));
+out.room = await page.evaluate(() => { const c = [...document.querySelectorAll('.community-panel')].find(e => e.getClientRects().length); return c ? c.innerText.replace(/\n{2,}/g, '\n').slice(0, 2500) : null; });
+out.scrollers = await page.evaluate(() => { const c = [...document.querySelectorAll('.community-panel')].find(e => e.getClientRects().length); const r = []; for (const s of ['.conversation-content', '.community-scroll', '.conversation-actions']) { const e = c.querySelector(s); if (e) r.push(s + ' sh=' + e.scrollHeight + ' ch=' + e.clientHeight + ' sw=' + e.scrollWidth + ' cw=' + e.clientWidth + ' st=' + e.scrollTop + ' sl=' + e.scrollLeft); } return r; });
+out.chips = await page.evaluate(() => [...document.querySelectorAll('.conversation-actions > *')].map(e => { const r = e.getBoundingClientRect(); return e.tagName + ' ' + e.innerText.replace(/\s+/g, ' ') + ' ' + JSON.stringify(e.dataset) + ' @' + Math.round(r.x) + ',' + Math.round(r.y) + ' ' + Math.round(r.width) + 'x' + Math.round(r.height); }));
+out.msgs = await page.evaluate(() => { const c = [...document.querySelectorAll('.community-panel')].find(e => e.getClientRects().length); return [...c.querySelectorAll('.chat-message, article')].length; });
+return out;

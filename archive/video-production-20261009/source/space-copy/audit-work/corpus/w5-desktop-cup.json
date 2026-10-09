@@ -1,0 +1,242 @@
+{
+ "states": [
+  {
+   "vp": "desktop",
+   "label": "worldcup-list",
+   "selector": ".worldcup-panel",
+   "visible": "这一晚，选张专辑来聊\n×\n专辑世界杯\n\n两两对决，选出今晚这一张。\n\n筛选\n全部\n进行中\n已完成\n今晚的专辑世界杯\n阿遥 发起 · 进行中\n发起一个小小的选择\n自己写四个选项\n在聊天室发起这场世界杯\n发起世界杯\n刷新回到聊天室",
+   "attrs": [
+    "@aria-label=专辑世界杯",
+    "@aria-label=返回聊天室",
+    "@placeholder=今晚想先选哪张？"
+   ],
+   "hidden": [
+    "全部",
+    "进行中",
+    "已完成"
+   ],
+   "at": 1791386051826
+  },
+  {
+   "vp": "desktop",
+   "label": "layout:worldcup-list",
+   "selector": ".worldcup-panel",
+   "layout": {
+    "pageOverflow": false,
+    "out": [],
+    "tall": [],
+    "orphan": []
+   }
+  },
+  {
+   "vp": "desktop",
+   "label": "worldcup-detail",
+   "selector": ".worldcup-panel",
+   "visible": "这一晚，选张专辑来聊\n×\n今晚的专辑世界杯\n\n两两对决，选出今晚这一张。\n\n阿遥 发起 · 每轮一票\n\n第一轮 · 第1组\n01 · 原创专辑卡\n午夜站台\n\n纸灯乐队\n\n1票\n\n选《午夜站台》\n02 · 原创专辑卡\n樱花电波\n\n薄荷收音机\n\n1票\n\n选《樱花电波》\n\n等发起人结束这一轮。\n\n第一轮 · 第2组\n03 · 原创专辑卡\n小院回声\n\n月光邮局\n\n0票\n\n选《小院回声》\n04 · 原创专辑卡\n最后一盏灯\n\n夜航纸片\n\n0票\n\n选《最后一盏灯》\n\n等发起人结束这一轮。\n\n全部世界杯刷新回到聊天室",
+   "attrs": [
+    "@aria-label=专辑世界杯",
+    "@aria-label=返回聊天室"
+   ],
+   "hidden": [],
+   "at": 1791386054507
+  },
+  {
+   "vp": "desktop",
+   "label": "layout:worldcup-detail",
+   "selector": ".worldcup-panel",
+   "layout": {
+    "pageOverflow": false,
+    "out": [
+     "div.worldcup-cover scrolls inside 263>239「01 · 原创专辑卡午夜站台纸灯乐队」",
+     "div.worldcup-cover scrolls inside 263>239「02 · 原创专辑卡樱花电波薄荷收音」",
+     "div.worldcup-cover scrolls inside 263>239「03 · 原创专辑卡小院回声月光邮局」",
+     "div.worldcup-cover scrolls inside 263>239「04 · 原创专辑卡最后一盏灯夜航纸」"
+    ],
+    "tall": [],
+    "orphan": [
+     "p.worldcup-votes: 1 / 票",
+     "p.worldcup-votes: 1 / 票",
+     "p.worldcup-votes: 0 / 票",
+     "p.worldcup-votes: 0 / 票"
+    ]
+   }
+  },
+  {
+   "vp": "desktop",
+   "label": "worldcup-voted",
+   "selector": ".worldcup-panel",
+   "visible": "这一晚，选张专辑来聊\n×\n今晚的专辑世界杯\n\n两两对决，选出今晚这一张。\n\n已确认。\n\n阿遥 发起 · 每轮一票\n\n第一轮 · 第1组\n01 · 原创专辑卡\n午夜站台\n\n纸灯乐队\n\n2票\n·\n你选了这张\n\n02 · 原创专辑卡\n樱花电波\n\n薄荷收音机\n\n1票\n\n等发起人结束这一轮。\n\n第一轮 · 第2组\n03 · 原创专辑卡\n小院回声\n\n月光邮局\n\n0票\n\n选《小院回声》\n04 · 原创专辑卡\n最后一盏灯\n\n夜航纸片\n\n0票\n\n选《最后一盏灯》\n\n等发起人结束这一轮。\n\n全部世界杯刷新回到聊天室",
+   "attrs": [
+    "@aria-label=专辑世界杯",
+    "@aria-label=返回聊天室"
+   ],
+   "hidden": [],
+   "at": 1791386058375
+  },
+  {
+   "vp": "desktop",
+   "label": "worldcup-later",
+   "selector": ".worldcup-panel",
+   "visible": "这一晚，选张专辑来聊\n×\n今晚的专辑世界杯\n\n两两对决，选出今晚这一张。\n\n已确认。\n\n阿遥 发起 · 每轮一票\n\n第一轮 · 第1组\n01 · 原创专辑卡\n午夜站台\n\n纸灯乐队\n\n2票\n·\n你选了这张\n\n02 · 原创专辑卡\n樱花电波\n\n薄荷收音机\n\n1票\n\n胜出：《午夜站台》\n\n第一轮 · 第2组\n03 · 原创专辑卡\n小院回声\n\n月光邮局\n\n1票\n\n选《小院回声》\n04 · 原创专辑卡\n最后一盏灯\n\n夜航纸片\n\n1票\n\n选《最后一盏灯》\n\n等发起人结束这一轮。\n\n全部世界杯刷新回到聊天室",
+   "attrs": [
+    "@aria-label=专辑世界杯",
+    "@aria-label=返回聊天室"
+   ],
+   "hidden": [],
+   "at": 1791386065423
+  },
+  {
+   "vp": "desktop",
+   "label": "games-list",
+   "selector": ".music-games",
+   "visible": "PLAY / 音乐让我们接着聊\n×\n一起玩一小局\n\n我在这里，等愿意一起玩的人。\n\n默契局：先各自选，再一起揭晓。接龙：一人接一首。\n\n今晚谁和你同一首\n音乐偏好默契局 · 等人加入 · 阿遥\n开一局\n玩法\n音乐偏好默契局\n音乐关系接龙\n这局的名字\n轮数（最多三轮）\n自己写四个选项\n\n用四张原创专辑卡。\n\n在聊天室发起这一局\n发起这一局\n刷新回到聊天室",
+   "attrs": [
+    "@aria-label=音乐小游戏",
+    "@aria-label=返回聊天室",
+    "@aria-label=Music Space 的插画分身"
+   ],
+   "hidden": [
+    "Music Space 的插画分身",
+    "想玩就加入，随时可以退出。",
+    "音乐偏好默契局",
+    "音乐关系接龙"
+   ],
+   "at": 1791386069511
+  },
+  {
+   "vp": "desktop",
+   "label": "layout:games-list",
+   "selector": ".music-games",
+   "layout": {
+    "pageOverflow": false,
+    "out": [],
+    "tall": [],
+    "orphan": []
+   }
+  },
+  {
+   "vp": "desktop",
+   "label": "game-detail",
+   "selector": ".music-games",
+   "visible": "PLAY / 音乐让我们接着聊\n×\n今晚谁和你同一首\n\n我在这里，等愿意一起玩的人。\n\n音乐偏好默契局 · 等待加入 · 2 人参加\n\n等人加入\n\n阿遥\n小满\n我要参加这一局\n加入这一局\n全部小游戏刷新回到聊天室",
+   "attrs": [
+    "@aria-label=音乐小游戏",
+    "@aria-label=返回聊天室",
+    "@aria-label=Music Space 的插画分身"
+   ],
+   "hidden": [
+    "Music Space 的插画分身",
+    "想玩就加入，随时可以退出。"
+   ],
+   "at": 1791386071749
+  },
+  {
+   "vp": "desktop",
+   "label": "game-joined",
+   "selector": ".music-games",
+   "visible": "PLAY / 音乐让我们接着聊\n×\n今晚谁和你同一首\n\n我在这里，等愿意一起玩的人。\n\n已确认。\n\n音乐偏好默契局 · 等待加入 · 3 人参加\n\n等人加入\n\n阿遥\n小满\n访客4349（我）\n退出这一局全部小游戏刷新回到聊天室",
+   "attrs": [
+    "@aria-label=音乐小游戏",
+    "@aria-label=返回聊天室",
+    "@aria-label=Music Space 的插画分身"
+   ],
+   "hidden": [
+    "Music Space 的插画分身",
+    "想玩就加入，随时可以退出。"
+   ],
+   "at": 1791386074969
+  },
+  {
+   "vp": "desktop",
+   "label": "game-choice",
+   "selector": ".music-games",
+   "visible": "PLAY / 音乐让我们接着聊\n×\n今晚谁和你同一首\n\n我在这里，等愿意一起玩的人。\n\n已确认。\n\n音乐偏好默契局 · 进行中 · 3 人参加\n\n本局进度 · 1 / 1\n\n第 1 轮\n\n2 人已选\n\n原创专辑卡\n午夜站台\n\n纸灯乐队\n\n我选「午夜站台」\n原创专辑卡\n樱花电波\n\n薄荷收音机\n\n我选「樱花电波」\n原创专辑卡\n小院回声\n\n月光邮局\n\n我选「小院回声」\n原创专辑卡\n最后一盏灯\n\n夜航纸片\n\n我选「最后一盏灯」\n\n你的选择：午夜站台\n\n就选它，提交后不能改\n提交取消\n全部小游戏刷新回到聊天室\n参与者与退出",
+   "attrs": [
+    "@aria-label=音乐小游戏",
+    "@aria-label=返回聊天室",
+    "@aria-label=Music Space 的插画分身"
+   ],
+   "hidden": [
+    "Music Space 的插画分身",
+    "想玩就加入，随时可以退出。"
+   ],
+   "at": 1791386075994
+  },
+  {
+   "vp": "desktop",
+   "label": "game-result",
+   "selector": ".music-games",
+   "visible": "PLAY / 音乐让我们接着聊\n×\n今晚谁和你同一首\n\n我的选择先保留，等一起揭晓。\n\n已确认。\n\n音乐偏好默契局 · 进行中 · 3 人参加\n\n本局进度 · 1 / 1\n\n第 1 轮\n\n3 人已选\n\n已提交，等一起揭晓。\n\n全部小游戏刷新回到聊天室\n参与者与退出",
+   "attrs": [
+    "@aria-label=音乐小游戏",
+    "@aria-label=返回聊天室",
+    "@aria-label=Music Space 的插画分身"
+   ],
+   "hidden": [
+    "Music Space 的插画分身",
+    "想玩就加入，随时可以退出。"
+   ],
+   "at": 1791386078570
+  },
+  {
+   "vp": "desktop",
+   "label": "topics",
+   "selector": ".music-topics",
+   "visible": "MUSIC / 从一首歌接着说\n×\n音乐话题\n\n还没有话题。留一首让你想起今晚的歌吧。\n\n留下我的音乐话题\n音乐名称\n音乐人（可留空）\n我想聊的一句话\n发到聊天室\n发布\n刷新回到聊天室",
+   "attrs": [
+    "@aria-label=音乐话题",
+    "@aria-label=回到聊天室"
+   ],
+   "hidden": [],
+   "at": 1791386082305
+  },
+  {
+   "vp": "desktop",
+   "label": "layout:topics",
+   "selector": ".music-topics",
+   "layout": {
+    "pageOverflow": false,
+    "out": [],
+    "tall": [],
+    "orphan": []
+   }
+  }
+ ],
+ "logs": {
+  "desktop w5": [
+   "load: /musicSpace/",
+   "title: Music Space · 同一刻，另一面",
+   "live:loading(hidden): Music Space灯快亮了正在准备三维场景",
+   "live:render-status: 正在布置现场…",
+   "live:loading(hidden): Music Space灯快亮了正在布置现场…",
+   "live:loading(hidden): Music Space灯快亮了正在准备三维场景",
+   "live:render-status: 正在布置现场…",
+   "live:render-status: 现场进行中",
+   "live:view-label: 正在靠近",
+   "live:render-status: 现场进行中",
+   "live:demo-tour: 第一次来 1/4 · 放一张今晚的照片收起挑一张，或者用你自己的。人海那张舞台那张用我自己的照片跳过路线",
+   "live:view-label: 正在靠近",
+   "live:render-status: 4 位同场",
+   "live:status: 正在读取聊天室…",
+   "live:status: 上一步还没确认，可以重试。",
+   "live:render-status: 4 位同场",
+   "live:status: 正在读取…",
+   "live:render-status: 4 位同场",
+   "live:status: 上一步还没确认，可以重试。",
+   "live:status: 已确认。",
+   "live:render-status: 4 位同场",
+   "live:render-status: 5 位同场",
+   "live:status: 已确认。",
+   "live:render-status: 5 位同场",
+   "live:status: 已确认。",
+   "live:render-status: 5 位同场",
+   "live:status: 上一步还没确认，可以重试。",
+   "live:status: 已确认。",
+   "live:render-status: 5 位同场",
+   "live:status: 已确认。",
+   "live:status: 上一步还没确认，可以重试。",
+   "live:status: 已确认。",
+   "live:render-status: 5 位同场"
+  ]
+ }
+}

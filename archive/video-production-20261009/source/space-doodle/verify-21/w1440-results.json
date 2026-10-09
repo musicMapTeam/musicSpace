@@ -1,0 +1,160 @@
+{
+ "enter": {
+  "presence": [
+   940,
+   183,
+   1380,
+   764
+  ],
+  "presVisible": true,
+  "presenceClass": "presence demo-tour-open",
+  "presenceWidth": 440,
+  "tour": [
+   966,
+   207,
+   1354,
+   521
+  ],
+  "tourTitle": "示例路线 1/4 · 放一张你的照片",
+  "panelOpen": false,
+  "world": [
+   31,
+   91,
+   1401,
+   779
+  ],
+  "members": 4,
+  "tags": [
+   {
+    "label": "照片墙",
+    "rect": [
+     882,
+     258,
+     1010,
+     302
+    ],
+    "coveredPct": 54
+   },
+   {
+    "label": "阿遥·示例 · 可招呼",
+    "rect": [
+     414,
+     323,
+     542,
+     367
+    ],
+    "coveredPct": 0
+   },
+   {
+    "label": "小满·示例 · 可招呼",
+    "rect": [
+     605,
+     321,
+     733,
+     365
+    ],
+    "coveredPct": 0
+   },
+   {
+    "label": "北屿·示例 · 可招呼",
+    "rect": [
+     794,
+     323,
+     922,
+     367
+    ],
+    "coveredPct": 0
+   },
+   {
+    "label": "访客8574 · 我",
+    "rect": [
+     976,
+     320,
+     1104,
+     364
+    ],
+    "coveredPct": 100
+   }
+  ],
+  "avatars": []
+ },
+ "collapsed": {
+  "presence": [
+   966,
+   401,
+   1380,
+   764
+  ],
+  "presVisible": true,
+  "presenceClass": "presence",
+  "presenceWidth": 414,
+  "tour": [
+   992,
+   425,
+   1354,
+   521
+  ],
+  "tourTitle": "示例路线 1/4 · 放一张你的照片",
+  "panelOpen": false,
+  "world": [
+   31,
+   91,
+   1401,
+   779
+  ],
+  "members": 4,
+  "tags": [
+   {
+    "label": "照片墙",
+    "rect": [
+     882,
+     258,
+     1010,
+     302
+    ],
+    "coveredPct": 0
+   },
+   {
+    "label": "阿遥·示例 · 可招呼",
+    "rect": [
+     414,
+     323,
+     542,
+     367
+    ],
+    "coveredPct": 0
+   },
+   {
+    "label": "小满·示例 · 可招呼",
+    "rect": [
+     605,
+     321,
+     733,
+     365
+    ],
+    "coveredPct": 0
+   },
+   {
+    "label": "北屿·示例 · 可招呼",
+    "rect": [
+     794,
+     323,
+     922,
+     367
+    ],
+    "coveredPct": 0
+   },
+   {
+    "label": "访客8574 · 我",
+    "rect": [
+     976,
+     320,
+     1104,
+     364
+    ],
+    "coveredPct": 0
+   }
+  ],
+  "avatars": []
+ }
+}

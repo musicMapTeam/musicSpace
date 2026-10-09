@@ -1,0 +1,39 @@
+{
+ "made": "2026-10-08",
+ "by": "act A0-A1 v3 (review/act-A0-A1-v3/tools/make-assets.py)",
+ "build": "0.22.0-rc.2 (/tmp/space-final/dist-pages), capture pass P2P3-rc2",
+ "files": {
+  "CUT-01-room-stage.png": {
+   "source": "capture/P2P3-rc2/stills/CUT-01_room-overview-4k.png",
+   "source_sha256": "21026266108ad0b321cc0ffd5edc7c8dde5d8df367708009f091425453e41c4c",
+   "crop_xyxy": [
+    600,
+    470,
+    2600,
+    1539
+   ],
+   "size": [
+    2000,
+    1069
+   ],
+   "sha256": "1f9233437146bfb2141722707a74f1f4a56912ffc18cf653b3732c13ccf4d013",
+   "why": "H1 1:1 polaroid (photo window 636x340, aspect 1.87): the 3D stage with the five present and their tags (阿遥/小满/北屿 · 可招呼, 阿宁 · 我, 林间 · 安静), 照片墙 pill"
+  },
+  "CUT-03-wall.png": {
+   "source": "capture/P2P3-rc2/stills/CUT-03_3d-wall-5-photos-4k.png",
+   "source_sha256": "8f1b3569a3c0331fbd9f3bd778fcf376dd3c79f23ec1f2b8aef4b3a688e16962",
+   "crop_xyxy": [
+    1400,
+    440,
+    2420,
+    1040
+   ],
+   "size": [
+    1020,
+    600
+   ],
+   "sha256": "81ee1b899c504f51fad0bc217477f5bbd89210de66ee180eae13f5c868216286",
+   "why": "H1 2:1 polaroid (photo window 426x250, aspect 1.70): the 3D photo wall close, its sign 「同一晚，另一面。」 over the top row of photos (the stage, the crowd, a close-up); page chrome and the wall bar cropped out"
+  }
+ }
+}

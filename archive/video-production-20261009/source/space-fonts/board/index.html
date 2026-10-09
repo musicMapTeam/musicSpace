@@ -1,0 +1,128 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><style>
+@font-face{font-family:Marker;src:url(../src/marker/LxgwMarkerGothic-v1.003/fonts/ttf/LXGWMarkerGothic-Regular.ttf)}
+@font-face{font-family:KuaiLe;src:url(../src/ZCOOLKuaiLe-Regular.ttf)}
+@font-face{font-family:HuangYou;src:url(../src/ZCOOLQingKeHuangYou-Regular.ttf)}
+@font-face{font-family:Yozai;src:url(../src/Yozai-Medium.ttf)}
+@font-face{font-family:Xiaolai;src:url(../src/Xiaolai-Regular.ttf)}
+@font-face{font-family:WenKai;src:url(../src/LXGWWenKai-Medium.ttf)}
+@font-face{font-family:Smiley;src:url(../src/smiley/SmileySans-Oblique.ttf)}
+@font-face{font-family:LongCang;src:url(../src/LongCang-Regular.ttf)}
+@font-face{font-family:Luckiest;src:url(../src/LuckiestGuy-Regular.ttf)}
+@font-face{font-family:Lilita;src:url(../src/LilitaOne-Regular.ttf)}
+@font-face{font-family:RubikDoodle;src:url(../src/RubikDoodleShadow-Regular.ttf)}
+@font-face{font-family:PMarker;src:url(../src/PermanentMarker-Regular.ttf)}
+@font-face{font-family:Gochi;src:url(../src/GochiHand-Regular.ttf)}
+@font-face{font-family:Caveat;src:url("../src/Caveat[wght].ttf")}
+@font-face{font-family:Shantell;src:url("../src/ShantellSans[BNCE,INFM,SPAC,wght].ttf")}
+:root{--paper:#f7efdf;--ink:#1c1b1a;--pink:#ff5c8a;--mint:#5fdcc0;--yellow:#ffd447;--sky:#74b9ff;--orange:#ff8a3d}
+*{box-sizing:border-box;margin:0}
+body{width:1600px;background:var(--paper);background-image:radial-gradient(rgba(28,27,26,.16) 1.2px,transparent 1.3px);background-size:24px 24px;color:var(--ink);font-family:"PingFang SC",sans-serif;padding:56px 60px 70px}
+.head{display:flex;align-items:flex-end;gap:28px;margin-bottom:10px}
+.brand{font-family:Luckiest;font-size:76px;line-height:1;color:var(--yellow);-webkit-text-stroke:3px var(--ink);paint-order:stroke fill;text-shadow:6px 6px 0 var(--ink),11px 11px 0 var(--pink);letter-spacing:1px}
+.head p{font-family:Yozai;font-size:26px;line-height:1.35;padding-bottom:8px}
+.head p b{background:linear-gradient(transparent 52%,var(--mint) 52%,var(--mint) 92%,transparent 92%);font-weight:normal;padding:0 4px}
+.lic{font-family:Marker;font-size:19px;margin:6px 0 34px;opacity:.85}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:34px 38px}
+.card{position:relative;background:#fffaf0;border:3px solid var(--ink);border-radius:18px 6px 22px 8px/8px 20px 6px 18px;box-shadow:7px 8px 0 var(--ink);padding:26px 30px 24px;min-height:520px}
+.card:nth-child(4n+2){transform:rotate(.5deg)}.card:nth-child(4n+3){transform:rotate(-.45deg)}
+.tag{display:flex;align-items:center;gap:12px;font-family:Marker;font-size:20px;margin-bottom:12px}
+.no{display:inline-grid;place-items:center;width:40px;height:40px;border:3px solid var(--ink);border-radius:50% 46% 52% 48%;background:var(--yellow);font-family:Luckiest;font-size:22px;padding-top:3px}
+.role{margin-left:auto;padding:3px 12px;border:2.5px solid var(--ink);border-radius:999px;background:var(--mint);font-size:17px}
+.role.b{background:var(--sky)}.role.c{background:#ffd0dd}
+.hero{line-height:1.08;margin:10px 0 6px;white-space:nowrap}
+.hero .a{font-size:98px;color:var(--ink);text-shadow:5px 5px 0 var(--pink)}
+.hero .p{font-size:62px;color:var(--ink)}
+.hero .b{font-size:98px;color:var(--yellow);-webkit-text-stroke:3px var(--ink);paint-order:stroke fill;text-shadow:5px 6px 0 var(--ink);background:linear-gradient(transparent 58%,var(--mint) 58%,var(--mint) 94%,transparent 94%);padding:0 6px}
+.hero .s{font-size:44px;color:var(--pink);vertical-align:top;margin-left:-4px}
+.l2{font-size:27px;margin:16px 0 18px;white-space:nowrap}
+.l2 em{font-style:normal;font-size:42px;color:var(--pink);text-shadow:2px 2px 0 var(--ink);margin:0 4px}
+.l2 i{font-style:normal;font-size:20px;opacity:.75}
+.chips{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
+.chip{border:2.5px solid var(--ink);border-radius:999px;padding:6px 16px 5px;font-size:21px;box-shadow:3px 3px 0 var(--ink)}
+.chip.m{background:var(--mint);transform:rotate(-2deg)}.chip.y{background:var(--yellow);transform:rotate(1.5deg)}.chip.k{background:var(--pink);color:#fff;transform:rotate(-1deg)}
+.btn{display:inline-block;background:var(--ink);color:var(--paper);font-size:23px;padding:11px 22px 10px;border-radius:14px 8px 16px 9px;box-shadow:5px 5px 0 var(--pink);margin-right:14px}
+.btn2{display:inline-block;background:#fff;font-size:23px;padding:9px 20px 8px;border:3px solid var(--ink);border-radius:9px 15px 8px 14px;box-shadow:5px 5px 0 var(--mint)}
+.body{font-size:17px;line-height:1.7;margin-top:18px;max-width:640px}
+.meta{position:absolute;right:26px;bottom:18px;font-family:Marker;font-size:16px;opacity:.6}
+.f-marker *{font-family:Marker}.f-kuaile *{font-family:KuaiLe}.f-huangyou *{font-family:HuangYou}.f-yozai *{font-family:Yozai}
+.f-xiaolai *{font-family:Xiaolai}.f-wenkai *{font-family:WenKai}.f-smiley *{font-family:Smiley}.f-longcang *{font-family:LongCang}
+.card .tag,.card .tag *,.card .meta{font-family:Marker!important}
+.card .no{font-family:Luckiest!important}
+h2{font-family:Luckiest;font-size:46px;color:#fff;-webkit-text-stroke:2.5px var(--ink);paint-order:stroke fill;text-shadow:5px 5px 0 var(--ink);margin:64px 0 8px}
+h2 small{font-family:Yozai;-webkit-text-stroke:0;text-shadow:none;color:var(--ink);font-size:24px;margin-left:16px}
+.latin{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.lt{background:#fffaf0;border:3px solid var(--ink);border-radius:14px 8px 16px 6px;box-shadow:5px 6px 0 var(--ink);padding:18px 18px 14px;text-align:center}
+.lt .w{font-size:54px;line-height:1.15;white-space:nowrap}
+.lt small{display:block;font-family:Marker;font-size:16px;margin-top:8px;opacity:.75}
+.t1{font-family:Luckiest;color:var(--yellow);-webkit-text-stroke:2.5px var(--ink);paint-order:stroke fill;text-shadow:4px 4px 0 var(--ink),8px 8px 0 var(--pink)}
+.t2{font-family:Lilita;color:var(--mint);-webkit-text-stroke:2.5px var(--ink);paint-order:stroke fill;text-shadow:4px 4px 0 var(--ink)}
+.t3{font-family:RubikDoodle;color:var(--pink)}
+.t4{font-family:PMarker;color:var(--ink);text-shadow:3px 3px 0 var(--sky)}
+.t5{font-family:Gochi;color:var(--ink);text-shadow:3px 3px 0 var(--yellow)}
+.t6{font-family:Caveat;font-weight:700;color:var(--pink);font-size:64px!important}
+.t7{font-family:Shantell;font-weight:800;font-variation-settings:"INFM" 100,"BNCE" 60;color:var(--ink);text-shadow:3px 3px 0 var(--mint)}
+.t8{font-family:Smiley;color:var(--ink);font-size:60px!important;text-shadow:4px 4px 0 var(--orange)}
+.combo{margin-top:22px;display:grid;grid-template-columns:1.25fr 1fr;gap:38px}
+.poster{position:relative;background:#fffaf0;border:3px solid var(--ink);border-radius:20px 8px 24px 10px;box-shadow:8px 9px 0 var(--ink);padding:34px 40px;overflow:hidden}
+.poster .k1{font-family:Luckiest;font-size:40px;color:var(--yellow);-webkit-text-stroke:2.5px var(--ink);paint-order:stroke fill;text-shadow:4px 4px 0 var(--ink)}
+.poster .t{font-family:HuangYou;font-size:118px;line-height:1.02;margin:14px 0 4px}
+.poster .t .x{color:var(--ink);text-shadow:6px 6px 0 var(--pink)}
+.poster .t .y{color:#fff;-webkit-text-stroke:3.5px var(--ink);paint-order:stroke fill;text-shadow:6px 7px 0 var(--ink),12px 13px 0 var(--mint)}
+.poster .t .z{font-size:56px;color:var(--pink)}
+.poster .sub{font-family:Marker;font-size:30px;margin:18px 0 12px}
+.poster .sub em{font-style:normal;font-family:Smiley;font-size:46px;color:var(--orange);text-shadow:2px 2px 0 var(--ink)}
+.poster .note{position:absolute;right:40px;top:40px;font-family:LongCang;font-size:40px;color:var(--pink);transform:rotate(-8deg)}
+.poster .bd{font-family:Yozai;font-size:21px;line-height:1.7;max-width:640px}
+.why{font-family:Yozai;font-size:22px;line-height:1.65;background:#fffaf0;border:3px dashed var(--ink);border-radius:14px;padding:24px 28px}
+.why b{font-family:Marker;font-weight:normal;font-size:24px;background:linear-gradient(transparent 55%,var(--yellow) 55%)}
+.why li{margin:6px 0 6px 20px}
+</style></head><body>
+<div class="head"><div class="brand">Music Space</div><p>字体选型 · 手绘涂鸦风 —— <b>有色彩、有层次、有大小</b></p></div>
+<div class="lic">下面 8 款全部是 SIL OFL 1.1 开源字体：免费商用、可以嵌入网页。大小按产品实际用到的 1646 个字裁剪后计算。</div>
+<div class="grid">
+<script>
+const F=[
+ ['marker','霞鹜漫黑 LXGW Marker Gothic','马克笔手写 · 标题/按钮','145 KB','标题','a'],
+ ['huangyou','站酷庆科黄油体','胖胖的手绘感 · 冲击力最强','392 KB','大标题','a'],
+ ['kuaile','站酷快乐体','圆润可爱 · 卡通感','159 KB','标题','a'],
+ ['smiley','得意黑 Smiley Sans','潮流斜体 · 海报感','193 KB','数字/点缀','c'],
+ ['yozai','悠哉字体 Yozai','圆珠笔手写 · 亲切好读','493 KB','正文','b'],
+ ['xiaolai','小赖字体 Xiaolai','工整手写 · 清楚','346 KB','正文','b'],
+ ['wenkai','霞鹜文楷 LXGW WenKai','手写楷体 · 文艺好读','402 KB','正文','b'],
+ ['longcang','龙藏体 Long Cang','潦草手写 · 只适合点缀','543 KB','手写批注','c'],
+];
+F.forEach(([k,n,d,s,r,c],i)=>document.write(`<div class="card f-${k}"><div class="tag"><span class="no">${i+1}</span><span>${n}<br><small style="font-size:16px;opacity:.7">${d}</small></span><span class="role ${c}">适合：${r}</span></div>
+<div class="hero"><span class="a">同一刻</span><span class="p">，</span><br><span class="b">另一面</span><span class="s">。</span></div>
+<div class="l2"><i>AI 帮你找到</i><em>同一刻</em>的另一面 ✦</div>
+<div class="chips"><span class="chip m">舞台视角</span><span class="chip y">AI 判断：人海</span><span class="chip k">同一刻 · 21:47</span></div>
+<div><span class="btn">带上小人，进入现场</span><span class="btn2">回看这一晚</span></div>
+<p class="body">上传第一张照片，或邀请真正同场的朋友。照片由你决定仅自己保存，还是分享给同场成员。</p>
+<div class="meta">裁剪后 ${s}</div></div>`));
+</script>
+</div>
+<h2>Music Space<small>英文/数字字体（同样开源免费）</small></h2>
+<div class="latin">
+<div class="lt"><div class="w t1">Music Space</div><small>Luckiest Guy · Apache 2.0 · 72 KB</small></div>
+<div class="lt"><div class="w t2">Music Space</div><small>Lilita One · OFL · 28 KB</small></div>
+<div class="lt"><div class="w t3">Music Space</div><small>Rubik Doodle Shadow · OFL</small></div>
+<div class="lt"><div class="w t4">Music Space</div><small>Permanent Marker · Apache 2.0</small></div>
+<div class="lt"><div class="w t5">Music Space</div><small>Gochi Hand · OFL · 37 KB</small></div>
+<div class="lt"><div class="w t6">Music Space</div><small>Caveat · OFL</small></div>
+<div class="lt"><div class="w t7">Music Space</div><small>Shantell Sans · OFL</small></div>
+<div class="lt"><div class="w t8">21:47 · 03:12</div><small>得意黑做时间/数字</small></div>
+</div>
+<h2>Mix<small>推荐搭配：一个画面里多层字体，大小和颜色拉开</small></h2>
+<div class="combo">
+<div class="poster"><div class="k1">Music Space</div><div class="note">就是这一刻!</div>
+<div class="t"><span class="x">同一刻</span><span class="z">，</span><br><span class="y">另一面</span><span class="z">。</span></div>
+<div class="sub">AI 帮你找到 <em>21:47</em> 那一刻的另一面</div>
+<p class="bd">你在台下拍到的人海，正是别人眼里的舞台。散场后，用同一刻的照片，交换彼此的视角。</p></div>
+<div class="why"><b>我的推荐</b><ul>
+<li>英文 Logo：<b>Luckiest Guy</b>（黄底黑描边 + 粉色错位阴影）</li>
+<li>大标题：<b>站酷庆科黄油体</b>（最有冲击力，适合首屏和视频大字）</li>
+<li>小标题 / 按钮 / 标签：<b>霞鹜漫黑</b>（马克笔感、最轻 145 KB）</li>
+<li>正文 / 聊天：<b>悠哉字体</b>（手写但好读）</li>
+<li>时间和数字：<b>得意黑</b>；手写批注：<b>龙藏体</b></li>
+</ul><p style="margin-top:10px">层次做法：描边 + 错位彩色阴影 + 荧光笔底色 + 关键字放大变色。全部用 CSS 实现，换字体只改一个变量。</p></div>
+</div>
+</body></html>

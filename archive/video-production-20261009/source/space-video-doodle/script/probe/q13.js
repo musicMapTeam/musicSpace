@@ -1,0 +1,10 @@
+const {page}=await get('phone');
+const out={};
+await page.locator('[data-x-close]').click(); await sleep(1000);
+out.afterClose=await shot(page,'p14-room-after-exchange');
+out.tour=await page.evaluate(()=>document.querySelector('.demo-tour')?.innerText);
+await page.locator('[data-view="person"]').click(); await sleep(1800);
+out.people=await shot(page,'p14-people-view');
+out.text=await L.visibleText(page,'body');
+out.btns=(await L.visibleButtons(page)).slice(0,40);
+return out;

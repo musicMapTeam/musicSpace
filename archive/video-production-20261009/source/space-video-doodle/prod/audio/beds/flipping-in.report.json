@@ -1,0 +1,150 @@
+{
+ "map": "flipping-in",
+ "label": "Wax Lyricist《Flipping In》123 BPM — the animatic proposal, bar 90 cut (✂1) to stay under 175 s",
+ "track": {
+  "audio": "/tmp/space-video-doodle/music-cc0/02-flipping-in__Wax-Lyricist/Wax_Lyricist_-_Flipping_In.mp3",
+  "beats": "/tmp/space-video-doodle/music-cc0/02-flipping-in__Wax-Lyricist/beats.json",
+  "title": "Flipping In",
+  "artist": "Wax Lyricist",
+  "licence": "CC0 1.0 Universal",
+  "sha256": "8d79e1f0f6aee4de038eff80b0a93262bacdc4ea2dc7ce184cfd12f162ca6127",
+  "proof": "/tmp/space-video-doodle/music-cc0/02-flipping-in__Wax-Lyricist/LICENCE-PROOF.md",
+  "credit": "配乐：Wax Lyricist《Flipping In》（CC0 1.0 公共领域）"
+ },
+ "duration_s": 174.659,
+ "bars": 89,
+ "cut": [
+  90
+ ],
+ "added": [],
+ "splices": [
+  {
+   "t": 93.659,
+   "at": "49:1",
+   "from_trk": 102,
+   "to_trk": 61,
+   "xfade_ms": 60.0,
+   "hf_spike_db": 1.4,
+   "natural_spike_db": 1.4,
+   "click": false
+  },
+  {
+   "t": 97.562,
+   "at": "51:1",
+   "from_trk": 62,
+   "to_trk": 103,
+   "xfade_ms": 20.0,
+   "hf_spike_db": 0.9,
+   "natural_spike_db": 0.7,
+   "click": false
+  },
+  {
+   "t": 128.782,
+   "at": "67:1",
+   "from_trk": 118,
+   "to_trk": 107,
+   "xfade_ms": 20.0,
+   "hf_spike_db": 0.8,
+   "natural_spike_db": 0.8,
+   "click": false
+  },
+  {
+   "t": 140.489,
+   "at": "73:1",
+   "from_trk": 112,
+   "to_trk": 119,
+   "xfade_ms": 20.0,
+   "hf_spike_db": -3.7,
+   "natural_spike_db": -4.8,
+   "click": false
+  },
+  {
+   "t": 144.391,
+   "at": "75:1",
+   "from_trk": 120,
+   "to_trk": 103,
+   "xfade_ms": 20.0,
+   "hf_spike_db": 0.7,
+   "natural_spike_db": 0.7,
+   "click": false
+  }
+ ],
+ "loudness": {
+  "gain_db": 2.9,
+  "before": {
+   "I": -18.9,
+   "TP": -0.3,
+   "LRA": 4.8
+  },
+  "after": {
+   "I": -16.0,
+   "TP": -1.5,
+   "LRA": 4.8
+  },
+  "limiter_max_reduction_db": -4.15,
+  "ceiling_db": -1.5
+ },
+ "onsets_vs_grid": {
+  "beats": 356,
+  "median_offset_ms": 0.4,
+  "p10_ms": -3.4,
+  "p90_ms": 4.5,
+  "within_20ms": "174/178",
+  "note": "strongest onset within +-70 ms of every beat of the output grid (5 ms hop), upper half by strength, corrected for the detector bias (-10.3 ms, calibrated on synthetic hits); + = music after the grid"
+ },
+ "moments": {
+  "title_stop": {
+   "verdict": "no",
+   "silence_before_5_1_db": 1.7,
+   "hit_5_1_db": 0.7,
+   "level_5_6_vs_3_4_db": -0.7
+  },
+  "pain_sparse": {
+   "verdict": "yes",
+   "level_vs_film_median_db": -2.6,
+   "onset_density_vs_film": 0.5
+  },
+  "drop": {
+   "verdict": "weak",
+   "hit_21_1_db": 3.2,
+   "hit_21_1_low_db": 1.5,
+   "level_21_28_vs_pain_db": 2.5,
+   "rank_among_downbeats": 11
+  },
+  "ai_chime": {
+   "verdict": "sfx",
+   "at_s": 59.5
+  },
+  "payoff": {
+   "verdict": "yes",
+   "hit_51_1_db": 11.6,
+   "rank_among_downbeats": 2,
+   "of": 88,
+   "gap_50_4_db": -2.3,
+   "biggest_downbeat": "9:1 (+11.8 dB)"
+  },
+  "social_groove": {
+   "verdict": "yes",
+   "level_vs_film_median_db": 0.8
+  },
+  "break": {
+   "verdict": "yes",
+   "level_73_74_vs_2_bars_before_db": -4.2
+  },
+  "lift": {
+   "verdict": "yes",
+   "hit_75_1_db": 5.8,
+   "hit_75_1_low_db": 14.4,
+   "level_75_82_vs_break_db": 4.4
+  },
+  "end_resolve": {
+   "verdict": "fade (ends in silence)",
+   "last_100ms_db": -110.1,
+   "end_card_level_db": -16.5
+  }
+ },
+ "files": {
+  "wav": "/tmp/space-video-doodle/prod/audio/beds/flipping-in.wav",
+  "m4a": "/tmp/space-video-doodle/prod/audio/beds/flipping-in.m4a"
+ }
+}

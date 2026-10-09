@@ -1,0 +1,18 @@
+import { launch, Session, sleep, BASE, PHOTOS, dump } from './lib.mjs';
+const browser = await launch();
+const s = await Session.open(browser, { url: BASE, width: 1440, height: 744, dpr: 1, name: 'live' });
+const p = s.page; p.on('console', m => { if (m.type() === 'error') console.log('console.error', m.text().slice(0, 160)); });
+const nav = /^(a "跳到内容"|button(\(submit\))?\[data-(nav|worldView|worldEditor))/;
+const dumpQ = async (label) => { const lines = []; const orig = console.log; console.log = (...a) => lines.push(a.join(' ')); await dump(p, label); console.log = orig; console.log(lines.filter(l => !nav.test(l)).join('\n')); };
+const panel = async () => (await p.locator('dialog[open], [role=dialog]').first().innerText().catch(() => '')).replace(/\n+/g, ' | ').slice(0, 900);
+await sleep(5000);
+await p.getByRole('button', { name: /体验示例/ }).first().click(); await sleep(3000);
+await p.getByRole('button', { name: /做一张卡/ }).first().click(); await sleep(2500);
+await p.locator('input[name=photo]').setInputFiles(PHOTOS.stage);
+await p.waitForFunction(() => /AI 判断|不确定/.test(document.body.innerText), null, { timeout: 60000 }).catch(() => console.log('no AI verdict'));
+await sleep(600);
+await p.getByRole('button', { name: /保存现场卡/ }).click(); await sleep(2500);
+await p.getByRole('button', { name: /看看阿遥的卡/ }).click(); await sleep(2500);
+await p.getByRole('button', { name: /申请换卡/ }).click(); await sleep(2000);
+await p.getByRole('button', { name: /发送申请/ }).click(); await sleep(2500); await dumpQ('10-sent'); console.log('PANEL:', await panel());
+await browser.close();

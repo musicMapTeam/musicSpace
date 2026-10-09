@@ -1,0 +1,13 @@
+import { writeFile } from 'node:fs/promises';
+import { renderAvatarSvg, ILLUSTRATED_VIEWS, ILLUSTRATED_PRESETS, ILLUSTRATED_INVENTORY } from './index.js';
+import { DEFAULT_AVATAR } from '../avatar/model.js';
+const text = (x,y,t,size=15,extra='') => `<text x="${x}" y="${y}" fill="#342d2c" font-family="Arial,sans-serif" font-size="${size}" ${extra}>${t}</text>`;
+const svg = (a,view,x,y,w,h) => `<g transform="translate(${x} ${y})">${renderAvatarSvg(a,{view,width:w,height:h})}</g>`;
+const header = (title,subtitle,w,h) => `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"><rect width="${w}" height="${h}" fill="#efebe0"/>${text(48,47,'MUSIC SPACE / ILLUSTRATED IDENTITIES',13,'letter-spacing="2"')}${text(48,89,title,32,'font-weight="700"')}${text(48,119,subtitle,14)}<path d="M48 140H${w-48}" stroke="#9a9587"/>`;
+const views = header('ONE PERSON. FOUR ANGLES.','Layered vector character / actual front, three-quarter, profile and back drawings',1120,765)+ILLUSTRATED_VIEWS.map((view,i)=>svg(DEFAULT_AVATAR,view,54+i*265,163,240,500)+text(73+i*265,706,`${String(i+1).padStart(2,'0')} / ${view.toUpperCase()}`,14,'letter-spacing="1.3"')).join('')+'</svg>';
+const presets = header('A LITTLE LESS ORDINARY.','Six modular outfits. One stable body, face and attitude. No generated bitmap texture.',1600,785)+ILLUSTRATED_PRESETS.map((preset,i)=>svg(preset.avatar,'quarter',26+i*258,157,252,525)+text(61+i*258,718,`${String(i+1).padStart(2,'0')} / ${preset.english}`,15,'letter-spacing="1.3"')).join('')+'</svg>';
+const rowHeight=368,w=1560,h=156+Object.keys(ILLUSTRATED_INVENTORY).length*rowHeight;
+const parts=header('BUILD YOUR OWN SILHOUETTE.','Every existing garment, hair, eyewear and accessory value has an independent drawing',w,h)+Object.entries(ILLUSTRATED_INVENTORY).map(([key,items],row)=>text(42,184+row*rowHeight,key.toUpperCase(),16,'font-weight="700" letter-spacing="2"')+items.map((part,i)=>svg({...DEFAULT_AVATAR,[key]:part.value},'quarter',32+i*187,194+row*rowHeight,164,290)+text(42+i*187,510+row*rowHeight,part.english,11,'letter-spacing=".6"')).join('')).join('')+'</svg>';
+const directory = process.argv[2] || new URL('.',import.meta.url);
+for (const [name,content] of [['review-views.svg',views],['review-presets.svg',presets],['review-components.svg',parts]]) await writeFile(typeof directory==='string'?`${directory}/${name}`:new URL(name,directory),content);
+console.log('Wrote four-angle, six-outfit and component review boards');

@@ -1,0 +1,195 @@
+{
+ "map": "love-love-love",
+ "label": "HoliznaCC0《Love Love Love》115 BPM — 83 bars (✂1-✂5 + ✂7), three ambient breaks, payoff on the song's first drop, natural end",
+ "track": {
+  "audio": "/tmp/space-video-doodle/music-cc0/05-reserve-love-love-love__HoliznaCC0/HoliznaCC0_-_Love_Love_Love.mp3",
+  "beats": "/tmp/space-video-doodle/music-cc0/05-reserve-love-love-love__HoliznaCC0/beats.json",
+  "title": "Love Love Love",
+  "artist": "HoliznaCC0",
+  "licence": "CC0 1.0 Universal",
+  "proof": "/tmp/space-video-doodle/music-cc0/05-reserve-love-love-love__HoliznaCC0/LICENCE-PROOF.md",
+  "credit": "配乐：HoliznaCC0《Love Love Love》（CC0 1.0 公共领域）"
+ },
+ "duration_s": 174.717,
+ "bars": 83,
+ "cut": [
+  15,
+  16,
+  40,
+  71,
+  72,
+  89,
+  90
+ ],
+ "added": [],
+ "splices": [
+  {
+   "t": 8.348,
+   "at": "5:1",
+   "from_trk": 24,
+   "to_trk": 77,
+   "xfade_ms": 60.0,
+   "hf_spike_db": 0.0,
+   "natural_spike_db": -0.8,
+   "click": false
+  },
+  {
+   "t": 16.695,
+   "at": "9:1",
+   "from_trk": 80,
+   "to_trk": 1,
+   "xfade_ms": 60.0,
+   "hf_spike_db": -20.3,
+   "natural_spike_db": -20.8,
+   "click": false
+  },
+  {
+   "t": 25.043,
+   "at": "13:1",
+   "from_trk": 4,
+   "to_trk": 77,
+   "xfade_ms": 20.0,
+   "hf_spike_db": 2.2,
+   "natural_spike_db": -0.8,
+   "click": false
+  },
+  {
+   "t": 29.217,
+   "at": "17:1",
+   "from_trk": 78,
+   "to_trk": 25,
+   "xfade_ms": 20.0,
+   "hf_spike_db": -4.8,
+   "natural_spike_db": -4.8,
+   "click": false
+  },
+  {
+   "t": 93.913,
+   "at": "49:1",
+   "from_trk": 55,
+   "to_trk": 3,
+   "xfade_ms": 60.0,
+   "hf_spike_db": -24.7,
+   "natural_spike_db": -2.3,
+   "click": false
+  },
+  {
+   "t": 139.826,
+   "at": "73:1",
+   "from_trk": 24,
+   "to_trk": 79,
+   "xfade_ms": 60.0,
+   "hf_spike_db": -25.6,
+   "natural_spike_db": -2.1,
+   "click": false
+  },
+  {
+   "t": 143.999,
+   "at": "75:1",
+   "from_trk": 80,
+   "to_trk": 61,
+   "xfade_ms": 20.0,
+   "hf_spike_db": 7.9,
+   "natural_spike_db": 7.9,
+   "click": false
+  },
+  {
+   "t": 169.043,
+   "at": "87:1",
+   "from_trk": 72,
+   "to_trk": 78,
+   "xfade_ms": 60.0,
+   "hf_spike_db": -24.1,
+   "natural_spike_db": -1.2,
+   "click": false
+  },
+  {
+   "t": 171.13,
+   "at": "88:1",
+   "from_trk": 78,
+   "to_trk": 81,
+   "xfade_ms": 20.0,
+   "hf_spike_db": 19.5,
+   "natural_spike_db": 19.5,
+   "click": false
+  }
+ ],
+ "loudness": {
+  "gain_db": -6.8,
+  "before": {
+   "I": -9.2,
+   "TP": 0.7,
+   "LRA": 8.4
+  },
+  "after": {
+   "I": -16.0,
+   "TP": -6.1,
+   "LRA": 8.4
+  },
+  "limiter_max_reduction_db": 0.0,
+  "ceiling_db": -1.5
+ },
+ "onsets_vs_grid": {
+  "beats": 332,
+  "median_offset_ms": 2.9,
+  "p10_ms": 0.6,
+  "p90_ms": 5.4,
+  "within_20ms": "166/166",
+  "note": "strongest onset within +-70 ms of every beat of the output grid (5 ms hop), upper half by strength, corrected for the detector bias (-10.3 ms, calibrated on synthetic hits); + = music after the grid"
+ },
+ "moments": {
+  "title_stop": {
+   "verdict": "drop-on-5",
+   "silence_before_5_1_db": 0.6,
+   "hit_5_1_db": -13.0,
+   "level_5_6_vs_3_4_db": -11.9
+  },
+  "pain_sparse": {
+   "verdict": "yes",
+   "level_vs_film_median_db": -11.9,
+   "onset_density_vs_film": 0.1
+  },
+  "drop": {
+   "verdict": "yes",
+   "hit_21_1_db": 12.4,
+   "hit_21_1_low_db": 13.1,
+   "level_21_28_vs_pain_db": 12.4,
+   "rank_among_downbeats": 2
+  },
+  "ai_chime": {
+   "verdict": "sfx",
+   "at_s": 59.5
+  },
+  "payoff": {
+   "verdict": "yes",
+   "hit_51_1_db": 12.6,
+   "rank_among_downbeats": 1,
+   "of": 82,
+   "gap_50_4_db": -1.3,
+   "biggest_downbeat": "51:1 (+12.6 dB)"
+  },
+  "social_groove": {
+   "verdict": "yes",
+   "level_vs_film_median_db": 0.4
+  },
+  "break": {
+   "verdict": "yes",
+   "level_73_74_vs_2_bars_before_db": -11.2
+  },
+  "lift": {
+   "verdict": "yes",
+   "hit_75_1_db": 12.3,
+   "hit_75_1_low_db": 13.1,
+   "level_75_82_vs_break_db": 11.1
+  },
+  "end_resolve": {
+   "verdict": "natural (ends in silence)",
+   "last_100ms_db": -47.6,
+   "end_card_level_db": -18.0
+  }
+ },
+ "files": {
+  "wav": "/private/tmp/space-video-doodle/prod/audio/beds/love-love-love.wav",
+  "m4a": "/private/tmp/space-video-doodle/prod/audio/beds/love-love-love.m4a"
+ }
+}

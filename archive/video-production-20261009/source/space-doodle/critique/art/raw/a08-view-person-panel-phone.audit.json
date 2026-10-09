@@ -1,0 +1,21 @@
+{
+ "fonts": [],
+ "glyphs": [
+  "button#social-inbox.social-inbox [Doodle Marker] missing «♡» in «♡»",
+  "span#room-title [Doodle Display] missing «·» in «回声现场 · 示例场»"
+ ],
+ "colors": [
+  "div.entry-list>button borderBottom=rgb(188, 195, 178) (nearest deep d64)"
+ ],
+ "tiny": [
+  "div#scene-heading.scene-heading>small 11px «月台 Livehouse（虚构场地）»"
+ ],
+ "whiteOnMarker": [],
+ "clipped": [
+  "button.hotspot>span.label sw 110>84 «阿遥·示例 · 可招呼»",
+  "button.hotspot>span.label sw 110>84 «小满·示例 · 可招呼»",
+  "button.hotspot>span.label sw 110>84 «北屿·示例 · 可招呼»"
+ ],
+ "blurShadow": [],
+ "renderStyle": "doodle"
+}

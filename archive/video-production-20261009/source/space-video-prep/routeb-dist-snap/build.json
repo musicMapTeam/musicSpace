@@ -1,0 +1,112 @@
+{
+  "version": "0.22.0-rc.1",
+  "commit": "1915e23",
+  "builtAt": "2026-10-05T17:42:10.972Z",
+  "files": [
+    {
+      "path": "ai/LICENSE-onnxruntime-web-MIT.txt",
+      "bytes": 1073,
+      "sha256": "2f07c72751aed99790b8a4869cf2311df85a860b22ded05fa22803587a48922c"
+    },
+    {
+      "path": "ai/ort/ort-wasm-simd-threaded.mjs",
+      "bytes": 24381,
+      "sha256": "e13f7f94fc51b4ca72b12faeb1ee95f4ace6dfbc8939bc718aabdc0a27c4299b"
+    },
+    {
+      "path": "ai/ort/ort-wasm-simd-threaded.wasm",
+      "bytes": 14239897,
+      "sha256": "3398c10d07d229bd91b364548e130e0e51a8e5704b88c7c083ebbeb78842dee2"
+    },
+    {
+      "path": "ai/ort/ort.wasm.min.mjs",
+      "bytes": 50126,
+      "sha256": "219e6a1fc8a9938268d18efca3c91d310bd2f4a59bbd13744df5b2b7fc6cee3b"
+    },
+    {
+      "path": "ai/tc8/LICENSE-TinyCLIP-MIT.txt",
+      "bytes": 1769,
+      "sha256": "583acc0d9c74def18ec24e56964421bf1fac1fa2d60451e75e6681d5ae58a3f6"
+    },
+    {
+      "path": "ai/tc8/labels.json",
+      "bytes": 17609,
+      "sha256": "a7422fc83f7f1c3b1f7133575969d9348e6fb6fa6019614ff9798d653dbdcc2e"
+    },
+    {
+      "path": "ai/tc8/vision.onnx",
+      "bytes": 8807127,
+      "sha256": "53112612a2c20a6c7af46c46de0824ea2206c9de5c3cae18ba11d3fa8fa328ca"
+    },
+    {
+      "path": "classic/index.html",
+      "bytes": 1754681,
+      "sha256": "ce3718be0c42f2200137f8181d95e8e75dea25d3f8b546cf690eecf268a28514"
+    },
+    {
+      "path": "demo/bei-balcony.jpg",
+      "bytes": 34042,
+      "sha256": "3236efba83eb8311ba00e7d3527109d97f554a7ea8c3c739603b1baca967ff55"
+    },
+    {
+      "path": "demo/man-crowd.jpg",
+      "bytes": 56842,
+      "sha256": "c421b5477ef103ce57f5727f9b80c1a69c785754bca9e46b2f964316ca420514"
+    },
+    {
+      "path": "demo/man-near.jpg",
+      "bytes": 21921,
+      "sha256": "2e99c1ce0a751664f986a3ccfde6bc708523619c5dc8ba3302051305a621ab32"
+    },
+    {
+      "path": "demo/manifest.json",
+      "bytes": 3033,
+      "sha256": "89e8d72659826f0afcf0d52beb3cbe2b45abb9be88ccd6a9473d11f208f3441e"
+    },
+    {
+      "path": "demo/sample-crowd.jpg",
+      "bytes": 81292,
+      "sha256": "0c02a35a31445f06cb26a49cfa2493d0e4b78a801448b244deed7afcdba3f64f"
+    },
+    {
+      "path": "demo/sample-stage.jpg",
+      "bytes": 90522,
+      "sha256": "b0b9f035aa9fdcb349ef4a648052228fb23bd12c732c585decd3983440bffeb3"
+    },
+    {
+      "path": "demo/yao-stage.jpg",
+      "bytes": 70016,
+      "sha256": "678c67cb7e62780d586f22f0e6c1a7dc1ccba165146b910fd95bb0d0079fe2ad"
+    },
+    {
+      "path": "index.html",
+      "bytes": 2575084,
+      "sha256": "d9ddb5b82260127321bea2278690c01a5ca23650e883507c9de5873629fb9a02"
+    },
+    {
+      "path": "music-map/index.html",
+      "bytes": 744469,
+      "sha256": "e71bde9ee8c8c580e7e62c7a1023b1309e476b4a5d42542fe711f275147d57c7"
+    },
+    {
+      "path": "shared/three-0.186.1/three.core.js",
+      "bytes": 1458113,
+      "sha256": "9edde002b066a9a05676a6127f67735b62baf399bdea529f2f7e31657da769e6"
+    },
+    {
+      "path": "shared/three-0.186.1/three.module.js",
+      "bytes": 662772,
+      "sha256": "9052042d676cb0fdc1ddfefe193053f34b7ac0513a616fdac4535d49987812ea"
+    },
+    {
+      "path": "sql/LICENSE-sql.js-MIT.txt",
+      "bytes": 2199,
+      "sha256": "60a3f6e4d7b29b4321359e683b36cf198d24f58e24582070f56e6fa89d5ee2be"
+    },
+    {
+      "path": "sql/sql-wasm.wasm",
+      "bytes": 658410,
+      "sha256": "38c14f6e379210bc942bdc4ebca44e7bfdb4318ecc1c72ca666a28fdce96670a"
+    }
+  ]
+}

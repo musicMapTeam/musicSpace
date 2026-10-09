@@ -1,0 +1,10 @@
+const {page}=await get('phone');
+const out={};
+await page.locator('#panel-close').click().catch(()=>{}); await sleep(800);
+await page.locator('[data-view="person"]').click(); await sleep(1500);
+await page.locator('[data-person]',{hasText:'小满'}).first().click(); await sleep(1800);
+await page.locator('#panel [data-open="corners"]').first().click(); await sleep(2500);
+out.corner=await shot(page,'p30-corner');
+out.t=(await L.visibleText(page,'body')).split('\n').slice(-40).join(' | ');
+out.btns=(await L.visibleButtons(page)).filter(b=>!b.includes('data-view')&&!b.includes('scene-target')).slice(0,30);
+return out;

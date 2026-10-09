@@ -1,0 +1,27 @@
+{
+  "room": [
+    "/tmp/space-doodle/critique/node/np-phone-room-0.png",
+    "/tmp/space-doodle/critique/node/np-phone-room-1.png",
+    "/tmp/space-doodle/critique/node/np-phone-room-2.png"
+  ],
+  "room:text": "× | 月台 Livehouse | 返场夜 | 1 位成员 · 可继续入场 | GBPOMLCN5Z5G | 复制现场邀请链接 | http://127.0.0.1:8890/event-room/?room=GBPOMLCN5Z5G | 二维码和 NFC 标签只包含上方邀请网址，不携带身份。入场后近场连接须另行选择。 | 链接可转发给来参加这一场的人。入场者仍需本人同意；它不是身份凭据或照片公开链接。 | 回看这一晚 | 我的现场 | 我的创作与邀请 | 散场聊天室长期音乐社群招呼与朋友 | 这一场，我想怎样参与 | 安静参与 | 照样保存和分享照片，不接收新招呼。 | 愿意打招呼 | 别",
+  "moderation": [],
+  "moderation:text": "",
+  "rooms": [
+    "/tmp/space-doodle/critique/node/np-phone-rooms-0.png",
+    "/tmp/space-doodle/critique/node/np-phone-rooms-1.png"
+  ],
+  "rooms:text": "× | 散场了，也能回来 | 我的现场 | 返场夜 | 月台 Livehouse · 进行中 · 回看这一晚 ↗ | 继续在场 | 反馈与成员管理 | 结束此场入场 | 长期音乐社群我的照片照片交换我提交的现场反馈招呼与朋友备份或恢复我的小人身份",
+  "leave": [
+    "/tmp/space-doodle/critique/node/np-phone-leave-0.png",
+    "/tmp/space-doodle/critique/node/np-phone-leave-1.png"
+  ],
+  "leave:text": "× | 要离开这一场吗？ | 离场后不再读取其他人的照片墙分享。自己的照片会从墙上撤下，待回应的交换申请结束；已接受的定向交换仍有效，可在「照片交换」查看。 | 确认离开",
+  "close": [
+    "/tmp/space-doodle/critique/node/np-phone-close-0.png",
+    "/tmp/space-doodle/critique/node/np-phone-close-1.png"
+  ],
+  "close:text": "× | 结束「返场夜」的入场和上传？ | 已有成员仍可查看已获授权的照片。场次结束后不能恢复入场。 | 确认结束入场",
+  "console": [],
+  "pageerror": []
+}

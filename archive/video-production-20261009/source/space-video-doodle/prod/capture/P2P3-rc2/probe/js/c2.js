@@ -1,0 +1,18 @@
+const s = await get('phone');
+const p = s.page;
+const out = {};
+const geo = () => p.evaluate(() => { const c = document.querySelector('.corner-panel'); if (!c) return null; const sc = c.querySelector('.community-scroll'); const r = c.getBoundingClientRect(); const pick = sel => { const e = c.querySelector(sel); if (!e) return null; const b = e.getBoundingClientRect(); return [Math.round(b.x), Math.round(b.y), Math.round(b.width), Math.round(b.height)]; }; return { panel: [Math.round(r.x), Math.round(r.y), Math.round(r.width), Math.round(r.height)], scroll: sc && { top: sc.scrollTop, h: sc.clientHeight, sh: sc.scrollHeight }, art: pick('figure.corner-art'), edit: pick('form[data-corner-edit]'), note: pick('form[data-corner-edit] input[name=note]'), photo: pick('form[data-corner-edit] select'), share: pick('form[data-corner-edit] input[name=share]'), saveMine: pick('form[data-corner-edit] button'), confirm: pick('form[data-corner-confirm]'), save: pick('form[data-corner-save]'), exp: pick('form[data-corner-export]'), preview: pick('img.corner-result-preview') }; });
+await p.locator('#panel [data-open="corners"]').first().click(); await sleep(2000);
+out.g0 = await geo();
+await shot(p, 'c2-corner-open');
+await p.locator('.corner-panel form[data-corner-create] input[type=checkbox]').check(); await sleep(200);
+await p.locator('.corner-panel form[data-corner-create] button[type=submit]').click();
+await p.waitForFunction(() => /等 TA 加入/.test(document.querySelector('.corner-panel')?.innerText || ''), null, { timeout: 20000 });
+await sleep(300);
+out.g1 = await geo();
+await shot(p, 'c2-invited');
+await p.waitForFunction(() => /小满 的这一面/.test(document.querySelector('.corner-panel')?.innerText || ''), null, { timeout: 40000 });
+await sleep(1500);
+out.g2 = await geo();
+await shot(p, 'c2-joined');
+return out;

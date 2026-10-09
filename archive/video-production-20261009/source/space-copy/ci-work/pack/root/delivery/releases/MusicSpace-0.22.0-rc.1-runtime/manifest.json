@@ -1,0 +1,491 @@
+{
+  "version": "0.22.0-rc.1",
+  "sourceCommit": null,
+  "files": [
+    {
+      "path": "RUN-ME.md",
+      "bytes": 7200,
+      "sha256": "2c19d3d859c19d1e13c183a2f25694dc5c76e82d04afa280df656685ff4b1325"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "bytes": 43058,
+      "sha256": "dc2947d834b05656098b0837e05395a282839e087e0893885c9f07c29a66f36e"
+    },
+    {
+      "path": "dist/ai/LICENSE-onnxruntime-web-MIT.txt",
+      "bytes": 1073,
+      "sha256": "2f07c72751aed99790b8a4869cf2311df85a860b22ded05fa22803587a48922c"
+    },
+    {
+      "path": "dist/ai/ort/ort-wasm-simd-threaded.mjs",
+      "bytes": 24381,
+      "sha256": "e13f7f94fc51b4ca72b12faeb1ee95f4ace6dfbc8939bc718aabdc0a27c4299b"
+    },
+    {
+      "path": "dist/ai/ort/ort-wasm-simd-threaded.wasm",
+      "bytes": 14239897,
+      "sha256": "3398c10d07d229bd91b364548e130e0e51a8e5704b88c7c083ebbeb78842dee2"
+    },
+    {
+      "path": "dist/ai/ort/ort.wasm.min.mjs",
+      "bytes": 50126,
+      "sha256": "219e6a1fc8a9938268d18efca3c91d310bd2f4a59bbd13744df5b2b7fc6cee3b"
+    },
+    {
+      "path": "dist/ai/tc8/LICENSE-TinyCLIP-MIT.txt",
+      "bytes": 1769,
+      "sha256": "583acc0d9c74def18ec24e56964421bf1fac1fa2d60451e75e6681d5ae58a3f6"
+    },
+    {
+      "path": "dist/ai/tc8/labels.json",
+      "bytes": 17609,
+      "sha256": "a7422fc83f7f1c3b1f7133575969d9348e6fb6fa6019614ff9798d653dbdcc2e"
+    },
+    {
+      "path": "dist/ai/tc8/vision.onnx",
+      "bytes": 8807127,
+      "sha256": "53112612a2c20a6c7af46c46de0824ea2206c9de5c3cae18ba11d3fa8fa328ca"
+    },
+    {
+      "path": "dist/avatar/index.html",
+      "bytes": 1861981,
+      "sha256": "97e91d6cdc2a8d1bc9ab65a1d2d48e4e919089866f6d9bbc9295f89acd6473f2"
+    },
+    {
+      "path": "dist/character-lab/index.html",
+      "bytes": 802281,
+      "sha256": "0e03bcb6f986ea93db6898177ac936f25df0d656471ec25fa85639ad6f852eb3"
+    },
+    {
+      "path": "dist/event-room/fonts/doodle/LICENSES.txt",
+      "bytes": 34537,
+      "sha256": "68429eb80445a9f24b65ddacd7662638c483242b796c4d718ce66a9a0c53fa98"
+    },
+    {
+      "path": "dist/event-room/fonts/doodle/digits-0.woff2",
+      "bytes": 14420,
+      "sha256": "d52e28a7f42ff1ed9b8e79a6e04893762f9ba0a92cdeb2d93b6c906972a6512a"
+    },
+    {
+      "path": "dist/event-room/fonts/doodle/display-0.woff2",
+      "bytes": 103740,
+      "sha256": "5f299602ad3b888873913f1db8cae5a4079023e9ea26caa475dc124f73633a41"
+    },
+    {
+      "path": "dist/event-room/fonts/doodle/display-1.woff2",
+      "bytes": 103764,
+      "sha256": "d23c5ee6bc2c456093bab8398b7b57a89cd80c6f9bf4ef326e810e6b898f1740"
+    },
+    {
+      "path": "dist/event-room/fonts/doodle/display-2.woff2",
+      "bytes": 139032,
+      "sha256": "91c343ebb5a4c552522f30142661599a092897f80dcd929ed172d09009df57ad"
+    },
+    {
+      "path": "dist/event-room/fonts/doodle/display-3.woff2",
+      "bytes": 71660,
+      "sha256": "e7a14f5bac8f6142106353d725101571df73b1a522351ff0443aee18eac91fa8"
+    },
+    {
+      "path": "dist/event-room/fonts/doodle/fonts.css",
+      "bytes": 66270,
+      "sha256": "2d24494c90a2c3a208d3978ae8b31736ea1a91472ac0ba632b530bcb37cb8c94"
+    },
+    {
+      "path": "dist/event-room/fonts/doodle/hand-0.woff2",
+      "bytes": 139264,
+      "sha256": "9080a1777d024d5b48e24319f62bfbf27f3c579642e429f8a82ce858f464b2bf"
+    },
+    {
+      "path": "dist/event-room/fonts/doodle/hand-1.woff2",
+      "bytes": 118396,
+      "sha256": "cbc688d5f2afd8b58dbdb3171520b02388741d4eb3599e3c86c889b6838dd0fd"
+    },
+    {
+      "path": "dist/event-room/fonts/doodle/hand-2.woff2",
+      "bytes": 159868,
+      "sha256": "dcd580d3e3be661f61cba1efd91ceffa11fe7418ca1931ad65ccbe60436093f3"
+    },
+    {
+      "path": "dist/event-room/fonts/doodle/hand-3.woff2",
+      "bytes": 79680,
+      "sha256": "ad2589673bdfa28ab27deebbd435cef51859b8dbb5c4bc1cb821446072737c42"
+    },
+    {
+      "path": "dist/event-room/fonts/doodle/hand-4.woff2",
+      "bytes": 754460,
+      "sha256": "d9ecfb4041bca12d7448212183fa49860224b213177c081d69fc58592dfc4dca"
+    },
+    {
+      "path": "dist/event-room/fonts/doodle/logo-0.woff2",
+      "bytes": 16924,
+      "sha256": "60e61ca3e34db2ea7d1660339b11f9ef904631e821633beec151f03c4524534a"
+    },
+    {
+      "path": "dist/event-room/fonts/doodle/marker-0.woff2",
+      "bytes": 47836,
+      "sha256": "09de9adc9831ea597467d6a0771e189ef7c72f6de18bbef0bc528e09c992c78d"
+    },
+    {
+      "path": "dist/event-room/fonts/doodle/marker-1.woff2",
+      "bytes": 36184,
+      "sha256": "7cf1ded6fe4193677cf544a2635ed8be92f7ad06e0d5fe69718af5b19a50932f"
+    },
+    {
+      "path": "dist/event-room/fonts/doodle/marker-2.woff2",
+      "bytes": 48896,
+      "sha256": "d5bbda273c250471af2d5c95f3b90519ce62d7f4002fa5875fb817752a2a282d"
+    },
+    {
+      "path": "dist/event-room/fonts/doodle/marker-3.woff2",
+      "bytes": 25188,
+      "sha256": "29c6c65d89a4af374274a6f9175e7432775d04d517391f7e8952e9605fd3f668"
+    },
+    {
+      "path": "dist/event-room/fonts/doodle/marker-4.woff2",
+      "bytes": 218636,
+      "sha256": "a8b0ed98dedc5e92a159c6d2713b55ab31b6a7bed97c6a9d21da9b57ce09b4d3"
+    },
+    {
+      "path": "dist/event-room/fonts/doodle/marker-symbols.woff2",
+      "bytes": 2664,
+      "sha256": "2b5ef0a9d1ad93dedc700116e3a9dd93bc64f32d148539e14ffee77a282fd034"
+    },
+    {
+      "path": "dist/event-room/fonts/doodle/note-0.woff2",
+      "bytes": 16004,
+      "sha256": "e9b38d7bcaca751da2889511d1af4816dea522cfda25e302c6f6374fc8aac5e7"
+    },
+    {
+      "path": "dist/event-room/index.html",
+      "bytes": 2475902,
+      "sha256": "7551420cff310075850b16efb9d36480ae5d5da2d3e3c9eba2c9c88172bd5ecc"
+    },
+    {
+      "path": "dist/index.html",
+      "bytes": 1754374,
+      "sha256": "c744c725d105fe48a53c4a852e606f8f8bac91f7a21eba36ec46e3c1a78a01ae"
+    },
+    {
+      "path": "dist/livehouse/index.html",
+      "bytes": 953203,
+      "sha256": "729e58c17e5f74dba54da47200802f72fbc73c8fda77eb5258782819fcc601ed"
+    },
+    {
+      "path": "dist/music-map/index.html",
+      "bytes": 743282,
+      "sha256": "d7a83e4f68b48c1b5ce57939e39e8b3fcdd9f0e3ecf9509289ff38e4ea4cc213"
+    },
+    {
+      "path": "dist/shared/three-0.186.1/three.core.js",
+      "bytes": 1458113,
+      "sha256": "9edde002b066a9a05676a6127f67735b62baf399bdea529f2f7e31657da769e6"
+    },
+    {
+      "path": "dist/shared/three-0.186.1/three.module.js",
+      "bytes": 662772,
+      "sha256": "9052042d676cb0fdc1ddfefe193053f34b7ac0513a616fdac4535d49987812ea"
+    },
+    {
+      "path": "docs/deployment.md",
+      "bytes": 17603,
+      "sha256": "f805930a4c7a9cc6c79d59b6ea0036f459db20a07191a27417d3622b6076e9fb"
+    },
+    {
+      "path": "docs/ops/backup-restore-qa.md",
+      "bytes": 2391,
+      "sha256": "d302c866c8bc5206cc26faece5819fed0ff57081fd2061cb2eadf3da4ebd6144"
+    },
+    {
+      "path": "package.json",
+      "bytes": 3201,
+      "sha256": "e0ae347fc16c5eef5d3759b52393bf1067ba43b6a601abb53cbf6c360de0871c"
+    },
+    {
+      "path": "runtime-preview/drizzle/0000_known_colonel_america.sql",
+      "bytes": 2305,
+      "sha256": "5592051d56d95cfe2ab3e0e9901850a859c6b9ec0fabc8607029e54166f4387a"
+    },
+    {
+      "path": "runtime-preview/drizzle/0001_event_rooms.sql",
+      "bytes": 2976,
+      "sha256": "dab04e3359eb2f531624ab00240967485fc89a9855bd5e41f9b36daf1d5ed2ce"
+    },
+    {
+      "path": "runtime-preview/drizzle/0002_event_social.sql",
+      "bytes": 3407,
+      "sha256": "9cf4032c39e03f0391a2795479cc09826871435dfc2879b7a787cd635038c928"
+    },
+    {
+      "path": "runtime-preview/drizzle/0003_event_chat.sql",
+      "bytes": 1855,
+      "sha256": "f93944e7d1dab0ce0680d8f719ef1aff5f1b1ea8e34a1b7f2aba1e1969fff38b"
+    },
+    {
+      "path": "runtime-preview/drizzle/0004_event_exchanges.sql",
+      "bytes": 5147,
+      "sha256": "6d7860a87070a7a450c5f7b2265dd06ac4adc09c8b210a63d4abf6be2306eb5e"
+    },
+    {
+      "path": "runtime-preview/drizzle/0005_event_moderation.sql",
+      "bytes": 2428,
+      "sha256": "747d47be741c75f52a05b40f152306a2540e2007d7d8fa4c931e9b07feccc6f1"
+    },
+    {
+      "path": "runtime-preview/drizzle/0006_event_participation.sql",
+      "bytes": 1080,
+      "sha256": "c669975f1afc86f1e6e251a8ac117c5043d3340985b75de7e419b08e791d5360"
+    },
+    {
+      "path": "runtime-preview/drizzle/0007_event_communities.sql",
+      "bytes": 1660,
+      "sha256": "853e780281e6e07f5fd63d0bd0eb1e73e02f7a5ab0007cbf883d96fd6202fc78"
+    },
+    {
+      "path": "runtime-preview/drizzle/0008_event_music.sql",
+      "bytes": 270,
+      "sha256": "3975e00951e9fb7b42dcaa35a4cb5ffa9888ec0051d17dc9894cb9e88f23f801"
+    },
+    {
+      "path": "runtime-preview/drizzle/0009_event_worldcup.sql",
+      "bytes": 1027,
+      "sha256": "6111381a47c1aeaa29ce76998363722c5b4e831b0fed27ba7037a8ced9cbf23a"
+    },
+    {
+      "path": "runtime-preview/drizzle/0010_event_corners.sql",
+      "bytes": 1711,
+      "sha256": "265c9338978eaea2ea791ddfceef4f23b305c853fd869a298544ced1af387e7d"
+    },
+    {
+      "path": "runtime-preview/drizzle/0011_event_spaces.sql",
+      "bytes": 1011,
+      "sha256": "db9b7d5ff39eb8cefc6c030a235d3f30c36d2aa727f1746eb8e2d6dab688d77c"
+    },
+    {
+      "path": "runtime-preview/drizzle/0012_event_music_play.sql",
+      "bytes": 3047,
+      "sha256": "040a071637d212a95b69a5b34f5a17bd6250a153ac548952f3393bc542de0252"
+    },
+    {
+      "path": "runtime-preview/drizzle/0013_event_photo_moment.sql",
+      "bytes": 1297,
+      "sha256": "8283f413f6b57be73e173389e04c2c34c49406552e48b41fe73924c3cbccebf2"
+    },
+    {
+      "path": "runtime-preview/drizzle/meta/0000_snapshot.json",
+      "bytes": 9821,
+      "sha256": "9034e261cb54227b73af30ea3b2de4b30d8918803b5f5c0a62152249acb03356"
+    },
+    {
+      "path": "runtime-preview/drizzle/meta/0001_snapshot.json",
+      "bytes": 21744,
+      "sha256": "d805e9707a427e9f3e4d66a705ac282b5e8d394d926593d55db1de74fcac6cc0"
+    },
+    {
+      "path": "runtime-preview/drizzle/meta/0002_snapshot.json",
+      "bytes": 32015,
+      "sha256": "5351a13974d5f571858c9b41664109ed81f38bfc9eca6ec21bc2feda46a44111"
+    },
+    {
+      "path": "runtime-preview/drizzle/meta/0003_snapshot.json",
+      "bytes": 39400,
+      "sha256": "ebf687c9a54c1ecc09ad090399ac88e2de1922ef32afd38b418e26dcccb10548"
+    },
+    {
+      "path": "runtime-preview/drizzle/meta/0004_snapshot.json",
+      "bytes": 55175,
+      "sha256": "b4ee7227b26d85a03c702a519154bbb3b69537316a05c4d0550704a126175ab5"
+    },
+    {
+      "path": "runtime-preview/drizzle/meta/0005_snapshot.json",
+      "bytes": 63958,
+      "sha256": "48e2c5e6906aa96626a2686065a162cc1b3bd240d89fef7b810342558b22a51f"
+    },
+    {
+      "path": "runtime-preview/drizzle/meta/0006_snapshot.json",
+      "bytes": 66210,
+      "sha256": "7ddbd14adf309b33fdd5cdb23912fe8d268803e370a978235850f52502e8c093"
+    },
+    {
+      "path": "runtime-preview/drizzle/meta/0007_snapshot.json",
+      "bytes": 79774,
+      "sha256": "d9a2a21aeb7386401608e41d2e7d4b541c8b5ee80960b0ef041821065a327932"
+    },
+    {
+      "path": "runtime-preview/drizzle/meta/0008_snapshot.json",
+      "bytes": 80988,
+      "sha256": "fd99dc29ae2e9df07a7c9c9659a0c6c5b775dbed51be5fa0038363e0eb7d7cf9"
+    },
+    {
+      "path": "runtime-preview/drizzle/meta/0009_snapshot.json",
+      "bytes": 88483,
+      "sha256": "e7ac9f43178d0c001535f0e6c57d8ff96c7cf30990637af8d82cecfaef704098"
+    },
+    {
+      "path": "runtime-preview/drizzle/meta/0010_snapshot.json",
+      "bytes": 99109,
+      "sha256": "1bea2da363148393062eecb74dc2d8476e7fd8c1f4d1e69330611ecb5ed4e0fe"
+    },
+    {
+      "path": "runtime-preview/drizzle/meta/0011_snapshot.json",
+      "bytes": 104459,
+      "sha256": "aec679b8a5be4a3e03350b83ef6b5c368c37a5d3ccd1114e55f3f75cb68edd51"
+    },
+    {
+      "path": "runtime-preview/drizzle/meta/0012_snapshot.json",
+      "bytes": 125886,
+      "sha256": "606659292f06696b8b2512cd44e60fed0b876fcad2ece47fce2a149d03564c07"
+    },
+    {
+      "path": "runtime-preview/drizzle/meta/0013_snapshot.json",
+      "bytes": 128052,
+      "sha256": "50bbdc81c5ff56a86502a976ce228cbe7494dac98811d791a739c0c8fb03f4b7"
+    },
+    {
+      "path": "runtime-preview/drizzle/meta/_journal.json",
+      "bytes": 2064,
+      "sha256": "3ddc414dd473e7835ebd7c84fcf16404eacba9e4e60789461a0e06fe9df24e39"
+    },
+    {
+      "path": "runtime-preview/src/admission-protocol.js",
+      "bytes": 2618,
+      "sha256": "469f37b09051d30cdf659a02b2a21f328fbb813a3483c8845298f1ae9c76f58a"
+    },
+    {
+      "path": "runtime-preview/src/avatar-worker.js",
+      "bytes": 38040,
+      "sha256": "fce8a19cf2013787332c1de30a682dd95a8751dd58c4def1f0482929f951a033"
+    },
+    {
+      "path": "runtime-preview/src/event-chat.js",
+      "bytes": 10569,
+      "sha256": "8eb201444e8f203457e3de22d0fb44435f5d709d1a03765cb728784bdf2f89aa"
+    },
+    {
+      "path": "runtime-preview/src/event-community.js",
+      "bytes": 18248,
+      "sha256": "dfdbdb4bf5765cc6b0b208b80aee737c5e3b818363857a4e8d95a0c405175d24"
+    },
+    {
+      "path": "runtime-preview/src/event-corners.js",
+      "bytes": 12096,
+      "sha256": "d2ee91eb64de80ce9dda486a8f937fa8a961e3776212275cb3a19465d0e279cd"
+    },
+    {
+      "path": "runtime-preview/src/event-exchanges.js",
+      "bytes": 17064,
+      "sha256": "05db134c83d9ec128f5de1d82e6e663be770127fca91233f42208ff94a71aa37"
+    },
+    {
+      "path": "runtime-preview/src/event-games.js",
+      "bytes": 22370,
+      "sha256": "fc284eb845e0ed9f3310d4d11b94eb95b31db4485ce8c3cd07caf2d651b4635f"
+    },
+    {
+      "path": "runtime-preview/src/event-moderation.js",
+      "bytes": 14102,
+      "sha256": "980803e70d0df8944fa8aa7adf3523e7d3210711a434257d3f07d438a72ea236"
+    },
+    {
+      "path": "runtime-preview/src/event-music-topics.js",
+      "bytes": 4125,
+      "sha256": "34e6aabb1fb288fe7fce3e9f175e8101c9506298ca412be3a0b931b26e148d69"
+    },
+    {
+      "path": "runtime-preview/src/event-participation.js",
+      "bytes": 2362,
+      "sha256": "a9f5a8dcf792a39b1f4db52aef23f8c19e07bde4fb83d8ea42ae4d44b78dadcb"
+    },
+    {
+      "path": "runtime-preview/src/event-recap.js",
+      "bytes": 3892,
+      "sha256": "f88981fcba7287a38e4e521d640969a48acffc88a33235e3328f84f9eaae6f8f"
+    },
+    {
+      "path": "runtime-preview/src/event-social.js",
+      "bytes": 17923,
+      "sha256": "87b548696236b9deb2b17117ef4cc0c445b9c31a94b361df12b1c15726bb1006"
+    },
+    {
+      "path": "runtime-preview/src/event-spaces.js",
+      "bytes": 7480,
+      "sha256": "fb2a759039f1c12174435c4278b33531517fdbde2615f5a01918c2f2e4a3ba3e"
+    },
+    {
+      "path": "runtime-preview/src/event-worker.js",
+      "bytes": 35243,
+      "sha256": "c48e4f8abd224abd711b737f984c433160dbd9177faea677a37973ddd775f346"
+    },
+    {
+      "path": "runtime-preview/src/event-worldcup.js",
+      "bytes": 11173,
+      "sha256": "13b47370e5fd95edb65d177236c014440fb66e96d4cc079c6ae0ce27acfeae5e"
+    },
+    {
+      "path": "runtime-preview/src/map-catalogue.js",
+      "bytes": 60144,
+      "sha256": "f38b4f1a2ff916565bfacdce3fd4aa6add6a77b7da6b9663e1484cb452934f0b"
+    },
+    {
+      "path": "runtime-preview/src/music-catalogue.js",
+      "bytes": 2143,
+      "sha256": "fd2215f9caff75710db580261134646eeeb468b2d29b8bfcc779178678bd2195"
+    },
+    {
+      "path": "runtime-preview/src/music-play-access.js",
+      "bytes": 3241,
+      "sha256": "1ed4994e337f9fc64476e4c7b855bdef399974761031fefb9c5e84a1a3418cac"
+    },
+    {
+      "path": "runtime-preview/src/space-access.js",
+      "bytes": 554,
+      "sha256": "167163e8302461adb79a9e84ad9ca07f59a454ca07098e970ed9fef5de02b0b2"
+    },
+    {
+      "path": "runtime-preview/src/worldcup-albums.js",
+      "bytes": 696,
+      "sha256": "72071bf3d65cfd9e1b25799d976fedac4281e060c5284af4b850a65b52b10e33"
+    },
+    {
+      "path": "scripts/ops/data-backup.mjs",
+      "bytes": 10333,
+      "sha256": "e63bd5d14626959d5bbf55ba5c9bc5127b01a06692eb26039777ee84bea57587"
+    },
+    {
+      "path": "server/avatar-api.js",
+      "bytes": 31884,
+      "sha256": "a1a79c2d75907facfa302f4528fc98df99e0973c7c88bc3e03ddf0da426cfba4"
+    },
+    {
+      "path": "server/avatar-store.js",
+      "bytes": 5585,
+      "sha256": "947c40de616014694ae2c0b79170c63289068c42e64588dfdde1d48cb8c8e47d"
+    },
+    {
+      "path": "server/db.js",
+      "bytes": 4789,
+      "sha256": "47185defba79cd0d9321f5c03ad6fc51b0ff8c45cd4944902919ec12d662d436"
+    },
+    {
+      "path": "server/event-api.js",
+      "bytes": 2742,
+      "sha256": "d4a520aac27c6e44e89b1b052bda06511ea9932fa04934f24e7847609d1e2d86"
+    },
+    {
+      "path": "server/event-store.js",
+      "bytes": 3810,
+      "sha256": "d171ebd4d66f66d23f653e8594f6b90e7f37ada775445c5a75ebb82546427e06"
+    },
+    {
+      "path": "server/index.js",
+      "bytes": 34850,
+      "sha256": "d366b4c915c5498aef9636bbf460b3f59d44a09db9ef37544749c8e4025b1101"
+    },
+    {
+      "path": "server/launch-local.js",
+      "bytes": 3040,
+      "sha256": "6f3f4d629dbe23223a170de43c2272ed2872afa0d49d3bbd437e7053b2810177"
+    }
+  ]
+}

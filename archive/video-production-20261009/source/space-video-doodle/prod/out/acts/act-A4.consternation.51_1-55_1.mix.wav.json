@@ -1,0 +1,57 @@
+{
+ "map": "consternation",
+ "bed": "/tmp/space-video-doodle/prod/audio/beds/consternation.wav",
+ "range": [
+  94.15,
+  103.3833
+ ],
+ "full": false,
+ "music": {
+  "I": -14.4,
+  "TP": -1.5,
+  "LRA": 0.5
+ },
+ "sfx_before_gain": {
+  "I": -26.4,
+  "TP": -0.8,
+  "LRA": 5.9
+ },
+ "sfx_gain_db": 3.0,
+ "sfx": {
+  "I": -23.4,
+  "TP": 2.2,
+  "LRA": 5.9
+ },
+ "sfx_vs_music_LU": -9.0,
+ "mix": {
+  "I": -14.2,
+  "TP": -1.5,
+  "LRA": 0.6
+ },
+ "normalisation": {
+  "gain_db": 0.0,
+  "limiter_max_reduction_db": -4.63
+ },
+ "sfx_counts": {
+  "impact": 3,
+  "heartbeat": 5,
+  "tick": 6,
+  "riser": 1,
+  "blip": 2,
+  "boom": 1,
+  "crackle": 1,
+  "zip": 2,
+  "tape": 1,
+  "stamp": 1,
+  "whoosh": 3,
+  "pop": 5,
+  "slam": 2,
+  "boop": 2,
+  "swish": 1,
+  "squeak": 3,
+  "thump": 1,
+  "slap": 2
+ },
+ "sfx_placed": 42,
+ "note": "all SFX synthesized in tools/sfx.py from noise/oscillators; no samples"
+}

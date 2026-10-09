@@ -1,0 +1,19 @@
+{
+ "scene": "act-A4",
+ "map": "consternation",
+ "frames": [
+  4542,
+  6203
+ ],
+ "seconds": [
+  75.7,
+  103.38333333333334
+ ],
+ "crf": 18,
+ "bytes": 35864796,
+ "audio": "/tmp/space-video-doodle/prod/out/acts/act-A4.consternation.mix.wav",
+ "workers": 4,
+ "chunk": 240,
+ "mezz": "hq",
+ "render_fps": 24.71
+}

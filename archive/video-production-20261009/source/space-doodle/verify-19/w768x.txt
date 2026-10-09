@@ -1,0 +1,14 @@
+w768x room-entered stage [698, 812] innerW 768
+   '照片墙'                        hidden=False hs=88x44 client=84 content=72 scroll=84 textW=39 trunc=False ws=nowrap to=ellipsis ov=hidden fs=13px ff="Doodle Marker" pad=5px 6px 4px box=[607, 358, 696, 392]
+   '阿遥·示例 · 可招呼'                hidden=False hs=88x44 client=84 content=72 scroll=122 textW=111 trunc=True  ws=nowrap to=ellipsis ov=hidden fs=13px ff="Doodle Marker" pad=5px 6px 4px box=[55, 378, 143, 411]
+   '小满·示例 · 可招呼'                hidden=False hs=88x44 client=84 content=72 scroll=122 textW=111 trunc=True  ws=nowrap to=ellipsis ov=hidden fs=13px ff="Doodle Marker" pad=5px 6px 4px box=[280, 376, 369, 408]
+   '北屿·示例 · 可招呼'                hidden=False hs=88x44 client=84 content=72 scroll=122 textW=111 trunc=True  ws=nowrap to=ellipsis ov=hidden fs=13px ff="Doodle Marker" pad=5px 6px 4px box=[504, 378, 592, 411]
+   '访客2346 · 我'                 hidden=True  hs=0x0 client=0 content=-12 scroll=0 textW=0 trunc=False ws=nowrap to=ellipsis ov=hidden fs=13px ff="Doodle Marker" pad=5px 6px 4px box=[0, 0, 0, 0]
+exchange accepted
+w768x overview-after-exchange stage None innerW None
+   '照片墙'                        hidden=False hs=88x44 client=84 content=72 scroll=84 textW=39 trunc=False ws=nowrap to=ellipsis ov=hidden fs=13px ff="Doodle Marker" pad=5px 6px 4px box=[557, 328, 646, 362]
+   '阿遥·示例 · 可招呼'                hidden=False hs=88x44 client=84 content=72 scroll=122 textW=111 trunc=True  ws=nowrap to=ellipsis ov=hidden fs=13px ff="Doodle Marker" pad=5px 6px 4px box=[155, 400, 244, 432]
+   '小满·示例 · 可招呼'                hidden=False hs=88x44 client=84 content=72 scroll=122 textW=111 trunc=True  ws=nowrap to=ellipsis ov=hidden fs=13px ff="Doodle Marker" pad=5px 6px 4px box=[267, 398, 356, 430]
+   '北屿·示例 · 可招呼'                hidden=False hs=88x44 client=84 content=72 scroll=122 textW=111 trunc=True  ws=nowrap to=ellipsis ov=hidden fs=13px ff="Doodle Marker" pad=5px 6px 4px box=[376, 400, 465, 433]
+   '访客2346 · 我'                 hidden=False hs=88x44 client=84 content=72 scroll=94 textW=82 trunc=True  ws=nowrap to=ellipsis ov=hidden fs=13px ff="Doodle Marker" pad=5px 6px 4px box=[483, 398, 572, 430]
+   '林间·示例 · 安静'                 hidden=False hs=88x44 client=84 content=72 scroll=109 textW=98 trunc=True  ws=nowrap to=ellipsis ov=hidden fs=13px ff="Doodle Marker" pad=5px 6px 4px box=[597, 400, 686, 433]

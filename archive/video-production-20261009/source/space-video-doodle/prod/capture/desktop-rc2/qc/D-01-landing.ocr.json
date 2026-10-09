@@ -1,0 +1,94 @@
+{
+ "id": "D-01-landing",
+ "step_frames": 30,
+ "frames_read": 17,
+ "pattern": "示例|虚构|本页|演示|自动回复|不是真人|没有服务器|只存在这个浏览器|模拟|本地体验版|在线访问|等待本人回应|示例站|关于这个示例|仅文字|已保存 =",
+ "hits": [],
+ "frames": [
+  {
+   "frame": 0,
+   "t": 0.0,
+   "text": "MISIGSPAGe | ◎ 现场进行中 | MUSIC SPACE / LIVEHOUSE | 进到同一个现场 | 这一晚. | 从这里开始 | SIDE | BYSIDE | ACE / AFTER THE ENCORE | STAY FOR ONE MORE. | 这一晚的 | 另一个视甬， | 就在你身边 | Livehouse 为每一场演出开一个房间，乐迷带着小人 | 入场；散场后，留在场地的乐迷社群里。 | 就是这一刻！ | 同一刻， | 另一面 | 同一晚，你拍了舞台，TA拍了人海。AI 在本机给 | 你一个视角建议，照片墙帮你找到同一刻的另一面， | 双方同意就交换。 | 进入现场 | 这一晚的歌 | 进入房间，留下你看到的那个瞬间 | ENCORE /01 | 全景 | 入o 同场的人 | 囚 照片墻 | 我的空间 | 关于 Music Space"
+  },
+  {
+   "frame": 30,
+   "t": 0.5,
+   "text": "WISIGSPAGe | • 现场进行中 | MUSIC SPACE / LIVEHOUSE | 进到同一个现场 | 这一晚. | 从这里开始 | SIDE | BYSIDE | ACE / AFTER THE ENCORE | FAY FOR ONE MORE， | 这一晚的 | 另一个视甬， | 就在你身边 | Livehouse 为每一场演出开一个房间，乐迷带着小人 | 入场；散场后，留在场地的乐迷社群里。 | 就是这一刻！ | 同一刻， | 另一面 | 同一晚，你拍了舞台，TA拍了人海。AI 在本机给 | 你一个视角建议，照片墙帮你找到同一刻的另一面， | 双方同意就交换。 | 进入现场 | 这一晚的歌 | 进入房间，留下你看到的那个瞬间 | ENCORE / 01 | 全景 | 2o 同场的人 | 囚 照片墻 | 我的空间 | 关于 Music Space"
+  },
+  {
+   "frame": 60,
+   "t": 1.0,
+   "text": "MSIGSPAGG | ◎ 现场进行中 | MUSIC SPACE / LIVEHOUSE | 进到同一个现场 | 这一晚. | 从这里开始 | SIDE | BYSIDE | ICE / AFTER THE ENCORE | STAY FOR ONE MORE. | 这一晚的 | 另一个视甬， | 就在你身边 | Livehouse 为每一场演出开一个房间，乐迷带着小人 | 入场；散场后，留在场地的乐迷社群里。 | 就是这一刻！ | 同一刻， | 另一面 | 同一晚，你拍了舞台，TA拍了人海。AI 在本机给 | 你一个视角建议，照片墙帮你找到同一刻的另一面， | 双方同意就交换。 | 进入现场 | 这一晚的歌 | 进入房间，留下你看到的那个瞬间 | ENCORE /01 | 全景 | 2o 同场的人 | 囚 照片墻 | 我的空间 | 关于 Music Space"
+  },
+  {
+   "frame": 90,
+   "t": 1.5,
+   "text": "WISIGSPAGe | ◎ 现场进行中 | MUSIC SPACE / LIVEHOUSE | 进到同一个现场 | 这一晚， | 从这里开始 | SIDE | BYSIDE | ACE / AFTER THE ENCORE | STAY FOR ONE MORE， | 这一晚的 | 另一个视甬， | 就在你身边 | Livehouse 为每一场演出开一个房间，乐迷带着小人 | 入场；散场后，留在场地的乐迷社群里。 | 就是这一刻！ | 同一刻， | 另一面 | 同一晚，你拍了舞台，TA拍了人海。AI 在本机给 | 你一个视角建议，照片墙帮你找到同一刻的另一面， | 双方同意就交换。 | 进入现场 | 这一晚的歌 | 进入房间，留下你看到的那个瞬间 | ENCORE /01 | 全景 | 2o 同场的人 | 囚 照片墻 | 我的空间 | 关于 Music Space"
+  },
+  {
+   "frame": 120,
+   "t": 2.0,
+   "text": "MISIGSPAGe | ◎ 现场进行中 | MUSIC SPACE / LIVEHOUSE | 进到同一个现场 | 这一晚. | 从这里开始 | SIDE | BYSIDE | ACE / AFTER THE ENCORE | STAY FOR ONE MORE. | 这一晚的 | 另一个视甬， | 就在你身边 | Livehouse 为每一场演出开一个房间，乐迷带着小人 | 入场；散场后，留在场地的乐迷社群里。 | 就是这一刻！ | 同一刻， | 另一面 | 同一晚，你拍了舞台，TA拍了人海。AI 在本机给 | 你一个视角建议，照片墙帮你找到同一刻的另一面， | 双方同意就交换。 | 进入现场 | 这一晚的歌 | 进入房间，留下你看到的那个瞬间 | ENCORE /01 | 全景 | 2o 同场的人 | 囚 照片墻 | 我的空间 | 关于 Music Space"
+  },
+  {
+   "frame": 150,
+   "t": 2.5,
+   "text": "WISIGSPAGe | ◎ 现场进行中 | MUSIC SPACE / LIVEHOUSE | 进到同一个现场 | 这 | 一晚， | 从这里开始 | SIE | BYSIDE | RCE / AFTER THE ENCORE | STAY FOR ONE MORE. | 这一晚的 | 另一个视甬， | 就在你身边 | Livehouse 为每一场演出开一个房间，乐迷带着小人 | 入场；散场后，留在场地的乐迷社群里。 | 就是这一刻！ | 回一刻， | 另一面 | 同一晚，你拍了舞台，TA拍了人海。AI 在本机给 | 你一个视角建议，照片墙帮你找到同一刻的另一面， | 双方同意就交换。 | 进入现场 | 这一晚的歌 | 进入房间，留下你看到的那个瞬间 | ENCORE /01 | 全景 | 2o 同场的人 | 囚 照片墻 | 我的空间 | 关于 Music Space"
+  },
+  {
+   "frame": 180,
+   "t": 3.0,
+   "text": "MISIGSPAGe | ◎ 现场进行中 | MUSIC SPACE / LIVEHOUSE | 进到同一个现场 | 这一晚. | 从这里开始 | SIDE | BYSIDE | AACE / AFTER THE ENCORE | FAY FOR ONE MORE， | 这一晚的 | 另一个视甬， | 就在你身边 | Livehouse 为每一场演出开一个房间，乐迷带着小人 | 入场；散场后，留在场地的乐迷社群里。 | 就是这一刻！ | 同一刻， | 另一面 | 同一晚，你拍了舞台，TA拍了人海。AI 在本机给 | 你一个视角建议，照片墙帮你找到同一刻的另一面， | 双方同意就交换。 | 进入现场 | 这一晚的歌 | 进入房间，留下你看到的那个瞬间 | ENCORE /01 | 全景 | 2o 同场的人 | 囚 照片墻 | 我的空间 | 关于 Music Space"
+  },
+  {
+   "frame": 210,
+   "t": 3.5,
+   "text": "MISIGSPAGe | ◎ 现场进行中 | MUSIC SPACE / LIVEHOUSE | 进到同一个现场 | 这一晚. | 从这里开始 | SIDE | BYSIDE | RCE / AFTER THE ENCORE | STAY FOR ONE MORE. | 这一晚的 | 另一个视甬， | 就在你身边 | Livehouse 为每一场演出开一个房间，乐迷带着小人 | 入场；散场后，留在场地的乐迷社群里。 | 就是这一刻！ | 同一刻， | 另一面 | 同一晚，你拍了舞台，TA拍了人海。AI 在本机给 | 你一个视角建议，照片墙帮你找到同一刻的另一面， | 双方同意就交换。 | 进入现场 | 这一晚的歌 | 进入房间，留下你看到的那个瞬间 | ENCORE /01 | 全景 | 2o 同场的人 | 囚 照片墻 | 我的空间 | 关于 Music Space"
+  },
+  {
+   "frame": 240,
+   "t": 4.0,
+   "text": "WISIGSPAGe | ◎ 现场进行中 | MUSIC SPACE / LIVEHOUSE | 进到同一个现场 | 这一晚. | 从这里开始 | SIDE | BYSIDE | AICE / AFTER THE ENCORE | STAY FOR ONE MORE. | 这一晚的 | 另一个视甬， | 就在你身边 | Livehouse 为每一场演出开一个房间，乐迷带着小人 | 入场；散场后，留在场地的乐迷社群里。 | 就是这一刻！ | 同一刻， | 另一面 | 同一晚，你拍了舞台，TA拍了人海。AI 在本机给 | 你一个视角建议，照片墙帮你找到同一刻的另一面， | 双方同意就交换。 | 进入现场 | 这一晚的歌 | 进入房间，留下你看到的那个瞬间 | ENCORE /01 | 全景 | 2o 同场的人 | 囚 照片墻 | 我的空间 | 关于 Music Space"
+  },
+  {
+   "frame": 270,
+   "t": 4.5,
+   "text": "MISIGSPAGe | • 现场进行中 | MUSIC SPACE / LIVEHOUSE | 进到同一个现场 | 这一晚. | 从这里开始 | SIDE | BYSIDE | NCE / AFTER THE ENCORE | FAY FOR ONE MORE. | 这一晚的 | 另一个视甬， | 就在你身边 | Livehouse 为每一场演出开一个房间，乐迷带着小人 | 入场；散场后，留在场地的乐迷社群里。 | 就是这一刻！ | 回一刻， | 另一面 | 同一晚，你拍了舞台，TA拍了人海。AI 在本机给 | 你一个视角建议，照片墙帮你找到同一刻的另一面， | 双方同意就交换。 | 进入现场 | 这一晚的歌 | 进入房间，留下你看到的那个瞬间 | ENCORE /01 | 全景 | 2o 同场的人 | 囚 照片墙 | 我的空间 | 关于 Music Space"
+  },
+  {
+   "frame": 300,
+   "t": 5.0,
+   "text": "WISIGSPAGe | • 现场进行中 | MUSIC SPACE / LIVEHOUSE | 进到同一个现 | 这一晚. | 从这里开始 | SIDE | BYSIDE | HCE / AFTER THE ENCORE | STAY FOR ONE MORE. | 这一晚的 | 另一个视甬， | 就在你身边 | Livehouse 为每一场演出开一个房间，乐迷带着小人 | 入场；散场后，留在场地的乐迷社群里。 | 就是这一刻！ | 回一刻， | 另一面 | 同一晚，你拍了舞台，TA拍了人海。AI 在本机给 | 你一个视角建议，照片墙帮你找到同一刻的另一面， | 双方同意就交换。 | 进入现场 | 这一晚的歌 | 进入房间，留下你看到的那个瞬间 | ENCORE /01 | 全景 | 2o 同场的人 | 囚 照片墙 | 我的空间 | 关于 Music Space"
+  },
+  {
+   "frame": 330,
+   "t": 5.5,
+   "text": "WISIGSPAGe | • 现场进行中 | MUSIC SPACE / LIVEHOUSE | 进到同一个现场 | 这一晚. | 从这里开始 | SIDE | BYSIDE | NCE / AFTER THE ENCORE | STAY FOR ONE MORE， | 这一晚的 | 另一个视甬， | 就在你身边 | Livehouse 为每一场演出开一个房间，乐迷带着小人 | 入场；散场后，留在场地的乐迷社群里。 | 就是这一刻！ | 回一刻， | 另一面 | 同一晚，你拍了舞台，TA拍了人海。AI 在本机给 | 你一个视角建议，照片墙帮你找到同一刻的另一面， | 双方同意就交换。 | 进入现场 | 这一晚的歌 | 进入房间，留下你看到的那个瞬间 | ENCORE /01 | 全景 | 2o 同场的人 | 囚 照片墙 | 我的空间 | 关于 Music Space"
+  },
+  {
+   "frame": 360,
+   "t": 6.0,
+   "text": "MUISIGSPAGe | • 现场进行中 | MUSIC SPACE / LIVEHOUSE | 进到同一个现场 | 汶 | 一晚， | 从这里开始 | SIDE | BYSIDE | ACE / AFTER THE ENCORE | STAY FOR ONE MORE， | 这一晚的 | 另一个视甬， | 就在你身边 | Livehouse 为每一场演出开一个房间，乐迷带着小人 | 入场；散场后，留在场地的乐迷社群里。 | 就是这一刻！ | 回一刻， | 另一面 | 同一晚，你拍了舞台，TA拍了人海。AI 在本机给 | 你一个视角建议，照片墙帮你找到同一刻的另一面， | 双方同意就交换。 | 进入现场 | 这一晚的歌 | 进入房间，留下你看到的那个瞬间 | ENCORE /01 | 全景 | 入o 同场的人 | 囚 照片墙 | 我的空间 | 关于 Music Space"
+  },
+  {
+   "frame": 390,
+   "t": 6.5,
+   "text": "WISIGSPAGe | • 现场进行中 | MUSIC SPACE / LIVEHOUSE | 进到同一个现场 | 这一晚. | 从这里开始 | SIDE | BYSIDE | RCE / AFTER THE ENCORE | STAY FOR ONE MORE， | 这一晚的 | 另一个视甬， | 就在你身边 | Livehouse 为每一场演出开一个房间，乐迷带着小人 | 入场；散场后，留在场地的乐迷社群里。 | 就是这一刻！ | 回一刻， | 另一面 | 同一晚，你拍了舞台，TA拍了人海。AI 在本机给 | 你一个视角建议，照片墙帮你找到同一刻的另一面， | 双方同意就交换。 | 进入现场 | 这一晚的歌 | 进入房间，留下你看到的那个瞬间 | ENCORE /01 | 全景 | 2o 同场的人 | 囚 照片墙 | 我的空间 | 关于 Music Space"
+  },
+  {
+   "frame": 420,
+   "t": 7.0,
+   "text": "WISIGSPAGe | • 现场进行中 | MUSIC SPACE / LIVEHOUSE | 进到同一个现 | 这一晚. | 从这里开始 | SIDE | BYSIDE | ICE / AFTER THE ENCORE | STAY FOR ONE MORE， | 这一晚的 | 另一个视甬， | 就在你身边 | Livehouse 为每一场演出开一个房间，乐迷带着小人 | 入场；散场后，留在场地的乐迷社群里。 | 就是这一刻！ | 回一刻， | 另一面 | 同一晚，你拍了舞台，TA拍了人海。AI 在本机给 | 你一个视角建议，照片墙帮你找到同一刻的另一面， | 双方同意就交换。 | 进入现场 | 这一晚的歌 | 进入房间，留下你看到的那个瞬间 | ENCORE /01 | 全景 | 2o 同场的人 | 囚 照片墙 | 我的空间 | 关于 Music Space"
+  },
+  {
+   "frame": 450,
+   "t": 7.5,
+   "text": "WISIGSPAGe | • 现场进行中 | MUSIC SPACE / LIVEHOUSE | 进到同一个现场 | 这一晚. | 从这里开始 | SIDE | BYSIDE | ACE / AFTER THE ENCORE | STAY FOR ONE MORE. | 这一晚的 | 另一个视甬， | 就在你身边 | Livehouse 为每一场演出开一个房间，乐迷带着小人 | 入场；散场后，留在场地的乐迷社群里。 | 就是这一刻！ | 回一刻， | 另一面 | 同一晚，你拍了舞台，TA拍了人海。AI 在本机给 | 你一个视角建议，照片墙帮你找到同一刻的另一面， | 双方同意就交换。 | 进入现场 | 这一晚的歌 | 进入房间，留下你看到的那个瞬间 | ENCORE /01 | 全景 | 入o 同场的人 | 囚 照片墙 | 我的空间 | 关于 Music Space"
+  },
+  {
+   "frame": 479,
+   "t": 7.983,
+   "text": "MUISIGSPAGe | • 现场进行中 | MUSIC SPACE / LIVEHOUSE | 进到同一个现场 | 这一晚. | 从这里开始 | SIDE | BYSIDE | ACE / AFTER THE ENCORE | STAY FOR ONE MORE， | 这一晚的 | 另一个视甬， | 就在你身边 | Livehouse 为每一场演出开一个房间，乐迷带着小人 | 入场；散场后，留在场地的乐迷社群里。 | 就是这一刻！ | 回一刻， | 另一面 | 同一晚，你拍了舞台，TA拍了人海。AI 在本机给 | 你一个视角建议，照片墙帮你找到同一刻的另一面， | 双方同意就交换。 | 进入现场 | 这一晚的歌 | 进入房间，留下你看到的那个瞬间 | ENCORE /01 | 全景 | 入o 同场的人 | 囚 照片墙 | 我的空间 | 关于 Music Space"
+  }
+ ]
+}

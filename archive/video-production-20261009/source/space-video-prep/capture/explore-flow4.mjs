@@ -1,0 +1,15 @@
+import { launch, newPage, sleep, BASE, ensureDir } from './lib.mjs';
+import { hostCreatesRoom, panelInfo } from './flows.mjs';
+const out = ensureDir('/tmp/space-video-prep/stills/explore');
+const browser = await launch();
+const { page } = await newPage(browser);
+page.on('console', m => { if (['error'].includes(m.type())) console.log('[console]', m.type(), m.text().slice(0, 160)); });
+await hostCreatesRoom(page, { name: '阿遥', title: '返场夜', venue: '月台 Livehouse' });
+await page.getByRole('button', { name: '留下第一张照片' }).click(); await sleep(900);
+console.log('upload panel', JSON.stringify(await panelInfo(page)));
+await page.screenshot({ path: `${out}/06-upload-panel.png` });
+await page.locator('#panel input[type=file]').setInputFiles('/tmp/space-video-prep/repo-rc4/web/assets/stage-scene.png');
+await sleep(1500);
+console.log('after pick', JSON.stringify(await panelInfo(page)));
+await page.screenshot({ path: `${out}/07-upload-picked.png` });
+await browser.close();

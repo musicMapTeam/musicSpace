@@ -1,0 +1,19 @@
+{
+ "scene": "act-A6-A7",
+ "map": "consternation",
+ "frames": [
+  8197,
+  10302
+ ],
+ "seconds": [
+  136.61666666666667,
+  171.7
+ ],
+ "crf": 18,
+ "bytes": 44645105,
+ "audio": "/tmp/space-video-doodle/prod/out/acts/act-A6-A7.consternation.mix.wav",
+ "workers": 5,
+ "chunk": 240,
+ "mezz": "hq",
+ "render_fps": 4.91
+}

@@ -1,0 +1,13 @@
+{
+ "02-flipping-in": {
+  "bpm": 123.0,
+  "window_s": [
+   105.37,
+   140.5
+  ],
+  "onbeat_salience": 11.71,
+  "beats_with_clear_onset": 1.0,
+  "pulse_autocorr": 0.73,
+  "per_bar_db": {
+   "bar55": {
+    "drums": 

@@ -1,0 +1,11 @@
+const {page}=await get('phone');
+const out={};
+await page.locator('.corner-panel input[type=checkbox]').first().check(); await sleep(200);
+await page.locator('.corner-panel button',{hasText:'创建共同创作邀请'}).click(); await sleep(2500);
+out.after=await shot(page,'p31-corner-invited');
+out.t=(await L.visibleText(page,'.corner-panel')).slice(0,1000);
+await sleep(6000);
+await page.locator('[data-corner-refresh]').click().catch(()=>{}); await sleep(1500);
+out.t2=(await L.visibleText(page,'.corner-panel')).slice(0,1000);
+out.after2=await shot(page,'p31-corner-invited-later');
+return out;

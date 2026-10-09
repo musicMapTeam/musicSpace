@@ -1,0 +1,1790 @@
+{
+ "scene": "act-A5",
+ "range_frames": [
+  6322,
+  8429
+ ],
+ "fps": 60,
+ "W": 1920,
+ "H": 1080,
+ "map": {
+  "id": "flipping-in-b",
+  "label": "Wax Lyricist《Flipping In》123 BPM — variant b: the stop before the drop (21:1) and before the payoff (51:1, full kit), lift on the full kit, the band's own ending (RECOMMENDED over the proposal)",
+  "end_s": 174.66,
+  "grid_end_s": 173.66,
+  "bpm": 123,
+  "beat_s": 0.4878,
+  "bar_s": 1.9512
+ },
+ "duration": 174.66,
+ "frames": 10480,
+ "shots": [
+  {
+   "id": "A5-S1S2-friends-chat",
+   "t0": 105.367,
+   "t1": 113.172,
+   "z": 10
+  },
+  {
+   "id": "A5-S1S2-type",
+   "t0": 105.367,
+   "t1": 113.172,
+   "z": 30
+  },
+  {
+   "id": "A5-S3-quiet",
+   "t0": 113.172,
+   "t1": 115.123,
+   "z": 10
+  },
+  {
+   "id": "A5-S3-cards",
+   "t0": 113.172,
+   "t1": 116.587,
+   "z": 35
+  },
+  {
+   "id": "A5-S4S6-room-cup-game",
+   "t0": 115.123,
+   "t1": 124.88,
+   "z": 10
+  },
+  {
+   "id": "A5-S4S6-type",
+   "t0": 115.123,
+   "t1": 124.88,
+   "z": 30
+  },
+  {
+   "id": "A5-S7S10-community-corner-card-myspace",
+   "t0": 124.88,
+   "t1": 138.539,
+   "z": 10
+  },
+  {
+   "id": "A5-S7S10-type",
+   "t0": 124.88,
+   "t1": 140.49,
+   "z": 30
+  },
+  {
+   "id": "A5-fixed-ai-note-room",
+   "t0": 113.172,
+   "t1": 117.075,
+   "z": 45
+  },
+  {
+   "id": "A5-fixed-ai-note",
+   "t0": 130.734,
+   "t1": 140.49,
+   "z": 45
+  },
+  {
+   "id": "A5-S11-recap",
+   "t0": 138.539,
+   "t1": 140.49,
+   "z": 10
+  }
+ ],
+ "events": [
+  {
+   "t": 105.367,
+   "kind": "cut",
+   "label": "A5-S1S2-friends-chat",
+   "pos": "55:1",
+   "sfx": "none",
+   "shot": "A5-S1S2-friends-chat"
+  },
+  {
+   "t": 105.367,
+   "kind": "slap",
+   "label": "backing yellow",
+   "pos": "55:1",
+   "sfx": "slap",
+   "gain": -7,
+   "pan": -0.1659375,
+   "note": 0,
+   "shot": "A5-S1S2-friends-chat",
+   "id": "A5-S1S2-friends-chat:2"
+  },
+  {
+   "t": 105.367,
+   "kind": "slam",
+   "label": "先招招手，",
+   "pos": "55:1",
+   "pan": -0.0375,
+   "size": 128,
+   "shot": "A5-S1S2-type",
+   "id": "A5-S1S2-type:13"
+  },
+  {
+   "t": 105.855,
+   "kind": "draw",
+   "label": "circle the greet button",
+   "pos": "55:2",
+   "shot": "A5-S1S2-friends-chat",
+   "id": "A5-S1S2-friends-chat:4",
+   "dur": 0.29268
+  },
+  {
+   "t": 105.855,
+   "kind": "pop",
+   "label": "sticker avatar 阿宁",
+   "pos": "55:2",
+   "gain": -9,
+   "pan": 0.09062499999999997,
+   "note": 2,
+   "shot": "A5-S1S2-friends-chat",
+   "id": "A5-S1S2-friends-chat:6"
+  },
+  {
+   "t": 106.099,
+   "kind": "pop",
+   "label": "sticker avatar 小满·示例",
+   "pos": "55:2.5",
+   "gain": -9,
+   "pan": 0.2,
+   "note": 4,
+   "shot": "A5-S1S2-friends-chat",
+   "id": "A5-S1S2-friends-chat:7"
+  },
+  {
+   "t": 106.343,
+   "kind": "tap",
+   "label": "tap 向 小满·示例 招个手",
+   "pos": "55:3"
+  },
+  {
+   "t": 107.319,
+   "kind": "flip",
+   "label": "page flip over the greet wait",
+   "pos": "56:1",
+   "sfx": "flip",
+   "gain": -2
+  },
+  {
+   "t": 107.319,
+   "kind": "slam",
+   "label": "对方愿意， 才成朋友。",
+   "pos": "56:1",
+   "pan": -0.0375,
+   "size": 128,
+   "shot": "A5-S1S2-type",
+   "id": "A5-S1S2-type:14"
+  },
+  {
+   "t": 107.56288,
+   "kind": "pop",
+   "label": "♡ 2 sparkle",
+   "pos": "56:1.5",
+   "gain": -8,
+   "pan": -0.21150000000000002,
+   "shot": "A5-S1S2-friends-chat",
+   "id": "A5-S1S2-friends-chat:5"
+  },
+  {
+   "t": 108.2945,
+   "kind": "spring",
+   "label": "big heart",
+   "pos": "56:3",
+   "sfx": "boop",
+   "gain": -2,
+   "pan": 0.14531249999999998,
+   "shot": "A5-S1S2-friends-chat",
+   "id": "A5-S1S2-friends-chat:8"
+  },
+  {
+   "t": 108.53838,
+   "kind": "pop",
+   "label": "heart",
+   "pos": "56:3.5",
+   "gain": -10,
+   "pan": 0.11562500000000002,
+   "note": 0,
+   "shot": "A5-S1S2-friends-chat",
+   "id": "A5-S1S2-friends-chat:9"
+  },
+  {
+   "t": 108.78227,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "56:4",
+   "sfx": "none",
+   "gain": -10,
+   "pan": 0.17499999999999996,
+   "note": 1,
+   "shot": "A5-S1S2-friends-chat",
+   "id": "A5-S1S2-friends-chat:10"
+  },
+  {
+   "t": 109.27,
+   "kind": "cut",
+   "label": "S2 screen swap: chat opens",
+   "pos": "57:1",
+   "sfx": "none"
+  },
+  {
+   "t": 109.27,
+   "kind": "slap",
+   "label": "backing mint",
+   "pos": "57:1",
+   "sfx": "slap",
+   "gain": -7,
+   "pan": -0.14968749999999997,
+   "note": 1,
+   "shot": "A5-S1S2-friends-chat",
+   "id": "A5-S1S2-friends-chat:3"
+  },
+  {
+   "t": 109.27,
+   "kind": "slam",
+   "label": "私聊，",
+   "pos": "57:1",
+   "pan": -0.0375,
+   "size": 180,
+   "shot": "A5-S1S2-type",
+   "id": "A5-S1S2-type:15"
+  },
+  {
+   "t": 110.12356,
+   "kind": "tap",
+   "label": "tap the composer",
+   "pos": "57:2.75",
+   "gain": -6
+  },
+  {
+   "t": 110.2455,
+   "kind": "type",
+   "label": "typing 返场那首我在人海里，手都举酸了！",
+   "pos": "57:3",
+   "gain": -2,
+   "note": 16,
+   "dur": 0.9755000000000109
+  },
+  {
+   "t": 110.2455,
+   "kind": "type",
+   "label": "从返场那首聊起。",
+   "pos": "57:3",
+   "note": 8,
+   "shot": "A5-S1S2-type",
+   "id": "A5-S1S2-type:16",
+   "dur": 0.9756
+  },
+  {
+   "t": 110.2455,
+   "kind": "pop",
+   "label": "chip 示例角色 · 自动回复",
+   "pos": "57:3",
+   "pan": 0.06937499999999998,
+   "size": 56,
+   "shot": "A5-S1S2-type",
+   "id": "A5-S1S2-type:17"
+  },
+  {
+   "t": 111.221,
+   "kind": "tap",
+   "label": "send",
+   "pos": "58:1",
+   "sfx": "blip",
+   "gain": 0
+  },
+  {
+   "t": 112.1965,
+   "kind": "cut",
+   "label": "reply lands (wait cut)",
+   "pos": "58:3",
+   "sfx": "blip",
+   "gain": 0,
+   "note": 5
+  },
+  {
+   "t": 112.68425,
+   "kind": "pop",
+   "label": "bubbles wiggle",
+   "pos": "58:4",
+   "sfx": "none"
+  },
+  {
+   "t": 113.172,
+   "kind": "cut",
+   "label": "A5-S3-quiet",
+   "pos": "59:1",
+   "sfx": "none",
+   "shot": "A5-S3-quiet"
+  },
+  {
+   "t": 113.172,
+   "kind": "enter-slap",
+   "label": "A5-S3-quiet",
+   "pos": "59:1",
+   "sfx": "slap",
+   "shot": "A5-S3-quiet"
+  },
+  {
+   "t": 113.172,
+   "kind": "slam",
+   "label": "想安静的人，",
+   "pos": "59:1",
+   "pan": -0.2875,
+   "size": 128,
+   "shot": "A5-S3-cards",
+   "id": "A5-S3-cards:24"
+  },
+  {
+   "t": 114.1475,
+   "kind": "cut",
+   "label": "S3 cut to 林间·示例 card",
+   "pos": "59:3",
+   "sfx": "none"
+  },
+  {
+   "t": 114.1475,
+   "kind": "slam",
+   "label": "不会被打扰。",
+   "pos": "59:3",
+   "pan": -0.2875,
+   "size": 128,
+   "shot": "A5-S3-cards",
+   "id": "A5-S3-cards:25"
+  },
+  {
+   "t": 114.63525,
+   "kind": "draw",
+   "label": "mint underline 不接收新招呼",
+   "pos": "59:4",
+   "shot": "A5-S3-quiet",
+   "id": "A5-S3-quiet:21",
+   "dur": 0.34146
+  },
+  {
+   "t": 115.123,
+   "kind": "cut",
+   "label": "A5-S4S6-room-cup-game",
+   "pos": "60:1",
+   "sfx": "none",
+   "shot": "A5-S4S6-room-cup-game"
+  },
+  {
+   "t": 115.123,
+   "kind": "enter-slap",
+   "label": "A5-S4S6-room-cup-game",
+   "pos": "60:1",
+   "sfx": "slap",
+   "shot": "A5-S4S6-room-cup-game"
+  },
+  {
+   "t": 115.123,
+   "kind": "slap",
+   "label": "backing pink",
+   "pos": "60:1",
+   "sfx": "slap",
+   "gain": -7,
+   "pan": 0.15281249999999996,
+   "note": 2,
+   "shot": "A5-S4S6-room-cup-game",
+   "id": "A5-S4S6-room-cup-game:29"
+  },
+  {
+   "t": 115.123,
+   "kind": "slam",
+   "label": "散场以后， 继续聊。",
+   "pos": "60:1",
+   "pan": -0.259375,
+   "size": 128,
+   "shot": "A5-S4S6-type",
+   "id": "A5-S4S6-type:43"
+  },
+  {
+   "t": 115.611,
+   "kind": "pop",
+   "label": "note",
+   "pos": "60:2",
+   "sfx": "blip",
+   "gain": -6,
+   "pan": 0.06875000000000002,
+   "note": 0,
+   "shot": "A5-S4S6-room-cup-game",
+   "id": "A5-S4S6-room-cup-game:32"
+  },
+  {
+   "t": 115.8549,
+   "kind": "pop",
+   "label": "note",
+   "pos": "60:2.5",
+   "sfx": "blip",
+   "gain": -6,
+   "pan": 0.050000000000000024,
+   "note": 1,
+   "shot": "A5-S4S6-room-cup-game",
+   "id": "A5-S4S6-room-cup-game:33"
+  },
+  {
+   "t": 116.0988,
+   "kind": "pop",
+   "label": "note",
+   "pos": "60:3",
+   "sfx": "blip",
+   "gain": -6,
+   "pan": 0.07656249999999998,
+   "note": 2,
+   "shot": "A5-S4S6-room-cup-game",
+   "id": "A5-S4S6-room-cup-game:34"
+  },
+  {
+   "t": 117.075,
+   "kind": "cut",
+   "label": "S5 screen swap: 专辑世界杯",
+   "pos": "61:1",
+   "sfx": "scratch",
+   "gain": -2
+  },
+  {
+   "t": 117.075,
+   "kind": "slap",
+   "label": "backing mint",
+   "pos": "61:1",
+   "sfx": "none",
+   "gain": -7,
+   "pan": 0.16906249999999998,
+   "note": 3,
+   "shot": "A5-S4S6-room-cup-game",
+   "id": "A5-S4S6-room-cup-game:30"
+  },
+  {
+   "t": 117.075,
+   "kind": "punch",
+   "label": "punch VS",
+   "pos": "61:1",
+   "sfx": "none",
+   "shot": "A5-S4S6-room-cup-game"
+  },
+  {
+   "t": 117.075,
+   "kind": "slam",
+   "label": "今晚的 专辑世界杯，",
+   "pos": "61:1",
+   "pan": -0.259375,
+   "size": 128,
+   "shot": "A5-S4S6-type",
+   "id": "A5-S4S6-type:44"
+  },
+  {
+   "t": 118.0505,
+   "kind": "tap",
+   "label": "tap 选《午夜站台》",
+   "pos": "61:3"
+  },
+  {
+   "t": 118.0505,
+   "kind": "pop",
+   "label": "chip 原创虚构专辑",
+   "pos": "61:3",
+   "pan": 0.103125,
+   "size": 36,
+   "shot": "A5-S4S6-type",
+   "id": "A5-S4S6-type:46"
+  },
+  {
+   "t": 119.026,
+   "kind": "tap",
+   "label": "tick 确认投票",
+   "pos": "62:1",
+   "sfx": "tick"
+  },
+  {
+   "t": 119.026,
+   "kind": "type",
+   "label": "选一张，一起聊。",
+   "pos": "62:1",
+   "note": 8,
+   "shot": "A5-S4S6-type",
+   "id": "A5-S4S6-type:45",
+   "dur": 0.9756
+  },
+  {
+   "t": 119.51375,
+   "kind": "tap",
+   "label": "tap 确认这一票",
+   "pos": "62:2"
+  },
+  {
+   "t": 120.0015,
+   "kind": "pop",
+   "label": "digits 2票",
+   "pos": "62:3",
+   "pan": -0.253125,
+   "size": 180,
+   "shot": "A5-S4S6-type",
+   "id": "A5-S4S6-type:37"
+  },
+  {
+   "t": 120.0015,
+   "kind": "swipe",
+   "label": "2票",
+   "pos": "62:3",
+   "shot": "A5-S4S6-type",
+   "id": "A5-S4S6-type:37",
+   "dur": 0.4878
+  },
+  {
+   "t": 120.24537,
+   "kind": "pop",
+   "label": "star on 2票",
+   "pos": "62:3.5",
+   "sfx": "ding",
+   "gain": -4,
+   "pan": -0.26875,
+   "shot": "A5-S4S6-room-cup-game",
+   "id": "A5-S4S6-room-cup-game:36"
+  },
+  {
+   "t": 120.24537,
+   "kind": "draw",
+   "label": "arrow 2票 -> phone",
+   "pos": "62:3.5",
+   "sfx": "none",
+   "shot": "A5-S4S6-room-cup-game",
+   "id": "A5-S4S6-room-cup-game:38",
+   "dur": 0.2439
+  },
+  {
+   "t": 120.977,
+   "kind": "cut",
+   "label": "S6 screen swap: 默契局",
+   "pos": "63:1",
+   "sfx": "none"
+  },
+  {
+   "t": 120.977,
+   "kind": "slap",
+   "label": "backing yellow",
+   "pos": "63:1",
+   "sfx": "slap",
+   "gain": -7,
+   "pan": 0.15281249999999996,
+   "note": 4,
+   "shot": "A5-S4S6-room-cup-game",
+   "id": "A5-S4S6-room-cup-game:31"
+  },
+  {
+   "t": 120.977,
+   "kind": "slam",
+   "label": "默契局：",
+   "pos": "63:1",
+   "pan": -0.259375,
+   "size": 128,
+   "shot": "A5-S4S6-type",
+   "id": "A5-S4S6-type:47"
+  },
+  {
+   "t": 121.46475,
+   "kind": "tap",
+   "label": "tap 我选「午夜站台」",
+   "pos": "63:2"
+  },
+  {
+   "t": 121.9525,
+   "kind": "tap",
+   "label": "tick 确认提交本轮选择",
+   "pos": "63:3",
+   "sfx": "tick"
+  },
+  {
+   "t": 121.9525,
+   "kind": "type",
+   "label": "揭晓前，谁也看不到。",
+   "pos": "63:3",
+   "note": 10,
+   "shot": "A5-S4S6-type",
+   "id": "A5-S4S6-type:48",
+   "dur": 1.2195
+  },
+  {
+   "t": 122.44025,
+   "kind": "tap",
+   "label": "tap 先保留我的选择",
+   "pos": "63:4"
+  },
+  {
+   "t": 122.928,
+   "kind": "cut",
+   "label": "reveal (wait cut)",
+   "pos": "64:1",
+   "sfx": "swish",
+   "gain": -4
+  },
+  {
+   "t": 122.928,
+   "kind": "slam",
+   "label": "选到一起了！",
+   "pos": "64:1",
+   "pan": -0.259375,
+   "size": 128,
+   "shot": "A5-S4S6-type",
+   "id": "A5-S4S6-type:49"
+  },
+  {
+   "t": 123.904,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "64:3",
+   "sfx": "sparkle",
+   "gain": -6,
+   "pan": -0.2625,
+   "note": 0,
+   "shot": "A5-S4S6-room-cup-game",
+   "id": "A5-S4S6-room-cup-game:40"
+  },
+  {
+   "t": 124.02595,
+   "kind": "pop",
+   "label": "star",
+   "pos": "64:3.25",
+   "sfx": "sparkle",
+   "gain": -6,
+   "pan": -0.235,
+   "note": 1,
+   "shot": "A5-S4S6-room-cup-game",
+   "id": "A5-S4S6-room-cup-game:41"
+  },
+  {
+   "t": 124.1479,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "64:3.5",
+   "sfx": "sparkle",
+   "gain": -6,
+   "pan": -0.28875,
+   "note": 2,
+   "shot": "A5-S4S6-room-cup-game",
+   "id": "A5-S4S6-room-cup-game:42"
+  },
+  {
+   "t": 124.636,
+   "kind": "slide",
+   "label": "whip pan to the next card",
+   "pos": "64:4.5",
+   "sfx": "whoosh",
+   "gain": -4
+  },
+  {
+   "t": 124.88,
+   "kind": "cut",
+   "label": "A5-S7S10-community-corner-card-myspace",
+   "pos": "65:1",
+   "sfx": "none",
+   "shot": "A5-S7S10-community-corner-card-myspace"
+  },
+  {
+   "t": 124.88,
+   "kind": "enter-slide",
+   "label": "A5-S7S10-community-corner-card-myspace",
+   "pos": "65:1",
+   "sfx": "swish",
+   "shot": "A5-S7S10-community-corner-card-myspace"
+  },
+  {
+   "t": 124.88,
+   "kind": "enter-slide",
+   "label": "A5-S7S10-type",
+   "pos": "65:1",
+   "sfx": "none",
+   "shot": "A5-S7S10-type"
+  },
+  {
+   "t": 124.88,
+   "kind": "slap",
+   "label": "backing yellow",
+   "pos": "65:1",
+   "sfx": "slap",
+   "gain": -7,
+   "pan": -0.14968749999999997,
+   "note": 5,
+   "shot": "A5-S7S10-community-corner-card-myspace",
+   "id": "A5-S7S10-community-corner-card-myspace:51"
+  },
+  {
+   "t": 124.88,
+   "kind": "type",
+   "label": "typing 周五散场以后",
+   "pos": "65:1",
+   "gain": -2,
+   "note": 6,
+   "dur": 0.7317
+  },
+  {
+   "t": 124.88,
+   "kind": "slam",
+   "label": "长期社群，",
+   "pos": "65:1",
+   "pan": -0.0375,
+   "size": 128,
+   "shot": "A5-S7S10-type",
+   "id": "A5-S7S10-type:73"
+  },
+  {
+   "t": 125.856,
+   "kind": "tap",
+   "label": "tick 创建长期空间",
+   "pos": "65:3",
+   "sfx": "tick"
+  },
+  {
+   "t": 125.856,
+   "kind": "slam",
+   "label": "也留一个位置。",
+   "pos": "65:3",
+   "pan": -0.045312499999999985,
+   "size": 128,
+   "shot": "A5-S7S10-type",
+   "id": "A5-S7S10-type:74"
+  },
+  {
+   "t": 126.344,
+   "kind": "tap",
+   "label": "tap 创建我的社群",
+   "pos": "65:4"
+  },
+  {
+   "t": 126.832,
+   "kind": "cut",
+   "label": "S7 the community room",
+   "pos": "66:1",
+   "sfx": "whoosh",
+   "gain": -6
+  },
+  {
+   "t": 126.832,
+   "kind": "slam",
+   "label": "再见， 在下一场。",
+   "pos": "66:1",
+   "pan": -0.0375,
+   "size": 128,
+   "shot": "A5-S7S10-type",
+   "id": "A5-S7S10-type:75"
+  },
+  {
+   "t": 127.07587,
+   "kind": "pop",
+   "label": "star",
+   "pos": "66:1.5",
+   "gain": -10,
+   "pan": -0.05937499999999998,
+   "note": 0,
+   "shot": "A5-S7S10-community-corner-card-myspace",
+   "id": "A5-S7S10-community-corner-card-myspace:55"
+  },
+  {
+   "t": 127.31977,
+   "kind": "pop",
+   "label": "plus",
+   "pos": "66:2",
+   "sfx": "none",
+   "gain": -10,
+   "pan": -0.06250000000000001,
+   "note": 1,
+   "shot": "A5-S7S10-community-corner-card-myspace",
+   "id": "A5-S7S10-community-corner-card-myspace:56"
+  },
+  {
+   "t": 127.8075,
+   "kind": "punch",
+   "label": "push the 3D header",
+   "pos": "66:3",
+   "sfx": "none",
+   "shot": "A5-S7S10-community-corner-card-myspace"
+  },
+  {
+   "t": 128.783,
+   "kind": "cut",
+   "label": "S8 screen swap: 创作角",
+   "pos": "67:1",
+   "sfx": "none"
+  },
+  {
+   "t": 128.783,
+   "kind": "slap",
+   "label": "backing mint",
+   "pos": "67:1",
+   "sfx": "slap",
+   "gain": -7,
+   "pan": -0.1659375,
+   "note": 6,
+   "shot": "A5-S7S10-community-corner-card-myspace",
+   "id": "A5-S7S10-community-corner-card-myspace:52"
+  },
+  {
+   "t": 128.783,
+   "kind": "slam",
+   "label": "创作角：",
+   "pos": "67:1",
+   "pan": -0.0375,
+   "size": 128,
+   "shot": "A5-S7S10-type",
+   "id": "A5-S7S10-type:76"
+  },
+  {
+   "t": 129.27075,
+   "kind": "tap",
+   "label": "tick 我选择邀请这位朋友",
+   "pos": "67:2",
+   "sfx": "tick"
+  },
+  {
+   "t": 129.7585,
+   "kind": "tap",
+   "label": "tap 创建共同创作邀请",
+   "pos": "67:3"
+  },
+  {
+   "t": 129.7585,
+   "kind": "type",
+   "label": "对方点头，才开始。",
+   "pos": "67:3",
+   "note": 9,
+   "shot": "A5-S7S10-type",
+   "id": "A5-S7S10-type:77",
+   "dur": 1.09755
+  },
+  {
+   "t": 130.00238,
+   "kind": "pop",
+   "label": "pop-out 你不能替对方同意",
+   "pos": "67:3.5",
+   "sfx": "pop",
+   "gain": -4
+  },
+  {
+   "t": 130.24625,
+   "kind": "draw",
+   "label": "underline 你不能替对方同意",
+   "pos": "67:4",
+   "shot": "A5-S7S10-community-corner-card-myspace",
+   "id": "A5-S7S10-community-corner-card-myspace:58",
+   "dur": 0.29268
+  },
+  {
+   "t": 130.734,
+   "kind": "cut",
+   "label": "S9 screen swap: recap",
+   "pos": "68:1",
+   "sfx": "none"
+  },
+  {
+   "t": 130.734,
+   "kind": "slap",
+   "label": "backing pink",
+   "pos": "68:1",
+   "sfx": "slap",
+   "gain": -7,
+   "pan": -0.14968749999999997,
+   "note": 7,
+   "shot": "A5-S7S10-community-corner-card-myspace",
+   "id": "A5-S7S10-community-corner-card-myspace:53"
+  },
+  {
+   "t": 130.734,
+   "kind": "slam",
+   "label": "把这一晚， 留在手里。",
+   "pos": "68:1",
+   "pan": -0.0375,
+   "size": 128,
+   "shot": "A5-S7S10-type",
+   "id": "A5-S7S10-type:78"
+  },
+  {
+   "t": 130.734,
+   "kind": "fade",
+   "label": "照片为 AI 生成的示例图",
+   "pos": "68:1",
+   "pan": 0.265625,
+   "size": 36,
+   "shot": "A5-fixed-ai-note",
+   "id": "A5-fixed-ai-note:84"
+  },
+  {
+   "t": 131.7095,
+   "kind": "tap",
+   "label": "tap 保存我的纪念卡",
+   "pos": "68:3"
+  },
+  {
+   "t": 132.685,
+   "kind": "pop",
+   "label": "tick 1",
+   "pos": "69:1",
+   "sfx": "tick",
+   "gain": -2,
+   "pan": -0.278125,
+   "note": 0,
+   "shot": "A5-S7S10-community-corner-card-myspace",
+   "id": "A5-S7S10-community-corner-card-myspace:59"
+  },
+  {
+   "t": 133.173,
+   "kind": "pop",
+   "label": "tick 2",
+   "pos": "69:2",
+   "sfx": "tick",
+   "gain": -2,
+   "pan": -0.271125,
+   "note": 2,
+   "shot": "A5-S7S10-community-corner-card-myspace",
+   "id": "A5-S7S10-community-corner-card-myspace:60"
+  },
+  {
+   "t": 133.661,
+   "kind": "pop",
+   "label": "tick 3",
+   "pos": "69:3",
+   "sfx": "tick",
+   "gain": -2,
+   "pan": -0.27599999999999997,
+   "note": 4,
+   "shot": "A5-S7S10-community-corner-card-myspace",
+   "id": "A5-S7S10-community-corner-card-myspace:61"
+  },
+  {
+   "t": 133.661,
+   "kind": "slam",
+   "label": "纪念卡，",
+   "pos": "69:3",
+   "pan": -0.04625,
+   "size": 128,
+   "shot": "A5-S7S10-type",
+   "id": "A5-S7S10-type:79"
+  },
+  {
+   "t": 134.149,
+   "kind": "tap",
+   "label": "tap 下载纪念卡 PNG",
+   "pos": "69:4"
+  },
+  {
+   "t": 134.637,
+   "kind": "slap",
+   "label": "memory card PNG lands",
+   "pos": "70:1",
+   "sfx": "slap",
+   "gain": 2,
+   "note": 0
+  },
+  {
+   "t": 134.637,
+   "kind": "type",
+   "label": "在你的浏览器里生成。",
+   "pos": "70:1",
+   "note": 10,
+   "shot": "A5-S7S10-type",
+   "id": "A5-S7S10-type:80",
+   "dur": 1.2195
+  },
+  {
+   "t": 135.12475,
+   "kind": "slap",
+   "label": "tape 1",
+   "pos": "70:2",
+   "sfx": "tape",
+   "gain": -2,
+   "pan": -0.23125,
+   "shot": "A5-S7S10-community-corner-card-myspace",
+   "id": "A5-S7S10-community-corner-card-myspace:64"
+  },
+  {
+   "t": 135.6125,
+   "kind": "slap",
+   "label": "tape 2",
+   "pos": "70:3",
+   "sfx": "tape",
+   "gain": -3,
+   "pan": -0.17187500000000003,
+   "shot": "A5-S7S10-community-corner-card-myspace",
+   "id": "A5-S7S10-community-corner-card-myspace:65"
+  },
+  {
+   "t": 135.6125,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "70:3",
+   "sfx": "sparkle",
+   "gain": -6,
+   "pan": 0.100625,
+   "note": 0,
+   "shot": "A5-S7S10-community-corner-card-myspace",
+   "id": "A5-S7S10-community-corner-card-myspace:66"
+  },
+  {
+   "t": 135.73445,
+   "kind": "pop",
+   "label": "star",
+   "pos": "70:3.25",
+   "sfx": "sparkle",
+   "gain": -6,
+   "pan": 0.269375,
+   "note": 1,
+   "shot": "A5-S7S10-community-corner-card-myspace",
+   "id": "A5-S7S10-community-corner-card-myspace:67"
+  },
+  {
+   "t": 135.8564,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "70:3.5",
+   "sfx": "sparkle",
+   "gain": -6,
+   "pan": 0.2725,
+   "note": 2,
+   "shot": "A5-S7S10-community-corner-card-myspace",
+   "id": "A5-S7S10-community-corner-card-myspace:68"
+  },
+  {
+   "t": 136.588,
+   "kind": "cut",
+   "label": "S10 screen swap: MY SPACE",
+   "pos": "71:1",
+   "sfx": "none"
+  },
+  {
+   "t": 136.588,
+   "kind": "slap",
+   "label": "backing yellow",
+   "pos": "71:1",
+   "sfx": "slap",
+   "gain": -7,
+   "pan": -0.1659375,
+   "note": 8,
+   "shot": "A5-S7S10-community-corner-card-myspace",
+   "id": "A5-S7S10-community-corner-card-myspace:54"
+  },
+  {
+   "t": 136.588,
+   "kind": "slide",
+   "label": "memory card steps aside",
+   "pos": "71:1",
+   "sfx": "swish",
+   "gain": -8
+  },
+  {
+   "t": 136.588,
+   "kind": "slam",
+   "label": "散场后， 仍有地方回来。",
+   "pos": "71:1",
+   "pan": -0.05781250000000001,
+   "size": 128,
+   "shot": "A5-S7S10-type",
+   "id": "A5-S7S10-type:81"
+  },
+  {
+   "t": 137.5635,
+   "kind": "draw",
+   "label": "tile 我的音乐社群",
+   "pos": "71:3",
+   "sfx": "tick",
+   "gain": -4,
+   "shot": "A5-S7S10-community-corner-card-myspace",
+   "id": "A5-S7S10-community-corner-card-myspace:69",
+   "dur": 0.19512000000000002
+  },
+  {
+   "t": 137.80738,
+   "kind": "draw",
+   "label": "tile 好友与新招呼",
+   "pos": "71:3.5",
+   "sfx": "tick",
+   "gain": -4,
+   "shot": "A5-S7S10-community-corner-card-myspace",
+   "id": "A5-S7S10-community-corner-card-myspace:70",
+   "dur": 0.19512000000000002
+  },
+  {
+   "t": 138.05125,
+   "kind": "draw",
+   "label": "tile 私聊回访",
+   "pos": "71:4",
+   "sfx": "tick",
+   "gain": -4,
+   "shot": "A5-S7S10-community-corner-card-myspace",
+   "id": "A5-S7S10-community-corner-card-myspace:71",
+   "dur": 0.19512000000000002
+  },
+  {
+   "t": 138.29512,
+   "kind": "draw",
+   "label": "tile 共同记忆",
+   "pos": "71:4.5",
+   "sfx": "tick",
+   "gain": -4,
+   "shot": "A5-S7S10-community-corner-card-myspace",
+   "id": "A5-S7S10-community-corner-card-myspace:72",
+   "dur": 0.19512000000000002
+  },
+  {
+   "t": 138.539,
+   "kind": "cut",
+   "label": "A5-S11-recap",
+   "pos": "72:1",
+   "sfx": "none",
+   "shot": "A5-S11-recap"
+  },
+  {
+   "t": 138.539,
+   "kind": "slap",
+   "label": "recap 1",
+   "pos": "72:1",
+   "sfx": "slap",
+   "gain": -3,
+   "pan": -0.16874999999999998,
+   "note": 0,
+   "shot": "A5-S11-recap",
+   "id": "A5-S11-recap:85"
+  },
+  {
+   "t": 138.78287,
+   "kind": "slap",
+   "label": "recap 2",
+   "pos": "72:1.5",
+   "sfx": "pop",
+   "gain": -3,
+   "pan": -0.23281249999999998,
+   "note": 1,
+   "shot": "A5-S11-recap",
+   "id": "A5-S11-recap:87"
+  },
+  {
+   "t": 139.02675,
+   "kind": "slap",
+   "label": "recap 3",
+   "pos": "72:2",
+   "sfx": "slap",
+   "gain": -3,
+   "pan": -0.09375,
+   "note": 2,
+   "shot": "A5-S11-recap",
+   "id": "A5-S11-recap:88"
+  },
+  {
+   "t": 139.27062,
+   "kind": "slap",
+   "label": "recap 4",
+   "pos": "72:2.5",
+   "sfx": "pop",
+   "gain": -3,
+   "pan": 0.05937500000000002,
+   "note": 3,
+   "shot": "A5-S11-recap",
+   "id": "A5-S11-recap:90"
+  },
+  {
+   "t": 139.5145,
+   "kind": "slap",
+   "label": "recap 5",
+   "pos": "72:3",
+   "sfx": "slap",
+   "gain": -3,
+   "pan": 0.15,
+   "note": 4,
+   "shot": "A5-S11-recap",
+   "id": "A5-S11-recap:91"
+  },
+  {
+   "t": 139.75838,
+   "kind": "slap",
+   "label": "recap 6",
+   "pos": "72:3.5",
+   "sfx": "pop",
+   "gain": -3,
+   "pan": 0.21249999999999997,
+   "note": 5,
+   "shot": "A5-S11-recap",
+   "id": "A5-S11-recap:92"
+  },
+  {
+   "t": 140.00225,
+   "kind": "slap",
+   "label": "recap 7",
+   "pos": "72:4",
+   "sfx": "slap",
+   "gain": -3,
+   "pan": 0,
+   "note": 6,
+   "shot": "A5-S11-recap",
+   "id": "A5-S11-recap:93"
+  },
+  {
+   "t": 140.24612,
+   "kind": "slap",
+   "label": "recap 8",
+   "pos": "72:4.5",
+   "sfx": "pop",
+   "gain": -3,
+   "pan": 0,
+   "note": 7,
+   "shot": "A5-S11-recap",
+   "id": "A5-S11-recap:94"
+  },
+  {
+   "t": 140.36806,
+   "kind": "slide",
+   "label": "recap flies off",
+   "pos": "72:4.75",
+   "sfx": "whoosh",
+   "gain": -3
+  }
+ ],
+ "texts": [
+  {
+   "id": "A5-S1S2-type:13",
+   "shot": "A5-S1S2-type",
+   "t0": 105.367,
+   "t1": 108.3945,
+   "text": "先招招手，",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-yellow",
+   "script": "T090",
+   "inFootage": false
+  },
+  {
+   "id": "A5-S1S2-type:14",
+   "shot": "A5-S1S2-type",
+   "t0": 107.319,
+   "t1": 110.3455,
+   "text": "对方愿意，\n才成朋友。",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-pink",
+   "script": "T091",
+   "inFootage": false
+  },
+  {
+   "id": "A5-S1S2-type:15",
+   "shot": "A5-S1S2-type",
+   "t0": 109.27,
+   "t1": 112.2965,
+   "text": "私聊，",
+   "role": "display",
+   "kind": "title",
+   "size": 180,
+   "recipe": "ink-pink",
+   "script": "T092",
+   "inFootage": false
+  },
+  {
+   "id": "A5-S1S2-type:16",
+   "shot": "A5-S1S2-type",
+   "t0": 110.2455,
+   "t1": 113.172,
+   "text": "从返场那首聊起。",
+   "role": "marker",
+   "kind": "title",
+   "size": 84,
+   "recipe": "ink",
+   "script": "T093",
+   "inFootage": false
+  },
+  {
+   "id": "A5-S1S2-type:17",
+   "shot": "A5-S1S2-type",
+   "t0": 110.2455,
+   "t1": 113.172,
+   "text": "示例角色 · 自动回复",
+   "role": "marker",
+   "kind": "label",
+   "size": 56,
+   "recipe": "chip",
+   "script": "T094",
+   "inFootage": false
+  },
+  {
+   "id": "A5-S3-cards:24",
+   "shot": "A5-S3-cards",
+   "t0": 113.172,
+   "t1": 115.223,
+   "text": "想安静的人，",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-mint",
+   "script": "T095",
+   "inFootage": false
+  },
+  {
+   "id": "A5-S3-cards:25",
+   "shot": "A5-S3-cards",
+   "t0": 114.1475,
+   "t1": 116.199,
+   "text": "不会被打扰。",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-mint",
+   "script": "T096",
+   "inFootage": false
+  },
+  {
+   "id": "A5-S4S6-type:37",
+   "shot": "A5-S4S6-type",
+   "t0": 120.0015,
+   "t1": 120.977,
+   "text": "2票",
+   "role": "digits",
+   "kind": "label",
+   "size": 180,
+   "recipe": "digits",
+   "script": null,
+   "inFootage": false
+  },
+  {
+   "id": "A5-S4S6-type:43",
+   "shot": "A5-S4S6-type",
+   "t0": 115.123,
+   "t1": 118.1505,
+   "text": "散场以后，\n继续聊。",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-yellow",
+   "script": "T097",
+   "inFootage": false
+  },
+  {
+   "id": "A5-S4S6-type:44",
+   "shot": "A5-S4S6-type",
+   "t0": 117.075,
+   "t1": 120.1015,
+   "text": "今晚的\n专辑世界杯，",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-pink",
+   "script": "T098",
+   "inFootage": false
+  },
+  {
+   "id": "A5-S4S6-type:45",
+   "shot": "A5-S4S6-type",
+   "t0": 119.026,
+   "t1": 121.077,
+   "text": "选一张，一起聊。",
+   "role": "marker",
+   "kind": "title",
+   "size": 84,
+   "recipe": "ink",
+   "script": "T099",
+   "inFootage": false
+  },
+  {
+   "id": "A5-S4S6-type:46",
+   "shot": "A5-S4S6-type",
+   "t0": 118.0505,
+   "t1": 121.077,
+   "text": "原创虚构专辑",
+   "role": "marker",
+   "kind": "label",
+   "size": 36,
+   "recipe": "chip",
+   "script": "T100",
+   "inFootage": false
+  },
+  {
+   "id": "A5-S4S6-type:47",
+   "shot": "A5-S4S6-type",
+   "t0": 120.977,
+   "t1": 123.028,
+   "text": "默契局：",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-yellow",
+   "script": "T101",
+   "inFootage": false
+  },
+  {
+   "id": "A5-S4S6-type:48",
+   "shot": "A5-S4S6-type",
+   "t0": 121.9525,
+   "t1": 124.88,
+   "text": "揭晓前，谁也看不到。",
+   "role": "marker",
+   "kind": "title",
+   "size": 84,
+   "recipe": "ink",
+   "script": "T102",
+   "inFootage": false
+  },
+  {
+   "id": "A5-S4S6-type:49",
+   "shot": "A5-S4S6-type",
+   "t0": 122.928,
+   "t1": 124.88,
+   "text": "选到一起了！",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-pink",
+   "script": "T103",
+   "inFootage": false
+  },
+  {
+   "id": "A5-S7S10-type:73",
+   "shot": "A5-S7S10-type",
+   "t0": 124.88,
+   "t1": 126.932,
+   "text": "长期社群，",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-mint",
+   "script": "T104",
+   "inFootage": false
+  },
+  {
+   "id": "A5-S7S10-type:74",
+   "shot": "A5-S7S10-type",
+   "t0": 125.856,
+   "t1": 127.9075,
+   "text": "也留一个位置。",
+   "role": "marker",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-mint",
+   "script": "T105",
+   "inFootage": false
+  },
+  {
+   "id": "A5-S7S10-type:75",
+   "shot": "A5-S7S10-type",
+   "t0": 126.832,
+   "t1": 128.883,
+   "text": "再见，\n在下一场。",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-pink",
+   "script": "T106",
+   "inFootage": false
+  },
+  {
+   "id": "A5-S7S10-type:76",
+   "shot": "A5-S7S10-type",
+   "t0": 128.783,
+   "t1": 130.834,
+   "text": "创作角：",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-mint",
+   "script": "T107",
+   "inFootage": false
+  },
+  {
+   "id": "A5-S7S10-type:77",
+   "shot": "A5-S7S10-type",
+   "t0": 129.7585,
+   "t1": 131.8095,
+   "text": "对方点头，才开始。",
+   "role": "marker",
+   "kind": "title",
+   "size": 84,
+   "recipe": "ink",
+   "script": "T108",
+   "inFootage": false
+  },
+  {
+   "id": "A5-S7S10-type:78",
+   "shot": "A5-S7S10-type",
+   "t0": 130.734,
+   "t1": 133.761,
+   "text": "把这一晚，\n留在手里。",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-pink",
+   "script": "T109",
+   "inFootage": false
+  },
+  {
+   "id": "A5-S7S10-type:79",
+   "shot": "A5-S7S10-type",
+   "t0": 133.661,
+   "t1": 135.7125,
+   "text": "纪念卡，",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-yellow",
+   "script": "T110",
+   "inFootage": false
+  },
+  {
+   "id": "A5-S7S10-type:80",
+   "shot": "A5-S7S10-type",
+   "t0": 134.637,
+   "t1": 137.6635,
+   "text": "在你的浏览器里生成。",
+   "role": "marker",
+   "kind": "title",
+   "size": 84,
+   "recipe": "ink",
+   "script": "T111",
+   "inFootage": false
+  },
+  {
+   "id": "A5-S7S10-type:81",
+   "shot": "A5-S7S10-type",
+   "t0": 136.588,
+   "t1": 139.6145,
+   "text": "散场后，\n仍有地方回来。",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-mint",
+   "script": "T112",
+   "inFootage": false
+  },
+  {
+   "id": "A5-fixed-ai-note-room:83",
+   "shot": "A5-fixed-ai-note-room",
+   "t0": 113.172,
+   "t1": 117.075,
+   "text": "照片为 AI 生成的示例图",
+   "role": "hand",
+   "kind": "fine",
+   "size": 36,
+   "recipe": "fine",
+   "script": null,
+   "inFootage": false
+  },
+  {
+   "id": "A5-fixed-ai-note:84",
+   "shot": "A5-fixed-ai-note",
+   "t0": 130.734,
+   "t1": 140.49,
+   "text": "照片为 AI 生成的示例图",
+   "role": "hand",
+   "kind": "fine",
+   "size": 36,
+   "recipe": "fine",
+   "script": "T025",
+   "inFootage": false
+  }
+ ],
+ "marks": {},
+ "warnings": [],
+ "assets": {
+  "visitor-aning-shizhen-front": {
+   "name": "visitor-aning-shizhen-front",
+   "path": "/tmp/space-video-doodle/prod/capture/P2P3/avatars/png/visitor-aning-shizhen-front.png",
+   "kind": "capture",
+   "candidates": 2
+  },
+  "cast-man-front": {
+   "name": "cast-man-front",
+   "path": "/tmp/space-video-doodle/prod/capture/P2P3/avatars/png/cast-man-front.png",
+   "kind": "capture",
+   "candidates": 2
+  },
+  "CUT-03": {
+   "name": "CUT-03",
+   "path": "/tmp/space-video-doodle/prod/capture/P2P3/stills/CUT-03_3d-wall-5-photos-4k.png",
+   "kind": "capture",
+   "candidates": 1
+  },
+  "CUT-07": {
+   "name": "CUT-07",
+   "path": "/tmp/space-video-doodle/prod/capture/P2P3/cut/CUT-07_chat-bubbles.png",
+   "kind": "capture",
+   "candidates": 2
+  },
+  "CUT-08": {
+   "name": "CUT-08",
+   "path": "/tmp/space-video-doodle/prod/capture/P2P3/exports/CUT-08_memory-card.png",
+   "kind": "capture",
+   "candidates": 1
+  },
+  "CUT-01": {
+   "name": "CUT-01",
+   "path": "/tmp/space-video-doodle/prod/capture/P2P3/stills/CUT-01_room-overview-4k.png",
+   "kind": "capture",
+   "candidates": 1
+  },
+  "CUT-02s": {
+   "name": "CUT-02s",
+   "path": "/tmp/space-video-doodle/prod/capture/P2P3/cut/CUT-02s_wardrobe-figure-on-orbit.png",
+   "kind": "capture",
+   "candidates": 2
+  },
+  "CUT-05": {
+   "name": "CUT-05",
+   "path": "/tmp/space-video-doodle/prod/capture/P2P3/cut/CUT-05_badge-other-side.png",
+   "kind": "capture",
+   "candidates": 2
+  },
+  "CUT-06": {
+   "name": "CUT-06",
+   "path": "/tmp/space-video-doodle/prod/capture/P2P3/cut/CUT-06_exchange-accepted-pair.png",
+   "kind": "capture",
+   "candidates": 2
+  },
+  "CUT-04c.opaque": {
+   "name": "CUT-04c.opaque",
+   "path": "/tmp/space-video-doodle/prod/capture/P2P3/cut/CUT-04c_viewpoint-block.opaque.png",
+   "kind": "capture",
+   "candidates": 1
+  }
+ },
+ "clips": {
+  "P-12": {
+   "name": "P-12",
+   "path": "/tmp/space-video-doodle/prod/capture/P1/clips/P-12.mp4",
+   "kind": "capture",
+   "candidates": 1,
+   "fps": 60,
+   "frames": 548,
+   "w": 1080,
+   "h": 2340,
+   "duration": 9.1333,
+   "key": "84185c2786"
+  },
+  "P-13": {
+   "name": "P-13",
+   "path": "/tmp/space-video-doodle/prod/capture/P1/clips/P-13.mp4",
+   "kind": "capture",
+   "candidates": 1,
+   "fps": 60,
+   "frames": 647,
+   "w": 1080,
+   "h": 2340,
+   "duration": 10.7833,
+   "key": "bbfb4534e2"
+  },
+  "P-17": {
+   "name": "P-17",
+   "path": "/tmp/space-video-doodle/prod/capture/P1/clips/P-17.mp4",
+   "kind": "capture",
+   "candidates": 1,
+   "fps": 60,
+   "frames": 520,
+   "w": 1080,
+   "h": 2340,
+   "duration": 8.6667,
+   "key": "9654088e42"
+  },
+  "D-04-linjian-quiet": {
+   "name": "D-04-linjian-quiet",
+   "path": "/tmp/space-video-doodle/prod/capture/desktop/master/D-04-linjian-quiet.mp4",
+   "kind": "capture",
+   "candidates": 2,
+   "fps": 60,
+   "frames": 561,
+   "w": 3840,
+   "h": 2160,
+   "duration": 9.35,
+   "key": "ff336d8ca2"
+  },
+  "P-14": {
+   "name": "P-14",
+   "path": "/tmp/space-video-doodle/prod/capture/P1/clips/P-14.mp4",
+   "kind": "capture",
+   "candidates": 1,
+   "fps": 60,
+   "frames": 540,
+   "w": 1080,
+   "h": 2340,
+   "duration": 9,
+   "key": "0466f228aa"
+  },
+  "P-15": {
+   "name": "P-15",
+   "path": "/tmp/space-video-doodle/prod/capture/P1/clips/P-15.mp4",
+   "kind": "capture",
+   "candidates": 1,
+   "fps": 60,
+   "frames": 604,
+   "w": 1080,
+   "h": 2340,
+   "duration": 10.0667,
+   "key": "983e7a3cb7"
+  },
+  "P-16": {
+   "name": "P-16",
+   "path": "/tmp/space-video-doodle/prod/capture/P1/clips/P-16.mp4",
+   "kind": "capture",
+   "candidates": 1,
+   "fps": 60,
+   "frames": 929,
+   "w": 1080,
+   "h": 2340,
+   "duration": 15.4833,
+   "key": "b7c7511a39"
+  },
+  "P-19": {
+   "name": "P-19",
+   "path": "/tmp/space-video-doodle/prod/capture/P1/clips/P-19.mp4",
+   "kind": "capture",
+   "candidates": 1,
+   "fps": 60,
+   "frames": 645,
+   "w": 1080,
+   "h": 2340,
+   "duration": 10.75,
+   "key": "d360a69b2e"
+  },
+  "P-20": {
+   "name": "P-20",
+   "path": "/tmp/space-video-doodle/prod/capture/P1/clips/P-20.mp4",
+   "kind": "capture",
+   "candidates": 1,
+   "fps": 60,
+   "frames": 393,
+   "w": 1080,
+   "h": 2340,
+   "duration": 6.55,
+   "key": "3bd4773efd"
+  },
+  "P-18": {
+   "name": "P-18",
+   "path": "/tmp/space-video-doodle/prod/capture/P1/clips/P-18.mp4",
+   "kind": "capture",
+   "candidates": 1,
+   "fps": 60,
+   "frames": 412,
+   "w": 1080,
+   "h": 2340,
+   "duration": 6.8667,
+   "key": "d01013032d"
+  }
+ },
+ "script": [
+  "T025",
+  "T090",
+  "T091",
+  "T092",
+  "T093",
+  "T094",
+  "T095",
+  "T096",
+  "T097",
+  "T098",
+  "T099",
+  "T100",
+  "T101",
+  "T102",
+  "T103",
+  "T104",
+  "T105",
+  "T106",
+  "T107",
+  "T108",
+  "T109",
+  "T110",
+  "T111",
+  "T112"
+ ],
+ "scenes": [
+  "act-A5"
+ ]
+}

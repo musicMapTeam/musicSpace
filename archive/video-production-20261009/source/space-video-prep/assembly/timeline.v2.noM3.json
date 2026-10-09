@@ -1,0 +1,403 @@
+{
+ "title": "Music Space - 同一刻，另一面。",
+ "output": "out/space-v2-rehearsal-noM3.mp4",
+ "size": [
+  1920,
+  1080
+ ],
+ "fps": 60,
+ "crf": 18,
+ "preset": "slow",
+ "band_color": "#182d26",
+ "music": {
+  "file": "../music/original-v2/space-original-v2_-16LUFS_48k24.wav",
+  "start": 0,
+  "delay": 0,
+  "fade_in": 0.6,
+  "fade_out": 3.5,
+  "target_lufs": -16
+ },
+ "sfx": [],
+ "shots": [
+  {
+   "id": "H0",
+   "title": "HOOK: 3D livehouse tour (cinema grade) + title lockup",
+   "src": "../clips/final/S00.mp4",
+   "dur": 12.5,
+   "layout": "full",
+   "grade": "cinema",
+   "status": "REHEARSAL (RC4 room; final = Route B cast)",
+   "mode": "STATIC-capable, single viewer"
+  },
+  {
+   "id": "P1",
+   "title": "Pain 1: you shot the stage, she remembers the crowd",
+   "src": "../cards/out/card-b-pain.mp4",
+   "dur": 5,
+   "layout": "full",
+   "status": "CARD (final)",
+   "footage": false,
+   "transition_in": {
+    "type": "fade",
+    "dur": 0.5
+   }
+  },
+  {
+   "id": "P2",
+   "title": "Pain 2: group album, 99+ shots, no way to tell the same moment",
+   "src": "../cards/out/card-b2-groupalbum.mp4",
+   "dur": 5,
+   "layout": "full",
+   "status": "CARD (final)",
+   "footage": false
+  },
+  {
+   "id": "P3",
+   "title": "Pain 3: no safe way to say hi",
+   "src": "../cards/out/card-b3-noopening.mp4",
+   "dur": 5,
+   "layout": "full",
+   "status": "CARD (final)",
+   "footage": false
+  },
+  {
+   "id": "Q",
+   "title": "What if: the other side comes back, by consent",
+   "src": "../cards/out/card-d-whatif.mp4",
+   "dur": 5,
+   "layout": "full",
+   "status": "CARD (final)",
+   "footage": false,
+   "transition_in": {
+    "type": "fade",
+    "dur": 0.3
+   }
+  },
+  {
+   "id": "E1",
+   "title": "Landing: presence card + enter button",
+   "src": "../clips/final/RB-E1.mp4",
+   "dur": 5,
+   "fallback": "../stills/er-entry.png",
+   "status": "TO CAPTURE (Route B landing)",
+   "mode": "STATIC",
+   "note": "Open the Pages link; status line, presence card 「同一刻，另一面。」, button 「进入示例现场」. Director zoom on the card."
+  },
+  {
+   "id": "E2",
+   "title": "Entry: avatar + wardrobe + one consent tick",
+   "src": "../clips/final/S04.mp4",
+   "dur": 10,
+   "speed": 0.96,
+   "status": "REHEARSAL (RC4 wardrobe; final = 带上小人，进入示例现场 panel)",
+   "mode": "STATIC"
+  },
+  {
+   "id": "E3",
+   "title": "In the room: cast (·示例), tour card",
+   "src": "../clips/final/S01.mp4",
+   "dur": 5,
+   "status": "REHEARSAL (RC4 tour; final = cast + tour card 1/4)",
+   "mode": "STATIC"
+  },
+  {
+   "id": "A1",
+   "title": "Wall grouped by moment: 21:47 · 同一刻 · 3 个视角",
+   "src": "../clips/final/S08.mp4",
+   "dur": 10,
+   "status": "REHEARSAL (RC4 wall list; no grouping UI)",
+   "mode": "STATIC"
+  },
+  {
+   "id": "A2a",
+   "title": "Pick 人海·示例照片 -> 拍摄于 21:48 + 「AI 判断：人海」 -> 保存",
+   "src": "../clips/final/S05.mp4",
+   "dur": 7.5,
+   "status": "REHEARSAL (RC4 upload; no AI chip)",
+   "mode": "STATIC"
+  },
+  {
+   "id": "A2b",
+   "title": "Saved: photo joins the 21:47 group",
+   "src": "../clips/final/S07.mp4",
+   "dur": 2.5,
+   "status": "REHEARSAL (RC4)",
+   "mode": "STATIC",
+   "transition_in": {
+    "type": "slideleft",
+    "dur": 0.3
+   }
+  },
+  {
+   "id": "A3",
+   "title": "The honest case: 「不确定，请选择」",
+   "src": "../clips/final/S06.mp4",
+   "dur": 5,
+   "status": "REHEARSAL (RC4 upload; no AI chip)",
+   "mode": "STATIC"
+  },
+  {
+   "id": "M1",
+   "title": "「同一刻的另一面」 badge + reason + 和 TA 交换这个视角",
+   "src": "../clips/final/S09.mp4",
+   "dur": 10,
+   "speed": 1.0417,
+   "status": "REHEARSAL (RC4 request flow; no reveal UI)",
+   "mode": "STATIC"
+  },
+  {
+   "id": "M2",
+   "title": "Compose (推荐 pre-selected) + consent + send + 交换已接受",
+   "src": "../clips/final/S10.mp4",
+   "dur": 15,
+   "speed": 1.2688666666666668,
+   "status": "REHEARSAL (RC4 two-device consent)",
+   "mode": "STATIC final / NODE x2 rehearsal",
+   "transition_in": {
+    "type": "slideleft",
+    "dur": 0.4
+   }
+  },
+  {
+   "id": "S1",
+   "title": "Greeting -> accepted -> private chat -> reply",
+   "src": "../clips/final/S12.mp4",
+   "dur": 15,
+   "status": "REHEARSAL (RC4 duo greeting/chat)",
+   "mode": "STATIC final (小满·示例) / NODE x2 rehearsal",
+   "transition_in": {
+    "type": "slideleft",
+    "dur": 0.4
+   }
+  },
+  {
+   "id": "S2",
+   "title": "Quiet rule: 林间·示例 does not take new greetings",
+   "src": "../clips/final/RB-S2.mp4",
+   "dur": 2.5,
+   "status": "TO CAPTURE (Route B)",
+   "mode": "STATIC",
+   "note": "Open 林间·示例 (3D person or 同场的人): 「TA 选择安静参与，不接收新招呼」."
+  },
+  {
+   "id": "S3a",
+   "title": "After-show room: album cup",
+   "src": "../clips/final/S14b.mp4",
+   "dur": 5,
+   "speed": 0.5,
+   "status": "REHEARSAL (RC4 world cup)",
+   "mode": "STATIC"
+  },
+  {
+   "id": "S3b",
+   "title": "After-show room: preference game",
+   "src": "../clips/final/S14c.mp4",
+   "dur": 5,
+   "speed": 0.5,
+   "status": "REHEARSAL (RC4 games)",
+   "mode": "STATIC"
+  },
+  {
+   "id": "K1a",
+   "title": "Recap -> save memory card -> PNG preview",
+   "src": "../clips/final/S13.mp4",
+   "dur": 6,
+   "speed": 1.3666666666666665,
+   "status": "REHEARSAL (RC4 recap + card)",
+   "mode": "STATIC"
+  },
+  {
+   "id": "K1b",
+   "title": "The real exported PNG flies in (card K)",
+   "src": "../cards/out/card-k-memory.mp4",
+   "dur": 4,
+   "layout": "full",
+   "status": "CARD (final layout; PNG = RC4 export)",
+   "footage": false,
+   "transition_in": {
+    "type": "fade",
+    "dur": 0.3
+   }
+  },
+  {
+   "id": "K2",
+   "title": "Music Map round trip (音乐探索)",
+   "src": "../clips/final/S14d.mp4",
+   "dur": 5,
+   "speed": 0.5,
+   "status": "REHEARSAL (RC4 Map flip)",
+   "mode": "STATIC"
+  },
+  {
+   "id": "C",
+   "title": "End card: Music Space · 同一刻，另一面。· link · QR",
+   "src": "../cards/out/card-c-end.mp4",
+   "dur": 10,
+   "layout": "full",
+   "status": "CARD (final)",
+   "footage": false,
+   "transition_in": {
+    "type": "fade",
+    "dur": 0.5
+   }
+  }
+ ],
+ "subtitles": [
+  {
+   "start": 0.9,
+   "end": 5.2,
+   "text": "示例角色与照片均为虚构（AI 生成）",
+   "style": "note"
+  },
+  {
+   "start": 32.9,
+   "end": 37.3,
+   "text": "打开链接就能进，不用安装。",
+   "style": "band"
+  },
+  {
+   "start": 37.9,
+   "end": 47.1,
+   "text": "带上自己的二维手绘小人入场，随时能换装。",
+   "style": "band"
+  },
+  {
+   "start": 47.8,
+   "end": 52.3,
+   "text": "真正的三维 Livehouse；同场的朋友是**示例角色**。",
+   "style": "band"
+  },
+  {
+   "start": 53.0,
+   "end": 62.1,
+   "text": "照片按拍摄时间分成「**同一刻**」：规则判断，不是 AI。",
+   "style": "band"
+  },
+  {
+   "start": 62.9,
+   "end": 69.9,
+   "text": "拍摄时间来自照片自带的信息；**AI 在本机判断视角**：人海。",
+   "style": "band"
+  },
+  {
+   "start": 70.2,
+   "end": 72.4,
+   "text": "照片不上传。",
+   "style": "band"
+  },
+  {
+   "start": 72.9,
+   "end": 77.3,
+   "text": "没把握，它就说「不确定」，**选择权在你**。",
+   "style": "band"
+  },
+  {
+   "start": 78.0,
+   "end": 82.5,
+   "text": "**同一刻的另一面**：按拍摄时间配对，理由写得明明白白。",
+   "style": "band"
+  },
+  {
+   "start": 82.7,
+   "end": 87.1,
+   "text": "配对和理由是规则算的，**不是 AI**。",
+   "style": "band"
+  },
+  {
+   "start": 88.0,
+   "end": 94.5,
+   "text": "要换，就指定具体的**两张**照片，并明确同意。",
+   "style": "band"
+  },
+  {
+   "start": 94.9,
+   "end": 102.1,
+   "text": "对方同意，才会交换；示例角色会自动回应。",
+   "style": "band"
+  },
+  {
+   "start": 103.0,
+   "end": 109.7,
+   "text": "愿意认识，才继续聊：先招手，**对方同意**，才能私聊。",
+   "style": "band"
+  },
+  {
+   "start": 110.1,
+   "end": 117.1,
+   "text": "示例角色的回应是自动的，不会学习。",
+   "style": "band"
+  },
+  {
+   "start": 117.7,
+   "end": 119.8,
+   "text": "想安静的人，不会被打扰。",
+   "style": "band"
+  },
+  {
+   "start": 120.3,
+   "end": 124.8,
+   "text": "散场以后，聊天室里还有专辑杯……",
+   "style": "band"
+  },
+  {
+   "start": 125.3,
+   "end": 129.8,
+   "text": "……和默契局。",
+   "style": "band"
+  },
+  {
+   "start": 130.4,
+   "end": 135.6,
+   "text": "散场了，把这一晚**留在手里**。",
+   "style": "band"
+  },
+  {
+   "start": 140.3,
+   "end": 144.8,
+   "text": "还可以去「音乐探索」，沿真实的合唱关系找音乐。",
+   "style": "band"
+  },
+  {
+   "start": 32.5,
+   "end": 102.5,
+   "text": "示例现场 · 角色与照片为虚构 · 照片不上传",
+   "style": "bandnote"
+  },
+  {
+   "start": 102.5,
+   "end": 117.5,
+   "text": "演示：同一台电脑上的两个独立浏览器身份 · 非 Pages 在线版",
+   "style": "bandnote"
+  },
+  {
+   "start": 117.5,
+   "end": 144.7,
+   "text": "示例现场 · 角色与照片为虚构 · 照片不上传",
+   "style": "bandnote"
+  }
+ ],
+ "overlays": [
+  {
+   "id": "h-shade",
+   "kind": "still",
+   "src": "../cards/out/h-shade.png",
+   "start": 9.9,
+   "dur": 3.1,
+   "fade_in": 0.6,
+   "fade_out": 0,
+   "shot": "H0"
+  },
+  {
+   "id": "h-lockup",
+   "kind": "video",
+   "src": "../cards/out/h-lockup.mov",
+   "start": 10.0,
+   "shot": "H0"
+  }
+ ],
+ "meta": {
+  "total_s": 155.0,
+  "grid": "2.5 s bars at 96 BPM",
+  "note": "generated by make-timeline-v2.py"
+ }
+}

@@ -1,0 +1,136 @@
+{
+ "id": "love-love-love",
+ "label": "HoliznaCC0《Love Love Love》115 BPM — 83 bars (✂1-✂5 + ✂7), three ambient breaks, payoff on the song's first drop, natural end",
+ "track": {
+  "audio": "/tmp/space-video-doodle/music-cc0/05-reserve-love-love-love__HoliznaCC0/HoliznaCC0_-_Love_Love_Love.mp3",
+  "beats": "/tmp/space-video-doodle/music-cc0/05-reserve-love-love-love__HoliznaCC0/beats.json",
+  "title": "Love Love Love",
+  "artist": "HoliznaCC0",
+  "licence": "CC0 1.0 Universal",
+  "proof": "/tmp/space-video-doodle/music-cc0/05-reserve-love-love-love__HoliznaCC0/LICENCE-PROOF.md",
+  "credit": "配乐：HoliznaCC0《Love Love Love》（CC0 1.0 公共领域）"
+ },
+ "plan": [
+  {
+   "sb": "1-4",
+   "trk": "21-24",
+   "why": "cold open on the full groove"
+  },
+  {
+   "sb": "5-8",
+   "trk": "77-80",
+   "why": "title on the ambient breakdown: the band stops on 5:1 (bar 8 kept: ✂7 is used instead of ✂6 so the title keeps whole 2-bar phrases)"
+  },
+  {
+   "sb": "9-12",
+   "trk": "1-4",
+   "why": "pain: the ambient intro (no drums)"
+  },
+  {
+   "sb": "13-14",
+   "trk": "77-78",
+   "why": "pain: ambient (same 2-bar phrase family); bars 15-16 cut (✂3)"
+  },
+  {
+   "sb": "17-20",
+   "trk": "25-28",
+   "why": "pain: the breakdown that leads into the song's drop"
+  },
+  {
+   "sb": "21-39",
+   "trk": "29-47",
+   "why": "DROP on 21:1 (+12.4 dB, bass-heavy); bar 40 cut (✂7)"
+  },
+  {
+   "sb": "41-48",
+   "trk": "48-55",
+   "why": "build"
+  },
+  {
+   "sb": "49-50",
+   "trk": "3-4",
+   "why": "the wait: ambient intro bars"
+  },
+  {
+   "sb": "51-70",
+   "trk": "5-24",
+   "why": "PAYOFF on the song's first drop (+12.6 dB, the biggest step in the song), then 16 full bars; bars 71-72 cut (✂4, ✂2)"
+  },
+  {
+   "sb": "73-74",
+   "trk": "79-80",
+   "why": "break: ambient phrase"
+  },
+  {
+   "sb": "75-82",
+   "trk": "61-68",
+   "why": "LIFT: ambient -> full groove"
+  },
+  {
+   "sb": "83-86",
+   "trk": "69-72",
+   "why": "end card"
+  },
+  {
+   "sb": "87",
+   "trk": "78",
+   "why": "ambient bar before the final hit (harmonically closest to LLL 72)"
+  },
+  {
+   "sb": "88",
+   "trk": "81",
+   "why": "the song's final hit (no drums) = the final ding; rings into the tail; bars 89-90 cut (✂5, ✂1)"
+  }
+ ],
+ "cut": [
+  15,
+  16,
+  40,
+  71,
+  72,
+  89,
+  90
+ ],
+ "tail_s": 1.5,
+ "fade": null,
+ "xfade_ms": 20,
+ "music_has": [],
+ "moments": {
+  "title_stop": {
+   "verdict": "yes",
+   "note": "full groove -> ambient breakdown exactly on 5:1"
+  },
+  "pain_sparse": {
+   "verdict": "yes",
+   "note": "10 ambient bars without drums"
+  },
+  "drop": {
+   "verdict": "yes",
+   "note": "+12.4 dB drop on 21:1"
+  },
+  "ai_chime": {
+   "verdict": "sfx",
+   "note": "SFX chime on 31:3"
+  },
+  "payoff": {
+   "verdict": "yes",
+   "note": "ambient wait -> the song's biggest drop on 51:1"
+  },
+  "social_groove": {
+   "verdict": "yes",
+   "note": "16 full bars"
+  },
+  "break": {
+   "verdict": "partial",
+   "note": "ambient bars, no stop-time hits"
+  },
+  "lift": {
+   "verdict": "yes",
+   "note": "ambient -> full groove on 75:1 (no key change)"
+  },
+  "end_resolve": {
+   "verdict": "natural",
+   "note": "the song's final hit on 88:1"
+  }
+ }
+}

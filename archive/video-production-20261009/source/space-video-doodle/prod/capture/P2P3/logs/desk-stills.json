@@ -1,0 +1,62 @@
+{
+ "items": [
+  {
+   "id": "CUT-01",
+   "name": "stills/CUT-01_room-overview-4k",
+   "files": {
+    "full": "/tmp/space-video-doodle/prod/capture/P2P3/stills/CUT-01_room-overview-4k.png"
+   },
+   "note": "desktop 3D room overview, five present with labels (林间·示例 · 安静 included), 阿宁 · 我; no pointer",
+   "storyboard": "H1 (polaroid), E4/W5 reference"
+  },
+  {
+   "id": "CUT-03a",
+   "name": "stills/CUT-03a_3d-wall-4-photos-4k",
+   "files": {
+    "full": "/tmp/space-video-doodle/prod/capture/P2P3/stills/CUT-03a_3d-wall-4-photos-4k.png"
+   },
+   "note": "3D photo wall (sign 同一晚，另一面。) with the four example photos",
+   "storyboard": "A4 36:1 reference"
+  },
+  {
+   "id": "CUT-03",
+   "name": "stills/CUT-03_3d-wall-5-photos-4k",
+   "files": {
+    "full": "/tmp/space-video-doodle/prod/capture/P2P3/stills/CUT-03_3d-wall-5-photos-4k.png"
+   },
+   "note": "the same photos view after saving the 人海 sample: five photos (yours included)",
+   "storyboard": "H1 (polaroid), A4 36:3 reference"
+  }
+ ],
+ "out": {
+  "clock": "2026-10-07T22:40:00+08:00",
+  "overviewPeople": [
+   "阿遥·示例 · 可招呼",
+   "小满·示例 · 可招呼",
+   "北屿·示例 · 可招呼",
+   "阿宁 · 我",
+   "林间·示例 · 安静"
+  ],
+  "qa1": {
+   "view": "overview",
+   "members": [
+    "阿遥·示例",
+    "小满·示例",
+    "北屿·示例",
+    "阿宁",
+    "林间·示例"
+   ],
+   "photos": 4
+  },
+  "qa2": {
+   "view": "photos",
+   "photos": 4
+  },
+  "ai": "AI 判断：人海",
+  "qa3": {
+   "view": "photos",
+   "photos": 5
+  }
+ },
+ "errors": []
+}

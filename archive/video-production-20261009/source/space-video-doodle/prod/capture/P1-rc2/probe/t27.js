@@ -1,0 +1,12 @@
+const out = {};
+await page.locator('.community-panel [data-group="close"]').first().click(); await sleep(700);
+await page.click('nav.camera-nav [data-view="person"]'); await sleep(1800);
+await page.locator('[data-person]', { hasText: '小满' }).first().click(); await sleep(1800);
+out.card = await txt('#panel');
+await shot('43-friend-card');
+await page.click('#panel [data-open="corners"]'); await sleep(1500);
+await shot('44-corner');
+const cp = () => page.evaluate(() => { const c = [...document.querySelectorAll('.corner-panel')].find(e => e.getClientRects().length); return c ? c.innerText.replace(/\n{2,}/g, '\n').slice(0, 2000) : null; });
+out.corner = await cp();
+out.cornerBtns = await page.evaluate(() => { const c = [...document.querySelectorAll('.corner-panel')].find(e => e.getClientRects().length); return [...c.querySelectorAll('button, input, label')].filter(b => b.getClientRects().length).map(b => { const r = b.getBoundingClientRect(); return b.tagName + (b.name ? '[' + b.name + ']' : '') + ' ' + (b.innerText || '').replace(/\s+/g, ' ').slice(0, 40) + ' ' + JSON.stringify(b.dataset) + ' @' + Math.round(r.x) + ',' + Math.round(r.y) + ' ' + Math.round(r.width) + 'x' + Math.round(r.height); }); });
+return out;

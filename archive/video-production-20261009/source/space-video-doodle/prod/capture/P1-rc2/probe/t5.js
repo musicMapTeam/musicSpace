@@ -1,0 +1,13 @@
+const out = {};
+await page.click('#join'); await sleep(1200);
+out.name = await page.evaluate(() => document.querySelector('form[data-form="demo-entry"] input[name=name]')?.value);
+out.nameReadonly = await page.evaluate(() => { const i = document.querySelector('form[data-form="demo-entry"] input[name=name]'); return i ? { ro: i.readOnly, dis: i.disabled, type: i.type } : null; });
+await shot('07-entry-again');
+out.panel = await txt('#panel');
+out.pinfo = await page.evaluate(() => { const p = document.querySelector('#panel'); return { sh: p.scrollHeight, ch: p.clientHeight, st: p.scrollTop }; });
+out.boxes = await page.evaluate(() => ['form[data-form="demo-entry"] input[name=consent]', 'form[data-form="demo-entry"] button[type=submit]', 'form[data-form="demo-entry"] fieldset', 'form[data-form="demo-entry"] legend'].map(s => { const e = document.querySelector(s); if (!e) return s + ' none'; const r = e.getBoundingClientRect(); return s + ' @' + Math.round(r.x) + ',' + Math.round(r.y) + ' ' + Math.round(r.width) + 'x' + Math.round(r.height); }));
+await page.evaluate(() => document.querySelector('#panel').scrollTo({ top: 170, behavior: 'instant' })); await sleep(300);
+await shot('08-entry-scrolled170');
+out.boxes2 = await page.evaluate(() => ['form[data-form="demo-entry"] input[name=consent]', 'form[data-form="demo-entry"] button[type=submit]'].map(s => { const e = document.querySelector(s); const r = e.getBoundingClientRect(); return s + ' @' + Math.round(r.x) + ',' + Math.round(r.y) + ' ' + Math.round(r.width) + 'x' + Math.round(r.height); }));
+out.st = await page.evaluate(() => document.querySelector('#panel').scrollTop);
+return out;

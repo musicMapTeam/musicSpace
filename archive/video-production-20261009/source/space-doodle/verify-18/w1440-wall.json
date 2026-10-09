@@ -1,0 +1,185 @@
+{
+ "vp": "w1440",
+ "scen": "wall",
+ "aiPreselected": true,
+ "wall": {
+  "toastText": "已分享给本场成员",
+  "toastVisible": true,
+  "display": "block",
+  "pointerEvents": "auto",
+  "z": "90",
+  "toast": [
+   640,
+   729,
+   800,
+   778
+  ],
+  "panelHidden": false,
+  "panelRect": [
+   984,
+   100,
+   1384,
+   764
+  ],
+  "items": {
+   "#panel-close": {
+    "rect": [
+     1327,
+     111,
+     1373,
+     157
+    ],
+    "text": "×",
+    "hitsCentreFirst": [
+     "#panel-close",
+     "#panel-close",
+     "#panel-close",
+     "#panel-close",
+     "#panel-close"
+    ]
+   },
+   "[data-exchange-offer]": {
+    "rect": [
+     1028,
+     946,
+     1344,
+     1005
+    ],
+    "text": "和 TA 交换这个视角",
+    "hitsCentreFirst": [
+     null,
+     null,
+     null,
+     null,
+     null
+    ]
+   },
+   "#panel-body .eyebrow": {
+    "rect": [
+     1010,
+     140,
+     1122,
+     153
+    ],
+    "text": "同一场 / 不同视角",
+    "hitsCentreFirst": [
+     "small.eyebrow",
+     "small.eyebrow",
+     "small.eyebrow",
+     "small.eyebrow",
+     "small.eyebrow"
+    ]
+   },
+   "#panel-body h2": {
+    "rect": [
+     1010,
+     161,
+     1306,
+     195
+    ],
+    "text": "这一晚，大家看到了什么？",
+    "hitsCentreFirst": [
+     "h2",
+     "h2",
+     "h2",
+     "h2",
+     "h2"
+    ]
+   },
+   "[data-moment-badge]": {
+    "rect": [
+     1027,
+     817,
+     1344,
+     1005
+    ],
+    "text": "同一刻的另一面同一刻 · 21:47，相差不到 ",
+    "hitsCentreFirst": [
+     null,
+     "div.frame",
+     "div.frame",
+     null,
+     null
+    ]
+   }
+  },
+  "msSinceToast": 354
+ },
+ "scroll": {
+  "scroller": "panel",
+  "before": 0,
+  "after": 236
+ },
+ "wallScrolled": {
+  "toastText": "已分享给本场成员",
+  "toastVisible": true,
+  "display": "block",
+  "pointerEvents": "auto",
+  "z": "90",
+  "toast": [
+   640,
+   729,
+   800,
+   778
+  ],
+  "panelHidden": false,
+  "panelRect": [
+   984,
+   100,
+   1384,
+   764
+  ],
+  "items": {
+   "#panel-close": {
+    "rect": [
+     1327,
+     -125,
+     1373,
+     -79
+    ],
+    "text": "×",
+    "hitsCentreFirst": [
+     null,
+     null,
+     null,
+     null,
+     null
+    ]
+   },
+   "[data-exchange-offer]": {
+    "rect": [
+     1028,
+     710,
+     1344,
+     769
+    ],
+    "text": "和 TA 交换这个视角",
+    "hitsCentreFirst": [
+     "button.primary",
+     "button.primary",
+     "button.primary",
+     "button.primary",
+     "button.primary"
+    ]
+   }
+  },
+  "msSinceToast": 744
+ },
+ "offerUnderToast": false,
+ "wallClose": {
+  "rect": [
+   1327,
+   111,
+   1373,
+   157
+  ],
+  "text": "×",
+  "hitsCentreFirst": [
+   "#panel-close",
+   "#panel-close",
+   "#panel-close",
+   "#panel-close",
+   "#panel-close"
+  ]
+ }
+}

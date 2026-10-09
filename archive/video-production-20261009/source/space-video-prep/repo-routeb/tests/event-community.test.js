@@ -1,0 +1,425 @@
+import { removeTempAfterTests } from './helpers/temp-directory.js';
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { createServer } from 'node:http';
+import { once } from 'node:events';
+import { mkdtemp, rm, readFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { randomUUID } from 'node:crypto';
+import { DatabaseSync } from 'node:sqlite';
+import { createAvatarApi } from '../server/avatar-api.js';
+import { createEventApi } from '../server/event-api.js';
+import { createEventStore } from '../server/event-store.js';
+import { createAvatarWorker } from '../runtime-preview/src/avatar-worker.js';
+import { createEventWorker } from '../runtime-preview/src/event-worker.js';
+import { createFakeEnv } from '../runtime-preview/tests/d1-adapter.mjs';
+import { photoData } from './event-contract.test.js';
+
+async function fixture(t, mode = 'Worker', { rateLimits = false } = {}) {
+  const dir = await mkdtemp(join(tmpdir(), 'musicspace-chat-'));
+  let time = Date.parse('2026-09-30T10:00:00Z'), env, server, avatar, event, base;
+  async function start() {
+    if (mode === 'Worker') { env = createFakeEnv(join(dir, 'events.sqlite')); return; }
+    avatar = createAvatarApi({ dataDir: dir, clock: () => time, rateLimits: false });
+    event = createEventApi({ dataDir: dir, clock: () => time, rateLimits });
+    server = createServer(async (req, res) => { if (!await event(req, res) && !await avatar(req, res)) { res.writeHead(404); res.end(); } });
+    server.listen(0, '127.0.0.1'); await once(server, 'listening'); base = `http://127.0.0.1:${server.address().port}`;
+  }
+  async function stop() {
+    if (mode === 'Worker') { env.DB.close(); return; }
+    server.closeAllConnections(); await new Promise(resolve => server.close(resolve)); avatar.close(); event.close();
+  }
+  await start(); t.after(async () => { await stop(); await removeTempAfterTests(dir); });
+  const f = { dir, get env() { return env; }, advance: ms => time += ms, restart: async () => { await stop(); await start(); },
+    async request(path, { method = 'GET', token, data, key = randomUUID(), headers = {} } = {}) {
+      const suffix = path.startsWith('/api/') ? path : '/api/event' + path;
+      const options = { method, headers: { ...(token ? { Authorization: `Bearer ${token}` } : {}), ...(data === undefined ? {} : { 'Content-Type': 'application/json' }),
+        ...(method === 'GET' || key === null ? {} : { 'Idempotency-Key': key }), ...headers }, ...(data === undefined ? {} : { body: JSON.stringify(data) }) };
+      const result = mode === 'Node' ? await fetch(base + suffix, options) : await (suffix.startsWith('/api/avatar') ? createAvatarWorker({ clock: () => time, rateLimits: false }) : createEventWorker({ clock: () => time, rateLimits })).fetch(new Request('https://musicspace.test' + suffix, options), env);
+      const bytes = Buffer.from(await result.arrayBuffer());
+      return { status: result.status, headers: result.headers, bytes, body: result.headers.get('Content-Type')?.includes('json') ? JSON.parse(bytes) : null };
+    },
+  };
+  f.session = async name => (await f.request('/api/avatar/session', { method: 'POST', data: { name } })).body;
+  f.room = async a => (await f.request('/rooms', { method: 'POST', token: a.token, data: { title: '合成现场', venue: '合成场地', songId: 'late-train', joinConsent: true, participation: 'open' } })).body.room;
+  f.join = (room, a) => f.request(`/rooms/${room.code}/join`, { method: 'POST', token: a.token, data: { joinConsent: true, participation: 'open' } });
+  f.send = (room, a, b, options = {}) => f.request(`/rooms/${room.id}/greetings`, { method: 'POST', token: a.token, data: { recipientId: b.user.id }, ...options });
+  f.respond = (greeting, action, a, options = {}) => f.request(`/greetings/${greeting.id}/${action}`, { method: 'POST', token: a.token, data: { revision: greeting.revision }, ...options });
+  f.block = (a, b, options = {}) => f.request(`/blocks/${b.user.id}`, { method: 'POST', token: a.token, data: {}, ...options });
+  f.unblock = (a, b, revision, options = {}) => f.request(`/blocks/${b.user.id}`, { method: 'DELETE', token: a.token, data: { revision }, ...options });
+  f.social = async a => { const r = await f.request('/social', { token: a.token }); assert.equal(r.status, 200, JSON.stringify(r.body)); return r.body; };
+  f.upload = async (room, a, visibility) => (await f.request(`/rooms/${room.id}/photos`, { method: 'POST', token: a.token, data: { ...photoData(), visibility } })).body.photo;
+  f.two = async () => { const a = await f.session('A'), b = await f.session('B'), room = await f.room(a); assert.equal((await f.join(room, b)).status, 200); return { a, b, room }; };
+  f.chatSend = (a, b, text = '合成测试消息', options = {}) => f.request(`/chats/${b.user.id}/messages`, { method: 'POST', token: a.token, data: { text }, ...options });
+  f.messages = (a, b, query = '') => f.request(`/chats/${b.user.id}/messages${query}`, { token: a.token });
+  f.ack = (a, b, ids, options = {}) => f.request(`/chats/${b.user.id}/read`, { method: 'POST', token: a.token, data: { messageIds: ids }, ...options });
+  f.friends = async () => { const pair = await f.two(); const greeting = (await f.send(pair.room, pair.a, pair.b)).body.greeting; assert.equal((await f.respond(greeting, 'accept', pair.b)).status, 200); return pair; };
+  return f;
+}
+
+
+
+test('Worker space archive/reopen cannot revive an already authorized message',async t=>{
+ const f=await fixture(t),a=await f.session('Organizer'),space=(await f.request('/communities',{token:a.token,method:'POST',data:{title:'Archive race',joinConsent:true}})).body.community,base='/communities/'+space.id;
+ let resume,started;const paused=new Promise(r=>started=r),gate=new Promise(r=>resume=r),batch=f.env.DB.batch;
+ f.env.DB.batch=async statements=>{if(statements.some(s=>s.query.startsWith('INSERT INTO event_group_messages'))){started();await gate;}return batch(statements);};
+ const waiting=f.request(base+'/conversation/messages',{token:a.token,method:'POST',data:{text:'An older permission snapshot'}});await paused;
+ for(const archived of [true,false]){const current=(await f.request(base+'/space',{token:a.token})).body.space;assert.equal((await f.request(base+'/space',{token:a.token,method:'POST',data:{title:current.title,description:current.description,archived,revision:current.revision,editConsent:true}})).status,200);}
+ resume();assert.equal((await waiting).status,409);assert.equal((await f.request(base+'/conversation/messages',{token:a.token})).body.messages.length,0);
+});
+test('Worker queued game answer cannot revive after block and unblock',async t=>{
+ const f=await fixture(t),{a,b,room}=await f.two(),base='/rooms/'+room.id;
+ for(const who of[a,b])await f.request(base+'/conversation/join',{token:who.token,method:'POST',data:{joinConsent:true}});
+ const path='/games/'+(await f.request(base+'/games',{token:a.token,method:'POST',data:{type:'preference',title:'Queued answer boundary',roundLimit:1,createConsent:true}})).body.gameId;
+ let d=(await f.request(path,{token:a.token})).body;await f.request(path+'/join',{token:b.token,method:'POST',data:{revision:d.game.revision,joinConsent:true}});d=(await f.request(path,{token:a.token})).body;await f.request(path+'/start',{token:a.token,method:'POST',data:{revision:d.game.revision,startConsent:true}});d=(await f.request(path,{token:b.token})).body;
+ let resume,started;const paused=new Promise(r=>started=r),gate=new Promise(r=>resume=r),batch=f.env.DB.batch;
+ f.env.DB.batch=async statements=>{if(statements.some(s=>s.query.startsWith('INSERT INTO event_game_answers'))){started();await gate;}return batch(statements);};
+ const waiting=f.request(path+'/answer',{token:b.token,method:'POST',data:{revision:d.rounds[0].revision,choiceId:d.options.entries[0].id,answerConsent:true}});await paused;
+ const blocked=(await f.block(b,a)).body.block;assert.ok(blocked);assert.equal((await f.unblock(b,a,blocked.revision)).status,200);resume();assert.equal((await waiting).status,409);
+ d=(await f.request(path,{token:b.token})).body;assert.equal(d.joined,false);assert.equal(d.rounds[0].answeredCount,0);assert.equal(d.rounds[0].myAnswer,null);
+});
+for(const mode of ['Node','Worker']){
+ test(mode+' games block epochs and archive: previous participation never revives, no-vote result stays incomplete',async t=>{
+  const f=await fixture(t,mode),{a,b}=await f.two();
+  const community=(await f.request('/communities',{token:a.token,method:'POST',data:{title:'Game boundary',joinConsent:true}})).body.community,base='/communities/'+community.id;
+  assert.equal((await f.request(base+'/conversation/join',{token:b.token,method:'POST',data:{joinConsent:true}})).status,200);
+  const path='/games/'+(await f.request(base+'/games',{token:a.token,method:'POST',data:{type:'preference',title:'Private before reveal',roundLimit:1,createConsent:true}})).body.gameId;
+  const read=who=>f.request(path,{token:who.token}),post=(who,action,data)=>f.request(path+'/'+action,{token:who.token,method:'POST',data});
+  let d=(await read(a)).body;assert.equal((await post(b,'join',{revision:d.game.revision,joinConsent:true})).status,200);d=(await read(a)).body;await post(a,'start',{revision:d.game.revision,startConsent:true});d=(await read(b)).body;
+  assert.equal((await post(a,'reveal',{revision:d.rounds[0].revision,revealConsent:true})).status,409,'no votes cannot produce a result');
+  await post(b,'answer',{revision:d.rounds[0].revision,choiceId:d.options.entries[0].id,answerConsent:true});
+  assert.equal((await f.block(b,a)).status,200);assert.equal((await read(b)).status,403);const block=(await f.social(b)).blocks.find(x=>x.userId===a.user.id);assert.ok(block);assert.equal((await f.unblock(b,a,block.revision)).status,200);
+  d=(await read(b)).body;assert.equal(d.joined,false);assert.equal(d.canLeave,true);assert.equal(d.rounds[0].myAnswer,null);assert.equal(d.rounds[0].answeredCount,0);assert.equal((await post(b,'answer',{revision:d.rounds[0].revision,choiceId:d.options.entries[1].id,answerConsent:true})).status,403);
+  const space=(await f.request(base+'/space',{token:a.token})).body.space;assert.equal((await f.request(base+'/space',{token:a.token,method:'POST',data:{title:space.title,description:space.description,archived:true,revision:space.revision,editConsent:true}})).status,200);
+  assert.equal((await read(a)).body.archived,true);assert.equal((await f.request(base+'/games',{token:a.token})).body.archived,true);assert.equal((await post(a,'reveal',{revision:d.rounds[0].revision,revealConsent:true})).status,409);
+  assert.equal((await post(b,'leave',{playerRevision:d.playerRevision})).status,200);d=(await read(a)).body;assert.equal(d.game.phase,'cancelled');assert.equal(d.rounds[0].result,undefined);await f.restart();assert.equal((await read(a)).body.game.phase,'cancelled');
+ });
+
+ test(mode+' member topics and custom Worldcup: provenance, result discussion, revocation and history',async t=>{
+  const f=await fixture(t,mode),{a,b,room}=await f.two(),base='/rooms/'+room.id;
+  for(const who of[a,b])await f.request(base+'/conversation/join',{token:who.token,method:'POST',data:{joinConsent:true}});
+  const topic=await f.request(base+'/topics',{token:a.token,method:'POST',data:{title:'Synthetic member song',artist:'Unverified artist',note:'My own memory of that night',publishConsent:true}});assert.equal(topic.status,201,JSON.stringify(topic.body));
+  const ownTopic=(await f.request(base+'/topics',{token:b.token})).body.topics[0];assert.equal(ownTopic.verified,false);assert.equal(ownTopic.provenance,'member-text');
+  assert.equal((await f.request(base+'/conversation/messages',{token:b.token,method:'POST',data:{text:'Let us discuss this',topicId:topic.body.topicId}})).status,201);
+  let messages=(await f.request(base+'/conversation/messages',{token:b.token})).body.messages;assert.equal(messages[0].context.title,'Synthetic member song');
+  assert.equal((await f.request(base+'/topics/'+topic.body.topicId,{token:a.token,method:'DELETE',data:{revision:ownTopic.revision}})).status,200);messages=(await f.request(base+'/conversation/messages',{token:b.token})).body.messages;assert.equal(messages[0].context,null);
+  const entries=Array.from({length:4},(_,i)=>({title:'Synthetic entry '+i,artist:'Member text '+i})),created=await f.request(base+'/worldcups',{token:a.token,method:'POST',data:{title:'Member selection',entries,createConsent:true}});assert.equal(created.status,201,JSON.stringify(created.body));assert.equal(created.body.worldcup.fictional,false);const path='/worldcups/'+created.body.worldcup.id,read=()=>f.request(path,{token:a.token}),vote=(who,m,id)=>f.request(path+'/matches/'+m.id+'/vote',{token:who.token,method:'POST',data:{revision:m.revision,albumId:id,voteConsent:true}}),advance=(m,extra={})=>f.request(path+'/matches/'+m.id+'/advance',{token:a.token,method:'POST',data:{revision:m.revision,advanceConsent:true,...extra}});
+  assert.equal((await f.request(base+'/conversation/messages',{token:b.token,method:'POST',data:{text:'Cannot invent an unfinished result',cupId:created.body.worldcup.id}})).status,404);
+  let state=(await read()).body;assert.equal(state.matches[0].left.fictional,false);assert.equal(state.matches[0].left.provenance,'member-text');
+  for(let ordinal=0;ordinal<3;ordinal++){state=(await read()).body;const m=state.matches.find(m=>m.ordinal===ordinal);await Promise.all([vote(a,m,m.left.id),vote(b,m,ordinal===0?m.right.id:m.left.id)]);assert.equal((await advance(m,ordinal===0?{tieWinner:m.left.id,tieReason:'An explicit creator decision, not a score'}:{})).status,200);}
+  state=(await read()).body;assert.equal(state.completed,true);assert.equal((await f.request(base+'/worldcups?status=completed',{token:b.token})).body.worldcups[0].id,created.body.worldcup.id);assert.equal((await f.request(base+'/worldcups?status=active',{token:b.token})).body.worldcups.length,0);
+  assert.equal((await f.request(base+'/conversation/messages',{token:b.token,method:'POST',data:{text:'The result keeps the conversation going',cupId:created.body.worldcup.id}})).status,201);messages=(await f.request(base+'/conversation/messages',{token:a.token})).body.messages;assert.equal(messages.at(-1).context.type,'worldcup');
+  await f.restart();assert.equal((await read()).body.completed,true);assert.equal((await f.request(base+'/topics',{token:b.token})).body.topics.length,0);
+ });
+ test(mode+' game exit and contact boundaries: no hidden answers retained, no recovery after block or room leave',async t=>{
+  const f=await fixture(t,mode),{a,b,room}=await f.two(),base='/rooms/'+room.id;
+  for(const who of[a,b])await f.request(base+'/conversation/join',{token:who.token,method:'POST',data:{joinConsent:true}});
+  const game=(await f.request(base+'/games',{token:a.token,method:'POST',data:{type:'preference',title:'Exit boundaries',roundLimit:2,createConsent:true}})).body.gameId,path='/games/'+game,read=who=>f.request(path,{token:who.token}),post=(who,action,data)=>f.request(path+'/'+action,{token:who.token,method:'POST',data});let detail=(await read(a)).body;await post(b,'join',{revision:detail.game.revision,joinConsent:true});detail=(await read(a)).body;await post(a,'start',{revision:detail.game.revision,startConsent:true});detail=(await read(b)).body;
+  const payload={revision:detail.rounds[0].revision,choiceId:detail.options.entries[0].id,answerConsent:true};const competing=await Promise.all([post(b,'answer',payload),post(b,'answer',payload)]);assert.deepEqual(competing.map(r=>r.status).sort(),[200,409]);
+  assert.equal((await post(b,'leave',{playerRevision:detail.playerRevision})).status,200);detail=(await read(a)).body;assert.equal(detail.game.phase,'cancelled');assert.equal(detail.rounds[0].answeredCount,0);assert.equal(detail.rounds[0].result,undefined);
+  assert.equal((await f.request(base+'/conversation/messages',{token:a.token,method:'POST',data:{text:'No fabricated complete result',gameId:game}})).status,404);
+  await f.block(b,a);assert.equal((await read(b)).status,403);const member=(await f.request(base+'/conversation',{token:b.token})).body.conversation;await f.request(base+'/conversation/leave',{token:b.token,method:'POST',data:{revision:member.revision}});assert.equal((await f.request(base+'/games',{token:b.token})).status,403);
+ });
+ test(mode+' voluntary games: hidden choices, duplicate votes, explicit reveal, restart and discussion scope',async t=>{
+  const f=await fixture(t,mode),{a,b,room}=await f.two(),base='/rooms/'+room.id;
+  for(const who of[a,b])assert.equal((await f.request(base+'/conversation/join',{token:who.token,method:'POST',data:{joinConsent:true}})).status,200);
+  const created=await f.request(base+'/games',{token:a.token,method:'POST',data:{type:'preference',title:'Only this round',roundLimit:1,createConsent:true}});assert.equal(created.status,201,JSON.stringify(created.body));const path='/games/'+created.body.gameId;
+  const read=who=>f.request(path,{token:who.token}),post=(who,action,data,key)=>f.request(path+'/'+action,{token:who.token,method:'POST',data,...(key?{key}:{})});
+  let detail=(await read(a)).body;assert.equal((await post(a,'start',{revision:detail.game.revision,startConsent:true})).status,409);
+  assert.equal((await post(b,'join',{revision:detail.game.revision,joinConsent:true})).status,200);detail=(await read(a)).body;assert.equal((await post(a,'start',{revision:detail.game.revision,startConsent:true})).status,200);
+  detail=(await read(a)).body;const round=detail.rounds[0],choice=detail.options.entries[0].id,key=randomUUID(),payload={revision:round.revision,choiceId:choice,answerConsent:true};
+  const [one,duplicate]=await Promise.all([post(a,'answer',payload,key),post(a,'answer',payload,key)]);assert.equal(one.status,200);assert.equal(duplicate.status,200);
+  let other=(await read(b)).body;assert.equal(other.rounds[0].myAnswer,null);assert.equal(other.rounds[0].result,undefined);assert.equal(other.rounds[0].commonChoices,undefined);
+  assert.equal((await post(a,'reveal',{revision:round.revision,revealConsent:true})).status,409);
+  assert.equal((await post(b,'answer',payload)).status,200);assert.equal((await post(a,'reveal',{revision:round.revision,revealConsent:true})).status,200);detail=(await read(a)).body;assert.equal(detail.game.phase,'completed');assert.equal(detail.rounds[0].result[0].count,2);assert.deepEqual(detail.rounds[0].commonChoices,[choice]);
+  assert.equal((await post(a,'answer',payload,key)).status,200,'original request still recovers after reveal');await f.restart();assert.equal((await read(b)).body.game.phase,'completed');
+  const outside=await f.session('Outside');assert.equal((await read(outside)).status,403);
+ });
+ test(mode+' voluntary relay: verified shared musician, self-described steps and no proxy answer',async t=>{
+  const f=await fixture(t,mode),{a,b,room}=await f.two(),base='/rooms/'+room.id;
+  for(const who of[a,b])await f.request(base+'/conversation/join',{token:who.token,method:'POST',data:{joinConsent:true}});
+  const created=await f.request(base+'/games',{token:a.token,method:'POST',data:{type:'relay',title:'Music connection',seedRecordingId:'real-bu-gai',roundLimit:2,createConsent:true}});assert.equal(created.status,201,JSON.stringify(created.body));const path='/games/'+created.body.gameId,read=()=>f.request(path,{token:a.token}),post=(who,action,data)=>f.request(path+'/'+action,{token:who.token,method:'POST',data});
+  let detail=(await read()).body;await post(b,'join',{revision:detail.game.revision,joinConsent:true});detail=(await read()).body;assert.equal((await post(a,'start',{revision:detail.game.revision,startConsent:true})).status,200);detail=(await read()).body;let r=detail.rounds[0],turn=r.turnId===a.user.id?a:b,other=turn===a?b:a;
+  assert.equal((await post(other,'answer',{revision:r.revision,recordingId:'real-far-away',reason:'Shared musician',answerConsent:true})).status,409);
+  assert.equal((await post(turn,'answer',{revision:r.revision,recordingId:'real-far-away',reason:'Shared musician',answerConsent:true})).status,200);detail=(await read()).body;assert.equal(detail.rounds[0].step.provenance,'verified-catalogue');assert.deepEqual(detail.rounds[0].step.sharedArtistIds,['real-jay']);
+  assert.equal((await post(a,'next',{revision:detail.rounds[0].revision,nextConsent:true})).status,200);detail=(await read()).body;r=detail.rounds[1];turn=r.turnId===a.user.id?a:b;
+  assert.equal((await post(turn,'answer',{revision:r.revision,title:'My own memory song',artist:'Unverified name',reason:'These remind me of the same rainy night',answerConsent:true})).status,200);detail=(await read()).body;assert.equal(detail.game.phase,'completed');assert.equal(detail.rounds[1].step.provenance,'member-text');assert.equal(detail.rounds[1].step.sharedArtistIds,undefined);
+ });
+ test(mode+' space organization: explicit host edits, event association, archive and persistence',async t=>{
+  const f=await fixture(t,mode),a=await f.session('Organizer'),b=await f.session('Member'),outsider=await f.session('Outside');
+  const create=await f.request('/communities',{token:a.token,method:'POST',data:{title:'Small music space',joinConsent:true}});assert.equal(create.status,201);
+  const space=create.body.community,base='/communities/'+space.id,post=(path,actor,data)=>f.request(base+path,{token:actor.token,method:'POST',data});
+  assert.equal((await f.request(base+'/events',{token:outsider.token})).status,403);
+  assert.equal((await post('/conversation/join',b,{joinConsent:true})).status,200);
+  let detail=(await f.request(base+'/space',{token:a.token})).body.space;
+  assert.equal((await post('/space',b,{title:detail.title,description:'New description',archived:false,revision:detail.revision,editConsent:true})).status,403);
+  assert.equal((await post('/space',a,{title:detail.title,description:'Meet again after the show',archived:false,revision:detail.revision,editConsent:true})).status,200);
+  const event=await post('/events',a,{title:'Next live show',venue:'Small venue',startsAt:null,note:'Bring your own perspective',organizeConsent:true});assert.equal(event.status,201,JSON.stringify(event.body));
+  const room=await f.room(a);assert.equal((await post('/events/'+event.body.eventId,a,{action:'link',revision:1,roomId:room.id,organizeConsent:true})).status,200);
+  const events=await f.request(base+'/events',{token:b.token});assert.equal(events.status,200);assert.equal(events.body.events[0].room.joined,false);
+  assert.equal((await f.request('/rooms/'+room.id+'/photos',{token:b.token})).status,404);
+  detail=(await f.request(base+'/space',{token:a.token})).body.space;
+  assert.equal((await post('/space',a,{title:detail.title,description:detail.description,archived:true,revision:detail.revision,editConsent:true})).status,200);
+  assert.equal((await post('/conversation/join',outsider,{joinConsent:true})).status,409);
+  assert.equal((await post('/conversation/messages',b,{text:'Cannot send after archive'})).status,409);
+  assert.equal((await post('/worldcups',b,{title:'Cannot publish after archive',createConsent:true})).status,409);
+  assert.equal((await f.request(base+'/events',{token:b.token})).status,200);
+  await f.restart();detail=(await f.request(base+'/space',{token:a.token})).body.space;assert.equal(detail.archived,true);assert.equal(detail.description,'Meet again after the show');
+  assert.equal((await post('/space',a,{title:detail.title,description:detail.description,archived:false,revision:detail.revision,editConsent:true})).status,200);
+  assert.equal((await post('/conversation/messages',b,{text:'Back again'})).status,201);
+ });
+ test(mode+' community: independent consent, lifecycle, replies, explicit reads and persistence',async t=>{
+  const f=await fixture(t,mode),{a,b,room}=await f.two(),outside=await f.session('Outside'),path='/rooms/'+room.id+'/conversation';
+  const call=(suffix,actor=a,method='GET',data,opts={})=>f.request(path+suffix,{token:actor.token,method,data,...opts});
+  assert.equal((await call('/messages')).status,403);
+  assert.equal((await call('/join',a,'POST',{})).status,400);
+  assert.equal((await call('/join',outside,'POST',{joinConsent:true})).status,403);
+  for(const actor of[a,b])assert.equal((await call('/join',actor,'POST',{joinConsent:true})).status,200);
+  const key=randomUUID(),send={text:'After the show',replyId:null};
+  const [one,duplicate]=await Promise.all([call('/messages',a,'POST',send,{key}),call('/messages',a,'POST',send,{key})]);
+  assert.equal(one.status,201);assert.equal(duplicate.status,201);assert.equal(one.body.messageId,duplicate.body.messageId);
+  assert.equal((await call('/read',b,'POST',{messageIds:[one.body.messageId]})).status,400);
+  let page=await call('/messages',b);assert.equal(page.body.messages.length,1);assert.equal(page.body.unreadCount,1);
+  assert.equal((await call('/read',b,'POST',{messageIds:[one.body.messageId]})).status,200);
+  assert.equal((await call('/messages',b)).body.unreadCount,0);
+  assert.equal((await call('/messages',b,'POST',{text:'Reply',replyId:one.body.messageId})).status,201);
+  assert.equal((await call('/messages')).body.messages[1].reply.text,send.text);
+  assert.equal((await f.request('/rooms/'+room.id+'/close',{token:a.token,method:'POST',data:{revision:room.revision}})).status,200);
+  f.advance(2*86400000);assert.equal((await call('/messages',b,'POST',{text:'Still together'})).status,201);
+  let state=(await call('',b)).body.conversation;assert.equal((await call('/settings',b,'POST',{revision:state.revision,muted:true})).status,200);
+  await f.restart();state=(await call('',b)).body.conversation;assert.equal(state.muted,true);assert.equal((await call('/messages')).body.messages.length,3);
+  assert.equal((await call('/leave',b,'POST',{revision:state.revision})).status,200);
+  assert.equal((await call('/messages',b)).status,403);assert.equal((await call('/messages',b,'POST',{text:'Denied'})).status,403);
+  assert.equal((await call('/join',b,'POST',{joinConsent:true})).status,200);
+  const community=(await f.request('/communities',{token:a.token,method:'POST',data:{title:'Long music space',joinConsent:true}})).body.community;
+  assert.equal((await f.request('/rooms/'+room.id+'/community',{token:a.token,method:'POST',data:{communityId:community.id}})).status,200);
+  assert.equal((await f.request('/rooms/'+room.id+'/community',{token:b.token})).body.community.id,community.id);
+  assert.equal((await f.request('/communities/'+community.id+'/conversation',{token:b.token})).body.conversation.joined,false);
+  assert.equal((await f.request('/communities/'+community.id+'/conversation/join',{token:b.token,method:'POST',data:{joinConsent:true}})).status,200);
+  assert.equal((await f.request('/rooms/'+room.id+'/leave',{token:b.token,method:'POST',data:{}})).status,200);
+  assert.equal((await call('/messages',b)).status,403);
+  assert.equal((await f.request('/communities/'+community.id+'/conversation/messages',{token:b.token,method:'POST',data:{text:'Separate membership'}})).status,201);
+  const groupPath='/communities/'+community.id+'/conversation';
+  let listed=(await f.request('/communities',{token:a.token})).body.communities.find(c=>c.id===community.id);
+  assert.equal(listed.unreadCount,1);assert.equal(listed.badgeCount,1);
+  const groupState=(await f.request(groupPath,{token:a.token})).body.conversation;
+  assert.equal((await f.request(groupPath+'/settings',{token:a.token,method:'POST',data:{revision:groupState.revision,muted:true}})).status,200);
+  listed=(await f.request('/communities',{token:a.token})).body.communities.find(c=>c.id===community.id);
+  assert.equal(listed.unreadCount,1);assert.equal(listed.badgeCount,0);
+  const unreadPage=(await f.request(groupPath+'/messages',{token:a.token})).body;
+  assert.equal((await f.request(groupPath+'/read',{token:a.token,method:'POST',data:{messageIds:unreadPage.messages.map(m=>m.id)}})).status,200);
+  assert.equal((await f.request('/communities',{token:a.token})).body.communities.find(c=>c.id===community.id).unreadCount,0);
+ });
+ test(mode+' community: block, hidden replies, host removal, restoration and scope forgery',async t=>{
+  const f=await fixture(t,mode),{a,b,room}=await f.two(),c=await f.session('C');await f.join(room,c);const path='/rooms/'+room.id+'/conversation';
+  const call=(suffix,actor=a,method='GET',data)=>f.request(path+suffix,{token:actor.token,method,data});
+  for(const actor of[a,b,c])await call('/join',actor,'POST',{joinConsent:true});
+  const first=(await call('/messages',b,'POST',{text:'Private from blockers'})).body.messageId;
+  await call('/messages',c,'POST',{text:'Third voice',replyId:first});await f.block(a,b);
+  let page=(await call('/messages')).body.messages;assert.equal(page.length,1);assert.equal(page[0].reply,null);
+  assert.equal((await call('/messages',a,'POST',{text:'Not visible',replyId:first})).status,404);
+  assert.equal((await call('/read',a,'POST',{messageIds:[first]})).status,400);
+  assert.equal((await call('/messages/'+first,c,'DELETE',{})).status,403);
+  assert.equal((await call('/messages/'+first,a,'DELETE',{})).status,200);assert.equal((await call('/messages',c)).body.messages[0].reply,null);
+  let member=(await call('')).body.members.find(m=>m.id===c.user.id);
+  assert.equal((await call('/members/'+c.user.id,b,'POST',{revision:member.revision})).status,403);
+  assert.equal((await call('/members/'+c.user.id,a,'POST',{revision:member.revision})).status,200);
+  assert.equal((await call('/messages',c)).status,403);assert.equal((await call('/join',c,'POST',{joinConsent:true})).status,403);
+  assert.equal((await call('/members/'+c.user.id,a,'DELETE',{revision:member.revision+1})).status,200);
+  assert.equal((await call('/messages',c)).status,403);assert.equal((await call('/join',c,'POST',{joinConsent:true})).status,200);
+  assert.equal((await call('/messages?before='+randomUUID())).status,400);
+ });
+}
+for(const mode of ['Node','Worker'])test(mode+' community contacts: explicit willingness after show, mutual acceptance, no event photo grants',async t=>{
+ const f=await fixture(t,mode),a=await f.session('Host'),b=await f.session('B'),c=await f.session('C'),room=await f.room(a),community=(await f.request('/communities',{token:a.token,method:'POST',data:{title:'Persistent space',joinConsent:true}})).body.community;
+ const base='/communities/'+community.id,call=(suffix,actor=a,method='GET',data)=>f.request(base+suffix,{token:actor.token,method,data});
+ await f.request('/rooms/'+room.id+'/community',{token:a.token,method:'POST',data:{communityId:community.id}});for(const actor of[b,c])await call('/conversation/join',actor,'POST',{joinConsent:true});
+ assert.equal((await call('/greetings',a,'POST',{recipientId:b.user.id})).status,409);
+ for(const actor of[a,b,c]){const m=(await call('/conversation',actor)).body.conversation;assert.equal((await call('/conversation/settings',actor,'POST',{revision:m.revision,muted:false,mode:'open'})).status,200);}
+ await f.request('/rooms/'+room.id+'/close',{token:a.token,method:'POST',data:{revision:room.revision}});f.advance(2*86400000);
+ const greet=await call('/greetings',a,'POST',{recipientId:b.user.id});assert.equal(greet.status,201,JSON.stringify(greet.body));assert.equal((await f.chatSend(a,b)).status,404);
+ assert.equal((await f.respond(greet.body.greeting,'accept',b)).status,200);assert.equal((await f.chatSend(a,b)).status,201);assert.equal((await f.request('/rooms/'+room.id,{token:b.token})).status,404);
+ const pending=(await call('/greetings',a,'POST',{recipientId:c.user.id})).body.greeting;let m=(await call('/conversation',c)).body.conversation;await call('/conversation/settings',c,'POST',{revision:m.revision,muted:false,mode:'quiet'});assert.equal((await f.respond(pending,'accept',c)).status,409);
+ m=(await call('/conversation',b)).body.conversation;await call('/conversation/leave',b,'POST',{revision:m.revision});assert.equal((await f.chatSend(a,b)).status,201);await f.block(a,b);assert.equal((await f.chatSend(a,b)).status,404);
+});
+test('Worker conversation: removing a sender before its paused transaction rejects the guard without a duplicate receipt',async t=>{
+ const f=await fixture(t),{a,b,room}=await f.two(),path='/rooms/'+room.id+'/conversation';for(const actor of[a,b])await f.request(path+'/join',{token:actor.token,method:'POST',data:{joinConsent:true}});
+ let signal,release;const started=new Promise(r=>signal=r),gate=new Promise(r=>release=r),original=f.env.DB.batch.bind(f.env.DB);f.env.DB.batch=async statements=>{if(statements.some(s=>s.query.startsWith('INSERT INTO event_group_messages'))){signal();await gate;}return original(statements);};
+ const pending=f.request(path+'/messages',{token:b.token,method:'POST',data:{text:'Delayed synthetic send'}});await started;const m=(await f.request(path,{token:a.token})).body.members.find(m=>m.id===b.user.id);assert.equal((await f.request(path+'/members/'+b.user.id,{token:a.token,method:'POST',data:{revision:m.revision}})).status,200);release();assert.equal((await pending).status,409);assert.equal((await f.request(path+'/messages',{token:a.token})).body.messages.length,0);
+});
+for(const mode of ['Node','Worker'])test(mode+' community capacity: concurrent final-slot joins cannot exceed100 members',async t=>{
+ const f=await fixture(t,mode),a=await f.session('Host'),b=await f.session('B'),c=await f.session('C'),community=(await f.request('/communities',{token:a.token,method:'POST',data:{title:'Capacity space',joinConsent:true}})).body.community;
+ const db=mode==='Worker'?f.env.DB.sql:new DatabaseSync(join(f.dir,'avatar-space.sqlite'));let freed;
+ for(let n=0;n<99;n++){const id=randomUUID();freed=id;db.prepare('INSERT INTO avatar_users(id,name,avatar,token_hash,revision,created_at) VALUES(?,?,?,?,1,?)').run(id,'Synthetic member '+n,JSON.stringify(a.user.avatar),randomUUID(),'2026-10-02T10:00:00.000Z');db.prepare("INSERT INTO event_conversation_members(kind,scope_id,user_id,joined_at) VALUES('community',?,?,?)").run(community.id,id,'2026-10-02T10:00:00.000Z');}
+ const joinConversation=actor=>f.request('/communities/'+community.id+'/conversation/join',{token:actor.token,method:'POST',data:{joinConsent:true}});
+ assert.equal((await joinConversation(b)).status,403);db.prepare("UPDATE event_conversation_members SET left_at=? WHERE kind='community' AND scope_id=? AND user_id=?").run('2026-10-02T11:00:00.000Z',community.id,freed);
+ const results=await Promise.all([joinConversation(b),joinConversation(c)]);assert.equal(results.filter(r=>r.status===200).length,1);assert.equal(db.prepare("SELECT COUNT(*) total FROM event_conversation_members WHERE kind='community' AND scope_id=? AND left_at IS NULL AND removed_at IS NULL").get(community.id).total,100);if(mode==='Node')db.close();
+});
+
+for(const mode of ['Node','Worker'])test(mode+' music bridge: references inherit consent, idempotency, quote retraction, block and persistent membership gates',async t=>{
+ const f=await fixture(t,mode),{a,b,room}=await f.two(),outsider=await f.session('Outside'),path='/rooms/'+room.id+'/conversation';
+ const call=(suffix,actor=a,method='GET',data,options={})=>f.request(path+suffix,{token:actor.token,method,data,...options});
+ const catalogue=(await f.request('/music',{token:a.token})).body.recordings;assert.equal(catalogue.length,37);assert.equal(catalogue[0].title,'不该');assert.equal(catalogue[0].exploreUrl,'#music-map:real-bu-gai');assert.equal((await f.request('/music')).status,401);
+ assert.equal((await call('/messages',a,'POST',{text:'Music',musicId:catalogue[20].id})).status,403);
+ for(const actor of[a,b])await call('/join',actor,'POST',{joinConsent:true});
+ assert.equal((await call('/messages',a,'POST',{text:'Spoof',musicId:'unknown'})).status,400);
+ assert.equal((await call('/messages',a,'POST',{text:'Spoof',musicId:catalogue[0].id,sourceUrl:'https://example.com/private'})).status,400);
+ const key=randomUUID(),data={text:'This duet matters to me',musicId:catalogue[20].id};
+ const [one,two]=await Promise.all([call('/messages',a,'POST',data,{key}),call('/messages',a,'POST',data,{key})]);assert.equal(one.status,201);assert.equal(one.body.messageId,two.body.messageId);
+ let messages=(await call('/messages',b)).body.messages;assert.equal(messages.length,1);assert.deepEqual(messages[0].music,catalogue[20]);assert.equal(messages[0].senderId,a.user.id);
+ assert.equal((await call('/messages',outsider)).status,403);
+ const reply=await call('/messages',b,'POST',{text:'Another perspective',replyId:one.body.messageId});assert.equal(reply.status,201);
+ await f.restart();messages=(await call('/messages',b)).body.messages;assert.deepEqual(messages[1].reply.music,catalogue[20]);
+ await f.block(a,b);assert.equal((await call('/messages',b)).body.messages[0].reply,null);
+ await f.unblock(a,b,(await f.social(a)).blocks[0].revision);
+ assert.equal((await call('/messages/'+one.body.messageId,a,'DELETE',{})).status,200);
+ messages=(await call('/messages',b)).body.messages;assert.equal(messages.length,1);assert.equal(messages[0].reply,null);
+ const member=(await call('',b)).body.conversation;await call('/leave',b,'POST',{revision:member.revision});assert.equal((await call('/messages',b)).status,403);
+});
+
+test('Node music additive migration preserves a 0007 conversation and restores the new table on restart',async t=>{
+ const f=await fixture(t,'Node'),{a,b,room}=await f.two(),path='/rooms/'+room.id+'/conversation';for(const actor of[a,b])await f.request(path+'/join',{token:actor.token,method:'POST',data:{joinConsent:true}});
+ const old=await f.request(path+'/messages',{token:a.token,method:'POST',data:{text:'Before music references'}});assert.equal(old.status,201);
+ const db=new DatabaseSync(join(f.dir,'avatar-space.sqlite'));db.exec('DROP TABLE event_group_music');db.close();await f.restart();
+ const messages=(await f.request(path+'/messages',{token:b.token})).body.messages;assert.equal(messages[0].id,old.body.messageId);assert.equal(messages[0].text,'Before music references');assert.equal(messages[0].music,null);
+ assert.equal((await f.request(path+'/messages',{token:a.token,method:'POST',data:{text:'After migration',musicId:'real-bu-gai'}})).status,201);
+});
+
+for(const mode of ['Node','Worker'])test(mode+' album worldcup: explicit synthetic votes, ties, advancement, result and persistent private ballots',async t=>{
+ const f=await fixture(t,mode),{a,b,room}=await f.two(),outside=await f.session('Outside'),conversation='/rooms/'+room.id+'/conversation',collection='/rooms/'+room.id+'/worldcups';
+ assert.equal((await f.request(collection,{token:a.token,method:'POST',data:{title:'Synthetic albums',createConsent:true}})).status,403);
+ for(const actor of[a,b])await f.request(conversation+'/join',{token:actor.token,method:'POST',data:{joinConsent:true}});
+ assert.equal((await f.request(collection,{token:a.token,method:'POST',data:{title:'Synthetic albums'}})).status,400);
+ const cup=(await f.request(collection,{token:a.token,method:'POST',data:{title:'Synthetic albums',createConsent:true}})).body.worldcup,path='/worldcups/'+cup.id;
+ assert.equal(cup.fictional,true);assert.equal((await f.request(path,{token:outside.token})).status,403);
+ const read=async actor=>(await f.request(path,{token:actor.token})).body;
+ const vote=(m,actor,album,key=randomUUID())=>f.request(path+'/matches/'+m.id+'/vote',{token:actor.token,method:'POST',key,data:{revision:m.revision,albumId:album,voteConsent:true}});
+ const advance=(m,actor=a,extra={},key=randomUUID())=>f.request(path+'/matches/'+m.id+'/advance',{token:actor.token,method:'POST',key,data:{revision:m.revision,advanceConsent:true,...extra}});
+ let state=await read(a);assert.equal(state.matches.length,2);assert.ok(state.matches.every(m=>m.left.fictional&&m.right.fictional&&m.leftCount+m.rightCount===0));
+ assert.equal((await advance(state.matches[0])).status,409);
+ const m=state.matches[0],key=randomUUID(),pair=await Promise.all([vote(m,a,m.left.id,key),vote(m,a,m.left.id,key)]);assert.ok(pair.every(r=>r.status===200));
+ assert.equal((await vote(m,a,m.right.id)).status,409);assert.equal((await vote(m,b,m.right.id)).status,200);
+ assert.equal((await advance(m,b)).status,403);assert.equal((await advance(m)).status,400);assert.equal((await advance(m,a,{tieWinner:m.left.id,tieReason:'Synthetic host tie decision'})).status,200);
+ assert.equal((await vote(m,a,m.left.id,key)).status,200);assert.equal((await vote(m,b,m.left.id)).status,409);
+ let other=state.matches[1];await vote(other,a,other.left.id);await vote(other,b,other.left.id);const advanceKey=randomUUID(),advances=await Promise.all([advance(other,a,{},advanceKey),advance(other,a,{},advanceKey)]);assert.ok(advances.every(r=>r.status===200));
+ state=await read(a);assert.equal(state.matches.length,3);assert.equal(state.matches[0].leftCount,1);assert.equal(state.matches[0].rightCount,1);assert.equal(state.matches[0].tieReason,'Synthetic host tie decision');assert.equal(state.matches[1].leftCount,2);assert.equal(state.matches[2].left.id,m.left.id);assert.equal(state.matches[2].right.id,other.left.id);
+ const final=state.matches[2];await vote(final,a,final.left.id);await vote(final,b,final.right.id);assert.equal((await advance(final,a,{tieWinner:final.right.id,tieReason:'Another explicit tie decision'})).status,200);
+ await f.restart();state=await read(b);assert.equal(state.completed,true);assert.equal(state.matches[2].winner.id,final.right.id);assert.equal(state.matches[2].myVote,final.right.id);assert.equal(state.matches[0].myVote,m.right.id);assert.equal(JSON.stringify(state).includes(a.token),false);assert.equal('voters' in state.matches[2],false);
+});
+
+for(const mode of ['Node','Worker'])test(mode+' album worldcup: conflicting concurrent votes, blocks, exit and closed-show participation',async t=>{
+ const f=await fixture(t,mode),{a,b,room}=await f.two(),conversation='/rooms/'+room.id+'/conversation';for(const actor of[a,b])await f.request(conversation+'/join',{token:actor.token,method:'POST',data:{joinConsent:true}});
+ const cup=(await f.request('/rooms/'+room.id+'/worldcups',{token:a.token,method:'POST',data:{title:'Synthetic concurrency',createConsent:true}})).body.worldcup,path='/worldcups/'+cup.id,state=(await f.request(path,{token:b.token})).body,m=state.matches[0];
+ const vote=(actor,album)=>f.request(path+'/matches/'+m.id+'/vote',{token:actor.token,method:'POST',data:{revision:m.revision,albumId:album,voteConsent:true}});
+ assert.equal((await vote(b,'not-an-album')).status,400);const attempts=await Promise.all([vote(b,m.left.id),vote(b,m.right.id)]);assert.equal(attempts.filter(r=>r.status===200).length,1);let current=(await f.request(path,{token:b.token})).body;assert.equal(current.matches[0].leftCount+current.matches[0].rightCount,1);
+ await f.block(a,b);assert.equal((await f.request(path,{token:b.token})).status,403);assert.equal((await vote(b,m.left.id)).status,403);await f.unblock(a,b,(await f.social(a)).blocks[0].revision);
+ await f.block(b,a);assert.equal((await f.request(path,{token:b.token})).status,403);await f.unblock(b,a,(await f.social(b)).blocks[0].revision);
+ let member=(await f.request(conversation,{token:b.token})).body.conversation;await f.request(conversation+'/leave',{token:b.token,method:'POST',data:{revision:member.revision}});assert.equal((await f.request(path,{token:b.token})).status,403);assert.equal((await f.request('/rooms/'+room.id+'/worldcups',{token:b.token})).status,403);
+ await f.request(conversation+'/join',{token:b.token,method:'POST',data:{joinConsent:true}});await f.request('/rooms/'+room.id+'/close',{token:a.token,method:'POST',data:{revision:room.revision}});f.advance(2*86400000);assert.equal((await vote(a,m.left.id)).status,200);assert.equal((await f.request(path,{token:b.token})).status,200);
+});
+
+test('Worker worldcup: a new ballot during advancement rejects the stale count snapshot',async t=>{
+ const f=await fixture(t),{a,b,room}=await f.two(),conversation='/rooms/'+room.id+'/conversation';for(const actor of[a,b])await f.request(conversation+'/join',{token:actor.token,method:'POST',data:{joinConsent:true}});
+ const cup=(await f.request('/rooms/'+room.id+'/worldcups',{token:a.token,method:'POST',data:{title:'Synthetic race',createConsent:true}})).body.worldcup,path='/worldcups/'+cup.id,m=(await f.request(path,{token:a.token})).body.matches[0];
+ const vote=actor=>f.request(path+'/matches/'+m.id+'/vote',{token:actor.token,method:'POST',data:{revision:m.revision,albumId:actor===a?m.left.id:m.right.id,voteConsent:true}});await vote(a);
+ let release,signal;const gate=new Promise(r=>release=r),started=new Promise(r=>signal=r),original=f.env.DB.batch.bind(f.env.DB);f.env.DB.batch=async statements=>{if(statements.some(s=>s.query.startsWith('UPDATE event_worldcup_matches SET winner_id'))){signal();await gate;}return original(statements);};
+ const advancing=f.request(path+'/matches/'+m.id+'/advance',{token:a.token,method:'POST',data:{revision:m.revision,advanceConsent:true}});await started;assert.equal((await vote(b)).status,200);release();assert.equal((await advancing).status,409);
+ const state=(await f.request(path,{token:a.token})).body;assert.equal(state.matches[0].winner,null);assert.equal(state.matches[0].leftCount,1);assert.equal(state.matches[0].rightCount,1);
+});
+
+for(const mode of ['Node','Worker'])test(mode+' worldcup: concurrent different first-round advancements create one final',async t=>{
+ const f=await fixture(t,mode),{a,room}=await f.two(),conversation='/rooms/'+room.id+'/conversation';await f.request(conversation+'/join',{token:a.token,method:'POST',data:{joinConsent:true}});
+ const cup=(await f.request('/rooms/'+room.id+'/worldcups',{token:a.token,method:'POST',data:{title:'Synthetic parallel brackets',createConsent:true}})).body.worldcup,path='/worldcups/'+cup.id,matches=(await f.request(path,{token:a.token})).body.matches;
+ for(const m of matches)await f.request(path+'/matches/'+m.id+'/vote',{token:a.token,method:'POST',data:{revision:m.revision,albumId:m.left.id,voteConsent:true}});
+ const responses=await Promise.all(matches.map(m=>f.request(path+'/matches/'+m.id+'/advance',{token:a.token,method:'POST',data:{revision:m.revision,advanceConsent:true}})));assert.ok(responses.every(r=>r.status===200));const current=(await f.request(path,{token:a.token})).body;assert.equal(current.matches.length,3);assert.equal(current.matches.filter(m=>m.ordinal===2).length,1);
+});
+for(const mode of ['Node','Worker'])test(mode+' native admission: preview never joins; consent, closed rooms and private images remain guarded',async t=>{
+ const f=await fixture(t,mode),a=await f.session('Admission host'),b=await f.session('Admission guest'),room=await f.room(a),photo=await f.upload(room,a,'private'),route='/admission/room/'+room.code;
+ assert.equal((await f.request(route+'/preview')).status,200);
+ assert.equal((await f.request('/rooms/'+room.id,{token:b.token})).status,404);
+ assert.equal((await f.request(route+'/join',{method:'POST',token:b.token,data:{}})).status,400);
+ const key=randomUUID(),data={joinConsent:true,participation:'quiet'};
+ const pair=await Promise.all([f.request(route+'/join',{method:'POST',token:b.token,data,key}),f.request('/rooms/'+room.code+'/join',{method:'POST',token:b.token,data,key})]);
+ assert.deepEqual(pair.map(r=>r.status),[200,200]);
+ assert.equal((await f.request('/photos/'+photo.id+'/image',{token:b.token})).status,404);
+ assert.equal((await f.request('/rooms/'+room.id+'/close',{method:'POST',token:a.token,data:{revision:room.revision}})).status,200);
+ const outside=await f.session('Admission outside');assert.equal((await f.request(route+'/join',{method:'POST',token:outside.token,data})).status,409);
+ await f.restart();assert.equal((await f.request('/rooms/'+room.id,{token:b.token})).status,200);
+});
+for(const mode of ['Node','Worker']){
+ test(mode+' creation corner: explicit participants, own material, both confirmations and separate persistent saves',async t=>{
+  const f=await fixture(t,mode),{a,b,room}=await f.friends(),outside=await f.session('Corner outside'),photo=await f.upload(room,a,'private');
+  assert.equal((await f.request('/corners',{method:'POST',token:a.token,data:{peerId:outside.user.id,participationConsent:true}})).status,403);
+  assert.equal((await f.request('/corners',{method:'POST',token:a.token,data:{peerId:b.user.id,participationConsent:false}})).status,400);
+  const created=await f.request('/corners',{method:'POST',token:a.token,data:{peerId:b.user.id,participationConsent:true}});assert.equal(created.status,201);const id=created.body.cornerId,path='/corners/'+id,read=actor=>f.request(path,{token:actor.token});
+  assert.equal((await read(b)).body.contributions.length,0);assert.equal((await read(outside)).status,404);
+  assert.equal((await f.request(path+'/contribution',{method:'POST',token:a.token,data:{revision:1,note:'Not yet',photoId:photo.id,shareConsent:true}})).status,403);
+  assert.equal((await f.request(path+'/join',{method:'POST',token:a.token,data:{revision:1,participationConsent:true}})).status,403);
+  assert.equal((await f.request(path+'/join',{method:'POST',token:b.token,data:{revision:1,participationConsent:false}})).status,400);
+  const key=randomUUID(),join={method:'POST',token:b.token,data:{revision:1,participationConsent:true},key};assert.equal((await f.request(path+'/join',join)).status,200);assert.equal((await f.request(path+'/join',join)).status,200);
+  assert.equal((await read(a)).body.corner.revision,2);
+  assert.equal((await f.request(path+'/contribution',{method:'POST',token:b.token,data:{revision:2,note:'Fake own photo',photoId:photo.id,shareConsent:true}})).status,404);
+  assert.equal((await f.request(path+'/contribution',{method:'POST',token:a.token,data:{revision:2,note:'Our other side',photoId:photo.id,shareConsent:true,userId:b.user.id}})).status,400);
+  assert.equal((await f.request(path+'/contribution',{method:'POST',token:a.token,data:{revision:2,note:'Our other side',photoId:photo.id,shareConsent:true}})).status,200);
+  let view=(await read(b)).body;assert.equal(view.corner.revision,3);assert.equal(view.contributions.find(d=>d.userId===a.user.id).photo.id,photo.id);
+  const image=path+'/photos/'+photo.id+'/image';assert.equal((await f.request(image,{token:b.token})).status,200);assert.equal((await f.request('/photos/'+photo.id+'/image',{token:b.token})).status,404);assert.equal((await f.request(image,{token:outside.token})).status,404);
+  assert.equal((await f.request(path+'/save',{method:'POST',token:a.token,data:{revision:3,saveConsent:true}})).status,409);
+  assert.equal((await f.request(path+'/confirm',{method:'POST',token:a.token,data:{revision:3,consent:false}})).status,400);
+  for(const actor of[a,b])assert.equal((await f.request(path+'/confirm',{method:'POST',token:actor.token,data:{revision:3,consent:true}})).status,200);
+  const saveKey=randomUUID(),save={method:'POST',token:a.token,data:{revision:3,saveConsent:true},key:saveKey};assert.equal((await f.request(path+'/save',save)).status,200);assert.equal((await f.request(path+'/save',save)).status,200);assert.equal((await read(a)).body.corner.ownSaved,true);assert.equal((await read(b)).body.corner.ownSaved,false);
+  assert.equal((await f.request(path+'/save',{method:'POST',token:b.token,data:{revision:3,saveConsent:true}})).status,200);
+  await f.restart();for(const actor of[a,b])assert.equal((await read(actor)).body.corner.ownSaved,true);
+ });
+ test(mode+' creation corner: competing edits conflict, cannot modify another contribution and invalidate old approval',async t=>{
+  const f=await fixture(t,mode),{a,b}=await f.friends(),id=(await f.request('/corners',{method:'POST',token:a.token,data:{peerId:b.user.id,participationConsent:true}})).body.cornerId,path='/corners/'+id;
+  await f.request(path+'/join',{method:'POST',token:b.token,data:{revision:1,participationConsent:true}});
+  const edit=(actor,note,rev)=>f.request(path+'/contribution',{method:'POST',token:actor.token,data:{revision:rev,note,photoId:null,shareConsent:true}});
+  const result=await Promise.all([edit(a,'A alone edits A',2),edit(b,'B alone edits B',2)]);assert.deepEqual(result.map(r=>r.status).sort(),[200,409]);
+  let view=(await f.request(path,{token:a.token})).body;assert.equal(view.corner.revision,3);assert.equal(view.contributions.filter(d=>d.note).length,1);
+  const loser=result[0].status===409?a:b;assert.equal((await edit(loser,'Deliberate retry after review',3)).status,200);
+  for(const actor of[a,b])assert.equal((await f.request(path+'/confirm',{method:'POST',token:actor.token,data:{revision:4,consent:true}})).status,200);
+  assert.equal((await f.request(path+'/save',{method:'POST',token:a.token,data:{revision:4,saveConsent:true}})).status,200);
+  assert.equal((await edit(b,'New version requires fresh agreement',4)).status,200);view=(await f.request(path,{token:a.token})).body;assert.equal(view.corner.eligible,false);assert.equal(view.corner.myConfirmed,false);assert.equal(view.corner.peerConfirmed,false);assert.equal(view.corner.ownSaved,false);
+  assert.equal((await f.request(path+'/confirm',{method:'POST',token:a.token,data:{revision:4,consent:true}})).status,409);
+ });
+ test(mode+' creation corner: deleted or withdrawn photos stop joint reads and saving; either participant can withdraw',async t=>{
+  const f=await fixture(t,mode),{a,b,room}=await f.friends(),photo=await f.upload(room,a,'private'),id=(await f.request('/corners',{method:'POST',token:a.token,data:{peerId:b.user.id,participationConsent:true}})).body.cornerId,path='/corners/'+id;
+  await f.request(path+'/join',{method:'POST',token:b.token,data:{revision:1,participationConsent:true}});await f.request(path+'/contribution',{method:'POST',token:a.token,data:{revision:2,note:'Private scoped material',photoId:photo.id,shareConsent:true}});
+  for(const actor of[a,b])await f.request(path+'/confirm',{method:'POST',token:actor.token,data:{revision:3,consent:true}});await f.request(path+'/save',{method:'POST',token:b.token,data:{revision:3,saveConsent:true}});
+  assert.equal((await f.request('/photos/'+photo.id+'/withdraw',{method:'POST',token:a.token,data:{revision:photo.revision}})).status,200);
+  assert.equal((await f.request(path+'/photos/'+photo.id+'/image',{token:b.token})).status,404);let view=(await f.request(path,{token:b.token})).body;assert.equal(view.corner.materialValid,false);assert.equal(view.corner.eligible,false);assert.equal(view.corner.ownSaved,false);assert.equal(view.contributions.some(d=>d.userId===a.user.id),false);
+  assert.equal((await f.request(path+'/save',{method:'POST',token:b.token,data:{revision:3,saveConsent:true}})).status,409);
+  assert.equal((await f.request(path+'/contribution',{method:'POST',token:a.token,data:{revision:3,note:'Explicitly no photo',photoId:null,shareConsent:true}})).status,200);
+  const next=await f.upload(room,b,'private');await f.request(path+'/contribution',{method:'POST',token:b.token,data:{revision:4,note:'My material',photoId:next.id,shareConsent:true}});
+  assert.equal((await f.request('/photos/'+next.id,{method:'DELETE',token:b.token,data:{revision:next.revision}})).status,200);assert.equal((await f.request(path+'/photos/'+next.id+'/image',{token:a.token})).status,404);
+  const key=randomUUID(),withdraw={method:'POST',token:b.token,data:{revision:5},key};assert.equal((await f.request(path+'/withdraw',withdraw)).status,200);assert.equal((await f.request(path+'/withdraw',withdraw)).status,200);
+  for(const actor of[a,b]){view=(await f.request(path,{token:actor.token})).body;assert.equal(view.corner.status,'withdrawn');assert.deepEqual(view.contributions,[]);}
+  assert.equal((await f.request(path+'/join',{method:'POST',token:b.token,data:{revision:6,participationConsent:true}})).status,404);
+ });
+ test(mode+' creation corner: block/unblock or renewed friendship cannot revive old creation permissions',async t=>{
+  const f=await fixture(t,mode),{a,b,room}=await f.friends(),id=(await f.request('/corners',{method:'POST',token:a.token,data:{peerId:b.user.id,participationConsent:true}})).body.cornerId,path='/corners/'+id;
+  await f.request(path+'/join',{method:'POST',token:b.token,data:{revision:1,participationConsent:true}});const blocked=await f.block(a,b);assert.equal(blocked.status,200);const ownBlock=(await f.social(a)).blocks.find(x=>x.userId===b.user.id);assert.ok(ownBlock);assert.equal((await f.request(path,{token:b.token})).status,404);
+  assert.equal((await f.unblock(a,b,ownBlock.revision)).status,200);assert.equal((await f.request(path,{token:a.token})).status,404);assert.equal((await f.request(path,{token:b.token})).status,404);
+  f.advance(60000);const greeting=(await f.send(room,a,b)).body.greeting;if(greeting)assert.equal((await f.respond(greeting,'accept',b)).status,200);
+  assert.equal((await f.request(path,{token:a.token})).status,404);const again=await f.request('/corners',{method:'POST',token:a.token,data:{peerId:b.user.id,participationConsent:true}});assert.equal(again.status,201);assert.notEqual(again.body.cornerId,id);
+  assert.equal((await f.request('/corners',{token:a.token})).body.corners.find(c=>c.id===id).status,'unavailable');
+ });
+}
+test('Worker creation corner: material response rechecks permission after object storage returns',async t=>{
+ const f=await fixture(t),{a,b,room}=await f.friends(),photo=await f.upload(room,a,'private'),id=(await f.request('/corners',{method:'POST',token:a.token,data:{peerId:b.user.id,participationConsent:true}})).body.cornerId,path='/corners/'+id;
+ await f.request(path+'/join',{method:'POST',token:b.token,data:{revision:1,participationConsent:true}});await f.request(path+'/contribution',{method:'POST',token:a.token,data:{revision:2,note:'Scoped photo',photoId:photo.id,shareConsent:true}});
+ let signal,release;const started=new Promise(r=>signal=r),gate=new Promise(r=>release=r),original=f.env.PHOTOS.get.bind(f.env.PHOTOS);f.env.PHOTOS.get=async key=>{const object=await original(key);signal();await gate;return object;};
+ const read=f.request(path+'/photos/'+photo.id+'/image',{token:b.token});await started;assert.equal((await f.block(a,b)).status,200);release();assert.equal((await read).status,404);
+});
+test('Worker creation corner: an edit before a paused save transaction invalidates both confirmations atomically',async t=>{
+ const f=await fixture(t),{a,b}=await f.friends(),id=(await f.request('/corners',{method:'POST',token:a.token,data:{peerId:b.user.id,participationConsent:true}})).body.cornerId,path='/corners/'+id;
+ await f.request(path+'/join',{method:'POST',token:b.token,data:{revision:1,participationConsent:true}});for(const actor of[a,b])await f.request(path+'/confirm',{method:'POST',token:actor.token,data:{revision:2,consent:true}});
+ let signal,release;const started=new Promise(r=>signal=r),gate=new Promise(r=>release=r),original=f.env.DB.batch.bind(f.env.DB);f.env.DB.batch=async statements=>{if(statements.some(s=>s.query.startsWith('INSERT INTO event_corner_saves'))){signal();await gate;}return original(statements);};
+ const save=f.request(path+'/save',{method:'POST',token:a.token,data:{revision:2,saveConsent:true}});await started;assert.equal((await f.request(path+'/contribution',{method:'POST',token:b.token,data:{revision:2,note:'Changed while saving',photoId:null,shareConsent:true}})).status,200);release();assert.equal((await save).status,409);
+ assert.equal(f.env.DB.sql.prepare('SELECT COUNT(*) n FROM event_corner_saves WHERE corner_id=?').get(id).n,0);assert.equal((await f.request(path,{token:a.token})).body.corner.eligible,false);
+});
+test('Worker creation corner: concurrent reciprocal invitations create one draft, not two active grants',async t=>{
+ const f=await fixture(t),{a,b}=await f.friends();const results=await Promise.all([f.request('/corners',{method:'POST',token:a.token,data:{peerId:b.user.id,participationConsent:true}}),f.request('/corners',{method:'POST',token:b.token,data:{peerId:a.user.id,participationConsent:true}})]);
+ assert.equal(results.filter(r=>r.status===201).length,1);assert.ok(results.every(r=>[200,201,409].includes(r.status)));assert.equal(f.env.DB.sql.prepare("SELECT COUNT(*) n FROM event_corners WHERE status!='withdrawn'").get().n,1);assert.equal((await f.request('/corners',{token:a.token})).body.corners.length,1);
+});

@@ -1,0 +1,55 @@
+{
+ "text": {
+  "Doodle Logo": [
+   "Music",
+   "Space",
+   "Music Space"
+  ],
+  "Doodle Marker": [
+   "示例现场 · 在本页运行",
+   "···",
+   "MUSIC SPACE / LIVEHOUSE",
+   "这一晚，从这里开始",
+   "这一晚的歌",
+   "进入示例现场",
+   "全景",
+   "同场的人",
+   "照片墙",
+   "我的空间",
+   "示例站 · 数据只存在这个浏览器 · 关于这个示例"
+  ],
+  "Doodle Display": [
+   "进到同一个现场",
+   "同一刻，另一面。",
+   "这一晚的",
+   "另一个视角",
+   "，",
+   "就在你身边。"
+  ],
+  "Doodle Hand": [
+   "♪",
+   "进入房间，留下你看到的那个瞬间",
+   "同一晚，你拍了舞台，TA 拍了人海。AI 在本机给你一个视角建议，规则帮你找到同一刻的另一面，双方同意才交换。",
+   "主办方开房，观众带上自己的小人入场。照片由你决定仅自己保存，还是分享给同场成员。"
+  ],
+  "Doodle Digits": [
+   "ENCORE / 01"
+  ],
+  "Doodle Note": [
+   "就是这一刻！"
+  ]
+ },
+ "fontReqs": [
+  "marker-0.woff2",
+  "display-0.woff2",
+  "logo-0.woff2",
+  "display-1.woff2",
+  "hand-0.woff2",
+  "digits-0.woff2",
+  "marker-1.woff2",
+  "note-0.woff2",
+  "hand-1.woff2",
+  "marker-2.woff2",
+  "hand-2.woff2"
+ ]
+}

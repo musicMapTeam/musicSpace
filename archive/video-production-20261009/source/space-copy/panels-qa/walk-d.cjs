@@ -1,0 +1,83 @@
+// D: empty lists for a fresh visitor, then the visitor's own room: moderation manage tabs, room chat as host, own recap, memory card without photos.
+const Q = require('/tmp/space-copy/panels-qa/qa.cjs');
+Q.watchdog(290);
+const kind = process.argv[2] || 'phone';
+(async () => {
+  const browser = await Q.launch();
+  try {
+    const run = await Q.open(browser, kind);
+    const { page } = run;
+    await Q.enter(run);
+    await Q.clickHidden(page, { open: 'exchanges' });
+    await page.waitForSelector('.photo-exchanges:not([hidden])', { timeout: 20000 });
+    await page.waitForFunction(() => !/正在读取交换记录/.test(document.querySelector('.photo-exchanges')?.textContent || ''), null, { timeout: 20000 }).catch(() => {});
+    await Q.sleep(800);
+    console.log('TEXT x-empty:', await Q.text(page, '.photo-exchanges'));
+    await Q.snap(page, 'x-empty', kind);
+    await page.evaluate(() => document.querySelector('.photo-exchanges [data-x-close]')?.click());
+    await Q.sleep(400);
+    await Q.clickHidden(page, { open: 'chats' });
+    await page.waitForSelector('.private-chat:not([hidden])', { timeout: 20000 });
+    await page.waitForFunction(() => !/正在读取对话/.test(document.querySelector('.private-chat')?.textContent || ''), null, { timeout: 20000 }).catch(() => {});
+    await Q.sleep(800);
+    console.log('TEXT chat-empty:', await Q.text(page, '.private-chat'));
+    await Q.snap(page, 'chat-empty', kind);
+    await page.evaluate(() => document.querySelector('.private-chat .chat-close')?.click());
+    await Q.sleep(400);
+    await Q.clickHidden(page, { open: 'corners' });
+    await page.waitForSelector('.corner-panel', { timeout: 20000 });
+    await Q.sleep(1500);
+    console.log('TEXT corner-empty:', await Q.text(page, '.corner-panel'));
+    await Q.snap(page, 'corner-empty', kind);
+    await page.evaluate(() => document.querySelector('.corner-panel [data-corner-close]')?.click());
+    await Q.sleep(400);
+    await Q.clickHidden(page, { open: 'create' });
+    await page.waitForSelector('form[data-form="create"]', { timeout: 20000 });
+    await Q.sleep(500);
+    await page.fill('form[data-form="create"] input[name="title"]', '周五的最后一首');
+    await page.fill('form[data-form="create"] input[name="venue"]', '月台 Livehouse');
+    const consent = page.locator('form[data-form="create"] input[name="consent"]');
+    if (await consent.count()) await consent.check({ force: true });
+    await page.locator('form[data-form="create"] button[type="submit"]').first().evaluate(b => b.click());
+    await page.waitForFunction(() => /周五的最后一首/.test(document.querySelector('#room-title')?.textContent || ''), null, { timeout: 30000 }).catch(() => console.log('room not opened'));
+    await Q.sleep(1500);
+    await Q.clickHidden(page, { open: 'moderation' });
+    await page.waitForSelector('.room-moderation:not([hidden])', { timeout: 20000 });
+    await Q.sleep(1200);
+    console.log('TEXT mod-reports:', await Q.text(page, '.room-moderation'));
+    await Q.snap(page, 'mod-reports', kind);
+    for (const tab of ['members', 'exclusions']) { await page.evaluate(t => document.querySelector(`.room-moderation [data-mod-tab="${t}"]`)?.click(), tab); await Q.sleep(600); console.log(`TEXT mod-${tab}:`, await Q.text(page, '.room-moderation')); await Q.snap(page, 'mod-' + tab, kind); }
+    await page.evaluate(() => document.querySelector('.room-moderation [data-mod-close]')?.click());
+    await Q.sleep(400);
+    await Q.clickHidden(page, { open: 'conversation' });
+    await page.waitForSelector('.music-community:not([hidden])', { timeout: 20000 });
+    await Q.sleep(1200);
+    const join = page.locator('.music-community form[data-group-join]');
+    if (await join.count()) {
+      await page.locator('.music-community form[data-group-join] input[name="consent"]').check({ force: true });
+      await page.locator('.music-community form[data-group-join] button[type="submit"]').first().evaluate(b => b.click());
+      await Q.sleep(2500);
+    }
+    await page.evaluate(() => { const d = document.querySelector('.music-community .conversation-management'); if (d) d.open = true; document.querySelectorAll('.music-community details').forEach(d => d.open = true); });
+    await Q.sleep(400);
+    console.log('TEXT own-room-chat:', await Q.text(page, '.music-community'));
+    await Q.snapScroll(page, 'own-room-chat', kind, '.music-community .conversation-content', 3);
+    await page.evaluate(() => document.querySelector('.music-community [data-group="linked"]')?.click());
+    await Q.sleep(1200);
+    console.log('toasts-after-linked', JSON.stringify(await Q.toasts(page)));
+    await page.evaluate(() => document.querySelector('.music-community [data-group="close"]')?.click());
+    await Q.sleep(400);
+    await Q.clickHidden(page, { open: 'recap' });
+    await page.waitForSelector('.panel[data-kind="recap"]', { timeout: 30000 });
+    await Q.sleep(1500);
+    console.log('TEXT own-recap:', await Q.text(page, '#panel'));
+    console.log('own-recap', JSON.stringify(await Q.audit(page, '#panel')));
+    await Q.snapScroll(page, 'own-recap', kind, '#panel', 5);
+    await page.locator('#panel [data-open="memory-card"]').first().evaluate(b => b.click());
+    await page.waitForSelector('form[data-form="memory-card"]', { timeout: 20000 });
+    await Q.sleep(800);
+    console.log('TEXT own-memory:', await Q.text(page, '#panel'));
+    await Q.snapScroll(page, 'own-memory', kind, '#panel', 3);
+    console.log('errors', JSON.stringify(page.__errors));
+  } catch (e) { console.log('FAILED', e.message.split('\n')[0]); } finally { await browser.close(); }
+})();

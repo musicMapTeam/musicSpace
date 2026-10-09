@@ -1,0 +1,103 @@
+/* doodle-motion · dm.css — the Music Space Doodle video kit at 1920x1080.
+   Colours are the product's own tokens (STORYBOARD §1.1; web/event-room/doodle/tokens.css).  Fonts: the product's patched slices
+   first (/pfonts/fonts.css from the build being filmed: fixes 入 / 个 / · in 站酷庆科黄油体, adds the Marker symbols ↗ ✓ ♡ ✦), then
+   the raw OFL/Apache TTFs from /tmp/music-space-font-cache for every other character.  Never use a system font: tools/qc.py checks. */
+@import url("/pfonts/fonts.css");
+@font-face{font-family:"DM Display Raw";src:url("/fonts/display.ttf")}
+@font-face{font-family:"DM Marker Raw";src:url("/fonts/marker.ttf")}
+@font-face{font-family:"DM Hand Raw";src:url("/fonts/hand.ttf")}
+@font-face{font-family:"DM Note Raw";src:url("/fonts/note.ttf")}
+@font-face{font-family:"DM Logo Raw";src:url("/fonts/logo.ttf")}
+@font-face{font-family:"DM Digits Raw";src:url("/fonts/digits.ttf")}
+
+:root{
+  --f-display:"Doodle Display","DM Display Raw",sans-serif;
+  --f-marker:"Doodle Marker","DM Marker Raw",sans-serif;
+  --f-hand:"Doodle Hand","DM Hand Raw",sans-serif;
+  --f-note:"DM Note Raw","Doodle Note",cursive;
+  --f-logo:"DM Logo Raw","Doodle Logo",sans-serif;
+  --f-digits:"DM Digits Raw","Doodle Digits",sans-serif;
+  --paper:#f7efdf;--card:#fffaf0;--pol:#fffdf6;--ink:#1c1b1a;--ink2:#3d3a36;--ink3:#6b655c;
+  --pink:#ff5c8a;--pink-soft:#ffd0dd;--mint:#5fdcc0;--mint-soft:#c9f3e8;--yellow:#ffd447;--yellow-soft:#fff0b8;
+  --stamp-pink:#e9396b;--stamp-mint:#1f9f83;
+  --tape-y:color-mix(in srgb,#ffd447 70%,transparent);--tape-p:color-mix(in srgb,#ff5c8a 52%,transparent);--tape-m:color-mix(in srgb,#5fdcc0 62%,transparent);
+  --tapemask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 30' preserveAspectRatio='none'%3E%3Cpath d='M2 0h96l2 5-3 5 3 5-3 5 3 5-2 5H2L0 25l3-5-3-5 3-5-3-5Z'/%3E%3C/svg%3E");
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1920px;height:1080px;overflow:hidden;background:var(--paper)}
+body{-webkit-font-smoothing:antialiased;text-rendering:geometricPrecision}
+#stage{position:absolute;left:0;top:0;width:1920px;height:1080px;overflow:hidden;background:var(--paper);contain:strict}
+.shot{position:absolute;left:0;top:0;width:1920px;height:1080px;overflow:hidden;display:none;transform-origin:50% 50%}
+.shot.sheet{box-shadow:0 0 0 6px var(--ink),18px 20px 0 6px var(--ink)}
+.world{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0}
+/* paper: product colour + dot grid (the product's --ds-dots scaled for 1080p) + fibre grain that boils at 12 fps */
+.dm-paper{position:absolute;left:-1920px;top:-1080px;width:5760px;height:3240px;background:radial-gradient(rgba(28,27,26,.17) 1.9px,transparent 2.2px) 0 0/34px 34px,var(--paper)}
+.dm-paper.plain{background:var(--paper)}
+.dm-grain{position:absolute;inset:0;pointer-events:none;background:url(/dm/assets/grain.png) 0 0/512px 512px;opacity:.16;mix-blend-mode:multiply}
+.world .n{position:absolute;left:0;top:0;transform-origin:50% 50%}
+.world .n .n{position:absolute}
+.grp{position:absolute;overflow:visible}
+
+/* ---- type ---- */
+.t-display{font-family:var(--f-display);line-height:1.04;white-space:nowrap;letter-spacing:.01em}
+.t-marker{font-family:var(--f-marker);line-height:1.18;white-space:nowrap}
+.t-hand{font-family:var(--f-hand);line-height:1.3;white-space:nowrap}
+.t-note{font-family:var(--f-note);line-height:1.1;white-space:nowrap}
+.t-logo{font-family:var(--f-logo);line-height:1;white-space:nowrap;letter-spacing:.01em}
+.t-digits{font-family:var(--f-digits);line-height:1;white-space:nowrap;letter-spacing:.01em}
+.ttl{color:var(--ink)}
+.ttl .lay{position:absolute;left:0;top:0;white-space:pre}
+.ttl .lay.base{position:relative}
+.ttl .sh{color:var(--shc,var(--pink))}
+.ttl .sh .k{color:transparent;-webkit-text-stroke:0;text-shadow:none}
+.k{display:inline-block;line-height:.9;vertical-align:baseline}
+.k.pink{color:var(--pink)} .k.mint{color:var(--mint)} .k.yellow{color:var(--yellow)} .k.white{color:#fff} .k.inkk{color:inherit}
+.fg .k.pink,.fg .k.mint,.fg .k.yellow,.fg .k.white,.stkw{-webkit-text-stroke:.075em var(--ink);paint-order:stroke fill;text-shadow:.055em .065em 0 var(--ink)}
+.stkw .k{color:inherit}
+.ch{display:inline-block;transform-origin:50% 80%}
+.hlwrap,.dashwrap{position:absolute;left:0;top:0;pointer-events:none;overflow:visible}
+.dashwrap{z-index:2}
+
+/* ---- labels ---- */
+.stamp{display:inline-block;font-family:var(--f-marker);padding:4px 22px 6px;border:6px solid currentColor;border-radius:16px 7px 18px 9px;white-space:nowrap;line-height:1.2;
+  background:color-mix(in srgb,var(--card) 50%,transparent);-webkit-mask:url(/dm/assets/stamp.png) 0 0/400px 200px;mask:url(/dm/assets/stamp.png) 0 0/400px 200px}
+.stamp.pink{color:var(--stamp-pink)}.stamp.mint{color:var(--stamp-mint)}.stamp.ink{color:var(--ink)}.stamp.yellow{color:#c99700}
+.chip{display:inline-flex;align-items:center;gap:12px;padding:8px 28px 10px;border:4px solid var(--ink);border-radius:999px;background:var(--card);font-family:var(--f-marker);box-shadow:6px 6px 0 var(--ink);white-space:nowrap;color:var(--ink);line-height:1.2}
+.chip.mint{background:var(--mint)}.chip.yellow{background:var(--yellow)}.chip.pink{background:var(--pink-soft)}.chip.hot{background:var(--pink);color:#fff}.chip.ink{background:var(--ink);color:var(--card)}.chip.paper,.chip.white{background:var(--card)}
+.logo{font-family:var(--f-logo);color:var(--yellow);-webkit-text-stroke:.06em var(--ink);paint-order:stroke fill;text-shadow:.07em .07em 0 var(--ink),.13em .13em 0 var(--pink);letter-spacing:.01em;white-space:nowrap;line-height:1}
+.linkpill{display:inline-flex;align-items:center;padding:.12em .55em .16em;border:5px solid var(--ink);border-radius:999px;background:var(--card);box-shadow:8px 8px 0 var(--ink);font-family:var(--f-digits);white-space:nowrap;color:var(--ink);line-height:1.1}
+.linkpill .ch{display:inline}
+.pillar{display:inline-flex;align-items:center;justify-content:center;padding:.12em .4em .18em;border:7px solid var(--ink);border-radius:26px 12px 30px 14px/14px 28px 12px 26px;box-shadow:12px 13px 0 var(--ink);font-family:var(--f-display);white-space:nowrap;line-height:1.05;color:var(--ink)}
+.pillar .pw{text-shadow:.045em .05em 0 var(--card)}
+.pillar.mint{background:var(--mint)}.pillar.pink{background:var(--pink)}.pillar.yellow{background:var(--yellow)}
+
+/* ---- paper objects ---- */
+.pol{background:var(--pol);border:4px solid var(--ink);padding:18px 18px 74px;box-shadow:13px 14px 0 var(--ink)}
+.pol .ph{position:relative;width:100%;height:100%;border:3px solid var(--ink);overflow:hidden;background:#23212b}
+.pol .ph img{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover}
+.pol .cap{position:absolute;left:24px;right:20px;bottom:10px;font-family:var(--f-hand);font-size:36px;line-height:1.5;white-space:nowrap;color:var(--ink)}
+.tape{position:absolute;width:190px;height:52px;background:var(--tape-y);-webkit-mask:var(--tapemask) center/100% 100% no-repeat;mask:var(--tapemask) center/100% 100% no-repeat;z-index:3}
+.tape.p{background:var(--tape-p)}.tape.m{background:var(--tape-m)}.tape.y{background:var(--tape-y)}
+.die{background:var(--card);border:5px solid var(--ink);border-radius:18px 8px 22px 10px/10px 20px 8px 18px;box-shadow:11px 12px 0 var(--ink);padding:14px;overflow:visible}
+.die .cut{position:relative;width:100%;height:100%;overflow:hidden;border-radius:10px 4px 12px 6px;border:3px solid var(--ink)}
+.die .cut img{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover}
+.svgcut{filter:drop-shadow(6px 0 0 var(--card)) drop-shadow(-6px 0 0 var(--card)) drop-shadow(0 6px 0 var(--card)) drop-shadow(0 -6px 0 var(--card))
+  drop-shadow(3.5px 0 0 var(--ink)) drop-shadow(-3.5px 0 0 var(--ink)) drop-shadow(0 3.5px 0 var(--ink)) drop-shadow(0 -3.5px 0 var(--ink)) drop-shadow(10px 11px 0 var(--ink))}
+.svgcut.thin{filter:drop-shadow(4px 0 0 var(--card)) drop-shadow(-4px 0 0 var(--card)) drop-shadow(0 4px 0 var(--card)) drop-shadow(0 -4px 0 var(--card))
+  drop-shadow(2.5px 0 0 var(--ink)) drop-shadow(-2.5px 0 0 var(--ink)) drop-shadow(0 2.5px 0 var(--ink)) drop-shadow(0 -2.5px 0 var(--ink)) drop-shadow(6px 7px 0 var(--ink))}
+.card{background:var(--card);border:5px solid var(--ink);border-radius:18px 8px 22px 10px/10px 20px 8px 18px;box-shadow:11px 12px 0 var(--ink)}
+.ticket{display:flex;background:var(--yellow-soft);border:5px solid var(--ink);border-radius:14px;box-shadow:11px 12px 0 var(--ink);overflow:hidden}
+.ticket .tk-l{flex:1;display:grid;place-items:center;font-family:var(--f-display);font-size:96px;color:var(--ink);border-right:5px dashed var(--ink)}
+.ticket .tk-r{width:34%;display:grid;place-items:center;font-family:var(--f-logo);font-size:30px;writing-mode:vertical-rl;color:var(--ink2)}
+.swap{width:160px;height:160px;border-radius:50%;background:var(--pink);border:7px solid var(--ink);box-shadow:9px 9px 0 var(--ink);display:grid;place-items:center}
+.swap svg{width:60%;height:60%}
+/* ---- devices ---- */
+.dev svg.body{position:absolute;left:0;top:0;overflow:visible}
+.dev .scr{position:absolute;overflow:hidden;background:var(--paper)}
+.dev .scr .cnt{position:absolute;left:0;top:0;transform-origin:0 0}
+.dev .scr img.feed{position:absolute;left:0;top:0;display:block}
+.dev .scr .cnt svg.ov{position:absolute;left:0;top:0}
+.dev .spk{position:absolute;height:9px;border-radius:9px;background:#4a4640}
+.dev .cam{position:absolute;width:10px;height:10px;margin-left:-5px;border-radius:50%;background:#4a4640}
+svg.ov{position:absolute;left:0;top:0;overflow:visible;pointer-events:none}
+.mk{fill:none;stroke-linecap:round;stroke-linejoin:round}

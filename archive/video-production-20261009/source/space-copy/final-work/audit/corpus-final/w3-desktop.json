@@ -1,0 +1,535 @@
+{
+ "states": [
+  {
+   "vp": "desktop",
+   "label": "inbox-empty",
+   "selector": "#panel",
+   "visible": "×\n同一首歌之后 / 认识一个人\n有人向你招手吗？\n私聊 ↗\n\n暂时没有新招呼。\n\n朋友 · 0\n屏蔽列表",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板"
+   ],
+   "hidden": [],
+   "at": 1791390291130
+  },
+  {
+   "vp": "desktop",
+   "label": "layout:inbox-empty",
+   "selector": "#panel",
+   "layout": {
+    "pageOverflow": false,
+    "out": [],
+    "tall": [],
+    "orphan": []
+   }
+  },
+  {
+   "vp": "desktop",
+   "label": "chats-empty",
+   "selector": ".private-chat",
+   "visible": "ONE TO ONE\n我们的对话\n×\n从朋友的小人旁开始，接着聊刚才的那首歌。\n↗\n还有话想和 TA 说。\n\n先去同场的人里打个招呼。\n\n看看同场的人\n回看这一晚",
+   "attrs": [
+    "@aria-label=私聊",
+    "@aria-label=返回对话列表 (hidden el)",
+    "@aria-label=关闭私聊",
+    "@aria-label=消息记录 (hidden el)",
+    "@placeholder=比如，刚刚哪首歌最喜欢？ (hidden el)"
+   ],
+   "hidden": [
+    "更早的消息",
+    "留一句话",
+    "互相接受后就能私聊",
+    "发送 ↗"
+   ],
+   "at": 1791390292785
+  },
+  {
+   "vp": "desktop",
+   "label": "person-waved-bei",
+   "selector": "#panel",
+   "visible": "×\n同场的人\n北屿\n北屿\n已招手，等待对方回应\n撤回招呼\n屏蔽\n向本场房主反馈\n屏蔽这个人",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板"
+   ],
+   "hidden": [],
+   "at": 1791390294745
+  },
+  {
+   "vp": "desktop",
+   "label": "inbox-outgoing",
+   "selector": "#panel",
+   "visible": "×\n同一首歌之后 / 认识一个人\n有人向你招手吗？\n私聊 ↗\n\n暂时没有新招呼。\n\n我发出的\n北屿\n已招手，等待对方回应\n撤回招呼\n屏蔽\n朋友 · 0\n屏蔽列表",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板"
+   ],
+   "hidden": [],
+   "at": 1791390295581
+  },
+  {
+   "vp": "desktop",
+   "label": "person-friend-bei",
+   "selector": "#panel",
+   "visible": "×\n你们已经认识了\n北屿\n邀请共同创作\n和 北屿 私聊 ↗\n\n你们已经是朋友了。\n\n移除朋友\n向本场房主反馈\n屏蔽这个人",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板"
+   ],
+   "hidden": [],
+   "at": 1791390299115
+  },
+  {
+   "vp": "desktop",
+   "label": "layout:friend-card",
+   "selector": "#panel",
+   "layout": {
+    "pageOverflow": false,
+    "out": [],
+    "tall": [],
+    "orphan": []
+   }
+  },
+  {
+   "vp": "desktop",
+   "label": "remove-friend-confirm",
+   "selector": "#panel",
+   "visible": "×\n不再和 北屿 做朋友？\n\n移除后不能再私聊，聊天记录会保留。\n\n确认移除朋友",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板"
+   ],
+   "hidden": [],
+   "at": 1791390300617
+  },
+  {
+   "vp": "desktop",
+   "label": "block-confirm",
+   "selector": "#panel",
+   "visible": "×\n不再和 北屿 互动？\n\n会结束你们的招呼、私聊和照片交换，彼此不再可见。\n\n确认屏蔽",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板"
+   ],
+   "hidden": [],
+   "at": 1791390302279
+  },
+  {
+   "vp": "desktop",
+   "label": "chat-welcome",
+   "selector": ".private-chat",
+   "visible": "←\nONE TO ONE\n北屿\n×\n你们已经是朋友了。\n\n嗨，欢迎来到「回声现场」！\n\n00:24\n\n你拍到的是哪一面？\n\n00:24\n留一句话\n发送 ↗\n回看这一晚",
+   "attrs": [
+    "@aria-label=私聊",
+    "@aria-label=返回对话列表",
+    "@aria-label=关闭私聊",
+    "@aria-label=Music Space 的小人 (hidden el)",
+    "@aria-label=消息记录",
+    "@placeholder=比如，刚刚哪首歌最喜欢？"
+   ],
+   "hidden": [
+    "Music Space 的小人",
+    "北屿",
+    "你拍到的是哪一面？",
+    "朋友",
+    "更早的消息"
+   ],
+   "at": 1791390303240
+  },
+  {
+   "vp": "desktop",
+   "label": "chat-thread",
+   "selector": ".private-chat",
+   "visible": "←\nONE TO ONE\n北屿\n×\n你们已经是朋友了。\n\n嗨，欢迎来到「回声现场」！\n\n00:24\n\n你拍到的是哪一面？\n\n00:24\n\n你好呀\n\n00:25 · 已发送\n\n今晚的返场太好听了。\n\n00:25\n\n你也在二楼吗？\n\n00:25 · 已发送\n\n照片墙上有好几张是同一刻拍的，你看了吗？\n\n00:25\n\n返场那首是什么？\n\n00:25 · 已发送\n\n下次月台见！\n\n00:25\n\n下次见\n\n00:25 · 已发送\n留一句话\n发送 ↗\n回看这一晚",
+   "attrs": [
+    "@aria-label=私聊",
+    "@aria-label=返回对话列表",
+    "@aria-label=关闭私聊",
+    "@aria-label=Music Space 的小人 (hidden el)",
+    "@aria-label=消息记录",
+    "@placeholder=比如，刚刚哪首歌最喜欢？"
+   ],
+   "hidden": [
+    "Music Space 的小人",
+    "北屿",
+    "下次见",
+    "朋友",
+    "更早的消息"
+   ],
+   "at": 1791390349507
+  },
+  {
+   "vp": "desktop",
+   "label": "layout:chat-thread",
+   "selector": ".private-chat",
+   "layout": {
+    "pageOverflow": false,
+    "out": [],
+    "tall": [],
+    "orphan": []
+   }
+  },
+  {
+   "vp": "desktop",
+   "label": "chat-empty-send",
+   "selector": ".private-chat",
+   "visible": "←\nONE TO ONE\n北屿\n×\n你们已经是朋友了。\n\n嗨，欢迎来到「回声现场」！\n\n00:24\n\n你拍到的是哪一面？\n\n00:24\n\n你好呀\n\n00:25 · 已发送\n\n今晚的返场太好听了。\n\n00:25\n\n你也在二楼吗？\n\n00:25 · 已发送\n\n照片墙上有好几张是同一刻拍的，你看了吗？\n\n00:25\n\n返场那首是什么？\n\n00:25 · 已发送\n\n下次月台见！\n\n00:25\n\n下次见\n\n00:25 · 已发送\n留一句话\n发送 ↗\n回看这一晚",
+   "attrs": [
+    "@aria-label=私聊",
+    "@aria-label=返回对话列表",
+    "@aria-label=关闭私聊",
+    "@aria-label=Music Space 的小人 (hidden el)",
+    "@aria-label=消息记录",
+    "@placeholder=比如，刚刚哪首歌最喜欢？"
+   ],
+   "hidden": [
+    "Music Space 的小人",
+    "北屿",
+    "下次见",
+    "朋友",
+    "更早的消息"
+   ],
+   "at": 1791390350164
+  },
+  {
+   "vp": "desktop",
+   "label": "chat-list",
+   "selector": ".private-chat",
+   "visible": "ONE TO ONE\n我们的对话\n×\n从朋友的小人旁开始，接着聊刚才的那首歌。\n北屿\n\n下次见\n\n朋友\n回看这一晚",
+   "attrs": [
+    "@aria-label=私聊",
+    "@aria-label=返回对话列表 (hidden el)",
+    "@aria-label=关闭私聊",
+    "@aria-label=Music Space 的小人",
+    "@aria-label=消息记录 (hidden el)",
+    "@placeholder=比如，刚刚哪首歌最喜欢？ (hidden el)"
+   ],
+   "hidden": [
+    "Music Space 的小人",
+    "更早的消息",
+    "嗨，欢迎来到「回声现场」！",
+    "你拍到的是哪一面？",
+    "你好呀",
+    "00:25 · 已发送",
+    "今晚的返场太好听了。",
+    "你也在二楼吗？",
+    "照片墙上有好几张是同一刻拍的，你看了吗？",
+    "返场那首是什么？",
+    "下次月台见！",
+    "下次见",
+    "留一句话",
+    "发送 ↗"
+   ],
+   "at": 1791390351378
+  },
+  {
+   "vp": "desktop",
+   "label": "inbox-friend",
+   "selector": "#panel",
+   "visible": "×\n同一首歌之后 / 认识一个人\n有人向你招手吗？\n私聊 ↗\n\n暂时没有新招呼。\n\n朋友 · 1\n屏蔽列表",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板"
+   ],
+   "hidden": [],
+   "at": 1791390353031
+  },
+  {
+   "vp": "desktop",
+   "label": "friends",
+   "selector": "#panel",
+   "visible": "×\n互相愿意 / 成为朋友\n从音乐开始认识的人\n北屿\n已是朋友 →\n打开私聊查看招呼",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板"
+   ],
+   "hidden": [],
+   "at": 1791390354659
+  },
+  {
+   "vp": "desktop",
+   "label": "person-lin-quiet",
+   "selector": "#panel",
+   "visible": "×\n同场的人\n林间\n\nTA 选择安静参与，不接新招呼。\n\n向本场房主反馈\n屏蔽这个人",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板"
+   ],
+   "hidden": [],
+   "at": 1791390356018
+  },
+  {
+   "vp": "desktop",
+   "label": "people-later",
+   "selector": "#panel",
+   "visible": "×\n同一晚，同一场\n看看同场的人\n阿遥\n愿意打招呼 · 看看 TA 的视角 →\n小满\n愿意打招呼 · 看看 TA 的视角 →\n北屿\n愿意打招呼 · 看看 TA 的视角 →\n林间\n安静参与 · 看看 TA 的视角 →",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板"
+   ],
+   "hidden": [],
+   "at": 1791390357058
+  },
+  {
+   "vp": "desktop",
+   "label": "after-block",
+   "selector": "body",
+   "visible": "Music\nSpace\n4 位同场\n音乐探索\n↗\n♡\n我的小人\n↗\n···\n月台 Livehouse\n回声现场\n4 位已加入 · 正在进行\n照片墙\n阿遥 · 可招呼\n北屿 · 可招呼\n访客4401 · 我\n林间 · 安静\n♪\n这一晚 · 晚班列车\n本场原创声景\nENCORE / 01\n全景\n同场的人\n照片墙\n我的空间\n关于 Music Space\n×\n你的边界，由你决定\n屏蔽列表\n小满\n已屏蔽 · 可取消\n回到招呼\n已屏蔽",
+   "attrs": [
+    "@aria-label=返回全景 (hidden el)",
+    "@aria-label=Music Space",
+    "@aria-label=音乐探索",
+    "@aria-label=招呼、朋友和私聊",
+    "@aria-label=我的小人 · 换装",
+    "@aria-label=房间信息",
+    "@aria-label=三维 Livehouse 场景",
+    "@aria-label=查看场次详情：回声现场",
+    "@aria-label=场景内可访问的地点",
+    "@aria-label=走近照片墙",
+    "@title=照片墙",
+    "@aria-label=走近阿遥 · 可招呼",
+    "@title=阿遥 · 可招呼",
+    "@aria-label=走近北屿 · 可招呼",
+    "@title=北屿 · 可招呼",
+    "@aria-label=走近访客4401 · 我",
+    "@title=访客4401 · 我",
+    "@aria-label=走近林间 · 安静",
+    "@title=林间 · 安静",
+    "@aria-label=第一次来 (hidden el)",
+    "@aria-label=场景机位",
+    "@aria-label=我的音乐空间",
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板",
+    "@aria-label=本场反馈与管理 (hidden el)",
+    "@aria-label=关闭反馈与管理 (hidden el)",
+    "@aria-label=照片交换 (hidden el)",
+    "@aria-label=返回交换列表 (hidden el)",
+    "@aria-label=关闭照片交换 (hidden el)",
+    "@aria-label=私聊 (hidden el)",
+    "@aria-label=返回对话列表 (hidden el)",
+    "@aria-label=关闭私聊 (hidden el)",
+    "@aria-label=Music Space 的小人 (hidden el)",
+    "@aria-label=消息记录 (hidden el)",
+    "@placeholder=比如，刚刚哪首歌最喜欢？ (hidden el)",
+    "@aria-label=我的衣橱 (hidden el)",
+    "@aria-label=备份或恢复小人身份 (hidden el)",
+    "@aria-label=乐迷社群与聊天室 (hidden el)"
+   ],
+   "hidden": [
+    "<div role=\"alert\" style=\"position:fixed;left:0;right:0;bottom:0;z-index:2147483646;margin:0;padding:14px 16px;background:#182d26;color:#f0e9d8;font:15px/1.7 'Microsoft YaHei','PingFang SC',system-ui,sans-serif;text-align:center\">需要开启 JavaScript 才能打开 Music Space。</div>",
+    "Music Space",
+    "灯快亮了",
+    "正在准备三维场景",
+    "三维现场暂时打不开",
+    "照片和同场名单照常能用，也可以换个浏览器试试。",
+    "这一场 / 彼此尊重",
+    "本场反馈",
+    "同一晚 / 另一面",
+    "交换一个视角",
+    "ONE TO ONE",
+    "我们的对话",
+    "从朋友的小人旁开始，接着聊刚才的那首歌。",
+    "Music Space 的小人",
+    "北屿",
+    "下次见",
+    "朋友",
+    "更早的消息",
+    "嗨，欢迎来到「回声现场」！",
+    "你拍到的是哪一面？",
+    "你好呀",
+    "00:25 · 已发送",
+    "今晚的返场太好听了。",
+    "你也在二楼吗？",
+    "照片墙上有好几张是同一刻拍的，你看了吗？",
+    "返场那首是什么？",
+    "下次月台见！",
+    "留一句话",
+    "发送 ↗",
+    "回看这一晚",
+    "这一晚的",
+    "另一个视角",
+    "就在你身边。",
+    "一场演出，一个房间。先选你的位置，再看看大家留下了什么。",
+    "Livehouse 为每一场演出开一个房间，乐迷带着小人入场；散场后，留在场地的乐迷社群里。",
+    "就是这一刻！"
+   ],
+   "at": 1791390360657
+  },
+  {
+   "vp": "desktop",
+   "label": "blocked-list",
+   "selector": "#panel",
+   "visible": "×\n你的边界，由你决定\n屏蔽列表\n小满\n已屏蔽 · 可取消\n回到招呼",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板"
+   ],
+   "hidden": [],
+   "at": 1791390362377
+  },
+  {
+   "vp": "desktop",
+   "label": "unblock-confirm",
+   "selector": "#panel",
+   "visible": "×\n取消对 小满 的屏蔽？\n\n不会恢复原来的朋友，需要重新招手。\n\n确认取消屏蔽",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板"
+   ],
+   "hidden": [],
+   "at": 1791390363126
+  },
+  {
+   "vp": "desktop",
+   "label": "room-panel-quiet",
+   "selector": "#panel",
+   "visible": "×\n月台 Livehouse\n回声现场\n\n4 位成员 · 可继续入场\n\n关于 Music Space\n回看这一晚\n我的现场\n我的创作与邀请\n散场聊天室Livehouse 乐迷社群招呼与朋友\n这一场，我想怎样参与\n安静参与\n照片照常分享，不接新招呼\n愿意打招呼\n别人可以向我招手\n更新参与方式\n\n改为安静参与会结束待回应的招呼。\n\n离开本场",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板"
+   ],
+   "hidden": [],
+   "at": 1791390365625
+  },
+  {
+   "vp": "desktop",
+   "label": "person-while-quiet",
+   "selector": "#panel",
+   "visible": "×\n同场的人\n阿遥\n\n你正在安静参与，想招手先改一下。\n\n我愿意打招呼\n\n这是本场房主。\n\n屏蔽这个人",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板"
+   ],
+   "hidden": [],
+   "at": 1791390367044
+  },
+  {
+   "vp": "desktop",
+   "label": "room-quiet",
+   "selector": ".frame",
+   "visible": "Music\nSpace\n4 位同场\n音乐探索\n↗\n♡\n我的小人\n↗\n···\n月台 Livehouse\n回声现场\n4 位已加入 · 正在进行\n照片墙\n阿遥 · 可招呼\n北屿 · 可招呼\n访客4401 · 我\n林间 · 安静\n♪\n这一晚 · 晚班列车\n本场原创声景\nENCORE / 01\n\n第一次来 1/4\n·\n放一张今晚的照片\n\n收起\n\n挑一张，或者用你自己的。\n\n人海那张\n舞台那张\n用我自己的照片\n跳过路线\n全景\n同场的人\n照片墙\n我的空间\n关于 Music Space",
+   "attrs": [
+    "@aria-label=返回全景 (hidden el)",
+    "@aria-label=Music Space",
+    "@aria-label=音乐探索",
+    "@aria-label=招呼、朋友和私聊",
+    "@aria-label=我的小人 · 换装",
+    "@aria-label=房间信息",
+    "@aria-label=三维 Livehouse 场景",
+    "@aria-label=查看场次详情：回声现场",
+    "@aria-label=场景内可访问的地点",
+    "@aria-label=走近照片墙",
+    "@title=照片墙",
+    "@aria-label=走近阿遥 · 可招呼",
+    "@title=阿遥 · 可招呼",
+    "@aria-label=走近北屿 · 可招呼",
+    "@title=北屿 · 可招呼",
+    "@aria-label=走近访客4401 · 我",
+    "@title=访客4401 · 我",
+    "@aria-label=走近林间 · 安静",
+    "@title=林间 · 安静",
+    "@aria-label=第一次来",
+    "@aria-label=收起路线",
+    "@aria-label=场景机位",
+    "@aria-label=我的音乐空间",
+    "@aria-label=场景操作 (hidden el)",
+    "@aria-label=关闭操作面板 (hidden el)",
+    "@aria-label=本场反馈与管理 (hidden el)",
+    "@aria-label=关闭反馈与管理 (hidden el)",
+    "@aria-label=照片交换 (hidden el)",
+    "@aria-label=返回交换列表 (hidden el)",
+    "@aria-label=关闭照片交换 (hidden el)",
+    "@aria-label=私聊 (hidden el)",
+    "@aria-label=返回对话列表 (hidden el)",
+    "@aria-label=关闭私聊 (hidden el)",
+    "@aria-label=Music Space 的小人 (hidden el)",
+    "@aria-label=消息记录 (hidden el)",
+    "@placeholder=比如，刚刚哪首歌最喜欢？ (hidden el)",
+    "@aria-label=我的衣橱 (hidden el)",
+    "@aria-label=备份或恢复小人身份 (hidden el)",
+    "@aria-label=乐迷社群与聊天室 (hidden el)"
+   ],
+   "hidden": [
+    "Music Space",
+    "灯快亮了",
+    "正在准备三维场景",
+    "三维现场暂时打不开",
+    "照片和同场名单照常能用，也可以换个浏览器试试。",
+    "同一晚，各自的视角。",
+    "先放一张你的照片，看看你拍到的是哪一面。",
+    "本场信息",
+    "安静参与 · 更改",
+    "留下第一张照片",
+    "回看这一晚",
+    "这一场 / 彼此尊重",
+    "本场反馈",
+    "同一晚 / 另一面",
+    "交换一个视角",
+    "ONE TO ONE",
+    "我们的对话",
+    "从朋友的小人旁开始，接着聊刚才的那首歌。",
+    "Music Space 的小人",
+    "北屿",
+    "下次见",
+    "朋友",
+    "更早的消息",
+    "嗨，欢迎来到「回声现场」！",
+    "你拍到的是哪一面？",
+    "你好呀",
+    "00:25 · 已发送",
+    "今晚的返场太好听了。",
+    "你也在二楼吗？",
+    "照片墙上有好几张是同一刻拍的，你看了吗？",
+    "返场那首是什么？",
+    "下次月台见！",
+    "留一句话",
+    "发送 ↗"
+   ],
+   "at": 1791390367584
+  }
+ ],
+ "logs": {
+  "desktop w3": [
+   "load: /musicSpace/",
+   "title: Music Space · 同一刻，另一面",
+   "live:loading(hidden): Music Space灯快亮了正在准备三维场景",
+   "live:render-status: 正在布置现场…",
+   "live:loading(hidden): Music Space灯快亮了正在布置现场…",
+   "live:loading(hidden): Music Space灯快亮了正在准备三维场景",
+   "live:render-status: 正在布置现场…",
+   "live:render-status: 现场进行中",
+   "live:view-label: 正在靠近",
+   "live:render-status: 现场进行中",
+   "live:demo-tour: 第一次来 1/4 · 放一张今晚的照片收起挑一张，或者用你自己的。人海那张舞台那张用我自己的照片跳过路线",
+   "live:view-label: 正在靠近",
+   "live:render-status: 4 位同场",
+   "live:demo-tour: 第一次来 1/4 · 放一张今晚的照片收起挑一张，或者用你自己的。人海那张舞台那张用我自己的照片跳过路线",
+   "live:render-status: 4 位同场",
+   "live:toast: 招呼已送达，等待对方回应",
+   "live:render-status: 4 位同场",
+   "live:demo-tour: 第一次来 1/4 · 放一张今晚的照片收起挑一张，或者用你自己的。人海那张舞台那张用我自己的照片跳过路线",
+   "live:render-status: 4 位同场",
+   "live:render-status: 5 位同场",
+   "live:toast(hidden): 招呼已送达，等待对方回应",
+   "live:render-status: 5 位同场",
+   "live:demo-tour: 第一次来 1/4 · 放一张今晚的照片收起挑一张，或者用你自己的。人海那张舞台那张用我自己的照片跳过路线",
+   "live:status: 已收到上一条，无需重发。",
+   "live:render-status: 5 位同场",
+   "live:status: 已收到上一条，无需重发。",
+   "live:render-status: 5 位同场",
+   "live:status: 已收到上一条，无需重发。",
+   "live:render-status: 5 位同场",
+   "live:status: 已收到上一条，无需重发。",
+   "live:render-status: 5 位同场",
+   "live:render-status: 4 位同场",
+   "live:toast: 已屏蔽",
+   "live:render-status: 4 位同场",
+   "live:toast(hidden): 已屏蔽",
+   "live:render-status: 4 位同场",
+   "live:toast: 参与方式已更新：安静参与",
+   "live:demo-tour: 第一次来 1/4 · 放一张今晚的照片收起挑一张，或者用你自己的。人海那张舞台那张用我自己的照片跳过路线",
+   "live:render-status: 4 位同场",
+   "live:demo-tour: 第一次来 1/4 · 放一张今晚的照片收起挑一张，或者用你自己的。人海那张舞台那张用我自己的照片跳过路线"
+  ]
+ }
+}

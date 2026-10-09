@@ -1,0 +1,354 @@
+{
+ "video": "/private/tmp/space-video-doodle/prod/out/acts/act-A6-A7.consternation.mp4",
+ "range_s": [
+  136.61666666666667,
+  171.7
+ ],
+ "full": false,
+ "overall": "WARN",
+ "checks": [
+  {
+   "check": "container.video",
+   "status": "PASS",
+   "msg": "h264 High 1920x1080 60/1 yuv420p bt709/bt709/bt709/tv"
+  },
+  {
+   "check": "container.audio",
+   "status": "PASS",
+   "msg": "aac LC 48000 Hz 2 ch 267 kb/s"
+  },
+  {
+   "check": "duration",
+   "status": "PASS",
+   "msg": "35.083 s (range 35.083 s)",
+   "seconds": 35.083333
+  },
+  {
+   "check": "size",
+   "status": "PASS",
+   "msg": "44.6 MB (10.2 Mb/s)",
+   "mb": 44.6
+  },
+  {
+   "check": "loudness",
+   "status": "PASS",
+   "msg": "I -15.8 LUFS (target -16), LRA 2.4 LU (act excerpt: informational; the full cut is normalised)",
+   "I": -15.8,
+   "LRA": 2.4
+  },
+  {
+   "check": "true_peak",
+   "status": "PASS",
+   "msg": "-1.1 dBTP (limit -1.0)",
+   "TP": -1.1
+  },
+  {
+   "check": "silence",
+   "status": "PASS",
+   "msg": "0 silent stretches over 0.8 s"
+  },
+  {
+   "check": "frozen",
+   "status": "PASS",
+   "msg": "0 frozen stretches over 2.5 s"
+  },
+  {
+   "check": "black",
+   "status": "PASS",
+   "msg": "0 black stretches over 0.4 s"
+  },
+  {
+   "check": "motion",
+   "status": "PASS",
+   "msg": "longest low-motion stretch 0.07 s at 0.22 s (mean |dI| < 0.15 on 160x90), mean motion 1.43",
+   "longest_s": 0.07,
+   "at_s": 0.22
+  },
+  {
+   "check": "event_gaps",
+   "status": "PASS",
+   "msg": "120 visual events, 3.42/s; longest gap 1.15 s after 153.69 s (limit 2.5)",
+   "longest_gap_s": 1.154
+  },
+  {
+   "check": "beat_alignment",
+   "status": "PASS",
+   "msg": "120/120 visual events on the 16th grid (<= half a frame), 114/120 on 8ths; frames quantise by <= 8.3 ms",
+   "off_grid": []
+  },
+  {
+   "check": "reading_time",
+   "status": "PASS",
+   "msg": "25 lines, measured (geometry samples every 50 ms); titles/notes failing 0, labels/fine short 0",
+   "failing": [],
+   "short_labels": [],
+   "lines": [
+    {
+     "text": "每一场演出，",
+     "kind": "title",
+     "units": 5,
+     "on_s": 2.85,
+     "need_s": 1.25,
+     "ok": true
+    },
+    {
+     "text": "散场",
+     "kind": "label",
+     "units": 2,
+     "on_s": 6.9,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "都可以多一层。",
+     "kind": "title",
+     "units": 6,
+     "on_s": 1.85,
+     "need_s": 1.5,
+     "ok": true
+    },
+    {
+     "text": "设想",
+     "kind": "label",
+     "units": 2,
+     "on_s": 3.65,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "QQ音乐、酷狗",
+     "kind": "title",
+     "units": 5,
+     "on_s": 1.9,
+     "need_s": 1.25,
+     "ok": true
+    },
+    {
+     "text": "听完现场，",
+     "kind": "title",
+     "units": 4,
+     "on_s": 2.75,
+     "need_s": 1.0,
+     "ok": true
+    },
+    {
+     "text": "顺手换一面。",
+     "kind": "title",
+     "units": 5,
+     "on_s": 1.85,
+     "need_s": 1.25,
+     "ok": true
+    },
+    {
+     "text": "隐私",
+     "kind": "label",
+     "units": 2,
+     "on_s": 3.55,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "AI 在本机 · 你决定给谁看",
+     "kind": "label",
+     "units": 10,
+     "on_s": 3.6,
+     "need_s": 2.5,
+     "ok": true
+    },
+    {
+     "text": "同意",
+     "kind": "label",
+     "units": 2,
+     "on_s": 3.1,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "双方同意，才交换",
+     "kind": "label",
+     "units": 7,
+     "on_s": 3.15,
+     "need_s": 1.75,
+     "ok": true
+    },
+    {
+     "text": "好玩",
+     "kind": "label",
+     "units": 2,
+     "on_s": 2.65,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "世界杯 · 默契局 · 创作角",
+     "kind": "label",
+     "units": 9,
+     "on_s": 2.7,
+     "need_s": 2.25,
+     "ok": true
+    },
+    {
+     "text": "曲终，",
+     "kind": "title",
+     "units": 2,
+     "on_s": 3.7,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "人不散。",
+     "kind": "title",
+     "units": 3,
+     "on_s": 2.8,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "打开链接，",
+     "kind": "title",
+     "units": 4,
+     "on_s": 2.8,
+     "need_s": 1.0,
+     "ok": true
+    },
+    {
+     "text": "照片为 AI 生成的示例图",
+     "kind": "fine",
+     "units": 10,
+     "on_s": 3.6,
+     "need_s": 2.5,
+     "ok": true
+    },
+    {
+     "text": "一人\n就能走完全程。",
+     "kind": "title",
+     "units": 8,
+     "on_s": 2.7,
+     "need_s": 2.0,
+     "ok": true
+    },
+    {
+     "text": "同一刻，",
+     "kind": "title",
+     "units": 3,
+     "on_s": 16.6,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "另一面。",
+     "kind": "title",
+     "units": 3,
+     "on_s": 15.95,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "MUSIC SPACE",
+     "kind": "label",
+     "units": 2,
+     "on_s": 14.75,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "musicmapteam.github.io/musicSpace/",
+     "kind": "label",
+     "units": 3,
+     "on_s": 14.05,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "浏览器直接打开 · 无需安装",
+     "kind": "label",
+     "units": 11,
+     "on_s": 12.95,
+     "need_s": 2.75,
+     "ok": true
+    },
+    {
+     "text": "示例角色与照片为虚构（照片由 AI 生成）·\n角色自动回复 · 数据只存在你的浏览器",
+     "kind": "fine",
+     "units": 32,
+     "on_s": 11.1,
+     "need_s": 8.0,
+     "ok": true
+    },
+    {
+     "text": "配乐：Wax Lyricist《Consternation At The Disco》\n（CC0 1.0 公共领域）",
+     "kind": "fine",
+     "units": 15,
+     "on_s": 9.25,
+     "need_s": 3.75,
+     "ok": true
+    }
+   ]
+  },
+  {
+   "check": "safe_area",
+   "status": "WARN",
+   "msg": "0 texts outside the 5% title-safe area for > 0.5 s, 7 only briefly (entrances, camera moves)",
+   "sustained": [],
+   "brief": [
+    "「每一场演出，」 0.05s from 136.62s box [126, 34, 911, 238]",
+    "「都可以多一层。」 0.05s from 138.47s box [115, 708, 1443, 1037]",
+    "「QQ音乐、酷狗」 0.05s from 140.32s box [1474, 230, 2287, 382]",
+    "「散场」 0.05s from 140.32s box [2622, 442, 2768, 550]",
+    "「AI 在本机 · 你决定给谁看」 0.05s from 144.02s box [56, 881, 720, 965]",
+    "「一人\n就能走完全程。」 0.05s from 152.32s box [127, 646, 982, 1027]",
+    "「MUSIC SPACE」 0.05s from 157.02s box [91, 71, 812, 236]"
+   ]
+  },
+  {
+   "check": "glyphs",
+   "status": "PASS",
+   "msg": "175 font/character pairs; 0 drawn by a system font",
+   "fonts": {
+    "display": [
+     "Doodle Display"
+    ],
+    "marker": [
+     "Doodle Marker"
+    ],
+    "hand": [
+     "Doodle Hand"
+    ],
+    "logo": [
+     "Luckiest Guy"
+    ],
+    "digits": [
+     "Smiley Sans Oblique"
+    ]
+   },
+   "fallback": []
+  },
+  {
+   "check": "qr",
+   "status": "PASS",
+   "msg": "decoded at 8/8 sampled frames: https://musicmapteam.github.io/musicSpace/ (first at 160.62 s)"
+  },
+  {
+   "check": "placeholders",
+   "status": "PASS",
+   "msg": "no placeholders",
+   "placeholders": []
+  },
+  {
+   "check": "scene_warnings",
+   "status": "PASS",
+   "msg": "0 warnings"
+  },
+  {
+   "check": "sfx_level",
+   "status": "PASS",
+   "msg": "SFX -9.0 LU vs music (target -8..-10), 112 sounds {'slam': 4, 'slap': 8, 'pop': 23, 'tape': 3, 'impact': 6, 'squeak': 4, 'whoosh': 3, 'typetick': 48, 'thump': 1, 'zip': 2, 'boop': 4, 'swish': 4, 'pencil': 1, 'highlighter': 1}"
+  },
+  {
+   "check": "script_lines",
+   "status": "PASS",
+   "msg": "22/22 SCRIPT lines in range are on screen",
+   "missing": []
+  }
+ ]
+}

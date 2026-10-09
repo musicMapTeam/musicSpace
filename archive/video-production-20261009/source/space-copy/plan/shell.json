@@ -1,0 +1,476 @@
+{
+ "area": "shell",
+ "files": "web/event-room/index.html, web/event-room/app.js, web/event-client/*.js, web/avatar/three-scene.js (print text only)",
+ "tests_owned": [
+  "tests/event-room-profile-seams.test.js: update :130 :140 :148 (new Node presence copy), :134 :265 (已连接), :158 (已重新连接), :143 (本场原创声景), :156 (<button class=\"quiet\" data-reconnect>重新连接</button>), :167 (请用网址打开 Music Space), :176 (invite block: 写入 NFC 邀请标签 + <p class=\"fine\">把链接发给今晚同场的朋友。</p>, QR/NFC fine line gone), :289 (关于 Music Space); optional: fixture :386/:388 示例现场没能启动 -> 现场没能打开",
+  "tests/event-room-binding.test.js: :303 doesNotMatch -> /你们已经是朋友了/ (still matches /上次确认/); :447 -> /离场后只保留自己的照片/ (unchanged fragment, panels recap-view) and /去另一个现场/ (panels recap-view); update :182 /已明确失败/ -> /没有成功/ (移除失败记录 unchanged); still-passing fragments to re-verify: 照片所属的现场, 不会恢复原来的朋友, 等待更新 (and not 已经成为朋友), 这一场已结束, 已保存, 暂未读到, 入场已确认",
+  "tests/event-client.test.js: verify /身份/ still matches the new IDENTITY_REQUIRED text (请先确认你的小人身份)",
+  "tests/event-identity-backup.test.js: verify fragments still match: 另一个服务地址, 损坏, 密码不正确, 12至128, 来源 (unchanged message), 安全加密能力"
+ ],
+ "changes": [
+  {
+   "file": "web/event-room/index.html",
+   "current": ".brand aria-label=\"Space 全景\"",
+   "new": "Music Space",
+   "note": "aria-label only"
+  },
+  {
+   "file": "web/event-room/index.html",
+   "current": "#music-map-entry aria-label=\"打开应用内 Music Map\"",
+   "new": "音乐探索",
+   "note": "visible 音乐探索 ↗ unchanged"
+  },
+  {
+   "file": "web/event-room/index.html",
+   "current": "#my-look aria-label=\"我的衣橱，实时试穿\"",
+   "new": "我的小人 · 换装",
+   "note": "visible 我的小人 ↗ unchanged"
+  },
+  {
+   "file": "web/event-room/index.html",
+   "current": "#error h2 这个浏览器暂时无法打开三维现场 ‖ #error p 请在支持 WebGL2 的浏览器中打开。房间操作和照片仍可继续使用。",
+   "new": "三维现场暂时打不开 ‖ 照片和同场名单照常能用，也可以换个浏览器试试。",
+   "note": "identical to app.js:328"
+  },
+  {
+   "file": "web/event-room/index.html",
+   "current": "footer #evidence 本地体验版 · 手绘小人 / 三维现场",
+   "new": "",
+   "note": "keep the empty <span id=\"evidence\"> (static puts the About button in it)"
+  },
+  {
+   "file": "web/event-room/index.html",
+   "current": ".desktop-caption p 一个真实房间、一场共同的音乐现场。先选你的位置，再看看大家留下了什么。",
+   "new": "一场演出，一个房间。先选你的位置，再看看大家留下了什么。",
+   "note": "honesty: drops 真实 (Node only; static hides this p)"
+  },
+  {
+   "file": "web/event-room/index.html",
+   "current": ".desktop-caption small 主办方开房，观众带上自己的小人入场。照片由你决定仅自己保存，还是分享给同场成员。",
+   "new": "Livehouse 为每一场演出开一个房间，乐迷带着小人入场；散场后，留在场地的乐迷社群里。",
+   "note": "shown on the judged desktop view"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":109 participation hints 照样保存和分享照片，不接收新招呼。 ‖ 别人可以招手；成为朋友仍需我明确接受。",
+   "new": "照片照常分享，不接新招呼 ‖ 别人可以向我招手",
+   "note": "static entry-panel.js PARTICIPATION uses the same two hints"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":116 · {n} 个明确失败",
+   "new": " · {n} 个失败"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":121 这张照片目前无法读取，请重新核对可用内容。 ‖ 暂未读到照片，恢复连接后可重试。",
+   "new": "这张照片现在看不了。 ‖ 暂未读到这张照片。"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":125 MUSIC SPACE / COMMUNITY ‖ aria 查看长期音乐社群 ‖ {n} 位社群成员 · 不是在线人数 ‖ #render-status {n} 位社群成员",
+   "new": "MUSIC SPACE / 乐迷社群 ‖ 查看乐迷社群 ‖ {n} 位乐迷 ‖ {n} 位乐迷",
+   "note": "no presence claim"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":129 当前身份已不能读取这一场，请在我的现场查看状态。自己的照片仍保留。",
+   "new": "这一场已无法查看，你的照片还在"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":134 presenceCopyLobby 用一个小人加入现场，保存照片、看看他人的视角；愿意时再认识彼此。 ‖ presenceCopyAlone 上传第一张照片，或邀请真正同场的朋友。 ‖ presenceCopyRoom 照片可以只为自己保存。认识别人，由双方决定。",
+   "new": "带上小人进场，留下照片，看看别人的视角。 ‖ 放上第一张照片，再邀请同场的朋友。 ‖ 照片给谁看、认识谁，都由你决定。",
+   "note": "Node defaults; static copy.js keeps its own presence lines"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":135 trackNote default 房间选定的原创示例声景 · 不代表真实演出曲目",
+   "new": "本场原创声景",
+   "note": "same value as static copy.js trackNote"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":136 连接暂时中断。已输入内容仍在，恢复后可用原操作重试。 ‖ 浏览器身份已失效。新建身份不能找回旧记录。",
+   "new": "网络断开了，输入的内容还在 ‖ 这个浏览器里的小人已失效",
+   "note": "data-loss consequence stays in the profile consent checkbox"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":138 statusReady default 房间服务已连接",
+   "new": "已连接"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":142 浏览器身份已变化，正在重新载入 ‖ 身份已变化，请重新打开这个页面核对",
+   "new": "身份已变化，正在重新载入 ‖ 身份已变化，请刷新页面"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":192 title 近景只显示选中的人，返回全景看大家 ‖ title 点击照片可以查看详情",
+   "new": "返回全景看看大家 ‖ 点照片看大图"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":202 先用这个小人，入场后随时能逐件换装。",
+   "new": "入场后随时能换装。",
+   "note": "same line in static entry-panel.js"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":204 现场已创建；请再明确关联给社群成员。",
+   "new": "现场开好了，再关联到乐迷社群"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":208 我选择写入 NFC 邀请标签 ‖ 二维码和 NFC 标签只包含上方邀请网址… ‖ 链接可转发给来参加这一场的人。入场者仍需本人同意…",
+   "new": "写入 NFC 邀请标签 ‖ (remove the QR/NFC fine line) ‖ 把链接发给今晚同场的朋友。",
+   "note": "Node invite block"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":209 我愿意向本场成员展示我的昵称和小人。照片默认仅自己可见，由我另行选择分享。",
+   "new": "我愿意向本场成员展示我的昵称和小人",
+   "note": "consent stays; identical to static entry consent"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":214 已招手，等待本人回应",
+   "new": "已招手，等待对方回应"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":217 已展开更多记录，自动刷新暂缓以保留位置。以下是上次读取的列表… ‖ 关系状态暂未更新。已提交的选择会保留…",
+   "new": "已暂停自动刷新。 ‖ 关系列表暂未更新。"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":218 互相愿意 / 才成为朋友 ‖ 已互相同意成为朋友 → ‖ 还没有互相确认的朋友。认识一个同场的人，从招个手开始。",
+   "new": "互相愿意 / 成为朋友 ‖ 已是朋友 → ‖ 还没有朋友，从招个手开始。"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":219 已屏蔽 · 点此查看取消",
+   "new": "已屏蔽 · 可取消"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":220 暂时没有待回应的招呼。对方不接受，就不会成为朋友。 ‖ 朋友只意味着双方明确愿意认识…",
+   "new": "暂时没有新招呼。 ‖ (remove)"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":223 照片可以只留给自己，也能分享给已入场的人。看到喜欢的视角… ‖ 我是主办方，开个房 ‖ reconnectLabel default 重新连接房间服务",
+   "new": "输入邀请码，走进今晚的现场。 ‖ 我是 Livehouse / 主办方，开个房 ‖ 重新连接",
+   "note": "Node entry panel"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":224 不需要现实姓名。先用默认造型，入场后随时换装。 ‖ consent 我知道这是新身份，无法凭同一昵称找回原来的照片和房间。 ‖ 身份保存在这个浏览器。清除浏览器数据会失去访问权…",
+   "new": "不用真名，入场后随时能换装。 ‖ 我知道新身份找不回原来的照片和房间 ‖ (remove)",
+   "note": "Node keeps 备份或恢复我的小人身份 below"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":225 主办方也以自己的身份加入，不会替其他观众入场。 ‖ eyebrow 主办方 / 开一个现场 ‖ 为活动开现场。创建成功后还需单独确认关联给社群… ‖ song suffix （原创示例） ‖ 可加入 24 人，入场窗口 24 小时。关闭后不再加入或上传…",
+   "new": "开房前，先做一个自己的小人。 ‖ Livehouse / 为这一场开房 ‖ 开好后，再把它关联到乐迷社群。 ‖ （原创） ‖ 最多 24 人，入场开放 24 小时。",
+   "note": "今晚叫什么名字？, 例如：月台 Livehouse and 开房并进入现场 unchanged"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":226 你已经加入，场景内容还没读出来。重新读取会继续这次入场… ‖ 重新读取这个现场",
+   "new": "已经入场，现场还没读出来。 ‖ 重新读取现场",
+   "note": "入场已确认 unchanged"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":229 这里只展示场次资料。加入后才会让同场成员看到你的昵称与小人。",
+   "new": "(remove)",
+   "note": "the join consent says it"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":230 长期音乐社群 ‖ 切换安静会结束本场待回应的招呼。已有朋友、私聊和照片权限不变…",
+   "new": "Livehouse 乐迷社群 ‖ 改为安静参与会结束待回应的招呼。",
+   "note": "room panel"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":231 长期音乐社群",
+   "new": "Livehouse 乐迷社群",
+   "note": "rooms panel"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":232 static alone 这里现在只有你。先保存自己的现场记忆… ‖ Node alone 不用等别人，先保存自己的现场记忆。想和同场朋友一起看… ‖ 你的小人在场景里。这里列出其他成员…",
+   "new": "现在只有你，先放一张照片吧。 ‖ 先放一张照片，再邀请同场的朋友。 ‖ (remove)",
+   "note": "static must not mention inviting (static-binding :387)"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":235 当前关系暂未更新，下面是上次确认的状态。",
+   "new": "关系状态暂未更新。"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":236 从这张现场照片认识作者。照片分享和成为朋友是两个独立选择。",
+   "new": "从这张照片认识作者。"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":237 这是你的小人。你决定和谁认识，也决定给谁看照片。",
+   "new": "这是你的小人。"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":238 你已屏蔽对方，不会收到后续招呼。",
+   "new": "你已屏蔽 TA。"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":241 上次确认你们互为朋友，当前状态需要重新读取。 ‖ 你们已经互相同意成为朋友。 ‖ 照片仍按原场次授权，不会因此开放私藏。",
+   "new": "上次确认你们是朋友，状态待更新。 ‖ 你们已经是朋友了。 ‖ (remove)"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":242 TA 选择安静参与，不接收新招呼。仍可查看 TA 已分享给本场的照片。",
+   "new": "TA 选择安静参与，不接新招呼。"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":243 你正在安静参与。想认识这位作者，可以先改为愿意打招呼…",
+   "new": "你正在安静参与，想招手先改一下。",
+   "note": "button 我愿意打招呼 follows"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":244 先招个手，对方愿意回应后，你们才会成为朋友。",
+   "new": "先招个手，TA 接受了就是朋友。"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":245 这一场已结束。已有的招呼仍可回应，新的招呼留给下一次同场。",
+   "new": "这一场已结束，下一场再招手吧。"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":247 这是本场房主。目前没有独立平台申诉渠道，仍可选择个人屏蔽或离场。",
+   "new": "这是本场房主。"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":249 不展示手机号或社交账号。没有公开聊天，也不会自动添加好友。",
+   "new": "(remove)"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":252 block confirm 会结束已有联系、待回应招呼和双方全部定向照片交换… ‖ 取消屏蔽不会自动恢复朋友。这个屏蔽只作用于现场系统…",
+   "new": "会结束你们的联系和照片交换，彼此不再可见。 ‖ (remove)"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":253 双方的朋友列表都会移除这份联系，也不能再发新私聊…",
+   "new": "移除后不能再私聊，聊天记录会保留。"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":254 不会恢复原来的朋友或招呼。将来仍需重新打招呼并由对方接受。 ‖ 如果双方仍在同一现场，小人与原本分享给本场的照片会重新可见… ‖ 屏蔽记录已经变化，请重新查看。",
+   "new": "不会恢复原来的朋友，需要重新招手。 ‖ (remove) ‖ 屏蔽状态已变化，请重新查看。"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":256 照片墙只按本场范围展示。未上墙的本人照片也能在此看到…",
+   "new": "(remove)",
+   "note": "static-binding :445 drops its assertion"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":257 会从照片墙撤下，取消涉及它的待回应申请，并结束所有已接受交换的双向在线访问。各自原件保留…",
+   "new": "会从照片墙撤下，并结束涉及它的交换。"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":258 离开房间仍能找回自己的照片。这里不会自动下载其他成员的照片。",
+   "new": "(remove)"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":261 看看 ${name} · 认识与否由彼此决定 ‖ 回到这张照片所属的现场后，才能再次选择分享… ‖ 照片墙和定向交换分开授权… ‖ 双方明确同意两张指定照片后，散场仍可在线查看…",
+   "new": "认识一下 ${name||'这位作者'} ‖ 回到照片所属的现场后才能分享。 ‖ (remove) ‖ (remove)"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":262 离场后不再读取其他人的照片墙分享。自己的照片会从墙上撤下…",
+   "new": "你的照片会从墙上撤下，已完成的交换还在。"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":263 已有成员仍可查看已获授权的照片。场次结束后不能恢复入场。",
+   "new": "结束后不能再入场或上传。"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":264 房间和你的照片列表都将不再显示它…已经下载的副本无法收回。",
+   "new": "移除后无法恢复，相关交换也会结束。"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":265 结果未确认的操作会保留原来的内容和目标… ‖ 下面的操作已明确失败，可以移除失败记录或稍后按原内容重试。草稿会保留。 ‖ · 未能保存恢复信息 ‖ 使用原操作重试",
+   "new": "重试不会重复提交。 ‖ 这些操作没有成功，可以重试或移除。 ‖ · 刷新后会丢失 ‖ 重试",
+   "note": "移除失败记录 and 停止等待 buttons unchanged"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":275 现场已切换，请重新选择要上传的照片",
+   "new": "现场已切换，请重新选照片"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":277 reconnectToast default 房间服务已连接",
+   "new": "已重新连接"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":278 confirm fallback 确定要重置示例数据吗？",
+   "new": "确定要重新开始吗？"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":284 现在愿意打招呼。是否招手，由你决定。",
+   "new": "现在可以招手了"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":286-290 选择已提交，等待更新关系状态 ‖ 招呼已送达，等待对方决定 ‖ 请求已处理，请查看最新状态 ‖ 选择已处理，请查看朋友列表 ‖ 屏蔽已提交，本页先隐藏对方 ‖ 已屏蔽，联系与待回应招呼已结束 ‖ 状态已更新，请以当前列表为准 ‖ 已移除这份联系 ‖ 当前仍有屏蔽记录，请以列表为准 ‖ 已取消屏蔽，不会自动恢复朋友",
+   "new": "已提交，等待更新 ‖ 招呼已送达，等待对方回应 ‖ 已处理，请看最新状态 ‖ 已回应，去朋友列表看看 ‖ 屏蔽已提交 ‖ 已屏蔽 ‖ 状态已更新 ‖ 已移除朋友 ‖ 仍在屏蔽中 ‖ 已取消屏蔽",
+   "note": "accept toast must not say 已经成为朋友"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":304 已收回这张照片的全部在线分享，原件保留",
+   "new": "已收回这张照片的全部分享"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":311 邀请网址已写入标签；读取后仍需本人明确加入 ‖ 未允许写入 NFC，可继续使用二维码或链接 ‖ 标签写入未完成，可重新选择写入",
+   "new": "邀请已写入标签 ‖ 没有 NFC 权限，可以用二维码或链接 ‖ 没写进标签，再试一次",
+   "note": "Node over https only"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":312 复制没有成功，可以选取上方邀请码",
+   "new": "没复制成功，可以手动复制邀请码"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":313 原操作已确认，可从我的现场查看结果",
+   "new": "已确认，可以在「我的现场」查看"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":314 失败记录已移除，照片草稿仍保留 ‖ 已停止等待。若请求已到达，停止等待不会撤销服务器操作。",
+   "new": "已移除，照片草稿还在 ‖ 已停止等待，已发出的操作不会撤回",
+   "note": "true in both builds; static deletes COPY_RULES stop-waiting"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":328 三维现场暂时没有打开 ‖ 入场、照片和同场名单仍可使用。你可以继续操作…",
+   "new": "三维现场暂时打不开 ‖ 照片和同场名单照常能用，也可以换个浏览器试试。"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":334 小人已保存，同场画面会在恢复连接后更新",
+   "new": "小人已保存，现场稍后更新"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":346 操作已收到，场次状态会在恢复连接后更新",
+   "new": "已收到，现场状态稍后更新"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":350 新场馆暂未载入，当前使用备用现场。",
+   "new": "场馆没载入，先用备用现场"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":355 confirm 用这个活动预填开房表单？现有开房草稿会被替换。",
+   "new": "用这场预告开房？当前开房草稿会被替换。"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":357 evidenceButton fallback 关于这个示例",
+   "new": "关于 Music Space"
+  },
+  {
+   "file": "web/event-room/app.js",
+   "current": ":359 nonHttpToast default 请通过本地房间服务打开，离线 HTML 无法建立真实房间",
+   "new": "请用网址打开 Music Space",
+   "note": "same value as static copy.js"
+  },
+  {
+   "file": "web/event-client/api.js",
+   "current": ":46 连接暂时没有回应。草稿仍在，可用原操作重试。 ‖ :49 连接已取消或超时。草稿和原操作仍在。 ‖ :51 照片服务返回了无法使用的内容。 ‖ :57 服务返回了无法读取的内容。请稍后用原操作重试。 ‖ :58 读取已取消。原操作仍可重试。",
+   "new": "网络没有回应，请稍后重试 ‖ 连接超时，请重试 ‖ 照片读取失败 ‖ 读取失败，请稍后重试 ‖ 读取已取消，可以重试"
+  },
+  {
+   "file": "web/event-client/controller.js",
+   "current": ":74 本机存储不可用或已满… ‖ :130 浏览器身份已变化，请重新载入以核对新会话。 ‖ :161 浏览器身份已丢失或改变… ‖ :162 请先连接并确认当前浏览器身份。不会自动替换旧身份。",
+   "new": "浏览器存储不可用，刷新可能丢草稿 ‖ 身份已变化，请刷新页面 ‖ 小人身份已变化，请刷新页面 ‖ 请先确认你的小人身份"
+  },
+  {
+   "file": "web/event-client/controller.js",
+   "current": ":248 回顾服务返回了无法核对的身份、现场或分页内容。 ‖ :313 社交服务返回了无法核对的身份或列表。 ‖ :356 社交服务返回了无法核对的成员资料。 ‖ :385 请先读取这条招呼、朋友或屏蔽记录。 ‖ :386 这条社交记录已变化，请重新确认。 ‖ :398 现场已经切换，请重新确认本次操作的目标。 ‖ :413 请先重试或处理尚未确认的操作。",
+   "new": "回顾读取失败，请重试 ‖ 关系列表读取失败，请重试 ‖ 成员资料读取失败，请重试 ‖ 请先刷新关系列表 ‖ 关系状态已变化，请刷新 ‖ 现场已切换，请重新选择 ‖ 还有未完成的操作，请先处理"
+  },
+  {
+   "file": "web/event-client/controller.js",
+   "current": ":421 身份已经改变。旧操作不能建立或替换当前身份… ‖ :425 此操作属于之前的身份，不能改用当前身份重试… ‖ :460 身份已经建立，但浏览器未能保存… ‖ :505 浏览器无法保存原操作的重试信息… ‖ :509 发送状态无法保存，请恢复本机存储后用原操作重试。 ‖ :514 身份已变化，原操作保留给原身份确认。 ‖ :515 已停止等待。原操作仍可重试。",
+   "new": "身份已变化，请刷新页面 ‖ 这是之前身份的操作，不能重试 ‖ 小人没能存进浏览器，请重试 ‖ 浏览器存储不可用，暂时不能发送 ‖ 浏览器存储不可用，请稍后重试 ‖ 身份已变化，请刷新页面 ‖ 已停止等待，可以重试"
+  },
+  {
+   "file": "web/event-client/controller.js",
+   "current": ":544 当前已有浏览器身份，请先连接核对，不会自动新建。 ‖ :545 旧身份不能凭昵称恢复… ‖ :546 请明确选择昵称和分身。 ‖ :551 身份资料版本已变化，请重新确认。 ‖ :556/:564 请确认向本场成员展示昵称和分身。 ‖ :563 现场已经切换，请先查看这个邀请码的预览。 ‖ :569 请明确选择仅自己可见或向本场成员展示。",
+   "new": "这个浏览器已经有小人了 ‖ 请先勾选确认，再新建小人 ‖ 请填写昵称并选好小人 ‖ 小人资料已变化，请刷新 ‖ 请先勾选同意展示昵称和小人 ‖ 现场已切换，请重新输入邀请码 ‖ 请选择照片给谁看",
+   "note": "分身 -> 小人"
+  },
+  {
+   "file": "web/event-client/controller.js",
+   "current": ":580 请先读取自己创建的现场并确认当前版本。 ‖ :585 请先进入双方都在的开放现场。 ‖ :586 双方都选择愿意打招呼后，才可发起新联系。 ‖ :591 这条招呼已经处理，请刷新后再确认。 ‖ :608 这张照片已不在当前现场回顾中。 ‖ :612 现场或可见范围已变化，旧照片不会展示。",
+   "new": "请先刷新这一场 ‖ 只能在同一场里招手 ‖ 双方都愿意打招呼才能招手 ‖ 这条招呼已处理过了 ‖ 这张照片已不在回顾里 ‖ 照片已变化，请刷新"
+  },
+  {
+   "file": "web/event-client/controller.js",
+   "current": ":629 请明确同意导出当前身份的加密备份。 ‖ :630/:640 备份只能绑定当前实际服务地址。/恢复只能使用当前实际服务地址。 ‖ :633/:635 …期间身份已变化，没有导出备份。 ‖ :639 请明确同意核对后替换本浏览器身份。 ‖ :643 已取消恢复，当前身份没有改变。 ‖ :645 服务没有认可这份身份，当前身份没有改变。 ‖ :646 浏览器身份已变化或恢复已取消，没有替换身份。 ‖ :653/:659 身份已变化，旧内容不会显示。/身份已变化，旧创作内容不再显示。",
+   "new": "请先勾选同意导出备份 ‖ 备份地址与当前网址不符 ‖ 身份已变化，未导出备份 ‖ 请先勾选同意替换身份 ‖ 已取消恢复 ‖ 这份备份已失效，身份未改变 ‖ 恢复未完成，身份未改变 ‖ 身份已变化，请刷新页面",
+   "note": "identity backup is Node only"
+  },
+  {
+   "file": "web/event-client/identity-backup.js",
+   "current": ":14 请选择12至128个字符的独特备份密码。 ‖ :15 当前浏览器没有可用的安全加密能力，不能导出或恢复身份。 ‖ :30 不支持这份备份的格式或加密参数。 ‖ :31 这份备份属于另一个服务地址。为保护身份，不会向当前地址提交凭据。 ‖ :51 备份密码不正确，或文件已经损坏。当前身份没有改变。",
+   "new": "备份密码需要12至128个字符 ‖ 浏览器缺少安全加密能力，无法备份 ‖ 不支持这份备份的格式 ‖ 这份备份属于另一个服务地址 ‖ 密码不正确或文件已损坏",
+   "note": ":11 备份只能绑定一个明确的房间服务来源。 stays (test /来源/)"
+  },
+  {
+   "file": "web/event-client/moderation-controller.js",
+   "current": ":28 浏览器身份已变化，请重新打开管理界面。/请先核对当前身份。 ‖ :29 无法保存原操作的重试记录，暂时不能提交。 ‖ :41/:53 重试记录无法保存，尚未发送。 ‖ :43 发送状态不能保存，请恢复存储。 ‖ :51 连接没有确认结果，请保留原操作。 ‖ :54 请明确确认向本场房主提交这项反馈。 ‖ :56 请明确确认将这个身份移出本场。 ‖ :57 请明确允许此身份重新申请。",
+   "new": "身份已变化，请重新打开 / 请先确认你的小人身份 ‖ 浏览器存储不可用，暂时不能提交 ‖ 浏览器存储不可用，尚未发送 ‖ 浏览器存储不可用，请稍后重试 ‖ 结果未确认，请稍后重试 ‖ 请先勾选确认提交反馈 ‖ 请先勾选确认移出 ‖ 请先勾选允许重新加入"
+  },
+  {
+   "file": "web/event-client/exchange-controller.js",
+   "current": ":16 请核对双方的两张照片及版本。 ‖ :17/:214 请明确同意预览…/请明确同意交换这两张指定照片。 ‖ :48 无法保存原操作的重试编号… ‖ :79/:80 浏览器身份已变化，请重新打开交换。/请先核对当前浏览器身份。 ‖ :150 身份已变化，原操作留给原身份确认。 ‖ :162/:171 原操作…不能保存，请恢复本机存储后重试。 ‖ :187 连接没有确认结果，可用原操作重试。 ‖ :202 已有待确认操作，请先确认原操作。 ‖ :205 重试编号无法保存，尚未发送。 ‖ :212 请重新读取并核对这项交换。 ‖ :219 当前尚无可确认的照片访问权限。 ‖ :228 身份或访问范围已变化，不展示旧照片。",
+   "new": "照片已变化，请重新选择 ‖ 请先勾选同意交换 ‖ 浏览器存储不可用，暂时不能发送 ‖ 身份已变化，请重新打开 / 请先确认你的小人身份 ‖ 身份已变化，请刷新页面 ‖ 浏览器存储不可用，请稍后重试 ‖ 结果未确认，可以重试 ‖ 还有待确认的操作，请先处理 ‖ 浏览器存储不可用，尚未发送 ‖ 交换状态已变化，请刷新 ‖ 还不能查看这两张照片 ‖ 照片已变化，请刷新"
+  },
+  {
+   "file": "web/event-client/chat-controller.js",
+   "current": ":36 本机存储不可用。草稿仍在… ‖ :95/:96 浏览器身份已改变，请重新打开对话。/请先确认当前浏览器身份。 ‖ :113 身份已切换。原操作仍待原身份确认，不代表已撤回。 ‖ :242 发送状态无法保存… ‖ :276 连接没有确认结果，可用原消息重试。 ‖ :291 已有待确认操作，请先用原操作重试。 ‖ :295 重试编号还不能保存… ‖ :300 当前不能发送新消息，请刷新好友状态。 ‖ :301 请输入1至1000个字的有效文字。 ‖ :312 结果未确认，必须保留原操作重试。",
+   "new": "浏览器存储不可用，暂时不能发送 ‖ 身份已变化，请重新打开对话 / 请先确认你的小人身份 ‖ 身份已变化，请刷新页面 ‖ 浏览器存储不可用，请稍后重试 ‖ 结果未确认，可以重发原消息 ‖ 还有待确认的消息，请先重试 ‖ 浏览器存储不可用，草稿还在 ‖ 现在不能发消息，请刷新 ‖ 请输入1至1000个字 ‖ 结果未确认，请重试"
+  },
+  {
+   "file": "web/avatar/three-scene.js",
+   "current": ":499 canvas print ORIGINAL FICTIONAL PRINT",
+   "new": "ORIGINAL PRINT",
+   "note": "gallery prints in the 3D venue"
+  }
+ ]
+}

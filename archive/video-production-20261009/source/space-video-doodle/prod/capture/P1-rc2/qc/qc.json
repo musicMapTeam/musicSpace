@@ -1,0 +1,1573 @@
+{
+ "P-01": {
+  "lossless_grabs": {
+   "frames": 513,
+   "unique": 292,
+   "identical_consecutive": 149,
+   "longest_identical_run_s": 0.15,
+   "identical_runs_over_1s": [],
+   "scroll_frames_checked": 0,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 0,
+   "info_identical_while_camera_settles": 0
+  },
+  "probe_errors": 0,
+  "copy_scan": {
+   "frames_scanned": 513,
+   "probes_per_frame": 2,
+   "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+   "frames_with_hits": 0,
+   "samples": []
+  },
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 513,
+   "duration_s": 8.55,
+   "bytes": 2773653,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 0.407,
+   "longest_static_s": 2.283,
+   "static_spans_over_1s": [
+    "6.283s+2.283s"
+   ]
+  },
+  "frame_count_matches_take": true,
+  "master_alignment": {
+   "samples": [
+    {
+     "clip_frame": 102,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.2,
+      "0": 0.2,
+      "1": 1.285
+     },
+     "discriminative": true
+    },
+    {
+     "clip_frame": 256,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.185,
+      "0": 0.187,
+      "1": 0.186
+     },
+     "discriminative": false
+    },
+    {
+     "clip_frame": 410,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.111,
+      "0": 0.109,
+      "1": 0.116
+     },
+     "discriminative": false
+    }
+   ],
+   "aligned": true,
+   "discriminative_samples": 1
+  },
+  "music_map_chip_on_screen_s": []
+ },
+ "P-02": {
+  "lossless_grabs": {
+   "frames": 659,
+   "unique": 507,
+   "identical_consecutive": 102,
+   "longest_identical_run_s": 0.15,
+   "identical_runs_over_1s": [],
+   "scroll_frames_checked": 50,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 3,
+   "info_identical_while_camera_settles": 31
+  },
+  "probe_errors": 0,
+  "copy_scan": {
+   "frames_scanned": 659,
+   "probes_per_frame": 2,
+   "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+   "frames_with_hits": 0,
+   "samples": []
+  },
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 659,
+   "duration_s": 10.983333,
+   "bytes": 2001156,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 1.274,
+   "longest_static_s": 1.033,
+   "static_spans_over_1s": [
+    "0.017s+1.033s"
+   ]
+  },
+  "frame_count_matches_take": true,
+  "master_alignment": {
+   "samples": [
+    {
+     "clip_frame": 131,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.183,
+      "0": 0.096,
+      "1": 0.164
+     },
+     "discriminative": false
+    },
+    {
+     "clip_frame": 329,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.193,
+      "0": 0.065,
+      "1": 0.237
+     },
+     "discriminative": false
+    },
+    {
+     "clip_frame": 527,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.08,
+      "0": 0.077,
+      "1": 0.076
+     },
+     "discriminative": false
+    }
+   ],
+   "aligned": true,
+   "discriminative_samples": 0
+  },
+  "music_map_chip_on_screen_s": []
+ },
+ "P-03": {
+  "lossless_grabs": {
+   "frames": 388,
+   "unique": 268,
+   "identical_consecutive": 88,
+   "longest_identical_run_s": 0.15,
+   "identical_runs_over_1s": [],
+   "scroll_frames_checked": 21,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 0,
+   "info_identical_while_camera_settles": 10
+  },
+  "probe_errors": 0,
+  "copy_scan": {
+   "frames_scanned": 388,
+   "probes_per_frame": 2,
+   "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+   "frames_with_hits": 0,
+   "samples": []
+  },
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 388,
+   "duration_s": 6.466667,
+   "bytes": 3633841,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 1.891,
+   "longest_static_s": 1.267,
+   "static_spans_over_1s": [
+    "1.283s+1.267s",
+    "2.95s+1.017s"
+   ]
+  },
+  "frame_count_matches_take": true,
+  "master_alignment": {
+   "samples": [
+    {
+     "clip_frame": 77,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.151,
+      "0": 0.135,
+      "1": 0.14
+     },
+     "discriminative": false
+    },
+    {
+     "clip_frame": 194,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.11,
+      "0": 0.11,
+      "1": 0.113
+     },
+     "discriminative": false
+    },
+    {
+     "clip_frame": 310,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 2.472,
+      "0": 0.325,
+      "1": 2.638
+     },
+     "discriminative": true
+    }
+   ],
+   "aligned": true,
+   "discriminative_samples": 1
+  },
+  "music_map_chip_on_screen_s": []
+ },
+ "P-04": {
+  "lossless_grabs": {
+   "frames": 411,
+   "unique": 193,
+   "identical_consecutive": 201,
+   "longest_identical_run_s": 0.15,
+   "identical_runs_over_1s": [],
+   "scroll_frames_checked": 0,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 0,
+   "info_identical_while_camera_settles": 0
+  },
+  "probe_errors": 0,
+  "copy_scan": {
+   "frames_scanned": 411,
+   "probes_per_frame": 2,
+   "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+   "frames_with_hits": 0,
+   "samples": []
+  },
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 411,
+   "duration_s": 6.85,
+   "bytes": 2607849,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 0.642,
+   "longest_static_s": 1.317,
+   "static_spans_over_1s": [
+    "5.55s+1.317s"
+   ]
+  },
+  "frame_count_matches_take": true,
+  "master_alignment": {
+   "samples": [
+    {
+     "clip_frame": 82,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.205,
+      "0": 0.202,
+      "1": 0.202
+     },
+     "discriminative": false
+    },
+    {
+     "clip_frame": 205,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.201,
+      "0": 0.201,
+      "1": 1.301
+     },
+     "discriminative": true
+    },
+    {
+     "clip_frame": 328,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 4.703,
+      "0": 0.268,
+      "1": 5.89
+     },
+     "discriminative": true
+    }
+   ],
+   "aligned": true,
+   "discriminative_samples": 2
+  },
+  "music_map_chip_on_screen_s": []
+ },
+ "P-05": {
+  "lossless_grabs": {
+   "frames": 456,
+   "unique": 323,
+   "identical_consecutive": 62,
+   "longest_identical_run_s": 0.15,
+   "identical_runs_over_1s": [],
+   "scroll_frames_checked": 26,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 1,
+   "info_identical_while_camera_settles": 0
+  },
+  "probe_errors": 0,
+  "copy_scan": {
+   "frames_scanned": 456,
+   "probes_per_frame": 2,
+   "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+   "frames_with_hits": 0,
+   "samples": []
+  },
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 456,
+   "duration_s": 7.6,
+   "bytes": 1737578,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 1.36,
+   "longest_static_s": 3.4,
+   "static_spans_over_1s": [
+    "1.3s+3.4s",
+    "5.317s+2.3s"
+   ]
+  },
+  "frame_count_matches_take": true,
+  "master_alignment": {
+   "samples": [
+    {
+     "clip_frame": 91,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.124,
+      "0": 0.125,
+      "1": 0.125
+     },
+     "discriminative": false
+    },
+    {
+     "clip_frame": 228,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.124,
+      "0": 0.124,
+      "1": 0.124
+     },
+     "discriminative": false
+    },
+    {
+     "clip_frame": 364,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.098,
+      "0": 0.098,
+      "1": 0.098
+     },
+     "discriminative": false
+    }
+   ],
+   "aligned": true,
+   "discriminative_samples": 0
+  },
+  "music_map_chip_on_screen_s": []
+ },
+ "P-07": {
+  "lossless_grabs": {
+   "frames": 196,
+   "unique": 95,
+   "identical_consecutive": 71,
+   "longest_identical_run_s": 0.183,
+   "identical_runs_over_1s": [],
+   "scroll_frames_checked": 0,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 0,
+   "info_identical_while_camera_settles": 0
+  },
+  "probe_errors": 0,
+  "copy_scan": {
+   "frames_scanned": 196,
+   "probes_per_frame": 2,
+   "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+   "frames_with_hits": 0,
+   "samples": []
+  },
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 196,
+   "duration_s": 3.266667,
+   "bytes": 486143,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 0.352,
+   "longest_static_s": 1.967,
+   "static_spans_over_1s": [
+    "0.017s+1.0s",
+    "1.317s+1.967s"
+   ]
+  },
+  "frame_count_matches_take": true,
+  "master_alignment": {
+   "samples": [
+    {
+     "clip_frame": 39,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.117,
+      "0": 0.115,
+      "1": 0.117
+     },
+     "discriminative": false
+    },
+    {
+     "clip_frame": 98,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.15,
+      "0": 0.148,
+      "1": 0.148
+     },
+     "discriminative": false
+    },
+    {
+     "clip_frame": 156,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.147,
+      "0": 0.147,
+      "1": 0.149
+     },
+     "discriminative": false
+    }
+   ],
+   "aligned": true,
+   "discriminative_samples": 0
+  },
+  "music_map_chip_on_screen_s": []
+ },
+ "P-08": {
+  "lossless_grabs": {
+   "frames": 856,
+   "unique": 477,
+   "identical_consecutive": 261,
+   "longest_identical_run_s": 0.467,
+   "identical_runs_over_1s": [],
+   "scroll_frames_checked": 206,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 20,
+   "info_identical_while_camera_settles": 0
+  },
+  "probe_errors": 0,
+  "copy_scan": {
+   "frames_scanned": 856,
+   "probes_per_frame": 2,
+   "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+   "frames_with_hits": 0,
+   "samples": []
+  },
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 856,
+   "duration_s": 14.266667,
+   "bytes": 3217845,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 4.393,
+   "longest_static_s": 2.633,
+   "static_spans_over_1s": [
+    "0.017s+1.0s",
+    "1.317s+2.633s",
+    "4.9s+1.367s",
+    "7.3s+1.733s",
+    "9.917s+1.217s",
+    "12.217s+2.067s"
+   ]
+  },
+  "frame_count_matches_take": true,
+  "master_alignment": {
+   "samples": [
+    {
+     "clip_frame": 171,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.142,
+      "0": 0.143,
+      "1": 0.143
+     },
+     "discriminative": false
+    },
+    {
+     "clip_frame": 428,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 9.927,
+      "0": 0.142,
+      "1": 7.323
+     },
+     "discriminative": true
+    },
+    {
+     "clip_frame": 684,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 15.016,
+      "0": 0.123,
+      "1": 16.322
+     },
+     "discriminative": true
+    }
+   ],
+   "aligned": true,
+   "discriminative_samples": 2
+  },
+  "music_map_chip_on_screen_s": []
+ },
+ "P-09": {
+  "lossless_grabs": {
+   "frames": 431,
+   "unique": 171,
+   "identical_consecutive": 200,
+   "longest_identical_run_s": 0.283,
+   "identical_runs_over_1s": [],
+   "scroll_frames_checked": 0,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 0,
+   "info_identical_while_camera_settles": 0
+  },
+  "probe_errors": 0,
+  "copy_scan": {
+   "frames_scanned": 431,
+   "probes_per_frame": 2,
+   "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+   "frames_with_hits": 0,
+   "samples": []
+  },
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 431,
+   "duration_s": 7.183333,
+   "bytes": 987197,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 0.379,
+   "longest_static_s": 4.333,
+   "static_spans_over_1s": [
+    "0.017s+1.033s",
+    "1.133s+4.333s",
+    "6.033s+1.167s"
+   ]
+  },
+  "frame_count_matches_take": true,
+  "master_alignment": {
+   "samples": [
+    {
+     "clip_frame": 86,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.092,
+      "0": 0.091,
+      "1": 0.091
+     },
+     "discriminative": false
+    },
+    {
+     "clip_frame": 215,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.089,
+      "0": 0.089,
+      "1": 0.089
+     },
+     "discriminative": false
+    },
+    {
+     "clip_frame": 344,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.116,
+      "0": 0.106,
+      "1": 0.104
+     },
+     "discriminative": false
+    }
+   ],
+   "aligned": true,
+   "discriminative_samples": 0
+  },
+  "music_map_chip_on_screen_s": []
+ },
+ "P-10": {
+  "lossless_grabs": {
+   "frames": 394,
+   "unique": 147,
+   "identical_consecutive": 156,
+   "longest_identical_run_s": 0.283,
+   "identical_runs_over_1s": [],
+   "scroll_frames_checked": 0,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 0,
+   "info_identical_while_camera_settles": 0
+  },
+  "probe_errors": 0,
+  "copy_scan": {
+   "frames_scanned": 394,
+   "probes_per_frame": 2,
+   "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+   "frames_with_hits": 0,
+   "samples": []
+  },
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 394,
+   "duration_s": 6.566667,
+   "bytes": 1146260,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 0.423,
+   "longest_static_s": 3.783,
+   "static_spans_over_1s": [
+    "1.283s+3.783s"
+   ]
+  },
+  "frame_count_matches_take": true,
+  "master_alignment": {
+   "samples": [
+    {
+     "clip_frame": 78,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.19,
+      "0": 0.093,
+      "1": 0.163
+     },
+     "discriminative": false
+    },
+    {
+     "clip_frame": 197,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.085,
+      "0": 0.084,
+      "1": 0.085
+     },
+     "discriminative": false
+    },
+    {
+     "clip_frame": 315,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 4.286,
+      "0": 0.172,
+      "1": 4.185
+     },
+     "discriminative": true
+    }
+   ],
+   "aligned": true,
+   "discriminative_samples": 1
+  },
+  "music_map_chip_on_screen_s": []
+ },
+ "P-11": {
+  "lossless_grabs": {
+   "frames": 536,
+   "unique": 98,
+   "identical_consecutive": 287,
+   "longest_identical_run_s": 0.283,
+   "identical_runs_over_1s": [],
+   "scroll_frames_checked": 0,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 0,
+   "info_identical_while_camera_settles": 0
+  },
+  "probe_errors": 0,
+  "copy_scan": {
+   "frames_scanned": 536,
+   "probes_per_frame": 2,
+   "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+   "frames_with_hits": 0,
+   "samples": []
+  },
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 536,
+   "duration_s": 8.933333,
+   "bytes": 1223824,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 0.181,
+   "longest_static_s": 4.867,
+   "static_spans_over_1s": [
+    "0.017s+3.417s",
+    "4.083s+4.867s"
+   ]
+  },
+  "frame_count_matches_take": true,
+  "master_alignment": {
+   "samples": [
+    {
+     "clip_frame": 107,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.091,
+      "0": 0.09,
+      "1": 0.09
+     },
+     "discriminative": false
+    },
+    {
+     "clip_frame": 268,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.104,
+      "0": 0.103,
+      "1": 0.103
+     },
+     "discriminative": false
+    },
+    {
+     "clip_frame": 428,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.103,
+      "0": 0.103,
+      "1": 0.103
+     },
+     "discriminative": false
+    }
+   ],
+   "aligned": true,
+   "discriminative_samples": 0
+  },
+  "music_map_chip_on_screen_s": []
+ },
+ "P-12a": {
+  "lossless_grabs": {
+   "frames": 398,
+   "unique": 222,
+   "identical_consecutive": 144,
+   "longest_identical_run_s": 0.283,
+   "identical_runs_over_1s": [],
+   "scroll_frames_checked": 0,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 0,
+   "info_identical_while_camera_settles": 0
+  },
+  "probe_errors": 0,
+  "copy_scan": {
+   "frames_scanned": 398,
+   "probes_per_frame": 2,
+   "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+   "frames_with_hits": 0,
+   "samples": []
+  },
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 398,
+   "duration_s": 6.633333,
+   "bytes": 4338130,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 2.144,
+   "longest_static_s": 1.017,
+   "static_spans_over_1s": [
+    "0.017s+1.017s"
+   ]
+  },
+  "frame_count_matches_take": true,
+  "master_alignment": {
+   "samples": [
+    {
+     "clip_frame": 79,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 1.499,
+      "0": 0.178,
+      "1": 0.183
+     },
+     "discriminative": true
+    },
+    {
+     "clip_frame": 199,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.154,
+      "0": 0.154,
+      "1": 0.154
+     },
+     "discriminative": false
+    },
+    {
+     "clip_frame": 318,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 4.075,
+      "0": 0.335,
+      "1": 2.787
+     },
+     "discriminative": true
+    }
+   ],
+   "aligned": true,
+   "discriminative_samples": 2
+  },
+  "music_map_chip_on_screen_s": []
+ },
+ "P-12": {
+  "lossless_grabs": {
+   "frames": 548,
+   "unique": 413,
+   "identical_consecutive": 76,
+   "longest_identical_run_s": 0.15,
+   "identical_runs_over_1s": [],
+   "scroll_frames_checked": 0,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 0,
+   "info_identical_while_camera_settles": 0
+  },
+  "probe_errors": 0,
+  "copy_scan": {
+   "frames_scanned": 548,
+   "probes_per_frame": 2,
+   "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+   "frames_with_hits": 0,
+   "samples": []
+  },
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 548,
+   "duration_s": 9.133333,
+   "bytes": 4407869,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 1.322,
+   "longest_static_s": 0.15,
+   "static_spans_over_1s": []
+  },
+  "frame_count_matches_take": true,
+  "master_alignment": {
+   "samples": [
+    {
+     "clip_frame": 109,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 11.314,
+      "0": 0.387,
+      "1": 10.488
+     },
+     "discriminative": true
+    },
+    {
+     "clip_frame": 274,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.67,
+      "0": 0.167,
+      "1": 0.167
+     },
+     "discriminative": true
+    },
+    {
+     "clip_frame": 438,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.149,
+      "0": 0.148,
+      "1": 0.148
+     },
+     "discriminative": false
+    }
+   ],
+   "aligned": true,
+   "discriminative_samples": 2
+  },
+  "music_map_chip_on_screen_s": []
+ },
+ "P-13": {
+  "lossless_grabs": {
+   "frames": 647,
+   "unique": 188,
+   "identical_consecutive": 305,
+   "longest_identical_run_s": 0.6,
+   "identical_runs_over_1s": [],
+   "scroll_frames_checked": 0,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 0,
+   "info_identical_while_camera_settles": 0
+  },
+  "probe_errors": 0,
+  "copy_scan": {
+   "frames_scanned": 647,
+   "probes_per_frame": 2,
+   "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+   "frames_with_hits": 0,
+   "samples": []
+  },
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 647,
+   "duration_s": 10.783333,
+   "bytes": 1235178,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 0.231,
+   "longest_static_s": 4.1,
+   "static_spans_over_1s": [
+    "1.283s+1.083s",
+    "2.583s+1.9s",
+    "4.583s+4.1s",
+    "8.683s+2.117s"
+   ]
+  },
+  "frame_count_matches_take": true,
+  "master_alignment": {
+   "samples": [
+    {
+     "clip_frame": 129,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.049,
+      "0": 0.049,
+      "1": 0.049
+     },
+     "discriminative": false
+    },
+    {
+     "clip_frame": 323,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.035,
+      "0": 0.035,
+      "1": 0.035
+     },
+     "discriminative": false
+    },
+    {
+     "clip_frame": 517,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.038,
+      "0": 0.038,
+      "1": 0.038
+     },
+     "discriminative": false
+    }
+   ],
+   "aligned": true,
+   "discriminative_samples": 0
+  },
+  "music_map_chip_on_screen_s": []
+ },
+ "P-14": {
+  "lossless_grabs": {
+   "frames": 540,
+   "unique": 368,
+   "identical_consecutive": 124,
+   "longest_identical_run_s": 0.367,
+   "identical_runs_over_1s": [],
+   "scroll_frames_checked": 84,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 7,
+   "info_identical_while_camera_settles": 0
+  },
+  "probe_errors": 0,
+  "copy_scan": {
+   "frames_scanned": 540,
+   "probes_per_frame": 2,
+   "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+   "frames_with_hits": 0,
+   "samples": []
+  },
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 540,
+   "duration_s": 9.0,
+   "bytes": 3082718,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 1.358,
+   "longest_static_s": 1.0,
+   "static_spans_over_1s": [
+    "0.017s+1.0s"
+   ]
+  },
+  "frame_count_matches_take": true,
+  "master_alignment": {
+   "samples": [
+    {
+     "clip_frame": 108,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.148,
+      "0": 0.149,
+      "1": 0.149
+     },
+     "discriminative": false
+    },
+    {
+     "clip_frame": 270,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.173,
+      "0": 0.166,
+      "1": 0.173
+     },
+     "discriminative": false
+    },
+    {
+     "clip_frame": 432,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.137,
+      "0": 0.137,
+      "1": 0.139
+     },
+     "discriminative": false
+    }
+   ],
+   "aligned": true,
+   "discriminative_samples": 0
+  },
+  "music_map_chip_on_screen_s": [
+   [
+    2.617,
+    9.0
+   ]
+  ]
+ },
+ "P-15": {
+  "lossless_grabs": {
+   "frames": 605,
+   "unique": 338,
+   "identical_consecutive": 142,
+   "longest_identical_run_s": 0.2,
+   "identical_runs_over_1s": [],
+   "scroll_frames_checked": 51,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 1,
+   "info_identical_while_camera_settles": 0
+  },
+  "probe_errors": 0,
+  "copy_scan": {
+   "frames_scanned": 605,
+   "probes_per_frame": 2,
+   "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+   "frames_with_hits": 0,
+   "samples": []
+  },
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 605,
+   "duration_s": 10.083333,
+   "bytes": 2145946,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 1.71,
+   "longest_static_s": 3.05,
+   "static_spans_over_1s": [
+    "3.133s+1.483s",
+    "7.05s+3.05s"
+   ]
+  },
+  "frame_count_matches_take": true,
+  "master_alignment": {
+   "samples": [
+    {
+     "clip_frame": 121,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.188,
+      "0": 0.188,
+      "1": 0.199
+     },
+     "discriminative": false
+    },
+    {
+     "clip_frame": 302,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.105,
+      "0": 0.101,
+      "1": 0.101
+     },
+     "discriminative": false
+    },
+    {
+     "clip_frame": 484,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.103,
+      "0": 0.103,
+      "1": 0.106
+     },
+     "discriminative": false
+    }
+   ],
+   "aligned": true,
+   "discriminative_samples": 0
+  },
+  "music_map_chip_on_screen_s": [
+   [
+    0.0,
+    2.117
+   ]
+  ]
+ },
+ "P-16": {
+  "lossless_grabs": {
+   "frames": 894,
+   "unique": 407,
+   "identical_consecutive": 381,
+   "longest_identical_run_s": 0.2,
+   "identical_runs_over_1s": [],
+   "scroll_frames_checked": 0,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 0,
+   "info_identical_while_camera_settles": 0
+  },
+  "probe_errors": 0,
+  "copy_scan": {
+   "frames_scanned": 894,
+   "probes_per_frame": 2,
+   "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+   "frames_with_hits": 0,
+   "samples": []
+  },
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 894,
+   "duration_s": 14.9,
+   "bytes": 3968893,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 0.518,
+   "longest_static_s": 2.217,
+   "static_spans_over_1s": [
+    "0.017s+1.017s",
+    "12.7s+2.217s"
+   ]
+  },
+  "frame_count_matches_take": true,
+  "master_alignment": {
+   "samples": [
+    {
+     "clip_frame": 178,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.247,
+      "0": 0.169,
+      "1": 0.211
+     },
+     "discriminative": false
+    },
+    {
+     "clip_frame": 447,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 47.651,
+      "0": 0.112,
+      "1": 0.114
+     },
+     "discriminative": true
+    },
+    {
+     "clip_frame": 715,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.125,
+      "0": 0.125,
+      "1": 0.125
+     },
+     "discriminative": false
+    }
+   ],
+   "aligned": true,
+   "discriminative_samples": 1
+  },
+  "music_map_chip_on_screen_s": [
+   [
+    1.05,
+    1.9
+   ]
+  ]
+ },
+ "P-17": {
+  "lossless_grabs": {
+   "frames": 474,
+   "unique": 274,
+   "identical_consecutive": 148,
+   "longest_identical_run_s": 0.15,
+   "identical_runs_over_1s": [],
+   "scroll_frames_checked": 0,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 0,
+   "info_identical_while_camera_settles": 0
+  },
+  "probe_errors": 0,
+  "copy_scan": {
+   "frames_scanned": 474,
+   "probes_per_frame": 2,
+   "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+   "frames_with_hits": 0,
+   "samples": []
+  },
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 474,
+   "duration_s": 7.9,
+   "bytes": 2507584,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 0.453,
+   "longest_static_s": 0.15,
+   "static_spans_over_1s": []
+  },
+  "frame_count_matches_take": true,
+  "master_alignment": {
+   "samples": [
+    {
+     "clip_frame": 94,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.187,
+      "0": 0.181,
+      "1": 0.187
+     },
+     "discriminative": false
+    },
+    {
+     "clip_frame": 237,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.153,
+      "0": 0.15,
+      "1": 0.153
+     },
+     "discriminative": false
+    },
+    {
+     "clip_frame": 379,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.101,
+      "0": 0.101,
+      "1": 0.101
+     },
+     "discriminative": false
+    }
+   ],
+   "aligned": true,
+   "discriminative_samples": 0
+  },
+  "music_map_chip_on_screen_s": [
+   [
+    0.0,
+    1.717
+   ],
+   [
+    3.183,
+    5.5
+   ]
+  ]
+ },
+ "P-18": {
+  "lossless_grabs": {
+   "frames": 413,
+   "unique": 327,
+   "identical_consecutive": 56,
+   "longest_identical_run_s": 0.15,
+   "identical_runs_over_1s": [],
+   "scroll_frames_checked": 0,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 0,
+   "info_identical_while_camera_settles": 0
+  },
+  "probe_errors": 0,
+  "copy_scan": {
+   "frames_scanned": 413,
+   "probes_per_frame": 2,
+   "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+   "frames_with_hits": 0,
+   "samples": []
+  },
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 413,
+   "duration_s": 6.883333,
+   "bytes": 3604345,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 1.847,
+   "longest_static_s": 0.15,
+   "static_spans_over_1s": []
+  },
+  "frame_count_matches_take": true,
+  "master_alignment": {
+   "samples": [
+    {
+     "clip_frame": 82,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 10.066,
+      "0": 0.417,
+      "1": 9.536
+     },
+     "discriminative": true
+    },
+    {
+     "clip_frame": 206,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.172,
+      "0": 0.171,
+      "1": 0.663
+     },
+     "discriminative": true
+    },
+    {
+     "clip_frame": 330,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.165,
+      "0": 0.165,
+      "1": 0.166
+     },
+     "discriminative": false
+    }
+   ],
+   "aligned": true,
+   "discriminative_samples": 2
+  },
+  "music_map_chip_on_screen_s": []
+ },
+ "P-19": {
+  "lossless_grabs": {
+   "frames": 646,
+   "unique": 378,
+   "identical_consecutive": 230,
+   "longest_identical_run_s": 0.9,
+   "identical_runs_over_1s": [],
+   "scroll_frames_checked": 92,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 13,
+   "info_identical_while_camera_settles": 0
+  },
+  "probe_errors": 0,
+  "copy_scan": {
+   "frames_scanned": 646,
+   "probes_per_frame": 2,
+   "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+   "frames_with_hits": 0,
+   "samples": []
+  },
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 646,
+   "duration_s": 10.766667,
+   "bytes": 2178995,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 2.929,
+   "longest_static_s": 1.867,
+   "static_spans_over_1s": [
+    "0.017s+1.0s",
+    "2.7s+1.483s",
+    "6.7s+1.433s",
+    "8.917s+1.867s"
+   ]
+  },
+  "frame_count_matches_take": true,
+  "master_alignment": {
+   "samples": [
+    {
+     "clip_frame": 129,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 12.051,
+      "0": 0.116,
+      "1": 10.913
+     },
+     "discriminative": true
+    },
+    {
+     "clip_frame": 323,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.125,
+      "0": 0.114,
+      "1": 0.125
+     },
+     "discriminative": false
+    },
+    {
+     "clip_frame": 516,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 29.395,
+      "0": 0.2,
+      "1": 26.789
+     },
+     "discriminative": true
+    }
+   ],
+   "aligned": true,
+   "discriminative_samples": 2
+  },
+  "music_map_chip_on_screen_s": []
+ },
+ "P-20": {
+  "lossless_grabs": {
+   "frames": 393,
+   "unique": 195,
+   "identical_consecutive": 173,
+   "longest_identical_run_s": 1.083,
+   "identical_runs_over_1s": [
+    "2.667s+1.083s"
+   ],
+   "scroll_frames_checked": 64,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 13,
+   "info_identical_while_camera_settles": 0
+  },
+  "probe_errors": 0,
+  "copy_scan": {
+   "frames_scanned": 393,
+   "probes_per_frame": 2,
+   "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+   "frames_with_hits": 0,
+   "samples": []
+  },
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 393,
+   "duration_s": 6.55,
+   "bytes": 1802919,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 3.361,
+   "longest_static_s": 2.467,
+   "static_spans_over_1s": [
+    "1.283s+2.467s",
+    "4.967s+1.6s"
+   ]
+  },
+  "frame_count_matches_take": true,
+  "master_alignment": {
+   "samples": [
+    {
+     "clip_frame": 78,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.142,
+      "0": 0.125,
+      "1": 0.139
+     },
+     "discriminative": false
+    },
+    {
+     "clip_frame": 196,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.127,
+      "0": 0.125,
+      "1": 0.126
+     },
+     "discriminative": false
+    },
+    {
+     "clip_frame": 314,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.076,
+      "0": 0.076,
+      "1": 0.076
+     },
+     "discriminative": false
+    }
+   ],
+   "aligned": true,
+   "discriminative_samples": 0
+  },
+  "music_map_chip_on_screen_s": []
+ },
+ "P-SP1": {
+  "lossless_grabs": {
+   "frames": 304,
+   "unique": 133,
+   "identical_consecutive": 149,
+   "longest_identical_run_s": 0.15,
+   "identical_runs_over_1s": [],
+   "scroll_frames_checked": 0,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 0,
+   "info_identical_while_camera_settles": 0
+  },
+  "probe_errors": 0,
+  "copy_scan": {
+   "frames_scanned": 304,
+   "probes_per_frame": 2,
+   "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+   "frames_with_hits": 0,
+   "samples": []
+  },
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 304,
+   "duration_s": 5.066667,
+   "bytes": 2689155,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 3.262,
+   "longest_static_s": 0.15,
+   "static_spans_over_1s": []
+  },
+  "frame_count_matches_take": true,
+  "master_alignment": {
+   "samples": [
+    {
+     "clip_frame": 60,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 2.013,
+      "0": 0.252,
+      "1": 0.567
+     },
+     "discriminative": true
+    },
+    {
+     "clip_frame": 152,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.198,
+      "0": 0.198,
+      "1": 0.196
+     },
+     "discriminative": false
+    },
+    {
+     "clip_frame": 243,
+     "mean_abs_diff_vs_master_offset": {
+      "-1": 0.18,
+      "0": 0.18,
+      "1": 0.18
+     },
+     "discriminative": false
+    }
+   ],
+   "aligned": true,
+   "discriminative_samples": 1
+  },
+  "music_map_chip_on_screen_s": []
+ }
+}

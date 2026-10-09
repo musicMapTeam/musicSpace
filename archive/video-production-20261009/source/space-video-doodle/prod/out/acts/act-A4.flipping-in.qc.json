@@ -1,0 +1,332 @@
+{
+ "video": "/private/tmp/space-video-doodle/prod/out/acts/act-A4.flipping-in.mp4",
+ "range_s": [
+  78.05,
+  105.36666666666666
+ ],
+ "full": false,
+ "overall": "WARN",
+ "checks": [
+  {
+   "check": "container.video",
+   "status": "PASS",
+   "msg": "h264 High 1920x1080 60/1 yuv420p bt709/bt709/bt709/tv"
+  },
+  {
+   "check": "container.audio",
+   "status": "PASS",
+   "msg": "aac LC 48000 Hz 2 ch 257 kb/s"
+  },
+  {
+   "check": "duration",
+   "status": "PASS",
+   "msg": "27.317 s (range 27.317 s)",
+   "seconds": 27.316667
+  },
+  {
+   "check": "size",
+   "status": "PASS",
+   "msg": "35.4 MB (10.4 Mb/s)",
+   "mb": 35.4
+  },
+  {
+   "check": "loudness",
+   "status": "PASS",
+   "msg": "I -16.0 LUFS (target -16), LRA 4.1 LU (act excerpt: informational; the full cut is normalised)",
+   "I": -16.0,
+   "LRA": 4.1
+  },
+  {
+   "check": "true_peak",
+   "status": "PASS",
+   "msg": "-1.4 dBTP (limit -1.0)",
+   "TP": -1.4
+  },
+  {
+   "check": "silence",
+   "status": "PASS",
+   "msg": "0 silent stretches over 0.8 s"
+  },
+  {
+   "check": "frozen",
+   "status": "PASS",
+   "msg": "0 frozen stretches over 2.5 s"
+  },
+  {
+   "check": "black",
+   "status": "PASS",
+   "msg": "0 black stretches over 0.4 s"
+  },
+  {
+   "check": "motion",
+   "status": "PASS",
+   "msg": "longest low-motion stretch 0.07 s at 0.62 s (mean |dI| < 0.15 on 160x90), mean motion 2.72",
+   "longest_s": 0.07,
+   "at_s": 0.62
+  },
+  {
+   "check": "event_gaps",
+   "status": "PASS",
+   "msg": "99 visual events, 3.62/s; longest gap 0.98 s after 87.81 s (limit 2.5)",
+   "longest_gap_s": 0.976
+  },
+  {
+   "check": "beat_alignment",
+   "status": "PASS",
+   "msg": "99/99 visual events on the 16th grid (<= half a frame), 94/99 on 8ths; frames quantise by <= 8.3 ms",
+   "off_grid": []
+  },
+  {
+   "check": "reading_time",
+   "status": "WARN",
+   "msg": "23 lines, measured (geometry samples every 50 ms); titles/notes failing 0, labels/fine short 1",
+   "failing": [],
+   "short_labels": [
+    "「不到 1 分钟」 label 0.80s < 1.25s"
+   ],
+   "lines": [
+    {
+     "text": "照片为 AI 生成的示例图",
+     "kind": "fine",
+     "units": 10,
+     "on_s": 25.85,
+     "need_s": 2.5,
+     "ok": true
+    },
+    {
+     "text": "你拍人海，",
+     "kind": "title",
+     "units": 4,
+     "on_s": 3.9,
+     "need_s": 1.0,
+     "ok": true
+    },
+    {
+     "text": "TA 拍舞台。",
+     "kind": "title",
+     "units": 4,
+     "on_s": 2.9,
+     "need_s": 1.0,
+     "ok": true
+    },
+    {
+     "text": "21:48",
+     "kind": "label",
+     "units": 1,
+     "on_s": 1.95,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "21:47",
+     "kind": "label",
+     "units": 1,
+     "on_s": 1.45,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "不到 1 分钟",
+     "kind": "label",
+     "units": 5,
+     "on_s": 0.8,
+     "need_s": 1.25,
+     "ok": false
+    },
+    {
+     "text": "同一刻的",
+     "kind": "title",
+     "units": 4,
+     "on_s": 3.9,
+     "need_s": 1.0,
+     "ok": true
+    },
+    {
+     "text": "另一面。",
+     "kind": "title",
+     "units": 3,
+     "on_s": 2.9,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "用我拍下的，",
+     "kind": "title",
+     "units": 5,
+     "on_s": 1.95,
+     "need_s": 1.25,
+     "ok": true
+    },
+    {
+     "text": "换 TA 看到的。",
+     "kind": "title",
+     "units": 5,
+     "on_s": 1.95,
+     "need_s": 1.25,
+     "ok": true
+    },
+    {
+     "text": "换不换，",
+     "kind": "title",
+     "units": 3,
+     "on_s": 1.95,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "你们俩说了算。",
+     "kind": "title",
+     "units": 6,
+     "on_s": 1.95,
+     "need_s": 1.5,
+     "ok": true
+    },
+    {
+     "text": "我同意，",
+     "kind": "title",
+     "units": 3,
+     "on_s": 1.95,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "交给 TA 确认。",
+     "kind": "title",
+     "units": 5,
+     "on_s": 2.0,
+     "need_s": 1.25,
+     "ok": true
+    },
+    {
+     "text": "还要 TA\n也同意。",
+     "kind": "title",
+     "units": 6,
+     "on_s": 2.0,
+     "need_s": 1.5,
+     "ok": true
+    },
+    {
+     "text": "双方同意，",
+     "kind": "title",
+     "units": 4,
+     "on_s": 3.9,
+     "need_s": 1.0,
+     "ok": true
+    },
+    {
+     "text": "才交换。",
+     "kind": "title",
+     "units": 3,
+     "on_s": 2.95,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "交换已接受",
+     "kind": "title",
+     "units": 5,
+     "on_s": 1.85,
+     "need_s": 1.25,
+     "ok": true
+    },
+    {
+     "text": "双方已明确同意",
+     "kind": "label",
+     "units": 7,
+     "on_s": 2.15,
+     "need_s": 1.75,
+     "ok": true
+    },
+    {
+     "text": "同一刻，",
+     "kind": "title",
+     "units": 3,
+     "on_s": 2.9,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "两面\n都齐了。",
+     "kind": "title",
+     "units": 5,
+     "on_s": 1.95,
+     "need_s": 1.25,
+     "ok": true
+    },
+    {
+     "text": "随时可以撤销。",
+     "kind": "title",
+     "units": 6,
+     "on_s": 2.0,
+     "need_s": 1.5,
+     "ok": true
+    },
+    {
+     "text": "然后呢？",
+     "kind": "title",
+     "units": 3,
+     "on_s": 1.85,
+     "need_s": 0.8,
+     "ok": true
+    }
+   ]
+  },
+  {
+   "check": "safe_area",
+   "status": "WARN",
+   "msg": "0 texts outside the 5% title-safe area for > 0.5 s, 1 only briefly (entrances, camera moves)",
+   "sustained": [],
+   "brief": [
+    "「你拍人海，」 0.20s from 78.05s box [102, 35, 1164, 386]"
+   ]
+  },
+  {
+   "check": "glyphs",
+   "status": "PASS",
+   "msg": "96 font/character pairs; 0 drawn by a system font",
+   "fonts": {
+    "hand": [
+     "Doodle Hand"
+    ],
+    "digits": [
+     "Smiley Sans Oblique"
+    ],
+    "display": [
+     "Doodle Display",
+     "ZCOOL QingKe HuangYou"
+    ],
+    "marker": [
+     "Doodle Marker"
+    ]
+   },
+   "fallback": []
+  },
+  {
+   "check": "qr",
+   "status": "PASS",
+   "msg": "no end card in range (not applicable)"
+  },
+  {
+   "check": "placeholders",
+   "status": "PASS",
+   "msg": "no placeholders",
+   "placeholders": []
+  },
+  {
+   "check": "scene_warnings",
+   "status": "PASS",
+   "msg": "0 warnings"
+  },
+  {
+   "check": "sfx_level",
+   "status": "PASS",
+   "msg": "SFX -9.0 LU vs music (target -8..-10), 98 sounds {'boom': 2, 'slap': 2, 'swish': 5, 'impact': 7, 'zip': 2, 'pop': 10, 'stamp': 3, 'highlighter': 4, 'squeak': 3, 'whoosh': 5, 'sparkle': 3, 'pencil': 3, 'boop': 3, 'slam': 7, 'click': 2, 'thump': 3, 'typetick': 13, 'tick': 9, 'heartbeat': 7, 'riser': 1, 'blip': 2, 'crackle': 1, 'tape': 1}"
+  },
+  {
+   "check": "script_lines",
+   "status": "PASS",
+   "msg": "17/17 SCRIPT lines in range are on screen",
+   "missing": []
+  }
+ ]
+}

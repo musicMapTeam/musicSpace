@@ -1,0 +1,193 @@
+{
+ "error": "Error: side order 小满 / 阿宁 (this world lists 小满 first; the product orders the two sides per world) -> retry\n    at file:///private/tmp/space-video-doodle/prod/capture/P2P3-rc2/tools/take-corner.mjs:103:93",
+ "report": {
+  "take": "TAKE-P4 corner keepsake (rc.2, new)",
+  "clip": "P-22",
+  "base": "http://127.0.0.1:48741/musicSpace/",
+  "clock": "2026-10-08T22:40:00+08:00",
+  "workBpm": 123,
+  "beatFrames": 29.268,
+  "caret": "hidden (caret-color: transparent)",
+  "audits": [
+   {
+    "label": "friend card before recording",
+    "banned": [],
+    "watch": [],
+    "chars": 233
+   },
+   {
+    "label": "corner sheet open",
+    "banned": [],
+    "watch": [],
+    "chars": 278
+   },
+   {
+    "label": "invitation sent",
+    "banned": [],
+    "watch": [],
+    "chars": 261
+   }
+  ],
+  "build": {
+   "version": "0.22.0-rc.2",
+   "commit": "8fa52f0",
+   "builtAt": "2026-10-07T20:18:33.163Z"
+  },
+  "friendCard": "× 你们已经认识了 小满 邀请共同创作 和 小满 私聊 ↗ 你们已经是朋友了。 移除朋友 向本场房主反馈 屏蔽这个人",
+  "freeze": {
+   "kept": 0,
+   "done": 0
+  },
+  "timeline": [
+   {
+    "label": "friend card over the 3D close-up of 小满 (你们已经认识了 / 邀请共同创作 / 和 小满 私聊 ↗ / 你们已经是朋友了。)",
+    "frame": 0,
+    "t": 0
+   },
+   {
+    "label": "b0 tap 邀请共同创作",
+    "frame": 60,
+    "t": 1,
+    "down": 57,
+    "up": 60,
+    "x": 193,
+    "y": 497
+   },
+   {
+    "label": "b2 tick 邀请 TA，并展示我的昵称和小人",
+    "frame": 119,
+    "t": 1.983,
+    "down": 116,
+    "up": 119,
+    "x": 49,
+    "y": 662
+   },
+   {
+    "label": "b3 tap 发出邀请",
+    "frame": 148,
+    "t": 2.467,
+    "down": 145,
+    "up": 148,
+    "x": 94,
+    "y": 728
+   },
+   {
+    "label": "「已确认。」 + 「等 TA 加入。」 on screen",
+    "frame": 148,
+    "t": 2.467
+   }
+  ],
+  "sideOrder": [
+   "小满",
+   "阿宁"
+  ],
+  "failState": {
+   "corner": "TWO SIDES / 两个人的创作角 × 一起留张纪念。 已确认。 重新读取 MUSIC SPACE / TWO SIDES 同一晚，我们的另一面。 小满 人海这一面，手都举起来了。 小满 的这一面 阿宁 这一晚，我在这里。 阿宁 的这一面 我们的共同草稿 我的一句话 我的照片 不放照片 我的照片 1 · 已上墙 把我的小人、留言和照片给 TA 保存我的部分 版本 3 · 你未确认 · 对方未确认 我确认这一版 确认这一版本 撤销共同创作我的创作与邀请",
+   "forms": [
+    "data-corner-edit",
+    "data-corner-confirm"
+   ]
+  }
+ },
+ "timeline": [
+  {
+   "label": "friend card over the 3D close-up of 小满 (你们已经认识了 / 邀请共同创作 / 和 小满 私聊 ↗ / 你们已经是朋友了。)",
+   "frame": 0,
+   "t": 0
+  },
+  {
+   "label": "b0 tap 邀请共同创作",
+   "frame": 60,
+   "t": 1,
+   "down": 57,
+   "up": 60,
+   "x": 193,
+   "y": 497
+  },
+  {
+   "label": "b2 tick 邀请 TA，并展示我的昵称和小人",
+   "frame": 119,
+   "t": 1.983,
+   "down": 116,
+   "up": 119,
+   "x": 49,
+   "y": 662
+  },
+  {
+   "label": "b3 tap 发出邀请",
+   "frame": 148,
+   "t": 2.467,
+   "down": 145,
+   "up": 148,
+   "x": 94,
+   "y": 728
+  },
+  {
+   "label": "「已确认。」 + 「等 TA 加入。」 on screen",
+   "frame": 148,
+   "t": 2.467
+  }
+ ],
+ "probe": [
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|wait|v-|n=-|ph=0|-|sc=0|f=|已确认。",
+  "corner|joined|v3未未|n=0|ph=0|-|sc=0|f=edit,confirm|已确认。"
+ ]
+}

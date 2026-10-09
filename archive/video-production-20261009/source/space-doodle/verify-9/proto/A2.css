@@ -1,0 +1,8 @@
+/* A2: A, plus the demoted card title drops to the h2 step so it no longer matches the caption in size */
+@media (min-width:1100px) and (min-height:620px){
+  .frame:not([data-stage=room]) .presence.welcome strong#presence-title{text-shadow:none;font-size:var(--ds-size-h2)}
+  html[data-channel] .frame:not([data-stage=room]) .presence.welcome strong#presence-title::after{content:none}
+  .frame:not([data-stage=room]) .scene-heading h1 span{font-size:24px;line-height:1.2;color:var(--ds-ink);-webkit-text-stroke:0;text-shadow:none;background:var(--ds-paper-card);
+    padding:4px 12px 5px;border:var(--ds-line-thin) solid var(--ds-ink);border-radius:var(--ds-radius-btn);box-shadow:var(--ds-shadow-sm)}
+  .desktop-caption .caption-star,.desktop-caption .caption-sparkle,.desktop-caption .caption-tag{display:none}
+}

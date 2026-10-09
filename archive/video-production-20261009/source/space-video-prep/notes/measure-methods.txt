@@ -1,0 +1,8 @@
+motion-cdpscreencast         frames  124  unique-fps in motion  60.5  longest gap     56 ms  p95 gap    19 ms  (motion 2.0 s in 2 windows)
+motion-cdpshot               frames  506  unique-fps in motion  30.9  longest gap     46 ms  p95 gap    36 ms  (motion 2.0 s in 2 windows)
+motion-shots                 frames  518  unique-fps in motion  33.0  longest gap     37 ms  p95 gap    36 ms  (motion 1.9 s in 2 windows)
+motion-shotspng              frames  144  unique-fps in motion  12.9  longest gap    107 ms  p95 gap    97 ms  (motion 2.0 s in 2 windows)
+motion-pwonframe             frames  123  unique-fps in motion  59.6  longest gap     85 ms  p95 gap    20 ms  (motion 2.0 s in 2 windows)
+playwright recordVideo       frames  389  unique-fps in motion  17.8  longest gap    280 ms  p95 gap   160 ms  (motion 4.4 s in 3 windows)
+playwright screencast        frames  323  unique-fps in motion  18.7  longest gap    160 ms  p95 gap   120 ms  (motion 2.7 s in 2 windows)
+FRAME-STEPPED (virtual clock) frames  600  unique-fps in motion  47.4  longest gap    300 ms  p95 gap    17 ms  (motion 4.1 s in 3 windows)

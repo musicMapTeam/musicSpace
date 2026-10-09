@@ -1,0 +1,86 @@
+[
+ {
+  "kind": "phone",
+  "name": "1-courtyard",
+  "file": "/tmp/space-map/final/phone-1-courtyard.png",
+  "flags": []
+ },
+ {
+  "kind": "phone",
+  "name": "2-search",
+  "file": "/tmp/space-map/final/phone-2-search.png",
+  "flags": []
+ },
+ {
+  "kind": "phone",
+  "name": "3-path-sources",
+  "file": "/tmp/space-map/final/phone-3-path-sources.png",
+  "flags": []
+ },
+ {
+  "kind": "phone",
+  "name": "4-found-song",
+  "file": "/tmp/space-map/final/phone-4-found-song.png",
+  "flags": []
+ },
+ {
+  "kind": "phone",
+  "name": "5-my-discoveries",
+  "file": "/tmp/space-map/final/phone-5-my-discoveries.png",
+  "flags": []
+ },
+ {
+  "kind": "phone",
+  "name": "5b-kept-songs",
+  "file": "/tmp/space-map/final/phone-5b-kept-songs.png",
+  "flags": []
+ },
+ {
+  "kind": "phone",
+  "name": "6-record-shop",
+  "file": "/tmp/space-map/final/phone-6-record-shop.png",
+  "flags": []
+ },
+ {
+  "kind": "desktop",
+  "name": "1-courtyard",
+  "file": "/tmp/space-map/final/desktop-1-courtyard.png",
+  "flags": []
+ },
+ {
+  "kind": "desktop",
+  "name": "2-search",
+  "file": "/tmp/space-map/final/desktop-2-search.png",
+  "flags": []
+ },
+ {
+  "kind": "desktop",
+  "name": "3-path-sources",
+  "file": "/tmp/space-map/final/desktop-3-path-sources.png",
+  "flags": []
+ },
+ {
+  "kind": "desktop",
+  "name": "4-found-song",
+  "file": "/tmp/space-map/final/desktop-4-found-song.png",
+  "flags": []
+ },
+ {
+  "kind": "desktop",
+  "name": "5-my-discoveries",
+  "file": "/tmp/space-map/final/desktop-5-my-discoveries.png",
+  "flags": []
+ },
+ {
+  "kind": "desktop",
+  "name": "5b-kept-songs",
+  "file": "/tmp/space-map/final/desktop-5b-kept-songs.png",
+  "flags": []
+ },
+ {
+  "kind": "desktop",
+  "name": "6-record-shop",
+  "file": "/tmp/space-map/final/desktop-6-record-shop.png",
+  "flags": []
+ }
+]

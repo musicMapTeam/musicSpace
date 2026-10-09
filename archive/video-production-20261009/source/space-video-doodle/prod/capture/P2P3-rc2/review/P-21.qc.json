@@ -1,0 +1,75 @@
+{
+ "file": "P-21.mp4",
+ "codec": "h264 High",
+ "size": "1080x2340",
+ "fps": "60/1",
+ "frames": 470,
+ "seconds": 7.833,
+ "pix_fmt": "yuv420p",
+ "colour": "bt709/bt709/bt709/tv",
+ "bytes": 1788323,
+ "kbps": 1826,
+ "changedFrames": 80,
+ "staticFrames": 389,
+ "stutter_dupInsideMotion": [],
+ "holds_over_0.5s": [
+  {
+   "from": 357,
+   "frames": 114,
+   "at_s": 5.95,
+   "seconds": 1.9
+  }
+ ],
+ "motionSegments_over_4f": [
+  {
+   "from": 56,
+   "to": 73,
+   "at_s": 0.93,
+   "seconds": 0.28,
+   "minDiff": 0.19,
+   "medDiff": 0.63
+  },
+  {
+   "from": 117,
+   "to": 122,
+   "at_s": 1.95,
+   "seconds": 0.08,
+   "minDiff": 0.16,
+   "medDiff": 0.2
+  },
+  {
+   "from": 175,
+   "to": 179,
+   "at_s": 2.92,
+   "seconds": 0.07,
+   "minDiff": 0.17,
+   "medDiff": 0.19
+  },
+  {
+   "from": 234,
+   "to": 239,
+   "at_s": 3.9,
+   "seconds": 0.08,
+   "minDiff": 0.18,
+   "medDiff": 0.2
+  },
+  {
+   "from": 320,
+   "to": 326,
+   "at_s": 5.33,
+   "seconds": 0.1,
+   "minDiff": 0.15,
+   "medDiff": 0.19
+  },
+  {
+   "from": 349,
+   "to": 356,
+   "at_s": 5.82,
+   "seconds": 0.12,
+   "minDiff": 0.15,
+   "medDiff": 0.2
+  }
+ ],
+ "blankFrames": [],
+ "meanDiff": 0.28
+}

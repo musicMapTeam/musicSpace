@@ -1,0 +1,22 @@
+{
+ "file": "A-phone-venue.mp4",
+ "frames": 700,
+ "seconds": 11.667,
+ "region": "full",
+ "changedFrames": 369,
+ "longestFrozen": "51 f = 0.85 s",
+ "frozenOver1s": [],
+ "frozenOver3s": [],
+ "gapHistogram(frames between changes)": {
+  "1": 332,
+  "3": 1,
+  "4": 2,
+  "5": 2,
+  "7": 1,
+  "8": 3,
+  "9": 25,
+  "23": 1,
+  "51": 1
+ },
+ "meanDiff": 3.784
+}

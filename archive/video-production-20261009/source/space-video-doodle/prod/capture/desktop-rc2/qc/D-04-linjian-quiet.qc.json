@@ -1,0 +1,87 @@
+{
+ "id": "D-04-linjian-quiet",
+ "master": {
+  "file": "/tmp/space-video-doodle/prod/capture/desktop-rc2/master/D-04-linjian-quiet.mp4",
+  "bytes": 16932442,
+  "duration_s": 9.35,
+  "video": "h264 High 3840x2160 60/1 yuv420p",
+  "colour": "bt709/bt709/bt709/tv",
+  "frames": 561,
+  "bitrate_mbps": 14.5,
+  "audio_streams": 0
+ },
+ "edit": {
+  "file": "/tmp/space-video-doodle/prod/capture/desktop-rc2/1080/D-04-linjian-quiet.mp4",
+  "bytes": 8478626,
+  "duration_s": 9.35,
+  "video": "h264 High 1920x1080 60/1 yuv420p",
+  "colour": "bt709/bt709/bt709/tv",
+  "frames": 561,
+  "bitrate_mbps": 7.3,
+  "audio_streams": 0
+ },
+ "frames_decoded": 561,
+ "longest_still": {
+  "frames": 9,
+  "at_s": 0.117
+ },
+ "still_over_1s": [],
+ "stutters": {
+  "count": 0,
+  "at_s": [],
+  "rule": "still step (<0.15) between two moving steps (>0.6)"
+ },
+ "camera_glides": [
+  {
+   "start_s": 1.0,
+   "frames": 119,
+   "seconds": 1.983,
+   "view_to": "person",
+   "camera_static_frames_inside": 0,
+   "picture_still_frames_inside": 0,
+   "min_picture_change": 0.291,
+   "step_ratio_range": [
+    0.979,
+    1.012
+   ]
+  }
+ ],
+ "change_gap_histogram": {
+  "1": 132,
+  "6": 3,
+  "8": 4,
+  "9": 40
+ },
+ "taps": [
+  {
+   "t": 5.5,
+   "frame": 330,
+   "label": "认识一下",
+   "xy_master": [
+    2320,
+    1715
+   ]
+  }
+ ],
+ "presses_no_ring": [
+  {
+   "t": 1,
+   "label": "林间 label"
+  }
+ ],
+ "master_frames": 561,
+ "master_edit_same_frame_count": true,
+ "master_edit_motion_correlation": 0.9959,
+ "rec": {
+  "frames": 561,
+  "seconds": 9.35,
+  "wallPerVideoSecond": 10.19,
+  "msPerFrame": {
+   "step": 3.3,
+   "grab": 153.3,
+   "write": 10.6
+  },
+  "clockStart": "2026-10-08T22:40:00+08:00",
+  "seed": 20261009
+ }
+}

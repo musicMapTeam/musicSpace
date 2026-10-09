@@ -1,0 +1,12 @@
+{
+ "title": "hook test", "output": "out/hook-test.mp4", "size": [1920, 1080], "fps": 60, "crf": 18, "preset": "veryfast", "band_color": "#182d26",
+ "music": null,
+ "shots": [
+  { "id": "H0", "src": "../clips/final/S00.mp4", "dur": 12.5, "layout": "full", "grade": "cinema", "title": "Hook: 3D livehouse tour" }
+ ],
+ "overlays": [
+  { "id": "h-shade", "kind": "still", "src": "../cards/out/h-shade.png", "start": 9.9, "dur": 2.6, "fade_in": 0.6, "fade_out": 0.0 },
+  { "id": "h-lockup", "kind": "video", "src": "../cards/out/h-lockup.mov", "start": 10.0 }
+ ],
+ "subtitles": []
+}

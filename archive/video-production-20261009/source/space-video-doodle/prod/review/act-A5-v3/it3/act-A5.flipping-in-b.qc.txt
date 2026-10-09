@@ -1,0 +1,25 @@
+QC act-A5.flipping-in-b.mp4  range 105.37-140.48 s  act preview  ->  WARN
+  PASS  container.video h264 High 1920x1080 60/1 yuv420p bt709/bt709/bt709/tv
+  PASS  container.audio aac LC 48000 Hz 2 ch 258 kb/s
+  PASS  duration        35.117 s (range 35.117 s)
+  PASS  size            44.5 MB (10.1 Mb/s)
+  PASS  loudness        I -14.6 LUFS (target -16), LRA 1.7 LU (act excerpt: informational; the full cut is normalised)
+  PASS  true_peak       -1.3 dBTP (limit -1.0)
+  PASS  silence         0 silent stretches over 0.8 s
+  PASS  frozen          0 frozen stretches over 2.5 s
+  PASS  black           0 black stretches over 0.4 s
+  PASS  motion          longest low-motion stretch 0.07 s at 0.30 s (mean |dI| < 0.15 on 160x90), mean motion 1.80
+  PASS  event_gaps      127 visual events, 3.62/s; longest gap 0.98 s after 116.10 s (limit 2.5)
+  PASS  beat_alignment  127/127 visual events on the 16th grid (<= half a frame), 119/127 on 8ths; frames quantise by <= 8.3 ms
+  PASS  reading_time    23 lines, measured (geometry samples every 50 ms); titles/notes failing 0, labels/fine short 0
+  WARN  safe_area       0 texts outside the 5% title-safe area for > 0.5 s, 4 only briefly (entrances, camera moves)
+  PASS  glyphs          118 font/character pairs; 0 drawn by a system font
+  PASS  qr              no end card in range (not applicable)
+  PASS  placeholders    no placeholders
+  PASS  scene_warnings  0 warnings
+  PASS  sfx_level       SFX -9.3 LU vs music (target -8..-10), 147 sounds {'slam': 17, 'slap': 11, 'pop': 9, 'squeak': 4, 'click': 15, 'flip': 1, 'boop': 2, 'impact': 1, 'typetick': 52, 'blip': 5, 'scratch': 1, 'tick': 10, 'highlighter': 1, 'ding': 3, 'swish': 3, 'sparkle': 6, 'whoosh': 3, 'tape': 3}
+  WARN  script_lines    19/23 SCRIPT lines in range are on screen
+            - T094 57:3 「示例角色 · 自动回复」
+            - T100 61:3 「原创虚构专辑」
+            - T110 69:3 「纪念卡，」
+            - T111 70:1 「在你的浏览器里生成。」

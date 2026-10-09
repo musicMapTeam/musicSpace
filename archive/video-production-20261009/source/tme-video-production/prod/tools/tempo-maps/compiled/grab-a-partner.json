@@ -1,0 +1,1263 @@
+{
+ "id": "grab-a-partner",
+ "label": "Loyalty Freak Music《Grab A Partner》130 BPM — 93 bars (+3 ADD bars); the song's final chord is the title, the wait and the end",
+ "source": "/tmp/space-video-doodle/prod/tools/tempo-maps/grab-a-partner.json",
+ "sr": 48000,
+ "bpb": 4,
+ "bpm": 130.0,
+ "bar_s": 1.8461,
+ "beat_s": 0.461525,
+ "track": {
+  "audio": "/tmp/space-video-doodle/music-cc0/01-grab-a-partner__Loyalty-Freak-Music/Loyalty_Freak_Music_-_05_-_Grab_A_Partner.mp3",
+  "beats": "/tmp/space-video-doodle/music-cc0/01-grab-a-partner__Loyalty-Freak-Music/beats.json",
+  "title": "Grab A Partner",
+  "artist": "Loyalty Freak Music",
+  "licence": "CC0 1.0 Universal",
+  "sha256": "2ed4f5ac5e537aa47e18c52286ba0e7f46efa01b88951329881a1387acf7e4ca",
+  "proof": "/tmp/space-video-doodle/music-cc0/01-grab-a-partner__Loyalty-Freak-Music/LICENCE-PROOF.md",
+  "credit": "配乐：Loyalty Freak Music《Grab A Partner》（CC0 1.0 公共领域）"
+ },
+ "bars": [
+  {
+   "k": 1,
+   "sb": "1",
+   "trk": 97,
+   "t0": 0.0,
+   "len": 1.846,
+   "s0": 0,
+   "n": 88608,
+   "src0": 177.236,
+   "splice": false
+  },
+  {
+   "k": 2,
+   "sb": "2",
+   "trk": 98,
+   "t0": 1.846,
+   "len": 1.847,
+   "s0": 88608,
+   "n": 88656,
+   "src0": 179.082,
+   "splice": false
+  },
+  {
+   "k": 3,
+   "sb": "3",
+   "trk": 99,
+   "t0": 3.693,
+   "len": 1.846,
+   "s0": 177264,
+   "n": 88608,
+   "src0": 180.929,
+   "splice": false
+  },
+  {
+   "k": 4,
+   "sb": "4",
+   "trk": 100,
+   "t0": 5.539,
+   "len": 1.846,
+   "s0": 265872,
+   "n": 88608,
+   "src0": 182.775,
+   "splice": false
+  },
+  {
+   "k": 5,
+   "sb": "5",
+   "trk": 101,
+   "t0": 7.385,
+   "len": 1.846,
+   "s0": 354480,
+   "n": 88608,
+   "src0": 184.621,
+   "splice": false
+  },
+  {
+   "k": 6,
+   "sb": "6",
+   "trk": 102,
+   "t0": 9.231,
+   "len": 1.846,
+   "s0": 443088,
+   "n": 88608,
+   "src0": 186.467,
+   "splice": false
+  },
+  {
+   "k": 7,
+   "sb": "7",
+   "trk": 103,
+   "t0": 11.077,
+   "len": 1.846,
+   "s0": 531696,
+   "n": 88608,
+   "src0": 188.313,
+   "splice": false
+  },
+  {
+   "k": 8,
+   "sb": "8",
+   "trk": 9,
+   "t0": 12.923,
+   "len": 1.846,
+   "s0": 620304,
+   "n": 88608,
+   "src0": 14.777,
+   "splice": true
+  },
+  {
+   "k": 9,
+   "sb": "9",
+   "trk": 10,
+   "t0": 14.769,
+   "len": 1.847,
+   "s0": 708912,
+   "n": 88656,
+   "src0": 16.623,
+   "splice": false
+  },
+  {
+   "k": 10,
+   "sb": "10",
+   "trk": 11,
+   "t0": 16.616,
+   "len": 1.846,
+   "s0": 797568,
+   "n": 88608,
+   "src0": 18.47,
+   "splice": false
+  },
+  {
+   "k": 11,
+   "sb": "11",
+   "trk": 12,
+   "t0": 18.462,
+   "len": 1.846,
+   "s0": 886176,
+   "n": 88608,
+   "src0": 20.316,
+   "splice": false
+  },
+  {
+   "k": 12,
+   "sb": "12",
+   "trk": 13,
+   "t0": 20.308,
+   "len": 1.846,
+   "s0": 974784,
+   "n": 88608,
+   "src0": 22.162,
+   "splice": false
+  },
+  {
+   "k": 13,
+   "sb": "13",
+   "trk": 14,
+   "t0": 22.154,
+   "len": 1.846,
+   "s0": 1063392,
+   "n": 88608,
+   "src0": 24.008,
+   "splice": false
+  },
+  {
+   "k": 14,
+   "sb": "14",
+   "trk": 15,
+   "t0": 24.0,
+   "len": 1.846,
+   "s0": 1152000,
+   "n": 88608,
+   "src0": 25.854,
+   "splice": false
+  },
+  {
+   "k": 15,
+   "sb": "15",
+   "trk": 10,
+   "t0": 25.846,
+   "len": 1.847,
+   "s0": 1240608,
+   "n": 88656,
+   "src0": 16.623,
+   "splice": true
+  },
+  {
+   "k": 16,
+   "sb": "16",
+   "trk": 11,
+   "t0": 27.693,
+   "len": 1.846,
+   "s0": 1329264,
+   "n": 88608,
+   "src0": 18.47,
+   "splice": false
+  },
+  {
+   "k": 17,
+   "sb": "17",
+   "trk": 12,
+   "t0": 29.539,
+   "len": 1.846,
+   "s0": 1417872,
+   "n": 88608,
+   "src0": 20.316,
+   "splice": false
+  },
+  {
+   "k": 18,
+   "sb": "18",
+   "trk": 13,
+   "t0": 31.385,
+   "len": 1.846,
+   "s0": 1506480,
+   "n": 88608,
+   "src0": 22.162,
+   "splice": false
+  },
+  {
+   "k": 19,
+   "sb": "19",
+   "trk": 14,
+   "t0": 33.231,
+   "len": 1.846,
+   "s0": 1595088,
+   "n": 88608,
+   "src0": 24.008,
+   "splice": false
+  },
+  {
+   "k": 20,
+   "sb": "20",
+   "trk": 15,
+   "t0": 35.077,
+   "len": 1.846,
+   "s0": 1683696,
+   "n": 88608,
+   "src0": 25.854,
+   "splice": false
+  },
+  {
+   "k": 21,
+   "sb": "21",
+   "trk": 16,
+   "t0": 36.923,
+   "len": 1.846,
+   "s0": 1772304,
+   "n": 88608,
+   "src0": 27.7,
+   "splice": false
+  },
+  {
+   "k": 22,
+   "sb": "22",
+   "trk": 17,
+   "t0": 38.769,
+   "len": 1.846,
+   "s0": 1860912,
+   "n": 88608,
+   "src0": 29.546,
+   "splice": false
+  },
+  {
+   "k": 23,
+   "sb": "23",
+   "trk": 18,
+   "t0": 40.615,
+   "len": 1.847,
+   "s0": 1949520,
+   "n": 88656,
+   "src0": 31.392,
+   "splice": false
+  },
+  {
+   "k": 24,
+   "sb": "24",
+   "trk": 19,
+   "t0": 42.462,
+   "len": 1.846,
+   "s0": 2038176,
+   "n": 88608,
+   "src0": 33.239,
+   "splice": false
+  },
+  {
+   "k": 25,
+   "sb": "25",
+   "trk": 20,
+   "t0": 44.308,
+   "len": 1.846,
+   "s0": 2126784,
+   "n": 88608,
+   "src0": 35.085,
+   "splice": false
+  },
+  {
+   "k": 26,
+   "sb": "26",
+   "trk": 21,
+   "t0": 46.154,
+   "len": 1.846,
+   "s0": 2215392,
+   "n": 88608,
+   "src0": 36.931,
+   "splice": false
+  },
+  {
+   "k": 27,
+   "sb": "27",
+   "trk": 22,
+   "t0": 48.0,
+   "len": 1.846,
+   "s0": 2304000,
+   "n": 88608,
+   "src0": 38.777,
+   "splice": false
+  },
+  {
+   "k": 28,
+   "sb": "28",
+   "trk": 23,
+   "t0": 49.846,
+   "len": 1.846,
+   "s0": 2392608,
+   "n": 88608,
+   "src0": 40.623,
+   "splice": false
+  },
+  {
+   "k": 29,
+   "sb": "28+1",
+   "trk": 24,
+   "t0": 51.692,
+   "len": 1.846,
+   "s0": 2481216,
+   "n": 88608,
+   "src0": 42.469,
+   "splice": false
+  },
+  {
+   "k": 30,
+   "sb": "29",
+   "trk": 25,
+   "t0": 53.538,
+   "len": 1.846,
+   "s0": 2569824,
+   "n": 88608,
+   "src0": 44.315,
+   "splice": false
+  },
+  {
+   "k": 31,
+   "sb": "30",
+   "trk": 26,
+   "t0": 55.384,
+   "len": 1.847,
+   "s0": 2658432,
+   "n": 88656,
+   "src0": 46.161,
+   "splice": false
+  },
+  {
+   "k": 32,
+   "sb": "31",
+   "trk": 27,
+   "t0": 57.231,
+   "len": 1.846,
+   "s0": 2747088,
+   "n": 88608,
+   "src0": 48.008,
+   "splice": false
+  },
+  {
+   "k": 33,
+   "sb": "32",
+   "trk": 28,
+   "t0": 59.077,
+   "len": 1.846,
+   "s0": 2835696,
+   "n": 88608,
+   "src0": 49.854,
+   "splice": false
+  },
+  {
+   "k": 34,
+   "sb": "33",
+   "trk": 29,
+   "t0": 60.923,
+   "len": 1.846,
+   "s0": 2924304,
+   "n": 88608,
+   "src0": 51.7,
+   "splice": false
+  },
+  {
+   "k": 35,
+   "sb": "34",
+   "trk": 30,
+   "t0": 62.769,
+   "len": 1.846,
+   "s0": 3012912,
+   "n": 88608,
+   "src0": 53.546,
+   "splice": false
+  },
+  {
+   "k": 36,
+   "sb": "35",
+   "trk": 31,
+   "t0": 64.615,
+   "len": 1.846,
+   "s0": 3101520,
+   "n": 88608,
+   "src0": 55.392,
+   "splice": false
+  },
+  {
+   "k": 37,
+   "sb": "36",
+   "trk": 32,
+   "t0": 66.461,
+   "len": 1.846,
+   "s0": 3190128,
+   "n": 88608,
+   "src0": 57.238,
+   "splice": false
+  },
+  {
+   "k": 38,
+   "sb": "37",
+   "trk": 33,
+   "t0": 68.307,
+   "len": 1.846,
+   "s0": 3278736,
+   "n": 88608,
+   "src0": 59.084,
+   "splice": false
+  },
+  {
+   "k": 39,
+   "sb": "38",
+   "trk": 34,
+   "t0": 70.153,
+   "len": 1.847,
+   "s0": 3367344,
+   "n": 88656,
+   "src0": 60.93,
+   "splice": false
+  },
+  {
+   "k": 40,
+   "sb": "39",
+   "trk": 35,
+   "t0": 72.0,
+   "len": 1.846,
+   "s0": 3456000,
+   "n": 88608,
+   "src0": 62.777,
+   "splice": false
+  },
+  {
+   "k": 41,
+   "sb": "40",
+   "trk": 36,
+   "t0": 73.846,
+   "len": 1.846,
+   "s0": 3544608,
+   "n": 88608,
+   "src0": 64.623,
+   "splice": false
+  },
+  {
+   "k": 42,
+   "sb": "41",
+   "trk": 37,
+   "t0": 75.692,
+   "len": 1.846,
+   "s0": 3633216,
+   "n": 88608,
+   "src0": 66.469,
+   "splice": false
+  },
+  {
+   "k": 43,
+   "sb": "42",
+   "trk": 38,
+   "t0": 77.538,
+   "len": 1.846,
+   "s0": 3721824,
+   "n": 88608,
+   "src0": 68.315,
+   "splice": false
+  },
+  {
+   "k": 44,
+   "sb": "43",
+   "trk": 39,
+   "t0": 79.384,
+   "len": 1.846,
+   "s0": 3810432,
+   "n": 88608,
+   "src0": 70.161,
+   "splice": false
+  },
+  {
+   "k": 45,
+   "sb": "44",
+   "trk": 40,
+   "t0": 81.23,
+   "len": 1.846,
+   "s0": 3899040,
+   "n": 88608,
+   "src0": 72.007,
+   "splice": false
+  },
+  {
+   "k": 46,
+   "sb": "45",
+   "trk": 41,
+   "t0": 83.076,
+   "len": 1.846,
+   "s0": 3987648,
+   "n": 88608,
+   "src0": 73.853,
+   "splice": false
+  },
+  {
+   "k": 47,
+   "sb": "46",
+   "trk": 42,
+   "t0": 84.922,
+   "len": 1.847,
+   "s0": 4076256,
+   "n": 88656,
+   "src0": 75.699,
+   "splice": false
+  },
+  {
+   "k": 48,
+   "sb": "47",
+   "trk": 43,
+   "t0": 86.769,
+   "len": 1.846,
+   "s0": 4164912,
+   "n": 88608,
+   "src0": 77.546,
+   "splice": false
+  },
+  {
+   "k": 49,
+   "sb": "48",
+   "trk": 44,
+   "t0": 88.615,
+   "len": 1.846,
+   "s0": 4253520,
+   "n": 88608,
+   "src0": 79.392,
+   "splice": false
+  },
+  {
+   "k": 50,
+   "sb": "49",
+   "trk": 102,
+   "t0": 90.461,
+   "len": 1.846,
+   "s0": 4342128,
+   "n": 88608,
+   "src0": 186.467,
+   "splice": true
+  },
+  {
+   "k": 51,
+   "sb": "50",
+   "trk": 103,
+   "t0": 92.307,
+   "len": 1.846,
+   "s0": 4430736,
+   "n": 88608,
+   "src0": 188.313,
+   "splice": false
+  },
+  {
+   "k": 52,
+   "sb": "51",
+   "trk": 47,
+   "t0": 94.153,
+   "len": 1.846,
+   "s0": 4519344,
+   "n": 88608,
+   "src0": 84.93,
+   "splice": true
+  },
+  {
+   "k": 53,
+   "sb": "52",
+   "trk": 48,
+   "t0": 95.999,
+   "len": 1.846,
+   "s0": 4607952,
+   "n": 88608,
+   "src0": 86.776,
+   "splice": false
+  },
+  {
+   "k": 54,
+   "sb": "53",
+   "trk": 49,
+   "t0": 97.845,
+   "len": 1.846,
+   "s0": 4696560,
+   "n": 88608,
+   "src0": 88.622,
+   "splice": false
+  },
+  {
+   "k": 55,
+   "sb": "54",
+   "trk": 50,
+   "t0": 99.691,
+   "len": 1.847,
+   "s0": 4785168,
+   "n": 88656,
+   "src0": 90.468,
+   "splice": false
+  },
+  {
+   "k": 56,
+   "sb": "54+1",
+   "trk": 51,
+   "t0": 101.538,
+   "len": 1.846,
+   "s0": 4873824,
+   "n": 88608,
+   "src0": 92.315,
+   "splice": false
+  },
+  {
+   "k": 57,
+   "sb": "55",
+   "trk": 52,
+   "t0": 103.384,
+   "len": 1.846,
+   "s0": 4962432,
+   "n": 88608,
+   "src0": 94.161,
+   "splice": false
+  },
+  {
+   "k": 58,
+   "sb": "56",
+   "trk": 53,
+   "t0": 105.23,
+   "len": 1.846,
+   "s0": 5051040,
+   "n": 88608,
+   "src0": 96.007,
+   "splice": false
+  },
+  {
+   "k": 59,
+   "sb": "57",
+   "trk": 54,
+   "t0": 107.076,
+   "len": 1.846,
+   "s0": 5139648,
+   "n": 88608,
+   "src0": 97.853,
+   "splice": false
+  },
+  {
+   "k": 60,
+   "sb": "58",
+   "trk": 55,
+   "t0": 108.922,
+   "len": 1.846,
+   "s0": 5228256,
+   "n": 88608,
+   "src0": 99.699,
+   "splice": false
+  },
+  {
+   "k": 61,
+   "sb": "59",
+   "trk": 56,
+   "t0": 110.768,
+   "len": 1.846,
+   "s0": 5316864,
+   "n": 88608,
+   "src0": 101.545,
+   "splice": false
+  },
+  {
+   "k": 62,
+   "sb": "60",
+   "trk": 57,
+   "t0": 112.614,
+   "len": 1.846,
+   "s0": 5405472,
+   "n": 88608,
+   "src0": 103.391,
+   "splice": false
+  },
+  {
+   "k": 63,
+   "sb": "61",
+   "trk": 58,
+   "t0": 114.46,
+   "len": 1.847,
+   "s0": 5494080,
+   "n": 88656,
+   "src0": 105.237,
+   "splice": false
+  },
+  {
+   "k": 64,
+   "sb": "62",
+   "trk": 59,
+   "t0": 116.307,
+   "len": 1.846,
+   "s0": 5582736,
+   "n": 88608,
+   "src0": 107.084,
+   "splice": false
+  },
+  {
+   "k": 65,
+   "sb": "63",
+   "trk": 60,
+   "t0": 118.153,
+   "len": 1.846,
+   "s0": 5671344,
+   "n": 88608,
+   "src0": 108.93,
+   "splice": false
+  },
+  {
+   "k": 66,
+   "sb": "64",
+   "trk": 61,
+   "t0": 119.999,
+   "len": 1.846,
+   "s0": 5759952,
+   "n": 88608,
+   "src0": 110.776,
+   "splice": false
+  },
+  {
+   "k": 67,
+   "sb": "65",
+   "trk": 62,
+   "t0": 121.845,
+   "len": 1.846,
+   "s0": 5848560,
+   "n": 88608,
+   "src0": 112.622,
+   "splice": false
+  },
+  {
+   "k": 68,
+   "sb": "66",
+   "trk": 63,
+   "t0": 123.691,
+   "len": 1.846,
+   "s0": 5937168,
+   "n": 88608,
+   "src0": 114.468,
+   "splice": false
+  },
+  {
+   "k": 69,
+   "sb": "67",
+   "trk": 64,
+   "t0": 125.537,
+   "len": 1.846,
+   "s0": 6025776,
+   "n": 88608,
+   "src0": 116.314,
+   "splice": false
+  },
+  {
+   "k": 70,
+   "sb": "68",
+   "trk": 65,
+   "t0": 127.383,
+   "len": 1.846,
+   "s0": 6114384,
+   "n": 88608,
+   "src0": 118.16,
+   "splice": false
+  },
+  {
+   "k": 71,
+   "sb": "69",
+   "trk": 89,
+   "t0": 129.229,
+   "len": 1.846,
+   "s0": 6202992,
+   "n": 88608,
+   "src0": 162.467,
+   "splice": true
+  },
+  {
+   "k": 72,
+   "sb": "70",
+   "trk": 90,
+   "t0": 131.075,
+   "len": 1.847,
+   "s0": 6291600,
+   "n": 88656,
+   "src0": 164.313,
+   "splice": false
+  },
+  {
+   "k": 73,
+   "sb": "71",
+   "trk": 91,
+   "t0": 132.922,
+   "len": 1.846,
+   "s0": 6380256,
+   "n": 88608,
+   "src0": 166.16,
+   "splice": false
+  },
+  {
+   "k": 74,
+   "sb": "72",
+   "trk": 92,
+   "t0": 134.768,
+   "len": 1.846,
+   "s0": 6468864,
+   "n": 88608,
+   "src0": 168.006,
+   "splice": false
+  },
+  {
+   "k": 75,
+   "sb": "73",
+   "trk": 14,
+   "t0": 136.614,
+   "len": 1.846,
+   "s0": 6557472,
+   "n": 88608,
+   "src0": 24.008,
+   "splice": true
+  },
+  {
+   "k": 76,
+   "sb": "74",
+   "trk": 15,
+   "t0": 138.46,
+   "len": 1.846,
+   "s0": 6646080,
+   "n": 88608,
+   "src0": 25.854,
+   "splice": false
+  },
+  {
+   "k": 77,
+   "sb": "75",
+   "trk": 85,
+   "t0": 140.306,
+   "len": 1.846,
+   "s0": 6734688,
+   "n": 88608,
+   "src0": 155.083,
+   "splice": true
+  },
+  {
+   "k": 78,
+   "sb": "76",
+   "trk": 86,
+   "t0": 142.152,
+   "len": 1.846,
+   "s0": 6823296,
+   "n": 88608,
+   "src0": 156.929,
+   "splice": false
+  },
+  {
+   "k": 79,
+   "sb": "77",
+   "trk": 87,
+   "t0": 143.998,
+   "len": 1.846,
+   "s0": 6911904,
+   "n": 88608,
+   "src0": 158.775,
+   "splice": false
+  },
+  {
+   "k": 80,
+   "sb": "78",
+   "trk": 88,
+   "t0": 145.844,
+   "len": 1.846,
+   "s0": 7000512,
+   "n": 88608,
+   "src0": 160.621,
+   "splice": false
+  },
+  {
+   "k": 81,
+   "sb": "79",
+   "trk": 89,
+   "t0": 147.69,
+   "len": 1.846,
+   "s0": 7089120,
+   "n": 88608,
+   "src0": 162.467,
+   "splice": false
+  },
+  {
+   "k": 82,
+   "sb": "80",
+   "trk": 90,
+   "t0": 149.536,
+   "len": 1.847,
+   "s0": 7177728,
+   "n": 88656,
+   "src0": 164.313,
+   "splice": false
+  },
+  {
+   "k": 83,
+   "sb": "81",
+   "trk": 91,
+   "t0": 151.383,
+   "len": 1.846,
+   "s0": 7266384,
+   "n": 88608,
+   "src0": 166.16,
+   "splice": false
+  },
+  {
+   "k": 84,
+   "sb": "82",
+   "trk": 92,
+   "t0": 153.229,
+   "len": 1.846,
+   "s0": 7354992,
+   "n": 88608,
+   "src0": 168.006,
+   "splice": false
+  },
+  {
+   "k": 85,
+   "sb": "83",
+   "trk": 93,
+   "t0": 155.075,
+   "len": 1.846,
+   "s0": 7443600,
+   "n": 88608,
+   "src0": 169.852,
+   "splice": false
+  },
+  {
+   "k": 86,
+   "sb": "84",
+   "trk": 94,
+   "t0": 156.921,
+   "len": 1.846,
+   "s0": 7532208,
+   "n": 88608,
+   "src0": 171.698,
+   "splice": false
+  },
+  {
+   "k": 87,
+   "sb": "85",
+   "trk": 95,
+   "t0": 158.767,
+   "len": 1.846,
+   "s0": 7620816,
+   "n": 88608,
+   "src0": 173.544,
+   "splice": false
+  },
+  {
+   "k": 88,
+   "sb": "86",
+   "trk": 96,
+   "t0": 160.613,
+   "len": 1.846,
+   "s0": 7709424,
+   "n": 88608,
+   "src0": 175.39,
+   "splice": false
+  },
+  {
+   "k": 89,
+   "sb": "87",
+   "trk": 97,
+   "t0": 162.459,
+   "len": 1.846,
+   "s0": 7798032,
+   "n": 88608,
+   "src0": 177.236,
+   "splice": false
+  },
+  {
+   "k": 90,
+   "sb": "88",
+   "trk": 98,
+   "t0": 164.305,
+   "len": 1.847,
+   "s0": 7886640,
+   "n": 88656,
+   "src0": 179.082,
+   "splice": false
+  },
+  {
+   "k": 91,
+   "sb": "89",
+   "trk": 99,
+   "t0": 166.152,
+   "len": 1.846,
+   "s0": 7975296,
+   "n": 88608,
+   "src0": 180.929,
+   "splice": false
+  },
+  {
+   "k": 92,
+   "sb": "90",
+   "trk": 100,
+   "t0": 167.998,
+   "len": 1.846,
+   "s0": 8063904,
+   "n": 88608,
+   "src0": 182.775,
+   "splice": false
+  },
+  {
+   "k": 93,
+   "sb": "90+1",
+   "trk": 101,
+   "t0": 169.844,
+   "len": 1.846,
+   "s0": 8152512,
+   "n": 88608,
+   "src0": 184.621,
+   "splice": false
+  }
+ ],
+ "cut": [],
+ "added": [
+  "28+1",
+  "54+1",
+  "90+1"
+ ],
+ "grid_end_s": 171.69,
+ "grid_end_samples": 8241120,
+ "tail_s": 2.4,
+ "end_s": 174.09,
+ "end_samples": 8356320,
+ "duration_s": 174.09,
+ "fade": null,
+ "xfade_ms": 20,
+ "music_has": [],
+ "moments_notes": {
+  "title_stop": {
+   "verdict": "partial",
+   "note": "no stop in the song: the title sits on the final chord (GP 101) and its decay; the groove ends on 5:1 instead of a silence before it"
+  },
+  "pain_sparse": {
+   "verdict": "no",
+   "note": "the song never drops its drums; the pain uses the lightest verse (about 3 dB under the chorus)"
+  },
+  "drop": {
+   "verdict": "weak",
+   "note": "+2.5 dB fill bar out of the light verse"
+  },
+  "ai_chime": {
+   "verdict": "sfx",
+   "note": "SFX chime on 31:3"
+  },
+  "payoff": {
+   "verdict": "yes",
+   "note": "the band stops on 49:1 (the final chord rings out under the wait) and slams back into chorus 2 on 51:1"
+  },
+  "social_groove": {
+   "verdict": "yes",
+   "note": "chorus 2 + chorus 3"
+  },
+  "break": {
+   "verdict": "no",
+   "note": "no stop-time break in the song; two light verse bars"
+  },
+  "lift": {
+   "verdict": "partial",
+   "note": "chorus-3 start, no key change"
+  },
+  "end_resolve": {
+   "verdict": "natural",
+   "note": "the song's own final chord on 90+1:1 and its decay"
+  }
+ },
+ "acts": [
+  {
+   "id": "A0",
+   "title": "HOOK 钩子",
+   "first_bar": 1,
+   "last_bar": 8,
+   "t0": 0.0,
+   "t1": 14.769
+  },
+  {
+   "id": "A1",
+   "title": "PAIN 痛点",
+   "first_bar": 9,
+   "last_bar": 20,
+   "t0": 14.769,
+   "t1": 36.923
+  },
+  {
+   "id": "A2",
+   "title": "ENTER 入场",
+   "first_bar": 21,
+   "last_bar": 28,
+   "t0": 36.923,
+   "t1": 53.538
+  },
+  {
+   "id": "A3",
+   "title": "PHOTO + AI 照片与端侧 AI",
+   "first_bar": 29,
+   "last_bar": 40,
+   "t0": 53.538,
+   "t1": 75.692
+  },
+  {
+   "id": "A4",
+   "title": "SAME MOMENT + EXCHANGE 同一刻与交换",
+   "first_bar": 41,
+   "last_bar": 54,
+   "t0": 75.692,
+   "t1": 103.384
+  },
+  {
+   "id": "A5",
+   "title": "AFTER THE SWAP 交换之后",
+   "first_bar": 55,
+   "last_bar": 72,
+   "t0": 103.384,
+   "t1": 136.614
+  },
+  {
+   "id": "A6",
+   "title": "WHY IT MATTERS 为什么值得做",
+   "first_bar": 73,
+   "last_bar": 82,
+   "t0": 136.614,
+   "t1": 155.075
+  },
+  {
+   "id": "A7",
+   "title": "END CARD 片尾",
+   "first_bar": 83,
+   "last_bar": 90,
+   "t0": 155.075,
+   "t1": 171.69
+  }
+ ],
+ "moments": [
+  {
+   "name": "title_stop",
+   "at": "5:1",
+   "what": "stop/silence just before 5:1, IMPACT on 5:1 (title)",
+   "t": 7.385,
+   "note": {
+    "verdict": "partial",
+    "note": "no stop in the song: the title sits on the final chord (GP 101) and its decay; the groove ends on 5:1 instead of a silence before it"
+   }
+  },
+  {
+   "name": "pain_sparse",
+   "at": "9:1",
+   "what": "bars 9-18 sparse / half-time; build 19-20",
+   "t": 14.769,
+   "note": {
+    "verdict": "no",
+    "note": "the song never drops its drums; the pain uses the lightest verse (about 3 dB under the chorus)"
+   }
+  },
+  {
+   "name": "drop",
+   "at": "21:1",
+   "what": "DROP on 21:1: the product appears, full groove",
+   "t": 36.923,
+   "note": {
+    "verdict": "weak",
+    "note": "+2.5 dB fill bar out of the light verse"
+   }
+  },
+  {
+   "name": "ai_chime",
+   "at": "31:3",
+   "what": "AI chime on 31:3 (the chip appears)",
+   "t": 58.154,
+   "note": {
+    "verdict": "sfx",
+    "note": "SFX chime on 31:3"
+   }
+  },
+  {
+   "name": "payoff_gap",
+   "at": "50:4",
+   "what": "one beat of silence on 50:4",
+   "t": 93.6915,
+   "note": null
+  },
+  {
+   "name": "payoff",
+   "at": "51:1",
+   "what": "PAYOFF 「交换已接受」: the biggest hit of the film",
+   "t": 94.153,
+   "note": {
+    "verdict": "yes",
+    "note": "the band stops on 49:1 (the final chord rings out under the wait) and slams back into chorus 2 on 51:1"
+   }
+  },
+  {
+   "name": "social_groove",
+   "at": "55:1",
+   "what": "second groove 55-72, highest energy",
+   "t": 103.384,
+   "note": {
+    "verdict": "yes",
+    "note": "chorus 2 + chorus 3"
+   }
+  },
+  {
+   "name": "break",
+   "at": "73:1",
+   "what": "stop-time break 73-74",
+   "t": 136.614,
+   "note": {
+    "verdict": "no",
+    "note": "no stop-time break in the song; two light verse bars"
+   }
+  },
+  {
+   "name": "lift",
+   "at": "75:1",
+   "what": "final lift chorus from 75:1",
+   "t": 140.306,
+   "note": {
+    "verdict": "partial",
+    "note": "chorus-3 start, no key change"
+   }
+  },
+  {
+   "name": "end_resolve",
+   "at": "83:1",
+   "what": "end card: tag 83-84, big chord 85:1, resolve / ring out at the end",
+   "t": 155.075,
+   "note": {
+    "verdict": "natural",
+    "note": "the song's own final chord on 90+1:1 and its decay"
+   }
+  }
+ ]
+}

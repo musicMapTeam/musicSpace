@@ -1,0 +1,19 @@
+{
+ "file": "B-phone-upload-ai-wall.mp4",
+ "frames": 449,
+ "seconds": 7.483,
+ "region": "full",
+ "changedFrames": 366,
+ "longestFrozen": "22 f = 0.37 s",
+ "frozenOver1s": [],
+ "frozenOver3s": [],
+ "gapHistogram(frames between changes)": {
+  "1": 351,
+  "2": 5,
+  "4": 1,
+  "6": 1,
+  "9": 6,
+  "22": 1
+ },
+ "meanDiff": 8.759
+}

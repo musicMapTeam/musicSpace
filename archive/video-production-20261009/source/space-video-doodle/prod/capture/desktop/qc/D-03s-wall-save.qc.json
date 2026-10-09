@@ -1,0 +1,86 @@
+{
+ "id": "D-03s-wall-save",
+ "master": {
+  "file": "/tmp/space-video-doodle/prod/capture/desktop/master/D-03s-wall-save.mp4",
+  "bytes": 5396093,
+  "duration_s": 9.0,
+  "video": "h264 High 3840x2160 60/1 yuv420p",
+  "colour": "bt709/bt709/bt709/tv",
+  "frames": 540,
+  "bitrate_mbps": 4.8,
+  "audio_streams": 0
+ },
+ "edit": {
+  "file": "/tmp/space-video-doodle/prod/capture/desktop/1080/D-03s-wall-save.mp4",
+  "bytes": 2614806,
+  "duration_s": 9.0,
+  "video": "h264 High 1920x1080 60/1 yuv420p",
+  "colour": "bt709/bt709/bt709/tv",
+  "frames": 540,
+  "bitrate_mbps": 2.3,
+  "audio_streams": 0
+ },
+ "frames_decoded": 540,
+ "longest_still": {
+  "frames": 9,
+  "at_s": 0.033
+ },
+ "still_over_1s": [],
+ "stutters": {
+  "count": 0,
+  "at_s": [],
+  "rule": "still step (<0.15) between two moving steps (>0.6)"
+ },
+ "camera_glides": [],
+ "change_gap_histogram": {
+  "1": 80,
+  "2": 3,
+  "8": 4,
+  "9": 44
+ },
+ "taps": [
+  {
+   "t": 0.6,
+   "frame": 36,
+   "label": "放一张",
+   "xy_master": [
+    2340,
+    1715
+   ]
+  },
+  {
+   "t": 2.55,
+   "frame": 153,
+   "label": "人海 · 示例照片",
+   "xy_master": [
+    3157,
+    950
+   ]
+  },
+  {
+   "t": 6.45,
+   "frame": 387,
+   "label": "保存这张照片",
+   "xy_master": [
+    3157,
+    1657
+   ]
+  }
+ ],
+ "presses_no_ring": [],
+ "master_frames": 540,
+ "master_edit_same_frame_count": true,
+ "master_edit_motion_correlation": 0.9963,
+ "rec": {
+  "frames": 540,
+  "seconds": 9,
+  "wallPerVideoSecond": 8.26,
+  "msPerFrame": {
+   "step": 2.8,
+   "grab": 125.4,
+   "write": 8.1
+  },
+  "clockStart": "2026-10-07T22:40:00+08:00",
+  "seed": 20261009
+ }
+}

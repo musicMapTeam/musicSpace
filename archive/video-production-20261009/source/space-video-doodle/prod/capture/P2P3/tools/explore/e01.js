@@ -1,0 +1,12 @@
+const s = await get('phone', true);
+const p = s.page;
+const t0 = Date.now();
+await H.lookAndEnter(s);
+const tEnter = Date.now() - t0;
+await sleep(1000);
+const r = { tEnter };
+r.shot0 = await shot(p, 'e01-room-1s');
+r.btns = await H.buttons(p, b => /tour|示例照片|自己的照片|路线/.test(b));
+r.clock = await p.evaluate(() => new Date().toString());
+r.boot = await p.evaluate(() => window.__SPACE_BOOT__);
+return r;

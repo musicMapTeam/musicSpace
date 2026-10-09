@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><title>Plan A card K · the real exported duet ticket PNG</title>
+<link rel="stylesheet" href="cards.css"><link rel="stylesheet" href="theme-dusk.css">
+<style>
+.dark{background:radial-gradient(1000px 640px at 28% 40%,rgba(255,170,120,.26),transparent 62%),radial-gradient(1200px 760px at 82% 112%,rgba(122,74,150,.6),transparent 60%),linear-gradient(#15122f,#201a49 62%,#2c2158)!important}
+.vignette{position:absolute;inset:0;pointer-events:none;z-index:40}
+.eyebrow.tl{position:absolute;left:78px;top:70px;opacity:0;animation:fade .6s .1s forwards}
+.eyebrow.tr{position:absolute;right:78px;top:70px;opacity:0;animation:fade .6s .2s forwards}
+.cardwrap{position:absolute;left:330px;top:96px;width:790px;height:888px;opacity:0;animation:fly 1.0s .15s cubic-bezier(.2,.9,.25,1) forwards}
+.cardwrap img{width:100%;height:100%;display:block;box-shadow:0 50px 90px rgba(4,2,20,.7),0 4px 0 rgba(255,255,255,.25) inset;border-radius:6px}
+.cardwrap .tape{position:absolute;top:-24px;left:50%;width:170px;height:46px;margin-left:-85px;transform:rotate(-3deg);box-shadow:0 2px 3px rgba(0,0,0,.2);z-index:2}
+@keyframes fly{from{opacity:0;transform:translate(120px,260px) rotate(9deg) scale(.86)}to{opacity:1;transform:rotate(-3deg)}}
+.ph{position:absolute;left:1210px;top:290px;width:640px}
+.l1{font-size:84px;font-weight:700;letter-spacing:.05em;color:var(--cream);line-height:1.22;opacity:0;animation:rise .7s 1.0s cubic-bezier(.2,.9,.25,1) forwards}
+.l1 .hl{color:var(--accent)}
+.l1 .hl::before{height:.09em;bottom:-.02em;transform:scaleX(0);animation:sweep .5s 1.9s cubic-bezier(.3,.7,.2,1) forwards}
+.l2{margin-top:34px;font-family:var(--mono);font-size:21px;letter-spacing:.14em;color:rgba(251,243,223,.78);line-height:1.8;opacity:0;animation:fade .6s 1.7s forwards}
+.chip{display:inline-block;margin-top:30px;background:var(--accent);color:#1b1438;font-weight:700;font-size:30px;letter-spacing:.08em;padding:.3em .8em;border-radius:6px;opacity:0;animation:rise .5s 2.3s cubic-bezier(.2,.9,.25,1) forwards;box-shadow:0 14px 22px rgba(0,0,0,.4)}
+</style></head>
+<body>
+<div class="card dark grain">
+  <div class="lights" id="lights"></div>
+  <div class="eyebrow tl">AFTER THE ENCORE / 双联票根</div>
+  <div class="eyebrow tr">DUET TICKET · PNG</div>
+  <div class="cardwrap"><div class="tape"></div><img src="assets/ticket-planA.png" alt="duet ticket"></div>
+  <div class="ph">
+    <div class="l1">散场了，<br>把这一晚<span class="hl">留在手里</span>。</div>
+    <div class="l2">真正导出的 PNG · 1600 × 1800<br>在你的浏览器里生成 · 由你主动下载 · 不上传</div>
+    <div class="chip">两人署名的双联票根</div>
+  </div>
+  <div class="vignette"></div><div class="frame"></div>
+</div>
+<script>
+const L=document.getElementById('lights');for(let i=0;i<14;i++){const b=document.createElement('i');b.style.left=(3+i*7.4)+'%';b.style.top=(34+Math.sin(i/13*Math.PI)*34)+'px';b.style.opacity=0;b.style.animation=`fade .5s ${.3+i*.05}s forwards`;L.appendChild(b)}
+</script>
+</body></html>

@@ -1,0 +1,43 @@
+[
+ {
+  "label": "MAP-P3-push master",
+  "file": "/tmp/space-video-doodle/prod/capture/map-rc2/phone/MAP-P3-push.mp4",
+  "bytes": 13103473,
+  "MB": 13.1,
+  "duration_s": 7.1,
+  "video": "h264 High 1080x2340 60/1 yuv420p",
+  "colour": "bt709/bt709/bt709/tv",
+  "frames": 426,
+  "bitrate_mbps": 14.8,
+  "audio_streams": 0,
+  "frames_decoded": 426,
+  "frames_rig": 426,
+  "same_count": true,
+  "longest_still": {
+   "frames": 10,
+   "at_s": 0.267
+  },
+  "still_over_1s": [],
+  "stutters": {
+   "count": 0,
+   "at_s": []
+  },
+  "exact_repeat_runs_over_9f": [],
+  "exact_unique": 403,
+  "motion_windows": [
+   {
+    "kind": "push",
+    "label": "push 300 f (moving from f53)",
+    "from": 53,
+    "to": 335,
+    "allow": 1,
+    "frames": 283,
+    "exactRepeats": 0,
+    "longestRepeat": 1,
+    "minChange": 0.022,
+    "ok": true
+   }
+  ],
+  "motion_ok": true
+ }
+]

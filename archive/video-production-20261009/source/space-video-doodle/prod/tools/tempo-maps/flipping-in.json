@@ -1,0 +1,40 @@
+{
+ "id": "flipping-in",
+ "label": "Wax Lyricist《Flipping In》123 BPM — the animatic proposal, bar 90 cut (✂1) to stay under 175 s",
+ "track": {
+  "audio": "/tmp/space-video-doodle/music-cc0/02-flipping-in__Wax-Lyricist/Wax_Lyricist_-_Flipping_In.mp3",
+  "beats": "/tmp/space-video-doodle/music-cc0/02-flipping-in__Wax-Lyricist/beats.json",
+  "title": "Flipping In", "artist": "Wax Lyricist", "licence": "CC0 1.0 Universal",
+  "sha256": "8d79e1f0f6aee4de038eff80b0a93262bacdc4ea2dc7ce184cfd12f162ca6127",
+  "proof": "/tmp/space-video-doodle/music-cc0/02-flipping-in__Wax-Lyricist/LICENCE-PROOF.md",
+  "credit": "配乐：Wax Lyricist《Flipping In》（CC0 1.0 公共领域）"
+ },
+ "plan": [
+  {"sb": "1-6", "trk": "55-60", "why": "cold open on the full horn-funk groove; FI 59 ends in a gap and FI 60 lands a hit = the logo pop on 6:1"},
+  {"sb": "7-8", "trk": "61-62", "why": "the track's 2-bar stop (-23/-28 dB, no bass) under the second half of the title card and the H3 match cut"},
+  {"sb": "9-20", "trk": "63-74", "why": "pain: no kick/snare for 12 bars (63-66 hats + bass, 67-74 bass only)"},
+  {"sb": "21-48", "trk": "75-102", "why": "DROP on 21:1 = drums return (FI 75); brass from FI 79 (sb 25); FI 101-102 thin out under M4"},
+  {"sb": "49-50", "trk": "61-62", "why": "the stop again = the wait 「等待本人回应」"},
+  {"sb": "51-66", "trk": "103-118", "why": "payoff out of the stop (+10 dB entry); the full kit returns on FI 105 = sb 53"},
+  {"sb": "67-72", "trk": "107-112", "why": "social groove continues (repeat)"},
+  {"sb": "73-74", "trk": "119-120", "why": "the song's own drum break (drums only, no bass) = stop-time break"},
+  {"sb": "75-82", "trk": "103-110", "why": "lift: back into the last chorus (thin 103-104, full kit on 105 = sb 77)"},
+  {"sb": "83-89", "trk": "111-117", "why": "end card on the last chorus, faded out under the card"}
+ ],
+ "cut": [90],
+ "tail_s": 1.0,
+ "fade": {"from": "87:1", "shape": "cos"},
+ "xfade_ms": 20,
+ "music_has": [],
+ "moments": {
+  "title_stop": {"verdict": "moved", "note": "the stop is FI 61-62 = sb 7-8; the title SLAM on 5:1 lands in the groove (FI 59), the gap at the end of FI 59 + hit on FI 60 meet the logo pop 6:1; SFX impact carries 5:1"},
+  "pain_sparse": {"verdict": "yes", "note": "no kick/snare from 9:1 to 20:4 (FI 63-74); the bass enters loud on 9:1 (+13 dB after the stop)"},
+  "drop": {"verdict": "yes", "note": "drums come back on 21:1 (FI 75); a texture change more than a loudness jump (+3 dB)"},
+  "ai_chime": {"verdict": "sfx", "note": "no chime in the track: SFX chime on 31:3"},
+  "payoff": {"verdict": "partial", "note": "51:1 enters out of the stop (+10 dB) but FI 103-104 are thin; the full kit arrives on 53:1. flipping-in-b moves the payoff to FI 105"},
+  "social_groove": {"verdict": "yes", "note": "FI 105-118 is the loudest part of the track"},
+  "break": {"verdict": "yes", "note": "FI 119-120 drum break (no bass, no horns)"},
+  "lift": {"verdict": "partial", "note": "75:1 re-enters the last chorus on its thin bars (FI 103); full kit on 77:1; no key change"},
+  "end_resolve": {"verdict": "fade", "note": "fade-out from 87:1 under the end card (the track's own ending FI 119-121 is used for the break)"}
+ }
+}

@@ -1,0 +1,58 @@
+[
+ {
+  "id": "02-flipping-in",
+  "file": "02-flipping-in__Wax-Lyricist/Wax_Lyricist_-_Flipping_In.mp3",
+  "beats": "02-flipping-in__Wax-Lyricist/beats.json",
+  "stems": "_deep/sep-keep/204931__Wax-Lyricist-Flipping-In",
+  "win": [
+   105.37,
+   140.5
+  ],
+  "bars": [
+   53,
+   84
+  ]
+ },
+ {
+  "id": "04-consternation",
+  "file": "04-consternation-at-the-disco__Wax-Lyricist/Wax_Lyricist_-_Consternation_At_The_Disco.mp3",
+  "beats": "04-consternation-at-the-disco__Wax-Lyricist/beats.json",
+  "stems": "_deep/sep-keep/204934__Wax-Lyricist-Consternation-At-The-Disco",
+  "win": [
+   29.5,
+   59.1
+  ],
+  "bars": [
+   17,
+   33
+  ]
+ },
+ {
+  "id": "01-grab-a-partner",
+  "file": "01-grab-a-partner__Loyalty-Freak-Music/Loyalty_Freak_Music_-_05_-_Grab_A_Partner.mp3",
+  "beats": "01-grab-a-partner__Loyalty-Freak-Music/beats.json",
+  "stems": "_deep/sep-keep/183655__Loyalty-Freak-Music-Grab-A-Partner",
+  "win": [
+   84.9,
+   114.9
+  ],
+  "bars": [
+   47,
+   52
+  ]
+ },
+ {
+  "id": "05-love-love-love",
+  "file": "05-reserve-love-love-love__HoliznaCC0/HoliznaCC0_-_Love_Love_Love.mp3",
+  "beats": "05-reserve-love-love-love__HoliznaCC0/beats.json",
+  "stems": "_deep/sep-keep/204494__HoliznaCC0-Love-Love-Love",
+  "win": [
+   33.4,
+   62.6
+  ],
+  "bars": [
+   17,
+   31
+  ]
+ }
+]

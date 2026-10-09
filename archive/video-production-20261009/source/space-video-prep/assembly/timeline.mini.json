@@ -1,0 +1,20 @@
+{
+  "title": "Music Space mini assembly test",
+  "output": "out/mini-test.mp4",
+  "size": [1920, 1080],
+  "fps": 60,
+  "crf": 20,
+  "preset": "medium",
+  "music": { "file": "../music/original/space-original-full-170s.wav", "start": 0, "delay": 0, "fade_in": 0.8, "fade_out": 2.5, "target_lufs": -16 },
+  "shots": [
+    { "id": "B1", "kind": "clip", "src": "../cards/out/card-b-pain.mp4", "in": 0, "dur": 5.0 },
+    { "id": "A1", "kind": "clip", "src": "../cards/out/card-a-open.mp4", "in": 0, "dur": 5.0, "transition_in": { "type": "fadewhite", "dur": 0.5 } },
+    { "id": "R1", "kind": "clip", "src": "../clips/test-rc4-eventroom-10s.mp4", "in": 0.8, "dur": 8.0, "transition_in": { "type": "smoothleft", "dur": 0.5 } },
+    { "id": "C1", "kind": "clip", "src": "../cards/out/card-c-end.mp4", "in": 0, "dur": 5.0, "transition_in": { "type": "fade", "dur": 0.6 } }
+  ],
+  "subtitles": [
+    { "start": 10.6, "end": 14.2, "text": "这是一间真正的三维 Livehouse。", "style": "glass" },
+    { "start": 14.4, "end": 18.0, "text": "照片默认只有自己能看，**AI 只在你的设备上**判断视角。", "style": "glass", "chip": "AI" },
+    { "start": 19.0, "end": 22.0, "text": "示例角色、场次与照片均为虚构（AI 生成）", "style": "note", "pos": "right" }
+  ]
+}

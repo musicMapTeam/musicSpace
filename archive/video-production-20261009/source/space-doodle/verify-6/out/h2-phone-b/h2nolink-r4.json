@@ -1,0 +1,145 @@
+{
+ "label": "h2nolink",
+ "round": 4,
+ "ok": true,
+ "fcp": 384,
+ "ready": 2479,
+ "loadingHidden": 2243,
+ "proto": "h2",
+ "docEnd": 1632,
+ "css": null,
+ "firstOtherFontStart": null,
+ "frames": 129,
+ "fontsLoaded": 0,
+ "net": [
+  {
+   "url": "/musicSpace/",
+   "proto": "h2",
+   "prio": "VeryHigh",
+   "bytes": 646236,
+   "start": 0,
+   "resp": 160,
+   "end": 1632
+  },
+  {
+   "url": "/musicSpace/shared/three-0.186.1/three.module.js",
+   "proto": "h2",
+   "prio": "High",
+   "bytes": 131661,
+   "start": 167,
+   "resp": 897,
+   "end": 895
+  },
+  {
+   "url": "/musicSpace/shared/three-0.186.1/three.core.js",
+   "proto": "h2",
+   "prio": "High",
+   "bytes": 288162,
+   "start": 167,
+   "resp": 1314,
+   "end": 1312
+  },
+  {
+   "url": "/musicSpace/sql/sql-wasm.wasm",
+   "proto": "h2",
+   "prio": "High",
+   "bytes": 658822,
+   "start": 167,
+   "resp": 322,
+   "end": 1803
+  },
+  {
+   "url": "/musicSpace/fonts/doodle/marker-0.woff2",
+   "proto": "h2",
+   "prio": "High",
+   "bytes": 43474,
+   "start": 168,
+   "resp": 550,
+   "end": 549
+  },
+  {
+   "url": "/musicSpace/fonts/doodle/display-0.woff2",
+   "proto": "h2",
+   "prio": "High",
+   "bytes": 81975,
+   "start": 168,
+   "resp": 725,
+   "end": 723
+  },
+  {
+   "url": "/musicSpace/demo/yao-stage.jpg",
+   "proto": "h2",
+   "prio": "Low",
+   "bytes": 70091,
+   "start": 1799,
+   "resp": 2174,
+   "end": 2118
+  },
+  {
+   "url": "/musicSpace/demo/man-crowd.jpg",
+   "proto": "h2",
+   "prio": "Low",
+   "bytes": 56952,
+   "start": 1799,
+   "resp": 2174,
+   "end": 2104
+  },
+  {
+   "url": "/musicSpace/demo/man-near.jpg",
+   "proto": "h2",
+   "prio": "Low",
+   "bytes": 21969,
+   "start": 1799,
+   "resp": 2176,
+   "end": 2034
+  },
+  {
+   "url": "/musicSpace/demo/bei-balcony.jpg",
+   "proto": "h2",
+   "prio": "Low",
+   "bytes": 34099,
+   "start": 1800,
+   "resp": 2174,
+   "end": 2064
+  },
+  {
+   "url": "/musicSpace/demo/sample-crowd.jpg",
+   "proto": "h2",
+   "prio": "Low",
+   "bytes": 81390,
+   "start": 2467,
+   "resp": 2622,
+   "end": 2765
+  },
+  {
+   "url": "/musicSpace/demo/sample-stage.jpg",
+   "proto": "h2",
+   "prio": "Low",
+   "bytes": 90606,
+   "start": 2468,
+   "resp": 2623,
+   "end": 2774
+  }
+ ],
+ "perf": {
+  "origin": 1791300204775.9,
+  "paints": [
+   {
+    "name": "first-paint",
+    "t": 384
+   },
+   {
+    "name": "first-contentful-paint",
+    "t": 384
+   }
+  ],
+  "log": {
+   "ready": 2479,
+   "loadingHidden": 2242.899999976158,
+   "firstStyled": null
+  },
+  "boot": "ready",
+  "fontsLoaded": 0,
+  "title": "Music Space · 同一刻，另一面"
+ }
+}

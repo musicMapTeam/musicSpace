@@ -1,0 +1,440 @@
+/*
+ * Static (GitHub Pages) build only: what the example site adds to the event room. Imported by web/static-runtime/profile.js, never by the
+ * Node server build. It is bundled BEFORE the event room's own stylesheets (profile.js is the first import of app.js), so every rule that
+ * has to win against theirs is written with more specificity, not with !important.
+ *
+ * Sizes follow the product rules: body text 14px or more, helper text 12px or more, targets 44px or more. Colours are the editorial
+ * green / cream of web/event-room/editorial.css.
+ *
+ * What this file expects from the page (the pieces that are not markup built by web/static-runtime/showcase/*.js):
+ *   .frame[data-stage='lobby' | 'room']   set by app.js on every render; the lobby hides 音乐探索, the inbox and 我的小人
+ *   html[data-channel='preview']          set by the boot; shows the 预览版 pill
+ *   .frame > footer > button              the About button (the footer itself ignores the pointer)
+ *   .presence > .demo-tour                the example route's host (createTour in showcase/tour.js moves a host that sits just before
+ *                                         .presence into it, and keeps the class .demo-tour-open on .presence while the card is expanded)
+ *   .cast-badge                           optional: wrap castLabel() of the people list in <small class="cast-badge">
+ * Markup classes used by the modules: .demo-entry, .demo-entry-more, .demo-entry-status, .demo-about*, .demo-reset, .demo-room-note.
+ */
+
+.demo-tour,
+.demo-entry,
+.demo-about,
+.demo-room-note {
+  --demo-ink: #203b32;
+  --demo-green: #294c3e;
+  --demo-cream: #f0e9d8;
+  --demo-line: #b6bbaa;
+  --demo-soft: #e4e4cf;
+  --demo-accent: #d8df83;
+  --demo-muted: #4f6147;
+  --demo-warn-bg: #f3e5c8;
+  --demo-warn-ink: #5a3a12;
+}
+
+/* ---- the lobby: only what a first visit needs ------------------------------------------------------------------------------ */
+
+.frame[data-stage='lobby'] #music-map-entry,
+.frame[data-stage='lobby'] #social-inbox,
+.frame[data-stage='lobby'] #my-look {
+  display: none;
+}
+
+/* The event room turns #join into an underlined text link on phones; before entering it is the one thing to press. */
+.frame[data-stage='lobby'] .presence-actions #join {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 14px;
+  background: #294c3e;
+  border: 1px solid #294c3e;
+  border-radius: 3px;
+  box-shadow: none;
+  color: #f4ecd7;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/*
+ * The footer button that opens 「关于这个示例」. The event room's footer is a 27px strip that ignores the pointer; this button is the one
+ * honest entry to what the example is, so it gets a 44px target: the footer grows to 44px and the camera dock moves up by the
+ * difference (14px wide screens, 17px phones). Nothing else in the layout depends on the dock's exact bottom edge.
+ */
+
+body .frame > footer {
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-height: 44px;
+  padding: 0;
+}
+
+body .frame > footer button,
+body .frame > footer a {
+  pointer-events: auto;
+  box-sizing: border-box;
+  min-height: 44px;
+  margin: 0;
+  padding: 0 10px;
+  background: none;
+  border: 0;
+  color: #4f6147;
+  font: inherit;
+  font-size: 12px;
+  line-height: 1.3;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+body .frame .camera-nav {
+  bottom: 50px;
+}
+
+@media (max-width: 700px) {
+  body .frame .camera-nav {
+    bottom: 46px;
+  }
+}
+
+/* ---- 「示例路线」: a slim card inside .presence, above its text and buttons --------------------------------------------------- */
+
+.demo-tour {
+  display: block;
+  margin: 0 0 10px;
+  padding: 0 0 10px;
+  border-bottom: 1px solid var(--demo-line);
+  color: var(--demo-ink);
+}
+
+.demo-tour[hidden] {
+  display: none;
+}
+
+/* The event room hides the first <div> of a joined .presence on short phones (it is the title and text); the card is not that. */
+.frame .presence > .demo-tour:first-child {
+  position: static;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  clip-path: none;
+}
+
+.demo-tour .demo-tour-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.demo-tour .demo-tour-title {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  padding-top: 4px;
+  color: var(--demo-ink);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.demo-tour .demo-tour-title strong {
+  font-weight: 700;
+}
+
+.demo-tour .demo-tour-bar {
+  display: flex;
+  gap: 4px;
+  margin: 2px 0 8px;
+}
+
+.demo-tour .demo-tour-bar i {
+  flex: 1 1 0;
+  height: 4px;
+  background: #cfd3bd;
+  border-radius: 2px;
+}
+
+.demo-tour .demo-tour-bar i.on {
+  background: var(--demo-green);
+}
+
+.demo-tour .demo-tour-hint {
+  margin: 0 0 8px;
+  color: var(--demo-muted);
+  font-size: 14px;
+  line-height: 1.5;
+  max-width: none;
+}
+
+.demo-tour .demo-tour-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.demo-tour .demo-tour-action.primary:first-child {
+  grid-column: 1 / -1;
+}
+
+.demo-tour .demo-tour-skip {
+  grid-column: 1 / -1;
+}
+
+.demo-tour .demo-tour-action,
+.demo-tour .demo-tour-skip,
+.demo-tour .demo-tour-toggle {
+  box-sizing: border-box;
+  min-height: 44px;
+  margin: 0;
+  padding: 8px 12px;
+  border-radius: 3px;
+  box-shadow: none;
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.3;
+  text-align: center;
+  text-decoration: none;
+  white-space: normal;
+  cursor: pointer;
+}
+
+.demo-tour .demo-tour-action.primary {
+  background: var(--demo-green);
+  border: 1px solid var(--demo-green);
+  color: #f4ecd7;
+  font-weight: 700;
+}
+
+.demo-tour .demo-tour-action.quiet {
+  background: transparent;
+  border: 1px solid #8d9a7e;
+  color: var(--demo-green);
+}
+
+.demo-tour .demo-tour-skip {
+  background: transparent;
+  border: 0;
+  color: var(--demo-muted);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.demo-tour .demo-tour-skip.primary {
+  background: var(--demo-green);
+  border: 1px solid var(--demo-green);
+  color: #f4ecd7;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.demo-tour .demo-tour-toggle {
+  flex: none;
+  min-width: 56px;
+  background: transparent;
+  border: 1px solid #8d9a7e;
+  color: var(--demo-green);
+}
+
+.demo-tour button:focus-visible {
+  outline: 2px solid #294c3e;
+  outline-offset: 2px;
+}
+
+/*
+ * Phones: the open card and the presence's own text and buttons cannot both fit above the dock (a phone inside Safari or WeChat has
+ * 560-760px of height once the toolbars are counted). While the card is expanded it takes the presence's place; every button it hides is
+ * also reachable from the dock, the people list or the room panel, and comes back when the card is collapsed or skipped. The hint and the
+ * progress bar give way as well, so the 3D room stays in view.
+ */
+@media (max-width: 800px) {
+  .frame .presence.demo-tour-open > :not(.demo-tour) {
+    display: none;
+  }
+
+  .demo-tour .demo-tour-hint,
+  .demo-tour .demo-tour-bar {
+    display: none;
+  }
+
+  .demo-tour {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+}
+
+/* The event room hides the title and text of a joined .presence on short phones by clipping its first <div>; the card now comes first. */
+@media (max-width: 800px) and (max-height: 650px) {
+  .frame .presence:not(.welcome) > :not(.demo-tour):not(.presence-actions) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+}
+
+/* ---- the entry panel ---------------------------------------------------------------------------------------------------------- */
+
+/*
+ * The panel's generic rule `.panel input:not([type=checkbox])` (full width, 46px high) also hits radio buttons, which turns every
+ * participation chooser into a wide box with a squeezed label: the entry form here and the 「更新参与方式」 form of the room panel.
+ */
+.panel .participation-choices input[type='radio'] {
+  display: inline-block;
+  flex: none;
+  width: 20px;
+  height: 20px;
+  min-height: 0;
+  margin: 2px 0 0;
+  padding: 0;
+}
+
+.panel .demo-entry .consent {
+  font-size: 14px;
+}
+
+.demo-entry .demo-entry-status {
+  min-height: 1.65em;
+  margin: 6px 0;
+}
+
+.demo-entry .demo-entry-more {
+  margin-top: 10px;
+  border-top: 1px solid var(--demo-line);
+}
+
+.demo-entry .demo-entry-more summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 44px;
+  color: var(--demo-green);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* A flex summary loses the browser's disclosure triangle; this one says the row opens. */
+.demo-entry .demo-entry-more summary::after {
+  content: '▾';
+  margin-left: 8px;
+  font-size: 14px;
+}
+
+.demo-entry .demo-entry-more[open] summary::after {
+  content: '▴';
+}
+
+/* ---- the room panel's note (it replaces the invitation: nothing here can be shared) ----------------------------------------- */
+
+.demo-room-note {
+  margin: 12px 0;
+  padding: 4px 12px 8px;
+  background: #eae9da;
+  border-left: 3px solid #a3b14e;
+}
+
+.demo-room-note p {
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.demo-room-note .fine {
+  font-size: 12px;
+}
+
+/* ---- 「关于这个示例」 -------------------------------------------------------------------------------------------------------- */
+
+.panel .demo-about-lead {
+  margin: 10px 0 4px;
+  padding: 8px 10px;
+  background: var(--demo-soft, #e4e4cf);
+  border-left: 3px solid var(--demo-green, #294c3e);
+  color: var(--demo-ink, #203b32);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.demo-about .demo-about-section {
+  margin-top: 16px;
+  padding-top: 4px;
+  border-top: 1px solid var(--demo-line);
+}
+
+.demo-about .demo-about-section h3 {
+  margin: 10px 0 2px;
+  color: var(--demo-green);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.demo-about code {
+  padding: 1px 4px;
+  background: #e8e4d0;
+  border-radius: 2px;
+  font: 12px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.demo-about .demo-about-channel {
+  display: inline-block;
+  padding: 0 6px;
+  background: var(--demo-accent);
+  color: var(--demo-ink);
+  border-radius: 2px;
+}
+
+.demo-about .demo-about-warn {
+  margin: 10px 0;
+  padding: 8px 10px;
+  background: var(--demo-warn-bg);
+  border-left: 3px solid #b9803a;
+  color: var(--demo-warn-ink);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.panel .demo-about .demo-reset {
+  border: 1px solid #a65a40;
+  color: #7a3a25;
+}
+
+.panel .demo-about .demo-reset:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ---- who is an example character ---------------------------------------------------------------------------------------------- */
+
+.cast-badge {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 6px;
+  background: #e3e8cf;
+  border: 1px solid #b6bf94;
+  border-radius: 2px;
+  color: #294c3e;
+  font-size: 12px;
+  line-height: 1.5;
+  vertical-align: middle;
+}
+
+/* ---- the preview copy says so (a pill at the top edge, out of the layout) ------------------------------------------------------ */
+
+[data-channel='preview'] body::before {
+  content: '预览版';
+  position: fixed;
+  top: 0;
+  left: 50%;
+  z-index: 70;
+  padding: 0 10px;
+  background: #d8df83;
+  border-radius: 0 0 4px 4px;
+  color: #203b32;
+  font: 700 12px/14px 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+  letter-spacing: 0.08em;
+  pointer-events: none;
+  transform: translateX(-50%);
+}

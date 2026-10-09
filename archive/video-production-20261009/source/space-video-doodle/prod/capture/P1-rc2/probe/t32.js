@@ -1,0 +1,14 @@
+const out = {};
+await page.click('#panel-close'); await sleep(700);
+await page.click('#my-space'); await sleep(2000);
+await shot('51-my-space');
+out.my = await page.evaluate(() => { const c = [...document.querySelectorAll('.personal-space')].find(e => e.getClientRects().length); return c ? c.innerText.replace(/\n{2,}/g, '\n').slice(0, 2500) : null; });
+out.sc = await page.evaluate(() => { const s = document.querySelector('.personal-space .community-scroll'); return s ? { sh: s.scrollHeight, ch: s.clientHeight } : null; });
+await page.evaluate(() => document.querySelector('.personal-space .community-scroll').scrollTo({ top: 1e5, behavior: 'instant' })); await sleep(400);
+await shot('52-my-space-bottom');
+await page.click('.personal-space [data-space="close"]'); await sleep(700);
+await page.click('nav.camera-nav [data-view="photos"]'); await sleep(3000);
+await shot('53-photo-wall');
+out.cam = await page.evaluate(() => { const c = window.__SPACE_EVENT_QA__().camera; return { view: c.view, moving: c.moving }; });
+out.body = await txt('body');
+return out;

@@ -1,0 +1,116 @@
+{
+ "kind": "desktop",
+ "base": "http://127.0.0.1:4783/musicSpace/",
+ "steps": [
+  {
+   "name": "ready",
+   "t": 1.5,
+   "title": "Music Space · 同一刻，另一面",
+   "build": "0.22.0-rc.1+7cbe4d3"
+  },
+  {
+   "name": "join-form",
+   "t": 4.3,
+   "joinLabel": "进入示例现场",
+   "st": 0,
+   "submit": "进入示例现场",
+   "consent": true,
+   "close": {
+    "kind": "entry",
+    "st": 0,
+    "sh": 1001,
+    "ch": 660,
+    "close": [
+     1327,
+     111,
+     1373,
+     157
+    ],
+    "sheetTop": 100,
+    "sheetRight": 1384,
+    "fromTop": 11,
+    "fromRight": 11,
+    "inView": true,
+    "onTop": true,
+    "hit": "#panel-close",
+    "under": [],
+    "focused": true
+   }
+  },
+  {
+   "name": "joined",
+   "t": 7.8,
+   "sample": "人海 · 示例照片",
+   "stage": "room",
+   "people": [
+    "阿遥·示例 · 可招呼",
+    "小满·示例 · 可招呼",
+    "北屿·示例 · 可招呼",
+    "访客1781 · 我"
+   ]
+  },
+  {
+   "name": "upload-reveal",
+   "t": 10.1,
+   "settled": true,
+   "key": "sure:crowd",
+   "line": "AI 判断：人海",
+   "chosen": "人海一起举手的那一面",
+   "save": "保存这张照片",
+   "taken": "拍摄于 21:48 · 来自照片自带的信息修改时间示例照片 · 虚构的拍摄时间 ",
+   "close": {
+    "kind": "upload",
+    "st": 221,
+    "sh": 1106,
+    "ch": 660,
+    "close": [
+     1327,
+     111,
+     1373,
+     157
+    ],
+    "sheetTop": 100,
+    "sheetRight": 1384,
+    "fromTop": 11,
+    "fromRight": 11,
+    "inView": true,
+    "onTop": true,
+    "hit": "#panel-close",
+    "under": [],
+    "focused": true
+   }
+  },
+  {
+   "name": "wall",
+   "t": 12.5,
+   "kind": "wall",
+   "st": 0,
+   "badge": "同一刻的另一面",
+   "reason": "同一刻 · 21:47，相差不到 1 分钟；你拍人海，TA 拍舞台",
+   "offer": "和 TA 交换这个视角"
+  },
+  {
+   "name": "sent",
+   "t": 17.7,
+   "sendLabel": "把这两张交给对方确认 ↗"
+  },
+  {
+   "name": "accepted",
+   "t": 21
+  }
+ ],
+ "failures": [
+  "failedRequests: [\"http://127.0.0.1:4783/musicSpace/ai/ort/ort-wasm-simd-threaded.wasm net::ERR_ABORTED\"]"
+ ],
+ "requests": 68,
+ "api": [],
+ "foreign": [],
+ "failedRequests": [
+  "http://127.0.0.1:4783/musicSpace/ai/ort/ort-wasm-simd-threaded.wasm net::ERR_ABORTED"
+ ],
+ "consoleErrors": [],
+ "pageErrors": [],
+ "consoleWarnings": [],
+ "ok": false,
+ "seconds": 24.867
+}

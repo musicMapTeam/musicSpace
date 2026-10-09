@@ -1,0 +1,6551 @@
+{
+ "take": "TAKE-P1 rc2 (SHOTS.md §3): the continuous phone judge route in one world, re-shot on 0.22.0-rc.2 (same shot ids, beat grids and choreography as capture/P1; P-17 follows the venue framing)",
+ "build": {
+  "served_dir": "/tmp/space-final/dist-pages",
+  "version": "0.22.0-rc.2",
+  "commit": "8fa52f0",
+  "builtAt": "2026-10-07T20:18:33.163Z",
+  "url": "http://127.0.0.1:47871/musicSpace/ (scripts/pages/serve-prefix.mjs, site root under /musicSpace/, not /preview/)"
+ },
+ "world": {
+  "context": "one Chrome context = one world for the whole take (IndexedDB never reset); cast 阿遥 (房主, 「月台的阿遥」), 小满, 北屿, 林间 in 「回声现场」 at 「月台 Livehouse」",
+  "visitor": "阿宁, look preset 失真 (data-preset=4), participation 愿意打招呼",
+  "clock": "2026-10-08T22:40:00+08:00 (Playwright fake clock; rc.2 was built 2026-10-08 04:18 +08:00 and its runtime clock never runs before the build, so the take runs one evening later than TAKE-P1: chat 22:41, 有效至 10/9 22:40, memory card 2026.10.08; photo times 21:47/21:48 come from the photos)",
+  "seed": "Math.random seeded (rec2 default 20261009)"
+ },
+ "rig": {
+  "recorder": "rig/rec2.mjs (byte copy of capture-test/rec2.mjs) + p1lib.mjs (multi-sink, probe, load settling)",
+  "browser": "Chrome headless --use-angle=metal --enable-gpu (real GPU)",
+  "phone": "390x845 CSS @ 36/13 = 1080x2340, isMobile + hasTouch, zh-CN, Asia/Shanghai",
+  "timing": "frame-stepped: every output frame advances the page clock by 16 ms (rAF/timers/CSS+WAAPI synced) and is grabbed losslessly (CDP PNG); encoded as 60 fps CFR, so product motion plays at 0.96x real speed; waits are real product waits measured in frames",
+  "encode": "libx264 High, CRF 15 preset slow tune animation (clips) / CRF 16 medium (master), yuv420p, BT.709 limited range, +faststart",
+  "cursor": "no arrow cursor; taps show the rig doodle tap ring (yellow ring, ink outline, pink offset, 480 ms) at the finger; the text caret is hidden (CSS caret-color: transparent) because its real-time blink would flicker in frame-stepped capture",
+  "loads": "before every grab the recorder waits (real time) until visible <img> are decoded and fonts are loaded; all 18 doodle font faces preloaded at boot",
+  "probe": "DOM state probed before and after every grab (states / states2 in take.json); sync frames use the pre-grab probe, moved one frame earlier when the post-grab probe of the previous frame already saw the change and the frame hashes prove that image shows it (sync.<key>.resolved)",
+  "copy_scan": "every readable DOM string (body innerText incl. scrolled-off text, visible field values/placeholders, selected options) scanned twice per frame for 示例/虚构/本页 and the other demo words of the copy plan plus rc.1 strings; also logged at every clip in/out (take.json ban_checks)"
+ },
+ "beat_grid": {
+  "bpm": 123,
+  "frames_per_beat": 29.2683,
+  "grids": [
+   {
+    "name": "nickname 16ths",
+    "beat0": 587,
+    "bpm": 123,
+    "fpb": 29.2683
+   },
+   {
+    "name": "wardrobe presets + angles",
+    "beat0": 784,
+    "bpm": 123,
+    "fpb": 29.2683
+   },
+   {
+    "name": "entry form",
+    "beat0": 1173,
+    "bpm": 123,
+    "fpb": 29.2683
+   },
+   {
+    "name": "exchange",
+    "beat0": 3252,
+    "bpm": 123,
+    "fpb": 29.2683
+   },
+   {
+    "name": "chat typing 16ths + send",
+    "beat0": 4886,
+    "bpm": 123,
+    "fpb": 29.2683
+   },
+   {
+    "name": "world cup",
+    "beat0": 6245,
+    "bpm": 123,
+    "fpb": 29.2683
+   },
+   {
+    "name": "venue community",
+    "beat0": 7600,
+    "bpm": 123,
+    "fpb": 29.2683
+   },
+   {
+    "name": "corner",
+    "beat0": 8303,
+    "bpm": 123,
+    "fpb": 29.2683
+   },
+   {
+    "name": "memory card",
+    "beat0": 8813,
+    "bpm": 123,
+    "fpb": 29.2683
+   }
+  ],
+  "rule": "♩ rows: each tap is pressed 3 frames early so its click (= first frame that can show the effect) lands on round(beat0 + k * frames_per_beat). To fit another tempo, play the clip at rate = track_bpm / 123 (e.g. 124 BPM: 1.0081, 130: 1.0569, 110: 0.8943) or cut between taps."
+ },
+ "master": {
+  "file": "/tmp/space-video-doodle/prod/capture/P1-rc2/P1-master.mp4",
+  "frames": 10016,
+  "seconds": 166.933,
+  "note": "the whole take as shot (all waits included); clips are cut from the same frames (no second encode generation)"
+ },
+ "clips": {
+  "P-01": {
+   "file": "/tmp/space-video-doodle/prod/capture/P1-rc2/clips/P-01.mp4",
+   "feeds": [
+    "E1",
+    "W1 (CUT-13)"
+   ],
+   "what": "phone first screen (doodle 3D stage, 「同一刻，另一面。」), tap 「进入现场」 → entry panel 「带上小人，进入现场」",
+   "master_in_frame": 0,
+   "master_out_frame": 513,
+   "master_in_s": 0.0,
+   "master_out_s": 8.55,
+   "frames": 513,
+   "seconds": 8.55,
+   "handles": {
+    "main_action_first": "tap 进入现场 (#join)",
+    "main_action_last": "entry_panel_first_frame",
+    "before_s": 6.0,
+    "after_s": 2.483
+   },
+   "sync": {
+    "entry_panel_first_frame": {
+     "master_frame": 363,
+     "frame": 363,
+     "t": 6.05
+    }
+   },
+   "actions": [
+    {
+     "kind": "tap",
+     "label": "tap 进入现场 (#join)",
+     "t": 6.05,
+     "finger_down_frame": 360,
+     "click_frame": 363,
+     "xy_css": [
+      101,
+      677
+     ]
+    },
+    {
+     "kind": "state",
+     "label": "entry panel opens",
+     "frame": 363,
+     "t": 6.05
+    }
+   ],
+   "boxes": {
+    "P-01 landing": {
+     "frame": 119,
+     "t": 1.983,
+     "boxes_px": {
+      "join 进入现场": [
+       122,
+       1803,
+       318,
+       144
+      ],
+      "title 同一刻，": [
+       122,
+       1258,
+       378,
+       122
+      ],
+      "lead 同一晚…": [
+       122,
+       1558,
+       742,
+       53
+      ],
+      "eyebrow 进到同一个现场": [
+       72,
+       312,
+       539,
+       124
+      ]
+     },
+     "texts": {
+      "join 进入现场": "进入现场",
+      "title 同一刻，": "同一刻，另一面。",
+      "lead 同一晚…": "同一晚，你拍了舞台，TA 拍了人海。AI 在本机给你一个视角建议，照片墙帮你找到同一刻的另一面，双方同意就交换。",
+      "eyebrow 进到同一个现场": "进到同一个现场"
+     }
+    }
+   },
+   "qc": {
+    "lossless_grabs": {
+     "frames": 513,
+     "unique": 292,
+     "identical_consecutive": 149,
+     "longest_identical_run_s": 0.15,
+     "identical_runs_over_1s": [],
+     "scroll_frames_checked": 0,
+     "duplicates_inside_motion": [],
+     "info_identical_at_scroll_ease_edges": 0,
+     "info_identical_while_camera_settles": 0
+    },
+    "probe_errors": 0,
+    "copy_scan": {
+     "frames_scanned": 513,
+     "probes_per_frame": 2,
+     "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+     "frames_with_hits": 0,
+     "samples": []
+    },
+    "stream": {
+     "codec": "h264 High",
+     "size": "1080x2340",
+     "pix_fmt": "yuv420p",
+     "fps": "60/1",
+     "frames": 513,
+     "duration_s": 8.55,
+     "bytes": 2773653,
+     "colour": "bt709/bt709/bt709/tv"
+    },
+    "decoded": {
+     "mean_abs_diff": 0.407,
+     "longest_static_s": 2.283,
+     "static_spans_over_1s": [
+      "6.283s+2.283s"
+     ]
+    },
+    "frame_count_matches_take": true,
+    "master_alignment": {
+     "samples": [
+      {
+       "clip_frame": 102,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.2,
+        "0": 0.2,
+        "1": 1.285
+       },
+       "discriminative": true
+      },
+      {
+       "clip_frame": 256,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.185,
+        "0": 0.187,
+        "1": 0.186
+       },
+       "discriminative": false
+      },
+      {
+       "clip_frame": 410,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.111,
+        "0": 0.109,
+        "1": 0.116
+       },
+       "discriminative": false
+      }
+     ],
+     "aligned": true,
+     "discriminative_samples": 1
+    },
+    "music_map_chip_on_screen_s": []
+   }
+  },
+  "P-02": {
+   "file": "/tmp/space-video-doodle/prod/capture/P1-rc2/clips/P-02.mp4",
+   "feeds": [
+    "E2",
+    "CUT-02"
+   ],
+   "what": "wardrobe 「MY LOOK / 今晚，我这样。」: nickname 阿宁 (16ths), presets 断拍/循迹/回声/失真 on 4 beats (试试现成搭配), angles 正面/侧面/背面/3/4 on 4 beats, save on beat 7.5",
+   "master_in_frame": 453,
+   "master_out_frame": 1112,
+   "master_in_s": 7.55,
+   "master_out_s": 18.533,
+   "frames": 659,
+   "seconds": 10.983,
+   "handles": {
+    "main_action_first": "tap 现在换个造型",
+    "main_action_last": "toast_小人已保存",
+    "before_s": 1.0,
+    "after_s": 1.783
+   },
+   "sync": {
+    "wardrobe_first_frame": {
+     "master_frame": 516,
+     "frame": 63,
+     "t": 1.05
+    },
+    "nickname_阿": {
+     "master_frame": 587,
+     "frame": 134,
+     "t": 2.233
+    },
+    "nickname_阿宁": {
+     "master_frame": 594,
+     "frame": 141,
+     "t": 2.35
+    },
+    "figure_change_1": {
+     "master_frame": 784,
+     "note": "outfit/angle change visible",
+     "frame": 331,
+     "t": 5.517
+    },
+    "figure_change_2": {
+     "master_frame": 813,
+     "note": "outfit/angle change visible",
+     "frame": 360,
+     "t": 6.0
+    },
+    "figure_change_3": {
+     "master_frame": 843,
+     "note": "outfit/angle change visible",
+     "frame": 390,
+     "t": 6.5
+    },
+    "figure_change_4": {
+     "master_frame": 872,
+     "note": "outfit/angle change visible",
+     "frame": 419,
+     "t": 6.983
+    },
+    "figure_change_5": {
+     "master_frame": 901,
+     "note": "outfit/angle change visible",
+     "frame": 448,
+     "t": 7.467
+    },
+    "figure_change_6": {
+     "master_frame": 930,
+     "note": "outfit/angle change visible",
+     "frame": 477,
+     "t": 7.95
+    },
+    "figure_change_7": {
+     "master_frame": 960,
+     "note": "outfit/angle change visible",
+     "frame": 507,
+     "t": 8.45
+    },
+    "figure_change_8": {
+     "master_frame": 989,
+     "note": "outfit/angle change visible",
+     "frame": 536,
+     "t": 8.933
+    },
+    "toast_小人已保存": {
+     "master_frame": 1004,
+     "frame": 551,
+     "t": 9.183
+    }
+   },
+   "actions": [
+    {
+     "kind": "tap",
+     "label": "tap 现在换个造型 ↗",
+     "t": 1.05,
+     "finger_down_frame": 60,
+     "click_frame": 63,
+     "xy_css": [
+      242,
+      385
+     ]
+    },
+    {
+     "kind": "state",
+     "label": "wardrobe opens",
+     "frame": 63,
+     "t": 1.05
+    },
+    {
+     "kind": "tap",
+     "label": "tap nickname field",
+     "t": 2.1,
+     "finger_down_frame": 123,
+     "click_frame": 126,
+     "xy_css": [
+      231,
+      437
+     ]
+    },
+    {
+     "kind": "beat-grid",
+     "label": "♩ nickname 16ths beat0",
+     "beat0_frame": 134,
+     "beat0_t": 2.233
+    },
+    {
+     "kind": "key",
+     "label": "nickname key 阿",
+     "frame": 134,
+     "t": 2.233
+    },
+    {
+     "kind": "key",
+     "label": "nickname key 宁",
+     "frame": 141,
+     "t": 2.35
+    },
+    {
+     "kind": "scroll",
+     "label": "scroll wardrobe tools down",
+     "frame": 177,
+     "t": 2.95,
+     "end_frame": 217,
+     "from_px": 0,
+     "to_px": 160
+    },
+    {
+     "kind": "tap",
+     "label": "tap 试试现成搭配",
+     "t": 3.917,
+     "finger_down_frame": 232,
+     "click_frame": 235,
+     "xy_css": [
+      195,
+      715
+     ]
+    },
+    {
+     "kind": "scroll",
+     "label": "scroll to the presets",
+     "frame": 253,
+     "t": 4.217,
+     "end_frame": 283,
+     "from_px": 160,
+     "to_px": 293
+    },
+    {
+     "kind": "beat-grid",
+     "label": "♩ wardrobe presets + angles beat0",
+     "beat0_frame": 331,
+     "beat0_t": 5.517
+    },
+    {
+     "kind": "tap",
+     "label": "preset 断拍 (beat 0)",
+     "t": 5.517,
+     "finger_down_frame": 328,
+     "click_frame": 331,
+     "xy_css": [
+      114,
+      655
+     ],
+     "on_grid": true
+    },
+    {
+     "kind": "tap",
+     "label": "preset 循迹 (beat 1)",
+     "t": 6.0,
+     "finger_down_frame": 357,
+     "click_frame": 360,
+     "xy_css": [
+      182,
+      655
+     ],
+     "on_grid": true
+    },
+    {
+     "kind": "tap",
+     "label": "preset 回声 (beat 2)",
+     "t": 6.5,
+     "finger_down_frame": 387,
+     "click_frame": 390,
+     "xy_css": [
+      250,
+      655
+     ],
+     "on_grid": true
+    },
+    {
+     "kind": "tap",
+     "label": "preset 失真 (beat 3)",
+     "t": 6.983,
+     "finger_down_frame": 416,
+     "click_frame": 419,
+     "xy_css": [
+      318,
+      655
+     ],
+     "on_grid": true
+    },
+    {
+     "kind": "tap",
+     "label": "angle 正面 (beat 4)",
+     "t": 7.467,
+     "finger_down_frame": 445,
+     "click_frame": 448,
+     "xy_css": [
+      111,
+      369
+     ],
+     "on_grid": true
+    },
+    {
+     "kind": "tap",
+     "label": "angle 侧面 (beat 5)",
+     "t": 7.95,
+     "finger_down_frame": 474,
+     "click_frame": 477,
+     "xy_css": [
+      223,
+      369
+     ],
+     "on_grid": true
+    },
+    {
+     "kind": "tap",
+     "label": "angle 背面 (beat 6)",
+     "t": 8.45,
+     "finger_down_frame": 504,
+     "click_frame": 507,
+     "xy_css": [
+      279,
+      369
+     ],
+     "on_grid": true
+    },
+    {
+     "kind": "tap",
+     "label": "angle 3/4 (beat 7)",
+     "t": 8.933,
+     "finger_down_frame": 533,
+     "click_frame": 536,
+     "xy_css": [
+      167,
+      369
+     ],
+     "on_grid": true
+    },
+    {
+     "kind": "tap",
+     "label": "tap 保存这个我 ↗ (beat 7.5)",
+     "t": 9.183,
+     "finger_down_frame": 548,
+     "click_frame": 551,
+     "xy_css": [
+      238,
+      792
+     ],
+     "on_grid": true
+    },
+    {
+     "kind": "state",
+     "label": "toast 小人已保存",
+     "frame": 551,
+     "t": 9.183
+    }
+   ],
+   "boxes": {},
+   "qc": {
+    "lossless_grabs": {
+     "frames": 659,
+     "unique": 507,
+     "identical_consecutive": 102,
+     "longest_identical_run_s": 0.15,
+     "identical_runs_over_1s": [],
+     "scroll_frames_checked": 50,
+     "duplicates_inside_motion": [],
+     "info_identical_at_scroll_ease_edges": 3,
+     "info_identical_while_camera_settles": 31
+    },
+    "probe_errors": 0,
+    "copy_scan": {
+     "frames_scanned": 659,
+     "probes_per_frame": 2,
+     "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+     "frames_with_hits": 0,
+     "samples": []
+    },
+    "stream": {
+     "codec": "h264 High",
+     "size": "1080x2340",
+     "pix_fmt": "yuv420p",
+     "fps": "60/1",
+     "frames": 659,
+     "duration_s": 10.983333,
+     "bytes": 2001156,
+     "colour": "bt709/bt709/bt709/tv"
+    },
+    "decoded": {
+     "mean_abs_diff": 1.274,
+     "longest_static_s": 1.033,
+     "static_spans_over_1s": [
+      "0.017s+1.033s"
+     ]
+    },
+    "frame_count_matches_take": true,
+    "master_alignment": {
+     "samples": [
+      {
+       "clip_frame": 131,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.183,
+        "0": 0.096,
+        "1": 0.164
+       },
+       "discriminative": false
+      },
+      {
+       "clip_frame": 329,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.193,
+        "0": 0.065,
+        "1": 0.237
+       },
+       "discriminative": false
+      },
+      {
+       "clip_frame": 527,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.08,
+        "0": 0.077,
+        "1": 0.076
+       },
+       "discriminative": false
+      }
+     ],
+     "aligned": true,
+     "discriminative_samples": 0
+    },
+    "music_map_chip_on_screen_s": []
+   }
+  },
+  "P-03": {
+   "file": "/tmp/space-video-doodle/prod/capture/P1-rc2/clips/P-03.mp4",
+   "feeds": [
+    "E3"
+   ],
+   "what": "entry form again (阿宁 + 失真): scroll to 这一场，我想怎样参与 (beat 1), tick 我愿意向本场成员展示我的昵称和小人 (beat 4), 进入现场 (beat 6) → room",
+   "master_in_frame": 1052,
+   "master_out_frame": 1440,
+   "master_in_s": 17.533,
+   "master_out_s": 24.0,
+   "frames": 388,
+   "seconds": 6.467,
+   "handles": {
+    "main_action_first": "tap 进入现场 (#join, again)",
+    "main_action_last": "room_first_frame",
+    "before_s": 1.0,
+    "after_s": 1.5
+   },
+   "sync": {
+    "entry_panel_first_frame": {
+     "master_frame": 1115,
+     "frame": 63,
+     "t": 1.05
+    },
+    "consent_ticked": {
+     "master_frame": 1290,
+     "frame": 238,
+     "t": 3.967
+    },
+    "room_first_frame": {
+     "master_frame": 1349,
+     "frame": 297,
+     "t": 4.95
+    }
+   },
+   "actions": [
+    {
+     "kind": "tap",
+     "label": "tap 进入现场 (#join, again)",
+     "t": 1.05,
+     "finger_down_frame": 60,
+     "click_frame": 63,
+     "xy_css": [
+      101,
+      677
+     ]
+    },
+    {
+     "kind": "state",
+     "label": "entry panel (with 阿宁)",
+     "frame": 63,
+     "t": 1.05
+    },
+    {
+     "kind": "beat-grid",
+     "label": "♩ entry form beat0",
+     "beat0_frame": 121,
+     "beat0_t": 2.017
+    },
+    {
+     "kind": "scroll",
+     "label": "scroll to 这一场，我想怎样参与 (beat 1)",
+     "frame": 150,
+     "t": 2.5,
+     "end_frame": 179,
+     "from_px": 0,
+     "to_px": 170
+    },
+    {
+     "kind": "tap",
+     "label": "tick 我愿意向本场成员展示我的昵称和小人 (beat 4)",
+     "t": 3.967,
+     "finger_down_frame": 235,
+     "click_frame": 238,
+     "xy_css": [
+      44,
+      524
+     ],
+     "on_grid": true
+    },
+    {
+     "kind": "tap",
+     "label": "tap 进入现场 (beat 6)",
+     "t": 4.95,
+     "finger_down_frame": 294,
+     "click_frame": 297,
+     "xy_css": [
+      193,
+      572
+     ],
+     "on_grid": true
+    },
+    {
+     "kind": "state",
+     "label": "room: entry closed, tour card",
+     "frame": 298,
+     "t": 4.967
+    }
+   ],
+   "boxes": {
+    "P-03 entry form after the scroll": {
+     "frame": 178,
+     "t": 2.967,
+     "boxes_px": {
+      "option 愿意打招呼": [
+       88,
+       854,
+       891,
+       215
+      ],
+      "option 安静参与": [
+       89,
+       1092,
+       889,
+       206
+      ],
+      "consent box": [
+       89,
+       1418,
+       66,
+       66
+      ],
+      "consent label": [
+       89,
+       1415,
+       889,
+       69
+      ],
+      "submit 进入现场": [
+       89,
+       1517,
+       889,
+       133
+      ]
+     },
+     "texts": {
+      "option 愿意打招呼": "愿意打招呼 别人可以向我招手",
+      "option 安静参与": "安静参与 照片照常分享，不接新招呼",
+      "consent box": "",
+      "consent label": "我愿意向本场成员展示我的昵称和小人",
+      "submit 进入现场": "进入现场"
+     }
+    }
+   },
+   "qc": {
+    "lossless_grabs": {
+     "frames": 388,
+     "unique": 268,
+     "identical_consecutive": 88,
+     "longest_identical_run_s": 0.15,
+     "identical_runs_over_1s": [],
+     "scroll_frames_checked": 21,
+     "duplicates_inside_motion": [],
+     "info_identical_at_scroll_ease_edges": 0,
+     "info_identical_while_camera_settles": 10
+    },
+    "probe_errors": 0,
+    "copy_scan": {
+     "frames_scanned": 388,
+     "probes_per_frame": 2,
+     "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+     "frames_with_hits": 0,
+     "samples": []
+    },
+    "stream": {
+     "codec": "h264 High",
+     "size": "1080x2340",
+     "pix_fmt": "yuv420p",
+     "fps": "60/1",
+     "frames": 388,
+     "duration_s": 6.466667,
+     "bytes": 3633841,
+     "colour": "bt709/bt709/bt709/tv"
+    },
+    "decoded": {
+     "mean_abs_diff": 1.891,
+     "longest_static_s": 1.267,
+     "static_spans_over_1s": [
+      "1.283s+1.267s",
+      "2.95s+1.017s"
+     ]
+    },
+    "frame_count_matches_take": true,
+    "master_alignment": {
+     "samples": [
+      {
+       "clip_frame": 77,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.151,
+        "0": 0.135,
+        "1": 0.14
+       },
+       "discriminative": false
+      },
+      {
+       "clip_frame": 194,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.11,
+        "0": 0.11,
+        "1": 0.113
+       },
+       "discriminative": false
+      },
+      {
+       "clip_frame": 310,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 2.472,
+        "0": 0.325,
+        "1": 2.638
+       },
+       "discriminative": true
+      }
+     ],
+     "aligned": true,
+     "discriminative_samples": 1
+    },
+    "music_map_chip_on_screen_s": []
+   }
+  },
+  "P-04": {
+   "file": "/tmp/space-video-doodle/prod/capture/P1-rc2/clips/P-04.mp4",
+   "feeds": [
+    "A1"
+   ],
+   "what": "room 「月台 Livehouse · 回声现场」 with the onboarding card 「第一次来 1/4 · 放一张今晚的照片」, 林间 joins (5 位已加入), tap 「人海那张」",
+   "master_in_frame": 1740,
+   "master_out_frame": 2151,
+   "master_in_s": 29.0,
+   "master_out_s": 35.85,
+   "frames": 411,
+   "seconds": 6.85,
+   "handles": {
+    "main_action_first": "tap 人海那张",
+    "main_action_last": "ai_chip_on_screen",
+    "before_s": 5.25,
+    "after_s": 1.3
+   },
+   "sync": {
+    "linjian_joined_header_5_people": {
+     "master_frame": 1994,
+     "note": "林间 joins: the 3D header turns 「5 位已加入 · 正在进行」",
+     "frame": 254,
+     "t": 4.233,
+     "resolved": "image of frame-1 already shows it (identical to the frame)"
+    },
+    "upload_form_first_frame": {
+     "master_frame": 2058,
+     "frame": 318,
+     "t": 5.3
+    },
+    "ai_selected": {
+     "master_frame": 2058,
+     "note": "人海 card turns yellow + ✓ (AI pre-selection, visible)",
+     "frame": 318,
+     "t": 5.3
+    },
+    "ai_chip_in_dom": {
+     "master_frame": 2058,
+     "note": "chip exists but is below the fold",
+     "frame": 318,
+     "t": 5.3
+    },
+    "ai_chip_on_screen": {
+     "master_frame": 2072,
+     "note": "the form jumps to the photo (product auto-scroll): chip + hint on screen = the 31:3 chime",
+     "frame": 332,
+     "t": 5.533
+    }
+   },
+   "actions": [
+    {
+     "kind": "state",
+     "label": "林间 joined",
+     "frame": 255,
+     "t": 4.25
+    },
+    {
+     "kind": "tap",
+     "label": "tap 人海那张",
+     "t": 5.3,
+     "finger_down_frame": 315,
+     "click_frame": 318,
+     "xy_css": [
+      193,
+      567
+     ]
+    },
+    {
+     "kind": "state",
+     "label": "upload form",
+     "frame": 318,
+     "t": 5.3
+    },
+    {
+     "kind": "state",
+     "label": "AI chip in DOM",
+     "frame": 319,
+     "t": 5.317
+    },
+    {
+     "kind": "state",
+     "label": "form auto-scroll to the photo",
+     "frame": 333,
+     "t": 5.55
+    }
+   ],
+   "boxes": {
+    "P-04 room + onboarding card": {
+     "frame": 254,
+     "t": 4.233,
+     "boxes_px": {
+      "card 第一次来 1/4": [
+       152,
+       1287,
+       164,
+       44
+      ],
+      "card title 放一张今晚的照片": [
+       122,
+       1387,
+       415,
+       66
+      ],
+      "button 人海那张": [
+       122,
+       1498,
+       822,
+       144
+      ],
+      "header 回声现场": [
+       72,
+       312,
+       346,
+       124
+      ],
+      "header 5 位已加入": [
+       142,
+       459,
+       145,
+       39
+      ]
+     },
+     "texts": {
+      "card 第一次来 1/4": "第一次来 1/4",
+      "card title 放一张今晚的照片": "放一张今晚的照片",
+      "button 人海那张": "人海那张",
+      "header 回声现场": "回声现场",
+      "header 5 位已加入": "5 位已加入 · 正在进行"
+     }
+    }
+   },
+   "qc": {
+    "lossless_grabs": {
+     "frames": 411,
+     "unique": 193,
+     "identical_consecutive": 201,
+     "longest_identical_run_s": 0.15,
+     "identical_runs_over_1s": [],
+     "scroll_frames_checked": 0,
+     "duplicates_inside_motion": [],
+     "info_identical_at_scroll_ease_edges": 0,
+     "info_identical_while_camera_settles": 0
+    },
+    "probe_errors": 0,
+    "copy_scan": {
+     "frames_scanned": 411,
+     "probes_per_frame": 2,
+     "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+     "frames_with_hits": 0,
+     "samples": []
+    },
+    "stream": {
+     "codec": "h264 High",
+     "size": "1080x2340",
+     "pix_fmt": "yuv420p",
+     "fps": "60/1",
+     "frames": 411,
+     "duration_s": 6.85,
+     "bytes": 2607849,
+     "colour": "bt709/bt709/bt709/tv"
+    },
+    "decoded": {
+     "mean_abs_diff": 0.642,
+     "longest_static_s": 1.317,
+     "static_spans_over_1s": [
+      "5.55s+1.317s"
+     ]
+    },
+    "frame_count_matches_take": true,
+    "master_alignment": {
+     "samples": [
+      {
+       "clip_frame": 82,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.205,
+        "0": 0.202,
+        "1": 0.202
+       },
+       "discriminative": false
+      },
+      {
+       "clip_frame": 205,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.201,
+        "0": 0.201,
+        "1": 1.301
+       },
+       "discriminative": true
+      },
+      {
+       "clip_frame": 328,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 4.703,
+        "0": 0.268,
+        "1": 5.89
+       },
+       "discriminative": true
+      }
+     ],
+     "aligned": true,
+     "discriminative_samples": 2
+    },
+    "music_map_chip_on_screen_s": []
+   }
+  },
+  "P-05": {
+   "file": "/tmp/space-video-doodle/prod/capture/P1-rc2/clips/P-05.mp4",
+   "feeds": [
+    "A1",
+    "A2",
+    "CUT-04"
+   ],
+   "what": "upload form: 拍摄于 21:48 · 来自照片自带的信息, the AI chip 「AI 判断：人海」 with 人海 pre-selected, hint 「配对时用它找另一面，你说了算。」; scroll to 保存这张照片",
+   "master_in_frame": 1995,
+   "master_out_frame": 2451,
+   "master_in_s": 33.25,
+   "master_out_s": 40.85,
+   "frames": 456,
+   "seconds": 7.6,
+   "handles": {
+    "main_action_first": "tap 人海那张",
+    "main_action_last": "scroll to 可见范围",
+    "before_s": 1.0,
+    "after_s": 2.183
+   },
+   "sync": {
+    "upload_form_first_frame": {
+     "master_frame": 2058,
+     "frame": 63,
+     "t": 1.05
+    },
+    "ai_selected": {
+     "master_frame": 2058,
+     "note": "人海 card turns yellow + ✓ (AI pre-selection, visible)",
+     "frame": 63,
+     "t": 1.05
+    },
+    "ai_chip_in_dom": {
+     "master_frame": 2058,
+     "note": "chip exists but is below the fold",
+     "frame": 63,
+     "t": 1.05
+    },
+    "ai_chip_on_screen": {
+     "master_frame": 2072,
+     "note": "the form jumps to the photo (product auto-scroll): chip + hint on screen = the 31:3 chime",
+     "frame": 77,
+     "t": 1.283
+    }
+   },
+   "actions": [
+    {
+     "kind": "state",
+     "label": "林间 joined",
+     "frame": 0,
+     "t": 0.0
+    },
+    {
+     "kind": "tap",
+     "label": "tap 人海那张",
+     "t": 1.05,
+     "finger_down_frame": 60,
+     "click_frame": 63,
+     "xy_css": [
+      193,
+      567
+     ]
+    },
+    {
+     "kind": "state",
+     "label": "upload form",
+     "frame": 63,
+     "t": 1.05
+    },
+    {
+     "kind": "state",
+     "label": "AI chip in DOM",
+     "frame": 64,
+     "t": 1.067
+    },
+    {
+     "kind": "state",
+     "label": "form auto-scroll to the photo",
+     "frame": 78,
+     "t": 1.3
+    },
+    {
+     "kind": "scroll",
+     "label": "scroll to 可见范围 + 保存这张照片",
+     "frame": 276,
+     "t": 4.6,
+     "end_frame": 324,
+     "from_px": 219,
+     "to_px": 306
+    }
+   ],
+   "boxes": {
+    "P-05 upload form (AI)": {
+     "frame": 239,
+     "t": 3.983,
+     "boxes_px": {
+      "photo": [
+       84,
+       245,
+       425,
+       502
+      ],
+      "拍摄于 21:48": [
+       545,
+       364,
+       201,
+       80
+      ],
+      "来自照片自带的信息": [
+       537,
+       467,
+       349,
+       47
+      ],
+      "card 舞台": [
+       89,
+       950,
+       428,
+       190
+      ],
+      "card 人海 ✓": [
+       548,
+       946,
+       432,
+       199
+      ],
+      "card 身边": [
+       89,
+       1174,
+       428,
+       190
+      ],
+      "card 细节": [
+       550,
+       1174,
+       428,
+       190
+      ],
+      "chip AI 判断：人海": [
+       87,
+       1392,
+       471,
+       122
+      ],
+      "hint 配对时用它找另一面，你说了算。": [
+       89,
+       1547,
+       349,
+       47
+      ],
+      "visibility select": [
+       89,
+       1760,
+       889,
+       138
+      ]
+     },
+     "texts": {
+      "photo": "",
+      "拍摄于 21:48": "拍摄于 21:48",
+      "来自照片自带的信息": "来自照片自带的信息",
+      "card 舞台": "舞台 灯光下的那一面",
+      "card 人海 ✓": "人海 一起举手的那一面",
+      "card 身边": "身边 陪你听歌的那一面",
+      "card 细节": "细节 只有你留意的那一面",
+      "chip AI 判断：人海": "AI 判断：人海",
+      "hint 配对时用它找另一面，你说了算。": "配对时用它找另一面，你说了算。",
+      "visibility select": "仅自己保存 分享给本场成员"
+     }
+    }
+   },
+   "qc": {
+    "lossless_grabs": {
+     "frames": 456,
+     "unique": 323,
+     "identical_consecutive": 62,
+     "longest_identical_run_s": 0.15,
+     "identical_runs_over_1s": [],
+     "scroll_frames_checked": 26,
+     "duplicates_inside_motion": [],
+     "info_identical_at_scroll_ease_edges": 1,
+     "info_identical_while_camera_settles": 0
+    },
+    "probe_errors": 0,
+    "copy_scan": {
+     "frames_scanned": 456,
+     "probes_per_frame": 2,
+     "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+     "frames_with_hits": 0,
+     "samples": []
+    },
+    "stream": {
+     "codec": "h264 High",
+     "size": "1080x2340",
+     "pix_fmt": "yuv420p",
+     "fps": "60/1",
+     "frames": 456,
+     "duration_s": 7.6,
+     "bytes": 1737578,
+     "colour": "bt709/bt709/bt709/tv"
+    },
+    "decoded": {
+     "mean_abs_diff": 1.36,
+     "longest_static_s": 3.4,
+     "static_spans_over_1s": [
+      "1.3s+3.4s",
+      "5.317s+2.3s"
+     ]
+    },
+    "frame_count_matches_take": true,
+    "master_alignment": {
+     "samples": [
+      {
+       "clip_frame": 91,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.124,
+        "0": 0.125,
+        "1": 0.125
+       },
+       "discriminative": false
+      },
+      {
+       "clip_frame": 228,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.124,
+        "0": 0.124,
+        "1": 0.124
+       },
+       "discriminative": false
+      },
+      {
+       "clip_frame": 364,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.098,
+        "0": 0.098,
+        "1": 0.098
+       },
+       "discriminative": false
+      }
+     ],
+     "aligned": true,
+     "discriminative_samples": 0
+    },
+    "music_map_chip_on_screen_s": []
+   }
+  },
+  "P-07": {
+   "file": "/tmp/space-video-doodle/prod/capture/P1-rc2/clips/P-07.mp4",
+   "feeds": [
+    "A4"
+   ],
+   "what": "tap 保存这张照片 → toast 「已分享给本场成员」, the wall panel slides in",
+   "master_in_frame": 2391,
+   "master_out_frame": 2587,
+   "master_in_s": 39.85,
+   "master_out_s": 43.117,
+   "frames": 196,
+   "seconds": 3.267,
+   "handles": {
+    "main_action_first": "tap 保存这张照片",
+    "main_action_last": "wall_badge_first_frame",
+    "before_s": 1.0,
+    "after_s": 2.2
+   },
+   "sync": {
+    "toast_已分享给本场成员": {
+     "master_frame": 2454,
+     "frame": 63,
+     "t": 1.05
+    },
+    "wall_badge_first_frame": {
+     "master_frame": 2454,
+     "frame": 63,
+     "t": 1.05
+    }
+   },
+   "actions": [
+    {
+     "kind": "tap",
+     "label": "tap 保存这张照片",
+     "t": 1.05,
+     "finger_down_frame": 60,
+     "click_frame": 63,
+     "xy_css": [
+      193,
+      680
+     ]
+    },
+    {
+     "kind": "state",
+     "label": "wall panel with badge",
+     "frame": 64,
+     "t": 1.067
+    }
+   ],
+   "boxes": {},
+   "qc": {
+    "lossless_grabs": {
+     "frames": 196,
+     "unique": 95,
+     "identical_consecutive": 71,
+     "longest_identical_run_s": 0.183,
+     "identical_runs_over_1s": [],
+     "scroll_frames_checked": 0,
+     "duplicates_inside_motion": [],
+     "info_identical_at_scroll_ease_edges": 0,
+     "info_identical_while_camera_settles": 0
+    },
+    "probe_errors": 0,
+    "copy_scan": {
+     "frames_scanned": 196,
+     "probes_per_frame": 2,
+     "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+     "frames_with_hits": 0,
+     "samples": []
+    },
+    "stream": {
+     "codec": "h264 High",
+     "size": "1080x2340",
+     "pix_fmt": "yuv420p",
+     "fps": "60/1",
+     "frames": 196,
+     "duration_s": 3.266667,
+     "bytes": 486143,
+     "colour": "bt709/bt709/bt709/tv"
+    },
+    "decoded": {
+     "mean_abs_diff": 0.352,
+     "longest_static_s": 1.967,
+     "static_spans_over_1s": [
+      "0.017s+1.0s",
+      "1.317s+1.967s"
+     ]
+    },
+    "frame_count_matches_take": true,
+    "master_alignment": {
+     "samples": [
+      {
+       "clip_frame": 39,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.117,
+        "0": 0.115,
+        "1": 0.117
+       },
+       "discriminative": false
+      },
+      {
+       "clip_frame": 98,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.15,
+        "0": 0.148,
+        "1": 0.148
+       },
+       "discriminative": false
+      },
+      {
+       "clip_frame": 156,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.147,
+        "0": 0.147,
+        "1": 0.149
+       },
+       "discriminative": false
+      }
+     ],
+     "aligned": true,
+     "discriminative_samples": 0
+    },
+    "music_map_chip_on_screen_s": []
+   }
+  },
+  "P-08": {
+   "file": "/tmp/space-video-doodle/prod/capture/P1-rc2/clips/P-08.mp4",
+   "feeds": [
+    "A5",
+    "M2",
+    "CUT-05"
+   ],
+   "what": "wall panel 「同一场 / 不同视角 · 这一晚，大家看到了什么？」: 21:47 · 同一刻 · 3 个视角, note 「3 分钟内拍下」, badge 「同一刻的另一面」; slow scroll through the polaroids; back to the badge",
+   "master_in_frame": 2391,
+   "master_out_frame": 3247,
+   "master_in_s": 39.85,
+   "master_out_s": 54.117,
+   "frames": 856,
+   "seconds": 14.267,
+   "handles": {
+    "main_action_first": "wall_badge_first_frame",
+    "main_action_last": "wall scroll back to the badge",
+    "before_s": 1.05,
+    "after_s": 1.983
+   },
+   "sync": {
+    "wall_badge_first_frame": {
+     "master_frame": 2454,
+     "frame": 63,
+     "t": 1.05
+    }
+   },
+   "actions": [
+    {
+     "kind": "tap",
+     "label": "tap 保存这张照片",
+     "t": 1.05,
+     "finger_down_frame": 60,
+     "click_frame": 63,
+     "xy_css": [
+      193,
+      680
+     ]
+    },
+    {
+     "kind": "state",
+     "label": "wall panel with badge",
+     "frame": 64,
+     "t": 1.067
+    },
+    {
+     "kind": "scroll",
+     "label": "wall scroll → 阿遥 stage photo",
+     "frame": 232,
+     "t": 3.867,
+     "end_frame": 298,
+     "from_px": 0,
+     "to_px": 313
+    },
+    {
+     "kind": "scroll",
+     "label": "wall scroll → polaroid grid (yours: AI 建议，未改动)",
+     "frame": 376,
+     "t": 6.267,
+     "end_frame": 442,
+     "from_px": 313,
+     "to_px": 713
+    },
+    {
+     "kind": "scroll",
+     "label": "wall scroll → 北屿 21:49 + 22:21 group",
+     "frame": 538,
+     "t": 8.967,
+     "end_frame": 598,
+     "from_px": 713,
+     "to_px": 1163
+    },
+    {
+     "kind": "scroll",
+     "label": "wall scroll back to the badge",
+     "frame": 664,
+     "t": 11.067,
+     "end_frame": 736,
+     "from_px": 1163,
+     "to_px": 13
+    }
+   ],
+   "boxes": {
+    "P-08 wall top": {
+     "frame": 231,
+     "t": 3.85,
+     "boxes_px": {
+      "eyebrow 同一场 / 不同视角": [
+       89,
+       294,
+       310,
+       36
+      ],
+      "title 这一晚，大家看到了什么？": [
+       89,
+       357,
+       661,
+       78
+      ],
+      "group header 21:47 · 同一刻 · 3 个视角": [
+       89,
+       506,
+       889,
+       222
+      ],
+      "note 3 分钟内拍下": [
+       89,
+       740,
+       889,
+       75
+      ],
+      "badge card": [
+       121,
+       935,
+       809,
+       526
+      ],
+      "badge pill 同一刻的另一面": [
+       159,
+       961,
+       326,
+       78
+      ],
+      "offer 和 TA 交换这个视角": [
+       127,
+       1293,
+       803,
+       169
+      ]
+     },
+     "texts": {
+      "eyebrow 同一场 / 不同视角": "同一场 / 不同视角",
+      "title 这一晚，大家看到了什么？": "这一晚，大家看到了什么？",
+      "group header 21:47 · 同一刻 · 3 个视角": "21:47 · 同一刻 · 3 个视角：舞台 · 人海 · 细节",
+      "note 3 分钟内拍下": "3 分钟内拍下",
+      "badge card": "同一刻的另一面 同一刻 · 21:47，相差不到 1 分钟；你拍人海，TA 拍舞台 和 TA 交换这个视角",
+      "badge pill 同一刻的另一面": "同一刻的另一面",
+      "offer 和 TA 交换这个视角": "和 TA 交换这个视角"
+     }
+    }
+   },
+   "qc": {
+    "lossless_grabs": {
+     "frames": 856,
+     "unique": 477,
+     "identical_consecutive": 261,
+     "longest_identical_run_s": 0.467,
+     "identical_runs_over_1s": [],
+     "scroll_frames_checked": 206,
+     "duplicates_inside_motion": [],
+     "info_identical_at_scroll_ease_edges": 20,
+     "info_identical_while_camera_settles": 0
+    },
+    "probe_errors": 0,
+    "copy_scan": {
+     "frames_scanned": 856,
+     "probes_per_frame": 2,
+     "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+     "frames_with_hits": 0,
+     "samples": []
+    },
+    "stream": {
+     "codec": "h264 High",
+     "size": "1080x2340",
+     "pix_fmt": "yuv420p",
+     "fps": "60/1",
+     "frames": 856,
+     "duration_s": 14.266667,
+     "bytes": 3217845,
+     "colour": "bt709/bt709/bt709/tv"
+    },
+    "decoded": {
+     "mean_abs_diff": 4.393,
+     "longest_static_s": 2.633,
+     "static_spans_over_1s": [
+      "0.017s+1.0s",
+      "1.317s+2.633s",
+      "4.9s+1.367s",
+      "7.3s+1.733s",
+      "9.917s+1.217s",
+      "12.217s+2.067s"
+     ]
+    },
+    "frame_count_matches_take": true,
+    "master_alignment": {
+     "samples": [
+      {
+       "clip_frame": 171,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.142,
+        "0": 0.143,
+        "1": 0.143
+       },
+       "discriminative": false
+      },
+      {
+       "clip_frame": 428,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 9.927,
+        "0": 0.142,
+        "1": 7.323
+       },
+       "discriminative": true
+      },
+      {
+       "clip_frame": 684,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 15.016,
+        "0": 0.123,
+        "1": 16.322
+       },
+       "discriminative": true
+      }
+     ],
+     "aligned": true,
+     "discriminative_samples": 2
+    },
+    "music_map_chip_on_screen_s": []
+   }
+  },
+  "P-09": {
+   "file": "/tmp/space-video-doodle/prod/capture/P1-rc2/clips/P-09.mp4",
+   "feeds": [
+    "M3",
+    "M4",
+    "CUT-11"
+   ],
+   "what": "tap 和 TA 交换这个视角 (beat 0) → compose 「交换一个视角」 (fits one screen in rc.2: no scroll on beats 4 / 8); tick 我同意先给小图，TA 接受后再给原图 (beat 9); send 把这两张交给对方确认 ↗ (beat 10) → 等待对方回应",
+   "master_in_frame": 3187,
+   "master_out_frame": 3618,
+   "master_in_s": 53.117,
+   "master_out_s": 60.3,
+   "frames": 431,
+   "seconds": 7.183,
+   "handles": {
+    "main_action_first": "tap 和 TA 交换这个视角",
+    "main_action_last": "pending_等待对方回应",
+    "before_s": 1.033,
+    "after_s": 1.2
+   },
+   "sync": {
+    "compose_first_frame": {
+     "master_frame": 3252,
+     "frame": 65,
+     "t": 1.083
+    },
+    "consent_ticked": {
+     "master_frame": 3515,
+     "frame": 328,
+     "t": 5.467
+    },
+    "pending_等待对方回应": {
+     "master_frame": 3545,
+     "frame": 358,
+     "t": 5.967
+    }
+   },
+   "actions": [
+    {
+     "kind": "beat-grid",
+     "label": "♩ exchange beat0",
+     "beat0_frame": 65,
+     "beat0_t": 1.083
+    },
+    {
+     "kind": "tap",
+     "label": "tap 和 TA 交换这个视角 (beat 0)",
+     "t": 1.083,
+     "finger_down_frame": 62,
+     "click_frame": 65,
+     "xy_css": [
+      191,
+      484
+     ],
+     "on_grid": true
+    },
+    {
+     "kind": "state",
+     "label": "compose open",
+     "frame": 65,
+     "t": 1.083
+    },
+    {
+     "kind": "note",
+     "label": "scroll to the reason card (beat 4) — not needed in rc.2 (.exchange-body fits the screen)",
+     "frame": 182,
+     "t": 3.033
+    },
+    {
+     "kind": "note",
+     "label": "scroll to the consent + send (beat 8) — not needed in rc.2 (.exchange-body fits the screen)",
+     "frame": 299,
+     "t": 4.983
+    },
+    {
+     "kind": "tap",
+     "label": "tick 我同意先给小图，TA 接受后再给原图 (beat 9)",
+     "t": 5.467,
+     "finger_down_frame": 325,
+     "click_frame": 328,
+     "xy_css": [
+      30,
+      678
+     ],
+     "on_grid": true
+    },
+    {
+     "kind": "tap",
+     "label": "tap 把这两张交给对方确认 ↗ (beat 10)",
+     "t": 5.967,
+     "finger_down_frame": 355,
+     "click_frame": 358,
+     "xy_css": [
+      195,
+      745
+     ],
+     "on_grid": true
+    },
+    {
+     "kind": "state",
+     "label": "pending 等待对方回应",
+     "frame": 359,
+     "t": 5.983
+    }
+   ],
+   "boxes": {
+    "P-09 compose": {
+     "frame": 181,
+     "t": 3.017,
+     "boxes_px": {
+      "title 交换一个视角": [
+       205,
+       121,
+       352,
+       75
+      ],
+      "line 用我拍下的，换 阿遥 看到的。": [
+       50,
+       312,
+       235,
+       55
+      ],
+      "polaroid 我提供的": [
+       98,
+       866,
+       379,
+       76
+      ],
+      "polaroid 阿遥的": [
+       603,
+       866,
+       135,
+       66
+      ],
+      "select": [
+       50,
+       1186,
+       980,
+       204
+      ],
+      "reason card": [
+       388,
+       1534,
+       321,
+       53
+      ],
+      "consent": [
+       50,
+       1766,
+       980,
+       166
+      ],
+      "send 把这两张交给对方确认 ↗": [
+       50,
+       1982,
+       980,
+       161
+      ]
+     },
+     "texts": {
+      "title 交换一个视角": "交换一个视角",
+      "line 用我拍下的，换 阿遥 看到的。": "用我拍下的，换 阿遥 看到的。",
+      "polaroid 我提供的": "我提供的",
+      "polaroid 阿遥的": "阿遥的",
+      "select": "选择自己拍的照片 我的第 1 张 · 已上墙 · 同一刻的另一面（推荐）",
+      "reason card": "相差不到 1 分钟",
+      "consent": "我同意先给小图，TA 接受后再给原图",
+      "send 把这两张交给对方确认 ↗": "把这两张交给对方确认 ↗"
+     }
+    },
+    "P-10 pending": {
+     "frame": 430,
+     "t": 7.167,
+     "boxes_px": {
+      "status 等待对方回应": [
+       49,
+       301,
+       407,
+       105
+      ],
+      "line 有效至": [
+       50,
+       1244,
+       108,
+       42
+      ],
+      "line 等 TA 接受后，就能互看原图。": [
+       50,
+       1346,
+       253,
+       50
+      ]
+     },
+     "texts": {
+      "status 等待对方回应": "等待对方回应",
+      "line 有效至": "有效至 10/9 22:40",
+      "line 等 TA 接受后，就能互看原图。": "等 TA 接受后，就能互看原图。"
+     }
+    }
+   },
+   "qc": {
+    "lossless_grabs": {
+     "frames": 431,
+     "unique": 171,
+     "identical_consecutive": 200,
+     "longest_identical_run_s": 0.283,
+     "identical_runs_over_1s": [],
+     "scroll_frames_checked": 0,
+     "duplicates_inside_motion": [],
+     "info_identical_at_scroll_ease_edges": 0,
+     "info_identical_while_camera_settles": 0
+    },
+    "probe_errors": 0,
+    "copy_scan": {
+     "frames_scanned": 431,
+     "probes_per_frame": 2,
+     "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+     "frames_with_hits": 0,
+     "samples": []
+    },
+    "stream": {
+     "codec": "h264 High",
+     "size": "1080x2340",
+     "pix_fmt": "yuv420p",
+     "fps": "60/1",
+     "frames": 431,
+     "duration_s": 7.183333,
+     "bytes": 987197,
+     "colour": "bt709/bt709/bt709/tv"
+    },
+    "decoded": {
+     "mean_abs_diff": 0.379,
+     "longest_static_s": 4.333,
+     "static_spans_over_1s": [
+      "0.017s+1.033s",
+      "1.133s+4.333s",
+      "6.033s+1.167s"
+     ]
+    },
+    "frame_count_matches_take": true,
+    "master_alignment": {
+     "samples": [
+      {
+       "clip_frame": 86,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.092,
+        "0": 0.091,
+        "1": 0.091
+       },
+       "discriminative": false
+      },
+      {
+       "clip_frame": 215,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.089,
+        "0": 0.089,
+        "1": 0.089
+       },
+       "discriminative": false
+      },
+      {
+       "clip_frame": 344,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.116,
+        "0": 0.106,
+        "1": 0.104
+       },
+       "discriminative": false
+      }
+     ],
+     "aligned": true,
+     "discriminative_samples": 0
+    },
+    "music_map_chip_on_screen_s": []
+   }
+  },
+  "P-10": {
+   "file": "/tmp/space-video-doodle/prod/capture/P1-rc2/clips/P-10.mp4",
+   "feeds": [
+    "M4",
+    "M5"
+   ],
+   "what": "send → 「等待对方回应」 (the whole real wait) → 「交换已接受」",
+   "master_in_frame": 3472,
+   "master_out_frame": 3866,
+   "master_in_s": 57.867,
+   "master_out_s": 64.433,
+   "frames": 394,
+   "seconds": 6.567,
+   "handles": {
+    "main_action_first": "tap 把这两张交给对方确认",
+    "main_action_last": "accepted_交换已接受",
+    "before_s": 1.167,
+    "after_s": 1.5
+   },
+   "sync": {
+    "consent_ticked": {
+     "master_frame": 3515,
+     "frame": 43,
+     "t": 0.717
+    },
+    "pending_等待对方回应": {
+     "master_frame": 3545,
+     "frame": 73,
+     "t": 1.217
+    },
+    "accepted_交换已接受": {
+     "master_frame": 3775,
+     "note": "= 51:1, the payoff hit; the sticker pops and the two polaroids drop in over the next ~10 frames",
+     "frame": 303,
+     "t": 5.05
+    }
+   },
+   "actions": [
+    {
+     "kind": "note",
+     "label": "scroll to the consent + send (beat 8) — not needed in rc.2 (.exchange-body fits the screen)",
+     "frame": 14,
+     "t": 0.233
+    },
+    {
+     "kind": "tap",
+     "label": "tick 我同意先给小图，TA 接受后再给原图 (beat 9)",
+     "t": 0.717,
+     "finger_down_frame": 40,
+     "click_frame": 43,
+     "xy_css": [
+      30,
+      678
+     ],
+     "on_grid": true
+    },
+    {
+     "kind": "tap",
+     "label": "tap 把这两张交给对方确认 ↗ (beat 10)",
+     "t": 1.217,
+     "finger_down_frame": 70,
+     "click_frame": 73,
+     "xy_css": [
+      195,
+      745
+     ],
+     "on_grid": true
+    },
+    {
+     "kind": "state",
+     "label": "pending 等待对方回应",
+     "frame": 74,
+     "t": 1.233
+    },
+    {
+     "kind": "state",
+     "label": "交换已接受",
+     "frame": 304,
+     "t": 5.067
+    }
+   ],
+   "boxes": {
+    "P-10 pending": {
+     "frame": 145,
+     "t": 2.417,
+     "boxes_px": {
+      "status 等待对方回应": [
+       49,
+       301,
+       407,
+       105
+      ],
+      "line 有效至": [
+       50,
+       1244,
+       108,
+       42
+      ],
+      "line 等 TA 接受后，就能互看原图。": [
+       50,
+       1346,
+       253,
+       50
+      ]
+     },
+     "texts": {
+      "status 等待对方回应": "等待对方回应",
+      "line 有效至": "有效至 10/9 22:40",
+      "line 等 TA 接受后，就能互看原图。": "等 TA 接受后，就能互看原图。"
+     }
+    },
+    "P-11 accepted": {
+     "frame": 393,
+     "t": 6.55,
+     "boxes_px": {
+      "sticker 交换已接受": [
+       306,
+       341,
+       468,
+       176
+      ],
+      "line 和 阿遥 的两张照片": [
+       513,
+       564,
+       233,
+       61
+      ],
+      "pair": [
+       61,
+       707,
+       958,
+       587
+      ],
+      "line 散场后也能在「照片交换」里看。": [
+       50,
+       1375,
+       249,
+       50
+      ],
+      "button 撤销这次交换": [
+       50,
+       1510,
+       980,
+       133
+      ]
+     },
+     "texts": {
+      "sticker 交换已接受": "交换已接受",
+      "line 和 阿遥 的两张照片": "和 阿遥 的两张照片",
+      "pair": "我提供的 这次确定的一张 阿遥提供的 这次确定的一张",
+      "line 散场后也能在「照片交换」里看。": "散场后也能在「照片交换」里看。",
+      "button 撤销这次交换": "撤销这次交换"
+     }
+    }
+   },
+   "qc": {
+    "lossless_grabs": {
+     "frames": 394,
+     "unique": 147,
+     "identical_consecutive": 156,
+     "longest_identical_run_s": 0.283,
+     "identical_runs_over_1s": [],
+     "scroll_frames_checked": 0,
+     "duplicates_inside_motion": [],
+     "info_identical_at_scroll_ease_edges": 0,
+     "info_identical_while_camera_settles": 0
+    },
+    "probe_errors": 0,
+    "copy_scan": {
+     "frames_scanned": 394,
+     "probes_per_frame": 2,
+     "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+     "frames_with_hits": 0,
+     "samples": []
+    },
+    "stream": {
+     "codec": "h264 High",
+     "size": "1080x2340",
+     "pix_fmt": "yuv420p",
+     "fps": "60/1",
+     "frames": 394,
+     "duration_s": 6.566667,
+     "bytes": 1146260,
+     "colour": "bt709/bt709/bt709/tv"
+    },
+    "decoded": {
+     "mean_abs_diff": 0.423,
+     "longest_static_s": 3.783,
+     "static_spans_over_1s": [
+      "1.283s+3.783s"
+     ]
+    },
+    "frame_count_matches_take": true,
+    "master_alignment": {
+     "samples": [
+      {
+       "clip_frame": 78,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.19,
+        "0": 0.093,
+        "1": 0.163
+       },
+       "discriminative": false
+      },
+      {
+       "clip_frame": 197,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.085,
+        "0": 0.084,
+        "1": 0.085
+       },
+       "discriminative": false
+      },
+      {
+       "clip_frame": 315,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 4.286,
+        "0": 0.172,
+        "1": 4.185
+       },
+       "discriminative": true
+      }
+     ],
+     "aligned": true,
+     "discriminative_samples": 1
+    },
+    "music_map_chip_on_screen_s": []
+   }
+  },
+  "P-11": {
+   "file": "/tmp/space-video-doodle/prod/capture/P1-rc2/clips/P-11.mp4",
+   "feeds": [
+    "M6",
+    "M7",
+    "CUT-06"
+   ],
+   "what": "「交换已接受」 sticker, 「和 阿遥 的两张照片」, both polaroids, 「散场后也能在「照片交换」里看。」, 撤销这次交换 (all on one screen)",
+   "master_in_frame": 3570,
+   "master_out_frame": 4106,
+   "master_in_s": 59.5,
+   "master_out_s": 68.433,
+   "frames": 536,
+   "seconds": 8.933,
+   "handles": {
+    "main_action_first": "accepted_交换已接受",
+    "main_action_last": "accepted_交换已接受",
+    "before_s": 3.417,
+    "after_s": 5.5
+   },
+   "sync": {
+    "accepted_交换已接受": {
+     "master_frame": 3775,
+     "note": "= 51:1, the payoff hit; the sticker pops and the two polaroids drop in over the next ~10 frames",
+     "frame": 205,
+     "t": 3.417
+    }
+   },
+   "actions": [
+    {
+     "kind": "state",
+     "label": "交换已接受",
+     "frame": 206,
+     "t": 3.433
+    }
+   ],
+   "boxes": {
+    "P-10 pending": {
+     "frame": 47,
+     "t": 0.783,
+     "boxes_px": {
+      "status 等待对方回应": [
+       49,
+       301,
+       407,
+       105
+      ],
+      "line 有效至": [
+       50,
+       1244,
+       108,
+       42
+      ],
+      "line 等 TA 接受后，就能互看原图。": [
+       50,
+       1346,
+       253,
+       50
+      ]
+     },
+     "texts": {
+      "status 等待对方回应": "等待对方回应",
+      "line 有效至": "有效至 10/9 22:40",
+      "line 等 TA 接受后，就能互看原图。": "等 TA 接受后，就能互看原图。"
+     }
+    },
+    "P-11 accepted": {
+     "frame": 295,
+     "t": 4.917,
+     "boxes_px": {
+      "sticker 交换已接受": [
+       306,
+       341,
+       468,
+       176
+      ],
+      "line 和 阿遥 的两张照片": [
+       513,
+       564,
+       233,
+       61
+      ],
+      "pair": [
+       61,
+       707,
+       958,
+       587
+      ],
+      "line 散场后也能在「照片交换」里看。": [
+       50,
+       1375,
+       249,
+       50
+      ],
+      "button 撤销这次交换": [
+       50,
+       1510,
+       980,
+       133
+      ]
+     },
+     "texts": {
+      "sticker 交换已接受": "交换已接受",
+      "line 和 阿遥 的两张照片": "和 阿遥 的两张照片",
+      "pair": "我提供的 这次确定的一张 阿遥提供的 这次确定的一张",
+      "line 散场后也能在「照片交换」里看。": "散场后也能在「照片交换」里看。",
+      "button 撤销这次交换": "撤销这次交换"
+     }
+    }
+   },
+   "qc": {
+    "lossless_grabs": {
+     "frames": 536,
+     "unique": 98,
+     "identical_consecutive": 287,
+     "longest_identical_run_s": 0.283,
+     "identical_runs_over_1s": [],
+     "scroll_frames_checked": 0,
+     "duplicates_inside_motion": [],
+     "info_identical_at_scroll_ease_edges": 0,
+     "info_identical_while_camera_settles": 0
+    },
+    "probe_errors": 0,
+    "copy_scan": {
+     "frames_scanned": 536,
+     "probes_per_frame": 2,
+     "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+     "frames_with_hits": 0,
+     "samples": []
+    },
+    "stream": {
+     "codec": "h264 High",
+     "size": "1080x2340",
+     "pix_fmt": "yuv420p",
+     "fps": "60/1",
+     "frames": 536,
+     "duration_s": 8.933333,
+     "bytes": 1223824,
+     "colour": "bt709/bt709/bt709/tv"
+    },
+    "decoded": {
+     "mean_abs_diff": 0.181,
+     "longest_static_s": 4.867,
+     "static_spans_over_1s": [
+      "0.017s+3.417s",
+      "4.083s+4.867s"
+     ]
+    },
+    "frame_count_matches_take": true,
+    "master_alignment": {
+     "samples": [
+      {
+       "clip_frame": 107,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.091,
+        "0": 0.09,
+        "1": 0.09
+       },
+       "discriminative": false
+      },
+      {
+       "clip_frame": 268,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.104,
+        "0": 0.103,
+        "1": 0.103
+       },
+       "discriminative": false
+      },
+      {
+       "clip_frame": 428,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.103,
+        "0": 0.103,
+        "1": 0.103
+       },
+       "discriminative": false
+      }
+     ],
+     "aligned": true,
+     "discriminative_samples": 0
+    },
+    "music_map_chip_on_screen_s": []
+   }
+  },
+  "P-12a": {
+   "file": "/tmp/space-video-doodle/prod/capture/P1-rc2/clips/P-12a.mp4",
+   "feeds": [
+    "(spare) people list"
+   ],
+   "what": "close the exchange, 同场的人 list 「看看同场的人」: 阿遥/小满/北屿 · 愿意打招呼, 林间 · 安静参与",
+   "master_in_frame": 4046,
+   "master_out_frame": 4444,
+   "master_in_s": 67.433,
+   "master_out_s": 74.067,
+   "frames": 398,
+   "seconds": 6.633,
+   "handles": {
+    "main_action_first": "tap × (close exchange)",
+    "main_action_last": "person_card_小满",
+    "before_s": 1.0,
+    "after_s": 1.267
+   },
+   "sync": {
+    "people_list": {
+     "master_frame": 4160,
+     "frame": 114,
+     "t": 1.9
+    },
+    "person_card_小满": {
+     "master_frame": 4367,
+     "frame": 321,
+     "t": 5.35
+    },
+    "toast_招呼已送达": {
+     "master_frame": 4443,
+     "frame": 397,
+     "t": 6.617
+    },
+    "greet_waiting": {
+     "master_frame": 4443,
+     "frame": 397,
+     "t": 6.617
+    }
+   },
+   "actions": [
+    {
+     "kind": "tap",
+     "label": "tap × (close exchange)",
+     "t": 1.05,
+     "finger_down_frame": 60,
+     "click_frame": 63,
+     "xy_css": [
+      351,
+      43
+     ]
+    },
+    {
+     "kind": "state",
+     "label": "exchange closed",
+     "frame": 63,
+     "t": 1.05
+    },
+    {
+     "kind": "tap",
+     "label": "tap 同场的人 (bottom nav)",
+     "t": 1.9,
+     "finger_down_frame": 111,
+     "click_frame": 114,
+     "xy_css": [
+      147,
+      771
+     ]
+    },
+    {
+     "kind": "state",
+     "label": "people list",
+     "frame": 114,
+     "t": 1.9
+    },
+    {
+     "kind": "tap",
+     "label": "tap 小满",
+     "t": 4.35,
+     "finger_down_frame": 258,
+     "click_frame": 261,
+     "xy_css": [
+      193,
+      537
+     ]
+    },
+    {
+     "kind": "state",
+     "label": "person card",
+     "frame": 322,
+     "t": 5.367
+    },
+    {
+     "kind": "tap",
+     "label": "tap 向 小满 招个手",
+     "t": 6.617,
+     "finger_down_frame": 394,
+     "click_frame": 397,
+     "xy_css": [
+      193,
+      591
+     ]
+    }
+   ],
+   "boxes": {
+    "P-12a people list": {
+     "frame": 197,
+     "t": 3.283,
+     "boxes_px": {
+      "title 看看同场的人": [
+       89,
+       1066,
+       361,
+       78
+      ],
+      "row 阿遥": [
+       89,
+       1187,
+       889,
+       200
+      ],
+      "row 小满": [
+       89,
+       1387,
+       889,
+       200
+      ],
+      "row 北屿": [
+       89,
+       1586,
+       889,
+       200
+      ],
+      "row 林间": [
+       89,
+       1786,
+       889,
+       200
+      ]
+     },
+     "texts": {
+      "title 看看同场的人": "看看同场的人",
+      "row 阿遥": "阿遥 愿意打招呼 · 看看 TA 的视角 →",
+      "row 小满": "小满 愿意打招呼 · 看看 TA 的视角 →",
+      "row 北屿": "北屿 愿意打招呼 · 看看 TA 的视角 →",
+      "row 林间": "林间 安静参与 · 看看 TA 的视角 →"
+     }
+    },
+    "P-12 person card": {
+     "frame": 393,
+     "t": 6.55,
+     "boxes_px": {
+      "name 小满": [
+       93,
+       1301,
+       131,
+       95
+      ],
+      "line 先招个手，TA 接受了就是朋友。": [
+       89,
+       1441,
+       177,
+       53
+      ],
+      "wave 向 小满 招个手": [
+       89,
+       1570,
+       889,
+       133
+      ]
+     },
+     "texts": {
+      "name 小满": "小满",
+      "line 先招个手，TA 接受了就是朋友。": "先招个手，TA 接受了就是朋友。",
+      "wave 向 小满 招个手": "向 小满 招个手"
+     }
+    }
+   },
+   "qc": {
+    "lossless_grabs": {
+     "frames": 398,
+     "unique": 222,
+     "identical_consecutive": 144,
+     "longest_identical_run_s": 0.283,
+     "identical_runs_over_1s": [],
+     "scroll_frames_checked": 0,
+     "duplicates_inside_motion": [],
+     "info_identical_at_scroll_ease_edges": 0,
+     "info_identical_while_camera_settles": 0
+    },
+    "probe_errors": 0,
+    "copy_scan": {
+     "frames_scanned": 398,
+     "probes_per_frame": 2,
+     "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+     "frames_with_hits": 0,
+     "samples": []
+    },
+    "stream": {
+     "codec": "h264 High",
+     "size": "1080x2340",
+     "pix_fmt": "yuv420p",
+     "fps": "60/1",
+     "frames": 398,
+     "duration_s": 6.633333,
+     "bytes": 4338130,
+     "colour": "bt709/bt709/bt709/tv"
+    },
+    "decoded": {
+     "mean_abs_diff": 2.144,
+     "longest_static_s": 1.017,
+     "static_spans_over_1s": [
+      "0.017s+1.017s"
+     ]
+    },
+    "frame_count_matches_take": true,
+    "master_alignment": {
+     "samples": [
+      {
+       "clip_frame": 79,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 1.499,
+        "0": 0.178,
+        "1": 0.183
+       },
+       "discriminative": true
+      },
+      {
+       "clip_frame": 199,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.154,
+        "0": 0.154,
+        "1": 0.154
+       },
+       "discriminative": false
+      },
+      {
+       "clip_frame": 318,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 4.075,
+        "0": 0.335,
+        "1": 2.787
+       },
+       "discriminative": true
+      }
+     ],
+     "aligned": true,
+     "discriminative_samples": 2
+    },
+    "music_map_chip_on_screen_s": []
+   }
+  },
+  "P-12": {
+   "file": "/tmp/space-video-doodle/prod/capture/P1-rc2/clips/P-12.mp4",
+   "feeds": [
+    "S1"
+   ],
+   "what": "tap 小满 → 3D close-up + card 「先招个手，TA 接受了就是朋友。」; tap 向 小满 招个手 → toast 招呼已送达，等待对方回应; the whole wait → 「你们已经认识了」, ♡ 2",
+   "master_in_frame": 4244,
+   "master_out_frame": 4792,
+   "master_in_s": 70.733,
+   "master_out_s": 79.867,
+   "frames": 548,
+   "seconds": 9.133,
+   "handles": {
+    "main_action_first": "tap 小满",
+    "main_action_last": "inbox_♡2",
+    "before_s": 1.0,
+    "after_s": 2.6
+   },
+   "sync": {
+    "person_card_小满": {
+     "master_frame": 4367,
+     "frame": 123,
+     "t": 2.05
+    },
+    "toast_招呼已送达": {
+     "master_frame": 4443,
+     "frame": 199,
+     "t": 3.317
+    },
+    "greet_waiting": {
+     "master_frame": 4443,
+     "frame": 199,
+     "t": 3.317
+    },
+    "friends_你们已经认识了": {
+     "master_frame": 4619,
+     "frame": 375,
+     "t": 6.25,
+     "resolved": "pixel test: image change 15.63 on frame-1 vs 0.02 on the frame -> frame-1"
+    },
+    "inbox_♡1": {
+     "master_frame": 4619,
+     "frame": 375,
+     "t": 6.25,
+     "resolved": "pixel test: image change 15.63 on frame-1 vs 0.02 on the frame -> frame-1"
+    },
+    "inbox_♡2": {
+     "master_frame": 4635,
+     "frame": 391,
+     "t": 6.517
+    }
+   },
+   "actions": [
+    {
+     "kind": "tap",
+     "label": "tap 小满",
+     "t": 1.05,
+     "finger_down_frame": 60,
+     "click_frame": 63,
+     "xy_css": [
+      193,
+      537
+     ]
+    },
+    {
+     "kind": "state",
+     "label": "person card",
+     "frame": 124,
+     "t": 2.067
+    },
+    {
+     "kind": "tap",
+     "label": "tap 向 小满 招个手",
+     "t": 3.317,
+     "finger_down_frame": 196,
+     "click_frame": 199,
+     "xy_css": [
+      193,
+      591
+     ]
+    },
+    {
+     "kind": "state",
+     "label": "已招手，等待对方回应",
+     "frame": 200,
+     "t": 3.333
+    },
+    {
+     "kind": "state",
+     "label": "你们已经认识了",
+     "frame": 376,
+     "t": 6.267
+    },
+    {
+     "kind": "state",
+     "label": "inbox ♡ 2 (or timeout)",
+     "frame": 392,
+     "t": 6.533
+    }
+   ],
+   "boxes": {
+    "P-12 person card": {
+     "frame": 195,
+     "t": 3.25,
+     "boxes_px": {
+      "name 小满": [
+       93,
+       1301,
+       131,
+       95
+      ],
+      "line 先招个手，TA 接受了就是朋友。": [
+       89,
+       1441,
+       177,
+       53
+      ],
+      "wave 向 小满 招个手": [
+       89,
+       1570,
+       889,
+       133
+      ]
+     },
+     "texts": {
+      "name 小满": "小满",
+      "line 先招个手，TA 接受了就是朋友。": "先招个手，TA 接受了就是朋友。",
+      "wave 向 小满 招个手": "向 小满 招个手"
+     }
+    },
+    "P-12 friends": {
+     "frame": 487,
+     "t": 8.117,
+     "boxes_px": {
+      "eyebrow 你们已经认识了": [
+       89,
+       1125,
+       267,
+       36
+      ],
+      "button 邀请共同创作": [
+       89,
+       1313,
+       889,
+       127
+      ],
+      "button 和 小满 私聊 ↗": [
+       89,
+       1474,
+       889,
+       133
+      ],
+      "line 你们已经是朋友了。": [
+       89,
+       1665,
+       354,
+       53
+      ],
+      "inbox ♡2": [
+       571,
+       33,
+       122,
+       122
+      ]
+     },
+     "texts": {
+      "eyebrow 你们已经认识了": "你们已经认识了",
+      "button 邀请共同创作": "邀请共同创作",
+      "button 和 小满 私聊 ↗": "和 小满 私聊 ↗",
+      "line 你们已经是朋友了。": "你们已经是朋友了。",
+      "inbox ♡2": "♡ 2"
+     }
+    }
+   },
+   "qc": {
+    "lossless_grabs": {
+     "frames": 548,
+     "unique": 413,
+     "identical_consecutive": 76,
+     "longest_identical_run_s": 0.15,
+     "identical_runs_over_1s": [],
+     "scroll_frames_checked": 0,
+     "duplicates_inside_motion": [],
+     "info_identical_at_scroll_ease_edges": 0,
+     "info_identical_while_camera_settles": 0
+    },
+    "probe_errors": 0,
+    "copy_scan": {
+     "frames_scanned": 548,
+     "probes_per_frame": 2,
+     "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+     "frames_with_hits": 0,
+     "samples": []
+    },
+    "stream": {
+     "codec": "h264 High",
+     "size": "1080x2340",
+     "pix_fmt": "yuv420p",
+     "fps": "60/1",
+     "frames": 548,
+     "duration_s": 9.133333,
+     "bytes": 4407869,
+     "colour": "bt709/bt709/bt709/tv"
+    },
+    "decoded": {
+     "mean_abs_diff": 1.322,
+     "longest_static_s": 0.15,
+     "static_spans_over_1s": []
+    },
+    "frame_count_matches_take": true,
+    "master_alignment": {
+     "samples": [
+      {
+       "clip_frame": 109,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 11.314,
+        "0": 0.387,
+        "1": 10.488
+       },
+       "discriminative": true
+      },
+      {
+       "clip_frame": 274,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.67,
+        "0": 0.167,
+        "1": 0.167
+       },
+       "discriminative": true
+      },
+      {
+       "clip_frame": 438,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.149,
+        "0": 0.148,
+        "1": 0.148
+       },
+       "discriminative": false
+      }
+     ],
+     "aligned": true,
+     "discriminative_samples": 2
+    },
+    "music_map_chip_on_screen_s": []
+   }
+  },
+  "P-13": {
+   "file": "/tmp/space-video-doodle/prod/capture/P1-rc2/clips/P-13.mp4",
+   "feeds": [
+    "S2",
+    "CUT-07"
+   ],
+   "what": "private chat ONE TO ONE 小满 「你们已经是朋友了。」: welcome bubbles 「嗨，欢迎来到「回声现场」！」 「你拍到的是哪一面？」; type 「返场那首我在人海里，手都举酸了！」 (16ths), send on the downbeat (· 已发送); the reply 「今晚的返场太好听了。」",
+   "master_in_frame": 4732,
+   "master_out_frame": 5379,
+   "master_in_s": 78.867,
+   "master_out_s": 89.65,
+   "frames": 647,
+   "seconds": 10.783,
+   "handles": {
+    "main_action_first": "tap 和 小满 私聊",
+    "main_action_last": "reply_今晚的返场太好听了",
+    "before_s": 1.0,
+    "after_s": 2.1
+   },
+   "sync": {
+    "chat_open": {
+     "master_frame": 4795,
+     "frame": 63,
+     "t": 1.05
+    },
+    "my_bubble": {
+     "master_frame": 5003,
+     "frame": 271,
+     "t": 4.517
+    },
+    "reply_今晚的返场太好听了": {
+     "master_frame": 5252,
+     "frame": 520,
+     "t": 8.667
+    }
+   },
+   "actions": [
+    {
+     "kind": "tap",
+     "label": "tap 和 小满 私聊 ↗",
+     "t": 1.05,
+     "finger_down_frame": 60,
+     "click_frame": 63,
+     "xy_css": [
+      193,
+      556
+     ]
+    },
+    {
+     "kind": "state",
+     "label": "chat open",
+     "frame": 63,
+     "t": 1.05
+    },
+    {
+     "kind": "tap",
+     "label": "tap the composer",
+     "t": 2.4,
+     "finger_down_frame": 141,
+     "click_frame": 144,
+     "xy_css": [
+      195,
+      689
+     ]
+    },
+    {
+     "kind": "beat-grid",
+     "label": "♩ chat typing 16ths + send beat0",
+     "beat0_frame": 154,
+     "beat0_t": 2.567
+    },
+    {
+     "kind": "key",
+     "label": "chat key 返",
+     "frame": 154,
+     "t": 2.567
+    },
+    {
+     "kind": "key",
+     "label": "chat key 场",
+     "frame": 161,
+     "t": 2.683
+    },
+    {
+     "kind": "key",
+     "label": "chat key 那",
+     "frame": 169,
+     "t": 2.817
+    },
+    {
+     "kind": "key",
+     "label": "chat key 首",
+     "frame": 176,
+     "t": 2.933
+    },
+    {
+     "kind": "key",
+     "label": "chat key 我",
+     "frame": 183,
+     "t": 3.05
+    },
+    {
+     "kind": "key",
+     "label": "chat key 在",
+     "frame": 191,
+     "t": 3.183
+    },
+    {
+     "kind": "key",
+     "label": "chat key 人",
+     "frame": 198,
+     "t": 3.3
+    },
+    {
+     "kind": "key",
+     "label": "chat key 海",
+     "frame": 205,
+     "t": 3.417
+    },
+    {
+     "kind": "key",
+     "label": "chat key 里",
+     "frame": 213,
+     "t": 3.55
+    },
+    {
+     "kind": "key",
+     "label": "chat key ，",
+     "frame": 220,
+     "t": 3.667
+    },
+    {
+     "kind": "key",
+     "label": "chat key 手",
+     "frame": 227,
+     "t": 3.783
+    },
+    {
+     "kind": "key",
+     "label": "chat key 都",
+     "frame": 234,
+     "t": 3.9
+    },
+    {
+     "kind": "key",
+     "label": "chat key 举",
+     "frame": 242,
+     "t": 4.033
+    },
+    {
+     "kind": "key",
+     "label": "chat key 酸",
+     "frame": 249,
+     "t": 4.15
+    },
+    {
+     "kind": "key",
+     "label": "chat key 了",
+     "frame": 256,
+     "t": 4.267
+    },
+    {
+     "kind": "key",
+     "label": "chat key ！",
+     "frame": 264,
+     "t": 4.4
+    },
+    {
+     "kind": "tap",
+     "label": "tap 发送 ↗ (beat 4)",
+     "t": 4.517,
+     "finger_down_frame": 268,
+     "click_frame": 271,
+     "xy_css": [
+      331,
+      758
+     ],
+     "on_grid": true
+    },
+    {
+     "kind": "state",
+     "label": "my bubble",
+     "frame": 272,
+     "t": 4.533
+    },
+    {
+     "kind": "state",
+     "label": "reply 今晚的返场太好听了。",
+     "frame": 521,
+     "t": 8.683
+    }
+   ],
+   "boxes": {
+    "P-13 chat": {
+     "frame": 610,
+     "t": 10.167,
+     "boxes_px": {
+      "header 小满": [
+       188,
+       94,
+       703,
+       83
+      ],
+      "line 你们已经是朋友了。": [
+       366,
+       221,
+       310,
+       47
+      ],
+      "bubble 嗨，欢迎来到「回声现场」！": [
+       44,
+       359,
+       670,
+       198
+      ],
+      "bubble 你拍到的是哪一面？": [
+       44,
+       607,
+       493,
+       198
+      ],
+      "bubble mine 返场那首…": [
+       233,
+       855,
+       803,
+       198
+      ],
+      "bubble reply 今晚的返场太好听了。": [
+       44,
+       1103,
+       537,
+       198
+      ]
+     },
+     "texts": {
+      "header 小满": "小满",
+      "line 你们已经是朋友了。": "你们已经是朋友了。",
+      "bubble 嗨，欢迎来到「回声现场」！": "嗨，欢迎来到「回声现场」！ 22:41",
+      "bubble 你拍到的是哪一面？": "你拍到的是哪一面？ 22:41",
+      "bubble mine 返场那首…": "返场那首我在人海里，手都举酸了！ 22:41 · 已发送",
+      "bubble reply 今晚的返场太好听了。": "今晚的返场太好听了。 22:41"
+     }
+    }
+   },
+   "qc": {
+    "lossless_grabs": {
+     "frames": 647,
+     "unique": 188,
+     "identical_consecutive": 305,
+     "longest_identical_run_s": 0.6,
+     "identical_runs_over_1s": [],
+     "scroll_frames_checked": 0,
+     "duplicates_inside_motion": [],
+     "info_identical_at_scroll_ease_edges": 0,
+     "info_identical_while_camera_settles": 0
+    },
+    "probe_errors": 0,
+    "copy_scan": {
+     "frames_scanned": 647,
+     "probes_per_frame": 2,
+     "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+     "frames_with_hits": 0,
+     "samples": []
+    },
+    "stream": {
+     "codec": "h264 High",
+     "size": "1080x2340",
+     "pix_fmt": "yuv420p",
+     "fps": "60/1",
+     "frames": 647,
+     "duration_s": 10.783333,
+     "bytes": 1235178,
+     "colour": "bt709/bt709/bt709/tv"
+    },
+    "decoded": {
+     "mean_abs_diff": 0.231,
+     "longest_static_s": 4.1,
+     "static_spans_over_1s": [
+      "1.283s+1.083s",
+      "2.583s+1.9s",
+      "4.583s+4.1s",
+      "8.683s+2.117s"
+     ]
+    },
+    "frame_count_matches_take": true,
+    "master_alignment": {
+     "samples": [
+      {
+       "clip_frame": 129,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.049,
+        "0": 0.049,
+        "1": 0.049
+       },
+       "discriminative": false
+      },
+      {
+       "clip_frame": 323,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.035,
+        "0": 0.035,
+        "1": 0.035
+       },
+       "discriminative": false
+      },
+      {
+       "clip_frame": 517,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.038,
+        "0": 0.038,
+        "1": 0.038
+       },
+       "discriminative": false
+      }
+     ],
+     "aligned": true,
+     "discriminative_samples": 0
+    },
+    "music_map_chip_on_screen_s": []
+   }
+  },
+  "P-14": {
+   "file": "/tmp/space-video-doodle/prod/capture/P1-rc2/clips/P-14.mp4",
+   "feeds": [
+    "S4"
+   ],
+   "what": "散场聊天室: join card (我愿意加入这个聊天室 + 加入，继续聊) → 3D header + the seeded lines 阿遥 「大家好，我是月台的阿遥。今晚舞台这一面，我先放上照片墙啦。」 / 小满 / 北屿; chip row slid to 专辑世界杯, then a slow message scroll",
+   "master_in_frame": 5545,
+   "master_out_frame": 6085,
+   "master_in_s": 92.417,
+   "master_out_s": 101.417,
+   "frames": 540,
+   "seconds": 9.0,
+   "handles": {
+    "main_action_first": "tap 散场聊天室",
+    "main_action_last": "slow scroll through the messages",
+    "before_s": 1.0,
+    "after_s": 1.983
+   },
+   "sync": {
+    "join_card": {
+     "master_frame": 5608,
+     "frame": 63,
+     "t": 1.05
+    },
+    "messages_first_frame": {
+     "master_frame": 5702,
+     "frame": 157,
+     "t": 2.617
+    }
+   },
+   "actions": [
+    {
+     "kind": "tap",
+     "label": "tap 散场聊天室",
+     "t": 1.05,
+     "finger_down_frame": 60,
+     "click_frame": 63,
+     "xy_css": [
+      193,
+      413
+     ]
+    },
+    {
+     "kind": "state",
+     "label": "join card",
+     "frame": 64,
+     "t": 1.067
+    },
+    {
+     "kind": "tap",
+     "label": "tick 我愿意加入这个聊天室",
+     "t": 2.117,
+     "finger_down_frame": 124,
+     "click_frame": 127,
+     "xy_css": [
+      31,
+      630
+     ]
+    },
+    {
+     "kind": "tap",
+     "label": "tap 加入，继续聊",
+     "t": 2.617,
+     "finger_down_frame": 154,
+     "click_frame": 157,
+     "xy_css": [
+      94,
+      696
+     ]
+    },
+    {
+     "kind": "state",
+     "label": "messages",
+     "frame": 158,
+     "t": 2.633
+    },
+    {
+     "kind": "scroll",
+     "label": "chip row → 专辑世界杯",
+     "frame": 218,
+     "t": 3.633,
+     "end_frame": 260,
+     "from_px": 0,
+     "to_px": 71
+    },
+    {
+     "kind": "scroll",
+     "label": "slow scroll through the messages",
+     "frame": 320,
+     "t": 5.333,
+     "end_frame": 420,
+     "from_px": 0,
+     "to_px": 250
+    }
+   ],
+   "boxes": {
+    "P-14 chat room": {
+     "frame": 217,
+     "t": 3.617,
+     "boxes_px": {
+      "3D header 回声现场": [
+       105,
+       359,
+       155,
+       53
+      ],
+      "title": [
+       55,
+       942,
+       814,
+       83
+      ],
+      "chip 音乐探索 ↗": [
+       55,
+       1208,
+       275,
+       122
+      ],
+      "chip 一起玩": [
+       358,
+       1208,
+       206,
+       122
+      ],
+      "chip 音乐话题": [
+       592,
+       1208,
+       245,
+       122
+      ],
+      "chip 专辑世界杯": [
+       865,
+       1208,
+       284,
+       122
+      ],
+      "line 阿遥": [
+       244,
+       1522,
+       532,
+       53
+      ]
+     },
+     "texts": {
+      "3D header 回声现场": "回声现场",
+      "title": "回声现场",
+      "chip 音乐探索 ↗": "音乐探索 ↗",
+      "chip 一起玩": "一起玩",
+      "chip 音乐话题": "音乐话题",
+      "chip 专辑世界杯": "专辑世界杯",
+      "line 阿遥": "大家好，我是月台的阿遥。今晚舞台这一面，我先放上照片墙啦。"
+     }
+    }
+   },
+   "qc": {
+    "lossless_grabs": {
+     "frames": 540,
+     "unique": 368,
+     "identical_consecutive": 124,
+     "longest_identical_run_s": 0.367,
+     "identical_runs_over_1s": [],
+     "scroll_frames_checked": 84,
+     "duplicates_inside_motion": [],
+     "info_identical_at_scroll_ease_edges": 7,
+     "info_identical_while_camera_settles": 0
+    },
+    "probe_errors": 0,
+    "copy_scan": {
+     "frames_scanned": 540,
+     "probes_per_frame": 2,
+     "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+     "frames_with_hits": 0,
+     "samples": []
+    },
+    "stream": {
+     "codec": "h264 High",
+     "size": "1080x2340",
+     "pix_fmt": "yuv420p",
+     "fps": "60/1",
+     "frames": 540,
+     "duration_s": 9.0,
+     "bytes": 3082718,
+     "colour": "bt709/bt709/bt709/tv"
+    },
+    "decoded": {
+     "mean_abs_diff": 1.358,
+     "longest_static_s": 1.0,
+     "static_spans_over_1s": [
+      "0.017s+1.0s"
+     ]
+    },
+    "frame_count_matches_take": true,
+    "master_alignment": {
+     "samples": [
+      {
+       "clip_frame": 108,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.148,
+        "0": 0.149,
+        "1": 0.149
+       },
+       "discriminative": false
+      },
+      {
+       "clip_frame": 270,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.173,
+        "0": 0.166,
+        "1": 0.173
+       },
+       "discriminative": false
+      },
+      {
+       "clip_frame": 432,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.137,
+        "0": 0.137,
+        "1": 0.139
+       },
+       "discriminative": false
+      }
+     ],
+     "aligned": true,
+     "discriminative_samples": 0
+    },
+    "music_map_chip_on_screen_s": [
+     [
+      2.617,
+      9.0
+     ]
+    ]
+   }
+  },
+  "P-15": {
+   "file": "/tmp/space-video-doodle/prod/capture/P1-rc2/clips/P-15.mp4",
+   "feeds": [
+    "S5",
+    "CUT-12"
+   ],
+   "what": "专辑世界杯 「今晚的专辑世界杯」: VS card 午夜站台 vs 樱花电波 (原创专辑卡); tap 选《午夜站台》 (beat 2), tick 投出后不能改 (beat 4), 投票 (beat 5), scroll to 「2票 · 你选了这张」 (beat 6)",
+   "master_in_frame": 6025,
+   "master_out_frame": 6630,
+   "master_in_s": 100.417,
+   "master_out_s": 110.5,
+   "frames": 605,
+   "seconds": 10.083,
+   "handles": {
+    "main_action_first": "tap 专辑世界杯",
+    "main_action_last": "scroll to 「2票",
+    "before_s": 2.067,
+    "after_s": 2.983
+   },
+   "sync": {
+    "cup_panel": {
+     "master_frame": 6152,
+     "frame": 127,
+     "t": 2.117
+    },
+    "vs_card": {
+     "master_frame": 6210,
+     "frame": 185,
+     "t": 3.083
+    },
+    "vote_form": {
+     "master_frame": 6304,
+     "frame": 279,
+     "t": 4.65
+    },
+    "vote_ticked": {
+     "master_frame": 6362,
+     "frame": 337,
+     "t": 5.617
+    },
+    "voted_2票_你选了这张": {
+     "master_frame": 6391,
+     "note": "2票 + 「你选了这张」 under 午夜站台 (the form closes; the card is above the fold until the beat-6 scroll)",
+     "frame": 366,
+     "t": 6.1
+    }
+   },
+   "actions": [
+    {
+     "kind": "scroll",
+     "label": "scroll the chat room back up to the chips",
+     "frame": 60,
+     "t": 1.0,
+     "end_frame": 100,
+     "from_px": 250,
+     "to_px": 0
+    },
+    {
+     "kind": "tap",
+     "label": "tap 专辑世界杯",
+     "t": 2.117,
+     "finger_down_frame": 124,
+     "click_frame": 127,
+     "xy_css": [
+      293,
+      458
+     ]
+    },
+    {
+     "kind": "state",
+     "label": "cup list",
+     "frame": 128,
+     "t": 2.133
+    },
+    {
+     "kind": "tap",
+     "label": "tap 今晚的专辑世界杯",
+     "t": 3.083,
+     "finger_down_frame": 182,
+     "click_frame": 185,
+     "xy_css": [
+      195,
+      403
+     ]
+    },
+    {
+     "kind": "state",
+     "label": "VS card",
+     "frame": 186,
+     "t": 3.1
+    },
+    {
+     "kind": "beat-grid",
+     "label": "♩ world cup beat0",
+     "beat0_frame": 220,
+     "beat0_t": 3.667
+    },
+    {
+     "kind": "tap",
+     "label": "tap 选《午夜站台》 (beat 2)",
+     "t": 4.65,
+     "finger_down_frame": 276,
+     "click_frame": 279,
+     "xy_css": [
+      107,
+      555
+     ],
+     "on_grid": true
+    },
+    {
+     "kind": "state",
+     "label": "vote form",
+     "frame": 279,
+     "t": 4.65
+    },
+    {
+     "kind": "tap",
+     "label": "tick 投出后不能改 (beat 4)",
+     "t": 5.617,
+     "finger_down_frame": 334,
+     "click_frame": 337,
+     "xy_css": [
+      49,
+      734
+     ],
+     "on_grid": true
+    },
+    {
+     "kind": "tap",
+     "label": "tap 投票 (beat 5)",
+     "t": 6.1,
+     "finger_down_frame": 363,
+     "click_frame": 366,
+     "xy_css": [
+      77,
+      800
+     ],
+     "on_grid": true
+    },
+    {
+     "kind": "state",
+     "label": "voted 你选了这张",
+     "frame": 367,
+     "t": 6.117
+    },
+    {
+     "kind": "scroll",
+     "label": "scroll to 「2票 · 你选了这张」 (beat 6)",
+     "frame": 396,
+     "t": 6.6,
+     "end_frame": 425,
+     "from_px": 281,
+     "to_px": 106
+    }
+   ],
+   "boxes": {
+    "P-15 VS": {
+     "frame": 215,
+     "t": 3.583,
+     "boxes_px": {
+      "title 今晚的专辑世界杯": [
+       55,
+       421,
+       969,
+       101
+      ],
+      "card 午夜站台": [
+       137,
+       1008,
+       181,
+       62
+      ],
+      "card 樱花电波": [
+       626,
+       1005,
+       181,
+       62
+      ],
+      "button 选《午夜站台》": [
+       100,
+       1476,
+       393,
+       122
+      ],
+      "button 选《樱花电波》": [
+       587,
+       1476,
+       393,
+       122
+      ]
+     },
+     "texts": {
+      "title 今晚的专辑世界杯": "今晚的专辑世界杯",
+      "card 午夜站台": "午夜站台",
+      "card 樱花电波": "樱花电波",
+      "button 选《午夜站台》": "选《午夜站台》",
+      "button 选《樱花电波》": "选《樱花电波》"
+     }
+    },
+    "P-15 voted": {
+     "frame": 424,
+     "t": 7.067,
+     "boxes_px": {
+      "votes 2票 (card 午夜站台)": [
+       137,
+       877,
+       181,
+       62
+      ],
+      "pill 你选了这张": [
+       104,
+       1330,
+       249,
+       81
+      ]
+     },
+     "texts": {
+      "votes 2票 (card 午夜站台)": "午夜站台",
+      "pill 你选了这张": "· 你选了这张"
+     }
+    }
+   },
+   "qc": {
+    "lossless_grabs": {
+     "frames": 605,
+     "unique": 338,
+     "identical_consecutive": 142,
+     "longest_identical_run_s": 0.2,
+     "identical_runs_over_1s": [],
+     "scroll_frames_checked": 51,
+     "duplicates_inside_motion": [],
+     "info_identical_at_scroll_ease_edges": 1,
+     "info_identical_while_camera_settles": 0
+    },
+    "probe_errors": 0,
+    "copy_scan": {
+     "frames_scanned": 605,
+     "probes_per_frame": 2,
+     "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+     "frames_with_hits": 0,
+     "samples": []
+    },
+    "stream": {
+     "codec": "h264 High",
+     "size": "1080x2340",
+     "pix_fmt": "yuv420p",
+     "fps": "60/1",
+     "frames": 605,
+     "duration_s": 10.083333,
+     "bytes": 2145946,
+     "colour": "bt709/bt709/bt709/tv"
+    },
+    "decoded": {
+     "mean_abs_diff": 1.71,
+     "longest_static_s": 3.05,
+     "static_spans_over_1s": [
+      "3.133s+1.483s",
+      "7.05s+3.05s"
+     ]
+    },
+    "frame_count_matches_take": true,
+    "master_alignment": {
+     "samples": [
+      {
+       "clip_frame": 121,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.188,
+        "0": 0.188,
+        "1": 0.199
+       },
+       "discriminative": false
+      },
+      {
+       "clip_frame": 302,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.105,
+        "0": 0.101,
+        "1": 0.101
+       },
+       "discriminative": false
+      },
+      {
+       "clip_frame": 484,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.103,
+        "0": 0.103,
+        "1": 0.106
+       },
+       "discriminative": false
+      }
+     ],
+     "aligned": true,
+     "discriminative_samples": 0
+    },
+    "music_map_chip_on_screen_s": [
+     [
+      0.0,
+      2.117
+     ]
+    ]
+   }
+  },
+  "P-16": {
+   "file": "/tmp/space-video-doodle/prod/capture/P1-rc2/clips/P-16.mp4",
+   "feeds": [
+    "S6"
+   ],
+   "what": "默契局 「今晚谁和你同一首」: tick 我要参加这一局 + 加入这一局, the round starts (进行中), 我选「午夜站台」, tick 就选它，提交后不能改 + 提交, reveal 「2 人选择 · 本轮有共同选择」",
+   "master_in_frame": 6570,
+   "master_out_frame": 7464,
+   "master_in_s": 109.5,
+   "master_out_s": 124.4,
+   "frames": 894,
+   "seconds": 14.9,
+   "handles": {
+    "main_action_first": "tap × (close world cup)",
+    "main_action_last": "reveal_本轮有共同选择",
+    "before_s": 1.0,
+    "after_s": 2.2
+   },
+   "sync": {
+    "games_panel": {
+     "master_frame": 6684,
+     "frame": 114,
+     "t": 1.9
+    },
+    "join_form": {
+     "master_frame": 6742,
+     "frame": 172,
+     "t": 2.867
+    },
+    "round_starts": {
+     "master_frame": 7017,
+     "frame": 447,
+     "t": 7.45
+    },
+    "answer_form": {
+     "master_frame": 7075,
+     "frame": 505,
+     "t": 8.417
+    },
+    "reveal_本轮有共同选择": {
+     "master_frame": 7331,
+     "frame": 761,
+     "t": 12.683
+    }
+   },
+   "actions": [
+    {
+     "kind": "tap",
+     "label": "tap × (close world cup)",
+     "t": 1.05,
+     "finger_down_frame": 60,
+     "click_frame": 63,
+     "xy_css": [
+      352,
+      118
+     ]
+    },
+    {
+     "kind": "state",
+     "label": "cup closed",
+     "frame": 63,
+     "t": 1.05
+    },
+    {
+     "kind": "note",
+     "label": "chip row back → 一起玩 — already there",
+     "frame": 93,
+     "t": 1.55
+    },
+    {
+     "kind": "tap",
+     "label": "tap 一起玩",
+     "t": 1.9,
+     "finger_down_frame": 111,
+     "click_frame": 114,
+     "xy_css": [
+      167,
+      458
+     ]
+    },
+    {
+     "kind": "state",
+     "label": "games list",
+     "frame": 115,
+     "t": 1.917
+    },
+    {
+     "kind": "tap",
+     "label": "tap 今晚谁和你同一首",
+     "t": 2.867,
+     "finger_down_frame": 169,
+     "click_frame": 172,
+     "xy_css": [
+      195,
+      656
+     ]
+    },
+    {
+     "kind": "state",
+     "label": "join form",
+     "frame": 173,
+     "t": 2.883
+    },
+    {
+     "kind": "tap",
+     "label": "tick 我要参加这一局",
+     "t": 3.833,
+     "finger_down_frame": 227,
+     "click_frame": 230,
+     "xy_css": [
+      31,
+      678
+     ]
+    },
+    {
+     "kind": "tap",
+     "label": "tap 加入这一局",
+     "t": 4.333,
+     "finger_down_frame": 257,
+     "click_frame": 260,
+     "xy_css": [
+      85,
+      744
+     ]
+    },
+    {
+     "kind": "state",
+     "label": "round starts",
+     "frame": 448,
+     "t": 7.467
+    },
+    {
+     "kind": "tap",
+     "label": "tap 我选「午夜站台」",
+     "t": 8.417,
+     "finger_down_frame": 502,
+     "click_frame": 505,
+     "xy_css": [
+      112,
+      666
+     ]
+    },
+    {
+     "kind": "state",
+     "label": "answer form",
+     "frame": 505,
+     "t": 8.417
+    },
+    {
+     "kind": "tap",
+     "label": "tick 就选它，提交后不能改",
+     "t": 9.067,
+     "finger_down_frame": 541,
+     "click_frame": 544,
+     "xy_css": [
+      47,
+      750
+     ]
+    },
+    {
+     "kind": "tap",
+     "label": "tap 提交",
+     "t": 9.567,
+     "finger_down_frame": 571,
+     "click_frame": 574,
+     "xy_css": [
+      75,
+      816
+     ]
+    },
+    {
+     "kind": "state",
+     "label": "reveal 2 人选择 · 本轮有共同选择",
+     "frame": 762,
+     "t": 12.7
+    }
+   ],
+   "boxes": {
+    "P-16 reveal": {
+     "frame": 761,
+     "t": 12.683,
+     "boxes_px": {
+      "title 今晚谁和你同一首": [
+       55,
+       410,
+       587,
+       74
+      ],
+      "line 2 人选择 · 本轮有共同选择": [
+       127,
+       1729,
+       365,
+       100
+      ],
+      "card 午夜站台": [
+       141,
+       1496,
+       178,
+       58
+      ]
+     },
+     "texts": {
+      "title 今晚谁和你同一首": "今晚谁和你同一首",
+      "line 2 人选择 · 本轮有共同选择": "2 人选择 · 本轮有共同选择",
+      "card 午夜站台": "午夜站台"
+     }
+    }
+   },
+   "qc": {
+    "lossless_grabs": {
+     "frames": 894,
+     "unique": 407,
+     "identical_consecutive": 381,
+     "longest_identical_run_s": 0.2,
+     "identical_runs_over_1s": [],
+     "scroll_frames_checked": 0,
+     "duplicates_inside_motion": [],
+     "info_identical_at_scroll_ease_edges": 0,
+     "info_identical_while_camera_settles": 0
+    },
+    "probe_errors": 0,
+    "copy_scan": {
+     "frames_scanned": 894,
+     "probes_per_frame": 2,
+     "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+     "frames_with_hits": 0,
+     "samples": []
+    },
+    "stream": {
+     "codec": "h264 High",
+     "size": "1080x2340",
+     "pix_fmt": "yuv420p",
+     "fps": "60/1",
+     "frames": 894,
+     "duration_s": 14.9,
+     "bytes": 3968893,
+     "colour": "bt709/bt709/bt709/tv"
+    },
+    "decoded": {
+     "mean_abs_diff": 0.518,
+     "longest_static_s": 2.217,
+     "static_spans_over_1s": [
+      "0.017s+1.017s",
+      "12.7s+2.217s"
+     ]
+    },
+    "frame_count_matches_take": true,
+    "master_alignment": {
+     "samples": [
+      {
+       "clip_frame": 178,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.247,
+        "0": 0.169,
+        "1": 0.211
+       },
+       "discriminative": false
+      },
+      {
+       "clip_frame": 447,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 47.651,
+        "0": 0.112,
+        "1": 0.114
+       },
+       "discriminative": true
+      },
+      {
+       "clip_frame": 715,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.125,
+        "0": 0.125,
+        "1": 0.125
+       },
+       "discriminative": false
+      }
+     ],
+     "aligned": true,
+     "discriminative_samples": 1
+    },
+    "music_map_chip_on_screen_s": [
+     [
+      1.05,
+      1.9
+     ]
+    ]
+   }
+  },
+  "P-17": {
+   "file": "/tmp/space-video-doodle/prod/capture/P1-rc2/clips/P-17.mp4",
+   "feeds": [
+    "S7 (spare: v2 uses H-02)"
+   ],
+   "what": "Livehouse 乐迷社群 from the fan side: 散场聊天室 设置与管理 ··· → 这家 Livehouse 的乐迷社群 (beat 0) → 「月台 Livehouse 乐迷社群 · 散场后，乐迷留在这里；下一场的预告也发在这里。」, tick 我愿意加入这个乐迷社群 (beat 2), 加入，继续聊 (beat 3) → community room, 3D header 「MUSIC SPACE / 乐迷社群 · 月台 Livehouse 乐迷社群 · 2 位乐迷」; 设置与管理 → 下一场预告 → 「LIVEHOUSE / 下一场见 · 下一场预告 · 回声现场 Vol.2 · 月台 Livehouse · 时间待定」",
+   "master_in_frame": 7497,
+   "master_out_frame": 7971,
+   "master_in_s": 124.95,
+   "master_out_s": 132.85,
+   "frames": 474,
+   "seconds": 7.9,
+   "handles": {
+    "main_action_first": "tap 设置与管理",
+    "main_action_last": "next_show_回声现场_Vol.2",
+    "before_s": 1.0,
+    "after_s": 2.383
+   },
+   "sync": {
+    "settings_menu_open": {
+     "master_frame": 7560,
+     "frame": 63,
+     "t": 1.05
+    },
+    "venue_join_card": {
+     "master_frame": 7600,
+     "note": "「月台 Livehouse 乐迷社群 · 散场后，乐迷留在这里；下一场的预告也发在这里。」 + 我愿意加入这个乐迷社群",
+     "frame": 103,
+     "t": 1.717
+    },
+    "venue_community_room": {
+     "master_frame": 7688,
+     "note": "the venue community room: 3D header MUSIC SPACE / 乐迷社群 · 月台 Livehouse 乐迷社群 · 2 位乐迷",
+     "frame": 191,
+     "t": 3.183
+    },
+    "next_show_回声现场_Vol.2": {
+     "master_frame": 7827,
+     "note": "LIVEHOUSE / 下一场见: 下一场预告 · 回声现场 Vol.2 · 月台 Livehouse · 时间待定",
+     "frame": 330,
+     "t": 5.5
+    }
+   },
+   "actions": [
+    {
+     "kind": "tap",
+     "label": "tap 设置与管理 ···",
+     "t": 1.05,
+     "finger_down_frame": 60,
+     "click_frame": 63,
+     "xy_css": [
+      299,
+      402
+     ]
+    },
+    {
+     "kind": "state",
+     "label": "settings menu open",
+     "frame": 63,
+     "t": 1.05
+    },
+    {
+     "kind": "beat-grid",
+     "label": "♩ venue community beat0",
+     "beat0_frame": 103,
+     "beat0_t": 1.717
+    },
+    {
+     "kind": "tap",
+     "label": "tap 这家 Livehouse 的乐迷社群 (beat 0)",
+     "t": 1.717,
+     "finger_down_frame": 100,
+     "click_frame": 103,
+     "xy_css": [
+      145,
+      554
+     ],
+     "on_grid": true
+    },
+    {
+     "kind": "state",
+     "label": "venue join card",
+     "frame": 104,
+     "t": 1.733
+    },
+    {
+     "kind": "tap",
+     "label": "tick 我愿意加入这个乐迷社群 (beat 2)",
+     "t": 2.7,
+     "finger_down_frame": 159,
+     "click_frame": 162,
+     "xy_css": [
+      31,
+      678
+     ],
+     "on_grid": true
+    },
+    {
+     "kind": "tap",
+     "label": "tap 加入，继续聊 (beat 3)",
+     "t": 3.183,
+     "finger_down_frame": 188,
+     "click_frame": 191,
+     "xy_css": [
+      94,
+      744
+     ],
+     "on_grid": true
+    },
+    {
+     "kind": "state",
+     "label": "venue community room",
+     "frame": 192,
+     "t": 3.2
+    },
+    {
+     "kind": "tap",
+     "label": "tap 设置与管理 ···",
+     "t": 4.85,
+     "finger_down_frame": 288,
+     "click_frame": 291,
+     "xy_css": [
+      299,
+      402
+     ]
+    },
+    {
+     "kind": "state",
+     "label": "settings menu open",
+     "frame": 291,
+     "t": 4.85
+    },
+    {
+     "kind": "tap",
+     "label": "tap 下一场预告",
+     "t": 5.5,
+     "finger_down_frame": 327,
+     "click_frame": 330,
+     "xy_css": [
+      90,
+      620
+     ]
+    },
+    {
+     "kind": "state",
+     "label": "下一场预告 回声现场 Vol.2",
+     "frame": 330,
+     "t": 5.5
+    }
+   ],
+   "boxes": {
+    "P-17 venue join card": {
+     "frame": 103,
+     "t": 1.717,
+     "boxes_px": {
+      "title 月台 Livehouse 乐迷社群": [
+       55,
+       1198,
+       969,
+       89
+      ],
+      "line 散场后，乐迷留在这里；…": [
+       55,
+       1340,
+       443,
+       53
+      ],
+      "status 开放中": [
+       55,
+       1528,
+       116,
+       47
+      ],
+      "consent": [
+       55,
+       1819,
+       764,
+       122
+      ],
+      "button 加入，继续聊": [
+       55,
+       1996,
+       407,
+       128
+      ]
+     },
+     "texts": {
+      "title 月台 Livehouse 乐迷社群": "月台 Livehouse 乐迷社群",
+      "line 散场后，乐迷留在这里；…": "散场后，乐迷留在这里；下一场的预告也发在这里。",
+      "status 开放中": "开放中",
+      "consent": "我愿意加入这个乐迷社群",
+      "button 加入，继续聊": "加入，继续聊"
+     }
+    },
+    "P-17 venue community room": {
+     "frame": 287,
+     "t": 4.783,
+     "boxes_px": {
+      "3D eyebrow MUSIC SPACE / 乐迷社群": [
+       106,
+       307,
+       145,
+       38
+      ],
+      "3D title 月台 Livehouse 乐迷社群": [
+       104,
+       383,
+       274,
+       110
+      ],
+      "3D chip 2 位乐迷": [
+       134,
+       651,
+       101,
+       35
+      ],
+      "title": [
+       55,
+       942,
+       814,
+       83
+      ]
+     },
+     "texts": {
+      "3D eyebrow MUSIC SPACE / 乐迷社群": "MUSIC SPACE / 乐迷社群",
+      "3D title 月台 Livehouse 乐迷社群": "月台 Livehouse 乐迷社群",
+      "3D chip 2 位乐迷": "2 位乐迷",
+      "title": "月台 Livehouse 乐迷社群"
+     }
+    },
+    "P-17 next show": {
+     "frame": 389,
+     "t": 6.483,
+     "boxes_px": {
+      "eyebrow LIVEHOUSE / 下一场见": [
+       294,
+       645,
+       151,
+       36
+      ],
+      "title 月台 Livehouse 乐迷社群": [
+       55,
+       759,
+       969,
+       89
+      ],
+      "heading 下一场": [
+       55,
+       1280,
+       969,
+       68
+      ],
+      "card 下一场预告 · 回声现场 Vol.2": [
+       55,
+       1401,
+       969,
+       529
+      ],
+      "line 时间定了就在这里说。": [
+       105,
+       1777,
+       399,
+       53
+      ]
+     },
+     "texts": {
+      "eyebrow LIVEHOUSE / 下一场见": "LIVEHOUSE / 下一场见",
+      "title 月台 Livehouse 乐迷社群": "月台 Livehouse 乐迷社群",
+      "heading 下一场": "下一场",
+      "card 下一场预告 · 回声现场 Vol.2": "下一场预告 回声现场 Vol.2 月台 Livehouse · 时间待定 时间定了就在这里说。",
+      "line 时间定了就在这里说。": "时间定了就在这里说。"
+     }
+    }
+   },
+   "qc": {
+    "lossless_grabs": {
+     "frames": 474,
+     "unique": 274,
+     "identical_consecutive": 148,
+     "longest_identical_run_s": 0.15,
+     "identical_runs_over_1s": [],
+     "scroll_frames_checked": 0,
+     "duplicates_inside_motion": [],
+     "info_identical_at_scroll_ease_edges": 0,
+     "info_identical_while_camera_settles": 0
+    },
+    "probe_errors": 0,
+    "copy_scan": {
+     "frames_scanned": 474,
+     "probes_per_frame": 2,
+     "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+     "frames_with_hits": 0,
+     "samples": []
+    },
+    "stream": {
+     "codec": "h264 High",
+     "size": "1080x2340",
+     "pix_fmt": "yuv420p",
+     "fps": "60/1",
+     "frames": 474,
+     "duration_s": 7.9,
+     "bytes": 2507584,
+     "colour": "bt709/bt709/bt709/tv"
+    },
+    "decoded": {
+     "mean_abs_diff": 0.453,
+     "longest_static_s": 0.15,
+     "static_spans_over_1s": []
+    },
+    "frame_count_matches_take": true,
+    "master_alignment": {
+     "samples": [
+      {
+       "clip_frame": 94,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.187,
+        "0": 0.181,
+        "1": 0.187
+       },
+       "discriminative": false
+      },
+      {
+       "clip_frame": 237,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.153,
+        "0": 0.15,
+        "1": 0.153
+       },
+       "discriminative": false
+      },
+      {
+       "clip_frame": 379,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.101,
+        "0": 0.101,
+        "1": 0.101
+       },
+       "discriminative": false
+      }
+     ],
+     "aligned": true,
+     "discriminative_samples": 0
+    },
+    "music_map_chip_on_screen_s": [
+     [
+      0.0,
+      1.717
+     ],
+     [
+      3.183,
+      5.5
+     ]
+    ]
+   }
+  },
+  "P-18": {
+   "file": "/tmp/space-video-doodle/prod/capture/P1-rc2/clips/P-18.mp4",
+   "feeds": [
+    "S8"
+   ],
+   "what": "小满 (friends) → 邀请共同创作 → 「TWO SIDES / 两个人的创作角 · 一起留张纪念。」 「邀请 TA 一起做一张双人纪念。」 tick 邀请 TA，并展示我的昵称和小人 (beat 1), 发出邀请 (beat 2) → 「已确认。」 + 「等 TA 加入。」",
+   "master_in_frame": 8070,
+   "master_out_frame": 8483,
+   "master_in_s": 134.5,
+   "master_out_s": 141.383,
+   "frames": 413,
+   "seconds": 6.883,
+   "handles": {
+    "main_action_first": "tap 小满",
+    "main_action_last": "invited_等_TA_加入",
+    "before_s": 1.0,
+    "after_s": 2.0
+   },
+   "sync": {
+    "corner_sheet": {
+     "master_frame": 8257,
+     "frame": 187,
+     "t": 3.117
+    },
+    "corner_ticked": {
+     "master_frame": 8332,
+     "frame": 262,
+     "t": 4.367
+    },
+    "invited_等_TA_加入": {
+     "master_frame": 8362,
+     "note": "「已确认。」 + 「等 TA 加入。」",
+     "frame": 292,
+     "t": 4.867
+    }
+   },
+   "actions": [
+    {
+     "kind": "tap",
+     "label": "tap 小满",
+     "t": 1.05,
+     "finger_down_frame": 60,
+     "click_frame": 63,
+     "xy_css": [
+      193,
+      537
+     ]
+    },
+    {
+     "kind": "state",
+     "label": "friend card",
+     "frame": 124,
+     "t": 2.067
+    },
+    {
+     "kind": "tap",
+     "label": "tap 邀请共同创作",
+     "t": 3.117,
+     "finger_down_frame": 184,
+     "click_frame": 187,
+     "xy_css": [
+      193,
+      497
+     ]
+    },
+    {
+     "kind": "state",
+     "label": "corner sheet",
+     "frame": 187,
+     "t": 3.117
+    },
+    {
+     "kind": "beat-grid",
+     "label": "♩ corner beat0",
+     "beat0_frame": 233,
+     "beat0_t": 3.883
+    },
+    {
+     "kind": "tap",
+     "label": "tick 邀请 TA，并展示我的昵称和小人 (beat 1)",
+     "t": 4.367,
+     "finger_down_frame": 259,
+     "click_frame": 262,
+     "xy_css": [
+      49,
+      662
+     ],
+     "on_grid": true
+    },
+    {
+     "kind": "tap",
+     "label": "tap 发出邀请 (beat 2)",
+     "t": 4.867,
+     "finger_down_frame": 289,
+     "click_frame": 292,
+     "xy_css": [
+      94,
+      728
+     ],
+     "on_grid": true
+    },
+    {
+     "kind": "state",
+     "label": "等 TA 加入",
+     "frame": 293,
+     "t": 4.883
+    }
+   ],
+   "boxes": {
+    "P-18 corner sheet": {
+     "frame": 228,
+     "t": 3.8,
+     "boxes_px": {
+      "eyebrow TWO SIDES / 两个人的创作角": [
+       287,
+       1154,
+       265,
+       36
+      ],
+      "title 一起留张纪念。": [
+       55,
+       1269,
+       969,
+       89
+      ],
+      "line 邀请 TA 一起做一张双人纪念。": [
+       55,
+       1577,
+       579,
+       53
+      ],
+      "consent": [
+       105,
+       1775,
+       870,
+       122
+      ],
+      "button 发出邀请": [
+       105,
+       1952,
+       312,
+       128
+      ]
+     },
+     "texts": {
+      "eyebrow TWO SIDES / 两个人的创作角": "TWO SIDES / 两个人的创作角",
+      "title 一起留张纪念。": "一起留张纪念。",
+      "line 邀请 TA 一起做一张双人纪念。": "邀请 TA 一起做一张双人纪念。",
+      "consent": "邀请 TA，并展示我的昵称和小人",
+      "button 发出邀请": "发出邀请"
+     }
+    },
+    "P-18 invited": {
+     "frame": 322,
+     "t": 5.367,
+     "boxes_px": {
+      "notice 已确认。": [
+       100,
+       1725,
+       166,
+       50
+      ],
+      "line 等 TA 加入。": [
+       55,
+       2032,
+       225,
+       53
+      ],
+      "button 撤销共同创作": [
+       55,
+       2146,
+       274,
+       122
+      ]
+     },
+     "texts": {
+      "notice 已确认。": "已确认。",
+      "line 等 TA 加入。": "等 TA 加入。",
+      "button 撤销共同创作": "撤销共同创作"
+     }
+    }
+   },
+   "qc": {
+    "lossless_grabs": {
+     "frames": 413,
+     "unique": 327,
+     "identical_consecutive": 56,
+     "longest_identical_run_s": 0.15,
+     "identical_runs_over_1s": [],
+     "scroll_frames_checked": 0,
+     "duplicates_inside_motion": [],
+     "info_identical_at_scroll_ease_edges": 0,
+     "info_identical_while_camera_settles": 0
+    },
+    "probe_errors": 0,
+    "copy_scan": {
+     "frames_scanned": 413,
+     "probes_per_frame": 2,
+     "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+     "frames_with_hits": 0,
+     "samples": []
+    },
+    "stream": {
+     "codec": "h264 High",
+     "size": "1080x2340",
+     "pix_fmt": "yuv420p",
+     "fps": "60/1",
+     "frames": 413,
+     "duration_s": 6.883333,
+     "bytes": 3604345,
+     "colour": "bt709/bt709/bt709/tv"
+    },
+    "decoded": {
+     "mean_abs_diff": 1.847,
+     "longest_static_s": 0.15,
+     "static_spans_over_1s": []
+    },
+    "frame_count_matches_take": true,
+    "master_alignment": {
+     "samples": [
+      {
+       "clip_frame": 82,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 10.066,
+        "0": 0.417,
+        "1": 9.536
+       },
+       "discriminative": true
+      },
+      {
+       "clip_frame": 206,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.172,
+        "0": 0.171,
+        "1": 0.663
+       },
+       "discriminative": true
+      },
+      {
+       "clip_frame": 330,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.165,
+        "0": 0.165,
+        "1": 0.166
+       },
+       "discriminative": false
+      }
+     ],
+     "aligned": true,
+     "discriminative_samples": 2
+    },
+    "music_map_chip_on_screen_s": []
+   }
+  },
+  "P-19": {
+   "file": "/tmp/space-video-doodle/prod/capture/P1-rc2/clips/P-19.mp4",
+   "feeds": [
+    "S9",
+    "CUT-08"
+   ],
+   "what": "recap 「这一晚 · 仍在进行 · 回声现场」 → 「把这一晚，留在手里。 用你的照片和小人，做一张纪念卡。」 保存我的纪念卡 ↗ (beat 2) → ticks photo/avatar/确认保存到我的设备 (beats 4,5,6) → 下载纪念卡 PNG (beat 7) → 「已开始下载。」 → preview 你的纪念卡",
+   "master_in_frame": 8619,
+   "master_out_frame": 9265,
+   "master_in_s": 143.65,
+   "master_out_s": 154.417,
+   "frames": 646,
+   "seconds": 10.767,
+   "handles": {
+    "main_action_first": "tap 回看这一晚",
+    "main_action_last": "scroll to the preview",
+    "before_s": 1.0,
+    "after_s": 1.783
+   },
+   "sync": {
+    "memory_form": {
+     "master_frame": 8872,
+     "frame": 253,
+     "t": 4.217
+    },
+    "memory_100": {
+     "master_frame": 8930,
+     "frame": 311,
+     "t": 5.183
+    },
+    "memory_110": {
+     "master_frame": 8959,
+     "frame": 340,
+     "t": 5.667
+    },
+    "memory_111": {
+     "master_frame": 8989,
+     "frame": 370,
+     "t": 6.167
+    },
+    "memory_111|dl": {
+     "master_frame": 9019,
+     "frame": 400,
+     "t": 6.667
+    }
+   },
+   "actions": [
+    {
+     "kind": "tap",
+     "label": "tap 回看这一晚",
+     "t": 1.05,
+     "finger_down_frame": 60,
+     "click_frame": 63,
+     "xy_css": [
+      114,
+      297
+     ]
+    },
+    {
+     "kind": "state",
+     "label": "recap",
+     "frame": 64,
+     "t": 1.067
+    },
+    {
+     "kind": "scroll",
+     "label": "scroll to 把这一晚，留在手里。",
+     "frame": 118,
+     "t": 1.967,
+     "end_frame": 166,
+     "from_px": 0,
+     "to_px": 122
+    },
+    {
+     "kind": "beat-grid",
+     "label": "♩ memory card beat0",
+     "beat0_frame": 194,
+     "beat0_t": 3.233
+    },
+    {
+     "kind": "tap",
+     "label": "tap 保存我的纪念卡 ↗ (beat 2)",
+     "t": 4.217,
+     "finger_down_frame": 250,
+     "click_frame": 253,
+     "xy_css": [
+      193,
+      497
+     ],
+     "on_grid": true
+    },
+    {
+     "kind": "state",
+     "label": "memory form",
+     "frame": 253,
+     "t": 4.217
+    },
+    {
+     "kind": "scroll",
+     "label": "scroll to the ticks + download (beat 3)",
+     "frame": 282,
+     "t": 4.7,
+     "end_frame": 308,
+     "from_px": 0,
+     "to_px": 126
+    },
+    {
+     "kind": "tap",
+     "label": "tick photo (beat 4)",
+     "t": 5.183,
+     "finger_down_frame": 308,
+     "click_frame": 311,
+     "xy_css": [
+      38,
+      216
+     ],
+     "on_grid": true
+    },
+    {
+     "kind": "tap",
+     "label": "tick 带上我的小人 (beat 5)",
+     "t": 5.667,
+     "finger_down_frame": 337,
+     "click_frame": 340,
+     "xy_css": [
+      58,
+      484
+     ],
+     "on_grid": true
+    },
+    {
+     "kind": "tap",
+     "label": "tick 确认保存到我的设备 (beat 6)",
+     "t": 6.167,
+     "finger_down_frame": 367,
+     "click_frame": 370,
+     "xy_css": [
+      44,
+      573
+     ],
+     "on_grid": true
+    },
+    {
+     "kind": "tap",
+     "label": "tap 下载纪念卡 PNG (beat 7)",
+     "t": 6.65,
+     "finger_down_frame": 396,
+     "click_frame": 399,
+     "xy_css": [
+      193,
+      634
+     ],
+     "on_grid": true
+    },
+    {
+     "kind": "state",
+     "label": "已开始下载",
+     "frame": 400,
+     "t": 6.667
+    },
+    {
+     "kind": "scroll",
+     "label": "scroll to the preview 你的纪念卡",
+     "frame": 484,
+     "t": 8.067,
+     "end_frame": 538,
+     "from_px": 126,
+     "to_px": 720
+    }
+   ],
+   "boxes": {
+    "P-19 recap card": {
+     "frame": 189,
+     "t": 3.15,
+     "boxes_px": {
+      "title 把这一晚，留在手里。": [
+       150,
+       1088,
+       496,
+       72
+      ],
+      "line 用你的照片和小人，做一张纪念卡。": [
+       150,
+       1200,
+       354,
+       53
+      ],
+      "button 保存我的纪念卡 ↗": [
+       150,
+       1301,
+       767,
+       150
+      ]
+     },
+     "texts": {
+      "title 把这一晚，留在手里。": "把这一晚，留在手里。",
+      "line 用你的照片和小人，做一张纪念卡。": "用你的照片和小人，做一张纪念卡。",
+      "button 保存我的纪念卡 ↗": "保存我的纪念卡 ↗"
+     }
+    }
+   },
+   "qc": {
+    "lossless_grabs": {
+     "frames": 646,
+     "unique": 378,
+     "identical_consecutive": 230,
+     "longest_identical_run_s": 0.9,
+     "identical_runs_over_1s": [],
+     "scroll_frames_checked": 92,
+     "duplicates_inside_motion": [],
+     "info_identical_at_scroll_ease_edges": 13,
+     "info_identical_while_camera_settles": 0
+    },
+    "probe_errors": 0,
+    "copy_scan": {
+     "frames_scanned": 646,
+     "probes_per_frame": 2,
+     "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+     "frames_with_hits": 0,
+     "samples": []
+    },
+    "stream": {
+     "codec": "h264 High",
+     "size": "1080x2340",
+     "pix_fmt": "yuv420p",
+     "fps": "60/1",
+     "frames": 646,
+     "duration_s": 10.766667,
+     "bytes": 2178995,
+     "colour": "bt709/bt709/bt709/tv"
+    },
+    "decoded": {
+     "mean_abs_diff": 2.929,
+     "longest_static_s": 1.867,
+     "static_spans_over_1s": [
+      "0.017s+1.0s",
+      "2.7s+1.483s",
+      "6.7s+1.433s",
+      "8.917s+1.867s"
+     ]
+    },
+    "frame_count_matches_take": true,
+    "master_alignment": {
+     "samples": [
+      {
+       "clip_frame": 129,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 12.051,
+        "0": 0.116,
+        "1": 10.913
+       },
+       "discriminative": true
+      },
+      {
+       "clip_frame": 323,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.125,
+        "0": 0.114,
+        "1": 0.125
+       },
+       "discriminative": false
+      },
+      {
+       "clip_frame": 516,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 29.395,
+        "0": 0.2,
+        "1": 26.789
+       },
+       "discriminative": true
+      }
+     ],
+     "aligned": true,
+     "discriminative_samples": 2
+    },
+    "music_map_chip_on_screen_s": []
+   }
+  },
+  "P-20": {
+   "file": "/tmp/space-video-doodle/prod/capture/P1-rc2/clips/P-20.mp4",
+   "feeds": [
+    "S10"
+   ],
+   "what": "MY SPACE / 长期留在这里: 我的小人 阿宁, tiles 我的乐迷社群 / 我的现场与回顾 / 好友与新招呼 / 私聊 / 共同记忆; slow scroll to 我的乐迷社群 (月台 Livehouse 乐迷社群 · 已加入) / 我的现场 / 我的音乐朋友",
+   "master_in_frame": 9292,
+   "master_out_frame": 9685,
+   "master_in_s": 154.867,
+   "master_out_s": 161.417,
+   "frames": 393,
+   "seconds": 6.55,
+   "handles": {
+    "main_action_first": "tap 我的空间",
+    "main_action_last": "slow scroll my space",
+    "before_s": 1.0,
+    "after_s": 1.483
+   },
+   "sync": {
+    "my_space_first_frame": {
+     "master_frame": 9355,
+     "frame": 63,
+     "t": 1.05
+    }
+   },
+   "actions": [
+    {
+     "kind": "tap",
+     "label": "tap 我的空间",
+     "t": 1.05,
+     "finger_down_frame": 60,
+     "click_frame": 63,
+     "xy_css": [
+      331,
+      771
+     ]
+    },
+    {
+     "kind": "state",
+     "label": "my space",
+     "frame": 63,
+     "t": 1.05
+    },
+    {
+     "kind": "scroll",
+     "label": "slow scroll my space",
+     "frame": 219,
+     "t": 3.65,
+     "end_frame": 303,
+     "from_px": 0,
+     "to_px": 491
+    }
+   ],
+   "boxes": {
+    "P-20 my space": {
+     "frame": 218,
+     "t": 3.633,
+     "boxes_px": {
+      "eyebrow MY SPACE / 长期留在这里": [
+       272,
+       306,
+       227,
+       36
+      ],
+      "name 阿宁": [
+       426,
+       545,
+       598,
+       90
+      ],
+      "tile 我的乐迷社群": [
+       54,
+       1127,
+       470,
+       167
+      ],
+      "tile 我的现场与回顾": [
+       556,
+       1127,
+       470,
+       167
+      ],
+      "tile 好友与新招呼": [
+       54,
+       1320,
+       470,
+       167
+      ],
+      "tile 私聊": [
+       556,
+       1320,
+       470,
+       167
+      ],
+      "tile 共同记忆": [
+       54,
+       1514,
+       470,
+       167
+      ]
+     },
+     "texts": {
+      "eyebrow MY SPACE / 长期留在这里": "MY SPACE / 长期留在这里",
+      "name 阿宁": "阿宁",
+      "tile 我的乐迷社群": "我的乐迷社群",
+      "tile 我的现场与回顾": "我的现场与回顾",
+      "tile 好友与新招呼": "好友与新招呼",
+      "tile 私聊": "私聊",
+      "tile 共同记忆": "共同记忆"
+     }
+    }
+   },
+   "qc": {
+    "lossless_grabs": {
+     "frames": 393,
+     "unique": 195,
+     "identical_consecutive": 173,
+     "longest_identical_run_s": 1.083,
+     "identical_runs_over_1s": [
+      "2.667s+1.083s"
+     ],
+     "scroll_frames_checked": 64,
+     "duplicates_inside_motion": [],
+     "info_identical_at_scroll_ease_edges": 13,
+     "info_identical_while_camera_settles": 0
+    },
+    "probe_errors": 0,
+    "copy_scan": {
+     "frames_scanned": 393,
+     "probes_per_frame": 2,
+     "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+     "frames_with_hits": 0,
+     "samples": []
+    },
+    "stream": {
+     "codec": "h264 High",
+     "size": "1080x2340",
+     "pix_fmt": "yuv420p",
+     "fps": "60/1",
+     "frames": 393,
+     "duration_s": 6.55,
+     "bytes": 1802919,
+     "colour": "bt709/bt709/bt709/tv"
+    },
+    "decoded": {
+     "mean_abs_diff": 3.361,
+     "longest_static_s": 2.467,
+     "static_spans_over_1s": [
+      "1.283s+2.467s",
+      "4.967s+1.6s"
+     ]
+    },
+    "frame_count_matches_take": true,
+    "master_alignment": {
+     "samples": [
+      {
+       "clip_frame": 78,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.142,
+        "0": 0.125,
+        "1": 0.139
+       },
+       "discriminative": false
+      },
+      {
+       "clip_frame": 196,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.127,
+        "0": 0.125,
+        "1": 0.126
+       },
+       "discriminative": false
+      },
+      {
+       "clip_frame": 314,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.076,
+        "0": 0.076,
+        "1": 0.076
+       },
+       "discriminative": false
+      }
+     ],
+     "aligned": true,
+     "discriminative_samples": 0
+    },
+    "music_map_chip_on_screen_s": []
+   }
+  },
+  "P-SP1": {
+   "file": "/tmp/space-video-doodle/prod/capture/P1-rc2/clips/P-SP1.mp4",
+   "feeds": [
+    "(spare) 3D photo wall, 5 polaroids"
+   ],
+   "what": "tap 照片墙 → the product camera glides to the 3D wall with 5 polaroids, 「同一场，不同视角 · 看照片 · 5」",
+   "master_in_frame": 9712,
+   "master_out_frame": 10016,
+   "master_in_s": 161.867,
+   "master_out_s": 166.933,
+   "frames": 304,
+   "seconds": 5.067,
+   "handles": {
+    "main_action_first": "tap 照片墙",
+    "main_action_last": "photos_view_settled",
+    "before_s": 1.0,
+    "after_s": 3.0
+   },
+   "sync": {
+    "photos_view_settled": {
+     "master_frame": 9835,
+     "frame": 123,
+     "t": 2.05
+    }
+   },
+   "actions": [
+    {
+     "kind": "tap",
+     "label": "tap 照片墙",
+     "t": 1.05,
+     "finger_down_frame": 60,
+     "click_frame": 63,
+     "xy_css": [
+      239,
+      771
+     ]
+    },
+    {
+     "kind": "state",
+     "label": "camera settled on the photo wall",
+     "frame": 124,
+     "t": 2.067
+    }
+   ],
+   "boxes": {},
+   "qc": {
+    "lossless_grabs": {
+     "frames": 304,
+     "unique": 133,
+     "identical_consecutive": 149,
+     "longest_identical_run_s": 0.15,
+     "identical_runs_over_1s": [],
+     "scroll_frames_checked": 0,
+     "duplicates_inside_motion": [],
+     "info_identical_at_scroll_ease_edges": 0,
+     "info_identical_while_camera_settles": 0
+    },
+    "probe_errors": 0,
+    "copy_scan": {
+     "frames_scanned": 304,
+     "probes_per_frame": 2,
+     "pattern": "示例|虚构|本页|模拟|演示|自动回复|不是真人|在本页运行|没有服务器|只存在这个浏览器 + rc.1 copy (等待本人回应, 示例路线, 长期音乐社群, 我的社群, 明确加入, 先保留我的选择, 创建共同创作邀请, 等待朋友本人明确参与, 已发起下载, 在线访问, 规则判断, 试试组合示例, 关于这个示例, 示例站)",
+     "frames_with_hits": 0,
+     "samples": []
+    },
+    "stream": {
+     "codec": "h264 High",
+     "size": "1080x2340",
+     "pix_fmt": "yuv420p",
+     "fps": "60/1",
+     "frames": 304,
+     "duration_s": 5.066667,
+     "bytes": 2689155,
+     "colour": "bt709/bt709/bt709/tv"
+    },
+    "decoded": {
+     "mean_abs_diff": 3.262,
+     "longest_static_s": 0.15,
+     "static_spans_over_1s": []
+    },
+    "frame_count_matches_take": true,
+    "master_alignment": {
+     "samples": [
+      {
+       "clip_frame": 60,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 2.013,
+        "0": 0.252,
+        "1": 0.567
+       },
+       "discriminative": true
+      },
+      {
+       "clip_frame": 152,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.198,
+        "0": 0.198,
+        "1": 0.196
+       },
+       "discriminative": false
+      },
+      {
+       "clip_frame": 243,
+       "mean_abs_diff_vs_master_offset": {
+        "-1": 0.18,
+        "0": 0.18,
+        "1": 0.18
+       },
+       "discriminative": false
+      }
+     ],
+     "aligned": true,
+     "discriminative_samples": 1
+    },
+    "music_map_chip_on_screen_s": []
+   }
+  }
+ },
+ "storyboard_map": {
+  "E1": {
+   "clip": "P-01",
+   "anchor": "tap 进入现场 (#join)",
+   "anchor_frame": 363,
+   "anchor_t": 6.05,
+   "lands_on": "22:3",
+   "note": "phone first screen; the tap ring lands on 22:3, entry panel 「带上小人，进入现场」 from 22:4"
+  },
+  "E2": {
+   "clip": "P-02",
+   "anchor": "grid:wardrobe presets + angles@0",
+   "anchor_frame": 331,
+   "anchor_t": 5.517,
+   "lands_on": "23:1",
+   "note": "presets 23:1-23:4 (断拍/循迹/回声/失真), angles 24:1-24:4, save 24:4.5 = grid beats 0-7.5"
+  },
+  "E3": {
+   "clip": "P-03",
+   "anchor": "grid:entry form@0",
+   "anchor_frame": 121,
+   "anchor_t": 2.017,
+   "lands_on": "25:1",
+   "note": "scroll beat 1 (25:2), tick beat 4 (26:1), 进入现场 beat 6 (26:3), room right after"
+  },
+  "A1": {
+   "clip": "P-05",
+   "anchor": "tap 人海那张",
+   "anchor_frame": 63,
+   "anchor_t": 1.05,
+   "lands_on": "29:3",
+   "note": "P-04 has the room + onboarding card 「第一次来 1/4 · 放一张今晚的照片」 before it; the form appears on the next frames, 拍摄于 21:48 · 来自照片自带的信息"
+  },
+  "A2": {
+   "clip": "P-05",
+   "anchor": "ai_chip_on_screen",
+   "anchor_frame": 77,
+   "anchor_t": 1.283,
+   "lands_on": "31:3",
+   "note": "chime: the product jumps to the photo and the chip 「✦ AI 判断：人海」 + hint 「配对时用它找另一面，你说了算。」 are on screen (rc.2: the hint no longer says 「AI 在本机判断，照片不上传」)"
+  },
+  "A4": {
+   "clip": "P-07",
+   "anchor": "tap 保存这张照片",
+   "anchor_frame": 63,
+   "anchor_t": 1.05,
+   "lands_on": "35:1",
+   "note": "toast 「已分享给本场成员」 + wall panel right after (35:2)"
+  },
+  "A5": {
+   "clip": "P-08",
+   "anchor": "wall_badge_first_frame",
+   "anchor_frame": 63,
+   "anchor_t": 1.05,
+   "lands_on": "37:1",
+   "note": "header, 21:47 · 同一刻 · 3 个视角, note 「3 分钟内拍下」 and the badge are all on the first wall screen (no pipeline ribbon in rc.2); then the slow scroll"
+  },
+  "M2": {
+   "clip": "P-08",
+   "anchor": "wall_badge_first_frame",
+   "anchor_frame": 63,
+   "anchor_t": 1.05,
+   "lands_on": "43:1",
+   "note": "badge card 「同一刻的另一面」 + reason + 和 TA 交换这个视角 (also CUT-05); punch in"
+  },
+  "M3": {
+   "clip": "P-09",
+   "anchor": "grid:exchange@0",
+   "anchor_frame": 65,
+   "anchor_t": 1.083,
+   "lands_on": "45:1",
+   "note": "tap 和 TA 交换这个视角 = beat 0, compose slides in; rc.2: the compose fits one screen, nothing scrolls on beat 4 (46:1)"
+  },
+  "M4": {
+   "clip": "P-09",
+   "anchor": "grid:exchange@8",
+   "anchor_frame": 299,
+   "anchor_t": 4.983,
+   "lands_on": "47:1",
+   "note": "no scroll on beat 8 in rc.2 (47:1), tick 我同意先给小图，TA 接受后再给原图 beat 9 (47:2), send beat 10 (47:3), 等待对方回应 (48:1, P-10)"
+  },
+  "M5": {
+   "clip": "P-10",
+   "anchor": "pending_等待对方回应",
+   "anchor_frame": 73,
+   "anchor_t": 1.217,
+   "lands_on": "48:1",
+   "note": "the real wait (cut it in the edit); 有效至 10/9 22:40 + 等 TA 接受后，就能互看原图。"
+  },
+  "M6": {
+   "clip": "P-11",
+   "anchor": "accepted_交换已接受",
+   "anchor_frame": 205,
+   "anchor_t": 3.417,
+   "lands_on": "51:1",
+   "note": "first frame of 「交换已接受」 = the payoff hit"
+  },
+  "M7": {
+   "clip": "P-11",
+   "anchor": "accepted_交换已接受",
+   "anchor_frame": 205,
+   "anchor_t": 3.417,
+   "lands_on": "53:1",
+   "note": "same screen: 「和 阿遥 的两张照片」, 「散场后也能在「照片交换」里看。」 + 撤销这次交换 (rc.2 copy; no fine print); use from +2 bars"
+  },
+  "S1": {
+   "clip": "P-12",
+   "anchor": "tap 向 小满 招个手",
+   "anchor_frame": 199,
+   "anchor_t": 3.317,
+   "lands_on": "55:3",
+   "note": "toast 招呼已送达，等待对方回应 (55:4), cut the wait to 你们已经认识了 (56:1, sync friends_你们已经认识了), ♡ 2 just after"
+  },
+  "S2": {
+   "clip": "P-13",
+   "anchor": "grid:chat typing 16ths + send@0",
+   "anchor_frame": 154,
+   "anchor_t": 2.567,
+   "lands_on": "57:3",
+   "note": "16 characters on 16ths (4 beats) then send on beat 4; storyboard gives typing 2 beats (57:3-58:1): play the typing at 2x or cut; reply = reply_今晚的返场太好听了 (58:3, cut the wait)"
+  },
+  "S4": {
+   "clip": "P-14",
+   "anchor": "messages_first_frame",
+   "anchor_frame": 157,
+   "anchor_t": 2.617,
+   "lands_on": "60:1",
+   "note": "chat room with the 3D header and the seeded lines (阿遥 「大家好，我是月台的阿遥。…」, no disclosure suffix in rc.2); chip row slides to 专辑世界杯, then the slow message scroll (60:3)"
+  },
+  "S5": {
+   "clip": "P-15",
+   "anchor": "grid:world cup@0",
+   "anchor_frame": 220,
+   "anchor_t": 3.667,
+   "lands_on": "61:1",
+   "note": "VS card at beat 0, 选《午夜站台》 beat 2 (61:3), tick 投出后不能改 beat 4 (62:1), 投票 beat 5 (62:2), 2票 · 你选了这张 scroll beat 6 (62:3)"
+  },
+  "S6": {
+   "clip": "P-16",
+   "anchor": "reveal_本轮有共同选择",
+   "anchor_frame": 761,
+   "anchor_t": 12.683,
+   "lands_on": "64:1",
+   "note": "the round, 我选「午夜站台」, tick 就选它，提交后不能改 + 提交 before; cut the waits"
+  },
+  "S7": {
+   "clip": "P-17",
+   "anchor": "grid:venue community@0",
+   "anchor_frame": 103,
+   "anchor_t": 1.717,
+   "lands_on": "65:1",
+   "note": "rc2 (spare: the v2 cut uses H-02): 这家 Livehouse 的乐迷社群 beat 0, tick 我愿意加入这个乐迷社群 beat 2 (65:3), 加入，继续聊 beat 3 (65:4), the venue community room 「月台 Livehouse 乐迷社群」 after (66:1), then 下一场预告 「回声现场 Vol.2」"
+  },
+  "S8": {
+   "clip": "P-18",
+   "anchor": "grid:corner@0",
+   "anchor_frame": 233,
+   "anchor_t": 3.883,
+   "lands_on": "67:1",
+   "note": "corner sheet at beat 0, tick 邀请 TA，并展示我的昵称和小人 beat 1 (67:2), 发出邀请 beat 2 (67:3), 「已确认。」 + 「等 TA 加入。」 right after (rc.2: 「你不能替对方同意，」 is gone)"
+  },
+  "S9": {
+   "clip": "P-19",
+   "anchor": "grid:memory card@0",
+   "anchor_frame": 194,
+   "anchor_t": 3.233,
+   "lands_on": "68:1",
+   "note": "recap card at beat 0, 保存我的纪念卡 beat 2 (68:3), ticks beats 4-6 (69:1-69:3), download beat 7 (69:4) → 「已开始下载。」; CUT-08 = the downloaded PNG for 70:1"
+  },
+  "S10": {
+   "clip": "P-20",
+   "anchor": "my_space_first_frame",
+   "anchor_frame": 63,
+   "anchor_t": 1.05,
+   "lands_on": "71:1",
+   "note": "MY SPACE / 长期留在这里, tiles 我的乐迷社群 / 我的现场与回顾 / 好友与新招呼 / 私聊 / 共同记忆, then a slow scroll (我的乐迷社群: 月台 Livehouse 乐迷社群 · 已加入)"
+  }
+ },
+ "stills": {
+  "CUT-04": [
+   "/tmp/space-video-doodle/prod/capture/P1-rc2/stills/CUT-04-ai-tag.png",
+   "/tmp/space-video-doodle/prod/capture/P1-rc2/stills/CUT-04-chips-ai-hint.png",
+   "/tmp/space-video-doodle/prod/capture/P1-rc2/stills/CUT-04-full.png"
+  ],
+  "CUT-05": [
+   "/tmp/space-video-doodle/prod/capture/P1-rc2/stills/CUT-05-badge.png",
+   "/tmp/space-video-doodle/prod/capture/P1-rc2/stills/CUT-05-wall-top-full.png"
+  ],
+  "CUT-06": [
+   "/tmp/space-video-doodle/prod/capture/P1-rc2/stills/CUT-06-accepted.png",
+   "/tmp/space-video-doodle/prod/capture/P1-rc2/stills/CUT-06-accepted-full.png"
+  ],
+  "CUT-07": [
+   "/tmp/space-video-doodle/prod/capture/P1-rc2/stills/CUT-07-chat-bubbles.png",
+   "/tmp/space-video-doodle/prod/capture/P1-rc2/stills/CUT-07-full.png"
+  ],
+  "CUT-08": [
+   "/tmp/space-video-doodle/prod/capture/P1-rc2/stills/CUT-08-memory-card.png"
+  ],
+  "CUT-11": [
+   "/tmp/space-video-doodle/prod/capture/P1-rc2/stills/CUT-11-consent-send.png",
+   "/tmp/space-video-doodle/prod/capture/P1-rc2/stills/CUT-11-full.png"
+  ],
+  "CUT-12": [
+   "/tmp/space-video-doodle/prod/capture/P1-rc2/stills/CUT-12-worldcup-vs.png",
+   "/tmp/space-video-doodle/prod/capture/P1-rc2/stills/CUT-12-full.png"
+  ],
+  "CUT-13": [
+   "/tmp/space-video-doodle/prod/capture/P1-rc2/stills/CUT-13-phone-first-screen.png"
+  ],
+  "CUT-02 (bonus)": [
+   "/tmp/space-video-doodle/prod/capture/P1-rc2/stills/CUT-02-wardrobe-stand-shizhen-3q.png",
+   "/tmp/space-video-doodle/prod/capture/P1-rc2/stills/CUT-02-wardrobe-full.png"
+  ]
+ },
+ "stills_meta": {
+  "CUT-13-phone-first-screen": {
+   "master_frame": 119,
+   "clip_css": {
+    "x": 0,
+    "y": 0,
+    "width": 390,
+    "height": 845,
+    "scale": 2.77
+   }
+  },
+  "CUT-02-wardrobe-stand-shizhen-3q": {
+   "master_frame": 891,
+   "clip_css": {
+    "x": 12,
+    "y": 61,
+    "width": 366,
+    "height": 289,
+    "scale": 2.77
+   }
+  },
+  "CUT-02-wardrobe-full": {
+   "master_frame": 891,
+   "clip_css": {
+    "x": 0,
+    "y": 0,
+    "width": 390,
+    "height": 845,
+    "scale": 2.77
+   }
+  },
+  "CUT-04-ai-tag": {
+   "master_frame": 2234,
+   "clip_css": {
+    "x": 21.34,
+    "y": 492.74,
+    "width": 190.07,
+    "height": 63.87,
+    "scale": 2.77
+   }
+  },
+  "CUT-04-chips-ai-hint": {
+   "master_frame": 2234,
+   "clip_css": {
+    "x": 17.34,
+    "y": 329.16,
+    "width": 349.66,
+    "height": 263.86,
+    "scale": 2.77
+   }
+  },
+  "CUT-04-full": {
+   "master_frame": 2234,
+   "clip_css": {
+    "x": 0,
+    "y": 0,
+    "width": 390,
+    "height": 845,
+    "scale": 2.77
+   }
+  },
+  "CUT-05-badge": {
+   "master_frame": 2622,
+   "clip_css": {
+    "x": 29.61,
+    "y": 323.8,
+    "width": 320.19,
+    "height": 218.05,
+    "scale": 2.77
+   }
+  },
+  "CUT-05-wall-top-full": {
+   "master_frame": 2622,
+   "clip_css": {
+    "x": 0,
+    "y": 0,
+    "width": 390,
+    "height": 845,
+    "scale": 2.77
+   }
+  },
+  "CUT-11-consent-send": {
+   "master_frame": 3539,
+   "clip_css": {
+    "x": 4,
+    "y": 623.7,
+    "width": 382,
+    "height": 164,
+    "scale": 2.77
+   }
+  },
+  "CUT-11-full": {
+   "master_frame": 3539,
+   "clip_css": {
+    "x": 0,
+    "y": 0,
+    "width": 390,
+    "height": 845,
+    "scale": 2.77
+   }
+  },
+  "CUT-06-accepted": {
+   "master_frame": 3865,
+   "clip_css": {
+    "x": 6,
+    "y": 107.03,
+    "width": 378,
+    "height": 376.53,
+    "scale": 2.77
+   }
+  },
+  "CUT-06-accepted-full": {
+   "master_frame": 3865,
+   "clip_css": {
+    "x": 0,
+    "y": 0,
+    "width": 390,
+    "height": 845,
+    "scale": 2.77
+   }
+  },
+  "CUT-07-chat-bubbles": {
+   "master_frame": 5342,
+   "clip_css": {
+    "x": 2,
+    "y": 115.58,
+    "width": 386,
+    "height": 368.38,
+    "scale": 2.77
+   }
+  },
+  "CUT-07-full": {
+   "master_frame": 5342,
+   "clip_css": {
+    "x": 0,
+    "y": 0,
+    "width": 390,
+    "height": 845,
+    "scale": 2.77
+   }
+  },
+  "CUT-12-worldcup-vs": {
+   "master_frame": 6240,
+   "clip_css": {
+    "x": 24,
+    "y": 309.36,
+    "width": 342,
+    "height": 281.58,
+    "scale": 2.77
+   }
+  },
+  "CUT-12-full": {
+   "master_frame": 6240,
+   "clip_css": {
+    "x": 0,
+    "y": 0,
+    "width": 390,
+    "height": 845,
+    "scale": 2.77
+   }
+  }
+ },
+ "warnings": [],
+ "page_errors": [],
+ "console": [],
+ "measures": [
+  {
+   "name": "P-01 landing",
+   "frame": 119,
+   "boxes": {
+    "join 进入现场": [
+     44,
+     651,
+     114.9,
+     52
+    ],
+    "title 同一刻，": [
+     44,
+     454.4,
+     136.4,
+     44
+    ],
+    "lead 同一晚…": [
+     44,
+     562.6,
+     267.9,
+     19
+    ],
+    "eyebrow 进到同一个现场": [
+     26,
+     112.6,
+     194.8,
+     44.6
+    ]
+   },
+   "texts": {
+    "join 进入现场": "进入现场",
+    "title 同一刻，": "同一刻，另一面。",
+    "lead 同一晚…": "同一晚，你拍了舞台，TA 拍了人海。AI 在本机给你一个视角建议，照片墙帮你找到同一刻的另一面，双方同意就交换。",
+    "eyebrow 进到同一个现场": "进到同一个现场"
+   }
+  },
+  {
+   "name": "P-03 entry form after the scroll",
+   "frame": 1230,
+   "boxes": {
+    "option 愿意打招呼": [
+     31.6,
+     308.5,
+     321.8,
+     77.7
+    ],
+    "option 安静参与": [
+     32,
+     394.5,
+     321,
+     74.4
+    ],
+    "consent box": [
+     32,
+     511.9,
+     24,
+     24
+    ],
+    "consent label": [
+     32,
+     510.9,
+     321,
+     25
+    ],
+    "submit 进入现场": [
+     32,
+     547.9,
+     321,
+     48
+    ]
+   },
+   "texts": {
+    "option 愿意打招呼": "愿意打招呼 别人可以向我招手",
+    "option 安静参与": "安静参与 照片照常分享，不接新招呼",
+    "consent box": "",
+    "consent label": "我愿意向本场成员展示我的昵称和小人",
+    "submit 进入现场": "进入现场"
+   }
+  },
+  {
+   "name": "P-04 room + onboarding card",
+   "frame": 1994,
+   "boxes": {
+    "card 第一次来 1/4": [
+     54.8,
+     464.8,
+     59.3,
+     16
+    ],
+    "card title 放一张今晚的照片": [
+     44,
+     501,
+     149.9,
+     24
+    ],
+    "button 人海那张": [
+     44,
+     541,
+     297,
+     52
+    ],
+    "header 回声现场": [
+     26,
+     112.6,
+     125,
+     44.6
+    ],
+    "header 5 位已加入": [
+     51.2,
+     165.9,
+     52.3,
+     14.1
+    ]
+   },
+   "texts": {
+    "card 第一次来 1/4": "第一次来 1/4",
+    "card title 放一张今晚的照片": "放一张今晚的照片",
+    "button 人海那张": "人海那张",
+    "header 回声现场": "回声现场",
+    "header 5 位已加入": "5 位已加入 · 正在进行"
+   }
+  },
+  {
+   "name": "P-05 upload form (AI)",
+   "frame": 2234,
+   "boxes": {
+    "photo": [
+     30.3,
+     88.5,
+     153.3,
+     181.2
+    ],
+    "拍摄于 21:48": [
+     196.7,
+     131.6,
+     72.7,
+     29
+    ],
+    "来自照片自带的信息": [
+     193.8,
+     168.6,
+     126,
+     17
+    ],
+    "card 舞台": [
+     32,
+     343.2,
+     154.5,
+     68.7
+    ],
+    "card 人海 ✓": [
+     197.8,
+     341.5,
+     155.9,
+     72
+    ],
+    "card 身边": [
+     32,
+     423.9,
+     154.5,
+     68.7
+    ],
+    "card 细节": [
+     198.5,
+     423.9,
+     154.5,
+     68.7
+    ],
+    "chip AI 判断：人海": [
+     31.3,
+     502.7,
+     170.1,
+     43.9
+    ],
+    "hint 配对时用它找另一面，你说了算。": [
+     32,
+     558.6,
+     126,
+     17
+    ],
+    "visibility select": [
+     32,
+     635.4,
+     321,
+     50
+    ]
+   },
+   "texts": {
+    "photo": "",
+    "拍摄于 21:48": "拍摄于 21:48",
+    "来自照片自带的信息": "来自照片自带的信息",
+    "card 舞台": "舞台 灯光下的那一面",
+    "card 人海 ✓": "人海 一起举手的那一面",
+    "card 身边": "身边 陪你听歌的那一面",
+    "card 细节": "细节 只有你留意的那一面",
+    "chip AI 判断：人海": "AI 判断：人海",
+    "hint 配对时用它找另一面，你说了算。": "配对时用它找另一面，你说了算。",
+    "visibility select": "仅自己保存 分享给本场成员"
+   }
+  },
+  {
+   "name": "P-08 wall top",
+   "frame": 2622,
+   "boxes": {
+    "eyebrow 同一场 / 不同视角": [
+     32,
+     106,
+     112.1,
+     13
+    ],
+    "title 这一晚，大家看到了什么？": [
+     32,
+     129,
+     238.7,
+     28
+    ],
+    "group header 21:47 · 同一刻 · 3 个视角": [
+     32,
+     182.6,
+     321,
+     80
+    ],
+    "note 3 分钟内拍下": [
+     32,
+     267.2,
+     321.2,
+     27
+    ],
+    "badge card": [
+     43.6,
+     337.8,
+     292.2,
+     190
+    ],
+    "badge pill 同一刻的另一面": [
+     57.4,
+     347,
+     117.9,
+     28.1
+    ],
+    "offer 和 TA 交换这个视角": [
+     45.9,
+     466.8,
+     289.9,
+     61
+    ]
+   },
+   "texts": {
+    "eyebrow 同一场 / 不同视角": "同一场 / 不同视角",
+    "title 这一晚，大家看到了什么？": "这一晚，大家看到了什么？",
+    "group header 21:47 · 同一刻 · 3 个视角": "21:47 · 同一刻 · 3 个视角：舞台 · 人海 · 细节",
+    "note 3 分钟内拍下": "3 分钟内拍下",
+    "badge card": "同一刻的另一面 同一刻 · 21:47，相差不到 1 分钟；你拍人海，TA 拍舞台 和 TA 交换这个视角",
+    "badge pill 同一刻的另一面": "同一刻的另一面",
+    "offer 和 TA 交换这个视角": "和 TA 交换这个视角"
+   }
+  },
+  {
+   "name": "P-09 compose",
+   "frame": 3368,
+   "boxes": {
+    "title 交换一个视角": [
+     74,
+     43.6,
+     127.2,
+     27
+    ],
+    "line 用我拍下的，换 阿遥 看到的。": [
+     18,
+     112.6,
+     85,
+     20
+    ],
+    "polaroid 我提供的": [
+     35.3,
+     312.7,
+     136.8,
+     27.5
+    ],
+    "polaroid 阿遥的": [
+     217.9,
+     312.7,
+     48.9,
+     23.7
+    ],
+    "select": [
+     18,
+     428.4,
+     354,
+     73.5
+    ],
+    "reason card": [
+     140,
+     553.9,
+     115.8,
+     19
+    ],
+    "consent": [
+     18,
+     637.7,
+     354,
+     60
+    ],
+    "send 把这两张交给对方确认 ↗": [
+     18,
+     715.7,
+     354,
+     58
+    ]
+   },
+   "texts": {
+    "title 交换一个视角": "交换一个视角",
+    "line 用我拍下的，换 阿遥 看到的。": "用我拍下的，换 阿遥 看到的。",
+    "polaroid 我提供的": "我提供的",
+    "polaroid 阿遥的": "阿遥的",
+    "select": "选择自己拍的照片 我的第 1 张 · 已上墙 · 同一刻的另一面（推荐）",
+    "reason card": "相差不到 1 分钟",
+    "consent": "我同意先给小图，TA 接受后再给原图",
+    "send 把这两张交给对方确认 ↗": "把这两张交给对方确认 ↗"
+   }
+  },
+  {
+   "name": "P-10 pending",
+   "frame": 3617,
+   "boxes": {
+    "status 等待对方回应": [
+     17.6,
+     108.7,
+     146.8,
+     37.8
+    ],
+    "line 有效至": [
+     18,
+     449.4,
+     39,
+     15
+    ],
+    "line 等 TA 接受后，就能互看原图。": [
+     18,
+     486.2,
+     91.2,
+     18
+    ]
+   },
+   "texts": {
+    "status 等待对方回应": "等待对方回应",
+    "line 有效至": "有效至 10/9 22:40",
+    "line 等 TA 接受后，就能互看原图。": "等 TA 接受后，就能互看原图。"
+   }
+  },
+  {
+   "name": "P-11 accepted",
+   "frame": 3865,
+   "boxes": {
+    "sticker 交换已接受": [
+     110.5,
+     123,
+     169,
+     63.4
+    ],
+    "line 和 阿遥 的两张照片": [
+     185.4,
+     203.8,
+     84.2,
+     22
+    ],
+    "pair": [
+     22,
+     255.4,
+     346,
+     212.1
+    ],
+    "line 散场后也能在「照片交换」里看。": [
+     18,
+     496.6,
+     90,
+     18
+    ],
+    "button 撤销这次交换": [
+     18,
+     545.3,
+     354,
+     48
+    ]
+   },
+   "texts": {
+    "sticker 交换已接受": "交换已接受",
+    "line 和 阿遥 的两张照片": "和 阿遥 的两张照片",
+    "pair": "我提供的 这次确定的一张 阿遥提供的 这次确定的一张",
+    "line 散场后也能在「照片交换」里看。": "散场后也能在「照片交换」里看。",
+    "button 撤销这次交换": "撤销这次交换"
+   }
+  },
+  {
+   "name": "P-12a people list",
+   "frame": 4243,
+   "boxes": {
+    "title 看看同场的人": [
+     32,
+     385,
+     130.2,
+     28
+    ],
+    "row 阿遥": [
+     32,
+     428.6,
+     321,
+     72.1
+    ],
+    "row 小满": [
+     32,
+     500.7,
+     321,
+     72.1
+    ],
+    "row 北屿": [
+     32,
+     572.8,
+     321,
+     72.1
+    ],
+    "row 林间": [
+     32,
+     644.9,
+     321,
+     72.1
+    ]
+   },
+   "texts": {
+    "title 看看同场的人": "看看同场的人",
+    "row 阿遥": "阿遥 愿意打招呼 · 看看 TA 的视角 →",
+    "row 小满": "小满 愿意打招呼 · 看看 TA 的视角 →",
+    "row 北屿": "北屿 愿意打招呼 · 看看 TA 的视角 →",
+    "row 林间": "林间 安静参与 · 看看 TA 的视角 →"
+   }
+  },
+  {
+   "name": "P-12 person card",
+   "frame": 4439,
+   "boxes": {
+    "name 小满": [
+     33.6,
+     469.8,
+     47.3,
+     34.2
+    ],
+    "line 先招个手，TA 接受了就是朋友。": [
+     32,
+     520.4,
+     64,
+     19
+    ],
+    "wave 向 小满 招个手": [
+     32,
+     567,
+     321,
+     48
+    ]
+   },
+   "texts": {
+    "name 小满": "小满",
+    "line 先招个手，TA 接受了就是朋友。": "先招个手，TA 接受了就是朋友。",
+    "wave 向 小满 招个手": "向 小满 招个手"
+   }
+  },
+  {
+   "name": "P-12 friends",
+   "frame": 4731,
+   "boxes": {
+    "eyebrow 你们已经认识了": [
+     32,
+     406.1,
+     96.5,
+     13
+    ],
+    "button 邀请共同创作": [
+     32,
+     474.1,
+     321,
+     46
+    ],
+    "button 和 小满 私聊 ↗": [
+     32,
+     532.1,
+     321,
+     48
+    ],
+    "line 你们已经是朋友了。": [
+     32,
+     601.1,
+     128,
+     19
+    ],
+    "inbox ♡2": [
+     206.2,
+     12,
+     44,
+     44
+    ]
+   },
+   "texts": {
+    "eyebrow 你们已经认识了": "你们已经认识了",
+    "button 邀请共同创作": "邀请共同创作",
+    "button 和 小满 私聊 ↗": "和 小满 私聊 ↗",
+    "line 你们已经是朋友了。": "你们已经是朋友了。",
+    "inbox ♡2": "♡ 2"
+   }
+  },
+  {
+   "name": "P-13 chat",
+   "frame": 5342,
+   "boxes": {
+    "header 小满": [
+     68,
+     34,
+     254,
+     29.9
+    ],
+    "line 你们已经是朋友了。": [
+     132,
+     79.9,
+     112,
+     17
+    ],
+    "bubble 嗨，欢迎来到「回声现场」！": [
+     16,
+     129.6,
+     242,
+     71.6
+    ],
+    "bubble 你拍到的是哪一面？": [
+     16,
+     219.2,
+     178,
+     71.6
+    ],
+    "bubble mine 返场那首…": [
+     84,
+     308.8,
+     290,
+     71.6
+    ],
+    "bubble reply 今晚的返场太好听了。": [
+     16,
+     398.4,
+     194,
+     71.6
+    ]
+   },
+   "texts": {
+    "header 小满": "小满",
+    "line 你们已经是朋友了。": "你们已经是朋友了。",
+    "bubble 嗨，欢迎来到「回声现场」！": "嗨，欢迎来到「回声现场」！ 22:41",
+    "bubble 你拍到的是哪一面？": "你拍到的是哪一面？ 22:41",
+    "bubble mine 返场那首…": "返场那首我在人海里，手都举酸了！ 22:41 · 已发送",
+    "bubble reply 今晚的返场太好听了。": "今晚的返场太好听了。 22:41"
+   }
+  },
+  {
+   "name": "P-14 chat room",
+   "frame": 5762,
+   "boxes": {
+    "3D header 回声现场": [
+     37.8,
+     129.5,
+     56.1,
+     19
+    ],
+    "title": [
+     20,
+     340.2,
+     294,
+     30
+    ],
+    "chip 音乐探索 ↗": [
+     20,
+     436.2,
+     99.3,
+     44
+    ],
+    "chip 一起玩": [
+     129.3,
+     436.2,
+     74.4,
+     44
+    ],
+    "chip 音乐话题": [
+     213.7,
+     436.2,
+     88.6,
+     44
+    ],
+    "chip 专辑世界杯": [
+     312.3,
+     436.2,
+     102.7,
+     44
+    ],
+    "line 阿遥": [
+     88,
+     549.7,
+     192,
+     19
+    ]
+   },
+   "texts": {
+    "3D header 回声现场": "回声现场",
+    "title": "回声现场",
+    "chip 音乐探索 ↗": "音乐探索 ↗",
+    "chip 一起玩": "一起玩",
+    "chip 音乐话题": "音乐话题",
+    "chip 专辑世界杯": "专辑世界杯",
+    "line 阿遥": "大家好，我是月台的阿遥。今晚舞台这一面，我先放上照片墙啦。"
+   }
+  },
+  {
+   "name": "P-15 VS",
+   "frame": 6240,
+   "boxes": {
+    "title 今晚的专辑世界杯": [
+     20,
+     152,
+     350,
+     36.6
+    ],
+    "card 午夜站台": [
+     49.3,
+     364,
+     65.5,
+     22.4
+    ],
+    "card 樱花电波": [
+     226.2,
+     363,
+     65.5,
+     22.4
+    ],
+    "button 选《午夜站台》": [
+     36,
+     532.9,
+     142,
+     44
+    ],
+    "button 选《樱花电波》": [
+     212,
+     532.9,
+     142,
+     44
+    ]
+   },
+   "texts": {
+    "title 今晚的专辑世界杯": "今晚的专辑世界杯",
+    "card 午夜站台": "午夜站台",
+    "card 樱花电波": "樱花电波",
+    "button 选《午夜站台》": "选《午夜站台》",
+    "button 选《樱花电波》": "选《樱花电波》"
+   }
+  },
+  {
+   "name": "P-15 voted",
+   "frame": 6449,
+   "boxes": {
+    "votes 2票 (card 午夜站台)": [
+     49.3,
+     316.7,
+     65.5,
+     22.4
+    ],
+    "pill 你选了这张": [
+     37.6,
+     480.1,
+     89.9,
+     29.3
+    ]
+   },
+   "texts": {
+    "votes 2票 (card 午夜站台)": "午夜站台",
+    "pill 你选了这张": "· 你选了这张"
+   }
+  },
+  {
+   "name": "P-16 reveal",
+   "frame": 7331,
+   "boxes": {
+    "title 今晚谁和你同一首": [
+     20,
+     148,
+     212,
+     26.7
+    ],
+    "line 2 人选择 · 本轮有共同选择": [
+     46,
+     624.2,
+     131.9,
+     36
+    ],
+    "card 午夜站台": [
+     51,
+     540.4,
+     64.3,
+     21
+    ]
+   },
+   "texts": {
+    "title 今晚谁和你同一首": "今晚谁和你同一首",
+    "line 2 人选择 · 本轮有共同选择": "2 人选择 · 本轮有共同选择",
+    "card 午夜站台": "午夜站台"
+   }
+  },
+  {
+   "name": "P-17 venue join card",
+   "frame": 7600,
+   "boxes": {
+    "title 月台 Livehouse 乐迷社群": [
+     20,
+     432.7,
+     350,
+     32.3
+    ],
+    "line 散场后，乐迷留在这里；…": [
+     20,
+     484,
+     160,
+     19
+    ],
+    "status 开放中": [
+     20,
+     551.7,
+     42,
+     17
+    ],
+    "consent": [
+     20,
+     656.9,
+     276,
+     44
+    ],
+    "button 加入，继续聊": [
+     20,
+     720.9,
+     147,
+     46.1
+    ]
+   },
+   "texts": {
+    "title 月台 Livehouse 乐迷社群": "月台 Livehouse 乐迷社群",
+    "line 散场后，乐迷留在这里；…": "散场后，乐迷留在这里；下一场的预告也发在这里。",
+    "status 开放中": "开放中",
+    "consent": "我愿意加入这个乐迷社群",
+    "button 加入，继续聊": "加入，继续聊"
+   }
+  },
+  {
+   "name": "P-17 venue community room",
+   "frame": 7784,
+   "boxes": {
+    "3D eyebrow MUSIC SPACE / 乐迷社群": [
+     38.1,
+     110.8,
+     52.2,
+     13.8
+    ],
+    "3D title 月台 Livehouse 乐迷社群": [
+     37.6,
+     138.4,
+     99,
+     39.9
+    ],
+    "3D chip 2 位乐迷": [
+     48.4,
+     235.1,
+     36.3,
+     12.8
+    ],
+    "title": [
+     20,
+     340.2,
+     294,
+     30
+    ]
+   },
+   "texts": {
+    "3D eyebrow MUSIC SPACE / 乐迷社群": "MUSIC SPACE / 乐迷社群",
+    "3D title 月台 Livehouse 乐迷社群": "月台 Livehouse 乐迷社群",
+    "3D chip 2 位乐迷": "2 位乐迷",
+    "title": "月台 Livehouse 乐迷社群"
+   }
+  },
+  {
+   "name": "P-17 next show",
+   "frame": 7886,
+   "boxes": {
+    "eyebrow LIVEHOUSE / 下一场见": [
+     106,
+     232.8,
+     54.6,
+     13
+    ],
+    "title 月台 Livehouse 乐迷社群": [
+     20,
+     274.2,
+     350,
+     32.3
+    ],
+    "heading 下一场": [
+     20,
+     462.3,
+     350,
+     24.7
+    ],
+    "card 下一场预告 · 回声现场 Vol.2": [
+     20,
+     505.9,
+     350,
+     191.1
+    ],
+    "line 时间定了就在这里说。": [
+     38,
+     641.6,
+     144,
+     19
+    ]
+   },
+   "texts": {
+    "eyebrow LIVEHOUSE / 下一场见": "LIVEHOUSE / 下一场见",
+    "title 月台 Livehouse 乐迷社群": "月台 Livehouse 乐迷社群",
+    "heading 下一场": "下一场",
+    "card 下一场预告 · 回声现场 Vol.2": "下一场预告 回声现场 Vol.2 月台 Livehouse · 时间待定 时间定了就在这里说。",
+    "line 时间定了就在这里说。": "时间定了就在这里说。"
+   }
+  },
+  {
+   "name": "P-18 corner sheet",
+   "frame": 8298,
+   "boxes": {
+    "eyebrow TWO SIDES / 两个人的创作角": [
+     103.6,
+     416.8,
+     95.6,
+     13
+    ],
+    "title 一起留张纪念。": [
+     20,
+     458.2,
+     350,
+     32.3
+    ],
+    "line 邀请 TA 一起做一张双人纪念。": [
+     20,
+     569.5,
+     209.2,
+     19
+    ],
+    "consent": [
+     38,
+     640.9,
+     314,
+     44
+    ],
+    "button 发出邀请": [
+     38,
+     704.9,
+     112.7,
+     46.1
+    ]
+   },
+   "texts": {
+    "eyebrow TWO SIDES / 两个人的创作角": "TWO SIDES / 两个人的创作角",
+    "title 一起留张纪念。": "一起留张纪念。",
+    "line 邀请 TA 一起做一张双人纪念。": "邀请 TA 一起做一张双人纪念。",
+    "consent": "邀请 TA，并展示我的昵称和小人",
+    "button 发出邀请": "发出邀请"
+   }
+  },
+  {
+   "name": "P-18 invited",
+   "frame": 8392,
+   "boxes": {
+    "notice 已确认。": [
+     36,
+     622.9,
+     60,
+     18
+    ],
+    "line 等 TA 加入。": [
+     20,
+     733.6,
+     81.2,
+     19
+    ],
+    "button 撤销共同创作": [
+     20,
+     775,
+     98.9,
+     44
+    ]
+   },
+   "texts": {
+    "notice 已确认。": "已确认。",
+    "line 等 TA 加入。": "等 TA 加入。",
+    "button 撤销共同创作": "撤销共同创作"
+   }
+  },
+  {
+   "name": "P-19 recap card",
+   "frame": 8808,
+   "boxes": {
+    "title 把这一晚，留在手里。": [
+     54,
+     392.8,
+     179,
+     26
+    ],
+    "line 用你的照片和小人，做一张纪念卡。": [
+     54,
+     433.3,
+     128,
+     19
+    ],
+    "button 保存我的纪念卡 ↗": [
+     54,
+     469.9,
+     277,
+     54
+    ]
+   },
+   "texts": {
+    "title 把这一晚，留在手里。": "把这一晚，留在手里。",
+    "line 用你的照片和小人，做一张纪念卡。": "用你的照片和小人，做一张纪念卡。",
+    "button 保存我的纪念卡 ↗": "保存我的纪念卡 ↗"
+   }
+  },
+  {
+   "name": "P-20 my space",
+   "frame": 9510,
+   "boxes": {
+    "eyebrow MY SPACE / 长期留在这里": [
+     98.1,
+     110.6,
+     81.9,
+     13
+    ],
+    "name 阿宁": [
+     154,
+     196.8,
+     216,
+     32.4
+    ],
+    "tile 我的乐迷社群": [
+     19.6,
+     406.8,
+     169.8,
+     60.4
+    ],
+    "tile 我的现场与回顾": [
+     200.6,
+     406.8,
+     169.8,
+     60.4
+    ],
+    "tile 好友与新招呼": [
+     19.6,
+     476.8,
+     169.8,
+     60.4
+    ],
+    "tile 私聊": [
+     200.6,
+     476.8,
+     169.8,
+     60.4
+    ],
+    "tile 共同记忆": [
+     19.6,
+     546.8,
+     169.8,
+     60.4
+    ]
+   },
+   "texts": {
+    "eyebrow MY SPACE / 长期留在这里": "MY SPACE / 长期留在这里",
+    "name 阿宁": "阿宁",
+    "tile 我的乐迷社群": "我的乐迷社群",
+    "tile 我的现场与回顾": "我的现场与回顾",
+    "tile 好友与新招呼": "好友与新招呼",
+    "tile 私聊": "私聊",
+    "tile 共同记忆": "共同记忆"
+   }
+  }
+ ],
+ "notes_for_the_edit": [
+  "Clean plates: every clip is the full unzoomed 1080x2340 screen (no baked push or punch-in, also not on P-01) so the hand-drawn phone frame and DM punch-ins (sharp up to 2.5x) work on them.",
+  "Same ids as capture/P1: tools/serve.mjs resolves a capture id by basename across prod/capture/** (exact name, then directory rank, then the LARGER file), so P1/clips/P-xx.mp4 and P1-rc2/clips/P-xx.mp4 compete; retire capture/P1 (or alias the ids in dm/assets.json) before rendering with this take. The stills (CUT-xx-*.png) have the same names as P1 too.",
+  "Speed: 16 ms of product time per output frame at 60 fps = 0.96x real speed; all times in this manifest are output times.",
+  "Beat taps: the ♩ rows put the click on exact frames of a 123 BPM grid (beats.json of Flipping In); for another track retime with rate = track_bpm / 123 or cut between taps.",
+  "Boxes: clips.<id>.boxes holds measured UI boxes in device px of the 1080x2340 frame (x, y, w, h) at the given clip frame, with the text found there (the scenes address footage by source px: re-measure every act comment against these; top-level measures = the same in CSS px at master frames).",
+  "Wardrobe (E2): the wardrobe opens on the 3/4 angle; presets 断拍 → 循迹 → 回声 → 失真 change the figure on every beat, then 正面 / 侧面 / 背面 / 3/4; the nickname 阿宁 is typed in the wardrobe (the entry form shows it read-only afterwards). The preset list is labelled 「试试现成搭配」 in rc.2.",
+  "Entry (E3): rc.2 entry form 「月台 Livehouse · 回声现场 / 带上小人，进入现场」; the participation options, the consent 「我愿意向本场成员展示我的昵称和小人」 and 「进入现场」 are all on screen after the beat-1 scroll (boxes: P-03).",
+  "AI (A2): rc.2 hint under the chip reads 「配对时用它找另一面，你说了算。」 — the visible upload form no longer says 「AI 在本机判断，照片不上传」 (that sentence is only the chip's tooltip now). Any shot that circles or quotes those words from the phone (A3 31:x, W3 77:1 CUT-04c) needs another source or must drop the quote; 「AI 在本机给你一个视角建议」 is on the lobby card (P-01).",
+  "Wall (A5/M2): no pipeline ribbon in rc.2, the group shows 「21:47 · 同一刻 · 3 个视角：舞台 · 人海 · 细节」 + 「3 分钟内拍下」 and the badge 107 px higher than rc.1; the scroll stops were moved up by 107 px (313 / 713 / 1163 / back to 13) to frame the same content.",
+  "Exchange (M3-M7): the compose sheet fits one screen in rc.2, so nothing scrolls on beats 4 and 8 (the beats are kept: tick on 9, send on 10); 等待对方回应 appears on the send click; the accepted screen holds 「和 阿遥 的两张照片」, 「散场后也能在「照片交换」里看。」 and 撤销这次交换 (no fine print).",
+  "Chat (S2): 16 characters on 16ths take 4 beats before the send; the storyboard gives 2 beats, so play the typing at 2x or cut into it. Welcome bubbles are 「嗨，欢迎来到「回声现场」！」 and 「你拍到的是哪一面？」 (no 我是示例角色 line).",
+  "Chat room (S4): seeded lines without the disclosure suffix; the action row is 「音乐探索 ↗ · 一起玩 · 音乐话题 · 专辑世界杯」 (the Music Map chip is now 「音乐探索 ↗」, Doodle like the rest; qc.music_map_chip_on_screen_s lists when it is on screen).",
+  "Venue community (S7, P-17): rc2 shows the fan side of the owner's framing instead of a fan-created community: 设置与管理 → 这家 Livehouse 的乐迷社群 → join 「月台 Livehouse 乐迷社群」 → 下一场预告 「回声现场 Vol.2」. The v2 cut uses H-02 for S7; P-17 is a spare. My Space (P-20) therefore lists 「月台 Livehouse 乐迷社群 · 已加入」 instead of a community 阿宁 hosts.",
+  "Corner (S8): rc.2 says 「等 TA 加入。」 after 「发出邀请」; the quote 「你不能替对方同意，」 that S8 die-cuts from P-18 f330 no longer exists in the product.",
+  "Memory card (S9): 「已开始下载。」 then the preview 你的纪念卡; CUT-08 is the real PNG (保存于 2026.10.08).",
+  "Static holds: 2D panels do not move between actions (identical frames by design; 3D views boil at the product 7 Hz); add PUSH/BOIL in the edit.",
+  "Tap ring: rig doodle ring (yellow, ink outline, pink offset) on finger down, fades in 0.48 s at the finger position even when the screen changes under it.",
+  "Text caret hidden by harness CSS (caret-color: transparent): Chrome blinks it on real time, which would flicker in frame-stepped capture. No other DOM, state or storage was touched."
+ ],
+ "rebuild": [
+  "cd /Users/alakazan/workplace/tme/musicSpace && node scripts/pages/serve-prefix.mjs /tmp/space-final/dist-pages /musicSpace/ 47871   (background; stop afterwards)",
+  "cd /tmp/space-video-doodle/prod/capture/P1-rc2 && node take-p1.mjs   (~15 min, background; DRY=1 for a 1-min flow test; BPM=124 to choreograph to another grid; CLOCK=<iso> must stay after the build time)",
+  "/tmp/space-video-prep/tools/venv/bin/python post.py && node sheet-p1.mjs"
+ ]
+}

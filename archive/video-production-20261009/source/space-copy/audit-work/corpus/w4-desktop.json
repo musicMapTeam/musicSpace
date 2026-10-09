@@ -1,0 +1,336 @@
+{
+ "states": [
+  {
+   "vp": "desktop",
+   "label": "room-chat-join",
+   "selector": ".music-community",
+   "visible": "散场以后，也留一个位置\n×\n回声现场\n\n加入后，大家能看到你的昵称、小人和发言。\n\n我愿意加入这个聊天室\n加入，继续聊\n这家 Livehouse 的乐迷社群刷新聊天室我的乐迷社群",
+   "attrs": [
+    "@aria-label=乐迷社群与聊天室",
+    "@aria-label=关闭聊天室",
+    "@aria-label=Music Space 的插画分身"
+   ],
+   "hidden": [
+    "Music Space 的插画分身"
+   ],
+   "at": 1791385287583
+  },
+  {
+   "vp": "desktop",
+   "label": "layout:room-chat-join",
+   "selector": ".music-community",
+   "layout": {
+    "pageOverflow": false,
+    "out": [],
+    "tall": [],
+    "orphan": []
+   }
+  },
+  {
+   "vp": "desktop",
+   "label": "room-chat-joined",
+   "selector": ".music-community",
+   "visible": "回声现场\n散场以后，也留一个位置\n×\n未静音 · 3 条未读\n设置与管理 ···\n音乐探索 ↗\n一起玩\n音乐话题\n专辑世界杯\n阿遥\n23:01\n\n大家好，我是月台的阿遥。今晚舞台这一面，我先放上照片墙啦。\n\n回复\n小满\n23:01\n\n我拍的是人海这一面，手都举起来了。\n\n回复\n北屿\n23:01\n\n我只拍了看台边的一盏灯，算细节。\n\n回复\n标为已读\n留一句\n发送",
+   "attrs": [
+    "@aria-label=乐迷社群与聊天室",
+    "@aria-label=关闭聊天室",
+    "@aria-label=Music Space 的插画分身 (hidden el)",
+    "@aria-label=音乐与聊天入口",
+    "@aria-label=Music Space 的插画分身"
+   ],
+   "hidden": [
+    "Music Space 的插画分身"
+   ],
+   "at": 1791385290287
+  },
+  {
+   "vp": "desktop",
+   "label": "layout:room-chat-joined",
+   "selector": ".music-community",
+   "layout": {
+    "pageOverflow": false,
+    "out": [
+     "nav.conversation-actions scrolls inside 425>354「音乐探索 ↗一起玩音乐话题专辑世界杯」",
+     "span.message-avatar scrolls inside 46>40「Music Space 的插画分身」"
+    ],
+    "tall": [
+     "button「这家 Livehouse 的乐迷社群」 3 lines: 这家 / Livehouse的 / 乐迷社群"
+    ],
+    "orphan": []
+   }
+  },
+  {
+   "vp": "desktop",
+   "label": "room-chat-settings",
+   "selector": ".music-community",
+   "visible": "回声现场\n散场以后，也留一个位置\n×\n未静音 · 3 条未读\n设置与管理 ···\n静音\n退出聊天室\n这家 Livehouse 的乐迷社群刷新聊天室我的乐迷社群\n音乐探索 ↗\n一起玩\n音乐话题\n专辑世界杯\n阿遥\n23:01\n\n大家好，我是月台的阿遥。今晚舞台这一面，我先放上照片墙啦。\n\n回复\n小满\n23:01\n\n我拍的是人海这一面，手都举起来了。\n\n回复\n北屿\n23:01\n\n我只拍了看台边的一盏灯，算细节。\n\n回复\n访客4442\n23:01\n\n大家好！\n\n回复撤回\n标为已读\n留一句\n发送",
+   "attrs": [
+    "@aria-label=乐迷社群与聊天室",
+    "@aria-label=关闭聊天室",
+    "@aria-label=Music Space 的插画分身 (hidden el)",
+    "@aria-label=音乐与聊天入口",
+    "@aria-label=Music Space 的插画分身"
+   ],
+   "hidden": [
+    "Music Space 的插画分身"
+   ],
+   "at": 1791385293008
+  },
+  {
+   "vp": "desktop",
+   "label": "linked-community-before-join",
+   "selector": ".music-community",
+   "visible": "散场以后，也留一个位置\n×\n月台 Livehouse 乐迷社群\n\n散场后，乐迷留在这里；下一场的预告也发在这里。\n\n开放中\n\n加入后，大家能看到你的昵称、小人和发言。\n\n我愿意加入这个聊天室\n加入，继续聊\n刷新聊天室我的乐迷社群",
+   "attrs": [
+    "@aria-label=乐迷社群与聊天室",
+    "@aria-label=关闭聊天室",
+    "@aria-label=Music Space 的插画分身"
+   ],
+   "hidden": [
+    "Music Space 的插画分身"
+   ],
+   "at": 1791385296393
+  },
+  {
+   "vp": "desktop",
+   "label": "layout:linked-community",
+   "selector": ".music-community",
+   "layout": {
+    "pageOverflow": false,
+    "out": [],
+    "tall": [],
+    "orphan": []
+   }
+  },
+  {
+   "vp": "desktop",
+   "label": "linked-community-joined",
+   "selector": ".music-community",
+   "visible": "月台 Livehouse 乐迷社群\n散场以后，也留一个位置\n×\n未静音 · 0 条未读\n设置与管理 ···\n音乐探索 ↗\n一起玩\n音乐话题\n专辑世界杯\n\n还没有人说话，来说第一句吧。\n\n标为已读\n留一句\n发送",
+   "attrs": [
+    "@aria-label=乐迷社群与聊天室",
+    "@aria-label=关闭聊天室",
+    "@aria-label=Music Space 的插画分身 (hidden el)",
+    "@aria-label=音乐与聊天入口"
+   ],
+   "hidden": [
+    "Music Space 的插画分身"
+   ],
+   "at": 1791385299604
+  },
+  {
+   "vp": "desktop",
+   "label": "scene-in-community",
+   "selector": "#scene-heading, #scene-code, #render-status, .track",
+   "visible": "2 位乐迷\n---\nMUSIC SPACE / 乐迷社群\n月台 Livehouse 乐迷社群\n---\n2 位乐迷",
+   "attrs": [
+    "@aria-label=查看乐迷社群"
+   ],
+   "hidden": [],
+   "at": 1791385299605
+  },
+  {
+   "vp": "desktop",
+   "label": "layout:community-joined",
+   "selector": ".music-community",
+   "layout": {
+    "pageOverflow": false,
+    "out": [
+     "nav.conversation-actions scrolls inside 425>354「音乐探索 ↗一起玩音乐话题专辑世界杯」"
+    ],
+    "tall": [],
+    "orphan": []
+   }
+  },
+  {
+   "vp": "desktop",
+   "label": "linked-community-settings",
+   "selector": ".music-community",
+   "visible": "月台 Livehouse 乐迷社群\n散场以后，也留一个位置\n×\n未静音 · 0 条未读\n设置与管理 ···\n\n散场后，乐迷留在这里；下一场的预告也发在这里。\n\n开放中\n\n下一场预告\n静音\n退出聊天室\n我愿意打招呼\n社群成员\n\n访客4442 · 安静参与\n\n阿遥 · 安静参与\n\nT4JHBIHBLVXS\n\n复制社群邀请链接 刷新聊天室我的乐迷社群\n音乐探索 ↗\n一起玩\n音乐话题\n专辑世界杯\n\n还没有人说话，来说第一句吧。\n\n标为已读\n留一句\n发送",
+   "attrs": [
+    "@aria-label=乐迷社群与聊天室",
+    "@aria-label=关闭聊天室",
+    "@aria-label=Music Space 的插画分身 (hidden el)",
+    "@aria-label=音乐与聊天入口"
+   ],
+   "hidden": [
+    "Music Space 的插画分身"
+   ],
+   "at": 1791385300147
+  },
+  {
+   "vp": "desktop",
+   "label": "next-show-member",
+   "selector": ".space-management",
+   "visible": "LIVEHOUSE / 下一场见\n×\n月台 Livehouse 乐迷社群\n\n开放中\n\n散场后，乐迷留在这里；下一场的预告也发在这里。\n\n下一场\n下一场预告\n回声现场 Vol.2\n\n月台 Livehouse · 时间待定\n\n时间定了就在这里说。\n\n关联的场次\n刷新回到社群聊天",
+   "attrs": [
+    "@aria-label=下一场预告",
+    "@aria-label=返回社群"
+   ],
+   "hidden": [],
+   "at": 1791385302312
+  },
+  {
+   "vp": "desktop",
+   "label": "layout:next-show-member",
+   "selector": ".space-management",
+   "layout": {
+    "pageOverflow": false,
+    "out": [],
+    "tall": [],
+    "orphan": []
+   }
+  },
+  {
+   "vp": "desktop",
+   "label": "scene-after-community",
+   "selector": "#scene-heading, #scene-code, #render-status",
+   "visible": "2 位乐迷\n---\n月台 Livehouse\n回声现场\n---\n5 位已加入 · 正在进行",
+   "attrs": [
+    "@aria-label=查看场次详情：回声现场"
+   ],
+   "hidden": [],
+   "at": 1791385305027
+  },
+  {
+   "vp": "desktop",
+   "label": "communities-list",
+   "selector": ".music-community",
+   "visible": "散场以后，也留一个位置\n×\nLivehouse 乐迷社群\n\n散场后，乐迷留在场地的社群里；下一场的预告直接发到这里。\n\n月台 Livehouse 乐迷社群\n你在这里 · 继续聊聊\n社群名称\n创建社群，向成员展示我的昵称、小人和发言\n创建 Livehouse 乐迷社群\n社群邀请码或邀请链接\n先看社群\n刷新聊天室我的乐迷社群",
+   "attrs": [
+    "@aria-label=乐迷社群与聊天室",
+    "@aria-label=关闭聊天室",
+    "@aria-label=Music Space 的插画分身"
+   ],
+   "hidden": [
+    "Music Space 的插画分身"
+   ],
+   "at": 1791385306245
+  },
+  {
+   "vp": "desktop",
+   "label": "layout:communities-list",
+   "selector": ".music-community",
+   "layout": {
+    "pageOverflow": false,
+    "out": [],
+    "tall": [],
+    "orphan": []
+   }
+  },
+  {
+   "vp": "desktop",
+   "label": "communities-after-create",
+   "selector": ".music-community",
+   "visible": "散场以后，也留一个位置\n×\nLivehouse 乐迷社群\n\n散场后，乐迷留在场地的社群里；下一场的预告直接发到这里。\n\n我的小酒馆乐迷社群\n你在这里 · 继续聊聊\n月台 Livehouse 乐迷社群\n你在这里 · 继续聊聊\n社群名称\n创建社群，向成员展示我的昵称、小人和发言\n创建 Livehouse 乐迷社群\n社群邀请码或邀请链接\n先看社群\n刷新聊天室我的乐迷社群",
+   "attrs": [
+    "@aria-label=乐迷社群与聊天室",
+    "@aria-label=关闭聊天室",
+    "@aria-label=Music Space 的插画分身"
+   ],
+   "hidden": [
+    "Music Space 的插画分身"
+   ],
+   "at": 1791385309619
+  },
+  {
+   "vp": "desktop",
+   "label": "own-community",
+   "selector": ".music-community",
+   "visible": "月台 Livehouse 乐迷社群\n散场以后，也留一个位置\n×\n未静音 · 0 条未读\n设置与管理 ···\n音乐探索 ↗\n一起玩\n音乐话题\n专辑世界杯\n\n还没有人说话，来说第一句吧。\n\n标为已读\n留一句\n发送",
+   "attrs": [
+    "@aria-label=乐迷社群与聊天室",
+    "@aria-label=关闭聊天室",
+    "@aria-label=Music Space 的插画分身 (hidden el)",
+    "@aria-label=音乐与聊天入口"
+   ],
+   "hidden": [
+    "Music Space 的插画分身"
+   ],
+   "at": 1791385311441
+  },
+  {
+   "vp": "desktop",
+   "label": "own-community-settings",
+   "selector": ".music-community",
+   "visible": "月台 Livehouse 乐迷社群\n散场以后，也留一个位置\n×\n未静音 · 0 条未读\n设置与管理 ···\n\n散场后，乐迷留在这里；下一场的预告也发在这里。\n\n开放中\n\n下一场预告\n静音\n退出聊天室\n我愿意打招呼\n社群成员\n\n访客4442 · 安静参与\n\n阿遥 · 安静参与\n\nT4JHBIHBLVXS\n\n复制社群邀请链接 刷新聊天室我的乐迷社群\n音乐探索 ↗\n一起玩\n音乐话题\n专辑世界杯\n\n还没有人说话，来说第一句吧。\n\n标为已读\n留一句\n发送",
+   "attrs": [
+    "@aria-label=乐迷社群与聊天室",
+    "@aria-label=关闭聊天室",
+    "@aria-label=Music Space 的插画分身 (hidden el)",
+    "@aria-label=音乐与聊天入口"
+   ],
+   "hidden": [
+    "Music Space 的插画分身"
+   ],
+   "at": 1791385311966
+  },
+  {
+   "vp": "desktop",
+   "label": "next-show-host",
+   "selector": ".space-management",
+   "visible": "LIVEHOUSE / 下一场见\n×\n月台 Livehouse 乐迷社群\n\n开放中\n\n散场后，乐迷留在这里；下一场的预告也发在这里。\n\n下一场\n下一场预告\n回声现场 Vol.2\n\n月台 Livehouse · 时间待定\n\n时间定了就在这里说。\n\n关联的场次\n\n回声现场 · 可以进场 去看看\n\n刷新回到社群聊天",
+   "attrs": [
+    "@aria-label=下一场预告",
+    "@aria-label=返回社群"
+   ],
+   "hidden": [],
+   "at": 1791385314520
+  },
+  {
+   "vp": "desktop",
+   "label": "layout:next-show-host",
+   "selector": ".space-management",
+   "layout": {
+    "pageOverflow": false,
+    "out": [],
+    "tall": [],
+    "orphan": []
+   }
+  },
+  {
+   "vp": "desktop",
+   "label": "personal-space",
+   "selector": ".personal-space",
+   "visible": "MY SPACE / 长期留在这里\n×\n我的小人\n访客4442\n\n现场是认识的起点，散场后仍有地方回来。\n\n装扮我的小人\n我的乐迷社群\n我的现场与回顾\n好友与新招呼\n私聊\n共同记忆\n身份备份与恢复\n我的乐迷社群\n我的小酒馆乐迷社群\n我主持 · 已加入\n月台 Livehouse 乐迷社群\n已加入\n加入或创建社群\n我的现场\n回声现场\n进行中 · 已加入 · 回顾\n进场或开个房全部现场和照片\n我的音乐朋友\n\n还没有朋友。去同场的人里打个招呼吧。\n\n全部好友与招呼\n刷新我的空间",
+   "attrs": [
+    "@aria-label=我的音乐空间",
+    "@aria-label=关闭我的空间",
+    "@aria-label=Music Space 的插画分身",
+    "@aria-label=我的空间入口"
+   ],
+   "hidden": [
+    "Music Space 的插画分身"
+   ],
+   "at": 1791385318372
+  },
+  {
+   "vp": "desktop",
+   "label": "layout:personal-space",
+   "selector": ".personal-space",
+   "layout": {
+    "pageOverflow": false,
+    "out": [],
+    "tall": [],
+    "orphan": []
+   }
+  }
+ ],
+ "logs": {
+  "desktop w4": [
+   "title: Music Space · 同一刻，另一面",
+   "live:loading(hidden): Music Space灯快亮了正在布置现场…",
+   "live:render-status: 正在布置现场…",
+   "live:loading(hidden): Music Space灯快亮了正在准备三维场景",
+   "live:render-status: 现场进行中",
+   "live:render-status: 4 位同场",
+   "live:demo-tour: 第一次来 1/4 · 放一张今晚的照片收起挑一张，或者用你自己的。人海那张舞台那张用我自己的照片跳过路线",
+   "live:render-status: 4 位同场",
+   "live:render-status: 5 位同场",
+   "live:render-status: 2 位乐迷",
+   "live:render-status: 5 位同场",
+   "live:render-status: 2 位乐迷",
+   "live:render-status: 5 位同场"
+  ]
+ }
+}

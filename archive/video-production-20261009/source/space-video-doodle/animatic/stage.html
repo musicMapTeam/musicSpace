@@ -1,0 +1,10 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><title>doodle-motion stage</title>
+<link rel="icon" href="data:,"><link rel="stylesheet" href="/dm/doodle-motion.css">
+</head><body><div id="stage"></div>
+<script src="/dm/doodle-motion.js"></script>
+<script>
+  // ?scene=<file in /scenes without .js>  (the scene ends with:  window.__ready = DM.layout().then(DM.info))
+  const scene = new URLSearchParams(location.search).get('scene') || 'animatic';
+  document.write('<script src="/scenes/' + scene + '.js"><\/script>');
+</script>
+</body></html>

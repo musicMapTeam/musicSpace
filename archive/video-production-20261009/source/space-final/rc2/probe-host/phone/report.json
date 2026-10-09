@@ -1,0 +1,64 @@
+{
+ "kind": "phone",
+ "states": {
+  "profile": {
+   "url": "/musicSpace/",
+   "modal": null,
+   "body": "Music\nSpace\n···\n全景\n同场的人\n照片墙\n我的空间\n关于 Music Space\n×\n带上你的小人\n一个昵称，就能带上小人。\n\n不用真名，入场后随时能换装。\n\n大家怎么叫你\n现在换个造型 ↗\n保存昵称，继续",
+   "modalText": null,
+   "attrs": [
+    "@aria-label: Music Space",
+    "@aria-label: 房间信息",
+    "@aria-label: 三维 Livehouse 场景",
+    "@aria-label: 场景机位",
+    "@aria-label: 我的音乐空间",
+    "@aria-label: 场景操作",
+    "@aria-label: 关闭操作面板",
+    "@aria-label: Music Space 的小人"
+   ],
+   "sysFallback": {},
+   "noDoodle": [],
+   "firstMiss": {},
+   "renderStyle": null,
+   "options": []
+  },
+  "create-form": {
+   "url": "/musicSpace/",
+   "modal": null,
+   "body": "Music\nSpace\n···\n全景\n同场的人\n照片墙\n我的空间\n关于 Music Space\n×\nLivehouse / 为这一场开房\n今晚叫什么名字？\n场次名称\n场地\n场景声景\n晚班列车（原创）\n月亮靠窗（原创）\n樱下回声（原创）\n这一场，我想怎样参与\n安静参与\n照片照常分享，不接新招呼\n愿意打招呼\n别人可以向我招手\n我愿意向本场成员展示我的昵称和小人\n开房并进入现场\n\n最多 24 人，入场开放 24 小时。\n\n昵称和小人已保存",
+   "modalText": null,
+   "attrs": [
+    "@aria-label: Music Space",
+    "@aria-label: 房间信息",
+    "@aria-label: 三维 Livehouse 场景",
+    "@aria-label: 场景机位",
+    "@aria-label: 我的音乐空间",
+    "@aria-label: 场景操作",
+    "@aria-label: 关闭操作面板",
+    "@placeholder: 例如：周五的最后一首",
+    "@placeholder: 例如：月台 Livehouse"
+   ],
+   "sysFallback": {},
+   "noDoodle": [],
+   "firstMiss": {},
+   "renderStyle": null,
+   "options": [
+    {
+     "name": "songId",
+     "options": [
+      "晚班列车（原创）",
+      "月亮靠窗（原创）",
+      "樱下回声（原创）"
+     ]
+    }
+   ]
+  }
+ },
+ "rec": {
+  "api": [],
+  "thirdParty": [],
+  "failed": [],
+  "console": [],
+  "pageErrors": []
+ }
+}

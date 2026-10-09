@@ -1,0 +1,196 @@
+{
+ "vw": 1440,
+ "vh": 900,
+ "presenceClass": "presence demo-tour-open",
+ "presenceRect": [
+  940,
+  160,
+  440,
+  604
+ ],
+ "tourRect": [
+  966,
+  184,
+  388,
+  337
+ ],
+ "worldRect": [
+  28,
+  88,
+  1376,
+  694
+ ],
+ "tourHidden": false,
+ "tourText": "示例路线 4/4 · 招个手 / 私聊 / 回看这一晚收起向同场的示例角色招手，对方接受后可以私聊；散场后还能回看这一晚。看看同场的人回看这一晚跳过路线",
+ "presenceShown": [
+  "demo-tour:示例路线 4/4 · 招个手 / 私聊 / 回看这一晚收起向同场的示例角色招手，",
+  "DIV:同一晚，各自的视角。先放一张你的照片，看看你拍到的是哪一面。",
+  "presence-actions:本场与示例说明愿意打招呼 · 更改留一张现场照片回看这一晚"
+ ],
+ "captionVisible": false,
+ "display": [
+  {
+   "el": "span.brand-word",
+   "text": "Music",
+   "font": "\"Doodle Logo\"",
+   "size": "31px",
+   "shadow": "rgb(28, 27, 26) 2.17px 2.17px 0px, rgb(255, 92, 138) 4.03px 4.03px 0px",
+   "bg": "rgba(0, 0, 0, 0)",
+   "stroke": "1.86px",
+   "rect": [
+    30,
+    25,
+    87,
+    33
+   ]
+  },
+  {
+   "el": "span.brand-word",
+   "text": "Space",
+   "font": "\"Doodle Logo\"",
+   "size": "31px",
+   "shadow": "rgb(28, 27, 26) 2.17px 2.17px 0px, rgb(255, 92, 138) 4.03px 4.03px 0px",
+   "bg": "rgba(0, 0, 0, 0)",
+   "stroke": "1.86px",
+   "rect": [
+    125,
+    22,
+    89,
+    33
+   ]
+  },
+  {
+   "el": "span#room-title",
+   "text": "回声现场 · 示例场",
+   "font": "\"Doodle Display\"",
+   "size": "44px",
+   "shadow": "rgb(28, 27, 26) 2.64px 3.08px 0px",
+   "bg": "rgba(0, 0, 0, 0)",
+   "stroke": "3.3px",
+   "rect": [
+    51,
+    142,
+    290,
+    59
+   ]
+  },
+  {
+   "el": "span.demo-tour-step",
+   "text": "招个手 / 私聊 / 回看这一晚",
+   "font": "\"Doodle Display\"",
+   "size": "26px",
+   "shadow": "none",
+   "bg": "rgba(0, 0, 0, 0)",
+   "stroke": "0px",
+   "rect": [
+    984,
+    241,
+    352,
+    32
+   ]
+  },
+  {
+   "el": "strong#presence-title",
+   "text": "同一晚，各自的视角。",
+   "font": "\"Doodle Display\"",
+   "size": "34px",
+   "shadow": "none",
+   "bg": "rgba(0, 0, 0, 0)",
+   "stroke": "0px",
+   "rect": [
+    966,
+    537,
+    388,
+    39
+   ]
+  }
+ ],
+ "buttons": [
+  "收起 [rgba(0, 0, 0, 0)] 1286,197,58,44",
+  "看看同场的人 [INK] 984,341,352,52",
+  "回看这一晚 [rgb(255, 250, 240)] 984,405,352,44",
+  "跳过路线 [rgba(0, 0, 0, 0)] 1119,461,81,44",
+  "本场与示例说明 [rgb(255, 250, 240)] 966,628,188,48",
+  "愿意打招呼 · 更改 [rgb(255, 250, 240)] 1166,628,188,48",
+  "留一张现场照片 [INK] 966,688,188,52",
+  "回看这一晚 [rgb(255, 250, 240)] 1166,688,188,52"
+ ],
+ "inkButtons": [
+  "看看同场的人",
+  "留一张现场照片"
+ ],
+ "dupButtons": [
+  [
+   "回看这一晚",
+   2
+  ]
+ ],
+ "tags": [
+  {
+   "kind": "photos",
+   "text": "照片墙",
+   "rect": [
+    840,
+    226,
+    128,
+    44
+   ],
+   "covered": 22
+  },
+  {
+   "kind": "person",
+   "text": "阿遥·示例 · 可招呼",
+   "rect": [
+    499,
+    341,
+    128,
+    44
+   ],
+   "covered": 0
+  },
+  {
+   "kind": "person",
+   "text": "小满·示例 · 可招呼",
+   "rect": [
+    594,
+    291,
+    128,
+    44
+   ],
+   "covered": 0
+  },
+  {
+   "kind": "person",
+   "text": "北屿·示例 · 可招呼",
+   "rect": [
+    687,
+    341,
+    128,
+    44
+   ],
+   "covered": 0
+  },
+  {
+   "kind": "person",
+   "text": "访客4406 · 我",
+   "rect": [
+    777,
+    291,
+    128,
+    44
+   ],
+   "covered": 0
+  },
+  {
+   "kind": "person",
+   "text": "林间·示例 · 安静",
+   "rect": [
+    873,
+    341,
+    128,
+    44
+   ],
+   "covered": 48
+  }
+ ]
+}

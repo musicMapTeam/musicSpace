@@ -1,0 +1,3868 @@
+{
+ "summary": {
+  "kind": "w320s",
+  "prefix": "/musicSpace/",
+  "gl": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)",
+  "console": [],
+  "pageerrors": [],
+  "failed": [],
+  "bad": [],
+  "outside": [],
+  "popups": [],
+  "fontsRequested": [
+   "/musicSpace/fonts/doodle/marker-0.woff2",
+   "/musicSpace/fonts/doodle/display-0.woff2",
+   "/musicSpace/fonts/doodle/fonts.css",
+   "/musicSpace/fonts/doodle/logo-0.woff2",
+   "/musicSpace/fonts/doodle/display-1.woff2",
+   "/musicSpace/fonts/doodle/marker-1.woff2",
+   "/musicSpace/fonts/doodle/hand-0.woff2",
+   "/musicSpace/fonts/doodle/marker-2.woff2",
+   "/musicSpace/fonts/doodle/hand-2.woff2",
+   "/musicSpace/fonts/doodle/hand-1.woff2",
+   "/musicSpace/fonts/doodle/digits-0.woff2",
+   "/musicSpace/fonts/doodle/marker-symbols.woff2",
+   "/musicSpace/fonts/doodle/marker-3.woff2",
+   "/musicSpace/fonts/doodle/display-2.woff2",
+   "/musicSpace/fonts/doodle/hand-3.woff2"
+  ]
+ },
+ "results": [
+  {
+   "n": 1,
+   "name": "home",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/01-home.png",
+   "url": "/musicSpace/music-map/",
+   "title": "Music Space · 音乐探索",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": null,
+   "text": "跳到内容\nMusic Space\n← 返回现场\n唱片店\n从喜欢，走向未知。\n今天，从谁开始？\n周杰伦\n林俊杰\n邓紫棋\n两位歌手之间，隔着几首歌？\n寻声 · 费玉清 → 邓紫棋\n小院\n唱片店\n我的发现",
+   "hits": [],
+   "small": [],
+   "over": [],
+   "clipped": [
+    "今天，从谁开始？ 130/1w 26/1h"
+   ],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 2,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 2,
+     "unloaded": 4,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 1,
+     "unloaded": 4,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "world-pin: 唱片店",
+    "home-pick: 从周杰伦出发",
+    "home-pick: 从林俊杰出发",
+    "home-pick: 从邓紫棋出发",
+    "button: 两位歌手之间，隔着几首歌？ 寻声 · 费玉清 → 邓紫棋",
+    "nav-item: 小院",
+    "nav-item: 唱片店",
+    "nav-item: 我的发现"
+   ]
+  },
+  {
+   "n": 2,
+   "name": "home-search",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/02-home-search.png",
+   "url": "/musicSpace/music-map/",
+   "title": "Music Space · 音乐探索",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": null,
+   "text": "跳到内容\nMusic Space\n← 返回现场\n从喜欢，走向未知。\n今天，从谁开始？\n林俊杰\n林宥嘉\n林忆莲\n蔡依林\n两位歌手之间，隔着几首歌？\n寻声 · 费玉清 → 邓紫棋\n小院\n唱片店\n我的发现",
+   "hits": [],
+   "small": [],
+   "over": [],
+   "clipped": [
+    "今天，从谁开始？ 130/1w 26/1h"
+   ],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 2,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 2,
+     "unloaded": 4,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 1,
+     "unloaded": 4,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "home-pick: 从林俊杰出发",
+    "home-pick: 从林宥嘉出发",
+    "home-pick: 从林忆莲出发",
+    "home-pick: 从蔡依林出发",
+    "button: 两位歌手之间，隔着几首歌？ 寻声 · 费玉清 → 邓紫棋",
+    "nav-item: 小院",
+    "nav-item: 唱片店",
+    "nav-item: 我的发现"
+   ]
+  },
+  {
+   "n": 3,
+   "name": "home-search-none",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/03-home-search-none.png",
+   "url": "/musicSpace/music-map/",
+   "title": "Music Space · 音乐探索",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": null,
+   "text": "跳到内容\nMusic Space\n← 返回现场\n从喜欢，走向未知。\n今天，从谁开始？\n周杰伦\n林俊杰\n邓紫棋\n\n这里还没有「王菲」，先从这几位开始吧。\n\n两位歌手之间，隔着几首歌？\n寻声 · 费玉清 → 邓紫棋\n小院\n唱片店\n我的发现",
+   "hits": [],
+   "small": [],
+   "over": [],
+   "clipped": [
+    "今天，从谁开始？ 130/1w 26/1h"
+   ],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 2,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 3,
+     "unloaded": 3,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 3,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "home-pick: 从周杰伦出发",
+    "home-pick: 从林俊杰出发",
+    "home-pick: 从邓紫棋出发",
+    "button: 两位歌手之间，隔着几首歌？ 寻声 · 费玉清 → 邓紫棋",
+    "nav-item: 小院",
+    "nav-item: 唱片店",
+    "nav-item: 我的发现"
+   ]
+  },
+  {
+   "n": 4,
+   "name": "roam-start",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/04-roam-start.png",
+   "url": "/musicSpace/music-map/#/explore",
+   "title": "Music Space · 唱片店",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": null,
+   "text": "跳到内容\nMusic Space\n← 返回现场\n周杰伦\n萧敬腾\n林俊杰\n阿信\n蔡卓妍\n金莎\n邓紫棋\n孙燕姿\n李荣浩\n陶喆\n王嘉尔\n完整图鉴\n\n从林俊杰出发 · 途经 1 位\n\n开一局寻声\n目录\n上一位\n起点\n发现 · 0 首\n结束探索\n林俊杰\nTA 的歌\n10 首合唱\n小院\n唱片店\n我的发现\n从林俊杰出发 · 点相连的歌手就走过去",
+   "hits": [],
+   "small": [
+    "查看 周杰伦，10 首收录 [button.world-music-label] 56x29",
+    "查看 孙燕姿，3 首收录 [button.world-music-label] 56x29",
+    "查看 李荣浩，3 首收录 [button.world-music-label] 56x29"
+   ],
+   "over": [],
+   "clipped": [],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 2,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 3,
+     "unloaded": 3,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 3,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "world-music-label: 查看 周杰伦，10 首收录",
+    "world-music-label: 查看 萧敬腾，4 首收录",
+    "world-music-label: 查看 林俊杰，10 首收录，你在这里",
+    "world-music-label: 查看 阿信，3 首收录",
+    "world-music-label: 查看 蔡卓妍，1 首收录",
+    "world-music-label: 查看 金莎，1 首收录",
+    "world-music-label: 查看 邓紫棋，2 首收录",
+    "world-music-label: 查看 孙燕姿，3 首收录",
+    "world-music-label: 查看 李荣浩，3 首收录",
+    "world-music-label: 查看 陶喆，2 首收录",
+    "world-music-label: 查看 王嘉尔，1 首收录",
+    "round-next: 开一局寻声",
+    "search: ",
+    "SUMMARY: 目录",
+    "back: 返回上一位 (disabled)",
+    "reset: 回到起点：林俊杰 (disabled)",
+    "recap: 发现 · 0 首",
+    "finish: 结束探索",
+    "artist: 林俊杰的歌",
+    "SUMMARY: 10 首合唱",
+    "nav-item: 小院",
+    "nav-item: 唱片店",
+    "nav-item: 我的发现"
+   ]
+  },
+  {
+   "n": 5,
+   "name": "roam-index",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/05-roam-index.png",
+   "url": "/musicSpace/music-map/#/explore",
+   "title": "Music Space · 唱片店",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": null,
+   "text": "跳到内容\nMusic Space\n← 返回现场\n完整图鉴\n\n从林俊杰出发 · 途经 1 位\n\n开一局寻声\n目录\n上一位\n起点\n发现 · 0 首\n结束探索\n林俊杰\nTA 的歌\n10 首合唱\n萧敬腾\nHello\n蔡卓妍\n小酒窝\n金莎\n被风吹过的夏天\n邓紫棋\n手心的蔷薇\n阿信\n黑暗骑士\n周杰伦\n稻香 / Stay With You\n孙燕姿\nStay With You（英文版）\n李荣浩\n年少有为\n陶喆\n爱我还是他\n王嘉尔\n过\n小院\n唱片店\n我的发现\n从林俊杰出发 · 点相连的歌手就走过去",
+   "hits": [],
+   "small": [],
+   "over": [],
+   "clipped": [],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 2,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 3,
+     "unloaded": 3,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 3,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "round-next: 开一局寻声",
+    "search: ",
+    "SUMMARY: 目录",
+    "back: 返回上一位 (disabled)",
+    "reset: 回到起点：林俊杰 (disabled)",
+    "recap: 发现 · 0 首",
+    "finish: 结束探索",
+    "artist: 林俊杰的歌",
+    "SUMMARY: 10 首合唱",
+    "edge: 萧敬腾 Hello",
+    "edge: 蔡卓妍 小酒窝",
+    "edge: 金莎 被风吹过的夏天",
+    "edge: 邓紫棋 手心的蔷薇",
+    "edge: 阿信 黑暗骑士",
+    "edge: 周杰伦 稻香 / Stay With You",
+    "edge: 孙燕姿 Stay With You（英文版）",
+    "edge: 李荣浩 年少有为",
+    "edge: 陶喆 爱我还是他",
+    "edge: 王嘉尔 过",
+    "nav-item: 小院",
+    "nav-item: 唱片店",
+    "nav-item: 我的发现"
+   ]
+  },
+  {
+   "n": 6,
+   "name": "duet-paper",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/06-duet-paper.png",
+   "url": "/musicSpace/music-map/#/explore",
+   "title": "Music Space · 唱片店",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": "音乐探索面板",
+   "text": "共同演唱\n萧敬腾\n×\n林俊杰\nHello\n署名 ›\n萧敬腾 / 林俊杰\n2020 单曲 · 录音室版\n去 QQ 音乐听\n作品署名\n22 位\n来源\n：《Hello》\n前往萧敬腾",
+   "hits": [],
+   "small": [],
+   "over": [],
+   "clipped": [
+    "：《Hello》 79/1w 18/1h"
+   ],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 2,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 4,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 3,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "close: 关闭",
+    "select: 萧敬腾",
+    "select: 林俊杰",
+    "credits: 《Hello》的作品署名",
+    "save: 留下《Hello》",
+    "SUMMARY: 作品署名 22 位",
+    "SUMMARY: 来源 ：《Hello》",
+    "move: 前往萧敬腾"
+   ]
+  },
+  {
+   "n": 7,
+   "name": "duet-sources-open",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/07-duet-sources-open.png",
+   "url": "/musicSpace/music-map/#/explore",
+   "title": "Music Space · 唱片店",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": "音乐探索面板",
+   "text": "共同演唱\n萧敬腾\n×\n林俊杰\nHello\n署名 ›\n萧敬腾 / 林俊杰\n2020 单曲 · 录音室版\n去 QQ 音乐听\n作品署名\n22 位\n来源\n：《Hello》\n演唱华纳音乐 · 萧敬腾合唱作品 ↗\n（新标签页）\n\n华纳官方文章将《Hello》列为萧敬腾与林俊杰的合唱，并链接两人署名的官方 MV。\n\n访问于 2026-09-27\n署名萧敬腾官方 · 录音室制作名单 ↗\n（新标签页）\n\n作曲 萧敬腾、林俊杰 · 制作人 萧敬腾、林俊杰 · 配唱制作 萧敬腾、林俊杰 · 钢琴 萧敬腾 · 和声编写 萧敬腾、林俊杰 · 和声 萧敬腾、林俊杰 · 母带制作人 萧敬腾、林俊杰 · 录音 林俊杰、周信廷、Brendan Buckley、刘品贤、杨敏奇 · 作词 奶六 · 编曲 黄冠龙 ALEX.D、阿火 Afire Lee · 键盘 黄冠龙 ALEX.D、阿火 Afire Lee · 弦乐编写 黄冠龙 ALEX.D、阿火 Afire Lee · 吉他 黄冠龙 ALEX.D · 制作协力 黄冠龙 ALEX.D、阿火 Afire Lee、周信廷 · 弦乐监制 蔡曜宇 · 第一小提琴 蔡曜宇、沈羿彣、黄瑾诤 · 贝斯 寗子达 · 鼓 Brendan Buckley · 混音 Richard Furch · 母带工程 Mike Bozzi · 第二小提琴 朱奕宁、黄雨柔 · 中提琴 甘威鹏、牟启东 · 大提琴 刘涵、叶欲新 · 录音助理 徐振程\n\n访问于 2026-09-27\nQQ 音乐同一录音 ↗\n（新标签页）\n访问于 2026-09-29\n\n只列有出处的署名，参与者可能更多。\n\n前往萧敬腾",
+   "hits": [],
+   "small": [],
+   "over": [],
+   "clipped": [],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 2,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 4,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 3,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "close: 关闭",
+    "select: 萧敬腾",
+    "select: 林俊杰",
+    "credits: 《Hello》的作品署名",
+    "save: 留下《Hello》",
+    "SUMMARY: 作品署名 22 位",
+    "SUMMARY: 来源 ：《Hello》",
+    "move: 前往萧敬腾"
+   ]
+  },
+  {
+   "n": 8,
+   "name": "duet-save",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/08-duet-save.png",
+   "url": "/musicSpace/music-map/#/explore",
+   "title": "Music Space · 唱片店",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": "音乐探索面板",
+   "text": "共同演唱\n萧敬腾\n×\n林俊杰\nHello\n署名 ›\n萧敬腾 / 林俊杰\n2020 单曲 · 录音室版\n去 QQ 音乐听\n作品署名\n22 位\n来源\n：《Hello》\n演唱华纳音乐 · 萧敬腾合唱作品 ↗\n（新标签页）\n\n华纳官方文章将《Hello》列为萧敬腾与林俊杰的合唱，并链接两人署名的官方 MV。\n\n访问于 2026-09-27\n署名萧敬腾官方 · 录音室制作名单 ↗\n（新标签页）\n\n作曲 萧敬腾、林俊杰 · 制作人 萧敬腾、林俊杰 · 配唱制作 萧敬腾、林俊杰 · 钢琴 萧敬腾 · 和声编写 萧敬腾、林俊杰 · 和声 萧敬腾、林俊杰 · 母带制作人 萧敬腾、林俊杰 · 录音 林俊杰、周信廷、Brendan Buckley、刘品贤、杨敏奇 · 作词 奶六 · 编曲 黄冠龙 ALEX.D、阿火 Afire Lee · 键盘 黄冠龙 ALEX.D、阿火 Afire Lee · 弦乐编写 黄冠龙 ALEX.D、阿火 Afire Lee · 吉他 黄冠龙 ALEX.D · 制作协力 黄冠龙 ALEX.D、阿火 Afire Lee、周信廷 · 弦乐监制 蔡曜宇 · 第一小提琴 蔡曜宇、沈羿彣、黄瑾诤 · 贝斯 寗子达 · 鼓 Brendan Buckley · 混音 Richard Furch · 母带工程 Mike Bozzi · 第二小提琴 朱奕宁、黄雨柔 · 中提琴 甘威鹏、牟启东 · 大提琴 刘涵、叶欲新 · 录音助理 徐振程\n\n访问于 2026-09-27\nQQ 音乐同一录音 ↗\n（新标签页）\n访问于 2026-09-29\n\n只列有出处的署名，参与者可能更多。\n\n前往萧敬腾",
+   "hits": [],
+   "small": [],
+   "over": [],
+   "clipped": [],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 2,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 4,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 3,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "已留下 · 本次发现 1 首",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "close: 关闭",
+    "select: 萧敬腾",
+    "select: 林俊杰",
+    "credits: 《Hello》的作品署名",
+    "save: 移除《Hello》",
+    "SUMMARY: 作品署名 22 位",
+    "SUMMARY: 来源 ：《Hello》",
+    "move: 前往萧敬腾"
+   ]
+  },
+  {
+   "n": 9,
+   "name": "duet-move",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/09-duet-move.png",
+   "url": "/musicSpace/music-map/#/explore",
+   "title": "Music Space · 唱片店",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": null,
+   "text": "跳到内容\nMusic Space\n← 返回现场\n张惠妹\n萧敬腾\n林俊杰\n林宥嘉\n五月天\n完整图鉴\n\n林俊杰\n→\n萧敬腾\n\n开一局寻声\n目录\n上一位\n起点\n发现 · 1 首\n结束探索\n萧敬腾\nTA 的歌\n4 首合唱\n小院\n唱片店\n我的发现\n沿《Hello》走到萧敬腾",
+   "hits": [],
+   "small": [
+    "查看 萧敬腾，4 首收录，你在这里 [button.world-music-label] 59x31",
+    "查看 五月天，5 首收录 [button.world-music-label] 56x29"
+   ],
+   "over": [],
+   "clipped": [],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 2,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 4,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 3,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "world-music-label: 查看 张惠妹，5 首收录",
+    "world-music-label: 查看 萧敬腾，4 首收录，你在这里",
+    "world-music-label: 查看 林俊杰，10 首收录",
+    "world-music-label: 查看 林宥嘉，3 首收录",
+    "world-music-label: 查看 五月天，5 首收录",
+    "round-next: 开一局寻声",
+    "search: ",
+    "SUMMARY: 目录",
+    "back: 返回上一位：林俊杰",
+    "reset: 回到起点：林俊杰",
+    "recap: 发现 · 1 首",
+    "finish: 结束探索",
+    "artist: 萧敬腾的歌",
+    "SUMMARY: 4 首合唱",
+    "nav-item: 小院",
+    "nav-item: 唱片店",
+    "nav-item: 我的发现"
+   ]
+  },
+  {
+   "n": 10,
+   "name": "roam-recap",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/10-roam-recap.png",
+   "url": "/musicSpace/music-map/#/explore",
+   "title": "Music Space · 唱片店",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": "本次发现",
+   "text": "本次发现 · 进行中\n本次发现\n日期\n10月8日\n起点\n林俊杰\n途经\n2 位\n留下\n1 首\n留下的歌\nHello\n署名 ›\n萧敬腾 / 林俊杰\n沿萧敬腾与林俊杰的合唱《Hello》留下\n去 QQ 音乐听\n来源\n：《Hello》\n我走过的路\n1 段\n途经的歌手\n2 位\n保存发现卡片\n继续本次探索\n开始新探索\n回到小院",
+   "hits": [],
+   "small": [],
+   "over": [],
+   "clipped": [],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 2,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 4,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 3,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "close: 关闭",
+    "credits: 《Hello》的作品署名",
+    "save: 移除《Hello》",
+    "SUMMARY: 来源 ：《Hello》",
+    "SUMMARY: 我走过的路 1 段",
+    "SUMMARY: 途经的歌手 2 位",
+    "save-discovery: 保存发现卡片",
+    "resume: 继续本次探索",
+    "go-home: 开始新探索",
+    "go-home: 回到小院"
+   ]
+  },
+  {
+   "n": 11,
+   "name": "roam-recap-sources",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/11-roam-recap-sources.png",
+   "url": "/musicSpace/music-map/#/explore",
+   "title": "Music Space · 唱片店",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": "本次发现",
+   "text": "本次发现 · 进行中\n本次发现\n日期\n10月8日\n起点\n林俊杰\n途经\n2 位\n留下\n1 首\n留下的歌\nHello\n署名 ›\n萧敬腾 / 林俊杰\n沿萧敬腾与林俊杰的合唱《Hello》留下\n去 QQ 音乐听\n来源\n：《Hello》\n演唱华纳音乐 · 萧敬腾合唱作品 ↗\n（新标签页）\n\n华纳官方文章将《Hello》列为萧敬腾与林俊杰的合唱，并链接两人署名的官方 MV。\n\n访问于 2026-09-27\n署名萧敬腾官方 · 录音室制作名单 ↗\n（新标签页）\n\n作曲 萧敬腾、林俊杰 · 制作人 萧敬腾、林俊杰 · 配唱制作 萧敬腾、林俊杰 · 钢琴 萧敬腾 · 和声编写 萧敬腾、林俊杰 · 和声 萧敬腾、林俊杰 · 母带制作人 萧敬腾、林俊杰 · 录音 林俊杰、周信廷、Brendan Buckley、刘品贤、杨敏奇 · 作词 奶六 · 编曲 黄冠龙 ALEX.D、阿火 Afire Lee · 键盘 黄冠龙 ALEX.D、阿火 Afire Lee · 弦乐编写 黄冠龙 ALEX.D、阿火 Afire Lee · 吉他 黄冠龙 ALEX.D · 制作协力 黄冠龙 ALEX.D、阿火 Afire Lee、周信廷 · 弦乐监制 蔡曜宇 · 第一小提琴 蔡曜宇、沈羿彣、黄瑾诤 · 贝斯 寗子达 · 鼓 Brendan Buckley · 混音 Richard Furch · 母带工程 Mike Bozzi · 第二小提琴 朱奕宁、黄雨柔 · 中提琴 甘威鹏、牟启东 · 大提琴 刘涵、叶欲新 · 录音助理 徐振程\n\n访问于 2026-09-27\nQQ 音乐同一录音 ↗\n（新标签页）\n访问于 2026-09-29\n\n只列有出处的署名，参与者可能更多。\n\n我走过的路\n1 段\n途经的歌手\n2 位\n保存发现卡片\n继续本次探索\n开始新探索\n回到小院",
+   "hits": [],
+   "small": [],
+   "over": [],
+   "clipped": [
+    "：《Hello》 79/1w 18/1h",
+    "（新标签页） 90/1w 23/1h"
+   ],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 2,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 4,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 3,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "close: 关闭",
+    "credits: 《Hello》的作品署名",
+    "save: 移除《Hello》",
+    "SUMMARY: 来源 ：《Hello》",
+    "SUMMARY: 我走过的路 1 段",
+    "SUMMARY: 途经的歌手 2 位",
+    "save-discovery: 保存发现卡片",
+    "resume: 继续本次探索",
+    "go-home: 开始新探索",
+    "go-home: 回到小院"
+   ]
+  },
+  {
+   "n": 12,
+   "name": "roam-recap-close",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/12-roam-recap-close.png",
+   "url": "/musicSpace/music-map/#/explore",
+   "title": "Music Space · 唱片店",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": null,
+   "text": "跳到内容\nMusic Space\n← 返回现场\n张惠妹\n萧敬腾\n林俊杰\n林宥嘉\n五月天\n完整图鉴\n\n林俊杰\n→\n萧敬腾\n\n开一局寻声\n目录\n上一位\n起点\n发现 · 1 首\n结束探索\n萧敬腾\nTA 的歌\n4 首合唱\n小院\n唱片店\n我的发现\n沿《Hello》走到萧敬腾",
+   "hits": [],
+   "small": [
+    "查看 萧敬腾，4 首收录，你在这里 [button.world-music-label] 59x31",
+    "查看 五月天，5 首收录 [button.world-music-label] 56x29"
+   ],
+   "over": [],
+   "clipped": [],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 2,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 4,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 3,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "world-music-label: 查看 张惠妹，5 首收录",
+    "world-music-label: 查看 萧敬腾，4 首收录，你在这里",
+    "world-music-label: 查看 林俊杰，10 首收录",
+    "world-music-label: 查看 林宥嘉，3 首收录",
+    "world-music-label: 查看 五月天，5 首收录",
+    "round-next: 开一局寻声",
+    "search: ",
+    "SUMMARY: 目录",
+    "back: 返回上一位：林俊杰",
+    "reset: 回到起点：林俊杰",
+    "recap: 发现 · 1 首",
+    "finish: 结束探索",
+    "artist: 萧敬腾的歌",
+    "SUMMARY: 4 首合唱",
+    "nav-item: 小院",
+    "nav-item: 唱片店",
+    "nav-item: 我的发现"
+   ]
+  },
+  {
+   "n": 13,
+   "name": "artist-songs",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/13-artist-songs.png",
+   "url": "/musicSpace/music-map/#/explore",
+   "title": "Music Space · 唱片店",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": "音乐探索面板",
+   "text": "4 首合唱\n萧敬腾\n一眼瞬间\n署名 ›\n张惠妹 / 萧敬腾\n《STAR》· 录音室版\n去 QQ 音乐听\n作品署名\n8 位\n来源\n：《一眼瞬间》\nHello\n署名 ›\n萧敬腾 / 林俊杰\n2020 单曲 · 录音室版\n去 QQ 音乐听\n作品署名\n22 位\n来源\n：《Hello》\n我有多么喜欢你\n署名 ›\n萧敬腾 / 林宥嘉\n2018 单曲 /《欲望反光》第 10 首 · 录音室版\n去 QQ 音乐听\n作品署名\n2 位\n来源\n：《我有多么喜欢你》\n凡人歌\n署名 ›\n五月天 / 萧敬腾\n2017 单曲（相信音乐）· 发行信息未标明录音室或现场\n去 QQ 音乐听\n作品署名\n3 位\n来源\n：《凡人歌》",
+   "hits": [],
+   "small": [],
+   "over": [],
+   "clipped": [
+    "：《一眼瞬间》 105/1w 18/1h"
+   ],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 2,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 4,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 3,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "close: 关闭",
+    "credits: 《一眼瞬间》的作品署名",
+    "save: 留下《一眼瞬间》",
+    "SUMMARY: 作品署名 8 位",
+    "SUMMARY: 来源 ：《一眼瞬间》",
+    "credits: 《Hello》的作品署名",
+    "save: 移除《Hello》",
+    "SUMMARY: 作品署名 22 位",
+    "SUMMARY: 来源 ：《Hello》",
+    "credits: 《我有多么喜欢你》的作品署名",
+    "save: 留下《我有多么喜欢你》",
+    "SUMMARY: 作品署名 2 位",
+    "SUMMARY: 来源 ：《我有多么喜欢你》",
+    "credits: 《凡人歌》的作品署名",
+    "save: 留下《凡人歌》",
+    "SUMMARY: 作品署名 3 位",
+    "SUMMARY: 来源 ：《凡人歌》"
+   ]
+  },
+  {
+   "n": 14,
+   "name": "artist-credits",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/14-artist-credits.png",
+   "url": "/musicSpace/music-map/#/explore",
+   "title": "Music Space · 唱片店",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": "音乐探索面板",
+   "text": "作品署名\n一眼瞬间\n\n《STAR》· 录音室版\n\n姓名 负责内容\n张惠妹 演唱\n萧敬腾 演唱\n曹格 作曲\n邬裕康 作词\n吴庆隆 编曲\n马毓芬 制作人\n钟国泰 混音音响工程\n叶育轩 音响工程\n来源\n：《一眼瞬间》\n去 QQ 音乐听\n留下",
+   "hits": [],
+   "small": [],
+   "over": [],
+   "clipped": [],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 2,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 5,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 3,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "close: 关闭",
+    "SUMMARY: 来源 ：《一眼瞬间》",
+    "save: 留下《一眼瞬间》"
+   ]
+  },
+  {
+   "n": 15,
+   "name": "artist-close",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/15-artist-close.png",
+   "url": "/musicSpace/music-map/#/explore",
+   "title": "Music Space · 唱片店",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": null,
+   "text": "跳到内容\nMusic Space\n← 返回现场\n张惠妹\n萧敬腾\n林俊杰\n林宥嘉\n五月天\n完整图鉴\n\n林俊杰\n→\n萧敬腾\n\n开一局寻声\n目录\n上一位\n起点\n发现 · 1 首\n结束探索\n萧敬腾\nTA 的歌\n4 首合唱\n小院\n唱片店\n我的发现\n沿《Hello》走到萧敬腾",
+   "hits": [],
+   "small": [
+    "查看 萧敬腾，4 首收录，你在这里 [button.world-music-label] 59x31",
+    "查看 五月天，5 首收录 [button.world-music-label] 56x29"
+   ],
+   "over": [],
+   "clipped": [],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 2,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 5,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 3,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "world-music-label: 查看 张惠妹，5 首收录",
+    "world-music-label: 查看 萧敬腾，4 首收录，你在这里",
+    "world-music-label: 查看 林俊杰，10 首收录",
+    "world-music-label: 查看 林宥嘉，3 首收录",
+    "world-music-label: 查看 五月天，5 首收录",
+    "round-next: 开一局寻声",
+    "search: ",
+    "SUMMARY: 目录",
+    "back: 返回上一位：林俊杰",
+    "reset: 回到起点：林俊杰",
+    "recap: 发现 · 1 首",
+    "finish: 结束探索",
+    "artist: 萧敬腾的歌",
+    "SUMMARY: 4 首合唱",
+    "nav-item: 小院",
+    "nav-item: 唱片店",
+    "nav-item: 我的发现"
+   ]
+  },
+  {
+   "n": 16,
+   "name": "roam-finish",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/16-roam-finish.png",
+   "url": "/musicSpace/music-map/#/explore",
+   "title": "Music Space · 唱片店",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": "探索回顾",
+   "text": "探索回顾 · 已结束\n这一路，留下的喜欢\n日期\n10月8日\n起点\n林俊杰\n途经\n2 位\n留下\n1 首\n留下的歌\nHello\n署名 ›\n萧敬腾 / 林俊杰\n沿萧敬腾与林俊杰的合唱《Hello》留下\n去 QQ 音乐听\n来源\n：《Hello》\n我走过的路\n1 段\n途经的歌手\n2 位\n保存发现卡片\n继续本次探索\n开始新探索\n回到小院",
+   "hits": [],
+   "small": [],
+   "over": [],
+   "clipped": [],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 2,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 5,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 3,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "close: 关闭",
+    "credits: 《Hello》的作品署名",
+    "save: 移除《Hello》",
+    "SUMMARY: 来源 ：《Hello》",
+    "SUMMARY: 我走过的路 1 段",
+    "SUMMARY: 途经的歌手 2 位",
+    "save-discovery: 保存发现卡片",
+    "resume: 继续本次探索",
+    "go-home: 开始新探索",
+    "go-home: 回到小院"
+   ]
+  },
+  {
+   "n": 17,
+   "name": "roam-finish-close",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/17-roam-finish-close.png",
+   "url": "/musicSpace/music-map/#/explore",
+   "title": "Music Space · 唱片店",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": null,
+   "text": "跳到内容\nMusic Space\n← 返回现场\n张惠妹\n萧敬腾\n林俊杰\n林宥嘉\n五月天\n完整图鉴\n\n林俊杰\n→\n萧敬腾\n已结束\n\n开一局寻声\n目录\n已结束\n回顾 · 1 首\n继续探索\n萧敬腾\nTA 的歌\n4 首合唱\n小院\n唱片店\n我的发现\n沿《Hello》走到萧敬腾",
+   "hits": [],
+   "small": [
+    "查看 萧敬腾，4 首收录，你在这里 [button.world-music-label] 59x31",
+    "查看 五月天，5 首收录 [button.world-music-label] 56x29"
+   ],
+   "over": [],
+   "clipped": [],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 2,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 5,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 3,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "world-music-label: 查看 张惠妹，5 首收录",
+    "world-music-label: 查看 萧敬腾，4 首收录，你在这里",
+    "world-music-label: 查看 林俊杰，10 首收录",
+    "world-music-label: 查看 林宥嘉，3 首收录",
+    "world-music-label: 查看 五月天，5 首收录",
+    "round-next: 开一局寻声",
+    "search: ",
+    "SUMMARY: 目录",
+    "recap: 探索回顾，留下 1 首",
+    "resume: 继续探索",
+    "artist: 萧敬腾的歌",
+    "SUMMARY: 4 首合唱",
+    "nav-item: 小院",
+    "nav-item: 唱片店",
+    "nav-item: 我的发现"
+   ]
+  },
+  {
+   "n": 18,
+   "name": "records",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/18-records.png",
+   "url": "/musicSpace/music-map/#/records",
+   "title": "Music Space · 我的发现",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": null,
+   "text": "跳到内容\nMusic Space\n← 返回现场\n我的发现\n我的发现\n去唱片店\n探索记录\n留下的歌\n探索记录\n1 次探索\n01\n漫游 · 已结束 · 10月8日\n起点 林俊杰\n\n途经 2 位 · 留下 1 首\n\n回顾\n继续\n小院\n唱片店\n我的发现\n沿《Hello》走到萧敬腾",
+   "hits": [],
+   "small": [],
+   "over": [],
+   "clipped": [],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 2,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 5,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 3,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "recap: 回顾",
+    "resume: 继续",
+    "delete: 删除从林俊杰出发的记录",
+    "nav-item: 小院",
+    "nav-item: 唱片店",
+    "nav-item: 我的发现"
+   ]
+  },
+  {
+   "n": 19,
+   "name": "records-recap",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/19-records-recap.png",
+   "url": "/musicSpace/music-map/#/records",
+   "title": "Music Space · 我的发现",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": "探索回顾",
+   "text": "探索回顾 · 已结束\n这一路，留下的喜欢\n日期\n10月8日\n起点\n林俊杰\n途经\n2 位\n留下\n1 首\n留下的歌\n01\nHello\n署名 ›\n萧敬腾 / 林俊杰\n沿萧敬腾与林俊杰的合唱《Hello》留下\n去 QQ 音乐听\n来源\n：《Hello》\n我走过的路\n1 段\n途经的歌手\n2 位\n保存发现卡片\n继续本次探索\n开始新探索\n回到小院",
+   "hits": [],
+   "small": [],
+   "over": [],
+   "clipped": [],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 2,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 5,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 3,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "close: 关闭",
+    "credits: 《Hello》的作品署名",
+    "save: 移除《Hello》",
+    "SUMMARY: 来源 ：《Hello》",
+    "SUMMARY: 我走过的路 1 段",
+    "SUMMARY: 途经的歌手 2 位",
+    "save-discovery: 保存发现卡片",
+    "resume: 继续本次探索",
+    "go-home: 开始新探索",
+    "go-home: 回到小院"
+   ]
+  },
+  {
+   "n": 20,
+   "name": "records-recap-sources",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/20-records-recap-sources.png",
+   "url": "/musicSpace/music-map/#/records",
+   "title": "Music Space · 我的发现",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": "探索回顾",
+   "text": "探索回顾 · 已结束\n这一路，留下的喜欢\n日期\n10月8日\n起点\n林俊杰\n途经\n2 位\n留下\n1 首\n留下的歌\n01\nHello\n署名 ›\n萧敬腾 / 林俊杰\n沿萧敬腾与林俊杰的合唱《Hello》留下\n去 QQ 音乐听\n来源\n：《Hello》\n演唱华纳音乐 · 萧敬腾合唱作品 ↗\n（新标签页）\n\n华纳官方文章将《Hello》列为萧敬腾与林俊杰的合唱，并链接两人署名的官方 MV。\n\n访问于 2026-09-27\n署名萧敬腾官方 · 录音室制作名单 ↗\n（新标签页）\n\n作曲 萧敬腾、林俊杰 · 制作人 萧敬腾、林俊杰 · 配唱制作 萧敬腾、林俊杰 · 钢琴 萧敬腾 · 和声编写 萧敬腾、林俊杰 · 和声 萧敬腾、林俊杰 · 母带制作人 萧敬腾、林俊杰 · 录音 林俊杰、周信廷、Brendan Buckley、刘品贤、杨敏奇 · 作词 奶六 · 编曲 黄冠龙 ALEX.D、阿火 Afire Lee · 键盘 黄冠龙 ALEX.D、阿火 Afire Lee · 弦乐编写 黄冠龙 ALEX.D、阿火 Afire Lee · 吉他 黄冠龙 ALEX.D · 制作协力 黄冠龙 ALEX.D、阿火 Afire Lee、周信廷 · 弦乐监制 蔡曜宇 · 第一小提琴 蔡曜宇、沈羿彣、黄瑾诤 · 贝斯 寗子达 · 鼓 Brendan Buckley · 混音 Richard Furch · 母带工程 Mike Bozzi · 第二小提琴 朱奕宁、黄雨柔 · 中提琴 甘威鹏、牟启东 · 大提琴 刘涵、叶欲新 · 录音助理 徐振程\n\n访问于 2026-09-27\nQQ 音乐同一录音 ↗\n（新标签页）\n访问于 2026-09-29\n\n只列有出处的署名，参与者可能更多。\n\n我走过的路\n1 段\n途经的歌手\n2 位\n保存发现卡片\n继续本次探索\n开始新探索\n回到小院",
+   "hits": [],
+   "small": [],
+   "over": [],
+   "clipped": [
+    "：《Hello》 79/1w 18/1h",
+    "（新标签页） 90/1w 23/1h"
+   ],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 2,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 5,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 3,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "close: 关闭",
+    "credits: 《Hello》的作品署名",
+    "save: 移除《Hello》",
+    "SUMMARY: 来源 ：《Hello》",
+    "SUMMARY: 我走过的路 1 段",
+    "SUMMARY: 途经的歌手 2 位",
+    "save-discovery: 保存发现卡片",
+    "resume: 继续本次探索",
+    "go-home: 开始新探索",
+    "go-home: 回到小院"
+   ]
+  },
+  {
+   "n": 21,
+   "name": "records-recap-close",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/21-records-recap-close.png",
+   "url": "/musicSpace/music-map/#/records",
+   "title": "Music Space · 我的发现",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": null,
+   "text": "跳到内容\nMusic Space\n← 返回现场\n我的发现\n我的发现\n去唱片店\n探索记录\n留下的歌\n探索记录\n1 次探索\n01\n漫游 · 已结束 · 10月8日\n起点 林俊杰\n\n途经 2 位 · 留下 1 首\n\n回顾\n继续\n小院\n唱片店\n我的发现\n沿《Hello》走到萧敬腾",
+   "hits": [],
+   "small": [],
+   "over": [],
+   "clipped": [],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 2,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 5,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 3,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "recap: 回顾",
+    "resume: 继续",
+    "delete: 删除从林俊杰出发的记录",
+    "nav-item: 小院",
+    "nav-item: 唱片店",
+    "nav-item: 我的发现"
+   ]
+  },
+  {
+   "n": 22,
+   "name": "records-music",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/22-records-music.png",
+   "url": "/musicSpace/music-map/#/records",
+   "title": "Music Space · 我的发现",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": null,
+   "text": "跳到内容\nMusic Space\n← 返回现场\n我的发现\n我的发现\n去唱片店\n探索记录\n留下的歌\n留下的歌\n1 首\n01\nHello\n萧敬腾 · 林俊杰\n移除\n去 QQ 音乐听\n来源\n：《Hello》\n小院\n唱片店\n我的发现\n沿《Hello》走到萧敬腾",
+   "hits": [],
+   "small": [],
+   "over": [],
+   "clipped": [],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 2,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 5,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 3,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "SUMMARY: 01 Hello 萧敬腾 · 林俊杰",
+    "SUMMARY: 来源 ：《Hello》",
+    "nav-item: 小院",
+    "nav-item: 唱片店",
+    "nav-item: 我的发现"
+   ]
+  },
+  {
+   "n": 23,
+   "name": "records-music-sources",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/23-records-music-sources.png",
+   "url": "/musicSpace/music-map/#/records",
+   "title": "Music Space · 我的发现",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": null,
+   "text": "跳到内容\nMusic Space\n← 返回现场\n我的发现\n我的发现\n去唱片店\n探索记录\n留下的歌\n留下的歌\n1 首\n01\nHello\n萧敬腾 · 林俊杰\n移除\n去 QQ 音乐听\n来源\n：《Hello》\n演唱华纳音乐 · 萧敬腾合唱作品 ↗\n（新标签页）\n\n华纳官方文章将《Hello》列为萧敬腾与林俊杰的合唱，并链接两人署名的官方 MV。\n\n访问于 2026-09-27\n署名萧敬腾官方 · 录音室制作名单 ↗\n（新标签页）\n\n作曲 萧敬腾、林俊杰 · 制作人 萧敬腾、林俊杰 · 配唱制作 萧敬腾、林俊杰 · 钢琴 萧敬腾 · 和声编写 萧敬腾、林俊杰 · 和声 萧敬腾、林俊杰 · 母带制作人 萧敬腾、林俊杰 · 录音 林俊杰、周信廷、Brendan Buckley、刘品贤、杨敏奇 · 作词 奶六 · 编曲 黄冠龙 ALEX.D、阿火 Afire Lee · 键盘 黄冠龙 ALEX.D、阿火 Afire Lee · 弦乐编写 黄冠龙 ALEX.D、阿火 Afire Lee · 吉他 黄冠龙 ALEX.D · 制作协力 黄冠龙 ALEX.D、阿火 Afire Lee、周信廷 · 弦乐监制 蔡曜宇 · 第一小提琴 蔡曜宇、沈羿彣、黄瑾诤 · 贝斯 寗子达 · 鼓 Brendan Buckley · 混音 Richard Furch · 母带工程 Mike Bozzi · 第二小提琴 朱奕宁、黄雨柔 · 中提琴 甘威鹏、牟启东 · 大提琴 刘涵、叶欲新 · 录音助理 徐振程\n\n访问于 2026-09-27\nQQ 音乐同一录音 ↗\n（新标签页）\n访问于 2026-09-29\n\n只列有出处的署名，参与者可能更多。\n\n小院\n唱片店\n我的发现\n沿《Hello》走到萧敬腾",
+   "hits": [],
+   "small": [],
+   "over": [],
+   "clipped": [
+    "：《Hello》 79/1w 18/1h",
+    "（新标签页） 90/1w 23/1h"
+   ],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 2,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 5,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 3,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "SUMMARY: 01 Hello 萧敬腾 · 林俊杰",
+    "SUMMARY: 来源 ：《Hello》",
+    "nav-item: 小院",
+    "nav-item: 唱片店",
+    "nav-item: 我的发现"
+   ]
+  },
+  {
+   "n": 24,
+   "name": "home-again",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/24-home-again.png",
+   "url": "/musicSpace/music-map/#/home",
+   "title": "Music Space · 音乐探索",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": null,
+   "text": "跳到内容\nMusic Space\n← 返回现场\n唱片店\n从喜欢，走向未知。\n今天，从谁开始？\n周杰伦\n林俊杰\n邓紫棋\n两位歌手之间，隔着几首歌？\n寻声 · 费玉清 → 邓紫棋\n小院\n唱片店\n我的发现\n沿《Hello》走到萧敬腾",
+   "hits": [],
+   "small": [],
+   "over": [],
+   "clipped": [
+    "今天，从谁开始？ 130/1w 26/1h"
+   ],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 2,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 5,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 3,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "world-pin: 唱片店",
+    "home-pick: 从周杰伦出发",
+    "home-pick: 从林俊杰出发",
+    "home-pick: 从邓紫棋出发",
+    "button: 两位歌手之间，隔着几首歌？ 寻声 · 费玉清 → 邓紫棋",
+    "nav-item: 小院",
+    "nav-item: 唱片店",
+    "nav-item: 我的发现"
+   ]
+  },
+  {
+   "n": 25,
+   "name": "round",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/25-round.png",
+   "url": "/musicSpace/music-map/#/explore",
+   "title": "Music Space · 唱片店",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": null,
+   "text": "跳到内容\nMusic Space\n← 返回现场\n费玉清\n邓紫棋\n寻声\n费玉清→邓紫棋，隔着几首歌？\n\n第 0 步\n认识 2/29\n翻开 0/37\n\n提示 · 还隔几首\n换一组\n目录\n费玉清\n《千里之外》\n翻开\n小院\n唱片店\n我的发现\n费玉清 → 邓紫棋，隔着几首歌？",
+   "hits": [],
+   "small": [],
+   "over": [],
+   "clipped": [],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 2,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 5,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 3,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "world-music-label: 查看 费玉清，1 首收录，你在这里",
+    "world-music-label: 终点：邓紫棋",
+    "hint: 提示第一级：还隔几首",
+    "round-next: 换一组",
+    "SUMMARY: 目录",
+    "flip: 翻开《千里之外》，看看费玉清和谁合唱",
+    "back: 退一步：返回上一位并撤销一步 (disabled)",
+    "reset: 回到起点 (disabled)",
+    "nav-item: 小院",
+    "nav-item: 唱片店",
+    "nav-item: 我的发现"
+   ]
+  },
+  {
+   "n": 26,
+   "name": "round-flip",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/26-round-flip.png",
+   "url": "/musicSpace/music-map/#/explore",
+   "title": "Music Space · 唱片店",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": null,
+   "text": "跳到内容\nMusic Space\n← 返回现场\n周杰伦\n费玉清\n邓紫棋\n寻声\n费玉清→邓紫棋，隔着几首歌？\n\n第 0 步\n认识 3/29\n翻开 1/37\n\n提示 · 还隔几首\n换一组\n目录\n费玉清\n《千里之外》\nQQ\n前往 周杰伦\n来源\n小院\n唱片店\n我的发现\n《千里之外》：费玉清 × 周杰伦 · 认识 3/29",
+   "hits": [],
+   "small": [],
+   "over": [],
+   "clipped": [
+    "沿《千里之外》前往周杰伦 84/78w 40/40h"
+   ],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 2,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 5,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 3,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "《千里之外》：费玉清 × 周杰伦 · 认识 3/29",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "world-music-label: 查看 周杰伦，10 首收录",
+    "world-music-label: 查看 费玉清，1 首收录，你在这里",
+    "world-music-label: 终点：邓紫棋",
+    "hint: 提示第一级：还隔几首",
+    "round-next: 换一组",
+    "SUMMARY: 目录",
+    "move: 沿《千里之外》前往周杰伦",
+    "edge: 《千里之外》的来源",
+    "back: 退一步：返回上一位并撤销一步 (disabled)",
+    "reset: 回到起点 (disabled)",
+    "nav-item: 小院",
+    "nav-item: 唱片店",
+    "nav-item: 我的发现"
+   ]
+  },
+  {
+   "n": 27,
+   "name": "round-card-sources",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/27-round-card-sources.png",
+   "url": "/musicSpace/music-map/#/explore",
+   "title": "Music Space · 唱片店",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": "音乐探索面板",
+   "text": "共同演唱\n周杰伦\n×\n费玉清\n千里之外\n周杰伦 / 费玉清\n《依然范特西》· 合唱录音室版\n去 QQ 音乐听\n来源\n：《千里之外》\n演唱周杰伦官方频道 · MV 署名 ↗\n（新标签页）\n\n周杰伦官方频道的 MV 标题署名 feat. 费玉清；官方说明明确费玉清参与合唱。\n\n访问于 2026-09-27\nQQ 音乐同一录音 ↗\n（新标签页）\n访问于 2026-09-29\n\n完整署名在这一局结束后可看。\n\n前往周杰伦",
+   "hits": [
+    "说明 … 频道的 MV 标题署名 feat. 费玉清；官方说明明确费玉清参与合唱。 访问于 2026-09-"
+   ],
+   "small": [],
+   "over": [],
+   "clipped": [
+    "：《千里之外》 105/1w 18/1h"
+   ],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 2,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 5,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 3,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "close: 关闭",
+    "select: 周杰伦",
+    "select: 费玉清",
+    "save: 留下《千里之外》",
+    "SUMMARY: 来源 ：《千里之外》",
+    "move: 前往周杰伦"
+   ]
+  },
+  {
+   "n": 28,
+   "name": "round-card-sources-close",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/28-round-card-sources-close.png",
+   "url": "/musicSpace/music-map/#/explore",
+   "title": "Music Space · 唱片店",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": null,
+   "text": "跳到内容\nMusic Space\n← 返回现场\n周杰伦\n费玉清\n邓紫棋\n寻声\n费玉清→邓紫棋，隔着几首歌？\n\n第 0 步\n认识 3/29\n翻开 1/37\n\n提示 · 还隔几首\n换一组\n目录\n费玉清\n《千里之外》\nQQ\n前往 周杰伦\n来源\n小院\n唱片店\n我的发现\n《千里之外》：费玉清 × 周杰伦 · 认识 3/29",
+   "hits": [],
+   "small": [],
+   "over": [],
+   "clipped": [
+    "沿《千里之外》前往周杰伦 84/78w 40/40h"
+   ],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 2,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 5,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 3,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "world-music-label: 查看 周杰伦，10 首收录",
+    "world-music-label: 查看 费玉清，1 首收录，你在这里",
+    "world-music-label: 终点：邓紫棋",
+    "hint: 提示第一级：还隔几首",
+    "round-next: 换一组",
+    "SUMMARY: 目录",
+    "move: 沿《千里之外》前往周杰伦",
+    "edge: 《千里之外》的来源",
+    "back: 退一步：返回上一位并撤销一步 (disabled)",
+    "reset: 回到起点 (disabled)",
+    "nav-item: 小院",
+    "nav-item: 唱片店",
+    "nav-item: 我的发现"
+   ]
+  },
+  {
+   "n": 29,
+   "name": "round-move",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/29-round-move.png",
+   "url": "/musicSpace/music-map/#/explore",
+   "title": "Music Space · 唱片店",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": null,
+   "text": "跳到内容\nMusic Space\n← 返回现场\n周杰伦\n费玉清\n邓紫棋\n寻声\n费玉清→邓紫棋，隔着几首歌？\n\n第 1 步\n认识 3/29\n翻开 1/37\n\n提示 · 还隔几首\n换一组\n目录\n周杰伦\n《不该》\n翻开\n《千里之外》\nQQ\n前往 费玉清\n来源\n《说好不哭》\n翻开\n《等你下课》\n翻开\n《画沙》\n翻开\n《稻香 / Stay With You》\n翻开\n《给我一首歌的时间》\n翻开\n《屋顶》\n翻开\n《珊瑚海》\n翻开\n《Try》\n翻开\n小院\n唱片店\n我的发现\n前往周杰伦 · 第 1 步",
+   "hits": [],
+   "small": [],
+   "over": [],
+   "clipped": [
+    "沿《千里之外》前往费玉清 84/78w 40/40h"
+   ],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 2,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 5,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 3,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "world-music-label: 查看 周杰伦，10 首收录，你在这里",
+    "world-music-label: 查看 费玉清，1 首收录",
+    "world-music-label: 终点：邓紫棋",
+    "hint: 提示第一级：还隔几首",
+    "round-next: 换一组",
+    "SUMMARY: 目录",
+    "flip: 翻开《不该》，看看周杰伦和谁合唱",
+    "move: 沿《千里之外》前往费玉清",
+    "edge: 《千里之外》的来源",
+    "flip: 翻开《说好不哭》，看看周杰伦和谁合唱",
+    "flip: 翻开《等你下课》，看看周杰伦和谁合唱",
+    "flip: 翻开《画沙》，看看周杰伦和谁合唱",
+    "flip: 翻开《稻香 / Stay With You》，看看周杰伦和谁合唱",
+    "flip: 翻开《给我一首歌的时间》，看看周杰伦和谁合唱",
+    "flip: 翻开《屋顶》，看看周杰伦和谁合唱",
+    "flip: 翻开《珊瑚海》，看看周杰伦和谁合唱",
+    "flip: 翻开《Try》，看看周杰伦和谁合唱",
+    "back: 退一步：返回上一位并撤销一步",
+    "reset: 回到起点",
+    "nav-item: 小院",
+    "nav-item: 唱片店",
+    "nav-item: 我的发现"
+   ]
+  },
+  {
+   "n": 30,
+   "name": "round-hint",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/30-round-hint.png",
+   "url": "/musicSpace/music-map/#/explore",
+   "title": "Music Space · 唱片店",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": null,
+   "text": "跳到内容\nMusic Space\n← 返回现场\n周杰伦\n费玉清\n邓紫棋\n寻声\n费玉清→邓紫棋，隔着几首歌？\n\n第 1 步\n认识 3/29\n翻开 1/37\n还隔 2 首\n\n提示 · 往哪翻\n换一组\n目录\n周杰伦\n《不该》\n翻开\n《千里之外》\nQQ\n前往 费玉清\n来源\n《说好不哭》\n翻开\n《等你下课》\n翻开\n《画沙》\n翻开\n《稻香 / Stay With You》\n翻开\n《给我一首歌的时间》\n翻开\n《屋顶》\n翻开\n《珊瑚海》\n翻开\n《Try》\n翻开\n小院\n唱片店\n我的发现\n提示 ①：还隔 2 首，面前 1 首会更近",
+   "hits": [],
+   "small": [],
+   "over": [],
+   "clipped": [
+    "沿《千里之外》前往费玉清 84/78w 40/40h"
+   ],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 2,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 5,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 3,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "提示 ①：还隔 2 首，面前 1 首会更近",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "world-music-label: 查看 周杰伦，10 首收录，你在这里",
+    "world-music-label: 查看 费玉清，1 首收录",
+    "world-music-label: 终点：邓紫棋",
+    "hint: 提示第二级：往哪翻",
+    "round-next: 换一组",
+    "SUMMARY: 目录",
+    "flip: 翻开《不该》，看看周杰伦和谁合唱",
+    "move: 沿《千里之外》前往费玉清",
+    "edge: 《千里之外》的来源",
+    "flip: 翻开《说好不哭》，看看周杰伦和谁合唱",
+    "flip: 翻开《等你下课》，看看周杰伦和谁合唱",
+    "flip: 翻开《画沙》，看看周杰伦和谁合唱",
+    "flip: 翻开《稻香 / Stay With You》，看看周杰伦和谁合唱",
+    "flip: 翻开《给我一首歌的时间》，看看周杰伦和谁合唱",
+    "flip: 翻开《屋顶》，看看周杰伦和谁合唱",
+    "flip: 翻开《珊瑚海》，看看周杰伦和谁合唱",
+    "flip: 翻开《Try》，看看周杰伦和谁合唱",
+    "back: 退一步：返回上一位并撤销一步",
+    "reset: 回到起点",
+    "nav-item: 小院",
+    "nav-item: 唱片店",
+    "nav-item: 我的发现"
+   ]
+  },
+  {
+   "n": 31,
+   "name": "round-menu",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/31-round-menu.png",
+   "url": "/musicSpace/music-map/#/explore",
+   "title": "Music Space · 唱片店",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": null,
+   "text": "跳到内容\nMusic Space\n← 返回现场\n周杰伦\n费玉清\n邓紫棋\n寻声\n费玉清→邓紫棋，隔着几首歌？\n\n第 1 步\n认识 3/29\n翻开 1/37\n还隔 2 首\n\n提示 · 往哪翻\n换一组\n目录\n寻声\n自选起点和终点\n把这道题发给朋友\n放弃并揭晓\n图谱\n完整图鉴\n全部摊开\n资料\n开放曲库\n我的发现\n视野\n−\n全图\n+\n周杰伦\n《不该》\n翻开\n《千里之外》\nQQ\n前往 费玉清\n来源\n《说好不哭》\n翻开\n《等你下课》\n翻开\n《画沙》\n翻开\n《稻香 / Stay With You》\n翻开\n《给我一首歌的时间》\n翻开\n《屋顶》\n翻开\n《珊瑚海》\n翻开\n《Try》\n翻开\n小院\n唱片店\n我的发现\n提示 ①：还隔 2 首，面前 1 首会更近",
+   "hits": [],
+   "small": [
+    "查看 周杰伦，10 首收录，你在这里 [button.world-music-label] 59x31 covered",
+    "查看 费玉清，1 首收录 [button.world-music-label] 56x29 covered",
+    "终点：邓紫棋 [button.world-music-label] 56x29 covered"
+   ],
+   "over": [],
+   "clipped": [
+    "沿《千里之外》前往费玉清 84/78w 40/40h"
+   ],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 2,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 5,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 3,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "world-music-label: 查看 周杰伦，10 首收录，你在这里",
+    "world-music-label: 查看 费玉清，1 首收录",
+    "world-music-label: 终点：邓紫棋",
+    "hint: 提示第二级：往哪翻",
+    "round-next: 换一组",
+    "SUMMARY: 目录",
+    "challenge: 自选起点和终点",
+    "share-round: 把这道题发给朋友（只带起点和终点，不带答案）",
+    "reveal: 放弃并揭晓",
+    "return-roam: 完整图鉴：全部合唱都会摊开",
+    "button: 开放曲库",
+    "history: 我的发现",
+    "zoom-out: 缩小唱片桌",
+    "fit: 显示整张唱片桌",
+    "zoom-in: 放大唱片桌",
+    "flip: 翻开《不该》，看看周杰伦和谁合唱",
+    "move: 沿《千里之外》前往费玉清",
+    "edge: 《千里之外》的来源",
+    "flip: 翻开《说好不哭》，看看周杰伦和谁合唱",
+    "flip: 翻开《等你下课》，看看周杰伦和谁合唱",
+    "flip: 翻开《画沙》，看看周杰伦和谁合唱",
+    "flip: 翻开《稻香 / Stay With You》，看看周杰伦和谁合唱",
+    "flip: 翻开《给我一首歌的时间》，看看周杰伦和谁合唱",
+    "flip: 翻开《屋顶》，看看周杰伦和谁合唱",
+    "flip: 翻开《珊瑚海》，看看周杰伦和谁合唱",
+    "flip: 翻开《Try》，看看周杰伦和谁合唱",
+    "back: 退一步：返回上一位并撤销一步",
+    "reset: 回到起点",
+    "nav-item: 小院",
+    "nav-item: 唱片店",
+    "nav-item: 我的发现"
+   ]
+  },
+  {
+   "n": 32,
+   "name": "round-reveal",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/32-round-reveal.png",
+   "url": "/musicSpace/music-map/#/explore",
+   "title": "Music Space · 唱片店",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": "揭晓确认",
+   "text": "寻声 · 揭晓\n放弃并揭晓答案？\n\n这一局记为已揭晓，翻开的唱片还在。\n\n揭晓答案\n再想想",
+   "hits": [],
+   "small": [],
+   "over": [],
+   "clipped": [],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 3,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 5,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 3,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "close: 关闭",
+    "reveal-confirm: 揭晓答案",
+    "close: 再想想"
+   ]
+  },
+  {
+   "n": 33,
+   "name": "round-revealed",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/33-round-revealed.png",
+   "url": "/musicSpace/music-map/#/explore",
+   "title": "Music Space · 唱片店",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": "连线歌单",
+   "text": "连线歌单\n揭晓：费玉清与邓紫棋，\n最少隔着 3 首歌\n\n你停在周杰伦（1 步）\n\n这道题，也给朋友走一走\n出题给朋友\n保存战绩卡\n换个起点再出一题\n费玉清\n起点\n01\n《千里之外》\n《依然范特西》· 合唱录音室版\n去 QQ 音乐听\n留下\n来源\n：《千里之外》\n周杰伦\n第 1 站\n02\n《稻香 / Stay With You》\n2020 官方发布 · 双人联唱现场版\n暂无 QQ 音乐链接\n留下\n来源\n：《稻香 / Stay With You》\n林俊杰\n第 2 站\n03\n《手心的蔷薇》\n《新地球》· 录音室版\n去 QQ 音乐听\n留下\n来源\n：《手心的蔷薇》\n邓紫棋\n终点\n步数\n1\n最短\n3\n提示\n1次\n分支记录\n1 次前往\n再来一局\n留下这 3 首\n看完整图鉴",
+   "hits": [],
+   "small": [],
+   "over": [],
+   "clipped": [],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 3,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 5,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 3,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "close: 关闭",
+    "share-round: 出题给朋友：费玉清到邓紫棋，不带答案",
+    "save-card: 保存战绩卡图片",
+    "challenge: 换个起点再出一题",
+    "credits: 《千里之外》的作品署名",
+    "save: 留下《千里之外》",
+    "SUMMARY: 来源 ：《千里之外》",
+    "credits: 《稻香 / Stay With You》的作品署名",
+    "save: 留下《稻香 / Stay With You》",
+    "SUMMARY: 来源 ：《稻香 / Stay With You》",
+    "credits: 《手心的蔷薇》的作品署名",
+    "save: 留下《手心的蔷薇》",
+    "SUMMARY: 来源 ：《手心的蔷薇》",
+    "SUMMARY: 分支记录 1 次前往",
+    "round-next: 再来一局",
+    "save-route: 留下这 3 首",
+    "return-roam: 看完整图鉴"
+   ]
+  },
+  {
+   "n": 34,
+   "name": "setlist",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/34-setlist.png",
+   "url": "/musicSpace/music-map/#/explore",
+   "title": "Music Space · 唱片店",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": "连线歌单",
+   "text": "连线歌单\n揭晓：费玉清与邓紫棋，\n最少隔着 3 首歌\n\n你停在周杰伦（1 步）\n\n这道题，也给朋友走一走\n出题给朋友\n保存战绩卡\n换个起点再出一题\n费玉清\n起点\n01\n《千里之外》\n《依然范特西》· 合唱录音室版\n去 QQ 音乐听\n留下\n来源\n：《千里之外》\n周杰伦\n第 1 站\n02\n《稻香 / Stay With You》\n2020 官方发布 · 双人联唱现场版\n暂无 QQ 音乐链接\n留下\n来源\n：《稻香 / Stay With You》\n林俊杰\n第 2 站\n03\n《手心的蔷薇》\n《新地球》· 录音室版\n去 QQ 音乐听\n留下\n来源\n：《手心的蔷薇》\n邓紫棋\n终点\n步数\n1\n最短\n3\n提示\n1次\n分支记录\n1 次前往\n再来一局\n留下这 3 首\n看完整图鉴",
+   "hits": [],
+   "small": [],
+   "over": [],
+   "clipped": [],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 3,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 5,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 3,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "close: 关闭",
+    "share-round: 出题给朋友：费玉清到邓紫棋，不带答案",
+    "save-card: 保存战绩卡图片",
+    "challenge: 换个起点再出一题",
+    "credits: 《千里之外》的作品署名",
+    "save: 留下《千里之外》",
+    "SUMMARY: 来源 ：《千里之外》",
+    "credits: 《稻香 / Stay With You》的作品署名",
+    "save: 留下《稻香 / Stay With You》",
+    "SUMMARY: 来源 ：《稻香 / Stay With You》",
+    "credits: 《手心的蔷薇》的作品署名",
+    "save: 留下《手心的蔷薇》",
+    "SUMMARY: 来源 ：《手心的蔷薇》",
+    "SUMMARY: 分支记录 1 次前往",
+    "round-next: 再来一局",
+    "save-route: 留下这 3 首",
+    "return-roam: 看完整图鉴"
+   ]
+  },
+  {
+   "n": 35,
+   "name": "setlist-sources",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/35-setlist-sources.png",
+   "url": "/musicSpace/music-map/#/explore",
+   "title": "Music Space · 唱片店",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": "连线歌单",
+   "text": "连线歌单\n揭晓：费玉清与邓紫棋，\n最少隔着 3 首歌\n\n你停在周杰伦（1 步）\n\n这道题，也给朋友走一走\n出题给朋友\n保存战绩卡\n换个起点再出一题\n费玉清\n起点\n01\n《千里之外》\n《依然范特西》· 合唱录音室版\n去 QQ 音乐听\n留下\n来源\n：《千里之外》\n演唱周杰伦官方频道 · MV 署名 ↗\n（新标签页）\n\n周杰伦官方频道的 MV 标题署名 feat. 费玉清；官方说明明确费玉清参与合唱。\n\n访问于 2026-09-27\n署名Qobuz ·《依然范特西》曲目 3 ↗\n（新标签页）\n\n作曲 周杰伦 · 制作人 周杰伦 · 作词 方文山 · 编曲 林迈可 · 混音 林迈可 · 录音 杨瑞代\n\n访问于 2026-09-27\nQQ 音乐同一录音 ↗\n（新标签页）\n访问于 2026-09-29\n\n只列有出处的署名，参与者可能更多。\n\n周杰伦\n第 1 站\n02\n《稻香 / Stay With You》\n2020 官方发布 · 双人联唱现场版\n暂无 QQ 音乐链接\n留下\n来源\n：《稻香 / Stay With You》\n林俊杰\n第 2 站\n03\n《手心的蔷薇》\n《新地球》· 录音室版\n去 QQ 音乐听\n留下\n来源\n：《手心的蔷薇》\n邓紫棋\n终点\n步数\n1\n最短\n3\n提示\n1次\n分支记录\n1 次前往\n再来一局\n留下这 3 首\n看完整图鉴",
+   "hits": [
+    "说明 … 频道的 MV 标题署名 feat. 费玉清；官方说明明确费玉清参与合唱。 访问于 2026-09-"
+   ],
+   "small": [],
+   "over": [],
+   "clipped": [
+    "：《千里之外》 98/1w 17/1h",
+    "（新标签页） 90/1w 23/1h"
+   ],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 3,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 5,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 3,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "close: 关闭",
+    "share-round: 出题给朋友：费玉清到邓紫棋，不带答案",
+    "save-card: 保存战绩卡图片",
+    "challenge: 换个起点再出一题",
+    "credits: 《千里之外》的作品署名",
+    "save: 留下《千里之外》",
+    "SUMMARY: 来源 ：《千里之外》",
+    "credits: 《稻香 / Stay With You》的作品署名",
+    "save: 留下《稻香 / Stay With You》",
+    "SUMMARY: 来源 ：《稻香 / Stay With You》",
+    "credits: 《手心的蔷薇》的作品署名",
+    "save: 留下《手心的蔷薇》",
+    "SUMMARY: 来源 ：《手心的蔷薇》",
+    "SUMMARY: 分支记录 1 次前往",
+    "round-next: 再来一局",
+    "save-route: 留下这 3 首",
+    "return-roam: 看完整图鉴"
+   ]
+  },
+  {
+   "n": 36,
+   "name": "setlist-bottom",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/36-setlist-bottom.png",
+   "url": "/musicSpace/music-map/#/explore",
+   "title": "Music Space · 唱片店",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": "连线歌单",
+   "text": "连线歌单\n揭晓：费玉清与邓紫棋，\n最少隔着 3 首歌\n\n你停在周杰伦（1 步）\n\n这道题，也给朋友走一走\n出题给朋友\n保存战绩卡\n换个起点再出一题\n费玉清\n起点\n01\n《千里之外》\n《依然范特西》· 合唱录音室版\n去 QQ 音乐听\n留下\n来源\n：《千里之外》\n演唱周杰伦官方频道 · MV 署名 ↗\n（新标签页）\n\n周杰伦官方频道的 MV 标题署名 feat. 费玉清；官方说明明确费玉清参与合唱。\n\n访问于 2026-09-27\n署名Qobuz ·《依然范特西》曲目 3 ↗\n（新标签页）\n\n作曲 周杰伦 · 制作人 周杰伦 · 作词 方文山 · 编曲 林迈可 · 混音 林迈可 · 录音 杨瑞代\n\n访问于 2026-09-27\nQQ 音乐同一录音 ↗\n（新标签页）\n访问于 2026-09-29\n\n只列有出处的署名，参与者可能更多。\n\n周杰伦\n第 1 站\n02\n《稻香 / Stay With You》\n2020 官方发布 · 双人联唱现场版\n暂无 QQ 音乐链接\n留下\n来源\n：《稻香 / Stay With You》\n林俊杰\n第 2 站\n03\n《手心的蔷薇》\n《新地球》· 录音室版\n去 QQ 音乐听\n留下\n来源\n：《手心的蔷薇》\n邓紫棋\n终点\n步数\n1\n最短\n3\n提示\n1次\n分支记录\n1 次前往\n再来一局\n留下这 3 首\n看完整图鉴",
+   "hits": [
+    "说明 … 频道的 MV 标题署名 feat. 费玉清；官方说明明确费玉清参与合唱。 访问于 2026-09-"
+   ],
+   "small": [],
+   "over": [],
+   "clipped": [
+    "：《千里之外》 98/1w 17/1h",
+    "（新标签页） 90/1w 23/1h"
+   ],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 3,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 5,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 3,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "close: 关闭",
+    "share-round: 出题给朋友：费玉清到邓紫棋，不带答案",
+    "save-card: 保存战绩卡图片",
+    "challenge: 换个起点再出一题",
+    "credits: 《千里之外》的作品署名",
+    "save: 留下《千里之外》",
+    "SUMMARY: 来源 ：《千里之外》",
+    "credits: 《稻香 / Stay With You》的作品署名",
+    "save: 留下《稻香 / Stay With You》",
+    "SUMMARY: 来源 ：《稻香 / Stay With You》",
+    "credits: 《手心的蔷薇》的作品署名",
+    "save: 留下《手心的蔷薇》",
+    "SUMMARY: 来源 ：《手心的蔷薇》",
+    "SUMMARY: 分支记录 1 次前往",
+    "round-next: 再来一局",
+    "save-route: 留下这 3 首",
+    "return-roam: 看完整图鉴"
+   ]
+  },
+  {
+   "n": 37,
+   "name": "setlist-close",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/37-setlist-close.png",
+   "url": "/musicSpace/music-map/#/explore",
+   "title": "Music Space · 唱片店",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": null,
+   "text": "跳到内容\nMusic Space\n← 返回现场\n寻声 · 已揭晓\n费玉清→邓紫棋，隔着几首歌？\n\n你停在周杰伦（1 步）\n最短 3 首\n\n目录\n揭晓\n已揭晓\n费玉清\n→\n周杰伦\n再来一局\n连线歌单\n完整图鉴\n出题给朋友\n保存战绩卡\n小院\n唱片店\n我的发现\n提示 ①：还隔 2 首，面前 1 首会更近",
+   "hits": [],
+   "small": [],
+   "over": [],
+   "clipped": [],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 3,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 5,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 3,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "SUMMARY: 目录",
+    "round-next: 再来一局",
+    "recap: 连线歌单",
+    "return-roam: 完整图鉴",
+    "share-round: 出题给朋友：费玉清到邓紫棋，不带答案",
+    "save-card: 保存战绩卡图片",
+    "nav-item: 小院",
+    "nav-item: 唱片店",
+    "nav-item: 我的发现"
+   ]
+  },
+  {
+   "n": 38,
+   "name": "atlas",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/38-atlas.png",
+   "url": "/musicSpace/music-map/#/explore",
+   "title": "Music Space · 唱片店",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": null,
+   "text": "跳到内容\nMusic Space\n← 返回现场\n张惠妹\n萧敬腾\n林俊杰\n林宥嘉\n五月天\n完整图鉴\n\n林俊杰\n→\n萧敬腾\n已结束\n\n开一局寻声\n目录\n已结束\n回顾 · 1 首\n继续探索\n萧敬腾\nTA 的歌\n4 首合唱\n小院\n唱片店\n我的发现\n提示 ①：还隔 2 首，面前 1 首会更近",
+   "hits": [],
+   "small": [
+    "查看 萧敬腾，4 首收录，你在这里 [button.world-music-label] 59x31",
+    "查看 五月天，5 首收录 [button.world-music-label] 56x29"
+   ],
+   "over": [],
+   "clipped": [],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 3,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 5,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 3,
+     "unloaded": 2,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "world-music-label: 查看 张惠妹，5 首收录",
+    "world-music-label: 查看 萧敬腾，4 首收录，你在这里",
+    "world-music-label: 查看 林俊杰，10 首收录",
+    "world-music-label: 查看 林宥嘉，3 首收录",
+    "world-music-label: 查看 五月天，5 首收录",
+    "round-next: 开一局寻声",
+    "search: ",
+    "SUMMARY: 目录",
+    "recap: 探索回顾，留下 1 首",
+    "resume: 继续探索",
+    "artist: 萧敬腾的歌",
+    "SUMMARY: 4 首合唱",
+    "nav-item: 小院",
+    "nav-item: 唱片店",
+    "nav-item: 我的发现"
+   ]
+  },
+  {
+   "n": 39,
+   "name": "about",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/39-about.png",
+   "url": "/musicSpace/music-map/#/explore",
+   "title": "Music Space · 唱片店",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": "about-dialog",
+   "text": "关于音乐探索\n\n从喜欢，走向未知。\n\n寻声\n选好起点和终点，翻开手边的合唱，沿它走到下一位；翻开和提示不算步数。\n\n图鉴\n摊开全部合唱，从任意一位歌手出发随便走。\n\n来源\n每条连线是一首合唱录音，点歌旁的「来源」看出处。\n\n曲库\n开放曲库是公开数据集里的共同署名，不一定是合唱，不进入连线。\n\n音频\n这里不播放音乐；31 首可以去 QQ 音乐听同一录音。\n\n数据来源\n合唱目录\n29 位音乐人、37 首共同演唱录音，每首都附有出处，资料访问于 2026 年 9 月 27–29 日；出处在每首歌的「来源」里。路线和「最短」只算这 37 首。\nQQ 音乐\n31 首在 QQ 音乐有同一录音的页面（2026 年 9 月 29 日按页面信息确认）；另外 6 首的原因写在「来源」里。\n开放曲库\n126 首，取自 Hugging Face 数据集 maharshipandya/spotify-tracks-dataset（快照 635b034）里 mandopop、cantopop 的共同署名记录（全库 114,000 行）。数据卡标注的许可是 bsd，没有写明具体版本；这里只取曲名、艺人、专辑和行号，不含音频。数据集 ↗\n（新标签页）\n字体\nZCOOL QingKe HuangYou、LXGW Marker Gothic、Yozai、Luckiest Guy、Smiley Sans 的子集（SIL OFL 1.1、Apache 2.0）。许可全文 ↗\n（新标签页）\n代码\nthree.js、Sakura Crossing、OverlayScrollbars、qrcode-generator（MIT），GSAP（Standard No Charge 许可）；许可全文附在网页源码里。\n来历\n唱片店、寻声和合唱目录来自 Music Map。\n知道了",
+   "hits": [
+    "bsd … 全库 114,000 行）。数据卡标注的许可是 bsd，没有写明具体版本；这里只取曲名、艺人、专辑和行",
+    "Music Map … 网页源码里。 来历 唱片店、寻声和合唱目录来自 Music Map。 知道了",
+    "数据卡 … p 的共同署名记录（全库 114,000 行）。数据卡标注的许可是 bsd，没有写明具体版本；这里只取",
+    "许可 … 名记录（全库 114,000 行）。数据卡标注的许可是 bsd，没有写明具体版本；这里只取曲名、艺人",
+    "许可 … SIL OFL 1.1、Apache 2.0）。许可全文 ↗ （新标签页） 代码 three.js、",
+    "许可 … GSAP（Standard No Charge 许可）；许可全文附在网页源码里。 来历 唱片店、寻声",
+    "许可 … （Standard No Charge 许可）；许可全文附在网页源码里。 来历 唱片店、寻声和合唱目",
+    "不一定 … 处。 曲库 开放曲库是公开数据集里的共同署名，不一定是合唱，不进入连线。 音频 这里不播放音乐；3"
+   ],
+   "small": [],
+   "over": [],
+   "clipped": [],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 3,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 5,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 4,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "round-next: 开一局寻声",
+    "search: ",
+    "SUMMARY: 目录",
+    "recap: 探索回顾，留下 1 首",
+    "resume: 继续探索",
+    "artist: 萧敬腾的歌",
+    "SUMMARY: 4 首合唱"
+   ]
+  },
+  {
+   "n": 40,
+   "name": "about-sources",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/40-about-sources.png",
+   "url": "/musicSpace/music-map/#/explore",
+   "title": "Music Space · 唱片店",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": "about-dialog",
+   "text": "关于音乐探索\n\n从喜欢，走向未知。\n\n寻声\n选好起点和终点，翻开手边的合唱，沿它走到下一位；翻开和提示不算步数。\n\n图鉴\n摊开全部合唱，从任意一位歌手出发随便走。\n\n来源\n每条连线是一首合唱录音，点歌旁的「来源」看出处。\n\n曲库\n开放曲库是公开数据集里的共同署名，不一定是合唱，不进入连线。\n\n音频\n这里不播放音乐；31 首可以去 QQ 音乐听同一录音。\n\n数据来源\n合唱目录\n29 位音乐人、37 首共同演唱录音，每首都附有出处，资料访问于 2026 年 9 月 27–29 日；出处在每首歌的「来源」里。路线和「最短」只算这 37 首。\nQQ 音乐\n31 首在 QQ 音乐有同一录音的页面（2026 年 9 月 29 日按页面信息确认）；另外 6 首的原因写在「来源」里。\n开放曲库\n126 首，取自 Hugging Face 数据集 maharshipandya/spotify-tracks-dataset（快照 635b034）里 mandopop、cantopop 的共同署名记录（全库 114,000 行）。数据卡标注的许可是 bsd，没有写明具体版本；这里只取曲名、艺人、专辑和行号，不含音频。数据集 ↗\n（新标签页）\n字体\nZCOOL QingKe HuangYou、LXGW Marker Gothic、Yozai、Luckiest Guy、Smiley Sans 的子集（SIL OFL 1.1、Apache 2.0）。许可全文 ↗\n（新标签页）\n代码\nthree.js、Sakura Crossing、OverlayScrollbars、qrcode-generator（MIT），GSAP（Standard No Charge 许可）；许可全文附在网页源码里。\n来历\n唱片店、寻声和合唱目录来自 Music Map。\n知道了",
+   "hits": [
+    "bsd … 全库 114,000 行）。数据卡标注的许可是 bsd，没有写明具体版本；这里只取曲名、艺人、专辑和行",
+    "Music Map … 网页源码里。 来历 唱片店、寻声和合唱目录来自 Music Map。 知道了",
+    "数据卡 … p 的共同署名记录（全库 114,000 行）。数据卡标注的许可是 bsd，没有写明具体版本；这里只取",
+    "许可 … 名记录（全库 114,000 行）。数据卡标注的许可是 bsd，没有写明具体版本；这里只取曲名、艺人",
+    "许可 … SIL OFL 1.1、Apache 2.0）。许可全文 ↗ （新标签页） 代码 three.js、",
+    "许可 … GSAP（Standard No Charge 许可）；许可全文附在网页源码里。 来历 唱片店、寻声",
+    "许可 … （Standard No Charge 许可）；许可全文附在网页源码里。 来历 唱片店、寻声和合唱目",
+    "不一定 … 处。 曲库 开放曲库是公开数据集里的共同署名，不一定是合唱，不进入连线。 音频 这里不播放音乐；3"
+   ],
+   "small": [],
+   "over": [],
+   "clipped": [],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 3,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 5,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 4,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "round-next: 开一局寻声",
+    "search: ",
+    "SUMMARY: 目录",
+    "recap: 探索回顾，留下 1 首",
+    "resume: 继续探索",
+    "artist: 萧敬腾的歌",
+    "SUMMARY: 4 首合唱"
+   ]
+  },
+  {
+   "n": 41,
+   "name": "about-close",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/41-about-close.png",
+   "url": "/musicSpace/music-map/#/explore",
+   "title": "Music Space · 唱片店",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": null,
+   "text": "跳到内容\nMusic Space\n← 返回现场\n张惠妹\n萧敬腾\n林俊杰\n林宥嘉\n五月天\n完整图鉴\n\n林俊杰\n→\n萧敬腾\n已结束\n\n开一局寻声\n目录\n已结束\n回顾 · 1 首\n继续探索\n萧敬腾\nTA 的歌\n4 首合唱\n小院\n唱片店\n我的发现\n提示 ①：还隔 2 首，面前 1 首会更近",
+   "hits": [],
+   "small": [
+    "查看 萧敬腾，4 首收录，你在这里 [button.world-music-label] 59x31",
+    "查看 五月天，5 首收录 [button.world-music-label] 56x29"
+   ],
+   "over": [],
+   "clipped": [],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 3,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 5,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 4,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "world-music-label: 查看 张惠妹，5 首收录",
+    "world-music-label: 查看 萧敬腾，4 首收录，你在这里",
+    "world-music-label: 查看 林俊杰，10 首收录",
+    "world-music-label: 查看 林宥嘉，3 首收录",
+    "world-music-label: 查看 五月天，5 首收录",
+    "round-next: 开一局寻声",
+    "search: ",
+    "SUMMARY: 目录",
+    "recap: 探索回顾，留下 1 首",
+    "resume: 继续探索",
+    "artist: 萧敬腾的歌",
+    "SUMMARY: 4 首合唱",
+    "nav-item: 小院",
+    "nav-item: 唱片店",
+    "nav-item: 我的发现"
+   ]
+  },
+  {
+   "n": 42,
+   "name": "table-tag",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/42-table-tag.png",
+   "url": "/musicSpace/music-map/#/explore",
+   "title": "Music Space · 唱片店",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": null,
+   "text": "跳到内容\nMusic Space\n← 返回现场\n萧敬腾\n孙燕姿\n林宥嘉\n阿肆\n周兴哲\n完整图鉴\n\n林俊杰\n→\n萧敬腾\n已结束\n\n开一局寻声\n目录\n已结束\n回顾 · 1 首\n继续探索\n林宥嘉\nTA 的歌\n3 首合唱\n小院\n唱片店\n我的发现\n这次探索已结束，点「继续探索」接着走",
+   "hits": [],
+   "small": [
+    "查看 孙燕姿，3 首收录 [button.world-music-label] 56x29",
+    "查看 阿肆，1 首收录 [button.world-music-label] 44x29"
+   ],
+   "over": [],
+   "clipped": [],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 3,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 5,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 4,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "这次探索已结束，点「继续探索」接着走",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "world-music-label: 查看 萧敬腾，4 首收录，你在这里",
+    "world-music-label: 查看 孙燕姿，3 首收录",
+    "world-music-label: 查看 林宥嘉，3 首收录",
+    "world-music-label: 查看 阿肆，1 首收录",
+    "world-music-label: 查看 周兴哲，3 首收录",
+    "round-next: 开一局寻声",
+    "search: ",
+    "SUMMARY: 目录",
+    "recap: 探索回顾，留下 1 首",
+    "resume: 继续探索",
+    "artist: 林宥嘉的歌",
+    "SUMMARY: 3 首合唱",
+    "nav-item: 小院",
+    "nav-item: 唱片店",
+    "nav-item: 我的发现"
+   ]
+  },
+  {
+   "n": 43,
+   "name": "table-link",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/43-table-link.png",
+   "url": "/musicSpace/music-map/#/explore",
+   "title": "Music Space · 唱片店",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": null,
+   "text": "跳到内容\nMusic Space\n← 返回现场\n萧敬腾\n孙燕姿\n林宥嘉\n阿肆\n周兴哲\n完整图鉴\n\n林俊杰\n→\n萧敬腾\n已结束\n\n开一局寻声\n目录\n已结束\n回顾 · 1 首\n继续探索\n林宥嘉\nTA 的歌\n3 首合唱\n小院\n唱片店\n我的发现\n这次探索已结束，点「继续探索」接着走",
+   "hits": [],
+   "small": [
+    "查看 孙燕姿，3 首收录 [button.world-music-label] 56x29",
+    "查看 阿肆，1 首收录 [button.world-music-label] 44x29"
+   ],
+   "over": [],
+   "clipped": [],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 3,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 5,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 4,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "world-music-label: 查看 萧敬腾，4 首收录，你在这里",
+    "world-music-label: 查看 孙燕姿，3 首收录",
+    "world-music-label: 查看 林宥嘉，3 首收录",
+    "world-music-label: 查看 阿肆，1 首收录",
+    "world-music-label: 查看 周兴哲，3 首收录",
+    "round-next: 开一局寻声",
+    "search: ",
+    "SUMMARY: 目录",
+    "recap: 探索回顾，留下 1 首",
+    "resume: 继续探索",
+    "artist: 林宥嘉的歌",
+    "SUMMARY: 3 首合唱",
+    "nav-item: 小院",
+    "nav-item: 唱片店",
+    "nav-item: 我的发现"
+   ]
+  },
+  {
+   "n": 44,
+   "name": "table-link-close",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/44-table-link-close.png",
+   "url": "/musicSpace/music-map/#/explore",
+   "title": "Music Space · 唱片店",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": null,
+   "text": "跳到内容\nMusic Space\n← 返回现场\n萧敬腾\n孙燕姿\n林宥嘉\n阿肆\n周兴哲\n完整图鉴\n\n林俊杰\n→\n萧敬腾\n已结束\n\n开一局寻声\n目录\n已结束\n回顾 · 1 首\n继续探索\n林宥嘉\nTA 的歌\n3 首合唱\n小院\n唱片店\n我的发现\n这次探索已结束，点「继续探索」接着走",
+   "hits": [],
+   "small": [
+    "查看 孙燕姿，3 首收录 [button.world-music-label] 56x29",
+    "查看 阿肆，1 首收录 [button.world-music-label] 44x29"
+   ],
+   "over": [],
+   "clipped": [],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 3,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 5,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 4,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "world-music-label: 查看 萧敬腾，4 首收录，你在这里",
+    "world-music-label: 查看 孙燕姿，3 首收录",
+    "world-music-label: 查看 林宥嘉，3 首收录",
+    "world-music-label: 查看 阿肆，1 首收录",
+    "world-music-label: 查看 周兴哲，3 首收录",
+    "round-next: 开一局寻声",
+    "search: ",
+    "SUMMARY: 目录",
+    "recap: 探索回顾，留下 1 首",
+    "resume: 继续探索",
+    "artist: 林宥嘉的歌",
+    "SUMMARY: 3 首合唱",
+    "nav-item: 小院",
+    "nav-item: 唱片店",
+    "nav-item: 我的发现"
+   ]
+  },
+  {
+   "n": 45,
+   "name": "records-cabinet",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/45-records-cabinet.png",
+   "url": "/musicSpace/music-map/#/records",
+   "title": "Music Space · 我的发现",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": null,
+   "text": "跳到内容\nMusic Space\n← 返回现场\n我的发现\n我的发现\n去唱片店\n探索记录\n留下的歌\n探索记录\n2 次探索\n01\n寻声 · 已揭晓 · 10月8日\n费玉清 → 邓紫棋\n\n翻开 1 首 · 提示 1 次 · 1 步\n\n回顾\n02\n漫游 · 已结束 · 10月8日\n起点 林俊杰\n\n途经 2 位 · 留下 1 首\n\n回顾\n继续\n小院\n唱片店\n我的发现\n这次探索已结束，点「继续探索」接着走",
+   "hits": [],
+   "small": [],
+   "over": [],
+   "clipped": [],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 3,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 5,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 4,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {
+    "Doodle Display→Doodle Marker": "→"
+   },
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "recap: 回顾",
+    "delete: 删除从费玉清出发的记录",
+    "recap: 回顾",
+    "resume: 继续",
+    "delete: 删除从林俊杰出发的记录",
+    "nav-item: 小院",
+    "nav-item: 唱片店",
+    "nav-item: 我的发现"
+   ]
+  },
+  {
+   "name": "catalogue",
+   "fail": "locator.waitFor: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator('[data-home] ~ [data-open-catalogue], .home-paper__foot [data-open-catalogue]').visible().first() to be visible\n"
+  },
+  {
+   "n": 46,
+   "name": "catalogue-row",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/46-catalogue-row.png",
+   "url": "/musicSpace/music-map/#/home",
+   "title": "Music Space · 音乐探索",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": null,
+   "text": "跳到内容\nMusic Space\n← 返回现场\n唱片店\n从喜欢，走向未知。\n今天，从谁开始？\n周杰伦\n林俊杰\n邓紫棋\n两位歌手之间，隔着几首歌？\n寻声 · 在唱片店开一局\n小院\n唱片店\n我的发现\n这次探索已结束，点「继续探索」接着走",
+   "hits": [],
+   "small": [],
+   "over": [],
+   "clipped": [
+    "今天，从谁开始？ 130/1w 26/1h"
+   ],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 3,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 5,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 4,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "world-pin: 唱片店",
+    "home-pick: 从周杰伦出发",
+    "home-pick: 从林俊杰出发",
+    "home-pick: 从邓紫棋出发",
+    "button: 两位歌手之间，隔着几首歌？ 寻声 · 在唱片店开一局",
+    "nav-item: 小院",
+    "nav-item: 唱片店",
+    "nav-item: 我的发现"
+   ]
+  },
+  {
+   "name": "catalogue-to-sources",
+   "fail": "locator.waitFor: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator('dialog[open] [data-about-sources]').visible().first() to be visible\n"
+  },
+  {
+   "name": "catalogue-about-close",
+   "fail": "locator.waitFor: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator('#close-about').visible().first() to be visible\n"
+  },
+  {
+   "n": 47,
+   "name": "home-pin",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/47-home-pin.png",
+   "url": "/musicSpace/music-map/#/home",
+   "title": "Music Space · 音乐探索",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": null,
+   "text": "跳到内容\nMusic Space\n← 返回现场\n唱片店\n从喜欢，走向未知。\n今天，从谁开始？\n周杰伦\n林俊杰\n邓紫棋\n两位歌手之间，隔着几首歌？\n寻声 · 在唱片店开一局\n小院\n唱片店\n我的发现\n这次探索已结束，点「继续探索」接着走",
+   "hits": [],
+   "small": [],
+   "over": [],
+   "clipped": [
+    "今天，从谁开始？ 130/1w 26/1h"
+   ],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 3,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 5,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 4,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "world-pin: 唱片店",
+    "home-pick: 从周杰伦出发",
+    "home-pick: 从林俊杰出发",
+    "home-pick: 从邓紫棋出发",
+    "button: 两位歌手之间，隔着几首歌？ 寻声 · 在唱片店开一局",
+    "nav-item: 小院",
+    "nav-item: 唱片店",
+    "nav-item: 我的发现"
+   ]
+  },
+  {
+   "n": 48,
+   "name": "pin-to-shop",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/48-pin-to-shop.png",
+   "url": "/musicSpace/music-map/#/explore",
+   "title": "Music Space · 唱片店",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": "doodle",
+   "worldHidden": false,
+   "look": "doodle",
+   "modal": null,
+   "text": "跳到内容\nMusic Space\n← 返回现场\n萧敬腾\n孙燕姿\n林宥嘉\n阿肆\n周兴哲\n完整图鉴\n\n林俊杰\n→\n萧敬腾\n已结束\n\n开一局寻声\n目录\n已结束\n回顾 · 1 首\n继续探索\n林宥嘉\nTA 的歌\n3 首合唱\n小院\n唱片店\n我的发现\n这次探索已结束，点「继续探索」接着走",
+   "hits": [],
+   "small": [
+    "查看 孙燕姿，3 首收录 [button.world-music-label] 56x29",
+    "查看 阿肆，1 首收录 [button.world-music-label] 44x29"
+   ],
+   "over": [],
+   "clipped": [],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 3,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 5,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 4,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": [
+    "brand: Music Space 音乐探索，回到小院",
+    "world-music-label: 查看 萧敬腾，4 首收录，你在这里",
+    "world-music-label: 查看 孙燕姿，3 首收录",
+    "world-music-label: 查看 林宥嘉，3 首收录",
+    "world-music-label: 查看 阿肆，1 首收录",
+    "world-music-label: 查看 周兴哲，3 首收录",
+    "round-next: 开一局寻声",
+    "search: ",
+    "SUMMARY: 目录",
+    "recap: 探索回顾，留下 1 首",
+    "resume: 继续探索",
+    "artist: 林宥嘉的歌",
+    "SUMMARY: 3 首合唱",
+    "nav-item: 小院",
+    "nav-item: 唱片店",
+    "nav-item: 我的发现"
+   ]
+  },
+  {
+   "n": 49,
+   "name": "back-to-room",
+   "file": "/tmp/space-map/shots/fix/walk-w320s/49-back-to-room.png",
+   "url": "/musicSpace/",
+   "title": "Music Space · 同一刻，另一面",
+   "vw": 320,
+   "docW": 320,
+   "renderStyle": null,
+   "worldHidden": null,
+   "modal": null,
+   "text": "Music\nSpace\n···\nMUSIC SPACE / LIVEHOUSE\n进到同一个现场\n这一晚，从这里开始\n同一刻，另一面。\n\n同一晚，你拍了舞台，TA 拍了人海。AI 在本机给你一个视角建议，照片墙帮你找到同一刻的另一面，双方同意就交换。\n\n进入现场\n全景\n同场的人\n照片墙\n我的空间\n关于 Music Space",
+   "hits": [],
+   "small": [],
+   "over": [],
+   "clipped": [],
+   "fontStatus": {
+    "Doodle Display": {
+     "loaded": 1,
+     "unloaded": 3,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Marker": {
+     "loaded": 2,
+     "unloaded": 4,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Hand": {
+     "loaded": 1,
+     "unloaded": 4,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Note": {
+     "loaded": 0,
+     "unloaded": 1,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Logo": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    },
+    "Doodle Digits": {
+     "loaded": 1,
+     "unloaded": 0,
+     "error": 0,
+     "loading": 0
+    }
+   },
+   "sysFallback": {},
+   "firstMiss": {},
+   "notLoaded": {},
+   "noDoodle": [],
+   "toast": "",
+   "actions": []
+  }
+ ]
+}

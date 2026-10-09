@@ -1,0 +1,14 @@
+const out = {};
+await page.evaluate(() => { const e = [...document.querySelectorAll('.conversation-actions')].find(x => x.getClientRects().length); e.scrollTo({ left: 1e5, behavior: 'instant' }); });
+await sleep(300);
+await shot('29-chips-right');
+out.chipsRight = await page.evaluate(() => [...document.querySelectorAll('.conversation-actions > *')].map(e => { const r = e.getBoundingClientRect(); return e.innerText.replace(/\s+/g, ' ') + ' @' + Math.round(r.x) + ',' + Math.round(r.y) + ' ' + Math.round(r.width); }));
+await page.evaluate(() => { const c = [...document.querySelectorAll('.community-panel')].find(e => e.getClientRects().length); c.querySelector('.conversation-content').scrollTo({ top: 1e5, behavior: 'instant' }); });
+await sleep(300);
+await shot('30-chatroom-bottom');
+await page.evaluate(() => { const c = [...document.querySelectorAll('.community-panel')].find(e => e.getClientRects().length); c.querySelector('.conversation-content').scrollTo({ top: 0, behavior: 'instant' }); });
+await page.click('[data-group-worldcup]'); await sleep(1500);
+await shot('31-cup-list');
+out.cupList = await page.evaluate(() => { const c = [...document.querySelectorAll('.worldcup-panel')].find(e => e.getClientRects().length); return c ? c.innerText.replace(/\n{2,}/g, '\n').slice(0, 1500) : null; });
+out.cupBtns = await page.evaluate(() => [...document.querySelectorAll('.worldcup-panel .entry-list button')].map(b => b.innerText.replace(/\s+/g, ' ')));
+return out;

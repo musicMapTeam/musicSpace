@@ -1,0 +1,1 @@
+return await page.evaluate(() => ({ now: new Date().toString(), perf: performance.now(), iso: new Date().toISOString(), times: [...document.querySelectorAll('.private-chat time, .private-chat .chat-message small, .private-chat .chat-meta')].slice(0, 6).map(e => e.outerHTML.slice(0, 160)) }));

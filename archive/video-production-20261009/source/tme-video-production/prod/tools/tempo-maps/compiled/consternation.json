@@ -1,0 +1,1262 @@
+{
+ "id": "consternation",
+ "label": "Wax Lyricist《Consternation At The Disco》130 BPM — 93 bars (+3 ADD bars), the breakdown for the title and the wait, natural end",
+ "source": "/tmp/space-video-doodle/prod/tools/tempo-maps/consternation.json",
+ "sr": 48000,
+ "bpb": 4,
+ "bpm": 130.0,
+ "bar_s": 1.8462,
+ "beat_s": 0.46155,
+ "track": {
+  "audio": "/tmp/space-video-doodle/music-cc0/04-consternation-at-the-disco__Wax-Lyricist/Wax_Lyricist_-_Consternation_At_The_Disco.mp3",
+  "beats": "/tmp/space-video-doodle/music-cc0/04-consternation-at-the-disco__Wax-Lyricist/beats.json",
+  "title": "Consternation At The Disco",
+  "artist": "Wax Lyricist",
+  "licence": "CC0 1.0 Universal",
+  "proof": "/tmp/space-video-doodle/music-cc0/04-consternation-at-the-disco__Wax-Lyricist/LICENCE-PROOF.md",
+  "credit": "配乐：Wax Lyricist《Consternation At The Disco》（CC0 1.0 公共领域）"
+ },
+ "bars": [
+  {
+   "k": 1,
+   "sb": "1",
+   "trk": 21,
+   "t0": 0.0,
+   "len": 1.846,
+   "s0": 0,
+   "n": 88608,
+   "src0": 36.924,
+   "splice": false
+  },
+  {
+   "k": 2,
+   "sb": "2",
+   "trk": 22,
+   "t0": 1.846,
+   "len": 1.846,
+   "s0": 88608,
+   "n": 88608,
+   "src0": 38.77,
+   "splice": false
+  },
+  {
+   "k": 3,
+   "sb": "3",
+   "trk": 23,
+   "t0": 3.692,
+   "len": 1.846,
+   "s0": 177216,
+   "n": 88608,
+   "src0": 40.616,
+   "splice": false
+  },
+  {
+   "k": 4,
+   "sb": "4",
+   "trk": 24,
+   "t0": 5.538,
+   "len": 1.847,
+   "s0": 265824,
+   "n": 88656,
+   "src0": 42.462,
+   "splice": false
+  },
+  {
+   "k": 5,
+   "sb": "5",
+   "trk": 25,
+   "t0": 7.385,
+   "len": 1.846,
+   "s0": 354480,
+   "n": 88608,
+   "src0": 44.309,
+   "splice": false
+  },
+  {
+   "k": 6,
+   "sb": "6",
+   "trk": 26,
+   "t0": 9.231,
+   "len": 1.846,
+   "s0": 443088,
+   "n": 88608,
+   "src0": 46.155,
+   "splice": false
+  },
+  {
+   "k": 7,
+   "sb": "7",
+   "trk": 27,
+   "t0": 11.077,
+   "len": 1.846,
+   "s0": 531696,
+   "n": 88608,
+   "src0": 48.001,
+   "splice": false
+  },
+  {
+   "k": 8,
+   "sb": "8",
+   "trk": 28,
+   "t0": 12.923,
+   "len": 1.846,
+   "s0": 620304,
+   "n": 88608,
+   "src0": 49.847,
+   "splice": false
+  },
+  {
+   "k": 9,
+   "sb": "9",
+   "trk": 37,
+   "t0": 14.769,
+   "len": 1.846,
+   "s0": 708912,
+   "n": 88608,
+   "src0": 66.463,
+   "splice": true
+  },
+  {
+   "k": 10,
+   "sb": "10",
+   "trk": 38,
+   "t0": 16.615,
+   "len": 1.846,
+   "s0": 797520,
+   "n": 88608,
+   "src0": 68.309,
+   "splice": false
+  },
+  {
+   "k": 11,
+   "sb": "11",
+   "trk": 57,
+   "t0": 18.461,
+   "len": 1.847,
+   "s0": 886128,
+   "n": 88656,
+   "src0": 103.386,
+   "splice": true
+  },
+  {
+   "k": 12,
+   "sb": "12",
+   "trk": 58,
+   "t0": 20.308,
+   "len": 1.846,
+   "s0": 974784,
+   "n": 88608,
+   "src0": 105.233,
+   "splice": false
+  },
+  {
+   "k": 13,
+   "sb": "13",
+   "trk": 59,
+   "t0": 22.154,
+   "len": 1.846,
+   "s0": 1063392,
+   "n": 88608,
+   "src0": 107.079,
+   "splice": false
+  },
+  {
+   "k": 14,
+   "sb": "14",
+   "trk": 60,
+   "t0": 24.0,
+   "len": 1.846,
+   "s0": 1152000,
+   "n": 88608,
+   "src0": 108.925,
+   "splice": false
+  },
+  {
+   "k": 15,
+   "sb": "15",
+   "trk": 61,
+   "t0": 25.846,
+   "len": 1.846,
+   "s0": 1240608,
+   "n": 88608,
+   "src0": 110.771,
+   "splice": false
+  },
+  {
+   "k": 16,
+   "sb": "16",
+   "trk": 62,
+   "t0": 27.692,
+   "len": 1.847,
+   "s0": 1329216,
+   "n": 88656,
+   "src0": 112.617,
+   "splice": false
+  },
+  {
+   "k": 17,
+   "sb": "17",
+   "trk": 63,
+   "t0": 29.539,
+   "len": 1.846,
+   "s0": 1417872,
+   "n": 88608,
+   "src0": 114.464,
+   "splice": false
+  },
+  {
+   "k": 18,
+   "sb": "18",
+   "trk": 64,
+   "t0": 31.385,
+   "len": 1.846,
+   "s0": 1506480,
+   "n": 88608,
+   "src0": 116.31,
+   "splice": false
+  },
+  {
+   "k": 19,
+   "sb": "19",
+   "trk": 65,
+   "t0": 33.231,
+   "len": 1.846,
+   "s0": 1595088,
+   "n": 88608,
+   "src0": 118.156,
+   "splice": false
+  },
+  {
+   "k": 20,
+   "sb": "20",
+   "trk": 66,
+   "t0": 35.077,
+   "len": 1.846,
+   "s0": 1683696,
+   "n": 88608,
+   "src0": 120.002,
+   "splice": false
+  },
+  {
+   "k": 21,
+   "sb": "21",
+   "trk": 67,
+   "t0": 36.923,
+   "len": 1.846,
+   "s0": 1772304,
+   "n": 88608,
+   "src0": 121.848,
+   "splice": false
+  },
+  {
+   "k": 22,
+   "sb": "22",
+   "trk": 68,
+   "t0": 38.769,
+   "len": 1.847,
+   "s0": 1860912,
+   "n": 88656,
+   "src0": 123.694,
+   "splice": false
+  },
+  {
+   "k": 23,
+   "sb": "23",
+   "trk": 69,
+   "t0": 40.616,
+   "len": 1.846,
+   "s0": 1949568,
+   "n": 88608,
+   "src0": 125.541,
+   "splice": false
+  },
+  {
+   "k": 24,
+   "sb": "24",
+   "trk": 70,
+   "t0": 42.462,
+   "len": 1.846,
+   "s0": 2038176,
+   "n": 88608,
+   "src0": 127.387,
+   "splice": false
+  },
+  {
+   "k": 25,
+   "sb": "25",
+   "trk": 71,
+   "t0": 44.308,
+   "len": 1.846,
+   "s0": 2126784,
+   "n": 88608,
+   "src0": 129.233,
+   "splice": false
+  },
+  {
+   "k": 26,
+   "sb": "26",
+   "trk": 72,
+   "t0": 46.154,
+   "len": 1.846,
+   "s0": 2215392,
+   "n": 88608,
+   "src0": 131.079,
+   "splice": false
+  },
+  {
+   "k": 27,
+   "sb": "27",
+   "trk": 73,
+   "t0": 48.0,
+   "len": 1.847,
+   "s0": 2304000,
+   "n": 88656,
+   "src0": 132.925,
+   "splice": false
+  },
+  {
+   "k": 28,
+   "sb": "28",
+   "trk": 74,
+   "t0": 49.847,
+   "len": 1.846,
+   "s0": 2392656,
+   "n": 88608,
+   "src0": 134.772,
+   "splice": false
+  },
+  {
+   "k": 29,
+   "sb": "28+1",
+   "trk": 75,
+   "t0": 51.693,
+   "len": 1.846,
+   "s0": 2481264,
+   "n": 88608,
+   "src0": 136.618,
+   "splice": false
+  },
+  {
+   "k": 30,
+   "sb": "29",
+   "trk": 76,
+   "t0": 53.539,
+   "len": 1.846,
+   "s0": 2569872,
+   "n": 88608,
+   "src0": 138.464,
+   "splice": false
+  },
+  {
+   "k": 31,
+   "sb": "30",
+   "trk": 77,
+   "t0": 55.385,
+   "len": 1.846,
+   "s0": 2658480,
+   "n": 88608,
+   "src0": 140.31,
+   "splice": false
+  },
+  {
+   "k": 32,
+   "sb": "31",
+   "trk": 78,
+   "t0": 57.231,
+   "len": 1.846,
+   "s0": 2747088,
+   "n": 88608,
+   "src0": 142.156,
+   "splice": false
+  },
+  {
+   "k": 33,
+   "sb": "32",
+   "trk": 79,
+   "t0": 59.077,
+   "len": 1.847,
+   "s0": 2835696,
+   "n": 88656,
+   "src0": 144.002,
+   "splice": false
+  },
+  {
+   "k": 34,
+   "sb": "33",
+   "trk": 80,
+   "t0": 60.924,
+   "len": 1.846,
+   "s0": 2924352,
+   "n": 88608,
+   "src0": 145.849,
+   "splice": false
+  },
+  {
+   "k": 35,
+   "sb": "34",
+   "trk": 81,
+   "t0": 62.77,
+   "len": 1.846,
+   "s0": 3012960,
+   "n": 88608,
+   "src0": 147.695,
+   "splice": false
+  },
+  {
+   "k": 36,
+   "sb": "35",
+   "trk": 82,
+   "t0": 64.616,
+   "len": 1.846,
+   "s0": 3101568,
+   "n": 88608,
+   "src0": 149.541,
+   "splice": false
+  },
+  {
+   "k": 37,
+   "sb": "36",
+   "trk": 83,
+   "t0": 66.462,
+   "len": 1.846,
+   "s0": 3190176,
+   "n": 88608,
+   "src0": 151.387,
+   "splice": false
+  },
+  {
+   "k": 38,
+   "sb": "37",
+   "trk": 84,
+   "t0": 68.308,
+   "len": 1.847,
+   "s0": 3278784,
+   "n": 88656,
+   "src0": 153.233,
+   "splice": false
+  },
+  {
+   "k": 39,
+   "sb": "38",
+   "trk": 85,
+   "t0": 70.155,
+   "len": 1.846,
+   "s0": 3367440,
+   "n": 88608,
+   "src0": 155.08,
+   "splice": false
+  },
+  {
+   "k": 40,
+   "sb": "39",
+   "trk": 86,
+   "t0": 72.001,
+   "len": 1.846,
+   "s0": 3456048,
+   "n": 88608,
+   "src0": 156.926,
+   "splice": false
+  },
+  {
+   "k": 41,
+   "sb": "40",
+   "trk": 87,
+   "t0": 73.847,
+   "len": 1.846,
+   "s0": 3544656,
+   "n": 88608,
+   "src0": 158.772,
+   "splice": false
+  },
+  {
+   "k": 42,
+   "sb": "41",
+   "trk": 41,
+   "t0": 75.693,
+   "len": 1.846,
+   "s0": 3633264,
+   "n": 88608,
+   "src0": 73.848,
+   "splice": true
+  },
+  {
+   "k": 43,
+   "sb": "42",
+   "trk": 42,
+   "t0": 77.539,
+   "len": 1.846,
+   "s0": 3721872,
+   "n": 88608,
+   "src0": 75.694,
+   "splice": false
+  },
+  {
+   "k": 44,
+   "sb": "43",
+   "trk": 43,
+   "t0": 79.385,
+   "len": 1.846,
+   "s0": 3810480,
+   "n": 88608,
+   "src0": 77.54,
+   "splice": false
+  },
+  {
+   "k": 45,
+   "sb": "44",
+   "trk": 44,
+   "t0": 81.231,
+   "len": 1.846,
+   "s0": 3899088,
+   "n": 88608,
+   "src0": 79.386,
+   "splice": false
+  },
+  {
+   "k": 46,
+   "sb": "45",
+   "trk": 45,
+   "t0": 83.077,
+   "len": 1.846,
+   "s0": 3987696,
+   "n": 88608,
+   "src0": 81.232,
+   "splice": false
+  },
+  {
+   "k": 47,
+   "sb": "46",
+   "trk": 46,
+   "t0": 84.923,
+   "len": 1.847,
+   "s0": 4076304,
+   "n": 88656,
+   "src0": 83.078,
+   "splice": false
+  },
+  {
+   "k": 48,
+   "sb": "47",
+   "trk": 47,
+   "t0": 86.77,
+   "len": 1.846,
+   "s0": 4164960,
+   "n": 88608,
+   "src0": 84.925,
+   "splice": false
+  },
+  {
+   "k": 49,
+   "sb": "48",
+   "trk": 48,
+   "t0": 88.616,
+   "len": 1.846,
+   "s0": 4253568,
+   "n": 88608,
+   "src0": 86.771,
+   "splice": false
+  },
+  {
+   "k": 50,
+   "sb": "49",
+   "trk": 27,
+   "t0": 90.462,
+   "len": 1.846,
+   "s0": 4342176,
+   "n": 88608,
+   "src0": 48.001,
+   "splice": true
+  },
+  {
+   "k": 51,
+   "sb": "50",
+   "trk": 28,
+   "t0": 92.308,
+   "len": 1.846,
+   "s0": 4430784,
+   "n": 88608,
+   "src0": 49.847,
+   "splice": false
+  },
+  {
+   "k": 52,
+   "sb": "51",
+   "trk": 29,
+   "t0": 94.154,
+   "len": 1.847,
+   "s0": 4519392,
+   "n": 88656,
+   "src0": 51.693,
+   "splice": false
+  },
+  {
+   "k": 53,
+   "sb": "52",
+   "trk": 30,
+   "t0": 96.001,
+   "len": 1.846,
+   "s0": 4608048,
+   "n": 88608,
+   "src0": 53.54,
+   "splice": false
+  },
+  {
+   "k": 54,
+   "sb": "53",
+   "trk": 31,
+   "t0": 97.847,
+   "len": 1.846,
+   "s0": 4696656,
+   "n": 88608,
+   "src0": 55.386,
+   "splice": false
+  },
+  {
+   "k": 55,
+   "sb": "54",
+   "trk": 32,
+   "t0": 99.693,
+   "len": 1.846,
+   "s0": 4785264,
+   "n": 88608,
+   "src0": 57.232,
+   "splice": false
+  },
+  {
+   "k": 56,
+   "sb": "54+1",
+   "trk": 33,
+   "t0": 101.539,
+   "len": 1.846,
+   "s0": 4873872,
+   "n": 88608,
+   "src0": 59.078,
+   "splice": false
+  },
+  {
+   "k": 57,
+   "sb": "55",
+   "trk": 34,
+   "t0": 103.385,
+   "len": 1.846,
+   "s0": 4962480,
+   "n": 88608,
+   "src0": 60.924,
+   "splice": false
+  },
+  {
+   "k": 58,
+   "sb": "56",
+   "trk": 35,
+   "t0": 105.231,
+   "len": 1.847,
+   "s0": 5051088,
+   "n": 88656,
+   "src0": 62.77,
+   "splice": false
+  },
+  {
+   "k": 59,
+   "sb": "57",
+   "trk": 36,
+   "t0": 107.078,
+   "len": 1.846,
+   "s0": 5139744,
+   "n": 88608,
+   "src0": 64.617,
+   "splice": false
+  },
+  {
+   "k": 60,
+   "sb": "58",
+   "trk": 49,
+   "t0": 108.924,
+   "len": 1.846,
+   "s0": 5228352,
+   "n": 88608,
+   "src0": 88.617,
+   "splice": true
+  },
+  {
+   "k": 61,
+   "sb": "59",
+   "trk": 50,
+   "t0": 110.77,
+   "len": 1.846,
+   "s0": 5316960,
+   "n": 88608,
+   "src0": 90.463,
+   "splice": false
+  },
+  {
+   "k": 62,
+   "sb": "60",
+   "trk": 51,
+   "t0": 112.616,
+   "len": 1.847,
+   "s0": 5405568,
+   "n": 88656,
+   "src0": 92.309,
+   "splice": false
+  },
+  {
+   "k": 63,
+   "sb": "61",
+   "trk": 52,
+   "t0": 114.463,
+   "len": 1.846,
+   "s0": 5494224,
+   "n": 88608,
+   "src0": 94.156,
+   "splice": false
+  },
+  {
+   "k": 64,
+   "sb": "62",
+   "trk": 53,
+   "t0": 116.309,
+   "len": 1.846,
+   "s0": 5582832,
+   "n": 88608,
+   "src0": 96.002,
+   "splice": false
+  },
+  {
+   "k": 65,
+   "sb": "63",
+   "trk": 54,
+   "t0": 118.155,
+   "len": 1.846,
+   "s0": 5671440,
+   "n": 88608,
+   "src0": 97.848,
+   "splice": false
+  },
+  {
+   "k": 66,
+   "sb": "64",
+   "trk": 55,
+   "t0": 120.001,
+   "len": 1.846,
+   "s0": 5760048,
+   "n": 88608,
+   "src0": 99.694,
+   "splice": false
+  },
+  {
+   "k": 67,
+   "sb": "65",
+   "trk": 56,
+   "t0": 121.847,
+   "len": 1.846,
+   "s0": 5848656,
+   "n": 88608,
+   "src0": 101.54,
+   "splice": false
+  },
+  {
+   "k": 68,
+   "sb": "66",
+   "trk": 83,
+   "t0": 123.693,
+   "len": 1.846,
+   "s0": 5937264,
+   "n": 88608,
+   "src0": 151.387,
+   "splice": true
+  },
+  {
+   "k": 69,
+   "sb": "67",
+   "trk": 84,
+   "t0": 125.539,
+   "len": 1.847,
+   "s0": 6025872,
+   "n": 88656,
+   "src0": 153.233,
+   "splice": false
+  },
+  {
+   "k": 70,
+   "sb": "68",
+   "trk": 85,
+   "t0": 127.386,
+   "len": 1.846,
+   "s0": 6114528,
+   "n": 88608,
+   "src0": 155.08,
+   "splice": false
+  },
+  {
+   "k": 71,
+   "sb": "69",
+   "trk": 86,
+   "t0": 129.232,
+   "len": 1.846,
+   "s0": 6203136,
+   "n": 88608,
+   "src0": 156.926,
+   "splice": false
+  },
+  {
+   "k": 72,
+   "sb": "70",
+   "trk": 87,
+   "t0": 131.078,
+   "len": 1.846,
+   "s0": 6291744,
+   "n": 88608,
+   "src0": 158.772,
+   "splice": false
+  },
+  {
+   "k": 73,
+   "sb": "71",
+   "trk": 88,
+   "t0": 132.924,
+   "len": 1.846,
+   "s0": 6380352,
+   "n": 88608,
+   "src0": 160.618,
+   "splice": false
+  },
+  {
+   "k": 74,
+   "sb": "72",
+   "trk": 89,
+   "t0": 134.77,
+   "len": 1.846,
+   "s0": 6468960,
+   "n": 88608,
+   "src0": 162.464,
+   "splice": false
+  },
+  {
+   "k": 75,
+   "sb": "73",
+   "trk": 39,
+   "t0": 136.616,
+   "len": 1.846,
+   "s0": 6557568,
+   "n": 88608,
+   "src0": 70.155,
+   "splice": true
+  },
+  {
+   "k": 76,
+   "sb": "74",
+   "trk": 40,
+   "t0": 138.462,
+   "len": 1.847,
+   "s0": 6646176,
+   "n": 88656,
+   "src0": 72.001,
+   "splice": false
+  },
+  {
+   "k": 77,
+   "sb": "75",
+   "trk": 41,
+   "t0": 140.309,
+   "len": 1.846,
+   "s0": 6734832,
+   "n": 88608,
+   "src0": 73.848,
+   "splice": false
+  },
+  {
+   "k": 78,
+   "sb": "76",
+   "trk": 42,
+   "t0": 142.155,
+   "len": 1.846,
+   "s0": 6823440,
+   "n": 88608,
+   "src0": 75.694,
+   "splice": false
+  },
+  {
+   "k": 79,
+   "sb": "77",
+   "trk": 43,
+   "t0": 144.001,
+   "len": 1.846,
+   "s0": 6912048,
+   "n": 88608,
+   "src0": 77.54,
+   "splice": false
+  },
+  {
+   "k": 80,
+   "sb": "78",
+   "trk": 44,
+   "t0": 145.847,
+   "len": 1.846,
+   "s0": 7000656,
+   "n": 88608,
+   "src0": 79.386,
+   "splice": false
+  },
+  {
+   "k": 81,
+   "sb": "79",
+   "trk": 45,
+   "t0": 147.693,
+   "len": 1.846,
+   "s0": 7089264,
+   "n": 88608,
+   "src0": 81.232,
+   "splice": false
+  },
+  {
+   "k": 82,
+   "sb": "80",
+   "trk": 46,
+   "t0": 149.539,
+   "len": 1.847,
+   "s0": 7177872,
+   "n": 88656,
+   "src0": 83.078,
+   "splice": false
+  },
+  {
+   "k": 83,
+   "sb": "81",
+   "trk": 47,
+   "t0": 151.386,
+   "len": 1.846,
+   "s0": 7266528,
+   "n": 88608,
+   "src0": 84.925,
+   "splice": false
+  },
+  {
+   "k": 84,
+   "sb": "82",
+   "trk": 48,
+   "t0": 153.232,
+   "len": 1.846,
+   "s0": 7355136,
+   "n": 88608,
+   "src0": 86.771,
+   "splice": false
+  },
+  {
+   "k": 85,
+   "sb": "83",
+   "trk": 83,
+   "t0": 155.078,
+   "len": 1.846,
+   "s0": 7443744,
+   "n": 88608,
+   "src0": 151.387,
+   "splice": true
+  },
+  {
+   "k": 86,
+   "sb": "84",
+   "trk": 84,
+   "t0": 156.924,
+   "len": 1.847,
+   "s0": 7532352,
+   "n": 88656,
+   "src0": 153.233,
+   "splice": false
+  },
+  {
+   "k": 87,
+   "sb": "85",
+   "trk": 85,
+   "t0": 158.771,
+   "len": 1.846,
+   "s0": 7621008,
+   "n": 88608,
+   "src0": 155.08,
+   "splice": false
+  },
+  {
+   "k": 88,
+   "sb": "86",
+   "trk": 86,
+   "t0": 160.617,
+   "len": 1.846,
+   "s0": 7709616,
+   "n": 88608,
+   "src0": 156.926,
+   "splice": false
+  },
+  {
+   "k": 89,
+   "sb": "87",
+   "trk": 87,
+   "t0": 162.463,
+   "len": 1.846,
+   "s0": 7798224,
+   "n": 88608,
+   "src0": 158.772,
+   "splice": false
+  },
+  {
+   "k": 90,
+   "sb": "88",
+   "trk": 88,
+   "t0": 164.309,
+   "len": 1.846,
+   "s0": 7886832,
+   "n": 88608,
+   "src0": 160.618,
+   "splice": false
+  },
+  {
+   "k": 91,
+   "sb": "89",
+   "trk": 89,
+   "t0": 166.155,
+   "len": 1.846,
+   "s0": 7975440,
+   "n": 88608,
+   "src0": 162.464,
+   "splice": false
+  },
+  {
+   "k": 92,
+   "sb": "90",
+   "trk": 90,
+   "t0": 168.001,
+   "len": 1.847,
+   "s0": 8064048,
+   "n": 88656,
+   "src0": 164.31,
+   "splice": false
+  },
+  {
+   "k": 93,
+   "sb": "90+1",
+   "trk": 91,
+   "t0": 169.848,
+   "len": 1.846,
+   "s0": 8152704,
+   "n": 88608,
+   "src0": 166.157,
+   "splice": false
+  }
+ ],
+ "cut": [],
+ "added": [
+  "28+1",
+  "54+1",
+  "90+1"
+ ],
+ "grid_end_s": 171.694,
+ "grid_end_samples": 8241312,
+ "tail_s": 1.8,
+ "end_s": 173.494,
+ "end_samples": 8327712,
+ "duration_s": 173.494,
+ "fade": null,
+ "xfade_ms": 20,
+ "music_has": [],
+ "moments_notes": {
+  "title_stop": {
+   "verdict": "yes",
+   "note": "the band drops to the -29.5 dB breakdown exactly on 5:1 (SFX impact carries the hit)"
+  },
+  "pain_sparse": {
+   "verdict": "yes",
+   "note": "12 drumless bars"
+  },
+  "drop": {
+   "verdict": "yes",
+   "note": "gap on 20:4, drums back +12.7 dB on 21:1"
+  },
+  "ai_chime": {
+   "verdict": "sfx",
+   "note": "SFX chime on 31:3"
+  },
+  "payoff": {
+   "verdict": "yes",
+   "note": "breakdown on 49-50 -> the song's own drop on 51:1 (+12 dB, louder than 21:1)"
+  },
+  "social_groove": {
+   "verdict": "yes",
+   "note": "full sections"
+  },
+  "break": {
+   "verdict": "partial",
+   "note": "drumless bars instead of stop-time hits"
+  },
+  "lift": {
+   "verdict": "partial",
+   "note": "kick-only build; no key change"
+  },
+  "end_resolve": {
+   "verdict": "natural",
+   "note": "the song's final hit on 90+1:1"
+  }
+ },
+ "acts": [
+  {
+   "id": "A0",
+   "title": "HOOK 钩子",
+   "first_bar": 1,
+   "last_bar": 8,
+   "t0": 0.0,
+   "t1": 14.769
+  },
+  {
+   "id": "A1",
+   "title": "PAIN 痛点",
+   "first_bar": 9,
+   "last_bar": 20,
+   "t0": 14.769,
+   "t1": 36.923
+  },
+  {
+   "id": "A2",
+   "title": "ENTER 入场",
+   "first_bar": 21,
+   "last_bar": 28,
+   "t0": 36.923,
+   "t1": 53.539
+  },
+  {
+   "id": "A3",
+   "title": "PHOTO + AI 照片与端侧 AI",
+   "first_bar": 29,
+   "last_bar": 40,
+   "t0": 53.539,
+   "t1": 75.693
+  },
+  {
+   "id": "A4",
+   "title": "SAME MOMENT + EXCHANGE 同一刻与交换",
+   "first_bar": 41,
+   "last_bar": 54,
+   "t0": 75.693,
+   "t1": 103.385
+  },
+  {
+   "id": "A5",
+   "title": "AFTER THE SWAP 交换之后",
+   "first_bar": 55,
+   "last_bar": 72,
+   "t0": 103.385,
+   "t1": 136.616
+  },
+  {
+   "id": "A6",
+   "title": "WHY IT MATTERS 为什么值得做",
+   "first_bar": 73,
+   "last_bar": 82,
+   "t0": 136.616,
+   "t1": 155.078
+  },
+  {
+   "id": "A7",
+   "title": "END CARD 片尾",
+   "first_bar": 83,
+   "last_bar": 90,
+   "t0": 155.078,
+   "t1": 171.694
+  }
+ ],
+ "moments": [
+  {
+   "name": "title_stop",
+   "at": "5:1",
+   "what": "stop/silence just before 5:1, IMPACT on 5:1 (title)",
+   "t": 7.385,
+   "note": {
+    "verdict": "yes",
+    "note": "the band drops to the -29.5 dB breakdown exactly on 5:1 (SFX impact carries the hit)"
+   }
+  },
+  {
+   "name": "pain_sparse",
+   "at": "9:1",
+   "what": "bars 9-18 sparse / half-time; build 19-20",
+   "t": 14.769,
+   "note": {
+    "verdict": "yes",
+    "note": "12 drumless bars"
+   }
+  },
+  {
+   "name": "drop",
+   "at": "21:1",
+   "what": "DROP on 21:1: the product appears, full groove",
+   "t": 36.923,
+   "note": {
+    "verdict": "yes",
+    "note": "gap on 20:4, drums back +12.7 dB on 21:1"
+   }
+  },
+  {
+   "name": "ai_chime",
+   "at": "31:3",
+   "what": "AI chime on 31:3 (the chip appears)",
+   "t": 58.154,
+   "note": {
+    "verdict": "sfx",
+    "note": "SFX chime on 31:3"
+   }
+  },
+  {
+   "name": "payoff_gap",
+   "at": "50:4",
+   "what": "one beat of silence on 50:4",
+   "t": 93.69250000000001,
+   "note": null
+  },
+  {
+   "name": "payoff",
+   "at": "51:1",
+   "what": "PAYOFF 「交换已接受」: the biggest hit of the film",
+   "t": 94.154,
+   "note": {
+    "verdict": "yes",
+    "note": "breakdown on 49-50 -> the song's own drop on 51:1 (+12 dB, louder than 21:1)"
+   }
+  },
+  {
+   "name": "social_groove",
+   "at": "55:1",
+   "what": "second groove 55-72, highest energy",
+   "t": 103.385,
+   "note": {
+    "verdict": "yes",
+    "note": "full sections"
+   }
+  },
+  {
+   "name": "break",
+   "at": "73:1",
+   "what": "stop-time break 73-74",
+   "t": 136.616,
+   "note": {
+    "verdict": "partial",
+    "note": "drumless bars instead of stop-time hits"
+   }
+  },
+  {
+   "name": "lift",
+   "at": "75:1",
+   "what": "final lift chorus from 75:1",
+   "t": 140.309,
+   "note": {
+    "verdict": "partial",
+    "note": "kick-only build; no key change"
+   }
+  },
+  {
+   "name": "end_resolve",
+   "at": "83:1",
+   "what": "end card: tag 83-84, big chord 85:1, resolve / ring out at the end",
+   "t": 155.078,
+   "note": {
+    "verdict": "natural",
+    "note": "the song's final hit on 90+1:1"
+   }
+  }
+ ]
+}

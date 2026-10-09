@@ -1,0 +1,2 @@
+:root { --c: blue; }
+html body .x { & span { color: green; } }

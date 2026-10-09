@@ -1,0 +1,164 @@
+{
+ "file": "out/music-space-doodle-animatic.mp4",
+ "container": {
+  "duration_s": 28.617,
+  "bytes": 59286648,
+  "video": "h264 High 1920x1080 60/1 yuv420p",
+  "colour": "bt709/bt709/bt709/tv",
+  "frames": 1717,
+  "audio": "aac 48000 Hz 2 ch"
+ },
+ "loudness": {
+  "I_LUFS": -16.0,
+  "TP_dBTP": -1.4,
+  "LRA_LU": 4.1
+ },
+ "silences_over_0.8s": [],
+ "frozen_over_2.5s": [],
+ "black_over_0.4s": [],
+ "motion": {
+  "mean_abs_diff": 3.245,
+  "frames_without_any_change": 1,
+  "longest_low_motion_s": 0.07,
+  "at_s": 2.25,
+  "threshold": "mean |dI| < 0.15 (8-bit, 160x90)"
+ },
+ "events": {
+  "count": 97,
+  "longest_gap_s": 1.463,
+  "longest_gap_at_s": 11.707,
+  "events_per_second": 3.39
+ },
+ "beat_alignment": {
+  "on_8th_grid": "88/97",
+  "on_16th_grid": "97/97",
+  "worst_vs_16th_ms": 0.05,
+  "frame_quantisation_ms_max": 8.17,
+  "note": "visual events vs the music grid (8ths / 16ths), then the frame they land on (60 fps)"
+ },
+ "reading_time": {
+  "lines": 17,
+  "failing": [],
+  "all": [
+   {
+    "text": "同一刻，",
+    "chars": 3,
+    "on_s": 3.92,
+    "need_s": 0.9,
+    "ok": true
+   },
+   {
+    "text": "另一面。",
+    "chars": 3,
+    "on_s": 3.43,
+    "need_s": 0.9,
+    "ok": true
+   },
+   {
+    "text": "散场了。",
+    "chars": 3,
+    "on_s": 3.03,
+    "need_s": 0.9,
+    "ok": true
+   },
+   {
+    "text": "每部手机里，",
+    "chars": 5,
+    "on_s": 2.29,
+    "need_s": 1.25,
+    "ok": true
+   },
+   {
+    "text": "只有自己那一面。",
+    "chars": 7,
+    "on_s": 1.93,
+    "need_s": 1.75,
+    "ok": true
+   },
+   {
+    "text": "?",
+    "chars": 0,
+    "on_s": 2.78,
+    "need_s": 0.9,
+    "ok": true
+   },
+   {
+    "text": "?",
+    "chars": 0,
+    "on_s": 2.54,
+    "need_s": 0.9,
+    "ok": true
+   },
+   {
+    "text": "要是……",
+    "chars": 2,
+    "on_s": 2.7,
+    "need_s": 0.9,
+    "ok": true
+   },
+   {
+    "text": "能把那一面，换回来？",
+    "chars": 8,
+    "on_s": 2.46,
+    "need_s": 2.0,
+    "ok": true
+   },
+   {
+    "text": "同场的人，",
+    "chars": 4,
+    "on_s": 4.0,
+    "need_s": 1.0,
+    "ok": true
+   },
+   {
+    "text": "再进同一间",
+    "chars": 5,
+    "on_s": 3.03,
+    "need_s": 1.25,
+    "ok": true
+   },
+   {
+    "text": "真实界面 · 示例现场",
+    "chars": 8,
+    "on_s": 2.05,
+    "need_s": 2.0,
+    "ok": true
+   },
+   {
+    "text": "带上你的小人，",
+    "chars": 6,
+    "on_s": 1.97,
+    "need_s": 1.5,
+    "ok": true
+   },
+   {
+    "text": "看看谁也在。",
+    "chars": 5,
+    "on_s": 2.95,
+    "need_s": 1.25,
+    "ok": true
+   },
+   {
+    "text": "我！",
+    "chars": 1,
+    "on_s": 1.0,
+    "need_s": 0.9,
+    "ok": true
+   },
+   {
+    "text": "同一刻，",
+    "chars": 3,
+    "on_s": 1.4,
+    "need_s": 0.9,
+    "ok": true
+   },
+   {
+    "text": "另一面。",
+    "chars": 3,
+    "on_s": 1.16,
+    "need_s": 0.9,
+    "ok": true
+   }
+  ]
+ }
+}

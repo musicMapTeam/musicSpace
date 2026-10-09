@@ -1,0 +1,15 @@
+{
+ "fonts": [],
+ "glyphs": [
+  "button.photo-item>small.moment-meta [Doodle Digits] missing «拍摄于视角：舞台作者选择» in «拍摄于 21:47 · 视角：舞台 · 作者选择»",
+  "button.photo-item>small.moment-meta [Doodle Digits] missing «拍摄于视角：人海建议，未改动» in «拍摄于 21:48 · 视角：人海 · AI 建»",
+  "button.photo-item>small.moment-meta [Doodle Digits] missing «拍摄于视角：身边作者选择» in «拍摄于 22:21 · 视角：身边 · 作者选择»",
+  "button.photo-item>small.moment-meta [Doodle Digits] missing «拍摄于视角：细节作者选择» in «拍摄于 21:49 · 视角：细节 · 作者选择»"
+ ],
+ "colors": [],
+ "tiny": [],
+ "whiteOnMarker": [],
+ "clipped": [],
+ "blurShadow": [],
+ "renderStyle": "doodle"
+}

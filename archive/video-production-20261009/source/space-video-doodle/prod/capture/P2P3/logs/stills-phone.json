@@ -1,0 +1,623 @@
+{
+ "items": [
+  {
+   "id": "CUT-13",
+   "name": "stills/CUT-13_phone-landing",
+   "files": {
+    "full": "/tmp/space-video-doodle/prod/capture/P2P3/stills/CUT-13_phone-landing.png"
+   },
+   "note": "first screen before entering; 3D doodle stage, 进到同一个现场, card 同一刻，另一面。, 进入示例现场",
+   "storyboard": "W1 (and E1 reference)"
+  },
+  {
+   "id": "CUT-02",
+   "name": "cut/CUT-02_wardrobe-stand-shizhen-quarter",
+   "sels": [
+    ".wardrobe .wardrobe-look"
+   ],
+   "clipCss": {
+    "x": 0,
+    "y": 62,
+    "width": 390,
+    "height": 338,
+    "n": 1,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "the real wardrobe stand: YOU lettering, mint orbit, figure 失真 at 3/4, 试穿中 · 仅自己可见, angle switch",
+   "storyboard": "H1 (avatar), E2 reference",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3/cut/CUT-02_wardrobe-stand-shizhen-quarter.opaque.png"
+   }
+  },
+  {
+   "id": "CUT-02s",
+   "name": "cut/CUT-02s_wardrobe-figure-on-orbit",
+   "sels": [
+    ".wardrobe .wardrobe-orbit",
+    ".wardrobe .wardrobe-figure"
+   ],
+   "clipCss": {
+    "x": 6,
+    "y": 55,
+    "width": 378,
+    "height": 333,
+    "n": 2,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "figure + mint orbit only (alpha die-cut)",
+   "storyboard": "H1 die-cut sticker",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3/cut/CUT-02s_wardrobe-figure-on-orbit.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3/cut/CUT-02s_wardrobe-figure-on-orbit.png"
+   }
+  },
+  {
+   "id": "CUT-04a",
+   "name": "cut/CUT-04a_ai-tag-renhai",
+   "sels": [
+    ".moment-ai-tag"
+   ],
+   "clipCss": {
+    "x": 17,
+    "y": 367,
+    "width": 199,
+    "height": 73,
+    "n": 1,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "「✦ AI 判断：人海」 chip (P-05 state)",
+   "storyboard": "H1, W3 (隐私)",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3/cut/CUT-04a_ai-tag-renhai.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3/cut/CUT-04a_ai-tag-renhai.png"
+   }
+  },
+  {
+   "id": "CUT-04b",
+   "name": "cut/CUT-04b_viewpoint-chips-renhai-selected",
+   "sels": [
+    ".moment-chips"
+   ],
+   "clipCss": {
+    "x": 18,
+    "y": 314,
+    "width": 349,
+    "height": 179,
+    "n": 1,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "the four viewpoint chips, 人海 pre-selected by the AI suggestion",
+   "storyboard": "H1, W3",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3/cut/CUT-04b_viewpoint-chips-renhai-selected.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3/cut/CUT-04b_viewpoint-chips-renhai-selected.png"
+   }
+  },
+  {
+   "id": "CUT-04c",
+   "name": "cut/CUT-04c_viewpoint-block",
+   "sels": [
+    ".moment-view"
+   ],
+   "clipCss": {
+    "x": 18,
+    "y": 238,
+    "width": 349,
+    "height": 350,
+    "n": 1,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "我拍的这一面 + chips + AI chip + hint 「AI 在本机判断，照片不上传…」",
+   "storyboard": "W3 polaroid (隐私)",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3/cut/CUT-04c_viewpoint-block.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3/cut/CUT-04c_viewpoint-block.png"
+   }
+  },
+  {
+   "id": "POL-upload",
+   "name": "cut/POL-01_upload-polaroid-crowd-2148",
+   "sels": [
+    ".moment-taken"
+   ],
+   "clipCss": {
+    "x": 14,
+    "y": 271,
+    "width": 357,
+    "height": 283,
+    "n": 1,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "upload form polaroid of 人海 · 示例照片 with 拍摄于 21:48 and the 示例照片 note",
+   "storyboard": "A1/M1 polaroid",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3/cut/POL-01_upload-polaroid-crowd-2148.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3/cut/POL-01_upload-polaroid-crowd-2148.png"
+   }
+  },
+  {
+   "id": "CUT-05",
+   "name": "cut/CUT-05_badge-other-side",
+   "sels": [
+    "[data-moment-badge=\"other-side\"]"
+   ],
+   "clipCss": {
+    "x": 27,
+    "y": 291,
+    "width": 325,
+    "height": 224,
+    "n": 1,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "「同一刻的另一面」 + reason 「同一刻 · 21:47，相差不到 1 分钟；你拍人海，TA 拍舞台」 + 「和 TA 交换这个视角」",
+   "storyboard": "H1, M2",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3/cut/CUT-05_badge-other-side.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3/cut/CUT-05_badge-other-side.png"
+   }
+  },
+  {
+   "id": "POL-best",
+   "name": "cut/POL-02_wall-best-card-yao-stage",
+   "sels": [
+    "#panel .moment-card--best"
+   ],
+   "clipCss": {
+    "x": 9,
+    "y": 111,
+    "width": 367,
+    "height": 584,
+    "n": 1,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "the wall card with tapes: badge, button, 阿遥·示例 stage photo, 拍摄于 21:47 · 视角：舞台 · 作者选择",
+   "storyboard": "M2 / H1 polaroid",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3/cut/POL-02_wall-best-card-yao-stage.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3/cut/POL-02_wall-best-card-yao-stage.png"
+   }
+  },
+  {
+   "id": "WALL-head",
+   "name": "cut/WALL-01_group-header-2147-rule",
+   "sels": [
+    "#panel .moment-group[data-moment-group=\"m1790430440000\"] > .moment-group__title",
+    "#panel .moment-group[data-moment-group=\"m1790430440000\"] > .moment-group__note"
+   ],
+   "clipCss": {
+    "x": 18,
+    "y": 254,
+    "width": 350,
+    "height": 162,
+    "n": 2,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "21:47 同一刻 · 3 个视角 + 「按拍摄时间分组（相差不超过 3 分钟），规则判断，不是 AI」",
+   "storyboard": "A5",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3/cut/WALL-01_group-header-2147-rule.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3/cut/WALL-01_group-header-2147-rule.png"
+   }
+  },
+  {
+   "id": "POL-man-crowd-2148",
+   "name": "cut/POL-03_wall-card-man-crowd-2148",
+   "sels": [
+    "#panel .moment-card[data-moment-photo=\"91331a15-f7ac-4f90-9555-f20f76792629\"]"
+   ],
+   "clipCss": {
+    "x": 11,
+    "y": 225,
+    "width": 194,
+    "height": 357,
+    "n": 1,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "小满·示例 照片墙：本场成员可见 拍摄于 21:48 · 视角：人海 · 作者选择 同一刻",
+   "storyboard": "polaroid stickers (H1/S11/M1)",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3/cut/POL-03_wall-card-man-crowd-2148.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3/cut/POL-03_wall-card-man-crowd-2148.png"
+   }
+  },
+  {
+   "id": "POL-aning-crowd-2148-ai",
+   "name": "cut/POL-04_wall-card-aning-crowd-2148-ai",
+   "sels": [
+    "#panel .moment-card[data-moment-photo=\"cca0cad1-60d9-4c04-8521-a47b9f15ce80\"]"
+   ],
+   "clipCss": {
+    "x": 180,
+    "y": 225,
+    "width": 194,
+    "height": 357,
+    "n": 1,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "阿宁 照片墙：本场成员可见 拍摄于 21:48 · 视角：人海 · AI 建议，未改动",
+   "storyboard": "polaroid stickers (H1/S11/M1)",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3/cut/POL-04_wall-card-aning-crowd-2148-ai.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3/cut/POL-04_wall-card-aning-crowd-2148-ai.png"
+   }
+  },
+  {
+   "id": "POL-bei-detail-2149",
+   "name": "cut/POL-05_wall-card-bei-detail-2149",
+   "sels": [
+    "#panel .moment-card[data-moment-photo=\"af59b7f3-7d6d-4820-810b-a8f82bda92c3\"]"
+   ],
+   "clipCss": {
+    "x": 11,
+    "y": 225,
+    "width": 194,
+    "height": 357,
+    "n": 1,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "北屿·示例 照片墙：本场成员可见 拍摄于 21:49 · 视角：细节 · 作者选择 同一刻",
+   "storyboard": "polaroid stickers (H1/S11/M1)",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3/cut/POL-05_wall-card-bei-detail-2149.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3/cut/POL-05_wall-card-bei-detail-2149.png"
+   }
+  },
+  {
+   "id": "POL-man-friends-2221",
+   "name": "cut/POL-06_wall-card-man-friends-2221",
+   "sels": [
+    "#panel .moment-card[data-moment-photo=\"f61f32ac-22ee-4a50-9cc5-6efb283fb2d6\"]"
+   ],
+   "clipCss": {
+    "x": 12,
+    "y": 243,
+    "width": 193,
+    "height": 322,
+    "n": 1,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "小满·示例 照片墙：本场成员可见 拍摄于 22:21 · 视角：身边 · 作者选择",
+   "storyboard": "polaroid stickers (H1/S11/M1)",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3/cut/POL-06_wall-card-man-friends-2221.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3/cut/POL-06_wall-card-man-friends-2221.png"
+   }
+  },
+  {
+   "id": "POL-pair",
+   "name": "cut/POL-08_exchange-pair-compose",
+   "sels": [
+    ".photo-exchanges .exchange-pair"
+   ],
+   "clipCss": {
+    "x": 4,
+    "y": 140,
+    "width": 382,
+    "height": 247,
+    "n": 1,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "「我提供的 / 我选中的这一张」 ⇄ 「阿遥·示例的 / 照片墙上的这一张」",
+   "storyboard": "M3",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3/cut/POL-08_exchange-pair-compose.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3/cut/POL-08_exchange-pair-compose.png"
+   }
+  },
+  {
+   "id": "CUT-11",
+   "name": "cut/CUT-11_consent-tick-send",
+   "sels": [
+    ".photo-exchanges label:has([data-x-consent])",
+    ".photo-exchanges [data-x-send]"
+   ],
+   "clipCss": {
+    "x": 4,
+    "y": 600,
+    "width": 382,
+    "height": 227,
+    "n": 2,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "tick 「我同意提供选中照片的预览，并在对方接受后分享这张原图」 + 「把这两张交给对方确认 ↗」",
+   "storyboard": "W3 (同意), M4",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3/cut/CUT-11_consent-tick-send.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3/cut/CUT-11_consent-tick-send.png"
+   }
+  },
+  {
+   "id": "CUT-11b",
+   "name": "cut/CUT-11b_consent-agreement-block",
+   "sels": [
+    ".photo-exchanges .exchange-agreement",
+    ".photo-exchanges [data-x-send]"
+   ],
+   "clipCss": {
+    "x": 4,
+    "y": 505,
+    "width": 382,
+    "height": 322,
+    "n": 2,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "agreement text 「发送后，阿遥·示例 可以看并保存我的小图预览…」 + tick + send",
+   "storyboard": "M4",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3/cut/CUT-11b_consent-agreement-block.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3/cut/CUT-11b_consent-agreement-block.png"
+   }
+  },
+  {
+   "id": "PENDING",
+   "name": "cut/EXCH-01_pending-status-pair",
+   "sels": [
+    ".photo-exchanges .exchange-status",
+    ".photo-exchanges .exchange-body > h3",
+    ".photo-exchanges .exchange-pair"
+   ],
+   "clipCss": {
+    "x": 0,
+    "y": 90,
+    "width": 390,
+    "height": 350,
+    "n": 3,
+    "clipped": false,
+    "padClamped": true
+   },
+   "note": "等待本人回应 + 和 阿遥·示例 的两张照片 (before 阿遥 answers)",
+   "storyboard": "M5",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3/cut/EXCH-01_pending-status-pair.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3/cut/EXCH-01_pending-status-pair.png"
+   }
+  },
+  {
+   "id": "CUT-06",
+   "name": "cut/CUT-06_exchange-accepted-pair",
+   "sels": [
+    ".photo-exchanges .exchange-status",
+    ".photo-exchanges .exchange-body > h3",
+    ".photo-exchanges .exchange-pair"
+   ],
+   "clipCss": {
+    "x": 0,
+    "y": 85,
+    "width": 390,
+    "height": 405,
+    "n": 3,
+    "clipped": false,
+    "padClamped": true
+   },
+   "note": "「交换已接受」 sticker with star + 「和 阿遥·示例 的两张照片」 + both polaroids (我提供的 / 阿遥·示例提供的)",
+   "storyboard": "H1, M6",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3/cut/CUT-06_exchange-accepted-pair.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3/cut/CUT-06_exchange-accepted-pair.png"
+   }
+  },
+  {
+   "id": "CUT-06s",
+   "name": "cut/CUT-06s_exchange-accepted-sticker",
+   "sels": [
+    ".photo-exchanges .exchange-status"
+   ],
+   "clipCss": {
+    "x": 40,
+    "y": 83,
+    "width": 280,
+    "height": 128,
+    "n": 1,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "the mint 「交换已接受」 sticker alone (star + sparkles are its own pseudo-elements)",
+   "storyboard": "M6 punch-in",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3/cut/CUT-06s_exchange-accepted-sticker.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3/cut/CUT-06s_exchange-accepted-sticker.png"
+   }
+  },
+  {
+   "id": "REVOKE",
+   "name": "cut/EXCH-02_revoke-button-fineprint",
+   "sels": [
+    ".photo-exchanges .exchange-body > p:not(.exchange-status):not(.exchange-fine)",
+    ".photo-exchanges .exchange-body > button",
+    ".photo-exchanges .exchange-fine"
+   ],
+   "clipCss": {
+    "x": 4,
+    "y": 479,
+    "width": 382,
+    "height": 287,
+    "n": 4,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "双方已明确同意… + 撤销这次交换的在线访问 + fine print",
+   "storyboard": "M7, W3",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3/cut/EXCH-02_revoke-button-fineprint.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3/cut/EXCH-02_revoke-button-fineprint.png"
+   }
+  },
+  {
+   "id": "CUT-07",
+   "name": "cut/CUT-07_chat-bubbles",
+   "sels": [
+    ".private-chat .chat-message"
+   ],
+   "clipCss": {
+    "x": 0,
+    "y": 113,
+    "width": 390,
+    "height": 398,
+    "n": 4,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "the four bubbles: welcome (示例角色，由这个页面自动回复), 你拍到的是哪一面？, yours (mint), reply 今晚的返场太好听了。",
+   "storyboard": "H1, S2",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3/cut/CUT-07_chat-bubbles.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3/cut/CUT-07_chat-bubbles.png"
+   }
+  },
+  {
+   "id": "CUT-07h",
+   "name": "cut/CUT-07h_chat-header",
+   "sels": [
+    ".private-chat > header"
+   ],
+   "clipCss": {
+    "x": 0,
+    "y": 0,
+    "width": 390,
+    "height": 86,
+    "n": 1,
+    "clipped": false,
+    "padClamped": true
+   },
+   "note": "ONE TO ONE 小满·示例 header",
+   "storyboard": "S2",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3/cut/CUT-07h_chat-header.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3/cut/CUT-07h_chat-header.png"
+   }
+  },
+  {
+   "id": "CUT-12",
+   "name": "cut/CUT-12_worldcup-vs-card",
+   "sels": [
+    ".worldcup-panel section.worldcup-match:has([data-album=\"night-platform\"])"
+   ],
+   "clipCss": {
+    "x": 4,
+    "y": 300,
+    "width": 382,
+    "height": 387,
+    "n": 1,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "第一轮 · 第1组: 01 原创虚构专辑 午夜站台 / 纸灯乐队 VS 02 樱花电波 / 薄荷收音机, before the visitor votes (the cast votes already counted)",
+   "storyboard": "W3 (好玩), S5",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3/cut/CUT-12_worldcup-vs-card.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3/cut/CUT-12_worldcup-vs-card.png"
+   }
+  },
+  {
+   "id": "CORNER",
+   "name": "exports/CORNER-01_creation-corner-invitation-phone",
+   "files": {
+    "full": "/tmp/space-video-doodle/prod/capture/P2P3/exports/CORNER-01_creation-corner-invitation-phone.png"
+   },
+   "note": "3D close-up of 小满·示例 + 「TWO SIDES / 两个人的创作角 · 一起留张纪念。」 + 「等待朋友本人明确参与。你不能替对方同意，也不会自动分享照片。」 (product has no invitation-image export; this is a full-resolution still of the real state)",
+   "storyboard": "S8"
+  },
+  {
+   "id": "CORNER-panel",
+   "name": "exports/CORNER-02_creation-corner-panel",
+   "sels": [
+    ".corner-panel"
+   ],
+   "clipCss": {
+    "x": 0,
+    "y": 455,
+    "width": 390,
+    "height": 390,
+    "n": 1,
+    "clipped": false,
+    "padClamped": true
+   },
+   "note": "the corner sheet alone (alpha die-cut + opaque)",
+   "storyboard": "S8",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3/exports/CORNER-02_creation-corner-panel.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3/exports/CORNER-02_creation-corner-panel.png"
+   }
+  },
+  {
+   "id": "CUT-08ui",
+   "name": "stills/CUT-08ui_memory-card-result-phone",
+   "files": {
+    "full": "/tmp/space-video-doodle/prod/capture/P2P3/stills/CUT-08ui_memory-card-result-phone.png"
+   },
+   "note": "phone after the download: 已发起下载… + preview 你的纪念卡",
+   "storyboard": "S9"
+  }
+ ],
+ "extra": {
+  "clock": "2026-10-07T22:40:00+08:00",
+  "svgs": [
+   "visitor-front",
+   "visitor-side",
+   "visitor-back",
+   "visitor-quarter",
+   "cast-yao",
+   "cast-man",
+   "cast-bei"
+  ],
+  "texts": {
+   "wardrobeLayers": "legs:front shoes:3 bottom:4 stance:undefined torso:0 arms:front top:4 head:undefined hair-back:2 skin:0 face:quarter features:neutral eyewear:3 hair-front:2 accessory:none",
+   "aiTag": "AI 判断：人海",
+   "wallCards": [
+    {
+     "id": "91331a15-f7ac-4f90-9555-f20f76792629",
+     "text": "小满·示例 照片墙：本场成员可见 拍摄于 21:48 · 视角：人海 · 作者选择 同一刻"
+    },
+    {
+     "id": "cca0cad1-60d9-4c04-8521-a47b9f15ce80",
+     "text": "阿宁 照片墙：本场成员可见 拍摄于 21:48 · 视角：人海 · AI 建议，未改动"
+    },
+    {
+     "id": "af59b7f3-7d6d-4820-810b-a8f82bda92c3",
+     "text": "北屿·示例 照片墙：本场成员可见 拍摄于 21:49 · 视角：细节 · 作者选择 同一刻"
+    },
+    {
+     "id": "f61f32ac-22ee-4a50-9cc5-6efb283fb2d6",
+     "text": "小满·示例 照片墙：本场成员可见 拍摄于 22:21 · 视角：身边 · 作者选择"
+    }
+   ],
+   "pending": "等待本人回应",
+   "acceptMs": 3343,
+   "chat": [
+    "嗨，欢迎来到「回声现场」。我是示例角色，由这个页面自动回复。 22:40",
+    "你拍到的是哪一面？ 22:40",
+    "返场那首我在人海里，手都举酸了！ 22:40 · 已保存",
+    "今晚的返场太好听了。 22:40"
+   ],
+   "cup": "第一轮 · 第1组 01 · 原创虚构专辑 午夜站台 纸灯乐队 1票 选《午夜站台》 02 · 原创虚构专辑 樱花电波 薄荷收音机 1票 选《樱花电波》 由发起者明确结束这一轮；离开或被移除时暂停晋级。",
+   "corner": "TWO SIDES / 两个人的创作角 × 一起留张纪念。 示例已确认这次操作。 重新读取 等待朋友本人明确参与。你不能替对方同意，也不会自动分享照片。 我选择撤销共同创作我的创作与邀请"
+  },
+  "memoryCard": {
+   "file": "/tmp/space-video-doodle/prod/capture/P2P3/exports/CUT-08_memory-card.png",
+   "suggested": "MusicSpace-memory-2026-10-07.png"
+  }
+ },
+ "log": [
+  "00:33:52 entered room",
+  "00:34:44 cast svgs [\"阿遥·示例\",\"小满·示例\",\"北屿·示例\"]",
+  "00:35:10 memory card downloaded {\"file\":\"/tmp/space-video-doodle/prod/capture/P2P3/exports/CUT-08_memory-card.png\",\"suggested\":\"MusicSpace-memory-2026-10-07.png\"}"
+ ],
+ "errors": [],
+ "console": []
+}

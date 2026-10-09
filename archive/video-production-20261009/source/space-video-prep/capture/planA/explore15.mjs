@@ -1,0 +1,12 @@
+import { launch, Session, sleep, BASE, PHOTOS } from './lib.mjs';
+import * as F from './flow.mjs';
+const browser = await launch();
+const s = await Session.open(browser, { url: BASE, width: 1440, height: 744, dpr: 1, name: 'live' });
+const p = s.page;
+await sleep(5000); await F.toDemo(p); await F.openMake(p);
+await F.pickFile(p, PHOTOS.unsure);
+await sleep(800);
+const html = await p.evaluate(() => { const d = document.querySelector('dialog.sp-dialog[open]'); const q = sel => [...d.querySelectorAll(sel)].map(e => e.outerHTML.replace(/\s+/g, ' ').slice(0, 520)); return { ai: q('[class*=ai]'), taken: q('[class*=taken]'), viewpoints: q('[class*=viewpoint]').slice(0, 3) }; });
+console.log(JSON.stringify(html, null, 1));
+await p.screenshot({ path: '/tmp/space-video-prep/stills/planA/40-unsure.png' });
+await browser.close();

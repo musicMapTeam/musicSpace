@@ -1,0 +1,119 @@
+{
+ "vp": "w768",
+ "scen": "inbox",
+ "afterGreet": {
+  "toastText": "招呼已送达，等待对方决定",
+  "toastVisible": true,
+  "display": "block",
+  "pointerEvents": "auto",
+  "z": "90",
+  "toast": [
+   283,
+   861,
+   485,
+   906
+  ],
+  "panelHidden": false,
+  "panelRect": [
+   12,
+   506,
+   751,
+   914
+  ],
+  "items": {
+   "#panel-close": {
+    "rect": [
+     694,
+     517,
+     740,
+     564
+    ],
+    "text": "×",
+    "hitsCentreFirst": [
+     "#panel-close",
+     "#panel-close",
+     "#panel-close",
+     "#panel-close",
+     "#panel-close"
+    ]
+   }
+  }
+ },
+ "inbox": {
+  "toastText": "招呼已送达，等待对方决定",
+  "toastVisible": true,
+  "display": "block",
+  "pointerEvents": "auto",
+  "z": "90",
+  "toast": [
+   274,
+   853,
+   494,
+   902
+  ],
+  "panelHidden": false,
+  "panelRect": [
+   12,
+   389,
+   751,
+   912
+  ],
+  "items": {
+   "#panel-close": {
+    "rect": [
+     694,
+     399,
+     740,
+     446
+    ],
+    "text": "×",
+    "hitsCentreFirst": [
+     "#panel-close",
+     "#panel-close",
+     "#panel-close",
+     "#panel-close",
+     "#panel-close"
+    ]
+   },
+   "#panel-body .eyebrow": {
+    "rect": [
+     32,
+     427,
+     199,
+     440
+    ],
+    "text": "同一首歌之后 / 认识一个人",
+    "hitsCentreFirst": [
+     "small.eyebrow",
+     "small.eyebrow",
+     "small.eyebrow",
+     "small.eyebrow",
+     "small.eyebrow"
+    ]
+   },
+   "#panel-body h2": {
+    "rect": [
+     32,
+     448,
+     679,
+     481
+    ],
+    "text": "有人向你招手吗？",
+    "hitsCentreFirst": [
+     "h2",
+     "h2",
+     "h2",
+     "h2",
+     "h2"
+    ]
+   }
+  },
+  "msSinceToast": 800
+ },
+ "tapAt": [
+  717,
+  423
+ ],
+ "closedByCentreTap": true,
+ "tapMsSinceToast": 1415
+}

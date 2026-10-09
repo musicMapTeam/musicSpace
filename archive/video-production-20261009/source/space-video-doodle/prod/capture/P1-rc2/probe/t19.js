@@ -1,0 +1,11 @@
+const out = {};
+await page.click('.private-chat .chat-close'); await sleep(700);
+out.chatClosed = await page.evaluate(() => !document.querySelector('.private-chat') || !document.querySelector('.private-chat').getClientRects().length);
+await page.click('nav.camera-nav [data-view="overview"]'); await sleep(2500);
+out.panelHidden = await page.evaluate(() => document.querySelector('#panel').hidden);
+out.sceneDetails = await page.evaluate(() => { const b = document.querySelector('#scene-details'); return b.innerText + ' ' + JSON.stringify(b.dataset); });
+await page.click('#scene-details'); await sleep(1200);
+await shot('26-room-panel');
+out.roomPanel = await txt('#panel');
+out.btns = (await btns()).filter(b => /data-open=/.test(b) && !/view=/.test(b));
+return out;

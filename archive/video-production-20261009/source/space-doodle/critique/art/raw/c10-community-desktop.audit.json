@@ -1,0 +1,17 @@
+{
+ "fonts": [],
+ "glyphs": [
+  "button#music-map-entry.music-map-entry>span [Doodle Marker] missing «↗» in «↗»",
+  "button#social-inbox.social-inbox [Doodle Marker] missing «♡» in «♡»",
+  "button#my-look.my-look>span [Doodle Marker] missing «↗» in «↗»",
+  "span#room-title [Doodle Display] missing «·» in «回声现场 · 示例场»",
+  "header>h2 [Doodle Display] missing «·» in «回声现场 · 示例场»",
+  "nav.conversation-actions>button [Doodle Marker] missing «↗» in «Music Map · 沿音乐探索 ↗»"
+ ],
+ "colors": [],
+ "tiny": [],
+ "whiteOnMarker": [],
+ "clipped": [],
+ "blurShadow": [],
+ "renderStyle": "doodle"
+}

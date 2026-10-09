@@ -1,0 +1,1720 @@
+{
+ "kind": "desktop",
+ "base": "http://127.0.0.1:4784/musicSpace/preview/",
+ "steps": [
+  {
+   "name": "boot ready",
+   "ok": true,
+   "detail": "GL ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version); 预览版 on the page: false",
+   "t": "2.2"
+  },
+  {
+   "name": "lobby button",
+   "ok": true,
+   "detail": "#join reads 「进入现场」",
+   "t": "3.7"
+  },
+  {
+   "name": "entry consent",
+   "ok": true,
+   "detail": "checked by tapping its label: true",
+   "t": "4.9"
+  },
+  {
+   "name": "entry submit",
+   "ok": true,
+   "detail": "submit reads 「进入现场」",
+   "t": "5.2"
+  },
+  {
+   "name": "onboarding card",
+   "ok": true,
+   "detail": "「第一次来 1/4 · 放一张今晚的照片」",
+   "t": "7.8"
+  },
+  {
+   "name": "card collapse/expand",
+   "ok": true,
+   "detail": "「收起」 then 「展开」",
+   "t": "10.8"
+  },
+  {
+   "name": "tour sample button",
+   "ok": true,
+   "detail": "「人海那张」",
+   "t": "10.9"
+  },
+  {
+   "name": "upload AI settled",
+   "ok": true,
+   "detail": "data-ai-key=sure:crowd; 「AI 判断：人海」",
+   "t": "11.7"
+  },
+  {
+   "name": "upload save",
+   "ok": true,
+   "detail": "「保存这张照片」 (viewpoint preselected by the AI)",
+   "t": "12.4"
+  },
+  {
+   "name": "wall after save",
+   "ok": true,
+   "detail": "panel: wall",
+   "t": "12.4"
+  },
+  {
+   "name": "wall offer",
+   "ok": true,
+   "detail": "「和 TA 交换这个视角」",
+   "t": "14.0"
+  },
+  {
+   "name": "exchange send",
+   "ok": true,
+   "detail": "「把这两张交给对方确认 ↗」",
+   "t": "15.5"
+  },
+  {
+   "name": "交换已接受",
+   "ok": true,
+   "detail": "「交换已接受」 3.2 s after sending",
+   "t": "18.7"
+  },
+  {
+   "name": "wave",
+   "ok": true,
+   "detail": "「向 北屿 招个手」",
+   "t": "26.0"
+  },
+  {
+   "name": "wave accepted",
+   "ok": true,
+   "detail": "× | 你们已经认识了 | 北屿 | 邀请共同创作 | 和 北屿 私聊 ↗ | 你们已经是朋友了。 | 移除朋友 | 向本场房主反馈 | 屏蔽这个人",
+   "t": "30.4"
+  },
+  {
+   "name": "chat opens with their lines",
+   "ok": true,
+   "detail": "嗨，欢迎来到「回声现场」！ | 04:29 | 你拍到的是哪一面？ | 04:29",
+   "t": "33.0"
+  },
+  {
+   "name": "chat reply",
+   "ok": true,
+   "detail": "我在二楼拍到了人海，你呢？ | 04:29 · 已发送 | 今晚的返场太好听了。 | 04:29",
+   "t": "38.6"
+  },
+  {
+   "name": "About",
+   "ok": true,
+   "detail": "button 「关于 Music Space」",
+   "t": "40.8"
+  },
+  {
+   "name": "音乐探索",
+   "ok": true,
+   "detail": "button 「音乐探索 ↗」 → /musicSpace/preview/music-map/#/explore; renderStyle=doodle",
+   "t": "48.1"
+  },
+  {
+   "name": "flip a card",
+   "ok": true,
+   "detail": "「翻开」",
+   "t": "50.1"
+  },
+  {
+   "name": "来源 from a hand card",
+   "ok": true,
+   "detail": "「来源」 opens the paper with its 来源 unfolded",
+   "t": "50.9"
+  },
+  {
+   "name": "← 返回现场",
+   "ok": true,
+   "detail": "button 「← 返回现场」 → /musicSpace/preview/?room=CT7EVUWZQ6L4; nickname on screen: false; #join 「本场信息」; panel null",
+   "t": "57.2"
+  },
+  {
+   "name": "network/console",
+   "ok": true,
+   "detail": "131 requests; /api 0, third-party 0, outside prefix 0, failed 0, HTTP>=400 0, console errors 0, warnings 0, page errors 0, programmatic clicks 0",
+   "t": "58.8"
+  }
+ ],
+ "states": {
+  "room-01-first-screen": {
+   "url": "/musicSpace/preview/",
+   "modal": null,
+   "body": "Music\nSpace\n现场进行中\n···\nMUSIC SPACE / LIVEHOUSE\n进到同一个现场\n这一晚，从这里开始\n♪\n这一晚的歌\n进入房间，留下你看到的那个瞬间\nENCORE / 01\n同一刻，另一面。\n\n同一晚，你拍了舞台，TA 拍了人海。AI 在本机给你一个视角建议，照片墙帮你找到同一刻的另一面，双方同意就交换。\n\n进入现场\n全景\n同场的人\n照片墙\n我的空间\n关于 Music Space\n这一晚的\n另一个视角，\n就在你身边。\nLivehouse 为每一场演出开一个房间，乐迷带着小人入场；散场后，留在场地的乐迷社群里。\n就是这一刻！",
+   "modalText": null,
+   "attrs": [
+    "@aria-label: Music Space",
+    "@aria-label: 房间信息",
+    "@aria-label: 三维 Livehouse 场景",
+    "@aria-label: 进入现场",
+    "@aria-label: 场景内可访问的地点",
+    "@aria-label: 场景机位",
+    "@aria-label: 我的音乐空间"
+   ],
+   "sysFallback": {},
+   "noDoodle": [],
+   "firstMiss": {},
+   "renderStyle": null
+  },
+  "room-02-join": {
+   "url": "/musicSpace/preview/",
+   "modal": null,
+   "body": "Music\nSpace\n现场进行中\n···\nMUSIC SPACE / LIVEHOUSE\n进到同一个现场\n这一晚，从这里开始\n♪\n这一晚的歌\n进入房间，留下你看到的那个瞬间\nENCORE / 01\n全景\n同场的人\n照片墙\n我的空间\n关于 Music Space\n×\n月台 Livehouse · 回声现场\n带上小人，进入现场\n\n进去后先放一张今晚的照片，看看你拍到的是哪一面。\n\n大家怎么叫你\n\n入场后随时能换装。\n\n现在换个造型 ↗\n这一场，我想怎样参与\n愿意打招呼\n别人可以向我招手\n安静参与\n照片照常分享，不接新招呼\n我愿意向本场成员展示我的昵称和小人\n进入现场\n\n关于 Music Space\n我是 Livehouse / 主办方，开个房\n这一晚的\n另一个视角，\n就在你身边。\nLivehouse 为每一场演出开一个房间，乐迷带着小人入场；散场后，留在场地的乐迷社群里。\n就是这一刻！",
+   "modalText": null,
+   "attrs": [
+    "@aria-label: Music Space",
+    "@aria-label: 房间信息",
+    "@aria-label: 三维 Livehouse 场景",
+    "@aria-label: 进入现场",
+    "@aria-label: 场景内可访问的地点",
+    "@aria-label: 场景机位",
+    "@aria-label: 我的音乐空间",
+    "@aria-label: 场景操作",
+    "@aria-label: 关闭操作面板",
+    "@aria-label: Music Space 的小人"
+   ],
+   "sysFallback": {},
+   "noDoodle": [],
+   "firstMiss": {},
+   "renderStyle": null
+  },
+  "room-02b-join-host-details": {
+   "url": "/musicSpace/preview/",
+   "modal": null,
+   "body": "Music\nSpace\n现场进行中\n···\nMUSIC SPACE / LIVEHOUSE\n进到同一个现场\n这一晚，从这里开始\n♪\n这一晚的歌\n进入房间，留下你看到的那个瞬间\nENCORE / 01\n全景\n同场的人\n照片墙\n我的空间\n关于 Music Space\n×\n月台 Livehouse · 回声现场\n带上小人，进入现场\n\n进去后先放一张今晚的照片，看看你拍到的是哪一面。\n\n大家怎么叫你\n\n入场后随时能换装。\n\n现在换个造型 ↗\n这一场，我想怎样参与\n愿意打招呼\n别人可以向我招手\n安静参与\n照片照常分享，不接新招呼\n我愿意向本场成员展示我的昵称和小人\n进入现场\n\n关于 Music Space\n我是 Livehouse / 主办方，开个房\n\n为每一场演出开一个房间；散场后，乐迷留在你的乐迷社群里。\n\n开一个房间\n这一晚的\n另一个视角，\n就在你身边。\nLivehouse 为每一场演出开一个房间，乐迷带着小人入场；散场后，留在场地的乐迷社群里。\n就是这一刻！",
+   "modalText": null,
+   "attrs": [
+    "@aria-label: Music Space",
+    "@aria-label: 房间信息",
+    "@aria-label: 三维 Livehouse 场景",
+    "@aria-label: 进入现场",
+    "@aria-label: 场景内可访问的地点",
+    "@aria-label: 场景机位",
+    "@aria-label: 我的音乐空间",
+    "@aria-label: 场景操作",
+    "@aria-label: 关闭操作面板",
+    "@aria-label: Music Space 的小人"
+   ],
+   "sysFallback": {},
+   "noDoodle": [],
+   "firstMiss": {},
+   "renderStyle": null
+  },
+  "room-04-onboarding-card": {
+   "url": "/musicSpace/preview/?room=CT7EVUWZQ6L4",
+   "modal": null,
+   "body": "Music\nSpace\n4 位同场\n音乐探索\n↗\n♡\n我的小人\n↗\n···\n月台 Livehouse\n回声现场\n4 位已加入 · 正在进行\n照片墙\n阿遥 · 可招呼\n小满 · 可招呼\n北屿 · 可招呼\n访客8481 · 我\n♪\n这一晚 · 晚班列车\n本场原创声景\nENCORE / 01\n\n第一次来 1/4\n·\n放一张今晚的照片\n\n收起\n\n挑一张，或者用你自己的。\n\n人海那张\n舞台那张\n用我自己的照片\n跳过路线\n全景\n同场的人\n照片墙\n我的空间\n关于 Music Space",
+   "modalText": null,
+   "attrs": [
+    "@aria-label: Music Space",
+    "@aria-label: 音乐探索",
+    "@aria-label: 招呼、朋友和私聊",
+    "@aria-label: 我的小人 · 换装",
+    "@aria-label: 房间信息",
+    "@aria-label: 三维 Livehouse 场景",
+    "@aria-label: 查看场次详情：回声现场",
+    "@aria-label: 场景内可访问的地点",
+    "@aria-label: 走近照片墙",
+    "@title: 照片墙",
+    "@aria-label: 走近阿遥 · 可招呼",
+    "@title: 阿遥 · 可招呼",
+    "@aria-label: 走近小满 · 可招呼",
+    "@title: 小满 · 可招呼",
+    "@aria-label: 走近北屿 · 可招呼",
+    "@title: 北屿 · 可招呼",
+    "@aria-label: 走近访客8481 · 我",
+    "@title: 访客8481 · 我",
+    "@aria-label: 第一次来",
+    "@aria-label: 收起路线",
+    "@aria-label: 场景机位",
+    "@aria-label: 我的音乐空间"
+   ],
+   "sysFallback": {},
+   "noDoodle": [],
+   "firstMiss": {},
+   "renderStyle": null
+  },
+  "room-03-room": {
+   "url": "/musicSpace/preview/?room=CT7EVUWZQ6L4",
+   "modal": null,
+   "body": "Music\nSpace\n4 位同场\n音乐探索\n↗\n♡\n我的小人\n↗\n···\n月台 Livehouse\n回声现场\n4 位已加入 · 正在进行\n照片墙\n阿遥 · 可招呼\n小满 · 可招呼\n北屿 · 可招呼\n访客8481 · 我\n♪\n这一晚 · 晚班列车\n本场原创声景\nENCORE / 01\n\n第一次来 1/4\n·\n放一张今晚的照片\n\n展开\n同一晚，各自的视角。\n\n先放一张你的照片，看看你拍到的是哪一面。\n\n本场信息\n愿意打招呼 · 更改\n留下第一张照片\n回看这一晚\n全景\n同场的人\n照片墙\n我的空间\n关于 Music Space",
+   "modalText": null,
+   "attrs": [
+    "@aria-label: Music Space",
+    "@aria-label: 音乐探索",
+    "@aria-label: 招呼、朋友和私聊",
+    "@aria-label: 我的小人 · 换装",
+    "@aria-label: 房间信息",
+    "@aria-label: 三维 Livehouse 场景",
+    "@aria-label: 查看场次详情：回声现场",
+    "@aria-label: 场景内可访问的地点",
+    "@aria-label: 走近照片墙",
+    "@title: 照片墙",
+    "@aria-label: 走近阿遥 · 可招呼",
+    "@title: 阿遥 · 可招呼",
+    "@aria-label: 走近小满 · 可招呼",
+    "@title: 小满 · 可招呼",
+    "@aria-label: 走近北屿 · 可招呼",
+    "@title: 北屿 · 可招呼",
+    "@aria-label: 走近访客8481 · 我",
+    "@title: 访客8481 · 我",
+    "@aria-label: 第一次来",
+    "@aria-label: 展开路线",
+    "@aria-label: 场景机位",
+    "@aria-label: 我的音乐空间"
+   ],
+   "sysFallback": {},
+   "noDoodle": [],
+   "firstMiss": {},
+   "renderStyle": null
+  },
+  "room-05-upload": {
+   "url": "/musicSpace/preview/?room=CT7EVUWZQ6L4",
+   "modal": null,
+   "body": "Music\nSpace\n4 位同场\n音乐探索\n↗\n♡\n我的小人\n↗\n···\n月台 Livehouse\n回声现场\n4 位已加入 · 正在进行\n照片墙\n阿遥 · 可招呼\n小满 · 可招呼\n北屿 · 可招呼\n访客8481 · 我\n♪\n这一晚 · 晚班列车\n本场原创声景\nENCORE / 01\n全景\n同场的人\n照片墙\n我的空间\n关于 Music Space\n×\n留一个现场瞬间\n这一张，由你决定给谁看。\n用我自己的照片\n\n或者挑一张今晚的\n\n人海那张\n舞台那张\n\n拍摄于 21:48\n·\n来自照片自带的信息\n\n修改时间\n我拍的这一面\n舞台\n灯光下的那一面\n人海\n一起举手的那一面\n身边\n陪你听歌的那一面\n细节\n只有你留意的那一面\n\nAI 判断：人海\n\n配对时用它找另一面，你说了算。\n\n可见范围\n仅自己保存\n分享给本场成员\n\n照片会缩小，并去掉位置信息。\n\n保存这张照片",
+   "modalText": null,
+   "attrs": [
+    "@aria-label: Music Space",
+    "@aria-label: 音乐探索",
+    "@aria-label: 招呼、朋友和私聊",
+    "@aria-label: 我的小人 · 换装",
+    "@aria-label: 房间信息",
+    "@aria-label: 三维 Livehouse 场景",
+    "@aria-label: 查看场次详情：回声现场",
+    "@aria-label: 场景内可访问的地点",
+    "@aria-label: 走近照片墙",
+    "@title: 照片墙",
+    "@aria-label: 走近阿遥 · 可招呼",
+    "@title: 阿遥 · 可招呼",
+    "@aria-label: 走近小满 · 可招呼",
+    "@title: 小满 · 可招呼",
+    "@aria-label: 走近北屿 · 可招呼",
+    "@title: 北屿 · 可招呼",
+    "@aria-label: 走近访客8481 · 我",
+    "@title: 访客8481 · 我",
+    "@aria-label: 场景机位",
+    "@aria-label: 我的音乐空间",
+    "@aria-label: 场景操作",
+    "@aria-label: 关闭操作面板",
+    "@alt: 待保存的照片",
+    "@title: AI 在本机判断，照片不上传"
+   ],
+   "sysFallback": {},
+   "noDoodle": [],
+   "firstMiss": {
+    "Doodle Digits→Doodle Marker": "拍摄于"
+   },
+   "renderStyle": null
+  },
+  "room-06-wall": {
+   "url": "/musicSpace/preview/?room=CT7EVUWZQ6L4",
+   "modal": null,
+   "body": "Music\nSpace\n4 位同场\n音乐探索\n↗\n♡\n我的小人\n↗\n···\n月台 Livehouse\n回声现场\n4 位已加入 · 正在进行\n照片墙\n阿遥 · 可招呼\n小满 · 可招呼\n北屿 · 可招呼\n访客8481 · 我\n♪\n这一晚 · 晚班列车\n本场原创声景\nENCORE / 01\n全景\n同场的人\n照片墙\n我的空间\n关于 Music Space\n×\n同一场 / 不同视角\n这一晚，大家看到了什么？\n21:47\n·\n同一刻\n·\n3 个视角：舞台\n·\n人海\n·\n细节\n\n3 分钟内拍下\n\n同一刻的另一面\n\n同一刻 · 21:47，相差不到 1 分钟；你拍人海，TA 拍舞台\n\n和 TA 交换这个视角\n阿遥\n照片墙：本场成员可见\n\n拍摄于 21:47\n·\n视角：舞台\n·\n作者选择\n\n小满\n照片墙：本场成员可见\n\n拍摄于 21:48\n·\n视角：人海\n·\n作者选择\n\n同一刻\n访客8481\n照片墙：本场成员可见\n\n拍摄于 21:48\n·\n视角：人海\n·\nAI 建议，未改动\n\n北屿\n照片墙：本场成员可见\n\n拍摄于 21:49\n·\n视角：细节\n·\n作者选择\n\n同一刻\n22:21\n小满\n照片墙：本场成员可见\n\n拍摄于 22:21\n·\n视角：身边\n·\n作者选择\n\n刷新照片\n放上我的一张\n照片交换\n已分享给本场成员",
+   "modalText": null,
+   "attrs": [
+    "@aria-label: Music Space",
+    "@aria-label: 音乐探索",
+    "@aria-label: 招呼、朋友和私聊",
+    "@aria-label: 我的小人 · 换装",
+    "@aria-label: 房间信息",
+    "@aria-label: 三维 Livehouse 场景",
+    "@aria-label: 查看场次详情：回声现场",
+    "@aria-label: 场景内可访问的地点",
+    "@aria-label: 走近照片墙",
+    "@title: 照片墙",
+    "@aria-label: 走近阿遥 · 可招呼",
+    "@title: 阿遥 · 可招呼",
+    "@aria-label: 走近小满 · 可招呼",
+    "@title: 小满 · 可招呼",
+    "@aria-label: 走近北屿 · 可招呼",
+    "@title: 北屿 · 可招呼",
+    "@aria-label: 走近访客8481 · 我",
+    "@title: 访客8481 · 我",
+    "@aria-label: 场景机位",
+    "@aria-label: 我的音乐空间",
+    "@aria-label: 场景操作",
+    "@aria-label: 关闭操作面板",
+    "@aria-label: 和 TA 交换这个视角（阿遥 的照片）",
+    "@alt: 同场观众拍摄的现场照片",
+    "@alt: 我拍摄的现场照片"
+   ],
+   "sysFallback": {},
+   "noDoodle": [],
+   "firstMiss": {
+    "Doodle Digits→Doodle Marker": "拍摄于"
+   },
+   "renderStyle": null
+  },
+  "room-06b-exchange-compose": {
+   "url": "/musicSpace/preview/?room=CT7EVUWZQ6L4",
+   "modal": null,
+   "body": "Music\nSpace\n5 位同场\n音乐探索\n↗\n♡\n我的小人\n↗\n···\n月台 Livehouse\n回声现场\n5 位已加入 · 正在进行\n照片墙\n阿遥 · 可招呼\n小满 · 可招呼\n北屿 · 可招呼\n访客8481 · 我\n林间 · 安静\n♪\n这一晚 · 晚班列车\n本场原创声景\nENCORE / 01\n全景\n同场的人\n照片墙\n我的空间\n关于 Music Space\n←\n同一晚 / 另一面\n交换一个视角\n×\n\n用我拍下的，换 阿遥 看到的。\n\n我提供的\n我选中的这一张\n阿遥的\n照片墙上的这一张\n我提供哪一张\n选择自己拍的照片\n我的第 1 张 · 已上墙 · 同一刻的另一面（推荐）\n我的第 1 张 · 已上墙\n同一刻的另一面（推荐）\n\n同一刻 · 21:47，相差不到 1 分钟；你拍人海，TA 拍舞台\n\n我同意先给小图，TA 接受后再给原图\n把这两张交给对方确认 ↗\n已分享给本场成员",
+   "modalText": null,
+   "attrs": [
+    "@aria-label: Music Space",
+    "@aria-label: 音乐探索",
+    "@aria-label: 招呼、朋友和私聊",
+    "@aria-label: 我的小人 · 换装",
+    "@aria-label: 房间信息",
+    "@aria-label: 三维 Livehouse 场景",
+    "@aria-label: 查看场次详情：回声现场",
+    "@aria-label: 场景内可访问的地点",
+    "@aria-label: 走近照片墙",
+    "@title: 照片墙",
+    "@aria-label: 走近阿遥 · 可招呼",
+    "@title: 阿遥 · 可招呼",
+    "@aria-label: 走近小满 · 可招呼",
+    "@title: 小满 · 可招呼",
+    "@aria-label: 走近北屿 · 可招呼",
+    "@title: 北屿 · 可招呼",
+    "@aria-label: 走近访客8481 · 我",
+    "@title: 访客8481 · 我",
+    "@aria-label: 走近林间 · 安静",
+    "@title: 林间 · 安静",
+    "@aria-label: 场景机位",
+    "@aria-label: 我的音乐空间",
+    "@aria-label: 照片交换",
+    "@aria-label: 返回交换列表",
+    "@aria-label: 关闭照片交换",
+    "@alt: 我选择提供的现场照片",
+    "@alt: 希望交换的对方现场照片"
+   ],
+   "sysFallback": {},
+   "noDoodle": [],
+   "firstMiss": {},
+   "renderStyle": null
+  },
+  "room-06c-exchange-pending": {
+   "url": "/musicSpace/preview/?room=CT7EVUWZQ6L4",
+   "modal": null,
+   "body": "Music\nSpace\n5 位同场\n音乐探索\n↗\n♡\n我的小人\n↗\n···\n月台 Livehouse\n回声现场\n5 位已加入 · 正在进行\n照片墙\n阿遥 · 可招呼\n小满 · 可招呼\n北屿 · 可招呼\n访客8481 · 我\n林间 · 安静\n♪\n这一晚 · 晚班列车\n本场原创声景\nENCORE / 01\n全景\n同场的人\n照片墙\n我的空间\n关于 Music Space\n←\n同一晚 / 另一面\n交换一个视角\n×\n\n等待对方回应\n\n和 阿遥 的两张照片\n我提供的\n这次确定的一张\n阿遥提供的\n这次确定的一张\n\n有效至 10/9 04:29\n\n等 TA 接受后，就能互看原图。\n\n撤回这个申请刷新\n已分享给本场成员",
+   "modalText": null,
+   "attrs": [
+    "@aria-label: Music Space",
+    "@aria-label: 音乐探索",
+    "@aria-label: 招呼、朋友和私聊",
+    "@aria-label: 我的小人 · 换装",
+    "@aria-label: 房间信息",
+    "@aria-label: 三维 Livehouse 场景",
+    "@aria-label: 查看场次详情：回声现场",
+    "@aria-label: 场景内可访问的地点",
+    "@aria-label: 走近照片墙",
+    "@title: 照片墙",
+    "@aria-label: 走近阿遥 · 可招呼",
+    "@title: 阿遥 · 可招呼",
+    "@aria-label: 走近小满 · 可招呼",
+    "@title: 小满 · 可招呼",
+    "@aria-label: 走近北屿 · 可招呼",
+    "@title: 北屿 · 可招呼",
+    "@aria-label: 走近访客8481 · 我",
+    "@title: 访客8481 · 我",
+    "@aria-label: 走近林间 · 安静",
+    "@title: 林间 · 安静",
+    "@aria-label: 场景机位",
+    "@aria-label: 我的音乐空间",
+    "@aria-label: 照片交换",
+    "@aria-label: 返回交换列表",
+    "@aria-label: 关闭照片交换",
+    "@alt: 我提供的照片",
+    "@alt: 阿遥提供的照片"
+   ],
+   "sysFallback": {},
+   "noDoodle": [],
+   "firstMiss": {},
+   "renderStyle": null
+  },
+  "room-07-accepted": {
+   "url": "/musicSpace/preview/?room=CT7EVUWZQ6L4",
+   "modal": null,
+   "body": "Music\nSpace\n5 位同场\n音乐探索\n↗\n♡\n我的小人\n↗\n···\n月台 Livehouse\n回声现场\n5 位已加入 · 正在进行\n照片墙\n阿遥 · 可招呼\n小满 · 可招呼\n北屿 · 可招呼\n访客8481 · 我\n林间 · 安静\n♪\n这一晚 · 晚班列车\n本场原创声景\nENCORE / 01\n全景\n同场的人\n照片墙\n我的空间\n关于 Music Space\n←\n同一晚 / 另一面\n交换一个视角\n×\n\n交换已接受\n\n和 阿遥 的两张照片\n我提供的\n这次确定的一张\n阿遥提供的\n这次确定的一张\n\n散场后也能在「照片交换」里看。\n\n撤销这次交换刷新",
+   "modalText": null,
+   "attrs": [
+    "@aria-label: Music Space",
+    "@aria-label: 音乐探索",
+    "@aria-label: 招呼、朋友和私聊",
+    "@aria-label: 我的小人 · 换装",
+    "@aria-label: 房间信息",
+    "@aria-label: 三维 Livehouse 场景",
+    "@aria-label: 查看场次详情：回声现场",
+    "@aria-label: 场景内可访问的地点",
+    "@aria-label: 走近照片墙",
+    "@title: 照片墙",
+    "@aria-label: 走近阿遥 · 可招呼",
+    "@title: 阿遥 · 可招呼",
+    "@aria-label: 走近小满 · 可招呼",
+    "@title: 小满 · 可招呼",
+    "@aria-label: 走近北屿 · 可招呼",
+    "@title: 北屿 · 可招呼",
+    "@aria-label: 走近访客8481 · 我",
+    "@title: 访客8481 · 我",
+    "@aria-label: 走近林间 · 安静",
+    "@title: 林间 · 安静",
+    "@aria-label: 场景机位",
+    "@aria-label: 我的音乐空间",
+    "@aria-label: 照片交换",
+    "@aria-label: 返回交换列表",
+    "@aria-label: 关闭照片交换",
+    "@alt: 我提供的照片",
+    "@alt: 阿遥提供的照片"
+   ],
+   "sysFallback": {},
+   "noDoodle": [],
+   "firstMiss": {},
+   "renderStyle": null
+  },
+  "room-07b-after-exchange": {
+   "url": "/musicSpace/preview/?room=CT7EVUWZQ6L4",
+   "modal": null,
+   "body": "Music\nSpace\n5 位同场\n音乐探索\n↗\n♡\n我的小人\n↗\n···\n月台 Livehouse\n回声现场\n5 位已加入 · 正在进行\n照片墙\n阿遥 · 可招呼\n小满 · 可招呼\n北屿 · 可招呼\n访客8481 · 我\n林间 · 安静\n♪\n这一晚 · 晚班列车\n本场原创声景\nENCORE / 01\n\n第一次来 4/4\n·\n招个手 / 私聊 / 回看这一晚\n\n收起\n\n向同场的人招个手，TA 接受就能私聊。\n\n看看同场的人\n回看这一晚\n跳过路线\n全景\n同场的人\n照片墙\n我的空间\n关于 Music Space",
+   "modalText": null,
+   "attrs": [
+    "@aria-label: Music Space",
+    "@aria-label: 音乐探索",
+    "@aria-label: 招呼、朋友和私聊",
+    "@aria-label: 我的小人 · 换装",
+    "@aria-label: 房间信息",
+    "@aria-label: 三维 Livehouse 场景",
+    "@aria-label: 查看场次详情：回声现场",
+    "@aria-label: 场景内可访问的地点",
+    "@aria-label: 走近照片墙",
+    "@title: 照片墙",
+    "@aria-label: 走近阿遥 · 可招呼",
+    "@title: 阿遥 · 可招呼",
+    "@aria-label: 走近小满 · 可招呼",
+    "@title: 小满 · 可招呼",
+    "@aria-label: 走近北屿 · 可招呼",
+    "@title: 北屿 · 可招呼",
+    "@aria-label: 走近访客8481 · 我",
+    "@title: 访客8481 · 我",
+    "@aria-label: 走近林间 · 安静",
+    "@title: 林间 · 安静",
+    "@aria-label: 第一次来",
+    "@aria-label: 收起路线",
+    "@aria-label: 场景机位",
+    "@aria-label: 我的音乐空间"
+   ],
+   "sysFallback": {},
+   "noDoodle": [],
+   "firstMiss": {},
+   "renderStyle": null
+  },
+  "room-08a-people": {
+   "url": "/musicSpace/preview/?room=CT7EVUWZQ6L4",
+   "modal": null,
+   "body": "Music\nSpace\n5 位同场\n音乐探索\n↗\n♡\n我的小人\n↗\n···\n月台 Livehouse\n回声现场\n5 位已加入 · 正在进行\n照片墙\n阿遥 · 可招呼\n小满 · 可招呼\n北屿 · 可招呼\n访客8481 · 我\n林间 · 安静\n♪\n这一晚 · 晚班列车\n本场原创声景\nENCORE / 01\n全景\n同场的人\n照片墙\n我的空间\n关于 Music Space\n×\n同一晚，同一场\n看看同场的人\n阿遥\n愿意打招呼 · 看看 TA 的视角 →\n小满\n愿意打招呼 · 看看 TA 的视角 →\n北屿\n愿意打招呼 · 看看 TA 的视角 →\n林间\n安静参与 · 看看 TA 的视角 →",
+   "modalText": null,
+   "attrs": [
+    "@aria-label: Music Space",
+    "@aria-label: 音乐探索",
+    "@aria-label: 招呼、朋友和私聊",
+    "@aria-label: 我的小人 · 换装",
+    "@aria-label: 房间信息",
+    "@aria-label: 三维 Livehouse 场景",
+    "@aria-label: 查看场次详情：回声现场",
+    "@aria-label: 场景内可访问的地点",
+    "@aria-label: 走近照片墙",
+    "@title: 照片墙",
+    "@aria-label: 走近阿遥 · 可招呼",
+    "@title: 阿遥 · 可招呼",
+    "@aria-label: 走近小满 · 可招呼",
+    "@title: 小满 · 可招呼",
+    "@aria-label: 走近北屿 · 可招呼",
+    "@title: 北屿 · 可招呼",
+    "@aria-label: 走近访客8481 · 我",
+    "@title: 访客8481 · 我",
+    "@aria-label: 走近林间 · 安静",
+    "@title: 林间 · 安静",
+    "@aria-label: 场景机位",
+    "@aria-label: 我的音乐空间",
+    "@aria-label: 场景操作",
+    "@aria-label: 关闭操作面板"
+   ],
+   "sysFallback": {},
+   "noDoodle": [],
+   "firstMiss": {},
+   "renderStyle": null
+  },
+  "room-08b-person": {
+   "url": "/musicSpace/preview/?room=CT7EVUWZQ6L4",
+   "modal": null,
+   "body": "←\nMusic\nSpace\n5 位同场\n音乐探索\n↗\n♡\n我的小人\n↗\n···\n全景\n同场的人\n照片墙\n我的空间\n关于 Music Space\n×\n同场的人\n北屿\n\n先招个手，TA 接受了就是朋友。\n\n向 北屿 招个手\n向本场房主反馈\n屏蔽这个人",
+   "modalText": null,
+   "attrs": [
+    "@aria-label: 返回全景",
+    "@aria-label: Music Space",
+    "@aria-label: 音乐探索",
+    "@aria-label: 招呼、朋友和私聊",
+    "@aria-label: 我的小人 · 换装",
+    "@aria-label: 房间信息",
+    "@aria-label: 三维 Livehouse 场景",
+    "@aria-label: 场景内可访问的地点",
+    "@aria-label: 场景机位",
+    "@aria-label: 我的音乐空间",
+    "@aria-label: 场景操作",
+    "@aria-label: 关闭操作面板"
+   ],
+   "sysFallback": {},
+   "noDoodle": [],
+   "firstMiss": {},
+   "renderStyle": null
+  },
+  "room-08c-person-waved": {
+   "url": "/musicSpace/preview/?room=CT7EVUWZQ6L4",
+   "modal": null,
+   "body": "←\nMusic\nSpace\n5 位同场\n音乐探索\n↗\n♡\n我的小人\n↗\n···\n全景\n同场的人\n照片墙\n我的空间\n关于 Music Space\n×\n同场的人\n北屿\n北屿\n已招手，等待对方回应\n撤回招呼\n屏蔽\n向本场房主反馈\n屏蔽这个人\n招呼已送达，等待对方回应",
+   "modalText": null,
+   "attrs": [
+    "@aria-label: 返回全景",
+    "@aria-label: Music Space",
+    "@aria-label: 音乐探索",
+    "@aria-label: 招呼、朋友和私聊",
+    "@aria-label: 我的小人 · 换装",
+    "@aria-label: 房间信息",
+    "@aria-label: 三维 Livehouse 场景",
+    "@aria-label: 场景内可访问的地点",
+    "@aria-label: 场景机位",
+    "@aria-label: 我的音乐空间",
+    "@aria-label: 场景操作",
+    "@aria-label: 关闭操作面板"
+   ],
+   "sysFallback": {},
+   "noDoodle": [],
+   "firstMiss": {},
+   "renderStyle": null
+  },
+  "room-08d-person-friend": {
+   "url": "/musicSpace/preview/?room=CT7EVUWZQ6L4",
+   "modal": null,
+   "body": "←\nMusic\nSpace\n5 位同场\n音乐探索\n↗\n♡\n2\n我的小人\n↗\n···\n全景\n同场的人\n照片墙\n我的空间\n关于 Music Space\n×\n你们已经认识了\n北屿\n邀请共同创作\n和 北屿 私聊 ↗\n\n你们已经是朋友了。\n\n移除朋友\n向本场房主反馈\n屏蔽这个人\n招呼已送达，等待对方回应",
+   "modalText": null,
+   "attrs": [
+    "@aria-label: 返回全景",
+    "@aria-label: Music Space",
+    "@aria-label: 音乐探索",
+    "@aria-label: 有新招呼或未读消息",
+    "@aria-label: 我的小人 · 换装",
+    "@aria-label: 房间信息",
+    "@aria-label: 三维 Livehouse 场景",
+    "@aria-label: 场景内可访问的地点",
+    "@aria-label: 场景机位",
+    "@aria-label: 我的音乐空间",
+    "@aria-label: 场景操作",
+    "@aria-label: 关闭操作面板"
+   ],
+   "sysFallback": {},
+   "noDoodle": [],
+   "firstMiss": {},
+   "renderStyle": null
+  },
+  "room-08e-chat-welcome": {
+   "url": "/musicSpace/preview/?room=CT7EVUWZQ6L4",
+   "modal": null,
+   "body": "←\nMusic\nSpace\n5 位同场\n音乐探索\n↗\n♡\n我的小人\n↗\n···\n北屿 · 近景\n认识一下\n全景\n同场的人\n照片墙\n我的空间\n关于 Music Space\n←\nONE TO ONE\n北屿\n×\n你们已经是朋友了。\n\n嗨，欢迎来到「回声现场」！\n\n04:29\n\n你拍到的是哪一面？\n\n04:29\n留一句话\n发送 ↗\n回看这一晚",
+   "modalText": null,
+   "attrs": [
+    "@aria-label: 返回全景",
+    "@aria-label: Music Space",
+    "@aria-label: 音乐探索",
+    "@aria-label: 招呼、朋友和私聊",
+    "@aria-label: 我的小人 · 换装",
+    "@aria-label: 房间信息",
+    "@aria-label: 三维 Livehouse 场景",
+    "@aria-label: 场景内可访问的地点",
+    "@title: 返回全景看看大家",
+    "@aria-label: 场景机位",
+    "@aria-label: 我的音乐空间",
+    "@aria-label: 私聊",
+    "@aria-label: 返回对话列表",
+    "@aria-label: 关闭私聊",
+    "@aria-label: 消息记录",
+    "@placeholder: 比如，刚刚哪首歌最喜欢？"
+   ],
+   "sysFallback": {},
+   "noDoodle": [],
+   "firstMiss": {},
+   "renderStyle": null
+  },
+  "room-08-chat": {
+   "url": "/musicSpace/preview/?room=CT7EVUWZQ6L4",
+   "modal": null,
+   "body": "←\nMusic\nSpace\n5 位同场\n音乐探索\n↗\n♡\n我的小人\n↗\n···\n北屿 · 近景\n认识一下\n全景\n同场的人\n照片墙\n我的空间\n关于 Music Space\n←\nONE TO ONE\n北屿\n×\n你们已经是朋友了。\n\n嗨，欢迎来到「回声现场」！\n\n04:29\n\n你拍到的是哪一面？\n\n04:29\n\n我在二楼拍到了人海，你呢？\n\n04:29 · 已发送\n\n今晚的返场太好听了。\n\n04:29\n留一句话\n发送 ↗\n回看这一晚",
+   "modalText": null,
+   "attrs": [
+    "@aria-label: 返回全景",
+    "@aria-label: Music Space",
+    "@aria-label: 音乐探索",
+    "@aria-label: 招呼、朋友和私聊",
+    "@aria-label: 我的小人 · 换装",
+    "@aria-label: 房间信息",
+    "@aria-label: 三维 Livehouse 场景",
+    "@aria-label: 场景内可访问的地点",
+    "@title: 返回全景看看大家",
+    "@aria-label: 场景机位",
+    "@aria-label: 我的音乐空间",
+    "@aria-label: 私聊",
+    "@aria-label: 返回对话列表",
+    "@aria-label: 关闭私聊",
+    "@aria-label: 消息记录",
+    "@placeholder: 比如，刚刚哪首歌最喜欢？"
+   ],
+   "sysFallback": {},
+   "noDoodle": [],
+   "firstMiss": {
+    "Doodle Digits→Doodle Marker": "已发送"
+   },
+   "renderStyle": null
+  },
+  "room-10-about": {
+   "url": "/musicSpace/preview/?room=CT7EVUWZQ6L4",
+   "modal": null,
+   "body": "←\nMusic\nSpace\n5 位同场\n音乐探索\n↗\n♡\n我的小人\n↗\n···\n北屿 · 近景\n认识一下\n全景\n同场的人\n照片墙\n我的空间\n关于 Music Space\n×\n同一刻，另一面\n关于 Music Space\n\n同一晚，你拍了舞台，TA 拍了人海。Music Space 让这两面在同一个房间里相遇。\n\n这是什么\n\n同场的人带着手绘小人，走进同一个三维 Livehouse 房间。放一张今晚的照片，照片墙会把同一刻、拍到另一面的照片排在一起；双方都同意，就能交换。还能向同场的人招手、私聊，一起玩专辑世界杯。散场后，回顾和纪念卡都留着。\n\n给 Livehouse\n\n为每一场演出开一个房间，乐迷带着小人入场。散场后，乐迷留在你的乐迷社群里，下一场的预告也直接发在那里。\n\nAI\n\n放照片时，AI 在你的设备上建议它拍的是舞台、人海、身边还是细节；没把握就说「不确定」，由你来选。\n\n第一次进入现场后，模型（约 10 MB）会在后台下载；开了省流量，就等你放照片时再下载。\n\n隐私\n\n不用真名，也不用手机号。照片给谁看由你决定，放进来时会缩小、去掉位置信息。交换照片、成为朋友，都要双方同意。\n\n在线版\n\n在线版里的场地、观众和照片是演示内容，观众会自动回复。\n\n重新开始\n版本\n\n版本 0.22.0 · 预览版：发布前的测试副本，不是最终版本",
+   "modalText": null,
+   "attrs": [
+    "@aria-label: 返回全景",
+    "@aria-label: Music Space",
+    "@aria-label: 音乐探索",
+    "@aria-label: 招呼、朋友和私聊",
+    "@aria-label: 我的小人 · 换装",
+    "@aria-label: 房间信息",
+    "@aria-label: 三维 Livehouse 场景",
+    "@aria-label: 场景内可访问的地点",
+    "@title: 返回全景看看大家",
+    "@aria-label: 场景机位",
+    "@aria-label: 我的音乐空间",
+    "@aria-label: 场景操作",
+    "@aria-label: 关闭操作面板"
+   ],
+   "sysFallback": {},
+   "noDoodle": [],
+   "firstMiss": {},
+   "renderStyle": null
+  },
+  "room-10b-about-online": {
+   "url": "/musicSpace/preview/?room=CT7EVUWZQ6L4",
+   "modal": null,
+   "body": "←\nMusic\nSpace\n5 位同场\n音乐探索\n↗\n♡\n我的小人\n↗\n···\n北屿 · 近景\n认识一下\n全景\n同场的人\n照片墙\n我的空间\n关于 Music Space\n×\n同一刻，另一面\n关于 Music Space\n\n同一晚，你拍了舞台，TA 拍了人海。Music Space 让这两面在同一个房间里相遇。\n\n这是什么\n\n同场的人带着手绘小人，走进同一个三维 Livehouse 房间。放一张今晚的照片，照片墙会把同一刻、拍到另一面的照片排在一起；双方都同意，就能交换。还能向同场的人招手、私聊，一起玩专辑世界杯。散场后，回顾和纪念卡都留着。\n\n给 Livehouse\n\n为每一场演出开一个房间，乐迷带着小人入场。散场后，乐迷留在你的乐迷社群里，下一场的预告也直接发在那里。\n\nAI\n\n放照片时，AI 在你的设备上建议它拍的是舞台、人海、身边还是细节；没把握就说「不确定」，由你来选。\n\n第一次进入现场后，模型（约 10 MB）会在后台下载；开了省流量，就等你放照片时再下载。\n\n隐私\n\n不用真名，也不用手机号。照片给谁看由你决定，放进来时会缩小、去掉位置信息。交换照片、成为朋友，都要双方同意。\n\n在线版\n\n在线版里的场地、观众和照片是演示内容，观众会自动回复。\n\n重新开始\n版本\n\n版本 0.22.0 · 预览版：发布前的测试副本，不是最终版本",
+   "modalText": null,
+   "attrs": [
+    "@aria-label: 返回全景",
+    "@aria-label: Music Space",
+    "@aria-label: 音乐探索",
+    "@aria-label: 招呼、朋友和私聊",
+    "@aria-label: 我的小人 · 换装",
+    "@aria-label: 房间信息",
+    "@aria-label: 三维 Livehouse 场景",
+    "@aria-label: 场景内可访问的地点",
+    "@title: 返回全景看看大家",
+    "@aria-label: 场景机位",
+    "@aria-label: 我的音乐空间",
+    "@aria-label: 场景操作",
+    "@aria-label: 关闭操作面板"
+   ],
+   "sysFallback": {},
+   "noDoodle": [],
+   "firstMiss": {},
+   "renderStyle": null
+  },
+  "map-01-explore-round": {
+   "url": "/musicSpace/preview/music-map/#/explore",
+   "modal": null,
+   "body": "跳到内容\nMusic Space\n音乐探索\n← 返回现场\n小院\n唱片店\n我的发现\n你在这里\n费玉清\n终点\n邓紫棋\n寻声\n费玉清→邓紫棋，隔着几首歌？\n\n第 0 步\n认识 2/29\n翻开 0/37\n\n?\n提示 · 还隔几首\n换一组\n目录\n−\n全图\n+\n费玉清\n1 首合唱 · 翻开 0\n01\n《千里之外》\n和\n?\n合唱\n翻开\n先翻开一首，看 TA 和谁合唱\n退一步",
+   "modalText": null,
+   "attrs": [
+    "@aria-label: Music Space 音乐探索，回到小院",
+    "@aria-label: 返回 Music Space",
+    "@aria-label: 关于音乐探索",
+    "@aria-label: 纸做的音乐小院，唱片店开着门。点「唱片店」标记或下方导航前往。",
+    "@aria-label: 音乐小院",
+    "@aria-label: 查看 费玉清，1 首收录，你在这里",
+    "@aria-label: 终点：邓紫棋",
+    "@aria-label: 寻声：费玉清到邓紫棋",
+    "@aria-label: 费玉清到邓紫棋，隔着几首歌？",
+    "@aria-label: 寻声工具",
+    "@aria-label: 提示第一级：还隔几首",
+    "@aria-label: 唱片桌视野",
+    "@aria-label: 缩小唱片桌",
+    "@aria-label: 显示整张唱片桌",
+    "@aria-label: 放大唱片桌",
+    "@aria-label: 费玉清的手牌",
+    "@aria-label: 费玉清的 1 首合唱",
+    "@aria-label: 翻开《千里之外》，看看费玉清和谁合唱",
+    "@aria-label: 退一步：返回上一位并撤销一步",
+    "@aria-label: 回到起点"
+   ],
+   "sysFallback": {},
+   "noDoodle": [],
+   "firstMiss": {},
+   "renderStyle": "doodle"
+  },
+  "map-01b-round-flipped": {
+   "url": "/musicSpace/preview/music-map/#/explore",
+   "modal": null,
+   "body": "跳到内容\nMusic Space\n音乐探索\n← 返回现场\n小院\n唱片店\n我的发现\n周杰伦\n你在这里\n费玉清\n终点\n邓紫棋\n寻声\n费玉清→邓紫棋，隔着几首歌？\n\n第 0 步\n认识 3/29\n翻开 1/37\n\n?\n提示 · 还隔几首\n换一组\n目录\n−\n全图\n+\n费玉清\n1 首合唱 · 翻开 1\n01\n《千里之外》\n× 周杰伦\n去 QQ 音乐听\n前往 周杰伦\n来源\n退一步\n《千里之外》：费玉清 × 周杰伦 · 认识 3/29",
+   "modalText": null,
+   "attrs": [
+    "@aria-label: Music Space 音乐探索，回到小院",
+    "@aria-label: 返回 Music Space",
+    "@aria-label: 关于音乐探索",
+    "@aria-label: 纸做的音乐小院，唱片店开着门。点「唱片店」标记或下方导航前往。",
+    "@aria-label: 音乐小院",
+    "@aria-label: 查看 周杰伦，10 首收录",
+    "@aria-label: 查看 费玉清，1 首收录，你在这里",
+    "@aria-label: 终点：邓紫棋",
+    "@aria-label: 寻声：费玉清到邓紫棋",
+    "@aria-label: 费玉清到邓紫棋，隔着几首歌？",
+    "@aria-label: 寻声工具",
+    "@aria-label: 提示第一级：还隔几首",
+    "@aria-label: 唱片桌视野",
+    "@aria-label: 缩小唱片桌",
+    "@aria-label: 显示整张唱片桌",
+    "@aria-label: 放大唱片桌",
+    "@aria-label: 费玉清的手牌",
+    "@aria-label: 费玉清的 1 首合唱",
+    "@aria-label: 在 QQ 音乐打开《千里之外》同一录音（新窗口）",
+    "@title: 去 QQ 音乐听",
+    "@aria-label: 沿《千里之外》前往周杰伦",
+    "@aria-label: 《千里之外》的来源",
+    "@aria-label: 退一步：返回上一位并撤销一步",
+    "@aria-label: 回到起点"
+   ],
+   "sysFallback": {},
+   "noDoodle": [],
+   "firstMiss": {},
+   "renderStyle": "doodle"
+  },
+  "map-02-duet-sources": {
+   "url": "/musicSpace/preview/music-map/#/explore",
+   "modal": "音乐探索面板",
+   "body": "跳到内容\nMusic Space\n音乐探索\n← 返回现场\n小院\n唱片店\n我的发现\n共同演唱\n周杰伦\n×\n费玉清\n千里之外\n周杰伦 / 费玉清\n《依然范特西》· 合唱录音室版\n去 QQ 音乐听\n来源\n：《千里之外》\n演唱周杰伦官方频道 · MV 署名 ↗\n（新标签页）\n\n周杰伦官方频道的 MV 标题署名 feat. 费玉清；官方说明明确费玉清参与合唱。\n\n访问于 2026-09-27\nQQ 音乐同一录音 ↗\n（新标签页）\n访问于 2026-09-29\n\n完整署名在这一局结束后可看。\n\n前往周杰伦\n《千里之外》：费玉清 × 周杰伦 · 认识 3/29",
+   "modalText": "共同演唱\n周杰伦\n×\n费玉清\n千里之外\n周杰伦 / 费玉清\n《依然范特西》· 合唱录音室版\n去 QQ 音乐听\n来源\n：《千里之外》\n演唱周杰伦官方频道 · MV 署名 ↗\n（新标签页）\n\n周杰伦官方频道的 MV 标题署名 feat. 费玉清；官方说明明确费玉清参与合唱。\n\n访问于 2026-09-27\nQQ 音乐同一录音 ↗\n（新标签页）\n访问于 2026-09-29\n\n完整署名在这一局结束后可看。\n\n前往周杰伦",
+   "attrs": [
+    "@aria-label: Music Space 音乐探索，回到小院",
+    "@aria-label: 返回 Music Space",
+    "@aria-label: 关于音乐探索",
+    "@aria-label: 纸做的音乐小院，唱片店开着门。点「唱片店」标记或下方导航前往。",
+    "@aria-label: 音乐小院",
+    "@aria-label: 音乐探索面板",
+    "@aria-label: 关闭",
+    "@aria-label: 在 QQ 音乐打开《千里之外》同一录音（新窗口）",
+    "@aria-label: 留下《千里之外》",
+    "@title: 留下这首歌"
+   ],
+   "sysFallback": {},
+   "noDoodle": [],
+   "firstMiss": {},
+   "renderStyle": "doodle"
+  },
+  "room-11-after-map": {
+   "url": "/musicSpace/preview/?room=CT7EVUWZQ6L4",
+   "modal": null,
+   "body": "←\nMusic\nSpace\n5 位同场\n音乐探索\n↗\n♡\n我的小人\n↗\n···\n北屿 · 近景\n认识一下\n全景\n同场的人\n照片墙\n我的空间\n关于 Music Space",
+   "modalText": null,
+   "attrs": [
+    "@aria-label: 返回全景",
+    "@aria-label: Music Space",
+    "@aria-label: 音乐探索",
+    "@aria-label: 招呼、朋友和私聊",
+    "@aria-label: 我的小人 · 换装",
+    "@aria-label: 房间信息",
+    "@aria-label: 三维 Livehouse 场景",
+    "@aria-label: 场景内可访问的地点",
+    "@title: 返回全景看看大家",
+    "@aria-label: 场景机位",
+    "@aria-label: 我的音乐空间"
+   ],
+   "sysFallback": {},
+   "noDoodle": [],
+   "firstMiss": {},
+   "renderStyle": null
+  }
+ },
+ "shots": [],
+ "gl": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)",
+ "channelHint": false,
+ "nickname": "访客8481",
+ "sources": {
+  "items": 2,
+  "text": "来源 ：《千里之外》 演唱周杰伦官方频道 · MV 署名 ↗ （新标签页） 周杰伦官方频道的 MV 标题署名 feat. 费玉清；官方说明明确费玉清参与合唱。 访问于 2026-09-27 QQ 音乐同一录音 ↗ （新标签页） 访问于 2026-09-29"
+ },
+ "rec": {
+  "kind": "desktop",
+  "base": "http://127.0.0.1:4784/musicSpace/preview/",
+  "requests": [
+   {
+    "phase": "first-screen",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/",
+    "method": "GET"
+   },
+   {
+    "phase": "first-screen",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/shared/three-0.186.1/three.module.js",
+    "method": "GET"
+   },
+   {
+    "phase": "first-screen",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/shared/three-0.186.1/three.core.js",
+    "method": "GET"
+   },
+   {
+    "phase": "first-screen",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/sql/sql-wasm.wasm",
+    "method": "GET"
+   },
+   {
+    "phase": "first-screen",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/fonts/doodle/marker-0.woff2",
+    "method": "GET"
+   },
+   {
+    "phase": "first-screen",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/fonts/doodle/display-0.woff2",
+    "method": "GET"
+   },
+   {
+    "phase": "first-screen",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/fonts/doodle/fonts.css",
+    "method": "GET"
+   },
+   {
+    "phase": "first-screen",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/demo/yao-stage.jpg",
+    "method": "GET"
+   },
+   {
+    "phase": "first-screen",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/demo/man-crowd.jpg",
+    "method": "GET"
+   },
+   {
+    "phase": "first-screen",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/demo/man-near.jpg",
+    "method": "GET"
+   },
+   {
+    "phase": "first-screen",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/demo/bei-balcony.jpg",
+    "method": "GET"
+   },
+   {
+    "phase": "first-screen",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/fonts/doodle/logo-0.woff2",
+    "method": "GET"
+   },
+   {
+    "phase": "first-screen",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/fonts/doodle/marker-symbols.woff2",
+    "method": "GET"
+   },
+   {
+    "phase": "first-screen",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/fonts/doodle/hand-0.woff2",
+    "method": "GET"
+   },
+   {
+    "phase": "first-screen",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/fonts/doodle/digits-0.woff2",
+    "method": "GET"
+   },
+   {
+    "phase": "first-screen",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/fonts/doodle/note-0.woff2",
+    "method": "GET"
+   },
+   {
+    "phase": "first-screen",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/demo/sample-crowd.jpg",
+    "method": "GET"
+   },
+   {
+    "phase": "first-screen",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/demo/sample-stage.jpg",
+    "method": "GET"
+   },
+   {
+    "phase": "room",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/fonts/doodle/marker-1.woff2",
+    "method": "GET"
+   },
+   {
+    "phase": "room",
+    "url": "blob:http://127.0.0.1:4784/60aa7e13-9b86-4797-a63d-735053f91d93",
+    "method": "GET"
+   },
+   {
+    "phase": "room",
+    "url": "blob:http://127.0.0.1:4784/69055339-43ad-4d11-b596-8553cef7e8bf",
+    "method": "GET"
+   },
+   {
+    "phase": "room",
+    "url": "blob:http://127.0.0.1:4784/24a8cedf-c8cd-4c91-8761-1f2033ccf695",
+    "method": "GET"
+   },
+   {
+    "phase": "room",
+    "url": "blob:http://127.0.0.1:4784/1f264f1f-2638-4a36-b870-1e8cbcf20de3",
+    "method": "GET"
+   },
+   {
+    "phase": "room",
+    "url": "blob:http://127.0.0.1:4784/eabebe99-1bac-4414-a4de-1460bea1ebb4",
+    "method": "GET"
+   },
+   {
+    "phase": "room",
+    "url": "blob:http://127.0.0.1:4784/46cfd631-a36e-49b2-b437-1e50b5ddaed4",
+    "method": "GET"
+   },
+   {
+    "phase": "room",
+    "url": "blob:http://127.0.0.1:4784/d527012d-dfaf-41fd-8ebd-a0bf816b550e",
+    "method": "GET"
+   },
+   {
+    "phase": "room",
+    "url": "blob:http://127.0.0.1:4784/67efc7d7-5d69-428e-9898-75bf60dabcad",
+    "method": "GET"
+   },
+   {
+    "phase": "room",
+    "url": "blob:http://127.0.0.1:4784/4f03b652-3647-4099-816c-5ec6d4aad89a",
+    "method": "GET"
+   },
+   {
+    "phase": "room",
+    "url": "blob:http://127.0.0.1:4784/573641fd-64fe-42dc-beb3-6609059e99b6",
+    "method": "GET"
+   },
+   {
+    "phase": "room",
+    "url": "blob:http://127.0.0.1:4784/34ca3b42-9d5b-46c2-826c-3b0494ff4d55",
+    "method": "GET"
+   },
+   {
+    "phase": "room",
+    "url": "blob:http://127.0.0.1:4784/30fb1e2a-11fe-4227-b9c3-796cf5d70253",
+    "method": "GET"
+   },
+   {
+    "phase": "room",
+    "url": "blob:http://127.0.0.1:4784/c6886025-0993-41c2-98c2-35929de15e52",
+    "method": "GET"
+   },
+   {
+    "phase": "room",
+    "url": "blob:http://127.0.0.1:4784/6a59e9a9-6f91-41c4-b9e1-5a2a70eabafa",
+    "method": "GET"
+   },
+   {
+    "phase": "room",
+    "url": "blob:http://127.0.0.1:4784/cc0b7b03-ffef-4487-9ea0-29b87145b784",
+    "method": "GET"
+   },
+   {
+    "phase": "room",
+    "url": "blob:http://127.0.0.1:4784/ad227190-f27f-4478-ad61-288d7b2b48f3",
+    "method": "GET"
+   },
+   {
+    "phase": "room",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/fonts/doodle/marker-2.woff2",
+    "method": "GET"
+   },
+   {
+    "phase": "room",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/ai/tc8/labels.json",
+    "method": "GET"
+   },
+   {
+    "phase": "room",
+    "url": "blob:http://127.0.0.1:4784/6b1d454e-a879-4b41-b9f5-6999fa205f42",
+    "method": "GET"
+   },
+   {
+    "phase": "room",
+    "url": "blob:http://127.0.0.1:4784/88d6d3ed-05d1-4c85-b5be-897c3795375d",
+    "method": "GET"
+   },
+   {
+    "phase": "room",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/ai/ort/ort.wasm.min.mjs",
+    "method": "GET"
+   },
+   {
+    "phase": "room",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/ai/ort/ort-wasm-simd-threaded.mjs",
+    "method": "GET"
+   },
+   {
+    "phase": "room",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/ai/tc8/vision.onnx",
+    "method": "GET"
+   },
+   {
+    "phase": "room",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/ai/ort/ort-wasm-simd-threaded.wasm",
+    "method": "GET"
+   },
+   {
+    "phase": "room",
+    "url": "blob:http://127.0.0.1:4784/c5896017-00ab-4fe4-bf7f-bc4bdebd989b",
+    "method": "GET"
+   },
+   {
+    "phase": "room",
+    "url": "blob:http://127.0.0.1:4784/84486774-229a-40fa-a7a0-a284e13c5599",
+    "method": "GET"
+   },
+   {
+    "phase": "room",
+    "url": "blob:http://127.0.0.1:4784/3dca4e0b-4930-4858-bc75-a8737958b321",
+    "method": "GET"
+   },
+   {
+    "phase": "room",
+    "url": "blob:http://127.0.0.1:4784/f3bbd992-a837-40e6-bb84-4aa2aa3195b0",
+    "method": "GET"
+   },
+   {
+    "phase": "upload",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/fonts/doodle/display-1.woff2",
+    "method": "GET"
+   },
+   {
+    "phase": "upload",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/fonts/doodle/hand-1.woff2",
+    "method": "GET"
+   },
+   {
+    "phase": "upload",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/demo/sample-crowd.jpg",
+    "method": "GET"
+   },
+   {
+    "phase": "upload",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/demo/sample-stage.jpg",
+    "method": "GET"
+   },
+   {
+    "phase": "upload",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/fonts/doodle/hand-2.woff2",
+    "method": "GET"
+   },
+   {
+    "phase": "wall",
+    "url": "blob:http://127.0.0.1:4784/6b1d454e-a879-4b41-b9f5-6999fa205f42",
+    "method": "GET"
+   },
+   {
+    "phase": "wall",
+    "url": "blob:http://127.0.0.1:4784/88d6d3ed-05d1-4c85-b5be-897c3795375d",
+    "method": "GET"
+   },
+   {
+    "phase": "wall",
+    "url": "blob:http://127.0.0.1:4784/84486774-229a-40fa-a7a0-a284e13c5599",
+    "method": "GET"
+   },
+   {
+    "phase": "wall",
+    "url": "blob:http://127.0.0.1:4784/c5896017-00ab-4fe4-bf7f-bc4bdebd989b",
+    "method": "GET"
+   },
+   {
+    "phase": "wall",
+    "url": "blob:http://127.0.0.1:4784/b9f70f32-7512-40c6-98a9-df91d9abcbe8",
+    "method": "GET"
+   },
+   {
+    "phase": "exchange",
+    "url": "blob:http://127.0.0.1:4784/ad1f8b56-6d73-41eb-802d-a34b669c21b0",
+    "method": "GET"
+   },
+   {
+    "phase": "exchange",
+    "url": "blob:http://127.0.0.1:4784/d359e1af-911e-48c3-9f3e-963d5e568acc",
+    "method": "GET"
+   },
+   {
+    "phase": "exchange",
+    "url": "blob:http://127.0.0.1:4784/03b9da95-8aa8-477e-9934-9216a63b11c5",
+    "method": "GET"
+   },
+   {
+    "phase": "exchange",
+    "url": "blob:http://127.0.0.1:4784/3c298d54-0c43-4fbb-b4ab-718bdb3a6576",
+    "method": "GET"
+   },
+   {
+    "phase": "exchange",
+    "url": "blob:http://127.0.0.1:4784/cc66b913-97a2-476d-86ce-5cb98624b639",
+    "method": "GET"
+   },
+   {
+    "phase": "exchange",
+    "url": "blob:http://127.0.0.1:4784/b1e758eb-1797-4c16-89d9-1c972d68c7a0",
+    "method": "GET"
+   },
+   {
+    "phase": "exchange",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/fonts/doodle/hand-3.woff2",
+    "method": "GET"
+   },
+   {
+    "phase": "exchange",
+    "url": "blob:http://127.0.0.1:4784/55f0a9c7-1f10-4450-b94e-14954bf6bb92",
+    "method": "GET"
+   },
+   {
+    "phase": "exchange",
+    "url": "blob:http://127.0.0.1:4784/01f045ab-19db-4fda-ae4d-5d9b34dff584",
+    "method": "GET"
+   },
+   {
+    "phase": "exchange",
+    "url": "blob:http://127.0.0.1:4784/5275f4f7-b2e2-4143-8c65-f78f89b555b4",
+    "method": "GET"
+   },
+   {
+    "phase": "exchange",
+    "url": "blob:http://127.0.0.1:4784/bcb6143b-6d50-441a-9556-44f2be1a9586",
+    "method": "GET"
+   },
+   {
+    "phase": "chat",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/fonts/doodle/hand-4.woff2",
+    "method": "GET"
+   },
+   {
+    "phase": "map",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/music-map/",
+    "method": "GET"
+   },
+   {
+    "phase": "map",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/shared/three-0.186.1/three.module.js",
+    "method": "GET"
+   },
+   {
+    "phase": "map",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/shared/three-0.186.1/three.core.js",
+    "method": "GET"
+   },
+   {
+    "phase": "map",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/fonts/doodle/marker-0.woff2",
+    "method": "GET"
+   },
+   {
+    "phase": "map",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/fonts/doodle/display-0.woff2",
+    "method": "GET"
+   },
+   {
+    "phase": "map",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/fonts/doodle/fonts.css",
+    "method": "GET"
+   },
+   {
+    "phase": "map",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/fonts/doodle/logo-0.woff2",
+    "method": "GET"
+   },
+   {
+    "phase": "map",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/fonts/doodle/display-1.woff2",
+    "method": "GET"
+   },
+   {
+    "phase": "map",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/fonts/doodle/marker-1.woff2",
+    "method": "GET"
+   },
+   {
+    "phase": "map",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/fonts/doodle/digits-0.woff2",
+    "method": "GET"
+   },
+   {
+    "phase": "map",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/fonts/doodle/hand-0.woff2",
+    "method": "GET"
+   },
+   {
+    "phase": "map",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/fonts/doodle/hand-1.woff2",
+    "method": "GET"
+   },
+   {
+    "phase": "map",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/fonts/doodle/marker-symbols.woff2",
+    "method": "GET"
+   },
+   {
+    "phase": "map",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/fonts/doodle/hand-2.woff2",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/?room=CT7EVUWZQ6L4",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/shared/three-0.186.1/three.module.js",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/shared/three-0.186.1/three.core.js",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/sql/sql-wasm.wasm",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/fonts/doodle/marker-0.woff2",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/fonts/doodle/display-0.woff2",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/fonts/doodle/fonts.css",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/fonts/doodle/logo-0.woff2",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/fonts/doodle/marker-symbols.woff2",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/fonts/doodle/hand-0.woff2",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/fonts/doodle/digits-0.woff2",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/fonts/doodle/note-0.woff2",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/demo/yao-stage.jpg",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/demo/man-crowd.jpg",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/demo/man-near.jpg",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/demo/bei-balcony.jpg",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/demo/sample-crowd.jpg",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/demo/sample-stage.jpg",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/fonts/doodle/marker-1.woff2",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "blob:http://127.0.0.1:4784/0a5d4995-9a04-4162-acdf-0fd3057fa8e6",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "blob:http://127.0.0.1:4784/b13233bd-8053-4a6a-8764-fe6ff00b515c",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "blob:http://127.0.0.1:4784/e4b4a9f7-f50a-41ab-80e3-268ba4b04696",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "blob:http://127.0.0.1:4784/1b8fc56b-eeba-40c9-9b55-f94ea7580f3b",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "blob:http://127.0.0.1:4784/d47c641f-e4d1-4bb3-82c8-7a933ad3b334",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "blob:http://127.0.0.1:4784/69d9c7cc-5fbb-4692-84b8-514a43dbbcba",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "blob:http://127.0.0.1:4784/503d653a-16a1-40f2-89fd-301f025946ae",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "blob:http://127.0.0.1:4784/e2202a3d-8fb6-4f4d-93e5-de89a98e178f",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "blob:http://127.0.0.1:4784/9452cc77-ff90-4706-9a3a-b0af7ee4a94a",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "blob:http://127.0.0.1:4784/549bb65e-ae80-4af4-9671-ee4f42ec2c13",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "blob:http://127.0.0.1:4784/73f1df62-d572-4629-bad2-0d26dfecb1d4",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "blob:http://127.0.0.1:4784/899dfb5f-4731-4692-8fdd-fbf60345d763",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "blob:http://127.0.0.1:4784/5a7bf9ca-2f5b-4736-8bc1-eed23345b45e",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "blob:http://127.0.0.1:4784/16c8119b-f4d6-42aa-8d20-1a4c3d8149ea",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "blob:http://127.0.0.1:4784/6b506509-c1eb-4eac-8db5-00b3da7a4e99",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "blob:http://127.0.0.1:4784/a407f3f7-6f1c-4d1b-b117-41e5fe955a0c",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "blob:http://127.0.0.1:4784/38e5d37e-fdeb-4eee-aab4-717e3c6d5876",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "blob:http://127.0.0.1:4784/41b65f5d-8010-4666-acb9-186262180b73",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "blob:http://127.0.0.1:4784/bb4fe335-dcfb-4aa6-87cc-8ec434cbc411",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "blob:http://127.0.0.1:4784/4f50a33f-85d8-4aa4-a656-8daa3bd68b0c",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/fonts/doodle/display-1.woff2",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "http://127.0.0.1:4784/musicSpace/preview/ai/tc8/labels.json",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "blob:http://127.0.0.1:4784/4c1ed395-96f7-45f0-b848-2450a7cfb463",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "blob:http://127.0.0.1:4784/5a1063d0-a3c4-483d-b995-cd56a38f15ec",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "blob:http://127.0.0.1:4784/4fa644d2-43ac-4c0f-b4d0-46f5ebddf009",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "blob:http://127.0.0.1:4784/193851fd-1f35-4f06-9125-5d994c93782e",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "blob:http://127.0.0.1:4784/9d85405a-2bdb-46e6-a9ac-f584782f3428",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "blob:http://127.0.0.1:4784/7b05f9dc-83a8-4b29-92fb-604e0d903d28",
+    "method": "GET"
+   },
+   {
+    "phase": "return",
+    "url": "blob:http://127.0.0.1:4784/5b7aa060-4e46-4978-b5d0-a45979c8deb8",
+    "method": "GET"
+   }
+  ],
+  "api": [],
+  "thirdParty": [],
+  "outsidePrefix": [],
+  "failed": [],
+  "badStatus": [],
+  "console": [],
+  "pageErrors": [],
+  "fonts": [
+   {
+    "phase": "first-screen",
+    "file": "marker-0.woff2",
+    "bytes": 45908,
+    "page": "/musicSpace/preview/"
+   },
+   {
+    "phase": "first-screen",
+    "file": "display-0.woff2",
+    "bytes": 98040,
+    "page": "/musicSpace/preview/"
+   },
+   {
+    "phase": "first-screen",
+    "file": "marker-symbols.woff2",
+    "bytes": 2892,
+    "page": "/musicSpace/preview/"
+   },
+   {
+    "phase": "first-screen",
+    "file": "logo-0.woff2",
+    "bytes": 16768,
+    "page": "/musicSpace/preview/"
+   },
+   {
+    "phase": "first-screen",
+    "file": "digits-0.woff2",
+    "bytes": 14424,
+    "page": "/musicSpace/preview/"
+   },
+   {
+    "phase": "first-screen",
+    "file": "note-0.woff2",
+    "bytes": 16008,
+    "page": "/musicSpace/preview/"
+   },
+   {
+    "phase": "first-screen",
+    "file": "hand-0.woff2",
+    "bytes": 133104,
+    "page": "/musicSpace/preview/"
+   },
+   {
+    "phase": "room",
+    "file": "marker-1.woff2",
+    "bytes": 36256,
+    "page": "/musicSpace/preview/"
+   },
+   {
+    "phase": "room",
+    "file": "marker-2.woff2",
+    "bytes": 48832,
+    "page": "/musicSpace/preview/?room=CT7EVUWZQ6L4"
+   },
+   {
+    "phase": "upload",
+    "file": "display-1.woff2",
+    "bytes": 104112,
+    "page": "/musicSpace/preview/?room=CT7EVUWZQ6L4"
+   },
+   {
+    "phase": "upload",
+    "file": "hand-1.woff2",
+    "bytes": 118184,
+    "page": "/musicSpace/preview/?room=CT7EVUWZQ6L4"
+   },
+   {
+    "phase": "upload",
+    "file": "hand-2.woff2",
+    "bytes": 160452,
+    "page": "/musicSpace/preview/?room=CT7EVUWZQ6L4"
+   },
+   {
+    "phase": "exchange",
+    "file": "hand-3.woff2",
+    "bytes": 77056,
+    "page": "/musicSpace/preview/?room=CT7EVUWZQ6L4"
+   },
+   {
+    "phase": "chat",
+    "file": "hand-4.woff2",
+    "bytes": 762808,
+    "page": "/musicSpace/preview/?room=CT7EVUWZQ6L4"
+   },
+   {
+    "phase": "map",
+    "file": "marker-0.woff2",
+    "bytes": 45908,
+    "page": "/musicSpace/preview/music-map/#/explore"
+   },
+   {
+    "phase": "map",
+    "file": "display-0.woff2",
+    "bytes": 98040,
+    "page": "/musicSpace/preview/music-map/#/explore"
+   },
+   {
+    "phase": "map",
+    "file": "digits-0.woff2",
+    "bytes": 14424,
+    "page": "/musicSpace/preview/music-map/#/explore"
+   },
+   {
+    "phase": "map",
+    "file": "logo-0.woff2",
+    "bytes": 16768,
+    "page": "/musicSpace/preview/music-map/#/explore"
+   },
+   {
+    "phase": "map",
+    "file": "marker-1.woff2",
+    "bytes": 36256,
+    "page": "/musicSpace/preview/music-map/#/explore"
+   },
+   {
+    "phase": "map",
+    "file": "display-1.woff2",
+    "bytes": 104112,
+    "page": "/musicSpace/preview/music-map/#/explore"
+   },
+   {
+    "phase": "map",
+    "file": "hand-0.woff2",
+    "bytes": 133104,
+    "page": "/musicSpace/preview/music-map/#/explore"
+   },
+   {
+    "phase": "map",
+    "file": "hand-1.woff2",
+    "bytes": 118184,
+    "page": "/musicSpace/preview/music-map/#/explore"
+   },
+   {
+    "phase": "map",
+    "file": "marker-symbols.woff2",
+    "bytes": 2892,
+    "page": "/musicSpace/preview/music-map/#/explore"
+   },
+   {
+    "phase": "map",
+    "file": "hand-2.woff2",
+    "bytes": 160452,
+    "page": "/musicSpace/preview/music-map/#/explore"
+   },
+   {
+    "phase": "return",
+    "file": "marker-0.woff2",
+    "bytes": 45908,
+    "page": "/musicSpace/preview/?room=CT7EVUWZQ6L4"
+   },
+   {
+    "phase": "return",
+    "file": "display-0.woff2",
+    "bytes": 98040,
+    "page": "/musicSpace/preview/?room=CT7EVUWZQ6L4"
+   },
+   {
+    "phase": "return",
+    "file": "marker-symbols.woff2",
+    "bytes": 2892,
+    "page": "/musicSpace/preview/?room=CT7EVUWZQ6L4"
+   },
+   {
+    "phase": "return",
+    "file": "note-0.woff2",
+    "bytes": 16008,
+    "page": "/musicSpace/preview/?room=CT7EVUWZQ6L4"
+   },
+   {
+    "phase": "return",
+    "file": "logo-0.woff2",
+    "bytes": 16768,
+    "page": "/musicSpace/preview/?room=CT7EVUWZQ6L4"
+   },
+   {
+    "phase": "return",
+    "file": "digits-0.woff2",
+    "bytes": 14424,
+    "page": "/musicSpace/preview/?room=CT7EVUWZQ6L4"
+   },
+   {
+    "phase": "return",
+    "file": "hand-0.woff2",
+    "bytes": 133104,
+    "page": "/musicSpace/preview/?room=CT7EVUWZQ6L4"
+   },
+   {
+    "phase": "return",
+    "file": "marker-1.woff2",
+    "bytes": 36256,
+    "page": "/musicSpace/preview/?room=CT7EVUWZQ6L4"
+   },
+   {
+    "phase": "return",
+    "file": "display-1.woff2",
+    "bytes": 104112,
+    "page": "/musicSpace/preview/?room=CT7EVUWZQ6L4"
+   }
+  ],
+  "popups": [],
+  "navigations": [
+   "first-screen: /musicSpace/preview/",
+   "room: /musicSpace/preview/?room=CT7EVUWZQ6L4",
+   "map: /musicSpace/preview/music-map/#/explore",
+   "return: /musicSpace/preview/?room=CT7EVUWZQ6L4",
+   "return: /musicSpace/preview/?room=CT7EVUWZQ6L4"
+  ]
+ }
+}

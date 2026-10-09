@@ -1,0 +1,38 @@
+{
+ "file": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/probe/tmp-typing.mp4",
+ "frames": 13,
+ "seconds": 0.217,
+ "bytes": 139749,
+ "wallSeconds": 0.7,
+ "wallPerVideoSecond": 3.19,
+ "msPerFrame": {
+  "step": 1.9,
+  "grab": 49.2,
+  "write": 1.1
+ },
+ "dup": {
+  "frames": 13,
+  "unique": 13,
+  "consecutiveDuplicates": 0,
+  "longestStill": 1,
+  "stillRuns": []
+ },
+ "marks": [],
+ "events": [],
+ "hashes": [
+  "2326df938414",
+  "0f1a806330e0",
+  "d5b4ffc15c03",
+  "4d317cd8ec94",
+  "6d4a90322620",
+  "101922fa9f2b",
+  "80e493e561da",
+  "e430277396fe",
+  "cf358d8192d2",
+  "c86ec7104eda",
+  "b0d7688b2a0d",
+  "fb6a02ac46a6",
+  "da0ded26264f"
+ ],
+ "probe": []
+}

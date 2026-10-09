@@ -1,0 +1,1 @@
+return await page.evaluate(() => ({ art: [...document.querySelectorAll('.private-chat .chat-message')].map(e => e.outerHTML.slice(0, 300)), qa: JSON.stringify(window.__SPACE_EVENT_QA__().social).slice(0, 600), pending: JSON.stringify(window.__SPACE_EVENT_QA__().photos).slice(0, 800) }));

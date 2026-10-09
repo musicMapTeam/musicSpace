@@ -1,0 +1,11 @@
+import { chromium } from '/tmp/space-video-prep/tools/node_modules/playwright-core/index.mjs';
+const [url, out, wait = '3000', w = '1920', h = '1080'] = process.argv.slice(2);
+const browser = await chromium.launch({ channel: 'chrome', headless: true, args: ['--ignore-gpu-blocklist', '--use-angle=metal', '--hide-scrollbars', '--mute-audio'] });
+const ctx = await browser.newContext({ viewport: { width: +w, height: +h }, deviceScaleFactor: 1, locale: 'zh-CN' });
+const page = await ctx.newPage();
+page.on('pageerror', e => console.log('pageerror', String(e).slice(0, 200)));
+await page.goto(url, { waitUntil: 'load', timeout: 60000 });
+await page.waitForTimeout(+wait);
+await page.screenshot({ path: out });
+console.log('saved', out);
+await browser.close();

@@ -1,0 +1,99 @@
+{
+ "id": "D-06-greet-chat",
+ "master": {
+  "file": "/tmp/space-video-doodle/prod/capture/desktop/master/D-06-greet-chat.mp4",
+  "bytes": 14012112,
+  "duration_s": 18.7,
+  "video": "h264 High 3840x2160 60/1 yuv420p",
+  "colour": "bt709/bt709/bt709/tv",
+  "frames": 1122,
+  "bitrate_mbps": 6.0,
+  "audio_streams": 0
+ },
+ "edit": {
+  "file": "/tmp/space-video-doodle/prod/capture/desktop/1080/D-06-greet-chat.mp4",
+  "bytes": 7043294,
+  "duration_s": 18.7,
+  "video": "h264 High 1920x1080 60/1 yuv420p",
+  "colour": "bt709/bt709/bt709/tv",
+  "frames": 1122,
+  "bitrate_mbps": 3.0,
+  "audio_streams": 0
+ },
+ "frames_decoded": 1122,
+ "longest_still": {
+  "frames": 9,
+  "at_s": 0.117
+ },
+ "still_over_1s": [],
+ "stutters": {
+  "count": 1,
+  "at_s": [
+   11.55
+  ],
+  "rule": "still step (<0.15) between two moving steps (>0.6)"
+ },
+ "camera_glides": [],
+ "change_gap_histogram": {
+  "1": 16,
+  "2": 3,
+  "3": 4,
+  "6": 7,
+  "8": 8,
+  "9": 106
+ },
+ "taps": [
+  {
+   "t": 1.5,
+   "frame": 90,
+   "label": "向 小满·示例 招个手",
+   "xy_master": [
+    3157,
+    1266
+   ]
+  },
+  {
+   "t": 6.6,
+   "frame": 396,
+   "label": "和 小满·示例 私聊 ↗",
+   "xy_master": [
+    3157,
+    943
+   ]
+  },
+  {
+   "t": 8.55,
+   "frame": 513,
+   "label": "composer",
+   "xy_master": [
+    3243,
+    1464
+   ]
+  },
+  {
+   "t": 11.483,
+   "frame": 689,
+   "label": "发送 ↗",
+   "xy_master": [
+    3612,
+    1648
+   ]
+  }
+ ],
+ "presses_no_ring": [],
+ "master_frames": 1122,
+ "master_edit_same_frame_count": true,
+ "master_edit_motion_correlation": 0.9936,
+ "rec": {
+  "frames": 1122,
+  "seconds": 18.7,
+  "wallPerVideoSecond": 15.38,
+  "msPerFrame": {
+   "step": 6.3,
+   "grab": 226.1,
+   "write": 19.1
+  },
+  "clockStart": "2026-10-07T22:40:00+08:00",
+  "seed": 20261009
+ }
+}

@@ -1,0 +1,246 @@
+{
+ "label": "head-desktop",
+ "url": "http://127.0.0.1:4891/musicSpace/",
+ "run": 1,
+ "viewport": {
+  "viewport": {
+   "width": 1440,
+   "height": 900
+  },
+  "deviceScaleFactor": 1
+ },
+ "ok": true,
+ "navWall": 1791284453541,
+ "perf": {
+  "origin": 1791284453545.4,
+  "paints": [
+   {
+    "name": "first-paint",
+    "t": 324
+   },
+   {
+    "name": "first-contentful-paint",
+    "t": 324
+   }
+  ],
+  "nav": {
+   "name": "http://127.0.0.1:4891/musicSpace/",
+   "entryType": "navigation",
+   "startTime": 0,
+   "duration": 1982.8999999761581,
+   "navigationId": 6726,
+   "initiatorType": "navigation",
+   "deliveryType": "",
+   "nextHopProtocol": "http/1.1",
+   "renderBlockingStatus": "non-blocking",
+   "contentType": "text/html",
+   "contentEncoding": "gzip",
+   "workerStart": 0,
+   "workerRouterEvaluationStart": 0,
+   "workerCacheLookupStart": 0,
+   "workerMatchedSourceType": "",
+   "workerFinalSourceType": "",
+   "redirectStart": 0,
+   "redirectEnd": 0,
+   "fetchStart": 0.6000000238418579,
+   "domainLookupStart": 0.6000000238418579,
+   "domainLookupEnd": 0.6000000238418579,
+   "connectStart": 0.6000000238418579,
+   "secureConnectionStart": 0,
+   "connectEnd": 0.6000000238418579,
+   "requestStart": 1.300000011920929,
+   "responseStart": 6,
+   "firstInterimResponseStart": 0,
+   "finalResponseHeadersStart": 6,
+   "responseEnd": 1444.800000011921,
+   "transferSize": 606625,
+   "encodedBodySize": 606325,
+   "decodedBodySize": 2575450,
+   "responseStatus": 200,
+   "serverTiming": [],
+   "unloadEventStart": 0,
+   "unloadEventEnd": 0,
+   "domInteractive": 1519.699999988079,
+   "domContentLoadedEventStart": 1969.300000011921,
+   "domContentLoadedEventEnd": 1976.1000000238419,
+   "domComplete": 1981.300000011921,
+   "loadEventStart": 1982.8999999761581,
+   "loadEventEnd": 1982.8999999761581,
+   "type": "navigate",
+   "redirectCount": 0,
+   "activationStart": 0,
+   "criticalCHRestart": 0,
+   "notRestoredReasons": null,
+   "confidence": {
+    "randomizedTriggerRate": 0.4994798,
+    "value": "low"
+   }
+  },
+  "log": {
+   "lcp": [
+    {
+     "t": 324,
+     "size": 11988,
+     "url": "",
+     "el": "loading-mark",
+     "text": "space"
+    }
+   ],
+   "cls": [
+    {
+     "t": 1997.800000011921,
+     "v": 0.01344615935651363,
+     "had": false,
+     "src": [
+      "presence welcome",
+      "evidence",
+      "render-status"
+     ]
+    },
+    {
+     "t": 2380.199999988079,
+     "v": 0.000017088906035665296,
+     "had": false,
+     "src": [
+      "render-status"
+     ]
+    }
+   ],
+   "fonts": [],
+   "marks": {
+    "ready": 2376.5
+   },
+   "loadingHidden": 2135,
+   "heroText": [
+    {
+     "t": 320.89999997615814,
+     "text": "你的位置，给你留着。"
+    },
+    {
+     "t": 2046,
+     "text": "同一刻，另一面。"
+    }
+   ]
+  },
+  "boot": "ready",
+  "mem": {
+   "used": 18355452,
+   "total": 26744476
+  },
+  "gl": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)",
+  "fontsUsed": []
+ },
+ "network": [
+  {
+   "url": "/musicSpace/",
+   "type": "Document",
+   "priority": "VeryHigh",
+   "status": 200,
+   "enc": "gzip",
+   "bytes": 606596,
+   "start": 1,
+   "resp": 155,
+   "end": 1445
+  },
+  {
+   "url": "/musicSpace/shared/three-0.186.1/three.module.js",
+   "type": "Script",
+   "priority": "High",
+   "status": 200,
+   "enc": "gzip",
+   "bytes": 131801,
+   "start": 163,
+   "resp": 782,
+   "end": 781
+  },
+  {
+   "url": "/musicSpace/shared/three-0.186.1/three.core.js",
+   "type": "Script",
+   "priority": "High",
+   "status": 200,
+   "enc": "gzip",
+   "bytes": 288244,
+   "start": 164,
+   "resp": 1204,
+   "end": 1202
+  },
+  {
+   "url": "/musicSpace/sql/sql-wasm.wasm",
+   "type": "Other",
+   "priority": "High",
+   "status": 200,
+   "enc": "",
+   "bytes": 658626,
+   "start": 164,
+   "resp": 324,
+   "end": 1654
+  },
+  {
+   "url": "/musicSpace/demo/yao-stage.jpg",
+   "type": "Fetch",
+   "priority": "Low",
+   "status": 200,
+   "enc": "",
+   "bytes": 70225,
+   "start": 1603,
+   "resp": 2020,
+   "end": 1922
+  },
+  {
+   "url": "/musicSpace/demo/man-crowd.jpg",
+   "type": "Fetch",
+   "priority": "Low",
+   "status": 200,
+   "enc": "",
+   "bytes": 57051,
+   "start": 1604,
+   "resp": 2020,
+   "end": 1911
+  },
+  {
+   "url": "/musicSpace/demo/man-near.jpg",
+   "type": "Fetch",
+   "priority": "Low",
+   "status": 200,
+   "enc": "",
+   "bytes": 22130,
+   "start": 1604,
+   "resp": 2021,
+   "end": 1835
+  },
+  {
+   "url": "/musicSpace/demo/bei-balcony.jpg",
+   "type": "Fetch",
+   "priority": "Low",
+   "status": 200,
+   "enc": "",
+   "bytes": 34251,
+   "start": 1604,
+   "resp": 2022,
+   "end": 1869
+  },
+  {
+   "url": "/musicSpace/demo/sample-crowd.jpg",
+   "type": "Fetch",
+   "priority": "Low",
+   "status": 200,
+   "enc": "",
+   "bytes": 81501,
+   "start": 2365,
+   "resp": 2522,
+   "end": 2666
+  },
+  {
+   "url": "/musicSpace/demo/sample-stage.jpg",
+   "type": "Fetch",
+   "priority": "Low",
+   "status": 200,
+   "enc": "",
+   "bytes": 90731,
+   "start": 2366,
+   "resp": 2523,
+   "end": 2675
+  }
+ ],
+ "frames": 6
+}

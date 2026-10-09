@@ -1,0 +1,28 @@
+const s = await get('phone');
+const p = s.page;
+const { freezeKeep } = await import('/tmp/space-video-doodle/prod/capture/P2P3/tools/lib.mjs');
+for (let i = 0; i < 3; i++) { const open = await p.evaluate(() => document.querySelector('#panel') && !document.querySelector('#panel').hidden); if (!open) break; await p.locator('#panel-close').click().catch(() => {}); await sleep(400); }
+await p.locator('[data-view="person"]').click(); await sleep(1500);
+await p.locator('[data-person]', { hasText: '小满' }).first().click(); await sleep(2000);
+await p.locator('[data-social-send]').first().click();
+await p.waitForFunction(() => /你们已经认识了/.test(document.body.innerText), null, { timeout: 30000 }); await sleep(800);
+await p.locator('[data-open="chats"]').first().click(); await sleep(1500);
+await p.locator('.private-chat textarea').click(); await p.keyboard.insertText('返场那首我在人海里，手都举酸了！');
+await p.locator('.private-chat .chat-composer button[type=submit]').click();
+await p.waitForFunction(() => /今晚的返场太好听了/.test(document.querySelector('.private-chat')?.innerText || ''), null, { timeout: 30000 });
+await sleep(1000); await p.evaluate(() => document.activeElement?.blur?.()); await sleep(300);
+const probe = () => p.evaluate(() => { const b = document.querySelector('.private-chat .chat-message'); const bub = b.firstElementChild; const cs = getComputedStyle(b), cs2 = getComputedStyle(bub); const r = b.getBoundingClientRect(); return { anims: document.getAnimations().length, msgT: cs.transform + '|' + cs.translate + '|' + cs.rotate + '|' + cs.animationName, bubT: cs2.transform + '|' + cs2.translate + '|' + cs2.rotate + '|' + cs2.animationName + '|' + bub.className, rect: [r.x.toFixed(2), r.y.toFixed(2)] }; });
+const out = { before: await probe() };
+const animList = await p.evaluate(() => document.getAnimations().slice(0, 10).map(a => (a.animationName || a.transitionProperty || a.constructor.name) + ':' + a.playState + ':' + (a.effect?.target?.className || '')));
+out.animList = animList;
+await freezeKeep(s); await s.step(1);
+out.frozen = await probe();
+await sleep(700);
+out.frozenLater = await probe();
+const sel = '.private-chat .chat-message';
+await p.evaluate(css => { const st = document.createElement('style'); st.id = 'hid'; st.textContent = css; document.head.appendChild(st); }, `*,*::before,*::after{transition:none!important} html,body{background:transparent!important} body{visibility:hidden!important} body *:not(${sel}):not(${sel} *){visibility:hidden!important} ${sel}{visibility:visible!important}`);
+out.hidden = await probe();
+await p.evaluate(() => document.getElementById('hid').remove());
+out.after = await probe();
+await s.unfreeze();
+return out;

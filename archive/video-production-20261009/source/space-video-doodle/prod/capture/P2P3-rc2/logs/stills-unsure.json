@@ -1,0 +1,129 @@
+{
+ "items": [
+  {
+   "id": "CUT-04u",
+   "name": "cut/CUT-04u_ai-tag-unsure",
+   "sels": [
+    ".moment-ai-tag"
+   ],
+   "clipCss": {
+    "x": 17,
+    "y": 404,
+    "width": 210,
+    "height": 70,
+    "n": 1,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "「✦ 不确定，请选择」 (dashed) — the honest case, stage sample, nothing selected",
+   "storyboard": "A3, W3",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/CUT-04u_ai-tag-unsure.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/CUT-04u_ai-tag-unsure.png"
+   },
+   "regionText": "不确定，请选择",
+   "audit": {
+    "banned": 0,
+    "watch": [],
+    "chars": 479
+   }
+  },
+  {
+   "id": "CUT-04v",
+   "name": "cut/CUT-04v_viewpoint-chips-unsure-dashed",
+   "sels": [
+    ".moment-chips"
+   ],
+   "clipCss": {
+    "x": 18,
+    "y": 315,
+    "width": 349,
+    "height": 178,
+    "n": 1,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "the four chips: 舞台 and 人海 dashed with sparkles (AI suggestions), nothing selected",
+   "storyboard": "A3",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/CUT-04v_viewpoint-chips-unsure-dashed.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/CUT-04v_viewpoint-chips-unsure-dashed.png"
+   },
+   "regionText": "舞台 灯光下的那一面 人海 一起举手的那一面 身边 陪你听歌的那一面 细节 只有你留意的那一面",
+   "audit": {
+    "banned": 0,
+    "watch": [],
+    "chars": 479
+   }
+  },
+  {
+   "id": "CUT-04w",
+   "name": "cut/CUT-04w_viewpoint-block-unsure",
+   "sels": [
+    ".moment-view"
+   ],
+   "clipCss": {
+    "x": 18,
+    "y": 260,
+    "width": 349,
+    "height": 306,
+    "n": 1,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "我拍的这一面 + dashed suggestions + 不确定，请选择 + hint 「配对时用它找另一面，你说了算。」",
+   "storyboard": "A3",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/CUT-04w_viewpoint-block-unsure.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/CUT-04w_viewpoint-block-unsure.png"
+   },
+   "regionText": "我拍的这一面 舞台 灯光下的那一面 人海 一起举手的那一面 身边 陪你听歌的那一面 细节 只有你留意的那一面 AI 认为这一面更可能 不确定，请选择 ，AI 认为更可能是舞台或人海 配对时用它找另一面，你说了算。",
+   "audit": {
+    "banned": 0,
+    "watch": [],
+    "chars": 479
+   }
+  },
+  {
+   "id": "POL-09",
+   "name": "cut/POL-09_upload-polaroid-stage-2147",
+   "sels": [
+    ".moment-taken"
+   ],
+   "clipCss": {
+    "x": 14,
+    "y": 288,
+    "width": 357,
+    "height": 226,
+    "n": 1,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "upload form polaroid of 舞台那张 with 拍摄于 21:47 · 来自照片自带的信息 · 修改时间 (rc.2: no sample note)",
+   "storyboard": "A3 / M1 polaroid",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/POL-09_upload-polaroid-stage-2147.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/POL-09_upload-polaroid-stage-2147.png"
+   },
+   "regionText": "拍摄于 21:47 · 来自照片自带的信息 修改时间",
+   "audit": {
+    "banned": 0,
+    "watch": [],
+    "chars": 479
+   }
+  }
+ ],
+ "state": {
+  "sheet": "× 留一个现场瞬间 这一张，由你决定给谁看。 用我自己的照片 或者挑一张今晚的 人海那张 舞台那张 拍摄于 21:47 · 来自照片自带的信息 修改时间 我拍的这一面 舞台 灯光下的那一面 人海 一起举手的那一面 身边 陪你听歌的那一面 细节 只有你留意的那一面 AI 认为这一面更可能 不确定，请选择 ，AI 认为更可能是舞台或人海 配对时用它找另一面，你说了算。 可见范围 仅自己保存 分享给本场成员 照片会缩小，并去掉位置信息。 保存这张照片",
+  "tag": "不确定，请选择",
+  "chips": [
+   "stage suggested",
+   "crowd suggested",
+   "friends",
+   "detail"
+  ]
+ },
+ "base": "http://127.0.0.1:48741/musicSpace/",
+ "clock": "2026-10-08T22:40:00+08:00",
+ "errors": []
+}

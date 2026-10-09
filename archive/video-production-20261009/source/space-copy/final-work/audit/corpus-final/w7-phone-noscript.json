@@ -1,0 +1,45 @@
+{
+ "states": [
+  {
+   "vp": "phone",
+   "label": "noscript",
+   "selector": "body",
+   "visible": "需要开启 JavaScript 才能打开 Music Space。\nMusic\nSpace\n音乐探索\n♡\n我的小人\n···\nMUSIC SPACE / LIVEHOUSE\n进到同一个现场\n这一晚，从这里开始\nMusic Space\n\n灯快亮了\n\n正在准备三维场景\n你的位置，给你留着。\n\n带着小人，和同场的人打个招呼\n\n带上小人，进入现场\n全景\n同场的人\n照片墙\n我的空间",
+   "attrs": [
+    "@aria-label=返回全景 (hidden el)",
+    "@aria-label=Music Space",
+    "@aria-label=音乐探索",
+    "@aria-label=招呼与朋友",
+    "@aria-label=我的小人 · 换装",
+    "@aria-label=房间信息",
+    "@aria-label=三维 Livehouse 场景",
+    "@aria-label=进入现场",
+    "@aria-label=场景内可访问的地点",
+    "@aria-label=场景机位",
+    "@aria-label=我的音乐空间",
+    "@aria-label=场景操作 (hidden el)",
+    "@aria-label=关闭操作面板 (hidden el)"
+   ],
+   "hidden": [
+    "正在打开现场",
+    "三维现场暂时打不开",
+    "照片和同场名单照常能用，也可以换个浏览器试试。",
+    "这场的声音",
+    "进入房间后，看看大家这一晚的视角",
+    "ENCORE / 01",
+    "安静参与 · 更改",
+    "留下第一张照片",
+    "回看这一晚",
+    "Music Space",
+    "这一晚的",
+    "另一个视角",
+    "就在你身边。",
+    "一场演出，一个房间。先选你的位置，再看看大家留下了什么。",
+    "Livehouse 为每一场演出开一个房间，乐迷带着小人入场；散场后，留在场地的乐迷社群里。",
+    "就是这一刻！"
+   ],
+   "at": 1791390499911
+  }
+ ],
+ "logs": {}
+}

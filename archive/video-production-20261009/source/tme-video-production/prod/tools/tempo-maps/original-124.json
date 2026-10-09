@@ -1,0 +1,92 @@
+{
+ "id": "original-124",
+ "label": "Team original score《Same Moment, Other Side》124 BPM, re-rendered with the STORYBOARD §3.1 section lengths (every hit on its storyboard bar)",
+ "track": {
+  "audio": "/tmp/space-video-doodle/prod/audio/original-124/master_float.wav",
+  "beats": "/tmp/space-video-doodle/prod/audio/original-124/beats.json",
+  "title": "Same Moment, Other Side",
+  "artist": "Music Space team (original, code-synthesised)",
+  "licence": "original work of the team (no third-party rights)",
+  "proof": "/tmp/space-video-doodle/music-original/PROVENANCE.txt",
+  "credit": "配乐：团队原创（代码合成，无采样、无第三方录音）"
+ },
+ "render": {
+  "generator": "/tmp/space-video-doodle/prod/audio/original-124/src/score.py",
+  "python": "/tmp/space-video-prep/tools/venv/bin/python",
+  "out": "/tmp/space-video-doodle/prod/audio/original-124",
+  "score_config": {
+   "bars": {
+    "TITLE": 4,
+    "PAIN": 10,
+    "GROOVE_A": 8,
+    "AI": 12,
+    "REVEAL": 10,
+    "GROOVE_B": 22,
+    "LIFT": 8,
+    "END": 6
+   },
+   "ai_chime_bar": 3,
+   "ai_chime_beat": 2,
+   "total_s": 174.9
+  },
+  "note": "STORYBOARD §3.1 section lengths with total_s 174.9 (instead of 176.13) so the film stays under 175 s. The original generator crashes for REVEAL != 8 bars (its rising bass line was hard-coded to bars 5-8), so prod/audio/original-124/src/score.py is a copy with that one fix (the build always takes the last 4 bars of REVEAL). ~1-2 min CPU, niced; do not run while a capture is recording."
+ },
+ "plan": [
+  {
+   "sb": "1-90",
+   "trk": "1-90",
+   "why": "identity: the score was re-rendered so its sections sit on the storyboard bars"
+  }
+ ],
+ "cut": [],
+ "tail_s": 0.7,
+ "fade": null,
+ "xfade_ms": 0,
+ "music_has": [
+  "chime",
+  "dings",
+  "payoff_gap",
+  "riser",
+  "stop_stab",
+  "tag_hits",
+  "end_ding"
+ ],
+ "moments": {
+  "title_stop": {
+   "verdict": "yes",
+   "note": "stab on 4:3.5, digital silence, IMPACT on 5:1"
+  },
+  "pain_sparse": {
+   "verdict": "yes",
+   "note": "half-time kick 1 / snare 3, build 19-20"
+  },
+  "drop": {
+   "verdict": "yes",
+   "note": "full groove on 21:1"
+  },
+  "ai_chime": {
+   "verdict": "music",
+   "note": "the score's chime on 31:3 (no SFX chime)"
+  },
+  "payoff": {
+   "verdict": "yes",
+   "note": "one-beat gap 50:4, payoff hit 51:1"
+  },
+  "social_groove": {
+   "verdict": "yes",
+   "note": "GROOVE_B second half"
+  },
+  "break": {
+   "verdict": "yes",
+   "note": "stop-time hits 73-74"
+  },
+  "lift": {
+   "verdict": "yes",
+   "note": "final chorus a whole step up from 75:1"
+  },
+  "end_resolve": {
+   "verdict": "natural",
+   "note": "tag 83-84, big chord 85:1, final ding 88:1, ring-out"
+  }
+ }
+}

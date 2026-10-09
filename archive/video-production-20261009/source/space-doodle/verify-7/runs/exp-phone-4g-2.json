@@ -1,0 +1,34 @@
+{
+ "url": "http://127.0.0.1:4972/musicSpace/",
+ "vp": "phone",
+ "thr": "4g",
+ "fontsMode": "on",
+ "fcp": 556,
+ "loadingHidden": 2192,
+ "ready": 2450,
+ "htmlEnd": 1646,
+ "fontKB": 279,
+ "fonts": [
+  "marker-0.woff2 40.2KB High 167-518",
+  "display-0.woff2 80.3KB High 167-925",
+  "logo-0.woff2 16.6KB VeryHigh 413-764",
+  "hand-0.woff2 127.9KB VeryHigh 413-1387",
+  "digits-0.woff2 14.2KB VeryHigh 1872-2274"
+ ],
+ "faces": [
+  "Doodle Marker 1395 U+20-7E, U+A0-AC, U+AE-FF, U+2",
+  "Doodle Logo 1395 U+20-7E, U+A0-FF, U+2013-2014,",
+  "Doodle Display 1395 U+20-7E, U+A0, U+A2-A6, U+A8-A",
+  "Doodle Hand 1395 U+20-7E, U+A0-FF, U+2010-2016,",
+  "Doodle Digits 2311 U+20-7E, U+A0-FF, U+2013-2014,"
+ ],
+ "byTypeKB": {
+  "Document": 631,
+  "Script": 411,
+  "Other": 1447,
+  "Font": 279,
+  "Stylesheet": 12,
+  "Image": 0,
+  "Fetch": 349
+ }
+}

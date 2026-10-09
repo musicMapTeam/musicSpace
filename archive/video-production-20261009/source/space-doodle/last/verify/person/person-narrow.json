@@ -1,0 +1,70 @@
+{
+ "kind": "narrow",
+ "who": "阿遥",
+ "results": {
+  "open:person": {
+   "kind": "person",
+   "st": 0,
+   "sh": 388,
+   "ch": 265,
+   "close": [
+    246,
+    276,
+    292,
+    323
+   ],
+   "sheetTop": 265,
+   "sheetRight": 303,
+   "fromTop": 11,
+   "fromRight": 11,
+   "inView": true,
+   "onTop": true,
+   "hit": "#panel-close",
+   "under": [],
+   "focused": true
+  },
+  "scan:person": {
+   "kind": "person",
+   "max": 123,
+   "steps": 6,
+   "bad": [],
+   "closeOffsets": [
+    "11,11"
+   ],
+   "drift": {
+    "top": 0,
+    "right": 0,
+    "topRange": [
+     10.52,
+     10.52
+    ]
+   }
+  },
+  "close:person:end": {
+   "kind": "person",
+   "st": 123,
+   "sh": 388,
+   "ch": 265,
+   "close": [
+    246,
+    276,
+    292,
+    323
+   ],
+   "sheetTop": 265,
+   "sheetRight": 303,
+   "fromTop": 11,
+   "fromRight": 11,
+   "inView": true,
+   "onTop": true,
+   "hit": "#panel-close",
+   "under": [
+    "button.primary「向 阿遥·示例 招个手」"
+   ],
+   "focused": true
+  }
+ },
+ "failures": [],
+ "failedRequests": [],
+ "ok": true
+}

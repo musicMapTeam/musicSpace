@@ -1,0 +1,7 @@
+D01 exit 0
+D02 exit 0
+D03 exit 0
+D03B exit 0
+D05 exit 0
+D06 exit 0
+done

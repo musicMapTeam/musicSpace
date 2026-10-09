@@ -1,0 +1,130 @@
+import * as THREE from 'three';
+import { gsap } from 'gsap';
+
+const desktop = {
+  home: { eye: [10.7, 8.6, 16.5], at: [-.35, 1.0, -.1], fov: 40 },
+  live: { eye: [-.6, 3.6, 7.1], at: [-3.8, 1.6, 1.4], fov: 40 },
+  editor: { eye: [7.2, 5.6, 5.5], at: [4, 1, 1.6], fov: 37 },
+  records: { eye: [-.6, 2.4, 1.3], at: [1.3, 1.25, -2.3], fov: 46 },
+};
+const portrait = {
+  home: { eye: [12, 18, 29], at: [-.8, .8, .3], fov: 43 },
+  live: { eye: [-3, 4.4, 10.8], at: [-3.8, 1.5, 1.4], fov: 48 },
+  editor: { eye: [6.6, 5.5, 6.6], at: [4, 1, 1.6], fov: 43 },
+  records: { eye: [-.55, 2.4, 2.8], at: [1.2, 1.25, -2.3], fov: 46 },
+};
+const SHOTS = new Set(Object.keys(desktop));
+const BOTTOM_PADDING = 14;
+
+/** The shot a key really means. `photo` is aimed at a point instead of a preset row; anything else
+ *  the director has no row for (a retired or misspelt key) shows the courtyard overview. */
+export function shotKey(key, hasPoint = false) {
+  if (key === 'photo') return hasPoint ? 'photo' : 'home';
+  return SHOTS.has(key) ? key : 'home';
+}
+
+/** One interruptible camera move; a cancelled trip cannot open a stale modal. */
+export function createCameraDirector(camera, { size, reduced, onFrame, onShot, getLayout, getBounds }) {
+  const target = new THREE.Vector3();
+  const framing = { x: 0, y: 0 };
+  let tween;
+  let settle;
+  let pending = Promise.resolve(true);
+  let active = { key: 'home', id: null, point: null };
+  let navigationMove = false;
+  function projection() {
+    const { width, height } = size();
+    camera.aspect = width / height;
+    camera.setViewOffset(width, height, width * framing.x, height * framing.y, width, height);
+    camera.updateProjectionMatrix();
+  }
+  function stop() { tween?.kill(); tween = null; navigationMove = false; settle?.(false); settle = null; }
+  function destination() {
+    const { key, id, point } = active;
+    const { width, height } = size();
+    const mobile = width <= 760;
+    const rows = mobile ? portrait : desktop;
+    const shot = rows[key] || rows.home;
+    const endTarget = point?.clone() || new THREE.Vector3(...shot.at);
+    const endEye = point ? point.clone().add(new THREE.Vector3(mobile ? .65 : 1.35, mobile ? .65 : .8, mobile ? 4.6 : 3.7)) : new THREE.Vector3(...shot.eye);
+    const endFov = point ? 39 : shot.fov;
+    const layout = getLayout(key); const rect = layout.rect;
+    const fitWidth = Math.max(1, rect.width - 24); const fitHeight = Math.max(1, rect.height - 12 - BOTTOM_PADDING);
+    const centerX = (rect.left + rect.right) / 2; const centerY = (rect.top + 12 + rect.bottom - BOTTOM_PADDING) / 2;
+    const endFrame = { x: .5 - centerX / width, y: .5 - centerY / height };
+    const bounds = getBounds(key, id);
+    if (bounds && !bounds.isEmpty()) {
+      const backward = endEye.clone().sub(endTarget).normalize();
+      const right = new THREE.Vector3().crossVectors(camera.up, backward).normalize();
+      const up = new THREE.Vector3().crossVectors(backward, right).normalize();
+      const baseDistance = endEye.distanceTo(endTarget);
+      bounds.getCenter(endTarget);
+      const tanY = Math.tan(THREE.MathUtils.degToRad(endFov / 2)) * fitHeight / height;
+      const tanX = Math.tan(THREE.MathUtils.degToRad(endFov / 2)) * width / height * fitWidth / width;
+      let distance = baseDistance * .6;
+      for (const x of [bounds.min.x, bounds.max.x]) for (const y of [bounds.min.y, bounds.max.y]) for (const z of [bounds.min.z, bounds.max.z]) {
+        const corner = new THREE.Vector3(x, y, z).sub(endTarget);
+        const depth = corner.dot(backward);
+        distance = Math.max(distance, Math.abs(corner.dot(right)) / tanX + depth, Math.abs(corner.dot(up)) / tanY + depth);
+      }
+      endEye.copy(endTarget).addScaledVector(backward, distance * 1.025);
+    }
+    return { eye: endEye, target: endTarget, fov: endFov, frame: endFrame };
+  }
+  function arrive(end) {
+    camera.position.copy(end.eye); target.copy(end.target); camera.fov = end.fov;
+    Object.assign(framing, end.frame); camera.lookAt(target); projection(); onFrame();
+  }
+  function animate(end, duration) {
+    const startEye = camera.position.clone();
+    const startTarget = target.clone();
+    const startFov = camera.fov;
+    const startFrame = { ...framing };
+    const midpoint = startEye.clone().lerp(end.eye, .5);
+    if (navigationMove) midpoint.y += Math.min(.85, startEye.distanceTo(end.eye) * .09);
+    const path = new THREE.QuadraticBezierCurve3(startEye, midpoint, end.eye);
+    const progress = { value: 0 };
+    tween = gsap.to(progress, { value: 1, duration, ease: navigationMove ? 'power2.inOut' : 'power2.out',
+      onUpdate() {
+        const t = progress.value;
+        camera.position.copy(path.getPoint(t)); target.lerpVectors(startTarget, end.target, t); camera.lookAt(target);
+        camera.fov = THREE.MathUtils.lerp(startFov, end.fov, t);
+        framing.x = THREE.MathUtils.lerp(startFrame.x, end.frame.x, t); framing.y = THREE.MathUtils.lerp(startFrame.y, end.frame.y, t);
+        projection(); onFrame();
+      },
+      onComplete() { tween = null; const wasNavigation = navigationMove; navigationMove = false;
+        if (wasNavigation) onShot(active.key, active.id, false); settle?.(true); settle = null;
+      },
+    });
+  }
+  function go(requested, { point = null, id = null, immediate = false, force = false } = {}) {
+    const key = shotKey(requested, Boolean(point));
+    if (!force && active.key === key && active.id === id) return pending;
+    stop(); active = { key, id, point: point?.clone() || null };
+    navigationMove = !immediate && !reduced.matches;
+    onShot(key, id, navigationMove);
+    const end = destination();
+    if (!navigationMove) { arrive(end); onShot(key, id, false); pending = Promise.resolve(true); return pending; }
+    pending = new Promise(resolve => { settle = resolve; });
+    animate(end, key === 'photo' ? .82 : 1.05); return pending;
+  }
+  function reframe(immediate = false) {
+    if (getLayout(active.key).blocked) { projection(); onFrame(); return pending; }
+    const end = destination(); tween?.kill(); tween = null;
+    if (immediate || reduced.matches) {
+      arrive(end); if (navigationMove) onShot(active.key, active.id, false);
+      navigationMove = false; settle?.(true); settle = null;
+    } else animate(end, navigationMove ? .4 : .28);
+    return pending;
+  }
+  return {
+    go,
+    reframe,
+    resize() { return reframe(true); },
+    finish() { tween?.progress(1); },
+    get moving() { return Boolean(tween); },
+    get travelling() { return navigationMove; },
+    get active() { return active; },
+    dispose: stop,
+  };
+}

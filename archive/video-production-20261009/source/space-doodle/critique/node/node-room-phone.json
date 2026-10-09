@@ -1,0 +1,192 @@
+{
+  "info": {
+    "status": "房间服务已连接",
+    "rooms": false,
+    "dsPaper": "#f7efdf",
+    "bodyBg": "rgb(247, 239, 223)",
+    "bodyBgImg": "radial-gradient(rgba(28, 27, 26, 0.16) 1.2px, rgba(0, 0, 0, 0) 1.3px)",
+    "bodyFont": "\"Doodle Hand\", \"Doodle Marker\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+    "fams": {
+      "Doodle Display": {
+        "loaded": 2,
+        "unloaded": 2,
+        "error": 0
+      },
+      "Doodle Marker": {
+        "loaded": 3,
+        "unloaded": 2,
+        "error": 0
+      },
+      "Doodle Hand": {
+        "loaded": 3,
+        "unloaded": 2,
+        "error": 0
+      },
+      "Doodle Note": {
+        "loaded": 0,
+        "unloaded": 1,
+        "error": 0
+      },
+      "Doodle Logo": {
+        "loaded": 1,
+        "unloaded": 0,
+        "error": 0
+      },
+      "Doodle Digits": {
+        "loaded": 1,
+        "unloaded": 0,
+        "error": 0
+      }
+    },
+    "check": {
+      "Doodle Display": true,
+      "Doodle Marker": true,
+      "Doodle Hand": true,
+      "Doodle Logo": true,
+      "Doodle Digits": true,
+      "Doodle Note": false
+    },
+    "samples": [
+      {
+        "sel": "header",
+        "font": "\"Doodle Hand\", \"Doodle Marker\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, san",
+        "size": "16px",
+        "color": "rgb(28, 27, 26)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImg": "none",
+        "shadow": "none",
+        "border": "0px none rgb(28, 27, 26)"
+      },
+      {
+        "sel": ".brand",
+        "font": "\"Doodle Logo\", \"Doodle Display\", \"Arial Black\", sans-serif",
+        "size": "17px",
+        "color": "rgb(255, 212, 71)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImg": "none",
+        "shadow": "none",
+        "border": "0px none rgb(255, 212, 71)"
+      },
+      {
+        "sel": "#render-status",
+        "font": "\"Doodle Marker\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "size": "13px",
+        "color": "rgb(28, 27, 26)",
+        "bg": "rgb(255, 250, 240)",
+        "bgImg": "none",
+        "shadow": "none",
+        "border": "2px solid rgb(28, 27, 26)"
+      },
+      {
+        "sel": "h1",
+        "font": "\"Doodle Display\", \"Doodle Marker\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "28px",
+        "color": "rgb(28, 27, 26)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImg": "none",
+        "shadow": "none",
+        "border": "0px none rgb(28, 27, 26)"
+      },
+      {
+        "sel": "h2",
+        "font": "\"Doodle Display\", \"Doodle Marker\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+        "size": "23px",
+        "color": "rgb(28, 27, 26)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImg": "none",
+        "shadow": "none",
+        "border": "0px none rgb(28, 27, 26)"
+      },
+      {
+        "sel": "#join",
+        "font": "\"Doodle Marker\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "size": "18px",
+        "color": "rgb(255, 250, 240)",
+        "bg": "rgb(28, 27, 26)",
+        "bgImg": "none",
+        "shadow": "rgb(255, 92, 138) 5px 5px 0px 0px",
+        "border": "2px solid rgb(28, 27, 26)"
+      },
+      {
+        "sel": "nav button",
+        "font": "\"Doodle Marker\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "size": "14px",
+        "color": "rgb(28, 27, 26)",
+        "bg": "rgb(255, 212, 71)",
+        "bgImg": "none",
+        "shadow": "rgb(28, 27, 26) 5px 5px 0px 0px",
+        "border": "2px solid rgb(28, 27, 26)"
+      },
+      {
+        "sel": ".presence",
+        "font": "\"Doodle Hand\", \"Doodle Marker\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, san",
+        "size": "16px",
+        "color": "rgb(28, 27, 26)",
+        "bg": "rgb(255, 250, 240)",
+        "bgImg": "none",
+        "shadow": "rgb(28, 27, 26) 6px 7px 0px 0px",
+        "border": "2px solid rgb(28, 27, 26)"
+      },
+      {
+        "sel": "footer",
+        "font": "\"Doodle Marker\", \"PingFang SC\", \"Microsoft YaHei\", system-ui, sans-serif",
+        "size": "13px",
+        "color": "rgb(61, 58, 54)",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImg": "none",
+        "shadow": "none",
+        "border": "0px none rgb(61, 58, 54)"
+      }
+    ],
+    "renderStyle": "doodle",
+    "venue": {
+      "id": "blender-venue-r2",
+      "sha256": "68f2b5991115dac38580e44f38277e9ca93be70d3bdf8e5806bbc64d59c85b8e",
+      "bytes": 1158336,
+      "status": "ready",
+      "meshCount": 12,
+      "triangles": 19728,
+      "materialCount": 8,
+      "bounds": {
+        "min": [
+          -7.000000238418579,
+          -0.3100000023841858,
+          -5.680000967775378
+        ],
+        "max": [
+          7.0899999141693115,
+          6.099999732026131,
+          6.949999988079071
+        ]
+      }
+    },
+    "identity": "missing",
+    "ready": true,
+    "canvas": {
+      "w": 714,
+      "h": 1332,
+      "cw": 357,
+      "ch": 666
+    },
+    "ms": 4449
+  },
+  "log": {
+    "console": [],
+    "pageerror": [],
+    "failed": [],
+    "bad": [],
+    "fonts": [
+      "200 font/woff2 /event-room/fonts/doodle/marker-0.woff2",
+      "200 text/css; charset=utf-8 /event-room/fonts/doodle/fonts.css",
+      "200 font/woff2 /event-room/fonts/doodle/display-0.woff2",
+      "200 font/woff2 /event-room/fonts/doodle/logo-0.woff2",
+      "200 font/woff2 /event-room/fonts/doodle/marker-1.woff2",
+      "200 font/woff2 /event-room/fonts/doodle/marker-2.woff2",
+      "200 font/woff2 /event-room/fonts/doodle/hand-1.woff2",
+      "200 font/woff2 /event-room/fonts/doodle/display-1.woff2",
+      "200 font/woff2 /event-room/fonts/doodle/hand-0.woff2",
+      "200 font/woff2 /event-room/fonts/doodle/digits-0.woff2",
+      "200 font/woff2 /event-room/fonts/doodle/hand-2.woff2"
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+/* PROTO ONLY: a 30-line stand-in so the prototype screenshots are not night chrome over a paper scene.
+   The real UI restyle belongs to the UI builder; this only re-points the night variables at Doodle tokens. */
+@import '../../event-room/doodle/tokens.css';
+html[data-theme='sakura'] {
+  --night-sky:var(--ds-paper); --night-ink:var(--ds-ink); --night-ink-soft:var(--ds-ink-2); --night-muted:var(--ds-ink-3);
+  --night-amber:var(--ds-pink); --night-pink:var(--ds-pink);
+  --night-glass:var(--ds-paper-card); --night-glass-strong:var(--ds-paper-deep); --night-glass-line:var(--ds-ink); --night-glass-ink:var(--ds-ink);
+  --paper-shadow-night:var(--ds-shadow); --paper-shadow-night-soft:var(--ds-shadow-sm); --text-glow:none; --text-lift:none;
+  --font-display:var(--ds-font-ui); --font-serif:var(--ds-font-display);
+}
+html[data-theme='sakura'] body:not(.spatial-fallback) .spatial-world::after, html[data-theme='sakura'] body .home-hero::before { display:none; }
+html[data-theme='sakura'] body .home-hero__title { font-family:var(--ds-font-display); font-weight:400; color:var(--ds-ink); text-shadow:.06em .06em 0 var(--ds-pink); }
+html[data-theme='sakura'] body .home-hero__title>span:last-child { color:var(--ds-ink); text-shadow:.06em .06em 0 var(--ds-mint); }
+html[data-theme='sakura'] body :is(.home-paper,.main-content,dialog[open]) { border:var(--ds-border); border-radius:var(--ds-radius-card); box-shadow:var(--ds-shadow-lg); background:var(--ds-paper-card); }
+html[data-theme='sakura'] body :is(.world-compass>div,.mobile-nav,.world-caption,.masthead-tools .demo-help,.map-studio-tools,.map-round-tools,.map-round-hand) { border:var(--ds-border); box-shadow:var(--ds-shadow); }
+html[data-theme='sakura'] body .world-pin { border:var(--ds-border); box-shadow:var(--ds-shadow-sm); background:var(--ds-yellow); color:var(--ds-ink); font-family:var(--ds-font-ui); }
+html[data-theme='sakura'] body .world-pin::before { background:var(--ds-pink); box-shadow:none; }
+html[data-theme='sakura'] body :is(.world-compass button,.mobile-nav .nav-item)[aria-pressed='true'], html[data-theme='sakura'] body .mobile-nav .nav-item.active { background:var(--ds-yellow)!important; color:var(--ds-ink)!important; }
+html[data-theme='sakura'] body .world-music-label::before, html[data-theme='sakura'] body .world-music-link::before { border:2px solid var(--ds-ink); box-shadow:var(--ds-shadow-sm); }
+html[data-theme='sakura'] body .space-map-return, html[data-theme='sakura'] body .space-map-return * { color:var(--ds-ink); border-color:var(--ds-ink); }

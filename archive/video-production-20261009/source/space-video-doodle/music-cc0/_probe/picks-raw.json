@@ -1,0 +1,62 @@
+[
+ {
+  "dir": "01-grab-a-partner__Loyalty-Freak-Music",
+  "id": "183655",
+  "page": "https://freemusicarchive.org/music/Loyalty_Freak_Music/ROLLER_DISCO_DANCE_DANCE/Loyalty_Freak_Music_-_ROLLER_DISCO_DANCE_DANCE_-_05_Grab_A_Partner/",
+  "fileUrl": "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/Music_for_Video/Loyalty_Freak_Music/ROLLER_DISCO_DANCE_DANCE/Loyalty_Freak_Music_-_05_-_Grab_A_Partner.mp3",
+  "title": "Grab A Partner",
+  "artist": "Loyalty Freak Music",
+  "album": "ROLLER DISCO DANCE DANCE",
+  "artistUrl": "https://freemusicarchive.org/music/Loyalty_Freak_Music/",
+  "local": "_deep/full/183655__Loyalty-Freak-Music-Grab-A-Partner.mp3",
+  "sha": "2ed4f5ac5e537aa47e18c52286ba0e7f46efa01b88951329881a1387acf7e4ca"
+ },
+ {
+  "dir": "02-flipping-in__Wax-Lyricist",
+  "id": "204931",
+  "page": "https://freemusicarchive.org/music/wax-lyricist/the-wax-lyricist/flipping-in/",
+  "fileUrl": "https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/rQDvsLDqpCtHbJYnNKnlFUvY7MecNUlsWrwPHi1d.mp3",
+  "title": "Flipping In",
+  "artist": "Wax Lyricist",
+  "album": "The Wax Lyricist",
+  "artistUrl": "https://freemusicarchive.org/music/wax-lyricist/",
+  "local": "_deep/full2/204931__Wax-Lyricist-Flipping-In.mp3",
+  "sha": "8d79e1f0f6aee4de038eff80b0a93262bacdc4ea2dc7ce184cfd12f162ca6127"
+ },
+ {
+  "dir": "03-consternation-at-the-disco__Wax-Lyricist",
+  "id": "204934",
+  "page": "https://freemusicarchive.org/music/wax-lyricist/the-wax-lyricist/consternation-at-the-disco/",
+  "fileUrl": "https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/WIq8wNoCARBDfeGJXB6rKU34mMRMyCzNvqXzd7sd.mp3",
+  "title": "Consternation At The Disco",
+  "artist": "Wax Lyricist",
+  "album": "The Wax Lyricist",
+  "artistUrl": "https://freemusicarchive.org/music/wax-lyricist/",
+  "local": "_deep/full2/204934__Wax-Lyricist-Consternation-At-The-Disco.mp3",
+  "sha": "a3649f3dc658265bfad59dd2f0569dfd122f86624320bc5caef277f1a66e7d8d"
+ },
+ {
+  "dir": "04-post-adventure-tea-party__Zane-Little",
+  "id": "218142",
+  "page": "https://freemusicarchive.org/music/zane-little/a-bag-of-chips/post-adventure-tea-party/",
+  "fileUrl": "https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/hXZXej6HcbunsfYNO1OEvozn4vf5QjfjKnAiNywY.mp3",
+  "title": "Post-Adventure Tea Party",
+  "artist": "Zane Little",
+  "album": "A Bag of Chips",
+  "artistUrl": "https://freemusicarchive.org/music/zane-little/",
+  "local": "_deep/full/218142__Zane-Little-Post-Adventure-Tea-Party.mp3",
+  "sha": "3942ac034060e30b889dd739d219d30fa4b3bf3eb201170be868ec9d5e1cf099"
+ },
+ {
+  "dir": "05-reserve-love-love-love__HoliznaCC0",
+  "id": "204494",
+  "page": "https://freemusicarchive.org/music/holiznacc0/power-pop/love-love-love/",
+  "fileUrl": "https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/QyOdjJhuXLVTQJykleAL7negVj97mpFr63vt4sPO.mp3",
+  "title": "Love Love Love",
+  "artist": "HoliznaCC0",
+  "album": "Power Pop!",
+  "artistUrl": "https://freemusicarchive.org/music/holiznacc0/",
+  "local": "_deep/full/204494__HoliznaCC0-Love-Love-Love.mp3",
+  "sha": "8f579ae23d50513c073ad914eb6bcd93d6abe33b53130c1dcf493c5c2c114322"
+ }
+]

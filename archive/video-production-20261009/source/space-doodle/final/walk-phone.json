@@ -1,0 +1,103 @@
+{
+ "kind": "phone",
+ "base": "http://127.0.0.1:4783/musicSpace/",
+ "steps": [
+  {
+   "name": "ready",
+   "t": "0.6"
+  },
+  {
+   "name": "shot",
+   "t": "2.9",
+   "file": "/tmp/space-doodle/final/01-first-screen-phone.png"
+  },
+  {
+   "name": "shot",
+   "t": "4.5",
+   "file": "/tmp/space-doodle/final/02-join-phone.png"
+  },
+  {
+   "name": "joined",
+   "t": "7.3",
+   "people": [
+    "阿遥·示例 · 可招呼",
+    "小满·示例 · 可招呼",
+    "北屿·示例 · 可招呼",
+    "访客2812 · 我"
+   ]
+  },
+  {
+   "name": "shot",
+   "t": "8.1",
+   "file": "/tmp/space-doodle/final/03-room-phone.png"
+  },
+  {
+   "name": "upload",
+   "t": "9.1",
+   "settled": true,
+   "key": "sure:crowd",
+   "line": "AI 判断：人海",
+   "chosen": "人海一起举手的那一面"
+  },
+  {
+   "name": "shot",
+   "t": "9.9",
+   "file": "/tmp/space-doodle/final/04-upload-phone.png"
+  },
+  {
+   "name": "wall",
+   "t": "11.8",
+   "badge": "同一刻的另一面",
+   "reason": "同一刻 · 21:47，相差不到 1 分钟；你拍人海，TA 拍舞台",
+   "offer": "和 TA 交换这个视角"
+  },
+  {
+   "name": "shot",
+   "t": "15.7",
+   "file": "/tmp/space-doodle/final/05-wall-phone.png"
+  },
+  {
+   "name": "sent",
+   "t": "16.7"
+  },
+  {
+   "name": "accepted",
+   "t": "21.6"
+  },
+  {
+   "name": "shot",
+   "t": "22.4",
+   "file": "/tmp/space-doodle/final/06-accepted-phone.png"
+  },
+  {
+   "name": "waved",
+   "t": "24.0"
+  },
+  {
+   "name": "friend",
+   "t": "25.1",
+   "friends": true
+  },
+  {
+   "name": "shot",
+   "t": "36.1",
+   "file": "/tmp/space-doodle/final/07-chat-phone.png"
+  },
+  {
+   "name": "shot",
+   "t": "38.4",
+   "file": "/tmp/space-doodle/final/08-about-phone.png"
+  },
+  {
+   "name": "done",
+   "t": "38.4"
+  }
+ ],
+ "api": [],
+ "foreign": [],
+ "consoleErrors": [],
+ "pageErrors": [],
+ "failedRequests": [],
+ "requests": 63,
+ "seconds": 38.352
+}

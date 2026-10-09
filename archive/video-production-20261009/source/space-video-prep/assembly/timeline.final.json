@@ -1,0 +1,422 @@
+{
+ "title": "Music Space — 同一晚，另一面。",
+ "output": "out/space-final.mp4",
+ "size": [
+  1920,
+  1080
+ ],
+ "fps": 60,
+ "crf": 18,
+ "preset": "slow",
+ "band_color": "#182d26",
+ "music": {
+  "file": "../music/original/space-original-full-160s_-16LUFS_48k24.wav",
+  "start": 0,
+  "delay": 0,
+  "fade_in": 0.6,
+  "fade_out": 3.5,
+  "target_lufs": -16
+ },
+ "sfx": [],
+ "shots": [
+  {
+   "id": "B1",
+   "src": "../cards/out/card-b-pain.mp4",
+   "dur": 5.0,
+   "layout": "full",
+   "footage": false,
+   "status": "CARD (final)",
+   "title": "Pain 1: you shot the stage, she remembers the crowd"
+  },
+  {
+   "id": "B2",
+   "src": "../cards/out/card-b2-groupalbum.mp4",
+   "dur": 5.0,
+   "layout": "full",
+   "footage": false,
+   "status": "CARD (final)",
+   "title": "Pain 2: group album, 99+ shots, no way to tell the same moment",
+   "transition_in": {
+    "type": "cut",
+    "dur": 0
+   }
+  },
+  {
+   "id": "B3",
+   "src": "../cards/out/card-b3-noopening.mp4",
+   "dur": 5.0,
+   "layout": "full",
+   "footage": false,
+   "status": "CARD (final)",
+   "title": "Pain 3: no safe way to say hi",
+   "transition_in": {
+    "type": "cut",
+    "dur": 0
+   }
+  },
+  {
+   "id": "D",
+   "src": "../cards/out/card-d-whatif.mp4",
+   "dur": 5.0,
+   "layout": "full",
+   "footage": false,
+   "status": "CARD (final)",
+   "title": "What if: the lock opens, by consent",
+   "transition_in": {
+    "type": "fade",
+    "dur": 0.3
+   }
+  },
+  {
+   "id": "A",
+   "src": "../cards/out/card-a-open.mp4",
+   "dur": 5.0,
+   "layout": "full",
+   "footage": false,
+   "status": "CARD (final)",
+   "title": "Title: space / 同一晚，另一面。",
+   "transition_in": {
+    "type": "cut",
+    "dur": 0
+   }
+  },
+  {
+   "id": "S01",
+   "src": "../clips/final/S01.mp4",
+   "dur": 5.0,
+   "title": "Venue tour (overview -> Lin close-up -> photo wall)",
+   "note": "",
+   "mode": "STATIC-capable; RC4 captured",
+   "status": "RC4 footage (rehearsal)",
+   "fallback": "../stills/journey/08-A-A-after-B-upload.png"
+  },
+  {
+   "id": "S02",
+   "src": "../clips/final/S02.mp4",
+   "dur": 10.0,
+   "title": "Host opens a livehouse room",
+   "note": "",
+   "mode": "STATIC-capable; RC4 captured",
+   "status": "RC4 footage (rehearsal)",
+   "fallback": "../stills/explore/04-create-form.png"
+  },
+  {
+   "id": "S03",
+   "src": "../clips/final/S03.mp4",
+   "dur": 7.5,
+   "title": "Guests arrive (two devices)",
+   "note": "",
+   "mode": "NODE x2; RC4 captured",
+   "status": "RC4 footage (rehearsal)",
+   "transition_in": {
+    "type": "slideleft",
+    "dur": 0.4
+   },
+   "fallback": "../stills/duo-split-frame.png",
+   "speed": 1.6
+  },
+  {
+   "id": "S04",
+   "src": "../clips/final/S04.mp4",
+   "dur": 7.5,
+   "title": "Wardrobe: 今晚，我这样。",
+   "note": "",
+   "mode": "STATIC-capable; RC4 captured",
+   "status": "RC4 footage (rehearsal)",
+   "fallback": "../stills/journey/40-wardrobe.png",
+   "speed": 1.28
+  },
+  {
+   "id": "S05",
+   "src": "../clips/final/S05.mp4",
+   "dur": 7.5,
+   "title": "Upload + capture time + on-device AI chip (confident case)",
+   "note": "AI build: chip \"AI 判断：舞台\", line \"拍摄于 21:47 · 来自照片自带的信息\"",
+   "mode": "AI-BUILD",
+   "status": "REHEARSAL: no AI chip in RC4",
+   "fallback": "../stills/explore/07-upload-picked.png"
+  },
+  {
+   "id": "S06",
+   "src": "../clips/final/S06.mp4",
+   "dur": 5.0,
+   "title": "The honest case: 不确定，请选择",
+   "note": "AI build: dashed chips 舞台 / 人海, user taps 舞台",
+   "mode": "AI-BUILD",
+   "status": "REHEARSAL: no AI chip in RC4"
+  },
+  {
+   "id": "S07",
+   "src": "../clips/final/S07.mp4",
+   "dur": 2.5,
+   "title": "Lin's crowd photo arrives (AI: 人海 · 21:48)",
+   "note": "",
+   "mode": "AI-BUILD",
+   "status": "REHEARSAL: no AI chip in RC4",
+   "transition_in": {
+    "type": "slideleft",
+    "dur": 0.3
+   }
+  },
+  {
+   "id": "S08",
+   "src": "../clips/final/S08.mp4",
+   "dur": 10.0,
+   "title": "Wall + 同一刻的另一面 reveal (rules, not AI)",
+   "note": "AI build: tag + reason \"同一刻 · 21:47，相差 1 分钟；你拍舞台，TA 拍人海\"; negative: 21:50 \"不算同一刻\"",
+   "mode": "AI-BUILD",
+   "status": "REHEARSAL: no reveal UI in RC4",
+   "fallback": "../stills/journey/08-A-A-after-B-upload.png"
+  },
+  {
+   "id": "S09",
+   "src": "../clips/final/S09.mp4",
+   "dur": 10.0,
+   "title": "A asks to swap: two specific photos + explicit consent",
+   "note": "",
+   "mode": "NODE x2 (A side); RC4 captured",
+   "status": "RC4 footage (rehearsal)",
+   "fallback": "../stills/journey/11-A-exchange-start.png"
+  },
+  {
+   "id": "S10",
+   "src": "../clips/final/S10.mp4",
+   "dur": 20.0,
+   "title": "Two-device consent: B previews, ticks, accepts; both accepted",
+   "note": "",
+   "mode": "NODE x2; RC4 captured",
+   "status": "RC4 footage (rehearsal)",
+   "transition_in": {
+    "type": "slideleft",
+    "dur": 0.4
+   },
+   "fallback": "../stills/journey/17-B-B-request-detail.png"
+  },
+  {
+   "id": "S11",
+   "src": "../clips/final/S11.mp4",
+   "dur": 7.5,
+   "title": "散场以后，也能回来看 (accepted exchange, both originals)",
+   "note": "",
+   "mode": "NODE x2 setup; RC4 captured",
+   "status": "RC4 footage (rehearsal)",
+   "fallback": "../stills/journey/19-A-A-after-accept.png"
+  },
+  {
+   "id": "S12",
+   "src": "../clips/final/S12.mp4",
+   "dur": 12.5,
+   "title": "Greeting -> friends -> private chat (two devices)",
+   "note": "",
+   "mode": "NODE x2; RC4 captured",
+   "status": "RC4 footage (rehearsal)",
+   "transition_in": {
+    "type": "slideleft",
+    "dur": 0.4
+   },
+   "fallback": "../stills/journey/20-A-person-Lin.png",
+   "speed": 1.21
+  },
+  {
+   "id": "S13",
+   "src": "../clips/final/S13.mp4",
+   "dur": 10.0,
+   "title": "Recap -> memory card PNG",
+   "note": "",
+   "mode": "STATIC-capable; RC4 captured",
+   "status": "RC4 footage (rehearsal)",
+   "hold": 1.8,
+   "fallback": "../stills/journey/31-A-A-memory-preview.png"
+  },
+  {
+   "id": "S14a",
+   "src": "../clips/final/S14a.mp4",
+   "dur": 2.5,
+   "title": "Montage: 我的空间",
+   "note": "",
+   "mode": "STATIC-capable; RC4 captured",
+   "status": "RC4 footage (rehearsal)",
+   "fallback": "../stills/journey/50-my-space.png"
+  },
+  {
+   "id": "S14b",
+   "src": "../clips/final/S14b.mp4",
+   "dur": 2.5,
+   "title": "Montage: 专辑世界杯",
+   "note": "",
+   "mode": "STATIC-capable; RC4 captured",
+   "status": "RC4 footage (rehearsal)",
+   "fallback": "../stills/worldcup2.png"
+  },
+  {
+   "id": "S14c",
+   "src": "../clips/final/S14c.mp4",
+   "dur": 2.5,
+   "title": "Montage: 一起玩 / 默契局",
+   "note": "",
+   "mode": "STATIC-capable; RC4 captured",
+   "status": "RC4 footage (rehearsal)",
+   "fallback": "../stills/journey/52-community-chat.png"
+  },
+  {
+   "id": "S14d",
+   "src": "../clips/final/S14d.mp4",
+   "dur": 2.5,
+   "title": "Montage: Music Map record table",
+   "note": "",
+   "mode": "STATIC-capable; RC4 captured",
+   "status": "RC4 footage (rehearsal)",
+   "fallback": "../stills/music-map-explore.png"
+  },
+  {
+   "id": "C",
+   "src": "../cards/out/card-c-end.mp4",
+   "dur": 10.0,
+   "layout": "full",
+   "footage": false,
+   "status": "CARD (final)",
+   "title": "End card: Music Space + link + QR",
+   "transition_in": {
+    "type": "fade",
+    "dur": 0.5
+   }
+  }
+ ],
+ "subtitles": [
+  {
+   "start": 25.3,
+   "end": 29.7,
+   "text": "这是一间真正的三维 Livehouse。",
+   "style": "band"
+  },
+  {
+   "start": 30.4,
+   "end": 39.6,
+   "text": "主办方开一场现场，把邀请发给同场的朋友。",
+   "style": "band"
+  },
+  {
+   "start": 40.4,
+   "end": 47.0,
+   "text": "朋友点开邀请，**本人确认**之后才入场。",
+   "style": "band"
+  },
+  {
+   "start": 47.9,
+   "end": 54.8,
+   "text": "二维手绘小人，逐件自由搭配，实时可见。",
+   "style": "band"
+  },
+  {
+   "start": 55.4,
+   "end": 58.8,
+   "text": "照片默认**只有自己能看**。",
+   "style": "band"
+  },
+  {
+   "start": 58.9,
+   "end": 62.3,
+   "text": "AI 只在你的设备上判断视角，照片不上传。",
+   "style": "band",
+   "chip": "AI"
+  },
+  {
+   "start": 62.9,
+   "end": 67.2,
+   "text": "没把握，它就说「不确定」，选择权在你。",
+   "style": "band",
+   "chip": "AI"
+  },
+  {
+   "start": 67.7,
+   "end": 69.8,
+   "text": "她那边，拍到的是人海。",
+   "style": "band"
+  },
+  {
+   "start": 70.4,
+   "end": 75.3,
+   "text": "**同一刻的另一面**：按拍摄时间配对，理由写得明明白白。",
+   "style": "band"
+  },
+  {
+   "start": 75.6,
+   "end": 79.6,
+   "text": "配对和理由是规则算的，不是黑盒；AI 只建议视角。",
+   "style": "band",
+   "chip": "AI"
+  },
+  {
+   "start": 80.4,
+   "end": 89.5,
+   "text": "要换，就指定具体的**两张**照片。",
+   "style": "band"
+  },
+  {
+   "start": 90.6,
+   "end": 99.4,
+   "text": "对方本人看到预览、明确同意，才会交换。",
+   "style": "band"
+  },
+  {
+   "start": 100.6,
+   "end": 109.4,
+   "text": "任何一方都能随时撤销；原件仍归各自。",
+   "style": "band"
+  },
+  {
+   "start": 110.4,
+   "end": 117.0,
+   "text": "散场以后，也能回来看。",
+   "style": "band"
+  },
+  {
+   "start": 118.0,
+   "end": 129.6,
+   "text": "愿意认识，才继续聊：先招手，对方同意，才能私聊。",
+   "style": "band"
+  },
+  {
+   "start": 130.4,
+   "end": 139.6,
+   "text": "散场了，把这一晚留在手里。",
+   "style": "band"
+  },
+  {
+   "start": 140.4,
+   "end": 149.6,
+   "text": "长期音乐社群 · 音乐话题 · 专辑世界杯 · 沿真实合唱探索音乐",
+   "style": "band"
+  },
+  {
+   "start": 25.3,
+   "end": 30.0,
+   "text": "示例角色、场次与照片均为虚构（AI 生成）",
+   "style": "bandnote"
+  },
+  {
+   "start": 40.4,
+   "end": 47.0,
+   "text": "演示：同一台电脑上的两个独立浏览器身份",
+   "style": "bandnote"
+  },
+  {
+   "start": 90.6,
+   "end": 109.4,
+   "text": "演示：同一台电脑上的两个独立浏览器身份",
+   "style": "bandnote"
+  },
+  {
+   "start": 118.0,
+   "end": 129.6,
+   "text": "演示：同一台电脑上的两个独立浏览器身份",
+   "style": "bandnote"
+  },
+  {
+   "start": 55.4,
+   "end": 70.0,
+   "text": "示例照片由 AI 生成，拍摄时间为虚构",
+   "style": "bandnote"
+  }
+ ]
+}

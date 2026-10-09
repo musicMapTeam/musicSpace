@@ -1,0 +1,70 @@
+{
+ "kind": "phone",
+ "who": "阿遥",
+ "results": {
+  "open:person": {
+   "kind": "person",
+   "st": 0,
+   "sh": 388,
+   "ch": 350,
+   "close": [
+    316,
+    394,
+    362,
+    441
+   ],
+   "sheetTop": 384,
+   "sheetRight": 373,
+   "fromTop": 11,
+   "fromRight": 11,
+   "inView": true,
+   "onTop": true,
+   "hit": "#panel-close",
+   "under": [],
+   "focused": true
+  },
+  "scan:person": {
+   "kind": "person",
+   "max": 38,
+   "steps": 3,
+   "bad": [],
+   "closeOffsets": [
+    "11,11"
+   ],
+   "drift": {
+    "top": 0,
+    "right": 0,
+    "topRange": [
+     10.52,
+     10.52
+    ]
+   }
+  },
+  "close:person:end": {
+   "kind": "person",
+   "st": 38,
+   "sh": 388,
+   "ch": 350,
+   "close": [
+    316,
+    394,
+    362,
+    441
+   ],
+   "sheetTop": 384,
+   "sheetRight": 373,
+   "fromTop": 11,
+   "fromRight": 11,
+   "inView": true,
+   "onTop": true,
+   "hit": "#panel-close",
+   "under": [],
+   "focused": true
+  }
+ },
+ "failures": [],
+ "failedRequests": [
+  "http://127.0.0.1:4783/musicSpace/ai/ort/ort-wasm-simd-threaded.wasm net::ERR_ABORTED @boot 1.2s"
+ ],
+ "ok": true
+}

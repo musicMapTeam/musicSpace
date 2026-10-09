@@ -1,0 +1,69 @@
+{
+  "schema": "musicspace-venue-asset-v1",
+  "sourceContract": "28508a28b8fee1d73b93aa5ae8e22585d7223136",
+  "triangleCount": 19728,
+  "meshCount": 12,
+  "materials": [
+    "CEL_FLOOR",
+    "CEL_INK",
+    "CEL_METAL",
+    "CEL_SHADOW",
+    "CEL_CURTAIN",
+    "CEL_LIME",
+    "CEL_PAPER",
+    "EMISSIVE_LIME"
+  ],
+  "textures": [],
+  "glbBytes": 1158336,
+  "anchors": {
+    "anchorName": "MS_GALLERY_ANCHOR",
+    "position": [
+      6.795,
+      2.64,
+      -0.65
+    ],
+    "rotationY": -1.5707963267948966,
+    "hotspot": [
+      6.57,
+      2.65,
+      -0.3
+    ],
+    "frameOuterSize": [
+      0.965,
+      1.285,
+      0.036
+    ],
+    "frameSpacing": [
+      1.12,
+      1.46
+    ],
+    "maxPhotos": 6,
+    "mobileColumns": 2,
+    "desktopColumns": 3,
+    "framesOwnedBy": "web runtime"
+  },
+  "license": "Original authored geometry; no third-party assets",
+  "hostIntegration": "not implemented",
+  "validation": "GLB roundtrip/root/anchor/bounds/budget and r1 source invariance checks passed; only 22 parents changed; web cutaway acceptance pending",
+  "boundsThree": {
+    "min": [
+      -7.0,
+      -0.3100000023841858,
+      -5.679999828338623
+    ],
+    "max": [
+      7.090000152587891,
+      6.09999942779541,
+      6.949999809265137
+    ]
+  },
+  "drawPrimitives": 12,
+  "revision": "r2",
+  "occlusionGroup": "MS_FOREGROUND_CUTAWAY",
+  "cutawayMeshes": [
+    "MS_CUTAWAY_CEL_INK",
+    "MS_CUTAWAY_CEL_METAL",
+    "MS_CUTAWAY_CEL_SHADOW"
+  ],
+  "glbSha256": "68f2b5991115dac38580e44f38277e9ca93be70d3bdf8e5806bbc64d59c85b8e"
+}

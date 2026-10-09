@@ -1,0 +1,53 @@
+/* Content first: one masthead, one focal point, details when requested. */
+html { scrollbar-width:thin; scrollbar-color:var(--line) transparent; }
+.app-masthead { min-height:80px; padding:14px 36px; gap:24px; }
+.brand { min-height:44px; }
+.brand-wordmark { font-size:27px; }
+.primary-nav .nav-item { min-height:44px; padding:9px 16px; }
+.masthead-tools { justify-self:end; display:flex; align-items:center; gap:12px; }
+.masthead-tools .demo-help { min-width:36px; width:36px; min-height:36px; height:36px; color:var(--muted); border:0; }
+.main-content { padding:24px 36px; min-height:calc(100dvh - 80px); }
+.about-dialog { max-width:540px; padding:28px; }
+.about-top { align-items:center; margin-bottom:24px; }
+.about-top h2 { font-size:23px; margin:0; }
+.about-facts { margin-bottom:28px; }
+.about-facts p { margin:0 0 20px; }
+.about-facts p:last-child { margin-bottom:0; }
+.about-facts span { font-size:14px; }
+.records-heading { display:flex; align-items:center; justify-content:space-between; margin:8px 0 28px; padding:0; gap:20px; }
+.records-heading h1 { margin:0; font-size:36px; letter-spacing:-.04em; }
+.records-filters { margin-top:0; }
+
+/* The record shop keeps its stage inside a short window. */
+@media (min-width:961px) {
+  .map-experience.map-experience--compact .map-stage { height:clamp(360px,calc(100dvh - 460px),430px); }
+}
+
+/* Native wheel/touch/keyboard; unobtrusive overlay chrome. */
+.os-theme-music { --os-size:6px; --os-padding-perpendicular:1px; --os-padding-axis:4px; --os-track-bg:transparent; --os-handle-bg:color-mix(in srgb,var(--muted) 38%,transparent); --os-handle-bg-hover:var(--muted); --os-handle-bg-active:var(--mint); --os-handle-border-radius:10px; --os-handle-interactive-area-offset:4px; }
+dialog { scrollbar-width:thin; scrollbar-color:transparent transparent; overscroll-behavior:contain; }
+dialog:hover,dialog:focus-within { scrollbar-color:var(--line) transparent; }
+dialog::-webkit-scrollbar { width:5px; height:5px; }
+dialog::-webkit-scrollbar-track { background:transparent; }
+dialog::-webkit-scrollbar-thumb { border-radius:8px; background:transparent; }
+dialog:hover::-webkit-scrollbar-thumb,dialog:focus-within::-webkit-scrollbar-thumb { background:var(--line); }
+@media (forced-colors:active) { .os-theme-music { --os-handle-bg:CanvasText; --os-handle-bg-hover:Highlight; } dialog { scrollbar-color:auto; } }
+
+@media (max-width:1150px) and (min-width:761px) {
+  .app-masthead { grid-template-columns:1fr auto auto; gap:14px; padding-inline:28px; }
+  .primary-nav .nav-item { padding-inline:12px; }
+  .main-content { padding-inline:28px; }
+}
+@media (max-width:760px) {
+  .app-body { padding-bottom:calc(62px + env(safe-area-inset-bottom)); }
+  .app-masthead { min-height:68px; padding:12px 20px; gap:8px; }
+  .brand-wordmark { font-size:24px; }
+  .brand { min-height:42px; }
+  .masthead-tools { gap:4px; }
+  .masthead-tools .demo-help { width:32px; min-width:32px; }
+  .main-content { padding:18px 20px 28px; min-height:calc(100dvh - 130px); }
+  .mobile-nav { min-height:60px; padding-block:4px; }
+  .mobile-nav .nav-item { min-height:48px; gap:5px; }
+  .records-heading h1 { font-size:30px; }
+  .records-heading .button { padding-inline:12px; font-size:12px; }
+}

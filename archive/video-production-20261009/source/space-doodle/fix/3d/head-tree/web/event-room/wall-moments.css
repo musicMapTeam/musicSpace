@@ -1,0 +1,55 @@
+/* The photo wall by moment (moment-wall.js): groups of photos taken within 3 minutes, a small mark for the same moment, and one block for
+   「同一刻的另一面」. Editorial green / cream like editorial.css. Every rule starts with .moment-wall (or .panel) so it wins over the generic
+   .panel p / .panel .primary rules whatever order the style sheets load in. Body text 14px, helper text 12px, targets 44px.
+   Contrast (WCAG, computed): ink #203b32 on the panel paper #f0e9d8 10.0:1, helper #4a5a43 on paper 6.1:1 (6.7:1 on the best card #f8f4e6),
+   cream #f4ecd7 on the ribbon / done tag green #294c3e 8.1:1, ink on the badge #e6edb8 9.9:1, ink on the tag #e4e4cb 9.4:1,
+   ink on the button #d8df83 8.5:1, the button border #294c3e on the badge 7.8:1. */
+.moment-wall { margin: 4px 0 0; min-width: 0; }
+
+/* moment.js reasonHtml and moment-wall.js keep small units whole with this class; the event room had no rule for it (only the 0.16 pages did) */
+.moment-wall .nowrap, .panel .nowrap { white-space: nowrap; }
+
+/* the pipeline ribbon: shown only when some photo on the wall carries a side the model suggested */
+.moment-wall .moment-ribbon {
+  margin: 12px 0 4px; padding: 8px 12px; background: #294c3e; color: #f4ecd7; border-radius: 2px;
+  font-size: 13px; line-height: 1.55; font-weight: 700; letter-spacing: .02em; text-wrap: balance; overflow-wrap: anywhere;
+  word-break: keep-all; /* the three steps break at their spaces, never inside 「规则找同一刻」 */
+}
+
+/* one section per moment */
+.moment-wall .moment-group { margin: 20px 0 0; padding: 12px 0 0; border-top: 1px solid #b1b69f; min-width: 0; }
+.moment-wall .moment-group:first-child, .moment-wall .moment-ribbon + .moment-group { margin-top: 12px; }
+.moment-wall .moment-group--untimed { border-top-style: dashed; }
+.moment-wall .moment-group__title {
+  margin: 0; color: #203b32; font-size: 16px; line-height: 1.45; font-weight: 700; letter-spacing: 0; overflow-wrap: anywhere;
+}
+.moment-wall .moment-group__note { margin: 4px 0 0; color: #4a5a43; font-size: 12px; line-height: 1.55; overflow-wrap: anywhere; text-wrap: pretty; }
+.moment-wall .moment-grid { margin: 12px 0 0; }
+
+/* a photo: app.js's own .photo-item button, then its meta line, then the small marks */
+.moment-wall .moment-card { min-width: 0; }
+.moment-wall .moment-card > .photo-item { display: block; width: 100%; }
+.moment-wall .moment-meta, .panel .moment-meta { /* the meta line is usable on its own under a photo elsewhere in the panel */
+  margin: 4px 0 0; color: #4a5a43; font-size: 12px; line-height: 1.55; overflow-wrap: anywhere;
+}
+.moment-wall .moment-tag {
+  display: inline-block; margin: 6px 6px 0 0; padding: 1px 8px; border: 1px solid #294c3e; border-radius: 2px;
+  background: #e4e4cb; color: #203b32; font-size: 12px; line-height: 1.55; font-weight: 700;
+}
+.moment-wall .moment-tag--done { background: #294c3e; color: #f4ecd7; }
+
+/* the best other side: the card takes the whole row and carries the block that explains and offers the exchange */
+.moment-wall .moment-card--best { grid-column: 1 / -1; padding: 10px; border: 2px solid #294c3e; background: #f8f4e6; }
+.moment-wall .moment-card--best > .photo-item > span { height: 180px; }
+.moment-wall .moment-badge { margin: 8px 0 0; padding: 10px 12px 12px; background: #e6edb8; border-left: 4px solid #294c3e; min-width: 0; }
+.moment-wall .moment-badge__title { display: block; color: #203b32; font-size: 15px; line-height: 1.4; font-weight: 700; }
+.moment-wall .moment-badge__reason { margin: 6px 0 10px; color: #203b32; font-size: 14px; line-height: 1.65; overflow-wrap: anywhere; }
+.moment-wall .moment-badge button.primary {
+  display: block; width: 100%; min-height: 44px; padding: 9px 12px; border: 2px solid #294c3e; border-radius: 2px;
+  background: #d8df83; color: #203b32; font: inherit; font-size: 14px; font-weight: 700; line-height: 1.35; cursor: pointer;
+}
+.moment-wall .moment-badge button.primary:focus-visible { outline: 3px solid #203b32; outline-offset: 3px; }
+
+@media (min-width: 701px) {
+  .moment-wall .moment-card--best > .photo-item > span { height: 200px; }
+}

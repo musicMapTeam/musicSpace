@@ -1,0 +1,49 @@
+{
+ "file": "P-06.mp4",
+ "codec": "h264 High",
+ "size": "1080x2340",
+ "fps": "60/1",
+ "frames": 326,
+ "seconds": 5.433,
+ "pix_fmt": "yuv420p",
+ "colour": "bt709/bt709/bt709/tv",
+ "bytes": 1985291,
+ "kbps": 2923,
+ "changedFrames": 41,
+ "staticFrames": 284,
+ "stutter_dupInsideMotion": [],
+ "holds_over_0.5s": [
+  {
+   "from": 135,
+   "frames": 85,
+   "at_s": 2.25,
+   "seconds": 1.42
+  },
+  {
+   "from": 229,
+   "frames": 98,
+   "at_s": 3.82,
+   "seconds": 1.63
+  }
+ ],
+ "motionSegments_over_4f": [
+  {
+   "from": 116,
+   "to": 134,
+   "at_s": 1.93,
+   "seconds": 0.3,
+   "minDiff": 0.38,
+   "medDiff": 5.1
+  },
+  {
+   "from": 218,
+   "to": 228,
+   "at_s": 3.63,
+   "seconds": 0.17,
+   "minDiff": 0.26,
+   "medDiff": 0.46
+  }
+ ],
+ "blankFrames": [],
+ "meanDiff": 0.717
+}

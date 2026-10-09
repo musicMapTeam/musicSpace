@@ -1,0 +1,10 @@
+const out = {};
+await page.locator('[data-organize="close"]').first().click(); await sleep(800);
+out.after1 = await page.evaluate(() => [...document.querySelectorAll('.community-panel')].map(c => c.className + ' vis=' + !!c.getClientRects().length));
+await page.locator('.community-panel [data-group="close"]').first().click(); await sleep(800);
+out.after2 = await page.evaluate(() => [...document.querySelectorAll('.community-panel')].map(c => c.className + ' vis=' + !!c.getClientRects().length));
+out.panelHidden = await page.evaluate(() => document.querySelector('#panel').hidden);
+await page.click('#my-space'); await sleep(1500);
+out.my = await page.evaluate(() => { const c = [...document.querySelectorAll('.personal-space')].find(e => e.getClientRects().length); return c ? c.innerText.replace(/\n{2,}/g, '\n').slice(0, 900) : null; });
+await page.click('.personal-space [data-space="close"]'); await sleep(500);
+return out;

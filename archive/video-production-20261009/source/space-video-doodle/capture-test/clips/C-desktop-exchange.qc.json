@@ -1,0 +1,21 @@
+{
+ "file": "C-desktop-exchange.mp4",
+ "frames": 838,
+ "seconds": 13.967,
+ "region": "full",
+ "changedFrames": 623,
+ "longestFrozen": "9 f = 0.15 s",
+ "frozenOver1s": [],
+ "frozenOver3s": [],
+ "gapHistogram(frames between changes)": {
+  "1": 564,
+  "2": 22,
+  "3": 7,
+  "4": 6,
+  "5": 6,
+  "7": 2,
+  "8": 4,
+  "9": 11
+ },
+ "meanDiff": 7.471
+}

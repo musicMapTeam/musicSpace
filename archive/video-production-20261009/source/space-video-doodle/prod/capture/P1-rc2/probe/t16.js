@@ -1,0 +1,1 @@
+return await page.evaluate(() => { const fmt = ms => new Date(ms).toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' }); return { dateNow: fmt(Date.now()), perfOrigin: fmt(performance.timeOrigin + performance.now()), timeOrigin: fmt(performance.timeOrigin), perfNow: performance.now() }; });

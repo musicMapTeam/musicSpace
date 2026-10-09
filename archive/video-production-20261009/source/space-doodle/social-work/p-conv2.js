@@ -1,0 +1,2 @@
+const {page}=await get('phone');
+return await page.evaluate(()=>{const r=document.querySelector('.music-community');const cs=getComputedStyle(r);return {top:cs.top,left:cs.left,right:cs.right,bottom:cs.bottom,width:cs.width,maxH:cs.maxHeight,z:cs.zIndex,radius:cs.borderRadius,shadow:cs.boxShadow,rs:getComputedStyle(r.querySelector('.chat-reading')).minHeight,content:getComputedStyle(r.querySelector('.conversation-content')).display};});

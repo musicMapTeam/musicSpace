@@ -1,0 +1,13 @@
+import { launch, newPage, sleep, BASE, ensureDir } from './lib.mjs';
+import { hostCreatesRoom, guestJoins, uploadPhoto, panelInfo, visibleUI } from './flows.mjs';
+const out = ensureDir('/tmp/space-video-prep/stills/journey');
+const browser = await launch();
+const A = await newPage(browser);
+await hostCreatesRoom(A.page, { name: '阿遥', title: '返场夜', venue: '月台 Livehouse' });
+let n = 40;
+const snap = async (p, tag) => { const i = String(n++).padStart(2, '0'); await p.screenshot({ path: `${out}/${i}-${tag}.png` }); const info = await visibleUI(p); console.log(`--- ${i} ${tag}`, JSON.stringify(info.overlays.filter(o => !/world-shell|presence/.test(o.cls))).slice(0, 900)); };
+await A.page.locator('#my-look').click(); await sleep(2000);
+await snap(A.page, 'wardrobe');
+const wb = await A.page.evaluate(() => [...document.querySelectorAll('.wardrobe button, .wardrobe [role=tab]')].filter(b => b.offsetParent).map(b => (b.innerText || b.getAttribute('aria-label') || '').trim().replace(/\n/g, ' ').slice(0, 24)));
+console.log('wardrobe buttons', JSON.stringify(wb));
+await browser.close();

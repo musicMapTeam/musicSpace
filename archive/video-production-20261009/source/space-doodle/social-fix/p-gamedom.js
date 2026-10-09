@@ -1,0 +1,2 @@
+const {page}=await get(globalThis.KIND);
+return await page.evaluate(()=>{const g=document.querySelector('.music-games .game-choices');if(!g)return null;const cs=getComputedStyle(g);return {html:g.outerHTML.slice(0,1400),disp:cs.display,cols:cs.gridTemplateColumns,ai:cs.alignItems,child:[...g.children].map(c=>{const s=getComputedStyle(c);return c.tagName+'.'+c.className+' disp='+s.display+' h='+c.getBoundingClientRect().height;})};});

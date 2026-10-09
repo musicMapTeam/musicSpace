@@ -1,0 +1,19 @@
+{
+ "scene": "film",
+ "map": "flipping-in-b",
+ "frames": [
+  0,
+  10480
+ ],
+ "seconds": [
+  0,
+  174.66666666666666
+ ],
+ "crf": 18,
+ "bytes": 217559659,
+ "audio": "/tmp/space-video-doodle/prod/out/music-space-video-v3.mix.wav",
+ "workers": 8,
+ "chunk": 240,
+ "mezz": "hq",
+ "render_fps": 16.22
+}

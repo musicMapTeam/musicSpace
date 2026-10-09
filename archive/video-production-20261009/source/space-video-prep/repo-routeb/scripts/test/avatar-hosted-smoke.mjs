@@ -1,0 +1,30 @@
+import assert from 'node:assert/strict';
+import { readFileSync, writeFileSync } from 'node:fs';
+import { randomUUID } from 'node:crypto';
+const base=process.argv[2];if(!base?.startsWith('https://'))throw Error('Supply the verified HTTPS preview origin. This test creates only synthetic QA records.');
+const results=[];const report=(name)=>{results.push({name,status:'passed'});console.log('PASS',name);};
+const fixture=/const JPEG_FIXTURE = '([^']+)'/.exec(readFileSync(new URL('../../tests/avatar-api.test.js',import.meta.url),'utf8'))[1];
+const avatar={skin:1,hair:0,hairColor:0,outfit:0,accessory:'headphones',pose:'sway'};
+async function call(path,{method='GET',token,data,key=randomUUID()}={}){const r=await fetch(new URL(path.startsWith('/api/')?path:'/api/avatar'+path,base),{method,headers:{...(token?{Authorization:`Bearer ${token}`} :{}),...(data===undefined?{}:{'Content-Type':'application/json'}),...(method==='GET'?{}:{'Idempotency-Key':key})},...(data===undefined?{}:{body:JSON.stringify(data)}),signal:AbortSignal.timeout(45000)});return {status:r.status,body:r.headers.get('content-type')?.startsWith('image/')?Buffer.from(await r.arrayBuffer()):await r.json(),headers:r.headers};}
+async function expect(p,status){const r=await p;assert.equal(r.status,status,JSON.stringify(r.body));return r.body;}
+try{
+ const health=await expect(call('/health'),200);assert.equal(health.ok,true);report('Hosted API and storage bindings respond');
+ const [host,guest,stranger]=await Promise.all(['Host','Guest','Stranger'].map(name=>expect(call('/session',{method:'POST',data:{name:`QA ${name}`,avatar}}),201)));assert.notEqual(host.user.id,guest.user.id);report('Independent anonymous identities are created');
+ const createKey=randomUUID(),body={title:'QA synthetic composition',caption:'Disposable test only',scene:{kind:'photo',dataUrl:`data:image/jpeg;base64,${fixture}`},songId:'late-train',avatar,transform:{x:37,y:81,scale:1,rotation:0}};
+ let room=(await expect(call('/compositions',{method:'POST',token:host.token,data:body,key:createKey}),201)).composition;
+ const retry=(await expect(call('/compositions',{method:'POST',token:host.token,data:body,key:createKey}),201)).composition;assert.equal(room.id,retry.id);report('Photo persists in private R2 and duplicate creation is idempotent');
+ await expect(call(room.scene.photoUrl),401);await expect(call(room.scene.photoUrl,{token:stranger.token}),404);const photo=await call(room.scene.photoUrl,{token:host.token});assert.equal(photo.status,200);assert.ok(photo.body.length>100);report('Private photo is readable only by the owner before invitation');
+ const inv=await expect(call(`/compositions/${room.id}/invite`,{method:'POST',token:host.token,data:{revision:room.revision}}),200);room=inv.composition;
+ const preview=await expect(call(`/invites/${inv.inviteToken}`),200);assert.equal(preview.preview.id,room.id);assert.equal((await call(preview.preview.scene.photoUrl)).status,200);report('Scoped invitation exposes only its intended scene/photo');
+ room=(await expect(call(`/invites/${inv.inviteToken}/join`,{method:'POST',token:guest.token,data:{revision:room.revision,response:'A separate client joins',avatar:{...avatar,outfit:2,pose:'sing'},transform:{x:66,y:81,scale:1,rotation:3},consent:true}}),200)).composition;assert.equal(room.role,'guest');report('Different identity joins with its own avatar and explicit consent');
+ await expect(call(`/compositions/${room.id}/export`,{token:host.token}),409);await expect(call(`/compositions/${room.id}/decision`,{method:'POST',token:guest.token,data:{revision:room.revision,accept:true}}),403);report('Guest cannot accept as host; export blocked before approval');
+ room=(await expect(call(`/compositions/${room.id}/decision`,{method:'POST',token:host.token,data:{revision:room.revision,accept:true}}),200)).composition;
+ room=(await expect(call(`/compositions/${room.id}/consent`,{method:'POST',token:host.token,data:{revision:room.revision,consent:true}}),200)).composition;assert.equal(room.exportEligible,false);await expect(call(`/compositions/${room.id}/export`,{token:host.token}),409);report('One participant cannot substitute the second export consent');
+ room=(await expect(call(`/compositions/${room.id}/consent`,{method:'POST',token:guest.token,data:{revision:room.revision,consent:true}}),200)).composition;assert.equal(room.exportEligible,true);await expect(call(`/compositions/${room.id}/export`,{token:host.token}),200);report('Both current-version consents unlock the authorized export snapshot');
+ const restored=await expect(call('/session',{token:guest.token}),200);assert.ok(restored.compositions.some(c=>c.id===room.id));report('Fresh HTTP request restores persistent shared composition');
+ room=(await expect(call(`/compositions/${room.id}`,{method:'PATCH',token:guest.token,data:{revision:room.revision,response:'A changed response'}}),200)).composition;assert.equal(room.exportEligible,false);assert.equal(room.consents.host,false);assert.equal(room.consents.guest,false);report('Editing clears prior acceptance and both consents');
+ room=(await expect(call(`/compositions/${room.id}/invite`,{method:'DELETE',token:host.token,data:{revision:room.revision}}),200)).composition;assert.ok([404,410].includes((await call(`/invites/${inv.inviteToken}`)).status));report('Revocation closes the capability link');
+ await expect(call(`/compositions/${room.id}/participation`,{method:'DELETE',token:guest.token,data:{revision:room.revision}}),200);await expect(call(`/compositions/${room.id}`,{token:guest.token}),404);report('Guest withdrawal removes their snapshot and access');
+}catch(error){results.push({name:'Hosted smoke stopped',status:'failed',message:error.message});console.error(error.message);process.exitCode=1;}
+const summary={checkedAt:new Date().toISOString(),origin:base,scope:'Real hosted HTTP/D1/R2; synthetic 2x2 image and fictional QA identities. This does not claim physical-device or separate-browser UI testing.',results};
+if(process.argv[3])writeFileSync(process.argv[3],JSON.stringify(summary,null,2)+'\n');

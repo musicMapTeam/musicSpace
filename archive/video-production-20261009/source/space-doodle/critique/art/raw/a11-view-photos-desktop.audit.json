@@ -1,0 +1,14 @@
+{
+ "fonts": [],
+ "glyphs": [
+  "button#music-map-entry.music-map-entry>span [Doodle Marker] missing «↗» in «↗»",
+  "button#social-inbox.social-inbox [Doodle Marker] missing «♡» in «♡»",
+  "button#my-look.my-look>span [Doodle Marker] missing «↗» in «↗»"
+ ],
+ "colors": [],
+ "tiny": [],
+ "whiteOnMarker": [],
+ "clipped": [],
+ "blurShadow": [],
+ "renderStyle": "doodle"
+}

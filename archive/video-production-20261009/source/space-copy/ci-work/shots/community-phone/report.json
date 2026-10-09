@@ -1,0 +1,51 @@
+{
+  "steps": [
+    {
+      "name": "entered",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "room chat (joined) shows the three seeded lines",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "linked community opens",
+      "ok": true,
+      "detail": "散场以后，也留一个位置 | × | 月台 Livehouse 乐迷社群 | 散场后，乐迷留在这里；下一场的预告也发在这里。 | 开放中 | 加入后，大家能看到你的昵称、小人和发言。 | 我愿意加入这个聊天室 | 加入，继续聊 | 刷新聊天室我的乐迷社群"
+    },
+    {
+      "name": "joins the community",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "next show posted",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "done",
+      "ok": true,
+      "detail": "0 /api, 0 third-party, 0 console errors, 0 page errors"
+    }
+  ],
+  "api": [],
+  "thirdParty": [],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "failedResponses": [],
+  "texts": {
+    "room-panel": "×\n月台 Livehouse\n回声现场\n\n4 位成员 · 可继续入场\n\n关于 Music Space\n回看这一晚\n我的现场\n我的创作与邀请\n散场聊天室Livehouse 乐迷社群招呼与朋友\n这一场，我想怎样参与\n安静参与\n照片照常分享，不接新招呼\n愿意打招呼\n别人可以向我招手\n更新参与方式\n\n改为安静参与会结束待回应的招呼。\n\n离开本场\n@aria-label: 场景操作\n@aria-label: 关闭操作面板",
+    "room-chat": "散场以后，也留一个位置\n×\n回声现场\n\n加入后，大家能看到你的昵称、小人和发言。\n\n我愿意加入这个聊天室\n加入，继续聊\n这家 Livehouse 的乐迷社群刷新聊天室我的乐迷社群\n@aria-label: 乐迷社群与聊天室\n@aria-label: 关闭聊天室\n@aria-label: Music Space 的插画分身",
+    "room-chat-joined": "回声现场\n散场以后，也留一个位置\n×\n未静音 · 3 条未读\n设置与管理 ···\n音乐探索 ↗\n一起玩\n音乐话题\n专辑世界杯\n阿遥\n23:07\n\n大家好，我是月台的阿遥。今晚舞台这一面，我先放上照片墙啦。\n\n回复\n小满\n23:07\n\n我拍的是人海这一面，手都举起来了。\n\n回复\n北屿\n23:07\n\n我只拍了看台边的一盏灯，算细节。\n\n回复\n标为已读\n留一句\n发送\n@aria-label: 乐迷社群与聊天室\n@aria-label: 关闭聊天室\n@aria-label: 音乐与聊天入口\n@aria-label: Music Space 的插画分身\n@aria-label: Music Space 的插画分身\n@aria-label: Music Space 的插画分身",
+    "room-chat-menu": "回声现场\n散场以后，也留一个位置\n×\n未静音 · 3 条未读\n设置与管理 ···\n静音\n退出聊天室\n这家 Livehouse 的乐迷社群刷新聊天室我的乐迷社群\n音乐探索 ↗\n一起玩\n音乐话题\n专辑世界杯\n阿遥\n23:07\n\n大家好，我是月台的阿遥。今晚舞台这一面，我先放上照片墙啦。\n\n回复\n小满\n23:07\n\n我拍的是人海这一面，手都举起来了。\n\n回复\n北屿\n23:07\n\n我只拍了看台边的一盏灯，算细节。\n\n回复\n标为已读\n留一句\n发送\n@aria-label: 乐迷社群与聊天室\n@aria-label: 关闭聊天室\n@aria-label: 音乐与聊天入口\n@aria-label: Music Space 的插画分身\n@aria-label: Music Space 的插画分身\n@aria-label: Music Space 的插画分身",
+    "community-before-join": "散场以后，也留一个位置\n×\n月台 Livehouse 乐迷社群\n\n散场后，乐迷留在这里；下一场的预告也发在这里。\n\n开放中\n\n加入后，大家能看到你的昵称、小人和发言。\n\n我愿意加入这个聊天室\n加入，继续聊\n刷新聊天室我的乐迷社群\n@aria-label: 乐迷社群与聊天室\n@aria-label: 关闭聊天室\n@aria-label: Music Space 的插画分身",
+    "community-joined": "月台 Livehouse 乐迷社群\n散场以后，也留一个位置\n×\n未静音 · 0 条未读\n设置与管理 ···\n音乐探索 ↗\n一起玩\n音乐话题\n专辑世界杯\n\n还没有人说话，来说第一句吧。\n\n标为已读\n留一句\n发送\n@aria-label: 乐迷社群与聊天室\n@aria-label: 关闭聊天室\n@aria-label: 音乐与聊天入口",
+    "scene-sticker": "2 位乐迷 | MUSIC SPACE / 乐迷社群 / 月台 Livehouse 乐迷社群 | 2 位乐迷",
+    "next-show": "Music\nSpace\n音乐探索\n♡\n我的小人\n···\nMUSIC SPACE / 乐迷社群\n月台 Livehouse 乐迷社群\n2 位乐迷\n全景\n同场的人\n照片墙\n我的空间\n关于 Music Space\nLIVEHOUSE / 下一场见\n×\n月台 Livehouse 乐迷社群\n\n开放中\n\n散场后，乐迷留在这里；下一场的预告也发在这里。\n\n下一场\n下一场预告\n回声现场 Vol.2\n\n月台 Livehouse · 时间待定\n\n时间定了就在这里说。\n\n关联的场次\n刷新回到社群聊天\n@aria-label: 音乐探索\n@aria-label: 招呼、朋友和私聊\n@aria-label: 我的小人 · 换装\n@aria-label: 房间信息\n@aria-label: 三维 Livehouse 场景\n@aria-label: 查看乐迷社群\n@aria-label: 场景内可访问的地点\n@aria-label: 场景机位\n@aria-label: 我的音乐空间\n@aria-label: 下一场预告\n@aria-label: 返回社群",
+    "communities-list": "Music\nSpace\n音乐探索\n♡\n我的小人\n···\n月台 Livehouse\n回声现场\n5 位已加入 · 正在进行\n全景\n同场的人\n照片墙\n我的空间\n关于 Music Space\n散场以后，也留一个位置\n×\nLivehouse 乐迷社群\n\n散场后，乐迷留在场地的社群里；下一场的预告直接发到这里。\n\n月台 Livehouse 乐迷社群\n你在这里 · 继续聊聊\n社群名称\n创建社群，向成员展示我的昵称、小人和发言\n创建 Livehouse 乐迷社群\n社群邀请码或邀请链接\n先看社群\n刷新聊天室我的乐迷社群\n@aria-label: 音乐探索\n@aria-label: 招呼、朋友和私聊\n@aria-label: 我的小人 · 换装\n@aria-label: 房间信息\n@aria-label: 三维 Livehouse 场景\n@aria-label: 查看场次详情：回声现场\n@aria-label: 场景内可访问的地点\n@aria-label: 场景机位\n@aria-label: 我的音乐空间\n@aria-label: 乐迷社群与聊天室\n@aria-label: 关闭聊天室\n@aria-label: Music Space 的插画分身",
+    "recap": "×\n这一晚 · 仍在进行\n回声现场\n\n月台 Livehouse\n·\n你仍是本场成员\n\n散场以后，继续聊。\n回到这一场的聊天室\nLivehouse 乐迷社群\n把这一晚，留在手里。\n\n用你的照片和小人，做一张纪念卡。\n\n保存我的纪念卡 ↗\n留下的视角\n小满\n照片墙：本场成员可见\n拍摄于 21:48\n·\n视角：人海\n·\n作者选择\n阿遥\n照片墙：本场成员可见\n拍摄于 21:47\n·\n视角：舞台\n·\n作者选择\n北屿\n照片墙：本场成员可见\n拍摄于 21:49\n·\n视角：细节\n·\n作者选择\n小满\n照片墙：本场成员可见\n拍摄于 22:21\n·\n视角：身边\n·\n作者选择\n上一页\n第 1 页\n下一页\n交换过的另一面\n\n散场后也能看，随时可以撤销。\n\n查看我的照片交换 ↗\n在这一场认识的人\n\n还没有在这一场认识的人。\n\n上一页\n第 1 页\n下一页\n刷新这一晚\n再见，在下一场。\n去另一个现场\n我是 Livehouse / 主办方，开个房\n我的现场记录\n@aria-label: 场景操作\n@aria-label: 关闭操作面板\n@alt: 同场观众拍摄的现场照片\n@alt: 同场观众拍摄的现场照片\n@alt: 同场观众拍摄的现场照片\n@alt: 同场观众拍摄的现场照片"
+  }
+}

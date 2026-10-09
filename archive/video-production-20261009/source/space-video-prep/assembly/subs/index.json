@@ -1,0 +1,20 @@
+[
+ {
+  "file": "/private/tmp/space-video-prep/assembly/subs/s000.png",
+  "start": 10.6,
+  "end": 14.2,
+  "text": "这是一间真正的三维 Livehouse。"
+ },
+ {
+  "file": "/private/tmp/space-video-prep/assembly/subs/s001.png",
+  "start": 14.4,
+  "end": 18,
+  "text": "照片默认只有自己能看，**AI 只在你的设备上**判断视角。"
+ },
+ {
+  "file": "/private/tmp/space-video-prep/assembly/subs/s002.png",
+  "start": 19,
+  "end": 22,
+  "text": "示例角色、场次与照片均为虚构（AI 生成）"
+ }
+]

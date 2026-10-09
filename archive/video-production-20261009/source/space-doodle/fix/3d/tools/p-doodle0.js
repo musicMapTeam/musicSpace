@@ -1,0 +1,20 @@
+const key='d0'; await drop(key);
+const {page}=await get('w1440',{key,url:'http://127.0.0.1:5190/?doodle=0'});
+const st=()=>page.evaluate(()=>({style:window.__SPACE_EVENT_QA__?.()?.camera?.scene?.renderStyle,url:location.search,stored:sessionStorage.getItem('music-space-event-doodle')}));
+const out={lobby:await st()};
+await enter(page); await sleep(1000);
+out.room=await st();
+await page.reload({waitUntil:'domcontentloaded'});
+await page.waitForFunction(()=>window.__SPACE_BOOT__==='ready',null,{timeout:90000});
+await page.waitForFunction(()=>document.querySelector('#loading')?.hidden===true,null,{timeout:90000});
+await sleep(1500);
+out.reload=await st();
+await page.screenshot({path:'/tmp/space-doodle/fix/3d/doodle0-after-reload-desktop.png'});
+// an explicit ?doodle=1 turns it back on for the tab
+await page.goto('http://127.0.0.1:5190/?doodle=1',{waitUntil:'domcontentloaded'});
+await page.waitForFunction(()=>window.__SPACE_BOOT__==='ready',null,{timeout:90000});
+await page.waitForFunction(()=>document.querySelector('#loading')?.hidden===true,null,{timeout:90000});
+await sleep(1500);
+out.doodle1=await st();
+await drop(key);
+return out;

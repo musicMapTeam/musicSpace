@@ -1,0 +1,6 @@
+p1440 room-entered stage [1370, 688] innerW 1440
+   '照片墙'                        hidden=False hs=128x44 client=124 content=112 scroll=124 textW=39 trunc=False ws=nowrap to=ellipsis ov=hidden fs=13px ff="Doodle Marker" pad=5px 6px 4px box=[881, 262, 1010, 298]
+   '阿遥·示例 · 可招呼'                hidden=False hs=128x44 client=124 content=112 scroll=124 textW=111 trunc=False ws=nowrap to=ellipsis ov=hidden fs=13px ff="Doodle Marker" pad=5px 6px 4px box=[414, 328, 542, 361]
+   '小满·示例 · 可招呼'                hidden=False hs=128x44 client=124 content=112 scroll=124 textW=111 trunc=False ws=nowrap to=ellipsis ov=hidden fs=13px ff="Doodle Marker" pad=5px 6px 4px box=[605, 326, 733, 359]
+   '北屿·示例 · 可招呼'                hidden=False hs=128x44 client=124 content=112 scroll=124 textW=111 trunc=False ws=nowrap to=ellipsis ov=hidden fs=13px ff="Doodle Marker" pad=5px 6px 4px box=[794, 328, 923, 361]
+   '访客2935 · 我'                 hidden=False hs=128x44 client=124 content=112 scroll=124 textW=81 trunc=False ws=nowrap to=ellipsis ov=hidden fs=13px ff="Doodle Marker" pad=5px 6px 4px box=[976, 326, 1104, 359]

@@ -1,0 +1,9 @@
+ffconcat version 1.0
+file '/tmp/space-video-prep/capture/runs/cdpjpeg90/f00000.jpg'
+duration 1.573573
+file '/tmp/space-video-prep/capture/runs/cdpjpeg90/f00001.jpg'
+duration 3.455143
+file '/tmp/space-video-prep/capture/runs/cdpjpeg90/f00002.jpg'
+duration 3.000847
+file '/tmp/space-video-prep/capture/runs/cdpjpeg90/f00003.jpg'
+duration 0.033333

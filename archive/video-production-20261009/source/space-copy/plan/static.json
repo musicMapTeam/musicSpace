@@ -1,0 +1,271 @@
+{
+ "area": "static",
+ "files": "web/static-runtime/** (boot, runtime, showcase/*), scripts/build/static-html-plugin.mjs, runtime-preview/src/*.js (error messages only), docs: AGENTS.md, docs/design/doodle.md, scripts/demo/README.md, scripts/pages/README.md",
+ "tests_owned": [
+  "tests/static-demo-ui.test.js: copy values (:80-:100), WITH_AI/WITHOUT_AI (照片墙帮你找到同一刻的另一面，双方同意就交换。), shared strings (:131-:141: no CAST_LABEL export or ''), entry (:200-:260: new eyebrow/h2/lead/consent/participation hints/submit/host details, no 虚构/自动回复/没有服务器), About (:399-:466 rewritten for the new sections), roomInvite (:476-:488), tour (:520-:610: 第一次来 n/4, 放一张今晚的照片, 人海那张/舞台那张/用我自己的照片), demo-hooks (:795, :890-:906), demo time (:941-:950); keep the BANNED audit and add a demo-word audit (see risks); fixtures WORLD/SAMPLES drop ·示例",
+  "tests/static-boot.test.js: TEXT (:226-:231), rescue labels (:837-:838 重新开始 / 打开经典版), :1288 找不到这张照片",
+  "tests/static-showcase-seed.test.js: roster (:105-:107, :128-:141; samples without note; lines without DISCLOSURE; drop the DISCLOSURE import), :71 'a name' mutation -> '小满二', :466-:473 rewrite targets name '小满', PINNED_WORLD entry for SEED_REV 3 (digest printed by the failing test); optional community assertions",
+  "tests/static-autopilot.test.js: lines test (:145-:158: new WELCOME_LINES/GENERIC_LINES, no DISCLOSURE; keep the no-person regexes), roster sync (:170-:176), names (:242 :414 :442)",
+  "tests/static-runtime.test.js: READ_ONLY_MESSAGE (:806-:807, :819)",
+  "tests/static-copy-transform.test.js: three rules only (fixtures 服务器已确认。->已确认。, 服务已确认。->已确认。, 服务已收到，无需重发。->已收到，无需重发。), the every-occurrence fixture, the matched-nothing test (use another rule than stop-waiting), rescue labels (:264-:328), noscript/nomodule (:119-:120, :352)",
+  "scripts/test/static-build.test.mjs: no edit expected (it iterates COPY_RULES); run it on a STATIC_OUT build",
+  "tests/event-room-static-binding.test.js: fixtures :51 :53 :110-:111 (回声现场 / 月台 Livehouse / plain names / samples), :208 (entry must NOT mention 虚构), :234 (正在布置现场…), :255 still /勾选|愿意/, :314 预览版 unchanged, :316 (cast names without ·示例 are NOT listed in About: assert the disclosure sentence instead), :323 :326 :341 (memory-only note 这个浏览器不能保存，刷新后会重新开始), :363 :368 (现在还不能重新开始，请稍后再试。), :376 (no cast-badge), :380 server fixture, :387 :391 (shell people-alone copy), :431 (no ribbon: panels), :445 (wall fine print removed: shell), :509 :510 :517 :518 (panels FINE texts: 照片会缩小，并去掉位置信息。 / 照片会缩小、去掉位置信息后上传。; Node keeps 选照片), :533 :655 unchanged",
+  "tests/static-prefix-sync.test.js: optional comment update only (:9 「重置示例数据」 -> 「重新开始」)"
+ ],
+ "changes": [
+  {
+   "file": "web/static-runtime/showcase/copy.js",
+   "current": "statusReady 示例现场 · 在本页运行 ‖ statusPreparing 正在布置示例现场… ‖ reconnectLabel 重新连接示例现场 ‖ reconnectToast 示例现场已就绪",
+   "new": "现场进行中 ‖ 正在布置现场… ‖ 重新连接 ‖ 已重新连接",
+   "note": "statusPreparing must equal boot.js TEXT.preparing"
+  },
+  {
+   "file": "web/static-runtime/showcase/copy.js",
+   "current": "RULES_SENTENCE 规则帮你找到同一刻的另一面，双方同意才交换。",
+   "new": "照片墙帮你找到同一刻的另一面，双方同意就交换。",
+   "note": "lobby card: 同一晚，你拍了舞台，TA 拍了人海。[AI 在本机给你一个视角建议，]照片墙帮你找到同一刻的另一面，双方同意就交换。"
+  },
+  {
+   "file": "web/static-runtime/showcase/copy.js",
+   "current": "joinLabelLobby 进入示例现场 ‖ joinLabelRoom 本场与示例说明 ‖ trackNote 原创示例声景 · 不代表真实演出 ‖ evidenceButton 示例站 · 数据只存在这个浏览器 · 关于这个示例 ‖ nonHttpToast 请通过网址打开；离线 HTML 无法运行示例现场",
+   "new": "进入现场 ‖ 本场信息 ‖ 本场原创声景 ‖ 关于 Music Space ‖ 请用网址打开 Music Space",
+   "note": "keys unchanged (COPY_KEYS); trackNote/nonHttpToast equal the Node defaults"
+  },
+  {
+   "file": "web/static-runtime/showcase/copy.js",
+   "current": "CAST_LABEL 示例角色 · 自动回复",
+   "new": "(remove the export; demo-hooks castLabel() returns '')",
+   "note": "no cast badge in 同场的人"
+  },
+  {
+   "file": "web/static-runtime/showcase/copy.js",
+   "current": "RESET_CONFIRM 重置会清除这个浏览器里的示例数据：…确定要重置吗？",
+   "new": "重新开始会清除你的昵称、小人、照片和交换，确定吗？"
+  },
+  {
+   "file": "web/static-runtime/showcase/copy.js",
+   "current": "MEMORY_ONLY_NOTE 示例数据只保存在本页，刷新会重置 ‖ READ_ONLY_NOTE 示例已在另一个标签页打开，这里不能操作",
+   "new": "这个浏览器不能保存，刷新后会重新开始 ‖ 已在另一个标签页打开，这里只能看",
+   "note": "equal to boot.js TEXT.memoryOnly / TEXT.readOnly"
+  },
+  {
+   "file": "web/static-runtime/showcase/copy.js",
+   "current": "DEMO_TIME_COPY label 演示用：把拍摄时间设成示例现场的 21:47 ‖ note 你填写的时间 · 演示用",
+   "new": "把拍摄时间设成 21:47 ‖ 你填写的时间",
+   "note": "pressed text comes from moment-upload: 已设成 21:47 · 再按一次撤销"
+  },
+  {
+   "file": "web/static-runtime/showcase/copy.js",
+   "current": "TOUR_SAMPLES 人海 · 示例照片 / 舞台 · 示例照片 ‖ TOUR_MORE ['我的空间','音乐社群','专辑世界杯','一起玩','音乐探索']",
+   "new": "人海那张 / 舞台那张 ‖ ['我的空间','乐迷社群','专辑世界杯','一起玩','音乐探索']",
+   "note": "same labels as roster SAMPLE_PHOTOS"
+  },
+  {
+   "file": "web/static-runtime/showcase/entry-panel.js",
+   "current": "PARTICIPATION open 别人可以招手；成为朋友仍需我明确接受。 ‖ quiet 照样保存和分享照片，不接收新招呼。",
+   "new": "别人可以向我招手 ‖ 照片照常分享，不接新招呼",
+   "note": "same as app.js:109"
+  },
+  {
+   "file": "web/static-runtime/showcase/entry-panel.js",
+   "current": "eyebrow 示例现场 · 回声现场（虚构） ‖ h2 带上小人，进入示例现场 ‖ lead ${who}都是虚构的，由这个页面自动回复，不是真人。进去后先放一张你的照片，看看你拍到的是哪一面。",
+   "new": "月台 Livehouse · 回声现场 ‖ 带上小人，进入现场 ‖ 进去后先放一张今晚的照片，看看你拍到的是哪一面。",
+   "note": "drop the who/castNames builder (林间 arrives later, so naming the cast as present would be untrue)"
+  },
+  {
+   "file": "web/static-runtime/showcase/entry-panel.js",
+   "current": "hint known 这个浏览器里已经有你的小人，会直接带着它进去。 ‖ hint new 先用这个小人，入场后随时能逐件换装。",
+   "new": "已经有你的小人了，直接带它进去。 ‖ 入场后随时能换装。"
+  },
+  {
+   "file": "web/static-runtime/showcase/entry-panel.js",
+   "current": "consent 我愿意向本场成员（示例角色）展示我的昵称和小人。数据只存在这个浏览器里。 ‖ submit 进入示例现场 ‖ status 正在布置示例现场…",
+   "new": "我愿意向本场成员展示我的昵称和小人 ‖ 进入现场 ‖ 正在布置现场…",
+   "note": "consent stays required; identical to app.js joinConsent"
+  },
+  {
+   "file": "web/static-runtime/showcase/entry-panel.js",
+   "current": "fine 没有服务器，也没有账号：这个示例完全在你的浏览器里运行，选择只存在这里。 ‖ button 关于这个示例",
+   "new": "(remove) ‖ 关于 Music Space"
+  },
+  {
+   "file": "web/static-runtime/showcase/entry-panel.js",
+   "current": "<summary>自己开个房</summary> ‖ 也可以在这个浏览器里自己开一个房间：只有你自己，示例角色不会来。 ‖ <button data-open=create>自己开个房</button>",
+   "new": "我是 Livehouse / 主办方，开个房 ‖ 为每一场演出开一个房间；散场后，乐迷留在你的乐迷社群里。 ‖ 开一个房间"
+  },
+  {
+   "file": "web/static-runtime/showcase/entry-panel.js",
+   "current": "JOIN_CONSENT_REQUIRED 请先勾选：我愿意向本场成员（示例角色）展示我的昵称和小人。 ‖ SHOWCASE_NOT_READY 示例现场还没有布置好，请稍后再试。",
+   "new": "请先勾选同意，再进入现场。 ‖ 现场还在布置，请稍后再试。"
+  },
+  {
+   "file": "web/static-runtime/showcase/about-panel.js",
+   "current": "ABOUT_SECTIONS what/cast/photos/ai/rules/data/version ‖ eyebrow 示例站 · 回声现场（虚构） ‖ h2 关于这个示例 ‖ lead 真的：…模拟的：同场的人。 ‖ all section texts",
+   "new": "[['what','这是什么'],['livehouse','给 Livehouse'],['ai','AI'],['privacy','隐私'],['data','在线版'],['version','版本']] ‖ 同一刻，另一面 ‖ 关于 Music Space ‖ see about_sheet for every line",
+   "note": "drop the SAME_MOMENT_MS import; castNames param ignored; download line only when ai==='on', AI_OFF_LINES line otherwise"
+  },
+  {
+   "file": "web/static-runtime/showcase/about-panel.js",
+   "current": "memory-only 这个浏览器没有让这里保存数据：${MEMORY_ONLY_NOTE}。 ‖ read-only 这个标签页是只读的：${READ_ONLY_NOTE}。重置请在先打开的那个标签页里做。 ‖ fine 点「重置示例」会先让你确认一次… ‖ button 重置示例",
+   "new": "${MEMORY_ONLY_NOTE}。 ‖ ${READ_ONLY_NOTE}。要重新开始，请回到先打开的那个标签页。 ‖ (remove) ‖ 重新开始",
+   "note": "keep data-demo-reset, data-confirm, disabled in a read-only tab"
+  },
+  {
+   "file": "web/static-runtime/showcase/about-panel.js",
+   "current": "version fine 更早的 0.16 版本称为早期原型，只有本地双角色示例，不属于这个示例。",
+   "new": "(remove)",
+   "note": "versionLine unchanged, incl. 预览版：发布前的测试副本，不是最终版本 on the preview channel"
+  },
+  {
+   "file": "web/static-runtime/showcase/about-panel.js",
+   "current": "roomInviteMarkup lead (showcase / own room) + fine 真正的多人房间需要完整的房间服务… + button 关于这个示例",
+   "new": "<div class=\"demo-room-note\"><button type=\"button\" class=\"quiet\" data-open=\"about\">关于 Music Space</button></div>",
+   "note": "same for both rooms; no invite UI added"
+  },
+  {
+   "file": "web/static-runtime/showcase/tour.js",
+   "current": "step photo 放一张你的照片 / 选一张示例照片最快；也可以用你自己的照片。 ‖ other-side hint 照片墙会标出和你同一刻、拍到另一面的那张… ‖ exchange hint 点「和 TA 交换这个视角」，勾选同意再发出… ‖ people hint 向同场的示例角色招手，对方接受后可以私聊；散场后还能回看这一晚。",
+   "new": "放一张今晚的照片 / 挑一张，或者用你自己的。 ‖ 照片墙会把它标出来。 ‖ 在照片墙点「和 TA 交换这个视角」。 ‖ 向同场的人招个手，对方接受就能私聊。",
+   "note": "buttons 人海那张 / 舞台那张 / 用我自己的照片; other titles and buttons unchanged"
+  },
+  {
+   "file": "web/static-runtime/showcase/tour.js",
+   "current": ":67 示例路线 ${n}/${total} ‖ :69 aria ${label}示例路线 ‖ :100 aria 示例路线",
+   "new": "第一次来 ${n}/${total} ‖ ${label}路线 (收起路线 / 展开路线) ‖ 第一次来",
+   "note": "跳过路线 / 知道了，收起路线 / 路线走完了 unchanged"
+  },
+  {
+   "file": "web/static-runtime/showcase/roster.js",
+   "current": "SEED_REV = 2 ‖ DISCLOSURE （示例角色的自动回复：我不是真人。）",
+   "new": "SEED_REV = 3 (comment: 3: complete-product copy — names, room, venue, lines, sample labels) ‖ (remove the export)"
+  },
+  {
+   "file": "web/static-runtime/showcase/roster.js",
+   "current": "ROOM title 回声现场 · 示例场 / venue 月台 Livehouse（虚构场地） ‖ names 阿遥·示例 小满·示例 北屿·示例 林间·示例",
+   "new": "回声现场 / 月台 Livehouse ‖ 阿遥 小满 北屿 林间",
+   "note": "rewrite the header comment (no 「·示例」 rule)"
+  },
+  {
+   "file": "web/static-runtime/showcase/roster.js",
+   "current": "lines yao 大家好，今晚我把舞台这一面放上了照片墙。${DISCLOSURE} ‖ man 我拍的是人海这一面，手都举起来了。${DISCLOSURE} ‖ bei 我只拍了看台边的一盏灯，算细节。${DISCLOSURE}",
+   "new": "大家好，我是月台的阿遥。今晚舞台这一面，我先放上照片墙啦。 ‖ 我拍的是人海这一面，手都举起来了。 ‖ 我只拍了看台边的一盏灯，算细节。",
+   "note": "阿遥 is the room host = the venue's person; passes the no-person regexes; must equal npc-lines GROUP_LINES"
+  },
+  {
+   "file": "web/static-runtime/showcase/roster.js",
+   "current": "SAMPLE_PHOTOS label 人海 · 示例照片 / 舞台 · 示例照片 ‖ note 虚构的拍摄时间 21:48（21:47），写在文件里",
+   "new": "人海那张 / 舞台那张 ‖ (remove the note property)",
+   "note": "the EXIF time stays in the files; the time row reads 拍摄于 21:48 · 来自照片自带的信息"
+  },
+  {
+   "file": "web/static-runtime/showcase/npc-lines.js",
+   "current": "DISCLOSURE export ‖ WELCOME_LINES[0] 嗨，欢迎来到「回声现场」。我是示例角色，由这个页面自动回复。 ‖ GENERIC_LINES[2] = DISCLOSURE ‖ GROUP_LINES yao/man/bei = line + DISCLOSURE",
+   "new": "(remove) ‖ 嗨，欢迎来到「回声现场」！ ‖ 下次月台见！ ‖ the three roster lines, no suffix",
+   "note": "WELCOME_LINES[1] 你拍到的是哪一面？ and GENERIC_LINES[0..1] unchanged; rewrite the header comment"
+  },
+  {
+   "file": "web/static-runtime/showcase/demo-hooks.js",
+   "current": ":109 正在布置示例现场… ‖ :117 这个示例现在不能重置。 ‖ :102 castLabel -> CAST_LABEL",
+   "new": "copy.statusPreparing (正在布置现场…) ‖ 现在还不能重新开始，请稍后再试。 ‖ castLabel returns ''"
+  },
+  {
+   "file": "web/static-runtime/boot.js",
+   "current": "TEXT preparing 正在布置示例现场… ‖ memoryOnly 示例数据只保存在本页，刷新会重置 ‖ readOnly 示例已在另一个标签页打开，这里不能操作 ‖ healed 示例已更新，已为你重新布置 ‖ failed 示例现场没能启动。可以重新载入，或重置示例数据后再试。",
+   "new": "正在布置现场… ‖ 这个浏览器不能保存，刷新后会重新开始 ‖ 已在另一个标签页打开，这里只能看 ‖ 现场已更新 ‖ 现场没能打开，请重新载入或重新开始。",
+   "note": "dismiss 知道了 unchanged; update the header comments that quote old strings"
+  },
+  {
+   "file": "web/static-runtime/boot.js",
+   "current": ":689 找不到这张示例照片",
+   "new": "找不到这张照片",
+   "note": "same as moment-upload.js:385"
+  },
+  {
+   "file": "web/static-runtime/runtime.js",
+   "current": ":36 READ_ONLY_MESSAGE 示例已在另一个标签页打开，这个标签页不能操作。请回到那个标签页，或关闭它后刷新本页。",
+   "new": "已在另一个标签页打开，请回到那里操作。"
+  },
+  {
+   "file": "scripts/build/static-html-plugin.mjs",
+   "current": "COPY_RULES server-confirmed 服务器已确认->示例已确认 ‖ service-confirmed 服务已确认->示例已确认 ‖ service-received 服务已收到->示例已收到 ‖ vote-count ‖ stop-waiting",
+   "new": "to: 已确认 ‖ to: 已确认 ‖ to: 已收到 ‖ (delete rule) ‖ (delete rule)",
+   "note": "panels keeps the three sources; shell removes stop-waiting's source; panels removes vote-count's; update the header comment and the JSDoc"
+  },
+  {
+   "file": "scripts/build/static-html-plugin.mjs",
+   "current": "rescue body 这个示例在你的浏览器里运行，需要先启动一个本地小数据库… ‖ button 重置示例数据 ‖ link 打开早期原型 ‖ fine 重置只清除这个浏览器里本页的示例数据和身份，不会上传任何内容。",
+   "new": "先重新载入试试；还不行的话，点「重新开始」。 ‖ 重新开始 ‖ 打开经典版 ‖ 「重新开始」会清除你的昵称、小人、照片和交换。",
+   "note": "heading 页面没能完整启动 and 重新载入 unchanged; href ./classic/ unchanged (owner may drop the link: classic/ still says 示例)"
+  },
+  {
+   "file": "scripts/build/static-html-plugin.mjs",
+   "current": "noModule 这个浏览器版本太旧，打不开 Music Space 示例页。… ‖ noScript 需要开启 JavaScript 才能打开 Music Space 示例页。",
+   "new": "这个浏览器版本太旧，打不开 Music Space。请换用较新的 Chrome、Edge、Safari 或 Firefox。 ‖ 需要开启 JavaScript 才能打开 Music Space。",
+   "note": "the map page notices are already fine"
+  },
+  {
+   "file": "runtime-preview/src/event-community.js",
+   "current": ":35 JOIN_CONSENT_REQUIRED 请确认向聊天室成员展示昵称、小人与自己主动发出的文字；不订阅营销。",
+   "new": "请先勾选同意，再加入聊天室。",
+   "note": "shared by Node and static; no test asserts these worker messages"
+  },
+  {
+   "file": "runtime-preview/src/event-social.js",
+   "current": ":101 COMMUNITY_EVENT_REQUIRED 请先由主办方关联真实场次，再从社群建立新联系。",
+   "new": "主办方关联场次后，才能在乐迷社群里打招呼。"
+  },
+  {
+   "file": "runtime-preview/src/event-games.js",
+   "current": ":69 TWO_ANSWERS_REQUIRED 至少两位仍在场的参与者作答后才能揭晓；无票不虚构结果。",
+   "new": "至少两位参与者作答后才能揭晓。"
+  },
+  {
+   "file": "runtime-preview/src/event-worldcup.js",
+   "current": ":28 请确认在当前聊天室发起虚构专辑投票。 ‖ :46 只能选择这一轮的两张虚构专辑。 ‖ :54 还没有真实投票，不能替大家决定。",
+   "new": "请先勾选确认，再发起专辑世界杯。 ‖ 只能选这一轮的两张专辑。 ‖ 还没有人投票，不能替大家决定。"
+  },
+  {
+   "file": "runtime-preview/src/event-spaces.js",
+   "current": ":8 找不到这个长期空间。 ‖ :12 退出、移除或屏蔽后不能继续读取活动资料。 ‖ :18 只有主办方可以维护长期空间。 / 请明确确认更新空间资料和状态。 ‖ :24 只有主办方可以组织活动。 ‖ :25 请确认向本社群成员提供活动资料；现场入场和照片另行授权。 ‖ :26 空间已归档或更新，请重新读取。",
+   "new": "找不到这个乐迷社群。 ‖ 现在看不到这个社群的预告。 ‖ 只有主办方可以管理乐迷社群。 / 请先勾选确认，再保存社群资料。 ‖ 只有主办方可以发布下一场预告。 ‖ 请先勾选确认，再发布下一场预告。 ‖ 社群已归档或有更新，请刷新。"
+  },
+  {
+   "file": "runtime-preview/src/event-spaces.js",
+   "current": ":27 活动时间需在过去一天到未来一年之间，也可留空。 ‖ :28 找不到这个活动。 ‖ :29 请选择取消预告或关联已创建的现场。 ‖ :30 活动已关联或取消，不能覆盖已有决定。 ‖ :32 请选择本人创建的现场。 ‖ :33 只能关联本人尚未关联的现场，不会替成员入场。",
+   "new": "演出时间需在昨天到一年后之间，也可留空。 ‖ 找不到这场预告。 ‖ 请选择取消预告，或关联你开的房间。 ‖ 这场预告已关联或已取消。 ‖ 请选择你开的房间。 ‖ 只能关联你开的、还没关联过的房间。"
+  },
+  {
+   "file": "runtime-preview/src/admission-protocol.js",
+   "current": ":34 NFC 标签需要可由手机访问的 HTTPS 邀请地址；本机 HTTP 仍可复制链接或二维码。",
+   "new": "写 NFC 需要 HTTPS 地址，可以先用链接或二维码",
+   "note": "Node only"
+  },
+  {
+   "file": "web/static-runtime/showcase/seed.js",
+   "current": "(nothing seeded) the showcase room has no linked community",
+   "new": "OPTIONAL, do last: as host 阿遥 with fixed keys, POST /communities {title:'月台 Livehouse 乐迷社群', joinConsent:true}; POST /rooms/{roomId}/community {communityId}; POST /communities/{id}/space {title:'月台 Livehouse 乐迷社群', description:'散场后，乐迷留在这里；下一场的预告也发在这里。', archived:false, revision, editConsent:true}; POST /communities/{id}/events {title:'回声现场 Vol.2', venue:'月台 Livehouse', startsAt:null, note:'时间定了就在这里说。', organizeConsent:true}",
+   "note": "content only (existing APIs), covered by SEED_REV 3; without it 「这家 Livehouse 的乐迷社群」 shows 这一场还没有关联乐迷社群。; drop it if seed/autopilot tests need logic changes"
+  },
+  {
+   "file": "AGENTS.md",
+   "current": "诚实规则 3, 7, 9, 10, 11 and 端侧 AI 预下载的例外 (「关于这个示例」里写明了这件事)",
+   "new": "add a dated 2026-10-07 section on top: one disclosure only, in About (在线版里的场地、观众和照片是演示内容，观众会自动回复。); no ·示例 names, no sample/fiction labels, no explanatory or legal fine print; Livehouse framing; About states the ~10 MB background download when the model can run; rules 1, 2, 4, 5, 6, 8 still hold",
+   "note": "keep the older text as history, as the file already does"
+  },
+  {
+   "file": "docs/design/doodle.md",
+   "current": "§5 judge route 「进入示例现场」→ 勾选同意 →「进入示例现场」→ 示例路线卡「人海 · 示例照片」… ‖ 带示例角色的评委版",
+   "new": "「进入现场」→ 勾选同意 →「进入现场」→「第一次来」卡片「人海那张」→ 上传表单 →「保存这张照片」→ 照片墙 →「和 TA 交换这个视角」→ 勾选 →「把这两张交给对方确认 ↗」→ 几秒后「交换已接受」 ‖ 带种子角色的评委版"
+  },
+  {
+   "file": "scripts/demo/README.md",
+   "current": "cast names with ·示例, SEED_REV notes",
+   "new": "阿遥 / 小满 / 北屿 / 林间; SEED_REV 3 entry"
+  },
+  {
+   "file": "scripts/pages/README.md",
+   "current": "rescue labels 重置示例数据 / 打开早期原型",
+   "new": "重新开始 / 打开经典版"
+  }
+ ]
+}

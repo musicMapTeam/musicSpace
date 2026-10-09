@@ -1,0 +1,51 @@
+LUFS -16.0  TP -2.64 dBTP  sample peak -2.77  LRA 6.3  dur 176.0  DC [-1e-06, -1e-06]
+stereo: corr 0.801  side/mid -9.6 dB  low(<120) side/mid -25.9 dB
+stems LUFS: {'bass': -24.9, 'drums': -21.0, 'fx': -29.1, 'guitars': -20.7, 'hook': -20.5, 'keys': -31.3}
+band share dB: {'sub': -8.5, 'low': -3.7, 'lowmid': -8.3, 'mid': -6.2, 'high': -14.8, 'air': -21.3}  tilt -1.02 dB/oct  max bump 4.0 dB @ 49.6
+1/3 oct (rel dB): 19:-43.7 24:-35.7 31:-21.6 39:-13.2 49:-3.8 62:-0.2 78:0.0 99:-2.1 125:-3.7 157:-4.8 198:-4.8 250:-9.5 315:-7.0 396:-7.2 500:-8.8 630:-7.6 793:-6.6 1.0k:-5.9 1.3k:-2.7 1.6k:-2.4 2.0k:-4.8 2.5k:-10.2 3.2k:-10.0 4.0k:-11.1 5.0k:-12.0 6.3k:-12.0 8.0k:-12.1 10.1k:-13.8 12.7k:-16.9 16.0k:-20.0 20.2k:-20.8
+section    start   LUFS   peak     bass    drums       fx  guitars     hook     keys
+HOOK         0.0  -15.1   -3.9    -25.5    -21.6   -150.7    -20.5    -19.0   -150.7
+TITLE        7.7  -21.2   -4.6    -26.4    -31.6    -36.0    -30.6    -28.4    -27.1
+PAIN        11.6  -20.0   -7.3    -24.8    -26.1   -113.0    -27.8    -25.8    -42.1
+WHATIF      23.2  -17.5   -5.7    -25.5    -21.0    -42.3    -21.5    -38.8    -43.8
+GROOVE_A    27.1  -15.6   -3.4    -25.1    -21.3    -44.9    -19.4    -22.4    -35.6
+AI          58.1  -18.1   -3.1    -26.0    -22.5    -29.9    -22.7    -29.6    -41.2
+REVEAL      73.5  -17.2   -4.1    -24.5    -21.5    -39.2    -21.7    -34.3    -28.3
+GROOVE_B    89.0  -15.7   -3.7    -24.4    -20.6    -45.0    -20.6    -22.4    -32.6
+BREAK      127.7  -18.0   -3.2    -32.2    -19.7    -40.2    -24.6    -34.0    -37.9
+LIFT       131.6  -14.0   -2.8    -24.5    -20.6    -48.2    -19.7    -18.1    -30.1
+TAG        162.6  -17.5   -3.4    -31.3    -18.8    -41.7    -24.4    -42.4    -36.8
+END        166.5  -23.7   -4.8    -34.6    -34.8    -36.1    -32.9    -26.1    -34.1
+bar LUFS: [-14.8, -15.2, -14.7, -16.0, -19.4, -24.0, -19.6, -20.8, -19.7, -21.0, -18.9, -20.5, -18.9, -16.3, -16.2, -16.4, -16.4, -16.6, -16.3, -16.4, -16.2, -16.6, -14.6, -15.3, -14.8, -15.0, -14.8, -15.3, -14.8, -15.2, -21.0, -20.3, -21.2, -20.5, -15.5, -16.9, -17.1, -16.9, -18.6, -19.2, -20.1, -19.2, -17.8, -16.5, -15.7, -14.4, -14.4, -15.0, -14.3, -15.2, -16.3, -16.7, -16.7, -16.4, -16.3, -16.8, -16.7, -16.7, -15.1, -15.7, -15.5, -15.9, -15.4, -15.9, -15.6, -15.3, -18.3, -18.1, -14.0, -14.8, -13.7, -14.7, -13.8, -14.6, -13.9, -14.7, -13.9, -14.5, -13.5, -14.3, -13.5, -14.4, -13.5, -13.8, -18.0, -17.1, -20.2, -22.0, -23.0, -28.6, -43.5]
+silences: [{'name': 'hard_stop', 'len_s': 0.603, 'max_dbfs': -240.0}, {'name': 'payoff_gap', 'len_s': 0.482, 'max_dbfs': -240.0}]  longest < -50 dBFS: 0.95 s at 175.05
+hits:
+   hard_stop_stab     7.016s  before  -17.9  after  -18.4  jump  -0.6 dB
+   title_impact       7.742s  before  -53.5  after  -16.6  jump +36.9 dB
+   tagline_pop        9.677s  before  -24.1  after  -25.7  jump  -1.6 dB
+   pain_start        11.613s  before  -31.0  after  -19.2  jump +11.8 dB
+   whatif            23.226s  before  -23.1  after  -19.3  jump  +3.8 dB
+   drop              27.097s  before  -20.0  after  -17.0  jump  +3.0 dB
+   sticker_pop       30.484s  before  -18.4  after  -18.4  jump  -0.1 dB
+   sticker_pop       34.355s  before  -18.1  after  -17.7  jump  +0.4 dB
+   sticker_pop       38.226s  before  -18.7  after  -18.4  jump  +0.3 dB
+   sticker_pop       42.097s  before  -18.3  after  -18.6  jump  -0.3 dB
+   hook_in_groove    42.581s  before  -18.3  after  -16.2  jump  +2.2 dB
+   ai_section        58.065s  before  -18.2  after  -19.7  jump  -1.5 dB
+   ai_chime          65.806s  before  -21.6  after  -14.4  jump  +7.2 dB
+   reveal            73.548s  before  -19.0  after  -17.1  jump  +1.9 dB
+   build_gap         88.548s  before  -16.7  after -180.0  jump -163.3 dB
+   payoff            89.032s  before  -36.3  after  -15.7  jump +20.6 dB
+   social_groove     96.774s  before  -17.8  after  -16.8  jump  +1.0 dB
+   sticker_pop      100.161s  before  -19.4  after  -18.3  jump  +1.1 dB
+   sticker_pop      104.032s  before  -19.2  after  -17.5  jump  +1.7 dB
+   sticker_pop      107.903s  before  -19.1  after  -18.4  jump  +0.8 dB
+   sticker_pop      111.774s  before  -19.2  after  -18.4  jump  +0.9 dB
+   whistle_b        112.258s  before  -18.1  after  -16.2  jump  +1.9 dB
+   break            127.742s  before  -17.8  after  -17.0  jump  +0.9 dB
+   lift             131.613s  before  -19.7  after  -16.2  jump  +3.5 dB
+   lift_harmony     147.097s  before  -16.8  after  -16.5  jump  +0.3 dB
+   tag              162.581s  before  -17.1  after  -16.8  jump  +0.3 dB
+   end_card         166.452s  before  -19.8  after  -16.3  jump  +3.5 dB
+   end_reprise      168.387s  before  -25.3  after  -24.0  jump  +1.3 dB
+   final_ding       172.258s  before  -32.7  after  -29.6  jump  +3.1 dB
+chroma: 0 of 91 bars with < 60 % energy in chord tones: []

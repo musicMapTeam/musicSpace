@@ -1,0 +1,181 @@
+{
+ "map": "consternation",
+ "label": "Wax Lyricist《Consternation At The Disco》130 BPM — 93 bars (+3 ADD bars), the breakdown for the title and the wait, natural end",
+ "track": {
+  "audio": "/tmp/space-video-doodle/music-cc0/04-consternation-at-the-disco__Wax-Lyricist/Wax_Lyricist_-_Consternation_At_The_Disco.mp3",
+  "beats": "/tmp/space-video-doodle/music-cc0/04-consternation-at-the-disco__Wax-Lyricist/beats.json",
+  "title": "Consternation At The Disco",
+  "artist": "Wax Lyricist",
+  "licence": "CC0 1.0 Universal",
+  "proof": "/tmp/space-video-doodle/music-cc0/04-consternation-at-the-disco__Wax-Lyricist/LICENCE-PROOF.md",
+  "credit": "配乐：Wax Lyricist《Consternation At The Disco》（CC0 1.0 公共领域）"
+ },
+ "duration_s": 173.494,
+ "bars": 93,
+ "cut": [],
+ "added": [
+  "28+1",
+  "54+1",
+  "90+1"
+ ],
+ "splices": [
+  {
+   "t": 14.769,
+   "at": "9:1",
+   "from_trk": 28,
+   "to_trk": 37,
+   "xfade_ms": 20.0,
+   "hf_spike_db": -19.8,
+   "natural_spike_db": -3.1,
+   "click": false
+  },
+  {
+   "t": 18.461,
+   "at": "11:1",
+   "from_trk": 38,
+   "to_trk": 57,
+   "xfade_ms": 20.0,
+   "hf_spike_db": -0.3,
+   "natural_spike_db": -0.2,
+   "click": false
+  },
+  {
+   "t": 75.693,
+   "at": "41:1",
+   "from_trk": 87,
+   "to_trk": 41,
+   "xfade_ms": 20.0,
+   "hf_spike_db": 2.6,
+   "natural_spike_db": 2.7,
+   "click": false
+  },
+  {
+   "t": 90.462,
+   "at": "49:1",
+   "from_trk": 48,
+   "to_trk": 27,
+   "xfade_ms": 60.0,
+   "hf_spike_db": 1.9,
+   "natural_spike_db": 1.7,
+   "click": false
+  },
+  {
+   "t": 108.924,
+   "at": "58:1",
+   "from_trk": 36,
+   "to_trk": 49,
+   "xfade_ms": 20.0,
+   "hf_spike_db": 0.6,
+   "natural_spike_db": 0.7,
+   "click": false
+  },
+  {
+   "t": 123.693,
+   "at": "66:1",
+   "from_trk": 56,
+   "to_trk": 83,
+   "xfade_ms": 20.0,
+   "hf_spike_db": 1.9,
+   "natural_spike_db": 2.4,
+   "click": false
+  },
+  {
+   "t": 136.616,
+   "at": "73:1",
+   "from_trk": 89,
+   "to_trk": 39,
+   "xfade_ms": 20.0,
+   "hf_spike_db": -17.6,
+   "natural_spike_db": -2.6,
+   "click": false
+  },
+  {
+   "t": 155.078,
+   "at": "83:1",
+   "from_trk": 48,
+   "to_trk": 83,
+   "xfade_ms": 20.0,
+   "hf_spike_db": 2.1,
+   "natural_spike_db": 2.4,
+   "click": false
+  }
+ ],
+ "loudness": {
+  "gain_db": 4.8,
+  "before": {
+   "I": -20.3,
+   "TP": -0.1,
+   "LRA": 5.4
+  },
+  "after": {
+   "I": -16.0,
+   "TP": -1.5,
+   "LRA": 4.9
+  },
+  "limiter_max_reduction_db": -6.21,
+  "ceiling_db": -1.5
+ },
+ "onsets_vs_grid": {
+  "beats": 372,
+  "median_offset_ms": 0.1,
+  "p10_ms": -3.9,
+  "p90_ms": 3.6,
+  "within_20ms": "186/186",
+  "note": "strongest onset within +-70 ms of every beat of the output grid (5 ms hop), upper half by strength, corrected for the detector bias (-10.3 ms, calibrated on synthetic hits); + = music after the grid"
+ },
+ "moments": {
+  "title_stop": {
+   "verdict": "drop-on-5",
+   "silence_before_5_1_db": 0.3,
+   "hit_5_1_db": -12.1,
+   "level_5_6_vs_3_4_db": -10.9
+  },
+  "pain_sparse": {
+   "verdict": "yes",
+   "level_vs_film_median_db": -2.8,
+   "onset_density_vs_film": 0.5
+  },
+  "drop": {
+   "verdict": "yes",
+   "hit_21_1_db": 12.7,
+   "hit_21_1_low_db": 9.9,
+   "level_21_28_vs_pain_db": 2.0,
+   "rank_among_downbeats": 1
+  },
+  "ai_chime": {
+   "verdict": "sfx",
+   "at_s": 58.2
+  },
+  "payoff": {
+   "verdict": "yes",
+   "hit_51_1_db": 10.3,
+   "rank_among_downbeats": 2,
+   "of": 92,
+   "gap_50_4_db": 0.6,
+   "biggest_downbeat": "21:1 (+12.7 dB)"
+  },
+  "social_groove": {
+   "verdict": "yes",
+   "level_vs_film_median_db": 1.2
+  },
+  "break": {
+   "verdict": "yes",
+   "level_73_74_vs_2_bars_before_db": -3.9
+  },
+  "lift": {
+   "verdict": "partial",
+   "hit_75_1_db": 0.5,
+   "hit_75_1_low_db": 1.6,
+   "level_75_82_vs_break_db": 2.1
+  },
+  "end_resolve": {
+   "verdict": "natural (ends in silence)",
+   "last_100ms_db": -89.4,
+   "end_card_level_db": -17.4
+  }
+ },
+ "files": {
+  "wav": "/tmp/space-video-doodle/prod/audio/beds/consternation.wav",
+  "m4a": "/tmp/space-video-doodle/prod/audio/beds/consternation.m4a"
+ }
+}

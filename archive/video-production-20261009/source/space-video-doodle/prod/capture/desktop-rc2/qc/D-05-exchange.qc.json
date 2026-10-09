@@ -1,0 +1,90 @@
+{
+ "id": "D-05-exchange",
+ "master": {
+  "file": "/tmp/space-video-doodle/prod/capture/desktop-rc2/master/D-05-exchange.mp4",
+  "bytes": 16699201,
+  "duration_s": 15.283,
+  "video": "h264 High 3840x2160 60/1 yuv420p",
+  "colour": "bt709/bt709/bt709/tv",
+  "frames": 917,
+  "bitrate_mbps": 8.7,
+  "audio_streams": 0
+ },
+ "edit": {
+  "file": "/tmp/space-video-doodle/prod/capture/desktop-rc2/1080/D-05-exchange.mp4",
+  "bytes": 8246189,
+  "duration_s": 15.283,
+  "video": "h264 High 1920x1080 60/1 yuv420p",
+  "colour": "bt709/bt709/bt709/tv",
+  "frames": 917,
+  "bitrate_mbps": 4.3,
+  "audio_streams": 0
+ },
+ "frames_decoded": 917,
+ "longest_still": {
+  "frames": 9,
+  "at_s": 0.067
+ },
+ "still_over_1s": [],
+ "stutters": {
+  "count": 1,
+  "at_s": [
+   1.517
+  ],
+  "rule": "still step (<0.15) between two moving steps (>0.6)"
+ },
+ "camera_glides": [],
+ "change_gap_histogram": {
+  "1": 131,
+  "3": 3,
+  "4": 3,
+  "7": 3,
+  "8": 10,
+  "9": 71
+ },
+ "taps": [
+  {
+   "t": 1.5,
+   "frame": 90,
+   "label": "和 TA 交换这个视角",
+   "xy_master": [
+    3152,
+    1049
+   ]
+  },
+  {
+   "t": 5.883,
+   "frame": 353,
+   "label": "勾选同意",
+   "xy_master": [
+    2608,
+    1487
+   ]
+  },
+  {
+   "t": 6.383,
+   "frame": 383,
+   "label": "把这两张交给对方确认 ↗",
+   "xy_master": [
+    3104,
+    1666
+   ]
+  }
+ ],
+ "presses_no_ring": [],
+ "master_frames": 917,
+ "master_edit_same_frame_count": true,
+ "master_edit_motion_correlation": 0.9949,
+ "rec": {
+  "frames": 917,
+  "seconds": 15.283,
+  "wallPerVideoSecond": 11.04,
+  "msPerFrame": {
+   "step": 3.9,
+   "grab": 165.3,
+   "write": 12.4
+  },
+  "clockStart": "2026-10-08T22:40:00+08:00",
+  "seed": 20261009
+ }
+}

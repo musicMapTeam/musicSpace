@@ -1,0 +1,11 @@
+const {page}=await get('desktop');
+const out={};
+await page.locator('button',{hasText:'认识一下'}).first().click(); await sleep(2000);
+out.lin=await shot(page,'d10-linjian-card');
+out.t=(await L.visibleText(page,'#panel')).slice(0,600);
+await page.locator('#panel-close').click().catch(()=>{}); await sleep(800);
+await page.locator('#music-map-entry').click(); await sleep(5000);
+out.map=await shot(page,'d11-music-map');
+out.url=page.url();
+out.btns=(await L.visibleButtons(page)).slice(0,30);
+return out;

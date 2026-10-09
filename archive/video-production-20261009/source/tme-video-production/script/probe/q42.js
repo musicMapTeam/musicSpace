@@ -1,0 +1,14 @@
+const {page}=await get('desktop');
+const out={};
+await page.locator('[data-view="photos"]').click(); await sleep(2500);
+out.photosView=await shot(page,'d04-photos-view');
+out.btnsP=(await L.visibleButtons(page)).filter(b=>!b.includes('data-view')).slice(0,30);
+await page.locator('[data-view="person"]').click(); await sleep(2500);
+out.personView=await shot(page,'d05-person-view');
+await page.locator('[data-view="overview"]').click(); await sleep(2500);
+await page.locator('[data-tour-action="sample:sample-crowd"]').click();
+await page.waitForSelector('.moment-ai-tag',{timeout:20000}); await sleep(800);
+out.upload=await shot(page,'d06-upload-ai');
+await page.locator('form[data-form="upload"] button',{hasText:'保存这张照片'}).click(); await sleep(2500);
+out.wall=await shot(page,'d07-wall-badge');
+return out;

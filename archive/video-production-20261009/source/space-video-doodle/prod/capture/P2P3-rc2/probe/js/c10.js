@@ -1,0 +1,26 @@
+const s = await get('phone');
+const p = s.page;
+const log = [];
+const sc = async label => { const v = await p.evaluate(() => { const c = document.querySelector('.corner-panel .community-scroll'); return c ? { top: Math.round(c.scrollTop), max: c.scrollHeight - c.clientHeight } : null; }); log.push({ label, ...v }); };
+const center = sel => p.evaluate(sel => { const c = document.querySelector('.corner-panel .community-scroll'); const f = document.querySelector(sel); c.scrollTop = c.scrollTop + f.getBoundingClientRect().top - c.getBoundingClientRect().top - (c.clientHeight - f.offsetHeight) / 2; }, sel);
+const clickAt = async sel => { const b = await p.locator(sel).first().boundingBox(); await p.mouse.click(b.x + b.width / 2, b.y + b.height / 2); };
+await center('.corner-panel form[data-corner-edit]'); await sleep(300); await sc('edit centered');
+await clickAt('.corner-panel form[data-corner-edit] input[name=note]'); await p.keyboard.insertText('返场那首我在人海里，手都举酸了！'); await sleep(300); await sc('typed');
+await p.evaluate(() => { const sel = document.querySelector('.corner-panel form[data-corner-edit] select[name=photoId]'); const o = [...sel.options].find(o => o.value); sel.value = o.value; sel.dispatchEvent(new Event('input', { bubbles: true })); sel.dispatchEvent(new Event('change', { bubbles: true })); });
+await sleep(300); await sc('photo chosen');
+await clickAt('.corner-panel form[data-corner-edit] input[name=share]'); await sleep(200);
+await clickAt('.corner-panel form[data-corner-edit] button[type=submit]'); await sleep(1200); await sc('saved mine');
+await center('.corner-panel form[data-corner-confirm]'); await sleep(300); await sc('confirm centered');
+await clickAt('.corner-panel form[data-corner-confirm] input[name=confirm]'); await sleep(200);
+await clickAt('.corner-panel form[data-corner-confirm] button[type=submit]'); await sleep(800); await sc('confirmed (me)');
+await p.waitForFunction(() => /你已确认 · 对方已确认/.test(document.querySelector('.corner-panel')?.innerText || ''), null, { timeout: 30000 }); await sleep(300); await sc('both confirmed');
+await center('.corner-panel form[data-corner-save]'); await sleep(300); await sc('save centered');
+await clickAt('.corner-panel form[data-corner-save] input[name=save]'); await sleep(200);
+await clickAt('.corner-panel form[data-corner-save] button[type=submit]'); await sleep(1000); await sc('saved to creations');
+await center('.corner-panel form[data-corner-export]'); await sleep(300); await sc('export centered');
+await clickAt('.corner-panel form[data-corner-export] input[name=export]'); await sleep(200);
+await clickAt('.corner-panel form[data-corner-export] button[type=submit]');
+await p.waitForSelector('.corner-panel img.corner-result-preview', { timeout: 20000 }); await sleep(300); await sc('preview shown');
+await p.evaluate(() => document.querySelector('.corner-panel img.corner-result-preview').scrollIntoView({ block: 'center' })); await sleep(300); await sc('preview centered');
+for (let i = 0; i < 8; i++) { await sleep(500); await sc('t+' + ((i + 1) * 0.5) + 's'); }
+return log;

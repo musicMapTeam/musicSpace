@@ -1,0 +1,12 @@
+{
+  "_comment": "Selectors for the route-B AI build. NOT present in RC4 (0.21.0-rc.4). Fill in after the AI build lands (or ask the developers to expose these data attributes) - the S05-S08 scripts read this file and wait for them when AI_BUILD=1.",
+  "aiChip": "[data-ai-chip], .ai-chip",
+  "aiChipLabelSure": "text=/AI 判断：/",
+  "aiChipUnsure": "text=/不确定，请选择/",
+  "aiProgress": "[data-ai-progress], .ai-progress",
+  "captureTimeLine": "text=/拍摄于 \\d{2}:\\d{2}/",
+  "viewpointChips": "[data-viewpoint], .viewpoint-chip",
+  "sameMomentTag": "text=/同一刻的另一面/",
+  "sameMomentReason": "text=/同一刻 · \\d{2}:\\d{2}，相差/",
+  "notSameMoment": "text=/不算同一刻/"
+}

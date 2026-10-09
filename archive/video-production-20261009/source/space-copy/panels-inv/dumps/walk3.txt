@@ -1,0 +1,427 @@
+
+===== personal-space [.personal-space]
+	span.eyebrow	MY SPACE / 长期留在这里
+	button	×
+H	title	Music Space 的插画分身
+	small	我的署名与已保存小人
+	h2	访客8566
+	p	现场是认识的起点，散场后仍有地方回来。
+	button	装扮我的小人
+	button	我的音乐社群
+	button	我的现场与回顾
+	button	好友与新招呼
+	button	私聊回访
+	button	共同记忆
+	button	身份备份与恢复
+	h3	我的社群
+	p.fine	主持、已加入、退出与被移除分别标注，打开不会自动加入。
+	p	还没有长期社群。可以明确创建自己的空间，或先预览朋友的邀请。
+	button	创建或预览社群邀请
+	h3	我的现场
+	b	回声现场 · 示例场
+	span	进行中 · 已加入 · 查看本人回顾
+	button	预览现场或开一场
+	button	查看全部现场和照片记录
+	h3	我的音乐朋友
+	p	还没有双向朋友。不用急，愿意打招呼时再认识同场或同社群的人。
+	button	完整好友与招呼列表
+	p.fine	社群和好友不授予旧现场照片权限。身份备份只由本人选择；同名不能找回旧身份。
+	button	刷新我的空间
+@aria-label	section	我的音乐空间
+@aria-label	button	关闭我的空间
+@aria-label	svg	Music Space 的插画分身
+@aria-label	nav	我的空间入口
+
+===== communities-list [.music-community]
+	span.eyebrow	散场以后，也留一个位置
+	button	×
+	h2	音乐社群
+H	title	Music Space 的插画分身
+	p	主办方的长期空间。每次加入都由你选择；不订阅营销，不扩大照片权限。
+	p	还没有加入的社群。
+	label	我的音乐社群
+	label	创建长期空间，展示我的昵称、小人与发言
+	button	创建我的社群
+	label	社群邀请码或邀请链接
+	button	先看社群
+	button	刷新聊天室
+	button	我的长期音乐社群
+@aria-label	section	音乐社群与聊天室
+@aria-label	button	关闭聊天室
+@aria-label	svg	Music Space 的插画分身
+
+===== communities-list-after-create [.music-community]
+	span.eyebrow	散场以后，也留一个位置
+	button	×
+	h2	音乐社群
+H	title	Music Space 的插画分身
+	p	主办方的长期空间。每次加入都由你选择；不订阅营销，不扩大照片权限。
+	b	月台 Livehouse 乐迷社群
+	span	你在这里 · 继续聊聊
+	label	我的音乐社群
+	label	创建长期空间，展示我的昵称、小人与发言
+	button	创建我的社群
+	label	社群邀请码或邀请链接
+	button	先看社群
+	button	刷新聊天室
+	button	我的长期音乐社群
+@aria-label	section	音乐社群与聊天室
+@aria-label	button	关闭聊天室
+@aria-label	svg	Music Space 的插画分身
+
+===== community-host [.music-community]
+	h2	月台 Livehouse 乐迷社群
+	span.eyebrow	散场以后，也留一个位置
+	button	×
+H	title	Music Space 的插画分身
+	span	未静音 · 0 条未读
+	summary	本场与管理 ···
+	p.fine	开放中的长期空间
+	button	空间与活动
+	button	静音
+	button	退出聊天室
+	p.fine	退出后停止读取与发言，已有双向好友及私聊保留。文字仍由作者和房主管理。
+	p.fine	场景里的小人代表社群成员，不代表正在在线或实际到场。你的新联系偏好：安静参与。发言和好友是两种选择。
+	button	我愿意在社群打招呼
+	summary	社群里的小人
+	p	访客8566 · 安静参与
+	summary	管理成员
+	p	还没有其他成员。
+	p.invite-code	HPSV2RU3P32W
+	button	复制社群邀请链接
+	button	刷新聊天室
+	button	我的长期音乐社群
+	button	Music Map · 沿音乐探索 ↗
+	button	一起玩 · 默契局／音乐关系接龙
+	button	成员音乐话题 · 发布与讨论
+	button	专辑世界杯 · 一起选张来聊
+	p	还没有发言。可以安静坐一会儿，也可以主动留一句。
+	button	把这一页收到的消息标为已读
+	label	留一句
+	button	发送到聊天室
+@aria-label	section	音乐社群与聊天室
+@aria-label	button	关闭聊天室
+@aria-label	svg	Music Space 的插画分身
+@aria-label	nav	音乐与聊天入口
+
+===== space-management [.space-management]
+	span.eyebrow	SPACE / 让下一次见面有个地方
+	button	×
+	h2	月台 Livehouse 乐迷社群
+	p.space-status	开放中 · 每次参与由本人决定
+	p	主办方还没有留下空间介绍。
+	p.fine	活动预告是主办方自填信息，不是到场认证。社群成员不会自动入场，也不会获得以前的照片。
+	summary	维护我的空间
+	label	空间名称
+	label	空间介绍
+	label	开放状态
+H	option	开放
+H	option	归档，仅保留历史阅读
+	p.fine	归档不删除历史、好友或个人回顾；阻止新的加入、发言、活动和投票。重新开放不会替任何人加入。
+	label	确认更新以上介绍与状态
+	button	明确保存空间
+	button	放弃修改，读取最新资料
+	h3	接下来的见面
+	p	还没有活动预告。先留下下次见面的想法，再单独开现场。
+	summary	发布新的活动预告
+	label	活动名称
+	label	场地
+	label	时间（北京时间，可留空）
+	label	给成员的话
+	label	确认向本社群成员发布活动资料
+	button	发布活动预告
+	button	刷新空间与活动
+	button	回到社群聊天
+@aria-label	section	空间与活动
+@aria-label	button	返回社群
+
+===== space-management-event [.space-management]
+	span.eyebrow	SPACE / 让下一次见面有个地方
+	button	×
+	h2	月台 Livehouse 乐迷社群
+	p	服务器已确认；现场加入与照片权限仍独立。
+	p.space-status	开放中 · 每次参与由本人决定
+	p	主办方还没有留下空间介绍。
+	p.fine	活动预告是主办方自填信息，不是到场认证。社群成员不会自动入场，也不会获得以前的照片。
+	summary	维护我的空间
+	label	空间名称
+	label	空间介绍
+	label	开放状态
+H	option	开放
+H	option	归档，仅保留历史阅读
+	p.fine	归档不删除历史、好友或个人回顾；阻止新的加入、发言、活动和投票。重新开放不会替任何人加入。
+	label	确认更新以上介绍与状态
+	button	明确保存空间
+	button	放弃修改，读取最新资料
+	h3	接下来的见面
+	small	活动预告 · 尚未开现场
+	h3	下周六 · 晚班列车返场
+	p	月台 Livehouse · 时间待定
+	p	老位置见
+	button	为这个活动开现场
+	summary	关联我已创建的现场
+	label	选择本人创建的现场
+H	option	请选择
+	label	确认向本社群提供邀请码；每人仍需同意入场
+	button	明确关联这个现场
+	button	取消这次预告
+	summary	发布新的活动预告
+	label	活动名称
+	label	场地
+	label	时间（北京时间，可留空）
+	label	给成员的话
+	label	确认向本社群成员发布活动资料
+	button	发布活动预告
+	button	刷新空间与活动
+	button	回到社群聊天
+@aria-label	section	空间与活动
+@aria-label	button	返回社群
+
+===== community-host-back [.music-community]
+	h2	月台 Livehouse 乐迷社群
+	span.eyebrow	散场以后，也留一个位置
+	button	×
+H	title	Music Space 的插画分身
+	span	未静音 · 0 条未读
+	summary	本场与管理 ···
+	p.fine	开放中的长期空间
+	button	空间与活动
+	button	静音
+	button	退出聊天室
+	p.fine	退出后停止读取与发言，已有双向好友及私聊保留。文字仍由作者和房主管理。
+	p.fine	场景里的小人代表社群成员，不代表正在在线或实际到场。你的新联系偏好：安静参与。发言和好友是两种选择。
+	button	我愿意在社群打招呼
+	summary	社群里的小人
+	p	访客8566 · 安静参与
+	summary	管理成员
+	p	还没有其他成员。
+	p.invite-code	HPSV2RU3P32W
+	button	复制社群邀请链接
+	button	刷新聊天室
+	button	我的长期音乐社群
+	button	Music Map · 沿音乐探索 ↗
+	button	一起玩 · 默契局／音乐关系接龙
+	button	成员音乐话题 · 发布与讨论
+	button	专辑世界杯 · 一起选张来聊
+	p	还没有发言。可以安静坐一会儿，也可以主动留一句。
+	button	把这一页收到的消息标为已读
+	label	留一句
+	button	发送到聊天室
+@aria-label	section	音乐社群与聊天室
+@aria-label	button	关闭聊天室
+@aria-label	svg	Music Space 的插画分身
+@aria-label	nav	音乐与聊天入口
+
+===== person-man [#panel]
+	button	×
+	small.eyebrow	同场的人
+	h2	小满·示例
+	p	先招个手，对方愿意回应后，你们才会成为朋友。
+	button.primary	向 小满·示例 招个手
+	button.quiet	向本场房主反馈
+	button.quiet	屏蔽这个人
+	p.fine	不展示手机号或社交账号。没有公开聊天，也不会自动添加好友。
+@aria-label	section	场景操作
+@aria-label	button	关闭操作面板
+
+===== moderation-feedback [.room-moderation]
+	small	这一场 / 彼此尊重
+	h2	向本场房主反馈
+	button	×
+	p.moderation-intro	关于
+	b	小满·示例
+	p.moderation-room	回声现场 · 示例场
+	p	这份说明会交给本场房主查看。不会自动附上私聊、照片副本或个人联系方式。
+	label	是什么情况？
+H	option	骚扰或不友善行为
+H	option	不合适的现场内容
+H	option	涉及隐私
+H	option	重复或广告信息
+H	option	其他现场情况
+	label	告诉房主具体发生了什么
+	small	0 / 280
+	span	我同意把这段说明和选定目标交给本场房主
+	button.moderation-primary	提交给本场房主
+	p.moderation-fine	房主能看到你填写的说明，不显示你的身份字段；仍可能从文字或现场情况认出你。这里没有独立平台审核员，不会自动认定对方违规。
+@aria-label	section	本场反馈与管理
+@aria-label	button	关闭反馈与管理
+@placeholder	textarea	请只说明现场行为，不要填写私聊正文或联系方式。
+
+===== moderation-my-reports [.room-moderation]
+	small	这一场 / 彼此尊重
+	h2	我提交的反馈
+	button	×
+	p	你提交给各场房主的反馈。它们只由对应房主处理，其他普通观众看不到。
+	small	等待房主查看
+	h3	小满·示例
+	span	· 提交时的昵称
+	b	其他现场情况
+	p.moderation-quote	他一直挡在前面
+	button	撤回这项反馈
+	button	上一页
+	span	第 1 页
+	button	下一页
+	button	刷新这一页
+@aria-label	section	本场反馈与管理
+@aria-label	button	关闭反馈与管理
+
+===== moderation-withdraw-confirm [.room-moderation]
+	small	这一场 / 彼此尊重
+	h2	我提交的反馈
+	button	×
+	p	你提交给各场房主的反馈。它们只由对应房主处理，其他普通观众看不到。
+	small	等待房主查看
+	h3	小满·示例
+	span	· 提交时的昵称
+	b	其他现场情况
+	p.moderation-quote	他一直挡在前面
+	button	撤回这项反馈
+	button	上一页
+	span	第 1 页
+	button	下一页
+	button	刷新这一页
+	h3	撤回这项反馈？
+	p	撤回后，房主仍会看到这项记录已撤回，不会自动删除你已经提交的说明。
+	button.moderation-primary	确认撤回
+	button	返回查看
+@aria-label	section	本场反馈与管理
+@aria-label	button	关闭反馈与管理
+
+===== corner-create [.corner-panel]
+	span.eyebrow	TWO SIDES / 两个人的创作角
+	button	×
+	h2	一起留张纪念。
+	button	重新读取
+	p	仅当前双向朋友可邀请。先展示自己的署名与小人，对方本人选择参与后才进入共同草稿；照片另行选择。
+	label	我选择邀请这位朋友，展示自己的署名与小人
+	button	创建共同创作邀请
+	button	我的创作与邀请
+@aria-label	section	私有双人创作角
+@aria-label	button	关闭创作角
+
+===== corner-after-create [.corner-panel]
+	span.eyebrow	TWO SIDES / 两个人的创作角
+	button	×
+	h2	一起留张纪念。
+	p	服务已确认这次操作。
+	button	重新读取
+	p	等待朋友本人明确参与。你不能替对方同意，也不会自动分享照片。
+	button	我选择撤销共同创作
+	button	我的创作与邀请
+@aria-label	section	私有双人创作角
+@aria-label	button	关闭创作角
+
+===== corner-draft [.corner-panel]
+	span.eyebrow	TWO SIDES / 两个人的创作角
+	button	×
+	h2	一起留张纪念。
+	p	服务已确认这次操作。
+	button	重新读取
+	p	等待朋友本人明确参与。你不能替对方同意，也不会自动分享照片。
+	button	我选择撤销共同创作
+	button	我的创作与邀请
+@aria-label	section	私有双人创作角
+@aria-label	button	关闭创作角
+
+===== corner-list [.corner-panel]
+	span.eyebrow	TWO SIDES / 两个人的创作角
+	button	×
+	h2	一起留张纪念。
+	button	重新读取
+	p	共同成果是独立、私有的选择，不展示到现场或社群。显示最近50份。
+	b	等待对方本人参与
+	span	版本 1
+	button	我的创作与邀请
+@aria-label	section	私有双人创作角
+@aria-label	button	关闭创作角
+
+===== wardrobe [.wardrobe]
+	small	MY ALTER EGO
+	h2	今晚，我这样。
+	button	×
+H	title	当前试穿的小人
+	button	正面
+	button	3/4
+	button	侧面
+	button	背面
+	span.wardrobe-local	试穿中 · 仅自己可见
+	label.wardrobe-name	大家叫我
+	b	逐件搭配
+	span	换一件，其他保持不变
+	button	发型
+	button	眼镜
+	button	上装
+	button	下装
+	button	鞋
+	button	配饰
+	button	配色
+	button	表情
+	button	动作
+	span	01
+	b	侧扫
+	i	✓
+	span	02
+	b	不对称鲍伯
+	i	+
+	span	03
+	b	碎刺
+	span	04
+	b	高马尾
+	span	05
+	b	卷束
+	span	06
+	b	齐切鲍伯
+	span	07
+	b	中分
+	span	08
+	b	短寸
+	small.wardrobe-count	8 件 · 自由搭配
+	summary	试试组合示例
+	p	会替换当前穿搭，之后仍可逐件修改。
+	button	留白
+	button	断拍
+	button	循迹
+	button	回声
+	button	失真
+	button	脉冲
+	button	取消
+	button.wardrobe-save	保存这个我 ↗
+@aria-label	section	我的衣橱
+@aria-label	button	取消试穿，关闭衣橱
+@aria-label	svg	当前试穿的小人
+@aria-label	div	查看角度
+@aria-label	input	昵称
+@placeholder	input	留一个昵称
+@aria-label	nav	装扮类别
+@aria-label	button	试穿组合：留白
+@aria-label	button	试穿组合：断拍
+@aria-label	button	试穿组合：循迹
+@aria-label	button	试穿组合：回声
+@aria-label	button	试穿组合：失真
+@aria-label	button	试穿组合：脉冲
+
+===== wardrobe-eyewear [.wardrobe .wardrobe-count]
+	small.wardrobe-count	可以不戴，也可以试试 5 种镜框
+
+===== wardrobe-palette [.wardrobe .wardrobe-count]
+	small.wardrobe-count	只改变选中的颜色
+
+===== wardrobe-pose [.wardrobe .wardrobe-count]
+	small.wardrobe-count	4 件 · 自由搭配
+
+===== identity-backup [.identity-continuity]
+	span.eyebrow	把相识的线，接到下一场
+	button	×
+	h2	留好自己的小人身份
+	p	身份存在当前浏览器。提前备份可以迁移到同一服务；清缓存且没有备份，就不能凭昵称找回好友、照片或社群。
+	p.fine	文件由本机加密，只由你保管。密码不上传；忘记密码无法解开。备份不是房间邀请，请勿转发。服务数据被删除时，备份不能重建内容。
+	label	独特的备份密码（12至128个字符）
+	label	再输入一次
+	label	我明确选择导出当前身份的加密备份，自行保管文件与密码
+	button	制作并下载加密备份
+	label	选择自己保管的备份文件
+	label	备份密码
+	label	核对同一服务后，明确替换本浏览器身份；旧身份操作不会转给新身份
+	button	核对并恢复身份
+@aria-label	section	备份或恢复小人身份
+@aria-label	button	关闭身份备份

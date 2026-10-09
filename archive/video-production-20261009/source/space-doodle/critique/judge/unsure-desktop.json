@@ -1,0 +1,24 @@
+{
+  "ai key": "unsure:stage,crowd after 494 ms",
+  "ai line text": "不确定，请选择，AI 认为更可能是舞台或人海",
+  "chips": "stage:false(suggested) crowd:false(suggested) friends:false detail:false",
+  "after save without choice": {
+    "panelKind": "upload",
+    "nudge": "舞台灯光下的那一面",
+    "focused": "moment-chip is-suggested is-nudged",
+    "toast": ""
+  },
+  "chips after choice": "stage:true crowd:false friends:false detail:false",
+  "ai line after choice": "",
+  "wall offer visible": true,
+  "badge": "同一刻的另一面 同一刻 · 21:47，相差不到 1 分钟；你拍舞台，TA 拍人海 和 TA 交换这个视角",
+  "offer aria": "和 TA 交换这个视角（小满·示例 的照片）",
+  "console": [],
+  "pageErrors": [],
+  "net": {
+    "total": 56,
+    "api": 0,
+    "external": 0,
+    "bad": []
+  }
+}

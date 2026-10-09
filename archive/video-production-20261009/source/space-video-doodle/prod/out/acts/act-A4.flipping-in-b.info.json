@@ -1,0 +1,1558 @@
+{
+ "scene": "act-A4",
+ "range_frames": [
+  4683,
+  6322
+ ],
+ "fps": 60,
+ "W": 1920,
+ "H": 1080,
+ "map": {
+  "id": "flipping-in-b",
+  "label": "Wax Lyricist《Flipping In》123 BPM — variant b: the stop before the drop (21:1) and before the payoff (51:1, full kit), lift on the full kit, the band's own ending (RECOMMENDED over the proposal)",
+  "end_s": 174.66,
+  "grid_end_s": 173.66,
+  "bpm": 123,
+  "beat_s": 0.4878,
+  "bar_s": 1.9512
+ },
+ "duration": 174.66,
+ "frames": 10480,
+ "shots": [
+  {
+   "id": "A4-ai",
+   "t0": 78.049,
+   "t1": 103.9038,
+   "z": 45
+  },
+  {
+   "id": "M1-collide",
+   "t0": 78.049,
+   "t1": 81.952,
+   "z": 10
+  },
+  {
+   "id": "M1-type",
+   "t0": 78.049,
+   "t1": 81.952,
+   "z": 30
+  },
+  {
+   "id": "M2-M5-request",
+   "t0": 81.952,
+   "t1": 97.562,
+   "z": 10
+  },
+  {
+   "id": "M2-M5-type",
+   "t0": 81.952,
+   "t1": 97.562,
+   "z": 30
+  },
+  {
+   "id": "M6-M7-accepted",
+   "t0": 97.562,
+   "t1": 105.367,
+   "z": 10
+  },
+  {
+   "id": "M6-M7-type",
+   "t0": 97.562,
+   "t1": 105.367,
+   "z": 30
+  },
+  {
+   "id": "W-A4-A5",
+   "t0": 105.1131,
+   "t1": 105.497,
+   "z": 90
+  }
+ ],
+ "events": [
+  {
+   "t": 78.049,
+   "kind": "cut",
+   "label": "M1-collide",
+   "pos": "41:1",
+   "sfx": "none",
+   "shot": "M1-collide"
+  },
+  {
+   "t": 78.049,
+   "kind": "slap",
+   "label": "the two polaroids collide",
+   "pos": "41:1",
+   "sfx": "boom",
+   "gain": -3
+  },
+  {
+   "t": 78.049,
+   "kind": "sfx",
+   "label": "slap",
+   "pos": "41:1",
+   "sfx": "slap",
+   "gain": 0,
+   "visual": false
+  },
+  {
+   "t": 78.049,
+   "kind": "slam",
+   "label": "你拍人海，",
+   "pos": "41:1",
+   "sfx": "none",
+   "pan": -0.265625,
+   "size": 180,
+   "shot": "M1-type",
+   "id": "M1-type:18"
+  },
+  {
+   "t": 79.0245,
+   "kind": "slide",
+   "label": "they bounce apart",
+   "pos": "41:3",
+   "sfx": "swish",
+   "gain": -8
+  },
+  {
+   "t": 79.0245,
+   "kind": "spring",
+   "label": "⇄ pops",
+   "pos": "41:3",
+   "sfx": "zip",
+   "gain": -2,
+   "pan": -0.0006249999999999977,
+   "shot": "M1-collide",
+   "id": "M1-collide:9"
+  },
+  {
+   "t": 79.0245,
+   "kind": "slam",
+   "label": "TA 拍舞台。",
+   "pos": "41:3",
+   "pan": 0.26625,
+   "size": 180,
+   "shot": "M1-type",
+   "id": "M1-type:19"
+  },
+  {
+   "t": 79.26838,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "41:3.5",
+   "gain": -10,
+   "pan": 0,
+   "note": 0,
+   "shot": "M1-collide",
+   "id": "M1-collide:10"
+  },
+  {
+   "t": 79.39033,
+   "kind": "pop",
+   "label": "star",
+   "pos": "41:3.75",
+   "sfx": "none",
+   "gain": -10,
+   "pan": 0.021875000000000023,
+   "note": 1,
+   "shot": "M1-collide",
+   "id": "M1-collide:11"
+  },
+  {
+   "t": 79.51228,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "41:4",
+   "gain": -10,
+   "pan": -0.025000000000000012,
+   "note": 2,
+   "shot": "M1-collide",
+   "id": "M1-collide:12"
+  },
+  {
+   "t": 79.63423,
+   "kind": "pop",
+   "label": "plus",
+   "pos": "41:4.25",
+   "sfx": "none",
+   "gain": -10,
+   "pan": 0.275,
+   "note": 3,
+   "shot": "M1-collide",
+   "id": "M1-collide:13"
+  },
+  {
+   "t": 80,
+   "kind": "stamp",
+   "label": "time 21:48",
+   "pos": "42:1",
+   "pan": -0.13249999999999998,
+   "size": 80,
+   "shot": "M1-collide",
+   "id": "M1-collide:14"
+  },
+  {
+   "t": 80,
+   "kind": "swipe",
+   "label": "21:48",
+   "pos": "42:1",
+   "shot": "M1-collide",
+   "id": "M1-collide:14",
+   "dur": 0.4878
+  },
+  {
+   "t": 80.488,
+   "kind": "stamp",
+   "label": "time 21:47",
+   "pos": "42:2",
+   "pan": -0.13249999999999998,
+   "size": 80,
+   "shot": "M1-collide",
+   "id": "M1-collide:15"
+  },
+  {
+   "t": 80.488,
+   "kind": "swipe",
+   "label": "21:47",
+   "pos": "42:2",
+   "shot": "M1-collide",
+   "id": "M1-collide:15",
+   "dur": 0.4878
+  },
+  {
+   "t": 80.976,
+   "kind": "draw",
+   "label": "bracket 21:48-21:47",
+   "pos": "42:3",
+   "sfx": "squeak",
+   "shot": "M1-collide",
+   "id": "M1-collide:16",
+   "dur": 0.29268
+  },
+  {
+   "t": 80.976,
+   "kind": "fade",
+   "label": "不到 1 分钟",
+   "pos": "42:3",
+   "pan": 0.05062499999999998,
+   "size": 84,
+   "shot": "M1-type",
+   "id": "M1-type:17"
+  },
+  {
+   "t": 80.976,
+   "kind": "swipe",
+   "label": "不到 1 分钟",
+   "pos": "42:3",
+   "shot": "M1-type",
+   "id": "M1-type:17",
+   "dur": 0.4878
+  },
+  {
+   "t": 81.708,
+   "kind": "slide",
+   "label": "paper pans on",
+   "pos": "42:4.5",
+   "sfx": "whoosh",
+   "gain": -4
+  },
+  {
+   "t": 81.952,
+   "kind": "cut",
+   "label": "M2-M5-request",
+   "pos": "43:1",
+   "sfx": "none",
+   "shot": "M2-M5-request"
+  },
+  {
+   "t": 81.952,
+   "kind": "enter-slide",
+   "label": "M2-M5-request",
+   "pos": "43:1",
+   "sfx": "none",
+   "shot": "M2-M5-request"
+  },
+  {
+   "t": 81.952,
+   "kind": "sfx",
+   "label": "sparkle",
+   "pos": "43:1",
+   "sfx": "sparkle",
+   "gain": -4,
+   "visual": false
+  },
+  {
+   "t": 81.952,
+   "kind": "enter-slide",
+   "label": "M2-M5-type",
+   "pos": "43:1",
+   "sfx": "none",
+   "shot": "M2-M5-type"
+  },
+  {
+   "t": 81.952,
+   "kind": "slam",
+   "label": "同一刻的",
+   "pos": "43:1",
+   "pan": -0.2625,
+   "size": 180,
+   "shot": "M2-M5-type",
+   "id": "M2-M5-type:41"
+  },
+  {
+   "t": 82.9275,
+   "kind": "draw",
+   "label": "circle 同一刻的另一面",
+   "pos": "43:3",
+   "shot": "M2-M5-request",
+   "id": "M2-M5-request:25",
+   "dur": 0.34146
+  },
+  {
+   "t": 82.9275,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "43:3",
+   "gain": -10,
+   "pan": 0.05468750000000002,
+   "note": 0,
+   "shot": "M2-M5-request",
+   "id": "M2-M5-request:27"
+  },
+  {
+   "t": 82.9275,
+   "kind": "slam",
+   "label": "另一面。",
+   "pos": "43:3",
+   "pan": -0.2625,
+   "size": 180,
+   "shot": "M2-M5-type",
+   "id": "M2-M5-type:42"
+  },
+  {
+   "t": 83.04945,
+   "kind": "pop",
+   "label": "star",
+   "pos": "43:3.25",
+   "sfx": "none",
+   "gain": -10,
+   "pan": 0.275,
+   "note": 1,
+   "shot": "M2-M5-request",
+   "id": "M2-M5-request:28"
+  },
+  {
+   "t": 83.17137,
+   "kind": "draw",
+   "label": "arrow to the badge",
+   "pos": "43:3.5",
+   "sfx": "pencil",
+   "shot": "M2-M5-type",
+   "id": "M2-M5-type:43",
+   "dur": 0.21951
+  },
+  {
+   "t": 83.1714,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "43:3.5",
+   "gain": -10,
+   "pan": 0.050000000000000024,
+   "note": 2,
+   "shot": "M2-M5-request",
+   "id": "M2-M5-request:29"
+  },
+  {
+   "t": 83.29335,
+   "kind": "pop",
+   "label": "star",
+   "pos": "43:3.75",
+   "sfx": "none",
+   "gain": -10,
+   "pan": 0.27812499999999996,
+   "note": 3,
+   "shot": "M2-M5-request",
+   "id": "M2-M5-request:30"
+  },
+  {
+   "t": 83.903,
+   "kind": "draw",
+   "label": "underline 你拍人海，TA 拍舞台",
+   "pos": "44:1",
+   "shot": "M2-M5-request",
+   "id": "M2-M5-request:26",
+   "dur": 0.29268
+  },
+  {
+   "t": 84.39075,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "44:2",
+   "gain": -12,
+   "pan": 0.05937500000000002,
+   "note": 0,
+   "shot": "M2-M5-request",
+   "id": "M2-M5-request:21"
+  },
+  {
+   "t": 84.5127,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "44:2.25",
+   "sfx": "none",
+   "gain": -12,
+   "pan": 0.06249999999999997,
+   "note": 1,
+   "shot": "M2-M5-request",
+   "id": "M2-M5-request:22"
+  },
+  {
+   "t": 84.8785,
+   "kind": "pop",
+   "label": "phone wiggles",
+   "pos": "44:3",
+   "sfx": "boop",
+   "gain": -12
+  },
+  {
+   "t": 85.12238,
+   "kind": "pop",
+   "label": "heart",
+   "pos": "44:3.5",
+   "gain": -11,
+   "pan": 0.05468750000000002,
+   "note": 0,
+   "shot": "M2-M5-request",
+   "id": "M2-M5-request:23"
+  },
+  {
+   "t": 85.36628,
+   "kind": "pop",
+   "label": "star",
+   "pos": "44:4",
+   "sfx": "none",
+   "gain": -11,
+   "pan": 0.27812499999999996,
+   "note": 1,
+   "shot": "M2-M5-request",
+   "id": "M2-M5-request:24"
+  },
+  {
+   "t": 85.854,
+   "kind": "tap",
+   "label": "tap 和 TA 交换这个视角",
+   "pos": "45:1",
+   "gain": -2
+  },
+  {
+   "t": 85.854,
+   "kind": "slam",
+   "label": "用我拍下的，",
+   "pos": "45:1",
+   "pan": -0.2625,
+   "size": 128,
+   "shot": "M2-M5-type",
+   "id": "M2-M5-type:44"
+  },
+  {
+   "t": 86.09788,
+   "kind": "slide",
+   "label": "frame the compose",
+   "pos": "45:1.5",
+   "sfx": "whoosh",
+   "gain": -10
+  },
+  {
+   "t": 86.8295,
+   "kind": "slam",
+   "label": "换 TA 看到的。",
+   "pos": "45:3",
+   "pan": -0.2625,
+   "size": 128,
+   "shot": "M2-M5-type",
+   "id": "M2-M5-type:45"
+  },
+  {
+   "t": 86.8295,
+   "kind": "punch",
+   "label": "punch the pair + ⇄",
+   "pos": "45:3",
+   "shot": "M2-M5-request"
+  },
+  {
+   "t": 87.805,
+   "kind": "slide",
+   "label": "the product scrolls to the reason card",
+   "pos": "46:1",
+   "sfx": "swish",
+   "gain": -10
+  },
+  {
+   "t": 87.805,
+   "kind": "type",
+   "label": "换不换，",
+   "pos": "46:1",
+   "note": 4,
+   "shot": "M2-M5-type",
+   "id": "M2-M5-type:46",
+   "dur": 0.4878
+  },
+  {
+   "t": 88.781,
+   "kind": "swipe",
+   "label": "swipe 要不要交换，仍由你和对方决定",
+   "pos": "46:3",
+   "shot": "M2-M5-request",
+   "id": "M2-M5-request:33",
+   "dur": 0.39024000000000003
+  },
+  {
+   "t": 88.781,
+   "kind": "slam",
+   "label": "你们俩说了算。",
+   "pos": "46:3",
+   "pan": -0.2625,
+   "size": 128,
+   "shot": "M2-M5-type",
+   "id": "M2-M5-type:47"
+  },
+  {
+   "t": 88.781,
+   "kind": "punch",
+   "label": "punch 要不要交换，仍由你和对方决定",
+   "pos": "46:3",
+   "sfx": "none",
+   "shot": "M2-M5-request"
+  },
+  {
+   "t": 89.025,
+   "kind": "pop",
+   "label": "star",
+   "pos": "46:3.5",
+   "gain": -12,
+   "pan": 0.046875,
+   "note": 0,
+   "shot": "M2-M5-request",
+   "id": "M2-M5-request:31"
+  },
+  {
+   "t": 89.2689,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "46:4",
+   "sfx": "none",
+   "gain": -12,
+   "pan": 0.27968750000000003,
+   "note": 1,
+   "shot": "M2-M5-request",
+   "id": "M2-M5-request:32"
+  },
+  {
+   "t": 89.757,
+   "kind": "slide",
+   "label": "scroll to the consent",
+   "pos": "47:1",
+   "sfx": "swish",
+   "gain": -10
+  },
+  {
+   "t": 89.757,
+   "kind": "slam",
+   "label": "我同意，",
+   "pos": "47:1",
+   "pan": -0.2625,
+   "size": 128,
+   "shot": "M2-M5-type",
+   "id": "M2-M5-type:48"
+  },
+  {
+   "t": 90.00088,
+   "kind": "draw",
+   "label": "check 我同意",
+   "pos": "47:1.5",
+   "sfx": "pencil",
+   "shot": "M2-M5-type",
+   "id": "M2-M5-type:49",
+   "dur": 0.21951
+  },
+  {
+   "t": 90.24475,
+   "kind": "draw",
+   "label": "check over the real tick",
+   "pos": "47:2",
+   "sfx": "tick",
+   "shot": "M2-M5-request",
+   "id": "M2-M5-request:34",
+   "dur": 0.2439
+  },
+  {
+   "t": 90.7325,
+   "kind": "tap",
+   "label": "tap 把这两张交给对方确认",
+   "pos": "47:3",
+   "gain": -2
+  },
+  {
+   "t": 90.7325,
+   "kind": "type",
+   "label": "交给 TA 确认。",
+   "pos": "47:3",
+   "note": 9,
+   "shot": "M2-M5-type",
+   "id": "M2-M5-type:50",
+   "dur": 1.09755
+  },
+  {
+   "t": 90.97638,
+   "kind": "slide",
+   "label": "pending: back to the top",
+   "pos": "47:3.5",
+   "sfx": "swish",
+   "gain": -10
+  },
+  {
+   "t": 91.708,
+   "kind": "slam",
+   "label": "还要 TA 也同意。",
+   "pos": "48:1",
+   "pan": -0.2625,
+   "size": 128,
+   "shot": "M2-M5-type",
+   "id": "M2-M5-type:52"
+  },
+  {
+   "t": 91.708,
+   "kind": "punch",
+   "label": "punch 等待本人回应",
+   "pos": "48:1",
+   "shot": "M2-M5-request"
+  },
+  {
+   "t": 91.95188,
+   "kind": "draw",
+   "label": "arrow ↗",
+   "pos": "48:1.5",
+   "sfx": "pencil",
+   "shot": "M2-M5-type",
+   "id": "M2-M5-type:51",
+   "dur": 0.19512000000000002
+  },
+  {
+   "t": 92.6835,
+   "kind": "pop",
+   "label": "clock sticker",
+   "pos": "48:3",
+   "sfx": "pop",
+   "gain": -6,
+   "pan": 0.05937500000000002,
+   "shot": "M2-M5-request",
+   "id": "M2-M5-request:35"
+  },
+  {
+   "t": 93.17125,
+   "kind": "tick",
+   "label": "clock tick",
+   "pos": "48:4",
+   "sfx": "tick",
+   "gain": -4
+  },
+  {
+   "t": 93.659,
+   "kind": "tick",
+   "label": "clock tick",
+   "pos": "49:1",
+   "sfx": "tick",
+   "gain": -4
+  },
+  {
+   "t": 93.659,
+   "kind": "pop",
+   "label": "heart (heartbeat)",
+   "pos": "49:1",
+   "sfx": "none",
+   "pan": 0.044375000000000005,
+   "shot": "M2-M5-request",
+   "id": "M2-M5-request:36"
+  },
+  {
+   "t": 93.659,
+   "kind": "sfx",
+   "label": "heartbeat",
+   "pos": "49:1",
+   "sfx": "heartbeat",
+   "gain": -2,
+   "visual": false
+  },
+  {
+   "t": 93.659,
+   "kind": "slam",
+   "label": "双方同意，",
+   "pos": "49:1",
+   "pan": -0.2625,
+   "size": 180,
+   "shot": "M2-M5-type",
+   "id": "M2-M5-type:53"
+  },
+  {
+   "t": 94.147,
+   "kind": "tick",
+   "label": "clock tick",
+   "pos": "49:2",
+   "sfx": "tick",
+   "gain": -4
+  },
+  {
+   "t": 94.147,
+   "kind": "sfx",
+   "label": "heartbeat",
+   "pos": "49:2",
+   "sfx": "heartbeat",
+   "gain": -3,
+   "visual": false
+  },
+  {
+   "t": 94.635,
+   "kind": "tick",
+   "label": "clock tick",
+   "pos": "49:3",
+   "sfx": "tick",
+   "gain": -4
+  },
+  {
+   "t": 94.635,
+   "kind": "sfx",
+   "label": "heartbeat",
+   "pos": "49:3",
+   "sfx": "heartbeat",
+   "gain": -3,
+   "visual": false
+  },
+  {
+   "t": 94.635,
+   "kind": "slam",
+   "label": "才交换。",
+   "pos": "49:3",
+   "pan": -0.2625,
+   "size": 180,
+   "shot": "M2-M5-type",
+   "id": "M2-M5-type:54"
+  },
+  {
+   "t": 95.123,
+   "kind": "tick",
+   "label": "clock tick",
+   "pos": "49:4",
+   "sfx": "tick",
+   "gain": -4
+  },
+  {
+   "t": 95.123,
+   "kind": "sfx",
+   "label": "heartbeat",
+   "pos": "49:4",
+   "sfx": "heartbeat",
+   "gain": -3,
+   "visual": false
+  },
+  {
+   "t": 95.611,
+   "kind": "tick",
+   "label": "clock tick",
+   "pos": "50:1",
+   "sfx": "tick",
+   "gain": -4
+  },
+  {
+   "t": 95.611,
+   "kind": "sfx",
+   "label": "heartbeat",
+   "pos": "50:1",
+   "sfx": "heartbeat",
+   "gain": -3,
+   "visual": false
+  },
+  {
+   "t": 95.611,
+   "kind": "sfx",
+   "label": "riser",
+   "pos": "50:1",
+   "sfx": "riser",
+   "gain": -5,
+   "dur": 1.4632500000000022,
+   "visual": false
+  },
+  {
+   "t": 95.85488,
+   "kind": "tick",
+   "label": "clock tick",
+   "pos": "50:1.5",
+   "sfx": "tick",
+   "gain": -4
+  },
+  {
+   "t": 96.09875,
+   "kind": "tick",
+   "label": "clock tick",
+   "pos": "50:2",
+   "sfx": "tick",
+   "gain": -4
+  },
+  {
+   "t": 96.09875,
+   "kind": "sfx",
+   "label": "heartbeat",
+   "pos": "50:2",
+   "sfx": "heartbeat",
+   "gain": -3,
+   "visual": false
+  },
+  {
+   "t": 96.34262,
+   "kind": "tick",
+   "label": "clock tick",
+   "pos": "50:2.5",
+   "sfx": "tick",
+   "gain": -4
+  },
+  {
+   "t": 96.34262,
+   "kind": "pop",
+   "label": "dot 1",
+   "pos": "50:2.5",
+   "sfx": "blip",
+   "gain": -8,
+   "pan": -0.2828125,
+   "note": 0,
+   "shot": "M2-M5-request",
+   "id": "M2-M5-request:38"
+  },
+  {
+   "t": 96.5865,
+   "kind": "tick",
+   "label": "clock tick",
+   "pos": "50:3",
+   "sfx": "tick",
+   "gain": -4
+  },
+  {
+   "t": 96.5865,
+   "kind": "sfx",
+   "label": "heartbeat",
+   "pos": "50:3",
+   "sfx": "heartbeat",
+   "gain": -3,
+   "visual": false
+  },
+  {
+   "t": 96.5865,
+   "kind": "pop",
+   "label": "dot 2",
+   "pos": "50:3",
+   "sfx": "blip",
+   "gain": -8,
+   "pan": -0.26875,
+   "note": 3,
+   "shot": "M2-M5-request",
+   "id": "M2-M5-request:39"
+  },
+  {
+   "t": 96.83038,
+   "kind": "tick",
+   "label": "clock tick",
+   "pos": "50:3.5",
+   "sfx": "tick",
+   "gain": -4
+  },
+  {
+   "t": 96.83038,
+   "kind": "pop",
+   "label": "dot 3",
+   "pos": "50:3.5",
+   "sfx": "blip",
+   "gain": -8,
+   "pan": -0.2546875,
+   "note": 6,
+   "shot": "M2-M5-request",
+   "id": "M2-M5-request:40"
+  },
+  {
+   "t": 97.07425,
+   "kind": "pop",
+   "label": "squash and hold",
+   "pos": "50:4",
+   "sfx": "none"
+  },
+  {
+   "t": 97.562,
+   "kind": "cut",
+   "label": "M6-M7-accepted",
+   "pos": "51:1",
+   "sfx": "none",
+   "shot": "M6-M7-accepted"
+  },
+  {
+   "t": 97.562,
+   "kind": "punch",
+   "label": "punch 交换已接受",
+   "pos": "51:1",
+   "sfx": "none",
+   "shot": "M6-M7-accepted"
+  },
+  {
+   "t": 97.562,
+   "kind": "confetti",
+   "label": "payoff confetti",
+   "pos": "51:1",
+   "sfx": "none",
+   "shot": "M6-M7-accepted"
+  },
+  {
+   "t": 97.562,
+   "kind": "slam",
+   "label": "PAYOFF 交换已接受",
+   "pos": "51:1",
+   "sfx": "boom",
+   "gain": 2
+  },
+  {
+   "t": 97.562,
+   "kind": "slam",
+   "label": "交换已接受 (product state)",
+   "pos": "51:1",
+   "sfx": "impact",
+   "gain": 0,
+   "pan": -0.26875,
+   "size": 206,
+   "shot": "M6-M7-type",
+   "id": "M6-M7-type:60"
+  },
+  {
+   "t": 97.684,
+   "kind": "sfx",
+   "label": "crackle",
+   "pos": "51:1.25",
+   "sfx": "crackle",
+   "gain": 0,
+   "visual": false
+  },
+  {
+   "t": 98.05,
+   "kind": "slap",
+   "label": "tape across both",
+   "pos": "51:2",
+   "sfx": "tape",
+   "gain": -2,
+   "pan": -0.1375,
+   "shot": "M6-M7-type",
+   "id": "M6-M7-type:63"
+  },
+  {
+   "t": 98.05,
+   "kind": "spring",
+   "label": "swap",
+   "pos": "51:2",
+   "sfx": "zip",
+   "gain": -4,
+   "pan": -0.136875,
+   "shot": "M6-M7-type",
+   "id": "M6-M7-type:64"
+  },
+  {
+   "t": 98.294,
+   "kind": "stamp",
+   "label": "stamp 双方已明确同意",
+   "pos": "51:2.5",
+   "gain": -2,
+   "pan": -0.13125,
+   "size": 54,
+   "shot": "M6-M7-type",
+   "id": "M6-M7-type:65"
+  },
+  {
+   "t": 98.538,
+   "kind": "punch",
+   "label": "pull back: both photos",
+   "pos": "51:3",
+   "sfx": "whoosh",
+   "gain": -6
+  },
+  {
+   "t": 99.026,
+   "kind": "pop",
+   "label": "confetti twinkles",
+   "pos": "51:4",
+   "sfx": "sparkle",
+   "gain": -12
+  },
+  {
+   "t": 99.514,
+   "kind": "pop",
+   "label": "sticker avatar 阿宁",
+   "pos": "52:1",
+   "sfx": "boop",
+   "gain": -8,
+   "pan": -0.007812499999999989,
+   "note": 0,
+   "shot": "M6-M7-accepted",
+   "id": "M6-M7-accepted:58"
+  },
+  {
+   "t": 99.514,
+   "kind": "slam",
+   "label": "同一刻，",
+   "pos": "52:1",
+   "pan": -0.2625,
+   "size": 128,
+   "shot": "M6-M7-type",
+   "id": "M6-M7-type:66"
+  },
+  {
+   "t": 99.75787,
+   "kind": "pop",
+   "label": "sticker avatar 阿遥·示例",
+   "pos": "52:1.5",
+   "sfx": "none",
+   "gain": -8,
+   "pan": 0.03906249999999998,
+   "note": 4,
+   "shot": "M6-M7-accepted",
+   "id": "M6-M7-accepted:59"
+  },
+  {
+   "t": 100.4895,
+   "kind": "slam",
+   "label": "两面 都齐了。",
+   "pos": "52:3",
+   "pan": -0.26499999999999996,
+   "size": 180,
+   "shot": "M6-M7-type",
+   "id": "M6-M7-type:67"
+  },
+  {
+   "t": 100.97725,
+   "kind": "pop",
+   "label": "stars twinkle",
+   "pos": "52:4",
+   "sfx": "sparkle",
+   "gain": -12
+  },
+  {
+   "t": 101.465,
+   "kind": "slide",
+   "label": "down to the revoke button",
+   "pos": "53:1",
+   "sfx": "swish",
+   "gain": -8
+  },
+  {
+   "t": 101.95275,
+   "kind": "draw",
+   "label": "circle 撤销这次交换的在线访问",
+   "pos": "53:2",
+   "shot": "M6-M7-accepted",
+   "id": "M6-M7-accepted:68",
+   "dur": 0.34146
+  },
+  {
+   "t": 102.4405,
+   "kind": "slam",
+   "label": "随时可以撤销。",
+   "pos": "53:3",
+   "pan": -0.2625,
+   "size": 128,
+   "shot": "M6-M7-type",
+   "id": "M6-M7-type:69"
+  },
+  {
+   "t": 102.4405,
+   "kind": "punch",
+   "label": "punch the fine print",
+   "pos": "53:3",
+   "shot": "M6-M7-accepted"
+  },
+  {
+   "t": 103.416,
+   "kind": "out",
+   "label": "phone slides out left",
+   "pos": "54:1",
+   "sfx": "whoosh",
+   "gain": -4,
+   "shot": "M6-M7-accepted"
+  },
+  {
+   "t": 103.416,
+   "kind": "slap",
+   "label": "card 然后呢",
+   "pos": "54:1",
+   "sfx": "slap",
+   "gain": -2,
+   "pan": 0,
+   "shot": "M6-M7-type",
+   "id": "M6-M7-type:70"
+  },
+  {
+   "t": 103.416,
+   "kind": "drop",
+   "label": "然后呢？",
+   "pos": "54:1",
+   "pan": 0,
+   "size": 240,
+   "shot": "M6-M7-type",
+   "id": "M6-M7-type:75"
+  },
+  {
+   "t": 103.90375,
+   "kind": "pop",
+   "label": "question",
+   "pos": "54:2",
+   "gain": -9,
+   "pan": 0.21249999999999997,
+   "note": 0,
+   "shot": "M6-M7-type",
+   "id": "M6-M7-type:72"
+  },
+  {
+   "t": 104.14765,
+   "kind": "pop",
+   "label": "star",
+   "pos": "54:2.5",
+   "sfx": "none",
+   "gain": -9,
+   "pan": -0.20625,
+   "note": 1,
+   "shot": "M6-M7-type",
+   "id": "M6-M7-type:73"
+  },
+  {
+   "t": 104.3915,
+   "kind": "pop",
+   "label": "然后呢 bounces",
+   "pos": "54:3",
+   "sfx": "boop",
+   "gain": -4
+  },
+  {
+   "t": 104.39155,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "54:3",
+   "gain": -9,
+   "pan": 0.21875000000000003,
+   "note": 2,
+   "shot": "M6-M7-type",
+   "id": "M6-M7-type:74"
+  },
+  {
+   "t": 105.12313,
+   "kind": "wipe",
+   "label": "W-A4-A5",
+   "pos": "54:4.5",
+   "shot": "W-A4-A5"
+  }
+ ],
+ "texts": [
+  {
+   "id": "A4-ai:1",
+   "shot": "A4-ai",
+   "t0": 78.049,
+   "t1": 103.9038,
+   "text": "照片为 AI 生成的示例图",
+   "role": "hand",
+   "kind": "fine",
+   "size": 36,
+   "recipe": "fine",
+   "script": null,
+   "inFootage": false
+  },
+  {
+   "id": "M1-collide:5:cap",
+   "shot": "M1-collide",
+   "t0": 78.049,
+   "t1": 81.952,
+   "text": "阿宁 · 人海",
+   "role": "hand",
+   "kind": "label",
+   "size": 36
+  },
+  {
+   "id": "M1-collide:7:cap",
+   "shot": "M1-collide",
+   "t0": 78.049,
+   "t1": 81.952,
+   "text": "阿遥·示例 · 舞台",
+   "role": "hand",
+   "kind": "label",
+   "size": 36
+  },
+  {
+   "id": "M1-collide:14",
+   "shot": "M1-collide",
+   "t0": 80,
+   "t1": 81.952,
+   "text": "21:48",
+   "role": "digits",
+   "kind": "label",
+   "size": 80,
+   "recipe": "digits",
+   "script": null,
+   "inFootage": false
+  },
+  {
+   "id": "M1-collide:15",
+   "shot": "M1-collide",
+   "t0": 80.488,
+   "t1": 81.952,
+   "text": "21:47",
+   "role": "digits",
+   "kind": "label",
+   "size": 80,
+   "recipe": "digits",
+   "script": null,
+   "inFootage": false
+  },
+  {
+   "id": "M1-type:17",
+   "shot": "M1-type",
+   "t0": 80.976,
+   "t1": 81.952,
+   "text": "不到 1 分钟",
+   "role": "digits",
+   "kind": "label",
+   "size": 84,
+   "recipe": "digits",
+   "script": "T072",
+   "inFootage": false
+  },
+  {
+   "id": "M1-type:18",
+   "shot": "M1-type",
+   "t0": 78.049,
+   "t1": 81.952,
+   "text": "你拍人海，",
+   "role": "display",
+   "kind": "title",
+   "size": 180,
+   "recipe": "ink-mint",
+   "script": "T070",
+   "inFootage": false
+  },
+  {
+   "id": "M1-type:19",
+   "shot": "M1-type",
+   "t0": 79.0245,
+   "t1": 81.952,
+   "text": "TA 拍舞台。",
+   "role": "display",
+   "kind": "title",
+   "size": 180,
+   "recipe": "ink-pink",
+   "script": "T071",
+   "inFootage": false
+  },
+  {
+   "id": "M2-M5-type:41",
+   "shot": "M2-M5-type",
+   "t0": 81.952,
+   "t1": 85.854,
+   "text": "同一刻的",
+   "role": "display",
+   "kind": "title",
+   "size": 180,
+   "recipe": "ink-pink",
+   "script": "T073",
+   "inFootage": false
+  },
+  {
+   "id": "M2-M5-type:42",
+   "shot": "M2-M5-type",
+   "t0": 82.9275,
+   "t1": 85.854,
+   "text": "另一面。",
+   "role": "display",
+   "kind": "title",
+   "size": 180,
+   "recipe": "st-pink",
+   "script": "T074",
+   "inFootage": false
+  },
+  {
+   "id": "M2-M5-type:44",
+   "shot": "M2-M5-type",
+   "t0": 85.854,
+   "t1": 87.805,
+   "text": "用我拍下的，",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-pink",
+   "script": "T075",
+   "inFootage": false
+  },
+  {
+   "id": "M2-M5-type:45",
+   "shot": "M2-M5-type",
+   "t0": 86.8295,
+   "t1": 88.781,
+   "text": "换 TA 看到的。",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-pink",
+   "script": "T076",
+   "inFootage": false
+  },
+  {
+   "id": "M2-M5-type:46",
+   "shot": "M2-M5-type",
+   "t0": 87.805,
+   "t1": 89.757,
+   "text": "换不换，",
+   "role": "marker",
+   "kind": "title",
+   "size": 84,
+   "recipe": "ink",
+   "script": "T077",
+   "inFootage": false
+  },
+  {
+   "id": "M2-M5-type:47",
+   "shot": "M2-M5-type",
+   "t0": 88.781,
+   "t1": 90.7325,
+   "text": "你们俩说了算。",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-mint",
+   "script": "T078",
+   "inFootage": false
+  },
+  {
+   "id": "M2-M5-type:48",
+   "shot": "M2-M5-type",
+   "t0": 89.757,
+   "t1": 91.708,
+   "text": "我同意，",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-mint",
+   "script": "T079",
+   "inFootage": false
+  },
+  {
+   "id": "M2-M5-type:50",
+   "shot": "M2-M5-type",
+   "t0": 90.7325,
+   "t1": 92.7835,
+   "text": "交给 TA 确认。",
+   "role": "marker",
+   "kind": "title",
+   "size": 84,
+   "recipe": "ink",
+   "script": "T080",
+   "inFootage": false
+  },
+  {
+   "id": "M2-M5-type:52",
+   "shot": "M2-M5-type",
+   "t0": 91.708,
+   "t1": 93.659,
+   "text": "还要 TA\n也同意。",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-pink",
+   "script": "T081",
+   "inFootage": false
+  },
+  {
+   "id": "M2-M5-type:53",
+   "shot": "M2-M5-type",
+   "t0": 93.659,
+   "t1": 97.562,
+   "text": "双方同意，",
+   "role": "display",
+   "kind": "title",
+   "size": 180,
+   "recipe": "ink-mint",
+   "script": "T082",
+   "inFootage": false
+  },
+  {
+   "id": "M2-M5-type:54",
+   "shot": "M2-M5-type",
+   "t0": 94.635,
+   "t1": 97.562,
+   "text": "才交换。",
+   "role": "display",
+   "kind": "title",
+   "size": 180,
+   "recipe": "ink-pink",
+   "script": "T083",
+   "inFootage": false
+  },
+  {
+   "id": "M6-M7-type:60",
+   "shot": "M6-M7-type",
+   "t0": 97.562,
+   "t1": 99.492,
+   "text": "交换已接受",
+   "role": "display",
+   "kind": "title",
+   "size": 206,
+   "recipe": "st-mint",
+   "script": null,
+   "inFootage": false
+  },
+  {
+   "id": "M6-M7-type:65",
+   "shot": "M6-M7-type",
+   "t0": 98.294,
+   "t1": 100.4676,
+   "text": "双方已明确同意",
+   "role": "marker",
+   "kind": "label",
+   "size": 54,
+   "recipe": "stamp-mint",
+   "script": null,
+   "inFootage": false
+  },
+  {
+   "id": "M6-M7-type:66",
+   "shot": "M6-M7-type",
+   "t0": 99.514,
+   "t1": 102.4405,
+   "text": "同一刻，",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-pink",
+   "script": "T084",
+   "inFootage": false
+  },
+  {
+   "id": "M6-M7-type:67",
+   "shot": "M6-M7-type",
+   "t0": 100.4895,
+   "t1": 102.4405,
+   "text": "两面\n都齐了。",
+   "role": "display",
+   "kind": "title",
+   "size": 180,
+   "recipe": "ink-mint",
+   "script": "T085",
+   "inFootage": false
+  },
+  {
+   "id": "M6-M7-type:69",
+   "shot": "M6-M7-type",
+   "t0": 102.4405,
+   "t1": 104.4915,
+   "text": "随时可以撤销。",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-mint",
+   "script": "T086",
+   "inFootage": false
+  },
+  {
+   "id": "M6-M7-type:75",
+   "shot": "M6-M7-type",
+   "t0": 103.416,
+   "t1": 105.367,
+   "text": "然后呢？",
+   "role": "display",
+   "kind": "title",
+   "size": 240,
+   "recipe": "ink-pink",
+   "script": "T087",
+   "inFootage": false
+  }
+ ],
+ "marks": {},
+ "warnings": [],
+ "assets": {
+  "photo:sample-crowd": {
+   "name": "photo:sample-crowd",
+   "path": "/tmp/space-publish/dist-pages/demo/sample-crowd.jpg",
+   "kind": "alias"
+  },
+  "photo:yao-stage": {
+   "name": "photo:yao-stage",
+   "path": "/tmp/space-publish/dist-pages/demo/yao-stage.jpg",
+   "kind": "alias"
+  },
+  "avatar:you": {
+   "name": "avatar:you",
+   "path": "/tmp/space-video-doodle/script/probe/avatars/look-4-shizhen-front.svg",
+   "kind": "alias"
+  },
+  "avatar:yao": {
+   "name": "avatar:yao",
+   "path": "/tmp/space-video-doodle/script/probe/avatars/cast-yao.svg",
+   "kind": "alias"
+  }
+ },
+ "clips": {
+  "P-09": {
+   "name": "P-09",
+   "path": "/tmp/space-video-doodle/prod/capture/P1/clips/P-09.mp4",
+   "kind": "capture",
+   "candidates": 1,
+   "fps": 60,
+   "frames": 431,
+   "w": 1080,
+   "h": 2340,
+   "duration": 7.1833,
+   "key": "d11367d480"
+  },
+  "P-10": {
+   "name": "P-10",
+   "path": "/tmp/space-video-doodle/prod/capture/P1/clips/P-10.mp4",
+   "kind": "capture",
+   "candidates": 1,
+   "fps": 60,
+   "frames": 395,
+   "w": 1080,
+   "h": 2340,
+   "duration": 6.5833,
+   "key": "ca748f6749"
+  },
+  "P-11": {
+   "name": "P-11",
+   "path": "/tmp/space-video-doodle/prod/capture/P1/clips/P-11.mp4",
+   "kind": "capture",
+   "candidates": 1,
+   "fps": 60,
+   "frames": 537,
+   "w": 1080,
+   "h": 2340,
+   "duration": 8.95,
+   "key": "ec593a34a7"
+  }
+ },
+ "script": [
+  "T070",
+  "T071",
+  "T072",
+  "T073",
+  "T074",
+  "T075",
+  "T076",
+  "T077",
+  "T078",
+  "T079",
+  "T080",
+  "T081",
+  "T082",
+  "T083",
+  "T084",
+  "T085",
+  "T086",
+  "T087"
+ ],
+ "scenes": [
+  "act-A4"
+ ]
+}

@@ -1,0 +1,13 @@
+const out={};
+const b=pages.phone; 
+const browser=b.ctx.browser();
+const ctx=await browser.newContext({...L.VP.phone, locale:'zh-CN', timezoneId:'Asia/Shanghai'});
+const page=await ctx.newPage();
+await page.route('**/*.wasm', async r=>{ await sleep(2500); r.continue(); });
+await page.goto(L.URL,{waitUntil:'commit'});
+await sleep(400); out.l1=await shot(page,'p43-loading-a');
+await sleep(500); out.l2=await shot(page,'p43-loading-b');
+out.text=await page.evaluate(()=>document.body.innerText.slice(0,300));
+await page.waitForFunction(()=>window.__SPACE_BOOT__==='ready',null,{timeout:90000}).catch(()=>{});
+await ctx.close();
+return out;

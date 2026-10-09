@@ -1,0 +1,10 @@
+const s = await get('phone');
+const p = s.page;
+const r = {};
+r.cards = await p.evaluate(() => [...document.querySelectorAll('#panel .moment-card')].map(c => { const b = c.getBoundingClientRect(); return { cls: c.className, data: { ...c.dataset }, box: [Math.round(b.x), Math.round(b.y + document.querySelector('#panel').scrollTop), Math.round(b.width), Math.round(b.height)], text: c.innerText.replace(/\s+/g, ' ').slice(0, 120), kids: [...c.children].map(k => k.tagName + '.' + k.className).join(' ') }; }));
+r.groupHead = await p.evaluate(() => { const g = document.querySelector('#panel .moment-group'); return [...g.children].map(k => k.tagName + '.' + k.className + ' ' + k.innerText.replace(/\s+/g, ' ').slice(0, 60)); });
+r.wallTop = await p.evaluate(() => [...document.querySelector('#panel [data-moment-wall]').parentElement.children].slice(0, 8).map(k => k.tagName + '.' + k.className + ' ' + (k.innerText || '').replace(/\s+/g, ' ').slice(0, 50)));
+await p.evaluate(() => { const c = document.querySelector('#panel .moment-card--best'); c.scrollIntoView({ block: 'start' }); });
+await sleep(500);
+await shot(p, 'e21-best-card');
+return r;

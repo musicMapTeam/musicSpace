@@ -1,0 +1,15 @@
+const s = await get('phone');
+const p = s.page;
+const C = await import('/tmp/space-video-doodle/prod/capture/P2P3/tools/cutout.mjs?v=' + Date.now());
+const r = {};
+await p.locator('[data-wardrobe-close]').first().click().catch(() => {}); await sleep(600);
+await p.locator('[data-view="overview"]').click().catch(() => {}); await sleep(1200);
+r.tour = await H.buttons(p, b => /tour/.test(b));
+await p.locator('[data-tour-action="sample:sample-crowd"]').click();
+await p.waitForFunction(() => /AI 判断：/.test(document.querySelector('#panel')?.innerText || ''), null, { timeout: 30000 });
+await sleep(1200);
+r.anc = await p.evaluate(() => { const out = []; let e = document.querySelector('.moment-ai-tag'); while (e && e !== document.documentElement) { const cs = getComputedStyle(e); if (cs.filter !== 'none' || cs.opacity !== '1' || cs.mixBlendMode !== 'normal' || cs.backdropFilter !== 'none' || cs.transform !== 'none') out.push((e.id ? '#' + e.id : e.className || e.tagName) + ' f=' + cs.filter + ' o=' + cs.opacity + ' mb=' + cs.mixBlendMode + ' bf=' + cs.backdropFilter + ' t=' + cs.transform); e = e.parentElement; } return out; });
+r.cut1 = await C.cutout(p, ['.moment-ai-tag'], '/tmp/space-video-doodle/prod/capture/P2P3/review/explore/t-ai-tag');
+r.cut2 = await C.cutout(p, ['.moment-chips'], '/tmp/space-video-doodle/prod/capture/P2P3/review/explore/t-chips');
+r.after = await shot(p, 'e17-after-cut');
+return r;

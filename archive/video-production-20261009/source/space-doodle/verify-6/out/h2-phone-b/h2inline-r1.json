@@ -1,0 +1,217 @@
+{
+ "label": "h2inline",
+ "round": 1,
+ "ok": true,
+ "fcp": 432,
+ "ready": 3037,
+ "loadingHidden": 2748,
+ "proto": "h2",
+ "docEnd": 2143,
+ "css": null,
+ "firstOtherFontStart": 273,
+ "frames": 163,
+ "fontsLoaded": 10,
+ "net": [
+  {
+   "url": "/musicSpace/",
+   "proto": "h2",
+   "prio": "VeryHigh",
+   "bytes": 660915,
+   "start": 1,
+   "resp": 181,
+   "end": 2143
+  },
+  {
+   "url": "/musicSpace/shared/three-0.186.1/three.module.js",
+   "proto": "h2",
+   "prio": "High",
+   "bytes": 131661,
+   "start": 189,
+   "resp": 1294,
+   "end": 1293
+  },
+  {
+   "url": "/musicSpace/shared/three-0.186.1/three.core.js",
+   "proto": "h2",
+   "prio": "High",
+   "bytes": 288162,
+   "start": 190,
+   "resp": 1802,
+   "end": 1800
+  },
+  {
+   "url": "/musicSpace/sql/sql-wasm.wasm",
+   "proto": "h2",
+   "prio": "High",
+   "bytes": 658822,
+   "start": 190,
+   "resp": 345,
+   "end": 2301
+  },
+  {
+   "url": "/musicSpace/fonts/doodle/marker-0.woff2",
+   "proto": "h2",
+   "prio": "High",
+   "bytes": 43474,
+   "start": 190,
+   "resp": 675,
+   "end": 671
+  },
+  {
+   "url": "/musicSpace/fonts/doodle/display-0.woff2",
+   "proto": "h2",
+   "prio": "High",
+   "bytes": 81975,
+   "start": 190,
+   "resp": 1004,
+   "end": 1002
+  },
+  {
+   "url": "/musicSpace/fonts/doodle/logo-0.woff2",
+   "proto": "h2",
+   "prio": "VeryHigh",
+   "bytes": 16868,
+   "start": 273,
+   "resp": 585,
+   "end": 583
+  },
+  {
+   "url": "/musicSpace/fonts/doodle/display-1.woff2",
+   "proto": "h2",
+   "prio": "VeryHigh",
+   "bytes": 102249,
+   "start": 273,
+   "resp": 1231,
+   "end": 1228
+  },
+  {
+   "url": "/musicSpace/fonts/doodle/hand-0.woff2",
+   "proto": "h2",
+   "prio": "VeryHigh",
+   "bytes": 198104,
+   "start": 273,
+   "resp": 1605,
+   "end": 1602
+  },
+  {
+   "url": "/musicSpace/fonts/doodle/marker-1.woff2",
+   "proto": "h2",
+   "prio": "VeryHigh",
+   "bytes": 35637,
+   "start": 273,
+   "resp": 757,
+   "end": 755
+  },
+  {
+   "url": "/musicSpace/fonts/doodle/hand-1.woff2",
+   "proto": "h2",
+   "prio": "VeryHigh",
+   "bytes": 116022,
+   "start": 396,
+   "resp": 1367,
+   "end": 1364
+  },
+  {
+   "url": "/musicSpace/fonts/doodle/marker-2.woff2",
+   "proto": "h2",
+   "prio": "VeryHigh",
+   "bytes": 48101,
+   "start": 399,
+   "resp": 982,
+   "end": 981
+  },
+  {
+   "url": "/musicSpace/demo/yao-stage.jpg",
+   "proto": "h2",
+   "prio": "Low",
+   "bytes": 70135,
+   "start": 2319,
+   "resp": 2674,
+   "end": 2653
+  },
+  {
+   "url": "/musicSpace/demo/man-crowd.jpg",
+   "proto": "h2",
+   "prio": "Low",
+   "bytes": 56908,
+   "start": 2319,
+   "resp": 2674,
+   "end": 2640
+  },
+  {
+   "url": "/musicSpace/demo/man-near.jpg",
+   "proto": "h2",
+   "prio": "Low",
+   "bytes": 21969,
+   "start": 2319,
+   "resp": 2674,
+   "end": 2556
+  },
+  {
+   "url": "/musicSpace/demo/bei-balcony.jpg",
+   "proto": "h2",
+   "prio": "Low",
+   "bytes": 34099,
+   "start": 2319,
+   "resp": 2673,
+   "end": 2599
+  },
+  {
+   "url": "/musicSpace/fonts/doodle/digits-0.woff2",
+   "proto": "h2",
+   "prio": "VeryHigh",
+   "bytes": 14448,
+   "start": 2383,
+   "resp": 2647,
+   "end": 2595
+  },
+  {
+   "url": "/musicSpace/fonts/doodle/hand-2.woff2",
+   "proto": "h2",
+   "prio": "VeryHigh",
+   "bytes": 158365,
+   "start": 2635,
+   "resp": 2940,
+   "end": 2931
+  },
+  {
+   "url": "/musicSpace/demo/sample-crowd.jpg",
+   "proto": "h2",
+   "prio": "Low",
+   "bytes": 81367,
+   "start": 3020,
+   "resp": 3178,
+   "end": 3321
+  },
+  {
+   "url": "/musicSpace/demo/sample-stage.jpg",
+   "proto": "h2",
+   "prio": "Low",
+   "bytes": 90629,
+   "start": 3021,
+   "resp": 3176,
+   "end": 3329
+  }
+ ],
+ "perf": {
+  "origin": 1791300166208.1,
+  "paints": [
+   {
+    "name": "first-paint",
+    "t": 432
+   },
+   {
+    "name": "first-contentful-paint",
+    "t": 432
+   }
+  ],
+  "log": {
+   "ready": 3037.100000023842,
+   "loadingHidden": 2747.800000011921,
+   "firstStyled": null
+  },
+  "boot": "ready",
+  "fontsLoaded": 10,
+  "title": "Music Space · 同一刻，另一面"
+ }
+}

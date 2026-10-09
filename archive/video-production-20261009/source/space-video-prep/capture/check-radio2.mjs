@@ -1,0 +1,12 @@
+import { launch, newPage, sleep, BASE } from './lib.mjs';
+import fs from 'node:fs';
+const browser = await launch();
+const { page } = await newPage(browser, { width: 1440, height: 744, dpr: 1 });
+await page.goto(BASE + '/event-room/', { waitUntil: 'load' }); await sleep(1500);
+await page.addStyleTag({ content: fs.readFileSync('/tmp/space-video-prep/capture/workarounds.css', 'utf8') });
+await page.getByRole('button', { name: '带上小人，进入现场' }).click(); await sleep(400);
+await page.getByRole('button', { name: /我是主办方/ }).click(); await sleep(400);
+await page.locator('#panel input[name=name]').fill('阿遥'); await page.getByRole('button', { name: '保存昵称，继续' }).click(); await sleep(900);
+await page.locator('#panel').evaluate(el => el.scrollTo(0, 400)).catch(() => {});
+await page.screenshot({ path: '/tmp/space-video-prep/stills/radio-fixed-1440.png' });
+await browser.close();

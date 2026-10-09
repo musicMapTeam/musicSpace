@@ -1,0 +1,6 @@
+p768 room-entered stage [698, 812] innerW 768
+   '照片墙'                        hidden=False hs=88x44 client=84 content=72 scroll=84 textW=39 trunc=False ws=nowrap to=ellipsis ov=hidden fs=13px ff="Doodle Marker" pad=5px 6px 4px box=[607, 358, 696, 392]
+   '阿遥·示例 · 可招呼'                hidden=False hs=88x44 client=84 content=72 scroll=122 textW=111 trunc=True  ws=nowrap to=ellipsis ov=hidden fs=13px ff="Doodle Marker" pad=5px 6px 4px box=[55, 378, 143, 411]
+   '小满·示例 · 可招呼'                hidden=False hs=88x44 client=84 content=72 scroll=122 textW=111 trunc=True  ws=nowrap to=ellipsis ov=hidden fs=13px ff="Doodle Marker" pad=5px 6px 4px box=[280, 376, 369, 408]
+   '北屿·示例 · 可招呼'                hidden=False hs=88x44 client=84 content=72 scroll=122 textW=111 trunc=True  ws=nowrap to=ellipsis ov=hidden fs=13px ff="Doodle Marker" pad=5px 6px 4px box=[504, 378, 592, 411]
+   '访客2073 · 我'                 hidden=True  hs=0x0 client=0 content=-12 scroll=0 textW=0 trunc=False ws=nowrap to=ellipsis ov=hidden fs=13px ff="Doodle Marker" pad=5px 6px 4px box=[0, 0, 0, 0]

@@ -1,0 +1,54 @@
+{
+ "id": "D-03a-wall-before",
+ "step_frames": 30,
+ "frames_read": 9,
+ "pattern": "示例|虚构|本页|演示|自动回复|不是真人|没有服务器|只存在这个浏览器|模拟|本地体验版|在线访问|等待本人回应|示例站|关于这个示例|仅文字|已保存 =",
+ "hits": [],
+ "frames": [
+  {
+   "frame": 0,
+   "t": 0.0,
+   "text": "MUSIG SPAGG | • 5位同场 | 音乐探索 | 我的小人7 | 同一晚，另一面。 | MUSIGSPACE / OUR POINTS OF VIEW | 同一场，不同观用 | 看照片．4 | 放一张 | 全景 | 入o 同场的人 | 囚 照片墻 | 众 我的空间 | 关于 Music Space"
+  },
+  {
+   "frame": 30,
+   "t": 0.5,
+   "text": "MUSIG SPAGG | • 5位同场 | 音乐探索 | 我的小人刀 | 同一晚、另一面。 | MUSIGSPACE / OUR POINTS OF VIEW | 同一场，不同观用 | 看照片．4 | 放一张 | 全景 | 入o 同场的人 | 囚 照片墻 | 女 我的空间 | 关于 Music Space"
+  },
+  {
+   "frame": 60,
+   "t": 1.0,
+   "text": "MUSIG SPAGG | • 5位同场 | 音乐探索 | 我的小人刀 | 同一晚，另一面。 | MUSIGSPACE / OUR POINTS OF VIEW | 同一场，不同观用 | 看照片．4 | 放一张 | 全景 | 2o 同场的人 | 囚 照片墻 | 女 我的空间 | 关于 Music Space"
+  },
+  {
+   "frame": 90,
+   "t": 1.5,
+   "text": "MUSIG SPAGG | • 5位同场 | 音乐探索 | 我的小人刀 | 同一晚，另一面。 | MUSIGSPACE / OUR POINTS OF VIEW | 同一场，不同观用 | 看照片．4 | 放一张 | 全景 | 同场的人 | 囚 照片墻 | 女 我的空间 | 关于 Music Space"
+  },
+  {
+   "frame": 120,
+   "t": 2.0,
+   "text": "MUSIG SPAGG | • 5位同场 | 音乐探索 | 我的小人刀 | 同一晚，另一面。 | MUSIGSPACE / OUR POINTS OF VIEW | 同一场，不同观用 | 看照片．4 | 放一张 | 全景 | 同场的人 | 囚 照片墻 | 女 我的空间 | 关于 Music Space"
+  },
+  {
+   "frame": 150,
+   "t": 2.5,
+   "text": "MUSIG SPAGG | • 5位同场 | 音乐探索 | 我的小人刀 | 同一晚，另一面。 | MUSIGSPACE / OUR POINTS OF VIEW | 同一场，不同观用 | 看照片．4 | 放一张 | 全景 | 同场的人 | 囚 照片墻 | 女 我的空间 | 关于 Music Space"
+  },
+  {
+   "frame": 180,
+   "t": 3.0,
+   "text": "MUSIG SPAGG | • 5位同场 | 音乐探索 | 我的小人刀 | 同一晚，另一面。 | MUSIGSPACE / OUR POINTS OF VIEW | 同一场，不同观用 | 看照片．4 | 放一张 | 全景 | 同场的人 | 囚 照片墻 | 女 我的空间 | 关于 Music Space"
+  },
+  {
+   "frame": 210,
+   "t": 3.5,
+   "text": "MUSIG SPAGG | • 5位同场 | 音乐探索 | 我的小人刀 | 同一晚，另一面。 | MUSIGSPACE / OUR POINTS OF VIEW | 同一场，不同观用 | 看照片．4 | 放一张 | 全景 | 同场的人 | 囚 照片墻 | 女 我的空间 | 关于 Music Space"
+  },
+  {
+   "frame": 239,
+   "t": 3.983,
+   "text": "MUSIG SPAGG | • 5位同场 | 音乐探索 | 我的小人刀 | 同一晚，另一面。 | MUSIGSPACE / OUR POINTS OF VIEW | 同一场，不同观用 | 看照片．4 | 放一张 | 全景 | 2o 同场的人 | 囚 照片墻 | 女 我的空间 | 关于 Music Space"
+  }
+ ]
+}

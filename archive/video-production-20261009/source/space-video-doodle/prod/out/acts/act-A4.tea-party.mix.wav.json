@@ -1,0 +1,62 @@
+{
+ "map": "tea-party",
+ "bed": "/tmp/space-video-doodle/prod/audio/beds/tea-party.wav",
+ "range": [
+  76.3667,
+  106.9
+ ],
+ "full": false,
+ "music": {
+  "I": -17.6,
+  "TP": -4.3,
+  "LRA": 3.4
+ },
+ "sfx_before_gain": {
+  "I": -25.6,
+  "TP": -1.2,
+  "LRA": 9.6
+ },
+ "sfx_gain_db": -1.0,
+ "sfx": {
+  "I": -26.6,
+  "TP": -2.2,
+  "LRA": 9.6
+ },
+ "sfx_vs_music_LU": -9.0,
+ "mix": {
+  "I": -17.3,
+  "TP": -1.5,
+  "LRA": 2.9
+ },
+ "normalisation": {
+  "gain_db": 0.0,
+  "limiter_max_reduction_db": -2.57
+ },
+ "sfx_counts": {
+  "boom": 2,
+  "slap": 2,
+  "swish": 5,
+  "impact": 7,
+  "zip": 2,
+  "pop": 10,
+  "stamp": 3,
+  "highlighter": 4,
+  "squeak": 3,
+  "whoosh": 5,
+  "sparkle": 3,
+  "pencil": 3,
+  "boop": 3,
+  "slam": 7,
+  "click": 2,
+  "thump": 3,
+  "typetick": 13,
+  "tick": 9,
+  "heartbeat": 7,
+  "riser": 1,
+  "blip": 2,
+  "crackle": 1,
+  "tape": 1
+ },
+ "sfx_placed": 98,
+ "note": "all SFX synthesized in tools/sfx.py from noise/oscillators; no samples"
+}

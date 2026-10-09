@@ -1,0 +1,33 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><title>doodle-motion stage</title>
+<link rel="icon" href="data:,"><link rel="stylesheet" href="/dm/dm.css">
+</head><body><div id="stage"></div>
+<script src="/dm/core.js"></script>
+<script src="/dm/text.js"></script>
+<script src="/dm/objects.js"></script>
+<script src="/dm/strokes.js"></script>
+<script src="/dm/devices.js"></script>
+<script>
+  // /dm/stage.html?map=<tempo map id>&scene=<scene>[,<scene>...]   (scenes = files in prod/scenes without .js, loaded in order)
+  // window.__ready resolves to DM.info() once fonts, images, clip info and layout are done (tools/render.mjs waits for it).
+  // &preview=1 adds a scrubber + play button with the music bed (interactive look; NOT the deterministic render path).
+  (async () => {
+    const q = new URLSearchParams(location.search);
+    const map = q.get('map') || 'flipping-in';
+    const scenes = (q.get('scene') || '').split(',').filter(Boolean);
+    const errors = [];
+    window.addEventListener('error', e => errors.push(String(e.message || e)));
+    try {
+      const mr = await fetch('/maps/' + map + '.json'); if (!mr.ok) throw new Error('tempo map not found: ' + map + ' (run tools/tempo.py compile ' + map + ')');
+      DM.useMap(await mr.json());
+      DM.useScript(await (await fetch('/script/timeline.json')).json());
+      DM.scenes = scenes;
+      for (const s of scenes) {
+        await new Promise((res, rej) => { const el = document.createElement('script'); el.src = '/scenes/' + s + '.js'; el.onload = res; el.onerror = () => rej(new Error('scene file not found: ' + s)); document.body.appendChild(el); });
+        if (errors.length) throw new Error('scene ' + s + ': ' + errors.join(' | '));
+      }
+      window.__ready = DM.layout().then(DM.info);
+      if (q.get('preview')) window.__ready.then(() => import('/dm/preview.js'));
+    } catch (e) { console.error(e); window.__ready = Promise.reject(String(e)); }
+  })();
+</script>
+</body></html>

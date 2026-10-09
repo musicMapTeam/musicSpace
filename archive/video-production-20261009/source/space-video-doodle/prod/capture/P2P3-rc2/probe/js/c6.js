@@ -1,0 +1,34 @@
+const s = await get('phone', true);
+const p = s.page;
+const out = {};
+await H.lookAndEnter(s);
+await sleep(9500);
+await p.locator('[data-tour-action="sample:sample-crowd"]').click();
+await p.waitForFunction(() => /AI 判断：/.test(document.querySelector('.moment-ai-tag')?.textContent || ''), null, { timeout: 60000 });
+await sleep(800);
+await p.locator('form[data-form="upload"] button[type=submit]').click();
+await p.waitForSelector('[data-moment-badge="other-side"]', { timeout: 30000 });
+await sleep(2600);
+for (let i = 0; i < 3; i++) { const open = await p.evaluate(() => document.querySelector('#panel') && !document.querySelector('#panel').hidden); if (!open) break; await p.locator('#panel-close').click().catch(() => {}); await sleep(500); }
+await p.locator('[data-view="person"]').click(); await sleep(1500);
+await p.locator('[data-person]', { hasText: '小满' }).first().click(); await sleep(2000);
+await p.locator('[data-social-send]').first().click();
+await p.waitForFunction(() => /你们已经是朋友了/.test(document.querySelector('#panel')?.innerText || ''), null, { timeout: 30000 });
+await sleep(1500);
+await p.locator('#panel [data-open="corners"]').first().click(); await sleep(1500);
+await p.locator('.corner-panel form[data-corner-create] input[type=checkbox]').check();
+await p.locator('.corner-panel form[data-corner-create] button[type=submit]').click();
+await p.waitForFunction(() => /小满 的这一面/.test(document.querySelector('.corner-panel')?.innerText || ''), null, { timeout: 40000 });
+await sleep(1500);
+const sc = () => p.evaluate(() => { const c = document.querySelector('.corner-panel .community-scroll'); return c ? { top: Math.round(c.scrollTop), max: c.scrollHeight - c.clientHeight } : null; });
+out.joined = await sc();
+const note = p.locator('.corner-panel form[data-corner-edit] input[name=note]');
+await p.evaluate(() => { const c = document.querySelector('.corner-panel .community-scroll'); const f = document.querySelector('.corner-panel form[data-corner-edit]'); c.scrollTop = c.scrollTop + f.getBoundingClientRect().top - c.getBoundingClientRect().top - (c.clientHeight - f.offsetHeight) / 2; });
+await sleep(300);
+out.centered = await sc();
+await p.mouse.click(...(await note.boundingBox().then(b => [b.x + b.width / 2, b.y + b.height / 2])));
+await sleep(200);
+const seq = [];
+for (const ch of [...'返场那首我']) { await p.keyboard.insertText(ch); await sleep(150); seq.push({ ch, ...(await sc()), active: await p.evaluate(() => document.activeElement?.name || document.activeElement?.tagName) }); }
+out.seq = seq;
+return out;

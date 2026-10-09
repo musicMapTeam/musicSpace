@@ -1,0 +1,44 @@
+{
+ "url": "http://127.0.0.1:4971/musicSpace/",
+ "vp": "phone",
+ "thr": "4g",
+ "fontsMode": "on",
+ "fcp": 568,
+ "loadingHidden": 2613,
+ "ready": 2907,
+ "htmlEnd": 1985,
+ "fontKB": 797,
+ "fonts": [
+  "marker-0.woff2 42.6KB High 171-536",
+  "display-0.woff2 80.2KB High 171-926",
+  "logo-0.woff2 16.6KB VeryHigh 419-781",
+  "display-1.woff2 100KB VeryHigh 420-1386",
+  "hand-0.woff2 193.5KB VeryHigh 420-1907",
+  "marker-1.woff2 35KB VeryHigh 420-1275",
+  "hand-1.woff2 113.4KB VeryHigh 535-1890",
+  "marker-2.woff2 47.1KB VeryHigh 538-1773",
+  "digits-0.woff2 14.3KB VeryHigh 2263-2703",
+  "hand-2.woff2 154.7KB VeryHigh 2516-2832"
+ ],
+ "faces": [
+  "Doodle Marker 1922 U+20-7E, U+A0-AC, U+AE-FF, U+2",
+  "Doodle Logo 1922 U+20-7E, U+A0-FF, U+2013-2014,",
+  "Doodle Display 1922 U+20-7E, U+A0, U+A2-A6, U+A8-A",
+  "Doodle Marker 1922 U+4E09, U+4E16, U+4E22, U+4E48",
+  "Doodle Display 1922 U+4E09, U+4E16, U+4E22, U+4E48",
+  "Doodle Marker 1922 U+4E01, U+4E07, U+4E14, U+4E1A",
+  "Doodle Hand 1922 U+4E09, U+4E16, U+4E22, U+4E48",
+  "Doodle Hand 1922 U+20-7E, U+A0-FF, U+2010-2016,",
+  "Doodle Digits 2848 U+20-7E, U+A0-FF, U+2013-2014,",
+  "Doodle Hand 2848 U+4E01, U+4E07, U+4E14, U+4E1A"
+ ],
+ "byTypeKB": {
+  "Document": 631,
+  "Script": 411,
+  "Other": 1447,
+  "Font": 798,
+  "Stylesheet": 12,
+  "Image": 0,
+  "Fetch": 349
+ }
+}

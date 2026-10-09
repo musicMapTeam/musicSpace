@@ -1,0 +1,43 @@
+/* Shared visual language for the Music Space title cards.
+   Taken from the product itself: warm paper #f0e9d8, deep green #203b32 / #182d26, ink #17191d, chartreuse accent #dbe873, warm wood floor,
+   heavy italic "space" wordmark (Arial 900 italic, letter-spacing -1.7px at 28px), mono eyebrow labels, 2D illustrated avatars,
+   dark-glass caption box with a chartreuse left border (the in-app .scene-heading style). */
+:root{
+  --paper:#f0e9d8; --paper2:#f5f0df; --paper-edge:#d9cfb4; --green:#203b32; --green2:#294c3e; --deep:#182d26; --ink:#17191d; --ink2:#191b20;
+  --accent:#dbe873; --accent2:#c4d65a; --wood:#8c5b3f; --wood2:#6f4730; --cream:#f4f2e8; --muted:#686e61; --amber:#e8a35c; --coral:#e2704a;
+  --sans:'PingFang SC','Microsoft YaHei','Helvetica Neue',Arial,sans-serif;
+  --serif:'Songti SC','STSong',serif;
+  --mono:ui-monospace,'SF Mono',Menlo,Courier,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1920px;height:1080px;overflow:hidden;background:var(--deep)}
+body{font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased;text-rendering:geometricPrecision}
+.card{position:absolute;inset:0;overflow:hidden}
+.paper{background:
+  radial-gradient(1200px 700px at 50% -10%,rgba(219,232,115,.30),transparent 62%),
+  radial-gradient(900px 600px at 100% 100%,rgba(140,91,63,.10),transparent 60%),
+  var(--paper)}
+.grain::after{content:"";position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;opacity:.22;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .35  0 0 0 0 .3  0 0 0 0 .2  0 0 0 .55 0'/></filter><rect width='300' height='300' filter='url(%23n)'/></svg>")}
+/* app-like frame: deep green outer border + hairline inside */
+.frame{position:absolute;inset:0;border:18px solid var(--deep);pointer-events:none;z-index:50}
+.frame::after{content:"";position:absolute;inset:22px;border:1px solid rgba(177,165,135,.65)}
+.eyebrow{font-family:var(--mono);font-size:15px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.wordmark{font-family:Arial,'Helvetica Neue',sans-serif;font-weight:900;font-style:italic;letter-spacing:-.045em;color:var(--green);line-height:.9}
+.wordmark span{display:inline-block}
+.hl{position:relative;display:inline-block;z-index:0}
+.hl::before{content:"";position:absolute;left:-.12em;right:-.12em;bottom:.06em;height:.44em;background:var(--accent);z-index:-1;transform-origin:0 50%;border-radius:2px}
+.glass{display:inline-block;background:rgba(25,27,32,.92);color:var(--cream);border-left:5px solid var(--accent);padding:.35em .7em}
+.pill{display:inline-flex;align-items:center;gap:.6em;background:var(--green);color:var(--cream);border-radius:999px;padding:.45em 1.1em;font-weight:600}
+.floor{position:absolute;left:0;right:0;bottom:0;height:150px;background:
+  repeating-linear-gradient(90deg,rgba(0,0,0,.0) 0 118px,rgba(0,0,0,.18) 118px 120px),
+  linear-gradient(var(--wood),var(--wood2))}
+.floor::before{content:"";position:absolute;left:0;right:0;top:-14px;height:14px;background:linear-gradient(#a3704e,var(--wood))}
+.avatar{position:absolute;bottom:90px;height:420px;width:auto;filter:drop-shadow(0 18px 14px rgba(0,0,0,.22))}
+.shadow{position:absolute;bottom:80px;width:150px;height:22px;border-radius:50%;background:rgba(24,45,38,.28);filter:blur(6px)}
+@keyframes rise{from{transform:translateY(60px);opacity:0}to{transform:none;opacity:1}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes sweep{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes pop{0%{transform:translateY(160px) scale(.9);opacity:0}60%{transform:translateY(-16px) scale(1.02);opacity:1}100%{transform:none;opacity:1}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes letter{0%{transform:translateY(90px) rotate(-5deg);opacity:0}65%{transform:translateY(-10px) rotate(1deg);opacity:1}100%{transform:none;opacity:1}}

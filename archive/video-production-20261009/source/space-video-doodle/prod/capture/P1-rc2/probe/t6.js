@@ -1,0 +1,15 @@
+const out = {};
+await page.locator('form[data-form="demo-entry"] input[name=consent]').check(); await sleep(250);
+await page.click('form[data-form="demo-entry"] button[type=submit]');
+const t0 = Date.now();
+await page.waitForFunction(() => document.querySelector('#panel').hidden && !!document.querySelector('.demo-tour:not([hidden])'), null, { timeout: 30000 });
+out.roomAfterMs = Date.now() - t0;
+await sleep(1500);
+await shot('09-room');
+out.tour = await txt('.demo-tour');
+out.tourBtns = await page.evaluate(() => [...document.querySelectorAll('.demo-tour button, .demo-tour [data-tour-action]')].map(b => (b.dataset.tourAction || '') + ':' + b.textContent.trim()));
+out.body = await txt('body');
+out.members = await page.evaluate(() => window.__SPACE_EVENT_QA__().members.map(m => m.name || m.nickname || JSON.stringify(m).slice(0, 80)));
+out.qaKeys = await page.evaluate(() => Object.keys(window.__SPACE_EVENT_QA__()));
+out.btns = await btns();
+return out;

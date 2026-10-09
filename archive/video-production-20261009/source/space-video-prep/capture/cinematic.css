@@ -1,0 +1,7 @@
+/* RECORDING-ONLY stylesheet for establishing shots: the 3D canvas goes full-bleed 16:9, page chrome hidden.
+   It only changes layout (like resizing the window); the scene, lights, camera moves and avatars are the product's own. */
+html,body{background:#17191d!important}
+.frame{margin:0!important;width:100vw!important;height:100vh!important;border:0!important;background:#17191d!important}
+.frame>header,.camera-nav,.frame>footer,.track,.presence,.desktop-caption,#hotspots,.scene-heading,.scene-code,.view-label,.context-actions,#connection-banner,#toast{display:none!important}
+.world-shell{position:absolute!important;inset:0!important;right:0!important;height:100%!important;width:100%!important}
+#__rec_cursor{display:none!important}

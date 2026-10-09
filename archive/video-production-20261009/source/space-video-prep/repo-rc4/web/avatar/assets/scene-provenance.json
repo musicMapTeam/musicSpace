@@ -1,0 +1,46 @@
+{
+  "generatedOn": "2026-09-30",
+  "generator": "OpenAI built-in image_gen",
+  "fictional": true,
+  "description": "Original AI-generated illustrative night environments for MusicSpace avatar scene compositing. No real people, artist likenesses, real event claims, brand marks or user photos.",
+  "artDirection": "Sophisticated tactile miniature / clay night-scene illustration; indigo, lantern amber, warm paper, dusty cherry pink and sage.",
+  "technicalNote": "Source PNGs preserved at the tool-returned paths. Only format transcoding to quality-91 WebP was performed locally; no crop, resampling or visual content changes.",
+  "composition": {
+    "aspectRatio": "approximately 4:5",
+    "standingZone": "Clear lower-center horizontal floor intended for separate avatar overlays",
+    "suggestedFeetYPercent": 76,
+    "suggestedAvatarCenterXPercent": [
+      40,
+      62
+    ]
+  },
+  "assets": [
+    {
+      "file": "rooftop-night.webp",
+      "width": 1122,
+      "height": 1402,
+      "source": "/workspace/scratch/c74b65f301a5/generated_images/exec-c5b1e805-5656-4513-8ca3-3eca0e058dc3.png",
+      "prompt": "Use case: stylized-concept.\nAsset type: premium scene background for an avatar-social independent-music web app.\nCreate one original beautifully art-directed vertical 4:5 portrait composition, ideally 1024x1280. A quiet rooftop listening terrace at blue hour, seen from just above standing height with gentle three-quarter perspective, physically inviting as a small place two friends could inhabit. Sophisticated tactile miniature 3D clay illustration with subtle cel-shaded edges, soft sculpted shapes, brushed handmade ceramic surfaces, restrained film grain, detailed architectural craft. This is a fictional place, no people.\nDeep ink-indigo evening sky (#23214a), muted apricot band at the distant horizon, a quiet layered city of simplified small buildings with a few warm illuminated windows in the upper third. Low roof parapet at middle depth. At far left a compact wood vinyl listening nook with a small record player, two subtly designed blank record sleeves, and one glowing amber mushroom lamp. Sage leafy potted plants gently frame bottom corners. One simple amber string light loosely crosses the upper area.\nCrucial composition: keep the middle and lower-middle 45 percent of the image as a generous clear floor with soft moonlit stone tiles; two separately composited full-body avatars will stand here with their feet around 76 percent from the top. No furniture, objects, wall, shrubbery, text, stage equipment or silhouettes obstruct this standing area. The camera must show real horizontal floor, not a vertical backdrop. Foreground plant accents stay close to left and right edges. Organic visual richness and atmospheric depth, but not busy. The scene fills the frame edge to edge.\nPalette limited to night indigo, warm paper cream, lantern amber, dusty cherry pink, sage green and muted wood. Warm/cool light contrast, delicately luminous lamp halos and gentle colored shadows. Elegant indie music mood, intimate, calm, collectible editorial quality; detailed enough to hold a large screen.\nNo people, characters, animals, readable text, letters, logos, flags, watermarks, UI, cards, frames, photorealism, neon cyberpunk, glossy plastic, toy clutter or generic gradient wallpaper.",
+      "styleRefinementPrompt": "Edit this scene into an unmistakably STYLIZED SCULPTED MINIATURE illustration. Keep the exact inviting rooftop composition, floor perspective, empty lower central standing area, city silhouette, record listening nook and lights. Change only the visual medium: replace all photographic realism with a handcrafted 3D clay diorama. Every plant leaf is a broad simplified sculpted solid, every house a charming softened block, city windows graphic tiny golden rectangles, stone floor large matte rounded slabs with subtle paper-grain surfaces rather than photographic stone texture. Simplified graphic shapes, gently exaggerated proportions, soft clay edges, subtle cel-shaded contours, sophisticated handmade stop-motion set. Remove fine realistic botanical detail. Lighting should stay gorgeous blue hour indigo + luminous honey amber and dusty cherry-pink flower accents, colored moonlight shadows, atmospheric city depth. Polished indie game environment art for an adult design audience, tranquil and restrained, not plastic toys and not flat vector. NO people, NO characters, NO animals, no readable text, no logo, no watermark. Portrait 4:5. Keep both central-avatar positions completely empty.",
+      "process": "Generated an original rooftop scene, then used built-in image editing to strengthen the clay-diorama medium while retaining its composition.",
+      "bytes": 233748,
+      "sha256": "b614b2503e8d255d1f7e0afb91824f1085ab19a6d44dd5cdc97e6e28180e8170"
+    },
+    {
+      "file": "sakura-night.webp",
+      "width": 1122,
+      "height": 1402,
+      "source": "/workspace/scratch/c74b65f301a5/generated_images/exec-15ebb9cb-c551-4767-b6dc-f7afa364870d.png",
+      "prompt": "Use case: stylized-concept.\nAsset type: original portrait 4:5 scene background for a premium independent-music avatar social app, ideally 1120x1400.\nAn intimate fictional cherry-blossom music courtyard at night. UNMISTAKABLY STYLIZED SCULPTED MINIATURE, a handmade clay diorama with broad sculpted leaves, clusters of cherry pink clay petals, soft rounded geometric forms, gently exaggerated proportions, matte ceramic surfaces and subtle cel-shaded outlines. Not a photograph. High craft, tasteful adult indie-game art direction.\nCamera is just above standing height, gentle three-quarter perspective looking across a small moonlit stone courtyard, full frame no border. A spreading cherry tree with dusty cherry-pink blossoms occupies the upper left side and corner. The right back edge is a cozy small wood music pavilion with a modest amber-lit awning, tiny blank record sleeves, a compact set of speakers at the sides and a single unoccupied microphone at the deep back right; a stage as a side nook, not a giant central platform. A string of warm amber bulbs arcs high across the scene. Subdued indigo distant roofline and a few glowing windows, deep night sky with very subtle stars, no lettering anywhere. One or two sage-green broad-leaf plants near lower side edges, a few scattered pink petals.\nCRUCIAL: a broad empty unobstructed stone courtyard fills center and lower-middle, generous enough for two full-body avatars to be composited later, with feet around 76 percent image height. Their space is clear; no people, animals, chairs, tables, large plants, poles or instruments in central standing zone. Fine visual detail is at the edges and upper scene; maintain a readable lower center. The floor is physically horizontal with large tactile matte slate-indigo rounded paving slabs, soft amber pools at the sides and a cool central pool of moonlight. Restrained composition with only a few meaningful music details.\nPalette: deep ink-indigo #23214a, twilight lilac, warm paper cream, honey amber lights, dusty cherry pink and sage green. Gently luminous blossom canopy, atmospheric warm/cool contrast, colored shadows, sophisticated handmade stop-motion lighting, nuanced surfaces. Calm, romantic but understated night-listening mood, designed and rich without clutter.\nAvoid people, character silhouettes, avatars, animals, readable text, letters, logos, flags, watermarks, UI, frames, photographic realism, glossy plastic, neon/cyberpunk and generic gradient wallpaper.",
+      "process": "Generated an original cherry-blossom courtyard scene.",
+      "bytes": 372196,
+      "sha256": "b0979ffe606933993936b3635588c3f9bc33d64ee540476fcb9fdf341288043c"
+    }
+  ],
+  "visualQA": [
+    "Inspected generated full-resolution pixels",
+    "Confirmed no people or text",
+    "Confirmed clear central floor",
+    "Confirmed warm/cool palette and consistent miniature material language"
+  ]
+}

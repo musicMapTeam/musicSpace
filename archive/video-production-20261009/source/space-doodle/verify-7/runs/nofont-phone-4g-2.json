@@ -1,0 +1,33 @@
+{
+ "url": "http://127.0.0.1:4971/musicSpace/",
+ "vp": "phone",
+ "thr": "4g",
+ "fontsMode": "off",
+ "fcp": 480,
+ "loadingHidden": 2102,
+ "ready": 2585,
+ "htmlEnd": 1411,
+ "fontKB": 0,
+ "fonts": [
+  "marker-0.woff2 nullKB High 177-199 FAILED",
+  "display-0.woff2 nullKB High 177-199 FAILED",
+  "logo-0.woff2 nullKB VeryHigh 413-464 FAILED",
+  "display-1.woff2 nullKB VeryHigh 414-464 FAILED",
+  "hand-0.woff2 nullKB VeryHigh 414-464 FAILED",
+  "marker-1.woff2 nullKB VeryHigh 414-464 FAILED",
+  "hand-1.woff2 nullKB VeryHigh 450-464 FAILED",
+  "marker-2.woff2 nullKB VeryHigh 452-464 FAILED",
+  "digits-0.woff2 nullKB VeryHigh 1678-2029 FAILED",
+  "hand-2.woff2 nullKB VeryHigh 1965-2095 FAILED"
+ ],
+ "faces": [],
+ "byTypeKB": {
+  "Document": 631,
+  "Script": 411,
+  "Other": 1447,
+  "Font": 0,
+  "Stylesheet": 12,
+  "Image": 0,
+  "Fetch": 349
+ }
+}

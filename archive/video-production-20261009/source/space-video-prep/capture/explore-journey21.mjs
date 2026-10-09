@@ -1,0 +1,23 @@
+import { launch, newPage, sleep, BASE, ensureDir } from './lib.mjs';
+import { hostCreatesRoom, guestJoins, uploadPhoto, panelInfo, visibleUI } from './flows.mjs';
+const out = ensureDir('/tmp/space-video-prep/stills/journey');
+const browser = await launch();
+const A = await newPage(browser);
+await hostCreatesRoom(A.page, { name: '阿遥', title: '返场夜', venue: '月台 Livehouse' });
+await uploadPhoto(A.page, '/tmp/space-video-prep/repo-rc4/web/assets/stage-scene.png', { visibility: 'room' });
+let n = 31;
+const snap = async (p, tag, who) => { const i = String(n++).padStart(2, '0'); const info = await visibleUI(p); console.log(`--- ${i} ${who} ${tag}`, JSON.stringify(info.overlays.filter(o => !/world-shell|presence/.test(o.cls))).slice(0, 1500)); await p.screenshot({ path: `${out}/${i}-${who}-${tag}.png` }); };
+const tryStep = async (label, fn) => { try { await fn(); } catch (e) { console.log('!! step failed:', label, e.message.split('\n')[0].slice(0, 160)); } };
+A.page.on('download', d => console.log('download event', d.suggestedFilename()));
+await tryStep('close panel', async () => { await A.page.locator('#panel-close').click(); await sleep(600); });
+await tryStep('recap', async () => { await A.page.getByRole('button', { name: '回看这一晚' }).first().click(); await sleep(1800); });
+await tryStep('memory card', async () => { await A.page.getByRole('button', { name: /保存我的纪念卡/ }).click(); await sleep(1800); });
+await tryStep('fill', async () => {
+  await A.page.locator('input.memory-photo, input[name=memory-photo], .memory-photo-options input').first().check().catch(()=>{});
+  await A.page.locator('.memory-avatar input').check().catch(()=>{});
+  await A.page.locator('.memory-materials .consent input').check();
+  await sleep(500);
+  await A.page.getByRole('button', { name: /下载纪念卡 PNG/ }).click(); await sleep(3500);
+  await snap(A.page, 'A-memory-preview', 'A');
+});
+await browser.close();

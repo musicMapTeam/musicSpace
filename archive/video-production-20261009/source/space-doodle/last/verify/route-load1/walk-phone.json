@@ -1,0 +1,138 @@
+{
+ "kind": "phone",
+ "base": "http://127.0.0.1:4783/musicSpace/",
+ "steps": [
+  {
+   "name": "ready",
+   "t": 0.8,
+   "title": "Music Space · 同一刻，另一面",
+   "build": "0.22.0-rc.1+7cbe4d3"
+  },
+  {
+   "name": "join-form",
+   "t": 3.7,
+   "joinLabel": "进入示例现场",
+   "st": 0,
+   "submit": "进入示例现场",
+   "consent": true,
+   "close": {
+    "kind": "entry",
+    "st": 0,
+    "sh": 1016,
+    "ch": 666,
+    "close": [
+     316,
+     79,
+     362,
+     125
+    ],
+    "sheetTop": 68,
+    "sheetRight": 373,
+    "fromTop": 11,
+    "fromRight": 11,
+    "inView": true,
+    "onTop": true,
+    "hit": "#panel-close",
+    "under": [],
+    "focused": true
+   }
+  },
+  {
+   "name": "joined",
+   "t": 6.9,
+   "sample": "人海 · 示例照片",
+   "stage": "room",
+   "people": [
+    "阿遥·示例 · 可招呼",
+    "小满·示例 · 可招呼",
+    "北屿·示例 · 可招呼",
+    "访客1010 · 我"
+   ]
+  },
+  {
+   "name": "upload-reveal",
+   "t": 9.2,
+   "settled": true,
+   "key": "sure:crowd",
+   "line": "AI 判断：人海",
+   "chosen": "人海一起举手的那一面",
+   "save": "保存这张照片",
+   "taken": "拍摄于 21:48 · 来自照片自带的信息修改时间示例照片 · 虚构的拍摄时间 ",
+   "close": {
+    "kind": "upload",
+    "st": 219,
+    "sh": 1119,
+    "ch": 666,
+    "close": [
+     316,
+     79,
+     362,
+     125
+    ],
+    "sheetTop": 68,
+    "sheetRight": 373,
+    "fromTop": 11,
+    "fromRight": 11,
+    "inView": true,
+    "onTop": true,
+    "hit": "#panel-close",
+    "under": [],
+    "focused": true
+   }
+  },
+  {
+   "name": "wall",
+   "t": 11.6,
+   "kind": "wall",
+   "st": 0,
+   "badge": "同一刻的另一面",
+   "reason": "同一刻 · 21:47，相差不到 1 分钟；你拍人海，TA 拍舞台",
+   "offer": "和 TA 交换这个视角"
+  },
+  {
+   "name": "sent",
+   "t": 16.8,
+   "sendLabel": "把这两张交给对方确认 ↗"
+  },
+  {
+   "name": "accepted",
+   "t": 20.4
+  }
+ ],
+ "failures": [],
+ "trace": [
+  "0.05 boot REQ other sql/sql-wasm.wasm worker=no",
+  "0.07 cdp RESP sql/sql-wasm.wasm 200 len=658410",
+  "0.07 cdp FINISHED sql/sql-wasm.wasm received=658410",
+  "0.07 boot DONE sql/sql-wasm.wasm",
+  "3.91 join-form REQ fetch ai/tc8/labels.json worker=no",
+  "3.92 cdp RESP ai/tc8/labels.json 200 len=17609",
+  "3.92 cdp FINISHED ai/tc8/labels.json received=17609",
+  "3.92 join-form DONE ai/tc8/labels.json",
+  "3.93 join-form REQ fetch ai/ort/ort.wasm.min.mjs worker=no",
+  "3.93 join-form REQ fetch ai/ort/ort-wasm-simd-threaded.mjs worker=no",
+  "3.93 join-form REQ fetch ai/tc8/vision.onnx worker=no",
+  "3.93 join-form REQ fetch ai/ort/ort-wasm-simd-threaded.wasm worker=no",
+  "3.93 cdp RESP ai/ort/ort.wasm.min.mjs 200 len=50126",
+  "3.93 cdp RESP ai/ort/ort-wasm-simd-threaded.mjs 200 len=24381",
+  "3.94 cdp RESP ai/tc8/vision.onnx 200 len=8807127",
+  "3.94 cdp RESP ai/ort/ort-wasm-simd-threaded.wasm 200 len=14239897",
+  "3.94 cdp FINISHED ai/ort/ort.wasm.min.mjs received=50126",
+  "3.94 join-form DONE ai/ort/ort.wasm.min.mjs",
+  "3.94 cdp FINISHED ai/ort/ort-wasm-simd-threaded.mjs received=24381",
+  "3.94 join-form DONE ai/ort/ort-wasm-simd-threaded.mjs",
+  "3.98 cdp FINISHED ai/tc8/vision.onnx received=8807127",
+  "3.98 join-form DONE ai/tc8/vision.onnx",
+  "4.02 cdp FINISHED ai/ort/ort-wasm-simd-threaded.wasm received=14239897",
+  "4.02 join-form DONE ai/ort/ort-wasm-simd-threaded.wasm"
+ ],
+ "requests": 63,
+ "api": [],
+ "foreign": [],
+ "failedRequests": [],
+ "consoleErrors": [],
+ "pageErrors": [],
+ "consoleWarnings": [],
+ "ok": true,
+ "seconds": 24.197
+}

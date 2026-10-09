@@ -1,0 +1,1226 @@
+{
+ "file": "Loyalty_Freak_Music_-_05_-_Grab_A_Partner.mp3",
+ "sha256": "2ed4f5ac5e537aa47e18c52286ba0e7f46efa01b88951329881a1387acf7e4ca",
+ "duration_s": 191.72,
+ "tempo_bpm": 130.0,
+ "beat_s": 0.4615,
+ "bar_s": 1.8461,
+ "time_signature": "4/4 (assumed; drum pattern repeats every 4 beats)",
+ "first_downbeat_s": 0.008,
+ "first_active_downbeat_s": 0.008,
+ "downbeat_evidence": {
+  "margin": 2.723,
+  "scores_by_phase": [
+   {
+    "kick": -0.287,
+    "chord_change": 0.026,
+    "backbeat": -0.73
+   },
+   {
+    "kick": -0.689,
+    "chord_change": -0.258,
+    "backbeat": 0.727
+   },
+   {
+    "kick": -0.27,
+    "chord_change": -0.153,
+    "backbeat": -0.73
+   },
+   {
+    "kick": 1.258,
+    "chord_change": 0.389,
+    "backbeat": 0.727
+   }
+  ],
+  "note": "margin = gap between best and second-best phase (kick-on-1 + chord change + backbeat z-scores); < 0.3 means check one bar on the waveform"
+ },
+ "tempo_stability": {
+  "beat_phase_residual_sd_ms": 2.4,
+  "beat_phase_residual_max_ms": 5.8,
+  "windows": 50,
+  "note": "residual of local beat alignment vs the global constant-tempo grid, 16-beat windows"
+ },
+ "n_bars": 104,
+ "bar_starts_s": [
+  0.008,
+  1.854,
+  3.701,
+  5.547,
+  7.393,
+  9.239,
+  11.085,
+  12.931,
+  14.777,
+  16.623,
+  18.47,
+  20.316,
+  22.162,
+  24.008,
+  25.854,
+  27.7,
+  29.546,
+  31.392,
+  33.239,
+  35.085,
+  36.931,
+  38.777,
+  40.623,
+  42.469,
+  44.315,
+  46.161,
+  48.008,
+  49.854,
+  51.7,
+  53.546,
+  55.392,
+  57.238,
+  59.084,
+  60.93,
+  62.777,
+  64.623,
+  66.469,
+  68.315,
+  70.161,
+  72.007,
+  73.853,
+  75.699,
+  77.546,
+  79.392,
+  81.238,
+  83.084,
+  84.93,
+  86.776,
+  88.622,
+  90.468,
+  92.315,
+  94.161,
+  96.007,
+  97.853,
+  99.699,
+  101.545,
+  103.391,
+  105.237,
+  107.084,
+  108.93,
+  110.776,
+  112.622,
+  114.468,
+  116.314,
+  118.16,
+  120.006,
+  121.853,
+  123.699,
+  125.545,
+  127.391,
+  129.237,
+  131.083,
+  132.929,
+  134.775,
+  136.622,
+  138.468,
+  140.314,
+  142.16,
+  144.006,
+  145.852,
+  147.698,
+  149.544,
+  151.391,
+  153.237,
+  155.083,
+  156.929,
+  158.775,
+  160.621,
+  162.467,
+  164.313,
+  166.16,
+  168.006,
+  169.852,
+  171.698,
+  173.544,
+  175.39,
+  177.236,
+  179.082,
+  180.929,
+  182.775,
+  184.621,
+  186.467,
+  188.313,
+  190.159
+ ],
+ "sections": [
+  {
+   "bars": [
+    1,
+    7
+   ],
+   "t": [
+    0.008,
+    12.931
+   ],
+   "rms_db": -11.1,
+   "onsets_per_bar": 5.6,
+   "perc": 0.162,
+   "level": "high"
+  },
+  {
+   "bars": [
+    8,
+    18
+   ],
+   "t": [
+    12.931,
+    33.238
+   ],
+   "rms_db": -12.3,
+   "onsets_per_bar": 8.0,
+   "perc": 0.197,
+   "level": "high"
+  },
+  {
+   "bars": [
+    19,
+    22
+   ],
+   "t": [
+    33.239,
+    40.623
+   ],
+   "rms_db": -11.6,
+   "onsets_per_bar": 9.0,
+   "perc": 0.17,
+   "level": "high"
+  },
+  {
+   "bars": [
+    23,
+    26
+   ],
+   "t": [
+    40.623,
+    48.007
+   ],
+   "rms_db": -10.8,
+   "onsets_per_bar": 10.0,
+   "perc": 0.162,
+   "level": "peak"
+  },
+  {
+   "bars": [
+    27,
+    31
+   ],
+   "t": [
+    48.008,
+    57.238
+   ],
+   "rms_db": -10.3,
+   "onsets_per_bar": 10.0,
+   "perc": 0.155,
+   "level": "peak"
+  },
+  {
+   "bars": [
+    32,
+    37
+   ],
+   "t": [
+    57.238,
+    68.315
+   ],
+   "rms_db": -11.5,
+   "onsets_per_bar": 12.3,
+   "perc": 0.168,
+   "level": "high"
+  },
+  {
+   "bars": [
+    38,
+    41
+   ],
+   "t": [
+    68.315,
+    75.699
+   ],
+   "rms_db": -11.7,
+   "onsets_per_bar": 12.2,
+   "perc": 0.193,
+   "level": "high"
+  },
+  {
+   "bars": [
+    42,
+    46
+   ],
+   "t": [
+    75.699,
+    84.93
+   ],
+   "rms_db": -11.4,
+   "onsets_per_bar": 12.6,
+   "perc": 0.178,
+   "level": "high"
+  },
+  {
+   "bars": [
+    47,
+    61
+   ],
+   "t": [
+    84.93,
+    112.622
+   ],
+   "rms_db": -10.0,
+   "onsets_per_bar": 10.6,
+   "perc": 0.137,
+   "level": "peak"
+  },
+  {
+   "bars": [
+    62,
+    69
+   ],
+   "t": [
+    112.622,
+    127.391
+   ],
+   "rms_db": -10.7,
+   "onsets_per_bar": 10.6,
+   "perc": 0.149,
+   "level": "peak"
+  },
+  {
+   "bars": [
+    70,
+    73
+   ],
+   "t": [
+    127.391,
+    134.775
+   ],
+   "rms_db": -11.6,
+   "onsets_per_bar": 10.2,
+   "perc": 0.186,
+   "level": "high"
+  },
+  {
+   "bars": [
+    74,
+    78
+   ],
+   "t": [
+    134.775,
+    144.006
+   ],
+   "rms_db": -11.6,
+   "onsets_per_bar": 9.4,
+   "perc": 0.185,
+   "level": "high"
+  },
+  {
+   "bars": [
+    79,
+    82
+   ],
+   "t": [
+    144.006,
+    151.39
+   ],
+   "rms_db": -11.1,
+   "onsets_per_bar": 9.2,
+   "perc": 0.181,
+   "level": "high"
+  },
+  {
+   "bars": [
+    83,
+    100
+   ],
+   "t": [
+    151.391,
+    184.621
+   ],
+   "rms_db": -9.8,
+   "onsets_per_bar": 10.6,
+   "perc": 0.127,
+   "level": "peak"
+  },
+  {
+   "bars": [
+    101,
+    104
+   ],
+   "t": [
+    184.621,
+    192.005
+   ],
+   "rms_db": -29.2,
+   "onsets_per_bar": 0.5,
+   "perc": 0.01,
+   "level": "low"
+  }
+ ],
+ "edit_points": [
+  {
+   "t": 12.931,
+   "bar": 8,
+   "kind": "section change",
+   "rms_step_db": -1.2
+  },
+  {
+   "t": 33.239,
+   "bar": 19,
+   "kind": "section change",
+   "rms_step_db": 0.7
+  },
+  {
+   "t": 40.623,
+   "bar": 23,
+   "kind": "section change",
+   "rms_step_db": 0.8
+  },
+  {
+   "t": 48.008,
+   "bar": 27,
+   "kind": "section change",
+   "rms_step_db": 0.5
+  },
+  {
+   "t": 57.238,
+   "bar": 32,
+   "kind": "section change",
+   "rms_step_db": -1.2
+  },
+  {
+   "t": 68.315,
+   "bar": 38,
+   "kind": "section change",
+   "rms_step_db": -0.2
+  },
+  {
+   "t": 75.699,
+   "bar": 42,
+   "kind": "section change",
+   "rms_step_db": 0.3
+  },
+  {
+   "t": 84.93,
+   "bar": 47,
+   "kind": "section change",
+   "rms_step_db": 1.4
+  },
+  {
+   "t": 112.622,
+   "bar": 62,
+   "kind": "section change",
+   "rms_step_db": -0.7
+  },
+  {
+   "t": 127.391,
+   "bar": 70,
+   "kind": "section change",
+   "rms_step_db": -0.9
+  },
+  {
+   "t": 134.775,
+   "bar": 74,
+   "kind": "section change",
+   "rms_step_db": 0.0
+  },
+  {
+   "t": 144.006,
+   "bar": 79,
+   "kind": "section change",
+   "rms_step_db": 0.5
+  },
+  {
+   "t": 151.391,
+   "bar": 83,
+   "kind": "section change",
+   "rms_step_db": 1.3
+  },
+  {
+   "t": 184.621,
+   "bar": 101,
+   "kind": "breakdown (energy down)",
+   "rms_step_db": -19.4
+  }
+ ],
+ "strongest_30s": {
+  "start_s": 84.93,
+  "end_s": 114.93,
+  "start_bar": 47,
+  "preview_file": "preview-30s_bar47_84.93s_-16LUFS.m4a"
+ },
+ "loop_for_extension": [
+  {
+   "bars": [
+    87,
+    94
+   ],
+   "t": [
+    158.775,
+    173.544
+   ],
+   "length_s": 14.769,
+   "chroma_sim_entry": 0.978,
+   "chroma_sim_exit": 0.968,
+   "rms_step_db": 0.2,
+   "score": 1.926,
+   "note": "bars 87..94 inclusive = 158.775..173.544 s; bar 95 (the bar after the block) resembles bar 87 (chroma_sim_entry) and bar 86 resembles bar 94 (chroma_sim_exit), so playing the block twice joins cleanly"
+  },
+  {
+   "bars": [
+    53,
+    60
+   ],
+   "t": [
+    96.007,
+    110.776
+   ],
+   "length_s": 14.769,
+   "chroma_sim_entry": 0.993,
+   "chroma_sim_exit": 0.999,
+   "rms_step_db": 0.7,
+   "score": 1.922,
+   "note": "bars 53..60 inclusive = 96.007..110.776 s; bar 61 (the bar after the block) resembles bar 53 (chroma_sim_entry) and bar 52 resembles bar 60 (chroma_sim_exit), so playing the block twice joins cleanly"
+  },
+  {
+   "bars": [
+    17,
+    24
+   ],
+   "t": [
+    29.546,
+    44.315
+   ],
+   "length_s": 14.769,
+   "chroma_sim_entry": 0.968,
+   "chroma_sim_exit": 0.9,
+   "rms_step_db": 0.3,
+   "score": 1.838,
+   "note": "bars 17..24 inclusive = 29.546..44.315 s; bar 25 (the bar after the block) resembles bar 17 (chroma_sim_entry) and bar 16 resembles bar 24 (chroma_sim_exit), so playing the block twice joins cleanly"
+  }
+ ],
+ "key": {
+  "key": "C major",
+  "r": 0.817,
+  "alt": "A minor",
+  "r_alt": 0.813
+ },
+ "loudness_full_track": {
+  "I": -11.6,
+  "LRA": 3.4,
+  "TP": -0.2
+ },
+ "stems_demucs_htdemucs": {
+  "stem_lag_ms": 50.1,
+  "energy_share": {
+   "drums": 0.161,
+   "bass": 0.467,
+   "other": 0.371,
+   "vocals": 0.001
+  },
+  "vocals": {
+   "rel_db_overall": -31.5,
+   "median_db": -47.6,
+   "p95_db": -37.4,
+   "frac_seconds_above_m10db": 0.0,
+   "frac_seconds_above_m15db": 0.005
+  },
+  "drum_grid_16": {
+   "kick": [
+    0.98,
+    0.01,
+    0.01,
+    0.0,
+    0.24,
+    0.0,
+    0.0,
+    0.0,
+    0.02,
+    0.0,
+    1.0,
+    0.01,
+    0.27,
+    0.05,
+    0.02,
+    0.02
+   ],
+   "snare": [
+    0.25,
+    0.01,
+    0.1,
+    0.0,
+    0.98,
+    0.0,
+    0.14,
+    0.0,
+    0.12,
+    0.06,
+    0.26,
+    0.05,
+    1.0,
+    0.02,
+    0.28,
+    0.12
+   ],
+   "hats": [
+    0.32,
+    0.02,
+    0.33,
+    0.0,
+    0.99,
+    0.0,
+    0.47,
+    0.0,
+    0.2,
+    0.01,
+    0.35,
+    0.08,
+    1.0,
+    0.07,
+    0.5,
+    0.04
+   ]
+  },
+  "drums_onset_rate": 3.45,
+  "bass_onset_rate": 4.27,
+  "other_onset_rate": 5.6,
+  "bass_peak_hz": 166.9,
+  "other_centroid_hz": 1798,
+  "other_percussive_share": 0.061,
+  "other_flatness": 0.378
+ },
+ "audioset_tags": {
+  "model": "MIT/ast-finetuned-audioset-10-10-0.4593 (AudioSet AST), mean sigmoid over 19 x 10.24 s windows",
+  "top15": [
+   [
+    "Music",
+    0.881
+   ],
+   [
+    "Musical instrument",
+    0.221
+   ],
+   [
+    "Guitar",
+    0.107
+   ],
+   [
+    "Video game music",
+    0.091
+   ],
+   [
+    "Plucked string instrument",
+    0.069
+   ],
+   [
+    "Keyboard (musical)",
+    0.056
+   ],
+   [
+    "Soul music",
+    0.041
+   ],
+   [
+    "Background music",
+    0.04
+   ],
+   [
+    "Progressive rock",
+    0.04
+   ],
+   [
+    "Soundtrack music",
+    0.039
+   ],
+   [
+    "Bass guitar",
+    0.039
+   ],
+   [
+    "Synthesizer",
+    0.038
+   ],
+   [
+    "Theme music",
+    0.036
+   ],
+   [
+    "Funk",
+    0.034
+   ],
+   [
+    "Jazz",
+    0.033
+   ]
+  ],
+  "selected": {
+   "Singing": {
+    "mean": 0.002,
+    "max": 0.004,
+    "frac_windows_over_0_3": 0.0
+   },
+   "Speech": {
+    "mean": 0.004,
+    "max": 0.012,
+    "frac_windows_over_0_3": 0.0
+   },
+   "Vocal music": {
+    "mean": 0.0,
+    "max": 0.0,
+    "frac_windows_over_0_3": 0.0
+   },
+   "Guitar": {
+    "mean": 0.107,
+    "max": 0.299,
+    "frac_windows_over_0_3": 0.0
+   },
+   "Electric guitar": {
+    "mean": 0.021,
+    "max": 0.074,
+    "frac_windows_over_0_3": 0.0
+   },
+   "Bass guitar": {
+    "mean": 0.039,
+    "max": 0.18,
+    "frac_windows_over_0_3": 0.0
+   },
+   "Drum kit": {
+    "mean": 0.027,
+    "max": 0.156,
+    "frac_windows_over_0_3": 0.0
+   },
+   "Drum machine": {
+    "mean": 0.003,
+    "max": 0.013,
+    "frac_windows_over_0_3": 0.0
+   },
+   "Brass instrument": {
+    "mean": 0.007,
+    "max": 0.041,
+    "frac_windows_over_0_3": 0.0
+   },
+   "Trumpet": {
+    "mean": 0.003,
+    "max": 0.016,
+    "frac_windows_over_0_3": 0.0
+   },
+   "Trombone": {
+    "mean": 0.003,
+    "max": 0.016,
+    "frac_windows_over_0_3": 0.0
+   },
+   "Saxophone": {
+    "mean": 0.008,
+    "max": 0.043,
+    "frac_windows_over_0_3": 0.0
+   },
+   "Synthesizer": {
+    "mean": 0.038,
+    "max": 0.081,
+    "frac_windows_over_0_3": 0.0
+   },
+   "Piano": {
+    "mean": 0.032,
+    "max": 0.107,
+    "frac_windows_over_0_3": 0.0
+   },
+   "Organ": {
+    "mean": 0.004,
+    "max": 0.012,
+    "frac_windows_over_0_3": 0.0
+   },
+   "Rock music": {
+    "mean": 0.029,
+    "max": 0.059,
+    "frac_windows_over_0_3": 0.0
+   },
+   "Pop music": {
+    "mean": 0.011,
+    "max": 0.019,
+    "frac_windows_over_0_3": 0.0
+   },
+   "Funk": {
+    "mean": 0.034,
+    "max": 0.07,
+    "frac_windows_over_0_3": 0.0
+   },
+   "Disco": {
+    "mean": 0.005,
+    "max": 0.013,
+    "frac_windows_over_0_3": 0.0
+   },
+   "Electronic music": {
+    "mean": 0.015,
+    "max": 0.028,
+    "frac_windows_over_0_3": 0.0
+   },
+   "House music": {
+    "mean": 0.004,
+    "max": 0.009,
+    "frac_windows_over_0_3": 0.0
+   },
+   "Video game music": {
+    "mean": 0.091,
+    "max": 0.352,
+    "frac_windows_over_0_3": 0.05
+   },
+   "Happy music": {
+    "mean": 0.029,
+    "max": 0.088,
+    "frac_windows_over_0_3": 0.0
+   },
+   "Funny music": {
+    "mean": 0.011,
+    "max": 0.025,
+    "frac_windows_over_0_3": 0.0
+   },
+   "Exciting music": {
+    "mean": 0.021,
+    "max": 0.038,
+    "frac_windows_over_0_3": 0.0
+   },
+   "Sad music": {
+    "mean": 0.001,
+    "max": 0.002,
+    "frac_windows_over_0_3": 0.0
+   },
+   "Tender music": {
+    "mean": 0.007,
+    "max": 0.018,
+    "frac_windows_over_0_3": 0.0
+   },
+   "Angry music": {
+    "mean": 0.0,
+    "max": 0.002,
+    "frac_windows_over_0_3": 0.0
+   }
+  }
+ },
+ "crosscheck_old_beatmap_py": {
+  "bpm": 65.01,
+  "first_downbeat_s": 3.222,
+  "downbeat_offset_beats": 3
+ },
+ "method": "tools/deep.py: spectral-flux onset envelope (40-8000 Hz, hop 5.8 ms), autocorrelation tempo + octave check, comb fit over the whole track, beat-phase drift regression, +30 ms onset-bias correction (calibrated on synthetic hits), downbeat from kick/chord-change/backbeat evidence; sections from bar-level novelty + >=4 dB energy steps; stems by Demucs htdemucs (encoder delay removed). Nobody listened to the audio.",
+ "beat_times_s": [
+  0.008,
+  0.47,
+  0.931,
+  1.393,
+  1.854,
+  2.316,
+  2.777,
+  3.239,
+  3.701,
+  4.162,
+  4.624,
+  5.085,
+  5.547,
+  6.008,
+  6.47,
+  6.931,
+  7.393,
+  7.854,
+  8.316,
+  8.777,
+  9.239,
+  9.701,
+  10.162,
+  10.623,
+  11.085,
+  11.547,
+  12.008,
+  12.47,
+  12.931,
+  13.392,
+  13.854,
+  14.316,
+  14.777,
+  15.238,
+  15.7,
+  16.162,
+  16.623,
+  17.085,
+  17.546,
+  18.008,
+  18.47,
+  18.931,
+  19.393,
+  19.854,
+  20.316,
+  20.777,
+  21.239,
+  21.7,
+  22.162,
+  22.623,
+  23.085,
+  23.546,
+  24.008,
+  24.47,
+  24.931,
+  25.392,
+  25.854,
+  26.316,
+  26.777,
+  27.238,
+  27.7,
+  28.162,
+  28.623,
+  29.084,
+  29.546,
+  30.008,
+  30.469,
+  30.93,
+  31.392,
+  31.854,
+  32.315,
+  32.776,
+  33.239,
+  33.7,
+  34.162,
+  34.623,
+  35.085,
+  35.547,
+  36.008,
+  36.47,
+  36.931,
+  37.392,
+  37.854,
+  38.316,
+  38.777,
+  39.239,
+  39.7,
+  40.162,
+  40.623,
+  41.084,
+  41.546,
+  42.008,
+  42.469,
+  42.931,
+  43.392,
+  43.854,
+  44.315,
+  44.776,
+  45.238,
+  45.7,
+  46.161,
+  46.623,
+  47.084,
+  47.546,
+  48.008,
+  48.47,
+  48.931,
+  49.393,
+  49.854,
+  50.316,
+  50.777,
+  51.239,
+  51.7,
+  52.162,
+  52.623,
+  53.085,
+  53.546,
+  54.008,
+  54.469,
+  54.931,
+  55.392,
+  55.854,
+  56.315,
+  56.777,
+  57.238,
+  57.7,
+  58.161,
+  58.623,
+  59.084,
+  59.546,
+  60.007,
+  60.469,
+  60.93,
+  61.392,
+  61.853,
+  62.315,
+  62.777,
+  63.239,
+  63.7,
+  64.162,
+  64.623,
+  65.085,
+  65.546,
+  66.008,
+  66.469,
+  66.93,
+  67.392,
+  67.853,
+  68.315,
+  68.776,
+  69.238,
+  69.7,
+  70.161,
+  70.623,
+  71.084,
+  71.546,
+  72.007,
+  72.469,
+  72.93,
+  73.392,
+  73.853,
+  74.314,
+  74.776,
+  75.237,
+  75.699,
+  76.16,
+  76.622,
+  77.084,
+  77.546,
+  78.008,
+  78.469,
+  78.931,
+  79.392,
+  79.853,
+  80.315,
+  80.776,
+  81.238,
+  81.7,
+  82.161,
+  82.623,
+  83.084,
+  83.546,
+  84.007,
+  84.469,
+  84.93,
+  85.392,
+  85.853,
+  86.315,
+  86.776,
+  87.237,
+  87.699,
+  88.16,
+  88.622,
+  89.084,
+  89.545,
+  90.007,
+  90.468,
+  90.93,
+  91.391,
+  91.853,
+  92.315,
+  92.776,
+  93.238,
+  93.7,
+  94.161,
+  94.623,
+  95.084,
+  95.546,
+  96.007,
+  96.469,
+  96.93,
+  97.392,
+  97.853,
+  98.314,
+  98.776,
+  99.237,
+  99.699,
+  100.16,
+  100.622,
+  101.084,
+  101.545,
+  102.007,
+  102.468,
+  102.93,
+  103.391,
+  103.853,
+  104.314,
+  104.776,
+  105.237,
+  105.698,
+  106.16,
+  106.621,
+  107.084,
+  107.546,
+  108.007,
+  108.469,
+  108.93,
+  109.392,
+  109.853,
+  110.315,
+  110.776,
+  111.237,
+  111.699,
+  112.16,
+  112.622,
+  113.084,
+  113.545,
+  114.007,
+  114.468,
+  114.93,
+  115.391,
+  115.853,
+  116.314,
+  116.775,
+  117.237,
+  117.698,
+  118.16,
+  118.621,
+  119.083,
+  119.544,
+  120.006,
+  120.468,
+  120.929,
+  121.391,
+  121.853,
+  122.314,
+  122.776,
+  123.237,
+  123.699,
+  124.16,
+  124.622,
+  125.084,
+  125.545,
+  126.007,
+  126.468,
+  126.93,
+  127.391,
+  127.853,
+  128.314,
+  128.775,
+  129.237,
+  129.698,
+  130.16,
+  130.621,
+  131.083,
+  131.544,
+  132.006,
+  132.468,
+  132.929,
+  133.391,
+  133.852,
+  134.314,
+  134.775,
+  135.237,
+  135.698,
+  136.16,
+  136.622,
+  137.084,
+  137.545,
+  138.007,
+  138.468,
+  138.929,
+  139.391,
+  139.852,
+  140.314,
+  140.775,
+  141.237,
+  141.698,
+  142.16,
+  142.621,
+  143.083,
+  143.544,
+  144.006,
+  144.468,
+  144.929,
+  145.391,
+  145.852,
+  146.314,
+  146.775,
+  147.237,
+  147.698,
+  148.16,
+  148.621,
+  149.083,
+  149.544,
+  150.006,
+  150.467,
+  150.929,
+  151.391,
+  151.852,
+  152.314,
+  152.775,
+  153.237,
+  153.698,
+  154.16,
+  154.621,
+  155.083,
+  155.544,
+  156.006,
+  156.468,
+  156.929,
+  157.391,
+  157.852,
+  158.314,
+  158.775,
+  159.237,
+  159.698,
+  160.16,
+  160.621,
+  161.083,
+  161.544,
+  162.006,
+  162.467,
+  162.929,
+  163.39,
+  163.852,
+  164.313,
+  164.774,
+  165.236,
+  165.697,
+  166.16,
+  166.621,
+  167.083,
+  167.544,
+  168.006,
+  168.468,
+  168.929,
+  169.391,
+  169.852,
+  170.314,
+  170.775,
+  171.237,
+  171.698,
+  172.16,
+  172.621,
+  173.083,
+  173.544,
+  174.006,
+  174.467,
+  174.929,
+  175.39,
+  175.851,
+  176.313,
+  176.774,
+  177.236,
+  177.697,
+  178.159,
+  178.62,
+  179.082,
+  179.543,
+  180.005,
+  180.466,
+  180.929,
+  181.391,
+  181.852,
+  182.314,
+  182.775,
+  183.237,
+  183.698,
+  184.16,
+  184.621,
+  185.083,
+  185.544,
+  186.006,
+  186.467,
+  186.929,
+  187.39,
+  187.852,
+  188.313,
+  188.774,
+  189.236,
+  189.697,
+  190.159,
+  190.62,
+  191.082,
+  191.543
+ ],
+ "fit_to_3min": "191.7 s is longer than 3:00: end on a bar line between 2:48 and 2:58 (173.54, 175.39, 177.24 s) with a 2-3 s fade, or remove whole sections at bar boundaries (constant tempo, so a bar-to-bar splice stays on the grid). Repeatable blocks: bars 87-94 (158.775-173.544 s, 14.769 s); bars 53-60 (96.007-110.776 s, 14.769 s); bars 17-24 (29.546-44.315 s, 14.769 s)"
+}

@@ -1,0 +1,15 @@
+import { launch, newPage, sleep, BASE, ensureDir } from './lib.mjs';
+import { hostCreatesRoom, guestJoins, uploadPhoto, panelInfo, visibleUI } from './flows.mjs';
+const out = ensureDir('/tmp/space-video-prep/stills/journey');
+const browser = await launch();
+const A = await newPage(browser);
+const B = await newPage(browser);
+await hostCreatesRoom(A.page, { name: '阿遥', title: '返场夜', venue: '月台 Livehouse' });
+await guestJoins(B.page, new URL(A.page.url()).search, { name: 'Lin' });
+await uploadPhoto(A.page, '/tmp/space-video-prep/repo-rc4/web/assets/stage-scene.png', { visibility: 'room' });
+let n = 29;
+const snap = async (p, tag, who) => { const i = String(n++).padStart(2, '0'); const info = await visibleUI(p); console.log(`--- ${i} ${who} ${tag}`, JSON.stringify(info.overlays.filter(o => !/world-shell|presence/.test(o.cls))).slice(0, 1800)); console.log('    btns', JSON.stringify(info.buttons.filter(b => /panel|memory|recap|dialog|action|card|download|png/.test(b)).slice(0, 24))); await p.screenshot({ path: `${out}/${i}-${who}-${tag}.png` }); };
+const tryStep = async (label, fn) => { try { await fn(); } catch (e) { console.log('!! step failed:', label, e.message.split('\n')[0].slice(0, 120)); } };
+await tryStep('close panel', async () => { await A.page.locator('#panel-close').click(); await sleep(600); });
+await tryStep('recap', async () => { await A.page.getByRole('button', { name: '回看这一晚' }).first().click(); await sleep(2200); await snap(A.page, 'A-recap', 'A'); });
+await browser.close();

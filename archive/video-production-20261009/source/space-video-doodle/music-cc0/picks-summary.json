@@ -1,0 +1,137 @@
+[
+ {
+  "rank": 1,
+  "dir": "/tmp/space-video-doodle/music-cc0/01-grab-a-partner__Loyalty-Freak-Music",
+  "style": "surf/disco-rock band groove (guitar + bass + backbeat)",
+  "file": "/tmp/space-video-doodle/music-cc0/01-grab-a-partner__Loyalty-Freak-Music/Loyalty_Freak_Music_-_05_-_Grab_A_Partner.mp3",
+  "sha256": "2ed4f5ac5e537aa47e18c52286ba0e7f46efa01b88951329881a1387acf7e4ca",
+  "source_page": "https://freemusicarchive.org/music/Loyalty_Freak_Music/ROLLER_DISCO_DANCE_DANCE/Loyalty_Freak_Music_-_ROLLER_DISCO_DANCE_DANCE_-_05_Grab_A_Partner/",
+  "file_url": "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/Music_for_Video/Loyalty_Freak_Music/ROLLER_DISCO_DANCE_DANCE/Loyalty_Freak_Music_-_05_-_Grab_A_Partner.mp3",
+  "licence": "CC0 1.0 Universal",
+  "preview": "/tmp/space-video-doodle/music-cc0/01-grab-a-partner__Loyalty-Freak-Music/preview-30s_bar47_84.93s_-16LUFS.m4a",
+  "preview_window_s": [
+   84.93,
+   114.93
+  ],
+  "bpm": 130.0,
+  "bar_s": 1.8461,
+  "first_downbeat_s": 0.008,
+  "duration_s": 191.72,
+  "key": "C major",
+  "loudness": {
+   "I": -11.6,
+   "LRA": 3.4,
+   "TP": -0.2
+  },
+  "beats_json": "/tmp/space-video-doodle/music-cc0/01-grab-a-partner__Loyalty-Freak-Music/beats.json",
+  "fit_to_3min": "191.7 s is longer than 3:00: end on a bar line between 2:48 and 2:58 (173.54, 175.39, 177.24 s) with a 2-3 s fade, or remove whole sections at bar boundaries (constant tempo, so a bar-to-bar splice stays on the grid). Repeatable blocks: bars 87-94 (158.775-173.544 s, 14.769 s); bars 53-60 (96.007-110.776 s, 14.769 s); bars 17-24 (29.546-44.315 s, 14.769 s)"
+ },
+ {
+  "rank": 2,
+  "dir": "/tmp/space-video-doodle/music-cc0/02-flipping-in__Wax-Lyricist",
+  "style": "horn funk with a live-sounding kit",
+  "file": "/tmp/space-video-doodle/music-cc0/02-flipping-in__Wax-Lyricist/Wax_Lyricist_-_Flipping_In.mp3",
+  "sha256": "8d79e1f0f6aee4de038eff80b0a93262bacdc4ea2dc7ce184cfd12f162ca6127",
+  "source_page": "https://freemusicarchive.org/music/wax-lyricist/the-wax-lyricist/flipping-in/",
+  "file_url": "https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/rQDvsLDqpCtHbJYnNKnlFUvY7MecNUlsWrwPHi1d.mp3",
+  "licence": "CC0 1.0 Universal",
+  "preview": "/tmp/space-video-doodle/music-cc0/02-flipping-in__Wax-Lyricist/preview-30s_bar103_199.03s_-16LUFS.m4a",
+  "preview_window_s": [
+   199.033,
+   229.033
+  ],
+  "bpm": 123.0,
+  "bar_s": 1.9512,
+  "first_downbeat_s": 0.008,
+  "duration_s": 239.19,
+  "key": "F major",
+  "loudness": {
+   "I": -19.4,
+   "LRA": 4.5,
+   "TP": -0.3
+  },
+  "beats_json": "/tmp/space-video-doodle/music-cc0/02-flipping-in__Wax-Lyricist/beats.json",
+  "fit_to_3min": "239.2 s is longer than 3:00: end on a bar line between 2:48 and 2:58 (173.67, 175.62, 177.57 s) with a 2-3 s fade, or remove whole sections at bar boundaries (constant tempo, so a bar-to-bar splice stays on the grid). Repeatable blocks: bars 27-30 (50.74-58.544 s, 7.805 s); bars 68-71 (130.74-138.545 s, 7.805 s); bars 110-113 (212.692-220.496 s, 7.805 s)"
+ },
+ {
+  "rank": 3,
+  "dir": "/tmp/space-video-doodle/music-cc0/03-post-adventure-tea-party__Zane-Little",
+  "style": "bright chiptune-funk \"celebration\" track",
+  "file": "/tmp/space-video-doodle/music-cc0/03-post-adventure-tea-party__Zane-Little/Zane_Little_-_Post-Adventure_Tea_Party.mp3",
+  "sha256": "3942ac034060e30b889dd739d219d30fa4b3bf3eb201170be868ec9d5e1cf099",
+  "source_page": "https://freemusicarchive.org/music/zane-little/a-bag-of-chips/post-adventure-tea-party/",
+  "file_url": "https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/hXZXej6HcbunsfYNO1OEvozn4vf5QjfjKnAiNywY.mp3",
+  "licence": "CC0 1.0 Universal",
+  "preview": "/tmp/space-video-doodle/music-cc0/03-post-adventure-tea-party__Zane-Little/preview-30s_bar81_174.57s_-16LUFS.m4a",
+  "preview_window_s": [
+   174.574,
+   204.574
+  ],
+  "bpm": 110.0,
+  "bar_s": 2.1818,
+  "first_downbeat_s": 0.029,
+  "duration_s": 225.05,
+  "key": "A minor",
+  "loudness": {
+   "I": -10.8,
+   "LRA": 4.2,
+   "TP": 0.9
+  },
+  "beats_json": "/tmp/space-video-doodle/music-cc0/03-post-adventure-tea-party__Zane-Little/beats.json",
+  "fit_to_3min": "225.1 s is longer than 3:00: end on a bar line between 2:48 and 2:58 (172.39, 174.57, 176.76 s) with a 2-3 s fade, or remove whole sections at bar boundaries (constant tempo, so a bar-to-bar splice stays on the grid). Repeatable blocks: bars 79-82 (170.211-178.938 s, 8.727 s); bars 52-55 (111.302-120.029 s, 8.727 s); bars 89-96 (192.029-209.483 s, 17.454 s)"
+ },
+ {
+  "rank": 4,
+  "dir": "/tmp/space-video-doodle/music-cc0/04-consternation-at-the-disco__Wax-Lyricist",
+  "style": "indie/garage-rock disco, drum-forward, strong section contrasts",
+  "file": "/tmp/space-video-doodle/music-cc0/04-consternation-at-the-disco__Wax-Lyricist/Wax_Lyricist_-_Consternation_At_The_Disco.mp3",
+  "sha256": "a3649f3dc658265bfad59dd2f0569dfd122f86624320bc5caef277f1a66e7d8d",
+  "source_page": "https://freemusicarchive.org/music/wax-lyricist/the-wax-lyricist/consternation-at-the-disco/",
+  "file_url": "https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/WIq8wNoCARBDfeGJXB6rKU34mMRMyCzNvqXzd7sd.mp3",
+  "licence": "CC0 1.0 Universal",
+  "preview": "/tmp/space-video-doodle/music-cc0/04-consternation-at-the-disco__Wax-Lyricist/preview-30s_bar71_129.23s_-16LUFS.m4a",
+  "preview_window_s": [
+   129.233,
+   159.233
+  ],
+  "bpm": 130.0,
+  "bar_s": 1.8462,
+  "first_downbeat_s": 0.0,
+  "duration_s": 170.76,
+  "key": "A minor",
+  "loudness": {
+   "I": -20.4,
+   "LRA": 4.9,
+   "TP": -0.1
+  },
+  "beats_json": "/tmp/space-video-doodle/music-cc0/04-consternation-at-the-disco__Wax-Lyricist/beats.json",
+  "fit_to_3min": "170.8 s is 9.2 s short of 3:00: play bars 43-46 (77.54-84.925 s, 7.385 s) 3 times instead of once (splice on the bar line, 10-20 ms crossfade), or let the video run 171 s."
+ },
+ {
+  "rank": "reserve",
+  "dir": "/tmp/space-video-doodle/music-cc0/05-reserve-love-love-love__HoliznaCC0",
+  "style": "loud electronic big-beat disco (outside the band brief)",
+  "file": "/tmp/space-video-doodle/music-cc0/05-reserve-love-love-love__HoliznaCC0/HoliznaCC0_-_Love_Love_Love.mp3",
+  "sha256": "8f579ae23d50513c073ad914eb6bcd93d6abe33b53130c1dcf493c5c2c114322",
+  "source_page": "https://freemusicarchive.org/music/holiznacc0/power-pop/love-love-love/",
+  "file_url": "https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/QyOdjJhuXLVTQJykleAL7negVj97mpFr63vt4sPO.mp3",
+  "licence": "CC0 1.0 Universal",
+  "preview": "/tmp/space-video-doodle/music-cc0/05-reserve-love-love-love__HoliznaCC0/preview-30s_bar61_125.22s_-16LUFS.m4a",
+  "preview_window_s": [
+   125.217,
+   155.217
+  ],
+  "bpm": 115.0,
+  "bar_s": 2.087,
+  "first_downbeat_s": 0.0,
+  "duration_s": 175.25,
+  "key": "F major",
+  "loudness": {
+   "I": -8.9,
+   "LRA": 8.3,
+   "TP": 0.7
+  },
+  "beats_json": "/tmp/space-video-doodle/music-cc0/05-reserve-love-love-love__HoliznaCC0/beats.json",
+  "fit_to_3min": "175.2 s is 4.8 s short of 3:00: play bars 10-17 (18.783-35.478 s, 16.696 s) 2 times instead of once (splice on the bar line, 10-20 ms crossfade), or let the video run 175 s."
+ }
+]

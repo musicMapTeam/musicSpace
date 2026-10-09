@@ -1,0 +1,160 @@
+[
+ {
+  "label": "MAP-D2-courtyard master",
+  "file": "/tmp/space-video-doodle/prod/capture/map-rc2/desktop/master/MAP-D2-courtyard.mp4",
+  "bytes": 48664544,
+  "MB": 48.7,
+  "duration_s": 15.567,
+  "video": "h264 High 3840x2160 60/1 yuv420p",
+  "colour": "bt709/bt709/bt709/tv",
+  "frames": 934,
+  "bitrate_mbps": 25,
+  "audio_streams": 0,
+  "frames_decoded": 934,
+  "frames_rig": 934,
+  "same_count": true,
+  "longest_still": {
+   "frames": 10,
+   "at_s": 1.283
+  },
+  "still_over_1s": [],
+  "stutters": {
+   "count": 1,
+   "at_s": [
+    9.617
+   ]
+  },
+  "exact_repeat_runs_over_9f": [],
+  "exact_unique": 927,
+  "motion_windows": [
+   {
+    "kind": "tap ring",
+    "label": "tap the 「唱片店」 pin: the camera flies into the record shop (1/3 speed)",
+    "from": 496,
+    "to": 518,
+    "allow": 1,
+    "frames": 23,
+    "exactRepeats": 0,
+    "longestRepeat": 1,
+    "minChange": 0.029,
+    "ok": true
+   },
+   {
+    "kind": "tap ring",
+    "label": "tap 「小院」 (.world-compass button[data-world-view=\"home\"]): the camera flies back out over the courtyard (1/3 speed)",
+    "from": 693,
+    "to": 715,
+    "allow": 1,
+    "frames": 23,
+    "exactRepeats": 0,
+    "longestRepeat": 1,
+    "minChange": 0.038,
+    "ok": true
+   },
+   {
+    "kind": "camera flight",
+    "label": "travelling 75 f",
+    "from": 500,
+    "to": 572,
+    "allow": 1,
+    "frames": 73,
+    "exactRepeats": 0,
+    "longestRepeat": 1,
+    "minChange": 0.142,
+    "ok": true
+   },
+   {
+    "kind": "camera flight",
+    "label": "travelling 99 f",
+    "from": 697,
+    "to": 793,
+    "allow": 1,
+    "frames": 97,
+    "exactRepeats": 0,
+    "longestRepeat": 1,
+    "minChange": 0.138,
+    "ok": true
+   }
+  ],
+  "motion_ok": true
+ },
+ {
+  "label": "MAP-D2-courtyard edit 1080",
+  "file": "/tmp/space-video-doodle/prod/capture/map-rc2/desktop/1080/MAP-D2-courtyard.mp4",
+  "bytes": 21733054,
+  "MB": 21.7,
+  "duration_s": 15.567,
+  "video": "h264 High 1920x1080 60/1 yuv420p",
+  "colour": "bt709/bt709/bt709/tv",
+  "frames": 934,
+  "bitrate_mbps": 11.2,
+  "audio_streams": 0,
+  "frames_decoded": 934,
+  "frames_rig": 934,
+  "same_count": true,
+  "longest_still": {
+   "frames": 10,
+   "at_s": 1.283
+  },
+  "still_over_1s": [],
+  "stutters": {
+   "count": 1,
+   "at_s": [
+    9.617
+   ]
+  },
+  "exact_repeat_runs_over_9f": [],
+  "exact_unique": 927,
+  "motion_windows": [
+   {
+    "kind": "tap ring",
+    "label": "tap the 「唱片店」 pin: the camera flies into the record shop (1/3 speed)",
+    "from": 496,
+    "to": 518,
+    "allow": 1,
+    "frames": 23,
+    "exactRepeats": 0,
+    "longestRepeat": 1,
+    "minChange": 0.029,
+    "ok": true
+   },
+   {
+    "kind": "tap ring",
+    "label": "tap 「小院」 (.world-compass button[data-world-view=\"home\"]): the camera flies back out over the courtyard (1/3 speed)",
+    "from": 693,
+    "to": 715,
+    "allow": 1,
+    "frames": 23,
+    "exactRepeats": 0,
+    "longestRepeat": 1,
+    "minChange": 0.04,
+    "ok": true
+   },
+   {
+    "kind": "camera flight",
+    "label": "travelling 75 f",
+    "from": 500,
+    "to": 572,
+    "allow": 1,
+    "frames": 73,
+    "exactRepeats": 0,
+    "longestRepeat": 1,
+    "minChange": 0.155,
+    "ok": true
+   },
+   {
+    "kind": "camera flight",
+    "label": "travelling 99 f",
+    "from": 697,
+    "to": 793,
+    "allow": 1,
+    "frames": 97,
+    "exactRepeats": 0,
+    "longestRepeat": 1,
+    "minChange": 0.143,
+    "ok": true
+   }
+  ],
+  "motion_ok": true
+ }
+]

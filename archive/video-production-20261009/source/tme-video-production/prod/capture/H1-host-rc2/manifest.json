@@ -1,0 +1,667 @@
+{
+ "what": "Music Space film v2 re-capture: TAKE-H (host / venue side) on the rc2 build — create-room form with 场地 「月台 Livehouse」, the venue's 乐迷社群 「月台 Livehouse 乐迷社群」, publishing a 下一场预告; same ids, structure and beat grids as /tmp/space-video-doodle/prod/capture/H1-host (v2)",
+ "made": "2026-10-07T22:40:30.651Z",
+ "build": {
+  "path": "/tmp/space-final/dist-pages",
+  "version": "0.22.0-rc.2",
+  "commit": "8fa52f0",
+  "builtAt": "2026-10-07T20:18:33.163Z",
+  "content": "0.22.0-rc.2 (complete-product copy, Livehouse community, Doodle Music Map)",
+  "served": "scripts/pages/serve-prefix.mjs /tmp/space-final/dist-pages /musicSpace/ 48613 (GitHub Pages emulation, root route /musicSpace/), stopped after capture"
+ },
+ "rig": {
+  "browser": "system Google Chrome (headless), --use-angle=metal --enable-gpu --ignore-gpu-blocklist --enable-gpu-rasterization (real GPU), --force-color-profile=srgb, --hide-scrollbars; locale zh-CN, Asia/Shanghai",
+  "clock": "Playwright fake clock from 2026-10-09T22:40:00+08:00 (a Friday night); every captured frame advances virtual time by 16 ms; CSS/WAAPI animations pinned to the same virtual time; Math.random seeded 20261009",
+  "frames": "one lossless CDP PNG screenshot per frame -> ffmpeg (libx264 High, CRF 15, preset slow, tune animation, yuv420p, BT.709 primaries/transfer/matrix, limited range, 60 fps CFR, +faststart, no audio); the desktop 1920x1080 copy is a Lanczos downscale of the same lossless frames in the same ffmpeg pass (not of the H.264 master)",
+  "speed": "virtual time advances 16 ms per frame and the files are 60 fps: playback is 4 % slower than real time (62.5 -> 60), as in every clip of this rig; all times here are video times (frame / 60)",
+  "taps": "no cursor; each UI tap shows the rig's doodle tap ring (yellow ring, ink outline, pink offset; 30 frames from the press; the DOM click fires 3 frames after the ring, 9 frames for 「音乐探索」); in the map the ring is a top-layer popover so it also shows over the map's modal papers",
+  "beat": "taps on a 123 BPM grid (Flipping In; 29.268 frames per beat): see the grid marks",
+  "script": "/tmp/space-video-doodle/prod/capture/H1-host-rc2/take-h-rc2.mjs",
+  "rig_files": "/tmp/space-video-doodle/prod/capture/H1-host-rc2/rig/rec2.mjs, /tmp/space-video-doodle/prod/capture/H1-host-rc2/rig/p1lib.mjs (byte copies of ../P1/rig/rec2.mjs and ../P1/p1lib.mjs; p1lib import path adjusted)",
+  "viewport": "phone CSS 390x845 @ DPR 36/13 = 1080x2340, isMobile, hasTouch"
+ },
+ "differences_from_v2": [
+  "all copy is the rc2 product copy: entry 「我是 Livehouse / 主办方，开个房」 -> 「开一个房间」; sheet eyebrow 「Livehouse / 为这一场开房」; room panel 「Livehouse 乐迷社群」; create form 社群名称 / 「创建社群，向成员展示我的昵称、小人和发言」 / 「创建 Livehouse 乐迷社群」; community menu 「设置与管理 ···」 -> 「下一场预告」; panel 「LIVEHOUSE / 下一场见」, form 「发布下一场预告」 演出名称 / 场地 / 时间 / 给乐迷的话, consent 「发布给社群成员」, button 「发布预告」, card 「下一场预告」 under 「下一场」",
+  "the community is named 「月台 Livehouse 乐迷社群」 (v2: 「月台 Livehouse」): the 3D header sign reads 「月台 Livehouse / 乐迷社群」, the chip 「1 位乐迷」; typing runs beats 0..2 (17 characters on 32nds), the tick is on beat 3, 「创建 Livehouse 乐迷社群」 on beat 4, the list entry on beat 4.5 (v2: tick 2, create 3, open 3.5)",
+  "H-02 no longer swipes the chip row (v2 hid the old 「Music Map」 chip; rc2 shows 「音乐探索 ↗」 in the room's chip row)",
+  "H-01 starts after the setup toast 「小人已保存…」 has gone; the consent scroll is quantised to whole CSS px (every captured scroll frame moves)",
+  "the new room shows the rc2 first-visit card 「第一次来 1/4 · 放一张今晚的照片 · 用我自己的照片 · 跳过路线」 and the footer 「关于 Music Space」"
+ ],
+ "clips": [
+  {
+   "id": "H-01",
+   "file": "/tmp/space-video-doodle/prod/capture/H1-host-rc2/clips/H-01.mp4",
+   "bytes": 1493877,
+   "sha256": "4948eafd8c4bf52296f6b6fb19296f2dad0f824e94ecb707fcfb4dbe24caca5a",
+   "frames": 470,
+   "seconds": 7.833,
+   "what": "Livehouse / 为这一场开房 · 今晚叫什么名字？: 场次名称 「周五 · 月台夜」 (32nds from beat 0.25), 场地 「月台 Livehouse」 (32nds from beat 1.625, done on beat 3); consent; 开房并进入现场 -> the new room 「周五 · 月台夜」",
+   "feeds_v2": [
+    "A6 73"
+   ],
+   "grids": [
+    {
+     "name": "create sheet",
+     "beat0_frame": 66,
+     "beat0_t": 1.1,
+     "bpm": 123,
+     "fpb": 29.2683
+    }
+   ],
+   "typing": [
+    {
+     "field": "title",
+     "text": "周五 · 月台夜",
+     "first": {
+      "t": 1.217,
+      "frame": 73
+     },
+     "last": {
+      "t": 1.65,
+      "frame": 99
+     }
+    },
+    {
+     "field": "venue",
+     "text": "月台 Livehouse",
+     "first": {
+      "t": 1.9,
+      "frame": 114
+     },
+     "last": {
+      "t": 2.567,
+      "frame": 154
+     }
+    }
+   ],
+   "actions": [
+    {
+     "t": 1,
+     "frame": 60,
+     "kind": "boxes",
+     "what": "boxes create",
+     "boxes_px": {
+      "eyebrow": [
+       89,
+       294,
+       461,
+       36
+      ],
+      "h2": [
+       89,
+       352,
+       745,
+       93
+      ],
+      "title": [
+       89,
+       578,
+       889,
+       127
+      ],
+      "venue": [
+       89,
+       838,
+       889,
+       127
+      ],
+      "song": [
+       89,
+       1098,
+       889,
+       127
+      ]
+     }
+    },
+    {
+     "t": 1,
+     "frame": 60,
+     "kind": "grid",
+     "what": "♩ create sheet beat0",
+     "beat0_frame": 60
+    },
+    {
+     "t": 1.1,
+     "frame": 66,
+     "kind": "tap",
+     "what": "tap 场次名称 (beat 0)",
+     "xy_px": [
+      533,
+      641
+     ],
+     "note": "frame = mouse up (the ring starts 3 frames earlier)"
+    },
+    {
+     "t": 1.833,
+     "frame": 110,
+     "kind": "tap",
+     "what": "tap 场地 (beat 1.5)",
+     "xy_px": [
+      533,
+      902
+     ],
+     "note": "frame = mouse up (the ring starts 3 frames earlier)"
+    },
+    {
+     "t": 3.05,
+     "frame": 183,
+     "kind": "boxes",
+     "what": "boxes create typed",
+     "boxes_px": {
+      "title": [
+       89,
+       578,
+       889,
+       127
+      ],
+      "venue": [
+       89,
+       838,
+       889,
+       127
+      ],
+      "h2": [
+       89,
+       352,
+       745,
+       93
+      ]
+     }
+    },
+    {
+     "t": 3.65,
+     "frame": 219,
+     "kind": "scroll",
+     "what": "scroll to the consent"
+    },
+    {
+     "t": 4.367,
+     "frame": 262,
+     "kind": "tap",
+     "what": "tick 我愿意向本场成员展示我的昵称和小人",
+     "xy_px": [
+      122,
+      1682
+     ],
+     "note": "frame = mouse up (the ring starts 3 frames earlier)"
+    },
+    {
+     "t": 4.817,
+     "frame": 289,
+     "kind": "tap",
+     "what": "tap 开房并进入现场",
+     "xy_px": [
+      533,
+      1832
+     ],
+     "note": "frame = mouse up (the ring starts 3 frames earlier)"
+    },
+    {
+     "t": 4.833,
+     "frame": 290,
+     "kind": "state",
+     "what": "the new room"
+    }
+   ],
+   "text_guard": [
+    {
+     "at": "the new room",
+     "t": 5.833,
+     "hits": 0
+    }
+   ],
+   "qc": {
+    "video": "h264 High 1080x2340 60/1 yuv420p",
+    "colour": "bt709/bt709/bt709/tv",
+    "duration_s": 7.833,
+    "frames": 470,
+    "same_frame_count_as_rig": true,
+    "MB": 1.5,
+    "longest_still": {
+     "frames": 105,
+     "at_s": 1.917
+    },
+    "still_over_1s": [
+     "0.02s+1.05s",
+     "1.92s+1.75s"
+    ],
+    "motion_windows": 22,
+    "motion_windows_bad": []
+   }
+  },
+  {
+   "id": "H-02",
+   "file": "/tmp/space-video-doodle/prod/capture/H1-host-rc2/clips/H-02.mp4",
+   "bytes": 1910427,
+   "sha256": "6c65813b1ac6da8849c2098a9e93ebb9b1a0a52cf754e77402fbd59ba6eda6e2",
+   "frames": 412,
+   "seconds": 6.867,
+   "what": "Livehouse 乐迷社群: 社群名称 「月台 Livehouse 乐迷社群」 typed on 32nds from beat 0 (done on beat 2), tick 「创建社群，向成员展示我的昵称、小人和发言」 (beat 3), 「创建 Livehouse 乐迷社群」 (beat 4); open it (beat 4.5) -> the community room: the 3D header with the sign 「月台 Livehouse / 乐迷社群」, 散场以后，也留一个位置",
+   "feeds_v2": [
+    "A5 S7 65-66",
+    "A6 74"
+   ],
+   "grids": [
+    {
+     "name": "community",
+     "beat0_frame": 66,
+     "beat0_t": 1.1,
+     "bpm": 123,
+     "fpb": 29.2683
+    }
+   ],
+   "typing": [
+    {
+     "field": "community",
+     "text": "月台 Livehouse 乐迷社群",
+     "first": {
+      "t": 1.1,
+      "frame": 66
+     },
+     "last": {
+      "t": 2.083,
+      "frame": 125
+     }
+    }
+   ],
+   "actions": [
+    {
+     "t": 1,
+     "frame": 60,
+     "kind": "boxes",
+     "what": "boxes community create",
+     "boxes_px": {
+      "list": [
+       0,
+       878,
+       1080,
+       1462
+      ],
+      "input": [
+       55,
+       1647,
+       969,
+       133
+      ],
+      "consent": [
+       55,
+       1569,
+       969,
+       212
+      ],
+      "create": [
+       55,
+       1996,
+       657,
+       128
+      ]
+     }
+    },
+    {
+     "t": 1,
+     "frame": 60,
+     "kind": "grid",
+     "what": "♩ community beat0",
+     "beat0_frame": 60
+    },
+    {
+     "t": 2.567,
+     "frame": 154,
+     "kind": "tap",
+     "what": "tick 创建社群… (beat 3)",
+     "xy_px": [
+      86,
+      1877
+     ],
+     "note": "frame = mouse up (the ring starts 3 frames earlier)"
+    },
+    {
+     "t": 3.05,
+     "frame": 183,
+     "kind": "tap",
+     "what": "tap 创建 Livehouse 乐迷社群 (beat 4)",
+     "xy_px": [
+      384,
+      2060
+     ],
+     "note": "frame = mouse up (the ring starts 3 frames earlier)"
+    },
+    {
+     "t": 3.067,
+     "frame": 184,
+     "kind": "state",
+     "what": "community entry"
+    },
+    {
+     "t": 3.067,
+     "frame": 184,
+     "kind": "boxes",
+     "what": "boxes community list",
+     "boxes_px": {
+      "entry": [
+       55,
+       1303,
+       764,
+       216
+      ]
+     }
+    },
+    {
+     "t": 3.35,
+     "frame": 201,
+     "kind": "tap",
+     "what": "tap 月台 Livehouse 乐迷社群 (beat 4.5)",
+     "xy_px": [
+      438,
+      1411
+     ],
+     "note": "frame = mouse up (the ring starts 3 frames earlier)"
+    },
+    {
+     "t": 3.367,
+     "frame": 202,
+     "kind": "state",
+     "what": "community room"
+    },
+    {
+     "t": 6.367,
+     "frame": 382,
+     "kind": "boxes",
+     "what": "boxes community room",
+     "boxes_px": {
+      "panel": [
+       0,
+       803,
+       1080,
+       1537
+      ],
+      "h2": [
+       55,
+       942,
+       814,
+       83
+      ],
+      "eyebrow": [
+       55,
+       853,
+       814,
+       50
+      ],
+      "actions": [
+       50,
+       1197,
+       980,
+       166
+      ]
+     }
+    }
+   ],
+   "text_guard": [
+    {
+     "at": "community room",
+     "t": 4.367,
+     "hits": 0
+    }
+   ],
+   "qc": {
+    "video": "h264 High 1080x2340 60/1 yuv420p",
+    "colour": "bt709/bt709/bt709/tv",
+    "duration_s": 6.867,
+    "frames": 412,
+    "same_frame_count_as_rig": true,
+    "MB": 1.9,
+    "longest_still": {
+     "frames": 9,
+     "at_s": 0.017
+    },
+    "still_over_1s": [],
+    "motion_windows": 18,
+    "motion_windows_bad": []
+   }
+  },
+  {
+   "id": "H-03",
+   "file": "/tmp/space-video-doodle/prod/capture/H1-host-rc2/clips/H-03.mp4",
+   "bytes": 397085,
+   "sha256": "79e124b57f039f989ff24fffc7c17ec4de1c6fcdde657747229107e6632d7652",
+   "frames": 288,
+   "seconds": 4.8,
+   "what": "LIVEHOUSE / 下一场见 · 发布下一场预告 filled (周六 · 月台夜 / 月台 Livehouse / 10/17 20:00 / 下周六，还在月台见！); tick 「发布给社群成员」 (beat 1), 「发布预告」 (beat 2) -> 下一场: the card 「下一场预告 · 周六 · 月台夜」",
+   "feeds_v2": [
+    "A6 75-76"
+   ],
+   "grids": [
+    {
+     "name": "publish",
+     "beat0_frame": 66,
+     "beat0_t": 1.1,
+     "bpm": 123,
+     "fpb": 29.2683
+    }
+   ],
+   "typing": [],
+   "actions": [
+    {
+     "t": 1,
+     "frame": 60,
+     "kind": "boxes",
+     "what": "boxes event form",
+     "boxes_px": {
+      "form": [
+       55,
+       969,
+       969,
+       1329
+      ],
+      "consent": [
+       55,
+       1977,
+       969,
+       122
+      ],
+      "publish": [
+       55,
+       2154,
+       312,
+       128
+      ],
+      "title": [
+       55,
+       1048,
+       969,
+       133
+      ],
+      "note": [
+       55,
+       1805,
+       969,
+       133
+      ]
+     }
+    },
+    {
+     "t": 1,
+     "frame": 60,
+     "kind": "grid",
+     "what": "♩ publish beat0",
+     "beat0_frame": 60
+    },
+    {
+     "t": 1.583,
+     "frame": 95,
+     "kind": "tap",
+     "what": "tick 发布给社群成员 (beat 1)",
+     "xy_px": [
+      86,
+      2035
+     ],
+     "note": "frame = mouse up (the ring starts 3 frames earlier)"
+    },
+    {
+     "t": 2.083,
+     "frame": 125,
+     "kind": "tap",
+     "what": "tap 发布预告 (beat 2)",
+     "xy_px": [
+      211,
+      2218
+     ],
+     "note": "frame = mouse up (the ring starts 3 frames earlier)"
+    },
+    {
+     "t": 2.1,
+     "frame": 126,
+     "kind": "state",
+     "what": "event card"
+    },
+    {
+     "t": 2.1,
+     "frame": 126,
+     "kind": "state",
+     "what": "event card on screen"
+    },
+    {
+     "t": 3.3,
+     "frame": 198,
+     "kind": "boxes",
+     "what": "boxes event card",
+     "boxes_px": {
+      "card": [
+       55,
+       848,
+       969,
+       1655
+      ],
+      "small": [
+       105,
+       906,
+       194,
+       47
+      ],
+      "title": [
+       105,
+       985,
+       870,
+       68
+      ],
+      "start": [
+       105,
+       1349,
+       351,
+       122
+      ]
+     }
+    }
+   ],
+   "text_guard": [
+    {
+     "at": "event card",
+     "t": 2.7,
+     "hits": 0
+    }
+   ],
+   "qc": {
+    "video": "h264 High 1080x2340 60/1 yuv420p",
+    "colour": "bt709/bt709/bt709/tv",
+    "duration_s": 4.8,
+    "frames": 288,
+    "same_frame_count_as_rig": true,
+    "MB": 0.4,
+    "longest_still": {
+     "frames": 163,
+     "at_s": 2.1
+    },
+    "still_over_1s": [
+     "0.02s+1.58s",
+     "2.10s+2.72s"
+    ],
+    "motion_windows": 2,
+    "motion_windows_bad": []
+   }
+  }
+ ],
+ "stills": [
+  {
+   "name": "CUT-H1-create-sheet",
+   "file": "/tmp/space-video-doodle/prod/capture/H1-host-rc2/stills/CUT-H1-create-sheet.png",
+   "frame": 751,
+   "clip_px": {
+    "x": 0,
+    "y": 0,
+    "w": 1080,
+    "h": 2340
+   },
+   "f_H-01": 182
+  },
+  {
+   "name": "CUT-H1-new-room",
+   "file": "/tmp/space-video-doodle/prod/capture/H1-host-rc2/stills/CUT-H1-new-room.png",
+   "frame": 1008,
+   "clip_px": {
+    "x": 0,
+    "y": 0,
+    "w": 1080,
+    "h": 2340
+   },
+   "f_H-01": 439
+  },
+  {
+   "name": "CUT-H2-community-room",
+   "file": "/tmp/space-video-doodle/prod/capture/H1-host-rc2/stills/CUT-H2-community-room.png",
+   "frame": 1507,
+   "clip_px": {
+    "x": 0,
+    "y": 0,
+    "w": 1080,
+    "h": 2340
+   },
+   "f_H-02": 381
+  },
+  {
+   "name": "CUT-H3-event-form",
+   "file": "/tmp/space-video-doodle/prod/capture/H1-host-rc2/stills/CUT-H3-event-form.png",
+   "frame": 1885,
+   "clip_px": {
+    "x": 11,
+    "y": 924,
+    "w": 1058,
+    "h": 1416
+   },
+   "f_H-03": 59
+  },
+  {
+   "name": "CUT-H3-event-card",
+   "file": "/tmp/space-video-doodle/prod/capture/H1-host-rc2/stills/CUT-H3-event-card.png",
+   "frame": 2023,
+   "clip_px": {
+    "x": 17,
+    "y": 809,
+    "w": 1047,
+    "h": 1531
+   },
+   "f_H-03": 197
+  },
+  {
+   "name": "CUT-H3-space-after",
+   "file": "/tmp/space-video-doodle/prod/capture/H1-host-rc2/stills/CUT-H3-space-after.png",
+   "frame": 2023,
+   "clip_px": {
+    "x": 0,
+    "y": 0,
+    "w": 1080,
+    "h": 2340
+   },
+   "f_H-03": 197
+  }
+ ],
+ "warnings": [
+  {
+   "frame": 1611,
+   "msg": "scroll no-op .space-management .community-scroll"
+  }
+ ],
+ "page_errors": [],
+ "font_waits": [],
+ "fonts": "before every grabbed frame the take forces layout and waits while a Doodle font slice is loading (font-display: swap), so no frame shows a fallback face; font_waits = [stepped frame, ms waited]",
+ "copy_check": "before each clip and at each state the visible DOM text was searched for 示例 / 虚构 / 本页 (the take stops on a hit): 0 hits"
+}

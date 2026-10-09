@@ -1,0 +1,11 @@
+const kind=globalThis.KIND||'phone';const {page}=await get(kind);
+await closeEverything(page);
+await page.evaluate(()=>{for(const sel of ['.community-panel:not([hidden])>header>button']){for(const b of document.querySelectorAll(sel)){if(b.getClientRects().length)b.click();}}});await sleep(500);
+const roomId=await page.evaluate(()=>document.querySelector('[data-open="recap"][data-id]')?.dataset.id||null);
+await openKind(page,'rooms');await sleep(1500);
+const rooms=await page.evaluate(()=>[...document.querySelectorAll('#panel-body [data-open="recap"]')].map(b=>({id:b.dataset.id,t:b.textContent.trim().slice(0,40)})));
+const id=rooms[0]?.id;
+await openKind(page,'moderation',id);await sleep(2500);
+await page.evaluate(()=>document.activeElement?.blur?.());
+await page.screenshot({path:`/tmp/space-doodle/social-work/now/probe-moderation-${kind}.png`});
+return {rooms,mod:await page.evaluate(()=>{const m=document.querySelector('.room-moderation');return m?{hidden:m.hidden,text:m.textContent.trim().slice(0,300)}:null;})};

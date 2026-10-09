@@ -1,0 +1,192 @@
+{
+ "states": [
+  {
+   "vp": "desktop",
+   "label": "corner-invite",
+   "selector": ".corner-panel",
+   "visible": "TWO SIDES / 两个人的创作角\n×\n一起留张纪念。\n重新读取\n\n邀请 TA 一起做一张双人纪念。\n\n邀请 TA，并展示我的昵称和小人\n发出邀请\n我的创作与邀请",
+   "attrs": [
+    "@aria-label=双人创作角",
+    "@aria-label=关闭创作角"
+   ],
+   "hidden": [],
+   "at": 1791390413172
+  },
+  {
+   "vp": "desktop",
+   "label": "corner-after-invite",
+   "selector": ".corner-panel",
+   "visible": "TWO SIDES / 两个人的创作角\n×\n一起留张纪念。\n\n已确认。\n\n重新读取\n\n等 TA 加入。\n\n撤销共同创作我的创作与邀请",
+   "attrs": [
+    "@aria-label=双人创作角",
+    "@aria-label=关闭创作角"
+   ],
+   "hidden": [],
+   "at": 1791390416299
+  },
+  {
+   "vp": "desktop",
+   "label": "corner-after-wait",
+   "selector": ".corner-panel",
+   "visible": "TWO SIDES / 两个人的创作角\n×\n一起留张纪念。\n\n已确认。\n\n重新读取\nMUSIC SPACE / TWO SIDES\n同一晚，我们的另一面。\n访客2134\n\n这一晚，我在这里。\n\n访客2134 的这一面\n阿遥\n\n舞台这一面，交给我。\n\n正在读取照片。\n\n阿遥 的这一面\n我们的共同草稿\n我的一句话\n我的照片\n不放照片\n把我的小人、留言和照片给 TA\n保存我的部分\n\n版本 3 · 你未确认 · 对方未确认\n\n我确认这一版\n确认这一版本\n撤销共同创作我的创作与邀请",
+   "attrs": [
+    "@aria-label=双人创作角",
+    "@aria-label=关闭创作角",
+    "@aria-label=Music Space 的小人"
+   ],
+   "hidden": [
+    "Music Space 的小人",
+    "不放照片"
+   ],
+   "at": 1791390418322
+  },
+  {
+   "vp": "desktop",
+   "label": "corner-list",
+   "selector": ".corner-panel",
+   "visible": "TWO SIDES / 两个人的创作角\n×\n一起留张纪念。\n重新读取\n\n只有你们两个人看得到。\n\n继续创作\n版本 3\n我的创作与邀请",
+   "attrs": [
+    "@aria-label=双人创作角",
+    "@aria-label=关闭创作角"
+   ],
+   "hidden": [],
+   "at": 1791390419945
+  },
+  {
+   "vp": "desktop",
+   "label": "feedback-form",
+   "selector": ".room-moderation",
+   "visible": "这一场 / 彼此尊重\n向本场房主反馈\n×\n\n关于 北屿\n\n回声现场\n\n只有本场房主会看到。\n\n是什么情况？\n骚扰或不友善行为\n不合适的现场内容\n涉及隐私\n重复或广告信息\n其他现场情况\n告诉房主具体发生了什么\n0 / 280\n把这段说明交给本场房主\n提交给本场房主",
+   "attrs": [
+    "@aria-label=本场反馈与管理",
+    "@aria-label=关闭反馈与管理",
+    "@placeholder=说说现场发生了什么"
+   ],
+   "hidden": [
+    "骚扰或不友善行为",
+    "不合适的现场内容",
+    "涉及隐私",
+    "重复或广告信息",
+    "其他现场情况"
+   ],
+   "at": 1791390422189
+  },
+  {
+   "vp": "desktop",
+   "label": "layout:feedback-form",
+   "selector": ".room-moderation",
+   "layout": {
+    "pageOverflow": false,
+    "out": [],
+    "tall": [],
+    "orphan": []
+   }
+  },
+  {
+   "vp": "desktop",
+   "label": "feedback-sent",
+   "selector": ".room-moderation",
+   "visible": "这一场 / 彼此尊重\n我提交的反馈\n×\n\n只有对应场次的房主能看到。\n\n等待房主查看\n北屿\n其他现场情况\n\n一直挡在前面\n\n撤回这项反馈\n上一页\n第 1 页\n下一页\n刷新这一页",
+   "attrs": [
+    "@aria-label=本场反馈与管理",
+    "@aria-label=关闭反馈与管理"
+   ],
+   "hidden": [],
+   "at": 1791390425567
+  },
+  {
+   "vp": "desktop",
+   "label": "feedback-withdraw-confirm",
+   "selector": ".room-moderation",
+   "visible": "这一场 / 彼此尊重\n我提交的反馈\n×\n\n只有对应场次的房主能看到。\n\n等待房主查看\n北屿\n其他现场情况\n\n一直挡在前面\n\n撤回这项反馈\n上一页\n第 1 页\n下一页\n刷新这一页\n撤回这项反馈？\n\n撤回后，房主会看到它已撤回。\n\n确认撤回再想想",
+   "attrs": [
+    "@aria-label=本场反馈与管理",
+    "@aria-label=关闭反馈与管理"
+   ],
+   "hidden": [],
+   "at": 1791390426925
+  },
+  {
+   "vp": "desktop",
+   "label": "wardrobe-room",
+   "selector": ".wardrobe",
+   "visible": "MY LOOK\n今晚，我这样。\n×\n正面\n3/4\n侧面\n背面\n试穿中 · 仅自己可见\n大家叫我\n\n逐件搭配\n换一件，其他保持不变\n\n发型\n眼镜\n上装\n下装\n鞋\n配饰\n配色\n表情\n动作\n01\n侧扫\n+\n02\n不对称鲍伯\n+\n03\n碎刺\n✓\n04\n高马尾\n+\n05\n卷束\n+\n06\n齐切鲍伯\n+\n07\n中分\n+\n08\n短寸\n+\n8 件 · 自由搭配\n试试现成搭配\n\n一键换装，之后还能逐件改。\n\n留白\n断拍\n循迹\n回声\n失真\n脉冲\n取消\n保存这个我 ↗",
+   "attrs": [
+    "@aria-label=我的衣橱",
+    "@aria-label=取消试穿，关闭衣橱",
+    "@aria-label=当前试穿的小人",
+    "@aria-label=查看角度",
+    "@aria-label=昵称",
+    "@placeholder=留一个昵称",
+    "@aria-label=装扮类别",
+    "@aria-label=试穿组合：留白",
+    "@aria-label=试穿组合：断拍",
+    "@aria-label=试穿组合：循迹",
+    "@aria-label=试穿组合：回声",
+    "@aria-label=试穿组合：失真",
+    "@aria-label=试穿组合：脉冲"
+   ],
+   "hidden": [
+    "当前试穿的小人"
+   ],
+   "at": 1791390428384
+  },
+  {
+   "vp": "desktop",
+   "label": "layout:wardrobe",
+   "selector": ".wardrobe",
+   "layout": {
+    "pageOverflow": false,
+    "out": [],
+    "tall": [],
+    "orphan": []
+   }
+  },
+  {
+   "vp": "desktop",
+   "label": "identity-backup",
+   "selector": ".identity-continuity, #panel",
+   "visible": "把相识的线，接到下一场\n×\n留好自己的小人身份\n\n换手机或清缓存前，先备份你的小人。\n\n备份文件已加密，忘记密码就打不开。\n\n备份密码（至少 12 位）\n再输入一次\n导出加密备份，由我自己保管\n下载加密备份\n备份文件\n备份密码\n用备份替换现在的身份\n恢复身份",
+   "attrs": [
+    "@aria-label=备份或恢复小人身份",
+    "@aria-label=关闭身份备份"
+   ],
+   "hidden": [],
+   "at": 1791390429960
+  }
+ ],
+ "logs": {
+  "desktop w5": [
+   "load: /musicSpace/",
+   "title: Music Space · 同一刻，另一面",
+   "live:loading(hidden): Music Space灯快亮了正在准备三维场景",
+   "live:render-status: 正在布置现场…",
+   "live:loading(hidden): Music Space灯快亮了正在布置现场…",
+   "live:loading(hidden): Music Space灯快亮了正在准备三维场景",
+   "live:render-status: 正在布置现场…",
+   "live:render-status: 现场进行中",
+   "live:view-label: 正在靠近",
+   "live:render-status: 现场进行中",
+   "live:demo-tour: 第一次来 1/4 · 放一张今晚的照片收起挑一张，或者用你自己的。人海那张舞台那张用我自己的照片跳过路线",
+   "live:view-label: 正在靠近",
+   "live:render-status: 4 位同场",
+   "live:toast: 招呼已送达，等待对方回应",
+   "live:render-status: 4 位同场",
+   "live:demo-tour: 第一次来 1/4 · 放一张今晚的照片收起挑一张，或者用你自己的。人海那张舞台那张用我自己的照片跳过路线",
+   "live:render-status: 4 位同场",
+   "live:toast(hidden): 招呼已送达，等待对方回应",
+   "live:status: 上一步还没确认。",
+   "live:status: 已确认。",
+   "live:status: 正在读取…",
+   "live:status: 已确认。",
+   "live:render-status: 4 位同场",
+   "live:render-status: 5 位同场",
+   "live:status: 已确认。",
+   "live:status: 正在读取照片。",
+   "live:status: 已确认。",
+   "live:render-status: 5 位同场",
+   "live:demo-tour: 第一次来 1/4 · 放一张今晚的照片收起挑一张，或者用你自己的。人海那张舞台那张用我自己的照片跳过路线",
+   "live:render-status: 5 位同场"
+  ]
+ }
+}

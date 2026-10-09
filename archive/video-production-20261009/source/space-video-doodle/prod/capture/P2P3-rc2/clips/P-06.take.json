@@ -1,0 +1,146 @@
+{
+ "take": "TAKE-P2 (rc.2)",
+ "clip": "P-06",
+ "base": "http://127.0.0.1:48741/musicSpace/",
+ "clock": "2026-10-08T22:40:00+08:00",
+ "workBpm": 123,
+ "beatFrames": 29.268,
+ "audits": [
+  {
+   "label": "room before recording",
+   "banned": [],
+   "watch": [],
+   "chars": 350
+  },
+  {
+   "label": "upload sheet (AI line on screen)",
+   "banned": [],
+   "watch": [],
+   "chars": 479
+  },
+  {
+   "label": "end of take",
+   "banned": [],
+   "watch": [],
+   "chars": 442
+  }
+ ],
+ "roomText": [
+  "阿遥 · 可招呼",
+  "小满 · 可招呼",
+  "北屿 · 可招呼",
+  "阿宁 · 我"
+ ],
+ "ai": null,
+ "build": {
+  "version": "0.22.0-rc.2",
+  "commit": "8fa52f0",
+  "builtAt": "2026-10-07T20:18:33.163Z"
+ },
+ "tourCard": "第一次来 1/4 · 放一张今晚的照片 收起 人海那张 舞台那张 用我自己的照片 跳过路线",
+ "freeze": {
+  "kept": 1,
+  "done": 1
+ },
+ "aiLine": {
+  "tag": "不确定，请选择",
+  "cls": "moment-ai-tag moment-ai-tag--unsure",
+  "line": "不确定，请选择，AI 认为更可能是舞台或人海",
+  "chips": [
+   "stage suggested",
+   "crowd suggested",
+   "friends",
+   "detail"
+  ],
+  "taken": "拍摄于 21:47 · 来自照片自带的信息修改时间修改拍摄时间 · 北京时间"
+ },
+ "sheetText": "× 留一个现场瞬间 这一张，由你决定给谁看。 用我自己的照片 或者挑一张今晚的 人海那张 舞台那张 拍摄于 21:47 · 来自照片自带的信息 修改时间 我拍的这一面 舞台 灯光下的那一面 人海 一起举手的那一面 身边 陪你听歌的那一面 细节 只有你留意的那一面 AI 认为这一面更可能 不确定，请选择 ，AI 认为更可能是舞台或人海 配对时用它找另一面，你说了算。 可见范围 仅自己保存 分享给本场成员 照片会缩小，并去掉位置信息。 保存这张照片",
+ "afterTap": [
+  "stage selected",
+  "crowd",
+  "friends",
+  "detail"
+ ],
+ "rec": {
+  "file": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/clips/P-06.mp4",
+  "frames": 326,
+  "seconds": 5.433,
+  "bytes": 1911945,
+  "wallSeconds": 18.9,
+  "wallPerVideoSecond": 3.49,
+  "msPerFrame": {
+   "step": 1.6,
+   "grab": 54.1,
+   "write": 1.7
+  },
+  "dup": {
+   "frames": 326,
+   "unique": 110,
+   "consecutiveDuplicates": 215,
+   "longestStill": 80,
+   "stillRuns": [
+    "0.73s+9f",
+    "0.88s+9f",
+    "1.03s+9f",
+    "1.18s+9f",
+    "1.33s+9f",
+    "1.48s+9f",
+    "1.63s+9f",
+    "1.78s+9f",
+    "2.40s+52f",
+    "3.33s+19f",
+    "4.10s+80f"
+   ]
+  }
+ },
+ "timeline": [
+  {
+   "label": "room (onboarding card 第一次来 1/4 · 放一张今晚的照片)",
+   "frame": 0,
+   "t": 0
+  },
+  {
+   "label": "tap 舞台那张",
+   "frame": 120,
+   "t": 2,
+   "down": 117,
+   "up": 120,
+   "x": 116,
+   "y": 627
+  },
+  {
+   "label": "AI line 「不确定，请选择」 + dashed 舞台/人海 on screen (sync point 33:4)",
+   "frame": 134,
+   "t": 2.233
+  },
+  {
+   "label": "upload sheet first frame (fading in over the room)",
+   "frame": 120,
+   "t": 2
+  },
+  {
+   "label": "tap 舞台 chip (3 beats after the AI line = 34:3)",
+   "frame": 222,
+   "t": 3.7,
+   "down": 219,
+   "up": 222,
+   "x": 109,
+   "y": 378
+  },
+  {
+   "label": "end",
+   "frame": 326,
+   "t": 5.433
+  }
+ ],
+ "probeRuns": [
+  "0+120:-",
+  "120+2:P0|T|scfd|img",
+  "122+12:P0|Uh|s~c~fd|img",
+  "134+88:P219|Uv|s~c~fd|img",
+  "222+104:P219|0|s*cfd|img"
+ ],
+ "savedPhotos": 0,
+ "errors": [],
+ "console": []
+}

@@ -1,0 +1,14 @@
+import { launch, newPage, sleep, BASE, ensureDir } from './lib.mjs';
+import { hostCreatesRoom, panelInfo } from './flows.mjs';
+const out = ensureDir('/tmp/space-video-prep/stills/explore');
+const browser = await launch();
+const { page } = await newPage(browser);
+page.on('console', m => { if (['error'].includes(m.type())) console.log('[console]', m.type(), m.text().slice(0, 160)); });
+await hostCreatesRoom(page, { name: '阿遥', title: '返场夜', venue: '月台 Livehouse' });
+await page.screenshot({ path: `${out}/05-room-created.png` });
+console.log('panel', JSON.stringify(await panelInfo(page)));
+console.log('scene-code', await page.evaluate(() => document.querySelector('.scene-code')?.innerText));
+console.log('presence', await page.evaluate(() => document.querySelector('.presence')?.innerText));
+console.log('hotspots', JSON.stringify(await page.evaluate(() => [...document.querySelectorAll('.hotspot')].map(h => h.innerText + '|' + h.className))));
+console.log('url', page.url());
+await browser.close();

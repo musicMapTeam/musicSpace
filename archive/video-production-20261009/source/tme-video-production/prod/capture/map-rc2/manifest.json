@@ -1,0 +1,2427 @@
+{
+ "what": "Music Space film v2 re-capture: the embedded Music Map 「音乐探索」 (Doodle) on the rc2 build — the record table round from the room, its 来源, the next singer, a found song; the paper courtyard (hold, product camera flights in slow motion, a slow push)",
+ "made": "2026-10-07T22:40:30.619Z",
+ "build": {
+  "path": "/tmp/space-final/dist-pages",
+  "version": "0.22.0-rc.2",
+  "commit": "8fa52f0",
+  "builtAt": "2026-10-07T20:18:33.163Z",
+  "content": "0.22.0-rc.2 (complete-product copy, Livehouse community, Doodle Music Map)",
+  "served": "scripts/pages/serve-prefix.mjs /tmp/space-final/dist-pages /musicSpace/ 48613 (GitHub Pages emulation, root route /musicSpace/), stopped after capture"
+ },
+ "rig": {
+  "browser": "system Google Chrome (headless), --use-angle=metal --enable-gpu --ignore-gpu-blocklist --enable-gpu-rasterization (real GPU), --force-color-profile=srgb, --hide-scrollbars; locale zh-CN, Asia/Shanghai",
+  "clock": "Playwright fake clock from 2026-10-09T22:40:00+08:00 (a Friday night); every captured frame advances virtual time by 16 ms; CSS/WAAPI animations pinned to the same virtual time; Math.random seeded 20261009",
+  "frames": "one lossless CDP PNG screenshot per frame -> ffmpeg (libx264 High, CRF 15, preset slow, tune animation, yuv420p, BT.709 primaries/transfer/matrix, limited range, 60 fps CFR, +faststart, no audio); the desktop 1920x1080 copy is a Lanczos downscale of the same lossless frames in the same ffmpeg pass (not of the H.264 master)",
+  "speed": "virtual time advances 16 ms per frame and the files are 60 fps: playback is 4 % slower than real time (62.5 -> 60), as in every clip of this rig; all times here are video times (frame / 60)",
+  "taps": "no cursor; each UI tap shows the rig's doodle tap ring (yellow ring, ink outline, pink offset; 30 frames from the press; the DOM click fires 3 frames after the ring, 9 frames for 「音乐探索」); in the map the ring is a top-layer popover so it also shows over the map's modal papers",
+  "beat": "taps on a 123 BPM grid (Flipping In; 29.268 frames per beat): see the grid marks",
+  "fonts": "the Doodle faces are sliced by character (font-display: swap); before every grabbed frame the rig forces layout and, if a slice is loading, waits (real time) until it has arrived, so no frame shows a fallback face (fontWaits per recording: frame, ms waited)",
+  "map_cadence": "the map scene redraws at most 30 fps when idle and every frame while its camera moves (its own throttle on the rAF time); the rig's rAF warp 1.05 (16.8 ms per frame) reproduces that cadence on the 16 ms fake rAF: idle 3D changes every 2nd frame (product cadence, not a capture freeze), camera moves every frame",
+  "navigation": "the room's 「音乐探索」 navigates the page to music-map/#/explore; the rig stops stepping during the load (real time), then re-arms in the new document; the clock carries over; the cut is a hard cut at the tap (frame of the cut in the actions)",
+  "slow_motion": "MAP-x2: the product's camera flights are GSAP tweens timed on Date.now; Date.now is warped to 1/3 during the flights (timers, rAF and the ink boil untouched); the GSAP paper fades during the flights are slowed by the same factor. 1/3 is about the limit: GSAP keeps >= 4 ms of its own time between ticks, so slower than ~1/3.8 the camera would only move on every 2nd/3rd frame (a 1/8 test showed exactly that judder and was dropped)"
+ },
+ "folders": {
+  "phone": "/tmp/space-video-doodle/prod/capture/map-rc2/phone",
+  "desktop_master_3840x2160": "/tmp/space-video-doodle/prod/capture/map-rc2/desktop/master",
+  "desktop_edit_1920x1080": "/tmp/space-video-doodle/prod/capture/map-rc2/desktop/1080",
+  "stills": "/tmp/space-video-doodle/prod/capture/map-rc2/stills",
+  "logs": "/tmp/space-video-doodle/prod/capture/map-rc2/logs",
+  "qc": "/tmp/space-video-doodle/prod/capture/map-rc2/qc",
+  "review_sheets": "/tmp/space-video-doodle/prod/capture/map-rc2/review",
+  "tools": "/tmp/space-video-doodle/prod/capture/map-rc2/tools"
+ },
+ "copy_check": "before every shot the visible DOM text was searched for 示例 / 虚构 / 本页 (text_guard per recording; the take stops on a hit): 0 hits",
+ "honesty": "singer names, songs, versions and 来源 exactly as the product shows them (real duets of its catalogue; 来源 cites 周杰伦官方频道 MV credit); no overlays added; nothing typed into the map",
+ "recordings": [
+  {
+   "id": "MAP-P1-round",
+   "files": {
+    "master": {
+     "file": "/tmp/space-video-doodle/prod/capture/map-rc2/phone/MAP-P1-round.mp4",
+     "bytes": 18038916,
+     "sha256": "fdca1262f1a5ff59671f51cf1c2b76cf9ca18444ab47b60e8be226caebbe2d92"
+    }
+   },
+   "frames": 1514,
+   "seconds": 25.233,
+   "viewport": {
+    "css": [
+     390,
+     845
+    ],
+    "dpr": 2.769230769230769,
+    "px": [
+     1080,
+     2340
+    ]
+   },
+   "notes": "phone. Room 「回声现场」 (阿宁 in 失真 with 阿遥, 小满, 北屿 on stage; 林间 arrives later in rc2) -> tap 「音乐探索」 (header) -> hard cut while the page navigates (nothing recorded during the load) -> music-map/#/explore: the record table round 「寻声 · 费玉清 → 邓紫棋，隔着几首歌？」; the scene draws its ink in (0.7 s) while the paper fades in (0.4 s) -> 翻开《千里之外》 (× 周杰伦) -> 「来源」: the paper 共同演唱 周杰伦 × 费玉清 · 千里之外 with 来源 open (演唱 周杰伦官方频道 · MV 署名, 访问于 2026-09-27) for ~2.5 s -> × -> 前往 周杰伦 (第 1 步) -> hand swipe to 06 -> 翻开《稻香 / Stay With You》 (× 林俊杰) -> 前往 林俊杰 (第 2 步) -> hand swipe to 04 -> 翻开《手心的蔷薇》 (× 邓紫棋 终点, toast 是邓紫棋！前往即抵达) -> 前往 邓紫棋: 抵达 (toast 抵达邓紫棋！3 步, the closing ceremony turns the table's sleeves over) -> 连线歌单 「费玉清 与 邓紫棋，隔着 3 首歌 · 你的路线 3 首 · 一步不绕」 -> 「+ 留下」《千里之外》 -> ✓ 已留下 (the product re-renders the paper: it fades out and in for ~0.3 s right after the tap) -> the setlist scrolls to 《稻香 / Stay With You》, 林俊杰 第 2 站, 《手心的蔷薇》, 邓紫棋 终点.",
+   "dup_exact": {
+    "frames": 1514,
+    "unique": 1047,
+    "consecutiveDuplicates": 465,
+    "longestStill": 133,
+    "stillRunsOver9f": [
+     "18.92s+47f",
+     "19.88s+20f",
+     "20.98s+71f",
+     "23.02s+133f"
+    ]
+   },
+   "wall_seconds": 132,
+   "msPerFrame": {
+    "step": 2.7,
+    "grab": 64.1,
+    "write": 2.6
+   },
+   "font_waits": [],
+   "text_guard": [
+    {
+     "at": "room before recording",
+     "t": null,
+     "hits": 0
+    },
+    {
+     "at": "map round (before the first map frame)",
+     "t": 1.617,
+     "hits": 0
+    },
+    {
+     "at": "来源 paper",
+     "t": 5.333,
+     "hits": 0
+    },
+    {
+     "at": "周杰伦 hand",
+     "t": 10.25,
+     "hits": 0
+    },
+    {
+     "at": "林俊杰 hand",
+     "t": 14,
+     "hits": 0
+    },
+    {
+     "at": "连线歌单",
+     "t": 18.217,
+     "hits": 0
+    },
+    {
+     "at": "连线歌单 (scrolled)",
+     "t": 23.033,
+     "hits": 0
+    }
+   ],
+   "warnings": [],
+   "page_errors": [],
+   "console": [],
+   "qc": [
+    {
+     "file": "/tmp/space-video-doodle/prod/capture/map-rc2/phone/MAP-P1-round.mp4",
+     "video": "h264 High 1080x2340 60/1 yuv420p",
+     "colour": "bt709/bt709/bt709/tv",
+     "duration_s": 25.233,
+     "frames": 1514,
+     "same_frame_count_as_rig": true,
+     "MB": 18,
+     "bitrate_mbps": 5.7,
+     "audio_streams": 0,
+     "longest_still": {
+      "frames": 133,
+      "at_s": 23.033
+     },
+     "still_over_1s": [
+      "18.65s+1.08s",
+      "20.72s+1.47s",
+      "23.03s+2.22s"
+     ],
+     "motion_windows": 13,
+     "motion_windows_bad": [],
+     "exact_repeat_runs_over_9f": [
+      "18.92s+47f",
+      "19.88s+20f",
+      "20.98s+71f",
+      "23.02s+133f"
+     ]
+    }
+   ],
+   "actions": [
+    {
+     "t": 0,
+     "frame": 0,
+     "kind": "grid",
+     "what": "grid room"
+    },
+    {
+     "t": 0,
+     "frame": 0,
+     "kind": "mark",
+     "what": "room (回声现场, 阿宁 in 失真, cast on stage)",
+     "boxes_master_px": {
+      "header": [
+       33,
+       0,
+       1014,
+       177
+      ],
+      "mapEntry": [
+       252,
+       33,
+       222,
+       122
+      ],
+      "roomTitle": [
+       71,
+       309,
+       332,
+       124
+      ]
+     }
+    },
+    {
+     "t": 1.467,
+     "frame": 88,
+     "kind": "tap",
+     "what": "tap 「音乐探索」 (beat 3)",
+     "xy_master_px": [
+      363,
+      94
+     ],
+     "box_master_px": [
+      252,
+      33,
+      222,
+      122
+     ],
+     "clickFrame": 97,
+     "onBeat": true
+    },
+    {
+     "t": 1.617,
+     "frame": 97,
+     "kind": "mark",
+     "what": "cut: the page navigates to music-map/#/explore (no frames recorded while it loads)"
+    },
+    {
+     "t": 1.617,
+     "frame": 97,
+     "kind": "mark",
+     "what": "map first frame: 寻声 费玉清 → 邓紫棋 (the scene draws its ink in, the paper fades in)",
+     "boxes_master_px": {
+      "slip": [
+       28,
+       177,
+       1025,
+       299
+      ],
+      "hand": [
+       22,
+       1667,
+       1036,
+       440
+      ],
+      "canvas": [
+       0,
+       0,
+       1080,
+       2340
+      ],
+      "from": [
+       72,
+       298,
+       154,
+       61
+      ],
+      "to": [
+       314,
+       298,
+       147,
+       61
+      ],
+      "tools": [
+       28,
+       499,
+       1025,
+       144
+      ]
+     }
+    },
+    {
+     "t": 3.817,
+     "frame": 229,
+     "kind": "grid",
+     "what": "grid flip 千里之外"
+    },
+    {
+     "t": 3.817,
+     "frame": 229,
+     "kind": "tap",
+     "what": "flip 《千里之外》",
+     "xy_master_px": [
+      422,
+      1963
+     ],
+     "box_master_px": [
+      266,
+      1900,
+      312,
+      126
+     ],
+     "clickFrame": 232,
+     "onBeat": true
+    },
+    {
+     "t": 3.867,
+     "frame": 232,
+     "kind": "mark",
+     "what": "card 《千里之外》 × 周杰伦 open",
+     "boxes_master_px": {
+      "card": [
+       488,
+       1549,
+       142,
+       523
+      ],
+      "toast": [
+       81,
+       1413,
+       917,
+       129
+      ],
+      "table": [
+       0,
+       0,
+       1080,
+       2340
+      ]
+     }
+    },
+    {
+     "t": 3.867,
+     "frame": 232,
+     "kind": "state",
+     "what": "card open × 周杰伦",
+     "waitedFrames": 0
+    },
+    {
+     "t": 5.283,
+     "frame": 317,
+     "kind": "tap",
+     "what": "来源 《千里之外》 (beat 3)",
+     "xy_master_px": [
+      766,
+      1963
+     ],
+     "box_master_px": [
+      694,
+      1902,
+      146,
+      122
+     ],
+     "clickFrame": 320,
+     "onBeat": true
+    },
+    {
+     "t": 5.333,
+     "frame": 320,
+     "kind": "state",
+     "what": "来源 paper open",
+     "waitedFrames": 0
+    },
+    {
+     "t": 5.817,
+     "frame": 349,
+     "kind": "mark",
+     "what": "still MAP-P1-round-sources"
+    },
+    {
+     "t": 5.833,
+     "frame": 350,
+     "kind": "mark",
+     "what": "来源 paper (共同演唱 周杰伦 × 费玉清 · 千里之外 · 来源 open)",
+     "boxes_master_px": {
+      "dialog": [
+       39,
+       985,
+       1002,
+       1310
+      ],
+      "sources": [
+       111,
+       1795,
+       872,
+       633
+      ],
+      "pair": [
+       111,
+       1216,
+       872,
+       122
+      ]
+     }
+    },
+    {
+     "t": 7.883,
+     "frame": 473,
+     "kind": "grid",
+     "what": "grid close 来源"
+    },
+    {
+     "t": 8.133,
+     "frame": 488,
+     "kind": "tap",
+     "what": "close the paper (×)",
+     "xy_master_px": [
+      939,
+      1063
+     ],
+     "box_master_px": [
+      874,
+      998,
+      130,
+      130
+     ],
+     "clickFrame": 491,
+     "onBeat": true
+    },
+    {
+     "t": 8.183,
+     "frame": 491,
+     "kind": "state",
+     "what": "paper closed",
+     "waitedFrames": 0
+    },
+    {
+     "t": 8.317,
+     "frame": 499,
+     "kind": "grid",
+     "what": "grid go 周杰伦"
+    },
+    {
+     "t": 8.8,
+     "frame": 528,
+     "kind": "tap",
+     "what": "前往 周杰伦 (beat 1)",
+     "xy_master_px": [
+      487,
+      1964
+     ],
+     "box_master_px": [
+      289,
+      1901,
+      396,
+      127
+     ],
+     "clickFrame": 531,
+     "onBeat": true
+    },
+    {
+     "t": 8.85,
+     "frame": 531,
+     "kind": "mark",
+     "what": "step 1: 周杰伦 (10 首合唱)",
+     "boxes_master_px": {
+      "who": [
+       55,
+       1567,
+       138,
+       60
+      ],
+      "slip": [
+       72,
+       382,
+       936,
+       64
+      ],
+      "toast": [
+       300,
+       1410,
+       480,
+       129
+      ]
+     }
+    },
+    {
+     "t": 8.85,
+     "frame": 531,
+     "kind": "state",
+     "what": "hand: 周杰伦",
+     "waitedFrames": 0
+    },
+    {
+     "t": 10.25,
+     "frame": 615,
+     "kind": "scroll",
+     "what": "hand scroll -> 《稻香 / Stay With You》",
+     "axis": "x",
+     "from": 1,
+     "to": 811,
+     "frames": 37,
+     "snap": "x mandatory"
+    },
+    {
+     "t": 11.183,
+     "frame": 671,
+     "kind": "grid",
+     "what": "grid flip 稻香"
+    },
+    {
+     "t": 11.183,
+     "frame": 671,
+     "kind": "tap",
+     "what": "flip 《稻香》",
+     "xy_master_px": [
+      529,
+      1963
+     ],
+     "box_master_px": [
+      260,
+      1899,
+      537,
+      129
+     ],
+     "clickFrame": 674,
+     "onBeat": true
+    },
+    {
+     "t": 11.233,
+     "frame": 674,
+     "kind": "mark",
+     "what": "card 《稻香 / Stay With You》 × 林俊杰 open",
+     "boxes_master_px": {
+      "card": [
+       232,
+       1881,
+       81,
+       140
+      ]
+     }
+    },
+    {
+     "t": 11.233,
+     "frame": 674,
+     "kind": "state",
+     "what": "card open × 林俊杰",
+     "waitedFrames": 0
+    },
+    {
+     "t": 12.65,
+     "frame": 759,
+     "kind": "tap",
+     "what": "前往 林俊杰 (beat 3)",
+     "xy_master_px": [
+      480,
+      1963
+     ],
+     "box_master_px": [
+      282,
+      1902,
+      394,
+      122
+     ],
+     "clickFrame": 762,
+     "onBeat": true
+    },
+    {
+     "t": 12.7,
+     "frame": 762,
+     "kind": "mark",
+     "what": "step 2: 林俊杰",
+     "boxes_master_px": {
+      "who": [
+       55,
+       1613,
+       138,
+       60
+      ],
+      "slip": [
+       72,
+       382,
+       936,
+       64
+      ]
+     }
+    },
+    {
+     "t": 12.7,
+     "frame": 762,
+     "kind": "state",
+     "what": "hand: 林俊杰",
+     "waitedFrames": 0
+    },
+    {
+     "t": 14,
+     "frame": 840,
+     "kind": "scroll",
+     "what": "hand scroll -> 《手心的蔷薇》",
+     "axis": "x",
+     "from": 1,
+     "to": 471,
+     "frames": 31,
+     "snap": "x mandatory"
+    },
+    {
+     "t": 14.833,
+     "frame": 890,
+     "kind": "grid",
+     "what": "grid flip 手心的蔷薇"
+    },
+    {
+     "t": 14.833,
+     "frame": 890,
+     "kind": "tap",
+     "what": "flip 《手心的蔷薇》",
+     "xy_master_px": [
+      437,
+      1963
+     ],
+     "box_master_px": [
+      261,
+      1900,
+      353,
+      127
+     ],
+     "clickFrame": 893,
+     "onBeat": true
+    },
+    {
+     "t": 14.883,
+     "frame": 893,
+     "kind": "mark",
+     "what": "card 《手心的蔷薇》 × 邓紫棋 终点 (toast 是邓紫棋！前往即抵达)",
+     "boxes_master_px": {
+      "card": [
+       222,
+       1546,
+       142,
+       527
+      ],
+      "toast": [
+       277,
+       1383,
+       526,
+       129
+      ]
+     }
+    },
+    {
+     "t": 14.883,
+     "frame": 893,
+     "kind": "state",
+     "what": "card open × 邓紫棋 (终点)",
+     "waitedFrames": 0
+    },
+    {
+     "t": 16.3,
+     "frame": 978,
+     "kind": "tap",
+     "what": "前往 邓紫棋 = 抵达 (beat 3)",
+     "xy_master_px": [
+      480,
+      1963
+     ],
+     "box_master_px": [
+      282,
+      1902,
+      394,
+      122
+     ],
+     "clickFrame": 981,
+     "onBeat": true
+    },
+    {
+     "t": 16.35,
+     "frame": 981,
+     "kind": "mark",
+     "what": "抵达 邓紫棋 · 3 步 (closing ceremony on the table)",
+     "boxes_master_px": {
+      "slip": [
+       28,
+       177,
+       1025,
+       449
+      ],
+      "toast": [
+       323,
+       1363,
+       435,
+       129
+      ],
+      "canvas": [
+       0,
+       0,
+       1080,
+       2340
+      ]
+     }
+    },
+    {
+     "t": 16.35,
+     "frame": 981,
+     "kind": "state",
+     "what": "ceremony (寻声 · 已抵达)",
+     "waitedFrames": 0
+    },
+    {
+     "t": 18.217,
+     "frame": 1093,
+     "kind": "mark",
+     "what": "连线歌单: 费玉清 与 邓紫棋，隔着 3 首歌",
+     "boxes_master_px": {
+      "dialog": [
+       14,
+       351,
+       1053,
+       2008
+      ],
+      "title": [
+       78,
+       579,
+       934,
+       189
+      ]
+     }
+    },
+    {
+     "t": 18.217,
+     "frame": 1093,
+     "kind": "state",
+     "what": "连线歌单 open",
+     "waitedFrames": 112
+    },
+    {
+     "t": 20.217,
+     "frame": 1213,
+     "kind": "grid",
+     "what": "grid keep 千里之外"
+    },
+    {
+     "t": 20.217,
+     "frame": 1213,
+     "kind": "tap",
+     "what": "「+ 留下」《千里之外》",
+     "xy_master_px": [
+      884,
+      1838
+     ],
+     "box_master_px": [
+      776,
+      1777,
+      215,
+      122
+     ],
+     "clickFrame": 1216,
+     "onBeat": true
+    },
+    {
+     "t": 20.25,
+     "frame": 1215,
+     "kind": "mark",
+     "what": "still MAP-P1-round-kept"
+    },
+    {
+     "t": 20.267,
+     "frame": 1216,
+     "kind": "mark",
+     "what": "《千里之外》 已留下 (a found song kept)",
+     "boxes_master_px": {
+      "save": [
+       731,
+       1778,
+       249,
+       121
+      ],
+      "toast": [
+       422,
+       205,
+       235,
+       129
+      ]
+     }
+    },
+    {
+     "t": 20.267,
+     "frame": 1216,
+     "kind": "state",
+     "what": "已留下",
+     "waitedFrames": 0
+    },
+    {
+     "t": 22.167,
+     "frame": 1330,
+     "kind": "scroll",
+     "what": "setlist scroll -> 《手心的蔷薇》",
+     "axis": "y",
+     "from": 0,
+     "to": 662,
+     "frames": 52,
+     "snap": "none"
+    },
+    {
+     "t": 23.033,
+     "frame": 1382,
+     "kind": "mark",
+     "what": "the setlist: 千里之外 → 稻香 / Stay With You → 手心的蔷薇"
+    },
+    {
+     "t": 25.217,
+     "frame": 1513,
+     "kind": "mark",
+     "what": "still MAP-P1-round-setlist"
+    },
+    {
+     "t": 25.233,
+     "frame": 1514,
+     "kind": "mark",
+     "what": "end"
+    }
+   ]
+  },
+  {
+   "id": "MAP-D1-round",
+   "files": {
+    "master": {
+     "file": "/tmp/space-video-doodle/prod/capture/map-rc2/desktop/master/MAP-D1-round.mp4",
+     "bytes": 71433145,
+     "sha256": "8f72ba6f564caffc1eb6394b81a9494c47612136c08a3a6069c0f8c0afc20d69"
+    },
+    "edit": {
+     "file": "/tmp/space-video-doodle/prod/capture/map-rc2/desktop/1080/MAP-D1-round.mp4",
+     "bytes": 32922690,
+     "sha256": "a3bb8f97af09107e98b03968bb0c16076cb4a918ce505f68358baf6fbeca85e0"
+    }
+   },
+   "frames": 1510,
+   "seconds": 25.167,
+   "viewport": {
+    "css": [
+     1440,
+     810
+    ],
+    "dpr": 2.6666666666666665,
+    "px": [
+     3840,
+     2160
+    ]
+   },
+   "notes": "desktop, same action as MAP-P1-round on the 1440x810 CSS layout (table centre, hand at the bottom, papers on the right).",
+   "dup_exact": {
+    "frames": 1510,
+    "unique": 1436,
+    "consecutiveDuplicates": 69,
+    "longestStill": 6,
+    "stillRunsOver9f": []
+   },
+   "wall_seconds": 363,
+   "msPerFrame": {
+    "step": 3.7,
+    "grab": 202.8,
+    "write": 14.8
+   },
+   "font_waits": [],
+   "text_guard": [
+    {
+     "at": "room before recording",
+     "t": null,
+     "hits": 0
+    },
+    {
+     "at": "map round (before the first map frame)",
+     "t": 1.617,
+     "hits": 0
+    },
+    {
+     "at": "来源 paper",
+     "t": 5.333,
+     "hits": 0
+    },
+    {
+     "at": "周杰伦 hand",
+     "t": 10.25,
+     "hits": 0
+    },
+    {
+     "at": "林俊杰 hand",
+     "t": 14,
+     "hits": 0
+    },
+    {
+     "at": "连线歌单",
+     "t": 18.167,
+     "hits": 0
+    },
+    {
+     "at": "连线歌单 (scrolled)",
+     "t": 22.967,
+     "hits": 0
+    }
+   ],
+   "warnings": [],
+   "page_errors": [],
+   "console": [],
+   "qc": [
+    {
+     "file": "/tmp/space-video-doodle/prod/capture/map-rc2/desktop/master/MAP-D1-round.mp4",
+     "video": "h264 High 3840x2160 60/1 yuv420p",
+     "colour": "bt709/bt709/bt709/tv",
+     "duration_s": 25.167,
+     "frames": 1510,
+     "same_frame_count_as_rig": true,
+     "MB": 71.4,
+     "bitrate_mbps": 22.7,
+     "audio_streams": 0,
+     "longest_still": {
+      "frames": 10,
+      "at_s": 2.533
+     },
+     "still_over_1s": [],
+     "motion_windows": 13,
+     "motion_windows_bad": [],
+     "exact_repeat_runs_over_9f": []
+    },
+    {
+     "file": "/tmp/space-video-doodle/prod/capture/map-rc2/desktop/1080/MAP-D1-round.mp4",
+     "video": "h264 High 1920x1080 60/1 yuv420p",
+     "colour": "bt709/bt709/bt709/tv",
+     "duration_s": 25.167,
+     "frames": 1510,
+     "same_frame_count_as_rig": true,
+     "MB": 32.9,
+     "bitrate_mbps": 10.5,
+     "audio_streams": 0,
+     "longest_still": {
+      "frames": 10,
+      "at_s": 2.533
+     },
+     "still_over_1s": [],
+     "motion_windows": 13,
+     "motion_windows_bad": [],
+     "exact_repeat_runs_over_9f": []
+    }
+   ],
+   "actions": [
+    {
+     "t": 0,
+     "frame": 0,
+     "kind": "grid",
+     "what": "grid room"
+    },
+    {
+     "t": 0,
+     "frame": 0,
+     "kind": "mark",
+     "what": "room (回声现场, 阿宁 in 失真, cast on stage)",
+     "boxes_master_px": {
+      "header": [
+       75,
+       0,
+       3691,
+       208
+      ],
+      "mapEntry": [
+       2893,
+       51,
+       279,
+       117
+      ],
+      "roomTitle": [
+       135,
+       374,
+       436,
+       163
+      ]
+     }
+    },
+    {
+     "t": 1.467,
+     "frame": 88,
+     "kind": "tap",
+     "what": "tap 「音乐探索」 (beat 3)",
+     "xy_master_px": [
+      3033,
+      109
+     ],
+     "box_master_px": [
+      2893,
+      51,
+      279,
+      117
+     ],
+     "clickFrame": 97,
+     "onBeat": true
+    },
+    {
+     "t": 1.617,
+     "frame": 97,
+     "kind": "mark",
+     "what": "cut: the page navigates to music-map/#/explore (no frames recorded while it loads)"
+    },
+    {
+     "t": 1.617,
+     "frame": 97,
+     "kind": "mark",
+     "what": "map first frame: 寻声 费玉清 → 邓紫棋 (the scene draws its ink in, the paper fades in)",
+     "boxes_master_px": {
+      "slip": [
+       85,
+       240,
+       1205,
+       358
+      ],
+      "hand": [
+       1064,
+       1428,
+       1712,
+       470
+      ],
+      "canvas": [
+       0,
+       0,
+       3840,
+       2160
+      ],
+      "from": [
+       144,
+       384,
+       195,
+       77
+      ],
+      "to": [
+       451,
+       384,
+       186,
+       77
+      ],
+      "tools": [
+       85,
+       625,
+       1070,
+       139
+      ]
+     }
+    },
+    {
+     "t": 3.817,
+     "frame": 229,
+     "kind": "grid",
+     "what": "grid flip 千里之外"
+    },
+    {
+     "t": 3.817,
+     "frame": 229,
+     "kind": "tap",
+     "what": "flip 《千里之外》",
+     "xy_master_px": [
+      1950,
+      1744
+     ],
+     "box_master_px": [
+      1776,
+      1683,
+      348,
+      122
+     ],
+     "clickFrame": 232,
+     "onBeat": true
+    },
+    {
+     "t": 3.867,
+     "frame": 232,
+     "kind": "mark",
+     "what": "card 《千里之外》 × 周杰伦 open",
+     "boxes_master_px": {
+      "card": [
+       2151,
+       1312,
+       23,
+       550
+      ],
+      "toast": [
+       1478,
+       1185,
+       884,
+       125
+      ],
+      "table": [
+       0,
+       0,
+       3840,
+       2160
+      ]
+     }
+    },
+    {
+     "t": 3.867,
+     "frame": 232,
+     "kind": "state",
+     "what": "card open × 周杰伦",
+     "waitedFrames": 0
+    },
+    {
+     "t": 5.283,
+     "frame": 317,
+     "kind": "tap",
+     "what": "来源 《千里之外》 (beat 3)",
+     "xy_master_px": [
+      2370,
+      1744
+     ],
+     "box_master_px": [
+      2300,
+      1685,
+      140,
+      117
+     ],
+     "clickFrame": 320,
+     "onBeat": true
+    },
+    {
+     "t": 5.333,
+     "frame": 320,
+     "kind": "state",
+     "what": "来源 paper open",
+     "waitedFrames": 0
+    },
+    {
+     "t": 5.817,
+     "frame": 349,
+     "kind": "mark",
+     "what": "still MAP-D1-round-sources"
+    },
+    {
+     "t": 5.833,
+     "frame": 350,
+     "kind": "mark",
+     "what": "来源 paper (共同演唱 周杰伦 × 费玉清 · 千里之外 · 来源 open)",
+     "boxes_master_px": {
+      "dialog": [
+       2592,
+       256,
+       1173,
+       1653
+      ],
+      "sources": [
+       2683,
+       1076,
+       1005,
+       610
+      ],
+      "pair": [
+       2683,
+       518,
+       1005,
+       117
+      ]
+     }
+    },
+    {
+     "t": 7.883,
+     "frame": 473,
+     "kind": "grid",
+     "what": "grid close 来源"
+    },
+    {
+     "t": 8.133,
+     "frame": 488,
+     "kind": "tap",
+     "what": "close the paper (×)",
+     "xy_master_px": [
+      3648,
+      352
+     ],
+     "box_master_px": [
+      3585,
+      289,
+      125,
+      125
+     ],
+     "clickFrame": 491,
+     "onBeat": true
+    },
+    {
+     "t": 8.183,
+     "frame": 491,
+     "kind": "state",
+     "what": "paper closed",
+     "waitedFrames": 0
+    },
+    {
+     "t": 8.317,
+     "frame": 499,
+     "kind": "grid",
+     "what": "grid go 周杰伦"
+    },
+    {
+     "t": 8.8,
+     "frame": 528,
+     "kind": "tap",
+     "what": "前往 周杰伦 (beat 1)",
+     "xy_master_px": [
+      2099,
+      1745
+     ],
+     "box_master_px": [
+      1905,
+      1684,
+      387,
+      123
+     ],
+     "clickFrame": 531,
+     "onBeat": true
+    },
+    {
+     "t": 8.85,
+     "frame": 531,
+     "kind": "mark",
+     "what": "step 1: 周杰伦 (10 首合唱)",
+     "boxes_master_px": {
+      "who": [
+       587,
+       1342,
+       565,
+       143
+      ],
+      "slip": [
+       144,
+       493,
+       1088,
+       65
+      ],
+      "toast": [
+       1689,
+       1179,
+       462,
+       125
+      ]
+     }
+    },
+    {
+     "t": 8.85,
+     "frame": 531,
+     "kind": "state",
+     "what": "hand: 周杰伦",
+     "waitedFrames": 0
+    },
+    {
+     "t": 10.25,
+     "frame": 615,
+     "kind": "scroll",
+     "what": "hand scroll -> 《稻香 / Stay With You》",
+     "axis": "x",
+     "from": 1,
+     "to": 583,
+     "frames": 37,
+     "snap": "x"
+    },
+    {
+     "t": 11.183,
+     "frame": 671,
+     "kind": "grid",
+     "what": "grid flip 稻香"
+    },
+    {
+     "t": 11.183,
+     "frame": 671,
+     "kind": "tap",
+     "what": "flip 《稻香》",
+     "xy_master_px": [
+      2409,
+      1744
+     ],
+     "box_master_px": [
+      2136,
+      1682,
+      547,
+      125
+     ],
+     "clickFrame": 674,
+     "onBeat": true
+    },
+    {
+     "t": 11.233,
+     "frame": 674,
+     "kind": "mark",
+     "what": "card 《稻香 / Stay With You》 × 林俊杰 open",
+     "boxes_master_px": {
+      "card": [
+       2364,
+       1664,
+       79,
+       136
+      ]
+     }
+    },
+    {
+     "t": 11.233,
+     "frame": 674,
+     "kind": "state",
+     "what": "card open × 林俊杰",
+     "waitedFrames": 0
+    },
+    {
+     "t": 12.65,
+     "frame": 759,
+     "kind": "tap",
+     "what": "前往 林俊杰 (beat 3)",
+     "xy_master_px": [
+      2350,
+      1744
+     ],
+     "box_master_px": [
+      2157,
+      1685,
+      385,
+      117
+     ],
+     "clickFrame": 762,
+     "onBeat": true
+    },
+    {
+     "t": 12.7,
+     "frame": 762,
+     "kind": "mark",
+     "what": "step 2: 林俊杰",
+     "boxes_master_px": {
+      "who": [
+       587,
+       1386,
+       565,
+       143
+      ],
+      "slip": [
+       144,
+       493,
+       1088,
+       65
+      ]
+     }
+    },
+    {
+     "t": 12.7,
+     "frame": 762,
+     "kind": "state",
+     "what": "hand: 林俊杰",
+     "waitedFrames": 0
+    },
+    {
+     "t": 14,
+     "frame": 840,
+     "kind": "scroll",
+     "what": "hand scroll -> 《手心的蔷薇》",
+     "axis": "x",
+     "from": 1,
+     "to": 169,
+     "frames": 28,
+     "snap": "x"
+    },
+    {
+     "t": 14.783,
+     "frame": 887,
+     "kind": "grid",
+     "what": "grid flip 手心的蔷薇"
+    },
+    {
+     "t": 14.783,
+     "frame": 887,
+     "kind": "tap",
+     "what": "flip 《手心的蔷薇》",
+     "xy_master_px": [
+      2412,
+      1744
+     ],
+     "box_master_px": [
+      2232,
+      1683,
+      359,
+      122
+     ],
+     "clickFrame": 890,
+     "onBeat": true
+    },
+    {
+     "t": 14.833,
+     "frame": 890,
+     "kind": "mark",
+     "what": "card 《手心的蔷薇》 × 邓紫棋 终点 (toast 是邓紫棋！前往即抵达)",
+     "boxes_master_px": {
+      "card": [
+       2500,
+       1309,
+       23,
+       553
+      ],
+      "toast": [
+       1667,
+       1153,
+       507,
+       125
+      ]
+     }
+    },
+    {
+     "t": 14.833,
+     "frame": 890,
+     "kind": "state",
+     "what": "card open × 邓紫棋 (终点)",
+     "waitedFrames": 0
+    },
+    {
+     "t": 16.25,
+     "frame": 975,
+     "kind": "tap",
+     "what": "前往 邓紫棋 = 抵达 (beat 3)",
+     "xy_master_px": [
+      2446,
+      1744
+     ],
+     "box_master_px": [
+      2253,
+      1685,
+      385,
+      117
+     ],
+     "clickFrame": 978,
+     "onBeat": true
+    },
+    {
+     "t": 16.3,
+     "frame": 978,
+     "kind": "mark",
+     "what": "抵达 邓紫棋 · 3 步 (closing ceremony on the table)",
+     "boxes_master_px": {
+      "slip": [
+       85,
+       240,
+       1205,
+       502
+      ],
+      "toast": [
+       1711,
+       1454,
+       419,
+       125
+      ],
+      "canvas": [
+       0,
+       0,
+       3840,
+       2160
+      ]
+     }
+    },
+    {
+     "t": 16.3,
+     "frame": 978,
+     "kind": "state",
+     "what": "ceremony (寻声 · 已抵达)",
+     "waitedFrames": 0
+    },
+    {
+     "t": 18.167,
+     "frame": 1090,
+     "kind": "mark",
+     "what": "连线歌单: 费玉清 与 邓紫棋，隔着 3 首歌",
+     "boxes_master_px": {
+      "dialog": [
+       2280,
+       303,
+       1456,
+       1622
+      ],
+      "title": [
+       2374,
+       523,
+       1279,
+       213
+      ]
+     }
+    },
+    {
+     "t": 18.167,
+     "frame": 1090,
+     "kind": "state",
+     "what": "连线歌单 open",
+     "waitedFrames": 112
+    },
+    {
+     "t": 20.167,
+     "frame": 1210,
+     "kind": "grid",
+     "what": "grid keep 千里之外"
+    },
+    {
+     "t": 20.167,
+     "frame": 1210,
+     "kind": "tap",
+     "what": "「+ 留下」《千里之外》",
+     "xy_master_px": [
+      3302,
+      1643
+     ],
+     "box_master_px": [
+      3198,
+      1584,
+      207,
+      117
+     ],
+     "clickFrame": 1213,
+     "onBeat": true
+    },
+    {
+     "t": 20.2,
+     "frame": 1212,
+     "kind": "mark",
+     "what": "still MAP-D1-round-kept"
+    },
+    {
+     "t": 20.217,
+     "frame": 1213,
+     "kind": "mark",
+     "what": "《千里之外》 已留下 (a found song kept)",
+     "boxes_master_px": {
+      "save": [
+       3157,
+       1584,
+       240,
+       117
+      ],
+      "toast": [
+       1807,
+       1438,
+       227,
+       125
+      ]
+     }
+    },
+    {
+     "t": 20.217,
+     "frame": 1213,
+     "kind": "state",
+     "what": "已留下",
+     "waitedFrames": 0
+    },
+    {
+     "t": 22.117,
+     "frame": 1327,
+     "kind": "scroll",
+     "what": "setlist scroll -> 《手心的蔷薇》",
+     "axis": "y",
+     "from": 0,
+     "to": 622,
+     "frames": 51,
+     "snap": "none"
+    },
+    {
+     "t": 22.967,
+     "frame": 1378,
+     "kind": "mark",
+     "what": "the setlist: 千里之外 → 稻香 / Stay With You → 手心的蔷薇"
+    },
+    {
+     "t": 25.15,
+     "frame": 1509,
+     "kind": "mark",
+     "what": "still MAP-D1-round-setlist"
+    },
+    {
+     "t": 25.167,
+     "frame": 1510,
+     "kind": "mark",
+     "what": "end"
+    }
+   ]
+  },
+  {
+   "id": "MAP-P2-courtyard",
+   "files": {
+    "master": {
+     "file": "/tmp/space-video-doodle/prod/capture/map-rc2/phone/MAP-P2-courtyard.mp4",
+     "bytes": 18300368,
+     "sha256": "99ff2586348d02e94144355cd63b9be55ebec4bc9e756c44775517bf9c611e74"
+    }
+   },
+   "frames": 949,
+   "seconds": 15.817,
+   "viewport": {
+    "css": [
+     390,
+     845
+    ],
+    "dpr": 2.769230769230769,
+    "px": [
+     1080,
+     2340
+    ]
+   },
+   "notes": "phone. music-map 小院 opened fresh with the clock paused from the start: the first frame is the scene's first frame (no ink), the ink draws in and the title/paper come in -> ~8 s untouched courtyard (idle petals, spinning record, 7 Hz ink boil; usable for an edit push) -> tap the 「唱片店」 pin: the product's own camera flight into the record shop, filmed at 1/3 speed (Date.now warp on GSAP; natural speed ~0.4 s) -> the record table (round untouched) -> tap 「小院」: the flight back out over the roof at 1/3 speed -> the courtyard.",
+   "dup_exact": {
+    "frames": 949,
+    "unique": 621,
+    "consecutiveDuplicates": 328,
+    "longestStill": 2,
+    "stillRunsOver9f": []
+   },
+   "wall_seconds": 70,
+   "msPerFrame": {
+    "step": 2.1,
+    "grab": 64.8,
+    "write": 2.8
+   },
+   "font_waits": [],
+   "text_guard": [
+    {
+     "at": "courtyard",
+     "t": null,
+     "hits": 0
+    },
+    {
+     "at": "courtyard (before the flight)",
+     "t": 8.2,
+     "hits": 0
+    },
+    {
+     "at": "table after the flight",
+     "t": 9.883,
+     "hits": 0
+    },
+    {
+     "at": "courtyard at the end of A",
+     "t": 15.817,
+     "hits": 0
+    }
+   ],
+   "warnings": [],
+   "page_errors": [],
+   "console": [],
+   "qc": [
+    {
+     "file": "/tmp/space-video-doodle/prod/capture/map-rc2/phone/MAP-P2-courtyard.mp4",
+     "video": "h264 High 1080x2340 60/1 yuv420p",
+     "colour": "bt709/bt709/bt709/tv",
+     "duration_s": 15.817,
+     "frames": 949,
+     "same_frame_count_as_rig": true,
+     "MB": 18.3,
+     "bitrate_mbps": 9.3,
+     "audio_streams": 0,
+     "longest_still": {
+      "frames": 10,
+      "at_s": 1.283
+     },
+     "still_over_1s": [],
+     "motion_windows": 4,
+     "motion_windows_bad": [],
+     "exact_repeat_runs_over_9f": []
+    }
+   ],
+   "actions": [
+    {
+     "t": 0,
+     "frame": 0,
+     "kind": "mark",
+     "what": "first frame: 小院 (the courtyard draws its ink in, the title and the paper come in)",
+     "boxes_master_px": {
+      "title": [
+       55,
+       194,
+       969,
+       201
+      ],
+      "paper": [
+       44,
+       1225,
+       991,
+       860
+      ],
+      "canvas": [
+       0,
+       0,
+       1080,
+       2340
+      ],
+      "pin": [
+       305,
+       861,
+       280,
+       122
+      ]
+     }
+    },
+    {
+     "t": 1.2,
+     "frame": 72,
+     "kind": "mark",
+     "what": "courtyard settled: untouched hold (idle petals, spinning record, ink boil), usable for an edit push"
+    },
+    {
+     "t": 8.183,
+     "frame": 491,
+     "kind": "mark",
+     "what": "still MAP-P2-courtyard-courtyard"
+    },
+    {
+     "t": 8.2,
+     "frame": 492,
+     "kind": "warp",
+     "what": "Date.now warp 0.333 on (GSAP: the product's camera flight and paper motion at 0.333 x speed; timers, rAF and the ink boil untouched)",
+     "rate": 0.3333333333333333
+    },
+    {
+     "t": 8.267,
+     "frame": 496,
+     "kind": "grid",
+     "what": "grid tap the 「唱片店」 pin: the camera flies into the record shop (1/3 speed)"
+    },
+    {
+     "t": 8.267,
+     "frame": 496,
+     "kind": "tap",
+     "what": "tap the 「唱片店」 pin: the camera flies into the record shop (1/3 speed)",
+     "xy_master_px": [
+      445,
+      911
+     ],
+     "box_master_px": [
+      305,
+      850,
+      280,
+      122
+     ],
+     "clickFrame": 499,
+     "onBeat": true
+    },
+    {
+     "t": 8.317,
+     "frame": 499,
+     "kind": "state",
+     "what": "tap the 「唱片店」 pin: the camera flies into the record shop (1/3 speed): travelling",
+     "waitedFrames": 0
+    },
+    {
+     "t": 9.583,
+     "frame": 575,
+     "kind": "state",
+     "what": "tap the 「唱片店」 pin: the camera flies into the record shop (1/3 speed): arrived",
+     "waitedFrames": 76
+    },
+    {
+     "t": 9.883,
+     "frame": 593,
+     "kind": "warp",
+     "what": "Date.now warp back to 1",
+     "rate": 1
+    },
+    {
+     "t": 9.883,
+     "frame": 593,
+     "kind": "mark",
+     "what": "the record table (寻声 费玉清 → 邓紫棋); the flight in lasted 76 frames at 1/3 speed (natural speed ~25 frames)",
+     "boxes_master_px": {
+      "slip": [
+       28,
+       177,
+       1025,
+       299
+      ],
+      "hand": [
+       22,
+       1667,
+       1036,
+       440
+      ]
+     }
+    },
+    {
+     "t": 11.483,
+     "frame": 689,
+     "kind": "warp",
+     "what": "Date.now warp 0.333 on (GSAP: the product's camera flight and paper motion at 0.333 x speed; timers, rAF and the ink boil untouched)",
+     "rate": 0.3333333333333333
+    },
+    {
+     "t": 11.55,
+     "frame": 693,
+     "kind": "grid",
+     "what": "grid tap 「小院」 (button.nav-item[data-nav=\"home\"]): the camera flies back out over the courtyard (1/3 speed)"
+    },
+    {
+     "t": 11.55,
+     "frame": 693,
+     "kind": "tap",
+     "what": "tap 「小院」 (button.nav-item[data-nav=\"home\"]): the camera flies back out over the courtyard (1/3 speed)",
+     "xy_master_px": [
+      198,
+      2220
+     ],
+     "box_master_px": [
+      39,
+      2150,
+      319,
+      138
+     ],
+     "clickFrame": 696,
+     "onBeat": true
+    },
+    {
+     "t": 11.6,
+     "frame": 696,
+     "kind": "state",
+     "what": "tap 「小院」 (button.nav-item[data-nav=\"home\"]): the camera flies back out over the courtyard (1/3 speed): travelling",
+     "waitedFrames": 0
+    },
+    {
+     "t": 13.517,
+     "frame": 811,
+     "kind": "state",
+     "what": "tap 「小院」 (button.nav-item[data-nav=\"home\"]): the camera flies back out over the courtyard (1/3 speed): arrived",
+     "waitedFrames": 115
+    },
+    {
+     "t": 13.817,
+     "frame": 829,
+     "kind": "warp",
+     "what": "Date.now warp back to 1",
+     "rate": 1
+    },
+    {
+     "t": 13.817,
+     "frame": 829,
+     "kind": "mark",
+     "what": "courtyard again (flight out 115 frames at 1/3 speed)"
+    },
+    {
+     "t": 15.817,
+     "frame": 949,
+     "kind": "mark",
+     "what": "end"
+    }
+   ]
+  },
+  {
+   "id": "MAP-D2-courtyard",
+   "files": {
+    "master": {
+     "file": "/tmp/space-video-doodle/prod/capture/map-rc2/desktop/master/MAP-D2-courtyard.mp4",
+     "bytes": 48664544,
+     "sha256": "36a278a18388c77df7b48ba8db4311c952a2a62de0a77d23d5c409428b40edd7"
+    },
+    "edit": {
+     "file": "/tmp/space-video-doodle/prod/capture/map-rc2/desktop/1080/MAP-D2-courtyard.mp4",
+     "bytes": 21733054,
+     "sha256": "0e5befcff4285a2a542a234e50fac0d95b5dbb67ec31cfb33a688f879c4d3641"
+    }
+   },
+   "frames": 934,
+   "seconds": 15.567,
+   "viewport": {
+    "css": [
+     1440,
+     810
+    ],
+    "dpr": 2.6666666666666665,
+    "px": [
+     3840,
+     2160
+    ]
+   },
+   "notes": "desktop, same action as MAP-P2-courtyard (courtyard on the right of the frame, the paper 「从喜欢，走向未知。 / 今天，从谁开始？」 on the left).",
+   "dup_exact": {
+    "frames": 934,
+    "unique": 927,
+    "consecutiveDuplicates": 7,
+    "longestStill": 2,
+    "stillRunsOver9f": []
+   },
+   "wall_seconds": 216,
+   "msPerFrame": {
+    "step": 3.6,
+    "grab": 204.1,
+    "write": 15.3
+   },
+   "font_waits": [],
+   "text_guard": [
+    {
+     "at": "courtyard",
+     "t": null,
+     "hits": 0
+    },
+    {
+     "at": "courtyard (before the flight)",
+     "t": 8.2,
+     "hits": 0
+    },
+    {
+     "at": "table after the flight",
+     "t": 9.883,
+     "hits": 0
+    },
+    {
+     "at": "courtyard at the end of A",
+     "t": 15.567,
+     "hits": 0
+    }
+   ],
+   "warnings": [],
+   "page_errors": [],
+   "console": [],
+   "qc": [
+    {
+     "file": "/tmp/space-video-doodle/prod/capture/map-rc2/desktop/master/MAP-D2-courtyard.mp4",
+     "video": "h264 High 3840x2160 60/1 yuv420p",
+     "colour": "bt709/bt709/bt709/tv",
+     "duration_s": 15.567,
+     "frames": 934,
+     "same_frame_count_as_rig": true,
+     "MB": 48.7,
+     "bitrate_mbps": 25,
+     "audio_streams": 0,
+     "longest_still": {
+      "frames": 10,
+      "at_s": 1.283
+     },
+     "still_over_1s": [],
+     "motion_windows": 4,
+     "motion_windows_bad": [],
+     "exact_repeat_runs_over_9f": []
+    },
+    {
+     "file": "/tmp/space-video-doodle/prod/capture/map-rc2/desktop/1080/MAP-D2-courtyard.mp4",
+     "video": "h264 High 1920x1080 60/1 yuv420p",
+     "colour": "bt709/bt709/bt709/tv",
+     "duration_s": 15.567,
+     "frames": 934,
+     "same_frame_count_as_rig": true,
+     "MB": 21.7,
+     "bitrate_mbps": 11.2,
+     "audio_streams": 0,
+     "longest_still": {
+      "frames": 10,
+      "at_s": 1.283
+     },
+     "still_over_1s": [],
+     "motion_windows": 4,
+     "motion_windows_bad": [],
+     "exact_repeat_runs_over_9f": []
+    }
+   ],
+   "actions": [
+    {
+     "t": 0,
+     "frame": 0,
+     "kind": "mark",
+     "what": "first frame: 小院 (the courtyard draws its ink in, the title and the paper come in)",
+     "boxes_master_px": {
+      "title": [
+       96,
+       288,
+       1064,
+       492
+      ],
+      "paper": [
+       96,
+       849,
+       1003,
+       865
+      ],
+      "canvas": [
+       0,
+       0,
+       3840,
+       2160
+      ],
+      "pin": [
+       2058,
+       1274,
+       269,
+       117
+      ]
+     }
+    },
+    {
+     "t": 1.2,
+     "frame": 72,
+     "kind": "mark",
+     "what": "courtyard settled: untouched hold (idle petals, spinning record, ink boil), usable for an edit push"
+    },
+    {
+     "t": 8.183,
+     "frame": 491,
+     "kind": "mark",
+     "what": "still MAP-D2-courtyard-courtyard"
+    },
+    {
+     "t": 8.2,
+     "frame": 492,
+     "kind": "warp",
+     "what": "Date.now warp 0.333 on (GSAP: the product's camera flight and paper motion at 0.333 x speed; timers, rAF and the ink boil untouched)",
+     "rate": 0.3333333333333333
+    },
+    {
+     "t": 8.267,
+     "frame": 496,
+     "kind": "grid",
+     "what": "grid tap the 「唱片店」 pin: the camera flies into the record shop (1/3 speed)"
+    },
+    {
+     "t": 8.267,
+     "frame": 496,
+     "kind": "tap",
+     "what": "tap the 「唱片店」 pin: the camera flies into the record shop (1/3 speed)",
+     "xy_master_px": [
+      2193,
+      1333
+     ],
+     "box_master_px": [
+      2058,
+      1274,
+      269,
+      117
+     ],
+     "clickFrame": 499,
+     "onBeat": true
+    },
+    {
+     "t": 8.317,
+     "frame": 499,
+     "kind": "state",
+     "what": "tap the 「唱片店」 pin: the camera flies into the record shop (1/3 speed): travelling",
+     "waitedFrames": 0
+    },
+    {
+     "t": 9.583,
+     "frame": 575,
+     "kind": "state",
+     "what": "tap the 「唱片店」 pin: the camera flies into the record shop (1/3 speed): arrived",
+     "waitedFrames": 76
+    },
+    {
+     "t": 9.883,
+     "frame": 593,
+     "kind": "warp",
+     "what": "Date.now warp back to 1",
+     "rate": 1
+    },
+    {
+     "t": 9.883,
+     "frame": 593,
+     "kind": "mark",
+     "what": "the record table (寻声 费玉清 → 邓紫棋); the flight in lasted 76 frames at 1/3 speed (natural speed ~25 frames)",
+     "boxes_master_px": {
+      "slip": [
+       85,
+       240,
+       1205,
+       358
+      ],
+      "hand": [
+       1064,
+       1428,
+       1712,
+       470
+      ]
+     }
+    },
+    {
+     "t": 11.483,
+     "frame": 689,
+     "kind": "warp",
+     "what": "Date.now warp 0.333 on (GSAP: the product's camera flight and paper motion at 0.333 x speed; timers, rAF and the ink boil untouched)",
+     "rate": 0.3333333333333333
+    },
+    {
+     "t": 11.55,
+     "frame": 693,
+     "kind": "grid",
+     "what": "grid tap 「小院」 (.world-compass button[data-world-view=\"home\"]): the camera flies back out over the courtyard (1/3 speed)"
+    },
+    {
+     "t": 11.55,
+     "frame": 693,
+     "kind": "tap",
+     "what": "tap 「小院」 (.world-compass button[data-world-view=\"home\"]): the camera flies back out over the courtyard (1/3 speed)",
+     "xy_master_px": [
+      1659,
+      2027
+     ],
+     "box_master_px": [
+      1573,
+      1960,
+      171,
+      133
+     ],
+     "clickFrame": 696,
+     "onBeat": true
+    },
+    {
+     "t": 11.6,
+     "frame": 696,
+     "kind": "state",
+     "what": "tap 「小院」 (.world-compass button[data-world-view=\"home\"]): the camera flies back out over the courtyard (1/3 speed): travelling",
+     "waitedFrames": 0
+    },
+    {
+     "t": 13.267,
+     "frame": 796,
+     "kind": "state",
+     "what": "tap 「小院」 (.world-compass button[data-world-view=\"home\"]): the camera flies back out over the courtyard (1/3 speed): arrived",
+     "waitedFrames": 100
+    },
+    {
+     "t": 13.567,
+     "frame": 814,
+     "kind": "warp",
+     "what": "Date.now warp back to 1",
+     "rate": 1
+    },
+    {
+     "t": 13.567,
+     "frame": 814,
+     "kind": "mark",
+     "what": "courtyard again (flight out 100 frames at 1/3 speed)"
+    },
+    {
+     "t": 15.567,
+     "frame": 934,
+     "kind": "mark",
+     "what": "end"
+    }
+   ]
+  },
+  {
+   "id": "MAP-P3-push",
+   "files": {
+    "master": {
+     "file": "/tmp/space-video-doodle/prod/capture/map-rc2/phone/MAP-P3-push.mp4",
+     "bytes": 13103473,
+     "sha256": "8943edc9d0f0527ede6644f66f738f5b8bb24f4e873a31b4ec3042730cebf0f5"
+    }
+   },
+   "frames": 426,
+   "seconds": 7.1,
+   "viewport": {
+    "css": [
+     390,
+     845
+    ],
+    "dpr": 2.769230769230769,
+    "px": [
+     1080,
+     2340
+    ]
+   },
+   "notes": "phone. A slow push over the paper courtyard: screen camera (CDP clip zoom, DOM re-rasterised crisp, the WebGL canvas scales as a bitmap), 0.6 s static, then 5.0 s quad in-out to zoom 1.3 on the shop pin, 1.5 s hold; the scene keeps living (petals, record, boil).",
+   "dup_exact": {
+    "frames": 426,
+    "unique": 403,
+    "consecutiveDuplicates": 23,
+    "longestStill": 2,
+    "stillRunsOver9f": []
+   },
+   "wall_seconds": 100,
+   "msPerFrame": {
+    "step": 1.9,
+    "grab": 64.9,
+    "write": 2.6
+   },
+   "font_waits": [],
+   "text_guard": [
+    {
+     "at": "courtyard",
+     "t": null,
+     "hits": 0
+    },
+    {
+     "at": "courtyard (before the flight)",
+     "t": 8.2,
+     "hits": 0
+    },
+    {
+     "at": "table after the flight",
+     "t": 9.883,
+     "hits": 0
+    },
+    {
+     "at": "courtyard at the end of A",
+     "t": 15.817,
+     "hits": 0
+    },
+    {
+     "at": "courtyard after the push",
+     "t": 7.1,
+     "hits": 0
+    }
+   ],
+   "warnings": [],
+   "page_errors": [],
+   "console": [],
+   "qc": [
+    {
+     "file": "/tmp/space-video-doodle/prod/capture/map-rc2/phone/MAP-P3-push.mp4",
+     "video": "h264 High 1080x2340 60/1 yuv420p",
+     "colour": "bt709/bt709/bt709/tv",
+     "duration_s": 7.1,
+     "frames": 426,
+     "same_frame_count_as_rig": true,
+     "MB": 13.1,
+     "bitrate_mbps": 14.8,
+     "audio_streams": 0,
+     "longest_still": {
+      "frames": 10,
+      "at_s": 0.267
+     },
+     "still_over_1s": [],
+     "motion_windows": 1,
+     "motion_windows_bad": [],
+     "exact_repeat_runs_over_9f": []
+    }
+   ],
+   "push": {
+    "frames": [
+     36,
+     335
+    ],
+    "seconds": [
+     0.6,
+     5.583
+    ],
+    "start": [
+     36,
+     195,
+     422.5,
+     1
+    ],
+    "end": [
+     335,
+     160.56,
+     349.6,
+     1.3
+    ],
+    "format": "[frame, cx CSS px, cy CSS px, zoom]"
+   },
+   "actions": [
+    {
+     "t": 0,
+     "frame": 0,
+     "kind": "mark",
+     "what": "push start (full frame); aim CSS (161, 350) zoom 1.3",
+     "boxes_master_px": {
+      "pin": [
+       305,
+       852,
+       280,
+       122
+      ],
+      "canvas": [
+       0,
+       0,
+       1080,
+       2340
+      ]
+     }
+    },
+    {
+     "t": 0.6,
+     "frame": 36,
+     "kind": "mark",
+     "what": "push moving (5.0 s, quad in-out)"
+    },
+    {
+     "t": 5.6,
+     "frame": 336,
+     "kind": "mark",
+     "what": "push end (holding at the aim)"
+    },
+    {
+     "t": 7.1,
+     "frame": 426,
+     "kind": "mark",
+     "what": "end"
+    }
+   ]
+  },
+  {
+   "id": "MAP-D3-push",
+   "files": {
+    "master": {
+     "file": "/tmp/space-video-doodle/prod/capture/map-rc2/desktop/master/MAP-D3-push.mp4",
+     "bytes": 22814538,
+     "sha256": "50a9722167004da62148f1b4520bd77b4f5f96cf60916ad5ebd3bfe5df497666"
+    },
+    "edit": {
+     "file": "/tmp/space-video-doodle/prod/capture/map-rc2/desktop/1080/MAP-D3-push.mp4",
+     "bytes": 10949470,
+     "sha256": "0177065e12bfe0b68b424fa1b7e83a38f4169e87ca96d6208d90c39869b48000"
+    }
+   },
+   "frames": 426,
+   "seconds": 7.1,
+   "viewport": {
+    "css": [
+     1440,
+     810
+    ],
+    "dpr": 2.6666666666666665,
+    "px": [
+     3840,
+     2160
+    ]
+   },
+   "notes": "desktop. A slow push over the paper courtyard: screen camera (CDP clip zoom; DOM re-rasterised crisp, the WebGL canvas scales as its own bitmap: about 1.3x upscale in the 1080 copy at the end), 0.6 s static, then 5.0 s quad in-out to zoom 1.6 on the record shop (end frame CSS x 435..1335, y 227..733: the title, the paper, the header buttons and the bottom nav are out of frame), 1.5 s hold; the scene keeps living (petals, record, ink boil).",
+   "dup_exact": {
+    "frames": 426,
+    "unique": 379,
+    "consecutiveDuplicates": 47,
+    "longestStill": 2,
+    "stillRunsOver9f": []
+   },
+   "wall_seconds": 106,
+   "msPerFrame": {
+    "step": 2.5,
+    "grab": 218.6,
+    "write": 12.9
+   },
+   "font_waits": [],
+   "text_guard": [
+    {
+     "at": "courtyard",
+     "t": null,
+     "hits": 0
+    },
+    {
+     "at": "courtyard after the push",
+     "t": 7.1,
+     "hits": 0
+    }
+   ],
+   "warnings": [],
+   "page_errors": [],
+   "console": [],
+   "qc": [
+    {
+     "file": "/tmp/space-video-doodle/prod/capture/map-rc2/desktop/master/MAP-D3-push.mp4",
+     "video": "h264 High 3840x2160 60/1 yuv420p",
+     "colour": "bt709/bt709/bt709/tv",
+     "duration_s": 7.1,
+     "frames": 426,
+     "same_frame_count_as_rig": true,
+     "MB": 22.8,
+     "bitrate_mbps": 25.7,
+     "audio_streams": 0,
+     "longest_still": {
+      "frames": 10,
+      "at_s": 0.117
+     },
+     "still_over_1s": [],
+     "motion_windows": 1,
+     "motion_windows_bad": [],
+     "exact_repeat_runs_over_9f": []
+    },
+    {
+     "file": "/tmp/space-video-doodle/prod/capture/map-rc2/desktop/1080/MAP-D3-push.mp4",
+     "video": "h264 High 1920x1080 60/1 yuv420p",
+     "colour": "bt709/bt709/bt709/tv",
+     "duration_s": 7.1,
+     "frames": 426,
+     "same_frame_count_as_rig": true,
+     "MB": 10.9,
+     "bitrate_mbps": 12.3,
+     "audio_streams": 0,
+     "longest_still": {
+      "frames": 10,
+      "at_s": 0.117
+     },
+     "still_over_1s": [],
+     "motion_windows": 1,
+     "motion_windows_bad": [],
+     "exact_repeat_runs_over_9f": []
+    }
+   ],
+   "push": {
+    "frames": [
+     36,
+     335
+    ],
+    "seconds": [
+     0.6,
+     5.583
+    ],
+    "start": [
+     36,
+     720,
+     405,
+     1
+    ],
+    "end": [
+     335,
+     885.32,
+     479.83,
+     1.6
+    ],
+    "format": "[frame, cx CSS px, cy CSS px, zoom]"
+   },
+   "actions": [
+    {
+     "t": 0,
+     "frame": 0,
+     "kind": "mark",
+     "what": "push start (full frame); aim CSS (885, 480) zoom 1.6",
+     "boxes_master_px": {
+      "pin": [
+       2058,
+       1274,
+       269,
+       117
+      ],
+      "canvas": [
+       0,
+       0,
+       3840,
+       2160
+      ],
+      "paper": [
+       96,
+       849,
+       1003,
+       865
+      ],
+      "title": [
+       96,
+       288,
+       1064,
+       492
+      ]
+     }
+    },
+    {
+     "t": 0.6,
+     "frame": 36,
+     "kind": "mark",
+     "what": "push moving (5.0 s, quad in-out)"
+    },
+    {
+     "t": 5.6,
+     "frame": 336,
+     "kind": "mark",
+     "what": "push end (holding at the aim)"
+    },
+    {
+     "t": 7.1,
+     "frame": 426,
+     "kind": "mark",
+     "what": "end"
+    }
+   ]
+  }
+ ],
+ "stills": [
+  "/tmp/space-video-doodle/prod/capture/map-rc2/stills/MAP-D1-round-kept.png",
+  "/tmp/space-video-doodle/prod/capture/map-rc2/stills/MAP-D1-round-setlist.png",
+  "/tmp/space-video-doodle/prod/capture/map-rc2/stills/MAP-D1-round-sources.png",
+  "/tmp/space-video-doodle/prod/capture/map-rc2/stills/MAP-D2-courtyard-courtyard.png",
+  "/tmp/space-video-doodle/prod/capture/map-rc2/stills/MAP-P1-round-kept.png",
+  "/tmp/space-video-doodle/prod/capture/map-rc2/stills/MAP-P1-round-setlist.png",
+  "/tmp/space-video-doodle/prod/capture/map-rc2/stills/MAP-P1-round-sources.png",
+  "/tmp/space-video-doodle/prod/capture/map-rc2/stills/MAP-P2-courtyard-courtyard.png"
+ ]
+}

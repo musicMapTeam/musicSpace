@@ -1,0 +1,51 @@
+[
+  [
+    "before reload",
+    "示例路线 4/4 · 招个手 / 私聊 / 回看这一晚 [●●●○]"
+  ],
+  [
+    "tour storage",
+    "{\"v\":1,\"skipped\":false,\"collapsed\":false,\"seenWall\":true}"
+  ],
+  [
+    "after reload",
+    "示例路线 3/4 · 发起交换 [●●○○]"
+  ],
+  [
+    "tour storage after reload",
+    "{\"v\":1,\"skipped\":false,\"collapsed\":false,\"seenWall\":true}"
+  ],
+  [
+    "card button",
+    "回到照片墙"
+  ],
+  [
+    "wall after following the card",
+    {
+      "offers": [
+        "和 TA 交换这个视角"
+      ],
+      "badge": "同一刻的另一面 同一刻 · 21:47，相差不到 1 分钟；你拍人海，TA 拍舞台 和 TA 交换这个视角"
+    }
+  ],
+  [
+    "offer tapped again",
+    {
+      "open": true,
+      "send": "把这两张交给对方确认 ↗",
+      "text": "用我拍下的，换 阿遥·示例 看到的。 我提供的 我选中的这一张 阿遥·示例的 照片墙上的这一张 我提供哪一张 选择自己拍的照片 我的第 1 张 · 已上墙 · 同一刻的另一面（推荐） 同一刻 · 21:47，相差不到 1 分钟；你拍人海，TA 拍舞台 规则判断，不是 AI。要不要交换，仍由你和对方决定。 发送后，阿遥·示例 可以看并保存我的小图预览。TA 明确接受后，我们才能通过这次交换继续查看两张原图，散场后也可以。 我同意提供选中照片的预览，并在对方接受后分享这张原图 任一方撤销，会同时结束本次两张照片的在线访"
+    }
+  ],
+  [
+    "after wall + exchange panel",
+    "示例路线 3/4 · 发起交换 [●●○○]"
+  ],
+  [
+    "console",
+    []
+  ],
+  [
+    "pageErrors",
+    []
+  ]
+]

@@ -1,0 +1,58 @@
+
+### 长期 (1)
+  [visible] MY SPACE / 长期留在这里   <- w4-desktop:desktop personal-space, w4-narrow:narrow personal-space, w4-phone:phone personal-space
+
+### 主办方 (1)
+  [visible] 我是 Livehouse / 主办方，开个房   <- final-desktop:desktop join, final-phone:phone join, w1-desktop:desktop entry (+15)
+
+### 空间 (8)
+  [attr] @aria-label=我的音乐空间   <- final-desktop:desktop first-screen, final-desktop:desktop room, final-phone:phone first-screen (+38)
+  [attr] @aria-label=关闭我的空间   <- w4-desktop:desktop personal-space, w4-narrow:narrow personal-space, w4-phone:phone personal-space
+  [attr] @aria-label=我的空间入口   <- w4-desktop:desktop personal-space, w4-narrow:narrow personal-space, w4-phone:phone personal-space
+  [log] live:demo-tour(hidden): 第一次来 4/4 · 路线走完了收起更多可以逛：我的空间、乐迷社群、专辑世界杯、一起玩、音乐探索。知道了，收起路线   <- final-desktop:desktop final, final-phone:phone final
+  [log] live:demo-tour: 第一次来 4/4 · 路线走完了收起更多可以逛：我的空间、乐迷社群、专辑世界杯、一起玩、音乐探索。知道了，收起路线   <- w2-desktop:desktop w2, w2-narrow:narrow w2, w2-phone:phone w2
+  [visible] 我的空间   <- final-desktop:desktop first-screen, final-desktop:desktop room, final-phone:phone first-screen (+35)
+  [visible] 更多可以逛：我的空间、乐迷社群、专辑世界杯、一起玩、音乐探索。   <- w2-desktop:desktop tour-after-recap, w2-desktop:desktop room-after-all, w2-narrow:narrow tour-after-recap (+3)
+  [visible] 刷新我的空间   <- w4-desktop:desktop personal-space, w4-narrow:narrow personal-space, w4-phone:phone personal-space
+
+### 这个浏览器 (4)
+  [log] live:space-boot-banner: 这个浏览器不能保存，刷新后会重新开始知道了   <- w7-phone-memory:phone memory
+  [visible] 这个浏览器用不了本机 AI，视角请自己选。   <- w7-phone-aioff:phone aioff-about
+  [visible] 这个浏览器不能保存，刷新后会重新开始   <- w7-phone-memory:phone memory-only
+  [visible] 这个浏览器不能保存，刷新后会重新开始。   <- w7-phone-memory:phone memory-about
+
+### 收回 (3)
+  [visible] 收回这张照片的全部分享   <- w6-desktop:desktop own-photo-detail, w6-phone:phone own-photo-detail
+  [visible] 收回这张照片的全部分享？   <- w6-desktop:desktop withdraw-confirm, w6-phone:phone withdraw-confirm
+  [visible] 确认收回全部分享   <- w6-desktop:desktop withdraw-confirm, w6-phone:phone withdraw-confirm
+
+### demo (11)
+  [log] live:demo-tour: 第一次来 1/4 · 放一张今晚的照片收起挑一张，或者用你自己的。人海那张舞台那张用我自己的照片跳过路线   <- final-desktop:desktop final, final-phone:phone final, fix-desktop:desktop fixcheck (+24)
+  [log] live:demo-tour: 第一次来 1/4 · 放一张今晚的照片展开   <- final-desktop:desktop final, final-phone:phone final, w1-desktop:desktop w1 (+2)
+  [log] live:demo-tour: 第一次来 3/4 · 发起交换收起在照片墙点「和 TA 交换这个视角」。回到照片墙跳过路线   <- final-desktop:desktop final, final-phone:phone final, w10-phone:phone w10 (+3)
+  [log] live:demo-tour: 第一次来 4/4 · 招个手 / 私聊 / 回看这一晚收起向同场的人招个手，TA 接受就能私聊。看看同场的人回看这一晚跳过路线   <- final-desktop:desktop final, final-phone:phone final, w2-desktop:desktop w2 (+2)
+  [log] live:demo-tour(hidden): 第一次来 4/4 · 招个手 / 私聊 / 回看这一晚收起向同场的人招个手，TA 接受就能私聊。看看同场的人回看这一晚跳过路线   <- final-desktop:desktop final, final-phone:phone final
+  [log] live:demo-tour(hidden): 第一次来 4/4 · 路线走完了收起更多可以逛：我的空间、乐迷社群、专辑世界杯、一起玩、音乐探索。知道了，收起路线   <- final-desktop:desktop final, final-phone:phone final
+  [log] live:demo-tour(hidden): 第一次来 1/4 · 放一张今晚的照片收起挑一张，或者用你自己的。人海那张舞台那张用我自己的照片跳过路线   <- fix-desktop:desktop fixcheck, fix-narrow:narrow fixcheck, fix-phone:phone fixcheck (+3)
+  [log] live:demo-tour: 第一次来 1/4 · 放一张今晚的照片收起选一张你自己拍的。用我自己的照片跳过路线   <- fix-desktop:desktop fixcheck, fix-narrow:narrow fixcheck, fix-phone:phone fixcheck (+3)
+  [log] live:demo-tour(hidden): 第一次来 3/4 · 发起交换收起在照片墙点「和 TA 交换这个视角」。回到照片墙跳过路线   <- w10-phone:phone w10
+  [log] live:demo-tour: 第一次来 4/4 · 路线走完了收起更多可以逛：我的空间、乐迷社群、专辑世界杯、一起玩、音乐探索。知道了，收起路线   <- w2-desktop:desktop w2, w2-narrow:narrow w2, w2-phone:phone w2
+  [log] live:demo-tour: 第一次来 2/4 · 看「同一刻的另一面」收起照片墙会把它标出来。去照片墙看看跳过路线   <- w6-desktop:desktop w6, w6-phone:phone w6
+
+### 在线版 (1)
+  [visible] 在线版   <- final-desktop:desktop about, final-phone:phone about, w1-desktop:desktop about (+5)
+
+### 页面 (3)
+  [attr] @aria-label=页面没能完整启动   <- w7-phone-rescue:phone rescue
+  [hidden] 31 首在 QQ 音乐有同一录音的页面（2026 年 9 月 29 日按页面信息确认）；另外 6 首的原因写在「来源」里。   <- w7-phone-map:phone music-map, w9-phone:phone map-about, w9-phone:phone map-catalogue (+5)
+  [visible] 页面没能完整启动   <- w7-phone-rescue:phone rescue
+
+### About sentence appears in 8 states:
+  final-desktop.json:desktop about x1
+  final-phone.json:phone about x1
+  w1-desktop.json:desktop about x1
+  w1-narrow.json:narrow about x1
+  w1-phone.json:phone about x1
+  w7-phone-aioff.json:phone aioff-about x1
+  w7-phone-memory.json:phone memory-about x1
+  w7-phone-readonly.json:phone readonly-about x1

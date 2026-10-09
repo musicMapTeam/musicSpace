@@ -1,0 +1,23 @@
+QC act-A0-A1.flipping-in.mp4  range 0.00-39.03 s  act preview  ->  WARN
+  PASS  container.video h264 High 1920x1080 60/1 yuv420p bt709/bt709/bt709/tv
+  PASS  container.audio aac LC 48000 Hz 2 ch 256 kb/s
+  PASS  duration        39.033 s (range 39.033 s)
+  PASS  size            53.6 MB (11.0 Mb/s)
+  PASS  loudness        I -17.6 LUFS (target -16), LRA 4.0 LU (act excerpt: informational; the full cut is normalised)
+  PASS  true_peak       -1.3 dBTP (limit -1.0)
+  PASS  silence         0 silent stretches over 0.8 s
+  PASS  frozen          0 frozen stretches over 2.5 s
+  PASS  black           0 black stretches over 0.4 s
+  PASS  motion          longest low-motion stretch 0.08 s at 38.90 s (mean |dI| < 0.15 on 160x90), mean motion 1.86
+  PASS  event_gaps      108 visual events, 2.77/s; longest gap 1.46 s after 33.17 s (limit 2.5)
+  PASS  beat_alignment  108/108 visual events on the 16th grid (<= half a frame), 106/108 on 8ths; frames quantise by <= 8.3 ms
+  WARN  reading_time    30 lines, measured (geometry samples every 50 ms); titles/notes failing 0, labels/fine short 1
+            - 「留念」 label 0.60s < 0.80s
+  WARN  safe_area       0 texts outside the 5% title-safe area for > 0.5 s, 5 only briefly (entrances, camera moves)
+  PASS  glyphs          118 font/character pairs; 0 drawn by a system font
+  PASS  qr              no end card in range (not applicable)
+  WARN  placeholders    1 placeholder assets (capture pass pending)
+            - D-01 -> /tmp/space-video-doodle/script/probe/shots/d01-landing.png
+  PASS  scene_warnings  0 warnings
+  PASS  sfx_level       SFX -9.0 LU vs music (target -8..-10), 133 sounds {'slap': 14, 'stamp': 8, 'tape': 1, 'pop': 17, 'whoosh': 6, 'impact': 4, 'typetick': 51, 'zip': 2, 'squeak': 3, 'highlighter': 1, 'slam': 8, 'scribble': 2, 'swish': 9, 'pencil': 4, 'click': 1, 'boop': 1, 'riser': 1}
+  PASS  script_lines    26/26 SCRIPT lines in range are on screen

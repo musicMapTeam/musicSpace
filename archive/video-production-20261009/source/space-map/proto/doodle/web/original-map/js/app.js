@@ -1,0 +1,391 @@
+import '../css/base.css';
+import '../css/map.css';
+import '../css/themes.css';
+import '../css/theme-sakura.css';
+import 'overlayscrollbars/overlayscrollbars.css';
+import '../css/compact.css';
+import '../css/app-studio.css';
+import '../css/map-studio.css';
+import '../css/map-credits.css';
+import '../css/spatial-world.css';
+import '../css/open-catalogue.css';
+import '../css/product-finish.css';
+import '../css/courtyard-ui.css';
+import '../css/spatial-objects.css';
+import '../css/map-spatial.css';
+import '../css/scene-layout.css';
+import '../css/map-round.css';
+import '../css/home-map.css';
+import '../css/night-shell.css';
+import '../css/share-card.css';
+import '../css/listen.css';
+// PROTO only: UI stand-in, loaded only with ?ui=paper (see css/proto-ui-shim.css).
+if (new URLSearchParams(location.search).get('ui') === 'paper') import('../css/proto-ui-shim.css');
+import { OverlayScrollbars } from 'overlayscrollbars';
+import { mountThemes } from './themes.js';
+import { icon } from './icons.js';
+import { createMapState, mountMap, mountMapRecords } from './map.js';
+import { mountHome } from './home.js';
+import { mountMotion } from './motion.js';
+import { mountOpenCatalogue, mountSavedMusic } from './open-catalogue.js';
+import { qqLinkedCount } from './map-catalogue.js';
+import { createExplorationStorage, EXPLORATION_KEY } from './exploration-storage.js';
+
+// The key and version stay from 0.15 so a returning visitor keeps every exploration.
+const STORAGE_KEY = EXPLORATION_KEY;
+const views = ['home', 'explore', 'records'];
+// Routes retired in 0.16: old links, saved views and an older scene build all land on the courtyard.
+const LEGACY = new Map([['space', 'home'], ['live', 'home']]);
+const root = document.querySelector('#app');
+const toastElement = document.querySelector('#toast');
+let toastTimer;
+let cleanup;
+let storageReady = false;
+let conflictRenderQueued = false;
+const explorationStorage = createExplorationStorage({
+  storage: { getItem: key => localStorage.getItem(key), setItem: (key, value) => localStorage.setItem(key, value) },
+  locks: navigator.locks,
+  onChange() {
+    if (!storageReady) return;
+    updateChrome();
+    // Never re-enter render from a migration or cleanup's synchronous update.
+    if (explorationStorage.conflict && !conflictRenderQueued) {
+      conflictRenderQueued = true;
+      queueMicrotask(() => { conflictRenderQueued = false; render(); });
+    }
+  },
+});
+let recordsFilter = 'map';
+let themeController;
+let motion;
+let spatialContext = {};
+let droppedLegacy = false;
+
+function initialState() {
+  return { version: 1, view: 'home', map: createMapState(), routePayload: null };
+}
+
+function load() {
+  try {
+    const saved = JSON.parse(explorationStorage.initialRaw);
+    if (saved?.version === 1 && saved.map) {
+      // 0.15 saves also carry the Space demo (cards with photos) and its actor; neither is read any more.
+      const { space, actor, ...kept } = saved;
+      droppedLegacy = space !== undefined || actor !== undefined;
+      // An undo slip belongs to the visit that made the removal; a new visit starts without one.
+      if (kept.map) kept.map.undo = null;
+      return { ...kept, routePayload: null };
+    }
+  } catch {
+    // A new browser or cleared local data starts fresh.
+  }
+  return initialState();
+}
+
+function routeView(name) {
+  const view = LEGACY.get(name) || name;
+  return views.includes(view) ? view : 'home';
+}
+
+/** Old invitation links carried ?room=. A retired or unknown route shows the courtyard, and the address says so. */
+function tidyUrl() {
+  const url = new URL(location.href);
+  if (url.searchParams.has('room')) url.searchParams.delete('room');
+  // The skip link's own fragment is left alone; a bare address stays bare.
+  if (url.hash && url.hash !== '#main-content') url.hash = `/${routeView(url.hash.slice(2))}`;
+  if (url.href !== location.href) history.replaceState(null, '', url);
+}
+
+/** A 寻声 puzzle from a friend: `?from=<start>&to=<target>#/explore`. The pair is read once and taken
+ *  off the address (a reload or a copied address does not deal it again); the record shop checks it
+ *  against the catalogue. Nothing else is read from the link. */
+function takeSharedRound() {
+  const url = new URL(location.href);
+  if (!url.searchParams.has('from') && !url.searchParams.has('to')) return null;
+  const id = name => (url.searchParams.get(name) || '').trim().slice(0, 64);
+  const round = { start: id('from'), target: id('to') };
+  url.searchParams.delete('from');
+  url.searchParams.delete('to');
+  url.hash = '/explore';
+  history.replaceState(null, '', url);
+  return round;
+}
+
+const sharedRound = takeSharedRound();
+const state = load();
+state.view = routeView(location.hash.slice(2));
+tidyUrl();
+// The record shop deals the friend's pair on its first drawing (mountMap's {round:{start,target}} entry).
+if (sharedRound) Object.assign(state, { view: 'explore', routePayload: { round: sharedRound, fromFriend: true } });
+
+/* In the record shop a toast sits just above the dock or the hand (map-round.css, map-spatial.css); a phone
+ * never puts one over the masthead. Where it would lie over a name tag or a song title on the table, it is
+ * lifted: on a desktop to the top middle, clear of the brand and the paper slips; on a phone to just under
+ * the masthead (over the round's question slip, which it repeats), clear of the brand. */
+const TOAST_AVOID = '.world-music-label:not([hidden]),.world-music-link:not([hidden])';
+let toastFrame = 0;
+// The scene hides its tags under an open paper with visibility, not [hidden]: only a tag one can see counts.
+const seen = element => element.checkVisibility ? element.checkVisibility({ visibilityProperty: true, opacityProperty: true }) : getComputedStyle(element).visibility === 'visible';
+function toastCovers(selector, box, gap = 4) {
+  return [...document.querySelectorAll(selector)].some(element => {
+    if (!seen(element)) return false;
+    const rect = element.getBoundingClientRect();
+    return rect.width > 0 && rect.height > 0 && rect.left < box.right + gap && rect.right > box.left - gap && rect.top < box.bottom + gap && rect.bottom > box.top - gap;
+  });
+}
+function placeToast() {
+  toastElement.classList.remove('toast--top');
+  toastElement.style.removeProperty('--toast-top');
+  if (state.view !== 'explore' || document.body.classList.contains('spatial-fallback')) return;
+  if (!toastCovers(TOAST_AVOID, toastElement.getBoundingClientRect())) return;
+  const phone = window.innerWidth <= 760;
+  const brand = document.querySelector('.app-studio-shell .brand')?.getBoundingClientRect();
+  if (phone && brand) toastElement.style.setProperty('--toast-top', `${Math.round(brand.bottom + 8)}px`);
+  toastElement.classList.add('toast--top');
+  const lifted = toastElement.getBoundingClientRect();
+  const keepClear = phone ? '.brand,.masthead-tools' : '.brand,.masthead-tools,.map-round-head,.map-studio-head';
+  if (toastCovers(TOAST_AVOID, lifted) || toastCovers(keepClear, lifted)) {
+    toastElement.classList.remove('toast--top');
+    toastElement.style.removeProperty('--toast-top');
+  }
+}
+
+function toast(message) {
+  clearTimeout(toastTimer);
+  cancelAnimationFrame(toastFrame);
+  toastElement.textContent = message;
+  // The scene redraws its tags on the next frame after the change that raised this toast: place, then show.
+  toastFrame = requestAnimationFrame(() => {
+    toastFrame = requestAnimationFrame(() => {
+      placeToast();
+      toastElement.classList.add('visible');
+      toastTimer = setTimeout(() => toastElement.classList.remove('visible'), 3200);
+    });
+  });
+}
+
+function persist() {
+  const saved = explorationStorage.save(state);
+  updateChrome();
+  return saved;
+}
+
+function canUpdate() {
+  return explorationStorage.check();
+}
+
+function update(mutator) {
+  if (!canUpdate()) return false;
+  mutator(state);
+  void persist();
+  return true;
+}
+
+function navigate(name, payload = null) {
+  const view = LEGACY.get(name) || name;
+  if (!views.includes(view)) return;
+  if (view === 'records' && !payload) recordsFilter = 'map';
+  state.view = view;
+  state.routePayload = payload;
+  const nextUrl = new URL(location.href);
+  nextUrl.hash = `/${view}`;
+  if (location.href !== nextUrl.href) history.pushState(null, '', nextUrl);
+  // Navigation must never write an old exploration snapshot over another tab.
+  explorationStorage.check();
+  render();
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  document.querySelector('#main-content').focus({ preventScroll: true });
+}
+
+const api = { getState: () => state, update, canUpdate, render, navigate, toast, icon,
+  spatial: {
+    publish(content) {
+      spatialContext = content;
+      document.body.dataset.spatialSection = content.mode || state.view;
+      themeController?.setContent(content.cards || [], content.mode);
+      themeController?.setMusic(content.music || null);
+    },
+    musicControl(command) { return themeController?.musicControl(command); },
+  },
+};
+window.addEventListener('music-space-map-artist',event=>{
+  if(typeof event.detail?.artistId==='string')navigate('explore',{artistId:event.detail.artistId});
+});
+
+/** The courtyard only navigates and forwards record-table actions to the shop. */
+function onSpatialAction(action) {
+  if (action.type === 'music' && canUpdate()) spatialContext.onMusic?.(action);
+  if (action.type === 'navigate') navigate(action.view);
+  // 'editor' and 'photo' came from Space's desk and photo wall; an older scene build may still send them.
+}
+
+function updateChrome() {
+  document.querySelectorAll('[data-nav]').forEach(el => {
+    const active = el.dataset.nav === state.view;
+    el.classList.toggle('active', active);
+    if (active) el.setAttribute('aria-current', 'page');
+    else el.removeAttribute('aria-current');
+  });
+  const storageNote = document.querySelector('#storage-warning');
+  if (storageNote) {
+    storageNote.hidden = !(explorationStorage.failed || explorationStorage.conflict);
+    const message = document.querySelector('#storage-message');
+    message.textContent = explorationStorage.conflict
+      ? '另一标签页已更新或清除了探索记录，本页已停止写入，避免覆盖。当前页内容仍保留；请重载最新记录后继续。'
+      : '这次修改尚未保存。请检查浏览器存储空间，并使用支持 Web Locks 的现代浏览器（HTTPS 或本地文件）。当前页内容仍保留，可先下载备份。';
+    document.querySelector('#retry-save').hidden = explorationStorage.conflict;
+    document.querySelector('#reload-records').hidden = !explorationStorage.conflict;
+  }
+  const sectionNames = { home: '从喜欢，走向未知', explore: '唱片店', records: '我的发现' };
+  // The brand comes first in the tab, as it does on the wordmark.
+  document.title = `Music Map · ${sectionNames[state.view]}`;
+}
+
+function navItems() {
+  return [
+    ['home', 'heart', '小院'],
+    ['explore', 'compass', '唱片店'],
+    ['records', 'bookmark', '我的发现'],
+  ].map(([view, name, title]) => `
+    <button class="nav-item" data-nav="${view}">
+      ${icon(name)}<span>${title}</span>
+    </button>`).join('');
+}
+
+function shell() {
+  root.innerHTML = `
+    <header class="app-masthead app-studio-shell">
+      <button class="brand" data-nav="home" aria-label="Music Map · 樱下放映 · 夜场唱片店，回到小院">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="brand-wordmark">Music Map<small>樱下放映 · 夜场唱片店</small></span>
+      </button>
+      <nav class="primary-nav" aria-label="主要导航">${navItems()}</nav>
+      <div class="masthead-tools"><button class="demo-help icon-button" id="demo-help" aria-label="关于 Music Map" aria-haspopup="dialog" aria-controls="about-dialog">${icon('info')}</button></div>
+    </header>
+    <div id="sakura-world" class="spatial-world" hidden></div>
+    <div class="app-body">
+      <div id="storage-warning" class="storage-warning" role="alert" hidden><span id="storage-message"></span><button id="retry-save">重试保存</button><button id="reload-records" hidden>重载最新记录</button><button id="backup-records">下载本页探索备份</button></div>
+      <main id="main-content" class="main-content" tabindex="-1"></main>
+    </div>
+    <nav class="mobile-nav" aria-label="手机导航">${navItems()}</nav>
+    <dialog id="about-dialog" class="about-dialog" aria-labelledby="about-title">
+      <div class="about-top"><h2 id="about-title">Music Map</h2><button class="icon-button" id="close-about" aria-label="关闭关于">${icon('x')}</button></div>
+      <p class="about-intro">从喜欢，走向未知。</p><div class="about-facts"><p><b>寻声</b><span>在唱片店选好起点和终点，只能翻开所在歌手手边的合唱；沿翻开的合唱前往才算一步，翻开、提示和查看都不计步。</span></p><p><b>图鉴</b><span>唱片店里的完整图鉴摊开收录的全部合唱，可从任意一位歌手出发自由漫游。</span></p><p><b>来源</b><span>每条连线都是一首真实的共同演唱录音，附有来源；制作署名只列已核实的部分。</span></p><p><b>曲库</b><span>开放曲库只列公开数据集里的共同署名，不一定是合唱，也不连入关系图。</span></p><p><b>音频</b><span>站内没有音频；${qqLinkedCount} 首可在 QQ 音乐打开同一录音，其余标明原因。</span></p><p><b>数据</b><span>探索记录和留下的歌只存在这个浏览器里，清除网站数据后无法找回。</span></p></div>
+      <button class="button button--primary" id="start-experience">知道了</button>
+    </dialog>`;
+  root.addEventListener('click', event => {
+    const item = event.target.closest('[data-nav]');
+    if (item) {
+      document.querySelector('#about-dialog').close();
+      navigate(item.dataset.nav);
+    }
+    const filter = event.target.closest('[data-records-filter]');
+    if (filter) {
+      recordsFilter = filter.dataset.recordsFilter;
+      state.routePayload = null;
+      render();
+      document.querySelector(`[data-records-filter="${recordsFilter}"]`)?.focus({ preventScroll: true });
+    }
+  });
+  const dialog = document.querySelector('#about-dialog');
+  document.querySelector('#demo-help').addEventListener('click', () => dialog.showModal());
+  document.querySelector('#close-about').addEventListener('click', () => dialog.close());
+  document.querySelector('#start-experience').addEventListener('click', () => dialog.close());
+  dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
+  document.querySelector('#retry-save').addEventListener('click', async () => {
+    const saved = await persist();
+    toast(saved ? '已保存到当前浏览器' : '仍未保存，当前页内容保留，请查看存储提示');
+  });
+  document.querySelector('#reload-records').addEventListener('click', () => {
+    if (explorationStorage.dirty && !window.confirm('本页还有未保存的探索。请先下载本页备份；重载会放弃本页未保存的修改。确定重载最新记录吗？')) return;
+    location.reload();
+  });
+  document.querySelector('#backup-records').addEventListener('click', () => {
+    const file = new Blob([JSON.stringify({ version: 1, map: state.map }, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(file);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'music-map-exploration-backup.json';
+    document.body.append(link);
+    link.click();
+    link.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  });
+}
+
+/** 我的发现: the explorations walked here and the songs kept on the way. */
+function mountRecords(container) {
+  const section = state.routePayload?.section;
+  if (section === 'map' || section === 'music') recordsFilter = section;
+  const filters = [['map', '探索记录'], ['music', '留下的歌']];
+  container.innerHTML = `<div class="records-page collection-page"><header class="records-heading"><h1>我的发现</h1><button class="button" data-records-explore>${icon('compass')}去唱片店</button></header><div class="records-filters" role="group" aria-label="我的发现分类">${filters.map(([value, label]) => `<button data-records-filter="${value}" aria-pressed="${recordsFilter === value}">${label}</button>`).join('')}</div><div id="collection-content"></div></div>`;
+  container.querySelector('[data-records-explore]').onclick = () => navigate('explore');
+  const content = container.querySelector('#collection-content');
+  return recordsFilter === 'music' ? mountSavedMusic(content, api) : mountMapRecords(content, api);
+}
+
+function render() {
+  cleanup?.();
+  cleanup = null;
+  spatialContext = {};
+  themeController?.setContent([]);
+  if (state.view !== 'explore') themeController?.setMusic(null);
+  const container = document.querySelector('#main-content');
+  container.replaceChildren();
+  document.body.dataset.view = state.view;
+  document.body.dataset.spatialSection = state.view;
+  themeController?.setView(state.view);
+  if (explorationStorage.conflict) {
+    themeController?.setMusic(null);
+    container.innerHTML = '<section class="empty-state"><h1>探索记录已在另一页更新</h1><p>本页暂时停止编辑。请用上方「重载最新记录」继续；未保存的内容可先下载备份，取消重载会留在本页。</p></section>';
+    updateChrome();
+    return;
+  }
+  if (state.view === 'home') cleanup = mountHome(container, api);
+  if (state.view === 'explore') cleanup = mountMap(container, api);
+  if (state.view === 'records') cleanup = mountRecords(container);
+  updateChrome();
+  container.scrollTop = 0;
+  motion?.enter(container, state.view);
+}
+
+window.addEventListener('popstate', () => {
+  if (location.hash === '#main-content') return;
+  state.view = routeView(location.hash.slice(2));
+  state.routePayload = null;
+  tidyUrl();
+  explorationStorage.check();
+  render();
+});
+
+window.addEventListener('storage', event => {
+  if ((event.key === STORAGE_KEY || event.key === null) && (!event.storageArea || event.storageArea === localStorage)) explorationStorage.check();
+});
+window.addEventListener('focus', () => explorationStorage.check());
+window.addEventListener('pageshow', () => explorationStorage.check());
+window.addEventListener('beforeunload', event => {
+  if (!explorationStorage.dirty) return;
+  event.preventDefault();
+  event.returnValue = '';
+});
+
+shell();
+storageReady = true;
+// Write the trimmed save once, so the dropped Space data frees its storage now.
+if (droppedLegacy) persist();
+themeController = mountThemes({ onAction: onSpatialAction, view: state.view,
+  onShot(key, id, travelling) { document.body.dataset.spatialShot = key; document.body.toggleAttribute('data-spatial-travelling', travelling); },
+});
+motion = mountMotion();
+const cleanupCatalogue=mountOpenCatalogue(api);
+render();
+// Keep window scrolling and focus navigation native; only replace its chrome.
+const scrollbar=OverlayScrollbars(document.body, {
+  overflow: { x: 'hidden', y: 'scroll' },
+  scrollbars: { theme: 'os-theme-music', autoHide: 'scroll', autoHideDelay: 650, dragScroll: true, clickScroll: false },
+});
+
+// Page navigation owns one renderer at a time. A restored BFCache document
+// recreates its disposed scene, rather than retaining a dead WebGL context.
+window.addEventListener('pagehide',()=>{cleanup?.();cleanupCatalogue?.();motion?.dispose();scrollbar?.destroy();themeController?.dispose();});
+window.addEventListener('pageshow',event=>{if(event.persisted)location.reload();});

@@ -1,0 +1,56 @@
+{
+ "id": "D-01-landing",
+ "master": {
+  "file": "/tmp/space-video-doodle/prod/capture/desktop-rc2/master/D-01-landing.mp4",
+  "bytes": 5499628,
+  "duration_s": 8.0,
+  "video": "h264 High 3840x2160 60/1 yuv420p",
+  "colour": "bt709/bt709/bt709/tv",
+  "frames": 480,
+  "bitrate_mbps": 5.5,
+  "audio_streams": 0
+ },
+ "edit": {
+  "file": "/tmp/space-video-doodle/prod/capture/desktop-rc2/1080/D-01-landing.mp4",
+  "bytes": 2753774,
+  "duration_s": 8.0,
+  "video": "h264 High 1920x1080 60/1 yuv420p",
+  "colour": "bt709/bt709/bt709/tv",
+  "frames": 480,
+  "bitrate_mbps": 2.8,
+  "audio_streams": 0
+ },
+ "frames_decoded": 480,
+ "longest_still": {
+  "frames": 9,
+  "at_s": 0.017
+ },
+ "still_over_1s": [],
+ "stutters": {
+  "count": 0,
+  "at_s": [],
+  "rule": "still step (<0.15) between two moving steps (>0.6)"
+ },
+ "camera_glides": [],
+ "change_gap_histogram": {
+  "8": 4,
+  "9": 48
+ },
+ "taps": [],
+ "presses_no_ring": [],
+ "master_frames": 480,
+ "master_edit_same_frame_count": true,
+ "master_edit_motion_correlation": 0.9999,
+ "rec": {
+  "frames": 480,
+  "seconds": 8,
+  "wallPerVideoSecond": 7.03,
+  "msPerFrame": {
+   "step": 3,
+   "grab": 107.5,
+   "write": 6.6
+  },
+  "clockStart": "2026-10-08T22:40:00+08:00",
+  "seed": 20261009
+ }
+}

@@ -1,0 +1,47 @@
+{
+ "id": "consternation",
+ "label": "Wax Lyricist《Consternation At The Disco》130 BPM — 93 bars (+3 ADD bars), the breakdown for the title and the wait, natural end",
+ "track": {
+  "audio": "/tmp/space-video-doodle/music-cc0/04-consternation-at-the-disco__Wax-Lyricist/Wax_Lyricist_-_Consternation_At_The_Disco.mp3",
+  "beats": "/tmp/space-video-doodle/music-cc0/04-consternation-at-the-disco__Wax-Lyricist/beats.json",
+  "title": "Consternation At The Disco", "artist": "Wax Lyricist", "licence": "CC0 1.0 Universal",
+  "proof": "/tmp/space-video-doodle/music-cc0/04-consternation-at-the-disco__Wax-Lyricist/LICENCE-PROOF.md",
+  "credit": "配乐：Wax Lyricist《Consternation At The Disco》（CC0 1.0 公共领域）"
+ },
+ "plan": [
+  {"sb": "1-4", "trk": "21-24", "why": "cold open on groove B (full kit + bass)"},
+  {"sb": "5-8", "trk": "25-28", "why": "title on the breakdown (-29.5 dB, keys only): the band stops on 5:1"},
+  {"sb": "9-10", "trk": "37-38", "why": "pain: drumless bass + keys"},
+  {"sb": "11-20", "trk": "57-66", "why": "pain: the long drumless breakdown, ending in a gap (end of CD 66 = 20:4)"},
+  {"sb": "21-28", "trk": "67-74", "why": "DROP on 21:1 = drums back after the gap (+12.7 dB step)"},
+  {"sb": "28+1", "trk": "75", "why": "ADD-2 (inserted bar after 28): full groove arrives"},
+  {"sb": "29-40", "trk": "76-87", "why": "AI section on the steady groove (the song has no thinner groove here)"},
+  {"sb": "41-48", "trk": "41-48", "why": "build: four-on-the-floor kick without hats"},
+  {"sb": "49-50", "trk": "27-28", "why": "the wait: back into the breakdown (-29.5 dB)"},
+  {"sb": "51-54", "trk": "29-32", "why": "PAYOFF on the song's drop (breakdown -> full band, +12 dB)"},
+  {"sb": "54+1", "trk": "33", "why": "ADD-3 (inserted bar after 54)"},
+  {"sb": "55-57", "trk": "34-36", "why": "social groove"},
+  {"sb": "58-65", "trk": "49-56", "why": "social groove (groove B)"},
+  {"sb": "66-72", "trk": "83-89", "why": "social groove (the last full section)"},
+  {"sb": "73-74", "trk": "39-40", "why": "break: drumless bass + keys"},
+  {"sb": "75-82", "trk": "41-48", "why": "LIFT: kick returns (+3 dB), builds"},
+  {"sb": "83-90", "trk": "83-90", "why": "end card on the last full section"},
+  {"sb": "90+1", "trk": "91", "why": "ADD-1 (end card +1 bar): the song's final hit, rings into the tail"}
+ ],
+ "cut": [],
+ "tail_s": 1.8,
+ "fade": null,
+ "xfade_ms": 20,
+ "music_has": [],
+ "moments": {
+  "title_stop": {"verdict": "yes", "note": "the band drops to the -29.5 dB breakdown exactly on 5:1 (SFX impact carries the hit)"},
+  "pain_sparse": {"verdict": "yes", "note": "12 drumless bars"},
+  "drop": {"verdict": "yes", "note": "gap on 20:4, drums back +12.7 dB on 21:1"},
+  "ai_chime": {"verdict": "sfx", "note": "SFX chime on 31:3"},
+  "payoff": {"verdict": "yes", "note": "breakdown on 49-50 -> the song's own drop on 51:1 (+12 dB, louder than 21:1)"},
+  "social_groove": {"verdict": "yes", "note": "full sections"},
+  "break": {"verdict": "partial", "note": "drumless bars instead of stop-time hits"},
+  "lift": {"verdict": "partial", "note": "kick-only build; no key change"},
+  "end_resolve": {"verdict": "natural", "note": "the song's final hit on 90+1:1"}
+ }
+}

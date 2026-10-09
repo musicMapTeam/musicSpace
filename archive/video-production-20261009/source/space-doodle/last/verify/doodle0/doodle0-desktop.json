@@ -1,0 +1,105 @@
+{
+ "kind": "desktop",
+ "base": "http://127.0.0.1:4783/musicSpace/",
+ "results": {
+  "control-lobby": {
+   "url": "/musicSpace/",
+   "renderStyle": "doodle",
+   "venue": "ready",
+   "stage": "lobby",
+   "session": null,
+   "canvas": [
+    929,
+    688
+   ],
+   "bodyBg": "rgb(247, 239, 223)",
+   "paperToken": "#f7efdf",
+   "font": "\"Doodle Marker\", \"PingFang SC\", \"Microso"
+  },
+  "doodle0-lobby": {
+   "url": "/musicSpace/?doodle=0",
+   "renderStyle": "classic",
+   "venue": "ready",
+   "stage": "lobby",
+   "session": "0",
+   "canvas": [
+    929,
+    688
+   ],
+   "bodyBg": "rgb(247, 239, 223)",
+   "paperToken": "#f7efdf",
+   "font": "\"Doodle Marker\", \"PingFang SC\", \"Microso",
+   "colours": 223
+  },
+  "entered": {
+   "joinLabel": "进入示例现场",
+   "formOpen": {
+    "st": 0,
+    "submit": "进入示例现场"
+   },
+   "sample": "人海 · 示例照片"
+  },
+  "doodle0-room": {
+   "url": "/musicSpace/?room=FD5I6LGEQT4X",
+   "renderStyle": "classic",
+   "venue": "ready",
+   "stage": "room",
+   "session": "0",
+   "canvas": [
+    1370,
+    688
+   ],
+   "bodyBg": "rgb(247, 239, 223)",
+   "paperToken": "#f7efdf",
+   "font": "\"Doodle Marker\", \"PingFang SC\", \"Microso",
+   "colours": 257
+  },
+  "doodle0-upload-ai": true,
+  "reload": {
+   "url": "/musicSpace/?room=FD5I6LGEQT4X",
+   "renderStyle": "classic",
+   "venue": "ready",
+   "stage": "room",
+   "session": "0",
+   "canvas": [
+    1370,
+    688
+   ],
+   "bodyBg": "rgb(247, 239, 223)",
+   "paperToken": "#f7efdf",
+   "font": "\"Doodle Marker\", \"PingFang SC\", \"Microso"
+  },
+  "doodle1": {
+   "url": "/musicSpace/?doodle=1",
+   "renderStyle": "doodle",
+   "venue": "ready",
+   "stage": "lobby",
+   "session": "1",
+   "canvas": [
+    929,
+    688
+   ],
+   "bodyBg": "rgb(247, 239, 223)",
+   "paperToken": "#f7efdf",
+   "font": "\"Doodle Marker\", \"PingFang SC\", \"Microso"
+  }
+ },
+ "failures": [],
+ "log0": {
+  "requests": 18,
+  "api": [],
+  "foreign": [],
+  "failedRequests": [],
+  "consoleErrors": [],
+  "pageErrors": []
+ },
+ "log1": {
+  "requests": 118,
+  "api": [],
+  "foreign": [],
+  "failedRequests": [],
+  "consoleErrors": [],
+  "pageErrors": []
+ },
+ "ok": true
+}

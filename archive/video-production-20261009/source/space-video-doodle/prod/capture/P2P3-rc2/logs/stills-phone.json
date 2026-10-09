@@ -1,0 +1,873 @@
+{
+ "items": [
+  {
+   "id": "CUT-13",
+   "name": "stills/CUT-13_phone-landing",
+   "files": {
+    "full": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/stills/CUT-13_phone-landing.png"
+   },
+   "note": "first screen before entering; 3D doodle stage, 进到同一个现场, card 同一刻，另一面。 + 「同一晚，你拍了舞台，TA 拍了人海。AI 在本机给你一个视角建议，照片墙帮你找到同一刻的另一面，双方同意就交换。」, 进入现场, footer 关于 Music Space",
+   "storyboard": "W1 (and E1 reference)",
+   "audit": {
+    "banned": 0,
+    "watch": [],
+    "chars": 222
+   }
+  },
+  {
+   "id": "CUT-02",
+   "name": "cut/CUT-02_wardrobe-stand-shizhen-quarter",
+   "sels": [
+    ".wardrobe .wardrobe-look"
+   ],
+   "clipCss": {
+    "x": 0,
+    "y": 62,
+    "width": 390,
+    "height": 338,
+    "n": 1,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "the real wardrobe stand: YOU lettering, mint orbit, figure 失真 at 3/4, stand sticker, angle switch",
+   "storyboard": "H1 (avatar), E2 reference",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/CUT-02_wardrobe-stand-shizhen-quarter.opaque.png"
+   },
+   "regionText": "正面 3/4 侧面 背面 试穿中 · 仅自己可见",
+   "audit": {
+    "banned": 0,
+    "watch": [],
+    "chars": 537
+   }
+  },
+  {
+   "id": "CUT-02s",
+   "name": "cut/CUT-02s_wardrobe-figure-on-orbit",
+   "sels": [
+    ".wardrobe .wardrobe-orbit",
+    ".wardrobe .wardrobe-figure"
+   ],
+   "clipCss": {
+    "x": 6,
+    "y": 55,
+    "width": 378,
+    "height": 333,
+    "n": 2,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "figure + mint orbit only (alpha die-cut)",
+   "storyboard": "H1 die-cut sticker",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/CUT-02s_wardrobe-figure-on-orbit.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/CUT-02s_wardrobe-figure-on-orbit.png"
+   },
+   "regionText": "|",
+   "audit": {
+    "banned": 0,
+    "watch": [],
+    "chars": 537
+   }
+  },
+  {
+   "id": "CUT-04a",
+   "name": "cut/CUT-04a_ai-tag-renhai",
+   "sels": [
+    ".moment-ai-tag"
+   ],
+   "clipCss": {
+    "x": 17,
+    "y": 401,
+    "width": 199,
+    "height": 73,
+    "n": 1,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "「✦ AI 判断：人海」 chip (P-05 state)",
+   "storyboard": "H1, A2 31:4 lift-off, W3",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/CUT-04a_ai-tag-renhai.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/CUT-04a_ai-tag-renhai.png"
+   },
+   "regionText": "AI 判断：人海",
+   "audit": {
+    "banned": 0,
+    "watch": [],
+    "chars": 467
+   }
+  },
+  {
+   "id": "CUT-04b",
+   "name": "cut/CUT-04b_viewpoint-chips-renhai-selected",
+   "sels": [
+    ".moment-chips"
+   ],
+   "clipCss": {
+    "x": 18,
+    "y": 315,
+    "width": 349,
+    "height": 178,
+    "n": 1,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "the four viewpoint chips, 人海 pre-selected by the AI suggestion",
+   "storyboard": "H1, W3",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/CUT-04b_viewpoint-chips-renhai-selected.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/CUT-04b_viewpoint-chips-renhai-selected.png"
+   },
+   "regionText": "舞台 灯光下的那一面 人海 一起举手的那一面 身边 陪你听歌的那一面 细节 只有你留意的那一面",
+   "audit": {
+    "banned": 0,
+    "watch": [],
+    "chars": 467
+   }
+  },
+  {
+   "id": "CUT-04c",
+   "name": "cut/CUT-04c_viewpoint-block",
+   "sels": [
+    ".moment-view"
+   ],
+   "clipCss": {
+    "x": 18,
+    "y": 260,
+    "width": 349,
+    "height": 306,
+    "n": 1,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "我拍的这一面 + chips + AI chip + hint 「配对时用它找另一面，你说了算。」 (rc.2: the hint no longer carries 「AI 在本机判断，照片不上传」; that sentence is only the AI chip's tooltip)",
+   "storyboard": "H1, S11, W3",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/CUT-04c_viewpoint-block.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/CUT-04c_viewpoint-block.png"
+   },
+   "regionText": "我拍的这一面 舞台 灯光下的那一面 人海 一起举手的那一面 身边 陪你听歌的那一面 细节 只有你留意的那一面 AI 判断：人海 配对时用它找另一面，你说了算。",
+   "audit": {
+    "banned": 0,
+    "watch": [],
+    "chars": 467
+   }
+  },
+  {
+   "id": "POL-upload",
+   "name": "cut/POL-01_upload-polaroid-crowd-2148",
+   "sels": [
+    ".moment-taken"
+   ],
+   "clipCss": {
+    "x": 14,
+    "y": 288,
+    "width": 357,
+    "height": 226,
+    "n": 1,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "upload form polaroid of 人海那张 with 拍摄于 21:48 · 来自照片自带的信息 · 修改时间 (rc.2: no sample note)",
+   "storyboard": "A1/M1 polaroid",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/POL-01_upload-polaroid-crowd-2148.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/POL-01_upload-polaroid-crowd-2148.png"
+   },
+   "regionText": "拍摄于 21:48 · 来自照片自带的信息 修改时间",
+   "audit": {
+    "banned": 0,
+    "watch": [],
+    "chars": 467
+   }
+  },
+  {
+   "id": "CUT-05",
+   "name": "cut/CUT-05_badge-other-side",
+   "sels": [
+    "[data-moment-badge=\"other-side\"]"
+   ],
+   "clipCss": {
+    "x": 27,
+    "y": 292,
+    "width": 325,
+    "height": 223,
+    "n": 1,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "「同一刻的另一面」 + reason 「同一刻 · 21:47，相差不到 1 分钟；你拍人海，TA 拍舞台」 + 「和 TA 交换这个视角」",
+   "storyboard": "H1, M2, A5 40:x lift-off",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/CUT-05_badge-other-side.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/CUT-05_badge-other-side.png"
+   },
+   "regionText": "同一刻的另一面 同一刻 · 21:47，相差不到 1 分钟；你拍人海，TA 拍舞台 和 TA 交换这个视角",
+   "audit": {
+    "banned": 0,
+    "watch": [],
+    "chars": 690
+   }
+  },
+  {
+   "id": "POL-best",
+   "name": "cut/POL-02_wall-best-card-yao-stage",
+   "sels": [
+    "#panel .moment-card--best"
+   ],
+   "clipCss": {
+    "x": 9,
+    "y": 111,
+    "width": 367,
+    "height": 584,
+    "n": 1,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "the wall card with tapes: badge, button, 阿遥 stage photo, 拍摄于 21:47 · 视角：舞台 · 作者选择",
+   "storyboard": "M2 / H1 polaroid",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/POL-02_wall-best-card-yao-stage.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/POL-02_wall-best-card-yao-stage.png"
+   },
+   "regionText": "同一刻的另一面 同一刻 · 21:47，相差不到 1 分钟；你拍人海，TA 拍舞台 和 TA 交换这个视角 阿遥 照片墙：本场成员可见 拍摄于 21:47 · 视角：舞台 · 作者选择",
+   "audit": {
+    "banned": 0,
+    "watch": [],
+    "chars": 690
+   }
+  },
+  {
+   "id": "WALL-head",
+   "name": "cut/WALL-01_group-header-2147-rule",
+   "sels": [
+    "#panel .moment-group[data-moment-group=\"m1790430440000\"] > .moment-group__title",
+    "#panel .moment-group[data-moment-group=\"m1790430440000\"] > .moment-group__note"
+   ],
+   "clipCss": {
+    "x": 18,
+    "y": 168,
+    "width": 350,
+    "height": 141,
+    "n": 2,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "21:47 同一刻 · 3 个视角 + note 「3 分钟内拍下」 (rc.2: was 「按拍摄时间分组（相差不超过 3 分钟），规则判断，不是 AI」)",
+   "storyboard": "A5",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/WALL-01_group-header-2147-rule.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/WALL-01_group-header-2147-rule.png"
+   },
+   "regionText": "21:47 · 同一刻 · 3 个视角：舞台 · 人海 · 细节 | 3 分钟内拍下",
+   "audit": {
+    "banned": 0,
+    "watch": [],
+    "chars": 690
+   }
+  },
+  {
+   "id": "POL-03",
+   "name": "cut/POL-03_wall-card-man-crowd-2148",
+   "sels": [
+    "#panel .moment-card[data-moment-photo=\"d5256a6a-63b3-48d8-b250-e9120b7390d5\"]"
+   ],
+   "clipCss": {
+    "x": 11,
+    "y": 224,
+    "width": 194,
+    "height": 358,
+    "n": 1,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "小满 照片墙：本场成员可见 拍摄于 21:48 · 视角：人海 · 作者选择 同一刻",
+   "storyboard": "polaroid stickers (A5 37:x, H1/S11/M1)",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/POL-03_wall-card-man-crowd-2148.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/POL-03_wall-card-man-crowd-2148.png"
+   },
+   "regionText": "小满 照片墙：本场成员可见 拍摄于 21:48 · 视角：人海 · 作者选择 同一刻",
+   "audit": {
+    "banned": 0,
+    "watch": [],
+    "chars": 690
+   }
+  },
+  {
+   "id": "POL-04",
+   "name": "cut/POL-04_wall-card-aning-crowd-2148-ai",
+   "sels": [
+    "#panel .moment-card[data-moment-photo=\"a67abcb7-3756-4b89-8d4c-3ed6adcf17c2\"]"
+   ],
+   "clipCss": {
+    "x": 180,
+    "y": 224,
+    "width": 194,
+    "height": 358,
+    "n": 1,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "阿宁 照片墙：本场成员可见 拍摄于 21:48 · 视角：人海 · AI 建议，未改动",
+   "storyboard": "polaroid stickers (A5 37:x, H1/S11/M1)",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/POL-04_wall-card-aning-crowd-2148-ai.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/POL-04_wall-card-aning-crowd-2148-ai.png"
+   },
+   "regionText": "阿宁 照片墙：本场成员可见 拍摄于 21:48 · 视角：人海 · AI 建议，未改动",
+   "audit": {
+    "banned": 0,
+    "watch": [],
+    "chars": 690
+   }
+  },
+  {
+   "id": "POL-05",
+   "name": "cut/POL-05_wall-card-bei-detail-2149",
+   "sels": [
+    "#panel .moment-card[data-moment-photo=\"f25fb8d3-4a2c-4248-8d69-878aaa29df9f\"]"
+   ],
+   "clipCss": {
+    "x": 11,
+    "y": 224,
+    "width": 194,
+    "height": 358,
+    "n": 1,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "北屿 照片墙：本场成员可见 拍摄于 21:49 · 视角：细节 · 作者选择 同一刻",
+   "storyboard": "polaroid stickers (A5 37:x, H1/S11/M1)",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/POL-05_wall-card-bei-detail-2149.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/POL-05_wall-card-bei-detail-2149.png"
+   },
+   "regionText": "北屿 照片墙：本场成员可见 拍摄于 21:49 · 视角：细节 · 作者选择 同一刻",
+   "audit": {
+    "banned": 0,
+    "watch": [],
+    "chars": 681
+   }
+  },
+  {
+   "id": "POL-06",
+   "name": "cut/POL-06_wall-card-man-friends-2221",
+   "sels": [
+    "#panel .moment-card[data-moment-photo=\"42a1a114-5d75-4c31-82d5-642486411807\"]"
+   ],
+   "clipCss": {
+    "x": 12,
+    "y": 243,
+    "width": 193,
+    "height": 322,
+    "n": 1,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "小满 照片墙：本场成员可见 拍摄于 22:21 · 视角：身边 · 作者选择",
+   "storyboard": "polaroid stickers (A5 37:x, H1/S11/M1)",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/POL-06_wall-card-man-friends-2221.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/POL-06_wall-card-man-friends-2221.png"
+   },
+   "regionText": "小满 照片墙：本场成员可见 拍摄于 22:21 · 视角：身边 · 作者选择",
+   "audit": {
+    "banned": 0,
+    "watch": [],
+    "chars": 681
+   }
+  },
+  {
+   "id": "POL-pair",
+   "name": "cut/POL-08_exchange-pair-compose",
+   "sels": [
+    ".photo-exchanges .exchange-pair"
+   ],
+   "clipCss": {
+    "x": 4,
+    "y": 140,
+    "width": 382,
+    "height": 247,
+    "n": 1,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "「我提供的 / 我选中的这一张」 ⇄ 「阿遥的 / 照片墙上的这一张」",
+   "storyboard": "M3",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/POL-08_exchange-pair-compose.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/POL-08_exchange-pair-compose.png"
+   },
+   "regionText": "我提供的 我选中的这一张 阿遥的 照片墙上的这一张",
+   "audit": {
+    "banned": 0,
+    "watch": [],
+    "chars": 547
+   }
+  },
+  {
+   "id": "CUT-11",
+   "name": "cut/CUT-11_consent-tick-send",
+   "sels": [
+    ".photo-exchanges label:has([data-x-consent])",
+    ".photo-exchanges [data-x-send]"
+   ],
+   "clipCss": {
+    "x": 4,
+    "y": 639,
+    "width": 382,
+    "height": 149,
+    "n": 2,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "tick 「我同意先给小图，TA 接受后再给原图」 + 「把这两张交给对方确认 ↗」",
+   "storyboard": "W3 (同意), M4",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/CUT-11_consent-tick-send.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/CUT-11_consent-tick-send.png"
+   },
+   "regionText": "我同意先给小图，TA 接受后再给原图 | 把这两张交给对方确认 ↗",
+   "audit": {
+    "banned": 0,
+    "watch": [],
+    "chars": 547
+   }
+  },
+  {
+   "id": "CUT-11b",
+   "name": "cut/CUT-11b_consent-agreement-block",
+   "sels": [
+    ".photo-exchanges .exchange-agreement",
+    ".photo-exchanges [data-x-send]"
+   ],
+   "clipCss": {
+    "x": 4,
+    "y": 623,
+    "width": 382,
+    "height": 165,
+    "n": 2,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "agreement block (rc.2: only the tick 「我同意先给小图，TA 接受后再给原图」; the long 「发送后…」 paragraph is gone) + send",
+   "storyboard": "M4",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/CUT-11b_consent-agreement-block.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/CUT-11b_consent-agreement-block.png"
+   },
+   "regionText": "我同意先给小图，TA 接受后再给原图 | 把这两张交给对方确认 ↗",
+   "audit": {
+    "banned": 0,
+    "watch": [],
+    "chars": 547
+   }
+  },
+  {
+   "id": "PENDING",
+   "name": "cut/EXCH-01_pending-status-pair",
+   "sels": [
+    ".photo-exchanges .exchange-status",
+    ".photo-exchanges .exchange-body > h3",
+    ".photo-exchanges .exchange-pair"
+   ],
+   "clipCss": {
+    "x": 0,
+    "y": 90,
+    "width": 390,
+    "height": 350,
+    "n": 3,
+    "clipped": false,
+    "padClamped": true
+   },
+   "note": "「等待对方回应」 + 「和 阿遥 的两张照片」 (before 阿遥 answers)",
+   "storyboard": "M5",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/EXCH-01_pending-status-pair.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/EXCH-01_pending-status-pair.png"
+   },
+   "regionText": "等待对方回应 | 和 阿遥 的两张照片 | 我提供的 这次确定的一张 阿遥提供的 这次确定的一张",
+   "audit": {
+    "banned": 0,
+    "watch": [],
+    "chars": 448
+   }
+  },
+  {
+   "id": "CUT-06",
+   "name": "cut/CUT-06_exchange-accepted-pair",
+   "sels": [
+    ".photo-exchanges .exchange-status",
+    ".photo-exchanges .exchange-body > h3",
+    ".photo-exchanges .exchange-pair"
+   ],
+   "clipCss": {
+    "x": 0,
+    "y": 85,
+    "width": 390,
+    "height": 405,
+    "n": 3,
+    "clipped": false,
+    "padClamped": true
+   },
+   "note": "「交换已接受」 sticker with star + 「和 阿遥 的两张照片」 + both polaroids (我提供的 / 阿遥提供的)",
+   "storyboard": "H1, M6, S11",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/CUT-06_exchange-accepted-pair.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/CUT-06_exchange-accepted-pair.png"
+   },
+   "regionText": "交换已接受 | 和 阿遥 的两张照片 | 我提供的 这次确定的一张 阿遥提供的 这次确定的一张",
+   "audit": {
+    "banned": 0,
+    "watch": [],
+    "chars": 430
+   }
+  },
+  {
+   "id": "CUT-06s",
+   "name": "cut/CUT-06s_exchange-accepted-sticker",
+   "sels": [
+    ".photo-exchanges .exchange-status"
+   ],
+   "clipCss": {
+    "x": 40,
+    "y": 83,
+    "width": 280,
+    "height": 128,
+    "n": 1,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "the mint 「交换已接受」 sticker alone (star + sparkles are its own pseudo-elements)",
+   "storyboard": "M6 punch-in (A4 51:1 lift-off)",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/CUT-06s_exchange-accepted-sticker.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/CUT-06s_exchange-accepted-sticker.png"
+   },
+   "regionText": "交换已接受",
+   "audit": {
+    "banned": 0,
+    "watch": [],
+    "chars": 430
+   }
+  },
+  {
+   "id": "REVOKE",
+   "name": "cut/EXCH-02_revoke-button-fineprint",
+   "sels": [
+    ".photo-exchanges .exchange-body > p:not(.exchange-status):not(.exchange-fine)",
+    ".photo-exchanges .exchange-body > button",
+    ".photo-exchanges .exchange-fine"
+   ],
+   "clipCss": {
+    "x": 4,
+    "y": 479,
+    "width": 382,
+    "height": 195,
+    "n": 3,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "「散场后也能在「照片交换」里看。」 + 「撤销这次交换」 (rc.2: the old fine print 「任一方撤销…原件仍归各自…」 is gone; id kept)",
+   "storyboard": "M7, W3",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/EXCH-02_revoke-button-fineprint.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/EXCH-02_revoke-button-fineprint.png"
+   },
+   "regionText": "散场后也能在「照片交换」里看。 | 撤销这次交换 | 刷新",
+   "audit": {
+    "banned": 0,
+    "watch": [],
+    "chars": 430
+   }
+  },
+  {
+   "id": "CUT-07",
+   "name": "cut/CUT-07_chat-bubbles",
+   "sels": [
+    ".private-chat .chat-message"
+   ],
+   "clipCss": {
+    "x": 0,
+    "y": 113,
+    "width": 390,
+    "height": 373,
+    "n": 4,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "the four bubbles: 「嗨，欢迎来到「回声现场」！」, 「你拍到的是哪一面？」, yours (mint) 「返场那首我在人海里，手都举酸了！」, reply 「今晚的返场太好听了。」",
+   "storyboard": "H1, S2, S11",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/CUT-07_chat-bubbles.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/CUT-07_chat-bubbles.png"
+   },
+   "regionText": "嗨，欢迎来到「回声现场」！ 22:40 | 你拍到的是哪一面？ 22:40 | 返场那首我在人海里，手都举酸了！ 22:40 · 已发送 | 今晚的返场太好听了。 22:40",
+   "audit": {
+    "banned": 0,
+    "watch": [],
+    "chars": 346
+   }
+  },
+  {
+   "id": "CUT-07h",
+   "name": "cut/CUT-07h_chat-header",
+   "sels": [
+    ".private-chat > header"
+   ],
+   "clipCss": {
+    "x": 0,
+    "y": 0,
+    "width": 390,
+    "height": 86,
+    "n": 1,
+    "clipped": false,
+    "padClamped": true
+   },
+   "note": "ONE TO ONE 小满 header",
+   "storyboard": "S2",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/CUT-07h_chat-header.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/CUT-07h_chat-header.png"
+   },
+   "regionText": "← ONE TO ONE 小满 ×",
+   "audit": {
+    "banned": 0,
+    "watch": [],
+    "chars": 346
+   }
+  },
+  {
+   "id": "CUT-12",
+   "name": "cut/CUT-12_worldcup-vs-card",
+   "sels": [
+    ".worldcup-panel section.worldcup-match:has([data-album=\"night-platform\"])"
+   ],
+   "clipCss": {
+    "x": 4,
+    "y": 281,
+    "width": 382,
+    "height": 365,
+    "n": 1,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "第一轮 · 第1组: 01 · 原创专辑卡 午夜站台 / 纸灯乐队 VS 02 樱花电波 / 薄荷收音机, before the visitor votes (the cast votes already counted)",
+   "storyboard": "W3 (好玩), S5",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/CUT-12_worldcup-vs-card.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/CUT-12_worldcup-vs-card.png"
+   },
+   "regionText": "第一轮 · 第1组 01 · 原创专辑卡 午夜站台 纸灯乐队 1票 选《午夜站台》 02 · 原创专辑卡 樱花电波 薄荷收音机 1票 选《樱花电波》 等发起人结束这一轮。",
+   "audit": {
+    "banned": 0,
+    "watch": [],
+    "chars": 448
+   }
+  },
+  {
+   "id": "CORNER",
+   "name": "exports/CORNER-01_creation-corner-invitation-phone",
+   "files": {
+    "full": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/exports/CORNER-01_creation-corner-invitation-phone.png"
+   },
+   "note": "invitation sent: 「TWO SIDES / 两个人的创作角 · 一起留张纪念。」 + 「等 TA 加入。」 (full-resolution still of the real state, a moment before 小满 joins)",
+   "storyboard": "S8",
+   "audit": {
+    "banned": 0,
+    "watch": [],
+    "chars": 258
+   }
+  },
+  {
+   "id": "CORNER-panel",
+   "name": "exports/CORNER-02_creation-corner-panel",
+   "sels": [
+    ".corner-panel"
+   ],
+   "clipCss": {
+    "x": 0,
+    "y": 481,
+    "width": 390,
+    "height": 364,
+    "n": 1,
+    "clipped": false,
+    "padClamped": true
+   },
+   "note": "the corner sheet alone at the invitation state (alpha die-cut + opaque)",
+   "storyboard": "S8",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/exports/CORNER-02_creation-corner-panel.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/exports/CORNER-02_creation-corner-panel.png"
+   },
+   "regionText": "TWO SIDES / 两个人的创作角 × 一起留张纪念。 已确认。 重新读取 等 TA 加入。 撤销共同创作我的创作与邀请",
+   "audit": {
+    "banned": 0,
+    "watch": [],
+    "chars": 258
+   }
+  },
+  {
+   "id": "CORNER-joined",
+   "name": "stills/CORNER-04_creation-corner-joined-phone",
+   "files": {
+    "full": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/stills/CORNER-04_creation-corner-joined-phone.png"
+   },
+   "note": "小满 joined and wrote 「人海这一面，手都举起来了。」 + his 人海 photo: 「MUSIC SPACE / TWO SIDES · 同一晚，我们的另一面。」, 阿宁 · 这一晚，我在这里。 (the default line before mine)",
+   "storyboard": "S8 (new: the cast joins)",
+   "audit": {
+    "banned": 0,
+    "watch": [],
+    "chars": 470
+   }
+  },
+  {
+   "id": "CORNER-art",
+   "name": "cut/CORNER-06_creation-corner-card",
+   "sels": [
+    ".corner-panel figure.corner-art"
+   ],
+   "clipCss": {
+    "x": 4,
+    "y": 126,
+    "width": 382,
+    "height": 646,
+    "n": 1,
+    "clipped": false,
+    "padClamped": false
+   },
+   "note": "the co-created card as the panel draws it (both avatars, both lines, both photos), version both confirmed",
+   "storyboard": "S8 sticker (new)",
+   "files": {
+    "opaque": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/CORNER-06_creation-corner-card.opaque.png",
+    "alpha": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/CORNER-06_creation-corner-card.png"
+   },
+   "regionText": "MUSIC SPACE / TWO SIDES 同一晚，我们的另一面。 阿宁 返场那首我在人海里，手都举酸了！ 阿宁 的这一面 小满 人海这一面，手都举起来了。 小满 的这一面 我们的共同草稿",
+   "audit": {
+    "banned": 0,
+    "watch": [],
+    "chars": 530
+   }
+  },
+  {
+   "id": "CORNER-preview",
+   "name": "stills/CORNER-05_creation-corner-keepsake-preview-phone",
+   "files": {
+    "full": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/stills/CORNER-05_creation-corner-keepsake-preview-phone.png"
+   },
+   "note": "「纪念图做好了。」 + the generated keepsake preview + 「下载 PNG」 / 「收起预览」",
+   "storyboard": "S8 (new)",
+   "audit": {
+    "banned": 0,
+    "watch": [],
+    "chars": 530
+   }
+  },
+  {
+   "id": "CUT-08ui",
+   "name": "stills/CUT-08ui_memory-card-result-phone",
+   "files": {
+    "full": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/stills/CUT-08ui_memory-card-result-phone.png"
+   },
+   "note": "phone after the download: 「已开始下载。」 + preview 你的纪念卡",
+   "storyboard": "S9",
+   "audit": {
+    "banned": 0,
+    "watch": [],
+    "chars": 418
+   }
+  }
+ ],
+ "extra": {
+  "base": "http://127.0.0.1:48741/musicSpace/",
+  "clock": "2026-10-08T22:40:00+08:00",
+  "svgs": [
+   "visitor-front",
+   "visitor-side",
+   "visitor-back",
+   "visitor-quarter",
+   "cast-yao",
+   "cast-man",
+   "cast-bei"
+  ],
+  "texts": {
+   "entry": "× 月台 Livehouse · 回声现场 带上小人，进入现场 进去后先放一张今晚的照片，看看你拍到的是哪一面。 大家怎么叫你 入场后随时能换装。 现在换个造型 ↗ 这一场，我想怎样参与 愿意打招呼 别人可以向我招手 安静参与 照片照常分享，不接新招呼 我愿意向本场成员展示我的昵称和小人 进入现场 关于 Music Space 我是 Livehouse / 主办方，开个房",
+   "wardrobeLayers": "legs:front shoes:3 bottom:4 stance:undefined torso:0 arms:front top:4 head:undefined hair-back:2 skin:0 face:quarter features:neutral eyewear:3 hair-front:2 accessory:none",
+   "wardrobeStand": "正面 3/4 侧面 背面 试穿中 · 仅自己可见",
+   "aiTag": "AI 判断：人海",
+   "uploadSheet": "× 留一个现场瞬间 这一张，由你决定给谁看。 用我自己的照片 或者挑一张今晚的 人海那张 舞台那张 拍摄于 21:48 · 来自照片自带的信息 修改时间 我拍的这一面 舞台 灯光下的那一面 人海 一起举手的那一面 身边 陪你听歌的那一面 细节 只有你留意的那一面 AI 判断：人海 配对时用它找另一面，你说了算。 可见范围 仅自己保存 分享给本场成员 照片会缩小，并去掉位置信息。 保存这张照片",
+   "wall": "× 同一场 / 不同视角 这一晚，大家看到了什么？ 21:47 · 同一刻 · 3 个视角：舞台 · 人海 · 细节 3 分钟内拍下 同一刻的另一面 同一刻 · 21:47，相差不到 1 分钟；你拍人海，TA 拍舞台 和 TA 交换这个视角 阿遥 照片墙：本场成员可见 拍摄于 21:47 · 视角：舞台 · 作者选择 小满 照片墙：本场成员可见 拍摄于 21:48 · 视角：人海 · 作者选择 同一刻 阿宁 照片墙：本场成员可见 拍摄于 21:48 · 视角：人海 · AI 建议，未改动 北屿 照片墙：本场成员可见 拍摄于 21:49 · 视角：细节 · 作者选择 同一刻 22:21 小满 照片墙：本场成员可见 拍摄于 22:21 · 视角：身边 · 作者选择 刷新照片 放上我的一张 照片交换",
+   "wallCards": [
+    {
+     "id": "d5256a6a-63b3-48d8-b250-e9120b7390d5",
+     "text": "小满 照片墙：本场成员可见 拍摄于 21:48 · 视角：人海 · 作者选择 同一刻"
+    },
+    {
+     "id": "a67abcb7-3756-4b89-8d4c-3ed6adcf17c2",
+     "text": "阿宁 照片墙：本场成员可见 拍摄于 21:48 · 视角：人海 · AI 建议，未改动"
+    },
+    {
+     "id": "f25fb8d3-4a2c-4248-8d69-878aaa29df9f",
+     "text": "北屿 照片墙：本场成员可见 拍摄于 21:49 · 视角：细节 · 作者选择 同一刻"
+    },
+    {
+     "id": "42a1a114-5d75-4c31-82d5-642486411807",
+     "text": "小满 照片墙：本场成员可见 拍摄于 22:21 · 视角：身边 · 作者选择"
+    }
+   ],
+   "compose": "← 同一晚 / 另一面 交换一个视角 × 用我拍下的，换 阿遥 看到的。 我提供的 我选中的这一张 阿遥的 照片墙上的这一张 我提供哪一张 选择自己拍的照片 我的第 1 张 · 已上墙 · 同一刻的另一面（推荐） 我的第 1 张 · 已上墙 同一刻的另一面（推荐） 同一刻 · 21:47，相差不到 1 分钟；你拍人海，TA 拍舞台 我同意先给小图，TA 接受后再给原图 把这两张交给对方确认 ↗",
+   "pending": "等待对方回应",
+   "acceptMs": 3489,
+   "accepted": "← 同一晚 / 另一面 交换一个视角 × 交换已接受 和 阿遥 的两张照片 我提供的 这次确定的一张 阿遥提供的 这次确定的一张 散场后也能在「照片交换」里看。 撤销这次交换刷新",
+   "friends": "× 你们已经认识了 小满 邀请共同创作 和 小满 私聊 ↗ 你们已经是朋友了。 移除朋友 向本场房主反馈 屏蔽这个人",
+   "chat": [
+    "嗨，欢迎来到「回声现场」！ 22:40",
+    "你拍到的是哪一面？ 22:40",
+    "返场那首我在人海里，手都举酸了！ 22:40 · 已发送",
+    "今晚的返场太好听了。 22:40"
+   ],
+   "chatPanel": "← ONE TO ONE 小满 × 你们已经是朋友了。 嗨，欢迎来到「回声现场」！ 22:40 你拍到的是哪一面？ 22:40 返场那首我在人海里，手都举酸了！ 22:40 · 已发送 今晚的返场太好听了。 22:40 留一句话 发送 ↗ 回看这一晚",
+   "cup": "第一轮 · 第1组 01 · 原创专辑卡 午夜站台 纸灯乐队 1票 选《午夜站台》 02 · 原创专辑卡 樱花电波 薄荷收音机 1票 选《樱花电波》 等发起人结束这一轮。",
+   "cupPanel": "这一晚，选张专辑来聊 × 今晚的专辑世界杯 两两对决，选出今晚这一张。 阿遥 发起 · 每轮一票 第一轮 · 第1组 01 · 原创专辑卡 午夜站台 纸灯乐队 1票 选《午夜站台》 02 · 原创专辑卡 樱花电波 薄荷收音机 1票 选《樱花电波》 等发起人结束这一轮。 第一轮 · 第2组 03 · 原创专辑卡 小院回声 月光邮局 0票 选《小院回声》 04 · 原创专辑卡 最后一盏灯 夜航纸片 0票 选《最后一盏灯》 等发起人结束这一轮。 全部世界杯刷新回到聊天室",
+   "cornerInvited": "TWO SIDES / 两个人的创作角 × 一起留张纪念。 已确认。 重新读取 等 TA 加入。 撤销共同创作我的创作与邀请",
+   "cornerJoinMs": 4623,
+   "cornerJoined": "TWO SIDES / 两个人的创作角 × 一起留张纪念。 已确认。 重新读取 MUSIC SPACE / TWO SIDES 同一晚，我们的另一面。 阿宁 这一晚，我在这里。 阿宁 的这一面 小满 人海这一面，手都举起来了。 小满 的这一面 我们的共同草稿 我的一句话 我的照片 不放照片 我的照片 1 · 已上墙 把我的小人、留言和照片给 TA 保存我的部分 版本 3 · 你未确认 · 对方未确认 我确认这一版 确认这一版本 撤销共同创作我的创作与邀请",
+   "cornerPhotoOptions": [
+    ":不放照片",
+    "a67abcb7-3756-4b89-8d4c-3ed6adcf17c2:我的照片 1 · 已上墙"
+   ],
+   "cornerBothConfirmMs": 5033,
+   "cornerDone": "TWO SIDES / 两个人的创作角 × 一起留张纪念。 纪念图做好了。 重新读取 MUSIC SPACE / TWO SIDES 同一晚，我们的另一面。 阿宁 返场那首我在人海里，手都举酸了！ 阿宁 的这一面 小满 人海这一面，手都举起来了。 小满 的这一面 我们的共同草稿 我的一句话 我的照片 不放照片 我的照片 1 · 已上墙 把我的小人、留言和照片给 TA 保存我的部分 版本 4 · 你已确认 · 对方已确认 已保存到我的创作。 导出这一版 生成纪念图 PNG 下载 PNG收起预览撤销共同创作我的创作与邀请",
+   "memoryForm": "× 这一晚 / 留在手里 保存我的纪念卡 回声现场 · 署名：阿宁 最多选两张自己的照片；不选就是一张文字纪念票。 选择要留下的内容 照片 1 本场成员可见 带上我的小人 确认保存到我的设备 下载纪念卡 PNG 返回这一晚的回顾",
+   "memoryResult": "× 这一晚 / 留在手里 保存我的纪念卡 回声现场 · 署名：阿宁 最多选两张自己的照片；不选就是一张文字纪念票。 选择要留下的内容 照片 1 本场成员可见 带上我的小人 确认保存到我的设备 已开始下载。 下载纪念卡 PNG 返回这一晚的回顾 你的纪念卡 再下载一次"
+  },
+  "build": {
+   "version": "0.22.0-rc.2",
+   "commit": "8fa52f0",
+   "builtAt": "2026-10-07T20:18:33.163Z"
+  },
+  "cornerPreview": {
+   "w": 1200,
+   "h": 1600,
+   "alt": "我们的共同纪念图"
+  },
+  "cornerKeepsake": {
+   "file": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/exports/CORNER-03_creation-corner-keepsake.png",
+   "suggested": "music-space-two-sides.png"
+  },
+  "memoryCard": {
+   "file": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/exports/CUT-08_memory-card.png",
+   "suggested": "MusicSpace-memory-2026-10-08.png"
+  }
+ },
+ "log": [
+  "21:14:49 entered room",
+  "21:15:40 cast svgs [\"阿遥\",\"小满\",\"北屿\"]",
+  "21:16:10 corner keepsake downloaded {\"file\":\"/tmp/space-video-doodle/prod/capture/P2P3-rc2/exports/CORNER-03_creation-corner-keepsake.png\",\"suggested\":\"music-space-two-sides.png\"}",
+  "21:16:21 memory card downloaded {\"file\":\"/tmp/space-video-doodle/prod/capture/P2P3-rc2/exports/CUT-08_memory-card.png\",\"suggested\":\"MusicSpace-memory-2026-10-08.png\"}"
+ ],
+ "errors": [],
+ "console": []
+}

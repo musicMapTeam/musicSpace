@@ -1,0 +1,304 @@
+[
+ {
+  "name": "nogl-phone",
+  "label": "home",
+  "file": "/tmp/space-map/shots/base/nogl-phone-home.png",
+  "scrollW": 390,
+  "W": 390,
+  "over": [],
+  "small": [
+   "关于 Music Map 38x38"
+  ],
+  "fallback": true,
+  "errors": []
+ },
+ {
+  "name": "nogl-phone",
+  "label": "explore",
+  "file": "/tmp/space-map/shots/base/nogl-phone-explore.png",
+  "scrollW": 390,
+  "W": 390,
+  "over": [],
+  "small": [
+   "关于 Music Map 38x38"
+  ],
+  "fallback": true,
+  "errors": []
+ },
+ {
+  "name": "nogl-phone",
+  "label": "flip",
+  "file": "/tmp/space-map/shots/base/nogl-phone-flip.png",
+  "scrollW": 390,
+  "W": 390,
+  "over": [],
+  "small": [
+   "关于 Music Map 38x38"
+  ],
+  "fallback": true,
+  "errors": []
+ },
+ {
+  "name": "nogl-phone",
+  "label": "setlist",
+  "file": "/tmp/space-map/shots/base/nogl-phone-setlist.png",
+  "scrollW": 390,
+  "W": 390,
+  "over": [],
+  "small": [
+   "关于 Music Map 38x38",
+   "杨瑞代 44x44",
+   "梁心颐 44x44",
+   "Jony J 44x44"
+  ],
+  "fallback": true,
+  "errors": []
+ },
+ {
+  "name": "nogl-phone",
+  "label": "atlas",
+  "file": "/tmp/space-map/shots/base/nogl-phone-atlas.png",
+  "scrollW": 390,
+  "W": 390,
+  "over": [],
+  "small": [
+   "关于 Music Map 38x38",
+   "杨瑞代 44x44",
+   "梁心颐 44x44",
+   "Jony J 44x44"
+  ],
+  "fallback": true,
+  "errors": []
+ },
+ {
+  "name": "nogl-phone",
+  "label": "records",
+  "file": "/tmp/space-map/shots/base/nogl-phone-records.png",
+  "scrollW": 390,
+  "W": 390,
+  "over": [],
+  "small": [
+   "关于 Music Map 38x38"
+  ],
+  "fallback": true,
+  "errors": []
+ },
+ {
+  "name": "nogl-phone",
+  "label": "about",
+  "file": "/tmp/space-map/shots/base/nogl-phone-about.png",
+  "scrollW": 390,
+  "W": 390,
+  "over": [],
+  "small": [
+   "关于 Music Map 38x38"
+  ],
+  "fallback": true,
+  "errors": []
+ },
+ {
+  "name": "nogl-desktop",
+  "label": "home",
+  "file": "/tmp/space-map/shots/base/nogl-desktop-home.png",
+  "scrollW": 1440,
+  "W": 1440,
+  "over": [],
+  "small": [
+   "关于 Music Map 40x40"
+  ],
+  "fallback": true,
+  "errors": []
+ },
+ {
+  "name": "nogl-desktop",
+  "label": "explore",
+  "file": "/tmp/space-map/shots/base/nogl-desktop-explore.png",
+  "scrollW": 1440,
+  "W": 1440,
+  "over": [],
+  "small": [
+   "关于 Music Map 40x40"
+  ],
+  "fallback": true,
+  "errors": []
+ },
+ {
+  "name": "nogl-desktop",
+  "label": "flip",
+  "file": "/tmp/space-map/shots/base/nogl-desktop-flip.png",
+  "scrollW": 1440,
+  "W": 1440,
+  "over": [],
+  "small": [
+   "关于 Music Map 40x40"
+  ],
+  "fallback": true,
+  "errors": []
+ },
+ {
+  "name": "nogl-desktop",
+  "label": "setlist",
+  "file": "/tmp/space-map/shots/base/nogl-desktop-setlist.png",
+  "scrollW": 1440,
+  "W": 1440,
+  "over": [],
+  "small": [
+   "关于 Music Map 40x40",
+   "林宥嘉 44x44"
+  ],
+  "fallback": true,
+  "errors": []
+ },
+ {
+  "name": "nogl-desktop",
+  "label": "atlas",
+  "file": "/tmp/space-map/shots/base/nogl-desktop-atlas.png",
+  "scrollW": 1440,
+  "W": 1440,
+  "over": [],
+  "small": [
+   "关于 Music Map 40x40",
+   "林宥嘉 44x44",
+   "五月天 44x44"
+  ],
+  "fallback": true,
+  "errors": []
+ },
+ {
+  "name": "nogl-desktop",
+  "label": "records",
+  "file": "/tmp/space-map/shots/base/nogl-desktop-records.png",
+  "scrollW": 1440,
+  "W": 1440,
+  "over": [],
+  "small": [
+   "关于 Music Map 40x40"
+  ],
+  "fallback": true,
+  "errors": []
+ },
+ {
+  "name": "nogl-desktop",
+  "label": "about",
+  "file": "/tmp/space-map/shots/base/nogl-desktop-about.png",
+  "scrollW": 1440,
+  "W": 1440,
+  "over": [],
+  "small": [
+   "关于 Music Map 40x40"
+  ],
+  "fallback": true,
+  "errors": []
+ },
+ {
+  "name": "w320",
+  "label": "home",
+  "file": "/tmp/space-map/shots/base/w320-home.png",
+  "scrollW": 320,
+  "W": 320,
+  "over": [],
+  "small": [
+   "关于 Music Map 38x38"
+  ],
+  "fallback": false,
+  "errors": []
+ },
+ {
+  "name": "w320",
+  "label": "explore",
+  "file": "/tmp/space-map/shots/base/w320-explore.png",
+  "scrollW": 320,
+  "W": 320,
+  "over": [],
+  "small": [
+   "关于 Music Map 38x38",
+   "费玉清 59x31",
+   "邓紫棋 56x29",
+   "翻开 116x38",
+   "退一步：返回上一位并撤销一步 40x38",
+   "回到起点 40x38"
+  ],
+  "fallback": false,
+  "errors": []
+ },
+ {
+  "name": "w320",
+  "label": "flip",
+  "file": "/tmp/space-map/shots/base/w320-flip.png",
+  "scrollW": 320,
+  "W": 320,
+  "over": [],
+  "small": [
+   "关于 Music Map 38x38",
+   "周杰伦 56x29",
+   "费玉清 59x31",
+   "邓紫棋 56x29",
+   "QQ 54x38",
+   "前往 周杰伦 110x38",
+   "看《千里之外》的版本与来源 38x38",
+   "退一步：返回上一位并撤销一步 40x38",
+   "回到起点 40x38"
+  ],
+  "fallback": false,
+  "errors": []
+ },
+ {
+  "name": "w320",
+  "label": "setlist",
+  "file": "/tmp/space-map/shots/base/w320-setlist.png",
+  "scrollW": 320,
+  "W": 320,
+  "over": [],
+  "small": [
+   "关于 Music Map 38x38"
+  ],
+  "fallback": false,
+  "errors": []
+ },
+ {
+  "name": "w320",
+  "label": "atlas",
+  "file": "/tmp/space-map/shots/base/w320-atlas.png",
+  "scrollW": 320,
+  "W": 320,
+  "over": [],
+  "small": [
+   "关于 Music Map 38x38",
+   "周杰伦 56x29",
+   "费玉清 59x31",
+   "阿信 44x29",
+   "蔡卓妍 56x29",
+   "梁心颐 56x29",
+   "派伟俊 56x29",
+   "陶喆 44x29"
+  ],
+  "fallback": false,
+  "errors": []
+ },
+ {
+  "name": "w320",
+  "label": "records",
+  "file": "/tmp/space-map/shots/base/w320-records.png",
+  "scrollW": 320,
+  "W": 320,
+  "over": [],
+  "small": [
+   "关于 Music Map 38x38"
+  ],
+  "fallback": false,
+  "errors": []
+ },
+ {
+  "name": "w320",
+  "label": "about",
+  "file": "/tmp/space-map/shots/base/w320-about.png",
+  "scrollW": 320,
+  "W": 320,
+  "over": [],
+  "small": [
+   "关于 Music Map 38x38"
+  ],
+  "fallback": false,
+  "errors": []
+ }
+]

@@ -1,0 +1,7 @@
+tests/event-exchange-suggest.test.js
+tests/event-memory-card.test.js
+tests/event-moment-upload.test.js
+tests/event-moment-wall.test.js
+tests/event-room-binding.test.js
+tests/event-room-profile-seams.test.js
+tests/event-room-static-binding.test.js

@@ -1,0 +1,2338 @@
+{
+  "version": "6",
+  "dialect": "sqlite",
+  "id": "b237ba0f-1f29-4412-8de3-ab1fdf1bb2d8",
+  "prevId": "9959405a-29f3-4b68-be2a-226b0ef277b1",
+  "tables": {
+    "avatar_compositions": {
+      "name": "avatar_compositions",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "host_id": {
+          "name": "host_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "guest_id": {
+          "name": "guest_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "snapshot": {
+          "name": "snapshot",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "revision": {
+          "name": "revision",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "content_revision": {
+          "name": "content_revision",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "photo_key": {
+          "name": "photo_key",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "invite_hash": {
+          "name": "invite_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "invite_expires_at": {
+          "name": "invite_expires_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "avatar_compositions_invite_hash_unique": {
+          "name": "avatar_compositions_invite_hash_unique",
+          "columns": [
+            "invite_hash"
+          ],
+          "isUnique": true
+        },
+        "avatar_host": {
+          "name": "avatar_host",
+          "columns": [
+            "host_id",
+            "updated_at"
+          ],
+          "isUnique": false
+        },
+        "avatar_guest": {
+          "name": "avatar_guest",
+          "columns": [
+            "guest_id",
+            "updated_at"
+          ],
+          "isUnique": false
+        },
+        "avatar_photo": {
+          "name": "avatar_photo",
+          "columns": [
+            "photo_key"
+          ],
+          "isUnique": false,
+          "where": "\"avatar_compositions\".\"photo_key\" IS NOT NULL"
+        }
+      },
+      "foreignKeys": {
+        "avatar_compositions_host_id_avatar_users_id_fk": {
+          "name": "avatar_compositions_host_id_avatar_users_id_fk",
+          "tableFrom": "avatar_compositions",
+          "tableTo": "avatar_users",
+          "columnsFrom": [
+            "host_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "avatar_compositions_guest_id_avatar_users_id_fk": {
+          "name": "avatar_compositions_guest_id_avatar_users_id_fk",
+          "tableFrom": "avatar_compositions",
+          "tableTo": "avatar_users",
+          "columnsFrom": [
+            "guest_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "avatar_distinct_identities": {
+          "name": "avatar_distinct_identities",
+          "value": "\"avatar_compositions\".\"guest_id\" IS NULL OR \"avatar_compositions\".\"host_id\" != \"avatar_compositions\".\"guest_id\""
+        }
+      }
+    },
+    "avatar_idempotency": {
+      "name": "avatar_idempotency",
+      "columns": {
+        "actor_id": {
+          "name": "actor_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "key_hash": {
+          "name": "key_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "request_hash": {
+          "name": "request_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "status": {
+          "name": "status",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "response": {
+          "name": "response",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "capability_kind": {
+          "name": "capability_kind",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "avatar_idempotency_actor_id_key_hash_pk": {
+          "columns": [
+            "actor_id",
+            "key_hash"
+          ],
+          "name": "avatar_idempotency_actor_id_key_hash_pk"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "avatar_meta": {
+      "name": "avatar_meta",
+      "columns": {
+        "key": {
+          "name": "key",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "value": {
+          "name": "value",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "avatar_mutation_guard": {
+      "name": "avatar_mutation_guard",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "assertion": {
+          "name": "assertion",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "avatar_mutation_guard_assertion": {
+          "name": "avatar_mutation_guard_assertion",
+          "value": "\"avatar_mutation_guard\".\"assertion\" = 1"
+        }
+      }
+    },
+    "avatar_rate_limits": {
+      "name": "avatar_rate_limits",
+      "columns": {
+        "key": {
+          "name": "key",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "count": {
+          "name": "count",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "reset_at": {
+          "name": "reset_at",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "avatar_users": {
+      "name": "avatar_users",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "avatar": {
+          "name": "avatar",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "token_hash": {
+          "name": "token_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "revision": {
+          "name": "revision",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "avatar_users_token_hash_unique": {
+          "name": "avatar_users_token_hash_unique",
+          "columns": [
+            "token_hash"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "event_chat_messages": {
+      "name": "event_chat_messages",
+      "columns": {
+        "seq": {
+          "name": "seq",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "pair_id": {
+          "name": "pair_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "sender_id": {
+          "name": "sender_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "recipient_id": {
+          "name": "recipient_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "text": {
+          "name": "text",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "event_chat_messages_id_unique": {
+          "name": "event_chat_messages_id_unique",
+          "columns": [
+            "id"
+          ],
+          "isUnique": true
+        },
+        "event_chat_pair_sequence": {
+          "name": "event_chat_pair_sequence",
+          "columns": [
+            "pair_id",
+            "seq"
+          ],
+          "isUnique": false
+        },
+        "event_chat_recipient": {
+          "name": "event_chat_recipient",
+          "columns": [
+            "pair_id",
+            "recipient_id",
+            "seq"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "event_chat_messages_pair_id_event_chat_threads_pair_id_fk": {
+          "name": "event_chat_messages_pair_id_event_chat_threads_pair_id_fk",
+          "tableFrom": "event_chat_messages",
+          "tableTo": "event_chat_threads",
+          "columnsFrom": [
+            "pair_id"
+          ],
+          "columnsTo": [
+            "pair_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "event_chat_messages_sender_id_avatar_users_id_fk": {
+          "name": "event_chat_messages_sender_id_avatar_users_id_fk",
+          "tableFrom": "event_chat_messages",
+          "tableTo": "avatar_users",
+          "columnsFrom": [
+            "sender_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "event_chat_messages_recipient_id_avatar_users_id_fk": {
+          "name": "event_chat_messages_recipient_id_avatar_users_id_fk",
+          "tableFrom": "event_chat_messages",
+          "tableTo": "avatar_users",
+          "columnsFrom": [
+            "recipient_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "event_chat_distinct": {
+          "name": "event_chat_distinct",
+          "value": "\"event_chat_messages\".\"sender_id\" != \"event_chat_messages\".\"recipient_id\""
+        },
+        "event_chat_text_length": {
+          "name": "event_chat_text_length",
+          "value": "length(\"event_chat_messages\".\"text\") BETWEEN 1 AND 1000"
+        }
+      }
+    },
+    "event_chat_receipts": {
+      "name": "event_chat_receipts",
+      "columns": {
+        "message_id": {
+          "name": "message_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "viewer_id": {
+          "name": "viewer_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "delivered_at": {
+          "name": "delivered_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "read_at": {
+          "name": "read_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "event_chat_receipts_message_id_event_chat_messages_id_fk": {
+          "name": "event_chat_receipts_message_id_event_chat_messages_id_fk",
+          "tableFrom": "event_chat_receipts",
+          "tableTo": "event_chat_messages",
+          "columnsFrom": [
+            "message_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "event_chat_receipts_viewer_id_avatar_users_id_fk": {
+          "name": "event_chat_receipts_viewer_id_avatar_users_id_fk",
+          "tableFrom": "event_chat_receipts",
+          "tableTo": "avatar_users",
+          "columnsFrom": [
+            "viewer_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "event_chat_receipts_message_id_viewer_id_pk": {
+          "columns": [
+            "message_id",
+            "viewer_id"
+          ],
+          "name": "event_chat_receipts_message_id_viewer_id_pk"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "event_chat_threads": {
+      "name": "event_chat_threads",
+      "columns": {
+        "pair_id": {
+          "name": "pair_id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "low_profile": {
+          "name": "low_profile",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "high_profile": {
+          "name": "high_profile",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "event_chat_threads_pair_id_event_social_pairs_id_fk": {
+          "name": "event_chat_threads_pair_id_event_social_pairs_id_fk",
+          "tableFrom": "event_chat_threads",
+          "tableTo": "event_social_pairs",
+          "columnsFrom": [
+            "pair_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "event_exchange_grants": {
+      "name": "event_exchange_grants",
+      "columns": {
+        "exchange_id": {
+          "name": "exchange_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "photo_id": {
+          "name": "photo_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "owner_id": {
+          "name": "owner_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "viewer_id": {
+          "name": "viewer_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "revoked_at": {
+          "name": "revoked_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "event_exchange_grant_viewer": {
+          "name": "event_exchange_grant_viewer",
+          "columns": [
+            "viewer_id",
+            "photo_id",
+            "revoked_at"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "event_exchange_grants_exchange_id_event_exchanges_id_fk": {
+          "name": "event_exchange_grants_exchange_id_event_exchanges_id_fk",
+          "tableFrom": "event_exchange_grants",
+          "tableTo": "event_exchanges",
+          "columnsFrom": [
+            "exchange_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "event_exchange_grants_photo_id_event_photos_id_fk": {
+          "name": "event_exchange_grants_photo_id_event_photos_id_fk",
+          "tableFrom": "event_exchange_grants",
+          "tableTo": "event_photos",
+          "columnsFrom": [
+            "photo_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "event_exchange_grants_owner_id_avatar_users_id_fk": {
+          "name": "event_exchange_grants_owner_id_avatar_users_id_fk",
+          "tableFrom": "event_exchange_grants",
+          "tableTo": "avatar_users",
+          "columnsFrom": [
+            "owner_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "event_exchange_grants_viewer_id_avatar_users_id_fk": {
+          "name": "event_exchange_grants_viewer_id_avatar_users_id_fk",
+          "tableFrom": "event_exchange_grants",
+          "tableTo": "avatar_users",
+          "columnsFrom": [
+            "viewer_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "event_exchange_grants_exchange_id_photo_id_pk": {
+          "columns": [
+            "exchange_id",
+            "photo_id"
+          ],
+          "name": "event_exchange_grants_exchange_id_photo_id_pk"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "event_exchange_grant_distinct": {
+          "name": "event_exchange_grant_distinct",
+          "value": "\"event_exchange_grants\".\"owner_id\" != \"event_exchange_grants\".\"viewer_id\""
+        }
+      }
+    },
+    "event_exchanges": {
+      "name": "event_exchanges",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "room_id": {
+          "name": "room_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "sender_id": {
+          "name": "sender_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "recipient_id": {
+          "name": "recipient_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "offered_photo_id": {
+          "name": "offered_photo_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "requested_photo_id": {
+          "name": "requested_photo_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "offered_revision": {
+          "name": "offered_revision",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "requested_revision": {
+          "name": "requested_revision",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "low_id": {
+          "name": "low_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "high_id": {
+          "name": "high_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "low_photo_id": {
+          "name": "low_photo_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "high_photo_id": {
+          "name": "high_photo_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "sender_profile": {
+          "name": "sender_profile",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "recipient_profile": {
+          "name": "recipient_profile",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "preview_key": {
+          "name": "preview_key",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "status": {
+          "name": "status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "revision": {
+          "name": "revision",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "expires_at": {
+          "name": "expires_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "accepted_at": {
+          "name": "accepted_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ended_at": {
+          "name": "ended_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "end_reason": {
+          "name": "end_reason",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "event_exchange_pending_pair": {
+          "name": "event_exchange_pending_pair",
+          "columns": [
+            "room_id",
+            "low_id",
+            "high_id"
+          ],
+          "isUnique": true,
+          "where": "\"event_exchanges\".\"status\" = 'pending'"
+        },
+        "event_exchange_live_photos": {
+          "name": "event_exchange_live_photos",
+          "columns": [
+            "low_photo_id",
+            "high_photo_id"
+          ],
+          "isUnique": true,
+          "where": "\"event_exchanges\".\"status\" IN ('pending','accepted')"
+        },
+        "event_exchange_sender": {
+          "name": "event_exchange_sender",
+          "columns": [
+            "sender_id",
+            "created_at",
+            "id"
+          ],
+          "isUnique": false
+        },
+        "event_exchange_recipient": {
+          "name": "event_exchange_recipient",
+          "columns": [
+            "recipient_id",
+            "created_at",
+            "id"
+          ],
+          "isUnique": false
+        },
+        "event_exchange_offered": {
+          "name": "event_exchange_offered",
+          "columns": [
+            "offered_photo_id",
+            "status"
+          ],
+          "isUnique": false
+        },
+        "event_exchange_requested": {
+          "name": "event_exchange_requested",
+          "columns": [
+            "requested_photo_id",
+            "status"
+          ],
+          "isUnique": false
+        },
+        "event_exchange_preview": {
+          "name": "event_exchange_preview",
+          "columns": [
+            "preview_key"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "event_exchanges_room_id_event_rooms_id_fk": {
+          "name": "event_exchanges_room_id_event_rooms_id_fk",
+          "tableFrom": "event_exchanges",
+          "tableTo": "event_rooms",
+          "columnsFrom": [
+            "room_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "event_exchanges_sender_id_avatar_users_id_fk": {
+          "name": "event_exchanges_sender_id_avatar_users_id_fk",
+          "tableFrom": "event_exchanges",
+          "tableTo": "avatar_users",
+          "columnsFrom": [
+            "sender_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "event_exchanges_recipient_id_avatar_users_id_fk": {
+          "name": "event_exchanges_recipient_id_avatar_users_id_fk",
+          "tableFrom": "event_exchanges",
+          "tableTo": "avatar_users",
+          "columnsFrom": [
+            "recipient_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "event_exchanges_offered_photo_id_event_photos_id_fk": {
+          "name": "event_exchanges_offered_photo_id_event_photos_id_fk",
+          "tableFrom": "event_exchanges",
+          "tableTo": "event_photos",
+          "columnsFrom": [
+            "offered_photo_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "event_exchanges_requested_photo_id_event_photos_id_fk": {
+          "name": "event_exchanges_requested_photo_id_event_photos_id_fk",
+          "tableFrom": "event_exchanges",
+          "tableTo": "event_photos",
+          "columnsFrom": [
+            "requested_photo_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "event_exchanges_low_id_avatar_users_id_fk": {
+          "name": "event_exchanges_low_id_avatar_users_id_fk",
+          "tableFrom": "event_exchanges",
+          "tableTo": "avatar_users",
+          "columnsFrom": [
+            "low_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "event_exchanges_high_id_avatar_users_id_fk": {
+          "name": "event_exchanges_high_id_avatar_users_id_fk",
+          "tableFrom": "event_exchanges",
+          "tableTo": "avatar_users",
+          "columnsFrom": [
+            "high_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "event_exchanges_low_photo_id_event_photos_id_fk": {
+          "name": "event_exchanges_low_photo_id_event_photos_id_fk",
+          "tableFrom": "event_exchanges",
+          "tableTo": "event_photos",
+          "columnsFrom": [
+            "low_photo_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "event_exchanges_high_photo_id_event_photos_id_fk": {
+          "name": "event_exchanges_high_photo_id_event_photos_id_fk",
+          "tableFrom": "event_exchanges",
+          "tableTo": "event_photos",
+          "columnsFrom": [
+            "high_photo_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "event_exchange_participants": {
+          "name": "event_exchange_participants",
+          "value": "\"event_exchanges\".\"low_id\" < \"event_exchanges\".\"high_id\" AND ((\"event_exchanges\".\"sender_id\" = \"event_exchanges\".\"low_id\" AND \"event_exchanges\".\"recipient_id\" = \"event_exchanges\".\"high_id\") OR (\"event_exchanges\".\"sender_id\" = \"event_exchanges\".\"high_id\" AND \"event_exchanges\".\"recipient_id\" = \"event_exchanges\".\"low_id\"))"
+        },
+        "event_exchange_photos": {
+          "name": "event_exchange_photos",
+          "value": "\"event_exchanges\".\"low_photo_id\" < \"event_exchanges\".\"high_photo_id\" AND ((\"event_exchanges\".\"offered_photo_id\" = \"event_exchanges\".\"low_photo_id\" AND \"event_exchanges\".\"requested_photo_id\" = \"event_exchanges\".\"high_photo_id\") OR (\"event_exchanges\".\"offered_photo_id\" = \"event_exchanges\".\"high_photo_id\" AND \"event_exchanges\".\"requested_photo_id\" = \"event_exchanges\".\"low_photo_id\"))"
+        },
+        "event_exchange_revision": {
+          "name": "event_exchange_revision",
+          "value": "\"event_exchanges\".\"revision\" >= 1 AND \"event_exchanges\".\"offered_revision\" >= 1 AND \"event_exchanges\".\"requested_revision\" >= 1"
+        },
+        "event_exchange_status": {
+          "name": "event_exchange_status",
+          "value": "\"event_exchanges\".\"status\" IN ('pending','accepted','declined','cancelled','revoked','expired')"
+        },
+        "event_exchange_end": {
+          "name": "event_exchange_end",
+          "value": "(\"event_exchanges\".\"status\" IN ('pending','accepted') AND \"event_exchanges\".\"ended_at\" IS NULL AND \"event_exchanges\".\"end_reason\" IS NULL) OR (\"event_exchanges\".\"status\" NOT IN ('pending','accepted') AND \"event_exchanges\".\"ended_at\" IS NOT NULL AND \"event_exchanges\".\"end_reason\" IN ('declined','cancelled','revoked','expired','unavailable'))"
+        },
+        "event_exchange_accept": {
+          "name": "event_exchange_accept",
+          "value": "(\"event_exchanges\".\"status\" IN ('accepted','revoked')) = (\"event_exchanges\".\"accepted_at\" IS NOT NULL)"
+        }
+      }
+    },
+    "event_idempotency": {
+      "name": "event_idempotency",
+      "columns": {
+        "actor_id": {
+          "name": "actor_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "key_hash": {
+          "name": "key_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "request_hash": {
+          "name": "request_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "status": {
+          "name": "status",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "response": {
+          "name": "response",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "event_idempotency_actor_id_key_hash_pk": {
+          "columns": [
+            "actor_id",
+            "key_hash"
+          ],
+          "name": "event_idempotency_actor_id_key_hash_pk"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "event_members": {
+      "name": "event_members",
+      "columns": {
+        "room_id": {
+          "name": "room_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "joined_at": {
+          "name": "joined_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "left_at": {
+          "name": "left_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "event_member_user": {
+          "name": "event_member_user",
+          "columns": [
+            "user_id",
+            "left_at"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "event_members_room_id_event_rooms_id_fk": {
+          "name": "event_members_room_id_event_rooms_id_fk",
+          "tableFrom": "event_members",
+          "tableTo": "event_rooms",
+          "columnsFrom": [
+            "room_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "event_members_user_id_avatar_users_id_fk": {
+          "name": "event_members_user_id_avatar_users_id_fk",
+          "tableFrom": "event_members",
+          "tableTo": "avatar_users",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "event_members_room_id_user_id_pk": {
+          "columns": [
+            "room_id",
+            "user_id"
+          ],
+          "name": "event_members_room_id_user_id_pk"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "event_mutation_guard": {
+      "name": "event_mutation_guard",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "assertion": {
+          "name": "assertion",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "event_mutation_guard_assertion": {
+          "name": "event_mutation_guard_assertion",
+          "value": "\"event_mutation_guard\".\"assertion\" = 1"
+        }
+      }
+    },
+    "event_photos": {
+      "name": "event_photos",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "room_id": {
+          "name": "room_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "owner_id": {
+          "name": "owner_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "photo_key": {
+          "name": "photo_key",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "visibility": {
+          "name": "visibility",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "revision": {
+          "name": "revision",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "deleted_at": {
+          "name": "deleted_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "event_photo_room": {
+          "name": "event_photo_room",
+          "columns": [
+            "room_id",
+            "deleted_at"
+          ],
+          "isUnique": false
+        },
+        "event_photo_owner": {
+          "name": "event_photo_owner",
+          "columns": [
+            "owner_id",
+            "created_at"
+          ],
+          "isUnique": false
+        },
+        "event_photo_key": {
+          "name": "event_photo_key",
+          "columns": [
+            "photo_key"
+          ],
+          "isUnique": false,
+          "where": "\"event_photos\".\"photo_key\" IS NOT NULL"
+        }
+      },
+      "foreignKeys": {
+        "event_photos_room_id_event_rooms_id_fk": {
+          "name": "event_photos_room_id_event_rooms_id_fk",
+          "tableFrom": "event_photos",
+          "tableTo": "event_rooms",
+          "columnsFrom": [
+            "room_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "event_photos_owner_id_avatar_users_id_fk": {
+          "name": "event_photos_owner_id_avatar_users_id_fk",
+          "tableFrom": "event_photos",
+          "tableTo": "avatar_users",
+          "columnsFrom": [
+            "owner_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "event_photo_visibility": {
+          "name": "event_photo_visibility",
+          "value": "\"event_photos\".\"visibility\" IN ('private', 'members')"
+        },
+        "event_photo_storage": {
+          "name": "event_photo_storage",
+          "value": "(\"event_photos\".\"deleted_at\" IS NULL AND \"event_photos\".\"photo_key\" IS NOT NULL) OR (\"event_photos\".\"deleted_at\" IS NOT NULL AND \"event_photos\".\"photo_key\" IS NULL)"
+        }
+      }
+    },
+    "event_rate_limits": {
+      "name": "event_rate_limits",
+      "columns": {
+        "key": {
+          "name": "key",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "count": {
+          "name": "count",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "reset_at": {
+          "name": "reset_at",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "event_rate_expiry": {
+          "name": "event_rate_expiry",
+          "columns": [
+            "reset_at"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "event_reports": {
+      "name": "event_reports",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "room_id": {
+          "name": "room_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "reporter_id": {
+          "name": "reporter_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "target_id": {
+          "name": "target_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "photo_id": {
+          "name": "photo_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "target_name": {
+          "name": "target_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "category": {
+          "name": "category",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "details": {
+          "name": "details",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "status": {
+          "name": "status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'open'"
+        },
+        "revision": {
+          "name": "revision",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "resolved_at": {
+          "name": "resolved_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "event_report_open_target": {
+          "name": "event_report_open_target",
+          "columns": [
+            "room_id",
+            "reporter_id",
+            "target_id"
+          ],
+          "isUnique": true,
+          "where": "\"event_reports\".\"status\" = 'open'"
+        },
+        "event_report_room": {
+          "name": "event_report_room",
+          "columns": [
+            "room_id",
+            "created_at",
+            "id"
+          ],
+          "isUnique": false
+        },
+        "event_report_owner": {
+          "name": "event_report_owner",
+          "columns": [
+            "reporter_id",
+            "created_at",
+            "id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "event_reports_room_id_event_rooms_id_fk": {
+          "name": "event_reports_room_id_event_rooms_id_fk",
+          "tableFrom": "event_reports",
+          "tableTo": "event_rooms",
+          "columnsFrom": [
+            "room_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "event_reports_reporter_id_avatar_users_id_fk": {
+          "name": "event_reports_reporter_id_avatar_users_id_fk",
+          "tableFrom": "event_reports",
+          "tableTo": "avatar_users",
+          "columnsFrom": [
+            "reporter_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "event_reports_target_id_avatar_users_id_fk": {
+          "name": "event_reports_target_id_avatar_users_id_fk",
+          "tableFrom": "event_reports",
+          "tableTo": "avatar_users",
+          "columnsFrom": [
+            "target_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "event_reports_photo_id_event_photos_id_fk": {
+          "name": "event_reports_photo_id_event_photos_id_fk",
+          "tableFrom": "event_reports",
+          "tableTo": "event_photos",
+          "columnsFrom": [
+            "photo_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "event_report_distinct": {
+          "name": "event_report_distinct",
+          "value": "\"event_reports\".\"reporter_id\" != \"event_reports\".\"target_id\""
+        },
+        "event_report_category": {
+          "name": "event_report_category",
+          "value": "\"event_reports\".\"category\" IN ('harassment','unwanted-content','privacy','spam','other')"
+        },
+        "event_report_details": {
+          "name": "event_report_details",
+          "value": "length(\"event_reports\".\"details\") BETWEEN 1 AND 280"
+        },
+        "event_report_status": {
+          "name": "event_report_status",
+          "value": "\"event_reports\".\"status\" IN ('open','withdrawn','resolved','dismissed')"
+        },
+        "event_report_resolution": {
+          "name": "event_report_resolution",
+          "value": "(\"event_reports\".\"status\" = 'open') = (\"event_reports\".\"resolved_at\" IS NULL)"
+        },
+        "event_report_revision": {
+          "name": "event_report_revision",
+          "value": "\"event_reports\".\"revision\" >= 1"
+        }
+      }
+    },
+    "event_room_exclusions": {
+      "name": "event_room_exclusions",
+      "columns": {
+        "room_id": {
+          "name": "room_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "target_name": {
+          "name": "target_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "revision": {
+          "name": "revision",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "restored_at": {
+          "name": "restored_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "event_room_exclusions_room_id_event_rooms_id_fk": {
+          "name": "event_room_exclusions_room_id_event_rooms_id_fk",
+          "tableFrom": "event_room_exclusions",
+          "tableTo": "event_rooms",
+          "columnsFrom": [
+            "room_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "event_room_exclusions_user_id_avatar_users_id_fk": {
+          "name": "event_room_exclusions_user_id_avatar_users_id_fk",
+          "tableFrom": "event_room_exclusions",
+          "tableTo": "avatar_users",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "event_room_exclusions_room_id_user_id_pk": {
+          "columns": [
+            "room_id",
+            "user_id"
+          ],
+          "name": "event_room_exclusions_room_id_user_id_pk"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "event_exclusion_revision": {
+          "name": "event_exclusion_revision",
+          "value": "\"event_room_exclusions\".\"revision\" >= 1"
+        }
+      }
+    },
+    "event_rooms": {
+      "name": "event_rooms",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "code": {
+          "name": "code",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "host_id": {
+          "name": "host_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "title": {
+          "name": "title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "venue": {
+          "name": "venue",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "''"
+        },
+        "song_id": {
+          "name": "song_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "revision": {
+          "name": "revision",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "expires_at": {
+          "name": "expires_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "closed_at": {
+          "name": "closed_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "event_rooms_code_unique": {
+          "name": "event_rooms_code_unique",
+          "columns": [
+            "code"
+          ],
+          "isUnique": true
+        },
+        "event_room_host": {
+          "name": "event_room_host",
+          "columns": [
+            "host_id",
+            "created_at"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "event_rooms_host_id_avatar_users_id_fk": {
+          "name": "event_rooms_host_id_avatar_users_id_fk",
+          "tableFrom": "event_rooms",
+          "tableTo": "avatar_users",
+          "columnsFrom": [
+            "host_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "event_social_blocks": {
+      "name": "event_social_blocks",
+      "columns": {
+        "actor_id": {
+          "name": "actor_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "target_id": {
+          "name": "target_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "revision": {
+          "name": "revision",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "unblocked_at": {
+          "name": "unblocked_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "event_social_block_target": {
+          "name": "event_social_block_target",
+          "columns": [
+            "target_id",
+            "unblocked_at",
+            "actor_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "event_social_blocks_actor_id_avatar_users_id_fk": {
+          "name": "event_social_blocks_actor_id_avatar_users_id_fk",
+          "tableFrom": "event_social_blocks",
+          "tableTo": "avatar_users",
+          "columnsFrom": [
+            "actor_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "event_social_blocks_target_id_avatar_users_id_fk": {
+          "name": "event_social_blocks_target_id_avatar_users_id_fk",
+          "tableFrom": "event_social_blocks",
+          "tableTo": "avatar_users",
+          "columnsFrom": [
+            "target_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "event_social_blocks_actor_id_target_id_pk": {
+          "columns": [
+            "actor_id",
+            "target_id"
+          ],
+          "name": "event_social_blocks_actor_id_target_id_pk"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "event_social_block_distinct": {
+          "name": "event_social_block_distinct",
+          "value": "\"event_social_blocks\".\"actor_id\" != \"event_social_blocks\".\"target_id\""
+        },
+        "event_social_block_revision": {
+          "name": "event_social_block_revision",
+          "value": "\"event_social_blocks\".\"revision\" >= 1"
+        }
+      }
+    },
+    "event_social_pairs": {
+      "name": "event_social_pairs",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "low_id": {
+          "name": "low_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "high_id": {
+          "name": "high_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "status": {
+          "name": "status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "revision": {
+          "name": "revision",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        },
+        "greeting_id": {
+          "name": "greeting_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "sender_id": {
+          "name": "sender_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "recipient_id": {
+          "name": "recipient_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "room_id": {
+          "name": "room_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "friends_at": {
+          "name": "friends_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "cooldown_until": {
+          "name": "cooldown_until",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "event_social_pairs_greeting_id_unique": {
+          "name": "event_social_pairs_greeting_id_unique",
+          "columns": [
+            "greeting_id"
+          ],
+          "isUnique": true
+        },
+        "event_social_pair_unique": {
+          "name": "event_social_pair_unique",
+          "columns": [
+            "low_id",
+            "high_id"
+          ],
+          "isUnique": true
+        },
+        "event_social_incoming": {
+          "name": "event_social_incoming",
+          "columns": [
+            "recipient_id",
+            "status",
+            "greeting_id"
+          ],
+          "isUnique": false
+        },
+        "event_social_outgoing": {
+          "name": "event_social_outgoing",
+          "columns": [
+            "sender_id",
+            "status",
+            "greeting_id"
+          ],
+          "isUnique": false
+        },
+        "event_social_low": {
+          "name": "event_social_low",
+          "columns": [
+            "low_id",
+            "status",
+            "id"
+          ],
+          "isUnique": false
+        },
+        "event_social_high": {
+          "name": "event_social_high",
+          "columns": [
+            "high_id",
+            "status",
+            "id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "event_social_pairs_low_id_avatar_users_id_fk": {
+          "name": "event_social_pairs_low_id_avatar_users_id_fk",
+          "tableFrom": "event_social_pairs",
+          "tableTo": "avatar_users",
+          "columnsFrom": [
+            "low_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "event_social_pairs_high_id_avatar_users_id_fk": {
+          "name": "event_social_pairs_high_id_avatar_users_id_fk",
+          "tableFrom": "event_social_pairs",
+          "tableTo": "avatar_users",
+          "columnsFrom": [
+            "high_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "event_social_pairs_sender_id_avatar_users_id_fk": {
+          "name": "event_social_pairs_sender_id_avatar_users_id_fk",
+          "tableFrom": "event_social_pairs",
+          "tableTo": "avatar_users",
+          "columnsFrom": [
+            "sender_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "event_social_pairs_recipient_id_avatar_users_id_fk": {
+          "name": "event_social_pairs_recipient_id_avatar_users_id_fk",
+          "tableFrom": "event_social_pairs",
+          "tableTo": "avatar_users",
+          "columnsFrom": [
+            "recipient_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "event_social_pairs_room_id_event_rooms_id_fk": {
+          "name": "event_social_pairs_room_id_event_rooms_id_fk",
+          "tableFrom": "event_social_pairs",
+          "tableTo": "event_rooms",
+          "columnsFrom": [
+            "room_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "event_social_pair_order": {
+          "name": "event_social_pair_order",
+          "value": "\"event_social_pairs\".\"low_id\" < \"event_social_pairs\".\"high_id\""
+        },
+        "event_social_revision": {
+          "name": "event_social_revision",
+          "value": "\"event_social_pairs\".\"revision\" >= 1"
+        },
+        "event_social_status": {
+          "name": "event_social_status",
+          "value": "\"event_social_pairs\".\"status\" IN ('pending','accepted','rejected','cancelled','removed','blocked')"
+        },
+        "event_social_friend_time": {
+          "name": "event_social_friend_time",
+          "value": "(\"event_social_pairs\".\"status\" = 'accepted') = (\"event_social_pairs\".\"friends_at\" IS NOT NULL)"
+        },
+        "event_social_participants": {
+          "name": "event_social_participants",
+          "value": "\"event_social_pairs\".\"status\" = 'blocked' OR (\"event_social_pairs\".\"greeting_id\" IS NOT NULL AND \"event_social_pairs\".\"room_id\" IS NOT NULL AND \"event_social_pairs\".\"sender_id\" IS NOT NULL AND \"event_social_pairs\".\"recipient_id\" IS NOT NULL AND ((\"event_social_pairs\".\"sender_id\" = \"event_social_pairs\".\"low_id\" AND \"event_social_pairs\".\"recipient_id\" = \"event_social_pairs\".\"high_id\") OR (\"event_social_pairs\".\"sender_id\" = \"event_social_pairs\".\"high_id\" AND \"event_social_pairs\".\"recipient_id\" = \"event_social_pairs\".\"low_id\")))"
+        }
+      }
+    },
+    "event_participation": {
+      "name": "event_participation",
+      "columns": {
+        "room_id": {
+          "name": "room_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "mode": {
+          "name": "mode",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'quiet'"
+        },
+        "revision": {
+          "name": "revision",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "event_participation_room_id_user_id_event_members_room_id_user_id_fk": {
+          "name": "event_participation_room_id_user_id_event_members_room_id_user_id_fk",
+          "tableFrom": "event_participation",
+          "tableTo": "event_members",
+          "columnsFrom": [
+            "room_id",
+            "user_id"
+          ],
+          "columnsTo": [
+            "room_id",
+            "user_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "event_participation_room_id_user_id_pk": {
+          "columns": [
+            "room_id",
+            "user_id"
+          ],
+          "name": "event_participation_room_id_user_id_pk"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {
+        "event_participation_mode": {
+          "name": "event_participation_mode",
+          "value": "\"event_participation\".\"mode\" IN ('quiet','open')"
+        },
+        "event_participation_revision": {
+          "name": "event_participation_revision",
+          "value": "\"event_participation\".\"revision\" >= 1"
+        }
+      }
+    }
+  },
+  "views": {},
+  "enums": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  },
+  "internal": {
+    "indexes": {}
+  }
+}

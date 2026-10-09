@@ -1,0 +1,13 @@
+import { launch, newPage, sleep, BASE, ensureDir } from './lib.mjs';
+import { hostCreatesRoom, guestJoins, uploadPhoto, panelInfo, visibleUI } from './flows.mjs';
+const out = ensureDir('/tmp/space-video-prep/stills/journey');
+const browser = await launch();
+const A = await newPage(browser);
+await hostCreatesRoom(A.page, { name: '阿遥', title: '返场夜', venue: '月台 Livehouse' });
+let n = 52;
+const snap = async (p, tag) => { const i = String(n++).padStart(2, '0'); await p.screenshot({ path: `${out}/${i}-${tag}.png` }); const info = await visibleUI(p); console.log(`--- ${i} ${tag}`, JSON.stringify(info.overlays.filter(o => !/world-shell|presence/.test(o.cls))).slice(0, 1500)); console.log('    btns:', JSON.stringify(info.buttons.filter(b => !/camera-nav|presence|header|hotspot|scene-details/.test(b)).slice(0, 34))); };
+const tryStep = async (label, fn) => { try { await fn(); } catch (e) { console.log('!! step failed:', label, e.message.split('\n')[0].slice(0, 160)); } };
+await tryStep('recap', async () => { await A.page.getByRole('button', { name: '回看这一晚' }).first().click(); await sleep(1500); });
+await tryStep('room chat', async () => { await A.page.getByRole('button', { name: /回到这一场的聊天室/ }).click(); await sleep(1800); });
+await tryStep('join chat', async () => { await A.page.locator('.music-community input[name=consent]').check(); await A.page.getByRole('button', { name: /明确加入，继续聊/ }).click(); await sleep(2500); await snap(A.page, 'community-chat'); });
+await browser.close();

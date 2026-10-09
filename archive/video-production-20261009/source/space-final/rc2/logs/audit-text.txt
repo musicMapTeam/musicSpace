@@ -1,0 +1,6 @@
+states scanned: 290
+About states (room 关于 Music Space open): 12; disclosure occurrences per About state: [1]
+disclosure occurrences outside About states: 0
+hits: 0
+characters outside every Doodle face of their stack (system fallback): none
+text nodes without a Doodle family in their font stack (by first family): none

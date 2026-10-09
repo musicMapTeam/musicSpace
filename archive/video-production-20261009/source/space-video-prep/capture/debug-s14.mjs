@@ -1,0 +1,17 @@
+import { launch, Session, sleep, killSinks } from './rec.mjs';
+import { startServer, hostRoom } from './world.mjs';
+const server = await startServer(); const browser = await launch();
+const A = await hostRoom(browser, server.base); const p = A.page;
+await p.locator('#room-recap').click(); await sleep(1400);
+await p.getByRole('button', { name: /回到这一场的聊天室/ }).click(); await sleep(1400);
+await p.locator('.music-community input[name=consent]').check(); await p.getByRole('button', { name: /明确加入，继续聊/ }).click(); await sleep(2400);
+await p.getByRole('button', { name: /专辑世界杯/ }).click(); await sleep(1600);
+const f = p.locator('.worldcup-panel form'); await f.locator('input[name=title]').fill('今晚想先选哪张？'); await f.locator('input[name=consent]').check();
+await p.getByRole('button', { name: '发起四张专辑的世界杯' }).click(); await sleep(2400);
+await A.freeze(); await A.step(30);
+const dump = async tag => console.log(tag, JSON.stringify(await p.evaluate(() => [...document.querySelectorAll('section')].filter(s => s.offsetParent).map(s => s.className + '::' + (s.innerText || '').slice(0, 60).replace(/\n/g, ' ')))));
+await dump('frozen');
+await A.unfreeze(); await sleep(800); await dump('unfrozen');
+await p.keyboard.press('Escape'); await sleep(1200); await dump('after Esc');
+await p.screenshot({ path: '/tmp/space-video-prep/stills/s14-debug.png' });
+killSinks(); await browser.close(); await server.stop(); process.exit(0);

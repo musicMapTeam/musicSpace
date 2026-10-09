@@ -1,0 +1,98 @@
+{
+ "kind": "desktop",
+ "base": "http://127.0.0.1:4783/musicSpace/",
+ "who": "小满",
+ "results": {
+  "person-card": {
+   "kind": "people",
+   "st": 0
+  },
+  "chat-button": "和 小满·示例 私聊 ↗",
+  "welcome": {
+   "st": 0,
+   "sh": 395,
+   "ch": 395,
+   "gap": 0,
+   "theirs": 2,
+   "mine": 0,
+   "lastMineVisible": null,
+   "lastTheirsVisible": true,
+   "lastTheirs": "你拍到的是哪一面？",
+   "unread": [],
+   "badge": "0"
+  },
+  "send-1": {
+   "own": {
+    "st": 0,
+    "sh": 395,
+    "ch": 395,
+    "gap": 0,
+    "visible": true
+   },
+   "reply": {
+    "st": 6,
+    "sh": 401,
+    "ch": 395,
+    "gap": 0,
+    "visible": true,
+    "text": "今晚的返场太好听了。",
+    "unread": []
+   },
+   "badge": "0"
+  },
+  "send-2": {
+   "own": {
+    "st": 96,
+    "sh": 491,
+    "ch": 395,
+    "gap": 0,
+    "visible": true
+   },
+   "reply": {
+    "st": 210,
+    "sh": 605,
+    "ch": 395,
+    "gap": 0,
+    "visible": true,
+    "text": "你的视角我这边没拍到，谢谢你愿意交换。",
+    "unread": []
+   },
+   "badge": "0"
+  },
+  "send-3": {
+   "own": {
+    "st": 300,
+    "sh": 695,
+    "ch": 395,
+    "gap": 0,
+    "visible": true
+   },
+   "reply": {
+    "st": 414,
+    "sh": 809,
+    "ch": 395,
+    "gap": 0,
+    "visible": true,
+    "text": "（示例角色的自动回复：我不是真人。）",
+    "unread": []
+   },
+   "badge": "0"
+  },
+  "badge-after-close": "0",
+  "chat-list": [
+   "小满·示例 unread=0"
+  ],
+  "badge-final": "0"
+ },
+ "failures": [
+  "failedRequests: [\"http://127.0.0.1:4783/musicSpace/ai/ort/ort-wasm-simd-threaded.wasm net::ERR_ABORTED @boot 1.4s\"]"
+ ],
+ "api": [],
+ "foreign": [],
+ "failedRequests": [
+  "http://127.0.0.1:4783/musicSpace/ai/ort/ort-wasm-simd-threaded.wasm net::ERR_ABORTED @boot 1.4s"
+ ],
+ "consoleErrors": [],
+ "pageErrors": [],
+ "ok": false
+}

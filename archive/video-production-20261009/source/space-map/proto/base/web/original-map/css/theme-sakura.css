@@ -1,0 +1,33 @@
+/* Sakura screening: cream paper, bottle-green ink and a small original street stage.
+   Load after the shared theme bridge. Functional markup is intact. */
+html[data-theme="sakura"] {
+  --sk-ink: var(--theme-ink, #304a3e);
+  --sk-paper: #faf5e8;
+  --sk-pink: #ecc3c6;
+  --sk-rose: #9b5664;
+  --sk-green: #3d6653;
+  --sk-line: #405d4330;
+}
+
+html[data-theme="sakura"] .sakura-scene__canvas { display: block; width: 100%; height: 100%; position: relative; z-index: 1; }
+
+/* Fallback keeps a designed space if this browser cannot create a WebGL context. */
+html[data-theme="sakura"] .sakura-scene__fallback { display: grid; align-content: center; justify-items: center; gap: 30px; min-height: inherit; height: 100%; padding: 35px; color: var(--sk-green); }
+html[data-theme="sakura"] .sakura-scene__fallback > span { display: block; width: 160px; aspect-ratio: 1; border-radius: 50%; border: 1px solid #35584180; background: radial-gradient(circle, #edbac0 0 17%, transparent 17.5%), repeating-radial-gradient(circle, #385c49 0 3px, #466955 4px 5px, #385c49 6px 9px); box-shadow: 18px 12px 0 #f7dfdc; }
+html[data-theme="sakura"] .sakura-scene__fallback strong { text-align: center; font: 850 28px/1.12 var(--font-display, Arial, sans-serif); letter-spacing: -.045em; }
+
+/* Dialogs are the same cream paper as the rest of the shop. */
+html[data-theme="sakura"] .map-dialog { background: var(--sk-paper); color: var(--sk-ink); border: 1px solid #6b7b5a54; border-radius: 14px; box-shadow: 0 22px 90px #33483435; }
+html[data-theme="sakura"] .map-dialog::backdrop { background: #2f443c66; backdrop-filter: blur(6px); }
+
+/* The map becomes a printed neighbourhood plan, with record-shaped landmarks. */
+html[data-theme="sakura"] .map-workspace { background: #faf6e9; border: 1px solid #78856c47; border-radius: 15px; box-shadow: 4px 6px 0 #9baa8619; }
+html[data-theme="sakura"] .map-stage-column { background: repeating-linear-gradient(0deg, #48664a06 0 1px, transparent 1px 28px), repeating-linear-gradient(90deg, #48664a06 0 1px, transparent 1px 28px); }
+html[data-theme="sakura"] .map-artist-panel { background: #eef0e2; border-color: #7f8d7240; }
+html[data-theme="sakura"] .map-catalogue__switch button.is-active { border-color: var(--sk-rose); }
+
+@media (max-width: 760px) {
+  html[data-theme="sakura"] .sakura-scene__fallback { gap: 16px; padding: 20px; }
+  html[data-theme="sakura"] .sakura-scene__fallback > span { width: 118px; }
+  html[data-theme="sakura"] .sakura-scene__fallback strong { font-size: 22px; }
+}

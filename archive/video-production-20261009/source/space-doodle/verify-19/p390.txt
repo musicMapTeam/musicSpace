@@ -1,0 +1,6 @@
+p390 room-entered stage [357, 666] innerW 390
+   '照片墙'                        hidden=True  hs=0x0 client=0 content=-8 scroll=0 textW=0 trunc=False ws=nowrap to=ellipsis ov=hidden fs=12px ff="Doodle Marker" pad=5px 4px 4px box=[0, 0, 0, 0]
+   '阿遥·示例 · 可招呼'                hidden=False hs=88x44 client=84 content=76 scroll=110 textW=102 trunc=True  ws=nowrap to=ellipsis ov=hidden fs=12px ff="Doodle Marker" pad=5px 4px 4px box=[45, 257, 133, 289]
+   '小满·示例 · 可招呼'                hidden=False hs=88x44 client=84 content=76 scroll=110 textW=102 trunc=True  ws=nowrap to=ellipsis ov=hidden fs=12px ff="Doodle Marker" pad=5px 4px 4px box=[122, 209, 210, 240]
+   '北屿·示例 · 可招呼'                hidden=False hs=88x44 client=84 content=76 scroll=110 textW=102 trunc=True  ws=nowrap to=ellipsis ov=hidden fs=12px ff="Doodle Marker" pad=5px 4px 4px box=[198, 257, 286, 289]
+   '访客5317 · 我'                 hidden=False hs=88x44 client=84 content=76 scroll=84 textW=73 trunc=False ws=nowrap to=ellipsis ov=hidden fs=12px ff="Doodle Marker" pad=5px 4px 4px box=[272, 209, 360, 240]

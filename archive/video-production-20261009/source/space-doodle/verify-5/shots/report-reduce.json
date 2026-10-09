@@ -1,0 +1,174 @@
+{
+ "phone-head-reduce": {
+  "renderStyle": null,
+  "mode": "webgl",
+  "reducedMotion": true,
+  "fontsLogo": true,
+  "fontFaces": [],
+  "dsPaperVar": "",
+  "heading": {
+   "color": "rgb(209, 213, 187)",
+   "font": "Arial, \"Noto Sans CJK SC\", \"Microsoft YaHei\", system-ui, san"
+  },
+  "h1": {
+   "color": "rgb(242, 234, 212)",
+   "font": "Arial, \"Noto Sans CJK SC\", \"Microsoft YaHei\", system-ui, san"
+  },
+  "code": {
+   "color": "rgb(180, 182, 158)",
+   "font": "Arial, \"Noto Sans CJK SC\", \"Microsoft YaHei\", system-ui, san"
+  },
+  "backdrop": {
+   "x": 18,
+   "y": 68,
+   "w": 168.78125,
+   "h": 67.59375
+  },
+  "boilTimersIn2s": 0,
+  "console": [
+   "error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ]
+ },
+ "phone-now-reduce": {
+  "renderStyle": "doodle",
+  "mode": "webgl",
+  "reducedMotion": true,
+  "fontsLogo": true,
+  "fontFaces": [],
+  "dsPaperVar": "",
+  "heading": {
+   "color": "rgb(209, 213, 187)",
+   "font": "Arial, \"Noto Sans CJK SC\", \"Microsoft YaHei\", system-ui, san"
+  },
+  "h1": {
+   "color": "rgb(242, 234, 212)",
+   "font": "Arial, \"Noto Sans CJK SC\", \"Microsoft YaHei\", system-ui, san"
+  },
+  "code": {
+   "color": "rgb(180, 182, 158)",
+   "font": "Arial, \"Noto Sans CJK SC\", \"Microsoft YaHei\", system-ui, san"
+  },
+  "backdrop": {
+   "x": 18,
+   "y": 68,
+   "w": 168.78125,
+   "h": 67.59375
+  },
+  "boilTimersIn2s": 0,
+  "console": [
+   "error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ]
+ },
+ "phone-now_doodle0-reduce": {
+  "renderStyle": "classic",
+  "mode": "webgl",
+  "reducedMotion": true,
+  "fontsLogo": true,
+  "fontFaces": [],
+  "dsPaperVar": "",
+  "heading": {
+   "color": "rgb(209, 213, 187)",
+   "font": "Arial, \"Noto Sans CJK SC\", \"Microsoft YaHei\", system-ui, san"
+  },
+  "h1": {
+   "color": "rgb(242, 234, 212)",
+   "font": "Arial, \"Noto Sans CJK SC\", \"Microsoft YaHei\", system-ui, san"
+  },
+  "code": {
+   "color": "rgb(180, 182, 158)",
+   "font": "Arial, \"Noto Sans CJK SC\", \"Microsoft YaHei\", system-ui, san"
+  },
+  "backdrop": {
+   "x": 18,
+   "y": 68,
+   "w": 168.78125,
+   "h": 67.59375
+  },
+  "boilTimersIn2s": 0,
+  "console": []
+ },
+ "desktop-head-reduce": {
+  "renderStyle": null,
+  "mode": "webgl",
+  "reducedMotion": true,
+  "fontsLogo": true,
+  "fontFaces": [],
+  "dsPaperVar": "",
+  "heading": {
+   "color": "rgb(209, 213, 187)",
+   "font": "Arial, \"Noto Sans CJK SC\", \"Microsoft YaHei\", system-ui, san"
+  },
+  "h1": {
+   "color": "rgb(242, 234, 212)",
+   "font": "Arial, \"Noto Sans CJK SC\", \"Microsoft YaHei\", system-ui, san"
+  },
+  "code": {
+   "color": "rgb(180, 182, 158)",
+   "font": "Arial, \"Noto Sans CJK SC\", \"Microsoft YaHei\", system-ui, san"
+  },
+  "backdrop": {
+   "x": 229,
+   "y": 97,
+   "w": 177.34375,
+   "h": 70
+  },
+  "boilTimersIn2s": 0,
+  "console": []
+ },
+ "desktop-now-reduce": {
+  "renderStyle": "doodle",
+  "mode": "webgl",
+  "reducedMotion": true,
+  "fontsLogo": true,
+  "fontFaces": [],
+  "dsPaperVar": "",
+  "heading": {
+   "color": "rgb(209, 213, 187)",
+   "font": "Arial, \"Noto Sans CJK SC\", \"Microsoft YaHei\", system-ui, san"
+  },
+  "h1": {
+   "color": "rgb(242, 234, 212)",
+   "font": "Arial, \"Noto Sans CJK SC\", \"Microsoft YaHei\", system-ui, san"
+  },
+  "code": {
+   "color": "rgb(180, 182, 158)",
+   "font": "Arial, \"Noto Sans CJK SC\", \"Microsoft YaHei\", system-ui, san"
+  },
+  "backdrop": {
+   "x": 229,
+   "y": 97,
+   "w": 177.34375,
+   "h": 70
+  },
+  "boilTimersIn2s": 0,
+  "console": []
+ },
+ "desktop-now_doodle0-reduce": {
+  "renderStyle": "classic",
+  "mode": "webgl",
+  "reducedMotion": true,
+  "fontsLogo": true,
+  "fontFaces": [],
+  "dsPaperVar": "",
+  "heading": {
+   "color": "rgb(209, 213, 187)",
+   "font": "Arial, \"Noto Sans CJK SC\", \"Microsoft YaHei\", system-ui, san"
+  },
+  "h1": {
+   "color": "rgb(242, 234, 212)",
+   "font": "Arial, \"Noto Sans CJK SC\", \"Microsoft YaHei\", system-ui, san"
+  },
+  "code": {
+   "color": "rgb(180, 182, 158)",
+   "font": "Arial, \"Noto Sans CJK SC\", \"Microsoft YaHei\", system-ui, san"
+  },
+  "backdrop": {
+   "x": 229,
+   "y": 97,
+   "w": 177.34375,
+   "h": 70
+  },
+  "boilTimersIn2s": 0,
+  "console": []
+ }
+}

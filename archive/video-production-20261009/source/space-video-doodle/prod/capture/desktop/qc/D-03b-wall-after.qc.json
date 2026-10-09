@@ -1,0 +1,55 @@
+{
+ "id": "D-03b-wall-after",
+ "master": {
+  "file": "/tmp/space-video-doodle/prod/capture/desktop/master/D-03b-wall-after.mp4",
+  "bytes": 2059009,
+  "duration_s": 4.0,
+  "video": "h264 High 3840x2160 60/1 yuv420p",
+  "colour": "bt709/bt709/bt709/tv",
+  "frames": 240,
+  "bitrate_mbps": 4.1,
+  "audio_streams": 0
+ },
+ "edit": {
+  "file": "/tmp/space-video-doodle/prod/capture/desktop/1080/D-03b-wall-after.mp4",
+  "bytes": 977243,
+  "duration_s": 4.0,
+  "video": "h264 High 1920x1080 60/1 yuv420p",
+  "colour": "bt709/bt709/bt709/tv",
+  "frames": 240,
+  "bitrate_mbps": 2.0,
+  "audio_streams": 0
+ },
+ "frames_decoded": 240,
+ "longest_still": {
+  "frames": 9,
+  "at_s": 0.117
+ },
+ "still_over_1s": [],
+ "stutters": {
+  "count": 0,
+  "at_s": [],
+  "rule": "still step (<0.15) between two moving steps (>0.6)"
+ },
+ "camera_glides": [],
+ "change_gap_histogram": {
+  "9": 25
+ },
+ "taps": [],
+ "presses_no_ring": [],
+ "master_frames": 240,
+ "master_edit_same_frame_count": true,
+ "master_edit_motion_correlation": 0.9996,
+ "rec": {
+  "frames": 240,
+  "seconds": 4,
+  "wallPerVideoSecond": 28.47,
+  "msPerFrame": {
+   "step": 20.2,
+   "grab": 417.6,
+   "write": 36.6
+  },
+  "clockStart": "2026-10-07T22:40:00+08:00",
+  "seed": 20261009
+ }
+}

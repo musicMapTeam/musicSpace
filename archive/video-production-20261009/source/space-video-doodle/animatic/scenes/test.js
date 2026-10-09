@@ -1,0 +1,20 @@
+// engine smoke test: one composition with every component
+DM.tempo(123, 0); DM.duration(4);
+const sh = DM.shot('test', 0, 4, { drift: { s: 1.03 } });
+DM.title(sh, { text: '同一刻，', x: 120, y: 190, size: 230 }).in('slam', 0.1);
+DM.title(sh, { text: '另一面。', x: 120, y: 430, size: 230, hl: { color: 'mint', t: 0.3, dur: 0.4 } }).in('slam', 0.3);
+DM.title(sh, { text: '只有[自己]那一面。', x: 130, y: 650, size: 110 }).in('slam', 0.5);
+DM.text(sh, { text: '和同场的人，[交换]彼此的视角。', x: 130, y: 800, size: 64, type: { t: 0.6 } });
+DM.logo(sh, { x: 1500, y: 120, size: 96, r: 4 }).in('pop', 0.7);
+DM.polaroid(sh, { src: '/repoassets/stage-scene.png', w: 420, hgt: 360, cap: '你拍的 · 舞台', x: 1120, y: 560, r: -4 }).in('slap', 0.2);
+DM.tape(sh, { x: 1120, y: 395, r: -6 }).in('none', 0.2);
+DM.stamp(sh, { text: '同一刻', color: 'pink', x: 1180, y: 760, size: 56 }).in('stamp', 0.9);
+DM.chip(sh, { text: '示例角色 · 自动回复', color: 'mint', x: 1500, y: 980, size: 36 }).in('pop', 1.0);
+DM.deco(sh, { kind: 'star', color: 'yellow', size: 90, x: 960, y: 150 }).in('pop', 1.1);
+DM.deco(sh, { kind: 'heart', color: 'pink', size: 70, x: 1040, y: 260 }).in('pop', 1.2);
+DM.deco(sh, { kind: 'sparkle', color: 'mint', size: 60, x: 880, y: 300 }).in('pop', 1.2);
+DM.swap(sh, { x: 1350, y: 420 }).in('pop', 1.3);
+DM.stroke(sh, { color: 'pink', width: 9, t: 1.0, dur: 0.4, gen: r => DM.paths.loop(1180, 760, 150, 70, r) });
+const ph = DM.phone(sh, { w: 330, x: 1640, y: 560, r: 3, shadow: 'mint', feed: DM.seq('/assets/clipA/f%05d.jpg', t => 300 + t * 60) });
+ph.in('rise', 0.4);
+window.__ready = DM.layout().then(DM.info);

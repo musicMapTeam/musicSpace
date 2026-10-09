@@ -1,0 +1,17 @@
+const s = await get('phone');
+const p = s.page;
+const { freezeKeep } = await import('/tmp/space-video-doodle/prod/capture/P2P3/tools/lib.mjs');
+await freezeKeep(s); await s.step(1);
+const sel = '[data-moment-badge="other-side"]';
+const box = await p.evaluate(sel => { const r = document.querySelector(sel).getBoundingClientRect(); return { x: Math.floor(r.x - 12), y: Math.floor(r.y - 12), width: Math.ceil(r.width + 24), height: Math.ceil(r.height + 24) }; }, sel);
+const cap = async (name, transparent) => { if (transparent) await s.cdp.send('Emulation.setDefaultBackgroundColorOverride', { color: { r: 0, g: 0, b: 0, a: 0 } }); const r = await s.cdp.send('Page.captureScreenshot', { format: 'png', clip: { ...box, scale: s.dpr }, captureBeyondViewport: false, fromSurface: true }); if (transparent) await s.cdp.send('Emulation.setDefaultBackgroundColorOverride', {}); fs.writeFileSync(`/tmp/space-video-doodle/prod/capture/P2P3/review/explore/iso-${name}.png`, Buffer.from(r.data, 'base64')); };
+await cap('a-twin', false);
+await cap('b-twin-transparentBG', true);
+const keep = `:not(${sel}):not(${sel} *)`;
+await p.evaluate(css => { const st = document.createElement('style'); st.id = 'hid'; st.textContent = css; document.head.appendChild(st); }, `body{visibility:hidden!important} body *${keep}{visibility:hidden!important} ${sel}{visibility:visible!important}`);
+await cap('c-hidden-opaqueBG', false);
+await cap('d-hidden-transparentBG', true);
+await p.evaluate(() => document.getElementById('hid').remove());
+await cap('e-twin-again', false);
+await s.unfreeze();
+return box;

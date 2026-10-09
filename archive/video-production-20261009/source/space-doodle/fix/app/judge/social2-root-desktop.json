@@ -1,0 +1,88 @@
+{
+  "people list": [
+    "阿遥·示例示例角色 · 自动回复 愿意打招呼 · 看看 TA 的视角 →",
+    "小满·示例示例角色 · 自动回复 愿意打招呼 · 看看 TA 的视角 →",
+    "北屿·示例示例角色 · 自动回复 愿意打招呼 · 看看 TA 的视角 →"
+  ],
+  "person panel": "同场的人 小满·示例 先招个手，对方愿意回应后，你们才会成为朋友。 向 小满·示例 招个手 向本场房主反馈 屏蔽这个人 不展示手机号或社交账号。没有公开聊天，也不会自动添加好友。",
+  "greet text": "向 小满·示例 招个手",
+  "accepted greeting": "3309 ms",
+  "person panel after greet": "你们已经认识了 小满·示例 邀请共同创作 和 小满·示例 私聊 ↗ 你们已经互相同意成为朋友。照片仍按原场次授权，不会因此开放私藏。 移除朋友 向本场房主反馈 屏蔽这个人 不展示手机号或社交账号。没有公开聊天，也不会自动添加好友。",
+  "inbox badge": "1",
+  "welcome lines": "嗨，欢迎来到「回声现场」。我是示例角色，由这个页面自动回复。 01:22 你拍到的是哪一面？ 01:22",
+  "example reply": "4028 ms",
+  "thread": "嗨，欢迎来到「回声现场」。我是示例角色，由这个页面自动回复。 01:22 你拍到的是哪一面？ 01:22 刚刚返场那首太好听了！ 01:22 · 已保存 今晚的返场太好听了。 01:22",
+  "badge with the thread open, reply read": "(hidden)",
+  "second reply": "4028 ms",
+  "thread 2": "嗨，欢迎来到「回声现场」。我是示例角色，由这个页面自动回复。 01:22 你拍到的是哪一面？ 01:22 刚刚返场那首太好听了！ 01:22 · 已保存 今晚的返场太好听了。 01:22 你拍的是人海吧？ 01:22 · 已保存 你的视角我这边没拍到，谢谢你愿意交换。 01:22",
+  "scrollers": {
+    "thread": {
+      "sh": 605,
+      "ch": 395,
+      "st": 6,
+      "oy": "auto"
+    },
+    "messages": {
+      "sh": 569,
+      "ch": 569,
+      "st": 0,
+      "oy": "visible"
+    },
+    "root": {
+      "sh": 715,
+      "ch": 715,
+      "st": 0,
+      "oy": "visible"
+    },
+    "lastMsg": [
+      676,
+      773
+    ],
+    "threadRect": [
+      194,
+      589
+    ],
+    "winH": 900,
+    "incoming": [
+      "你的视角我这边没拍到，谢"
+    ]
+  },
+  "scrollLog": [
+    "0ms start st=6 sh=401 ch=395 n=4",
+    "heights at start: .chat-notice:40 .chat-problem:0 .chat-pending:0 .chat-composer:150 .chat-composer small:19 .chat-composer textarea:72",
+    "0ms resize st=6 sh=401 ch=395 n=4",
+    "244ms resize st=6 sh=401 ch=366 n=4",
+    "250ms SET 6 -> st=6 sh=491 ch=325 | .chat-notice:40「已互相接受联系。这里只保存文字，不展」 .chat-problem:62「上一条已由服务保存。记录暂未刷新，恢」 .chat-pending:0 .chat-composer:150「留一句话已保存 = 示例已收到，不代」 .chat-composer small:19「已保存 = 示例已收到，不代表对方已」 .chat-composer textarea:72",
+    "250ms mut st=6 sh=491 ch=395 n=5",
+    "261ms resize st=6 sh=491 ch=395 n=5",
+    "4256ms SET 6 -> st=6 sh=605 ch=395 | .chat-notice:40「已互相接受联系。这里只保存文字，不展」 .chat-problem:0 .chat-pending:0 .chat-composer:150「留一句话已保存 = 示例已收到，不代」 .chat-composer small:19「已保存 = 示例已收到，不代表对方已」 .chat-composer textarea:72",
+    "4257ms mut st=6 sh=605 ch=395 n=6"
+  ],
+  "badge after the second reply, thread open": "(hidden)",
+  "badge after closing the chat": "1",
+  "incoming greetings": 0,
+  "chat list unread marks": [
+    "小满·示例 你的视角我这边没拍到，谢谢你愿意交换。 朋友 1 | unread=1"
+  ],
+  "badge after the list": "1",
+  "taps": [
+    "1. 进入示例现场",
+    "2. consent",
+    "3. submit",
+    "4. 同场的人 (nav)",
+    "5. 小满·示例",
+    "6. 向 小满·示例 招个手",
+    "7. 和 小满·示例 私聊 ↗",
+    "8. (typed a message)",
+    "9. 发送 ↗",
+    "10. 发送 2"
+  ],
+  "console": [],
+  "pageErrors": [],
+  "net": {
+    "total": 54,
+    "api": 0,
+    "external": 0,
+    "bad": []
+  }
+}

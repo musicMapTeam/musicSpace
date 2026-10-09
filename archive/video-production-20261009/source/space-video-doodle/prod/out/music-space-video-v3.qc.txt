@@ -1,0 +1,29 @@
+QC music-space-video-v3.mp4  range 0.00-174.67 s  FULL CUT  ->  WARN
+  PASS  container.video h264 High 1920x1080 60/1 yuv420p bt709/bt709/bt709/tv
+  PASS  container.audio aac LC 48000 Hz 2 ch 257 kb/s
+  PASS  duration        174.667 s (limit 175.0; target 172-176)
+  PASS  size            217.6 MB (target 150-300, limit 500)
+  PASS  loudness        I -16.0 LUFS (target -16), LRA 4.5 LU
+  PASS  true_peak       -1.4 dBTP (limit -1.0)
+  PASS  silence         0 silent stretches over 0.8 s
+  PASS  frozen          0 frozen stretches over 2.5 s
+  PASS  black           0 black stretches over 0.4 s
+  PASS  motion          longest low-motion stretch 0.08 s at 38.90 s (mean |dI| < 0.15 on 160x90), mean motion 2.14
+  PASS  event_gaps      620 visual events, 3.55/s; longest gap 1.71 s after 80.00 s (limit 2.5)
+  PASS  beat_alignment  620/620 visual events on the 16th grid (<= half a frame), 589/620 on 8ths; frames quantise by <= 8.3 ms
+  PASS  reading_time    119 lines, measured (geometry samples every 50 ms); titles/notes failing 0, labels/fine short 0
+  WARN  safe_area       0 texts outside the 5% title-safe area for > 0.5 s, 10 only briefly (entrances, camera moves)
+  PASS  glyphs          405 font/character pairs; 0 drawn by a system font
+  PASS  qr              decoded at 8/8 sampled frames: https://musicmapteam.github.io/musicSpace/ (first at 165.86 s)
+  PASS  placeholders    no placeholders
+  PASS  scene_warnings  0 warnings
+  PASS  sfx_level       SFX -9.0 LU vs music (target -8..-10), 633 sounds {'slap': 47, 'stamp': 12, 'tape': 10, 'pop': 80, 'whoosh': 20, 'impact': 19, 'typetick': 186, 'zip': 4, 'swish': 25, 'squeak': 37, 'highlighter': 10, 'slam': 52, 'scribble': 2, 'pencil': 8, 'click': 35, 'boop': 12, 'riser': 2, 'boom': 5, 'thump': 9, 'ding': 7, 'shutter': 1, 'chime': 1, 'hmm': 1, 'sparkle': 11, 'tick': 20, 'heartbeat': 7, 'blip': 7, 'crackle': 1, 'flip': 1, 'scratch': 1}
+  WARN  script_lines    109/117 SCRIPT lines in range are on screen
+            - T025 9:1 「照片为 AI 生成的示例图」
+            - T049 27:3 「示例角色 · 自动回复」
+            - T053 30:3 「示例照片 · 拍摄时间为虚构」
+            - T094 57:3 「示例角色 · 自动回复」
+            - T100 61:3 「原创虚构专辑」
+            - T110 69:3 「纪念卡，」
+            - T111 70:1 「在你的浏览器里生成。」
+            - T145 86:1 「示例角色与照片为虚构（照片由 AI 生成」

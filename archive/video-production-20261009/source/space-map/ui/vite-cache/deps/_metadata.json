@@ -1,0 +1,44 @@
+{
+  "hash": "75268719",
+  "configHash": "c1972c16",
+  "lockfileHash": "6c7dfcb3",
+  "browserHash": "2e6b753c",
+  "optimized": {
+    "gsap": {
+      "src": "../../../../../Users/alakazan/workplace/tme/musicSpace/node_modules/gsap/index.js",
+      "file": "gsap.js",
+      "fileHash": "f8f5abb0",
+      "needsInterop": false
+    },
+    "overlayscrollbars": {
+      "src": "../../../../../Users/alakazan/workplace/tme/musicSpace/node_modules/overlayscrollbars/overlayscrollbars.mjs",
+      "file": "overlayscrollbars.js",
+      "fileHash": "b7712402",
+      "needsInterop": false
+    },
+    "qrcode-generator": {
+      "src": "../../../../../Users/alakazan/workplace/tme/musicSpace/node_modules/qrcode-generator/dist/qrcode.mjs",
+      "file": "qrcode-generator.js",
+      "fileHash": "9f04a6b8",
+      "needsInterop": false
+    },
+    "three": {
+      "src": "../../../../../Users/alakazan/workplace/tme/musicSpace/node_modules/three/build/three.module.js",
+      "file": "three.js",
+      "fileHash": "e6181b23",
+      "needsInterop": false
+    },
+    "three/addons/postprocessing/Pass.js": {
+      "src": "../../../../../Users/alakazan/workplace/tme/musicSpace/node_modules/three/examples/jsm/postprocessing/Pass.js",
+      "file": "three_addons_postprocessing_Pass__js.js",
+      "fileHash": "a64718fd",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "three.module-Bj7iJlUn": {
+      "file": "three.module-Bj7iJlUn.js",
+      "isDynamicEntry": false
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+ "fonts": [],
+ "glyphs": [
+  "header.recap-ticket>h2 [Doodle Display] missing «·» in «回声现场 · 示例场»",
+  "section.recap-keepsake>button.primary [Doodle Marker] missing «↗» in «保存我的纪念卡 ↗»"
+ ],
+ "colors": [],
+ "tiny": [],
+ "whiteOnMarker": [],
+ "clipped": [],
+ "blurShadow": [],
+ "renderStyle": "doodle"
+}

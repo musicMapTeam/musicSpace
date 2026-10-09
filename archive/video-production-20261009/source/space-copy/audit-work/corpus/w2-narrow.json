@@ -1,0 +1,584 @@
+{
+ "states": [
+  {
+   "vp": "narrow",
+   "label": "upload-empty",
+   "selector": "#panel",
+   "visible": "×\n留一个现场瞬间\n这一张，由你决定给谁看。\n用我自己的照片\n\n或者挑一张今晚的\n\n人海那张\n舞台那张\n\n可见范围\n仅自己保存\n分享给本场成员\n\n照片会缩小，并去掉位置信息。\n\n保存这张照片",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板"
+   ],
+   "hidden": [
+    "没读到拍摄时间",
+    "修改时间",
+    "拍摄时间 · 北京时间",
+    "选填；填了才能找「同一刻」。",
+    "把拍摄时间设成 21:47",
+    "我拍的这一面",
+    "舞台",
+    "灯光下的那一面",
+    "人海",
+    "一起举手的那一面",
+    "身边",
+    "陪你听歌的那一面",
+    "细节",
+    "只有你留意的那一面",
+    "配对时，用它找另一面。AI 在本机判断，照片不上传，你说了算。",
+    "仅自己保存",
+    "分享给本场成员"
+   ],
+   "at": 1791387055676
+  },
+  {
+   "vp": "narrow",
+   "label": "layout:upload-empty",
+   "selector": "#panel",
+   "layout": {
+    "pageOverflow": false,
+    "out": [],
+    "tall": [],
+    "orphan": []
+   }
+  },
+  {
+   "vp": "narrow",
+   "label": "upload-own",
+   "selector": "#panel",
+   "visible": "×\n留一个现场瞬间\n这一张，由你决定给谁看。\n用我自己的照片\n\n或者挑一张今晚的\n\n人海那张\n舞台那张\n\n没读到拍摄时间\n\n大约的时间 · 北京时间\n\n文件里的时间，只是大概；改一下才算数。\n\n把拍摄时间设成 21:47\n我拍的这一面\n舞台\n灯光下的那一面\n人海\n一起举手的那一面\n身边\n陪你听歌的那一面\n细节\n只有你留意的那一面\n\nAI 判断：细节\n\n配对时，用它找另一面。AI 在本机判断，照片不上传，你说了算。\n\n可见范围\n仅自己保存\n分享给本场成员\n\n照片会缩小，并去掉位置信息。\n\n保存这张照片",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板",
+    "@alt=待保存的照片",
+    "@title=AI 在本机判断，照片不上传"
+   ],
+   "hidden": [
+    "修改时间",
+    "仅自己保存",
+    "分享给本场成员"
+   ],
+   "at": 1791387059827
+  },
+  {
+   "vp": "narrow",
+   "label": "layout:upload-own",
+   "selector": "#panel",
+   "layout": {
+    "pageOverflow": false,
+    "out": [],
+    "tall": [],
+    "orphan": []
+   }
+  },
+  {
+   "vp": "narrow",
+   "label": "upload-own-demo-time",
+   "selector": "form[data-form=\"upload\"]",
+   "visible": "用我自己的照片\n\n或者挑一张今晚的\n\n人海那张\n舞台那张\n\n拍摄于 21:47\n·\n你填写的时间\n\n修改时间\n已设成 21:47 · 再按一次撤销\n我拍的这一面\n舞台\n灯光下的那一面\n人海\n一起举手的那一面\n身边\n陪你听歌的那一面\n细节\n只有你留意的那一面\n\nAI 判断：细节\n\n配对时，用它找另一面。AI 在本机判断，照片不上传，你说了算。\n\n可见范围\n仅自己保存\n分享给本场成员\n\n照片会缩小，并去掉位置信息。\n\n保存这张照片",
+   "attrs": [
+    "@alt=待保存的照片",
+    "@title=AI 在本机判断，照片不上传"
+   ],
+   "hidden": [
+    "修改拍摄时间 · 北京时间",
+    "仅自己保存",
+    "分享给本场成员"
+   ],
+   "at": 1791387061469
+  },
+  {
+   "vp": "narrow",
+   "label": "upload-offnight",
+   "selector": "form[data-form=\"upload\"]",
+   "visible": "用我自己的照片\n\n或者挑一张今晚的\n\n人海那张\n舞台那张\n\n拍摄于 9月20日 21:00\n·\n你填写的时间\n\n修改拍摄时间 · 北京时间\n\n这个时间不在 2026.09.26 那晚，不算同一刻。\n\n把拍摄时间设成 21:47\n我拍的这一面\n舞台\n灯光下的那一面\n人海\n一起举手的那一面\n身边\n陪你听歌的那一面\n细节\n只有你留意的那一面\n\nAI 判断：细节\n\n配对时，用它找另一面。AI 在本机判断，照片不上传，你说了算。\n\n可见范围\n仅自己保存\n分享给本场成员\n\n照片会缩小，并去掉位置信息。\n\n保存这张照片",
+   "attrs": [
+    "@alt=待保存的照片",
+    "@title=AI 在本机判断，照片不上传"
+   ],
+   "hidden": [
+    "修改时间",
+    "仅自己保存",
+    "分享给本场成员"
+   ],
+   "at": 1791387062554
+  },
+  {
+   "vp": "narrow",
+   "label": "upload-badtime",
+   "selector": "form[data-form=\"upload\"] .moment-taken",
+   "visible": "暂无可用的拍摄时间\n\n拍摄时间 · 北京时间\n\n选填；填了才能找「同一刻」。\n\n时间需在 2000 年至明天之间。\n\n把拍摄时间设成 21:47",
+   "attrs": [
+    "@alt=待保存的照片"
+   ],
+   "hidden": [
+    "修改时间"
+   ],
+   "at": 1791387063282
+  },
+  {
+   "vp": "narrow",
+   "label": "upload-stage-sample",
+   "selector": "#panel",
+   "visible": "×\n留一个现场瞬间\n这一张，由你决定给谁看。\n用我自己的照片\n\n或者挑一张今晚的\n\n人海那张\n舞台那张\n\n拍摄于 21:47\n·\n来自照片自带的信息\n\n修改时间\n我拍的这一面\n舞台\n灯光下的那一面\n人海\n一起举手的那一面\n身边\n陪你听歌的那一面\n细节\n只有你留意的那一面\nAI 认为这一面更可能\n\n不确定，请选择\n，AI 认为更可能是舞台或人海\n\n配对时，用它找另一面。AI 在本机判断，照片不上传，你说了算。\n\n可见范围\n仅自己保存\n分享给本场成员\n\n照片会缩小，并去掉位置信息。\n\n保存这张照片",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板",
+    "@alt=待保存的照片"
+   ],
+   "hidden": [
+    "修改拍摄时间 · 北京时间",
+    "仅自己保存",
+    "分享给本场成员"
+   ],
+   "at": 1791387065958
+  },
+  {
+   "vp": "narrow",
+   "label": "layout:upload-stage",
+   "selector": "#panel",
+   "layout": {
+    "pageOverflow": false,
+    "out": [],
+    "tall": [],
+    "orphan": []
+   }
+  },
+  {
+   "vp": "narrow",
+   "label": "upload-crowd-sample",
+   "selector": "#panel",
+   "visible": "×\n留一个现场瞬间\n这一张，由你决定给谁看。\n用我自己的照片\n\n或者挑一张今晚的\n\n人海那张\n舞台那张\n\n拍摄于 21:48\n·\n来自照片自带的信息\n\n修改时间\n我拍的这一面\n舞台\n灯光下的那一面\n人海\n一起举手的那一面\n身边\n陪你听歌的那一面\n细节\n只有你留意的那一面\n\nAI 判断：人海\n\n配对时，用它找另一面。AI 在本机判断，照片不上传，你说了算。\n\n可见范围\n仅自己保存\n分享给本场成员\n\n照片会缩小，并去掉位置信息。\n\n保存这张照片",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板",
+    "@alt=待保存的照片",
+    "@title=AI 在本机判断，照片不上传"
+   ],
+   "hidden": [
+    "修改拍摄时间 · 北京时间",
+    "仅自己保存",
+    "分享给本场成员"
+   ],
+   "at": 1791387069434
+  },
+  {
+   "vp": "narrow",
+   "label": "layout:upload-crowd",
+   "selector": "#panel",
+   "layout": {
+    "pageOverflow": false,
+    "out": [],
+    "tall": [],
+    "orphan": []
+   }
+  },
+  {
+   "vp": "narrow",
+   "label": "wall-after-save",
+   "selector": "#panel",
+   "visible": "×\n同一场 / 不同视角\n这一晚，大家看到了什么？\n21:47\n·\n同一刻\n·\n3 个视角：舞台\n·\n人海\n·\n细节\n\n3 分钟内拍下\n\n同一刻的另一面\n\n同一刻 · 21:47，相差不到 1 分钟；你拍人海，TA 拍舞台\n\n和 TA 交换这个视角\n阿遥\n照片墙：本场成员可见\n\n拍摄于 21:47\n·\n视角：舞台\n·\n作者选择\n\n小满\n照片墙：本场成员可见\n\n拍摄于 21:48\n·\n视角：人海\n·\n作者选择\n\n同一刻\n访客9153\n照片墙：本场成员可见\n\n拍摄于 21:48\n·\n视角：人海\n·\nAI 建议，未改动\n\n北屿\n照片墙：本场成员可见\n\n拍摄于 21:49\n·\n视角：细节\n·\n作者选择\n\n同一刻\n22:21\n小满\n照片墙：本场成员可见\n\n拍摄于 22:21\n·\n视角：身边\n·\n作者选择\n\n刷新照片\n放上我的一张\n照片交换",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板",
+    "@aria-label=和 TA 交换这个视角（阿遥 的照片）",
+    "@alt=同场观众拍摄的现场照片",
+    "@alt=我拍摄的现场照片"
+   ],
+   "hidden": [],
+   "at": 1791387072156
+  },
+  {
+   "vp": "narrow",
+   "label": "layout:wall",
+   "selector": "#panel",
+   "layout": {
+    "pageOverflow": false,
+    "out": [],
+    "tall": [],
+    "orphan": []
+   }
+  },
+  {
+   "vp": "narrow",
+   "label": "tour-after-photo",
+   "selector": ".demo-tour",
+   "visible": "第一次来 3/4\n·\n发起交换\n\n收起\n回到照片墙\n跳过路线",
+   "attrs": [
+    "@aria-label=第一次来",
+    "@aria-label=收起路线"
+   ],
+   "hidden": [
+    "在照片墙点「和 TA 交换这个视角」。"
+   ],
+   "at": 1791387074701
+  },
+  {
+   "vp": "narrow",
+   "label": "tour-step-after-wall",
+   "selector": ".demo-tour",
+   "visible": "第一次来 3/4\n·\n发起交换\n\n收起\n回到照片墙\n跳过路线",
+   "attrs": [
+    "@aria-label=第一次来",
+    "@aria-label=收起路线"
+   ],
+   "hidden": [
+    "在照片墙点「和 TA 交换这个视角」。"
+   ],
+   "at": 1791387077507
+  },
+  {
+   "vp": "narrow",
+   "label": "x-compose",
+   "selector": ".photo-exchanges",
+   "visible": "←\n同一晚 / 另一面\n交换一个视角\n×\n\n用我拍下的，换 阿遥 看到的。\n\n我提供的\n我选中的这一张\n阿遥的\n照片墙上的这一张\n我提供哪一张\n选择自己拍的照片\n我的第 1 张 · 已上墙 · 同一刻的另一面（推荐）\n我的第 1 张 · 已上墙\n同一刻的另一面（推荐）\n\n同一刻 · 21:47，相差不到 1 分钟；你拍人海，TA 拍舞台\n\n发出后，TA 先看到小图；TA 接受后，你们互看原图。\n\n我同意先给小图，TA 接受后再给原图\n把这两张交给对方确认 ↗",
+   "attrs": [
+    "@aria-label=照片交换",
+    "@aria-label=返回交换列表",
+    "@aria-label=关闭照片交换",
+    "@alt=我选择提供的现场照片",
+    "@alt=希望交换的对方现场照片"
+   ],
+   "hidden": [
+    "选择自己拍的照片",
+    "我的第 1 张 · 已上墙 · 同一刻的另一面（推荐）"
+   ],
+   "at": 1791387080960
+  },
+  {
+   "vp": "narrow",
+   "label": "layout:x-compose",
+   "selector": ".photo-exchanges",
+   "layout": {
+    "pageOverflow": false,
+    "out": [],
+    "tall": [
+     "label「我提供哪一张选择自己拍的照片我的第 1 张 · 已上墙 · 」 3 lines: 我提供哪一张 / 我的第1张·已上墙 / 同一刻的另一面（推荐）"
+    ],
+    "orphan": []
+   }
+  },
+  {
+   "vp": "narrow",
+   "label": "x-sent",
+   "selector": ".photo-exchanges",
+   "visible": "←\n同一晚 / 另一面\n交换一个视角\n×\n\n等待对方回应\n\n和 阿遥 的两张照片\n我提供的\n这次确定的一张\n阿遥提供的\n这次确定的一张\n\n有效至 10/8 23:31\n\n等 TA 接受后，就能互看原图。\n\n撤回这个申请刷新",
+   "attrs": [
+    "@aria-label=照片交换",
+    "@aria-label=返回交换列表",
+    "@aria-label=关闭照片交换",
+    "@alt=我提供的照片",
+    "@alt=阿遥提供的照片"
+   ],
+   "hidden": [],
+   "at": 1791387083232
+  },
+  {
+   "vp": "narrow",
+   "label": "x-accepted",
+   "selector": ".photo-exchanges",
+   "visible": "←\n同一晚 / 另一面\n交换一个视角\n×\n\n交换已接受\n\n和 阿遥 的两张照片\n我提供的\n这次确定的一张\n阿遥提供的\n这次确定的一张\n\n散场后也能在「照片交换」里看。\n\n撤销这次交换刷新",
+   "attrs": [
+    "@aria-label=照片交换",
+    "@aria-label=返回交换列表",
+    "@aria-label=关闭照片交换",
+    "@alt=我提供的照片",
+    "@alt=阿遥提供的照片"
+   ],
+   "hidden": [],
+   "at": 1791387086179
+  },
+  {
+   "vp": "narrow",
+   "label": "layout:x-accepted",
+   "selector": ".photo-exchanges",
+   "layout": {
+    "pageOverflow": false,
+    "out": [],
+    "tall": [],
+    "orphan": []
+   }
+  },
+  {
+   "vp": "narrow",
+   "label": "x-revoke-confirm",
+   "selector": ".photo-exchanges",
+   "visible": "←\n同一晚 / 另一面\n交换一个视角\n×\n\n交换已接受\n\n和 阿遥 的两张照片\n我提供的\n这次确定的一张\n阿遥提供的\n这次确定的一张\n\n散场后也能在「照片交换」里看。\n\n撤销这次交换\n\n撤销后，你们都看不到对方那张了。\n\n确认撤销\n再想想\n刷新",
+   "attrs": [
+    "@aria-label=照片交换",
+    "@aria-label=返回交换列表",
+    "@aria-label=关闭照片交换",
+    "@alt=我提供的照片",
+    "@alt=阿遥提供的照片"
+   ],
+   "hidden": [],
+   "at": 1791387087374
+  },
+  {
+   "vp": "narrow",
+   "label": "x-list",
+   "selector": ".photo-exchanges",
+   "visible": "同一晚 / 另一面\n交换一个视角\n×\n\n你的每一次交换，都在这里。\n\n阿遥\n我发起的 · 交换已接受\n↗\n上一页\n第 1 页\n下一页\n刷新这一页",
+   "attrs": [
+    "@aria-label=照片交换",
+    "@aria-label=返回交换列表 (hidden el)",
+    "@aria-label=关闭照片交换"
+   ],
+   "hidden": [],
+   "at": 1791387088680
+  },
+  {
+   "vp": "narrow",
+   "label": "tour-after-exchange",
+   "selector": ".demo-tour",
+   "visible": "第一次来 4/4\n·\n招个手 / 私聊 / 回看这一晚\n\n收起\n看看同场的人\n回看这一晚\n跳过路线",
+   "attrs": [
+    "@aria-label=第一次来",
+    "@aria-label=收起路线"
+   ],
+   "hidden": [
+    "向同场的人招个手，对方接受就能私聊。"
+   ],
+   "at": 1791387089550
+  },
+  {
+   "vp": "narrow",
+   "label": "wall-after-exchange",
+   "selector": "#panel",
+   "visible": "×\n同一场 / 不同视角\n这一晚，大家看到了什么？\n21:47\n·\n同一刻\n·\n3 个视角：舞台\n·\n人海\n·\n细节\n\n3 分钟内拍下\n\n同一刻的另一面\n\n同一刻 · 21:48，相差 1 分多钟；你拍人海，TA 拍细节\n\n和 TA 交换这个视角\n北屿\n照片墙：本场成员可见\n\n拍摄于 21:49\n·\n视角：细节\n·\n作者选择\n\n阿遥\n照片墙：本场成员可见\n\n拍摄于 21:47\n·\n视角：舞台\n·\n作者选择\n\n同一刻已有交换\n小满\n照片墙：本场成员可见\n\n拍摄于 21:48\n·\n视角：人海\n·\n作者选择\n\n同一刻\n访客9153\n照片墙：本场成员可见\n\n拍摄于 21:48\n·\n视角：人海\n·\nAI 建议，未改动\n\n22:21\n小满\n照片墙：本场成员可见\n\n拍摄于 22:21\n·\n视角：身边\n·\n作者选择\n\n刷新照片\n放上我的一张\n照片交换",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板",
+    "@aria-label=和 TA 交换这个视角（北屿 的照片）",
+    "@alt=同场观众拍摄的现场照片",
+    "@alt=我拍摄的现场照片"
+   ],
+   "hidden": [],
+   "at": 1791387091153
+  },
+  {
+   "vp": "narrow",
+   "label": "recap",
+   "selector": "#panel",
+   "visible": "×\n这一晚 · 仍在进行\n回声现场\n\n月台 Livehouse\n·\n你仍是本场成员\n\n散场以后，继续聊。\n回到这一场的聊天室\nLivehouse 乐迷社群\n把这一晚，留在手里。\n\n用你的照片和小人，做一张纪念卡。\n\n保存我的纪念卡 ↗\n留下的视角\n阿遥\n照片墙：本场成员可见\n拍摄于 21:47\n·\n视角：舞台\n·\n作者选择\n小满\n照片墙：本场成员可见\n拍摄于 21:48\n·\n视角：人海\n·\n作者选择\n北屿\n照片墙：本场成员可见\n拍摄于 21:49\n·\n视角：细节\n·\n作者选择\n小满\n照片墙：本场成员可见\n拍摄于 22:21\n·\n视角：身边\n·\n作者选择\n访客9153\n照片墙：本场成员可见\n拍摄于 21:48\n·\n视角：人海\n·\nAI 建议，未改动\n上一页\n第 1 页\n下一页\n交换过的另一面\n\n散场后也能看，随时可以撤销。\n\n查看我的照片交换 ↗\n在这一场认识的人\n\n还没有在这一场认识的人。\n\n上一页\n第 1 页\n下一页\n刷新这一晚\n再见，在下一场。\n去另一个现场\n我是 Livehouse / 主办方，开个房\n我的现场记录",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板",
+    "@alt=同场观众拍摄的现场照片",
+    "@alt=我拍摄的现场照片"
+   ],
+   "hidden": [],
+   "at": 1791387094800
+  },
+  {
+   "vp": "narrow",
+   "label": "layout:recap",
+   "selector": "#panel",
+   "layout": {
+    "pageOverflow": false,
+    "out": [],
+    "tall": [],
+    "orphan": []
+   }
+  },
+  {
+   "vp": "narrow",
+   "label": "memory-form",
+   "selector": "#panel",
+   "visible": "×\n这一晚 / 留在手里\n保存我的纪念卡\n\n回声现场 · 署名：访客9153\n\n最多选两张自己的照片；不选就是一张文字纪念票。\n\n选择要留下的内容\n照片 1\n本场成员可见\n带上我的小人\n确认保存到我的设备\n下载纪念卡 PNG\n返回这一晚的回顾",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板",
+    "@alt=我的第1张现场照片",
+    "@aria-label=Music Space 的插画分身"
+   ],
+   "hidden": [
+    "Music Space 的插画分身"
+   ],
+   "at": 1791387097676
+  },
+  {
+   "vp": "narrow",
+   "label": "layout:memory-form",
+   "selector": "#panel",
+   "layout": {
+    "pageOverflow": false,
+    "out": [],
+    "tall": [],
+    "orphan": []
+   }
+  },
+  {
+   "vp": "narrow",
+   "label": "memory-done",
+   "selector": "#panel",
+   "visible": "×\n这一晚 / 留在手里\n保存我的纪念卡\n\n回声现场 · 署名：访客9153\n\n最多选两张自己的照片；不选就是一张文字纪念票。\n\n选择要留下的内容\n照片 1\n本场成员可见\n带上我的小人\n确认保存到我的设备\n已开始下载。\n下载纪念卡 PNG\n返回这一晚的回顾\n你的纪念卡\n再下载一次",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板",
+    "@alt=我的第1张现场照片",
+    "@aria-label=Music Space 的插画分身",
+    "@alt=刚刚生成的私人纪念卡，可长按保存"
+   ],
+   "hidden": [
+    "Music Space 的插画分身"
+   ],
+   "at": 1791387099841
+  },
+  {
+   "vp": "narrow",
+   "label": "tour-after-recap",
+   "selector": ".demo-tour",
+   "visible": "第一次来 4/4\n·\n路线走完了\n\n收起\n\n更多可以逛：我的空间、乐迷社群、专辑世界杯、一起玩、音乐探索。\n\n知道了，收起路线",
+   "attrs": [
+    "@aria-label=第一次来",
+    "@aria-label=收起路线"
+   ],
+   "hidden": [],
+   "at": 1791387102437
+  },
+  {
+   "vp": "narrow",
+   "label": "room-after-all",
+   "selector": ".frame",
+   "visible": "Music\nSpace\n音乐探索\n♡\n我的小人\n···\n月台 Livehouse\n回声现场\n阿遥 · 可招呼\n北屿 · 可招呼\n\n第一次来 4/4\n·\n路线走完了\n\n收起\n\n更多可以逛：我的空间、乐迷社群、专辑世界杯、一起玩、音乐探索。\n\n知道了，收起路线\n全景\n同场的人\n照片墙\n我的空间\n关于 Music Space",
+   "attrs": [
+    "@aria-label=返回全景 (hidden el)",
+    "@aria-label=Music Space",
+    "@aria-label=音乐探索",
+    "@aria-label=招呼、朋友和私聊",
+    "@aria-label=我的小人 · 换装",
+    "@aria-label=房间信息",
+    "@aria-label=三维 Livehouse 场景",
+    "@aria-label=查看场次详情：回声现场",
+    "@aria-label=场景内可访问的地点",
+    "@aria-label=走近照片墙 (hidden el)",
+    "@title=照片墙 (hidden el)",
+    "@aria-label=走近阿遥 · 可招呼",
+    "@title=阿遥 · 可招呼",
+    "@aria-label=走近小满 · 可招呼 (hidden el)",
+    "@title=小满 · 可招呼 (hidden el)",
+    "@aria-label=走近北屿 · 可招呼",
+    "@title=北屿 · 可招呼",
+    "@aria-label=走近访客9153 · 我 (hidden el)",
+    "@title=访客9153 · 我 (hidden el)",
+    "@aria-label=第一次来",
+    "@aria-label=收起路线",
+    "@aria-label=场景机位",
+    "@aria-label=我的音乐空间",
+    "@aria-label=场景操作 (hidden el)",
+    "@aria-label=关闭操作面板 (hidden el)",
+    "@aria-label=本场反馈与管理 (hidden el)",
+    "@aria-label=关闭反馈与管理 (hidden el)",
+    "@aria-label=照片交换 (hidden el)",
+    "@aria-label=返回交换列表 (hidden el)",
+    "@aria-label=关闭照片交换 (hidden el)",
+    "@aria-label=私聊 (hidden el)",
+    "@aria-label=返回对话列表 (hidden el)",
+    "@aria-label=关闭私聊 (hidden el)",
+    "@aria-label=消息记录 (hidden el)",
+    "@placeholder=比如，刚刚哪首歌最喜欢？ (hidden el)",
+    "@aria-label=我的衣橱 (hidden el)",
+    "@aria-label=备份或恢复小人身份 (hidden el)",
+    "@aria-label=乐迷社群与聊天室 (hidden el)"
+   ],
+   "hidden": [
+    "5 位同场",
+    "5 位已加入 · 正在进行",
+    "照片墙",
+    "小满 · 可招呼",
+    "访客9153 · 我",
+    "Music Space",
+    "灯快亮了",
+    "正在准备三维场景",
+    "三维现场暂时打不开",
+    "照片和同场名单照常能用，也可以换个浏览器试试。",
+    "这一晚 · 晚班列车",
+    "本场原创声景",
+    "ENCORE / 01",
+    "同一晚，各自的视角。",
+    "先放一张你的照片，看看你拍到的是哪一面。",
+    "本场信息",
+    "愿意打招呼 · 更改",
+    "留一张现场照片",
+    "回看这一晚",
+    "这一场 / 彼此尊重",
+    "本场反馈",
+    "同一晚 / 另一面",
+    "交换一个视角",
+    "ONE TO ONE",
+    "我们的对话",
+    "更早的消息",
+    "留一句话",
+    "互相接受后就能私聊",
+    "发送 ↗"
+   ],
+   "at": 1791387102512
+  }
+ ],
+ "logs": {
+  "narrow w2": [
+   "load: /musicSpace/",
+   "title: Music Space · 同一刻，另一面",
+   "live:loading(hidden): Music Space灯快亮了正在准备三维场景",
+   "live:render-status(hidden): 正在布置现场…",
+   "live:loading(hidden): Music Space灯快亮了正在布置现场…",
+   "live:loading(hidden): Music Space灯快亮了正在准备三维场景",
+   "live:render-status(hidden): 正在布置现场…",
+   "live:render-status(hidden): 现场进行中",
+   "live:view-label: 正在靠近",
+   "live:render-status(hidden): 现场进行中",
+   "live:demo-tour: 第一次来 1/4 · 放一张今晚的照片收起挑一张，或者用你自己的。人海那张舞台那张用我自己的照片跳过路线",
+   "live:view-label: 正在靠近",
+   "live:render-status(hidden): 4 位同场",
+   "live:status(hidden): 没读到拍摄时间 ·",
+   "live:render-status(hidden): 4 位同场",
+   "live:status: 正在处理照片…",
+   "live:render-status(hidden): 4 位同场",
+   "live:status: 没读到拍摄时间 ·",
+   "live:status: AI 在本机判断视角…",
+   "live:status: 没读到拍摄时间 ·",
+   "live:status: AI 判断：细节",
+   "live:render-status(hidden): 4 位同场",
+   "live:status: 拍摄于 21:47 · 你填写的时间",
+   "live:status: 没读到拍摄时间 ·",
+   "live:status: 拍摄于 9月20日 21:00 · 你填写的时间",
+   "live:render-status(hidden): 4 位同场",
+   "live:status: 暂无可用的拍摄时间 ·",
+   "live:moment-taken-error: 时间需在 2000 年至明天之间。",
+   "live:status: 暂无可用的拍摄时间 ·",
+   "live:status: 正在载入照片…",
+   "live:status: 暂无可用的拍摄时间 ·",
+   "live:render-status(hidden): 4 位同场",
+   "live:status: 拍摄于 21:47 · 来自照片自带的信息",
+   "live:status: AI 在本机判断视角…",
+   "live:status: 不确定，请选择，AI 认为更可能是舞台或人海",
+   "live:render-status(hidden): 4 位同场",
+   "live:render-status(hidden): 5 位同场",
+   "live:status: 正在载入照片…",
+   "live:render-status(hidden): 5 位同场",
+   "live:status: 拍摄于 21:48 · 来自照片自带的信息",
+   "live:status: AI 在本机判断视角…",
+   "live:status: AI 判断：人海",
+   "live:render-status(hidden): 5 位同场",
+   "live:toast: 已分享给本场成员",
+   "live:render-status(hidden): 5 位同场",
+   "live:demo-tour: 第一次来 3/4 · 发起交换收起在照片墙点「和 TA 交换这个视角」。回到照片墙跳过路线",
+   "live:render-status(hidden): 5 位同场",
+   "live:toast(hidden): 已分享给本场成员",
+   "live:demo-tour: 第一次来 3/4 · 发起交换收起在照片墙点「和 TA 交换这个视角」。回到照片墙跳过路线",
+   "live:render-status(hidden): 5 位同场",
+   "live:demo-tour: 第一次来 3/4 · 发起交换收起在照片墙点「和 TA 交换这个视角」。回到照片墙跳过路线",
+   "live:render-status(hidden): 5 位同场",
+   "live:demo-tour: 第一次来 4/4 · 招个手 / 私聊 / 回看这一晚收起向同场的人招个手，对方接受就能私聊。看看同场的人回看这一晚跳过路线",
+   "live:render-status(hidden): 5 位同场",
+   "live:demo-tour: 第一次来 4/4 · 招个手 / 私聊 / 回看这一晚收起向同场的人招个手，对方接受就能私聊。看看同场的人回看这一晚跳过路线",
+   "live:render-status(hidden): 5 位同场",
+   "live:status: 正在生成纪念卡…",
+   "live:render-status(hidden): 5 位同场",
+   "live:status: 已开始下载。",
+   "live:render-status(hidden): 5 位同场",
+   "live:demo-tour: 第一次来 4/4 · 路线走完了收起更多可以逛：我的空间、乐迷社群、专辑世界杯、一起玩、音乐探索。知道了，收起路线",
+   "live:render-status(hidden): 5 位同场"
+  ]
+ }
+}

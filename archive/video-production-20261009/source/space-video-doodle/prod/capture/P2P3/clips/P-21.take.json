@@ -1,0 +1,192 @@
+{
+ "take": "TAKE-P3",
+ "clip": "P-21",
+ "clock": "2026-10-07T22:40:00+08:00",
+ "workBpm": 123,
+ "beatFrames": 29.268,
+ "caret": "hidden (caret-color: transparent)",
+ "chatStart": {
+  "row": [
+   "Music Map · 沿音乐探索 ↗ @-427",
+   "一起玩 · 默契局／音乐关系接龙 @-220",
+   "成员音乐话题 · 发布与讨论 @20",
+   "专辑世界杯 · 一起选张来聊 @232"
+  ],
+  "lines": [
+   "阿遥·示例 22:40 大家好，今晚我把舞台这一面放上了照片墙。（示例角色的自动回复：我不是真人。）",
+   "小满·示例 22:40 我拍的是人海这一面，手都举起来了。（示例角色的自动回复：我不是真人。） 回复",
+   "北屿·示例 22:40 我只拍了看台边的一盏灯，算细节。（示例角色的自动回复：我不是真人。） 回复"
+  ]
+ },
+ "freeze": {
+  "kept": 0,
+  "done": 1
+ },
+ "card": "成员自填 · 未核实 晚班列车 纸灯乐队 返场前那段鼓点，你们是不是也在跟着拍手？ 阿宁 留下的话题 把这个话题带回聊天室撤回这个话题",
+ "cardBox": {
+  "x": 20.85959243774414,
+  "y": 369.46405029296875,
+  "w": 348.28082275390625,
+  "h": 265.8843994140625
+ },
+ "rec": {
+  "file": "/tmp/space-video-doodle/prod/capture/P2P3/clips/P-21.mp4",
+  "frames": 528,
+  "seconds": 8.8,
+  "bytes": 1892947,
+  "wallSeconds": 59.9,
+  "wallPerVideoSecond": 6.81,
+  "msPerFrame": {
+   "step": 9.6,
+   "grab": 96.4,
+   "write": 6.4
+  },
+  "dup": {
+   "frames": 528,
+   "unique": 309,
+   "consecutiveDuplicates": 131,
+   "longestStill": 12,
+   "stillRuns": [
+    "2.47s+10f",
+    "3.52s+7f",
+    "6.12s+12f",
+    "7.45s+6f",
+    "7.85s+6f",
+    "7.97s+6f",
+    "8.20s+12f"
+   ]
+  }
+ },
+ "timeline": [
+  {
+   "label": "chat room (after-show), actions row shows 成员音乐话题",
+   "frame": 0,
+   "t": 0
+  },
+  {
+   "label": "b0 tap 成员音乐话题 · 发布与讨论",
+   "frame": 60,
+   "t": 1,
+   "down": 57,
+   "up": 60,
+   "x": 121,
+   "y": 458
+  },
+  {
+   "label": "b2 tap 留下我的音乐话题 (form opens)",
+   "frame": 119,
+   "t": 1.983,
+   "down": 116,
+   "up": 119,
+   "x": 195,
+   "y": 735
+  },
+  {
+   "label": "b4 tap 音乐名称 晚班列车",
+   "frame": 177,
+   "t": 2.95,
+   "down": 174,
+   "up": 177,
+   "x": 195,
+   "y": 461
+  },
+  {
+   "label": "音乐名称 晚班列车 typed (4 chars, 1/16 notes)",
+   "frame": 206,
+   "t": 3.433
+  },
+  {
+   "label": "b6 tap 音乐人 纸灯乐队",
+   "frame": 236,
+   "t": 3.933,
+   "down": 233,
+   "up": 236,
+   "x": 195,
+   "y": 551
+  },
+  {
+   "label": "音乐人 纸灯乐队 typed (4 chars, 1/16 notes)",
+   "frame": 265,
+   "t": 4.417
+  },
+  {
+   "label": "b8 tap 我想聊的一句话",
+   "frame": 294,
+   "t": 4.9,
+   "down": 291,
+   "up": 294,
+   "x": 195,
+   "y": 642
+  },
+  {
+   "label": "我想聊的一句话 typed (20 chars, 1/32 notes)",
+   "frame": 367,
+   "t": 6.117
+  },
+  {
+   "label": "b11 tick 明确向当前聊天室发布我的自填文字",
+   "frame": 382,
+   "t": 6.367,
+   "down": 379,
+   "up": 382,
+   "x": 31,
+   "y": 701
+  },
+  {
+   "label": "b12 tap 发布音乐话题",
+   "frame": 411,
+   "t": 6.85,
+   "down": 408,
+   "up": 411,
+   "x": 94,
+   "y": 767
+  },
+  {
+   "label": "posted card on screen (成员自填 · 未核实 / 晚班列车 / 纸灯乐队 / 阿宁 留下的话题)",
+   "frame": 411,
+   "t": 6.85
+  },
+  {
+   "label": "end (4 beats of hold on the card)",
+   "frame": 528,
+   "t": 8.8
+  }
+ ],
+ "probeRuns": [
+  "0+60:chat",
+  "60+59:topics|open=0|t=0|a=0|n=0|c=0|cards=0||sc=0",
+  "119+65:topics|open=1|t=0|a=0|n=0|c=0|cards=0||sc=0",
+  "184+8:topics|open=1|t=1|a=0|n=0|c=0|cards=0||sc=0",
+  "192+7:topics|open=1|t=2|a=0|n=0|c=0|cards=0||sc=0",
+  "199+7:topics|open=1|t=3|a=0|n=0|c=0|cards=0||sc=0",
+  "206+37:topics|open=1|t=4|a=0|n=0|c=0|cards=0||sc=0",
+  "243+7:topics|open=1|t=4|a=1|n=0|c=0|cards=0||sc=0",
+  "250+8:topics|open=1|t=4|a=2|n=0|c=0|cards=0||sc=0",
+  "258+7:topics|open=1|t=4|a=3|n=0|c=0|cards=0||sc=0",
+  "265+33:topics|open=1|t=4|a=4|n=0|c=0|cards=0||sc=0",
+  "298+3:topics|open=1|t=4|a=4|n=1|c=0|cards=0||sc=0",
+  "301+4:topics|open=1|t=4|a=4|n=2|c=0|cards=0||sc=0",
+  "305+4:topics|open=1|t=4|a=4|n=3|c=0|cards=0||sc=0",
+  "309+3:topics|open=1|t=4|a=4|n=4|c=0|cards=0||sc=0",
+  "312+4:topics|open=1|t=4|a=4|n=5|c=0|cards=0||sc=0",
+  "316+4:topics|open=1|t=4|a=4|n=6|c=0|cards=0||sc=0",
+  "320+3:topics|open=1|t=4|a=4|n=7|c=0|cards=0||sc=0",
+  "323+4:topics|open=1|t=4|a=4|n=8|c=0|cards=0||sc=0",
+  "327+4:topics|open=1|t=4|a=4|n=9|c=0|cards=0||sc=0",
+  "331+3:topics|open=1|t=4|a=4|n=10|c=0|cards=0||sc=0",
+  "334+4:topics|open=1|t=4|a=4|n=11|c=0|cards=0||sc=0",
+  "338+4:topics|open=1|t=4|a=4|n=12|c=0|cards=0||sc=0",
+  "342+3:topics|open=1|t=4|a=4|n=13|c=0|cards=0||sc=0",
+  "345+4:topics|open=1|t=4|a=4|n=14|c=0|cards=0||sc=0",
+  "349+4:topics|open=1|t=4|a=4|n=15|c=0|cards=0||sc=0",
+  "353+3:topics|open=1|t=4|a=4|n=16|c=0|cards=0||sc=0",
+  "356+4:topics|open=1|t=4|a=4|n=17|c=0|cards=0||sc=0",
+  "360+4:topics|open=1|t=4|a=4|n=18|c=0|cards=0||sc=0",
+  "364+3:topics|open=1|t=4|a=4|n=19|c=0|cards=0||sc=0",
+  "367+15:topics|open=1|t=4|a=4|n=20|c=0|cards=0||sc=0",
+  "382+29:topics|open=1|t=4|a=4|n=20|c=1|cards=0||sc=0",
+  "411+117:topics|open=1|t=0|a=0|n=0|c=0|cards=1|示例已确认。引用撤回的话|sc=0"
+ ],
+ "errors": [],
+ "console": []
+}

@@ -1,0 +1,22 @@
+const s = await get('phone', true);
+const p = s.page;
+const out = {};
+await H.lookAndEnter(s);
+await sleep(9500);
+await p.locator('[data-tour-action="sample:sample-crowd"]').click();
+await p.waitForFunction(() => /AI 判断：/.test(document.querySelector('.moment-ai-tag')?.textContent || ''), null, { timeout: 60000 });
+await sleep(800);
+await p.locator('form[data-form="upload"] button[type=submit]').click();
+await p.waitForSelector('[data-moment-badge="other-side"]', { timeout: 30000 });
+await sleep(2600);
+for (let i = 0; i < 3; i++) { const open = await p.evaluate(() => document.querySelector('#panel') && !document.querySelector('#panel').hidden); if (!open) break; await p.locator('#panel-close').click().catch(() => {}); await sleep(500); }
+out.tour = await p.evaluate(() => document.querySelector('.demo-tour')?.innerText.replace(/\s+/g, ' '));
+await p.locator('[data-view="person"]').click(); await sleep(1500);
+await p.locator('[data-person]', { hasText: '小满' }).first().click(); await sleep(2000);
+await p.locator('[data-social-send]').first().click();
+await p.waitForFunction(() => /你们已经是朋友了/.test(document.querySelector('#panel')?.innerText || ''), null, { timeout: 30000 });
+await sleep(2500);
+out.friendCard = await H.text(p, '#panel');
+out.tour2 = await p.evaluate(() => document.querySelector('.demo-tour')?.innerText.replace(/\s+/g, ' '));
+await shot(p, 'c1-friend-card');
+return out;

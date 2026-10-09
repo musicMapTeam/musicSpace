@@ -1,0 +1,39 @@
+Same Moment, Other Side -- original score for the Music Space competition video (doodle cut)
+=========================================================================================
+
+What it is
+  Instrumental, 124 BPM, 4/4, 176.000 s (2:56), D major with the final chorus in E major.
+  Every sound is computed by the Python code in src/ (numpy + scipy): modal plucked-string models
+  (electric, acoustic, palm-muted and clean guitars, pick bass), a sine whistle with breath noise,
+  a modal glockenspiel, an FM bell, an additive combo organ, an additive synth pluck, a PolyBLEP pad,
+  and drums/percussion built from sine sweeps, metallic partials and filtered noise.
+  No samples, no loops, no recordings, no third-party audio, no voices or lyrics, no AI music generator.
+  Melodies, arrangement and sound design were written for this project.  The chord progressions are
+  common pop progressions (I-V-vi-IV, I-vi-IV-V, IV-V-iii-vi, bVI-bVII-I), which are not anyone's property.
+
+Rights
+  Original work made for the Music Space team; no third-party rights are involved.  Choosing a licence
+  (for example a CC0 1.0 dedication, as proposed for the earlier score) is the team's decision.
+  Suggested credit line, if any: 视频配乐为团队原创（代码合成，无采样、无第三方录音）.
+
+How it was made (deterministic: the same code gives the same audio)
+  /tmp/space-video-prep/tools/venv/bin/python src/score.py    # render (~45-90 s): out/*_float.wav, out/beats.json
+  /tmp/space-video-prep/tools/venv/bin/python src/analyze.py out   # measurements -> analysis/report.json
+  /tmp/space-video-prep/tools/venv/bin/python src/export.py   # 48 kHz/24-bit WAV, AAC m4a, stems, preview, PNGs, beats.json
+  node src/map.mjs                                            # png/arrangement-map.png
+  Optional SCORE_CONFIG=<json> changes section lengths / the AI chime position (see the header of src/score.py).
+  Tools: Python 3.14.3, numpy 2.5.3, scipy 1.18.1; ffmpeg (Homebrew) only for format conversion;
+  Apple AudioToolbox AAC encoder (aac_at, 256 kb/s) for the m4a.  The fonts in the PNG map are the
+  product's own OFL fonts (/tmp/music-space-font-cache); they are not part of the audio.
+
+SHA-256 of the delivered files (2026-10-07)
+  d38ff91a159ca8a1183384805291dfe35247fea17bfacaf8c5523a595e6ed4f8  space-doodle-score_124bpm_48k24.wav
+  904214e049f60807d5eb31f66b15bfae4561757835228622cb56740b471fd4d9  space-doodle-score_124bpm.m4a
+  16019d1102dcaa4967aed3ecfb562927b8369ab5f2a6fc161f10c35bd12e7ea1  stems/bass_48k24.wav
+  a7940b44fa522fd573fe97969e404959c757b5f742edb50b2183ee95fb2f3fd2  stems/drums_48k24.wav
+  9fb119ab944299ec39aa8864ce8dbc37706bd54a8510be30fa3496b44a389c05  stems/fx_48k24.wav
+  39140a9ec72ecbc2db1ebee854846e758004ee8cdc01a39b7016555fb04a350e  stems/guitars_48k24.wav
+  9acaa6853424257a5673c3ebe3c67a2140662fb013647808215eb45d84a63e02  stems/hook_48k24.wav
+  05212eabeaaa9203553f2372c124748fcc82feea76dbb33cd19bfcf5da3b6234  stems/keys_48k24.wav
+  9aeb2f6ce7121b978a5c54e04d413912caba699140eabc342dc6c59f6e669065  preview/space-doodle-score_124bpm_preview-30s_break-lift_48k24.wav
+  0f215ccfe9c622e6acd0f9162233ecb948d8af125717706e30ec87fad5d78ee5  preview/space-doodle-score_124bpm_preview-30s_break-lift.m4a

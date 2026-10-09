@@ -1,0 +1,366 @@
+{
+ "label": "exp-reslice-phone",
+ "url": "http://127.0.0.1:4895/musicSpace/",
+ "run": 3,
+ "viewport": {
+  "viewport": {
+   "width": 390,
+   "height": 844
+  },
+  "deviceScaleFactor": 2
+ },
+ "ok": true,
+ "navWall": 1791285185422,
+ "perf": {
+  "origin": 1791285185425,
+  "paints": [
+   {
+    "name": "first-paint",
+    "t": 428
+   },
+   {
+    "name": "first-contentful-paint",
+    "t": 428
+   }
+  ],
+  "nav": {
+   "name": "http://127.0.0.1:4895/musicSpace/",
+   "entryType": "navigation",
+   "startTime": 0,
+   "duration": 2303.699999988079,
+   "navigationId": 5347,
+   "initiatorType": "navigation",
+   "deliveryType": "",
+   "nextHopProtocol": "http/1.1",
+   "renderBlockingStatus": "non-blocking",
+   "contentType": "text/html",
+   "contentEncoding": "gzip",
+   "workerStart": 0,
+   "workerRouterEvaluationStart": 0,
+   "workerCacheLookupStart": 0,
+   "workerMatchedSourceType": "",
+   "workerFinalSourceType": "",
+   "redirectStart": 0,
+   "redirectEnd": 0,
+   "fetchStart": 0.3999999761581421,
+   "domainLookupStart": 0.3999999761581421,
+   "domainLookupEnd": 0.3999999761581421,
+   "connectStart": 0.3999999761581421,
+   "secureConnectionStart": 0,
+   "connectEnd": 0.3999999761581421,
+   "requestStart": 1.0999999642372131,
+   "responseStart": 3.099999964237213,
+   "firstInterimResponseStart": 0,
+   "finalResponseHeadersStart": 3.099999964237213,
+   "responseEnd": 1784.300000011921,
+   "transferSize": 657655,
+   "encodedBodySize": 657355,
+   "decodedBodySize": 2851073,
+   "responseStatus": 200,
+   "serverTiming": [],
+   "unloadEventStart": 0,
+   "unloadEventEnd": 0,
+   "domInteractive": 1899.699999988079,
+   "domContentLoadedEventStart": 2277.199999988079,
+   "domContentLoadedEventEnd": 2284.5,
+   "domComplete": 2301.099999964237,
+   "loadEventStart": 2303.599999964237,
+   "loadEventEnd": 2303.699999988079,
+   "type": "navigate",
+   "redirectCount": 0,
+   "activationStart": 0,
+   "criticalCHRestart": 0,
+   "notRestoredReasons": null,
+   "confidence": {
+    "randomizedTriggerRate": 0.4994798,
+    "value": "low"
+   }
+  },
+  "log": {
+   "lcp": [
+    {
+     "t": 428,
+     "size": 9405,
+     "url": "",
+     "el": "P",
+     "text": "灯快亮了"
+    }
+   ],
+   "cls": [
+    {
+     "t": 562.0999999642372,
+     "v": 0.0014480058099922883,
+     "had": false,
+     "src": [
+      "H1",
+      "#text",
+      "#text",
+      "#text",
+      "#text"
+     ]
+    },
+    {
+     "t": 747.6999999880791,
+     "v": 0.001747952493176657,
+     "had": false,
+     "src": [
+      "P",
+      "loading-mark",
+      "music-map-entry",
+      "SMALL",
+      "social-inbox"
+     ]
+    },
+    {
+     "t": 794.1999999880791,
+     "v": 0.00031212907021739713,
+     "had": false,
+     "src": [
+      "music-map-entry",
+      "loading-mark",
+      "social-inbox"
+     ]
+    },
+    {
+     "t": 2312.599999964237,
+     "v": 0.05964638410338193,
+     "had": false,
+     "src": [
+      "presence welcome",
+      "evidence",
+      "#text",
+      "brand-word",
+      "::before"
+     ]
+    }
+   ],
+   "fonts": [
+    {
+     "t": 1364.8999999761581,
+     "family": "Doodle Marker",
+     "range": "U+20-7E, U+A0-AC, U+AE-FF, U+2",
+     "status": "loaded"
+    },
+    {
+     "t": 1364.8999999761581,
+     "family": "Doodle Display",
+     "range": "U+20-7E, U+A0, U+A2-A6, U+A8-A",
+     "status": "loaded"
+    },
+    {
+     "t": 1365.3999999761581,
+     "family": "Doodle Logo",
+     "range": "U+20-7E, U+A0-FF, U+2013-2014,",
+     "status": "loaded"
+    },
+    {
+     "t": 1365.3999999761581,
+     "family": "Doodle Hand",
+     "range": "U+20-7E, U+A0-FF, U+2010-2016,",
+     "status": "loaded"
+    },
+    {
+     "t": 2376.599999964237,
+     "family": "Doodle Digits",
+     "range": "U+20-7E, U+A0-FF, U+2013-2014,",
+     "status": "loaded"
+    }
+   ],
+   "marks": {
+    "ready": 2745.699999988079
+   },
+   "loadingHidden": 2490.399999976158,
+   "heroText": [
+    {
+     "t": 271.89999997615814,
+     "text": "你的位置，给你留着。"
+    },
+    {
+     "t": 2363.599999964237,
+     "text": "同一刻，另一面。"
+    }
+   ]
+  },
+  "boot": "ready",
+  "mem": {
+   "used": 18364120,
+   "total": 26518260
+  },
+  "gl": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)",
+  "fontsUsed": [
+   "Doodle Display U+20-7E, U+A0, U+A2-",
+   "Doodle Marker U+20-7E, U+A0-AC, U+",
+   "Doodle Hand U+20-7E, U+A0-FF, U+",
+   "Doodle Logo U+20-7E, U+A0-FF, U+",
+   "Doodle Digits U+20-7E, U+A0-FF, U+"
+  ]
+ },
+ "network": [
+  {
+   "url": "/musicSpace/",
+   "type": "Document",
+   "priority": "VeryHigh",
+   "status": 200,
+   "enc": "gzip",
+   "bytes": 657626,
+   "start": 0,
+   "resp": 165,
+   "end": 1784
+  },
+  {
+   "url": "/musicSpace/shared/three-0.186.1/three.module.js",
+   "type": "Script",
+   "priority": "High",
+   "status": 200,
+   "enc": "gzip",
+   "bytes": 131801,
+   "start": 174,
+   "resp": 928,
+   "end": 926
+  },
+  {
+   "url": "/musicSpace/shared/three-0.186.1/three.core.js",
+   "type": "Script",
+   "priority": "High",
+   "status": 200,
+   "enc": "gzip",
+   "bytes": 288244,
+   "start": 175,
+   "resp": 1461,
+   "end": 1456
+  },
+  {
+   "url": "/musicSpace/sql/sql-wasm.wasm",
+   "type": "Other",
+   "priority": "High",
+   "status": 200,
+   "enc": "",
+   "bytes": 658626,
+   "start": 175,
+   "resp": 330,
+   "end": 1951
+  },
+  {
+   "url": "/musicSpace/fonts/doodle/marker-0.woff2",
+   "type": "Font",
+   "priority": "High",
+   "status": 200,
+   "enc": "",
+   "bytes": 41057,
+   "start": 175,
+   "resp": 550,
+   "end": 548
+  },
+  {
+   "url": "/musicSpace/fonts/doodle/display-0.woff2",
+   "type": "Font",
+   "priority": "High",
+   "status": 200,
+   "enc": "",
+   "bytes": 81437,
+   "start": 175,
+   "resp": 739,
+   "end": 734
+  },
+  {
+   "url": "/musicSpace/fonts/doodle/logo-0.woff2",
+   "type": "Font",
+   "priority": "VeryHigh",
+   "status": 200,
+   "enc": "",
+   "bytes": 17097,
+   "start": 268,
+   "resp": 785,
+   "end": 785
+  },
+  {
+   "url": "/musicSpace/fonts/doodle/hand-0.woff2",
+   "type": "Font",
+   "priority": "VeryHigh",
+   "status": 200,
+   "enc": "",
+   "bytes": 130462,
+   "start": 271,
+   "resp": 1359,
+   "end": 1356
+  },
+  {
+   "url": "/musicSpace/demo/yao-stage.jpg",
+   "type": "Fetch",
+   "priority": "Low",
+   "status": 200,
+   "enc": "",
+   "bytes": 70225,
+   "start": 1987,
+   "resp": 2333,
+   "end": 2323
+  },
+  {
+   "url": "/musicSpace/demo/man-crowd.jpg",
+   "type": "Fetch",
+   "priority": "Low",
+   "status": 200,
+   "enc": "",
+   "bytes": 57051,
+   "start": 1987,
+   "resp": 2335,
+   "end": 2312
+  },
+  {
+   "url": "/musicSpace/demo/man-near.jpg",
+   "type": "Fetch",
+   "priority": "Low",
+   "status": 200,
+   "enc": "",
+   "bytes": 22130,
+   "start": 1988,
+   "resp": 2335,
+   "end": 2224
+  },
+  {
+   "url": "/musicSpace/demo/bei-balcony.jpg",
+   "type": "Fetch",
+   "priority": "Low",
+   "status": 200,
+   "enc": "",
+   "bytes": 34251,
+   "start": 1988,
+   "resp": 2334,
+   "end": 2261
+  },
+  {
+   "url": "/musicSpace/fonts/doodle/digits-0.woff2",
+   "type": "Font",
+   "priority": "VeryHigh",
+   "status": 200,
+   "enc": "",
+   "bytes": 14609,
+   "start": 2079,
+   "resp": 2301,
+   "end": 2282
+  },
+  {
+   "url": "/musicSpace/demo/sample-crowd.jpg",
+   "type": "Fetch",
+   "priority": "Low",
+   "status": 200,
+   "enc": "",
+   "bytes": 81501,
+   "start": 2733,
+   "resp": 2894,
+   "end": 3037
+  },
+  {
+   "url": "/musicSpace/demo/sample-stage.jpg",
+   "type": "Fetch",
+   "priority": "Low",
+   "status": 200,
+   "enc": "",
+   "bytes": 90731,
+   "start": 2733,
+   "resp": 2895,
+   "end": 3047
+  }
+ ],
+ "frames": 167
+}

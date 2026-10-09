@@ -1,0 +1,18 @@
+import { launch, newPage, sleep, BASE, ensureDir } from './lib.mjs';
+import { hostCreatesRoom, visibleUI } from './flows.mjs';
+const browser = await launch();
+const A = await newPage(browser, { width: 1440, height: 744, dpr: 1 });
+await hostCreatesRoom(A.page, { name: '阿遥', title: '返场夜', venue: '月台 Livehouse' });
+await A.page.locator('#room-recap').click(); await sleep(1500);
+await A.page.getByRole('button', { name: /回到这一场的聊天室/ }).click(); await sleep(1500);
+await A.page.locator('.music-community input[name=consent]').check();
+await A.page.getByRole('button', { name: /明确加入，继续聊/ }).click(); await sleep(2500);
+await A.page.getByRole('button', { name: /专辑世界杯/ }).click(); await sleep(2000);
+const f = A.page.locator('.worldcup-panel form');
+await f.locator('input[name=title]').fill('今晚想先选哪张？');
+await f.locator('input[name=consent]').check();
+await A.page.getByRole('button', { name: '发起四张专辑的世界杯' }).click(); await sleep(2500);
+const u = await visibleUI(A.page);
+console.log(JSON.stringify(u.overlays.filter(o => !/world-shell|presence/.test(o.cls)).map(o => o.cls + ' :: ' + o.text.slice(0, 700))));
+await A.page.screenshot({ path: '/tmp/space-video-prep/stills/worldcup2.png' });
+await browser.close();

@@ -1,0 +1,17 @@
+const out = {};
+await page.locator('.worldcup-panel .entry-list button', { hasText: '今晚的专辑世界杯' }).first().click(); await sleep(1500);
+await shot('32-cup-vs');
+const cup = () => page.evaluate(() => { const c = [...document.querySelectorAll('.worldcup-panel')].find(e => e.getClientRects().length); return c ? c.innerText.replace(/\n{2,}/g, '\n').slice(0, 2000) : null; });
+out.vs = await cup();
+out.choices = await page.evaluate(() => [...document.querySelectorAll('[data-cup-choice]')].map(b => { const r = b.getBoundingClientRect(); return b.dataset.album + ' ' + b.innerText.replace(/\s+/g, ' ').slice(0, 50) + ' @' + Math.round(r.x) + ',' + Math.round(r.y) + ' ' + Math.round(r.width) + 'x' + Math.round(r.height); }));
+out.scroll = await page.evaluate(() => { const s = [...document.querySelectorAll('.worldcup-panel .community-scroll')].find(e => e.getClientRects().length); return s ? { sh: s.scrollHeight, ch: s.clientHeight, st: s.scrollTop } : null; });
+await page.click('[data-cup-choice][data-album="night-platform"]'); await sleep(900);
+await shot('33-cup-form');
+out.form = await page.evaluate(() => { const f = document.querySelector('form[data-cup-vote]'); if (!f) return null; const r = f.getBoundingClientRect(); return f.innerText + ' @' + Math.round(r.y) + ' h' + Math.round(r.height) + ' submit=' + (f.querySelector('button[type=submit]')?.innerText); });
+await page.locator('form[data-cup-vote] input[name=consent]').check(); await sleep(300);
+await page.click('form[data-cup-vote] button[type=submit]'); await sleep(1500);
+await shot('34-cup-voted');
+out.voted = await cup();
+out.scroll2 = await page.evaluate(() => { const s = [...document.querySelectorAll('.worldcup-panel .community-scroll')].find(e => e.getClientRects().length); return s ? { sh: s.scrollHeight, ch: s.clientHeight, st: s.scrollTop } : null; });
+out.leafs = await page.evaluate(() => { const sc = [...document.querySelectorAll('.worldcup-panel .community-scroll')].find(e => e.getClientRects().length); return [...sc.querySelectorAll('*')].filter(e => e.children.length === 0 && /票|你选/.test(e.textContent)).map(e => { const r = e.getBoundingClientRect(); return e.tagName + ' "' + e.textContent.trim() + '" @' + Math.round(r.y); }); });
+return out;

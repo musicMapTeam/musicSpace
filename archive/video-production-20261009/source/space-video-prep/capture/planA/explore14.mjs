@@ -1,0 +1,21 @@
+import { launch, Session, sleep, BASE, PHOTOS } from './lib.mjs';
+import * as F from './flow.mjs';
+const browser = await launch();
+const s = await Session.open(browser, { url: BASE, width: 1440, height: 744, dpr: 1, name: 'live' });
+const p = s.page;
+const probe = async (label) => console.log(label, JSON.stringify(await p.evaluate(() => {
+  const out = [];
+  for (const el of document.elementsFromPoint(1200, 300).slice(0, 6)) out.push(`${el.tagName.toLowerCase()}.${(el.className && el.className.baseVal === undefined ? String(el.className) : '').trim().split(/\s+/).slice(0, 3).join('.')}${el.id ? '#' + el.id : ''}`);
+  const dl = [...document.querySelectorAll('dialog')].map(d => `${d.className}|open=${d.open}|${Math.round(d.getBoundingClientRect().x)},${Math.round(d.getBoundingClientRect().y)},${Math.round(d.getBoundingClientRect().width)}x${Math.round(d.getBoundingClientRect().height)}`);
+  return { stack: out, dialogs: dl };
+})));
+await sleep(5000);
+await probe('home');
+await F.toDemo(p); await probe('demo');
+await F.openMake(p); await probe('editor');
+await F.pickFile(p, PHOTOS.stage); await F.saveCard(p); await probe('saved');
+await F.toRequest(p); await probe('request');
+await F.send(p); await probe('sent');
+await F.asYao(p); await F.viewRequest(p); await probe('decide');
+await F.agree(p); await sleep(3500); await probe('ceremony');
+await browser.close();

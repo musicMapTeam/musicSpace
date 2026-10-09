@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><title>Card A · opening title</title>
+<link rel="stylesheet" href="cards.css">
+<style>
+.stage{position:absolute;inset:0}
+.spot{position:absolute;top:-120px;width:760px;height:1100px;background:linear-gradient(rgba(232,163,92,.30),rgba(232,163,92,0) 70%);clip-path:polygon(44% 0,56% 0,100% 100%,0 100%);opacity:0;animation:fade 1.4s 0.2s ease-out forwards,sway 7s ease-in-out infinite alternate}
+.spot.l{left:-120px;transform-origin:50% 0;--r:-3deg}
+.spot.r{right:-120px;transform-origin:50% 0;--r:3deg}
+@keyframes sway{from{rotate:calc(var(--r)*-1)}to{rotate:var(--r)}}
+.eyebrow.tl{position:absolute;left:78px;top:70px;opacity:0;animation:fade .6s .5s forwards}
+.eyebrow.tr{position:absolute;right:78px;top:70px;opacity:0;animation:fade .6s .6s forwards;text-align:right}
+.wm{position:absolute;left:0;right:0;top:118px;text-align:center;font-size:330px;height:330px}
+.wm span{opacity:0;animation:letter .7s cubic-bezier(.2,.9,.25,1.1) forwards}
+.wm span:nth-child(1){animation-delay:.05s}.wm span:nth-child(2){animation-delay:.15s}.wm span:nth-child(3){animation-delay:.25s}.wm span:nth-child(4){animation-delay:.35s}.wm span:nth-child(5){animation-delay:.45s}
+.tag{position:absolute;left:0;right:0;top:470px;text-align:center;font-size:92px;font-weight:600;letter-spacing:.06em;color:var(--ink)}
+.tag .hl::before{transform:scaleX(0);animation:sweep .55s 1.0s cubic-bezier(.3,.7,.2,1) forwards}
+.tag .txt{display:inline-block;opacity:0;transform:translateY(30px);animation:rise .6s .9s ease-out forwards}
+.sub{position:absolute;left:0;right:0;top:612px;text-align:center;font-size:34px;color:var(--green2);letter-spacing:.12em;opacity:0;animation:fade .7s 1.7s forwards}
+.lineup .avatar{height:352px;bottom:64px;opacity:0;animation:pop .75s cubic-bezier(.2,.9,.25,1) forwards,bob 2.4s ease-in-out infinite}
+.lineup .shadow{bottom:56px;opacity:0;animation:fade .5s forwards}
+</style></head>
+<body>
+<div class="card paper grain" id="root">
+  <div class="stage">
+    <div class="spot l"></div><div class="spot r"></div>
+    <div class="eyebrow tl">MUSIC SPACE / LIVEHOUSE</div>
+    <div class="eyebrow tr">SIDE BY SIDE · AFTER THE ENCORE</div>
+    <div class="wordmark wm"><span>s</span><span>p</span><span>a</span><span>c</span><span>e</span></div>
+    <div class="tag"><span class="hl"><span class="txt">同一刻，另一面。</span></span></div>
+    <div class="sub">带着自己的小人，进入同一场音乐现场</div>
+    <div class="floor"></div>
+    <div class="lineup" id="lineup"></div>
+  </div>
+  <div class="frame"></div>
+</div>
+<script>
+// 8 avatars rendered by the product's own illustrated-avatar module (pre-exported to SVG), staggered in from the floor.
+const looks=[['static','front'],['break','quarter'],['loop','quarter'],['echo','front'],['cap','quarter'],['fuzz','quarter'],['phones','front'],['pulse','quarter']];
+const root=document.getElementById('lineup');
+const n=looks.length, x0=150, x1=1770;
+looks.forEach(([id,view],i)=>{
+  const cx=x0+(x1-x0)*i/(n-1);
+  const delay=(1.15+i*0.14).toFixed(2);
+  const sh=document.createElement('div');sh.className='shadow';sh.style.left=(cx-75)+'px';sh.style.animationDelay=delay+'s';
+  const im=document.createElement('img');im.className='avatar';im.src=`assets/avatar-${id}-${view}.svg`;
+  im.style.left=(cx-88)+'px';im.style.animationDelay=`${delay}s, ${(2.6+i*0.17).toFixed(2)}s`;
+  root.append(sh,im);
+});
+</script>
+</body></html>

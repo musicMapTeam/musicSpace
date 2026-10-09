@@ -1,0 +1,19 @@
+{
+ "scene": "act-A4",
+ "map": "flipping-in-b",
+ "frames": [
+  4683,
+  6322
+ ],
+ "seconds": [
+  78.05,
+  105.36666666666666
+ ],
+ "crf": 18,
+ "bytes": 35435529,
+ "audio": "/tmp/space-video-doodle/prod/out/acts/act-A4.flipping-in-b.mix.wav",
+ "workers": 4,
+ "chunk": 240,
+ "mezz": "hq",
+ "render_fps": 4.71
+}

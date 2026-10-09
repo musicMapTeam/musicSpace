@@ -1,0 +1,288 @@
+{
+ "url": "http://127.0.0.1:4892/musicSpace/",
+ "vp": "phone",
+ "loading": {
+  "byFam": {
+   "Doodle Logo": [
+    {
+     "sel": "span.brand-word",
+     "text": "Music",
+     "size": "25px",
+     "slices": [
+      0
+     ]
+    },
+    {
+     "sel": "span.brand-word",
+     "text": "Space",
+     "size": "25px",
+     "slices": [
+      0
+     ]
+    }
+   ],
+   "Doodle Marker": [
+    {
+     "sel": "#room-info",
+     "text": "···",
+     "size": "19px",
+     "slices": [
+      0
+     ]
+    },
+    {
+     "sel": "small",
+     "text": "MUSIC SPACE / LIVEHOUSE",
+     "size": "11px",
+     "slices": [
+      0
+     ]
+    },
+    {
+     "sel": "#room-code-label",
+     "text": "这一晚，从这里开始",
+     "size": "13px",
+     "slices": [
+      0,
+      1
+     ]
+    },
+    {
+     "sel": "#join",
+     "text": "进入示例现场",
+     "size": "18px",
+     "slices": [
+      0
+     ]
+    },
+    {
+     "sel": "button",
+     "text": "全景",
+     "size": "14px",
+     "slices": [
+      0,
+      1
+     ]
+    },
+    {
+     "sel": "button",
+     "text": "同场的人",
+     "size": "14px",
+     "slices": [
+      0
+     ]
+    },
+    {
+     "sel": "button",
+     "text": "照片墙",
+     "size": "14px",
+     "slices": [
+      0,
+      1
+     ]
+    },
+    {
+     "sel": "#my-space",
+     "text": "我的空间",
+     "size": "13px",
+     "slices": [
+      0
+     ]
+    },
+    {
+     "sel": "button",
+     "text": "示例站 · 数据只存在这个浏览器 · 关于这个示例",
+     "size": "13px",
+     "slices": [
+      0,
+      1
+     ]
+    }
+   ],
+   "Doodle Display": [
+    {
+     "sel": "#room-title",
+     "text": "进到同一个现场",
+     "size": "30px",
+     "slices": [
+      0
+     ]
+    },
+    {
+     "sel": "#presence-title",
+     "text": "同一刻，另一面。",
+     "size": "44px",
+     "slices": [
+      0
+     ]
+    }
+   ],
+   "Doodle Hand": [
+    {
+     "sel": "#presence-copy",
+     "text": "同一晚，你拍了舞台，TA 拍了人海。AI 在本机给你一个视角建议，规则帮你找到同一刻的另一面，双方同意才交换。",
+     "size": "16px",
+     "slices": [
+      0,
+      1,
+      2
+     ]
+    }
+   ]
+  },
+  "loaded": [
+   "Doodle Display U+20-7E, U+A0, U",
+   "Doodle Display U+4E09, U+4E16, ",
+   "Doodle Marker U+20-7E, U+A0-AC",
+   "Doodle Marker U+4E09, U+4E16, ",
+   "Doodle Marker U+4E01, U+4E07, ",
+   "Doodle Hand U+20-7E, U+A0-FF",
+   "Doodle Hand U+4E09, U+4E16, ",
+   "Doodle Hand U+4E01, U+4E07, ",
+   "Doodle Logo U+20-7E, U+A0-FF",
+   "Doodle Digits U+20-7E, U+A0-FF"
+  ]
+ },
+ "lobby": {
+  "byFam": {
+   "Doodle Logo": [
+    {
+     "sel": "span.brand-word",
+     "text": "Music",
+     "size": "25px",
+     "slices": [
+      0
+     ]
+    },
+    {
+     "sel": "span.brand-word",
+     "text": "Space",
+     "size": "25px",
+     "slices": [
+      0
+     ]
+    }
+   ],
+   "Doodle Marker": [
+    {
+     "sel": "#room-info",
+     "text": "···",
+     "size": "19px",
+     "slices": [
+      0
+     ]
+    },
+    {
+     "sel": "small",
+     "text": "MUSIC SPACE / LIVEHOUSE",
+     "size": "11px",
+     "slices": [
+      0
+     ]
+    },
+    {
+     "sel": "#room-code-label",
+     "text": "这一晚，从这里开始",
+     "size": "13px",
+     "slices": [
+      0,
+      1
+     ]
+    },
+    {
+     "sel": "#join",
+     "text": "进入示例现场",
+     "size": "18px",
+     "slices": [
+      0
+     ]
+    },
+    {
+     "sel": "button",
+     "text": "全景",
+     "size": "14px",
+     "slices": [
+      0,
+      1
+     ]
+    },
+    {
+     "sel": "button",
+     "text": "同场的人",
+     "size": "14px",
+     "slices": [
+      0
+     ]
+    },
+    {
+     "sel": "button",
+     "text": "照片墙",
+     "size": "14px",
+     "slices": [
+      0,
+      1
+     ]
+    },
+    {
+     "sel": "#my-space",
+     "text": "我的空间",
+     "size": "13px",
+     "slices": [
+      0
+     ]
+    },
+    {
+     "sel": "button",
+     "text": "示例站 · 数据只存在这个浏览器 · 关于这个示例",
+     "size": "13px",
+     "slices": [
+      0,
+      1
+     ]
+    }
+   ],
+   "Doodle Display": [
+    {
+     "sel": "#room-title",
+     "text": "进到同一个现场",
+     "size": "30px",
+     "slices": [
+      0
+     ]
+    },
+    {
+     "sel": "#presence-title",
+     "text": "同一刻，另一面。",
+     "size": "44px",
+     "slices": [
+      0
+     ]
+    }
+   ],
+   "Doodle Hand": [
+    {
+     "sel": "#presence-copy",
+     "text": "同一晚，你拍了舞台，TA 拍了人海。AI 在本机给你一个视角建议，规则帮你找到同一刻的另一面，双方同意才交换。",
+     "size": "16px",
+     "slices": [
+      0,
+      1,
+      2
+     ]
+    }
+   ]
+  },
+  "loaded": [
+   "Doodle Display U+20-7E, U+A0, U",
+   "Doodle Display U+4E09, U+4E16, ",
+   "Doodle Marker U+20-7E, U+A0-AC",
+   "Doodle Marker U+4E09, U+4E16, ",
+   "Doodle Marker U+4E01, U+4E07, ",
+   "Doodle Hand U+20-7E, U+A0-FF",
+   "Doodle Hand U+4E09, U+4E16, ",
+   "Doodle Hand U+4E01, U+4E07, ",
+   "Doodle Logo U+20-7E, U+A0-FF",
+   "Doodle Digits U+20-7E, U+A0-FF"
+  ]
+ }
+}

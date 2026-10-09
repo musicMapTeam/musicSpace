@@ -1,0 +1,16 @@
+{
+ "states": [
+  {
+   "vp": "phone",
+   "label": "rescue",
+   "selector": "#space-rescue",
+   "visible": "页面没能完整启动\n\n先重新载入试试；还不行的话，点「重新开始」。\n\n重新载入\n重新开始\n\n「重新开始」会清除你的昵称、小人、照片和交换。",
+   "attrs": [
+    "@aria-label=页面没能完整启动"
+   ],
+   "hidden": [],
+   "at": 1791390464331
+  }
+ ],
+ "logs": {}
+}

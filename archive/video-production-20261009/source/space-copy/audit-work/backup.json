@@ -1,0 +1,11 @@
+{
+  "magic": "music-space-identity-backup",
+  "version": 1,
+  "origin": "http://127.0.0.1:5491",
+  "kdf": "PBKDF2-SHA-256",
+  "iterations": 600000,
+  "cipher": "AES-GCM-256",
+  "salt": "/RHCozf7WABEfpeykZ4dtQ==",
+  "nonce": "V3mAKzx5oeyN8v9F",
+  "ciphertext": "HjK9YTPXfXD3+B3DLSM2wIFSI22GBDH47bTu5Tb3NVZAgeyuIOVTx9XtvFgXbFNT4TDXFoHO2KF616YTjSI7p8DyU6WnJ/SHVrNN7nx269ZNjJbksiKWrioCy3vbBF12Yl07LITIsIgD65y6qwZHkhIvLso9vqGQZEXKLLiCd2veNBiVERD1WjHtskHJns3g6wppJO0HO1j+waARRFXsQPJZlXUxQ5UgsxpFmeezsfDjHOmcdPS+mXb2mR3CHtYK"
+}

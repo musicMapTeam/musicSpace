@@ -1,0 +1,101 @@
+{
+ "states": [
+  {
+   "vp": "phone",
+   "label": "upload-unsure-dark.png",
+   "selector": "#panel",
+   "visible": "×\n留一个现场瞬间\n这一张，由你决定给谁看。\n用我自己的照片\n\n或者挑一张今晚的\n\n人海那张\n舞台那张\n\n没读到拍摄时间\n\n大约的时间 · 北京时间\n\n文件里的时间，只是大概；改一下才算数。\n\n把拍摄时间设成 21:47\n我拍的这一面\n舞台\n灯光下的那一面\n人海\n一起举手的那一面\n身边\n陪你听歌的那一面\n细节\n只有你留意的那一面\nAI 认为这一面更可能\n\n不确定，请选择\n，AI 认为更可能是细节或舞台\n\n配对时，用它找另一面。AI 在本机判断，照片不上传，你说了算。\n\n可见范围\n仅自己保存\n分享给本场成员\n\n照片会缩小，并去掉位置信息。\n\n保存这张照片",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板",
+    "@alt=待保存的照片"
+   ],
+   "hidden": [
+    "修改时间",
+    "仅自己保存",
+    "分享给本场成员"
+   ],
+   "at": 1791385042406
+  },
+  {
+   "vp": "phone",
+   "label": "upload-unsure-bei-balcony.jpg",
+   "selector": "#panel",
+   "visible": "×\n留一个现场瞬间\n这一张，由你决定给谁看。\n用我自己的照片\n\n或者挑一张今晚的\n\n人海那张\n舞台那张\n\n没读到拍摄时间\n\n大约的时间 · 北京时间\n\n文件里的时间，只是大概；改一下才算数。\n\n把拍摄时间设成 21:47\n我拍的这一面\n舞台\n灯光下的那一面\n人海\n一起举手的那一面\n身边\n陪你听歌的那一面\n细节\n只有你留意的那一面\nAI 认为这一面更可能\n\n不确定，请选择\n，AI 认为更可能是舞台或人海\n\n配对时，用它找另一面。AI 在本机判断，照片不上传，你说了算。\n\n可见范围\n仅自己保存\n分享给本场成员\n\n照片会缩小，并去掉位置信息。\n\n保存这张照片",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板",
+    "@alt=待保存的照片"
+   ],
+   "hidden": [
+    "修改时间",
+    "仅自己保存",
+    "分享给本场成员"
+   ],
+   "at": 1791385045875
+  },
+  {
+   "vp": "phone",
+   "label": "upload-unsure-man-near.jpg",
+   "selector": "#panel",
+   "visible": "×\n留一个现场瞬间\n这一张，由你决定给谁看。\n用我自己的照片\n\n或者挑一张今晚的\n\n人海那张\n舞台那张\n\n没读到拍摄时间\n\n大约的时间 · 北京时间\n\n文件里的时间，只是大概；改一下才算数。\n\n把拍摄时间设成 21:47\n我拍的这一面\n舞台\n灯光下的那一面\n人海\n一起举手的那一面\n身边\n陪你听歌的那一面\n细节\n只有你留意的那一面\nAI 认为这一面更可能\n\n不确定，请选择\n，AI 认为更可能是舞台或细节\n\n配对时，用它找另一面。AI 在本机判断，照片不上传，你说了算。\n\n可见范围\n仅自己保存\n分享给本场成员\n\n照片会缩小，并去掉位置信息。\n\n保存这张照片",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板",
+    "@alt=待保存的照片"
+   ],
+   "hidden": [
+    "修改时间",
+    "仅自己保存",
+    "分享给本场成员"
+   ],
+   "at": 1791385049328
+  },
+  {
+   "vp": "phone",
+   "label": "upload-nudge",
+   "selector": "#panel",
+   "visible": "×\n同一场 / 不同视角\n这一晚，大家看到了什么？\n21:47\n·\n同一刻\n·\n3 个视角：舞台\n·\n人海\n·\n细节\n\n3 分钟内拍下\n\n阿遥\n照片墙：本场成员可见\n\n拍摄于 21:47\n·\n视角：舞台\n·\n作者选择\n\n小满\n照片墙：本场成员可见\n\n拍摄于 21:48\n·\n视角：人海\n·\n作者选择\n\n北屿\n照片墙：本场成员可见\n\n拍摄于 21:49\n·\n视角：细节\n·\n作者选择\n\n22:21\n小满\n照片墙：本场成员可见\n\n拍摄于 22:21\n·\n视角：身边\n·\n作者选择\n\n没有拍摄时间\n访客8034\n照片墙：不展示\n刷新照片\n放上我的一张\n照片交换",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板",
+    "@alt=同场观众拍摄的现场照片",
+    "@alt=我拍摄的现场照片"
+   ],
+   "hidden": [],
+   "at": 1791385053561
+  }
+ ],
+ "logs": {
+  "phone probe-ai": [
+   "title: Music Space · 同一刻，另一面",
+   "live:loading(hidden): Music Space灯快亮了正在布置现场…",
+   "live:render-status(hidden): 正在布置现场…",
+   "live:loading(hidden): Music Space灯快亮了正在准备三维场景",
+   "live:render-status(hidden): 现场进行中",
+   "live:demo-tour: 第一次来 1/4 · 放一张今晚的照片收起挑一张，或者用你自己的。人海那张舞台那张用我自己的照片跳过路线",
+   "live:render-status(hidden): 4 位同场",
+   "live:view-label: 正在靠近",
+   "live:render-status(hidden): 4 位同场",
+   "live:status: 没读到拍摄时间 ·",
+   "live:status: AI 判断：细节",
+   "live:render-status(hidden): 4 位同场",
+   "live:status: 没读到拍摄时间 ·",
+   "live:status: AI 判断：细节",
+   "live:render-status(hidden): 4 位同场",
+   "live:status: 没读到拍摄时间 ·",
+   "live:status: 不确定，请选择，AI 认为更可能是细节或舞台",
+   "live:render-status(hidden): 4 位同场",
+   "live:status: 没读到拍摄时间 ·",
+   "live:status: 不确定，请选择，AI 认为更可能是舞台或人海",
+   "live:render-status(hidden): 5 位同场",
+   "live:status: 没读到拍摄时间 ·",
+   "live:status: 不确定，请选择，AI 认为更可能是舞台或细节",
+   "live:render-status(hidden): 5 位同场",
+   "live:status: 没读到拍摄时间 ·",
+   "live:status: 不确定，请选择，AI 认为更可能是细节或舞台",
+   "live:render-status(hidden): 5 位同场",
+   "live:toast: 已保存，只有自己可见"
+  ]
+ }
+}

@@ -1,0 +1,19 @@
+{
+ "scene": "act-A2-A3",
+ "map": "flipping-in",
+ "frames": [
+  2342,
+  4683
+ ],
+ "seconds": [
+  39.03333333333333,
+  78.05
+ ],
+ "crf": 18,
+ "bytes": 51522691,
+ "audio": "/tmp/space-video-doodle/prod/out/acts/act-A2-A3.flipping-in.mix.wav",
+ "workers": 5,
+ "chunk": 240,
+ "mezz": "hq",
+ "render_fps": 46.43
+}

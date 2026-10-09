@@ -1,0 +1,140 @@
+{
+  "vp": "phone",
+  "base": "http://127.0.0.1:5190/",
+  "who": "阿遥",
+  "label": "dev",
+  "results": {
+    "boot": "ready",
+    "welcome": {
+      "st": 0,
+      "sh": 524,
+      "ch": 524,
+      "gap": 0,
+      "theirs": 2,
+      "mine": 0,
+      "lastTheirsVisible": true,
+      "lastMineVisible": null,
+      "lastTheirs": "你拍到的是哪一面？",
+      "lastTheirsUnread": false,
+      "unreadInThread": [],
+      "badge": "0"
+    },
+    "send-1": {
+      "own": {
+        "st": 0,
+        "sh": 524,
+        "ch": 524,
+        "gap": 0,
+        "visible": true
+      },
+      "reply": {
+        "st": 0,
+        "sh": 524,
+        "ch": 524,
+        "gap": 0,
+        "visible": true,
+        "text": "今晚的返场太好听了。",
+        "unread": []
+      },
+      "badge": "0"
+    },
+    "send-2": {
+      "own": {
+        "st": 0,
+        "sh": 524,
+        "ch": 524,
+        "gap": 0,
+        "visible": true
+      },
+      "reply": {
+        "st": 81,
+        "sh": 605,
+        "ch": 524,
+        "gap": 0,
+        "visible": true,
+        "text": "你的视角我这边没拍到，谢谢你愿意交换。",
+        "unread": []
+      },
+      "badge": "0"
+    },
+    "send-3": {
+      "own": {
+        "st": 171,
+        "sh": 695,
+        "ch": 524,
+        "gap": 0,
+        "visible": true
+      },
+      "reply": {
+        "st": 285,
+        "sh": 809,
+        "ch": 524,
+        "gap": 0,
+        "visible": true,
+        "text": "（示例角色的自动回复：我不是真人。）",
+        "unread": []
+      },
+      "badge": "0"
+    },
+    "scrolled-up": {
+      "upBefore": {
+        "st": 0,
+        "gap": 489
+      },
+      "afterReply": {
+        "st": 0,
+        "gap": 489,
+        "replyVisible": false,
+        "replyUnread": true,
+        "unread": [
+          "（示例角色的自动回复：我不是"
+        ]
+      },
+      "badge": "0"
+    },
+    "scrolled-back-down": {
+      "st": 489,
+      "gap": 0,
+      "replyVisible": true,
+      "unread": [],
+      "badge": "0"
+    },
+    "send-while-up": {
+      "upBefore": {
+        "st": 0,
+        "gap": 489
+      },
+      "own": {
+        "st": 578,
+        "gap": 1,
+        "visible": true
+      },
+      "reply": {
+        "st": 693,
+        "gap": 0,
+        "visible": true,
+        "unread": []
+      },
+      "badge": "0"
+    },
+    "badge-after-close": "0",
+    "chat-list": [
+      "阿遥·示例 unread=0"
+    ],
+    "badge-final": "0",
+    "errors": []
+  },
+  "failures": [],
+  "shots": [
+    "/tmp/space-doodle/shots/chat/dev-phone-yao-0-welcome.png",
+    "/tmp/space-doodle/shots/chat/dev-phone-yao-1-reply.png",
+    "/tmp/space-doodle/shots/chat/dev-phone-yao-2-reply.png",
+    "/tmp/space-doodle/shots/chat/dev-phone-yao-3-reply.png",
+    "/tmp/space-doodle/shots/chat/dev-phone-yao-4-scrolled-up-after-reply.png",
+    "/tmp/space-doodle/shots/chat/dev-phone-yao-5-send-while-up-reply.png",
+    "/tmp/space-doodle/shots/chat/dev-phone-yao-6-chat-list.png",
+    "/tmp/space-doodle/shots/chat/dev-phone-yao-7-closed.png"
+  ],
+  "errors": [],
+  "ok": true
+}

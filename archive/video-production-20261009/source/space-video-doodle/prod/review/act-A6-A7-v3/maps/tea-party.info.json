@@ -1,0 +1,1775 @@
+{
+ "scene": "act-A6-A7",
+ "range_frames": [
+  0,
+  10497
+ ],
+ "fps": 60,
+ "W": 1920,
+ "H": 1080,
+ "map": {
+  "id": "tea-party",
+  "label": "Zane Little《Post-Adventure Tea Party》110 BPM — 80 bars (✂1-✂9 cut), payoff on the song's gap + hit, natural end",
+  "end_s": 174.944,
+  "grid_end_s": 174.544,
+  "bpm": 110,
+  "beat_s": 0.54545,
+  "bar_s": 2.1818
+ },
+ "duration": 174.944,
+ "frames": 10497,
+ "shots": [
+  {
+   "id": "A6-V-venue",
+   "t0": 141.817,
+   "t1": 150.545,
+   "z": 10
+  },
+  {
+   "id": "A6-V-type",
+   "t0": 141.817,
+   "t1": 150.545,
+   "z": 30
+  },
+  {
+   "id": "A6-W3-cards",
+   "t0": 150.545,
+   "t1": 154.908,
+   "z": 10
+  },
+  {
+   "id": "A6-W3-type",
+   "t0": 150.545,
+   "t1": 154.908,
+   "z": 30
+  },
+  {
+   "id": "A6-X-W3-W4",
+   "t0": 154.6252,
+   "t1": 155.038,
+   "z": 90
+  },
+  {
+   "id": "A6-W4-stay",
+   "t0": 154.908,
+   "t1": 159.272,
+   "z": 10
+  },
+  {
+   "id": "A6-W4-type",
+   "t0": 154.908,
+   "t1": 159.272,
+   "z": 30
+  },
+  {
+   "id": "A6-W5-room",
+   "t0": 159.272,
+   "t1": 161.453,
+   "z": 10
+  },
+  {
+   "id": "A6-W5-type",
+   "t0": 159.272,
+   "t1": 161.453,
+   "z": 30
+  },
+  {
+   "id": "A6-X-W5-C1",
+   "t0": 161.1704,
+   "t1": 161.583,
+   "z": 90
+  },
+  {
+   "id": "A7-C1-end",
+   "t0": 161.453,
+   "t1": 174.944,
+   "z": 10
+  },
+  {
+   "id": "A7-C1-type",
+   "t0": 161.453,
+   "t1": 174.944,
+   "z": 30
+  }
+ ],
+ "events": [
+  {
+   "t": 141.817,
+   "kind": "cut",
+   "label": "A6-V-venue",
+   "pos": "73:1",
+   "sfx": "none",
+   "shot": "A6-V-venue"
+  },
+  {
+   "t": 141.817,
+   "kind": "slap",
+   "label": "phone: Livehouse / 为这一场开房",
+   "pos": "73:1",
+   "sfx": "slap",
+   "pan": 0.15374999999999997,
+   "shot": "A6-V-venue",
+   "id": "A6-V-venue:1"
+  },
+  {
+   "t": 141.817,
+   "kind": "tap",
+   "label": "tap 场地 (H-01)",
+   "pos": "73:1",
+   "sfx": "click",
+   "gain": -4
+  },
+  {
+   "t": 141.817,
+   "kind": "slam",
+   "label": "Livehouse 开个房，",
+   "pos": "73:1",
+   "pan": -0.2625,
+   "size": 128,
+   "shot": "A6-V-type",
+   "id": "A6-V-type:24"
+  },
+  {
+   "t": 141.95337,
+   "kind": "type",
+   "label": "typing 月台 Livehouse",
+   "pos": "73:1.25",
+   "gain": -4,
+   "note": 11,
+   "dur": 0.74999375
+  },
+  {
+   "t": 142.3625,
+   "kind": "draw",
+   "label": "wavy under 月台 Livehouse",
+   "pos": "73:2",
+   "sfx": "squeak",
+   "gain": -6,
+   "shot": "A6-V-venue",
+   "id": "A6-V-venue:4",
+   "dur": 0.32727
+  },
+  {
+   "t": 142.908,
+   "kind": "slap",
+   "label": "window: 月台 Livehouse 乐迷社群",
+   "pos": "73:3",
+   "sfx": "slap",
+   "gain": -2,
+   "pan": 0.12343749999999998,
+   "shot": "A6-V-venue",
+   "id": "A6-V-venue:5"
+  },
+  {
+   "t": 142.908,
+   "kind": "slam",
+   "label": "乐迷留在 本地社群。",
+   "pos": "73:3",
+   "pan": -0.2625,
+   "size": 128,
+   "shot": "A6-V-type",
+   "id": "A6-V-type:25"
+  },
+  {
+   "t": 143.4535,
+   "kind": "draw",
+   "label": "loop 月台 Livehouse 乐迷社群 (sign)",
+   "pos": "73:4",
+   "sfx": "squeak",
+   "gain": -8,
+   "shot": "A6-V-venue",
+   "id": "A6-V-venue:8",
+   "dur": 0.2454525
+  },
+  {
+   "t": 143.999,
+   "kind": "punch",
+   "label": "punch: the 乐迷社群 sign",
+   "pos": "74:1",
+   "sfx": "thump",
+   "gain": -4,
+   "shot": "A6-V-venue"
+  },
+  {
+   "t": 144.5445,
+   "kind": "pop",
+   "label": "heart",
+   "pos": "74:2",
+   "gain": -9,
+   "pan": 0.05937500000000002,
+   "note": 0,
+   "shot": "A6-V-venue",
+   "id": "A6-V-venue:9"
+  },
+  {
+   "t": 144.68086,
+   "kind": "pop",
+   "label": "note",
+   "pos": "74:2.25",
+   "sfx": "none",
+   "gain": -9,
+   "pan": 0.275,
+   "note": 1,
+   "shot": "A6-V-venue",
+   "id": "A6-V-venue:10"
+  },
+  {
+   "t": 145.09,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "74:3",
+   "gain": -10,
+   "pan": 0.006249999999999978,
+   "note": 0,
+   "shot": "A6-V-venue",
+   "id": "A6-V-venue:14"
+  },
+  {
+   "t": 145.6355,
+   "kind": "pop",
+   "label": "note",
+   "pos": "74:4",
+   "gain": -9,
+   "pan": 0.012500000000000022,
+   "note": 0,
+   "shot": "A6-V-venue",
+   "id": "A6-V-venue:11"
+  },
+  {
+   "t": 145.77186,
+   "kind": "pop",
+   "label": "heart",
+   "pos": "74:4.25",
+   "sfx": "none",
+   "gain": -9,
+   "pan": 0.271875,
+   "note": 1,
+   "shot": "A6-V-venue",
+   "id": "A6-V-venue:12"
+  },
+  {
+   "t": 145.90823,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "74:4.5",
+   "gain": -9,
+   "pan": 0.23124999999999996,
+   "note": 2,
+   "shot": "A6-V-venue",
+   "id": "A6-V-venue:13"
+  },
+  {
+   "t": 146.181,
+   "kind": "slap",
+   "label": "pink paper (the full band)",
+   "pos": "75:1",
+   "sfx": "slap",
+   "gain": -6,
+   "pan": 0.15624999999999997,
+   "shot": "A6-V-venue",
+   "id": "A6-V-venue:3"
+  },
+  {
+   "t": 146.181,
+   "kind": "sfx",
+   "label": "impact",
+   "pos": "75:1",
+   "sfx": "impact",
+   "gain": -5,
+   "visual": false
+  },
+  {
+   "t": 146.181,
+   "kind": "slam",
+   "label": "下一场的预告，",
+   "pos": "75:1",
+   "pan": -0.2625,
+   "size": 128,
+   "shot": "A6-V-type",
+   "id": "A6-V-type:26"
+  },
+  {
+   "t": 146.7265,
+   "kind": "tap",
+   "label": "tick 发布给社群成员",
+   "pos": "75:2",
+   "sfx": "tick"
+  },
+  {
+   "t": 146.7265,
+   "kind": "draw",
+   "label": "check over the real tick",
+   "pos": "75:2",
+   "sfx": "none",
+   "shot": "A6-V-venue",
+   "id": "A6-V-venue:15",
+   "dur": 0.19090749999999998
+  },
+  {
+   "t": 147.272,
+   "kind": "tap",
+   "label": "tap 发布预告",
+   "pos": "75:3",
+   "gain": -2
+  },
+  {
+   "t": 147.272,
+   "kind": "cut",
+   "label": "the card 「下一场预告 · 周六 · 月台夜」 (product)",
+   "pos": "75:3",
+   "sfx": "none"
+  },
+  {
+   "t": 147.272,
+   "kind": "type",
+   "label": "直接发给社群。",
+   "pos": "75:3",
+   "note": 7,
+   "shot": "A6-V-type",
+   "id": "A6-V-type:27",
+   "dur": 0.47726875
+  },
+  {
+   "t": 147.8175,
+   "kind": "slam",
+   "label": "场地有了 自己的乐迷，",
+   "pos": "75:4",
+   "pan": -0.2625,
+   "size": 128,
+   "shot": "A6-V-type",
+   "id": "A6-V-type:28"
+  },
+  {
+   "t": 148.363,
+   "kind": "slap",
+   "label": "the card lifts out of the phone",
+   "pos": "76:1",
+   "sfx": "slap",
+   "gain": -2
+  },
+  {
+   "t": 148.9085,
+   "kind": "slap",
+   "label": "tape on the card",
+   "pos": "76:2",
+   "sfx": "tape",
+   "gain": -4,
+   "pan": -0.17187500000000003,
+   "shot": "A6-V-venue",
+   "id": "A6-V-venue:17"
+  },
+  {
+   "t": 148.9085,
+   "kind": "slam",
+   "label": "更愿意推广。",
+   "pos": "76:2",
+   "pan": -0.2625,
+   "size": 128,
+   "shot": "A6-V-type",
+   "id": "A6-V-type:29"
+  },
+  {
+   "t": 149.454,
+   "kind": "slide",
+   "label": "a fan peeks up",
+   "pos": "76:3",
+   "sfx": "pop",
+   "gain": -8,
+   "pan": 0.0375,
+   "shot": "A6-V-venue",
+   "id": "A6-V-venue:18"
+  },
+  {
+   "t": 149.454,
+   "kind": "draw",
+   "label": "ring 推广",
+   "pos": "76:3",
+   "sfx": "squeak",
+   "gain": -8,
+   "shot": "A6-V-type",
+   "id": "A6-V-type:30",
+   "dur": 0.2454525
+  },
+  {
+   "t": 149.59037,
+   "kind": "slide",
+   "label": "a fan peeks up",
+   "pos": "76:3.25",
+   "sfx": "none",
+   "gain": -8,
+   "pan": 0.08437499999999999,
+   "shot": "A6-V-venue",
+   "id": "A6-V-venue:19"
+  },
+  {
+   "t": 149.72675,
+   "kind": "slide",
+   "label": "a fan peeks up",
+   "pos": "76:3.5",
+   "sfx": "none",
+   "gain": -8,
+   "pan": 0.23124999999999996,
+   "shot": "A6-V-venue",
+   "id": "A6-V-venue:20"
+  },
+  {
+   "t": 149.9995,
+   "kind": "pop",
+   "label": "heart",
+   "pos": "76:4",
+   "gain": -9,
+   "pan": 0.03593750000000002,
+   "note": 0,
+   "shot": "A6-V-venue",
+   "id": "A6-V-venue:21"
+  },
+  {
+   "t": 150.13586,
+   "kind": "pop",
+   "label": "heart",
+   "pos": "76:4.25",
+   "sfx": "none",
+   "gain": -9,
+   "pan": 0.253125,
+   "note": 1,
+   "shot": "A6-V-venue",
+   "id": "A6-V-venue:22"
+  },
+  {
+   "t": 150.27223,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "76:4.5",
+   "gain": -9,
+   "pan": 0.275,
+   "note": 2,
+   "shot": "A6-V-venue",
+   "id": "A6-V-venue:23"
+  },
+  {
+   "t": 150.545,
+   "kind": "cut",
+   "label": "A6-W3-cards",
+   "pos": "77:1",
+   "sfx": "none",
+   "shot": "A6-W3-cards"
+  },
+  {
+   "t": 150.545,
+   "kind": "enter-slap",
+   "label": "A6-W3-cards",
+   "pos": "77:1",
+   "sfx": "none",
+   "shot": "A6-W3-cards"
+  },
+  {
+   "t": 150.545,
+   "kind": "enter-slap",
+   "label": "A6-W3-type",
+   "pos": "77:1",
+   "sfx": "none",
+   "shot": "A6-W3-type"
+  },
+  {
+   "t": 150.545,
+   "kind": "slap",
+   "label": "cutout CUT-04c_viewpoint-block.opaque.png",
+   "pos": "77:1",
+   "sfx": "slap",
+   "pan": -0.17499999999999996,
+   "note": 0,
+   "shot": "A6-W3-cards",
+   "id": "A6-W3-cards:31"
+  },
+  {
+   "t": 150.545,
+   "kind": "pop",
+   "label": "pillar 隐私",
+   "pos": "77:1",
+   "pan": -0.1775,
+   "size": 180,
+   "shot": "A6-W3-type",
+   "id": "A6-W3-type:33"
+  },
+  {
+   "t": 150.545,
+   "kind": "type",
+   "label": "AI 在本机判断， 照片不上传",
+   "pos": "77:1",
+   "note": 14,
+   "shot": "A6-W3-type",
+   "id": "A6-W3-type:34",
+   "dur": 0.9545375
+  },
+  {
+   "t": 151.09025,
+   "kind": "slap",
+   "label": "cutout CUT-11_consent-tick-send.opaque.png",
+   "pos": "77:2",
+   "sfx": "slap",
+   "pan": 0,
+   "note": 2,
+   "shot": "A6-W3-cards",
+   "id": "A6-W3-cards:36"
+  },
+  {
+   "t": 151.09025,
+   "kind": "pop",
+   "label": "pillar 同意",
+   "pos": "77:2",
+   "pan": -0.002499999999999991,
+   "size": 180,
+   "shot": "A6-W3-type",
+   "id": "A6-W3-type:38"
+  },
+  {
+   "t": 151.09025,
+   "kind": "type",
+   "label": "双方同意就交换",
+   "pos": "77:2",
+   "sfx": "none",
+   "note": 7,
+   "shot": "A6-W3-type",
+   "id": "A6-W3-type:39",
+   "dur": 0.47726875
+  },
+  {
+   "t": 151.6355,
+   "kind": "slap",
+   "label": "cutout CUT-12_worldcup-vs-card.opaque.png",
+   "pos": "77:3",
+   "sfx": "slap",
+   "pan": 0.17499999999999996,
+   "note": 4,
+   "shot": "A6-W3-cards",
+   "id": "A6-W3-cards:41"
+  },
+  {
+   "t": 151.6355,
+   "kind": "pop",
+   "label": "pillar 好玩",
+   "pos": "77:3",
+   "pan": 0.1725,
+   "size": 180,
+   "shot": "A6-W3-type",
+   "id": "A6-W3-type:43"
+  },
+  {
+   "t": 151.6355,
+   "kind": "type",
+   "label": "世界杯 · 默契局 · 创作角",
+   "pos": "77:3",
+   "sfx": "none",
+   "note": 15,
+   "shot": "A6-W3-type",
+   "id": "A6-W3-type:44",
+   "dur": 1.02271875
+  },
+  {
+   "t": 152.18075,
+   "kind": "pop",
+   "label": "lock",
+   "pos": "77:4",
+   "gain": -8,
+   "pan": -0.09125000000000001,
+   "note": 0,
+   "shot": "A6-W3-cards",
+   "id": "A6-W3-cards:47"
+  },
+  {
+   "t": 152.31711,
+   "kind": "pop",
+   "label": "check",
+   "pos": "77:4.25",
+   "sfx": "none",
+   "gain": -8,
+   "pan": 0.09437500000000003,
+   "note": 1,
+   "shot": "A6-W3-cards",
+   "id": "A6-W3-cards:48"
+  },
+  {
+   "t": 152.45347,
+   "kind": "pop",
+   "label": "heart",
+   "pos": "77:4.5",
+   "gain": -8,
+   "pan": 0.25937499999999997,
+   "note": 2,
+   "shot": "A6-W3-cards",
+   "id": "A6-W3-cards:49"
+  },
+  {
+   "t": 152.726,
+   "kind": "draw",
+   "label": "underline T126s",
+   "pos": "78:1",
+   "sfx": "squeak",
+   "shot": "A6-W3-type",
+   "id": "A6-W3-type:35",
+   "dur": 0.2454525
+  },
+  {
+   "t": 152.726,
+   "kind": "slap",
+   "label": "sticker 交换已接受",
+   "pos": "78:1",
+   "sfx": "slap",
+   "gain": -3,
+   "pan": 0.002499999999999991,
+   "shot": "A6-W3-cards",
+   "id": "A6-W3-cards:46"
+  },
+  {
+   "t": 152.99875,
+   "kind": "draw",
+   "label": "underline T127s",
+   "pos": "78:1.5",
+   "sfx": "none",
+   "shot": "A6-W3-type",
+   "id": "A6-W3-type:40",
+   "dur": 0.2454525
+  },
+  {
+   "t": 153.2715,
+   "kind": "draw",
+   "label": "underline T128s",
+   "pos": "78:2",
+   "sfx": "none",
+   "shot": "A6-W3-type",
+   "id": "A6-W3-type:45",
+   "dur": 0.2454525
+  },
+  {
+   "t": 153.817,
+   "kind": "pop",
+   "label": "all three wiggle",
+   "pos": "78:3",
+   "sfx": "boop",
+   "gain": -8
+  },
+  {
+   "t": 153.817,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "78:3",
+   "gain": -12,
+   "pan": -0.05312500000000001,
+   "note": 0,
+   "shot": "A6-W3-cards",
+   "id": "A6-W3-cards:50"
+  },
+  {
+   "t": 153.95336,
+   "kind": "pop",
+   "label": "star",
+   "pos": "78:3.25",
+   "sfx": "none",
+   "gain": -12,
+   "pan": 0.07187499999999998,
+   "note": 1,
+   "shot": "A6-W3-cards",
+   "id": "A6-W3-cards:51"
+  },
+  {
+   "t": 154.08973,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "78:3.5",
+   "gain": -12,
+   "pan": 0.27812499999999996,
+   "note": 2,
+   "shot": "A6-W3-cards",
+   "id": "A6-W3-cards:52"
+  },
+  {
+   "t": 154.63525,
+   "kind": "wipe",
+   "label": "A6-X-W3-W4",
+   "pos": "78:4.5",
+   "shot": "A6-X-W3-W4"
+  },
+  {
+   "t": 154.908,
+   "kind": "cut",
+   "label": "A6-W4-stay",
+   "pos": "79:1",
+   "sfx": "none",
+   "shot": "A6-W4-stay"
+  },
+  {
+   "t": 154.908,
+   "kind": "slam",
+   "label": "曲终，",
+   "pos": "79:1",
+   "sfx": "boom",
+   "gain": -3,
+   "pan": -0.259375,
+   "size": 240,
+   "shot": "A6-W4-type",
+   "id": "A6-W4-type:53"
+  },
+  {
+   "t": 154.908,
+   "kind": "pop",
+   "label": "you",
+   "pos": "79:1",
+   "sfx": "none",
+   "pan": -0.021874999999999988,
+   "shot": "A6-W4-stay",
+   "id": "A6-W4-stay:60"
+  },
+  {
+   "t": 155.18075,
+   "kind": "slide",
+   "label": "comes back 北屿",
+   "pos": "79:1.5",
+   "sfx": "swish",
+   "gain": -6,
+   "pan": 0.043749999999999976,
+   "shot": "A6-W4-stay",
+   "id": "A6-W4-stay:62"
+  },
+  {
+   "t": 155.4535,
+   "kind": "slide",
+   "label": "comes back 小满",
+   "pos": "79:2",
+   "sfx": "swish",
+   "gain": -6,
+   "pan": -0.08749999999999998,
+   "shot": "A6-W4-stay",
+   "id": "A6-W4-stay:58"
+  },
+  {
+   "t": 155.72625,
+   "kind": "slide",
+   "label": "comes back person",
+   "pos": "79:2.5",
+   "sfx": "swish",
+   "gain": -6,
+   "pan": 0.10937499999999997,
+   "shot": "A6-W4-stay",
+   "id": "A6-W4-stay:64"
+  },
+  {
+   "t": 155.999,
+   "kind": "slam",
+   "label": "人不散。",
+   "pos": "79:3",
+   "pan": 0.265625,
+   "size": 240,
+   "shot": "A6-W4-type",
+   "id": "A6-W4-type:54"
+  },
+  {
+   "t": 155.999,
+   "kind": "slide",
+   "label": "comes back 阿遥",
+   "pos": "79:3",
+   "sfx": "swish",
+   "gain": -6,
+   "pan": -0.153125,
+   "shot": "A6-W4-stay",
+   "id": "A6-W4-stay:56"
+  },
+  {
+   "t": 156.27175,
+   "kind": "pop",
+   "label": "star",
+   "pos": "79:3.5",
+   "gain": -12,
+   "pan": 0.17499999999999996,
+   "note": 0,
+   "shot": "A6-W4-stay",
+   "id": "A6-W4-stay:69"
+  },
+  {
+   "t": 156.40811,
+   "kind": "pop",
+   "label": "note",
+   "pos": "79:3.75",
+   "sfx": "none",
+   "gain": -12,
+   "pan": -0.20625,
+   "note": 1,
+   "shot": "A6-W4-stay",
+   "id": "A6-W4-stay:70"
+  },
+  {
+   "t": 156.54448,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "79:4",
+   "gain": -12,
+   "pan": 0.23124999999999996,
+   "note": 2,
+   "shot": "A6-W4-stay",
+   "id": "A6-W4-stay:71"
+  },
+  {
+   "t": 157.09,
+   "kind": "bob",
+   "label": "avatars hop",
+   "pos": "80:1",
+   "sfx": "none"
+  },
+  {
+   "t": 157.6355,
+   "kind": "bob",
+   "label": "avatars hop",
+   "pos": "80:2",
+   "sfx": "none"
+  },
+  {
+   "t": 158.181,
+   "kind": "pop",
+   "label": "heart",
+   "pos": "80:3",
+   "sfx": "boop",
+   "gain": -4,
+   "pan": -0.12031249999999999,
+   "note": 0,
+   "shot": "A6-W4-stay",
+   "id": "A6-W4-stay:65"
+  },
+  {
+   "t": 158.31737,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "80:3.25",
+   "sfx": "none",
+   "gain": -6,
+   "pan": -0.054687499999999986,
+   "note": 0,
+   "shot": "A6-W4-stay",
+   "id": "A6-W4-stay:67"
+  },
+  {
+   "t": 158.45373,
+   "kind": "pop",
+   "label": "heart",
+   "pos": "80:3.5",
+   "sfx": "boop",
+   "gain": -4,
+   "pan": 0.010937499999999977,
+   "note": 1,
+   "shot": "A6-W4-stay",
+   "id": "A6-W4-stay:66"
+  },
+  {
+   "t": 158.5901,
+   "kind": "pop",
+   "label": "heart",
+   "pos": "80:3.75",
+   "sfx": "none",
+   "gain": -6,
+   "pan": 0.07656249999999998,
+   "note": 1,
+   "shot": "A6-W4-stay",
+   "id": "A6-W4-stay:68"
+  },
+  {
+   "t": 158.7265,
+   "kind": "bob",
+   "label": "avatars hop",
+   "pos": "80:4",
+   "sfx": "none"
+  },
+  {
+   "t": 159.272,
+   "kind": "cut",
+   "label": "A6-W5-room",
+   "pos": "82:1",
+   "sfx": "none",
+   "shot": "A6-W5-room"
+  },
+  {
+   "t": 159.272,
+   "kind": "draw",
+   "label": "ring around the five on stage",
+   "pos": "82:1",
+   "sfx": "squeak",
+   "gain": -6,
+   "shot": "A6-W5-room",
+   "id": "A6-W5-room:75",
+   "dur": 0.38181499999999996
+  },
+  {
+   "t": 159.81725,
+   "kind": "pop",
+   "label": "heart over the stage",
+   "pos": "82:2",
+   "sfx": "boop",
+   "gain": -6,
+   "pan": -0.3,
+   "shot": "A6-W5-room",
+   "id": "A6-W5-room:76"
+  },
+  {
+   "t": 160.3625,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "82:3",
+   "gain": -10,
+   "pan": 0.275,
+   "note": 0,
+   "shot": "A6-W5-room",
+   "id": "A6-W5-room:77"
+  },
+  {
+   "t": 160.63522,
+   "kind": "pop",
+   "label": "star",
+   "pos": "82:3.5",
+   "sfx": "none",
+   "gain": -10,
+   "pan": -0.1,
+   "note": 1,
+   "shot": "A6-W5-room",
+   "id": "A6-W5-room:78"
+  },
+  {
+   "t": 161.18037,
+   "kind": "wipe",
+   "label": "A6-X-W5-C1",
+   "pos": "82:4.5",
+   "shot": "A6-X-W5-C1"
+  },
+  {
+   "t": 161.453,
+   "kind": "cut",
+   "label": "A7-C1-end",
+   "pos": "83:1",
+   "sfx": "none",
+   "shot": "A7-C1-end"
+  },
+  {
+   "t": 161.453,
+   "kind": "slam",
+   "label": "同一刻，",
+   "pos": "83:1",
+   "pan": -0.2625,
+   "size": 240,
+   "shot": "A7-C1-type",
+   "id": "A7-C1-type:83"
+  },
+  {
+   "t": 162.544,
+   "kind": "slam",
+   "label": "另一面。",
+   "pos": "83:3",
+   "pan": -0.2625,
+   "size": 240,
+   "shot": "A7-C1-type",
+   "id": "A7-C1-type:84"
+  },
+  {
+   "t": 162.544,
+   "kind": "swipe",
+   "label": "另一面。",
+   "pos": "83:3",
+   "shot": "A7-C1-type",
+   "id": "A7-C1-type:84",
+   "dur": 0.54545
+  },
+  {
+   "t": 162.544,
+   "kind": "pop",
+   "label": "⇄ holds the QR spot",
+   "pos": "83:3",
+   "sfx": "none",
+   "pan": 0.16874999999999998,
+   "shot": "A7-C1-end",
+   "id": "A7-C1-end:87"
+  },
+  {
+   "t": 163.0895,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "83:4",
+   "sfx": "none",
+   "gain": -6,
+   "pan": 0.23124999999999996,
+   "note": 0,
+   "shot": "A7-C1-end",
+   "id": "A7-C1-end:88"
+  },
+  {
+   "t": 163.36223,
+   "kind": "pop",
+   "label": "star",
+   "pos": "83:4.5",
+   "sfx": "none",
+   "gain": -6,
+   "pan": 0.10625000000000002,
+   "note": 1,
+   "shot": "A7-C1-end",
+   "id": "A7-C1-end:89"
+  },
+  {
+   "t": 163.635,
+   "kind": "pop",
+   "label": "logo",
+   "pos": "84:1",
+   "pan": -0.153125,
+   "size": 112,
+   "shot": "A7-C1-type",
+   "id": "A7-C1-type:85"
+  },
+  {
+   "t": 164.45325,
+   "kind": "pop",
+   "label": "link",
+   "pos": "84:2.5",
+   "pan": 0.26625,
+   "size": 64,
+   "shot": "A7-C1-type",
+   "id": "A7-C1-type:86"
+  },
+  {
+   "t": 164.45325,
+   "kind": "type",
+   "label": "link",
+   "pos": "84:2.5",
+   "note": 34,
+   "shot": "A7-C1-type",
+   "dur": 1.15908125
+  },
+  {
+   "t": 164.726,
+   "kind": "pop",
+   "label": "star",
+   "pos": "84:3",
+   "gain": -12,
+   "pan": 0.034374999999999975,
+   "note": 0,
+   "shot": "A7-C1-end",
+   "id": "A7-C1-end:105"
+  },
+  {
+   "t": 164.99873,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "84:3.5",
+   "sfx": "none",
+   "gain": -12,
+   "pan": 0.05312499999999998,
+   "note": 1,
+   "shot": "A7-C1-end",
+   "id": "A7-C1-end:106"
+  },
+  {
+   "t": 165.27145,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "84:4",
+   "gain": -12,
+   "pan": -0.017187499999999988,
+   "note": 2,
+   "shot": "A7-C1-end",
+   "id": "A7-C1-end:107"
+  },
+  {
+   "t": 165.817,
+   "kind": "pop",
+   "label": "QR",
+   "pos": "85:1",
+   "sfx": "pop",
+   "pan": 0.16874999999999998,
+   "shot": "A7-C1-end",
+   "id": "A7-C1-end:90"
+  },
+  {
+   "t": 165.817,
+   "kind": "sfx",
+   "label": "impact",
+   "pos": "85:1",
+   "sfx": "impact",
+   "gain": 0,
+   "visual": false
+  },
+  {
+   "t": 165.817,
+   "kind": "type",
+   "label": "浏览器直接打开 · 无需安装",
+   "pos": "85:1",
+   "note": 14,
+   "shot": "A7-C1-type",
+   "id": "A7-C1-type:92",
+   "dur": 0.9545375
+  },
+  {
+   "t": 166.08975,
+   "kind": "slap",
+   "label": "A7-C1-end:91",
+   "pos": "85:1.5",
+   "sfx": "tape",
+   "gain": -4,
+   "pan": -0.21406250000000002,
+   "shot": "A7-C1-end",
+   "id": "A7-C1-end:91"
+  },
+  {
+   "t": 166.3625,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "85:2",
+   "sfx": "none",
+   "gain": -6,
+   "pan": 0.2875,
+   "note": 0,
+   "shot": "A7-C1-end",
+   "id": "A7-C1-end:101"
+  },
+  {
+   "t": 166.908,
+   "kind": "slap",
+   "label": "credits strip",
+   "pos": "85:3",
+   "sfx": "tape",
+   "gain": -8,
+   "pan": 0,
+   "shot": "A7-C1-type",
+   "id": "A7-C1-type:93"
+  },
+  {
+   "t": 166.908,
+   "kind": "type",
+   "label": "演示角色与照片为虚构，照片由 A",
+   "pos": "85:3",
+   "sfx": "none",
+   "note": 68,
+   "shot": "A7-C1-type",
+   "id": "A7-C1-type:94",
+   "dur": 2.3181625
+  },
+  {
+   "t": 166.908,
+   "kind": "slide",
+   "label": "avatar peeks",
+   "pos": "85:3",
+   "sfx": "pop",
+   "gain": -8,
+   "pan": -0.2453125,
+   "note": 0,
+   "shot": "A7-C1-end",
+   "id": "A7-C1-end:95"
+  },
+  {
+   "t": 167.18075,
+   "kind": "slide",
+   "label": "avatar peeks",
+   "pos": "85:3.5",
+   "sfx": "none",
+   "gain": -8,
+   "pan": -0.19218749999999998,
+   "note": 2,
+   "shot": "A7-C1-end",
+   "id": "A7-C1-end:96"
+  },
+  {
+   "t": 167.4535,
+   "kind": "slide",
+   "label": "avatar peeks",
+   "pos": "85:4",
+   "sfx": "pop",
+   "gain": -8,
+   "pan": -0.13906249999999998,
+   "note": 4,
+   "shot": "A7-C1-end",
+   "id": "A7-C1-end:97"
+  },
+  {
+   "t": 167.4535,
+   "kind": "pop",
+   "label": "star",
+   "pos": "85:4",
+   "sfx": "none",
+   "gain": -6,
+   "pan": 0.03593750000000002,
+   "note": 0,
+   "shot": "A7-C1-end",
+   "id": "A7-C1-end:102"
+  },
+  {
+   "t": 167.72625,
+   "kind": "slide",
+   "label": "avatar peeks",
+   "pos": "85:4.5",
+   "sfx": "none",
+   "gain": -8,
+   "pan": -0.08593750000000001,
+   "note": 6,
+   "shot": "A7-C1-end",
+   "id": "A7-C1-end:98"
+  },
+  {
+   "t": 167.999,
+   "kind": "slide",
+   "label": "avatar peeks",
+   "pos": "86:1",
+   "sfx": "pop",
+   "gain": -8,
+   "pan": -0.0328125,
+   "note": 8,
+   "shot": "A7-C1-end",
+   "id": "A7-C1-end:99"
+  },
+  {
+   "t": 167.999,
+   "kind": "bob",
+   "label": "avatars hop",
+   "pos": "86:1",
+   "sfx": "none"
+  },
+  {
+   "t": 168.5445,
+   "kind": "bob",
+   "label": "avatars hop",
+   "pos": "86:2",
+   "sfx": "none"
+  },
+  {
+   "t": 168.5445,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "86:2",
+   "sfx": "none",
+   "gain": -6,
+   "pan": 0.284375,
+   "note": 0,
+   "shot": "A7-C1-end",
+   "id": "A7-C1-end:103"
+  },
+  {
+   "t": 168.5445,
+   "kind": "pop",
+   "label": "twinkle",
+   "pos": "86:2",
+   "sfx": "none",
+   "pan": 0.046875,
+   "shot": "A7-C1-end",
+   "id": "A7-C1-end:108"
+  },
+  {
+   "t": 169.09,
+   "kind": "bob",
+   "label": "avatars hop",
+   "pos": "86:3",
+   "sfx": "none"
+  },
+  {
+   "t": 169.09,
+   "kind": "pop",
+   "label": "twinkle",
+   "pos": "86:3",
+   "sfx": "none",
+   "pan": 0.28187500000000004,
+   "shot": "A7-C1-end",
+   "id": "A7-C1-end:109"
+  },
+  {
+   "t": 169.6355,
+   "kind": "bob",
+   "label": "avatars hop",
+   "pos": "86:4",
+   "sfx": "none"
+  },
+  {
+   "t": 169.6355,
+   "kind": "pop",
+   "label": "star",
+   "pos": "86:4",
+   "sfx": "none",
+   "gain": -6,
+   "pan": 0.043749999999999976,
+   "note": 0,
+   "shot": "A7-C1-end",
+   "id": "A7-C1-end:104"
+  },
+  {
+   "t": 169.6355,
+   "kind": "pop",
+   "label": "twinkle",
+   "pos": "86:4",
+   "sfx": "none",
+   "pan": 0.02656250000000002,
+   "shot": "A7-C1-end",
+   "id": "A7-C1-end:110"
+  },
+  {
+   "t": 170.181,
+   "kind": "bob",
+   "label": "avatars hop",
+   "pos": "87:1",
+   "sfx": "none"
+  },
+  {
+   "t": 170.7265,
+   "kind": "bob",
+   "label": "avatars hop",
+   "pos": "87:2",
+   "sfx": "none"
+  },
+  {
+   "t": 171.272,
+   "kind": "bob",
+   "label": "avatars hop",
+   "pos": "87:3",
+   "sfx": "none"
+  },
+  {
+   "t": 171.8175,
+   "kind": "bob",
+   "label": "avatars hop",
+   "pos": "87:4",
+   "sfx": "none"
+  },
+  {
+   "t": 172.363,
+   "kind": "bob",
+   "label": "avatars hop",
+   "pos": "88:1",
+   "sfx": "none"
+  },
+  {
+   "t": 172.363,
+   "kind": "pop",
+   "label": "heart",
+   "pos": "88:1",
+   "sfx": "boop",
+   "gain": -6,
+   "pan": 0.007812500000000023,
+   "note": 0,
+   "shot": "A7-C1-end",
+   "id": "A7-C1-end:100"
+  },
+  {
+   "t": 172.90825,
+   "kind": "bob",
+   "label": "avatars hop",
+   "pos": "88:2",
+   "sfx": "none"
+  },
+  {
+   "t": 173.4535,
+   "kind": "bob",
+   "label": "avatars hop",
+   "pos": "88:3",
+   "sfx": "none"
+  },
+  {
+   "t": 173.99875,
+   "kind": "bob",
+   "label": "avatars hop",
+   "pos": "88:4",
+   "sfx": "none"
+  },
+  {
+   "t": 174.544,
+   "kind": "bob",
+   "label": "avatars hop",
+   "pos": "88:5",
+   "sfx": "none"
+  },
+  {
+   "t": 174.544,
+   "kind": "pop",
+   "label": "logo wiggle",
+   "pos": "88:5",
+   "sfx": "none"
+  }
+ ],
+ "texts": [
+  {
+   "id": "A6-V-type:24",
+   "shot": "A6-V-type",
+   "t0": 141.817,
+   "t1": 146.181,
+   "text": "Livehouse 开个房，",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-pink",
+   "script": "T120",
+   "inFootage": false
+  },
+  {
+   "id": "A6-V-type:25",
+   "shot": "A6-V-type",
+   "t0": 142.908,
+   "t1": 146.181,
+   "text": "乐迷留在\n本地社群。",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-mint",
+   "script": "T121",
+   "inFootage": false
+  },
+  {
+   "id": "A6-V-type:26",
+   "shot": "A6-V-type",
+   "t0": 146.181,
+   "t1": 148.9085,
+   "text": "下一场的预告，",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-yellow",
+   "script": "T122",
+   "inFootage": false
+  },
+  {
+   "id": "A6-V-type:27",
+   "shot": "A6-V-type",
+   "t0": 147.272,
+   "t1": 150.545,
+   "text": "直接发给社群。",
+   "role": "marker",
+   "kind": "title",
+   "size": 84,
+   "recipe": "ink",
+   "script": "T123",
+   "inFootage": false
+  },
+  {
+   "id": "A6-V-type:28",
+   "shot": "A6-V-type",
+   "t0": 147.8175,
+   "t1": 150.545,
+   "text": "场地有了\n自己的乐迷，",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-pink",
+   "script": "T124",
+   "inFootage": false
+  },
+  {
+   "id": "A6-V-type:29",
+   "shot": "A6-V-type",
+   "t0": 148.9085,
+   "t1": 150.545,
+   "text": "更愿意推广。",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-mint",
+   "script": "T125",
+   "inFootage": false
+  },
+  {
+   "id": "A6-W3-type:33",
+   "shot": "A6-W3-type",
+   "t0": 150.545,
+   "t1": 154.908,
+   "text": "隐私",
+   "role": "display",
+   "kind": "label",
+   "size": 180,
+   "recipe": "pillar-mint",
+   "script": "T126"
+  },
+  {
+   "id": "A6-W3-type:34",
+   "shot": "A6-W3-type",
+   "t0": 150.545,
+   "t1": 154.908,
+   "text": "AI 在本机判断，\n照片不上传",
+   "role": "marker",
+   "kind": "label",
+   "size": 50,
+   "recipe": "ink",
+   "script": "T126s",
+   "inFootage": false
+  },
+  {
+   "id": "A6-W3-type:38",
+   "shot": "A6-W3-type",
+   "t0": 151.0902,
+   "t1": 154.908,
+   "text": "同意",
+   "role": "display",
+   "kind": "label",
+   "size": 180,
+   "recipe": "pillar-pink",
+   "script": "T127"
+  },
+  {
+   "id": "A6-W3-type:39",
+   "shot": "A6-W3-type",
+   "t0": 151.0902,
+   "t1": 154.908,
+   "text": "双方同意就交换",
+   "role": "marker",
+   "kind": "label",
+   "size": 56,
+   "recipe": "ink",
+   "script": "T127s",
+   "inFootage": false
+  },
+  {
+   "id": "A6-W3-type:43",
+   "shot": "A6-W3-type",
+   "t0": 151.6355,
+   "t1": 154.908,
+   "text": "好玩",
+   "role": "display",
+   "kind": "label",
+   "size": 180,
+   "recipe": "pillar-yellow",
+   "script": "T128"
+  },
+  {
+   "id": "A6-W3-type:44",
+   "shot": "A6-W3-type",
+   "t0": 151.6355,
+   "t1": 154.908,
+   "text": "世界杯 · 默契局 · 创作角",
+   "role": "marker",
+   "kind": "label",
+   "size": 56,
+   "recipe": "ink",
+   "script": "T128s",
+   "inFootage": false
+  },
+  {
+   "id": "A6-W4-type:53",
+   "shot": "A6-W4-type",
+   "t0": 154.908,
+   "t1": 159.272,
+   "text": "曲终，",
+   "role": "display",
+   "kind": "title",
+   "size": 240,
+   "recipe": "ink-pink",
+   "script": "T129",
+   "inFootage": false
+  },
+  {
+   "id": "A6-W4-type:54",
+   "shot": "A6-W4-type",
+   "t0": 155.999,
+   "t1": 159.272,
+   "text": "人不散。",
+   "role": "display",
+   "kind": "title",
+   "size": 240,
+   "recipe": "ink-pink",
+   "script": "T130",
+   "inFootage": false
+  },
+  {
+   "id": "A7-C1-type:83",
+   "shot": "A7-C1-type",
+   "t0": 161.453,
+   "t1": 174.944,
+   "text": "同一刻，",
+   "role": "display",
+   "kind": "title",
+   "size": 240,
+   "recipe": "ink-pink",
+   "script": "T140",
+   "inFootage": false
+  },
+  {
+   "id": "A7-C1-type:84",
+   "shot": "A7-C1-type",
+   "t0": 162.544,
+   "t1": 174.944,
+   "text": "另一面。",
+   "role": "display",
+   "kind": "title",
+   "size": 240,
+   "recipe": "hl-mint",
+   "script": "T141",
+   "inFootage": false
+  },
+  {
+   "id": "A7-C1-type:85",
+   "shot": "A7-C1-type",
+   "t0": 163.635,
+   "t1": 174.944,
+   "text": "MUSIC SPACE",
+   "role": "logo",
+   "kind": "label",
+   "size": 112,
+   "recipe": "logo",
+   "script": "T142"
+  },
+  {
+   "id": "A7-C1-type:86",
+   "shot": "A7-C1-type",
+   "t0": 164.4532,
+   "t1": 174.944,
+   "text": "musicmapteam.github.io/musicSpace/",
+   "role": "digits",
+   "kind": "label",
+   "size": 64,
+   "recipe": "link-pill",
+   "script": "T143"
+  },
+  {
+   "id": "A7-C1-type:92",
+   "shot": "A7-C1-type",
+   "t0": 165.817,
+   "t1": 174.944,
+   "text": "浏览器直接打开 · 无需安装",
+   "role": "marker",
+   "kind": "label",
+   "size": 56,
+   "recipe": "ink",
+   "script": "T144",
+   "inFootage": false
+  },
+  {
+   "id": "A7-C1-type:94",
+   "shot": "A7-C1-type",
+   "t0": 166.908,
+   "t1": 174.944,
+   "text": "演示角色与照片为虚构，照片由 AI 生成 · 配乐：Zane Little《Post-Adventure Tea Party》（CC0）",
+   "role": "hand",
+   "kind": "fine",
+   "size": 35,
+   "recipe": "fine",
+   "script": "T146",
+   "inFootage": false
+  }
+ ],
+ "marks": {
+  "qr": 167.999
+ },
+ "warnings": [],
+ "assets": {
+  "capture/H1-host-rc2/stills/CUT-H3-space-after.png": {
+   "name": "capture/H1-host-rc2/stills/CUT-H3-space-after.png",
+   "path": "/tmp/space-video-doodle/prod/capture/H1-host-rc2/stills/CUT-H3-space-after.png",
+   "kind": "path"
+  },
+  "capture/P2P3-rc2/cut/CUT-12_worldcup-vs-card.opaque.png": {
+   "name": "capture/P2P3-rc2/cut/CUT-12_worldcup-vs-card.opaque.png",
+   "path": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/CUT-12_worldcup-vs-card.opaque.png",
+   "kind": "path"
+  },
+  "avatar:man": {
+   "name": "avatar:man",
+   "path": "/tmp/space-video-doodle/script/probe/avatars/cast-man.svg",
+   "kind": "alias"
+  },
+  "avatar:bei": {
+   "name": "avatar:bei",
+   "path": "/tmp/space-video-doodle/script/probe/avatars/cast-bei.svg",
+   "kind": "alias"
+  },
+  "avatar:maichong": {
+   "name": "avatar:maichong",
+   "path": "/tmp/space-video-doodle/script/probe/avatars/look-5-maichong-front.svg",
+   "kind": "alias"
+  },
+  "capture/P2P3-rc2/cut/CUT-04c_viewpoint-block.opaque.png": {
+   "name": "capture/P2P3-rc2/cut/CUT-04c_viewpoint-block.opaque.png",
+   "path": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/CUT-04c_viewpoint-block.opaque.png",
+   "kind": "path"
+  },
+  "capture/P2P3-rc2/cut/CUT-11_consent-tick-send.opaque.png": {
+   "name": "capture/P2P3-rc2/cut/CUT-11_consent-tick-send.opaque.png",
+   "path": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/CUT-11_consent-tick-send.opaque.png",
+   "kind": "path"
+  },
+  "capture/P2P3-rc2/cut/CUT-06s_exchange-accepted-sticker.png": {
+   "name": "capture/P2P3-rc2/cut/CUT-06s_exchange-accepted-sticker.png",
+   "path": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/cut/CUT-06s_exchange-accepted-sticker.png",
+   "kind": "path"
+  },
+  "avatar:yao": {
+   "name": "avatar:yao",
+   "path": "/tmp/space-video-doodle/script/probe/avatars/cast-yao.svg",
+   "kind": "alias"
+  },
+  "avatar:you": {
+   "name": "avatar:you",
+   "path": "/tmp/space-video-doodle/script/probe/avatars/look-4-shizhen-front.svg",
+   "kind": "alias"
+  },
+  "qr": {
+   "name": "qr",
+   "path": "/tmp/space-video-doodle/prod/dm/assets/qr.svg",
+   "kind": "alias"
+  }
+ },
+ "clips": {
+  "capture/H1-host-rc2/clips/H-01.mp4": {
+   "name": "capture/H1-host-rc2/clips/H-01.mp4",
+   "path": "/tmp/space-video-doodle/prod/capture/H1-host-rc2/clips/H-01.mp4",
+   "kind": "path",
+   "fps": 60,
+   "frames": 470,
+   "w": 1080,
+   "h": 2340,
+   "duration": 7.8333,
+   "key": "60c448ba1a"
+  },
+  "capture/H1-host-rc2/clips/H-02.mp4": {
+   "name": "capture/H1-host-rc2/clips/H-02.mp4",
+   "path": "/tmp/space-video-doodle/prod/capture/H1-host-rc2/clips/H-02.mp4",
+   "kind": "path",
+   "fps": 60,
+   "frames": 412,
+   "w": 1080,
+   "h": 2340,
+   "duration": 6.8667,
+   "key": "cef553d1a3"
+  },
+  "capture/H1-host-rc2/clips/H-03.mp4": {
+   "name": "capture/H1-host-rc2/clips/H-03.mp4",
+   "path": "/tmp/space-video-doodle/prod/capture/H1-host-rc2/clips/H-03.mp4",
+   "kind": "path",
+   "fps": 60,
+   "frames": 288,
+   "w": 1080,
+   "h": 2340,
+   "duration": 4.8,
+   "key": "1774f016d5"
+  },
+  "capture/desktop-rc2/master/D-02-room-hero.mp4": {
+   "name": "capture/desktop-rc2/master/D-02-room-hero.mp4",
+   "path": "/tmp/space-video-doodle/prod/capture/desktop-rc2/master/D-02-room-hero.mp4",
+   "kind": "path",
+   "fps": 60,
+   "frames": 1560,
+   "w": 3840,
+   "h": 2160,
+   "duration": 26,
+   "key": "444f590118"
+  }
+ },
+ "script": [
+  "T120",
+  "T121",
+  "T122",
+  "T123",
+  "T124",
+  "T125",
+  "T126",
+  "T126s",
+  "T127",
+  "T127s",
+  "T128",
+  "T128s",
+  "T129",
+  "T130",
+  "T131",
+  "T132",
+  "T140",
+  "T141",
+  "T142",
+  "T143",
+  "T144",
+  "T146"
+ ],
+ "scenes": [
+  "act-A6-A7"
+ ]
+}

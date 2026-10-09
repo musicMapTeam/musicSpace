@@ -1,0 +1,28 @@
+{
+  "head:export": "no download",
+  "head": {
+    "console": [
+      "[warning] THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+      "[warning] THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead."
+    ],
+    "pageerror": [],
+    "bad": []
+  },
+  "now:export": "no download",
+  "now": {
+    "console": [
+      "[warning] THREE.Material: 'flatShading' is not a property of THREE.MeshToonMaterial.",
+      "[warning] THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead."
+    ],
+    "pageerror": [],
+    "bad": []
+  },
+  "diff:landing": 0,
+  "diff:pose-wave": 0,
+  "diff:scene-sakura": 0,
+  "diff:scene-stage": 0,
+  "diff:tab-tune": 0,
+  "diff:tab-together": 0,
+  "diff:preview": 0,
+  "diff:after-export": 0
+}

@@ -1,0 +1,21 @@
+QC act-A2-A3.consternation.mp4  range 36.92-75.70 s  act preview  ->  WARN
+  PASS  container.video h264 High 1920x1080 60/1 yuv420p bt709/bt709/bt709/tv
+  PASS  container.audio aac LC 48000 Hz 2 ch 268 kb/s
+  PASS  duration        38.783 s (range 38.783 s)
+  PASS  size            52.7 MB (10.9 Mb/s)
+  PASS  loudness        I -15.7 LUFS (target -16), LRA 2.2 LU (act excerpt: informational; the full cut is normalised)
+  PASS  true_peak       -1.2 dBTP (limit -1.0)
+  PASS  silence         0 silent stretches over 0.8 s
+  PASS  frozen          0 frozen stretches over 2.5 s
+  PASS  black           0 black stretches over 0.4 s
+  PASS  motion          longest low-motion stretch 0.07 s at 0.42 s (mean |dI| < 0.15 on 160x90), mean motion 2.48
+  PASS  event_gaps      146 visual events, 3.76/s; longest gap 0.92 s after 60.00 s (limit 2.5)
+  PASS  beat_alignment  146/146 visual events on the 16th grid (<= half a frame), 144/146 on 8ths; frames quantise by <= 8.3 ms
+  PASS  reading_time    32 lines, measured (geometry samples every 50 ms); titles/notes failing 0, labels/fine short 0
+  WARN  safe_area       0 texts outside the 5% title-safe area for > 0.5 s, 3 only briefly (entrances, camera moves)
+  PASS  glyphs          142 font/character pairs; 0 drawn by a system font
+  PASS  qr              no end card in range (not applicable)
+  PASS  placeholders    no placeholders
+  PASS  scene_warnings  0 warnings
+  PASS  sfx_level       SFX -9.0 LU vs music (target -8..-10), 140 sounds {'whoosh': 5, 'boom': 1, 'impact': 2, 'pop': 16, 'slam': 13, 'thump': 5, 'squeak': 18, 'click': 16, 'ding': 4, 'slap': 12, 'typetick': 31, 'pencil': 1, 'stamp': 2, 'boop': 1, 'swish': 3, 'shutter': 1, 'chime': 1, 'highlighter': 6, 'hmm': 1, 'tape': 1}
+  PASS  script_lines    27/27 SCRIPT lines in range are on screen

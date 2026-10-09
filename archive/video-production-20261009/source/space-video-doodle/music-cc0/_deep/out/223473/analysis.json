@@ -1,0 +1,1057 @@
+{
+ "file": "223473__HoliznaCC0-Game-BOI-3.mp3",
+ "title": "HoliznaCC0-Game-BOI-3",
+ "duration_s": 197.95,
+ "loudness": {
+  "I": -13.2,
+  "LRA": 1.9,
+  "TP": 0.3
+ },
+ "tempo": {
+  "bpm": 120.0,
+  "beat_s": 0.5,
+  "bar_s": 2.0,
+  "autocorr_conf": 0.871,
+  "octave_note": "",
+  "drift_ms": {
+   "windows": 48,
+   "aligned_windows": 48,
+   "resid_sd": 1.5,
+   "resid_max_abs": 5.8
+  }
+ },
+ "grid": {
+  "first_beat_s": 0.003,
+  "downbeat_offset_beats": 3,
+  "downbeat_scores": [
+   {
+    "kick": -0.117,
+    "chord_change": -0.056,
+    "backbeat": -0.309
+   },
+   {
+    "kick": 0.379,
+    "chord_change": -0.938,
+    "backbeat": 0.312
+   },
+   {
+    "kick": -0.456,
+    "chord_change": -0.047,
+    "backbeat": -0.309
+   },
+   {
+    "kick": 0.196,
+    "chord_change": 1.051,
+    "backbeat": 0.312
+   }
+  ],
+  "downbeat_margin": 2.014,
+  "first_downbeat_s": 0.003,
+  "first_active_downbeat_s": 0.003,
+  "n_bars": 99,
+  "bar_starts_s": [
+   0.003,
+   2.003,
+   4.003,
+   6.003,
+   8.003,
+   10.003,
+   12.003,
+   14.003,
+   16.003,
+   18.003,
+   20.003,
+   22.003,
+   24.003,
+   26.003,
+   28.003,
+   30.003,
+   32.003,
+   34.003,
+   36.003,
+   38.003,
+   40.003,
+   42.003,
+   44.003,
+   46.003,
+   48.003,
+   50.003,
+   52.003,
+   54.003,
+   56.003,
+   58.003,
+   60.003,
+   62.003,
+   64.003,
+   66.003,
+   68.003,
+   70.003,
+   72.003,
+   74.003,
+   76.003,
+   78.003,
+   80.003,
+   82.003,
+   84.003,
+   86.003,
+   88.003,
+   90.003,
+   92.003,
+   94.003,
+   96.003,
+   98.003,
+   100.003,
+   102.003,
+   104.003,
+   106.003,
+   108.003,
+   110.003,
+   112.003,
+   114.003,
+   116.003,
+   118.003,
+   120.003,
+   122.003,
+   124.003,
+   126.003,
+   128.003,
+   130.003,
+   132.003,
+   134.003,
+   136.003,
+   138.003,
+   140.003,
+   142.003,
+   144.003,
+   146.003,
+   148.003,
+   150.003,
+   152.003,
+   154.003,
+   156.003,
+   158.003,
+   160.003,
+   162.003,
+   164.003,
+   166.003,
+   168.003,
+   170.003,
+   172.003,
+   174.003,
+   176.003,
+   178.003,
+   180.003,
+   182.003,
+   184.003,
+   186.003,
+   188.003,
+   190.003,
+   192.003,
+   194.003,
+   196.003
+  ]
+ },
+ "bars": [
+  {
+   "t": 0.003,
+   "rms_db": -15.7,
+   "onsets": 0,
+   "perc": 0.034,
+   "centroid": 1880
+  },
+  {
+   "t": 2.003,
+   "rms_db": -15.6,
+   "onsets": 4,
+   "perc": 0.035,
+   "centroid": 1855
+  },
+  {
+   "t": 4.003,
+   "rms_db": -15.6,
+   "onsets": 4,
+   "perc": 0.049,
+   "centroid": 1843
+  },
+  {
+   "t": 6.003,
+   "rms_db": -15.9,
+   "onsets": 4,
+   "perc": 0.051,
+   "centroid": 1951
+  },
+  {
+   "t": 8.003,
+   "rms_db": -14.4,
+   "onsets": 12,
+   "perc": 0.225,
+   "centroid": 3036
+  },
+  {
+   "t": 10.003,
+   "rms_db": -14.4,
+   "onsets": 12,
+   "perc": 0.211,
+   "centroid": 3063
+  },
+  {
+   "t": 12.003,
+   "rms_db": -14.4,
+   "onsets": 12,
+   "perc": 0.226,
+   "centroid": 3058
+  },
+  {
+   "t": 14.003,
+   "rms_db": -13.3,
+   "onsets": 12,
+   "perc": 0.166,
+   "centroid": 2799
+  },
+  {
+   "t": 16.003,
+   "rms_db": -12.8,
+   "onsets": 16,
+   "perc": 0.233,
+   "centroid": 3127
+  },
+  {
+   "t": 18.003,
+   "rms_db": -12.1,
+   "onsets": 15,
+   "perc": 0.189,
+   "centroid": 3067
+  },
+  {
+   "t": 20.003,
+   "rms_db": -12.2,
+   "onsets": 16,
+   "perc": 0.197,
+   "centroid": 3095
+  },
+  {
+   "t": 22.003,
+   "rms_db": -13.4,
+   "onsets": 16,
+   "perc": 0.214,
+   "centroid": 3218
+  },
+  {
+   "t": 24.003,
+   "rms_db": -12.9,
+   "onsets": 15,
+   "perc": 0.23,
+   "centroid": 3163
+  },
+  {
+   "t": 26.003,
+   "rms_db": -12.2,
+   "onsets": 16,
+   "perc": 0.187,
+   "centroid": 3079
+  },
+  {
+   "t": 28.003,
+   "rms_db": -12.3,
+   "onsets": 16,
+   "perc": 0.192,
+   "centroid": 3065
+  },
+  {
+   "t": 30.003,
+   "rms_db": -12.9,
+   "onsets": 16,
+   "perc": 0.189,
+   "centroid": 3153
+  },
+  {
+   "t": 32.003,
+   "rms_db": -12.9,
+   "onsets": 16,
+   "perc": 0.218,
+   "centroid": 3117
+  },
+  {
+   "t": 34.003,
+   "rms_db": -12.1,
+   "onsets": 13,
+   "perc": 0.188,
+   "centroid": 3094
+  },
+  {
+   "t": 36.003,
+   "rms_db": -12.2,
+   "onsets": 16,
+   "perc": 0.189,
+   "centroid": 3066
+  },
+  {
+   "t": 38.003,
+   "rms_db": -13.2,
+   "onsets": 15,
+   "perc": 0.195,
+   "centroid": 3180
+  },
+  {
+   "t": 40.003,
+   "rms_db": -13.0,
+   "onsets": 16,
+   "perc": 0.228,
+   "centroid": 3174
+  },
+  {
+   "t": 42.003,
+   "rms_db": -12.8,
+   "onsets": 15,
+   "perc": 0.248,
+   "centroid": 3141
+  },
+  {
+   "t": 44.003,
+   "rms_db": -13.1,
+   "onsets": 16,
+   "perc": 0.234,
+   "centroid": 3170
+  },
+  {
+   "t": 46.003,
+   "rms_db": -12.3,
+   "onsets": 16,
+   "perc": 0.181,
+   "centroid": 2954
+  },
+  {
+   "t": 48.003,
+   "rms_db": -12.5,
+   "onsets": 15,
+   "perc": 0.23,
+   "centroid": 3070
+  },
+  {
+   "t": 50.003,
+   "rms_db": -12.0,
+   "onsets": 16,
+   "perc": 0.191,
+   "centroid": 3039
+  },
+  {
+   "t": 52.003,
+   "rms_db": -12.0,
+   "onsets": 15,
+   "perc": 0.189,
+   "centroid": 3026
+  },
+  {
+   "t": 54.003,
+   "rms_db": -12.9,
+   "onsets": 16,
+   "perc": 0.196,
+   "centroid": 3109
+  },
+  {
+   "t": 56.003,
+   "rms_db": -12.6,
+   "onsets": 15,
+   "perc": 0.217,
+   "centroid": 3083
+  },
+  {
+   "t": 58.003,
+   "rms_db": -12.1,
+   "onsets": 16,
+   "perc": 0.213,
+   "centroid": 3064
+  },
+  {
+   "t": 60.003,
+   "rms_db": -12.0,
+   "onsets": 15,
+   "perc": 0.188,
+   "centroid": 2999
+  },
+  {
+   "t": 62.003,
+   "rms_db": -12.9,
+   "onsets": 16,
+   "perc": 0.198,
+   "centroid": 3125
+  },
+  {
+   "t": 64.003,
+   "rms_db": -12.6,
+   "onsets": 15,
+   "perc": 0.223,
+   "centroid": 3098
+  },
+  {
+   "t": 66.003,
+   "rms_db": -12.3,
+   "onsets": 16,
+   "perc": 0.21,
+   "centroid": 3091
+  },
+  {
+   "t": 68.003,
+   "rms_db": -12.0,
+   "onsets": 16,
+   "perc": 0.189,
+   "centroid": 3006
+  },
+  {
+   "t": 70.003,
+   "rms_db": -12.7,
+   "onsets": 16,
+   "perc": 0.191,
+   "centroid": 3105
+  },
+  {
+   "t": 72.003,
+   "rms_db": -12.8,
+   "onsets": 16,
+   "perc": 0.246,
+   "centroid": 3123
+  },
+  {
+   "t": 74.003,
+   "rms_db": -12.6,
+   "onsets": 15,
+   "perc": 0.223,
+   "centroid": 3085
+  },
+  {
+   "t": 76.003,
+   "rms_db": -12.9,
+   "onsets": 16,
+   "perc": 0.227,
+   "centroid": 3116
+  },
+  {
+   "t": 78.003,
+   "rms_db": -11.9,
+   "onsets": 15,
+   "perc": 0.179,
+   "centroid": 2940
+  },
+  {
+   "t": 80.003,
+   "rms_db": -12.5,
+   "onsets": 16,
+   "perc": 0.23,
+   "centroid": 3067
+  },
+  {
+   "t": 82.003,
+   "rms_db": -12.1,
+   "onsets": 15,
+   "perc": 0.188,
+   "centroid": 3033
+  },
+  {
+   "t": 84.003,
+   "rms_db": -12.0,
+   "onsets": 16,
+   "perc": 0.194,
+   "centroid": 3019
+  },
+  {
+   "t": 86.003,
+   "rms_db": -12.8,
+   "onsets": 15,
+   "perc": 0.21,
+   "centroid": 3124
+  },
+  {
+   "t": 88.003,
+   "rms_db": -12.8,
+   "onsets": 16,
+   "perc": 0.247,
+   "centroid": 3131
+  },
+  {
+   "t": 90.003,
+   "rms_db": -12.6,
+   "onsets": 15,
+   "perc": 0.222,
+   "centroid": 3073
+  },
+  {
+   "t": 92.003,
+   "rms_db": -12.7,
+   "onsets": 16,
+   "perc": 0.221,
+   "centroid": 3104
+  },
+  {
+   "t": 94.003,
+   "rms_db": -12.0,
+   "onsets": 15,
+   "perc": 0.153,
+   "centroid": 2879
+  },
+  {
+   "t": 96.003,
+   "rms_db": -13.7,
+   "onsets": 15,
+   "perc": 0.124,
+   "centroid": 2678
+  },
+  {
+   "t": 98.003,
+   "rms_db": -13.1,
+   "onsets": 14,
+   "perc": 0.109,
+   "centroid": 2655
+  },
+  {
+   "t": 100.003,
+   "rms_db": -13.2,
+   "onsets": 15,
+   "perc": 0.108,
+   "centroid": 2653
+  },
+  {
+   "t": 102.003,
+   "rms_db": -14.0,
+   "onsets": 13,
+   "perc": 0.124,
+   "centroid": 2715
+  },
+  {
+   "t": 104.003,
+   "rms_db": -14.3,
+   "onsets": 15,
+   "perc": 0.125,
+   "centroid": 2777
+  },
+  {
+   "t": 106.003,
+   "rms_db": -13.7,
+   "onsets": 14,
+   "perc": 0.13,
+   "centroid": 2684
+  },
+  {
+   "t": 108.003,
+   "rms_db": -14.2,
+   "onsets": 14,
+   "perc": 0.126,
+   "centroid": 2783
+  },
+  {
+   "t": 110.003,
+   "rms_db": -14.2,
+   "onsets": 11,
+   "perc": 0.115,
+   "centroid": 2530
+  },
+  {
+   "t": 112.003,
+   "rms_db": -12.7,
+   "onsets": 15,
+   "perc": 0.244,
+   "centroid": 3145
+  },
+  {
+   "t": 114.003,
+   "rms_db": -12.4,
+   "onsets": 15,
+   "perc": 0.193,
+   "centroid": 3102
+  },
+  {
+   "t": 116.003,
+   "rms_db": -12.1,
+   "onsets": 14,
+   "perc": 0.181,
+   "centroid": 3042
+  },
+  {
+   "t": 118.003,
+   "rms_db": -13.0,
+   "onsets": 16,
+   "perc": 0.213,
+   "centroid": 3190
+  },
+  {
+   "t": 120.003,
+   "rms_db": -12.9,
+   "onsets": 14,
+   "perc": 0.232,
+   "centroid": 3155
+  },
+  {
+   "t": 122.003,
+   "rms_db": -12.4,
+   "onsets": 15,
+   "perc": 0.201,
+   "centroid": 3097
+  },
+  {
+   "t": 124.003,
+   "rms_db": -12.2,
+   "onsets": 15,
+   "perc": 0.194,
+   "centroid": 3086
+  },
+  {
+   "t": 126.003,
+   "rms_db": -13.0,
+   "onsets": 15,
+   "perc": 0.201,
+   "centroid": 3188
+  },
+  {
+   "t": 128.003,
+   "rms_db": -12.9,
+   "onsets": 16,
+   "perc": 0.23,
+   "centroid": 3156
+  },
+  {
+   "t": 130.003,
+   "rms_db": -12.4,
+   "onsets": 15,
+   "perc": 0.203,
+   "centroid": 3134
+  },
+  {
+   "t": 132.003,
+   "rms_db": -12.2,
+   "onsets": 16,
+   "perc": 0.199,
+   "centroid": 3100
+  },
+  {
+   "t": 134.003,
+   "rms_db": -13.0,
+   "onsets": 15,
+   "perc": 0.203,
+   "centroid": 3144
+  },
+  {
+   "t": 136.003,
+   "rms_db": -13.0,
+   "onsets": 16,
+   "perc": 0.245,
+   "centroid": 3176
+  },
+  {
+   "t": 138.003,
+   "rms_db": -12.9,
+   "onsets": 14,
+   "perc": 0.237,
+   "centroid": 3148
+  },
+  {
+   "t": 140.003,
+   "rms_db": -13.1,
+   "onsets": 16,
+   "perc": 0.221,
+   "centroid": 3164
+  },
+  {
+   "t": 142.003,
+   "rms_db": -12.3,
+   "onsets": 16,
+   "perc": 0.186,
+   "centroid": 2968
+  },
+  {
+   "t": 144.003,
+   "rms_db": -12.7,
+   "onsets": 16,
+   "perc": 0.221,
+   "centroid": 3041
+  },
+  {
+   "t": 146.003,
+   "rms_db": -11.9,
+   "onsets": 15,
+   "perc": 0.191,
+   "centroid": 3030
+  },
+  {
+   "t": 148.003,
+   "rms_db": -12.0,
+   "onsets": 16,
+   "perc": 0.205,
+   "centroid": 3044
+  },
+  {
+   "t": 150.003,
+   "rms_db": -13.1,
+   "onsets": 15,
+   "perc": 0.208,
+   "centroid": 3141
+  },
+  {
+   "t": 152.003,
+   "rms_db": -12.6,
+   "onsets": 16,
+   "perc": 0.234,
+   "centroid": 3107
+  },
+  {
+   "t": 154.003,
+   "rms_db": -12.0,
+   "onsets": 15,
+   "perc": 0.19,
+   "centroid": 3029
+  },
+  {
+   "t": 156.003,
+   "rms_db": -12.0,
+   "onsets": 16,
+   "perc": 0.179,
+   "centroid": 2992
+  },
+  {
+   "t": 158.003,
+   "rms_db": -12.8,
+   "onsets": 15,
+   "perc": 0.193,
+   "centroid": 3118
+  },
+  {
+   "t": 160.003,
+   "rms_db": -12.6,
+   "onsets": 16,
+   "perc": 0.222,
+   "centroid": 3108
+  },
+  {
+   "t": 162.003,
+   "rms_db": -12.0,
+   "onsets": 15,
+   "perc": 0.207,
+   "centroid": 3042
+  },
+  {
+   "t": 164.003,
+   "rms_db": -12.0,
+   "onsets": 16,
+   "perc": 0.192,
+   "centroid": 3021
+  },
+  {
+   "t": 166.003,
+   "rms_db": -12.8,
+   "onsets": 15,
+   "perc": 0.203,
+   "centroid": 3111
+  },
+  {
+   "t": 168.003,
+   "rms_db": -12.7,
+   "onsets": 16,
+   "perc": 0.235,
+   "centroid": 3107
+  },
+  {
+   "t": 170.003,
+   "rms_db": -12.7,
+   "onsets": 16,
+   "perc": 0.215,
+   "centroid": 3085
+  },
+  {
+   "t": 172.003,
+   "rms_db": -12.8,
+   "onsets": 15,
+   "perc": 0.211,
+   "centroid": 3101
+  },
+  {
+   "t": 174.003,
+   "rms_db": -11.9,
+   "onsets": 16,
+   "perc": 0.168,
+   "centroid": 2922
+  },
+  {
+   "t": 176.003,
+   "rms_db": -12.7,
+   "onsets": 15,
+   "perc": 0.229,
+   "centroid": 3078
+  },
+  {
+   "t": 178.003,
+   "rms_db": -11.9,
+   "onsets": 16,
+   "perc": 0.195,
+   "centroid": 3015
+  },
+  {
+   "t": 180.003,
+   "rms_db": -12.1,
+   "onsets": 16,
+   "perc": 0.199,
+   "centroid": 3047
+  },
+  {
+   "t": 182.003,
+   "rms_db": -12.9,
+   "onsets": 16,
+   "perc": 0.193,
+   "centroid": 3119
+  },
+  {
+   "t": 184.003,
+   "rms_db": -12.8,
+   "onsets": 15,
+   "perc": 0.228,
+   "centroid": 3112
+  },
+  {
+   "t": 186.003,
+   "rms_db": -12.6,
+   "onsets": 16,
+   "perc": 0.224,
+   "centroid": 3073
+  },
+  {
+   "t": 188.003,
+   "rms_db": -12.5,
+   "onsets": 15,
+   "perc": 0.211,
+   "centroid": 3088
+  },
+  {
+   "t": 190.003,
+   "rms_db": -12.1,
+   "onsets": 16,
+   "perc": 0.183,
+   "centroid": 2959
+  },
+  {
+   "t": 192.003,
+   "rms_db": -26.4,
+   "onsets": 4,
+   "perc": 0.246,
+   "centroid": 3034
+  },
+  {
+   "t": 194.003,
+   "rms_db": -49.4,
+   "onsets": 0,
+   "perc": 0.01,
+   "centroid": 1509
+  },
+  {
+   "t": 196.003,
+   "rms_db": -73.3,
+   "onsets": 0,
+   "perc": 0.009,
+   "centroid": 2013
+  }
+ ],
+ "sections": [
+  {
+   "bars": [
+    1,
+    12
+   ],
+   "t": [
+    0.003,
+    24.003
+   ],
+   "rms_db": -14.1,
+   "onsets_per_bar": 10.2,
+   "perc": 0.153,
+   "level": "high"
+  },
+  {
+   "bars": [
+    13,
+    16
+   ],
+   "t": [
+    24.003,
+    32.003
+   ],
+   "rms_db": -12.6,
+   "onsets_per_bar": 15.8,
+   "perc": 0.2,
+   "level": "peak"
+  },
+  {
+   "bars": [
+    17,
+    28
+   ],
+   "t": [
+    32.003,
+    56.003
+   ],
+   "rms_db": -12.6,
+   "onsets_per_bar": 15.4,
+   "perc": 0.207,
+   "level": "peak"
+  },
+  {
+   "bars": [
+    29,
+    32
+   ],
+   "t": [
+    56.003,
+    64.003
+   ],
+   "rms_db": -12.4,
+   "onsets_per_bar": 15.5,
+   "perc": 0.204,
+   "level": "peak"
+  },
+  {
+   "bars": [
+    33,
+    63
+   ],
+   "t": [
+    64.003,
+    126.003
+   ],
+   "rms_db": -12.8,
+   "onsets_per_bar": 15.0,
+   "perc": 0.186,
+   "level": "peak"
+  },
+  {
+   "bars": [
+    64,
+    79
+   ],
+   "t": [
+    126.003,
+    158.003
+   ],
+   "rms_db": -12.6,
+   "onsets_per_bar": 15.5,
+   "perc": 0.21,
+   "level": "peak"
+  },
+  {
+   "bars": [
+    80,
+    96
+   ],
+   "t": [
+    158.003,
+    192.003
+   ],
+   "rms_db": -12.5,
+   "onsets_per_bar": 15.6,
+   "perc": 0.206,
+   "level": "peak"
+  },
+  {
+   "bars": [
+    97,
+    99
+   ],
+   "t": [
+    192.003,
+    198.003
+   ],
+   "rms_db": -49.7,
+   "onsets_per_bar": 1.3,
+   "perc": 0.088,
+   "level": "low"
+  }
+ ],
+ "strongest_window": {
+  "start_bar": 33,
+  "start_s": 64.003,
+  "end_s": 94.003,
+  "bars": 15,
+  "bars_exact_s": 30.0,
+  "mean_rms_db": -12.5
+ },
+ "key": {
+  "key": "G major",
+  "r": 0.739,
+  "alt": "E minor",
+  "r_alt": 0.66
+ },
+ "stems": {
+  "stem_lag_ms": 48.1,
+  "energy_share": {
+   "drums": 0.203,
+   "bass": 0.178,
+   "other": 0.619,
+   "vocals": 0.0
+  },
+  "vocals": {
+   "rel_db_overall": -55.6,
+   "median_db": -58.6,
+   "p95_db": -54.5,
+   "frac_seconds_above_m10db": 0.0,
+   "frac_seconds_above_m15db": 0.0
+  },
+  "drum_grid_16": {
+   "kick": [
+    1.0,
+    0.04,
+    0.13,
+    0.72,
+    0.82,
+    0.02,
+    0.7,
+    0.09,
+    0.99,
+    0.04,
+    0.21,
+    0.73,
+    0.83,
+    0.11,
+    0.53,
+    0.01
+   ],
+   "snare": [
+    0.92,
+    0.15,
+    0.43,
+    0.59,
+    0.99,
+    0.1,
+    0.45,
+    0.59,
+    0.52,
+    0.12,
+    0.45,
+    0.59,
+    1.0,
+    0.12,
+    0.45,
+    0.1
+   ],
+   "hats": [
+    0.55,
+    0.17,
+    0.38,
+    0.25,
+    0.98,
+    0.05,
+    0.32,
+    0.23,
+    0.34,
+    0.08,
+    0.32,
+    0.22,
+    1.0,
+    0.07,
+    0.33,
+    0.06
+   ]
+  },
+  "drums_onset_rate": 6.09,
+  "bass_onset_rate": 4.44,
+  "other_onset_rate": 5.26,
+  "bass_peak_hz": 32.3,
+  "other_centroid_hz": 1117,
+  "other_percussive_share": 0.034,
+  "other_flatness": 0.372
+ },
+ "note": "Constant-tempo grid fitted to the whole track (comb + drift regression). downbeat chosen from kick-on-1, chord-change and backbeat evidence; a small margin means check one bar by eye on the waveform. Nobody listened to the track."
+}

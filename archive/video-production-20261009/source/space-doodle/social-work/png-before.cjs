@@ -1,0 +1,21 @@
+const L=require('./lib.cjs');
+const fs=require('fs');
+(async()=>{const b=await L.launch();const ctx=await b.newContext({viewport:{width:800,height:800}});const page=await ctx.newPage();
+page.on('console',m=>{if(m.type()==='error')console.log('[console]',m.text().slice(0,300));});
+page.on('pageerror',e=>console.log('[pageerror]',e.message));
+await page.goto(L.URL,{waitUntil:'domcontentloaded'});await page.waitForFunction(()=>window.__SPACE_BOOT__==='ready',null,{timeout:90000});
+const note=process.argv[2]||'返场那首我在台下跟着唱，灯一亮全场都在挥手。';
+const src=fs.readFileSync('/tmp/space-doodle/social-work/corner-png-before.js','utf8');
+const data=await page.evaluate(async([note,src])=>{
+  const {renderCornerPng}=await import(URL.createObjectURL(new Blob([src],{type:'text/javascript'})));
+  const model=await import('/@fs/Users/alakazan/workplace/tme/musicSpace/web/avatar/model.js');
+  const a1=model.DEFAULT_AVATAR, a2=model.applyLookPreset?model.applyLookPreset(model.DEFAULT_AVATAR,model.TEMPLATES[2].avatar):model.DEFAULT_AVATAR;
+  const p1=await (await fetch('/demo/yao-stage.jpg')).blob(), p2=await (await fetch('/demo/man-crowd.jpg')).blob();
+  const t0=performance.now();
+  const blob=await renderCornerPng({contributions:[{userId:'a',name:'阿遥·示例',note:'这一晚，我在舞台前排。',avatar:a1,photo:{id:'p1'}},{userId:'b',name:'访客5323',note,avatar:a2,photo:{id:'p2'}}],revision:3,photos:new Map([['a',p1],['b',p2]])});
+  const buf=new Uint8Array(await blob.arrayBuffer());let s='';for(let i=0;i<buf.length;i+=0x8000)s+=String.fromCharCode.apply(null,buf.subarray(i,i+0x8000));
+  return {b64:btoa(s),ms:performance.now()-t0,fonts:[...document.fonts].filter(f=>f.status==='loaded').map(f=>f.family).filter((v,i,a)=>a.indexOf(v)===i)};
+},[note,src]);
+fs.writeFileSync(process.argv[3]||'/tmp/space-doodle/shots/social/after-corner-png.png',Buffer.from(data.b64,'base64'));
+console.log('ms',Math.round(data.ms),'fonts',data.fonts.join(', '));
+await b.close();})();

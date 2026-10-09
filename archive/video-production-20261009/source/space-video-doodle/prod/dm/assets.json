@@ -1,0 +1,36 @@
+{
+ "_note": "Asset names used by scenes (DM.asset / DM.clip / any src).  Resolution in tools/serve.mjs: (1) a path ('/...' absolute, or relative to prod/); (2) a capture id (P-05, D-02, CUT-04 ...) found anywhere under prod/capture/** (master > clips > cut > stills > exports > avatars > 1080); (3) an alias below; (4) a fallback below = PLACEHOLDER (allowed while captures are pending, flagged by tools/qc.py; the final cut must have none).",
+ "alias": {
+  "photo:stage": "/Users/alakazan/workplace/tme/musicSpace/web/assets/stage-scene.png",
+  "photo:crowd": "/Users/alakazan/workplace/tme/musicSpace/web/assets/crowd-scene.png",
+  "photo:sample-crowd": "/tmp/space-publish/dist-pages/demo/sample-crowd.jpg",
+  "photo:sample-stage": "/tmp/space-publish/dist-pages/demo/sample-stage.jpg",
+  "photo:yao-stage": "/tmp/space-publish/dist-pages/demo/yao-stage.jpg",
+  "photo:man-crowd": "/tmp/space-publish/dist-pages/demo/man-crowd.jpg",
+  "photo:man-near": "/tmp/space-publish/dist-pages/demo/man-near.jpg",
+  "photo:bei-balcony": "/tmp/space-publish/dist-pages/demo/bei-balcony.jpg",
+  "avatar:you": "/tmp/space-video-doodle/script/probe/avatars/look-4-shizhen-front.svg",
+  "avatar:you-quarter": "/tmp/space-video-doodle/script/probe/avatars/look-4-shizhen-quarter.svg",
+  "avatar:yao": "/tmp/space-video-doodle/script/probe/avatars/cast-yao.svg",
+  "avatar:man": "/tmp/space-video-doodle/script/probe/avatars/cast-man.svg",
+  "avatar:bei": "/tmp/space-video-doodle/script/probe/avatars/cast-bei.svg",
+  "avatar:liubai": "/tmp/space-video-doodle/script/probe/avatars/look-0-liubai-front.svg",
+  "avatar:maichong": "/tmp/space-video-doodle/script/probe/avatars/look-5-maichong-front.svg",
+  "qr": "/tmp/space-video-doodle/prod/dm/assets/qr.svg"
+ },
+ "fallback": {
+  "CUT-01": "/tmp/space-video-doodle/animatic/assets/cut/room.jpg",
+  "CUT-02": "/tmp/space-video-doodle/script/probe/avatars/look-4-shizhen-quarter.svg",
+  "CUT-03": "/tmp/space-video-doodle/animatic/assets/cut/wall.jpg",
+  "CUT-04": "/tmp/space-video-doodle/animatic/assets/cut/ai.jpg",
+  "CUT-05": "/tmp/space-video-doodle/animatic/assets/cut/badge.jpg",
+  "CUT-06": "/tmp/space-video-doodle/animatic/assets/cut/accept.jpg",
+  "CUT-07": "/tmp/space-video-doodle/animatic/assets/cut/chat.jpg",
+  "CUT-08": "/tmp/space-video-doodle/animatic/assets/cut/card.jpg",
+  "CUT-13": "/tmp/space-video-doodle/animatic/assets/cut/first.jpg",
+  "P-01": "/tmp/space-video-doodle/capture-test/clips/A-phone-venue.mp4",
+  "P-05": "/tmp/space-video-doodle/capture-test/clips/B-phone-upload-ai-wall.mp4",
+  "D-01": "/tmp/space-video-doodle/script/probe/shots/d01-landing.png",
+  "D-02": "/tmp/space-video-doodle/animatic/capture/D-desktop-room-2880.mp4"
+ }
+}

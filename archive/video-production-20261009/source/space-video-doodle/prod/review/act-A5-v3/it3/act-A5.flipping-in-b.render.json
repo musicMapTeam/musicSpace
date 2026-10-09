@@ -1,0 +1,19 @@
+{
+ "scene": "act-A5",
+ "map": "flipping-in-b",
+ "frames": [
+  6322,
+  8429
+ ],
+ "seconds": [
+  105.36666666666666,
+  140.48333333333332
+ ],
+ "crf": 18,
+ "bytes": 44540180,
+ "audio": "/tmp/space-video-doodle/prod/review/act-A5-v3/it3/act-A5.flipping-in-b.mix.wav",
+ "workers": 4,
+ "chunk": 240,
+ "mezz": "hq",
+ "render_fps": 12.24
+}

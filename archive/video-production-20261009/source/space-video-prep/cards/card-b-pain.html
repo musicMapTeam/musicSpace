@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><title>Card B · pain-point beat</title>
+<link rel="stylesheet" href="cards.css">
+<style>
+.dark{background:
+  radial-gradient(900px 520px at 50% -8%,rgba(232,163,92,.34),transparent 65%),
+  radial-gradient(1100px 700px at 50% 120%,rgba(41,76,62,.55),transparent 60%),
+  linear-gradient(#17191d,#1b2420 70%,#182d26)}
+.dark .frame{border-color:#0f1a16}
+.dark .frame::after{border-color:rgba(244,242,232,.16)}
+.veil{position:absolute;inset:0;background:radial-gradient(ellipse 60% 45% at 50% 50%,rgba(15,22,19,.88),rgba(15,22,19,.45) 70%,transparent);opacity:0;animation:fade .5s 3.0s forwards;z-index:25;pointer-events:none}
+.vignette{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,transparent 55%,rgba(0,0,0,.45));pointer-events:none;z-index:40}
+.eyebrow{color:rgba(244,242,232,.55)}
+.eyebrow.tl{position:absolute;left:78px;top:70px;opacity:0;animation:fade .6s .2s forwards}
+.eyebrow.tr{position:absolute;right:78px;top:70px;opacity:0;animation:fade .6s .3s forwards}
+/* polaroids */
+.pola{position:absolute;width:640px;background:var(--paper2);padding:26px 26px 92px;box-shadow:0 40px 60px rgba(0,0,0,.55),0 2px 0 rgba(255,255,255,.4) inset;opacity:0}
+.pola .ph{width:100%;aspect-ratio:3/2;background-size:cover;background-position:center;position:relative;overflow:hidden}
+.pola .cap{position:absolute;left:30px;right:30px;bottom:26px;display:flex;justify-content:space-between;align-items:baseline;font-family:var(--mono);font-size:19px;letter-spacing:.14em;color:#4b5148}
+.pola .cap b{font-family:var(--sans);font-size:30px;letter-spacing:.04em;color:var(--ink);font-weight:600}
+.tape{position:absolute;top:-22px;left:50%;width:150px;height:44px;margin-left:-75px;background:rgba(219,232,115,.78);transform:rotate(-3deg);box-shadow:0 2px 3px rgba(0,0,0,.18)}
+.pola.l{left:150px;top:210px;rotate:-5deg;animation:slideL .9s .2s cubic-bezier(.2,.9,.25,1) forwards,dim .6s 2.9s ease-in forwards}
+.pola.l .ph{background-image:url(assets/stage-scene.webp)}
+.pola.r{right:150px;top:250px;rotate:4deg;animation:slideR .9s 1.2s cubic-bezier(.2,.9,.25,1) forwards,dim .6s 2.9s ease-in forwards}
+.pola.r .ph{background-image:url(assets/crowd-scene.webp);filter:blur(26px) saturate(.55) brightness(.8);transform:scale(1.18)}
+.lock{position:absolute;left:50%;top:44%;width:120px;height:120px;margin:-60px 0 0 -60px;border-radius:50%;background:rgba(25,27,32,.82);display:grid;place-items:center;box-shadow:0 0 0 6px rgba(219,232,115,.9);opacity:0;animation:fade .5s 1.8s forwards,pulse 1.6s 2.3s ease-in-out infinite}
+.lock svg{width:58px;height:58px}
+@keyframes slideL{from{opacity:0;transform:translate(-260px,60px) rotate(-14deg)}to{opacity:1;transform:none}}
+@keyframes slideR{from{opacity:0;transform:translate(260px,60px) rotate(14deg)}to{opacity:1;transform:none}}
+@keyframes dim{to{opacity:.16;filter:blur(3px)}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+/* kinetic lines */
+.line{position:absolute;color:var(--cream);font-weight:600;letter-spacing:.04em;opacity:0}
+.l1{left:150px;top:30px;font-size:74px;display:none}
+.t1{left:150px;bottom:92px;font-size:78px;animation:rise .7s .6s cubic-bezier(.2,.9,.25,1) forwards,out .35s 2.85s ease-in forwards}
+.t2{right:150px;bottom:92px;font-size:78px;text-align:right;animation:rise .7s 1.6s cubic-bezier(.2,.9,.25,1) forwards,out .35s 2.85s ease-in forwards}
+.t3{left:0;right:0;top:0;bottom:0;display:grid;place-items:center;text-align:center;font-size:118px;line-height:1.28;letter-spacing:.05em;animation:rise .75s 3.25s cubic-bezier(.2,.9,.25,1) forwards;z-index:30;text-shadow:0 6px 40px rgba(0,0,0,.6)}
+.t3 .hl::before{background:var(--accent);height:.09em;bottom:-.02em;transform:scaleX(0);animation:sweep .5s 3.95s cubic-bezier(.3,.7,.2,1) forwards}
+.t3 .hl{color:var(--accent)}
+.t3 .hl span{position:relative;z-index:1;color:var(--accent)}
+.t3 small{display:block;font-size:34px;font-weight:400;letter-spacing:.14em;margin-top:26px;color:rgba(244,242,232,.72)}
+@keyframes out{to{opacity:0;transform:translateY(-30px)}}
+.note{position:absolute;right:78px;bottom:58px;font-family:var(--mono);font-size:15px;letter-spacing:.14em;color:rgba(244,242,232,.45);opacity:0;animation:fade .6s .6s forwards;z-index:45}
+</style></head>
+<body>
+<div class="card dark grain">
+  <div class="eyebrow tl">AFTER THE SHOW / 散场以后</div>
+  <div class="eyebrow tr">ONE NIGHT · ONE ANGLE</div>
+  <div class="pola l"><div class="tape"></div><div class="ph"></div><div class="cap"><b>我拍到的 · 舞台</b><span>21:47</span></div></div>
+  <div class="pola r"><div class="tape" style="rotate:5deg"></div><div class="ph"></div><div class="cap"><b>她记住的 · 人海</b><span>21:48</span></div>
+    <div class="lock"><svg viewBox="0 0 24 24" fill="none" stroke="#f4f2e8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div></div>
+  <div class="line t1">你拍到了舞台，</div>
+  <div class="line t2">她记住的是人海。</div>
+  <div class="line t3"><div>散场以后，<br><span class="hl"><span>另一面</span></span>，再也看不到。<small>每个人的相册里，只有自己站的那个角度</small></div></div>
+  <div class="note">示例照片由 AI 生成 · 虚构场景</div>
+  <div class="veil"></div>
+  <div class="vignette"></div>
+  <div class="frame"></div>
+</div>
+</body></html>

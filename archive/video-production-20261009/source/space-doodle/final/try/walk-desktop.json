@@ -1,0 +1,103 @@
+{
+ "kind": "desktop",
+ "base": "http://127.0.0.1:4783/musicSpace/",
+ "steps": [
+  {
+   "name": "ready",
+   "t": "0.7"
+  },
+  {
+   "name": "shot",
+   "t": "3.1",
+   "file": "/tmp/space-doodle/final/try/01-first-screen-desktop.png"
+  },
+  {
+   "name": "shot",
+   "t": "4.7",
+   "file": "/tmp/space-doodle/final/try/02-join-desktop.png"
+  },
+  {
+   "name": "joined",
+   "t": "7.7",
+   "people": [
+    "阿遥·示例 · 可招呼",
+    "小满·示例 · 可招呼",
+    "北屿·示例 · 可招呼",
+    "访客8832 · 我"
+   ]
+  },
+  {
+   "name": "shot",
+   "t": "8.5",
+   "file": "/tmp/space-doodle/final/try/03-room-desktop.png"
+  },
+  {
+   "name": "upload",
+   "t": "9.5",
+   "settled": true,
+   "key": "sure:crowd",
+   "line": "AI 判断：人海",
+   "chosen": "人海一起举手的那一面"
+  },
+  {
+   "name": "shot",
+   "t": "10.4",
+   "file": "/tmp/space-doodle/final/try/04-upload-desktop.png"
+  },
+  {
+   "name": "wall",
+   "t": "12.2",
+   "badge": "同一刻的另一面",
+   "reason": "同一刻 · 21:47，相差不到 1 分钟；你拍人海，TA 拍舞台",
+   "offer": "和 TA 交换这个视角"
+  },
+  {
+   "name": "shot",
+   "t": "16.3",
+   "file": "/tmp/space-doodle/final/try/05-wall-desktop.png"
+  },
+  {
+   "name": "sent",
+   "t": "17.1"
+  },
+  {
+   "name": "accepted",
+   "t": "21.8"
+  },
+  {
+   "name": "shot",
+   "t": "22.6",
+   "file": "/tmp/space-doodle/final/try/06-accepted-desktop.png"
+  },
+  {
+   "name": "waved",
+   "t": "24.3"
+  },
+  {
+   "name": "friend",
+   "t": "25.3",
+   "friends": true
+  },
+  {
+   "name": "shot",
+   "t": "36.3",
+   "file": "/tmp/space-doodle/final/try/07-chat-desktop.png"
+  },
+  {
+   "name": "shot",
+   "t": "38.6",
+   "file": "/tmp/space-doodle/final/try/08-about-desktop.png"
+  },
+  {
+   "name": "done",
+   "t": "38.6"
+  }
+ ],
+ "api": [],
+ "foreign": [],
+ "consoleErrors": [],
+ "pageErrors": [],
+ "failedRequests": [],
+ "requests": 68,
+ "seconds": 38.616
+}

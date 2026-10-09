@@ -1,0 +1,1562 @@
+[
+ {
+  "name": "tabP-820x1180",
+  "viewport": [
+   820,
+   1180
+  ],
+  "became5ms": 10694,
+  "bootMs": 3849,
+  "errors": [],
+  "snaps": [
+   {
+    "label": "lobby",
+    "stage": "lobby",
+    "members": [],
+    "camera": {
+     "type": "PerspectiveCamera",
+     "projection": "perspective",
+     "position": [
+      -1.6520000000000004,
+      3.4240000000000004,
+      12.18377
+     ],
+     "target": [
+      0,
+      1.3,
+      0.5
+     ],
+     "fov": 43,
+     "aspect": 0.7747933884297521
+    },
+    "view": "overview",
+    "moving": false,
+    "canvas": [
+     31,
+     91,
+     750,
+     968
+    ],
+    "aspect": 0.775,
+    "innerWidth": 820,
+    "tags": [
+     {
+      "label": "照片墙",
+      "hidden": true,
+      "x": null
+     }
+    ]
+   },
+   {
+    "label": "room+1500ms",
+    "stage": "room",
+    "members": [
+     "阿遥·示例",
+     "小满·示例",
+     "北屿·示例",
+     "访客4840"
+    ],
+    "camera": {
+     "type": "PerspectiveCamera",
+     "projection": "perspective",
+     "position": [
+      -1.9320000000000004,
+      3.784,
+      14.16407
+     ],
+     "target": [
+      0,
+      1.3,
+      0.5
+     ],
+     "fov": 43,
+     "aspect": 0.7747933884297521
+    },
+    "view": "overview",
+    "moving": false,
+    "canvas": [
+     31,
+     91,
+     750,
+     968
+    ],
+    "aspect": 0.775,
+    "innerWidth": 820,
+    "tags": [
+     {
+      "label": "照片墙",
+      "hidden": true,
+      "x": null
+     },
+     {
+      "label": "阿遥·示例 · 可招呼",
+      "hidden": false,
+      "x": 149
+     },
+     {
+      "label": "小满·示例 · 可招呼",
+      "hidden": false,
+      "x": 337
+     },
+     {
+      "label": "北屿·示例 · 可招呼",
+      "hidden": false,
+      "x": 533
+     },
+     {
+      "label": "访客4840 · 我",
+      "hidden": false,
+      "x": 709
+     }
+    ],
+    "ms": 1504
+   },
+   {
+    "label": "room+4000ms",
+    "stage": "room",
+    "members": [
+     "阿遥·示例",
+     "小满·示例",
+     "北屿·示例",
+     "访客4840"
+    ],
+    "camera": {
+     "type": "PerspectiveCamera",
+     "projection": "perspective",
+     "position": [
+      -1.9320000000000004,
+      3.784,
+      14.16407
+     ],
+     "target": [
+      0,
+      1.3,
+      0.5
+     ],
+     "fov": 43,
+     "aspect": 0.7747933884297521
+    },
+    "view": "overview",
+    "moving": false,
+    "canvas": [
+     31,
+     91,
+     750,
+     968
+    ],
+    "aspect": 0.775,
+    "innerWidth": 820,
+    "tags": [
+     {
+      "label": "照片墙",
+      "hidden": true,
+      "x": null
+     },
+     {
+      "label": "阿遥·示例 · 可招呼",
+      "hidden": false,
+      "x": 149
+     },
+     {
+      "label": "小满·示例 · 可招呼",
+      "hidden": false,
+      "x": 337
+     },
+     {
+      "label": "北屿·示例 · 可招呼",
+      "hidden": false,
+      "x": 533
+     },
+     {
+      "label": "访客4840 · 我",
+      "hidden": false,
+      "x": 709
+     }
+    ],
+    "ms": 4003
+   },
+   {
+    "label": "room+8000ms",
+    "stage": "room",
+    "members": [
+     "阿遥·示例",
+     "小满·示例",
+     "北屿·示例",
+     "访客4840"
+    ],
+    "camera": {
+     "type": "PerspectiveCamera",
+     "projection": "perspective",
+     "position": [
+      -1.9320000000000004,
+      3.784,
+      14.16407
+     ],
+     "target": [
+      0,
+      1.3,
+      0.5
+     ],
+     "fov": 43,
+     "aspect": 0.7747933884297521
+    },
+    "view": "overview",
+    "moving": false,
+    "canvas": [
+     31,
+     91,
+     750,
+     968
+    ],
+    "aspect": 0.775,
+    "innerWidth": 820,
+    "tags": [
+     {
+      "label": "照片墙",
+      "hidden": true,
+      "x": null
+     },
+     {
+      "label": "阿遥·示例 · 可招呼",
+      "hidden": false,
+      "x": 149
+     },
+     {
+      "label": "小满·示例 · 可招呼",
+      "hidden": false,
+      "x": 337
+     },
+     {
+      "label": "北屿·示例 · 可招呼",
+      "hidden": false,
+      "x": 533
+     },
+     {
+      "label": "访客4840 · 我",
+      "hidden": false,
+      "x": 709
+     }
+    ],
+    "ms": 8004
+   },
+   {
+    "label": "room-5people",
+    "stage": "room",
+    "members": [
+     "阿遥·示例",
+     "小满·示例",
+     "北屿·示例",
+     "访客4840",
+     "林间·示例"
+    ],
+    "camera": {
+     "type": "PerspectiveCamera",
+     "projection": "perspective",
+     "position": [
+      -1.9320000000000004,
+      3.784,
+      14.16407
+     ],
+     "target": [
+      0,
+      1.3,
+      0.5
+     ],
+     "fov": 43,
+     "aspect": 0.7747933884297521
+    },
+    "view": "overview",
+    "moving": false,
+    "canvas": [
+     31,
+     91,
+     750,
+     968
+    ],
+    "aspect": 0.775,
+    "innerWidth": 820,
+    "tags": [
+     {
+      "label": "照片墙",
+      "hidden": true,
+      "x": null
+     },
+     {
+      "label": "阿遥·示例 · 可招呼",
+      "hidden": false,
+      "x": 175
+     },
+     {
+      "label": "小满·示例 · 可招呼",
+      "hidden": false,
+      "x": 305
+     },
+     {
+      "label": "北屿·示例 · 可招呼",
+      "hidden": false,
+      "x": 428
+     },
+     {
+      "label": "访客4840 · 我",
+      "hidden": false,
+      "x": 576
+     },
+     {
+      "label": "林间·示例 · 安静",
+      "hidden": false,
+      "x": 709
+     }
+    ],
+    "ms": 12695
+   }
+  ]
+ },
+ {
+  "name": "tabP-834x1194",
+  "viewport": [
+   834,
+   1194
+  ],
+  "became5ms": 10717,
+  "bootMs": 3579,
+  "errors": [],
+  "snaps": [
+   {
+    "label": "lobby",
+    "stage": "lobby",
+    "members": [],
+    "camera": {
+     "type": "PerspectiveCamera",
+     "projection": "perspective",
+     "position": [
+      -1.6520000000000004,
+      3.4240000000000004,
+      12.18377
+     ],
+     "target": [
+      0,
+      1.3,
+      0.5
+     ],
+     "fov": 43,
+     "aspect": 0.7780040733197556
+    },
+    "view": "overview",
+    "moving": false,
+    "canvas": [
+     31,
+     91,
+     764,
+     982
+    ],
+    "aspect": 0.778,
+    "innerWidth": 834,
+    "tags": [
+     {
+      "label": "照片墙",
+      "hidden": true,
+      "x": null
+     }
+    ]
+   },
+   {
+    "label": "room+1500ms",
+    "stage": "room",
+    "members": [
+     "阿遥·示例",
+     "小满·示例",
+     "北屿·示例",
+     "访客7114"
+    ],
+    "camera": {
+     "type": "PerspectiveCamera",
+     "projection": "perspective",
+     "position": [
+      -1.9320000000000004,
+      3.784,
+      14.16407
+     ],
+     "target": [
+      0,
+      1.3,
+      0.5
+     ],
+     "fov": 43,
+     "aspect": 0.7780040733197556
+    },
+    "view": "overview",
+    "moving": false,
+    "canvas": [
+     31,
+     91,
+     764,
+     982
+    ],
+    "aspect": 0.778,
+    "innerWidth": 834,
+    "tags": [
+     {
+      "label": "照片墙",
+      "hidden": true,
+      "x": null
+     },
+     {
+      "label": "阿遥·示例 · 可招呼",
+      "hidden": false,
+      "x": 152
+     },
+     {
+      "label": "小满·示例 · 可招呼",
+      "hidden": false,
+      "x": 343
+     },
+     {
+      "label": "北屿·示例 · 可招呼",
+      "hidden": false,
+      "x": 542
+     },
+     {
+      "label": "访客7114 · 我",
+      "hidden": false,
+      "x": 723
+     }
+    ],
+    "ms": 1506
+   },
+   {
+    "label": "room+4000ms",
+    "stage": "room",
+    "members": [
+     "阿遥·示例",
+     "小满·示例",
+     "北屿·示例",
+     "访客7114"
+    ],
+    "camera": {
+     "type": "PerspectiveCamera",
+     "projection": "perspective",
+     "position": [
+      -1.9320000000000004,
+      3.784,
+      14.16407
+     ],
+     "target": [
+      0,
+      1.3,
+      0.5
+     ],
+     "fov": 43,
+     "aspect": 0.7780040733197556
+    },
+    "view": "overview",
+    "moving": false,
+    "canvas": [
+     31,
+     91,
+     764,
+     982
+    ],
+    "aspect": 0.778,
+    "innerWidth": 834,
+    "tags": [
+     {
+      "label": "照片墙",
+      "hidden": true,
+      "x": null
+     },
+     {
+      "label": "阿遥·示例 · 可招呼",
+      "hidden": false,
+      "x": 152
+     },
+     {
+      "label": "小满·示例 · 可招呼",
+      "hidden": false,
+      "x": 343
+     },
+     {
+      "label": "北屿·示例 · 可招呼",
+      "hidden": false,
+      "x": 542
+     },
+     {
+      "label": "访客7114 · 我",
+      "hidden": false,
+      "x": 723
+     }
+    ],
+    "ms": 4008
+   },
+   {
+    "label": "room+8000ms",
+    "stage": "room",
+    "members": [
+     "阿遥·示例",
+     "小满·示例",
+     "北屿·示例",
+     "访客7114"
+    ],
+    "camera": {
+     "type": "PerspectiveCamera",
+     "projection": "perspective",
+     "position": [
+      -1.9320000000000004,
+      3.784,
+      14.16407
+     ],
+     "target": [
+      0,
+      1.3,
+      0.5
+     ],
+     "fov": 43,
+     "aspect": 0.7780040733197556
+    },
+    "view": "overview",
+    "moving": false,
+    "canvas": [
+     31,
+     91,
+     764,
+     982
+    ],
+    "aspect": 0.778,
+    "innerWidth": 834,
+    "tags": [
+     {
+      "label": "照片墙",
+      "hidden": true,
+      "x": null
+     },
+     {
+      "label": "阿遥·示例 · 可招呼",
+      "hidden": false,
+      "x": 152
+     },
+     {
+      "label": "小满·示例 · 可招呼",
+      "hidden": false,
+      "x": 343
+     },
+     {
+      "label": "北屿·示例 · 可招呼",
+      "hidden": false,
+      "x": 542
+     },
+     {
+      "label": "访客7114 · 我",
+      "hidden": false,
+      "x": 723
+     }
+    ],
+    "ms": 8005
+   },
+   {
+    "label": "room-5people",
+    "stage": "room",
+    "members": [
+     "阿遥·示例",
+     "小满·示例",
+     "北屿·示例",
+     "访客7114",
+     "林间·示例"
+    ],
+    "camera": {
+     "type": "PerspectiveCamera",
+     "projection": "perspective",
+     "position": [
+      -1.9320000000000004,
+      3.784,
+      14.16407
+     ],
+     "target": [
+      0,
+      1.3,
+      0.5
+     ],
+     "fov": 43,
+     "aspect": 0.7780040733197556
+    },
+    "view": "overview",
+    "moving": false,
+    "canvas": [
+     31,
+     91,
+     764,
+     982
+    ],
+    "aspect": 0.778,
+    "innerWidth": 834,
+    "tags": [
+     {
+      "label": "照片墙",
+      "hidden": true,
+      "x": null
+     },
+     {
+      "label": "阿遥·示例 · 可招呼",
+      "hidden": false,
+      "x": 178
+     },
+     {
+      "label": "小满·示例 · 可招呼",
+      "hidden": false,
+      "x": 310
+     },
+     {
+      "label": "北屿·示例 · 可招呼",
+      "hidden": false,
+      "x": 435
+     },
+     {
+      "label": "访客7114 · 我",
+      "hidden": false,
+      "x": 585
+     },
+     {
+      "label": "林间·示例 · 安静",
+      "hidden": false,
+      "x": 723
+     }
+    ],
+    "ms": 12719
+   }
+  ]
+ },
+ {
+  "name": "tabP-744x1133",
+  "viewport": [
+   744,
+   1133
+  ],
+  "became5ms": 10684,
+  "bootMs": 3534,
+  "errors": [],
+  "snaps": [
+   {
+    "label": "lobby",
+    "stage": "lobby",
+    "members": [],
+    "camera": {
+     "type": "PerspectiveCamera",
+     "projection": "perspective",
+     "position": [
+      -1.6520000000000004,
+      3.4240000000000004,
+      12.18377
+     ],
+     "target": [
+      0,
+      1.3,
+      0.5
+     ],
+     "fov": 43,
+     "aspect": 0.7318132464712269
+    },
+    "view": "overview",
+    "moving": false,
+    "canvas": [
+     31,
+     91,
+     674,
+     921
+    ],
+    "aspect": 0.732,
+    "innerWidth": 744,
+    "tags": [
+     {
+      "label": "照片墙",
+      "hidden": true,
+      "x": null
+     }
+    ]
+   },
+   {
+    "label": "room+1500ms",
+    "stage": "room",
+    "members": [
+     "阿遥·示例",
+     "小满·示例",
+     "北屿·示例",
+     "访客7068"
+    ],
+    "camera": {
+     "type": "PerspectiveCamera",
+     "projection": "perspective",
+     "position": [
+      -1.9320000000000004,
+      3.784,
+      14.16407
+     ],
+     "target": [
+      0,
+      1.3,
+      0.5
+     ],
+     "fov": 43,
+     "aspect": 0.7318132464712269
+    },
+    "view": "overview",
+    "moving": false,
+    "canvas": [
+     31,
+     91,
+     674,
+     921
+    ],
+    "aspect": 0.732,
+    "innerWidth": 744,
+    "tags": [
+     {
+      "label": "照片墙",
+      "hidden": true,
+      "x": null
+     },
+     {
+      "label": "阿遥·示例 · 可招呼",
+      "hidden": false,
+      "x": 123
+     },
+     {
+      "label": "小满·示例 · 可招呼",
+      "hidden": false,
+      "x": 303
+     },
+     {
+      "label": "北屿·示例 · 可招呼",
+      "hidden": false,
+      "x": 489
+     },
+     {
+      "label": "访客7068 · 我",
+      "hidden": true,
+      "x": null
+     }
+    ],
+    "ms": 1505
+   },
+   {
+    "label": "room+4000ms",
+    "stage": "room",
+    "members": [
+     "阿遥·示例",
+     "小满·示例",
+     "北屿·示例",
+     "访客7068"
+    ],
+    "camera": {
+     "type": "PerspectiveCamera",
+     "projection": "perspective",
+     "position": [
+      -1.9320000000000004,
+      3.784,
+      14.16407
+     ],
+     "target": [
+      0,
+      1.3,
+      0.5
+     ],
+     "fov": 43,
+     "aspect": 0.7318132464712269
+    },
+    "view": "overview",
+    "moving": false,
+    "canvas": [
+     31,
+     91,
+     674,
+     921
+    ],
+    "aspect": 0.732,
+    "innerWidth": 744,
+    "tags": [
+     {
+      "label": "照片墙",
+      "hidden": true,
+      "x": null
+     },
+     {
+      "label": "阿遥·示例 · 可招呼",
+      "hidden": false,
+      "x": 123
+     },
+     {
+      "label": "小满·示例 · 可招呼",
+      "hidden": false,
+      "x": 303
+     },
+     {
+      "label": "北屿·示例 · 可招呼",
+      "hidden": false,
+      "x": 489
+     },
+     {
+      "label": "访客7068 · 我",
+      "hidden": true,
+      "x": null
+     }
+    ],
+    "ms": 4002
+   },
+   {
+    "label": "room+8000ms",
+    "stage": "room",
+    "members": [
+     "阿遥·示例",
+     "小满·示例",
+     "北屿·示例",
+     "访客7068"
+    ],
+    "camera": {
+     "type": "PerspectiveCamera",
+     "projection": "perspective",
+     "position": [
+      -1.9320000000000004,
+      3.784,
+      14.16407
+     ],
+     "target": [
+      0,
+      1.3,
+      0.5
+     ],
+     "fov": 43,
+     "aspect": 0.7318132464712269
+    },
+    "view": "overview",
+    "moving": false,
+    "canvas": [
+     31,
+     91,
+     674,
+     921
+    ],
+    "aspect": 0.732,
+    "innerWidth": 744,
+    "tags": [
+     {
+      "label": "照片墙",
+      "hidden": true,
+      "x": null
+     },
+     {
+      "label": "阿遥·示例 · 可招呼",
+      "hidden": false,
+      "x": 123
+     },
+     {
+      "label": "小满·示例 · 可招呼",
+      "hidden": false,
+      "x": 303
+     },
+     {
+      "label": "北屿·示例 · 可招呼",
+      "hidden": false,
+      "x": 489
+     },
+     {
+      "label": "访客7068 · 我",
+      "hidden": true,
+      "x": null
+     }
+    ],
+    "ms": 8005
+   },
+   {
+    "label": "room-5people",
+    "stage": "room",
+    "members": [
+     "阿遥·示例",
+     "小满·示例",
+     "北屿·示例",
+     "访客7068",
+     "林间·示例"
+    ],
+    "camera": {
+     "type": "PerspectiveCamera",
+     "projection": "perspective",
+     "position": [
+      -1.9320000000000004,
+      3.784,
+      14.16407
+     ],
+     "target": [
+      0,
+      1.3,
+      0.5
+     ],
+     "fov": 43,
+     "aspect": 0.7318132464712269
+    },
+    "view": "overview",
+    "moving": false,
+    "canvas": [
+     31,
+     91,
+     674,
+     921
+    ],
+    "aspect": 0.732,
+    "innerWidth": 744,
+    "tags": [
+     {
+      "label": "照片墙",
+      "hidden": true,
+      "x": null
+     },
+     {
+      "label": "阿遥·示例 · 可招呼",
+      "hidden": false,
+      "x": 148
+     },
+     {
+      "label": "小满·示例 · 可招呼",
+      "hidden": false,
+      "x": 272
+     },
+     {
+      "label": "北屿·示例 · 可招呼",
+      "hidden": false,
+      "x": 389
+     },
+     {
+      "label": "访客7068 · 我",
+      "hidden": false,
+      "x": 529
+     },
+     {
+      "label": "林间·示例 · 安静",
+      "hidden": false,
+      "x": 653
+     }
+    ],
+    "ms": 12690
+   }
+  ]
+ },
+ {
+  "name": "tabP-810x1080",
+  "viewport": [
+   810,
+   1080
+  ],
+  "became5ms": 10661,
+  "bootMs": 3520,
+  "errors": [],
+  "snaps": [
+   {
+    "label": "lobby",
+    "stage": "lobby",
+    "members": [],
+    "camera": {
+     "type": "PerspectiveCamera",
+     "projection": "perspective",
+     "position": [
+      -5.324400000000001,
+      4.3100000000000005,
+      10.396432
+     ],
+     "target": [
+      0,
+      2.15,
+      1
+     ],
+     "fov": 43,
+     "aspect": 0.8525345622119815
+    },
+    "view": "overview",
+    "moving": false,
+    "canvas": [
+     31,
+     91,
+     740,
+     868
+    ],
+    "aspect": 0.853,
+    "innerWidth": 810,
+    "tags": [
+     {
+      "label": "照片墙",
+      "hidden": true,
+      "x": null
+     }
+    ]
+   },
+   {
+    "label": "room+1500ms",
+    "stage": "room",
+    "members": [
+     "阿遥·示例",
+     "小满·示例",
+     "北屿·示例",
+     "访客2377"
+    ],
+    "camera": {
+     "type": "PerspectiveCamera",
+     "projection": "perspective",
+     "position": [
+      -5.324400000000001,
+      4.3100000000000005,
+      10.396432
+     ],
+     "target": [
+      0,
+      2.15,
+      1
+     ],
+     "fov": 43,
+     "aspect": 0.8525345622119815
+    },
+    "view": "overview",
+    "moving": false,
+    "canvas": [
+     31,
+     91,
+     740,
+     868
+    ],
+    "aspect": 0.853,
+    "innerWidth": 810,
+    "tags": [
+     {
+      "label": "照片墙",
+      "hidden": false,
+      "x": 691
+     },
+     {
+      "label": "阿遥·示例 · 可招呼",
+      "hidden": false,
+      "x": 103
+     },
+     {
+      "label": "小满·示例 · 可招呼",
+      "hidden": false,
+      "x": 342
+     },
+     {
+      "label": "北屿·示例 · 可招呼",
+      "hidden": false,
+      "x": 581
+     },
+     {
+      "label": "访客2377 · 我",
+      "hidden": true,
+      "x": null
+     }
+    ],
+    "ms": 1507
+   },
+   {
+    "label": "room+4000ms",
+    "stage": "room",
+    "members": [
+     "阿遥·示例",
+     "小满·示例",
+     "北屿·示例",
+     "访客2377"
+    ],
+    "camera": {
+     "type": "PerspectiveCamera",
+     "projection": "perspective",
+     "position": [
+      -5.324400000000001,
+      4.3100000000000005,
+      10.396432
+     ],
+     "target": [
+      0,
+      2.15,
+      1
+     ],
+     "fov": 43,
+     "aspect": 0.8525345622119815
+    },
+    "view": "overview",
+    "moving": false,
+    "canvas": [
+     31,
+     91,
+     740,
+     868
+    ],
+    "aspect": 0.853,
+    "innerWidth": 810,
+    "tags": [
+     {
+      "label": "照片墙",
+      "hidden": false,
+      "x": 691
+     },
+     {
+      "label": "阿遥·示例 · 可招呼",
+      "hidden": false,
+      "x": 103
+     },
+     {
+      "label": "小满·示例 · 可招呼",
+      "hidden": false,
+      "x": 342
+     },
+     {
+      "label": "北屿·示例 · 可招呼",
+      "hidden": false,
+      "x": 581
+     },
+     {
+      "label": "访客2377 · 我",
+      "hidden": true,
+      "x": null
+     }
+    ],
+    "ms": 4005
+   },
+   {
+    "label": "room+8000ms",
+    "stage": "room",
+    "members": [
+     "阿遥·示例",
+     "小满·示例",
+     "北屿·示例",
+     "访客2377"
+    ],
+    "camera": {
+     "type": "PerspectiveCamera",
+     "projection": "perspective",
+     "position": [
+      -5.324400000000001,
+      4.3100000000000005,
+      10.396432
+     ],
+     "target": [
+      0,
+      2.15,
+      1
+     ],
+     "fov": 43,
+     "aspect": 0.8525345622119815
+    },
+    "view": "overview",
+    "moving": false,
+    "canvas": [
+     31,
+     91,
+     740,
+     868
+    ],
+    "aspect": 0.853,
+    "innerWidth": 810,
+    "tags": [
+     {
+      "label": "照片墙",
+      "hidden": false,
+      "x": 691
+     },
+     {
+      "label": "阿遥·示例 · 可招呼",
+      "hidden": false,
+      "x": 103
+     },
+     {
+      "label": "小满·示例 · 可招呼",
+      "hidden": false,
+      "x": 342
+     },
+     {
+      "label": "北屿·示例 · 可招呼",
+      "hidden": false,
+      "x": 581
+     },
+     {
+      "label": "访客2377 · 我",
+      "hidden": true,
+      "x": null
+     }
+    ],
+    "ms": 8003
+   },
+   {
+    "label": "room-5people",
+    "stage": "room",
+    "members": [
+     "阿遥·示例",
+     "小满·示例",
+     "北屿·示例",
+     "访客2377",
+     "林间·示例"
+    ],
+    "camera": {
+     "type": "PerspectiveCamera",
+     "projection": "perspective",
+     "position": [
+      -7.0992,
+      5.03,
+      13.528576000000001
+     ],
+     "target": [
+      0,
+      2.15,
+      1
+     ],
+     "fov": 43,
+     "aspect": 0.8525345622119815
+    },
+    "view": "overview",
+    "moving": false,
+    "canvas": [
+     31,
+     91,
+     740,
+     868
+    ],
+    "aspect": 0.853,
+    "innerWidth": 810,
+    "tags": [
+     {
+      "label": "照片墙",
+      "hidden": false,
+      "x": 638
+     },
+     {
+      "label": "阿遥·示例 · 可招呼",
+      "hidden": false,
+      "x": 208
+     },
+     {
+      "label": "小满·示例 · 可招呼",
+      "hidden": false,
+      "x": 328
+     },
+     {
+      "label": "北屿·示例 · 可招呼",
+      "hidden": false,
+      "x": 445
+     },
+     {
+      "label": "访客2377 · 我",
+      "hidden": false,
+      "x": 559
+     },
+     {
+      "label": "林间·示例 · 安静",
+      "hidden": false,
+      "x": 680
+     }
+    ],
+    "ms": 12666
+   }
+  ]
+ },
+ {
+  "name": "tabP-1024x1366",
+  "viewport": [
+   1024,
+   1366
+  ],
+  "became5ms": 10679,
+  "bootMs": 3506,
+  "errors": [],
+  "snaps": [
+   {
+    "label": "lobby",
+    "stage": "lobby",
+    "members": [],
+    "camera": {
+     "type": "PerspectiveCamera",
+     "projection": "perspective",
+     "position": [
+      -1.6520000000000004,
+      3.4240000000000004,
+      12.18377
+     ],
+     "target": [
+      0,
+      1.3,
+      0.5
+     ],
+     "fov": 43,
+     "aspect": 0.8266897746967071
+    },
+    "view": "overview",
+    "moving": false,
+    "canvas": [
+     31,
+     91,
+     954,
+     1154
+    ],
+    "aspect": 0.827,
+    "innerWidth": 1024,
+    "tags": [
+     {
+      "label": "照片墙",
+      "hidden": true,
+      "x": null
+     }
+    ]
+   },
+   {
+    "label": "room+1500ms",
+    "stage": "room",
+    "members": [
+     "阿遥·示例",
+     "小满·示例",
+     "北屿·示例",
+     "访客1185"
+    ],
+    "camera": {
+     "type": "PerspectiveCamera",
+     "projection": "perspective",
+     "position": [
+      -1.9320000000000004,
+      3.784,
+      14.16407
+     ],
+     "target": [
+      0,
+      1.3,
+      0.5
+     ],
+     "fov": 43,
+     "aspect": 0.8266897746967071
+    },
+    "view": "overview",
+    "moving": false,
+    "canvas": [
+     31,
+     91,
+     954,
+     1154
+    ],
+    "aspect": 0.827,
+    "innerWidth": 1024,
+    "tags": [
+     {
+      "label": "照片墙",
+      "hidden": true,
+      "x": null
+     },
+     {
+      "label": "阿遥·示例 · 可招呼",
+      "hidden": false,
+      "x": 202
+     },
+     {
+      "label": "小满·示例 · 可招呼",
+      "hidden": false,
+      "x": 426
+     },
+     {
+      "label": "北屿·示例 · 可招呼",
+      "hidden": false,
+      "x": 660
+     },
+     {
+      "label": "访客1185 · 我",
+      "hidden": false,
+      "x": 913
+     }
+    ],
+    "ms": 1505
+   },
+   {
+    "label": "room+4000ms",
+    "stage": "room",
+    "members": [
+     "阿遥·示例",
+     "小满·示例",
+     "北屿·示例",
+     "访客1185"
+    ],
+    "camera": {
+     "type": "PerspectiveCamera",
+     "projection": "perspective",
+     "position": [
+      -1.9320000000000004,
+      3.784,
+      14.16407
+     ],
+     "target": [
+      0,
+      1.3,
+      0.5
+     ],
+     "fov": 43,
+     "aspect": 0.8266897746967071
+    },
+    "view": "overview",
+    "moving": false,
+    "canvas": [
+     31,
+     91,
+     954,
+     1154
+    ],
+    "aspect": 0.827,
+    "innerWidth": 1024,
+    "tags": [
+     {
+      "label": "照片墙",
+      "hidden": true,
+      "x": null
+     },
+     {
+      "label": "阿遥·示例 · 可招呼",
+      "hidden": false,
+      "x": 202
+     },
+     {
+      "label": "小满·示例 · 可招呼",
+      "hidden": false,
+      "x": 426
+     },
+     {
+      "label": "北屿·示例 · 可招呼",
+      "hidden": false,
+      "x": 660
+     },
+     {
+      "label": "访客1185 · 我",
+      "hidden": false,
+      "x": 913
+     }
+    ],
+    "ms": 4002
+   },
+   {
+    "label": "room+8000ms",
+    "stage": "room",
+    "members": [
+     "阿遥·示例",
+     "小满·示例",
+     "北屿·示例",
+     "访客1185"
+    ],
+    "camera": {
+     "type": "PerspectiveCamera",
+     "projection": "perspective",
+     "position": [
+      -1.9320000000000004,
+      3.784,
+      14.16407
+     ],
+     "target": [
+      0,
+      1.3,
+      0.5
+     ],
+     "fov": 43,
+     "aspect": 0.8266897746967071
+    },
+    "view": "overview",
+    "moving": false,
+    "canvas": [
+     31,
+     91,
+     954,
+     1154
+    ],
+    "aspect": 0.827,
+    "innerWidth": 1024,
+    "tags": [
+     {
+      "label": "照片墙",
+      "hidden": true,
+      "x": null
+     },
+     {
+      "label": "阿遥·示例 · 可招呼",
+      "hidden": false,
+      "x": 202
+     },
+     {
+      "label": "小满·示例 · 可招呼",
+      "hidden": false,
+      "x": 426
+     },
+     {
+      "label": "北屿·示例 · 可招呼",
+      "hidden": false,
+      "x": 660
+     },
+     {
+      "label": "访客1185 · 我",
+      "hidden": false,
+      "x": 913
+     }
+    ],
+    "ms": 8004
+   },
+   {
+    "label": "room-5people",
+    "stage": "room",
+    "members": [
+     "阿遥·示例",
+     "小满·示例",
+     "北屿·示例",
+     "访客1185",
+     "林间·示例"
+    ],
+    "camera": {
+     "type": "PerspectiveCamera",
+     "projection": "perspective",
+     "position": [
+      -1.9320000000000004,
+      3.784,
+      14.16407
+     ],
+     "target": [
+      0,
+      1.3,
+      0.5
+     ],
+     "fov": 43,
+     "aspect": 0.8266897746967071
+    },
+    "view": "overview",
+    "moving": false,
+    "canvas": [
+     31,
+     91,
+     954,
+     1154
+    ],
+    "aspect": 0.827,
+    "innerWidth": 1024,
+    "tags": [
+     {
+      "label": "照片墙",
+      "hidden": true,
+      "x": null
+     },
+     {
+      "label": "阿遥·示例 · 可招呼",
+      "hidden": false,
+      "x": 232
+     },
+     {
+      "label": "小满·示例 · 可招呼",
+      "hidden": false,
+      "x": 387
+     },
+     {
+      "label": "北屿·示例 · 可招呼",
+      "hidden": false,
+      "x": 534
+     },
+     {
+      "label": "访客1185 · 我",
+      "hidden": false,
+      "x": 710
+     },
+     {
+      "label": "林间·示例 · 安静",
+      "hidden": false,
+      "x": 893
+     }
+    ],
+    "ms": 12685
+   }
+  ]
+ }
+]

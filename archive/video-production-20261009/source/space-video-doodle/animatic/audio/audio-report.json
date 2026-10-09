@@ -1,0 +1,51 @@
+{
+ "edit": {
+  "seg1": [
+   109.266,
+   120.974
+  ],
+  "seg2_from": 136.584,
+  "splice_at_s": 11.708
+ },
+ "duration": 28.617073170731707,
+ "sfx_counts": {
+  "slap": 13,
+  "stamp": 9,
+  "pop": 24,
+  "whoosh": 3,
+  "impact": 10,
+  "squeak": 11,
+  "swap": 2,
+  "riser": 1,
+  "boom": 2,
+  "click": 1,
+  "heart": 1
+ },
+ "sfx_vs_music_LU": -9.4,
+ "music": {
+  "gain_db": 4.8,
+  "before": {
+   "I": -20.6,
+   "TP": -1.7,
+   "LRA": 3.9
+  },
+  "after": {
+   "I": -16.0,
+   "TP": -1.6,
+   "LRA": 4.3
+  }
+ },
+ "mix": {
+  "gain_db": 4.5,
+  "before": {
+   "I": -20.3,
+   "TP": -1.4,
+   "LRA": 3.7
+  },
+  "after": {
+   "I": -16.0,
+   "TP": -1.6,
+   "LRA": 4.1
+  }
+ }
+}

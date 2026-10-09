@@ -1,0 +1,397 @@
+{
+ "video": "/private/tmp/space-video-doodle/prod/out/acts/act-A0-A1.flipping-in-b.mp4",
+ "range_s": [
+  0,
+  39.03333333333333
+ ],
+ "full": false,
+ "overall": "WARN",
+ "checks": [
+  {
+   "check": "container.video",
+   "status": "PASS",
+   "msg": "h264 High 1920x1080 60/1 yuv420p bt709/bt709/bt709/tv"
+  },
+  {
+   "check": "container.audio",
+   "status": "PASS",
+   "msg": "aac LC 48000 Hz 2 ch 256 kb/s"
+  },
+  {
+   "check": "duration",
+   "status": "PASS",
+   "msg": "39.033 s (range 39.033 s)",
+   "seconds": 39.033333
+  },
+  {
+   "check": "size",
+   "status": "PASS",
+   "msg": "53.6 MB (11.0 Mb/s)",
+   "mb": 53.6
+  },
+  {
+   "check": "loudness",
+   "status": "PASS",
+   "msg": "I -17.5 LUFS (target -16), LRA 4.3 LU (act excerpt: informational; the full cut is normalised)",
+   "I": -17.5,
+   "LRA": 4.3
+  },
+  {
+   "check": "true_peak",
+   "status": "PASS",
+   "msg": "-1.4 dBTP (limit -1.0)",
+   "TP": -1.4
+  },
+  {
+   "check": "silence",
+   "status": "PASS",
+   "msg": "0 silent stretches over 0.8 s"
+  },
+  {
+   "check": "frozen",
+   "status": "PASS",
+   "msg": "0 frozen stretches over 2.5 s"
+  },
+  {
+   "check": "black",
+   "status": "PASS",
+   "msg": "0 black stretches over 0.4 s"
+  },
+  {
+   "check": "motion",
+   "status": "PASS",
+   "msg": "longest low-motion stretch 0.08 s at 38.90 s (mean |dI| < 0.15 on 160x90), mean motion 1.86",
+   "longest_s": 0.08,
+   "at_s": 38.9
+  },
+  {
+   "check": "event_gaps",
+   "status": "PASS",
+   "msg": "108 visual events, 2.77/s; longest gap 1.46 s after 33.17 s (limit 2.5)",
+   "longest_gap_s": 1.463
+  },
+  {
+   "check": "beat_alignment",
+   "status": "PASS",
+   "msg": "108/108 visual events on the 16th grid (<= half a frame), 106/108 on 8ths; frames quantise by <= 8.3 ms",
+   "off_grid": []
+  },
+  {
+   "check": "reading_time",
+   "status": "WARN",
+   "msg": "30 lines, measured (geometry samples every 50 ms); titles/notes failing 0, labels/fine short 1",
+   "failing": [],
+   "short_labels": [
+    "「留念」 label 0.60s < 0.80s"
+   ],
+   "lines": [
+    {
+     "text": "进场",
+     "kind": "label",
+     "units": 2,
+     "on_s": 7.2,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "换装",
+     "kind": "label",
+     "units": 2,
+     "on_s": 6.2,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "上墙",
+     "kind": "label",
+     "units": 2,
+     "on_s": 5.25,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "视角",
+     "kind": "label",
+     "units": 2,
+     "on_s": 4.25,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "同一刻",
+     "kind": "label",
+     "units": 3,
+     "on_s": 3.3,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "交换",
+     "kind": "label",
+     "units": 2,
+     "on_s": 2.3,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "招手",
+     "kind": "label",
+     "units": 2,
+     "on_s": 1.35,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "留念",
+     "kind": "label",
+     "units": 2,
+     "on_s": 0.6,
+     "need_s": 0.8,
+     "ok": false
+    },
+    {
+     "text": "同一刻，",
+     "kind": "title",
+     "units": 3,
+     "on_s": 5.7,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "另一面。",
+     "kind": "title",
+     "units": 3,
+     "on_s": 4.75,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "照片为 AI 生成的示例图",
+     "kind": "fine",
+     "units": 10,
+     "on_s": 23.3,
+     "need_s": 2.5,
+     "ok": true
+    },
+    {
+     "text": "MUSIC SPACE",
+     "kind": "label",
+     "units": 2,
+     "on_s": 3.9,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "和同场的人，交换彼此的视角。",
+     "kind": "title",
+     "units": 12,
+     "on_s": 3.45,
+     "need_s": 3.0,
+     "ok": true
+    },
+    {
+     "text": "散场了。",
+     "kind": "title",
+     "units": 3,
+     "on_s": 2.0,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "你拍了舞台，",
+     "kind": "title",
+     "units": 5,
+     "on_s": 3.0,
+     "need_s": 1.25,
+     "ok": true
+    },
+    {
+     "text": "TA 拍了人海。",
+     "kind": "title",
+     "units": 5,
+     "on_s": 2.0,
+     "need_s": 1.25,
+     "ok": true
+    },
+    {
+     "text": "你拍的",
+     "kind": "label",
+     "units": 3,
+     "on_s": 4.85,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "TA 拍的",
+     "kind": "label",
+     "units": 3,
+     "on_s": 4.65,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "每部手机里，",
+     "kind": "title",
+     "units": 5,
+     "on_s": 3.85,
+     "need_s": 1.25,
+     "ok": true
+    },
+    {
+     "text": "只有自己那一面。",
+     "kind": "title",
+     "units": 7,
+     "on_s": 2.9,
+     "need_s": 1.75,
+     "ok": true
+    },
+    {
+     "text": "最好看的那张你，",
+     "kind": "title",
+     "units": 7,
+     "on_s": 3.95,
+     "need_s": 1.75,
+     "ok": true
+    },
+    {
+     "text": "你！",
+     "kind": "note",
+     "units": 1,
+     "on_s": 1.1,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "在陌生人的手机里。",
+     "kind": "title",
+     "units": 8,
+     "on_s": 2.95,
+     "need_s": 2.0,
+     "ok": true
+    },
+    {
+     "text": "陌生人的手机",
+     "kind": "label",
+     "units": 6,
+     "on_s": 5.6,
+     "need_s": 1.5,
+     "ok": true
+    },
+    {
+     "text": "散场后，",
+     "kind": "title",
+     "units": 3,
+     "on_s": 2.9,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "找不回来。",
+     "kind": "title",
+     "units": 4,
+     "on_s": 1.9,
+     "need_s": 1.0,
+     "ok": true
+    },
+    {
+     "text": "站在你身边的人，",
+     "kind": "title",
+     "units": 7,
+     "on_s": 3.0,
+     "need_s": 1.75,
+     "ok": true
+    },
+    {
+     "text": "还没认识，就走散了。",
+     "kind": "title",
+     "units": 8,
+     "on_s": 3.0,
+     "need_s": 2.0,
+     "ok": true
+    },
+    {
+     "text": "要是……",
+     "kind": "title",
+     "units": 2,
+     "on_s": 2.0,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "能把那一面，换回来？",
+     "kind": "title",
+     "units": 8,
+     "on_s": 2.85,
+     "need_s": 2.0,
+     "ok": true
+    }
+   ]
+  },
+  {
+   "check": "safe_area",
+   "status": "WARN",
+   "msg": "0 texts outside the 5% title-safe area for > 0.5 s, 5 only briefly (entrances, camera moves)",
+   "sustained": [],
+   "brief": [
+    "「每部手机里，」 0.15s from 23.30s box [73, 749, 577, 850]",
+    "「只有自己那一面。」 0.15s from 23.30s box [73, 852, 945, 1019]",
+    "「你拍的」 0.10s from 23.35s box [-54, 650, 69, 712]",
+    "「散场后，」 0.15s from 31.10s box [80, 720, 416, 820]",
+    "「找不回来。」 0.15s from 31.10s box [80, 831, 777, 1018]"
+   ]
+  },
+  {
+   "check": "glyphs",
+   "status": "PASS",
+   "msg": "118 font/character pairs; 0 drawn by a system font",
+   "fonts": {
+    "hand": [
+     "Doodle Hand"
+    ],
+    "marker": [
+     "Doodle Marker"
+    ],
+    "display": [
+     "Doodle Display",
+     "ZCOOL QingKe HuangYou"
+    ],
+    "logo": [
+     "Luckiest Guy"
+    ],
+    "note": [
+     "Long Cang"
+    ]
+   },
+   "fallback": []
+  },
+  {
+   "check": "qr",
+   "status": "PASS",
+   "msg": "no end card in range (not applicable)"
+  },
+  {
+   "check": "placeholders",
+   "status": "WARN",
+   "msg": "1 placeholder assets (capture pass pending)",
+   "placeholders": [
+    "D-01 -> /tmp/space-video-doodle/script/probe/shots/d01-landing.png"
+   ]
+  },
+  {
+   "check": "scene_warnings",
+   "status": "PASS",
+   "msg": "0 warnings"
+  },
+  {
+   "check": "sfx_level",
+   "status": "PASS",
+   "msg": "SFX -9.1 LU vs music (target -8..-10), 133 sounds {'slap': 14, 'stamp': 8, 'tape': 1, 'pop': 17, 'whoosh': 6, 'impact': 4, 'typetick': 51, 'zip': 2, 'squeak': 3, 'highlighter': 1, 'slam': 8, 'scribble': 2, 'swish': 9, 'pencil': 4, 'click': 1, 'boop': 1, 'riser': 1}"
+  },
+  {
+   "check": "script_lines",
+   "status": "PASS",
+   "msg": "26/26 SCRIPT lines in range are on screen",
+   "missing": []
+  }
+ ]
+}

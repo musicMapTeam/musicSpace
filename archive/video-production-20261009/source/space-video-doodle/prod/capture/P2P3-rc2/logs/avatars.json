@@ -1,0 +1,66 @@
+{
+ "base": "http://127.0.0.1:48741/musicSpace/",
+ "clock": "2026-10-08T22:40:00+08:00",
+ "references": [
+  "yao",
+  "man",
+  "bei"
+ ],
+ "rebuilt": {
+  "yao": {
+   "layers": "legs:front shoes:2 bottom:3 stance:undefined torso:2 arms:wave top:3 head:undefined hair-back:4 skin:2 face:quarter features:smile eyewear:0 hair-front:4 accessory:none"
+  },
+  "man": {
+   "layers": "legs:front shoes:2 bottom:2 stance:undefined torso:1 arms:sing top:2 head:undefined hair-back:5 skin:1 face:quarter features:wink eyewear:2 hair-front:5 accessory:headphones gesture-prop:microphone"
+  },
+  "bei": {
+   "layers": "legs:front shoes:0 bottom:1 stance:undefined torso:3 arms:front top:1 head:undefined hair-back:0 skin:3 face:quarter features:focused eyewear:0 hair-front:0 accessory:cap"
+  },
+  "lin": {
+   "layers": "legs:front shoes:0 bottom:5 stance:undefined torso:0 arms:front top:5 head:undefined hair-back:3 skin:0 face:quarter features:neutral eyewear:2 hair-front:3 accessory:none"
+  }
+ },
+ "validation": {
+  "yao": "identical to the chat-room drawing",
+  "man": "identical to the chat-room drawing",
+  "bei": "identical to the chat-room drawing"
+ },
+ "files": [
+  "svg/visitor-aning-shizhen-front.svg",
+  "svg/visitor-aning-shizhen-side.svg",
+  "svg/visitor-aning-shizhen-back.svg",
+  "svg/visitor-aning-shizhen-quarter.svg",
+  "svg/cast-yao-front.svg",
+  "svg/cast-yao-side.svg",
+  "svg/cast-yao-back.svg",
+  "svg/cast-yao-quarter.svg",
+  "svg/cast-man-front.svg",
+  "svg/cast-man-side.svg",
+  "svg/cast-man-back.svg",
+  "svg/cast-man-quarter.svg",
+  "svg/cast-bei-front.svg",
+  "svg/cast-bei-side.svg",
+  "svg/cast-bei-back.svg",
+  "svg/cast-bei-quarter.svg",
+  "svg/cast-lin-front.svg",
+  "svg/cast-lin-side.svg",
+  "svg/cast-lin-back.svg",
+  "svg/cast-lin-quarter.svg"
+ ],
+ "audits": [
+  {
+   "at": "chat room",
+   "banned": [],
+   "watch": [],
+   "chars": 435
+  },
+  {
+   "at": "wardrobe",
+   "banned": [],
+   "watch": [],
+   "chars": 637
+  }
+ ],
+ "visitorLayers": "legs:front shoes:3 bottom:4 stance:undefined torso:0 arms:front top:4 head:undefined hair-back:2 skin:0 face:quarter features:neutral eyewear:3 hair-front:2 accessory:none",
+ "errors": []
+}

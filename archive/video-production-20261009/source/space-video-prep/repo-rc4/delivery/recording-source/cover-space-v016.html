@@ -1,0 +1,92 @@
+<!doctype html>
+<!-- Music Space 0.16 参赛封面源（1920×1080）。三张图都是 Music Space 0.16 构建的真实截图，直接引用仓库里的文件：
+     home = docs/assets/themes/space-home-desktop-v016.png（1440×900，首页）
+     pairing = docs/assets/themes/space-pairing-desktop-v016.png（1440×900，只裁出「同一刻的另一面」理由条）
+     ticket = docs/assets/themes/space-ticket-v016.png（应用「保存双联图片」实际导出的 1600×1800 票根）
+     照片为项目 AI 生成的示例图。用仓库根目录起一个静态服务（如 python3 -m http.server 4473），浏览器以 1920×1080 打开
+     /delivery/recording-source/cover-space-v016.html 后截图即得 delivery/cover.png；截图前移除浏览器扩展注入的节点。 -->
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Music Space · 同一刻，另一面 · 参赛封面 0.16</title>
+<style>
+  :root {
+    --ink: #fff3dc; --ink-soft: #eadff2; --muted: #cbbfd9; --amber: #ffc27a; --pink: #f4a7c3;
+    --font: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    --serif: "Songti SC", "Noto Serif SC", "Source Han Serif SC", "STSong", "SimSun", serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1920px; height: 1080px; overflow: hidden; }
+  body {
+    position: relative; font-family: var(--font); color: var(--ink);
+    background:
+      radial-gradient(1200px 520px at 18% 112%, #e0907e66, transparent 70%),
+      radial-gradient(900px 600px at 78% 52%, #ffc27a26, transparent 70%),
+      linear-gradient(180deg, #11143a 0%, #1b1d48 46%, #2a2556 72%, #43305e 100%);
+  }
+  body::before {
+    content: ""; position: absolute; inset: 0; opacity: .2; pointer-events: none;
+    background: repeating-radial-gradient(circle at 74% 50%, transparent 0 46px, #ffffff14 47px, transparent 48px);
+  }
+  .lights { position: absolute; left: 0; top: 0; width: 1920px; height: 150px; }
+  .brand { position: absolute; left: 110px; top: 118px; display: flex; align-items: center; gap: 20px; }
+  .brand svg { width: 62px; height: 62px; }
+  .brand b { display: block; font-size: 48px; font-weight: 800; letter-spacing: .03em; line-height: 1.05; }
+  .brand small { display: block; margin-top: 4px; font-size: 21px; color: var(--muted); letter-spacing: .06em; }
+  .copy { position: absolute; left: 110px; top: 280px; width: 620px; }
+  .kicker { display: flex; align-items: center; gap: 14px; font-size: 26px; font-weight: 700; color: var(--amber); letter-spacing: .08em; }
+  .kicker i { width: 14px; height: 14px; border-radius: 50%; background: var(--amber); box-shadow: 0 0 0 7px #ffc27a2e, 0 0 20px var(--amber); }
+  h1 { margin: 24px 0 34px; font-size: 142px; line-height: 1.06; font-weight: 800; letter-spacing: -.01em; text-shadow: 0 6px 40px #0a0d2699; white-space: nowrap; }
+  h1 span { display: block; }
+  h1 span + span { margin-left: .6em; color: var(--pink); }
+  .lede { max-width: 600px; font-size: 33px; line-height: 1.6; color: var(--ink-soft); }
+  .lede b { color: var(--amber); font-weight: 700; }
+
+  .shot { position: absolute; border-radius: 16px; box-shadow: 0 34px 80px #04061acc, 0 0 0 1px #ffffff26; overflow: hidden; background: #1b1d48; }
+  .shot img { display: block; width: 100%; }
+  .home { left: 730px; top: 170px; width: 640px; transform: rotate(-2.2deg); }
+  .pair { left: 770px; top: 700px; width: 465px; height: 188px; transform: rotate(1.2deg); border-radius: 12px; }
+  .pair img { width: 2232px; max-width: none; margin: -677px 0 0 -1666px; }
+  .ticket { left: 1250px; top: 150px; width: 600px; transform: rotate(2.4deg); border-radius: 22px; }
+  .glow { position: absolute; left: 1180px; top: 150px; width: 740px; height: 760px; background: radial-gradient(closest-side, #ffc27a44, transparent); filter: blur(28px); }
+  .tag { position: absolute; padding: 8px 18px; border-radius: 999px; font-size: 22px; font-weight: 700; color: #1b1d48; background: var(--amber); box-shadow: 0 8px 24px #04061a88; }
+  .tag.a { left: 715px; top: 140px; transform: rotate(-4deg); }
+  .tag.b { left: 1010px; top: 672px; transform: rotate(2deg); }
+  .foot { position: absolute; left: 110px; right: 110px; bottom: 32px; display: flex; justify-content: space-between; font-size: 22px; color: var(--muted); }
+  .foot b { color: var(--pink); font-weight: 600; }
+</style>
+</head>
+<body>
+  <svg class="lights" viewBox="0 0 1920 150" aria-hidden="true">
+    <defs><radialGradient id="g"><stop offset="0" stop-color="#ffe2aa"/><stop offset=".3" stop-color="#ffbe6e" stop-opacity=".55"/><stop offset="1" stop-color="#ff9650" stop-opacity="0"/></radialGradient></defs>
+    <path d="M-20 34 Q 480 96 960 40 T 1940 36" fill="none" stroke="#c9b8d8" stroke-opacity=".45" stroke-width="2"/>
+    <g id="bulbs"></g>
+  </svg>
+  <div class="brand">
+    <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 6c6 7 6 15 0 22-6-7-6-15 0-22z" fill="#f4a7c3"/><path d="M8 30c8-3 15 0 18 6-8 3-15 0-18-6z" fill="#8fc2a5"/><path d="M40 30c-8-3-15 0-18 6 8 3 15 0 18-6z" fill="#f7d0dd"/></svg>
+    <div><b>Music Space</b><small>樱下放映 · 散场以后</small></div>
+  </div>
+  <section class="copy">
+    <p class="kicker"><i></i>音乐现场 · 散场以后</p>
+    <h1><span>同一刻，</span><span>另一面。</span></h1>
+    <p class="lede">散场后，同场的人互换同一刻的另一面：<b>AI 在本机建议视角</b>，双方同意才交换</p>
+  </section>
+
+  <div class="glow"></div>
+  <figure class="shot home"><img src="../../docs/assets/themes/space-home-desktop-v016.png" alt="首页截图"></figure>
+  <figure class="shot pair"><img src="../../docs/assets/themes/space-pairing-desktop-v016.png" alt="同一刻的另一面与理由截图"></figure>
+  <figure class="shot ticket"><img src="../../docs/assets/themes/space-ticket-v016.png" alt="应用实际导出的双联票根"></figure>
+  <span class="tag a">首页</span>
+  <span class="tag b">配对与理由</span>
+
+  <footer class="foot"><span>页面为实际截图 · <b>示例照片由 AI 生成</b> · MVP 0.16</span><span>2026 腾讯音乐高校 AI Hackathon</span></footer>
+  <script>
+    const path = document.querySelector('.lights path'); const g = document.getElementById('bulbs');
+    const len = path.getTotalLength();
+    for (let i = 1; i < 22; i++) {
+      const p = path.getPointAtLength(len * i / 22);
+      g.insertAdjacentHTML('beforeend', `<circle cx="${p.x}" cy="${p.y + 14}" r="26" fill="url(#g)"/><line x1="${p.x}" y1="${p.y}" x2="${p.x}" y2="${p.y + 8}" stroke="#c9b8d8" stroke-opacity=".5"/><ellipse cx="${p.x}" cy="${p.y + 15}" rx="6" ry="8" fill="#ffe6b0"/>`);
+    }
+  </script>
+</body>
+</html>

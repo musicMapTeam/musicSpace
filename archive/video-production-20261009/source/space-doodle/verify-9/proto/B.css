@@ -1,0 +1,6 @@
+/* B: card title 同一刻，另一面。 stays the one hero (product claim, mockup, same as phones, sits on the CTA); caption becomes a plain-ink lede */
+@media (min-width:1100px) and (min-height:620px){
+  .desktop-caption .caption-line--b{text-shadow:none;font-size:1.2em}
+  .desktop-caption .caption-key{background:none;padding:0}
+  .desktop-caption .caption-star,.desktop-caption .caption-sparkle,.desktop-caption .caption-tag{display:none}
+}

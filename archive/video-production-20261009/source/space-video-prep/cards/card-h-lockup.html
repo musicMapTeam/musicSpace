@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><title>Hook lockup · transparent overlay (composited over the dimmed 3D livehouse)</title>
+<link rel="stylesheet" href="cards.css">
+<style>
+html,body{background:transparent!important}
+.col{animation:gone .5s 2.4s forwards;position:absolute;left:0;right:0;top:0;bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;padding-bottom:30px}
+.eyebrow{color:var(--accent);opacity:0;animation:fade .5s .15s forwards;font-size:21px;letter-spacing:.34em;margin-bottom:6px}
+.wm{position:relative;font-size:330px;height:300px;color:var(--cream);white-space:nowrap;text-shadow:0 14px 60px rgba(0,0,0,.55);padding-right:.06em}
+.wm span{display:inline-block;opacity:0;animation:letter .7s cubic-bezier(.2,.9,.25,1.1) forwards}
+.wm span:nth-child(1){animation-delay:.25s}.wm span:nth-child(2){animation-delay:.35s}.wm span:nth-child(3){animation-delay:.45s}.wm span:nth-child(4){animation-delay:.55s}.wm span:nth-child(5){animation-delay:.65s}
+.tag{margin-top:64px;font-size:92px;font-weight:600;letter-spacing:.08em;color:var(--cream);text-shadow:0 8px 34px rgba(0,0,0,.6)}
+.tag .txt{display:inline-block;opacity:0;transform:translateY(26px);animation:rise .6s 1.05s ease-out forwards}
+.tag .hl{position:relative;display:inline-block;z-index:0}
+.tag .hl::before{content:"";position:absolute;left:-.1em;right:-.1em;bottom:.02em;height:.2em;background:var(--accent);z-index:-1;transform-origin:0 50%;transform:scaleX(0);animation:sweep .55s 1.3s cubic-bezier(.3,.7,.2,1) forwards;border-radius:2px;opacity:.95}
+.sub{margin-top:30px;font-size:30px;letter-spacing:.2em;color:rgba(244,242,232,.8);opacity:0;animation:fade .6s 1.7s forwards}
+@keyframes gone{to{opacity:0}}
+</style></head>
+<body>
+<div class="col">
+  <div class="eyebrow">MUSIC SPACE / LIVEHOUSE</div>
+  <div class="wordmark wm"><span>s</span><span>p</span><span>a</span><span>c</span><span>e</span></div>
+  <div class="tag"><span class="hl"><span class="txt">同一刻，另一面。</span></span></div>
+  <div class="sub">带着自己的小人，进入同一场音乐现场</div>
+</div>
+</body></html>

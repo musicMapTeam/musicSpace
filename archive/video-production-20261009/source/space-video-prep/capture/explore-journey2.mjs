@@ -1,0 +1,15 @@
+import { launch, newPage, sleep, BASE, ensureDir } from './lib.mjs';
+import { hostCreatesRoom, panelInfo, openEventRoom } from './flows.mjs';
+const out = ensureDir('/tmp/space-video-prep/stills/journey');
+const browser = await launch();
+const A = await newPage(browser);
+const B = await newPage(browser);
+for (const [n, p] of [['A', A.page], ['B', B.page]]) p.on('console', m => { if (m.type() === 'error') console.log(`[${n} console]`, m.text().slice(0, 160)); });
+await hostCreatesRoom(A.page, { name: '阿遥', title: '返场夜', venue: '月台 Livehouse' });
+const url = A.page.url();
+await openEventRoom(B.page, new URL(url).search);
+let n = 3;
+const snap = async (p, tag, who) => { const i = String(n++).padStart(2, '0'); const info = await panelInfo(p); console.log(`--- ${i} ${who} ${tag}`, JSON.stringify(info).slice(0, 1100)); await p.screenshot({ path: `${out}/${i}-${who}-${tag}.png` }); };
+await B.page.getByRole('button', { name: '用默认小人，继续入场' }).click(); await sleep(900);
+await snap(B.page, 'after-continue', 'B');
+await browser.close();

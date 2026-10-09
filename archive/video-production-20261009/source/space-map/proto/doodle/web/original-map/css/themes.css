@@ -1,0 +1,69 @@
+/* Paper, ink and shared controls for the music courtyard. */
+:root {
+  color-scheme:light; --bg:#f5f2e8; --surface:#fcf8ef; --surface-raised:#ece9dc;
+  --text:#433a46; --paper:#fffbf1; --muted:#756c75; --line:#66576338;
+  --mint:#34614b; --coral:#a5556a; --theme-ink:#433a46;
+  --theme-paper:#fffbf1; --theme-accent:#eab1c1; --theme-soft:#f2dfe4;
+  --button-fill:#345b49; --button-ink:#fff9ed;
+}
+
+/* Readable light surfaces for shared controls, forms and business content. */
+:root {
+  scrollbar-color:var(--muted) var(--bg);
+  & ::selection { background:var(--theme-accent); color:var(--theme-ink); }
+  & .app-masthead { border-color:var(--line); }
+  & :is(.brand-wordmark small,.nav-item,.nav-item small,.demo-help,.records-filters button,.records-filters button span) { color:var(--muted); }
+  & :is(.nav-item.active,.nav-item:hover,.demo-help:hover,.records-heading h1,.records-filters button[aria-pressed=true],.empty-state h3) { color:var(--text); }
+  & .nav-item.active small { color:var(--mint); }
+  & .button { border-color:var(--line); }
+  & .button:hover:not(:disabled) { background:var(--surface-raised); border-color:var(--muted); }
+  & .button--primary { background:var(--button-fill); color:var(--button-ink); border-color:var(--button-fill); }
+  & .button--primary:hover:not(:disabled) { background:color-mix(in srgb,var(--button-fill),var(--text) 9%); color:var(--button-ink); border-color:var(--button-fill); }
+  & .button--quiet { color:var(--text); border-color:transparent; }
+  /* base.css lightens quiet text on hover for dark pages; on paper it stays ink over the raised fill. */
+  & .button--quiet:hover:not(:disabled) { color:var(--text); }
+  & .icon-button:hover { background:var(--surface-raised); border-color:var(--muted); }
+  & .empty-state { border-color:var(--line); }
+  & .mobile-nav { background:var(--bg); border-color:var(--line); }
+  & .toast { background:var(--text); color:var(--paper); border-color:var(--text); }
+  & .storage-warning { background:var(--theme-soft); color:var(--text); }
+  & .storage-warning button { color:var(--text); }
+  & .about-dialog { background:var(--surface); border-color:var(--line); }
+  & :is(.about-dialog>p,.about-facts span) { color:var(--muted); }
+  & dialog::backdrop { background:#29212b90; }
+
+  & :is(.map-experience,.map-records,.map-dialog) { --map-ink:var(--text); --map-muted:var(--muted); --map-sea:var(--mint); --map-coral:var(--coral); --map-line:var(--line); }
+  & :is(.map-stage-column,.map-dialog) { background:var(--surface); border-color:var(--line); }
+  & .map-workspace { border-color:var(--line); }
+  & .map-dialog__top { background:linear-gradient(var(--surface) 70%,transparent); }
+  & :is(.map-input,.map-field input,.map-field select,.map-field textarea) { background:var(--paper); color:var(--text); border-color:var(--line); color-scheme:light; }
+  & :is(.map-artist-bio,.map-artist-bio span,.map-stage-caption,.map-stage-caption b,.map-stage-caption .icon-button,.map-catalogue p,.map-catalogue__switch button,.map-mode-caption,.map-track__copy small,.map-relation-proof .map-relation-credits) { color:var(--muted); }
+  & :is(.map-track__copy strong,.map-route-trail[aria-current],.map-search-result,.map-search-result strong) { color:var(--text); }
+  & :is(.map-track__copy span,.map-track-note,.map-search-result span,.map-search-result small,.map-relation-proof p,.map-relation-proof dt) { color:var(--muted); }
+  & .map-artist-panel__heading .eyebrow { color:var(--mint); }
+  & .map-dialog .eyebrow { color:var(--mint); }
+  & :is(.map-heading .eyebrow,.map-heading__aside>p,.map-mode-switch button,.map-demo-label,.map-section-label>span,.map-section-label h3 span,.map-track__index,.map-audio-note,.map-neighbor small,.map-foot>p,.map-panel-description,.map-search-label,.map-field,.map-inline-empty,.map-storage-note,.map-recap-intro>p,.map-recap-stats>span,.map-route-details>summary>span,.map-timeline__stop h4 span) { color:var(--muted); }
+  & :is(.map-mode-switch button:hover:not(:disabled),.map-route-bar>.button,.map-current-route,.map-route-details>summary) { color:var(--text); }
+  & :is(.map-mode-switch button.is-active,.map-track__save,.map-recap-stats b,.map-relation-proof h3 span) { color:var(--mint); }
+  & .map-track__save { border-color:var(--line); }
+  & .map-route-bar { border-color:var(--line); }
+  & .map-relation-proof .map-track { background:var(--surface-raised); }
+  & .map-artist-panel { min-width:0; padding-right:22px; }
+  & .map-graph-lines>g:first-child { stroke:color-mix(in srgb,var(--mint) 14%,transparent); }
+  & .map-graph-lines>g:last-child { stroke:color-mix(in srgb,var(--mint) 65%,transparent); }
+  & .map-graph-lines>g[stroke-dasharray] { stroke:var(--coral); }
+  & :is(.map-record__meta,.map-record p,.map-timeline__stop>p,.map-record__actions .icon-button) { color:var(--muted); }
+  & .map-records-heading .eyebrow { color:var(--mint); }
+  & .map-record__disc { color:var(--mint); background:repeating-radial-gradient(circle,transparent 0 4px,var(--line) 5px,transparent 6px),var(--surface); border-color:var(--line); }
+  & .map-record__disc span { background:var(--surface); }
+  & :is(.map-challenge-banner,.map-undo) { background:var(--theme-soft); color:var(--text); border-color:var(--line); }
+  & .map-challenge-banner p { color:var(--muted); }
+  & .map-search-result:hover { background:var(--surface-raised); }
+}
+@media(max-width:1150px) {
+  .app-masthead { grid-template-columns:1fr auto auto; gap:24px; }
+  .primary-nav { gap:15px; }
+}
+@media(max-width:760px) {
+  .app-masthead { grid-template-columns:1fr auto; gap:12px; }
+}

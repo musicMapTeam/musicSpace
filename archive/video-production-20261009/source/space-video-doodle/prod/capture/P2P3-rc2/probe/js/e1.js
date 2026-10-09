@@ -1,0 +1,13 @@
+const s = await get('phone', true);
+const p = s.page;
+const out = {};
+out.landing = await H.text(p);
+out.audit0 = await H.audit(p);
+await shot(p, 'e1-landing');
+await p.locator('#join').click();
+await p.waitForSelector('form[data-form="demo-entry"] button.primary:not([disabled])', { timeout: 60000 });
+await sleep(800);
+out.entry = await H.text(p, '#panel');
+out.entryButtons = await H.buttons(p, b => true);
+await shot(p, 'e1-entry');
+return out;

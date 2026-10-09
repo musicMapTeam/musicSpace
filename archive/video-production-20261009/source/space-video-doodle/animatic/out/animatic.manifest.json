@@ -1,0 +1,123 @@
+{
+ "what": "Music Space doodle video: animatic (cold open -> title -> pain -> DROP into the product) + style frames, rendered with the doodle-motion system",
+ "outputs": {
+  "animatic_mp4": {
+   "path": "/tmp/space-video-doodle/animatic/out/music-space-doodle-animatic.mp4",
+   "sha256": "f1ba16d5c47773850ef963b1ea327a4078ea7388429062623b172b3f8078b818",
+   "duration_s": 28.617,
+   "bytes": 59286648,
+   "video": "h264 High 1920x1080 60/1 yuv420p",
+   "colour": "bt709/bt709/bt709/tv",
+   "frames": 1717,
+   "audio": "aac 48000 Hz 2 ch",
+   "loudness": {
+    "I_LUFS": -16.0,
+    "TP_dBTP": -1.4,
+    "LRA_LU": 4.1
+   }
+  },
+  "contact_sheet_2x4": "/tmp/space-video-doodle/animatic/out/animatic-contact-2x4.png",
+  "rhythm_map": "/tmp/space-video-doodle/animatic/out/animatic-rhythm-map.png",
+  "qc": "/tmp/space-video-doodle/animatic/out/animatic.qc.json",
+  "scene_info_events_cues_texts": "/tmp/space-video-doodle/animatic/out/animatic.info.json",
+  "audio_mix_48k": "/tmp/space-video-doodle/animatic/audio/animatic-mix.wav",
+  "audio_music_only_48k": "/tmp/space-video-doodle/animatic/audio/animatic-music.wav",
+  "audio_report": "/tmp/space-video-doodle/animatic/audio/audio-report.json",
+  "style_frames": [
+   "/tmp/space-video-doodle/animatic/out/style-frames/01-title-card.png",
+   "/tmp/space-video-doodle/animatic/out/style-frames/02-pain-beat.png",
+   "/tmp/space-video-doodle/animatic/out/style-frames/03-room-in-phone.png",
+   "/tmp/space-video-doodle/animatic/out/style-frames/04-ai-chip.png",
+   "/tmp/space-video-doodle/animatic/out/style-frames/05-payoff-exchange-accepted.png",
+   "/tmp/space-video-doodle/animatic/out/style-frames/06-end-card-qr.png",
+   "/tmp/space-video-doodle/animatic/out/style-frames/CONTACT-style-frames.png"
+  ]
+ },
+ "music": {
+  "title": "Flipping In",
+  "artist": "Wax Lyricist",
+  "licence": "CC0 1.0 Universal",
+  "source_page": "https://freemusicarchive.org/music/wax-lyricist/the-wax-lyricist/flipping-in/",
+  "file": "/tmp/space-video-doodle/music-cc0/02-flipping-in__Wax-Lyricist/Wax_Lyricist_-_Flipping_In.mp3",
+  "sha256": "8d79e1f0f6aee4de038eff80b0a93262bacdc4ea2dc7ce184cfd12f162ca6127",
+  "proof_dir": "/tmp/space-video-doodle/music-cc0/02-flipping-in__Wax-Lyricist (LICENCE-PROOF.md, page captures, CC0 deed)",
+  "bpm": 123.0,
+  "bar_s": 1.9512,
+  "edit": "FI bars 57-62 (groove + 2-bar stop) then FI bars 71-79 (bass-only, drums return on FI 75 = animatic bar 11); bar-line splice, 12 ms equal-power crossfade, 0.9 s fade-out",
+  "edit_detail": {
+   "seg1": [
+    109.266,
+    120.974
+   ],
+   "seg2_from": 136.584,
+   "splice_at_s": 11.708
+  },
+  "mix": {
+   "gain_db": 4.5,
+   "before": {
+    "I": -20.3,
+    "TP": -1.4,
+    "LRA": 3.7
+   },
+   "after": {
+    "I": -16.0,
+    "TP": -1.6,
+    "LRA": 4.1
+   }
+  },
+  "sfx_vs_music_LU": -9.4,
+  "listened_by_a_human": false
+ },
+ "sfx": "all synthesized in tools/audio.py from sine/noise primitives (no samples, no third-party audio): slap x13, stamp x9, pop x24, whoosh x3, impact x10, squeak x11, swap x2, riser x1, boom x2, click x1, heart x1",
+ "picture_sources": {
+  "product_footage": [
+   "/tmp/space-video-doodle/capture-test/clips/A-phone-venue.mp4 (bars 11-13: landing, entry sheet, room pull-back)",
+   "/tmp/space-video-doodle/animatic/capture/D-desktop-room-2880.mp4 (bar 14; recorded here by capture/clip-d-room.mjs from dist-pages, visitor 阿宁 in 失真)"
+  ],
+  "product_stills": [
+   "/tmp/space-video-doodle/script/probe/shots/{c-desktop-overview-clean-4k,p41-photos-view,p08-upload-ai,p13-exchange-accepted,p17-chat-reply,memory-card-export}.png",
+   "/tmp/space-video-doodle/capture-test/clips/B-phone-upload-ai-wall.mp4 frame 7.3 s (badge)"
+  ],
+  "avatar_svgs_exported_from_the_build": "/tmp/space-video-doodle/script/probe/avatars/{cast-yao,cast-man,cast-bei,look-4-shizhen-front}.svg",
+  "ai_images_from_the_repo": "/Users/alakazan/workplace/tme/musicSpace/web/assets/{stage-scene,crowd-scene}.png (provenance: web/assets/image-provenance.json; labelled 照片为 AI 生成的示例图 on screen)",
+  "qr": "/tmp/space-video-doodle/animatic/assets/qr.svg -> decodes to https://musicmapteam.github.io/musicSpace/ (checked on out/style-frames/06-end-card-qr.png)",
+  "fonts": "/tmp/music-space-font-cache/{display,marker,hand,note,logo,digits}.ttf (OFL/Apache, licences alongside) + the product patched slices dist-pages/fonts/doodle (fixes 入/个/·)",
+  "textures": "paper grain and stamp ink generated in tools/prep_assets.py (numpy noise)"
+ },
+ "qc": {
+  "silences_over_0.8s": [],
+  "frozen_over_2.5s": [],
+  "black_over_0.4s": [],
+  "motion": {
+   "mean_abs_diff": 3.245,
+   "frames_without_any_change": 1,
+   "longest_low_motion_s": 0.07,
+   "at_s": 2.25,
+   "threshold": "mean |dI| < 0.15 (8-bit, 160x90)"
+  },
+  "events": {
+   "count": 97,
+   "longest_gap_s": 1.463,
+   "longest_gap_at_s": 11.707,
+   "events_per_second": 3.39
+  },
+  "beat_alignment": {
+   "on_8th_grid": "88/97",
+   "on_16th_grid": "97/97",
+   "worst_vs_16th_ms": 0.05,
+   "frame_quantisation_ms_max": 8.17,
+   "note": "visual events vs the music grid (8ths / 16ths), then the frame they land on (60 fps)"
+  },
+  "reading_time_failing": []
+ },
+ "rebuild": [
+  "/tmp/space-video-doodle/music-cc0/tools/venv-ana/bin/python tools/prep_assets.py",
+  "node tools/gen-qr.mjs",
+  "node tools/render.mjs --scene animatic --info out/animatic.info.json",
+  "/tmp/space-video-doodle/music-cc0/tools/venv-ana/bin/python tools/audio.py out/animatic.info.json audio",
+  "node tools/render.mjs --scene animatic --video out/music-space-doodle-animatic.mp4 --audio audio/animatic-mix.wav --workers 4 --preset slow --crf 16  (~3 min, run in background)",
+  "tools/style-frames.sh",
+  "python tools/qc.py out/music-space-doodle-animatic.mp4 out/animatic.info.json out/animatic.qc.json",
+  "python tools/contact.py out/music-space-doodle-animatic.mp4 out/animatic-contact-2x4.png"
+ ]
+}

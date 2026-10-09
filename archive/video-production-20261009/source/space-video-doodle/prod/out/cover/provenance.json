@@ -1,0 +1,23 @@
+{
+ "made": "2026-10-08",
+ "by": "film v3 pass (out/cover/cover.js)",
+ "build": "0.22.0-rc.2 (/tmp/space-final/dist-pages), capture pass P2P3-rc2",
+ "files": {
+  "room-crop-rc2.png": {
+   "source": "capture/P2P3-rc2/stills/CUT-01_room-overview-4k.png",
+   "source_sha256": "21026266108ad0b321cc0ffd5edc7c8dde5d8df367708009f091425453e41c4c",
+   "crop_xyxy": [
+    600,
+    485,
+    2600,
+    1456
+   ],
+   "size": [
+    2000,
+    971
+   ],
+   "sha256": "d5fb308ae9a9e94f33451892f3d4fadcf9c93ed2b7d79162b1d585896f92dcae",
+   "why": "cover polaroid (photo window 786 x 382, aspect 2.06): the 3D stage with the five and their rc.2 tags (阿遥 / 小满 / 北屿 · 可招呼, 阿宁 · 我, 林间 · 安静) and the 照片墙 pill; replaces room-crop.png (rc.1, tags with 「·示例」)"
+  }
+ }
+}

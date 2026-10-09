@@ -1,0 +1,10 @@
+const out = {};
+await page.click('[data-x-close]'); await sleep(800);
+out.afterClose = { panelHidden: await page.evaluate(() => document.querySelector('#panel').hidden), panel: (await txt('#panel')).slice(0, 200) };
+await page.click('nav.camera-nav [data-view="person"]'); await sleep(1800);
+await shot('20-people');
+out.people = await txt('#panel');
+out.personBtns = await page.evaluate(() => [...document.querySelectorAll('[data-person]')].filter(e => e.getClientRects().length).map(e => { const r = e.getBoundingClientRect(); return e.dataset.person.slice(0, 8) + ' ' + e.innerText.replace(/\s+/g, ' ').slice(0, 40) + ' @' + Math.round(r.x) + ',' + Math.round(r.y) + ' ' + Math.round(r.width) + 'x' + Math.round(r.height); }));
+out.view = await page.evaluate(() => window.__SPACE_EVENT_QA__().camera);
+out.h = await page.evaluate(() => { const pn = document.querySelector('#panel'); return pn.querySelector('h2, h3')?.innerText; });
+return out;

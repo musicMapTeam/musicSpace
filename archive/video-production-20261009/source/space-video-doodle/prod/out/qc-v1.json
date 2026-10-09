@@ -1,0 +1,1168 @@
+{
+ "video": "/private/tmp/space-video-doodle/prod/out/music-space-video-v1.mp4",
+ "range_s": [
+  0,
+  174.66666666666666
+ ],
+ "full": true,
+ "overall": "WARN",
+ "checks": [
+  {
+   "check": "container.video",
+   "status": "PASS",
+   "msg": "h264 High 1920x1080 60/1 yuv420p bt709/bt709/bt709/tv"
+  },
+  {
+   "check": "container.audio",
+   "status": "PASS",
+   "msg": "aac LC 48000 Hz 2 ch 257 kb/s"
+  },
+  {
+   "check": "duration",
+   "status": "PASS",
+   "msg": "174.667 s (limit 175.0; target 172-176)",
+   "seconds": 174.666667
+  },
+  {
+   "check": "size",
+   "status": "PASS",
+   "msg": "228.4 MB (target 150-300, limit 500)",
+   "mb": 228.4
+  },
+  {
+   "check": "loudness",
+   "status": "PASS",
+   "msg": "I -16.1 LUFS (target -16), LRA 4.3 LU",
+   "I": -16.1,
+   "LRA": 4.3
+  },
+  {
+   "check": "true_peak",
+   "status": "PASS",
+   "msg": "-1.4 dBTP (limit -1.0)",
+   "TP": -1.4
+  },
+  {
+   "check": "silence",
+   "status": "PASS",
+   "msg": "0 silent stretches over 0.8 s"
+  },
+  {
+   "check": "frozen",
+   "status": "PASS",
+   "msg": "0 frozen stretches over 2.5 s"
+  },
+  {
+   "check": "black",
+   "status": "PASS",
+   "msg": "0 black stretches over 0.4 s"
+  },
+  {
+   "check": "motion",
+   "status": "PASS",
+   "msg": "longest low-motion stretch 0.08 s at 38.90 s (mean |dI| < 0.15 on 160x90), mean motion 2.00",
+   "longest_s": 0.08,
+   "at_s": 38.9
+  },
+  {
+   "check": "event_gaps",
+   "status": "PASS",
+   "msg": "591 visual events, 3.38/s; longest gap 1.46 s after 33.17 s (limit 2.5)",
+   "longest_gap_s": 1.463
+  },
+  {
+   "check": "beat_alignment",
+   "status": "PASS",
+   "msg": "591/591 visual events on the 16th grid (<= half a frame), 572/591 on 8ths; frames quantise by <= 8.3 ms",
+   "off_grid": []
+  },
+  {
+   "check": "reading_time",
+   "status": "WARN",
+   "msg": "125 lines, measured (geometry samples every 50 ms); titles/notes failing 0, labels/fine short 2",
+   "failing": [],
+   "short_labels": [
+    "「留念」 label 0.60s < 0.80s",
+    "「不到 1 分钟」 label 0.80s < 1.25s"
+   ],
+   "lines": [
+    {
+     "text": "照片为 AI 生成的示例图",
+     "kind": "fine",
+     "units": 10,
+     "on_s": 25.85,
+     "need_s": 2.5,
+     "ok": true
+    },
+    {
+     "text": "进场",
+     "kind": "label",
+     "units": 2,
+     "on_s": 7.2,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "换装",
+     "kind": "label",
+     "units": 2,
+     "on_s": 6.2,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "上墙",
+     "kind": "label",
+     "units": 2,
+     "on_s": 5.25,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "视角",
+     "kind": "label",
+     "units": 2,
+     "on_s": 4.25,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "同一刻",
+     "kind": "label",
+     "units": 3,
+     "on_s": 3.3,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "交换",
+     "kind": "label",
+     "units": 2,
+     "on_s": 2.3,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "招手",
+     "kind": "label",
+     "units": 2,
+     "on_s": 1.35,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "留念",
+     "kind": "label",
+     "units": 2,
+     "on_s": 0.6,
+     "need_s": 0.8,
+     "ok": false
+    },
+    {
+     "text": "同一刻，",
+     "kind": "title",
+     "units": 3,
+     "on_s": 14.65,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "另一面。",
+     "kind": "title",
+     "units": 3,
+     "on_s": 13.95,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "MUSIC SPACE",
+     "kind": "label",
+     "units": 2,
+     "on_s": 12.7,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "和同场的人，交换彼此的视角。",
+     "kind": "title",
+     "units": 12,
+     "on_s": 3.45,
+     "need_s": 3.0,
+     "ok": true
+    },
+    {
+     "text": "散场了。",
+     "kind": "title",
+     "units": 3,
+     "on_s": 2.0,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "你拍了舞台，",
+     "kind": "title",
+     "units": 5,
+     "on_s": 3.0,
+     "need_s": 1.25,
+     "ok": true
+    },
+    {
+     "text": "TA 拍了人海。",
+     "kind": "title",
+     "units": 5,
+     "on_s": 2.0,
+     "need_s": 1.25,
+     "ok": true
+    },
+    {
+     "text": "你拍的",
+     "kind": "label",
+     "units": 3,
+     "on_s": 4.85,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "TA 拍的",
+     "kind": "label",
+     "units": 3,
+     "on_s": 4.65,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "每部手机里，",
+     "kind": "title",
+     "units": 5,
+     "on_s": 3.85,
+     "need_s": 1.25,
+     "ok": true
+    },
+    {
+     "text": "只有自己那一面。",
+     "kind": "title",
+     "units": 7,
+     "on_s": 2.9,
+     "need_s": 1.75,
+     "ok": true
+    },
+    {
+     "text": "最好看的那张你，",
+     "kind": "title",
+     "units": 7,
+     "on_s": 3.95,
+     "need_s": 1.75,
+     "ok": true
+    },
+    {
+     "text": "你！",
+     "kind": "note",
+     "units": 1,
+     "on_s": 1.1,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "在陌生人的手机里。",
+     "kind": "title",
+     "units": 8,
+     "on_s": 2.95,
+     "need_s": 2.0,
+     "ok": true
+    },
+    {
+     "text": "陌生人的手机",
+     "kind": "label",
+     "units": 6,
+     "on_s": 5.6,
+     "need_s": 1.5,
+     "ok": true
+    },
+    {
+     "text": "散场后，",
+     "kind": "title",
+     "units": 3,
+     "on_s": 2.9,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "找不回来。",
+     "kind": "title",
+     "units": 4,
+     "on_s": 1.9,
+     "need_s": 1.0,
+     "ok": true
+    },
+    {
+     "text": "站在你身边的人，",
+     "kind": "title",
+     "units": 7,
+     "on_s": 3.0,
+     "need_s": 1.75,
+     "ok": true
+    },
+    {
+     "text": "还没认识，就走散了。",
+     "kind": "title",
+     "units": 8,
+     "on_s": 3.0,
+     "need_s": 2.0,
+     "ok": true
+    },
+    {
+     "text": "要是……",
+     "kind": "title",
+     "units": 2,
+     "on_s": 2.0,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "能把那一面，换回来？",
+     "kind": "title",
+     "units": 8,
+     "on_s": 2.85,
+     "need_s": 2.0,
+     "ok": true
+    },
+    {
+     "text": "同场的人，",
+     "kind": "title",
+     "units": 4,
+     "on_s": 3.95,
+     "need_s": 1.0,
+     "ok": true
+    },
+    {
+     "text": "再进同一间\nLivehouse。",
+     "kind": "title",
+     "units": 6,
+     "on_s": 3.0,
+     "need_s": 1.5,
+     "ok": true
+    },
+    {
+     "text": "带上你的小人，",
+     "kind": "title",
+     "units": 6,
+     "on_s": 3.95,
+     "need_s": 1.5,
+     "ok": true
+    },
+    {
+     "text": "断拍",
+     "kind": "label",
+     "units": 2,
+     "on_s": 3.9,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "循迹",
+     "kind": "label",
+     "units": 2,
+     "on_s": 3.45,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "回声",
+     "kind": "label",
+     "units": 2,
+     "on_s": 2.95,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "失真",
+     "kind": "label",
+     "units": 2,
+     "on_s": 2.45,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "今晚，我这样。",
+     "kind": "note",
+     "units": 5,
+     "on_s": 2.0,
+     "need_s": 1.25,
+     "ok": true
+    },
+    {
+     "text": "愿意打招呼，",
+     "kind": "title",
+     "units": 5,
+     "on_s": 2.0,
+     "need_s": 1.25,
+     "ok": true
+    },
+    {
+     "text": "还是\n安静参与？",
+     "kind": "title",
+     "units": 6,
+     "on_s": 2.85,
+     "need_s": 1.5,
+     "ok": true
+    },
+    {
+     "text": "自己选。",
+     "kind": "title",
+     "units": 3,
+     "on_s": 1.8,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "看看谁也在。",
+     "kind": "title",
+     "units": 5,
+     "on_s": 3.9,
+     "need_s": 1.25,
+     "ok": true
+    },
+    {
+     "text": "示例角色 · 自动回复",
+     "kind": "label",
+     "units": 8,
+     "on_s": 2.95,
+     "need_s": 2.0,
+     "ok": true
+    },
+    {
+     "text": "放一张你的照片。",
+     "kind": "title",
+     "units": 7,
+     "on_s": 2.0,
+     "need_s": 1.75,
+     "ok": true
+    },
+    {
+     "text": "21:48",
+     "kind": "title",
+     "units": 1,
+     "on_s": 1.95,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "拍摄时间，\n照片自己记得。",
+     "kind": "title",
+     "units": 10,
+     "on_s": 3.0,
+     "need_s": 2.5,
+     "ok": true
+    },
+    {
+     "text": "示例照片 · 拍摄时间为虚构",
+     "kind": "label",
+     "units": 11,
+     "on_s": 2.95,
+     "need_s": 2.75,
+     "ok": true
+    },
+    {
+     "text": "拍的是哪一面？",
+     "kind": "title",
+     "units": 6,
+     "on_s": 2.0,
+     "need_s": 1.5,
+     "ok": true
+    },
+    {
+     "text": "人海。",
+     "kind": "title",
+     "units": 2,
+     "on_s": 2.0,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "AI 在本机判断，",
+     "kind": "title",
+     "units": 6,
+     "on_s": 2.0,
+     "need_s": 1.5,
+     "ok": true
+    },
+    {
+     "text": "照片不上传。",
+     "kind": "title",
+     "units": 5,
+     "on_s": 2.0,
+     "need_s": 1.25,
+     "ok": true
+    },
+    {
+     "text": "没把握的时候，",
+     "kind": "title",
+     "units": 6,
+     "on_s": 2.0,
+     "need_s": 1.5,
+     "ok": true
+    },
+    {
+     "text": "它就说不确定。",
+     "kind": "title",
+     "units": 6,
+     "on_s": 2.0,
+     "need_s": 1.5,
+     "ok": true
+    },
+    {
+     "text": "你来选。",
+     "kind": "title",
+     "units": 3,
+     "on_s": 2.0,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "保存，上墙。",
+     "kind": "title",
+     "units": 4,
+     "on_s": 1.95,
+     "need_s": 1.0,
+     "ok": true
+    },
+    {
+     "text": "上墙啦！",
+     "kind": "note",
+     "units": 3,
+     "on_s": 0.95,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "按拍摄时间，",
+     "kind": "title",
+     "units": 5,
+     "on_s": 3.0,
+     "need_s": 1.25,
+     "ok": true
+    },
+    {
+     "text": "3 分钟以内，",
+     "kind": "title",
+     "units": 5,
+     "on_s": 1.95,
+     "need_s": 1.25,
+     "ok": true
+    },
+    {
+     "text": "就是同一刻。",
+     "kind": "title",
+     "units": 5,
+     "on_s": 2.0,
+     "need_s": 1.25,
+     "ok": true
+    },
+    {
+     "text": "规则判断，不是 AI。",
+     "kind": "title",
+     "units": 7,
+     "on_s": 2.0,
+     "need_s": 1.75,
+     "ok": true
+    },
+    {
+     "text": "看这里！",
+     "kind": "note",
+     "units": 3,
+     "on_s": 1.85,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "你拍人海，",
+     "kind": "title",
+     "units": 4,
+     "on_s": 3.9,
+     "need_s": 1.0,
+     "ok": true
+    },
+    {
+     "text": "TA 拍舞台。",
+     "kind": "title",
+     "units": 4,
+     "on_s": 2.9,
+     "need_s": 1.0,
+     "ok": true
+    },
+    {
+     "text": "21:48",
+     "kind": "label",
+     "units": 1,
+     "on_s": 1.95,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "21:47",
+     "kind": "label",
+     "units": 1,
+     "on_s": 1.45,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "不到 1 分钟",
+     "kind": "label",
+     "units": 5,
+     "on_s": 0.8,
+     "need_s": 1.25,
+     "ok": false
+    },
+    {
+     "text": "同一刻的",
+     "kind": "title",
+     "units": 4,
+     "on_s": 3.9,
+     "need_s": 1.0,
+     "ok": true
+    },
+    {
+     "text": "用我拍下的，",
+     "kind": "title",
+     "units": 5,
+     "on_s": 1.95,
+     "need_s": 1.25,
+     "ok": true
+    },
+    {
+     "text": "换 TA 看到的。",
+     "kind": "title",
+     "units": 5,
+     "on_s": 1.95,
+     "need_s": 1.25,
+     "ok": true
+    },
+    {
+     "text": "换不换，",
+     "kind": "title",
+     "units": 3,
+     "on_s": 1.95,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "你们俩说了算。",
+     "kind": "title",
+     "units": 6,
+     "on_s": 1.95,
+     "need_s": 1.5,
+     "ok": true
+    },
+    {
+     "text": "我同意，",
+     "kind": "title",
+     "units": 3,
+     "on_s": 1.95,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "交给 TA 确认。",
+     "kind": "title",
+     "units": 5,
+     "on_s": 2.0,
+     "need_s": 1.25,
+     "ok": true
+    },
+    {
+     "text": "还要 TA\n也同意。",
+     "kind": "title",
+     "units": 6,
+     "on_s": 2.0,
+     "need_s": 1.5,
+     "ok": true
+    },
+    {
+     "text": "双方同意，",
+     "kind": "title",
+     "units": 4,
+     "on_s": 3.9,
+     "need_s": 1.0,
+     "ok": true
+    },
+    {
+     "text": "才交换。",
+     "kind": "title",
+     "units": 3,
+     "on_s": 2.95,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "交换已接受",
+     "kind": "title",
+     "units": 5,
+     "on_s": 1.85,
+     "need_s": 1.25,
+     "ok": true
+    },
+    {
+     "text": "双方已明确同意",
+     "kind": "label",
+     "units": 7,
+     "on_s": 2.15,
+     "need_s": 1.75,
+     "ok": true
+    },
+    {
+     "text": "两面\n都齐了。",
+     "kind": "title",
+     "units": 5,
+     "on_s": 1.95,
+     "need_s": 1.25,
+     "ok": true
+    },
+    {
+     "text": "随时可以撤销。",
+     "kind": "title",
+     "units": 6,
+     "on_s": 2.0,
+     "need_s": 1.5,
+     "ok": true
+    },
+    {
+     "text": "然后呢？",
+     "kind": "title",
+     "units": 3,
+     "on_s": 1.85,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "先招招手，",
+     "kind": "title",
+     "units": 4,
+     "on_s": 2.95,
+     "need_s": 1.0,
+     "ok": true
+    },
+    {
+     "text": "对方愿意，\n才成朋友。",
+     "kind": "title",
+     "units": 8,
+     "on_s": 2.95,
+     "need_s": 2.0,
+     "ok": true
+    },
+    {
+     "text": "私聊，",
+     "kind": "title",
+     "units": 2,
+     "on_s": 3.0,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "从返场那首聊起。",
+     "kind": "title",
+     "units": 7,
+     "on_s": 2.95,
+     "need_s": 1.75,
+     "ok": true
+    },
+    {
+     "text": "想安静的人，",
+     "kind": "title",
+     "units": 5,
+     "on_s": 2.0,
+     "need_s": 1.25,
+     "ok": true
+    },
+    {
+     "text": "不会被打扰。",
+     "kind": "title",
+     "units": 5,
+     "on_s": 2.0,
+     "need_s": 1.25,
+     "ok": true
+    },
+    {
+     "text": "散场以后，\n继续聊。",
+     "kind": "title",
+     "units": 7,
+     "on_s": 3.0,
+     "need_s": 1.75,
+     "ok": true
+    },
+    {
+     "text": "今晚的\n专辑世界杯，",
+     "kind": "title",
+     "units": 8,
+     "on_s": 3.0,
+     "need_s": 2.0,
+     "ok": true
+    },
+    {
+     "text": "原创虚构专辑",
+     "kind": "label",
+     "units": 6,
+     "on_s": 2.95,
+     "need_s": 1.5,
+     "ok": true
+    },
+    {
+     "text": "选一张，一起聊。",
+     "kind": "title",
+     "units": 6,
+     "on_s": 2.0,
+     "need_s": 1.5,
+     "ok": true
+    },
+    {
+     "text": "2票",
+     "kind": "label",
+     "units": 2,
+     "on_s": 0.95,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "默契局：",
+     "kind": "title",
+     "units": 3,
+     "on_s": 2.0,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "揭晓前，谁也看不到。",
+     "kind": "title",
+     "units": 8,
+     "on_s": 2.9,
+     "need_s": 2.0,
+     "ok": true
+    },
+    {
+     "text": "选到一起了！",
+     "kind": "title",
+     "units": 5,
+     "on_s": 1.9,
+     "need_s": 1.25,
+     "ok": true
+    },
+    {
+     "text": "长期社群，",
+     "kind": "title",
+     "units": 4,
+     "on_s": 2.0,
+     "need_s": 1.0,
+     "ok": true
+    },
+    {
+     "text": "也留一个位置。",
+     "kind": "title",
+     "units": 6,
+     "on_s": 2.0,
+     "need_s": 1.5,
+     "ok": true
+    },
+    {
+     "text": "再见，\n在下一场。",
+     "kind": "title",
+     "units": 6,
+     "on_s": 2.0,
+     "need_s": 1.5,
+     "ok": true
+    },
+    {
+     "text": "创作角：",
+     "kind": "title",
+     "units": 3,
+     "on_s": 2.0,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "对方点头，才开始。",
+     "kind": "title",
+     "units": 7,
+     "on_s": 2.05,
+     "need_s": 1.75,
+     "ok": true
+    },
+    {
+     "text": "把这一晚，\n留在手里。",
+     "kind": "title",
+     "units": 8,
+     "on_s": 3.0,
+     "need_s": 2.0,
+     "ok": true
+    },
+    {
+     "text": "纪念卡，",
+     "kind": "title",
+     "units": 3,
+     "on_s": 2.0,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "在你的浏览器里生成。",
+     "kind": "title",
+     "units": 9,
+     "on_s": 3.0,
+     "need_s": 2.25,
+     "ok": true
+    },
+    {
+     "text": "散场后，\n仍有地方回来。",
+     "kind": "title",
+     "units": 9,
+     "on_s": 3.0,
+     "need_s": 2.25,
+     "ok": true
+    },
+    {
+     "text": "每一场演出，",
+     "kind": "title",
+     "units": 5,
+     "on_s": 3.0,
+     "need_s": 1.25,
+     "ok": true
+    },
+    {
+     "text": "散场",
+     "kind": "label",
+     "units": 2,
+     "on_s": 7.3,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "都可以多一层。",
+     "kind": "title",
+     "units": 6,
+     "on_s": 1.95,
+     "need_s": 1.5,
+     "ok": true
+    },
+    {
+     "text": "设想",
+     "kind": "label",
+     "units": 2,
+     "on_s": 3.85,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "QQ音乐、酷狗",
+     "kind": "title",
+     "units": 5,
+     "on_s": 2.0,
+     "need_s": 1.25,
+     "ok": true
+    },
+    {
+     "text": "听完现场，",
+     "kind": "title",
+     "units": 4,
+     "on_s": 2.9,
+     "need_s": 1.0,
+     "ok": true
+    },
+    {
+     "text": "顺手换一面。",
+     "kind": "title",
+     "units": 5,
+     "on_s": 1.95,
+     "need_s": 1.25,
+     "ok": true
+    },
+    {
+     "text": "隐私",
+     "kind": "label",
+     "units": 2,
+     "on_s": 3.75,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "AI 在本机 · 你决定给谁看",
+     "kind": "label",
+     "units": 10,
+     "on_s": 3.8,
+     "need_s": 2.5,
+     "ok": true
+    },
+    {
+     "text": "同意",
+     "kind": "label",
+     "units": 2,
+     "on_s": 3.25,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "双方同意，才交换",
+     "kind": "label",
+     "units": 7,
+     "on_s": 3.3,
+     "need_s": 1.75,
+     "ok": true
+    },
+    {
+     "text": "好玩",
+     "kind": "label",
+     "units": 2,
+     "on_s": 2.8,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "世界杯 · 默契局 · 创作角",
+     "kind": "label",
+     "units": 9,
+     "on_s": 2.8,
+     "need_s": 2.25,
+     "ok": true
+    },
+    {
+     "text": "曲终，",
+     "kind": "title",
+     "units": 2,
+     "on_s": 3.9,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "人不散。",
+     "kind": "title",
+     "units": 3,
+     "on_s": 2.9,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "打开链接，",
+     "kind": "title",
+     "units": 4,
+     "on_s": 3.0,
+     "need_s": 1.0,
+     "ok": true
+    },
+    {
+     "text": "一人\n就能走完全程。",
+     "kind": "title",
+     "units": 8,
+     "on_s": 2.85,
+     "need_s": 2.0,
+     "ok": true
+    },
+    {
+     "text": "musicmapteam.github.io/musicSpace/",
+     "kind": "label",
+     "units": 3,
+     "on_s": 11.95,
+     "need_s": 0.8,
+     "ok": true
+    },
+    {
+     "text": "浏览器直接打开 · 无需安装",
+     "kind": "label",
+     "units": 11,
+     "on_s": 10.8,
+     "need_s": 2.75,
+     "ok": true
+    },
+    {
+     "text": "示例角色与照片为虚构（照片由 AI 生成）·\n角色自动回复 · 数据只存在你的浏览器",
+     "kind": "fine",
+     "units": 32,
+     "on_s": 8.85,
+     "need_s": 8.0,
+     "ok": true
+    },
+    {
+     "text": "配乐：Wax Lyricist《Flipping In》（CC0 1.0 公共领域）",
+     "kind": "fine",
+     "units": 13,
+     "on_s": 6.9,
+     "need_s": 3.25,
+     "ok": true
+    }
+   ]
+  },
+  {
+   "check": "safe_area",
+   "status": "WARN",
+   "msg": "0 texts outside the 5% title-safe area for > 0.5 s, 14 only briefly (entrances, camera moves)",
+   "sustained": [],
+   "brief": [
+    "「每部手机里，」 0.15s from 23.30s box [73, 749, 577, 850]",
+    "「只有自己那一面。」 0.15s from 23.30s box [73, 852, 945, 1019]",
+    "「你拍的」 0.10s from 23.35s box [-54, 650, 69, 712]",
+    "「散场后，」 0.15s from 31.10s box [80, 720, 416, 820]",
+    "「找不回来。」 0.15s from 31.10s box [80, 831, 777, 1018]",
+    "「规则判断，不是 AI。」 0.05s from 74.15s box [41, 362, 1026, 556]",
+    "「你拍人海，」 0.20s from 78.05s box [102, 36, 1164, 386]",
+    "「揭晓前，谁也看不到。」 0.15s from 124.75s box [91, 359, 931, 459]",
+    "「选到一起了！」 0.15s from 124.75s box [91, 556, 765, 703]",
+    "「也留一个位置。」 0.05s from 125.85s box [809, 229, 2279, 558]",
+    "「QQ音乐、酷狗」 0.05s from 144.40s box [1432, 230, 2245, 382]",
+    "「散场」 0.05s from 144.40s box [2581, 443, 2725, 550]",
+    "「AI 在本机 · 你决定给谁看」 0.05s from 148.30s box [35, 881, 713, 972]",
+    "「曲终，」 0.05s from 152.20s box [124, 45, 820, 376]"
+   ]
+  },
+  {
+   "check": "glyphs",
+   "status": "PASS",
+   "msg": "439 font/character pairs; 0 drawn by a system font",
+   "fonts": {
+    "hand": [
+     "Doodle Hand"
+    ],
+    "marker": [
+     "Doodle Marker"
+    ],
+    "display": [
+     "Doodle Display",
+     "ZCOOL QingKe HuangYou"
+    ],
+    "logo": [
+     "Luckiest Guy"
+    ],
+    "note": [
+     "Long Cang"
+    ],
+    "digits": [
+     "Smiley Sans Oblique"
+    ]
+   },
+   "fallback": []
+  },
+  {
+   "check": "qr",
+   "status": "PASS",
+   "msg": "decoded at 8/8 sampled frames: https://musicmapteam.github.io/musicSpace/ (first at 165.85 s)"
+  },
+  {
+   "check": "placeholders",
+   "status": "PASS",
+   "msg": "no placeholders",
+   "placeholders": []
+  },
+  {
+   "check": "scene_warnings",
+   "status": "PASS",
+   "msg": "0 warnings"
+  },
+  {
+   "check": "sfx_level",
+   "status": "PASS",
+   "msg": "SFX -9.0 LU vs music (target -8..-10), 639 sounds {'slap': 50, 'stamp': 13, 'tape': 8, 'pop': 78, 'whoosh': 21, 'impact': 20, 'typetick': 210, 'zip': 6, 'squeak': 31, 'highlighter': 13, 'slam': 47, 'scribble': 2, 'swish': 24, 'pencil': 9, 'click': 29, 'boop': 10, 'riser': 2, 'boom': 3, 'thump': 9, 'ding': 5, 'shutter': 1, 'chime': 1, 'hmm': 1, 'sparkle': 9, 'tick': 20, 'heartbeat': 7, 'blip': 7, 'crackle': 1, 'flip': 1, 'scratch': 1}"
+  },
+  {
+   "check": "script_lines",
+   "status": "PASS",
+   "msg": "117/117 SCRIPT lines in range are on screen",
+   "missing": []
+  }
+ ]
+}

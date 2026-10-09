@@ -1,0 +1,137 @@
+{
+ "states": [
+  {
+   "vp": "phone",
+   "label": "after-remove-friend",
+   "selector": "#panel",
+   "visible": "×\n互相愿意 / 成为朋友\n从音乐开始认识的人\n\n还没有朋友，从招个手开始。\n\n打开私聊查看招呼",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板"
+   ],
+   "hidden": [],
+   "at": 1791386491050
+  },
+  {
+   "vp": "phone",
+   "label": "chat-after-remove",
+   "selector": ".private-chat",
+   "visible": "←\nONE TO ONE\n阿遥\n×\n这段联系已结束，只能看以前的消息。\n\n嗨，欢迎来到「回声现场」！\n\n23:21\n\n你拍到的是哪一面？\n\n23:21\n留一句话\n联系已结束\n发送 ↗\n回看这一晚",
+   "attrs": [
+    "@aria-label=私聊",
+    "@aria-label=返回对话列表",
+    "@aria-label=关闭私聊",
+    "@aria-label=Music Space 的插画分身 (hidden el)",
+    "@aria-label=消息记录",
+    "@placeholder=比如，刚刚哪首歌最喜欢？"
+   ],
+   "hidden": [
+    "Music Space 的插画分身",
+    "阿遥",
+    "你拍到的是哪一面？",
+    "以前的对话",
+    "更早的消息"
+   ],
+   "at": 1791386493571
+  },
+  {
+   "vp": "phone",
+   "label": "person-after-remove",
+   "selector": "#panel",
+   "visible": "×\n同场的人\n阿遥\n\n先招个手，TA 接受了就是朋友。\n\n向 阿遥 招个手\n\n这是本场房主。\n\n屏蔽这个人",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板"
+   ],
+   "hidden": [],
+   "at": 1791386495132
+  },
+  {
+   "vp": "phone",
+   "label": "own-room-tour",
+   "selector": ".demo-tour",
+   "visible": "第一次来 1/4\n·\n放一张今晚的照片\n\n收起\n人海那张\n舞台那张\n用我自己的照片\n跳过路线",
+   "attrs": [
+    "@aria-label=第一次来",
+    "@aria-label=收起路线"
+   ],
+   "hidden": [
+    "挑一张，或者用你自己的。"
+   ],
+   "at": 1791386497588
+  },
+  {
+   "vp": "phone",
+   "label": "own-room-sample",
+   "selector": "#panel",
+   "visible": "×\n留一个现场瞬间\n这一张，由你决定给谁看。\n用我自己的照片\n\n或者挑一张今晚的\n\n人海那张\n舞台那张\n\n拍摄于 21:48\n·\n来自照片自带的信息\n\n修改时间\n我拍的这一面\n舞台\n灯光下的那一面\n人海\n一起举手的那一面\n身边\n陪你听歌的那一面\n细节\n只有你留意的那一面\n\nAI 判断：人海\n\n配对时，用它找另一面。AI 在本机判断，照片不上传，你说了算。\n\n可见范围\n仅自己保存\n分享给本场成员\n\n照片会缩小，并去掉位置信息。\n\n保存这张照片",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板",
+    "@alt=待保存的照片",
+    "@title=AI 在本机判断，照片不上传"
+   ],
+   "hidden": [
+    "修改拍摄时间 · 北京时间",
+    "仅自己保存",
+    "分享给本场成员"
+   ],
+   "at": 1791386499718
+  },
+  {
+   "vp": "phone",
+   "label": "own-room-wall-sample",
+   "selector": "#panel",
+   "visible": "×\n同一场 / 不同视角\n这一晚，大家看到了什么？\n21:48\n访客1421\n照片墙：本场成员可见\n\n拍摄于 21:48\n·\n视角：人海\n·\nAI 建议，未改动\n\n刷新照片\n放上我的一张\n照片交换",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板",
+    "@alt=我拍摄的现场照片"
+   ],
+   "hidden": [],
+   "at": 1791386503361
+  }
+ ],
+ "logs": {
+  "phone w12": [
+   "load: /musicSpace/",
+   "title: Music Space · 同一刻，另一面",
+   "live:loading(hidden): Music Space灯快亮了正在准备三维场景",
+   "live:render-status(hidden): 正在布置现场…",
+   "live:loading(hidden): Music Space灯快亮了正在布置现场…",
+   "live:loading(hidden): Music Space灯快亮了正在准备三维场景",
+   "live:render-status(hidden): 正在布置现场…",
+   "live:render-status(hidden): 现场进行中",
+   "live:view-label: 正在靠近",
+   "live:render-status(hidden): 现场进行中",
+   "live:demo-tour: 第一次来 1/4 · 放一张今晚的照片收起挑一张，或者用你自己的。人海那张舞台那张用我自己的照片跳过路线",
+   "live:view-label: 正在靠近",
+   "live:render-status(hidden): 4 位同场",
+   "live:toast: 招呼已送达，等待对方回应",
+   "live:render-status(hidden): 4 位同场",
+   "live:toast: 已移除朋友",
+   "live:render-status(hidden): 4 位同场",
+   "live:demo-tour: 第一次来 1/4 · 放一张今晚的照片收起挑一张，或者用你自己的。人海那张舞台那张用我自己的照片跳过路线",
+   "live:render-status(hidden): 4 位同场",
+   "live:toast(hidden): 已移除朋友",
+   "live:render-status(hidden): 4 位同场",
+   "live:render-status(hidden): 5 位同场",
+   "live:demo-tour: 第一次来 1/4 · 放一张今晚的照片收起挑一张，或者用你自己的。人海那张舞台那张用我自己的照片跳过路线",
+   "live:render-status(hidden): 5 位同场",
+   "live:view-label: 正在靠近",
+   "live:render-status(hidden): 现场进行中",
+   "live:demo-tour: 第一次来 1/4 · 放一张今晚的照片收起挑一张，或者用你自己的。人海那张舞台那张用我自己的照片跳过路线",
+   "live:view-label: 正在靠近",
+   "live:render-status(hidden): 1 位同场",
+   "live:status: 正在载入照片…",
+   "live:status(hidden): 没读到拍摄时间 ·",
+   "live:render-status(hidden): 1 位同场",
+   "live:status: 拍摄于 21:48 · 来自照片自带的信息",
+   "live:status: AI 在本机判断视角…",
+   "live:status: AI 判断：人海",
+   "live:render-status(hidden): 1 位同场",
+   "live:toast: 已分享给本场成员",
+   "live:render-status(hidden): 1 位同场"
+  ]
+ }
+}

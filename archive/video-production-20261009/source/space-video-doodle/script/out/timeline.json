@@ -1,0 +1,5811 @@
+{
+ "title": "Music Space — Doodle video (script + storyboard, bar/beat timeline)",
+ "note": "Positions are bar:beat (1-based, 4/4). t_s_124 = seconds at 124 BPM with the first downbeat at 0 s. Retime with retime.py.",
+ "bpm_ref": 124,
+ "beats_per_bar": 4,
+ "bars": 90,
+ "tail_bars": 1,
+ "acts": [
+  {
+   "id": "A0",
+   "title": "HOOK 钩子",
+   "first_bar": 1,
+   "last_bar": 8,
+   "purpose": "8-hit collage of real product moments, then the title 「同一刻，另一面。」 and a match cut into the real landing page",
+   "music": "cold open, full band from the first frame; unison stab on 4:3.5 then silence; IMPACT on 5:1 (title); tagline pop 6:1; chord rings to 8:4"
+  },
+  {
+   "id": "A1",
+   "title": "PAIN 痛点",
+   "first_bar": 9,
+   "last_bar": 20,
+   "purpose": "after the show: only your own angle; the best photo of you is on a stranger's phone; the people next to you are gone; turn: what if it could be swapped back?",
+   "music": "half-time and sparse from 9:1 (kick on 1, snare on 3); build 19-20 (four-on-the-floor, snare roll, riser) into 21:1"
+  },
+  {
+   "id": "A2",
+   "title": "ENTER 入场",
+   "first_bar": 21,
+   "last_bar": 28,
+   "purpose": "the product: back into the same livehouse, your illustrated avatar, choose how to take part, see who was there (labelled 示例)",
+   "music": "DROP on 21:1: full groove when the product appears; sticker-pop dings on beat 4 of every other bar"
+  },
+  {
+   "id": "A3",
+   "title": "PHOTO + AI 照片与端侧 AI",
+   "first_bar": 29,
+   "last_bar": 40,
+   "purpose": "put a photo on the wall: EXIF time, on-device AI suggests the side (人海), honest 不确定, rules group 同一刻 (<=3 min), not AI",
+   "music": "thinner groove; riser into the AI CHIME on 31:3, groove back from the chime; stamp-thud accent on 39:1"
+  },
+  {
+   "id": "A4",
+   "title": "SAME MOMENT + EXCHANGE 同一刻与交换",
+   "first_bar": 41,
+   "last_bar": 54,
+   "purpose": "同一刻的另一面: you shot the crowd, TA shot the stage; request with consent; pending; 交换已接受 payoff; revocable",
+   "music": "reveal sting on 41:1; build 41-50 (snare 8ths then 16ths, rising bass, riser) into a one-beat silence on 50:4; PAYOFF hit on 51:1; second groove from 51"
+  },
+  {
+   "id": "A5",
+   "title": "AFTER THE SWAP 交换之后",
+   "first_bar": 55,
+   "last_bar": 72,
+   "purpose": "greet -> friends, private chat, the quiet rule, after-show chat room, album World Cup, 默契局, community, creation corner, memory card, My Space",
+   "music": "second groove proper from 55:1, highest energy; sticker-pop dings on beat 4 of every other bar; 8th-note fill in 72"
+  },
+  {
+   "id": "A6",
+   "title": "WHY IT MATTERS 为什么值得做",
+   "first_bar": 73,
+   "last_bar": 82,
+   "purpose": "one more layer after every live show (vision: QQ音乐 / 酷狗, labelled 设想); privacy, consent, fun; 「曲终，人不散。」; one person can try it now",
+   "music": "stop-time break 73-74 (hits on 1, 2.5, 3.5) + tom fill; final LIFT chorus from 75:1, a whole step up; 「曲终，」 on 79:1, the lift's fifth bar"
+  },
+  {
+   "id": "A7",
+   "title": "END CARD 片尾",
+   "first_bar": 83,
+   "last_bar": 90,
+   "purpose": "「同一刻，另一面。」, MUSIC SPACE, link + QR, disclosure, music credit",
+   "music": "stop-time tag 83-84 (hits on 1, 1.75, 2.5); BIG END CHORD on 85:1 (the QR lands on it); final ding 88:1; ring out by 91:1"
+  }
+ ],
+ "shots": [
+  {
+   "id": "H1",
+   "start": "1:1",
+   "end": "5:1",
+   "beat_in": 0.0,
+   "beat_out": 16.0,
+   "t_in_124": 0.0,
+   "t_out_124": 7.742,
+   "layout": "L7",
+   "src": "CUT-01..08 (real product cut-outs) on dot-grid paper",
+   "see": "A collage builds on the paper: 8 real product moments land one per half-bar, each with a rubber stamp. Order: 3D room (CUT-01), your avatar (CUT-02), 3D photo wall (CUT-03), AI chip (CUT-04), 同一刻的另一面 badge (CUT-05), 交换已接受 (CUT-06), chat bubbles (CUT-07), memory card PNG (CUT-08).",
+   "treat": "polaroids (white frame, tape) for CUT-01/03/08, die-cut stickers (white edge + ink outline + hard shadow) for CUT-02/04/05/06/07; each lands with 6 px shake, tilt alternates -4/+3 deg; paper scale 1.12 -> 1.00 over 4 bars (the collage \"grows\"); line art boils at 4 fps",
+   "motion": [
+    {
+     "at": "1:1",
+     "beat": 0.0,
+     "t_124": 0.0,
+     "what": "CUT-01 slaps in centre-left"
+    },
+    {
+     "at": "1:3",
+     "beat": 2.0,
+     "t_124": 0.968,
+     "what": "CUT-02 sticker top-right"
+    },
+    {
+     "at": "2:1",
+     "beat": 4.0,
+     "t_124": 1.935,
+     "what": "CUT-03 polaroid bottom-left"
+    },
+    {
+     "at": "2:3",
+     "beat": 6.0,
+     "t_124": 2.903,
+     "what": "CUT-04 sticker"
+    },
+    {
+     "at": "3:1",
+     "beat": 8.0,
+     "t_124": 3.871,
+     "what": "CUT-05 sticker centre"
+    },
+    {
+     "at": "3:3",
+     "beat": 10.0,
+     "t_124": 4.839,
+     "what": "CUT-06 sticker"
+    },
+    {
+     "at": "4:1",
+     "beat": 12.0,
+     "t_124": 5.806,
+     "what": "CUT-07 sticker"
+    },
+    {
+     "at": "4:3.5",
+     "beat": 14.5,
+     "t_124": 7.016,
+     "what": "CUT-08 polaroid top-left, on the unison stab"
+    },
+    {
+     "at": "4:4.5",
+     "beat": 15.5,
+     "t_124": 7.5,
+     "what": "scribble wipe (pink zigzag) covers everything in 4 frames, inside the silence before the title"
+    }
+   ],
+   "sfx": [
+    {
+     "at": "1:1",
+     "beat": 0.0,
+     "t_124": 0.0,
+     "what": "paper slap + stamp thud (repeat on every landing, pitch steps up 1 semitone each time)"
+    },
+    {
+     "at": "2:1",
+     "beat": 4.0,
+     "t_124": 1.935,
+     "what": "tape rip"
+    },
+    {
+     "at": "4:3.5",
+     "beat": 14.5,
+     "t_124": 7.016,
+     "what": "tape rip on the stab"
+    },
+    {
+     "at": "4:4.5",
+     "beat": 15.5,
+     "t_124": 7.5,
+     "what": "marker whoosh (alone in the silence)"
+    }
+   ],
+   "elastic": null
+  },
+  {
+   "id": "H2",
+   "start": "5:1",
+   "end": "8:1",
+   "beat_in": 16.0,
+   "beat_out": 28.0,
+   "t_in_124": 7.742,
+   "t_out_124": 13.548,
+   "layout": "L6",
+   "src": "GFX type card",
+   "see": "Pure type on dot-grid paper: 「同一刻，」 / 「另一面。」 huge, the MUSIC SPACE logo sticker, the one-line subtitle.",
+   "treat": "layered lettering: ink + pink offset shadow; 「另一面。」 gets the mint highlighter swipe (product recipe .ds-hl); logo = Luckiest Guy, yellow fill, ink outline, pink offset; 3 doodle stars twinkle; whole card pushes 1.00 -> 1.06",
+   "motion": [
+    {
+     "at": "5:1",
+     "beat": 16.0,
+     "t_124": 7.742,
+     "what": "SLAM 「同一刻，」"
+    },
+    {
+     "at": "5:3",
+     "beat": 18.0,
+     "t_124": 8.71,
+     "what": "SLAM 「另一面。」 + mint swipe"
+    },
+    {
+     "at": "6:1",
+     "beat": 20.0,
+     "t_124": 9.677,
+     "what": "logo POP (+4 deg)"
+    },
+    {
+     "at": "6:3",
+     "beat": 22.0,
+     "t_124": 10.645,
+     "what": "subtitle types on (16ths)"
+    },
+    {
+     "at": "7:1",
+     "beat": 24.0,
+     "t_124": 11.613,
+     "what": "3 stars POP"
+    },
+    {
+     "at": "7:3",
+     "beat": 26.0,
+     "t_124": 12.581,
+     "what": "pink wavy underline DRAWS under 「交换」"
+    },
+    {
+     "at": "7:4.5",
+     "beat": 27.5,
+     "t_124": 13.306,
+     "what": "type starts to shrink toward the landing card position"
+    }
+   ],
+   "sfx": [
+    {
+     "at": "5:1",
+     "beat": 16.0,
+     "t_124": 7.742,
+     "what": "impact (low boom + paper snap)"
+    },
+    {
+     "at": "5:3",
+     "beat": 18.0,
+     "t_124": 8.71,
+     "what": "marker squeak (highlighter)"
+    },
+    {
+     "at": "6:1",
+     "beat": 20.0,
+     "t_124": 9.677,
+     "what": "pop"
+    },
+    {
+     "at": "6:3",
+     "beat": 22.0,
+     "t_124": 10.645,
+     "what": "soft typewriter ticks"
+    },
+    {
+     "at": "7:3",
+     "beat": 26.0,
+     "t_124": 12.581,
+     "what": "marker squeak"
+    }
+   ],
+   "elastic": null
+  },
+  {
+   "id": "H3",
+   "start": "8:1",
+   "end": "9:1",
+   "beat_in": 28.0,
+   "beat_out": 32.0,
+   "t_in_124": 13.548,
+   "t_out_124": 15.484,
+   "layout": "L4",
+   "src": "D-01 desktop landing (real page)",
+   "see": "MATCH CUT: the title type flies into the real landing page, where the same words 「同一刻，另一面。」 sit on the paper card next to the 3D stage; left column 「这一晚的另一个视角，就在你身边。」 and the handwritten 「就是这一刻！」.",
+   "treat": "the video type scales/moves onto the product's own title (2 beats) and crossfades to it; slow push toward the card; pink hand-drawn circle around 「就是这一刻！」",
+   "motion": [
+    {
+     "at": "8:1",
+     "beat": 28.0,
+     "t_124": 13.548,
+     "what": "type lands on the product title (match cut)"
+    },
+    {
+     "at": "8:2",
+     "beat": 29.0,
+     "t_124": 14.032,
+     "what": "crossfade done; push-in continues"
+    },
+    {
+     "at": "8:3",
+     "beat": 30.0,
+     "t_124": 14.516,
+     "what": "pink circle DRAWS around 「就是这一刻！」"
+    },
+    {
+     "at": "8:4.5",
+     "beat": 31.5,
+     "t_124": 15.242,
+     "what": "ink scribble wipe"
+    }
+   ],
+   "sfx": [
+    {
+     "at": "8:1",
+     "beat": 28.0,
+     "t_124": 13.548,
+     "what": "whoosh"
+    },
+    {
+     "at": "8:3",
+     "beat": 30.0,
+     "t_124": 14.516,
+     "what": "marker squeak"
+    },
+    {
+     "at": "8:4.5",
+     "beat": 31.5,
+     "t_124": 15.242,
+     "what": "scribble whoosh"
+    }
+   ],
+   "elastic": "cut-6"
+  },
+  {
+   "id": "P1",
+   "start": "9:1",
+   "end": "13:1",
+   "beat_in": 32.0,
+   "beat_out": 48.0,
+   "t_in_124": 15.484,
+   "t_out_124": 23.226,
+   "layout": "L6",
+   "src": "GFX + web/assets/stage-scene.png, crowd-scene.png (AI images, allowed)",
+   "see": "Two polaroids: the stage photo (left) and the crowd photo (right). Each ends up inside its own hand-drawn phone outline, far apart.",
+   "treat": "palette goes quiet (ink + paper + the photos; one pink accent); camera drifts right across the paper (40 px per bar); polaroids tilt -4/+3 deg with tape",
+   "motion": [
+    {
+     "at": "9:1",
+     "beat": 32.0,
+     "t_124": 15.484,
+     "what": "「散场了。」 SLAM, paper only"
+    },
+    {
+     "at": "9:3",
+     "beat": 34.0,
+     "t_124": 16.452,
+     "what": "polaroid A (stage) slaps left + tape"
+    },
+    {
+     "at": "10:1",
+     "beat": 36.0,
+     "t_124": 17.419,
+     "what": "polaroid B (crowd) slaps right + tape"
+    },
+    {
+     "at": "10:3",
+     "beat": 38.0,
+     "t_124": 18.387,
+     "what": "handwritten captions 「你拍的」 / 「TA 拍的」 write on"
+    },
+    {
+     "at": "11:1",
+     "beat": 40.0,
+     "t_124": 19.355,
+     "what": "hand-drawn phone outlines DRAW around each polaroid"
+    },
+    {
+     "at": "12:1",
+     "beat": 44.0,
+     "t_124": 21.29,
+     "what": "the two phones slide apart"
+    },
+    {
+     "at": "12:3",
+     "beat": 46.0,
+     "t_124": 22.258,
+     "what": "dashed line DRAWS between them with a small × in the middle"
+    },
+    {
+     "at": "12:4.5",
+     "beat": 47.5,
+     "t_124": 22.984,
+     "what": "paper pans right (1 beat)"
+    }
+   ],
+   "sfx": [
+    {
+     "at": "9:1",
+     "beat": 32.0,
+     "t_124": 15.484,
+     "what": "soft impact"
+    },
+    {
+     "at": "9:3",
+     "beat": 34.0,
+     "t_124": 16.452,
+     "what": "paper slap + tape"
+    },
+    {
+     "at": "10:1",
+     "beat": 36.0,
+     "t_124": 17.419,
+     "what": "paper slap + tape"
+    },
+    {
+     "at": "11:1",
+     "beat": 40.0,
+     "t_124": 19.355,
+     "what": "pencil scratch"
+    },
+    {
+     "at": "12:3",
+     "beat": 46.0,
+     "t_124": 22.258,
+     "what": "pencil tick"
+    }
+   ],
+   "elastic": null
+  },
+  {
+   "id": "P2",
+   "start": "13:1",
+   "end": "17:1",
+   "beat_in": 48.0,
+   "beat_out": 64.0,
+   "t_in_124": 23.226,
+   "t_out_124": 30.968,
+   "layout": "L6",
+   "src": "GFX + crowd-scene.png",
+   "see": "The crowd photo big; a marker circle around one raised arm: 「你！」. The photo slides into a phone labelled 「陌生人的手机」 with a padlock.",
+   "treat": "pink marker circle + handwritten note; the stranger's phone gets a chip label and a lock doodle; question marks pop around it",
+   "motion": [
+    {
+     "at": "13:1",
+     "beat": 48.0,
+     "t_124": 23.226,
+     "what": "big polaroid slaps centre"
+    },
+    {
+     "at": "13:3",
+     "beat": 50.0,
+     "t_124": 24.194,
+     "what": "pink circle DRAWS around a raised arm"
+    },
+    {
+     "at": "13:4",
+     "beat": 51.0,
+     "t_124": 24.677,
+     "what": "note 「你！」 writes on"
+    },
+    {
+     "at": "14:1",
+     "beat": 52.0,
+     "t_124": 25.161,
+     "what": "polaroid slides into a hand-drawn phone + chip 「陌生人的手机」"
+    },
+    {
+     "at": "14:3",
+     "beat": 54.0,
+     "t_124": 26.129,
+     "what": "padlock doodle POPS"
+    },
+    {
+     "at": "15:1",
+     "beat": 56.0,
+     "t_124": 27.097,
+     "what": "the phone drifts to the right edge, shrinking"
+    },
+    {
+     "at": "15:3",
+     "beat": 58.0,
+     "t_124": 28.065,
+     "what": "3 question marks POP"
+    },
+    {
+     "at": "16:1",
+     "beat": 60.0,
+     "t_124": 29.032,
+     "what": "dotted path DRAWS from a small you-sticker toward the phone"
+    },
+    {
+     "at": "16:3",
+     "beat": 62.0,
+     "t_124": 30.0,
+     "what": "the path ends in a ×"
+    },
+    {
+     "at": "16:4.5",
+     "beat": 63.5,
+     "t_124": 30.726,
+     "what": "paper pans"
+    }
+   ],
+   "sfx": [
+    {
+     "at": "13:1",
+     "beat": 48.0,
+     "t_124": 23.226,
+     "what": "paper slap"
+    },
+    {
+     "at": "13:3",
+     "beat": 50.0,
+     "t_124": 24.194,
+     "what": "marker squeak"
+    },
+    {
+     "at": "14:1",
+     "beat": 52.0,
+     "t_124": 25.161,
+     "what": "slide"
+    },
+    {
+     "at": "14:3",
+     "beat": 54.0,
+     "t_124": 26.129,
+     "what": "lock click"
+    },
+    {
+     "at": "15:3",
+     "beat": 58.0,
+     "t_124": 28.065,
+     "what": "3 small pops"
+    },
+    {
+     "at": "16:3",
+     "beat": 62.0,
+     "t_124": 30.0,
+     "what": "pencil tick"
+    }
+   ],
+   "elastic": null
+  },
+  {
+   "id": "P3",
+   "start": "17:1",
+   "end": "21:1",
+   "beat_in": 64.0,
+   "beat_out": 80.0,
+   "t_in_124": 30.968,
+   "t_out_124": 38.71,
+   "layout": "L6",
+   "src": "GFX + CUT-10 avatar SVGs exported from the build",
+   "see": "Five illustrated avatars stand in a row (the cast looks + yours). Four slide away one per beat; yours is left with a 「?」 bubble. Then the two polaroids come back from the edges, meet above you and swap places.",
+   "treat": "avatars are the product's own SVGs (ink outlines, flat colour), each on a small mint ellipse like the wardrobe stand; swap sticker = pink circle with the product's ⇄ arrows",
+   "motion": [
+    {
+     "at": "17:1",
+     "beat": 64.0,
+     "t_124": 30.968,
+     "what": "avatars POP in on 8ths (17:1, 17:1.5, 17:2, 17:2.5, 17:3)"
+    },
+    {
+     "at": "17:3",
+     "beat": 66.0,
+     "t_124": 31.935,
+     "what": "all bob once"
+    },
+    {
+     "at": "18:1",
+     "beat": 68.0,
+     "t_124": 32.903,
+     "what": "avatar 1 slides out left"
+    },
+    {
+     "at": "18:2",
+     "beat": 69.0,
+     "t_124": 33.387,
+     "what": "avatar 2 slides out right"
+    },
+    {
+     "at": "18:3",
+     "beat": 70.0,
+     "t_124": 33.871,
+     "what": "avatar 3 out"
+    },
+    {
+     "at": "18:4",
+     "beat": 71.0,
+     "t_124": 34.355,
+     "what": "avatar 4 out; 「?」 bubble POPS over yours"
+    },
+    {
+     "at": "19:1",
+     "beat": 72.0,
+     "t_124": 34.839,
+     "what": "push-in on your avatar (1.00 -> 1.15, 2 beats)"
+    },
+    {
+     "at": "19:3",
+     "beat": 74.0,
+     "t_124": 35.806,
+     "what": "polaroids A and B slide in from the edges"
+    },
+    {
+     "at": "20:1",
+     "beat": 76.0,
+     "t_124": 36.774,
+     "what": "they meet above you"
+    },
+    {
+     "at": "20:3",
+     "beat": 78.0,
+     "t_124": 37.742,
+     "what": "⇄ sticker POPS, polaroids swap places"
+    },
+    {
+     "at": "20:4.5",
+     "beat": 79.5,
+     "t_124": 38.468,
+     "what": "pink scribble wipe"
+    }
+   ],
+   "sfx": [
+    {
+     "at": "17:1",
+     "beat": 64.0,
+     "t_124": 30.968,
+     "what": "5 tiny pops"
+    },
+    {
+     "at": "18:1",
+     "beat": 68.0,
+     "t_124": 32.903,
+     "what": "4 whooshes, one per beat"
+    },
+    {
+     "at": "19:1",
+     "beat": 72.0,
+     "t_124": 34.839,
+     "what": "riser starts (music)"
+    },
+    {
+     "at": "20:3",
+     "beat": 78.0,
+     "t_124": 37.742,
+     "what": "zip/swap"
+    },
+    {
+     "at": "20:4.5",
+     "beat": 79.5,
+     "t_124": 38.468,
+     "what": "scribble whoosh"
+    }
+   ],
+   "elastic": null
+  },
+  {
+   "id": "E1",
+   "start": "21:1",
+   "end": "23:1",
+   "beat_in": 80.0,
+   "beat_out": 88.0,
+   "t_in_124": 38.71,
+   "t_out_124": 42.581,
+   "layout": "L1",
+   "src": "P-01 phone landing (TAKE-P1 step 1)",
+   "see": "The phone (hand-drawn frame) bounces up from the bottom showing the real first screen: the doodle 3D stage, 「进到同一个现场」, the card 「同一刻，另一面。」 and the button 「进入示例现场」. A finger tap on the button.",
+   "treat": "phone frame: ink bezel, mint hard shadow, tilt -2 deg; screen push 1.00 -> 1.10; on 22:1 punch zoom 1.35 onto the title card",
+   "motion": [
+    {
+     "at": "21:1",
+     "beat": 80.0,
+     "t_124": 38.71,
+     "what": "phone bounces up into frame (overshoot)"
+    },
+    {
+     "at": "21:3",
+     "beat": 82.0,
+     "t_124": 39.677,
+     "what": "screen push starts"
+    },
+    {
+     "at": "22:1",
+     "beat": 84.0,
+     "t_124": 40.645,
+     "what": "punch zoom onto the title card"
+    },
+    {
+     "at": "22:3",
+     "beat": 86.0,
+     "t_124": 41.613,
+     "what": "tap ripple on 「进入示例现场」"
+    },
+    {
+     "at": "22:4",
+     "beat": 87.0,
+     "t_124": 42.097,
+     "what": "entry panel begins to slide"
+    }
+   ],
+   "sfx": [
+    {
+     "at": "21:1",
+     "beat": 80.0,
+     "t_124": 38.71,
+     "what": "whoosh-up + pop"
+    },
+    {
+     "at": "22:1",
+     "beat": 84.0,
+     "t_124": 40.645,
+     "what": "zoom thump"
+    },
+    {
+     "at": "22:3",
+     "beat": 86.0,
+     "t_124": 41.613,
+     "what": "click"
+    }
+   ],
+   "elastic": null
+  },
+  {
+   "id": "E2",
+   "start": "23:1",
+   "end": "25:1",
+   "beat_in": 88.0,
+   "beat_out": 96.0,
+   "t_in_124": 42.581,
+   "t_out_124": 46.452,
+   "layout": "L1",
+   "src": "P-02 wardrobe (TAKE-P1 step 3-4)",
+   "see": "The wardrobe 「MY ALTER EGO / 今晚，我这样。」: outfits flip on every beat (留白 -> 断拍 -> 循迹 -> 失真), then the avatar turns on every beat (正面 -> 侧面 -> 背面 -> 3/4).",
+   "treat": "screen zoomed 1.25 on the figure; each tap = ripple + a tiny star; the outfit flip IS the beat",
+   "motion": [
+    {
+     "at": "23:1",
+     "beat": 88.0,
+     "t_124": 42.581,
+     "what": "tap 留白"
+    },
+    {
+     "at": "23:2",
+     "beat": 89.0,
+     "t_124": 43.065,
+     "what": "tap 断拍"
+    },
+    {
+     "at": "23:3",
+     "beat": 90.0,
+     "t_124": 43.548,
+     "what": "tap 循迹"
+    },
+    {
+     "at": "23:4",
+     "beat": 91.0,
+     "t_124": 44.032,
+     "what": "tap 失真 (final look)"
+    },
+    {
+     "at": "24:1",
+     "beat": 92.0,
+     "t_124": 44.516,
+     "what": "angle 正面"
+    },
+    {
+     "at": "24:2",
+     "beat": 93.0,
+     "t_124": 45.0,
+     "what": "angle 侧面"
+    },
+    {
+     "at": "24:3",
+     "beat": 94.0,
+     "t_124": 45.484,
+     "what": "angle 背面"
+    },
+    {
+     "at": "24:4",
+     "beat": 95.0,
+     "t_124": 45.968,
+     "what": "angle 3/4"
+    },
+    {
+     "at": "24:4.5",
+     "beat": 95.5,
+     "t_124": 46.21,
+     "what": "tap 「保存这个我 ↗」"
+    }
+   ],
+   "sfx": [
+    {
+     "at": "23:1",
+     "beat": 88.0,
+     "t_124": 42.581,
+     "what": "click on every beat 23:1-24:4 (alternate two pitches)"
+    },
+    {
+     "at": "24:4.5",
+     "beat": 95.5,
+     "t_124": 46.21,
+     "what": "save chime (short)"
+    }
+   ],
+   "elastic": null
+  },
+  {
+   "id": "E3",
+   "start": "25:1",
+   "end": "27:1",
+   "beat_in": 96.0,
+   "beat_out": 104.0,
+   "t_in_124": 46.452,
+   "t_out_124": 50.323,
+   "layout": "L1",
+   "src": "P-03 entry form (TAKE-P1 step 5)",
+   "see": "Entry form 「带上小人，进入示例现场」: nickname 「阿宁」 types in, the two choices 「愿意打招呼」 / 「安静参与」, the consent tick, 「进入示例现场」.",
+   "treat": "marker bracket around the two participation options; mint check doodle on the tick",
+   "motion": [
+    {
+     "at": "25:1",
+     "beat": 96.0,
+     "t_124": 46.452,
+     "what": "nickname types on (2 chars on 16ths)"
+    },
+    {
+     "at": "25:2",
+     "beat": 97.0,
+     "t_124": 46.935,
+     "what": "panel scrolls to the participation options"
+    },
+    {
+     "at": "25:3",
+     "beat": 98.0,
+     "t_124": 47.419,
+     "what": "marker bracket DRAWS around both options"
+    },
+    {
+     "at": "26:1",
+     "beat": 100.0,
+     "t_124": 48.387,
+     "what": "tick consent (mint check)"
+    },
+    {
+     "at": "26:3",
+     "beat": 102.0,
+     "t_124": 49.355,
+     "what": "tap 「进入示例现场」"
+    },
+    {
+     "at": "26:4",
+     "beat": 103.0,
+     "t_124": 49.839,
+     "what": "room starts to appear"
+    }
+   ],
+   "sfx": [
+    {
+     "at": "25:1",
+     "beat": 96.0,
+     "t_124": 46.452,
+     "what": "key ticks"
+    },
+    {
+     "at": "25:3",
+     "beat": 98.0,
+     "t_124": 47.419,
+     "what": "marker squeak"
+    },
+    {
+     "at": "26:1",
+     "beat": 100.0,
+     "t_124": 48.387,
+     "what": "tick"
+    },
+    {
+     "at": "26:3",
+     "beat": 102.0,
+     "t_124": 49.355,
+     "what": "click"
+    }
+   ],
+   "elastic": null
+  },
+  {
+   "id": "E4",
+   "start": "27:1",
+   "end": "29:1",
+   "beat_in": 104.0,
+   "beat_out": 112.0,
+   "t_in_124": 50.323,
+   "t_out_124": 54.194,
+   "layout": "L4",
+   "src": "D-02 desktop 3D room overview, all five present, route card skipped (TAKE-D2)",
+   "see": "The doodle 3D livehouse full-bleed: pink curtain, SIDE BY SIDE poster, mint stage, ink outlines; 阿遥·示例, 小满·示例, 北屿·示例, 阿宁 (you), 林间·示例 with their name labels.",
+   "treat": "taped ink frame around the footage; hand-drawn circles around each person on the beats (pink, yellow, mint, pink, yellow heart for you); stamp 「示例角色 · 自动回复」; slow push 1.00 -> 1.08",
+   "motion": [
+    {
+     "at": "27:1",
+     "beat": 104.0,
+     "t_124": 50.323,
+     "what": "scribble reveal; push starts"
+    },
+    {
+     "at": "27:2",
+     "beat": 105.0,
+     "t_124": 50.806,
+     "what": "circle 阿遥"
+    },
+    {
+     "at": "27:3",
+     "beat": 106.0,
+     "t_124": 51.29,
+     "what": "circle 小满; stamp lands"
+    },
+    {
+     "at": "27:4",
+     "beat": 107.0,
+     "t_124": 51.774,
+     "what": "circle 北屿"
+    },
+    {
+     "at": "28:1",
+     "beat": 108.0,
+     "t_124": 52.258,
+     "what": "circle 林间"
+    },
+    {
+     "at": "28:2",
+     "beat": 109.0,
+     "t_124": 52.742,
+     "what": "heart on 阿宁 · 我"
+    },
+    {
+     "at": "28:3",
+     "beat": 110.0,
+     "t_124": 53.226,
+     "what": "all circles wiggle"
+    },
+    {
+     "at": "28:4.5",
+     "beat": 111.5,
+     "t_124": 53.952,
+     "what": "hard cut prep"
+    }
+   ],
+   "sfx": [
+    {
+     "at": "27:1",
+     "beat": 104.0,
+     "t_124": 50.323,
+     "what": "bright chord stab (music) under the scribble reveal"
+    },
+    {
+     "at": "27:2",
+     "beat": 105.0,
+     "t_124": 50.806,
+     "what": "marker squeak x4 (one per circle, 27:2-28:1)"
+    },
+    {
+     "at": "27:3",
+     "beat": 106.0,
+     "t_124": 51.29,
+     "what": "stamp thud"
+    },
+    {
+     "at": "28:2",
+     "beat": 109.0,
+     "t_124": 52.742,
+     "what": "heart boop"
+    }
+   ],
+   "elastic": null
+  },
+  {
+   "id": "A1",
+   "start": "29:1",
+   "end": "31:1",
+   "beat_in": 112.0,
+   "beat_out": 120.0,
+   "t_in_124": 54.194,
+   "t_out_124": 58.065,
+   "layout": "L2",
+   "src": "P-04 room + route card, then P-05 upload form (TAKE-P1 steps 6-7)",
+   "see": "Phone: the room with the route card 「示例路线 1/4 · 放一张你的照片」; tap 「人海 · 示例照片」; the upload form with the polaroid and 「拍摄于 21:48 · 来自照片自带的信息」 and the note 「示例照片 · 虚构的拍摄时间 21:48，写在文件里」.",
+   "treat": "phone frame yellow shadow, tilt +2 deg; pink circle on the sample button; punch zoom x1.8 onto the time line",
+   "motion": [
+    {
+     "at": "29:1",
+     "beat": 112.0,
+     "t_124": 54.194,
+     "what": "cut in on the room"
+    },
+    {
+     "at": "29:2",
+     "beat": 113.0,
+     "t_124": 54.677,
+     "what": "pink circle DRAWS on 「人海 · 示例照片」"
+    },
+    {
+     "at": "29:3",
+     "beat": 114.0,
+     "t_124": 55.161,
+     "what": "tap"
+    },
+    {
+     "at": "29:4",
+     "beat": 115.0,
+     "t_124": 55.645,
+     "what": "upload form slides up"
+    },
+    {
+     "at": "30:1",
+     "beat": 116.0,
+     "t_124": 56.129,
+     "what": "punch zoom onto 「拍摄于 21:48」"
+    },
+    {
+     "at": "30:3",
+     "beat": 118.0,
+     "t_124": 57.097,
+     "what": "small push"
+    },
+    {
+     "at": "30:4.5",
+     "beat": 119.5,
+     "t_124": 57.823,
+     "what": "zoom out"
+    }
+   ],
+   "sfx": [
+    {
+     "at": "29:3",
+     "beat": 114.0,
+     "t_124": 55.161,
+     "what": "click"
+    },
+    {
+     "at": "29:4",
+     "beat": 115.0,
+     "t_124": 55.645,
+     "what": "camera shutter (soft)"
+    },
+    {
+     "at": "30:1",
+     "beat": 116.0,
+     "t_124": 56.129,
+     "what": "zoom thump"
+    }
+   ],
+   "elastic": null
+  },
+  {
+   "id": "A2",
+   "start": "31:1",
+   "end": "33:3",
+   "beat_in": 120.0,
+   "beat_out": 130.0,
+   "t_in_124": 58.065,
+   "t_out_124": 62.903,
+   "layout": "L2",
+   "src": "P-05 upload form, AI line (TAKE-P1 step 7)",
+   "see": "The panel scrolls to 「我拍的这一面」; the chip 「✦ AI 判断：人海」 appears and 人海 is pre-selected; hint 「配对时，用它来找互补的那一面。AI 在本机判断，照片不上传，没把握就不替你选，选了也随时可改。」",
+   "treat": "sync the chip's first frame to 31:3; pink circle around the chip; punch zoom x2 on chip + selected card on 32:1; zoom out to show the hint on 33:1",
+   "motion": [
+    {
+     "at": "31:1",
+     "beat": 120.0,
+     "t_124": 58.065,
+     "what": "panel scroll (1 beat ease)"
+    },
+    {
+     "at": "31:3",
+     "beat": 122.0,
+     "t_124": 59.032,
+     "what": "AI chip appears (sync)"
+    },
+    {
+     "at": "31:3.5",
+     "beat": 122.5,
+     "t_124": 59.274,
+     "what": "pink circle DRAWS around the chip"
+    },
+    {
+     "at": "32:1",
+     "beat": 124.0,
+     "t_124": 60.0,
+     "what": "punch zoom x2"
+    },
+    {
+     "at": "32:3",
+     "beat": 126.0,
+     "t_124": 60.968,
+     "what": "slow push"
+    },
+    {
+     "at": "33:1",
+     "beat": 128.0,
+     "t_124": 61.935,
+     "what": "zoom out to the hint text"
+    }
+   ],
+   "sfx": [
+    {
+     "at": "31:3",
+     "beat": 122.0,
+     "t_124": 59.032,
+     "what": "CHIME (bell, the AI moment)"
+    },
+    {
+     "at": "31:3.5",
+     "beat": 122.5,
+     "t_124": 59.274,
+     "what": "marker squeak"
+    },
+    {
+     "at": "32:1",
+     "beat": 124.0,
+     "t_124": 60.0,
+     "what": "impact (small)"
+    }
+   ],
+   "elastic": null
+  },
+  {
+   "id": "A3",
+   "start": "33:3",
+   "end": "35:1",
+   "beat_in": 130.0,
+   "beat_out": 136.0,
+   "t_in_124": 62.903,
+   "t_out_124": 65.806,
+   "layout": "L2",
+   "src": "P-06 the honest case (TAKE-P2, fresh world, NOT saved)",
+   "see": "The stage sample: 「拍摄于 21:47」; the AI line says 「✦ 不确定，请选择」, two dashed suggestions (舞台, 人海) with sparkles, nothing selected; the person taps 舞台.",
+   "treat": "dashed marker circle (dashed!) around the unsure chip; punch zoom on the two dashed cards; tap ripple on 舞台",
+   "motion": [
+    {
+     "at": "33:3",
+     "beat": 130.0,
+     "t_124": 62.903,
+     "what": "cut to the stage sample form"
+    },
+    {
+     "at": "33:4",
+     "beat": 131.0,
+     "t_124": 63.387,
+     "what": "unsure chip + dashed suggestions (sync)"
+    },
+    {
+     "at": "34:1",
+     "beat": 132.0,
+     "t_124": 63.871,
+     "what": "dashed circle DRAWS; punch zoom"
+    },
+    {
+     "at": "34:3",
+     "beat": 134.0,
+     "t_124": 64.839,
+     "what": "tap 舞台 (selected)"
+    },
+    {
+     "at": "34:4",
+     "beat": 135.0,
+     "t_124": 65.323,
+     "what": "zoom out"
+    }
+   ],
+   "sfx": [
+    {
+     "at": "33:4",
+     "beat": 131.0,
+     "t_124": 63.387,
+     "what": "two soft \"hmm\" plucks (questioning interval)"
+    },
+    {
+     "at": "34:1",
+     "beat": 132.0,
+     "t_124": 63.871,
+     "what": "marker squeak"
+    },
+    {
+     "at": "34:3",
+     "beat": 134.0,
+     "t_124": 64.839,
+     "what": "click"
+    }
+   ],
+   "elastic": null
+  },
+  {
+   "id": "A4",
+   "start": "35:1",
+   "end": "37:1",
+   "beat_in": 136.0,
+   "beat_out": 144.0,
+   "t_in_124": 65.806,
+   "t_out_124": 69.677,
+   "layout": "L2 -> L4",
+   "src": "P-07 save + wall opens (TAKE-P1 step 8-9), D-03 desktop 3D photo wall before/after",
+   "see": "Tap 「保存这张照片」; toast 「已分享给本场成员」; the wall panel 「这一晚，大家看到了什么？」 slides up. Cut to the desktop 3D photo wall (sign 「同一晚，另一面。」): 4 polaroids, and on 36:3 the fifth (yours) appears.",
+   "treat": "before/after are two captures cut on 36:3 with a pop; pink star + handwritten 「上墙啦！」 with an arrow to the new polaroid",
+   "motion": [
+    {
+     "at": "35:1",
+     "beat": 136.0,
+     "t_124": 65.806,
+     "what": "tap 「保存这张照片」"
+    },
+    {
+     "at": "35:2",
+     "beat": 137.0,
+     "t_124": 66.29,
+     "what": "toast + wall panel slides"
+    },
+    {
+     "at": "35:3",
+     "beat": 138.0,
+     "t_124": 66.774,
+     "what": "panel title in"
+    },
+    {
+     "at": "36:1",
+     "beat": 140.0,
+     "t_124": 67.742,
+     "what": "cut to desktop 3D wall (4 photos), slow push"
+    },
+    {
+     "at": "36:3",
+     "beat": 142.0,
+     "t_124": 68.71,
+     "what": "your polaroid appears (cut) + star POP"
+    },
+    {
+     "at": "36:4",
+     "beat": 143.0,
+     "t_124": 69.194,
+     "what": "note writes on"
+    }
+   ],
+   "sfx": [
+    {
+     "at": "35:1",
+     "beat": 136.0,
+     "t_124": 65.806,
+     "what": "click"
+    },
+    {
+     "at": "35:2",
+     "beat": 137.0,
+     "t_124": 66.29,
+     "what": "paper whoosh"
+    },
+    {
+     "at": "36:3",
+     "beat": 142.0,
+     "t_124": 68.71,
+     "what": "pop + tape"
+    },
+    {
+     "at": "36:4",
+     "beat": 143.0,
+     "t_124": 69.194,
+     "what": "pencil scribble"
+    }
+   ],
+   "elastic": "cut-9 (bar 36)"
+  },
+  {
+   "id": "A5",
+   "start": "37:1",
+   "end": "41:1",
+   "beat_in": 144.0,
+   "beat_out": 160.0,
+   "t_in_124": 69.677,
+   "t_out_124": 77.419,
+   "layout": "L2",
+   "src": "P-08 wall panel: group header, rule line, badge (TAKE-P1 step 9)",
+   "see": "「21:47 同一刻 · 3 个视角：舞台 · 人海 · 细节」, the rule 「按拍摄时间分组（相差不超过 3 分钟），规则判断，不是 AI」, then the scroll reveals the pink badge 「同一刻的另一面」 with the reason and the button 「和 TA 交换这个视角」.",
+   "treat": "yellow highlighter swipe over 「相差不超过 3 分钟」 (annotation on top of the UI); mint rubber stamp 「规则判断，不是 AI。」 lands beside the phone; pink arrow + note to the badge",
+   "motion": [
+    {
+     "at": "37:1",
+     "beat": 144.0,
+     "t_124": 69.677,
+     "what": "cut on the group header; push"
+    },
+    {
+     "at": "37:3",
+     "beat": 146.0,
+     "t_124": 70.645,
+     "what": "「21:47」 gets a yellow underline DRAW"
+    },
+    {
+     "at": "38:1",
+     "beat": 148.0,
+     "t_124": 71.613,
+     "what": "punch zoom onto the rule line"
+    },
+    {
+     "at": "38:3",
+     "beat": 150.0,
+     "t_124": 72.581,
+     "what": "yellow highlighter SWIPES over 「相差不超过 3 分钟」"
+    },
+    {
+     "at": "39:1",
+     "beat": 152.0,
+     "t_124": 73.548,
+     "what": "stamp lands"
+    },
+    {
+     "at": "39:3",
+     "beat": 154.0,
+     "t_124": 74.516,
+     "what": "panel scrolls: the badge comes into view"
+    },
+    {
+     "at": "40:1",
+     "beat": 156.0,
+     "t_124": 75.484,
+     "what": "punch zoom on badge + reason"
+    },
+    {
+     "at": "40:3",
+     "beat": 158.0,
+     "t_124": 76.452,
+     "what": "arrow + note DRAW"
+    },
+    {
+     "at": "40:4.5",
+     "beat": 159.5,
+     "t_124": 77.177,
+     "what": "pink scribble wipe"
+    }
+   ],
+   "sfx": [
+    {
+     "at": "37:3",
+     "beat": 146.0,
+     "t_124": 70.645,
+     "what": "marker squeak"
+    },
+    {
+     "at": "38:3",
+     "beat": 150.0,
+     "t_124": 72.581,
+     "what": "highlighter squeak"
+    },
+    {
+     "at": "39:1",
+     "beat": 152.0,
+     "t_124": 73.548,
+     "what": "STAMP thud"
+    },
+    {
+     "at": "40:1",
+     "beat": 156.0,
+     "t_124": 75.484,
+     "what": "zoom thump"
+    },
+    {
+     "at": "40:4.5",
+     "beat": 159.5,
+     "t_124": 77.177,
+     "what": "scribble whoosh"
+    }
+   ],
+   "elastic": "cut-7 (bar 40)"
+  },
+  {
+   "id": "M1",
+   "start": "41:1",
+   "end": "43:1",
+   "beat_in": 160.0,
+   "beat_out": 168.0,
+   "t_in_124": 77.419,
+   "t_out_124": 81.29,
+   "layout": "L6",
+   "src": "GFX + dist-pages/demo/sample-crowd.jpg (yours) + yao-stage.jpg (阿遥·示例)",
+   "see": "Two big polaroids slam in from both sides and collide in the centre: yours (crowd) and 阿遥's (stage); they bounce apart, the ⇄ sticker pops between them, the times 21:48 / 21:47 stamp on and a bracket says 「不到 1 分钟」.",
+   "treat": "the key frame of the film; star-burst doodles on impact; captions handwritten 「阿宁 · 人海」 / 「阿遥·示例 · 舞台」; digits in 得意黑 with yellow highlight",
+   "motion": [
+    {
+     "at": "41:1",
+     "beat": 160.0,
+     "t_124": 77.419,
+     "what": "polaroids collide (2-frame shake, star burst)"
+    },
+    {
+     "at": "41:3",
+     "beat": 162.0,
+     "t_124": 78.387,
+     "what": "bounce apart; ⇄ sticker POPS"
+    },
+    {
+     "at": "42:1",
+     "beat": 164.0,
+     "t_124": 79.355,
+     "what": "「21:48」 stamps on yours"
+    },
+    {
+     "at": "42:2",
+     "beat": 165.0,
+     "t_124": 79.839,
+     "what": "「21:47」 stamps on TA's"
+    },
+    {
+     "at": "42:3",
+     "beat": 166.0,
+     "t_124": 80.323,
+     "what": "bracket DRAWS: 「不到 1 分钟」"
+    },
+    {
+     "at": "42:4.5",
+     "beat": 167.5,
+     "t_124": 81.048,
+     "what": "cut"
+    }
+   ],
+   "sfx": [
+    {
+     "at": "41:1",
+     "beat": 160.0,
+     "t_124": 77.419,
+     "what": "BIG paper slap x2 + cymbal-ish crash from the music"
+    },
+    {
+     "at": "41:3",
+     "beat": 162.0,
+     "t_124": 78.387,
+     "what": "pop"
+    },
+    {
+     "at": "42:1",
+     "beat": 164.0,
+     "t_124": 79.355,
+     "what": "stamp"
+    },
+    {
+     "at": "42:2",
+     "beat": 165.0,
+     "t_124": 79.839,
+     "what": "stamp"
+    },
+    {
+     "at": "42:3",
+     "beat": 166.0,
+     "t_124": 80.323,
+     "what": "marker squeak"
+    }
+   ],
+   "elastic": null
+  },
+  {
+   "id": "M2",
+   "start": "43:1",
+   "end": "45:1",
+   "beat_in": 168.0,
+   "beat_out": 176.0,
+   "t_in_124": 81.29,
+   "t_out_124": 85.161,
+   "layout": "L2",
+   "src": "P-08 badge + reason (TAKE-P1 step 9)",
+   "see": "The real badge card on the phone: 「同一刻的另一面」 / 「同一刻 · 21:47，相差不到 1 分钟；你拍人海，TA 拍舞台」 / 「和 TA 交换这个视角」.",
+   "treat": "phone pink shadow; zoom x1.4 on the badge card; sparkles pop around the phone; phone wiggles on 44:3",
+   "motion": [
+    {
+     "at": "43:1",
+     "beat": 168.0,
+     "t_124": 81.29,
+     "what": "cut on the badge (zoom 1.4)"
+    },
+    {
+     "at": "43:3",
+     "beat": 170.0,
+     "t_124": 82.258,
+     "what": "sparkles POP"
+    },
+    {
+     "at": "44:1",
+     "beat": 172.0,
+     "t_124": 83.226,
+     "what": "slow push"
+    },
+    {
+     "at": "44:3",
+     "beat": 174.0,
+     "t_124": 84.194,
+     "what": "phone tilt wiggle -2 -> +1 deg"
+    }
+   ],
+   "sfx": [
+    {
+     "at": "43:1",
+     "beat": 168.0,
+     "t_124": 81.29,
+     "what": "impact + glitter"
+    },
+    {
+     "at": "43:3",
+     "beat": 170.0,
+     "t_124": 82.258,
+     "what": "sparkle"
+    }
+   ],
+   "elastic": null
+  },
+  {
+   "id": "M3",
+   "start": "45:1",
+   "end": "47:1",
+   "beat_in": 176.0,
+   "beat_out": 184.0,
+   "t_in_124": 85.161,
+   "t_out_124": 89.032,
+   "layout": "L2",
+   "src": "P-09 exchange compose (TAKE-P1 step 10)",
+   "see": "Tap 「和 TA 交换这个视角」 -> 「交换一个视角」: 「用我拍下的，换 阿遥·示例 看到的。」, the two polaroids with ⇄, the select 「我的第 1 张 · 已上墙 · 同一刻的另一面（推荐）」 and the reason card ending 「规则判断，不是 AI。要不要交换，仍由你和对方决定。」",
+   "treat": "punch zoom on the two polaroids; mint highlighter swipe over 「要不要交换，仍由你和对方决定。」",
+   "motion": [
+    {
+     "at": "45:1",
+     "beat": 176.0,
+     "t_124": 85.161,
+     "what": "tap (ripple)"
+    },
+    {
+     "at": "45:2",
+     "beat": 177.0,
+     "t_124": 85.645,
+     "what": "compose screen slides in"
+    },
+    {
+     "at": "45:3",
+     "beat": 178.0,
+     "t_124": 86.129,
+     "what": "punch zoom on the polaroids + ⇄"
+    },
+    {
+     "at": "46:1",
+     "beat": 180.0,
+     "t_124": 87.097,
+     "what": "scroll to the reason card"
+    },
+    {
+     "at": "46:3",
+     "beat": 182.0,
+     "t_124": 88.065,
+     "what": "mint highlighter swipe"
+    }
+   ],
+   "sfx": [
+    {
+     "at": "45:1",
+     "beat": 176.0,
+     "t_124": 85.161,
+     "what": "click"
+    },
+    {
+     "at": "45:2",
+     "beat": 177.0,
+     "t_124": 85.645,
+     "what": "paper whoosh"
+    },
+    {
+     "at": "46:3",
+     "beat": 182.0,
+     "t_124": 88.065,
+     "what": "highlighter squeak"
+    }
+   ],
+   "elastic": null
+  },
+  {
+   "id": "M4",
+   "start": "47:1",
+   "end": "49:1",
+   "beat_in": 184.0,
+   "beat_out": 192.0,
+   "t_in_124": 89.032,
+   "t_out_124": 92.903,
+   "layout": "L2",
+   "src": "P-09 consent + send, P-10 pending (TAKE-P1 steps 10-11)",
+   "see": "The agreement 「发送后，阿遥·示例 可以看并保存我的小图预览。TA 明确接受后，我们才能通过这次交换继续查看两张原图…」, the tick 「我同意提供选中照片的预览，并在对方接受后分享这张原图」, 「把这两张交给对方确认 ↗」, then 「等待本人回应」.",
+   "treat": "mint check doodle drawn over the real tick; clock doodle sticker next to the phone ticking on beats",
+   "motion": [
+    {
+     "at": "47:1",
+     "beat": 184.0,
+     "t_124": 89.032,
+     "what": "scroll to the consent"
+    },
+    {
+     "at": "47:2",
+     "beat": 185.0,
+     "t_124": 89.516,
+     "what": "tick (mint check DRAWS)"
+    },
+    {
+     "at": "47:3",
+     "beat": 186.0,
+     "t_124": 90.0,
+     "what": "tap send"
+    },
+    {
+     "at": "48:1",
+     "beat": 188.0,
+     "t_124": 90.968,
+     "what": "cut to 「等待本人回应」"
+    },
+    {
+     "at": "48:3",
+     "beat": 190.0,
+     "t_124": 91.935,
+     "what": "clock sticker POPS; ticks every beat"
+    }
+   ],
+   "sfx": [
+    {
+     "at": "47:2",
+     "beat": 185.0,
+     "t_124": 89.516,
+     "what": "tick"
+    },
+    {
+     "at": "47:3",
+     "beat": 186.0,
+     "t_124": 90.0,
+     "what": "click + paper fly"
+    },
+    {
+     "at": "48:3",
+     "beat": 190.0,
+     "t_124": 91.935,
+     "what": "clock tick on each beat 48:3-50:4"
+    }
+   ],
+   "elastic": null
+  },
+  {
+   "id": "M5",
+   "start": "49:1",
+   "end": "51:1",
+   "beat_in": 192.0,
+   "beat_out": 200.0,
+   "t_in_124": 92.903,
+   "t_out_124": 96.774,
+   "layout": "L2",
+   "src": "P-10 pending (TAKE-P1 step 11, the real wait)",
+   "see": "「等待本人回应」 with the two polaroids; the wait before 阿遥·示例 answers.",
+   "treat": "heartbeat pulse 1.00 -> 1.025 on every beat; clock sticker spins faster; three dots pop on 8ths over 50:3-50:3.5; on 50:4 (the silence) everything squashes 2 frames and holds until the drop",
+   "motion": [
+    {
+     "at": "49:1",
+     "beat": 192.0,
+     "t_124": 92.903,
+     "what": "pulse"
+    },
+    {
+     "at": "49:2",
+     "beat": 193.0,
+     "t_124": 93.387,
+     "what": "pulse"
+    },
+    {
+     "at": "49:3",
+     "beat": 194.0,
+     "t_124": 93.871,
+     "what": "pulse"
+    },
+    {
+     "at": "49:4",
+     "beat": 195.0,
+     "t_124": 94.355,
+     "what": "pulse"
+    },
+    {
+     "at": "50:1",
+     "beat": 196.0,
+     "t_124": 94.839,
+     "what": "pulse + clock spins"
+    },
+    {
+     "at": "50:2",
+     "beat": 197.0,
+     "t_124": 95.323,
+     "what": "pulse"
+    },
+    {
+     "at": "50:3",
+     "beat": 198.0,
+     "t_124": 95.806,
+     "what": "dots POP on 8ths"
+    },
+    {
+     "at": "50:4",
+     "beat": 199.0,
+     "t_124": 96.29,
+     "what": "one-beat silence in the music: everything squashes 2 frames, then holds"
+    }
+   ],
+   "sfx": [
+    {
+     "at": "49:1",
+     "beat": 192.0,
+     "t_124": 92.903,
+     "what": "riser (music) + heartbeat thump on each beat"
+    },
+    {
+     "at": "50:3",
+     "beat": 198.0,
+     "t_124": 95.806,
+     "what": "drum fill (music)"
+    }
+   ],
+   "elastic": null
+  },
+  {
+   "id": "M6",
+   "start": "51:1",
+   "end": "53:1",
+   "beat_in": 200.0,
+   "beat_out": 208.0,
+   "t_in_124": 96.774,
+   "t_out_124": 100.645,
+   "layout": "L2",
+   "src": "P-11 交换已接受 (TAKE-P1 step 11)",
+   "see": "DROP: the real mint sticker 「交换已接受」 with the star, 「和 阿遥·示例 的两张照片」, both polaroids (我提供的 / 阿遥·示例提供的).",
+   "treat": "punch zoom x2.2 onto the sticker on the downbeat; confetti of doodle stars, hearts and plus signs in pink/yellow/mint bursts from behind the phone; zoom back to x1.2 on 51:3 to show both photos",
+   "motion": [
+    {
+     "at": "51:1",
+     "beat": 200.0,
+     "t_124": 96.774,
+     "what": "cut + punch zoom x2.2 + confetti burst + 2-frame shake"
+    },
+    {
+     "at": "51:3",
+     "beat": 202.0,
+     "t_124": 97.742,
+     "what": "zoom out to x1.2 (both photos)"
+    },
+    {
+     "at": "52:1",
+     "beat": 204.0,
+     "t_124": 98.71,
+     "what": "phone wiggle"
+    },
+    {
+     "at": "52:3",
+     "beat": 206.0,
+     "t_124": 99.677,
+     "what": "confetti settles"
+    },
+    {
+     "at": "52:4",
+     "beat": 207.0,
+     "t_124": 100.161,
+     "what": "stars twinkle"
+    }
+   ],
+   "sfx": [
+    {
+     "at": "51:1",
+     "beat": 200.0,
+     "t_124": 96.774,
+     "what": "DROP: big pop + confetti crackle + the music's hit"
+    },
+    {
+     "at": "51:3",
+     "beat": 202.0,
+     "t_124": 97.742,
+     "what": "whoosh"
+    },
+    {
+     "at": "52:1",
+     "beat": 204.0,
+     "t_124": 98.71,
+     "what": "sparkle"
+    }
+   ],
+   "elastic": null
+  },
+  {
+   "id": "M7",
+   "start": "53:1",
+   "end": "55:1",
+   "beat_in": 208.0,
+   "beat_out": 216.0,
+   "t_in_124": 100.645,
+   "t_out_124": 104.516,
+   "layout": "L2 -> L6",
+   "src": "P-11 accepted, bottom part (TAKE-P1 step 11)",
+   "see": "「双方已明确同意。退出房间后，还能从「照片交换」回来查看。」 and the button 「撤销这次交换的在线访问」 with 「任一方撤销，会同时结束本次两张照片的在线访问；原件仍归各自。」 Then the phone slides away and a type card asks 「然后呢？」.",
+   "treat": "mint circle around the revoke button; on 54:1 the phone slides out left and the paper card takes over",
+   "motion": [
+    {
+     "at": "53:1",
+     "beat": 208.0,
+     "t_124": 100.645,
+     "what": "scroll to the bottom"
+    },
+    {
+     "at": "53:2",
+     "beat": 209.0,
+     "t_124": 101.129,
+     "what": "mint circle DRAWS around 「撤销这次交换的在线访问」"
+    },
+    {
+     "at": "53:3",
+     "beat": 210.0,
+     "t_124": 101.613,
+     "what": "zoom on the fine print"
+    },
+    {
+     "at": "54:1",
+     "beat": 212.0,
+     "t_124": 102.581,
+     "what": "phone slides out left"
+    },
+    {
+     "at": "54:3",
+     "beat": 214.0,
+     "t_124": 103.548,
+     "what": "「然后呢？」 bounces"
+    },
+    {
+     "at": "54:4.5",
+     "beat": 215.5,
+     "t_124": 104.274,
+     "what": "yellow scribble wipe"
+    }
+   ],
+   "sfx": [
+    {
+     "at": "53:2",
+     "beat": 209.0,
+     "t_124": 101.129,
+     "what": "marker squeak"
+    },
+    {
+     "at": "54:1",
+     "beat": 212.0,
+     "t_124": 102.581,
+     "what": "whoosh"
+    },
+    {
+     "at": "54:3",
+     "beat": 214.0,
+     "t_124": 103.548,
+     "what": "boing"
+    },
+    {
+     "at": "54:4.5",
+     "beat": 215.5,
+     "t_124": 104.274,
+     "what": "scribble whoosh"
+    }
+   ],
+   "elastic": null
+  },
+  {
+   "id": "S1",
+   "start": "55:1",
+   "end": "57:1",
+   "beat_in": 216.0,
+   "beat_out": 224.0,
+   "t_in_124": 104.516,
+   "t_out_124": 108.387,
+   "layout": "L1",
+   "src": "P-12 person card 小满·示例, greet, accepted (TAKE-P1 steps 13-14)",
+   "see": "The 3D close-up of 小满·示例 above the card; tap 「向 小满·示例 招个手」; toast 「招呼已送达，等待对方决定」; (wait cut) 「你们已经认识了」 with 「和 小满·示例 私聊 ↗」 and the ♡ badge 2.",
+   "treat": "phone pink shadow; the ~4 s wait is cut with a page-flip of the paper; heart sticker pops beside the phone",
+   "motion": [
+    {
+     "at": "55:1",
+     "beat": 216.0,
+     "t_124": 104.516,
+     "what": "cut on the person card; push"
+    },
+    {
+     "at": "55:3",
+     "beat": 218.0,
+     "t_124": 105.484,
+     "what": "tap greet (ripple)"
+    },
+    {
+     "at": "55:4",
+     "beat": 219.0,
+     "t_124": 105.968,
+     "what": "toast"
+    },
+    {
+     "at": "56:1",
+     "beat": 220.0,
+     "t_124": 106.452,
+     "what": "page-flip jump cut -> 「你们已经认识了」"
+    },
+    {
+     "at": "56:1.5",
+     "beat": 220.5,
+     "t_124": 106.694,
+     "what": "header ♡ badge 2 (real)"
+    },
+    {
+     "at": "56:3",
+     "beat": 222.0,
+     "t_124": 107.419,
+     "what": "big heart sticker POPS"
+    }
+   ],
+   "sfx": [
+    {
+     "at": "55:3",
+     "beat": 218.0,
+     "t_124": 105.484,
+     "what": "click"
+    },
+    {
+     "at": "56:1",
+     "beat": 220.0,
+     "t_124": 106.452,
+     "what": "page flip"
+    },
+    {
+     "at": "56:3",
+     "beat": 222.0,
+     "t_124": 107.419,
+     "what": "heart boop"
+    }
+   ],
+   "elastic": null
+  },
+  {
+   "id": "S2",
+   "start": "57:1",
+   "end": "59:1",
+   "beat_in": 224.0,
+   "beat_out": 232.0,
+   "t_in_124": 108.387,
+   "t_out_124": 112.258,
+   "layout": "L1",
+   "src": "P-13 private chat (TAKE-P1 step 15)",
+   "see": "ONE TO ONE 小满·示例: the welcome bubbles 「嗨，欢迎来到「回声现场」。我是示例角色，由这个页面自动回复。」 「你拍到的是哪一面？」; you send 「返场那首我在人海里，手都举酸了！」; the reply 「今晚的返场太好听了。」",
+   "treat": "punch zooms follow the bubbles; the reply wait is cut; chip 「示例角色 · 自动回复」 next to the phone",
+   "motion": [
+    {
+     "at": "57:1",
+     "beat": 224.0,
+     "t_124": 108.387,
+     "what": "cut on the chat; zoom on the first bubble"
+    },
+    {
+     "at": "57:3",
+     "beat": 226.0,
+     "t_124": 109.355,
+     "what": "typing in the composer"
+    },
+    {
+     "at": "58:1",
+     "beat": 228.0,
+     "t_124": 110.323,
+     "what": "your bubble lands (send)"
+    },
+    {
+     "at": "58:3",
+     "beat": 230.0,
+     "t_124": 111.29,
+     "what": "reply lands (jump cut)"
+    },
+    {
+     "at": "58:4",
+     "beat": 231.0,
+     "t_124": 111.774,
+     "what": "bubble wiggle"
+    }
+   ],
+   "sfx": [
+    {
+     "at": "57:3",
+     "beat": 226.0,
+     "t_124": 109.355,
+     "what": "key ticks"
+    },
+    {
+     "at": "58:1",
+     "beat": 228.0,
+     "t_124": 110.323,
+     "what": "send blip"
+    },
+    {
+     "at": "58:3",
+     "beat": 230.0,
+     "t_124": 111.29,
+     "what": "receive blip"
+    }
+   ],
+   "elastic": null
+  },
+  {
+   "id": "S3",
+   "start": "59:1",
+   "end": "60:1",
+   "beat_in": 232.0,
+   "beat_out": 236.0,
+   "t_in_124": 112.258,
+   "t_out_124": 114.194,
+   "layout": "L4",
+   "src": "D-04 林间·示例 3D close-up + her card (TAKE-D4)",
+   "see": "The 3D close-up of 林间·示例 in front of the stage (「林间·示例 · 近景 / 认识一下」), then her card: 「TA 选择安静参与，不接收新招呼。仍可查看 TA 已分享给本场的照片。」",
+   "treat": "full-bleed with taped frame; mint underline under the quiet sentence",
+   "motion": [
+    {
+     "at": "59:1",
+     "beat": 232.0,
+     "t_124": 112.258,
+     "what": "cut on the 3D close-up; push"
+    },
+    {
+     "at": "59:3",
+     "beat": 234.0,
+     "t_124": 113.226,
+     "what": "cut to the card"
+    },
+    {
+     "at": "59:4",
+     "beat": 235.0,
+     "t_124": 113.71,
+     "what": "mint underline DRAWS"
+    }
+   ],
+   "sfx": [
+    {
+     "at": "59:1",
+     "beat": 232.0,
+     "t_124": 112.258,
+     "what": "soft chord"
+    },
+    {
+     "at": "59:4",
+     "beat": 235.0,
+     "t_124": 113.71,
+     "what": "marker squeak"
+    }
+   ],
+   "elastic": null
+  },
+  {
+   "id": "S4",
+   "start": "60:1",
+   "end": "61:1",
+   "beat_in": 236.0,
+   "beat_out": 240.0,
+   "t_in_124": 114.194,
+   "t_out_124": 116.129,
+   "layout": "L1",
+   "src": "P-14 散场聊天室 (TAKE-P1 step 16)",
+   "see": "The after-show chat room with the 3D header 「回声现场 · 示例场」 and the seeded lines, each ending 「（示例角色的自动回复：我不是真人。）」",
+   "treat": "phone mint shadow; product scroll through the messages",
+   "motion": [
+    {
+     "at": "60:1",
+     "beat": 236.0,
+     "t_124": 114.194,
+     "what": "cut; push"
+    },
+    {
+     "at": "60:3",
+     "beat": 238.0,
+     "t_124": 115.161,
+     "what": "messages scroll"
+    }
+   ],
+   "sfx": [
+    {
+     "at": "60:1",
+     "beat": 236.0,
+     "t_124": 114.194,
+     "what": "receive blips x3 (quiet)"
+    }
+   ],
+   "elastic": null
+  },
+  {
+   "id": "S5",
+   "start": "61:1",
+   "end": "63:1",
+   "beat_in": 240.0,
+   "beat_out": 248.0,
+   "t_in_124": 116.129,
+   "t_out_124": 120.0,
+   "layout": "L2",
+   "src": "P-15 album World Cup (TAKE-P1 step 17)",
+   "see": "「今晚的专辑世界杯」: the VS card 午夜站台 / 纸灯乐队 vs 樱花电波 / 薄荷收音机 (labelled 原创虚构专辑); tap 「选《午夜站台》」; confirm; 「2票 · 你选了这张」.",
+   "treat": "zoom on the VS sticker on 61:1; digits 「2」 punch on 62:3",
+   "motion": [
+    {
+     "at": "61:1",
+     "beat": 240.0,
+     "t_124": 116.129,
+     "what": "cut on VS (zoom 1.3)"
+    },
+    {
+     "at": "61:3",
+     "beat": 242.0,
+     "t_124": 117.097,
+     "what": "tap 选《午夜站台》"
+    },
+    {
+     "at": "62:1",
+     "beat": 244.0,
+     "t_124": 118.065,
+     "what": "confirm form + tick"
+    },
+    {
+     "at": "62:2",
+     "beat": 245.0,
+     "t_124": 118.548,
+     "what": "tap confirm"
+    },
+    {
+     "at": "62:3",
+     "beat": 246.0,
+     "t_124": 119.032,
+     "what": "zoom on 「2票 · 你选了这张」"
+    }
+   ],
+   "sfx": [
+    {
+     "at": "61:1",
+     "beat": 240.0,
+     "t_124": 116.129,
+     "what": "vinyl scratch"
+    },
+    {
+     "at": "61:3",
+     "beat": 242.0,
+     "t_124": 117.097,
+     "what": "click"
+    },
+    {
+     "at": "62:2",
+     "beat": 245.0,
+     "t_124": 118.548,
+     "what": "click"
+    },
+    {
+     "at": "62:3",
+     "beat": 246.0,
+     "t_124": 119.032,
+     "what": "ding"
+    }
+   ],
+   "elastic": null
+  },
+  {
+   "id": "S6",
+   "start": "63:1",
+   "end": "65:1",
+   "beat_in": 248.0,
+   "beat_out": 256.0,
+   "t_in_124": 120.0,
+   "t_out_124": 123.871,
+   "layout": "L2",
+   "src": "P-16 默契局 「今晚谁和你同一首」 (TAKE-P1 step 18)",
+   "see": "Round 1: four original fictional albums; tap 「我选「午夜站台」」; submit (「先保留我的选择」); (wait cut) the reveal 「2 人选择 · 本轮有共同选择」.",
+   "treat": "the reveal is a \"flip\": the album cards flip on 64:1 (cut on the beat); sparkle on the shared choice",
+   "motion": [
+    {
+     "at": "63:1",
+     "beat": 248.0,
+     "t_124": 120.0,
+     "what": "cut on the round"
+    },
+    {
+     "at": "63:2",
+     "beat": 249.0,
+     "t_124": 120.484,
+     "what": "tap 午夜站台"
+    },
+    {
+     "at": "63:3",
+     "beat": 250.0,
+     "t_124": 120.968,
+     "what": "tick + submit"
+    },
+    {
+     "at": "64:1",
+     "beat": 252.0,
+     "t_124": 121.935,
+     "what": "reveal (jump cut on the beat)"
+    },
+    {
+     "at": "64:3",
+     "beat": 254.0,
+     "t_124": 122.903,
+     "what": "sparkle POP on the shared choice"
+    }
+   ],
+   "sfx": [
+    {
+     "at": "63:2",
+     "beat": 249.0,
+     "t_124": 120.484,
+     "what": "click"
+    },
+    {
+     "at": "63:3",
+     "beat": 250.0,
+     "t_124": 120.968,
+     "what": "tick"
+    },
+    {
+     "at": "64:1",
+     "beat": 252.0,
+     "t_124": 121.935,
+     "what": "reveal whoosh + ding"
+    },
+    {
+     "at": "64:3",
+     "beat": 254.0,
+     "t_124": 122.903,
+     "what": "sparkle"
+    }
+   ],
+   "elastic": null
+  },
+  {
+   "id": "S7",
+   "start": "65:1",
+   "end": "67:1",
+   "beat_in": 256.0,
+   "beat_out": 264.0,
+   "t_in_124": 123.871,
+   "t_out_124": 127.742,
+   "layout": "L1",
+   "src": "P-17 long-term community (TAKE-P3)",
+   "see": "「音乐社群」: type 「周五散场以后」, tick 「创建长期空间，展示我的昵称、小人与发言」, 「创建我的社群」 -> the community room with the 3D header 「周五散场以后」 and 「1 位社群成员 · 不是在线人数」.",
+   "treat": "type-on synced to 16ths; push on the 3D header",
+   "motion": [
+    {
+     "at": "65:1",
+     "beat": 256.0,
+     "t_124": 123.871,
+     "what": "title types on (16ths)"
+    },
+    {
+     "at": "65:3",
+     "beat": 258.0,
+     "t_124": 124.839,
+     "what": "tick"
+    },
+    {
+     "at": "65:4",
+     "beat": 259.0,
+     "t_124": 125.323,
+     "what": "tap create"
+    },
+    {
+     "at": "66:1",
+     "beat": 260.0,
+     "t_124": 125.806,
+     "what": "cut to the community room"
+    },
+    {
+     "at": "66:3",
+     "beat": 262.0,
+     "t_124": 126.774,
+     "what": "push on the 3D header"
+    }
+   ],
+   "sfx": [
+    {
+     "at": "65:1",
+     "beat": 256.0,
+     "t_124": 123.871,
+     "what": "key ticks"
+    },
+    {
+     "at": "65:3",
+     "beat": 258.0,
+     "t_124": 124.839,
+     "what": "tick"
+    },
+    {
+     "at": "65:4",
+     "beat": 259.0,
+     "t_124": 125.323,
+     "what": "click"
+    },
+    {
+     "at": "66:1",
+     "beat": 260.0,
+     "t_124": 125.806,
+     "what": "whoosh"
+    }
+   ],
+   "elastic": "cut-10 (bar 66)"
+  },
+  {
+   "id": "S8",
+   "start": "67:1",
+   "end": "68:1",
+   "beat_in": 264.0,
+   "beat_out": 268.0,
+   "t_in_124": 127.742,
+   "t_out_124": 129.677,
+   "layout": "L1",
+   "src": "P-18 creation corner invitation (TAKE-P1 step 20)",
+   "see": "「TWO SIDES / 两个人的创作角 · 一起留张纪念。」 -> tick -> 「创建共同创作邀请」 -> 「等待朋友本人明确参与。你不能替对方同意，也不会自动分享照片。」 (the example cast never joins: do NOT show a finished corner).",
+   "treat": "zoom on 「你不能替对方同意」",
+   "motion": [
+    {
+     "at": "67:1",
+     "beat": 264.0,
+     "t_124": 127.742,
+     "what": "cut on the title"
+    },
+    {
+     "at": "67:2",
+     "beat": 265.0,
+     "t_124": 128.226,
+     "what": "tick"
+    },
+    {
+     "at": "67:3",
+     "beat": 266.0,
+     "t_124": 128.71,
+     "what": "tap create"
+    },
+    {
+     "at": "67:4",
+     "beat": 267.0,
+     "t_124": 129.194,
+     "what": "zoom on the waiting line"
+    }
+   ],
+   "sfx": [
+    {
+     "at": "67:2",
+     "beat": 265.0,
+     "t_124": 128.226,
+     "what": "tick"
+    },
+    {
+     "at": "67:3",
+     "beat": 266.0,
+     "t_124": 128.71,
+     "what": "click"
+    }
+   ],
+   "elastic": null
+  },
+  {
+   "id": "S9",
+   "start": "68:1",
+   "end": "71:1",
+   "beat_in": 268.0,
+   "beat_out": 280.0,
+   "t_in_124": 129.677,
+   "t_out_124": 135.484,
+   "layout": "L1 -> L6",
+   "src": "P-19 recap + memory card form (TAKE-P1 step 21) + CUT-08 the real exported PNG",
+   "see": "Recap 「把这一晚，留在手里。」 -> 「保存我的纪念卡 ↗」 -> ticks (photo, avatar, confirm) -> 「下载纪念卡 PNG」 -> the real 1080x1440 PNG flies out of the phone and lands on the paper as a giant polaroid.",
+   "treat": "each tick on a beat; the PNG flies (scale 0.3 -> 1.0, rotate -6 -> -2 deg, 6 frames), two tapes slap; sparkles",
+   "motion": [
+    {
+     "at": "68:1",
+     "beat": 268.0,
+     "t_124": 129.677,
+     "what": "cut on the recap title (zoom)"
+    },
+    {
+     "at": "68:3",
+     "beat": 270.0,
+     "t_124": 130.645,
+     "what": "tap 「保存我的纪念卡 ↗」"
+    },
+    {
+     "at": "69:1",
+     "beat": 272.0,
+     "t_124": 131.613,
+     "what": "tick photo"
+    },
+    {
+     "at": "69:2",
+     "beat": 273.0,
+     "t_124": 132.097,
+     "what": "tick avatar"
+    },
+    {
+     "at": "69:3",
+     "beat": 274.0,
+     "t_124": 132.581,
+     "what": "tick confirm"
+    },
+    {
+     "at": "69:4",
+     "beat": 275.0,
+     "t_124": 133.065,
+     "what": "tap 「下载纪念卡 PNG」"
+    },
+    {
+     "at": "70:1",
+     "beat": 276.0,
+     "t_124": 133.548,
+     "what": "the PNG flies out and lands"
+    },
+    {
+     "at": "70:2",
+     "beat": 277.0,
+     "t_124": 134.032,
+     "what": "tape slap"
+    },
+    {
+     "at": "70:3",
+     "beat": 278.0,
+     "t_124": 134.516,
+     "what": "second tape + sparkles"
+    },
+    {
+     "at": "70:4",
+     "beat": 279.0,
+     "t_124": 135.0,
+     "what": "slow push on the card"
+    }
+   ],
+   "sfx": [
+    {
+     "at": "68:3",
+     "beat": 270.0,
+     "t_124": 130.645,
+     "what": "click"
+    },
+    {
+     "at": "69:1",
+     "beat": 272.0,
+     "t_124": 131.613,
+     "what": "tick x3 (69:1, 69:2, 69:3)"
+    },
+    {
+     "at": "69:4",
+     "beat": 275.0,
+     "t_124": 133.065,
+     "what": "click"
+    },
+    {
+     "at": "70:1",
+     "beat": 276.0,
+     "t_124": 133.548,
+     "what": "paper slap (big)"
+    },
+    {
+     "at": "70:2",
+     "beat": 277.0,
+     "t_124": 134.032,
+     "what": "tape rip"
+    },
+    {
+     "at": "70:3",
+     "beat": 278.0,
+     "t_124": 134.516,
+     "what": "tape rip + sparkle"
+    }
+   ],
+   "elastic": null
+  },
+  {
+   "id": "S10",
+   "start": "71:1",
+   "end": "72:1",
+   "beat_in": 280.0,
+   "beat_out": 284.0,
+   "t_in_124": 135.484,
+   "t_out_124": 137.419,
+   "layout": "L1",
+   "src": "P-20 我的空间 (TAKE-P1 step 22)",
+   "see": "「MY SPACE / 长期留在这里」: your avatar, 「阿宁」, 「现场是认识的起点，散场后仍有地方回来。」 and the tiles 我的音乐社群 / 我的现场与回顾 / 好友与新招呼 / 私聊回访 / 共同记忆 / 身份备份与恢复.",
+   "treat": "push; tiles get a quick yellow underline each on 8ths",
+   "motion": [
+    {
+     "at": "71:1",
+     "beat": 280.0,
+     "t_124": 135.484,
+     "what": "cut; push"
+    },
+    {
+     "at": "71:3",
+     "beat": 282.0,
+     "t_124": 136.452,
+     "what": "tiles underline on 8ths"
+    }
+   ],
+   "sfx": [
+    {
+     "at": "71:3",
+     "beat": 282.0,
+     "t_124": 136.452,
+     "what": "4 soft ticks"
+    }
+   ],
+   "elastic": "cut-4"
+  },
+  {
+   "id": "S11",
+   "start": "72:1",
+   "end": "73:1",
+   "beat_in": 284.0,
+   "beat_out": 288.0,
+   "t_in_124": 137.419,
+   "t_out_124": 139.355,
+   "layout": "L7",
+   "src": "CUT-01..08 again",
+   "see": "Drum-roll recap: the eight cut-outs slap onto the paper on every 8th note, then all fly off.",
+   "treat": "callback to the hook collage at double speed",
+   "motion": [
+    {
+     "at": "72:1",
+     "beat": 284.0,
+     "t_124": 137.419,
+     "what": "cut-out"
+    },
+    {
+     "at": "72:1.5",
+     "beat": 284.5,
+     "t_124": 137.661,
+     "what": "cut-out"
+    },
+    {
+     "at": "72:2",
+     "beat": 285.0,
+     "t_124": 137.903,
+     "what": "cut-out"
+    },
+    {
+     "at": "72:2.5",
+     "beat": 285.5,
+     "t_124": 138.145,
+     "what": "cut-out"
+    },
+    {
+     "at": "72:3",
+     "beat": 286.0,
+     "t_124": 138.387,
+     "what": "cut-out"
+    },
+    {
+     "at": "72:3.5",
+     "beat": 286.5,
+     "t_124": 138.629,
+     "what": "cut-out"
+    },
+    {
+     "at": "72:4",
+     "beat": 287.0,
+     "t_124": 138.871,
+     "what": "cut-out"
+    },
+    {
+     "at": "72:4.5",
+     "beat": 287.5,
+     "t_124": 139.113,
+     "what": "cut-out; all fly off"
+    }
+   ],
+   "sfx": [
+    {
+     "at": "72:1",
+     "beat": 284.0,
+     "t_124": 137.419,
+     "what": "8 pops ascending (one per 8th)"
+    }
+   ],
+   "elastic": "cut-2"
+  },
+  {
+   "id": "W1",
+   "start": "73:1",
+   "end": "75:1",
+   "beat_in": 288.0,
+   "beat_out": 296.0,
+   "t_in_124": 139.355,
+   "t_out_124": 143.226,
+   "layout": "L6",
+   "src": "CUT-13 (the real phone landing screen) + drawn ticket and card",
+   "see": "Calmer paper: a hand-drawn ticket stub 「演出」, a paper card 「散场」 slaps over it, then the real phone first screen (CUT-13: the 3D stage and 「同一刻，另一面。」) lands on top in the phone frame with tape: a stack of layers, the product is the top layer.",
+   "treat": "palette back to ink + one accent; slow drift; the phone frame gets the yellow shadow",
+   "motion": [
+    {
+     "at": "73:1",
+     "beat": 288.0,
+     "t_124": 139.355,
+     "what": "ticket stub slaps (stop hit)"
+    },
+    {
+     "at": "73:2.5",
+     "beat": 289.5,
+     "t_124": 140.081,
+     "what": "「散场」 card slaps (stop hit)"
+    },
+    {
+     "at": "73:3.5",
+     "beat": 290.5,
+     "t_124": 140.565,
+     "what": "tape slap (stop hit)"
+    },
+    {
+     "at": "74:1",
+     "beat": 292.0,
+     "t_124": 141.29,
+     "what": "phone with CUT-13 slaps on top (stop hit)"
+    },
+    {
+     "at": "74:2.5",
+     "beat": 293.5,
+     "t_124": 142.016,
+     "what": "tape (stop hit)"
+    },
+    {
+     "at": "74:3.5",
+     "beat": 294.5,
+     "t_124": 142.5,
+     "what": "arrow DRAWS from 散场 to the phone (stop hit)"
+    }
+   ],
+   "sfx": [
+    {
+     "at": "73:1",
+     "beat": 288.0,
+     "t_124": 139.355,
+     "what": "paper slap on each stop hit (73:1, 73:2.5, 73:3.5, 74:1, 74:2.5, 74:3.5)"
+    },
+    {
+     "at": "74:3.5",
+     "beat": 294.5,
+     "t_124": 142.5,
+     "what": "marker squeak"
+    }
+   ],
+   "elastic": null
+  },
+  {
+   "id": "W2",
+   "start": "75:1",
+   "end": "77:1",
+   "beat_in": 296.0,
+   "beat_out": 304.0,
+   "t_in_124": 143.226,
+   "t_out_124": 147.097,
+   "layout": "L6",
+   "src": "GFX",
+   "see": "The yellow sticker 「设想」 stays in the corner the whole shot. Type: 「QQ音乐、酷狗」, 「听完现场，」 「顺手换一面。」 with a looping arrow into the ⇄ icon. Platform names as plain type only (no logos).",
+   "treat": "「设想」 = vision, not an integration; never show TME logos or app screenshots",
+   "motion": [
+    {
+     "at": "75:1",
+     "beat": 296.0,
+     "t_124": 143.226,
+     "what": "设想 sticker POPS; names type on"
+    },
+    {
+     "at": "75:3",
+     "beat": 298.0,
+     "t_124": 144.194,
+     "what": "stack card zooms"
+    },
+    {
+     "at": "76:1",
+     "beat": 300.0,
+     "t_124": 145.161,
+     "what": "looping arrow DRAWS"
+    },
+    {
+     "at": "76:3",
+     "beat": 302.0,
+     "t_124": 146.129,
+     "what": "⇄ spins"
+    }
+   ],
+   "sfx": [
+    {
+     "at": "75:1",
+     "beat": 296.0,
+     "t_124": 143.226,
+     "what": "pop"
+    },
+    {
+     "at": "76:1",
+     "beat": 300.0,
+     "t_124": 145.161,
+     "what": "marker squeak"
+    },
+    {
+     "at": "76:3",
+     "beat": 302.0,
+     "t_124": 146.129,
+     "what": "zip"
+    }
+   ],
+   "elastic": null
+  },
+  {
+   "id": "W3",
+   "start": "77:1",
+   "end": "79:1",
+   "beat_in": 304.0,
+   "beat_out": 312.0,
+   "t_in_124": 147.097,
+   "t_out_124": 150.968,
+   "layout": "L6",
+   "src": "CUT-04, CUT-11, CUT-12 (real UI crops) under pillar stickers",
+   "see": "Three polaroids of real UI in a row, each under a big pillar sticker: the AI chip 「AI 判断：人海」 (隐私, mint), the consent tick + 「把这两张交给对方确认 ↗」 (同意, pink), the World Cup VS card (好玩, yellow); a small sub-line under each.",
+   "treat": "pops on quarter notes 77:1, 77:2, 77:3 (polaroid and sticker together); all three wiggle on 78:3",
+   "motion": [
+    {
+     "at": "77:1",
+     "beat": 304.0,
+     "t_124": 147.097,
+     "what": "pillar 1 POP"
+    },
+    {
+     "at": "77:2",
+     "beat": 305.0,
+     "t_124": 147.581,
+     "what": "pillar 2 POP"
+    },
+    {
+     "at": "77:3",
+     "beat": 306.0,
+     "t_124": 148.065,
+     "what": "pillar 3 POP"
+    },
+    {
+     "at": "78:1",
+     "beat": 308.0,
+     "t_124": 149.032,
+     "what": "sub-lines underline"
+    },
+    {
+     "at": "78:3",
+     "beat": 310.0,
+     "t_124": 150.0,
+     "what": "all wiggle"
+    },
+    {
+     "at": "78:4.5",
+     "beat": 311.5,
+     "t_124": 150.726,
+     "what": "wipe"
+    }
+   ],
+   "sfx": [
+    {
+     "at": "77:1",
+     "beat": 304.0,
+     "t_124": 147.097,
+     "what": "pop x3 (77:1, 77:2, 77:3)"
+    },
+    {
+     "at": "78:3",
+     "beat": 310.0,
+     "t_124": 150.0,
+     "what": "tiny chime"
+    }
+   ],
+   "elastic": null
+  },
+  {
+   "id": "W4",
+   "start": "79:1",
+   "end": "81:1",
+   "beat_in": 312.0,
+   "beat_out": 320.0,
+   "t_in_124": 150.968,
+   "t_out_124": 154.839,
+   "layout": "L6",
+   "src": "GFX + CUT-10 avatar SVGs",
+   "see": "「曲终，」 「人不散。」 huge; the avatars (cast + you) stand in a row below and bob on the beats; hearts pop.",
+   "treat": "the emotional hit; pink + ink only; avatars bob alternately",
+   "motion": [
+    {
+     "at": "79:1",
+     "beat": 312.0,
+     "t_124": 150.968,
+     "what": "SLAM 曲终，"
+    },
+    {
+     "at": "79:3",
+     "beat": 314.0,
+     "t_124": 151.935,
+     "what": "SLAM 人不散。"
+    },
+    {
+     "at": "80:1",
+     "beat": 316.0,
+     "t_124": 152.903,
+     "what": "avatars bob (every beat to 80:4)"
+    },
+    {
+     "at": "80:3",
+     "beat": 318.0,
+     "t_124": 153.871,
+     "what": "hearts POP"
+    }
+   ],
+   "sfx": [
+    {
+     "at": "79:1",
+     "beat": 312.0,
+     "t_124": 150.968,
+     "what": "impact (soft, warm)"
+    },
+    {
+     "at": "79:3",
+     "beat": 314.0,
+     "t_124": 151.935,
+     "what": "impact"
+    },
+    {
+     "at": "80:3",
+     "beat": 318.0,
+     "t_124": 153.871,
+     "what": "heart boop"
+    }
+   ],
+   "elastic": null
+  },
+  {
+   "id": "W5",
+   "start": "81:1",
+   "end": "83:1",
+   "beat_in": 320.0,
+   "beat_out": 328.0,
+   "t_in_124": 154.839,
+   "t_out_124": 158.71,
+   "layout": "L4",
+   "src": "D-02 desktop 3D room (TAKE-D2), full-bleed in the taped ink frame; text on a paper die card bottom-left",
+   "see": "The 3D room again (the five on stage); the footer 「示例站 · 数据只存在这个浏览器 · 关于这个示例」 gets a circle.",
+   "treat": "slow push 1.00 -> 1.06; ink circle around the footer on 82:1; text on a die card (paper-card, ink border, hard shadow) bottom-left",
+   "motion": [
+    {
+     "at": "81:1",
+     "beat": 320.0,
+     "t_124": 154.839,
+     "what": "cut; push"
+    },
+    {
+     "at": "81:3",
+     "beat": 322.0,
+     "t_124": 155.806,
+     "what": "die card settles"
+    },
+    {
+     "at": "82:1",
+     "beat": 324.0,
+     "t_124": 156.774,
+     "what": "circle DRAWS around the footer"
+    },
+    {
+     "at": "82:3",
+     "beat": 326.0,
+     "t_124": 157.742,
+     "what": "push continues"
+    },
+    {
+     "at": "82:4.5",
+     "beat": 327.5,
+     "t_124": 158.468,
+     "what": "scribble wipe"
+    }
+   ],
+   "sfx": [
+    {
+     "at": "81:1",
+     "beat": 320.0,
+     "t_124": 154.839,
+     "what": "paper slide"
+    },
+    {
+     "at": "82:1",
+     "beat": 324.0,
+     "t_124": 156.774,
+     "what": "marker squeak"
+    },
+    {
+     "at": "82:4.5",
+     "beat": 327.5,
+     "t_124": 158.468,
+     "what": "scribble whoosh"
+    }
+   ],
+   "elastic": "cut-8 (bar 81)"
+  },
+  {
+   "id": "C1",
+   "start": "83:1",
+   "end": "91:1",
+   "beat_in": 328.0,
+   "beat_out": 360.0,
+   "t_in_124": 158.71,
+   "t_out_124": 174.194,
+   "layout": "L6",
+   "src": "GFX end card + QR (GFX, must decode to the judged link) + CUT-10 avatars",
+   "see": "「同一刻，」 「另一面。」, MUSIC SPACE logo, the link pill, the QR (taped, tilted -3 deg) with 「浏览器直接打开 · 无需安装」, the avatars peeking from the bottom edge, disclosure and music credit in small print.",
+   "treat": "QR in ink on white with a full quiet zone (no tilt on the modules themselves if it hurts decoding: tilt the paper, keep the code square in the camera); everything else boils at 4 fps; avatars bob on beats; stars twinkle",
+   "motion": [
+    {
+     "at": "83:1",
+     "beat": 328.0,
+     "t_124": 158.71,
+     "what": "SLAM 同一刻， (tag hit)"
+    },
+    {
+     "at": "83:2.5",
+     "beat": 329.5,
+     "t_124": 159.435,
+     "what": "SLAM 另一面。 + mint swipe (tag hit)"
+    },
+    {
+     "at": "84:1",
+     "beat": 332.0,
+     "t_124": 160.645,
+     "what": "logo POP (tag hit)"
+    },
+    {
+     "at": "84:2.5",
+     "beat": 333.5,
+     "t_124": 161.371,
+     "what": "link types on (tag hit)"
+    },
+    {
+     "at": "85:1",
+     "beat": 336.0,
+     "t_124": 162.581,
+     "what": "QR POPS + tape on the big end chord"
+    },
+    {
+     "at": "85:3",
+     "beat": 338.0,
+     "t_124": 163.548,
+     "what": "avatars slide up on 8ths"
+    },
+    {
+     "at": "86:1",
+     "beat": 340.0,
+     "t_124": 164.516,
+     "what": "disclosure types on"
+    },
+    {
+     "at": "86:3",
+     "beat": 342.0,
+     "t_124": 165.484,
+     "what": "avatars bob"
+    },
+    {
+     "at": "87:1",
+     "beat": 344.0,
+     "t_124": 166.452,
+     "what": "music credit fades in"
+    },
+    {
+     "at": "87:3",
+     "beat": 346.0,
+     "t_124": 167.419,
+     "what": "avatars bob"
+    },
+    {
+     "at": "88:1",
+     "beat": 348.0,
+     "t_124": 168.387,
+     "what": "heart POP on the final ding"
+    },
+    {
+     "at": "88:3",
+     "beat": 350.0,
+     "t_124": 169.355,
+     "what": "avatars bob"
+    },
+    {
+     "at": "89:1",
+     "beat": 352.0,
+     "t_124": 170.323,
+     "what": "logo wiggle"
+    },
+    {
+     "at": "89:3",
+     "beat": 354.0,
+     "t_124": 171.29,
+     "what": "avatars bob"
+    },
+    {
+     "at": "90:1",
+     "beat": 356.0,
+     "t_124": 172.258,
+     "what": "stars twinkle"
+    },
+    {
+     "at": "90:3",
+     "beat": 358.0,
+     "t_124": 173.226,
+     "what": "avatars bob"
+    },
+    {
+     "at": "91:1",
+     "beat": 360.0,
+     "t_124": 174.194,
+     "what": "end (or tail bar 91)"
+    }
+   ],
+   "sfx": [
+    {
+     "at": "83:1",
+     "beat": 328.0,
+     "t_124": 158.71,
+     "what": "none: the tag hits are in the music"
+    },
+    {
+     "at": "85:1",
+     "beat": 336.0,
+     "t_124": 162.581,
+     "what": "tape rip under the end chord"
+    },
+    {
+     "at": "88:1",
+     "beat": 348.0,
+     "t_124": 168.387,
+     "what": "none: final ding is in the music"
+    }
+   ],
+   "elastic": "cut-1 (bar 90), cut-5 (bar 89)"
+  }
+ ],
+ "text": [
+  {
+   "id": "T001",
+   "start": "1:1",
+   "end": "4:4.5",
+   "beat_in": 0.0,
+   "beat_out": 15.5,
+   "t_in_124": 0.0,
+   "t_out_124": 7.5,
+   "text": "进场",
+   "text_marked": "进场",
+   "key": [],
+   "font": "M",
+   "font_name": "Marker 霞鹜漫黑",
+   "size": "S",
+   "size_px": 56,
+   "style": "stamp-yellow",
+   "pos": "on CUT-01",
+   "fx": "STAMP",
+   "kind": "label",
+   "units": 2,
+   "source": ""
+  },
+  {
+   "id": "T002",
+   "start": "1:3",
+   "end": "4:4.5",
+   "beat_in": 2.0,
+   "beat_out": 15.5,
+   "t_in_124": 0.968,
+   "t_out_124": 7.5,
+   "text": "换装",
+   "text_marked": "换装",
+   "key": [],
+   "font": "M",
+   "font_name": "Marker 霞鹜漫黑",
+   "size": "S",
+   "size_px": 56,
+   "style": "stamp-pink",
+   "pos": "on CUT-02",
+   "fx": "STAMP",
+   "kind": "label",
+   "units": 2,
+   "source": ""
+  },
+  {
+   "id": "T003",
+   "start": "2:1",
+   "end": "4:4.5",
+   "beat_in": 4.0,
+   "beat_out": 15.5,
+   "t_in_124": 1.935,
+   "t_out_124": 7.5,
+   "text": "上墙",
+   "text_marked": "上墙",
+   "key": [],
+   "font": "M",
+   "font_name": "Marker 霞鹜漫黑",
+   "size": "S",
+   "size_px": 56,
+   "style": "stamp-mint",
+   "pos": "on CUT-03",
+   "fx": "STAMP",
+   "kind": "label",
+   "units": 2,
+   "source": ""
+  },
+  {
+   "id": "T004",
+   "start": "2:3",
+   "end": "4:4.5",
+   "beat_in": 6.0,
+   "beat_out": 15.5,
+   "t_in_124": 2.903,
+   "t_out_124": 7.5,
+   "text": "视角",
+   "text_marked": "视角",
+   "key": [],
+   "font": "M",
+   "font_name": "Marker 霞鹜漫黑",
+   "size": "S",
+   "size_px": 56,
+   "style": "stamp-yellow",
+   "pos": "on CUT-04",
+   "fx": "STAMP",
+   "kind": "label",
+   "units": 2,
+   "source": ""
+  },
+  {
+   "id": "T005",
+   "start": "3:1",
+   "end": "4:4.5",
+   "beat_in": 8.0,
+   "beat_out": 15.5,
+   "t_in_124": 3.871,
+   "t_out_124": 7.5,
+   "text": "同一刻",
+   "text_marked": "同一刻",
+   "key": [],
+   "font": "M",
+   "font_name": "Marker 霞鹜漫黑",
+   "size": "S",
+   "size_px": 56,
+   "style": "stamp-pink",
+   "pos": "on CUT-05",
+   "fx": "STAMP",
+   "kind": "label",
+   "units": 3,
+   "source": ""
+  },
+  {
+   "id": "T006",
+   "start": "3:3",
+   "end": "4:4.5",
+   "beat_in": 10.0,
+   "beat_out": 15.5,
+   "t_in_124": 4.839,
+   "t_out_124": 7.5,
+   "text": "交换",
+   "text_marked": "交换",
+   "key": [],
+   "font": "M",
+   "font_name": "Marker 霞鹜漫黑",
+   "size": "S",
+   "size_px": 56,
+   "style": "stamp-mint",
+   "pos": "on CUT-06",
+   "fx": "STAMP",
+   "kind": "label",
+   "units": 2,
+   "source": ""
+  },
+  {
+   "id": "T007",
+   "start": "4:1",
+   "end": "4:4.5",
+   "beat_in": 12.0,
+   "beat_out": 15.5,
+   "t_in_124": 5.806,
+   "t_out_124": 7.5,
+   "text": "招手",
+   "text_marked": "招手",
+   "key": [],
+   "font": "M",
+   "font_name": "Marker 霞鹜漫黑",
+   "size": "S",
+   "size_px": 56,
+   "style": "stamp-yellow",
+   "pos": "on CUT-07",
+   "fx": "STAMP",
+   "kind": "label",
+   "units": 2,
+   "source": ""
+  },
+  {
+   "id": "T008",
+   "start": "4:3.5",
+   "end": "4:4.5",
+   "beat_in": 14.5,
+   "beat_out": 15.5,
+   "t_in_124": 7.016,
+   "t_out_124": 7.5,
+   "text": "留念",
+   "text_marked": "留念",
+   "key": [],
+   "font": "M",
+   "font_name": "Marker 霞鹜漫黑",
+   "size": "S",
+   "size_px": 56,
+   "style": "stamp-pink",
+   "pos": "on CUT-08",
+   "fx": "STAMP",
+   "kind": "label",
+   "units": 2,
+   "source": ""
+  },
+  {
+   "id": "T010",
+   "start": "5:1",
+   "end": "8:1",
+   "beat_in": 16.0,
+   "beat_out": 28.0,
+   "t_in_124": 7.742,
+   "t_out_124": 13.548,
+   "text": "同一刻，",
+   "text_marked": "同一刻，",
+   "key": [],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "XXL",
+   "size_px": 240,
+   "style": "ink-pink",
+   "pos": "card, left, upper line",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 3,
+   "source": "product claim; landing title 「同一刻，另一面。」"
+  },
+  {
+   "id": "T011",
+   "start": "5:3",
+   "end": "8:1",
+   "beat_in": 18.0,
+   "beat_out": 28.0,
+   "t_in_124": 8.71,
+   "t_out_124": 13.548,
+   "text": "另一面。",
+   "text_marked": "⟦另一面。⟧",
+   "key": [
+    "另一面。"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "XXL",
+   "size_px": 240,
+   "style": "hl-mint",
+   "pos": "card, left, lower line",
+   "fx": "SLAM+SWIPE",
+   "kind": "title",
+   "units": 3,
+   "source": "product claim"
+  },
+  {
+   "id": "T012",
+   "start": "6:1",
+   "end": "8:1",
+   "beat_in": 20.0,
+   "beat_out": 28.0,
+   "t_in_124": 9.677,
+   "t_out_124": 13.548,
+   "text": "MUSIC SPACE",
+   "text_marked": "MUSIC SPACE",
+   "key": [],
+   "font": "L",
+   "font_name": "Logo Luckiest Guy",
+   "size": "L",
+   "size_px": 128,
+   "style": "logo",
+   "pos": "card, right, tilted +4 deg",
+   "fx": "POP",
+   "kind": "label",
+   "units": 2,
+   "source": "product wordmark"
+  },
+  {
+   "id": "T013",
+   "start": "6:2",
+   "end": "8:1",
+   "beat_in": 21.0,
+   "beat_out": 28.0,
+   "t_in_124": 10.161,
+   "t_out_124": 13.548,
+   "text": "和同场的人，交换彼此的视角。",
+   "text_marked": "和同场的人，⟦交换⟧彼此的视角。",
+   "key": [
+    "交换"
+   ],
+   "font": "M",
+   "font_name": "Marker 霞鹜漫黑",
+   "size": "M",
+   "size_px": 84,
+   "style": "ink",
+   "pos": "card, bottom",
+   "fx": "TYPE",
+   "kind": "title",
+   "units": 12,
+   "source": "what the product does"
+  },
+  {
+   "id": "T020",
+   "start": "9:1",
+   "end": "10:1",
+   "beat_in": 32.0,
+   "beat_out": 36.0,
+   "t_in_124": 15.484,
+   "t_out_124": 17.419,
+   "text": "散场了。",
+   "text_marked": "散场了。",
+   "key": [],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "XL",
+   "size_px": 180,
+   "style": "ink-pink",
+   "pos": "top centre",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 3,
+   "source": ""
+  },
+  {
+   "id": "T021",
+   "start": "9:3",
+   "end": "11:1",
+   "beat_in": 34.0,
+   "beat_out": 40.0,
+   "t_in_124": 16.452,
+   "t_out_124": 19.355,
+   "text": "你拍了舞台，",
+   "text_marked": "你拍了⟦舞台⟧，",
+   "key": [
+    "舞台"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-pink",
+   "pos": "over polaroid A (left)",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 5,
+   "source": "landing copy 「同一晚，你拍了舞台，TA 拍了人海。」"
+  },
+  {
+   "id": "T022",
+   "start": "10:1",
+   "end": "11:1",
+   "beat_in": 36.0,
+   "beat_out": 40.0,
+   "t_in_124": 17.419,
+   "t_out_124": 19.355,
+   "text": "TA 拍了人海。",
+   "text_marked": "TA 拍了⟦人海⟧。",
+   "key": [
+    "人海"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-mint",
+   "pos": "over polaroid B (right)",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 5,
+   "source": "landing copy"
+  },
+  {
+   "id": "T023",
+   "start": "11:1",
+   "end": "13:1",
+   "beat_in": 40.0,
+   "beat_out": 48.0,
+   "t_in_124": 19.355,
+   "t_out_124": 23.226,
+   "text": "每部手机里，",
+   "text_marked": "每部手机里，",
+   "key": [],
+   "font": "M",
+   "font_name": "Marker 霞鹜漫黑",
+   "size": "M",
+   "size_px": 84,
+   "style": "ink",
+   "pos": "bottom left",
+   "fx": "TYPE",
+   "kind": "title",
+   "units": 5,
+   "source": ""
+  },
+  {
+   "id": "T024",
+   "start": "11:3",
+   "end": "13:1",
+   "beat_in": 42.0,
+   "beat_out": 48.0,
+   "t_in_124": 20.323,
+   "t_out_124": 23.226,
+   "text": "只有自己那一面。",
+   "text_marked": "只有⟦自己⟧那一面。",
+   "key": [
+    "自己"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-pink",
+   "pos": "bottom",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 7,
+   "source": ""
+  },
+  {
+   "id": "T025",
+   "start": "9:1",
+   "end": "13:1",
+   "beat_in": 32.0,
+   "beat_out": 48.0,
+   "t_in_124": 15.484,
+   "t_out_124": 23.226,
+   "text": "照片为 AI 生成的示例图",
+   "text_marked": "照片为 AI 生成的示例图",
+   "key": [],
+   "font": "H",
+   "font_name": "Hand 悠哉",
+   "size": "XS",
+   "size_px": 36,
+   "style": "fine",
+   "pos": "bottom right corner",
+   "fx": "TYPE",
+   "kind": "fine",
+   "units": 10,
+   "source": "web/assets/image-provenance.json"
+  },
+  {
+   "id": "T026",
+   "start": "13:1",
+   "end": "15:1",
+   "beat_in": 48.0,
+   "beat_out": 56.0,
+   "t_in_124": 23.226,
+   "t_out_124": 27.097,
+   "text": "最好看的那张你，",
+   "text_marked": "最好看的那张你，",
+   "key": [],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-pink",
+   "pos": "top left",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 7,
+   "source": ""
+  },
+  {
+   "id": "T027",
+   "start": "14:1",
+   "end": "15:3",
+   "beat_in": 52.0,
+   "beat_out": 58.0,
+   "t_in_124": 25.161,
+   "t_out_124": 28.065,
+   "text": "在陌生人的手机里。",
+   "text_marked": "在⟦陌生人⟧的手机里。",
+   "key": [
+    "陌生人"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-pink",
+   "pos": "top right",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 8,
+   "source": ""
+  },
+  {
+   "id": "T028",
+   "start": "15:3",
+   "end": "17:1",
+   "beat_in": 58.0,
+   "beat_out": 64.0,
+   "t_in_124": 28.065,
+   "t_out_124": 30.968,
+   "text": "散场后，",
+   "text_marked": "散场后，",
+   "key": [],
+   "font": "M",
+   "font_name": "Marker 霞鹜漫黑",
+   "size": "M",
+   "size_px": 84,
+   "style": "ink",
+   "pos": "bottom left",
+   "fx": "TYPE",
+   "kind": "title",
+   "units": 3,
+   "source": ""
+  },
+  {
+   "id": "T029",
+   "start": "16:1",
+   "end": "17:1",
+   "beat_in": 60.0,
+   "beat_out": 64.0,
+   "t_in_124": 29.032,
+   "t_out_124": 30.968,
+   "text": "找不回来。",
+   "text_marked": "⟦找不回来⟧。",
+   "key": [
+    "找不回来"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "XL",
+   "size_px": 180,
+   "style": "ink-pink",
+   "pos": "bottom",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 4,
+   "source": ""
+  },
+  {
+   "id": "T030",
+   "start": "17:1",
+   "end": "18:3",
+   "beat_in": 64.0,
+   "beat_out": 70.0,
+   "t_in_124": 30.968,
+   "t_out_124": 33.871,
+   "text": "站在你身边的人，",
+   "text_marked": "站在你身边的人，",
+   "key": [],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-pink",
+   "pos": "top",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 7,
+   "source": ""
+  },
+  {
+   "id": "T031",
+   "start": "18:1",
+   "end": "19:3",
+   "beat_in": 68.0,
+   "beat_out": 74.0,
+   "t_in_124": 32.903,
+   "t_out_124": 35.806,
+   "text": "还没认识，就走散了。",
+   "text_marked": "还没认识，就⟦走散⟧了。",
+   "key": [
+    "走散"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-pink",
+   "pos": "top, second line",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 8,
+   "source": ""
+  },
+  {
+   "id": "T032",
+   "start": "19:1",
+   "end": "20:1",
+   "beat_in": 72.0,
+   "beat_out": 76.0,
+   "t_in_124": 34.839,
+   "t_out_124": 36.774,
+   "text": "要是……",
+   "text_marked": "要是……",
+   "key": [],
+   "font": "M",
+   "font_name": "Marker 霞鹜漫黑",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink",
+   "pos": "top left",
+   "fx": "TYPE",
+   "kind": "title",
+   "units": 2,
+   "source": ""
+  },
+  {
+   "id": "T033",
+   "start": "19:3",
+   "end": "21:1",
+   "beat_in": 74.0,
+   "beat_out": 80.0,
+   "t_in_124": 35.806,
+   "t_out_124": 38.71,
+   "text": "能把那一面，换回来？",
+   "text_marked": "能把那一面，⟦换回来⟧？",
+   "key": [
+    "换回来"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-pink",
+   "pos": "top",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 8,
+   "source": ""
+  },
+  {
+   "id": "T041",
+   "start": "21:1",
+   "end": "23:1",
+   "beat_in": 80.0,
+   "beat_out": 88.0,
+   "t_in_124": 38.71,
+   "t_out_124": 42.581,
+   "text": "同场的人，",
+   "text_marked": "同场的人，",
+   "key": [],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "XL",
+   "size_px": 180,
+   "style": "ink-mint",
+   "pos": "right column, upper",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 4,
+   "source": ""
+  },
+  {
+   "id": "T042",
+   "start": "21:3",
+   "end": "23:1",
+   "beat_in": 82.0,
+   "beat_out": 88.0,
+   "t_in_124": 39.677,
+   "t_out_124": 42.581,
+   "text": "再进同一间\nLivehouse。",
+   "text_marked": "再进⟦同一间⟧\nLivehouse。",
+   "key": [
+    "同一间"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-mint",
+   "pos": "right column, lower",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 6,
+   "source": "the 3D room 「回声现场 · 示例场」 at 「月台 Livehouse（虚构场地）」"
+  },
+  {
+   "id": "T043",
+   "start": "23:1",
+   "end": "25:1",
+   "beat_in": 88.0,
+   "beat_out": 96.0,
+   "t_in_124": 42.581,
+   "t_out_124": 46.452,
+   "text": "带上你的小人，",
+   "text_marked": "带上你的⟦小人⟧，",
+   "key": [
+    "小人"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-pink",
+   "pos": "right column",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 6,
+   "source": "entry panel 「带上小人，进入示例现场」"
+  },
+  {
+   "id": "T044",
+   "start": "24:1",
+   "end": "25:1",
+   "beat_in": 92.0,
+   "beat_out": 96.0,
+   "t_in_124": 44.516,
+   "t_out_124": 46.452,
+   "text": "今晚，我这样。",
+   "text_marked": "今晚，我这样。",
+   "key": [],
+   "font": "N",
+   "font_name": "Note 龙藏体",
+   "size": "M",
+   "size_px": 84,
+   "style": "note-pink",
+   "pos": "next to the phone top, tilted -4 deg",
+   "fx": "TYPE",
+   "kind": "note",
+   "units": 5,
+   "source": "wardrobe title 「今晚，我这样。」"
+  },
+  {
+   "id": "T045",
+   "start": "25:1",
+   "end": "26:1",
+   "beat_in": 96.0,
+   "beat_out": 100.0,
+   "t_in_124": 46.452,
+   "t_out_124": 48.387,
+   "text": "愿意打招呼，",
+   "text_marked": "愿意打招呼，",
+   "key": [],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-pink",
+   "pos": "right column, with arrow to the option",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 5,
+   "source": "entry option 「愿意打招呼」"
+  },
+  {
+   "id": "T046",
+   "start": "25:3",
+   "end": "27:1",
+   "beat_in": 98.0,
+   "beat_out": 104.0,
+   "t_in_124": 47.419,
+   "t_out_124": 50.323,
+   "text": "还是\n安静参与？",
+   "text_marked": "还是\n⟦安静参与⟧？",
+   "key": [
+    "安静参与"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-mint",
+   "pos": "right column",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 6,
+   "source": "entry option 「安静参与」"
+  },
+  {
+   "id": "T047",
+   "start": "26:1",
+   "end": "27:1",
+   "beat_in": 100.0,
+   "beat_out": 104.0,
+   "t_in_124": 48.387,
+   "t_out_124": 50.323,
+   "text": "自己选。",
+   "text_marked": "⟦自己选⟧。",
+   "key": [
+    "自己选"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "st-yellow",
+   "pos": "right column, sticker",
+   "fx": "POP",
+   "kind": "title",
+   "units": 3,
+   "source": ""
+  },
+  {
+   "id": "T048",
+   "start": "27:1",
+   "end": "29:1",
+   "beat_in": 104.0,
+   "beat_out": 112.0,
+   "t_in_124": 50.323,
+   "t_out_124": 54.194,
+   "text": "看看谁也在。",
+   "text_marked": "看看⟦谁⟧也在。",
+   "key": [
+    "谁"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-pink",
+   "pos": "bottom left on a paper card",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 5,
+   "source": ""
+  },
+  {
+   "id": "T049",
+   "start": "27:3",
+   "end": "29:1",
+   "beat_in": 106.0,
+   "beat_out": 112.0,
+   "t_in_124": 51.29,
+   "t_out_124": 54.194,
+   "text": "示例角色 · 自动回复",
+   "text_marked": "示例角色 · 自动回复",
+   "key": [],
+   "font": "M",
+   "font_name": "Marker 霞鹜漫黑",
+   "size": "S",
+   "size_px": 56,
+   "style": "stamp-mint",
+   "pos": "over the cast",
+   "fx": "STAMP",
+   "kind": "label",
+   "units": 8,
+   "source": "people list chip 「示例角色 · 自动回复」"
+  },
+  {
+   "id": "T050",
+   "start": "29:1",
+   "end": "30:1",
+   "beat_in": 112.0,
+   "beat_out": 116.0,
+   "t_in_124": 54.194,
+   "t_out_124": 56.129,
+   "text": "放一张你的照片。",
+   "text_marked": "放一张你的照片。",
+   "key": [],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-yellow",
+   "pos": "left column",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 7,
+   "source": "route card 「放一张你的照片」"
+  },
+  {
+   "id": "T051",
+   "start": "30:1",
+   "end": "31:1",
+   "beat_in": 116.0,
+   "beat_out": 120.0,
+   "t_in_124": 56.129,
+   "t_out_124": 58.065,
+   "text": "21:48",
+   "text_marked": "⟦21:48⟧",
+   "key": [
+    "21:48"
+   ],
+   "font": "G",
+   "font_name": "Digits 得意黑",
+   "size": "XXL",
+   "size_px": 240,
+   "style": "digits",
+   "pos": "left column",
+   "fx": "POP",
+   "kind": "title",
+   "units": 1,
+   "source": "「拍摄于 21:48 · 来自照片自带的信息」"
+  },
+  {
+   "id": "T052",
+   "start": "30:1",
+   "end": "31:3",
+   "beat_in": 116.0,
+   "beat_out": 122.0,
+   "t_in_124": 56.129,
+   "t_out_124": 59.032,
+   "text": "拍摄时间，\n照片自己记得。",
+   "text_marked": "拍摄时间，\n照片⟦自己记得⟧。",
+   "key": [
+    "自己记得"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-yellow",
+   "pos": "left column, under the time",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 10,
+   "source": "EXIF (DateTimeOriginal) read before compression"
+  },
+  {
+   "id": "T053",
+   "start": "30:3",
+   "end": "32:1",
+   "beat_in": 118.0,
+   "beat_out": 124.0,
+   "t_in_124": 57.097,
+   "t_out_124": 60.0,
+   "text": "示例照片 · 拍摄时间为虚构",
+   "text_marked": "示例照片 · 拍摄时间为虚构",
+   "key": [],
+   "font": "M",
+   "font_name": "Marker 霞鹜漫黑",
+   "size": "XS",
+   "size_px": 36,
+   "style": "chip",
+   "pos": "under the phone",
+   "fx": "POP",
+   "kind": "label",
+   "units": 11,
+   "source": "form note 「示例照片 · 虚构的拍摄时间 21:48，写在文件里」"
+  },
+  {
+   "id": "T054",
+   "start": "31:1",
+   "end": "32:1",
+   "beat_in": 120.0,
+   "beat_out": 124.0,
+   "t_in_124": 58.065,
+   "t_out_124": 60.0,
+   "text": "拍的是哪一面？",
+   "text_marked": "拍的是哪一面？",
+   "key": [],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-pink",
+   "pos": "left column",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 6,
+   "source": "form section 「我拍的这一面」"
+  },
+  {
+   "id": "T055",
+   "start": "32:1",
+   "end": "33:1",
+   "beat_in": 124.0,
+   "beat_out": 128.0,
+   "t_in_124": 60.0,
+   "t_out_124": 61.935,
+   "text": "人海。",
+   "text_marked": "⟦人海⟧。",
+   "key": [
+    "人海"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "XXL",
+   "size_px": 240,
+   "style": "ink-pink",
+   "pos": "left column",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 2,
+   "source": "chip 「AI 判断：人海」"
+  },
+  {
+   "id": "T056",
+   "start": "32:3",
+   "end": "33:3",
+   "beat_in": 126.0,
+   "beat_out": 130.0,
+   "t_in_124": 60.968,
+   "t_out_124": 62.903,
+   "text": "AI 在本机判断，",
+   "text_marked": "AI 在本机判断，",
+   "key": [],
+   "font": "M",
+   "font_name": "Marker 霞鹜漫黑",
+   "size": "M",
+   "size_px": 84,
+   "style": "ink",
+   "pos": "left column, lower",
+   "fx": "TYPE",
+   "kind": "title",
+   "units": 6,
+   "source": "form hint 「AI 在本机判断，照片不上传……」"
+  },
+  {
+   "id": "T057",
+   "start": "33:1",
+   "end": "34:1",
+   "beat_in": 128.0,
+   "beat_out": 132.0,
+   "t_in_124": 61.935,
+   "t_out_124": 63.871,
+   "text": "照片不上传。",
+   "text_marked": "照片⟦不上传⟧。",
+   "key": [
+    "不上传"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-mint",
+   "pos": "left column, with a padlock doodle",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 5,
+   "source": "form hint (static demo: nothing is uploaded at all)"
+  },
+  {
+   "id": "T058",
+   "start": "33:3",
+   "end": "34:3",
+   "beat_in": 130.0,
+   "beat_out": 134.0,
+   "t_in_124": 62.903,
+   "t_out_124": 64.839,
+   "text": "没把握的时候，",
+   "text_marked": "没把握的时候，",
+   "key": [],
+   "font": "M",
+   "font_name": "Marker 霞鹜漫黑",
+   "size": "M",
+   "size_px": 84,
+   "style": "ink",
+   "pos": "left column",
+   "fx": "TYPE",
+   "kind": "title",
+   "units": 6,
+   "source": ""
+  },
+  {
+   "id": "T059",
+   "start": "34:1",
+   "end": "35:1",
+   "beat_in": 132.0,
+   "beat_out": 136.0,
+   "t_in_124": 63.871,
+   "t_out_124": 65.806,
+   "text": "它就说不确定。",
+   "text_marked": "它就说⟦不确定⟧。",
+   "key": [
+    "不确定"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-dashed",
+   "pos": "left column (key word in a dashed outline)",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 6,
+   "source": "chip 「不确定，请选择」"
+  },
+  {
+   "id": "T060",
+   "start": "34:3",
+   "end": "35:3",
+   "beat_in": 134.0,
+   "beat_out": 138.0,
+   "t_in_124": 64.839,
+   "t_out_124": 66.774,
+   "text": "你来选。",
+   "text_marked": "⟦你⟧来选。",
+   "key": [
+    "你"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "st-yellow",
+   "pos": "left column, sticker",
+   "fx": "POP",
+   "kind": "title",
+   "units": 3,
+   "source": "「选择永远由你做」 (About)"
+  },
+  {
+   "id": "T061",
+   "start": "35:1",
+   "end": "36:1",
+   "beat_in": 136.0,
+   "beat_out": 140.0,
+   "t_in_124": 65.806,
+   "t_out_124": 67.742,
+   "text": "保存，上墙。",
+   "text_marked": "保存，⟦上墙⟧。",
+   "key": [
+    "上墙"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-pink",
+   "pos": "left column",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 4,
+   "source": ""
+  },
+  {
+   "id": "T062",
+   "start": "36:3",
+   "end": "37:1",
+   "beat_in": 142.0,
+   "beat_out": 144.0,
+   "t_in_124": 68.71,
+   "t_out_124": 69.677,
+   "text": "上墙啦！",
+   "text_marked": "上墙啦！",
+   "key": [],
+   "font": "N",
+   "font_name": "Note 龙藏体",
+   "size": "M",
+   "size_px": 84,
+   "style": "note-pink",
+   "pos": "arrow to the new polaroid on the 3D wall",
+   "fx": "TYPE",
+   "kind": "note",
+   "units": 3,
+   "source": ""
+  },
+  {
+   "id": "T063",
+   "start": "37:1",
+   "end": "38:3",
+   "beat_in": 144.0,
+   "beat_out": 150.0,
+   "t_in_124": 69.677,
+   "t_out_124": 72.581,
+   "text": "按拍摄时间，",
+   "text_marked": "按⟦拍摄时间⟧，",
+   "key": [
+    "拍摄时间"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-yellow",
+   "pos": "left column",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 5,
+   "source": "rule line 「按拍摄时间分组」"
+  },
+  {
+   "id": "T064",
+   "start": "38:3",
+   "end": "39:3",
+   "beat_in": 150.0,
+   "beat_out": 154.0,
+   "t_in_124": 72.581,
+   "t_out_124": 74.516,
+   "text": "就是同一刻。",
+   "text_marked": "就是⟦同一刻⟧。",
+   "key": [
+    "同一刻"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-mint",
+   "pos": "left column, third line",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 5,
+   "source": "group header 「21:47 · 同一刻 · 3 个视角」"
+  },
+  {
+   "id": "T065",
+   "start": "38:1",
+   "end": "39:1",
+   "beat_in": 148.0,
+   "beat_out": 152.0,
+   "t_in_124": 71.613,
+   "t_out_124": 73.548,
+   "text": "3 分钟以内，",
+   "text_marked": "⟦3 分钟⟧以内，",
+   "key": [
+    "3 分钟"
+   ],
+   "font": "G",
+   "font_name": "Digits 得意黑",
+   "size": "L",
+   "size_px": 128,
+   "style": "digits",
+   "pos": "left column, second line",
+   "fx": "POP",
+   "kind": "title",
+   "units": 5,
+   "source": "「相差不超过 3 分钟」 (SAME_MOMENT_MS)"
+  },
+  {
+   "id": "T066",
+   "start": "39:1",
+   "end": "40:1",
+   "beat_in": 152.0,
+   "beat_out": 156.0,
+   "t_in_124": 73.548,
+   "t_out_124": 75.484,
+   "text": "规则判断，不是 AI。",
+   "text_marked": "规则判断，不是 AI。",
+   "key": [],
+   "font": "M",
+   "font_name": "Marker 霞鹜漫黑",
+   "size": "M",
+   "size_px": 84,
+   "style": "stamp-mint",
+   "pos": "left column, rotated 6 deg",
+   "fx": "STAMP",
+   "kind": "title",
+   "units": 7,
+   "source": "rule line 「规则判断，不是 AI」"
+  },
+  {
+   "id": "T067",
+   "start": "40:1",
+   "end": "41:1",
+   "beat_in": 156.0,
+   "beat_out": 160.0,
+   "t_in_124": 75.484,
+   "t_out_124": 77.419,
+   "text": "看这里！",
+   "text_marked": "看这里！",
+   "key": [],
+   "font": "N",
+   "font_name": "Note 龙藏体",
+   "size": "M",
+   "size_px": 84,
+   "style": "note-pink",
+   "pos": "arrow to the badge",
+   "fx": "TYPE",
+   "kind": "note",
+   "units": 3,
+   "source": ""
+  },
+  {
+   "id": "T070",
+   "start": "41:1",
+   "end": "43:1",
+   "beat_in": 160.0,
+   "beat_out": 168.0,
+   "t_in_124": 77.419,
+   "t_out_124": 81.29,
+   "text": "你拍人海，",
+   "text_marked": "你拍⟦人海⟧，",
+   "key": [
+    "人海"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "XL",
+   "size_px": 180,
+   "style": "ink-mint",
+   "pos": "top left (above your polaroid)",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 4,
+   "source": "reason 「你拍人海，TA 拍舞台」"
+  },
+  {
+   "id": "T071",
+   "start": "41:3",
+   "end": "43:1",
+   "beat_in": 162.0,
+   "beat_out": 168.0,
+   "t_in_124": 78.387,
+   "t_out_124": 81.29,
+   "text": "TA 拍舞台。",
+   "text_marked": "TA 拍⟦舞台⟧。",
+   "key": [
+    "舞台"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "XL",
+   "size_px": 180,
+   "style": "ink-pink",
+   "pos": "top right (above TA's polaroid)",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 4,
+   "source": "reason"
+  },
+  {
+   "id": "T072",
+   "start": "42:3",
+   "end": "43:1",
+   "beat_in": 166.0,
+   "beat_out": 168.0,
+   "t_in_124": 80.323,
+   "t_out_124": 81.29,
+   "text": "不到 1 分钟",
+   "text_marked": "不到 1 分钟",
+   "key": [],
+   "font": "G",
+   "font_name": "Digits 得意黑",
+   "size": "M",
+   "size_px": 84,
+   "style": "digits",
+   "pos": "on the bracket between the times",
+   "fx": "DRAW",
+   "kind": "label",
+   "units": 5,
+   "source": "reason 「相差不到 1 分钟」"
+  },
+  {
+   "id": "T073",
+   "start": "43:1",
+   "end": "45:1",
+   "beat_in": 168.0,
+   "beat_out": 176.0,
+   "t_in_124": 81.29,
+   "t_out_124": 85.161,
+   "text": "同一刻的",
+   "text_marked": "同一刻的",
+   "key": [],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "XL",
+   "size_px": 180,
+   "style": "ink-pink",
+   "pos": "left column, line 1",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 4,
+   "source": "badge 「同一刻的另一面」"
+  },
+  {
+   "id": "T074",
+   "start": "43:3",
+   "end": "45:1",
+   "beat_in": 170.0,
+   "beat_out": 176.0,
+   "t_in_124": 82.258,
+   "t_out_124": 85.161,
+   "text": "另一面。",
+   "text_marked": "⟦另一面⟧。",
+   "key": [
+    "另一面"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "XL",
+   "size_px": 180,
+   "style": "st-pink",
+   "pos": "left column, line 2",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 3,
+   "source": ""
+  },
+  {
+   "id": "T075",
+   "start": "45:1",
+   "end": "46:1",
+   "beat_in": 176.0,
+   "beat_out": 180.0,
+   "t_in_124": 85.161,
+   "t_out_124": 87.097,
+   "text": "用我拍下的，",
+   "text_marked": "用我拍下的，",
+   "key": [],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-pink",
+   "pos": "left column",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 5,
+   "source": "compose 「用我拍下的，换 阿遥·示例 看到的。」"
+  },
+  {
+   "id": "T076",
+   "start": "45:3",
+   "end": "46:3",
+   "beat_in": 178.0,
+   "beat_out": 182.0,
+   "t_in_124": 86.129,
+   "t_out_124": 88.065,
+   "text": "换 TA 看到的。",
+   "text_marked": "换 ⟦TA 看到的⟧。",
+   "key": [
+    "TA 看到的"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-pink",
+   "pos": "left column",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 5,
+   "source": ""
+  },
+  {
+   "id": "T077",
+   "start": "46:1",
+   "end": "47:1",
+   "beat_in": 180.0,
+   "beat_out": 184.0,
+   "t_in_124": 87.097,
+   "t_out_124": 89.032,
+   "text": "换不换，",
+   "text_marked": "换不换，",
+   "key": [],
+   "font": "M",
+   "font_name": "Marker 霞鹜漫黑",
+   "size": "M",
+   "size_px": 84,
+   "style": "ink",
+   "pos": "left column",
+   "fx": "TYPE",
+   "kind": "title",
+   "units": 3,
+   "source": "「要不要交换，仍由你和对方决定。」"
+  },
+  {
+   "id": "T078",
+   "start": "46:3",
+   "end": "47:3",
+   "beat_in": 182.0,
+   "beat_out": 186.0,
+   "t_in_124": 88.065,
+   "t_out_124": 90.0,
+   "text": "你们俩说了算。",
+   "text_marked": "⟦你们俩⟧说了算。",
+   "key": [
+    "你们俩"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-mint",
+   "pos": "left column",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 6,
+   "source": ""
+  },
+  {
+   "id": "T079",
+   "start": "47:1",
+   "end": "48:1",
+   "beat_in": 184.0,
+   "beat_out": 188.0,
+   "t_in_124": 89.032,
+   "t_out_124": 90.968,
+   "text": "我同意，",
+   "text_marked": "我同意，",
+   "key": [],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-mint",
+   "pos": "left column, with check doodle",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 3,
+   "source": "tick 「我同意提供选中照片的预览，并在对方接受后分享这张原图」"
+  },
+  {
+   "id": "T080",
+   "start": "47:3",
+   "end": "48:3",
+   "beat_in": 186.0,
+   "beat_out": 190.0,
+   "t_in_124": 90.0,
+   "t_out_124": 91.935,
+   "text": "交给 TA 确认。",
+   "text_marked": "交给 TA 确认。",
+   "key": [],
+   "font": "M",
+   "font_name": "Marker 霞鹜漫黑",
+   "size": "M",
+   "size_px": 84,
+   "style": "ink",
+   "pos": "left column, plus a drawn ↗ arrow doodle",
+   "fx": "TYPE",
+   "kind": "title",
+   "units": 5,
+   "source": "button 「把这两张交给对方确认 ↗」"
+  },
+  {
+   "id": "T081",
+   "start": "48:1",
+   "end": "49:1",
+   "beat_in": 188.0,
+   "beat_out": 192.0,
+   "t_in_124": 90.968,
+   "t_out_124": 92.903,
+   "text": "还要 TA\n也同意。",
+   "text_marked": "还要 ⟦TA⟧\n也同意。",
+   "key": [
+    "TA"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-pink",
+   "pos": "left column",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 6,
+   "source": "「等待本人回应」"
+  },
+  {
+   "id": "T082",
+   "start": "49:1",
+   "end": "51:1",
+   "beat_in": 192.0,
+   "beat_out": 200.0,
+   "t_in_124": 92.903,
+   "t_out_124": 96.774,
+   "text": "双方同意，",
+   "text_marked": "双方同意，",
+   "key": [],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "XL",
+   "size_px": 180,
+   "style": "ink-mint",
+   "pos": "left column",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 4,
+   "source": "landing 「双方同意才交换」"
+  },
+  {
+   "id": "T083",
+   "start": "49:3",
+   "end": "51:1",
+   "beat_in": 194.0,
+   "beat_out": 200.0,
+   "t_in_124": 93.871,
+   "t_out_124": 96.774,
+   "text": "才交换。",
+   "text_marked": "才⟦交换⟧。",
+   "key": [
+    "交换"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "XL",
+   "size_px": 180,
+   "style": "ink-pink",
+   "pos": "left column",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 3,
+   "source": ""
+  },
+  {
+   "id": "T084",
+   "start": "52:1",
+   "end": "53:3",
+   "beat_in": 204.0,
+   "beat_out": 210.0,
+   "t_in_124": 98.71,
+   "t_out_124": 101.613,
+   "text": "同一刻，",
+   "text_marked": "同一刻，",
+   "key": [],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-pink",
+   "pos": "left column",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 3,
+   "source": ""
+  },
+  {
+   "id": "T085",
+   "start": "52:3",
+   "end": "53:3",
+   "beat_in": 206.0,
+   "beat_out": 210.0,
+   "t_in_124": 99.677,
+   "t_out_124": 101.613,
+   "text": "两面\n都齐了。",
+   "text_marked": "⟦两面⟧\n都齐了。",
+   "key": [
+    "两面"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "XL",
+   "size_px": 180,
+   "style": "ink-mint",
+   "pos": "left column",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 5,
+   "source": "accepted: 「双方已明确同意」, both photos readable"
+  },
+  {
+   "id": "T086",
+   "start": "53:3",
+   "end": "54:3",
+   "beat_in": 210.0,
+   "beat_out": 214.0,
+   "t_in_124": 101.613,
+   "t_out_124": 103.548,
+   "text": "随时可以撤销。",
+   "text_marked": "随时可以⟦撤销⟧。",
+   "key": [
+    "撤销"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-mint",
+   "pos": "left column",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 6,
+   "source": "button 「撤销这次交换的在线访问」"
+  },
+  {
+   "id": "T087",
+   "start": "54:1",
+   "end": "55:1",
+   "beat_in": 212.0,
+   "beat_out": 216.0,
+   "t_in_124": 102.581,
+   "t_out_124": 104.516,
+   "text": "然后呢？",
+   "text_marked": "然后呢？",
+   "key": [],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "XXL",
+   "size_px": 240,
+   "style": "ink-pink",
+   "pos": "centre (paper card)",
+   "fx": "DROP",
+   "kind": "title",
+   "units": 3,
+   "source": ""
+  },
+  {
+   "id": "T090",
+   "start": "55:1",
+   "end": "56:3",
+   "beat_in": 216.0,
+   "beat_out": 222.0,
+   "t_in_124": 104.516,
+   "t_out_124": 107.419,
+   "text": "先招招手，",
+   "text_marked": "先⟦招招手⟧，",
+   "key": [
+    "招招手"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-yellow",
+   "pos": "right column",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 4,
+   "source": "person card 「先招个手，对方愿意回应后，你们才会成为朋友。」"
+  },
+  {
+   "id": "T091",
+   "start": "56:1",
+   "end": "57:3",
+   "beat_in": 220.0,
+   "beat_out": 226.0,
+   "t_in_124": 106.452,
+   "t_out_124": 109.355,
+   "text": "对方愿意，\n才成朋友。",
+   "text_marked": "对方愿意，\n才成⟦朋友⟧。",
+   "key": [
+    "朋友"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-pink",
+   "pos": "right column",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 8,
+   "source": "person card"
+  },
+  {
+   "id": "T092",
+   "start": "57:1",
+   "end": "58:3",
+   "beat_in": 224.0,
+   "beat_out": 230.0,
+   "t_in_124": 108.387,
+   "t_out_124": 111.29,
+   "text": "私聊，",
+   "text_marked": "⟦私聊⟧，",
+   "key": [
+    "私聊"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "XL",
+   "size_px": 180,
+   "style": "ink-pink",
+   "pos": "right column",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 2,
+   "source": "「和 小满·示例 私聊 ↗」"
+  },
+  {
+   "id": "T093",
+   "start": "57:3",
+   "end": "59:1",
+   "beat_in": 226.0,
+   "beat_out": 232.0,
+   "t_in_124": 109.355,
+   "t_out_124": 112.258,
+   "text": "从返场那首聊起。",
+   "text_marked": "从返场那首聊起。",
+   "key": [],
+   "font": "M",
+   "font_name": "Marker 霞鹜漫黑",
+   "size": "M",
+   "size_px": 84,
+   "style": "ink",
+   "pos": "right column",
+   "fx": "TYPE",
+   "kind": "title",
+   "units": 7,
+   "source": "reply 「今晚的返场太好听了。」"
+  },
+  {
+   "id": "T094",
+   "start": "57:3",
+   "end": "59:1",
+   "beat_in": 226.0,
+   "beat_out": 232.0,
+   "t_in_124": 109.355,
+   "t_out_124": 112.258,
+   "text": "示例角色 · 自动回复",
+   "text_marked": "示例角色 · 自动回复",
+   "key": [],
+   "font": "M",
+   "font_name": "Marker 霞鹜漫黑",
+   "size": "S",
+   "size_px": 56,
+   "style": "chip",
+   "pos": "next to the bubbles",
+   "fx": "POP",
+   "kind": "label",
+   "units": 8,
+   "source": "bubble 「我是示例角色，由这个页面自动回复。」"
+  },
+  {
+   "id": "T095",
+   "start": "59:1",
+   "end": "60:1",
+   "beat_in": 232.0,
+   "beat_out": 236.0,
+   "t_in_124": 112.258,
+   "t_out_124": 114.194,
+   "text": "想安静的人，",
+   "text_marked": "想安静的人，",
+   "key": [],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-mint",
+   "pos": "bottom left on a paper card",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 5,
+   "source": "「TA 选择安静参与，不接收新招呼。」"
+  },
+  {
+   "id": "T096",
+   "start": "59:3",
+   "end": "60:3",
+   "beat_in": 234.0,
+   "beat_out": 238.0,
+   "t_in_124": 113.226,
+   "t_out_124": 115.161,
+   "text": "不会被打扰。",
+   "text_marked": "⟦不会被打扰⟧。",
+   "key": [
+    "不会被打扰"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-mint",
+   "pos": "bottom left, second line",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 5,
+   "source": ""
+  },
+  {
+   "id": "T097",
+   "start": "60:1",
+   "end": "61:3",
+   "beat_in": 236.0,
+   "beat_out": 242.0,
+   "t_in_124": 114.194,
+   "t_out_124": 117.097,
+   "text": "散场以后，\n继续聊。",
+   "text_marked": "散场以后，\n⟦继续聊⟧。",
+   "key": [
+    "继续聊"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-yellow",
+   "pos": "right column",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 7,
+   "source": "recap 「散场以后，继续聊。」"
+  },
+  {
+   "id": "T098",
+   "start": "61:1",
+   "end": "62:3",
+   "beat_in": 240.0,
+   "beat_out": 246.0,
+   "t_in_124": 116.129,
+   "t_out_124": 119.032,
+   "text": "今晚的\n专辑世界杯，",
+   "text_marked": "今晚的\n⟦专辑世界杯⟧，",
+   "key": [
+    "专辑世界杯"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-pink",
+   "pos": "left column",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 8,
+   "source": "「今晚的专辑世界杯」"
+  },
+  {
+   "id": "T099",
+   "start": "62:1",
+   "end": "63:1",
+   "beat_in": 244.0,
+   "beat_out": 248.0,
+   "t_in_124": 118.065,
+   "t_out_124": 120.0,
+   "text": "选一张，一起聊。",
+   "text_marked": "选一张，一起聊。",
+   "key": [],
+   "font": "M",
+   "font_name": "Marker 霞鹜漫黑",
+   "size": "M",
+   "size_px": 84,
+   "style": "ink",
+   "pos": "left column",
+   "fx": "TYPE",
+   "kind": "title",
+   "units": 6,
+   "source": "「这一晚，选张专辑来聊」"
+  },
+  {
+   "id": "T100",
+   "start": "61:3",
+   "end": "63:1",
+   "beat_in": 242.0,
+   "beat_out": 248.0,
+   "t_in_124": 117.097,
+   "t_out_124": 120.0,
+   "text": "原创虚构专辑",
+   "text_marked": "原创虚构专辑",
+   "key": [],
+   "font": "M",
+   "font_name": "Marker 霞鹜漫黑",
+   "size": "XS",
+   "size_px": 36,
+   "style": "chip",
+   "pos": "under the phone",
+   "fx": "POP",
+   "kind": "label",
+   "units": 6,
+   "source": "cup card 「原创虚构专辑」"
+  },
+  {
+   "id": "T101",
+   "start": "63:1",
+   "end": "64:1",
+   "beat_in": 248.0,
+   "beat_out": 252.0,
+   "t_in_124": 120.0,
+   "t_out_124": 121.935,
+   "text": "默契局：",
+   "text_marked": "⟦默契局⟧：",
+   "key": [
+    "默契局"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-yellow",
+   "pos": "left column",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 3,
+   "source": "「音乐偏好默契局」"
+  },
+  {
+   "id": "T102",
+   "start": "63:3",
+   "end": "65:1",
+   "beat_in": 250.0,
+   "beat_out": 256.0,
+   "t_in_124": 120.968,
+   "t_out_124": 123.871,
+   "text": "揭晓前，谁也看不到。",
+   "text_marked": "揭晓前，谁也看不到。",
+   "key": [],
+   "font": "M",
+   "font_name": "Marker 霞鹜漫黑",
+   "size": "M",
+   "size_px": 84,
+   "style": "ink",
+   "pos": "left column",
+   "fx": "TYPE",
+   "kind": "title",
+   "units": 8,
+   "source": "「揭晓前只显示你自己的选择。」"
+  },
+  {
+   "id": "T103",
+   "start": "64:1",
+   "end": "65:1",
+   "beat_in": 252.0,
+   "beat_out": 256.0,
+   "t_in_124": 121.935,
+   "t_out_124": 123.871,
+   "text": "选到一起了！",
+   "text_marked": "⟦选到一起⟧了！",
+   "key": [
+    "选到一起"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-pink",
+   "pos": "left column",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 5,
+   "source": "reveal 「2 人选择 · 本轮有共同选择」"
+  },
+  {
+   "id": "T104",
+   "start": "65:1",
+   "end": "66:1",
+   "beat_in": 256.0,
+   "beat_out": 260.0,
+   "t_in_124": 123.871,
+   "t_out_124": 125.806,
+   "text": "长期社群，",
+   "text_marked": "⟦长期社群⟧，",
+   "key": [
+    "长期社群"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-mint",
+   "pos": "right column",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 4,
+   "source": "「我的长期音乐社群」 / 「音乐社群」"
+  },
+  {
+   "id": "T105",
+   "start": "65:3",
+   "end": "66:3",
+   "beat_in": 258.0,
+   "beat_out": 262.0,
+   "t_in_124": 124.839,
+   "t_out_124": 126.774,
+   "text": "也留一个位置。",
+   "text_marked": "也留一个⟦位置⟧。",
+   "key": [
+    "位置"
+   ],
+   "font": "M",
+   "font_name": "Marker 霞鹜漫黑",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-mint",
+   "pos": "right column",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 6,
+   "source": "community header 「散场以后，也留一个位置」 (Marker font: contains 个)"
+  },
+  {
+   "id": "T106",
+   "start": "66:1",
+   "end": "67:1",
+   "beat_in": 260.0,
+   "beat_out": 264.0,
+   "t_in_124": 125.806,
+   "t_out_124": 127.742,
+   "text": "再见，\n在下一场。",
+   "text_marked": "再见，\n在⟦下一场⟧。",
+   "key": [
+    "下一场"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-pink",
+   "pos": "right column",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 6,
+   "source": "recap 「再见，在下一场。」"
+  },
+  {
+   "id": "T107",
+   "start": "67:1",
+   "end": "68:1",
+   "beat_in": 264.0,
+   "beat_out": 268.0,
+   "t_in_124": 127.742,
+   "t_out_124": 129.677,
+   "text": "创作角：",
+   "text_marked": "⟦创作角⟧：",
+   "key": [
+    "创作角"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-mint",
+   "pos": "right column",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 3,
+   "source": "「TWO SIDES / 两个人的创作角」"
+  },
+  {
+   "id": "T108",
+   "start": "67:3",
+   "end": "68:3",
+   "beat_in": 266.0,
+   "beat_out": 270.0,
+   "t_in_124": 128.71,
+   "t_out_124": 130.645,
+   "text": "对方点头，才开始。",
+   "text_marked": "对方点头，才开始。",
+   "key": [],
+   "font": "M",
+   "font_name": "Marker 霞鹜漫黑",
+   "size": "M",
+   "size_px": 84,
+   "style": "ink",
+   "pos": "right column",
+   "fx": "TYPE",
+   "kind": "title",
+   "units": 7,
+   "source": "「对方本人选择参与后才进入共同草稿」"
+  },
+  {
+   "id": "T109",
+   "start": "68:1",
+   "end": "69:3",
+   "beat_in": 268.0,
+   "beat_out": 274.0,
+   "t_in_124": 129.677,
+   "t_out_124": 132.581,
+   "text": "把这一晚，\n留在手里。",
+   "text_marked": "把这一晚，\n⟦留在手里⟧。",
+   "key": [
+    "留在手里"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-pink",
+   "pos": "right column",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 8,
+   "source": "recap 「把这一晚，留在手里。」"
+  },
+  {
+   "id": "T110",
+   "start": "69:3",
+   "end": "70:3",
+   "beat_in": 274.0,
+   "beat_out": 278.0,
+   "t_in_124": 132.581,
+   "t_out_124": 134.516,
+   "text": "纪念卡，",
+   "text_marked": "⟦纪念卡⟧，",
+   "key": [
+    "纪念卡"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-yellow",
+   "pos": "left of the flying card",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 3,
+   "source": ""
+  },
+  {
+   "id": "T111",
+   "start": "70:1",
+   "end": "71:3",
+   "beat_in": 276.0,
+   "beat_out": 282.0,
+   "t_in_124": 133.548,
+   "t_out_124": 136.452,
+   "text": "在你的浏览器里生成。",
+   "text_marked": "在你的浏览器里生成。",
+   "key": [],
+   "font": "M",
+   "font_name": "Marker 霞鹜漫黑",
+   "size": "M",
+   "size_px": 84,
+   "style": "ink",
+   "pos": "under the card",
+   "fx": "TYPE",
+   "kind": "title",
+   "units": 9,
+   "source": "PNG drawn in the page; 「不会上传或自动公开」"
+  },
+  {
+   "id": "T112",
+   "start": "71:1",
+   "end": "72:3",
+   "beat_in": 280.0,
+   "beat_out": 286.0,
+   "t_in_124": 135.484,
+   "t_out_124": 138.387,
+   "text": "散场后，\n仍有地方回来。",
+   "text_marked": "散场后，\n仍有⟦地方回来⟧。",
+   "key": [
+    "地方回来"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-mint",
+   "pos": "right column",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 9,
+   "source": "My Space 「现场是认识的起点，散场后仍有地方回来。」"
+  },
+  {
+   "id": "T120",
+   "start": "73:1",
+   "end": "74:3",
+   "beat_in": 288.0,
+   "beat_out": 294.0,
+   "t_in_124": 139.355,
+   "t_out_124": 142.258,
+   "text": "每一场演出，",
+   "text_marked": "每一场演出，",
+   "key": [],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-pink",
+   "pos": "top left",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 5,
+   "source": ""
+  },
+  {
+   "id": "T121",
+   "start": "74:1",
+   "end": "75:1",
+   "beat_in": 292.0,
+   "beat_out": 296.0,
+   "t_in_124": 141.29,
+   "t_out_124": 143.226,
+   "text": "都可以多一层。",
+   "text_marked": "都可以多⟦一层⟧。",
+   "key": [
+    "一层"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "XL",
+   "size_px": 180,
+   "style": "ink-pink",
+   "pos": "bottom",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 6,
+   "source": ""
+  },
+  {
+   "id": "T122",
+   "start": "75:1",
+   "end": "77:1",
+   "beat_in": 296.0,
+   "beat_out": 304.0,
+   "t_in_124": 143.226,
+   "t_out_124": 147.097,
+   "text": "设想",
+   "text_marked": "设想",
+   "key": [],
+   "font": "M",
+   "font_name": "Marker 霞鹜漫黑",
+   "size": "S",
+   "size_px": 56,
+   "style": "st-yellow",
+   "pos": "top left corner, whole shot",
+   "fx": "POP",
+   "kind": "label",
+   "units": 2,
+   "source": "vision, not an integration"
+  },
+  {
+   "id": "T123",
+   "start": "75:1",
+   "end": "76:1",
+   "beat_in": 296.0,
+   "beat_out": 300.0,
+   "t_in_124": 143.226,
+   "t_out_124": 145.161,
+   "text": "QQ音乐、酷狗",
+   "text_marked": "QQ音乐、酷狗",
+   "key": [],
+   "font": "M",
+   "font_name": "Marker 霞鹜漫黑",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink",
+   "pos": "top",
+   "fx": "TYPE",
+   "kind": "title",
+   "units": 5,
+   "source": "platform names as text only"
+  },
+  {
+   "id": "T124",
+   "start": "75:3",
+   "end": "77:1",
+   "beat_in": 298.0,
+   "beat_out": 304.0,
+   "t_in_124": 144.194,
+   "t_out_124": 147.097,
+   "text": "听完现场，",
+   "text_marked": "听完现场，",
+   "key": [],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-pink",
+   "pos": "middle",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 4,
+   "source": ""
+  },
+  {
+   "id": "T125",
+   "start": "76:1",
+   "end": "77:1",
+   "beat_in": 300.0,
+   "beat_out": 304.0,
+   "t_in_124": 145.161,
+   "t_out_124": 147.097,
+   "text": "顺手换一面。",
+   "text_marked": "顺手⟦换一面⟧。",
+   "key": [
+    "换一面"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "XL",
+   "size_px": 180,
+   "style": "ink-pink",
+   "pos": "bottom",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 5,
+   "source": ""
+  },
+  {
+   "id": "T126",
+   "start": "77:1",
+   "end": "79:1",
+   "beat_in": 304.0,
+   "beat_out": 312.0,
+   "t_in_124": 147.097,
+   "t_out_124": 150.968,
+   "text": "隐私",
+   "text_marked": "⟦隐私⟧",
+   "key": [
+    "隐私"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "XL",
+   "size_px": 180,
+   "style": "pillar-mint",
+   "pos": "left pillar sticker",
+   "fx": "POP",
+   "kind": "label",
+   "units": 2,
+   "source": "「AI 在本机判断」"
+  },
+  {
+   "id": "T126s",
+   "start": "77:1",
+   "end": "79:1",
+   "beat_in": 304.0,
+   "beat_out": 312.0,
+   "t_in_124": 147.097,
+   "t_out_124": 150.968,
+   "text": "AI 在本机 · 你决定给谁看",
+   "text_marked": "AI 在本机 · 你决定给谁看",
+   "key": [],
+   "font": "M",
+   "font_name": "Marker 霞鹜漫黑",
+   "size": "S",
+   "size_px": 56,
+   "style": "ink",
+   "pos": "under the left pillar",
+   "fx": "TYPE",
+   "kind": "label",
+   "units": 10,
+   "source": "upload title 「这一张，由你决定给谁看。」"
+  },
+  {
+   "id": "T127",
+   "start": "77:2",
+   "end": "79:1",
+   "beat_in": 305.0,
+   "beat_out": 312.0,
+   "t_in_124": 147.581,
+   "t_out_124": 150.968,
+   "text": "同意",
+   "text_marked": "⟦同意⟧",
+   "key": [
+    "同意"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "XL",
+   "size_px": 180,
+   "style": "pillar-pink",
+   "pos": "middle pillar sticker",
+   "fx": "POP",
+   "kind": "label",
+   "units": 2,
+   "source": "「双方同意才交换」"
+  },
+  {
+   "id": "T127s",
+   "start": "77:2",
+   "end": "79:1",
+   "beat_in": 305.0,
+   "beat_out": 312.0,
+   "t_in_124": 147.581,
+   "t_out_124": 150.968,
+   "text": "双方点头，才交换",
+   "text_marked": "双方点头，才交换",
+   "key": [],
+   "font": "M",
+   "font_name": "Marker 霞鹜漫黑",
+   "size": "S",
+   "size_px": 56,
+   "style": "ink",
+   "pos": "under the middle pillar",
+   "fx": "TYPE",
+   "kind": "label",
+   "units": 7,
+   "source": ""
+  },
+  {
+   "id": "T128",
+   "start": "77:3",
+   "end": "79:1",
+   "beat_in": 306.0,
+   "beat_out": 312.0,
+   "t_in_124": 148.065,
+   "t_out_124": 150.968,
+   "text": "好玩",
+   "text_marked": "⟦好玩⟧",
+   "key": [
+    "好玩"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "XL",
+   "size_px": 180,
+   "style": "pillar-yellow",
+   "pos": "right pillar sticker",
+   "fx": "POP",
+   "kind": "label",
+   "units": 2,
+   "source": ""
+  },
+  {
+   "id": "T128s",
+   "start": "77:3",
+   "end": "79:1",
+   "beat_in": 306.0,
+   "beat_out": 312.0,
+   "t_in_124": 148.065,
+   "t_out_124": 150.968,
+   "text": "世界杯 · 默契局 · 创作角",
+   "text_marked": "世界杯 · 默契局 · 创作角",
+   "key": [],
+   "font": "M",
+   "font_name": "Marker 霞鹜漫黑",
+   "size": "S",
+   "size_px": 56,
+   "style": "ink",
+   "pos": "under the right pillar",
+   "fx": "TYPE",
+   "kind": "label",
+   "units": 9,
+   "source": "专辑世界杯 / 默契局 / 创作角 exist in the build"
+  },
+  {
+   "id": "T129",
+   "start": "79:1",
+   "end": "81:1",
+   "beat_in": 312.0,
+   "beat_out": 320.0,
+   "t_in_124": 150.968,
+   "t_out_124": 154.839,
+   "text": "曲终，",
+   "text_marked": "曲终，",
+   "key": [],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "XXL",
+   "size_px": 240,
+   "style": "ink-pink",
+   "pos": "upper left",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 2,
+   "source": ""
+  },
+  {
+   "id": "T130",
+   "start": "79:3",
+   "end": "81:1",
+   "beat_in": 314.0,
+   "beat_out": 320.0,
+   "t_in_124": 151.935,
+   "t_out_124": 154.839,
+   "text": "人不散。",
+   "text_marked": "人⟦不散⟧。",
+   "key": [
+    "不散"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "XXL",
+   "size_px": 240,
+   "style": "ink-pink",
+   "pos": "upper right",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 3,
+   "source": ""
+  },
+  {
+   "id": "T131",
+   "start": "81:1",
+   "end": "82:3",
+   "beat_in": 320.0,
+   "beat_out": 326.0,
+   "t_in_124": 154.839,
+   "t_out_124": 157.742,
+   "text": "打开链接，",
+   "text_marked": "打开链接，",
+   "key": [],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-yellow",
+   "pos": "die card bottom-left, line 1",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 4,
+   "source": ""
+  },
+  {
+   "id": "T132",
+   "start": "81:3",
+   "end": "83:1",
+   "beat_in": 322.0,
+   "beat_out": 328.0,
+   "t_in_124": 155.806,
+   "t_out_124": 158.71,
+   "text": "一人\n就能走完全程。",
+   "text_marked": "⟦一人⟧\n就能走完全程。",
+   "key": [
+    "一人"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "L",
+   "size_px": 128,
+   "style": "ink-yellow",
+   "pos": "die card bottom-left, line 2",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 8,
+   "source": "single-visitor demo; About 「没有服务器，没有账号」"
+  },
+  {
+   "id": "T140",
+   "start": "83:1",
+   "end": "91:1",
+   "beat_in": 328.0,
+   "beat_out": 360.0,
+   "t_in_124": 158.71,
+   "t_out_124": 174.194,
+   "text": "同一刻，",
+   "text_marked": "同一刻，",
+   "key": [],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "XXL",
+   "size_px": 240,
+   "style": "ink-pink",
+   "pos": "left, upper",
+   "fx": "SLAM",
+   "kind": "title",
+   "units": 3,
+   "source": ""
+  },
+  {
+   "id": "T141",
+   "start": "83:2.5",
+   "end": "91:1",
+   "beat_in": 329.5,
+   "beat_out": 360.0,
+   "t_in_124": 159.435,
+   "t_out_124": 174.194,
+   "text": "另一面。",
+   "text_marked": "⟦另一面。⟧",
+   "key": [
+    "另一面。"
+   ],
+   "font": "D",
+   "font_name": "Display 站酷庆科黄油体",
+   "size": "XXL",
+   "size_px": 240,
+   "style": "hl-mint",
+   "pos": "left, lower",
+   "fx": "SLAM+SWIPE",
+   "kind": "title",
+   "units": 3,
+   "source": ""
+  },
+  {
+   "id": "T142",
+   "start": "84:1",
+   "end": "91:1",
+   "beat_in": 332.0,
+   "beat_out": 360.0,
+   "t_in_124": 160.645,
+   "t_out_124": 174.194,
+   "text": "MUSIC SPACE",
+   "text_marked": "MUSIC SPACE",
+   "key": [],
+   "font": "L",
+   "font_name": "Logo Luckiest Guy",
+   "size": "L",
+   "size_px": 128,
+   "style": "logo",
+   "pos": "left, above the title",
+   "fx": "POP",
+   "kind": "label",
+   "units": 2,
+   "source": ""
+  },
+  {
+   "id": "T143",
+   "start": "84:2.5",
+   "end": "91:1",
+   "beat_in": 333.5,
+   "beat_out": 360.0,
+   "t_in_124": 161.371,
+   "t_out_124": 174.194,
+   "text": "musicmapteam.github.io/musicSpace/",
+   "text_marked": "musicmapteam.github.io/musicSpace/",
+   "key": [],
+   "font": "G",
+   "font_name": "Digits 得意黑",
+   "size": "M",
+   "size_px": 84,
+   "style": "link-pill",
+   "pos": "right, above the QR",
+   "fx": "TYPE",
+   "kind": "label",
+   "units": 1,
+   "source": "the judged link (root, not /preview/)"
+  },
+  {
+   "id": "T144",
+   "start": "85:1",
+   "end": "91:1",
+   "beat_in": 336.0,
+   "beat_out": 360.0,
+   "t_in_124": 162.581,
+   "t_out_124": 174.194,
+   "text": "浏览器直接打开 · 无需安装",
+   "text_marked": "浏览器直接打开 · 无需安装",
+   "key": [],
+   "font": "M",
+   "font_name": "Marker 霞鹜漫黑",
+   "size": "S",
+   "size_px": 56,
+   "style": "ink",
+   "pos": "under the QR",
+   "fx": "TYPE",
+   "kind": "label",
+   "units": 11,
+   "source": ""
+  },
+  {
+   "id": "T145",
+   "start": "86:1",
+   "end": "91:1",
+   "beat_in": 340.0,
+   "beat_out": 360.0,
+   "t_in_124": 164.516,
+   "t_out_124": 174.194,
+   "text": "示例角色与照片为虚构（照片由 AI 生成）· 角色自动回复 · 数据只存在你的浏览器",
+   "text_marked": "示例角色与照片为虚构（照片由 AI 生成）· 角色自动回复 · 数据只存在你的浏览器",
+   "key": [],
+   "font": "H",
+   "font_name": "Hand 悠哉",
+   "size": "XS",
+   "size_px": 36,
+   "style": "fine",
+   "pos": "bottom, 1-2 lines",
+   "fx": "TYPE",
+   "kind": "fine",
+   "units": 32,
+   "source": "README / About"
+  },
+  {
+   "id": "T146",
+   "start": "87:1",
+   "end": "91:1",
+   "beat_in": 344.0,
+   "beat_out": 360.0,
+   "t_in_124": 166.452,
+   "t_out_124": 174.194,
+   "text": "配乐：团队原创（代码合成，无采样、无第三方录音）",
+   "text_marked": "配乐：团队原创（代码合成，无采样、无第三方录音）",
+   "key": [],
+   "font": "H",
+   "font_name": "Hand 悠哉",
+   "size": "XS",
+   "size_px": 36,
+   "style": "fine",
+   "pos": "bottom right",
+   "fx": "TYPE",
+   "kind": "fine",
+   "units": 19,
+   "source": "credit line from music-original/PROVENANCE.txt; for a CC0 track use its credit line from the licence proof"
+  }
+ ],
+ "elastic": {
+  "cut": [
+   {
+    "priority": 1,
+    "bars": [
+     90
+    ],
+    "what": "end card holds one bar less"
+   },
+   {
+    "priority": 2,
+    "bars": [
+     72
+    ],
+    "what": "S11 drum-roll recap"
+   },
+   {
+    "priority": 3,
+    "bars": [
+     15,
+     16
+    ],
+    "what": "P2 second half: 「散场后，」「找不回来。」"
+   },
+   {
+    "priority": 4,
+    "bars": [
+     71
+    ],
+    "what": "S10 我的空间 (T112)"
+   },
+   {
+    "priority": 5,
+    "bars": [
+     89
+    ],
+    "what": "end card holds one more bar less (6 bars left, QR still on for ~11 s)"
+   },
+   {
+    "priority": 6,
+    "bars": [
+     8
+    ],
+    "what": "H3 match cut into the landing page"
+   },
+   {
+    "priority": 7,
+    "bars": [
+     40
+    ],
+    "what": "A5 last bar: badge zoom + 「看这里！」"
+   },
+   {
+    "priority": 8,
+    "bars": [
+     81
+    ],
+    "what": "W5 text bar: 「打开链接，一人就能走完全程。」 (the 3D sheet stays for bar 82)"
+   },
+   {
+    "priority": 9,
+    "bars": [
+     36
+    ],
+    "what": "A4 desktop 3D wall before/after insert"
+   },
+   {
+    "priority": 10,
+    "bars": [
+     66
+    ],
+    "what": "S7 second bar: community room + 「再见，在下一场。」"
+   }
+  ],
+  "add": [
+   {
+    "priority": 1,
+    "after_bar": 90,
+    "bars": 1,
+    "what": "end card +1 bar (the tail bar 91)"
+   },
+   {
+    "priority": 2,
+    "after_bar": 28,
+    "bars": 1,
+    "what": "E4b: real camera glide 全景 -> 照片墙 on the desktop 3D room (the polaroid wall comes into view); no text"
+   },
+   {
+    "priority": 3,
+    "after_bar": 54,
+    "bars": 1,
+    "what": "M7b: the 3D wall again with both photos, a pink ⇄ doodle between yours and 阿遥's; no text"
+   },
+   {
+    "priority": 4,
+    "after_bar": 60,
+    "bars": 2,
+    "what": "S4b: 成员音乐话题 (post a fictional song card 「晚班列车 / 纸灯乐队」) - title 「聊聊今晚的歌。」"
+   }
+  ]
+ }
+}

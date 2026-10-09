@@ -1,0 +1,24 @@
+const s = await get('phone', true);
+const p = s.page;
+const out = {};
+await H.lookAndEnter(s);
+await sleep(9500);
+const skip = p.locator('[data-tour-skip]'); if (await skip.count() && await skip.first().isVisible()) { await skip.first().click(); await sleep(800); }
+await p.locator('#scene-details').click(); await sleep(1200);
+out.roomPanel = await H.text(p, '#panel');
+await shot(p, 'e4-room-panel');
+out.roomPanelButtons = await H.buttons(p, b => /#panel|data-open/.test(b) || true);
+await p.locator('#panel [data-open="conversation"]').first().click();
+await p.waitForSelector('.community-panel form[data-group-join]', { timeout: 20000 });
+await sleep(600);
+out.joinForm = await H.text(p, '.community-panel');
+await shot(p, 'e4-join');
+const join = p.locator('.community-panel form[data-group-join]');
+await join.locator('input[name=consent]').check(); await join.locator('button[type=submit]').click();
+await p.waitForSelector('.community-panel [data-group-topics]', { timeout: 20000 });
+await sleep(2500);
+out.chat = await H.text(p, '.community-panel');
+out.actions = await p.evaluate(() => [...document.querySelectorAll('.conversation-actions button, .conversation-actions a')].map(b => { const r = b.getBoundingClientRect(); return b.textContent.trim() + ' @' + Math.round(r.left) + ',' + Math.round(r.top) + ' ' + Math.round(r.width); }));
+out.audit = await H.audit(p);
+await shot(p, 'e4-chat');
+return out;

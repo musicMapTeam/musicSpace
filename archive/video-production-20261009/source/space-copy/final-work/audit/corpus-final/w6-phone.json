@@ -1,0 +1,607 @@
+{
+ "states": [
+  {
+   "vp": "phone",
+   "label": "profile-before-create",
+   "selector": "#panel",
+   "visible": "×\n带上你的小人\n一个昵称，就能带上小人。\n\n不用真名，入场后随时能换装。\n\n大家怎么叫你\n现在换个造型 ↗\n保存昵称，继续",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板",
+    "@aria-label=Music Space 的小人"
+   ],
+   "hidden": [
+    "Music Space 的小人"
+   ],
+   "at": 1791390407293
+  },
+  {
+   "vp": "phone",
+   "label": "create-form",
+   "selector": "#panel",
+   "visible": "×\nLivehouse / 为这一场开房\n今晚叫什么名字？\n场次名称\n场地\n场景声景\n晚班列车（原创）\n月亮靠窗（原创）\n樱下回声（原创）\n这一场，我想怎样参与\n安静参与\n照片照常分享，不接新招呼\n愿意打招呼\n别人可以向我招手\n我愿意向本场成员展示我的昵称和小人\n开房并进入现场\n\n最多 24 人，入场开放 24 小时。",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板",
+    "@placeholder=例如：周五的最后一首",
+    "@placeholder=例如：月台 Livehouse"
+   ],
+   "hidden": [
+    "晚班列车（原创）",
+    "月亮靠窗（原创）",
+    "樱下回声（原创）"
+   ],
+   "at": 1791390408126
+  },
+  {
+   "vp": "phone",
+   "label": "layout:create-form",
+   "selector": "#panel",
+   "layout": {
+    "pageOverflow": false,
+    "out": [],
+    "tall": [],
+    "orphan": []
+   }
+  },
+  {
+   "vp": "phone",
+   "label": "own-room",
+   "selector": ".frame",
+   "visible": "Music\nSpace\n音乐探索\n♡\n我的小人\n···\n小酒馆 Livehouse\n周五的最后一首\n1 位已加入 · 正在进行\n小酒馆阿杰 · 我\n\n第一次来 1/4\n·\n放一张今晚的照片\n\n收起\n用我自己的照片\n跳过路线\n全景\n同场的人\n照片墙\n我的空间\n关于 Music Space",
+   "attrs": [
+    "@aria-label=返回全景 (hidden el)",
+    "@aria-label=Music Space",
+    "@aria-label=音乐探索",
+    "@aria-label=招呼、朋友和私聊",
+    "@aria-label=我的小人 · 换装",
+    "@aria-label=房间信息",
+    "@aria-label=三维 Livehouse 场景",
+    "@aria-label=查看场次详情：周五的最后一首",
+    "@aria-label=场景内可访问的地点",
+    "@aria-label=走近照片墙 (hidden el)",
+    "@title=照片墙 (hidden el)",
+    "@aria-label=走近小酒馆阿杰 · 我",
+    "@title=小酒馆阿杰 · 我",
+    "@aria-label=第一次来",
+    "@aria-label=收起路线",
+    "@aria-label=场景机位",
+    "@aria-label=我的音乐空间",
+    "@aria-label=场景操作 (hidden el)",
+    "@aria-label=关闭操作面板 (hidden el)",
+    "@aria-label=本场反馈与管理 (hidden el)",
+    "@aria-label=关闭反馈与管理 (hidden el)",
+    "@aria-label=照片交换 (hidden el)",
+    "@aria-label=返回交换列表 (hidden el)",
+    "@aria-label=关闭照片交换 (hidden el)",
+    "@aria-label=私聊 (hidden el)",
+    "@aria-label=返回对话列表 (hidden el)",
+    "@aria-label=关闭私聊 (hidden el)",
+    "@aria-label=消息记录 (hidden el)",
+    "@placeholder=比如，刚刚哪首歌最喜欢？ (hidden el)",
+    "@aria-label=我的衣橱 (hidden el)",
+    "@aria-label=备份或恢复小人身份 (hidden el)",
+    "@aria-label=乐迷社群与聊天室 (hidden el)"
+   ],
+   "hidden": [
+    "1 位同场",
+    "照片墙",
+    "Music Space",
+    "灯快亮了",
+    "正在准备三维场景",
+    "三维现场暂时打不开",
+    "照片和同场名单照常能用，也可以换个浏览器试试。",
+    "这一晚 · 晚班列车",
+    "本场原创声景",
+    "ENCORE / 01",
+    "选一张你自己拍的。",
+    "先留下你的这一晚。",
+    "放一张照片，看看你拍到的是哪一面。",
+    "本场信息",
+    "安静参与 · 更改",
+    "留下第一张照片",
+    "回看这一晚",
+    "这一场 / 彼此尊重",
+    "本场反馈",
+    "同一晚 / 另一面",
+    "交换一个视角",
+    "ONE TO ONE",
+    "我们的对话",
+    "更早的消息",
+    "留一句话",
+    "互相接受后就能私聊",
+    "发送 ↗"
+   ],
+   "at": 1791390410826
+  },
+  {
+   "vp": "phone",
+   "label": "own-room-panel",
+   "selector": "#panel",
+   "visible": "×\n小酒馆 Livehouse\n周五的最后一首\n\n1 位成员 · 可继续入场\n\n关于 Music Space\n回看这一晚\n我的现场\n我的创作与邀请\n散场聊天室Livehouse 乐迷社群招呼与朋友\n这一场，我想怎样参与\n安静参与\n照片照常分享，不接新招呼\n愿意打招呼\n别人可以向我招手\n更新参与方式\n\n改为安静参与会结束待回应的招呼。\n\n管理这一场\n离开本场\n结束入场和上传",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板"
+   ],
+   "hidden": [],
+   "at": 1791390411925
+  },
+  {
+   "vp": "phone",
+   "label": "layout:own-room-panel",
+   "selector": "#panel",
+   "layout": {
+    "pageOverflow": false,
+    "out": [],
+    "tall": [],
+    "orphan": []
+   }
+  },
+  {
+   "vp": "phone",
+   "label": "mod-reports",
+   "selector": ".room-moderation",
+   "visible": "这一场 / 彼此尊重\n管理这一场\n×\n\n周五的最后一首\n\n现场反馈\n同场成员\n移出记录\n\n目前没有现场反馈。\n\n上一页\n第 1 页\n下一页\n刷新",
+   "attrs": [
+    "@aria-label=本场反馈与管理",
+    "@aria-label=关闭反馈与管理",
+    "@aria-label=本场管理分类"
+   ],
+   "hidden": [],
+   "at": 1791390414178
+  },
+  {
+   "vp": "phone",
+   "label": "mod-members",
+   "selector": ".room-moderation",
+   "visible": "这一场 / 彼此尊重\n管理这一场\n×\n\n周五的最后一首\n\n现场反馈\n同场成员\n移出记录\n\n暂时没有可移出的成员。\n\n只移出这一场，TA 在照片墙上的分享会撤下。\n\n刷新",
+   "attrs": [
+    "@aria-label=本场反馈与管理",
+    "@aria-label=关闭反馈与管理",
+    "@aria-label=本场管理分类"
+   ],
+   "hidden": [],
+   "at": 1791390415043
+  },
+  {
+   "vp": "phone",
+   "label": "mod-exclusions",
+   "selector": ".room-moderation",
+   "visible": "这一场 / 彼此尊重\n管理这一场\n×\n\n周五的最后一首\n\n现场反馈\n同场成员\n移出记录\n\n本场没有移出记录。\n\n上一页\n第 1 页\n下一页\n刷新",
+   "attrs": [
+    "@aria-label=本场反馈与管理",
+    "@aria-label=关闭反馈与管理",
+    "@aria-label=本场管理分类"
+   ],
+   "hidden": [],
+   "at": 1791390415908
+  },
+  {
+   "vp": "phone",
+   "label": "close-confirm",
+   "selector": "#panel",
+   "visible": "×\n结束「周五的最后一首」的入场和上传？\n\n结束后不能再入场或上传。\n\n确认结束入场",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板",
+    "@data-confirm=close"
+   ],
+   "hidden": [],
+   "at": 1791390417180
+  },
+  {
+   "vp": "phone",
+   "label": "leave-confirm",
+   "selector": "#panel",
+   "visible": "×\n要离开这一场吗？\n\n你的照片会从墙上撤下，已完成的交换还在。\n\n确认离开",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板",
+    "@data-confirm=leave"
+   ],
+   "hidden": [],
+   "at": 1791390417978
+  },
+  {
+   "vp": "phone",
+   "label": "communities-host-empty",
+   "selector": ".music-community",
+   "visible": "散场以后，也留一个位置\n×\nLivehouse 乐迷社群\n\n散场后，乐迷留在场地的社群里；下一场的预告直接发到这里。\n\n还没有加入乐迷社群。\n\n社群名称\n创建社群，向成员展示我的昵称、\n小人和发言\n创建 Livehouse 乐迷社群\n刷新聊天室我的乐迷社群",
+   "attrs": [
+    "@aria-label=乐迷社群与聊天室",
+    "@aria-label=关闭聊天室",
+    "@aria-label=Music Space 的小人"
+   ],
+   "hidden": [
+    "Music Space 的小人"
+   ],
+   "at": 1791390419404
+  },
+  {
+   "vp": "phone",
+   "label": "communities-host-created",
+   "selector": ".music-community",
+   "visible": "散场以后，也留一个位置\n×\nLivehouse 乐迷社群\n\n散场后，乐迷留在场地的社群里；下一场的预告直接发到这里。\n\n小酒馆乐迷社群\n你在这里 · 继续聊聊\n社群名称\n创建社群，向成员展示我的昵称、\n小人和发言\n创建 Livehouse 乐迷社群\n刷新聊天室我的乐迷社群",
+   "attrs": [
+    "@aria-label=乐迷社群与聊天室",
+    "@aria-label=关闭聊天室",
+    "@aria-label=Music Space 的小人"
+   ],
+   "hidden": [
+    "Music Space 的小人"
+   ],
+   "at": 1791390422008
+  },
+  {
+   "vp": "phone",
+   "label": "host-community",
+   "selector": ".music-community",
+   "visible": "小酒馆乐迷社群\n散场以后，也留一个位置\n×\n未静音 · 0 条未读\n设置与管理 ···\n音乐探索 ↗\n一起玩\n音乐话题\n专辑世界杯\n\n还没有人说话，来说第一句吧。\n\n标为已读\n留一句\n发送",
+   "attrs": [
+    "@aria-label=乐迷社群与聊天室",
+    "@aria-label=关闭聊天室",
+    "@aria-label=Music Space 的小人 (hidden el)",
+    "@aria-label=音乐与聊天入口"
+   ],
+   "hidden": [
+    "Music Space 的小人"
+   ],
+   "at": 1791390424035
+  },
+  {
+   "vp": "phone",
+   "label": "host-community-settings",
+   "selector": ".music-community",
+   "visible": "小酒馆乐迷社群\n散场以后，也留一个位置\n×\n未静音 · 0 条未读\n设置与管理 ···\n\n开放中\n\n下一场预告\n静音\n退出社群\n我愿意打招呼\n社群成员\n\n小酒馆阿杰 · 安静参与\n\n管理成员\n\n还没有其他成员。\n\n刷新聊天室我的乐迷社群\n音乐探索 ↗\n一起玩\n音乐话题\n专辑世界杯\n\n还没有人说话，来说第一句吧。\n\n标为已读\n留一句\n发送",
+   "attrs": [
+    "@aria-label=乐迷社群与聊天室",
+    "@aria-label=关闭聊天室",
+    "@aria-label=Music Space 的小人 (hidden el)",
+    "@aria-label=音乐与聊天入口"
+   ],
+   "hidden": [
+    "Music Space 的小人"
+   ],
+   "at": 1791390424523
+  },
+  {
+   "vp": "phone",
+   "label": "host-next-show",
+   "selector": ".space-management",
+   "visible": "LIVEHOUSE / 下一场见\n×\n小酒馆乐迷社群\n\n开放中\n\n还没有社群介绍。\n\n编辑社群资料\n社群名称\n社群介绍\n开放状态\n开放\n归档\n确认更新社群资料\n保存放弃修改\n下一场\n\n还没有下一场预告。\n\n发布下一场预告\n演出名称\n场地\n时间（北京时间，可留空）\n给乐迷的话\n发布给社群成员\n发布预告\n刷新回到社群聊天",
+   "attrs": [
+    "@aria-label=下一场预告",
+    "@aria-label=返回社群"
+   ],
+   "hidden": [
+    "开放",
+    "归档"
+   ],
+   "at": 1791390426810
+  },
+  {
+   "vp": "phone",
+   "label": "layout:host-next-show",
+   "selector": ".space-management",
+   "layout": {
+    "pageOverflow": false,
+    "out": [],
+    "tall": [],
+    "orphan": []
+   }
+  },
+  {
+   "vp": "phone",
+   "label": "host-next-show-posted",
+   "selector": ".space-management",
+   "visible": "LIVEHOUSE / 下一场见\n×\n小酒馆乐迷社群\n\n已确认。\n\n开放中\n\n还没有社群介绍。\n\n编辑社群资料\n社群名称\n社群介绍\n开放状态\n开放\n归档\n确认更新社群资料\n保存放弃修改\n下一场\n下一场预告\n下周六 · 返场夜\n\n小酒馆 Livehouse · 时间待定\n\n老位置见\n\n为这一场开房\n关联我开的房间\n选一个我开的房间\n请选择\n周五的最后一首 · 可以进场\n把这一场的邀请码给社群成员\n关联\n取消这次预告\n发布下一场预告\n演出名称\n场地\n时间（北京时间，可留空）\n给乐迷的话\n发布给社群成员\n发布预告\n刷新回到社群聊天",
+   "attrs": [
+    "@aria-label=下一场预告",
+    "@aria-label=返回社群"
+   ],
+   "hidden": [
+    "开放",
+    "归档",
+    "请选择",
+    "周五的最后一首 · 可以进场"
+   ],
+   "at": 1791390429271
+  },
+  {
+   "vp": "phone",
+   "label": "layout:host-next-show-posted",
+   "selector": ".space-management",
+   "layout": {
+    "pageOverflow": false,
+    "out": [],
+    "tall": [],
+    "orphan": []
+   }
+  },
+  {
+   "vp": "phone",
+   "label": "host-next-show-final",
+   "selector": ".space-management",
+   "visible": "LIVEHOUSE / 下一场见\n×\n小酒馆乐迷社群\n\n已确认。\n\n开放中\n\n还没有社群介绍。\n\n编辑社群资料\n社群名称\n社群介绍\n开放状态\n开放\n归档\n确认更新社群资料\n保存放弃修改\n下一场\n下一场预告\n下周六 · 返场夜\n\n小酒馆 Livehouse · 时间待定\n\n老位置见\n\n为这一场开房\n关联我开的房间\n选一个我开的房间\n请选择\n周五的最后一首 · 可以进场\n把这一场的邀请码给社群成员\n关联\n取消这次预告\n发布下一场预告\n演出名称\n场地\n时间（北京时间，可留空）\n给乐迷的话\n发布给社群成员\n发布预告\n刷新回到社群聊天",
+   "attrs": [
+    "@aria-label=下一场预告",
+    "@aria-label=返回社群"
+   ],
+   "hidden": [
+    "开放",
+    "归档",
+    "请选择",
+    "周五的最后一首 · 可以进场"
+   ],
+   "at": 1791390430515
+  },
+  {
+   "vp": "phone",
+   "label": "host-room-chat",
+   "selector": ".music-community",
+   "visible": "周五的最后一首\n散场以后，也留一个位置\n×\n未静音 · 0 条未读\n设置与管理 ···\n静音\n退出聊天室\n管理成员\n\n还没有其他成员。\n\n这家 Livehouse 的乐迷社群刷新聊天室我的乐迷社群\n关联我的乐迷社群\n小酒馆乐迷社群\n关联到这一场\n音乐探索 ↗\n一起玩\n音乐话题\n专辑世界杯\n\n还没有人说话，来说第一句吧。\n\n标为已读\n留一句\n发送",
+   "attrs": [
+    "@aria-label=乐迷社群与聊天室",
+    "@aria-label=关闭聊天室",
+    "@aria-label=Music Space 的小人 (hidden el)",
+    "@aria-label=音乐与聊天入口"
+   ],
+   "hidden": [
+    "Music Space 的小人",
+    "小酒馆乐迷社群"
+   ],
+   "at": 1791390436788
+  },
+  {
+   "vp": "phone",
+   "label": "host-room-chat-linked",
+   "selector": ".music-community",
+   "visible": "周五的最后一首\n散场以后，也留一个位置\n×\n未静音 · 0 条未读\n设置与管理 ···\n静音\n退出聊天室\n管理成员\n\n还没有其他成员。\n\n这家 Livehouse 的乐迷社群刷新聊天室我的乐迷社群\n关联我的乐迷社群\n小酒馆乐迷社群\n关联到这一场\n音乐探索 ↗\n一起玩\n音乐话题\n专辑世界杯\n\n还没有人说话，来说第一句吧。\n\n标为已读\n留一句\n发送",
+   "attrs": [
+    "@aria-label=乐迷社群与聊天室",
+    "@aria-label=关闭聊天室",
+    "@aria-label=Music Space 的小人 (hidden el)",
+    "@aria-label=音乐与聊天入口"
+   ],
+   "hidden": [
+    "Music Space 的小人",
+    "小酒馆乐迷社群"
+   ],
+   "at": 1791390440312
+  },
+  {
+   "vp": "phone",
+   "label": "host-linked-community",
+   "selector": ".music-community",
+   "visible": "小酒馆乐迷社群\n散场以后，也留一个位置\n×\n未静音 · 0 条未读\n设置与管理 ···\n音乐探索 ↗\n一起玩\n音乐话题\n专辑世界杯\n\n还没有人说话，来说第一句吧。\n\n标为已读\n留一句\n发送",
+   "attrs": [
+    "@aria-label=乐迷社群与聊天室",
+    "@aria-label=关闭聊天室",
+    "@aria-label=Music Space 的小人 (hidden el)",
+    "@aria-label=音乐与聊天入口"
+   ],
+   "hidden": [
+    "Music Space 的小人"
+   ],
+   "at": 1791390442400
+  },
+  {
+   "vp": "phone",
+   "label": "own-room-upload-empty",
+   "selector": "#panel",
+   "visible": "×\n留一个现场瞬间\n这一张，由你决定给谁看。\n选照片\n\n可见范围\n仅自己保存\n分享给本场成员\n\n照片会缩小，并去掉位置信息。\n\n保存这张照片",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板"
+   ],
+   "hidden": [
+    "没读到拍摄时间",
+    "修改时间",
+    "拍摄时间 · 北京时间",
+    "选填；填了才能找「同一刻」。",
+    "我拍的这一面",
+    "舞台",
+    "灯光下的那一面",
+    "人海",
+    "一起举手的那一面",
+    "身边",
+    "陪你听歌的那一面",
+    "细节",
+    "只有你留意的那一面",
+    "配对时用它找另一面，你说了算。",
+    "仅自己保存",
+    "分享给本场成员"
+   ],
+   "at": 1791390443021
+  },
+  {
+   "vp": "phone",
+   "label": "own-room-upload",
+   "selector": "#panel",
+   "visible": "×\n留一个现场瞬间\n这一张，由你决定给谁看。\n选照片\n\n没读到拍摄时间\n\n大约的时间 · 北京时间\n\n文件里的时间，只是大概；改一下才算数。\n\n我拍的这一面\n舞台\n灯光下的那一面\n人海\n一起举手的那一面\n身边\n陪你听歌的那一面\n细节\n只有你留意的那一面\nAI 认为这一面更可能\n\n不确定，请选择\n，AI 认为更可能是舞台或细节\n\n配对时用它找另一面，你说了算。\n\n可见范围\n仅自己保存\n分享给本场成员\n\n照片会缩小，并去掉位置信息。\n\n保存这张照片",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板",
+    "@alt=待保存的照片"
+   ],
+   "hidden": [
+    "修改时间",
+    "仅自己保存",
+    "分享给本场成员"
+   ],
+   "at": 1791390444563
+  },
+  {
+   "vp": "phone",
+   "label": "own-room-upload-chosen",
+   "selector": "form[data-form=\"upload\"]",
+   "visible": "选照片\n\n没读到拍摄时间\n\n大约的时间 · 北京时间\n\n文件里的时间，只是大概；改一下才算数。\n\n我拍的这一面\n舞台\n灯光下的那一面\n人海\n一起举手的那一面\n身边\n陪你听歌的那一面\n细节\n只有你留意的那一面\n\n配对时用它找另一面，你说了算。\n\n可见范围\n仅自己保存\n分享给本场成员\n\n照片会缩小，并去掉位置信息。\n\n保存这张照片",
+   "attrs": [
+    "@alt=待保存的照片"
+   ],
+   "hidden": [
+    "修改时间",
+    "仅自己保存",
+    "分享给本场成员"
+   ],
+   "at": 1791390444876
+  },
+  {
+   "vp": "phone",
+   "label": "own-room-wall",
+   "selector": "#panel",
+   "visible": "×\n同一场 / 不同视角\n这一晚，大家看到了什么？\n小酒馆阿杰\n照片墙：不展示\n刷新照片\n放上我的一张\n照片交换",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板",
+    "@alt=我拍摄的现场照片"
+   ],
+   "hidden": [],
+   "at": 1791390447904
+  },
+  {
+   "vp": "phone",
+   "label": "own-photo-detail",
+   "selector": "#panel",
+   "visible": "×\n照片墙：不展示\n小酒馆阿杰的视角\n\n视角：身边\n·\n作者选择\n\n分享给「周五的最后一首」成员\n查看我的照片交换\n收回这张照片的全部分享\n移除这张照片",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板",
+    "@alt=选中的现场照片"
+   ],
+   "hidden": [],
+   "at": 1791390449820
+  },
+  {
+   "vp": "phone",
+   "label": "withdraw-confirm",
+   "selector": "#panel",
+   "visible": "×\n收回这张照片的全部分享？\n\n会从照片墙撤下，并结束涉及它的交换。\n\n确认收回全部分享",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板",
+    "@data-confirm=withdraw"
+   ],
+   "hidden": [],
+   "at": 1791390451135
+  },
+  {
+   "vp": "phone",
+   "label": "delete-confirm",
+   "selector": "#panel",
+   "visible": "×\n移除这张照片？\n\n移除后无法恢复，相关交换也会结束。\n\n确认移除",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板",
+    "@data-confirm=delete"
+   ],
+   "hidden": [],
+   "at": 1791390451837
+  },
+  {
+   "vp": "phone",
+   "label": "own-recap",
+   "selector": "#panel",
+   "visible": "×\n这一晚 · 仍在进行\n周五的最后一首\n\n小酒馆 Livehouse\n·\n你仍是本场成员\n\n散场以后，继续聊。\n回到这一场的聊天室\nLivehouse 乐迷社群\n把这一晚，留在手里。\n\n用你的照片和小人，做一张纪念卡。\n\n保存我的纪念卡 ↗\n留下的视角\n小酒馆阿杰\n照片墙：不展示\n视角：身边\n·\n作者选择\n上一页\n第 1 页\n下一页\n交换过的另一面\n\n散场后也能看，随时可以撤销。\n\n查看我的照片交换 ↗\n在这一场认识的人\n\n还没有在这一场认识的人。\n\n上一页\n第 1 页\n下一页\n刷新这一晚\n再见，在下一场。\n用邀请码去另一个现场\n我是 Livehouse / 主办方，开个房\n我的现场记录",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板",
+    "@alt=我拍摄的现场照片"
+   ],
+   "hidden": [],
+   "at": 1791390454186
+  },
+  {
+   "vp": "phone",
+   "label": "own-memory-form",
+   "selector": "#panel",
+   "visible": "×\n这一晚 / 留在手里\n保存我的纪念卡\n\n周五的最后一首 · 署名：小酒馆阿杰\n\n最多选两张自己的照片；不选就是一张文字纪念票。\n\n选择要留下的内容\n照片 1\n照片墙：不展示\n带上我的小人\n确认保存到我的设备\n下载纪念卡 PNG\n返回这一晚的回顾",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板",
+    "@alt=我的第1张现场照片",
+    "@aria-label=Music Space 的小人"
+   ],
+   "hidden": [
+    "Music Space 的小人"
+   ],
+   "at": 1791390456561
+  },
+  {
+   "vp": "phone",
+   "label": "my-rooms",
+   "selector": "#panel",
+   "visible": "×\n散场了，也能回来\n我的现场\n周五的最后一首\n小酒馆 Livehouse · 进行中 · 回看这一晚 ↗\n继续在场\n反馈与成员管理\n结束此场入场\nLivehouse 乐迷社群我的照片照片交换我提交的现场反馈招呼与朋友",
+   "attrs": [
+    "@aria-label=场景操作",
+    "@aria-label=关闭操作面板"
+   ],
+   "hidden": [],
+   "at": 1791390459965
+  }
+ ],
+ "logs": {
+  "phone w6": [
+   "load: /musicSpace/",
+   "title: Music Space · 同一刻，另一面",
+   "live:loading(hidden): Music Space灯快亮了正在准备三维场景",
+   "live:render-status(hidden): 正在布置现场…",
+   "live:loading(hidden): Music Space灯快亮了正在布置现场…",
+   "live:loading(hidden): Music Space灯快亮了正在准备三维场景",
+   "live:render-status(hidden): 正在布置现场…",
+   "live:render-status(hidden): 现场进行中",
+   "live:view-label: 正在靠近",
+   "live:render-status(hidden): 现场进行中",
+   "live:toast: 昵称和小人已保存",
+   "live:render-status(hidden): 现场进行中",
+   "live:demo-tour: 第一次来 1/4 · 放一张今晚的照片收起选一张你自己拍的。用我自己的照片跳过路线",
+   "live:view-label: 正在靠近",
+   "live:render-status(hidden): 1 位同场",
+   "live:toast(hidden): 昵称和小人已保存",
+   "live:demo-tour: 第一次来 1/4 · 放一张今晚的照片收起选一张你自己拍的。用我自己的照片跳过路线",
+   "live:render-status(hidden): 1 位同场",
+   "live:demo-tour: 第一次来 1/4 · 放一张今晚的照片收起选一张你自己拍的。用我自己的照片跳过路线",
+   "live:render-status(hidden): 1 位同场",
+   "live:status: 上一步还没确认，可以重试。",
+   "live:render-status(hidden): 1 位同场",
+   "live:status: 正在读取聊天室…",
+   "live:render-status(hidden): 1 位乐迷",
+   "live:status: 正在读取…",
+   "live:render-status(hidden): 1 位乐迷",
+   "live:status: 上一步还没确认，可以重试。",
+   "live:status: 已确认。",
+   "live:render-status(hidden): 1 位乐迷",
+   "live:status: 已确认。",
+   "live:render-status(hidden): 1 位乐迷",
+   "live:render-status(hidden): 1 位同场",
+   "live:status: 正在读取聊天室…",
+   "live:render-status(hidden): 1 位同场",
+   "live:status: 上一步还没确认，可以重试。",
+   "live:render-status(hidden): 1 位同场",
+   "live:status: 上一步还没确认，可以重试。",
+   "live:render-status(hidden): 1 位同场",
+   "live:status: 正在读取聊天室…",
+   "live:render-status(hidden): 1 位乐迷",
+   "live:status(hidden): 没读到拍摄时间 ·",
+   "live:status: 正在处理照片…",
+   "live:render-status(hidden): 1 位同场",
+   "live:status: 没读到拍摄时间 ·",
+   "live:status: AI 在本机判断视角…",
+   "live:status: 没读到拍摄时间 ·",
+   "live:status: 不确定，请选择，AI 认为更可能是舞台或细节",
+   "live:status: 没读到拍摄时间 ·",
+   "live:render-status(hidden): 1 位同场",
+   "live:toast: 已保存，只有自己可见",
+   "live:render-status(hidden): 1 位同场",
+   "live:toast(hidden): 已保存，只有自己可见",
+   "live:render-status(hidden): 1 位同场",
+   "live:demo-tour: 第一次来 2/4 · 看「同一刻的另一面」收起照片墙会把它标出来。去照片墙看看跳过路线",
+   "live:render-status(hidden): 1 位同场",
+   "live:status: 正在生成纪念卡…",
+   "live:render-status(hidden): 1 位同场",
+   "live:status: 已开始下载。",
+   "live:demo-tour: 第一次来 2/4 · 看「同一刻的另一面」收起照片墙会把它标出来。去照片墙看看跳过路线",
+   "live:render-status(hidden): 1 位同场"
+  ]
+ }
+}

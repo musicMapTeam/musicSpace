@@ -1,0 +1,555 @@
+{
+ "kind": "narrow",
+ "base": "http://127.0.0.1:4783/musicSpace/",
+ "results": {
+  "open:join": {
+   "kind": "entry",
+   "st": 0,
+   "sh": 1122,
+   "ch": 462,
+   "fromTop": 11,
+   "fromRight": 11,
+   "focused": true,
+   "onTop": true,
+   "under": []
+  },
+  "join:scrolled-to-consent": 0,
+  "open:menu": {
+   "kind": "room",
+   "st": 0,
+   "sh": 1175,
+   "ch": 462,
+   "fromTop": 11,
+   "fromRight": 11,
+   "focused": true,
+   "onTop": true,
+   "under": []
+  },
+  "scan:menu": {
+   "kind": "room",
+   "max": 713,
+   "steps": 25,
+   "bad": [],
+   "closeOffsets": [
+    "11,11"
+   ],
+   "drift": {
+    "top": 0,
+    "right": 0,
+    "topRange": [
+     10.52,
+     10.52
+    ]
+   }
+  },
+  "close:menu:end": {
+   "kind": "room",
+   "st": 713,
+   "sh": 1175,
+   "ch": 462,
+   "close": [
+    246,
+    79,
+    292,
+    125
+   ],
+   "sheetTop": 68,
+   "sheetRight": 303,
+   "fromTop": 11,
+   "fromRight": 11,
+   "inView": true,
+   "onTop": true,
+   "hit": "#panel-close",
+   "under": [
+    "label「安静参与照样保存和分享照」"
+   ],
+   "focused": true
+  },
+  "menu:scrolled-before-about": 713,
+  "open:about": {
+   "kind": "about",
+   "st": 0,
+   "sh": 2388,
+   "ch": 462,
+   "fromTop": 11,
+   "fromRight": 11,
+   "focused": true,
+   "onTop": true,
+   "under": []
+  },
+  "scan:about": {
+   "kind": "about",
+   "max": 1926,
+   "steps": 66,
+   "bad": [],
+   "closeOffsets": [
+    "11,11"
+   ],
+   "drift": {
+    "top": 0,
+    "right": 0,
+    "topRange": [
+     10.52,
+     10.52
+    ]
+   }
+  },
+  "close:about:end": {
+   "kind": "about",
+   "st": 1926,
+   "sh": 2388,
+   "ch": 462,
+   "close": [
+    246,
+    79,
+    292,
+    125
+   ],
+   "sheetTop": 68,
+   "sheetRight": 303,
+   "fromTop": 11,
+   "fromRight": 11,
+   "inView": true,
+   "onTop": true,
+   "hit": "#panel-close",
+   "under": [
+    "text「数据存在这个浏览器的 Index」"
+   ],
+   "focused": true
+  },
+  "upload:reveal": {
+   "settled": true,
+   "st": 538,
+   "close": [
+    246,
+    79,
+    292,
+    125
+   ],
+   "fromTop": 11,
+   "fromRight": 11,
+   "onTop": true,
+   "inView": true,
+   "under": [],
+   "time": [
+    150,
+    -222,
+    262,
+    -197
+   ],
+   "timeText": "拍摄于 21:48",
+   "chip": [
+    149,
+    59,
+    272,
+    144
+   ]
+  },
+  "scan:upload": {
+   "kind": "upload",
+   "max": 749,
+   "steps": 26,
+   "bad": [],
+   "closeOffsets": [
+    "11,11"
+   ],
+   "drift": {
+    "top": 0,
+    "right": 0,
+    "topRange": [
+     10.52,
+     10.52
+    ]
+   }
+  },
+  "close:upload:end": {
+   "kind": "upload",
+   "st": 749,
+   "sh": 1211,
+   "ch": 462,
+   "close": [
+    246,
+    79,
+    292,
+    125
+   ],
+   "sheetTop": 68,
+   "sheetRight": 303,
+   "fromTop": 11,
+   "fromRight": 11,
+   "inView": true,
+   "onTop": true,
+   "hit": "#panel-close",
+   "under": [
+    "button.moment-chip「细节只有你留意的那一面」"
+   ],
+   "focused": true
+  },
+  "wall:open": {
+   "kind": "wall",
+   "st": 0
+  },
+  "wall:captions": [
+   {
+    "where": "page",
+    "html": 239,
+    "lines": [
+     "拍摄于 21:47 | 视角：舞台",
+     "作者选择"
+    ],
+    "viewRects": 1,
+    "viewText": "视角：舞台",
+    "charLines": [
+     "拍摄于 21:47视角：舞台",
+     "作者选择"
+    ],
+    "endsWithView": false,
+    "danglingDot": false,
+    "pastHost": 0,
+    "metaPastHost": -14,
+    "width": 247
+   },
+   {
+    "where": "page",
+    "html": 239,
+    "lines": [
+     "拍摄于 21:48",
+     "视角：人海",
+     "作者选择"
+    ],
+    "viewRects": 1,
+    "viewText": "视角：人海",
+    "charLines": [
+     "拍摄于 21:48",
+     "视角：人海",
+     "作者选择"
+    ],
+    "endsWithView": false,
+    "danglingDot": false,
+    "pastHost": 0,
+    "metaPastHost": -10,
+    "width": 120
+   },
+   {
+    "where": "page",
+    "html": 264,
+    "lines": [
+     "拍摄于 21:48",
+     "视角：人海",
+     "AI 建议，未改动"
+    ],
+    "viewRects": 1,
+    "viewText": "视角：人海",
+    "charLines": [
+     "拍摄于 21:48",
+     "视角：人海",
+     "AI 建议，",
+     "未改动"
+    ],
+    "endsWithView": false,
+    "danglingDot": false,
+    "pastHost": 0,
+    "metaPastHost": -10,
+    "width": 120
+   },
+   {
+    "where": "page",
+    "html": 239,
+    "lines": [
+     "拍摄于 21:49",
+     "视角：细节",
+     "作者选择"
+    ],
+    "viewRects": 1,
+    "viewText": "视角：细节",
+    "charLines": [
+     "拍摄于 21:49",
+     "视角：细节",
+     "作者选择"
+    ],
+    "endsWithView": false,
+    "danglingDot": false,
+    "pastHost": 0,
+    "metaPastHost": -10,
+    "width": 120
+   }
+  ],
+  "scan:wall": {
+   "kind": "wall",
+   "max": 1845,
+   "steps": 63,
+   "bad": [],
+   "closeOffsets": [
+    "10,10",
+    "11,11"
+   ],
+   "drift": {
+    "top": 0.66,
+    "right": 0.66,
+    "topRange": [
+     9.94,
+     10.6
+    ]
+   }
+  },
+  "open:menu-again": {
+   "kind": "room",
+   "st": 0,
+   "sh": 1175,
+   "ch": 462,
+   "fromTop": 11,
+   "fromRight": 11,
+   "focused": true,
+   "onTop": true,
+   "under": []
+  },
+  "menu:scrolled-before-recap": 333,
+  "open:recap": {
+   "kind": "recap",
+   "st": 0,
+   "sh": 2569,
+   "ch": 462,
+   "fromTop": 11,
+   "fromRight": 11,
+   "focused": true,
+   "onTop": true,
+   "under": []
+  },
+  "recap:after-load-st": 0,
+  "recap:captions": [
+   {
+    "where": "polaroid",
+    "html": 264,
+    "lines": [
+     "拍摄于 21:48",
+     "视角：人海",
+     "AI 建议，未改动"
+    ],
+    "viewRects": 1,
+    "viewText": "视角：人海",
+    "charLines": [
+     "拍摄于 21:48",
+     "视角：人海",
+     "AI 建议，",
+     "未改动"
+    ],
+    "endsWithView": false,
+    "danglingDot": false,
+    "pastHost": 0,
+    "metaPastHost": -9,
+    "width": 116
+   },
+   {
+    "where": "polaroid",
+    "html": 239,
+    "lines": [
+     "拍摄于 21:47",
+     "视角：舞台",
+     "作者选择"
+    ],
+    "viewRects": 1,
+    "viewText": "视角：舞台",
+    "charLines": [
+     "拍摄于 21:47",
+     "视角：舞台",
+     "作者选择"
+    ],
+    "endsWithView": false,
+    "danglingDot": false,
+    "pastHost": 0,
+    "metaPastHost": -9,
+    "width": 116
+   },
+   {
+    "where": "polaroid",
+    "html": 239,
+    "lines": [
+     "拍摄于 21:49",
+     "视角：细节",
+     "作者选择"
+    ],
+    "viewRects": 1,
+    "viewText": "视角：细节",
+    "charLines": [
+     "拍摄于 21:49",
+     "视角：细节",
+     "作者选择"
+    ],
+    "endsWithView": false,
+    "danglingDot": false,
+    "pastHost": 0,
+    "metaPastHost": -9,
+    "width": 116
+   },
+   {
+    "where": "polaroid",
+    "html": 239,
+    "lines": [
+     "拍摄于 22:21",
+     "视角：身边",
+     "作者选择"
+    ],
+    "viewRects": 1,
+    "viewText": "视角：身边",
+    "charLines": [
+     "拍摄于 22:21",
+     "视角：身边",
+     "作者选择"
+    ],
+    "endsWithView": false,
+    "danglingDot": false,
+    "pastHost": 0,
+    "metaPastHost": -9,
+    "width": 116
+   },
+   {
+    "where": "polaroid",
+    "html": 239,
+    "lines": [
+     "拍摄于 21:48",
+     "视角：人海",
+     "作者选择"
+    ],
+    "viewRects": 1,
+    "viewText": "视角：人海",
+    "charLines": [
+     "拍摄于 21:48",
+     "视角：人海",
+     "作者选择"
+    ],
+    "endsWithView": false,
+    "danglingDot": false,
+    "pastHost": 0,
+    "metaPastHost": -9,
+    "width": 116
+   }
+  ],
+  "scan:recap": {
+   "kind": "recap",
+   "max": 2107,
+   "steps": 72,
+   "bad": [],
+   "closeOffsets": [
+    "11,11"
+   ],
+   "drift": {
+    "top": 0,
+    "right": 0,
+    "topRange": [
+     10.52,
+     10.52
+    ]
+   }
+  },
+  "close:recap:end": {
+   "kind": "recap",
+   "st": 2107,
+   "sh": 2569,
+   "ch": 462,
+   "close": [
+    246,
+    79,
+    292,
+    125
+   ],
+   "sheetTop": 68,
+   "sheetRight": 303,
+   "fromTop": 11,
+   "fromRight": 11,
+   "inView": true,
+   "onTop": true,
+   "hit": "#panel-close",
+   "under": [
+    "text「下一页」",
+    "button「下一页」"
+   ],
+   "focused": true
+  },
+  "open:rooms": {
+   "kind": "rooms",
+   "st": 0,
+   "sh": 551,
+   "ch": 462,
+   "fromTop": 11,
+   "fromRight": 11,
+   "focused": true,
+   "onTop": true,
+   "under": []
+  },
+  "rooms:scrolled-before-library": 0,
+  "open:library": {
+   "kind": "library",
+   "st": 0,
+   "sh": 523,
+   "ch": 462,
+   "fromTop": 11,
+   "fromRight": 11,
+   "focused": true,
+   "onTop": true,
+   "under": []
+  },
+  "library:captions": [
+   {
+    "where": "polaroid",
+    "html": 264,
+    "lines": [
+     "拍摄于 21:48",
+     "视角：人海",
+     "AI 建议，未改动"
+    ],
+    "viewRects": 1,
+    "viewText": "视角：人海",
+    "charLines": [
+     "拍摄于 21:48",
+     "视角：人海",
+     "AI 建议，",
+     "未改动"
+    ],
+    "endsWithView": false,
+    "danglingDot": false,
+    "pastHost": 0,
+    "metaPastHost": -9,
+    "width": 116
+   }
+  ],
+  "open:photo": {
+   "kind": "photo",
+   "st": 0,
+   "sh": 695,
+   "ch": 462,
+   "fromTop": 11,
+   "fromRight": 11,
+   "focused": true,
+   "onTop": true,
+   "under": []
+  },
+  "photo:captions": [
+   {
+    "where": "page",
+    "html": 264,
+    "lines": [
+     "拍摄于 21:48 | 视角：人海",
+     "AI 建议，未改动"
+    ],
+    "viewRects": 1,
+    "viewText": "视角：人海",
+    "charLines": [
+     "拍摄于 21:48视角：人海",
+     "AI 建议，未改动"
+    ],
+    "endsWithView": false,
+    "danglingDot": false,
+    "pastHost": 0,
+    "metaPastHost": 0,
+    "width": 251
+   }
+  ]
+ },
+ "failures": [],
+ "api": [],
+ "foreign": [],
+ "failedRequests": [],
+ "consoleErrors": [],
+ "pageErrors": [],
+ "ok": true
+}

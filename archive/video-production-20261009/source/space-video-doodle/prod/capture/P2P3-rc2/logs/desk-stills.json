@@ -1,0 +1,79 @@
+{
+ "items": [
+  {
+   "id": "CUT-01",
+   "name": "stills/CUT-01_room-overview-4k",
+   "files": {
+    "full": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/stills/CUT-01_room-overview-4k.png"
+   },
+   "note": "desktop 3D room overview, five present with labels (林间 · 安静 included), 阿宁 · 我; no pointer",
+   "storyboard": "H1 (polaroid), E4/W5 reference",
+   "audit": {
+    "banned": 0,
+    "watch": [],
+    "chars": 438
+   }
+  },
+  {
+   "id": "CUT-03a",
+   "name": "stills/CUT-03a_3d-wall-4-photos-4k",
+   "files": {
+    "full": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/stills/CUT-03a_3d-wall-4-photos-4k.png"
+   },
+   "note": "3D photo wall (sign 同一晚，另一面。) with the cast's four photos",
+   "storyboard": "A4 36:1 reference",
+   "audit": {
+    "banned": 0,
+    "watch": [],
+    "chars": 195
+   }
+  },
+  {
+   "id": "CUT-03",
+   "name": "stills/CUT-03_3d-wall-5-photos-4k",
+   "files": {
+    "full": "/tmp/space-video-doodle/prod/capture/P2P3-rc2/stills/CUT-03_3d-wall-5-photos-4k.png"
+   },
+   "note": "the same photos view after saving the 人海 sample: five photos (yours included)",
+   "storyboard": "H1 (polaroid), A4 36:3 reference",
+   "audit": {
+    "banned": 0,
+    "watch": [],
+    "chars": 195
+   }
+  }
+ ],
+ "out": {
+  "base": "http://127.0.0.1:48741/musicSpace/",
+  "clock": "2026-10-08T22:40:00+08:00",
+  "overviewPeople": [
+   "阿遥 · 可招呼",
+   "小满 · 可招呼",
+   "北屿 · 可招呼",
+   "阿宁 · 我",
+   "林间 · 安静"
+  ],
+  "qa1": {
+   "view": "overview",
+   "members": [
+    "阿遥",
+    "小满",
+    "北屿",
+    "阿宁",
+    "林间"
+   ],
+   "photos": 4
+  },
+  "overviewText": "Music Space 5 位同场 音乐探索 ↗ ♡ 我的小人 ↗ ··· 月台 Livehouse 回声现场 5 位已加入 · 正在进行 照片墙 阿遥 · 可招呼 小满 · 可招呼 北屿 · 可招呼 阿宁 · 我 林间 · 安静 ♪ 这一晚 · 晚班列车 本场原创声景 ENCORE / 01 同一晚，各自的视角。 先放一张你的照片，看看你拍到的是哪一面。 本场信息 愿意打招呼 · 更改 留下第一张照片 回看这一晚 全景 同场的人 照片墙 我的空间 关于 Music Space",
+  "qa2": {
+   "view": "photos",
+   "photos": 4
+  },
+  "ai": "AI 判断：人海",
+  "qa3": {
+   "view": "photos",
+   "photos": 5
+  }
+ },
+ "errors": []
+}

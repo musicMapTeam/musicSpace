@@ -1,0 +1,737 @@
+{
+ "P-01": {
+  "lossless_grabs": {
+   "frames": 513,
+   "unique": 201,
+   "identical_consecutive": 240,
+   "longest_identical_run_s": 0.15,
+   "identical_runs_over_1s": [],
+   "scroll_frames_checked": 0,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 0,
+   "info_identical_while_camera_settles": 0
+  },
+  "probe_errors": 0,
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 513,
+   "duration_s": 8.55,
+   "bytes": 2972237,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 0.416,
+   "longest_static_s": 2.067,
+   "static_spans_over_1s": [
+    "6.283s+2.067s"
+   ]
+  },
+  "frame_count_matches_take": true,
+  "music_map_chip_on_screen_s": []
+ },
+ "P-02": {
+  "lossless_grabs": {
+   "frames": 659,
+   "unique": 516,
+   "identical_consecutive": 95,
+   "longest_identical_run_s": 0.15,
+   "identical_runs_over_1s": [],
+   "scroll_frames_checked": 50,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 3,
+   "info_identical_while_camera_settles": 29
+  },
+  "probe_errors": 0,
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 659,
+   "duration_s": 10.983333,
+   "bytes": 2088750,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 1.28,
+   "longest_static_s": 1.033,
+   "static_spans_over_1s": [
+    "0.017s+1.033s"
+   ]
+  },
+  "frame_count_matches_take": true,
+  "music_map_chip_on_screen_s": []
+ },
+ "P-03": {
+  "lossless_grabs": {
+   "frames": 388,
+   "unique": 232,
+   "identical_consecutive": 110,
+   "longest_identical_run_s": 0.15,
+   "identical_runs_over_1s": [],
+   "scroll_frames_checked": 21,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 1,
+   "info_identical_while_camera_settles": 11
+  },
+  "probe_errors": 0,
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 388,
+   "duration_s": 6.466667,
+   "bytes": 3785515,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 1.787,
+   "longest_static_s": 1.267,
+   "static_spans_over_1s": [
+    "1.283s+1.267s",
+    "2.95s+1.017s"
+   ]
+  },
+  "frame_count_matches_take": true,
+  "music_map_chip_on_screen_s": []
+ },
+ "P-04": {
+  "lossless_grabs": {
+   "frames": 410,
+   "unique": 228,
+   "identical_consecutive": 156,
+   "longest_identical_run_s": 0.15,
+   "identical_runs_over_1s": [],
+   "scroll_frames_checked": 0,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 0,
+   "info_identical_while_camera_settles": 0
+  },
+  "probe_errors": 0,
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 410,
+   "duration_s": 6.833333,
+   "bytes": 2627016,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 0.634,
+   "longest_static_s": 1.317,
+   "static_spans_over_1s": [
+    "5.533s+1.317s"
+   ]
+  },
+  "frame_count_matches_take": true,
+  "music_map_chip_on_screen_s": []
+ },
+ "P-05": {
+  "lossless_grabs": {
+   "frames": 456,
+   "unique": 243,
+   "identical_consecutive": 181,
+   "longest_identical_run_s": 0.833,
+   "identical_runs_over_1s": [],
+   "scroll_frames_checked": 34,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 5,
+   "info_identical_while_camera_settles": 0
+  },
+  "probe_errors": 0,
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 456,
+   "duration_s": 7.6,
+   "bytes": 1897843,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 1.991,
+   "longest_static_s": 3.367,
+   "static_spans_over_1s": [
+    "1.3s+3.367s",
+    "5.35s+2.267s"
+   ]
+  },
+  "frame_count_matches_take": true,
+  "music_map_chip_on_screen_s": []
+ },
+ "P-07": {
+  "lossless_grabs": {
+   "frames": 195,
+   "unique": 133,
+   "identical_consecutive": 35,
+   "longest_identical_run_s": 0.15,
+   "identical_runs_over_1s": [],
+   "scroll_frames_checked": 0,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 0,
+   "info_identical_while_camera_settles": 0
+  },
+  "probe_errors": 0,
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 195,
+   "duration_s": 3.25,
+   "bytes": 496412,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 0.241,
+   "longest_static_s": 2.067,
+   "static_spans_over_1s": [
+    "0.017s+1.0s",
+    "1.2s+2.067s"
+   ]
+  },
+  "frame_count_matches_take": true,
+  "music_map_chip_on_screen_s": []
+ },
+ "P-08": {
+  "lossless_grabs": {
+   "frames": 855,
+   "unique": 594,
+   "identical_consecutive": 171,
+   "longest_identical_run_s": 0.5,
+   "identical_runs_over_1s": [],
+   "scroll_frames_checked": 208,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 16,
+   "info_identical_while_camera_settles": 0
+  },
+  "probe_errors": 0,
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 855,
+   "duration_s": 14.25,
+   "bytes": 3092157,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 4.648,
+   "longest_static_s": 2.733,
+   "static_spans_over_1s": [
+    "0.017s+1.0s",
+    "1.2s+2.733s",
+    "4.883s+1.383s",
+    "7.283s+1.733s",
+    "9.9s+1.217s",
+    "12.2s+2.067s"
+   ]
+  },
+  "frame_count_matches_take": true,
+  "music_map_chip_on_screen_s": []
+ },
+ "P-09": {
+  "lossless_grabs": {
+   "frames": 431,
+   "unique": 181,
+   "identical_consecutive": 240,
+   "longest_identical_run_s": 1.35,
+   "identical_runs_over_1s": [
+    "2.033s+1.067s",
+    "3.683s+1.35s"
+   ],
+   "scroll_frames_checked": 32,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 10,
+   "info_identical_while_camera_settles": 0
+  },
+  "probe_errors": 0,
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 431,
+   "duration_s": 7.183333,
+   "bytes": 1500627,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 1.921,
+   "longest_static_s": 1.967,
+   "static_spans_over_1s": [
+    "0.017s+1.033s",
+    "1.133s+1.967s",
+    "3.467s+1.567s",
+    "6.033s+1.167s"
+   ]
+  },
+  "frame_count_matches_take": true,
+  "music_map_chip_on_screen_s": []
+ },
+ "P-10": {
+  "lossless_grabs": {
+   "frames": 395,
+   "unique": 121,
+   "identical_consecutive": 272,
+   "longest_identical_run_s": 2.633,
+   "identical_runs_over_1s": [
+    "2.45s+2.633s"
+   ],
+   "scroll_frames_checked": 15,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 3,
+   "info_identical_while_camera_settles": 0
+  },
+  "probe_errors": 0,
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 395,
+   "duration_s": 6.583333,
+   "bytes": 1454515,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 1.299,
+   "longest_static_s": 3.8,
+   "static_spans_over_1s": [
+    "1.283s+3.8s"
+   ]
+  },
+  "frame_count_matches_take": true,
+  "music_map_chip_on_screen_s": []
+ },
+ "P-11": {
+  "lossless_grabs": {
+   "frames": 537,
+   "unique": 64,
+   "identical_consecutive": 443,
+   "longest_identical_run_s": 2.633,
+   "identical_runs_over_1s": [
+    "0.817s+2.633s",
+    "5.75s+1.183s"
+   ],
+   "scroll_frames_checked": 0,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 0,
+   "info_identical_while_camera_settles": 0
+  },
+  "probe_errors": 0,
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 537,
+   "duration_s": 8.95,
+   "bytes": 1257234,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 0.189,
+   "longest_static_s": 4.867,
+   "static_spans_over_1s": [
+    "0.017s+3.433s",
+    "4.1s+4.867s"
+   ]
+  },
+  "frame_count_matches_take": true,
+  "music_map_chip_on_screen_s": []
+ },
+ "P-12a": {
+  "lossless_grabs": {
+   "frames": 398,
+   "unique": 276,
+   "identical_consecutive": 81,
+   "longest_identical_run_s": 0.317,
+   "identical_runs_over_1s": [],
+   "scroll_frames_checked": 0,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 0,
+   "info_identical_while_camera_settles": 0
+  },
+  "probe_errors": 0,
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 398,
+   "duration_s": 6.633333,
+   "bytes": 4703838,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 2.252,
+   "longest_static_s": 1.017,
+   "static_spans_over_1s": [
+    "0.017s+1.017s"
+   ]
+  },
+  "frame_count_matches_take": true,
+  "music_map_chip_on_screen_s": []
+ },
+ "P-12": {
+  "lossless_grabs": {
+   "frames": 548,
+   "unique": 425,
+   "identical_consecutive": 58,
+   "longest_identical_run_s": 0.083,
+   "identical_runs_over_1s": [],
+   "scroll_frames_checked": 0,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 0,
+   "info_identical_while_camera_settles": 0
+  },
+  "probe_errors": 0,
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 548,
+   "duration_s": 9.133333,
+   "bytes": 4600108,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 1.35,
+   "longest_static_s": 0.15,
+   "static_spans_over_1s": []
+  },
+  "frame_count_matches_take": true,
+  "music_map_chip_on_screen_s": []
+ },
+ "P-13": {
+  "lossless_grabs": {
+   "frames": 647,
+   "unique": 262,
+   "identical_consecutive": 130,
+   "longest_identical_run_s": 0.133,
+   "identical_runs_over_1s": [],
+   "scroll_frames_checked": 0,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 0,
+   "info_identical_while_camera_settles": 0
+  },
+  "probe_errors": 0,
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 647,
+   "duration_s": 10.783008,
+   "bytes": 1577135,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 0.248,
+   "longest_static_s": 4.1,
+   "static_spans_over_1s": [
+    "1.283s+1.083s",
+    "2.583s+1.9s",
+    "4.583s+4.1s",
+    "8.683s+2.117s"
+   ]
+  },
+  "frame_count_matches_take": true,
+  "music_map_chip_on_screen_s": []
+ },
+ "P-14": {
+  "lossless_grabs": {
+   "frames": 540,
+   "unique": 361,
+   "identical_consecutive": 124,
+   "longest_identical_run_s": 0.15,
+   "identical_runs_over_1s": [],
+   "scroll_frames_checked": 102,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 7,
+   "info_identical_while_camera_settles": 0
+  },
+  "probe_errors": 0,
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 540,
+   "duration_s": 9.0,
+   "bytes": 3168888,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 1.582,
+   "longest_static_s": 1.0,
+   "static_spans_over_1s": [
+    "0.017s+1.0s"
+   ]
+  },
+  "frame_count_matches_take": true,
+  "music_map_chip_on_screen_s": [
+   [
+    2.617,
+    3.95
+   ]
+  ]
+ },
+ "P-15": {
+  "lossless_grabs": {
+   "frames": 604,
+   "unique": 315,
+   "identical_consecutive": 196,
+   "longest_identical_run_s": 0.583,
+   "identical_runs_over_1s": [],
+   "scroll_frames_checked": 55,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 2,
+   "info_identical_while_camera_settles": 0
+  },
+  "probe_errors": 0,
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 604,
+   "duration_s": 10.066667,
+   "bytes": 2650414,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 1.895,
+   "longest_static_s": 3.05,
+   "static_spans_over_1s": [
+    "3.15s+1.033s",
+    "7.033s+3.05s"
+   ]
+  },
+  "frame_count_matches_take": true,
+  "music_map_chip_on_screen_s": []
+ },
+ "P-16": {
+  "lossless_grabs": {
+   "frames": 929,
+   "unique": 424,
+   "identical_consecutive": 385,
+   "longest_identical_run_s": 1.183,
+   "identical_runs_over_1s": [
+    "6.867s+1.183s"
+   ],
+   "scroll_frames_checked": 30,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 2,
+   "info_identical_while_camera_settles": 0
+  },
+  "probe_errors": 0,
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 929,
+   "duration_s": 15.483333,
+   "bytes": 3541802,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 0.516,
+   "longest_static_s": 3.083,
+   "static_spans_over_1s": [
+    "0.017s+1.017s",
+    "4.967s+3.083s",
+    "10.85s+1.2s",
+    "13.283s+2.217s"
+   ]
+  },
+  "frame_count_matches_take": true,
+  "music_map_chip_on_screen_s": [
+   [
+    1.867,
+    2.5
+   ]
+  ]
+ },
+ "P-17": {
+  "lossless_grabs": {
+   "frames": 520,
+   "unique": 382,
+   "identical_consecutive": 89,
+   "longest_identical_run_s": 0.267,
+   "identical_runs_over_1s": [],
+   "scroll_frames_checked": 34,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 0,
+   "info_identical_while_camera_settles": 0
+  },
+  "probe_errors": 0,
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 520,
+   "duration_s": 8.666667,
+   "bytes": 2452583,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 0.488,
+   "longest_static_s": 1.0,
+   "static_spans_over_1s": [
+    "0.017s+1.0s"
+   ]
+  },
+  "frame_count_matches_take": true,
+  "music_map_chip_on_screen_s": [
+   [
+    4.6,
+    6.3
+   ]
+  ]
+ },
+ "P-18": {
+  "lossless_grabs": {
+   "frames": 412,
+   "unique": 347,
+   "identical_consecutive": 25,
+   "longest_identical_run_s": 0.083,
+   "identical_runs_over_1s": [],
+   "scroll_frames_checked": 0,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 0,
+   "info_identical_while_camera_settles": 0
+  },
+  "probe_errors": 0,
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 412,
+   "duration_s": 6.866667,
+   "bytes": 3887075,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 1.915,
+   "longest_static_s": 0.15,
+   "static_spans_over_1s": []
+  },
+  "frame_count_matches_take": true,
+  "music_map_chip_on_screen_s": []
+ },
+ "P-19": {
+  "lossless_grabs": {
+   "frames": 645,
+   "unique": 500,
+   "identical_consecutive": 63,
+   "longest_identical_run_s": 0.1,
+   "identical_runs_over_1s": [],
+   "scroll_frames_checked": 98,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 2,
+   "info_identical_while_camera_settles": 0
+  },
+  "probe_errors": 0,
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 645,
+   "duration_s": 10.75,
+   "bytes": 2761577,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 3.487,
+   "longest_static_s": 1.867,
+   "static_spans_over_1s": [
+    "0.017s+1.0s",
+    "2.7s+1.467s",
+    "6.683s+1.433s",
+    "8.9s+1.867s"
+   ]
+  },
+  "frame_count_matches_take": true,
+  "music_map_chip_on_screen_s": []
+ },
+ "P-20": {
+  "lossless_grabs": {
+   "frames": 393,
+   "unique": 238,
+   "identical_consecutive": 93,
+   "longest_identical_run_s": 0.133,
+   "identical_runs_over_1s": [],
+   "scroll_frames_checked": 66,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 5,
+   "info_identical_while_camera_settles": 0
+  },
+  "probe_errors": 0,
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 393,
+   "duration_s": 6.55,
+   "bytes": 2089887,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 3.794,
+   "longest_static_s": 2.45,
+   "static_spans_over_1s": [
+    "1.283s+2.45s",
+    "4.983s+1.583s"
+   ]
+  },
+  "frame_count_matches_take": true,
+  "music_map_chip_on_screen_s": []
+ },
+ "P-SP1": {
+  "lossless_grabs": {
+   "frames": 304,
+   "unique": 159,
+   "identical_consecutive": 121,
+   "longest_identical_run_s": 0.15,
+   "identical_runs_over_1s": [],
+   "scroll_frames_checked": 0,
+   "duplicates_inside_motion": [],
+   "info_identical_at_scroll_ease_edges": 0,
+   "info_identical_while_camera_settles": 0
+  },
+  "probe_errors": 0,
+  "stream": {
+   "codec": "h264 High",
+   "size": "1080x2340",
+   "pix_fmt": "yuv420p",
+   "fps": "60/1",
+   "frames": 304,
+   "duration_s": 5.066667,
+   "bytes": 2737746,
+   "colour": "bt709/bt709/bt709/tv"
+  },
+  "decoded": {
+   "mean_abs_diff": 3.278,
+   "longest_static_s": 0.15,
+   "static_spans_over_1s": []
+  },
+  "frame_count_matches_take": true,
+  "music_map_chip_on_screen_s": []
+ }
+}

@@ -1,0 +1,17 @@
+{
+ "fonts": [],
+ "glyphs": [
+  "button#social-inbox.social-inbox [Doodle Marker] missing «♡» in «♡»",
+  "span#room-title [Doodle Display] missing «·» in «回声现场 · 示例场»",
+  "header>h2 [Doodle Display] missing «·» in «回声现场 · 示例场»",
+  "nav.conversation-actions>button [Doodle Marker] missing «↗» in «Music Map · 沿音乐探索 ↗»"
+ ],
+ "colors": [],
+ "tiny": [],
+ "whiteOnMarker": [],
+ "clipped": [
+  "div#scene-heading.scene-heading>small sw 193>135 «月台 Livehouse（虚构场地）»"
+ ],
+ "blurShadow": [],
+ "renderStyle": "doodle"
+}

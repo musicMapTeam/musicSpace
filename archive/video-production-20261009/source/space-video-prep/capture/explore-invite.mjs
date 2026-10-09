@@ -1,0 +1,14 @@
+import { launch, newPage, sleep, BASE, ensureDir } from './lib.mjs';
+import { hostCreatesRoom, panelInfo, visibleUI } from './flows.mjs';
+const browser = await launch();
+const A = await newPage(browser, { width: 390, height: 844, dpr: 2 });
+await hostCreatesRoom(A.page, { name: '阿遥', title: '返场夜', venue: '月台 Livehouse' });
+await A.page.locator('#join').click(); await sleep(2000);
+const info = await visibleUI(A.page);
+console.log(JSON.stringify(info.overlays.filter(o => !/world-shell|presence/.test(o.cls))).slice(0, 1500));
+await A.page.screenshot({ path: '/tmp/space-video-prep/stills/phone-invite.png' });
+const B = await newPage(browser, { width: 1440, height: 744, dpr: 1 });
+await hostCreatesRoom(B.page, { name: '阿遥2', title: '返场夜', venue: '月台 Livehouse' });
+await B.page.locator('#join').click(); await sleep(2000);
+await B.page.screenshot({ path: '/tmp/space-video-prep/stills/desktop-invite.png' });
+await browser.close();

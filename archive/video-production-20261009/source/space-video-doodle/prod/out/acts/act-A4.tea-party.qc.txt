@@ -1,0 +1,22 @@
+QC act-A4.tea-party.mp4  range 76.37-106.90 s  act preview  ->  WARN
+  PASS  container.video h264 High 1920x1080 60/1 yuv420p bt709/bt709/bt709/tv
+  PASS  container.audio aac LC 48000 Hz 2 ch 267 kb/s
+  PASS  duration        30.533 s (range 30.533 s)
+  PASS  size            39.4 MB (10.3 Mb/s)
+  PASS  loudness        I -17.4 LUFS (target -16), LRA 2.9 LU (act excerpt: informational; the full cut is normalised)
+  PASS  true_peak       -1.4 dBTP (limit -1.0)
+  PASS  silence         0 silent stretches over 0.8 s
+  PASS  frozen          0 frozen stretches over 2.5 s
+  PASS  black           0 black stretches over 0.4 s
+  PASS  motion          longest low-motion stretch 0.07 s at 3.55 s (mean |dI| < 0.15 on 160x90), mean motion 2.52
+  PASS  event_gaps      99 visual events, 3.24/s; longest gap 1.09 s after 86.18 s (limit 2.5)
+  PASS  beat_alignment  99/99 visual events on the 16th grid (<= half a frame), 94/99 on 8ths; frames quantise by <= 8.3 ms
+  WARN  reading_time    23 lines, measured (geometry samples every 50 ms); titles/notes failing 0, labels/fine short 1
+            - 「不到 1 分钟」 label 0.90s < 1.25s
+  WARN  safe_area       0 texts outside the 5% title-safe area for > 0.5 s, 4 only briefly (entrances, camera moves)
+  PASS  glyphs          96 font/character pairs; 0 drawn by a system font
+  PASS  qr              no end card in range (not applicable)
+  PASS  placeholders    no placeholders
+  PASS  scene_warnings  0 warnings
+  PASS  sfx_level       SFX -9.0 LU vs music (target -8..-10), 98 sounds {'boom': 2, 'slap': 2, 'swish': 5, 'impact': 7, 'zip': 2, 'pop': 10, 'stamp': 3, 'highlighter': 4, 'squeak': 3, 'whoosh': 5, 'sparkle': 3, 'pencil': 3, 'boop': 3, 'slam': 7, 'click': 2, 'thump': 3, 'typetick': 13, 'tick': 9, 'heartbeat': 7, 'riser': 1, 'blip': 2, 'crackle': 1, 'tape': 1}
+  PASS  script_lines    17/17 SCRIPT lines in range are on screen

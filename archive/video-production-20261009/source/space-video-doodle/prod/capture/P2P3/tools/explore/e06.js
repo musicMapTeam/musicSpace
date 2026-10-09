@@ -1,0 +1,11 @@
+const s = await get('phone');
+const p = s.page;
+const r = {};
+await p.evaluate(() => { document.querySelector('.conversation-actions').scrollLeft = 9999; }); await sleep(300);
+r.shotRow = await shot(p, 'e06-actions-scrolled');
+await p.locator('.community-panel [data-group-topics]').first().click(); await sleep(2500);
+r.shotTopics = await shot(p, 'e06-topics');
+r.t = (await H.text(p, '.music-topics')).slice(0, 1500);
+r.b = await H.buttons(p, b => /topic|summary|title|artist|note|consent/.test(b));
+r.dom = await p.evaluate(() => { const m = document.querySelector('.music-topics'); if (!m) return null; const sc = m.querySelector('.community-scroll'); return { cls: m.className, scroll: sc ? { sh: sc.scrollHeight, ch: sc.clientHeight } : null, details: [...m.querySelectorAll('details')].map(d => ({ open: d.open, sum: d.querySelector('summary')?.innerText })) }; });
+return r;

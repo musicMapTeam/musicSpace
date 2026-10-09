@@ -1,0 +1,212 @@
+{
+  "version": "0.22.0-rc.1",
+  "commit": "8fa52f0",
+  "builtAt": "2026-10-07T15:32:01.957Z",
+  "files": [
+    {
+      "path": "ai/LICENSE-onnxruntime-web-MIT.txt",
+      "bytes": 1073,
+      "sha256": "2f07c72751aed99790b8a4869cf2311df85a860b22ded05fa22803587a48922c"
+    },
+    {
+      "path": "ai/ort/ort-wasm-simd-threaded.mjs",
+      "bytes": 24381,
+      "sha256": "e13f7f94fc51b4ca72b12faeb1ee95f4ace6dfbc8939bc718aabdc0a27c4299b"
+    },
+    {
+      "path": "ai/ort/ort-wasm-simd-threaded.wasm",
+      "bytes": 14239897,
+      "sha256": "3398c10d07d229bd91b364548e130e0e51a8e5704b88c7c083ebbeb78842dee2"
+    },
+    {
+      "path": "ai/ort/ort.wasm.min.mjs",
+      "bytes": 50126,
+      "sha256": "219e6a1fc8a9938268d18efca3c91d310bd2f4a59bbd13744df5b2b7fc6cee3b"
+    },
+    {
+      "path": "ai/tc8/LICENSE-TinyCLIP-MIT.txt",
+      "bytes": 1769,
+      "sha256": "583acc0d9c74def18ec24e56964421bf1fac1fa2d60451e75e6681d5ae58a3f6"
+    },
+    {
+      "path": "ai/tc8/labels.json",
+      "bytes": 17609,
+      "sha256": "a7422fc83f7f1c3b1f7133575969d9348e6fb6fa6019614ff9798d653dbdcc2e"
+    },
+    {
+      "path": "ai/tc8/vision.onnx",
+      "bytes": 8807127,
+      "sha256": "53112612a2c20a6c7af46c46de0824ea2206c9de5c3cae18ba11d3fa8fa328ca"
+    },
+    {
+      "path": "classic/index.html",
+      "bytes": 1754418,
+      "sha256": "dc1c51d06ef9eb95c00ec85ea13bb81cb65f9a228e2c9d3d7897260cbda7f205"
+    },
+    {
+      "path": "demo/bei-balcony.jpg",
+      "bytes": 34042,
+      "sha256": "3236efba83eb8311ba00e7d3527109d97f554a7ea8c3c739603b1baca967ff55"
+    },
+    {
+      "path": "demo/man-crowd.jpg",
+      "bytes": 56842,
+      "sha256": "c421b5477ef103ce57f5727f9b80c1a69c785754bca9e46b2f964316ca420514"
+    },
+    {
+      "path": "demo/man-near.jpg",
+      "bytes": 75391,
+      "sha256": "0b8f0d6848903920176934c186e0449f3a083ab509ebe483e8586f1ca3047c22"
+    },
+    {
+      "path": "demo/manifest.json",
+      "bytes": 3121,
+      "sha256": "d0ecf3f97c339884603cb2ab59753709cc1a83b2c803eee2d325629fa8f08c42"
+    },
+    {
+      "path": "demo/sample-crowd.jpg",
+      "bytes": 81292,
+      "sha256": "0c02a35a31445f06cb26a49cfa2493d0e4b78a801448b244deed7afcdba3f64f"
+    },
+    {
+      "path": "demo/sample-stage.jpg",
+      "bytes": 90522,
+      "sha256": "b0b9f035aa9fdcb349ef4a648052228fb23bd12c732c585decd3983440bffeb3"
+    },
+    {
+      "path": "demo/yao-stage.jpg",
+      "bytes": 70016,
+      "sha256": "678c67cb7e62780d586f22f0e6c1a7dc1ccba165146b910fd95bb0d0079fe2ad"
+    },
+    {
+      "path": "fonts/doodle/LICENSES.txt",
+      "bytes": 34537,
+      "sha256": "68429eb80445a9f24b65ddacd7662638c483242b796c4d718ce66a9a0c53fa98"
+    },
+    {
+      "path": "fonts/doodle/digits-0.woff2",
+      "bytes": 14420,
+      "sha256": "d52e28a7f42ff1ed9b8e79a6e04893762f9ba0a92cdeb2d93b6c906972a6512a"
+    },
+    {
+      "path": "fonts/doodle/display-0.woff2",
+      "bytes": 103740,
+      "sha256": "5f299602ad3b888873913f1db8cae5a4079023e9ea26caa475dc124f73633a41"
+    },
+    {
+      "path": "fonts/doodle/display-1.woff2",
+      "bytes": 103764,
+      "sha256": "d23c5ee6bc2c456093bab8398b7b57a89cd80c6f9bf4ef326e810e6b898f1740"
+    },
+    {
+      "path": "fonts/doodle/display-2.woff2",
+      "bytes": 139032,
+      "sha256": "91c343ebb5a4c552522f30142661599a092897f80dcd929ed172d09009df57ad"
+    },
+    {
+      "path": "fonts/doodle/display-3.woff2",
+      "bytes": 71660,
+      "sha256": "e7a14f5bac8f6142106353d725101571df73b1a522351ff0443aee18eac91fa8"
+    },
+    {
+      "path": "fonts/doodle/fonts.css",
+      "bytes": 66270,
+      "sha256": "2d24494c90a2c3a208d3978ae8b31736ea1a91472ac0ba632b530bcb37cb8c94"
+    },
+    {
+      "path": "fonts/doodle/hand-0.woff2",
+      "bytes": 139264,
+      "sha256": "9080a1777d024d5b48e24319f62bfbf27f3c579642e429f8a82ce858f464b2bf"
+    },
+    {
+      "path": "fonts/doodle/hand-1.woff2",
+      "bytes": 118396,
+      "sha256": "cbc688d5f2afd8b58dbdb3171520b02388741d4eb3599e3c86c889b6838dd0fd"
+    },
+    {
+      "path": "fonts/doodle/hand-2.woff2",
+      "bytes": 159868,
+      "sha256": "dcd580d3e3be661f61cba1efd91ceffa11fe7418ca1931ad65ccbe60436093f3"
+    },
+    {
+      "path": "fonts/doodle/hand-3.woff2",
+      "bytes": 79680,
+      "sha256": "ad2589673bdfa28ab27deebbd435cef51859b8dbb5c4bc1cb821446072737c42"
+    },
+    {
+      "path": "fonts/doodle/hand-4.woff2",
+      "bytes": 754460,
+      "sha256": "d9ecfb4041bca12d7448212183fa49860224b213177c081d69fc58592dfc4dca"
+    },
+    {
+      "path": "fonts/doodle/logo-0.woff2",
+      "bytes": 16924,
+      "sha256": "60e61ca3e34db2ea7d1660339b11f9ef904631e821633beec151f03c4524534a"
+    },
+    {
+      "path": "fonts/doodle/marker-0.woff2",
+      "bytes": 47836,
+      "sha256": "09de9adc9831ea597467d6a0771e189ef7c72f6de18bbef0bc528e09c992c78d"
+    },
+    {
+      "path": "fonts/doodle/marker-1.woff2",
+      "bytes": 36184,
+      "sha256": "7cf1ded6fe4193677cf544a2635ed8be92f7ad06e0d5fe69718af5b19a50932f"
+    },
+    {
+      "path": "fonts/doodle/marker-2.woff2",
+      "bytes": 48896,
+      "sha256": "d5bbda273c250471af2d5c95f3b90519ce62d7f4002fa5875fb817752a2a282d"
+    },
+    {
+      "path": "fonts/doodle/marker-3.woff2",
+      "bytes": 25188,
+      "sha256": "29c6c65d89a4af374274a6f9175e7432775d04d517391f7e8952e9605fd3f668"
+    },
+    {
+      "path": "fonts/doodle/marker-4.woff2",
+      "bytes": 218636,
+      "sha256": "a8b0ed98dedc5e92a159c6d2713b55ab31b6a7bed97c6a9d21da9b57ce09b4d3"
+    },
+    {
+      "path": "fonts/doodle/marker-symbols.woff2",
+      "bytes": 2664,
+      "sha256": "2b5ef0a9d1ad93dedc700116e3a9dd93bc64f32d148539e14ffee77a282fd034"
+    },
+    {
+      "path": "fonts/doodle/note-0.woff2",
+      "bytes": 16004,
+      "sha256": "e9b38d7bcaca751da2889511d1af4816dea522cfda25e302c6f6374fc8aac5e7"
+    },
+    {
+      "path": "index.html",
+      "bytes": 2786655,
+      "sha256": "6f4b198eced0c61c928604ecc4dbcb193a332b9619f4629313af5f25404ef74f"
+    },
+    {
+      "path": "music-map/index.html",
+      "bytes": 868239,
+      "sha256": "61fb81de78dcf80bd7a6fdb2b380f8369aaeb04879861b18167c89d8762a05e8"
+    },
+    {
+      "path": "shared/three-0.186.1/three.core.js",
+      "bytes": 1458113,
+      "sha256": "9edde002b066a9a05676a6127f67735b62baf399bdea529f2f7e31657da769e6"
+    },
+    {
+      "path": "shared/three-0.186.1/three.module.js",
+      "bytes": 662772,
+      "sha256": "9052042d676cb0fdc1ddfefe193053f34b7ac0513a616fdac4535d49987812ea"
+    },
+    {
+      "path": "sql/LICENSE-sql.js-MIT.txt",
+      "bytes": 2199,
+      "sha256": "60a3f6e4d7b29b4321359e683b36cf198d24f58e24582070f56e6fa89d5ee2be"
+    },
+    {
+      "path": "sql/sql-wasm.wasm",
+      "bytes": 658410,
+      "sha256": "38c14f6e379210bc942bdc4ebca44e7bfdb4318ecc1c72ca666a28fdce96670a"
+    }
+  ]
+}

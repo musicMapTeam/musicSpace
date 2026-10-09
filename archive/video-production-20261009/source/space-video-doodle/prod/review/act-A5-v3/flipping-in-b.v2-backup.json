@@ -1,0 +1,126 @@
+{
+ "id": "flipping-in-b",
+ "label": "Wax Lyricist《Flipping In》123 BPM — variant b: the stop before the drop (21:1) and before the payoff (51:1, full kit), lift on the full kit, the band's own ending (RECOMMENDED over the proposal)",
+ "track": {
+  "audio": "/tmp/space-video-doodle/music-cc0/02-flipping-in__Wax-Lyricist/Wax_Lyricist_-_Flipping_In.mp3",
+  "beats": "/tmp/space-video-doodle/music-cc0/02-flipping-in__Wax-Lyricist/beats.json",
+  "title": "Flipping In",
+  "artist": "Wax Lyricist",
+  "licence": "CC0 1.0 Universal",
+  "sha256": "8d79e1f0f6aee4de038eff80b0a93262bacdc4ea2dc7ce184cfd12f162ca6127",
+  "proof": "/tmp/space-video-doodle/music-cc0/02-flipping-in__Wax-Lyricist/LICENCE-PROOF.md",
+  "credit": "配乐：Wax Lyricist《Flipping In》（CC0 1.0 公共领域）"
+ },
+ "plan": [
+  {
+   "sb": "1-6",
+   "trk": "55-60",
+   "why": "as flipping-in"
+  },
+  {
+   "sb": "7-8",
+   "trk": "61-62",
+   "why": "as flipping-in: the stop"
+  },
+  {
+   "sb": "9-18",
+   "trk": "63-72",
+   "why": "pain: no kick/snare (FI 63-66 hats + bass, 67-72 bass only)"
+  },
+  {
+   "sb": "19-20",
+   "trk": "61-62",
+   "why": "the stop again under 「要是…… 能把那一面，换回来？」: the riser SFX builds in near-silence"
+  },
+  {
+   "sb": "21-48",
+   "trk": "75-102",
+   "why": "as flipping-in: drums return on 21:1"
+  },
+  {
+   "sb": "49-50",
+   "trk": "61-62",
+   "why": "the stop = the wait"
+  },
+  {
+   "sb": "51-64",
+   "trk": "105-118",
+   "why": "PAYOFF straight out of the stop onto the full kit + horns (FI 105, the loudest bar group of the song)"
+  },
+  {
+   "sb": "65-72",
+   "trk": "79-86",
+   "why": "social groove continues on the first horn chorus (avoids playing FI 105-118 twice in a row)"
+  },
+  {
+   "sb": "73-74",
+   "trk": "119-120",
+   "why": "the song's drum break = stop-time break"
+  },
+  {
+   "sb": "75-82",
+   "trk": "105-112",
+   "why": "LIFT: drum break -> full kit + horns"
+  },
+  {
+   "sb": "83-86",
+   "trk": "113-116",
+   "why": "end card on the last chorus"
+  },
+  {
+   "sb": "87-88",
+   "trk": "119-120",
+   "why": "the drum break again as the end tag"
+  },
+  {
+   "sb": "89",
+   "trk": "121",
+   "why": "the band's final hit; it rings into the tail"
+  }
+ ],
+ "cut": [
+  90
+ ],
+ "tail_s": 1.0,
+ "fade": null,
+ "xfade_ms": 20,
+ "music_has": [],
+ "moments": {
+  "title_stop": {
+   "verdict": "moved",
+   "note": "as flipping-in: stop on sb 7-8"
+  },
+  "pain_sparse": {
+   "verdict": "yes",
+   "note": "no kick/snare 9-18, the stop 19-20"
+  },
+  "drop": {
+   "verdict": "yes",
+   "note": "stop on 19-20, drums + bass slam back on 21:1"
+  },
+  "ai_chime": {
+   "verdict": "sfx",
+   "note": "SFX chime on 31:3"
+  },
+  "payoff": {
+   "verdict": "yes",
+   "note": "stop -> full kit + horns on 51:1"
+  },
+  "social_groove": {
+   "verdict": "yes",
+   "note": "FI 105-118 then FI 79-86"
+  },
+  "break": {
+   "verdict": "yes",
+   "note": "drum break 73-74"
+  },
+  "lift": {
+   "verdict": "yes",
+   "note": "drum break -> full kit on 75:1 (no key change)"
+  },
+  "end_resolve": {
+   "verdict": "natural",
+   "note": "drum break 87-88, the band's final hit on 89:1, ring-out in the 1 s tail"
+  }
+ }
+}

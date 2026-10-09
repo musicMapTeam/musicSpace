@@ -1,0 +1,1990 @@
+{
+ "1280x800": {
+  "channel": "pages",
+  "stage": "lobby",
+  "welcome": true,
+  "items": [
+   {
+    "sel": "header .brand",
+    "visible": true,
+    "box": {
+     "x": 417,
+     "y": 18,
+     "w": 188,
+     "h": 46
+    },
+    "text": "Music Space",
+    "font": "\"Doodle Logo\"",
+    "size": "31px",
+    "color": "rgb(255, 212, 71)",
+    "shadow": "rgb(28, 27, 26) 2.17px 2.17px 0px, rgb(255, 92, 138) 4.03px 4.03px 0px",
+    "stroke": "1.86px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "flex",
+    "transform": "matrix(0.999657, -0.0261769, 0.0261769, 0.999657, 0, 0)"
+   },
+   {
+    "sel": ".desktop-caption",
+    "visible": true,
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 410,
+     "h": 800
+    },
+    "text": "Music Space这一晚的另一个视角，就在你身边。一个真实房间、一场共同的音",
+    "font": "\"Doodle Hand\"",
+    "size": "16px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "flex",
+    "transform": "none"
+   },
+   {
+    "sel": ".desktop-caption .caption-tag",
+    "visible": true,
+    "box": {
+     "x": 55,
+     "y": 214,
+     "w": 138,
+     "h": 34
+    },
+    "text": "Music Space",
+    "font": "\"Doodle Logo\"",
+    "size": "17px",
+    "color": "rgb(255, 250, 240)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgb(28, 27, 26)",
+    "display": "flex",
+    "transform": "matrix(0.99863, -0.052336, 0.052336, 0.99863, 0, 0)"
+   },
+   {
+    "sel": ".desktop-caption h2",
+    "visible": true,
+    "box": {
+     "x": 56,
+     "y": 270,
+     "w": 320,
+     "h": 151
+    },
+    "text": "这一晚的另一个视角，就在你身边。",
+    "font": "\"Doodle Display\"",
+    "size": "34.56px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "block",
+    "transform": "none"
+   },
+   {
+    "sel": ".desktop-caption .caption-line--a",
+    "visible": true,
+    "box": {
+     "x": 56,
+     "y": 270,
+     "w": 320,
+     "h": 39
+    },
+    "text": "这一晚的",
+    "font": "\"Doodle Display\"",
+    "size": "34.56px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "block",
+    "transform": "none"
+   },
+   {
+    "sel": ".desktop-caption .caption-line--b",
+    "visible": true,
+    "box": {
+     "x": 56,
+     "y": 313,
+     "w": 320,
+     "h": 60
+    },
+    "text": "另一个视角，",
+    "font": "\"Doodle Display\"",
+    "size": "55.296px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "rgb(255, 92, 138) 3.31776px 3.31776px 0px",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "block",
+    "transform": "none"
+   },
+   {
+    "sel": ".desktop-caption .caption-key",
+    "visible": true,
+    "box": {
+     "x": 56,
+     "y": 314,
+     "w": 220,
+     "h": 56
+    },
+    "text": "另一个视角",
+    "font": "\"Doodle Display\"",
+    "size": "55.296px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "rgb(255, 92, 138) 3.31776px 3.31776px 0px",
+    "stroke": "0px",
+    "bg": "linear-gradient(rgba(0, 0, 0, 0) 58%, rgb(95, 220, 192) 58%,",
+    "display": "inline",
+    "transform": "none"
+   },
+   {
+    "sel": ".desktop-caption .caption-line--c",
+    "visible": true,
+    "box": {
+     "x": 56,
+     "y": 381,
+     "w": 320,
+     "h": 41
+    },
+    "text": "就在你身边。",
+    "font": "\"Doodle Display\"",
+    "size": "36.288px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "block",
+    "transform": "none"
+   },
+   {
+    "sel": ".desktop-caption .caption-hl",
+    "visible": true,
+    "box": {
+     "x": 56,
+     "y": 383,
+     "w": 169,
+     "h": 36
+    },
+    "text": "就在你身边。",
+    "font": "\"Doodle Display\"",
+    "size": "36.288px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "inline",
+    "transform": "none"
+   },
+   {
+    "sel": ".desktop-caption p",
+    "visible": false,
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0
+    },
+    "text": "一个真实房间、一场共同的音乐现场。先选你的位置，再看看大家留下了什么。",
+    "font": "\"Doodle Hand\"",
+    "size": "18px",
+    "color": "rgb(61, 58, 54)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "none",
+    "transform": "none"
+   },
+   {
+    "sel": ".desktop-caption small",
+    "visible": true,
+    "box": {
+     "x": 56,
+     "y": 439,
+     "w": 320,
+     "h": 82
+    },
+    "text": "主办方开房，观众带上自己的小人入场。照片由你决定仅自己保存，还是分享给同场成员。",
+    "font": "\"Doodle Hand\"",
+    "size": "16px",
+    "color": "rgb(61, 58, 54)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "block",
+    "transform": "none"
+   },
+   {
+    "sel": ".desktop-caption .caption-note",
+    "visible": true,
+    "box": {
+     "x": 146,
+     "y": 531,
+     "w": 200,
+     "h": 56
+    },
+    "text": "就是这一刻！",
+    "font": "\"Doodle Note\"",
+    "size": "32px",
+    "color": "rgb(255, 92, 138)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "block",
+    "transform": "matrix(0.992546, -0.121869, 0.121869, 0.992546, 0, 0)"
+   },
+   {
+    "sel": ".desktop-caption .caption-arrow",
+    "visible": true,
+    "box": {
+     "x": 324,
+     "y": 588,
+     "w": 99,
+     "h": 68
+    },
+    "text": "",
+    "font": "\"Doodle Hand\"",
+    "size": "12px",
+    "color": "rgb(164, 179, 129)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgb(28, 27, 26)",
+    "display": "block",
+    "transform": "matrix(0.990268, 0.139173, -0.139173, 0.990268, 0, 0)"
+   },
+   {
+    "sel": ".desktop-caption .caption-star",
+    "visible": true,
+    "box": {
+     "x": 318,
+     "y": 166,
+     "w": 52,
+     "h": 52
+    },
+    "text": "",
+    "font": "\"Doodle Hand\"",
+    "size": "12px",
+    "color": "rgb(164, 179, 129)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "block",
+    "transform": "matrix(0.978148, 0.207912, -0.207912, 0.978148, 0, 0)"
+   },
+   {
+    "sel": ".desktop-caption .caption-sparkle",
+    "visible": true,
+    "box": {
+     "x": 362,
+     "y": 220,
+     "w": 24,
+     "h": 24
+    },
+    "text": "",
+    "font": "\"Doodle Hand\"",
+    "size": "12px",
+    "color": "rgb(164, 179, 129)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgb(28, 27, 26)",
+    "display": "block",
+    "transform": "matrix(1, 0, 0, 1, 0, 0)"
+   },
+   {
+    "sel": ".desktop-caption .caption-squiggle",
+    "visible": false,
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0
+    },
+    "text": "",
+    "font": "\"Doodle Hand\"",
+    "size": "12px",
+    "color": "rgb(164, 179, 129)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgb(95, 220, 192)",
+    "display": "none",
+    "transform": "none"
+   },
+   {
+    "sel": ".scene-heading small",
+    "visible": true,
+    "box": {
+     "x": 442,
+     "y": 106,
+     "w": 187,
+     "h": 29
+    },
+    "text": "MUSIC SPACE / LIVEHOUSE",
+    "font": "\"Doodle Marker\"",
+    "size": "12px",
+    "color": "rgb(255, 250, 240)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgb(28, 27, 26)",
+    "display": "inline-block",
+    "transform": "matrix(0.999391, -0.0348995, 0.0348995, 0.999391, 0, 0)"
+   },
+   {
+    "sel": "#room-title",
+    "visible": true,
+    "box": {
+     "x": 441,
+     "y": 142,
+     "w": 251,
+     "h": 59
+    },
+    "text": "进到同一个现场",
+    "font": "\"Doodle Display\"",
+    "size": "44px",
+    "color": "rgb(255, 212, 71)",
+    "shadow": "rgb(28, 27, 26) 2.64px 3.08px 0px",
+    "stroke": "3.3px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "flow-root",
+    "transform": "none"
+   },
+   {
+    "sel": ".scene-code",
+    "visible": true,
+    "box": {
+     "x": 444,
+     "y": 213,
+     "w": 157,
+     "h": 34
+    },
+    "text": "这一晚，从这里开始",
+    "font": "\"Doodle Marker\"",
+    "size": "14px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgb(255, 250, 240)",
+    "display": "block",
+    "transform": "matrix(0.999781, 0.0209424, -0.0209424, 0.999781, 0, 0)"
+   },
+   {
+    "sel": "#presence-title",
+    "visible": true,
+    "box": {
+     "x": 826,
+     "y": 367,
+     "w": 269,
+     "h": 114
+    },
+    "text": "同一刻，另一面。",
+    "font": "\"Doodle Display\"",
+    "size": "53.76px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "rgb(255, 92, 138) 3.2256px 3.2256px 0px",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "block",
+    "transform": "none"
+   },
+   {
+    "sel": "#presence-title::after",
+    "visible": true,
+    "box": null,
+    "text": "\"\"",
+    "font": "\"Doodle Display\"",
+    "size": "53.76px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "rgb(255, 92, 138) 3.2256px 3.2256px 0px",
+    "stroke": "0px",
+    "bg": "rgb(95, 220, 192)",
+    "display": "block",
+    "transform": "matrix(0.999781, -0.0209424, 0.0209424, 0.999781, 0, 0)"
+   },
+   {
+    "sel": ".presence",
+    "visible": true,
+    "box": {
+     "x": 800,
+     "y": 343,
+     "w": 420,
+     "h": 321
+    },
+    "text": "同一刻，另一面。同一晚，你拍了舞台，TA 拍了人海。AI 在本机给你一个视角建议",
+    "font": "\"Doodle Hand\"",
+    "size": "16px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgb(255, 250, 240)",
+    "display": "block",
+    "transform": "none"
+   },
+   {
+    "sel": ".presence .presence-star",
+    "visible": true,
+    "box": {
+     "x": 1141,
+     "y": 362,
+     "w": 56,
+     "h": 56
+    },
+    "text": "",
+    "font": "\"Doodle Hand\"",
+    "size": "16px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "block",
+    "transform": "matrix(0.970296, 0.241922, -0.241922, 0.970296, 0, 0)"
+   },
+   {
+    "sel": ".presence .presence-sparkle",
+    "visible": true,
+    "box": {
+     "x": 1178,
+     "y": 419,
+     "w": 20,
+     "h": 20
+    },
+    "text": "",
+    "font": "\"Doodle Hand\"",
+    "size": "16px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgb(28, 27, 26)",
+    "display": "block",
+    "transform": "matrix(1, 0, 0, 1, 0, 0)"
+   },
+   {
+    "sel": ".track",
+    "visible": false,
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0
+    },
+    "text": "♪这一晚的歌进入房间，留下你看到的那个瞬间ENCORE / 01",
+    "font": "\"Doodle Hand\"",
+    "size": "16px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgb(255, 250, 240)",
+    "display": "none",
+    "transform": "none"
+   },
+   {
+    "sel": ".world-shell",
+    "visible": true,
+    "box": {
+     "x": 418,
+     "y": 88,
+     "w": 826,
+     "h": 594
+    },
+    "text": "MUSIC SPACE / LIVEHOUSE进到同一个现场这一晚，从这里开始照",
+    "font": "\"Doodle Hand\"",
+    "size": "16px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgb(35, 33, 43)",
+    "display": "block",
+    "transform": "none"
+   }
+  ],
+  "errors": []
+ },
+ "1366x768": {
+  "channel": "pages",
+  "stage": "lobby",
+  "welcome": true,
+  "items": [
+   {
+    "sel": "header .brand",
+    "visible": true,
+    "box": {
+     "x": 445,
+     "y": 18,
+     "w": 188,
+     "h": 46
+    },
+    "text": "Music Space",
+    "font": "\"Doodle Logo\"",
+    "size": "31px",
+    "color": "rgb(255, 212, 71)",
+    "shadow": "rgb(28, 27, 26) 2.17px 2.17px 0px, rgb(255, 92, 138) 4.03px 4.03px 0px",
+    "stroke": "1.86px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "flex",
+    "transform": "matrix(0.999657, -0.0261769, 0.0261769, 0.999657, 0, 0)"
+   },
+   {
+    "sel": ".desktop-caption",
+    "visible": true,
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 437,
+     "h": 768
+    },
+    "text": "Music Space这一晚的另一个视角，就在你身边。一个真实房间、一场共同的音",
+    "font": "\"Doodle Hand\"",
+    "size": "16px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "flex",
+    "transform": "none"
+   },
+   {
+    "sel": ".desktop-caption .caption-tag",
+    "visible": true,
+    "box": {
+     "x": 55,
+     "y": 206,
+     "w": 138,
+     "h": 34
+    },
+    "text": "Music Space",
+    "font": "\"Doodle Logo\"",
+    "size": "17px",
+    "color": "rgb(255, 250, 240)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgb(28, 27, 26)",
+    "display": "flex",
+    "transform": "matrix(0.99863, -0.052336, 0.052336, 0.99863, 0, 0)"
+   },
+   {
+    "sel": ".desktop-caption h2",
+    "visible": true,
+    "box": {
+     "x": 56,
+     "y": 263,
+     "w": 347,
+     "h": 161
+    },
+    "text": "这一晚的另一个视角，就在你身边。",
+    "font": "\"Doodle Display\"",
+    "size": "36.882px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "block",
+    "transform": "none"
+   },
+   {
+    "sel": ".desktop-caption .caption-line--a",
+    "visible": true,
+    "box": {
+     "x": 56,
+     "y": 263,
+     "w": 347,
+     "h": 41
+    },
+    "text": "这一晚的",
+    "font": "\"Doodle Display\"",
+    "size": "36.882px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "block",
+    "transform": "none"
+   },
+   {
+    "sel": ".desktop-caption .caption-line--b",
+    "visible": true,
+    "box": {
+     "x": 56,
+     "y": 309,
+     "w": 347,
+     "h": 64
+    },
+    "text": "另一个视角，",
+    "font": "\"Doodle Display\"",
+    "size": "59.0112px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "rgb(255, 92, 138) 3.54067px 3.54067px 0px",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "block",
+    "transform": "none"
+   },
+   {
+    "sel": ".desktop-caption .caption-key",
+    "visible": true,
+    "box": {
+     "x": 56,
+     "y": 311,
+     "w": 235,
+     "h": 59
+    },
+    "text": "另一个视角",
+    "font": "\"Doodle Display\"",
+    "size": "59.0112px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "rgb(255, 92, 138) 3.54067px 3.54067px 0px",
+    "stroke": "0px",
+    "bg": "linear-gradient(rgba(0, 0, 0, 0) 58%, rgb(95, 220, 192) 58%,",
+    "display": "inline",
+    "transform": "none"
+   },
+   {
+    "sel": ".desktop-caption .caption-line--c",
+    "visible": true,
+    "box": {
+     "x": 56,
+     "y": 381,
+     "w": 347,
+     "h": 43
+    },
+    "text": "就在你身边。",
+    "font": "\"Doodle Display\"",
+    "size": "38.7261px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "block",
+    "transform": "none"
+   },
+   {
+    "sel": ".desktop-caption .caption-hl",
+    "visible": true,
+    "box": {
+     "x": 56,
+     "y": 383,
+     "w": 180,
+     "h": 39
+    },
+    "text": "就在你身边。",
+    "font": "\"Doodle Display\"",
+    "size": "38.7261px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "inline",
+    "transform": "none"
+   },
+   {
+    "sel": ".desktop-caption p",
+    "visible": false,
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0
+    },
+    "text": "一个真实房间、一场共同的音乐现场。先选你的位置，再看看大家留下了什么。",
+    "font": "\"Doodle Hand\"",
+    "size": "18px",
+    "color": "rgb(61, 58, 54)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "none",
+    "transform": "none"
+   },
+   {
+    "sel": ".desktop-caption small",
+    "visible": true,
+    "box": {
+     "x": 56,
+     "y": 442,
+     "w": 347,
+     "h": 54
+    },
+    "text": "主办方开房，观众带上自己的小人入场。照片由你决定仅自己保存，还是分享给同场成员。",
+    "font": "\"Doodle Hand\"",
+    "size": "16px",
+    "color": "rgb(61, 58, 54)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "block",
+    "transform": "none"
+   },
+   {
+    "sel": ".desktop-caption .caption-note",
+    "visible": true,
+    "box": {
+     "x": 174,
+     "y": 506,
+     "w": 200,
+     "h": 56
+    },
+    "text": "就是这一刻！",
+    "font": "\"Doodle Note\"",
+    "size": "32px",
+    "color": "rgb(255, 92, 138)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "block",
+    "transform": "matrix(0.992546, -0.121869, 0.121869, 0.992546, 0, 0)"
+   },
+   {
+    "sel": ".desktop-caption .caption-arrow",
+    "visible": true,
+    "box": {
+     "x": 352,
+     "y": 572,
+     "w": 99,
+     "h": 68
+    },
+    "text": "",
+    "font": "\"Doodle Hand\"",
+    "size": "12px",
+    "color": "rgb(164, 179, 129)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgb(28, 27, 26)",
+    "display": "block",
+    "transform": "matrix(0.990268, 0.139173, -0.139173, 0.990268, 0, 0)"
+   },
+   {
+    "sel": ".desktop-caption .caption-star",
+    "visible": true,
+    "box": {
+     "x": 345,
+     "y": 150,
+     "w": 52,
+     "h": 52
+    },
+    "text": "",
+    "font": "\"Doodle Hand\"",
+    "size": "12px",
+    "color": "rgb(164, 179, 129)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "block",
+    "transform": "matrix(0.978148, 0.207912, -0.207912, 0.978148, 0, 0)"
+   },
+   {
+    "sel": ".desktop-caption .caption-sparkle",
+    "visible": true,
+    "box": {
+     "x": 389,
+     "y": 204,
+     "w": 24,
+     "h": 24
+    },
+    "text": "",
+    "font": "\"Doodle Hand\"",
+    "size": "12px",
+    "color": "rgb(164, 179, 129)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgb(28, 27, 26)",
+    "display": "block",
+    "transform": "matrix(1, 0, 0, 1, 0, 0)"
+   },
+   {
+    "sel": ".desktop-caption .caption-squiggle",
+    "visible": false,
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0
+    },
+    "text": "",
+    "font": "\"Doodle Hand\"",
+    "size": "12px",
+    "color": "rgb(164, 179, 129)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgb(95, 220, 192)",
+    "display": "none",
+    "transform": "none"
+   },
+   {
+    "sel": ".scene-heading small",
+    "visible": true,
+    "box": {
+     "x": 470,
+     "y": 106,
+     "w": 187,
+     "h": 29
+    },
+    "text": "MUSIC SPACE / LIVEHOUSE",
+    "font": "\"Doodle Marker\"",
+    "size": "12px",
+    "color": "rgb(255, 250, 240)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgb(28, 27, 26)",
+    "display": "inline-block",
+    "transform": "matrix(0.999391, -0.0348995, 0.0348995, 0.999391, 0, 0)"
+   },
+   {
+    "sel": "#room-title",
+    "visible": true,
+    "box": {
+     "x": 468,
+     "y": 142,
+     "w": 251,
+     "h": 59
+    },
+    "text": "进到同一个现场",
+    "font": "\"Doodle Display\"",
+    "size": "44px",
+    "color": "rgb(255, 212, 71)",
+    "shadow": "rgb(28, 27, 26) 2.64px 3.08px 0px",
+    "stroke": "3.3px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "flow-root",
+    "transform": "none"
+   },
+   {
+    "sel": ".scene-code",
+    "visible": true,
+    "box": {
+     "x": 472,
+     "y": 213,
+     "w": 157,
+     "h": 34
+    },
+    "text": "这一晚，从这里开始",
+    "font": "\"Doodle Marker\"",
+    "size": "14px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgb(255, 250, 240)",
+    "display": "block",
+    "transform": "matrix(0.999781, 0.0209424, -0.0209424, 0.999781, 0, 0)"
+   },
+   {
+    "sel": "#presence-title",
+    "visible": true,
+    "box": {
+     "x": 912,
+     "y": 328,
+     "w": 287,
+     "h": 122
+    },
+    "text": "同一刻，另一面。",
+    "font": "\"Doodle Display\"",
+    "size": "57.372px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "rgb(255, 92, 138) 3.44232px 3.44232px 0px",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "block",
+    "transform": "none"
+   },
+   {
+    "sel": "#presence-title::after",
+    "visible": true,
+    "box": null,
+    "text": "\"\"",
+    "font": "\"Doodle Display\"",
+    "size": "57.372px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "rgb(255, 92, 138) 3.44232px 3.44232px 0px",
+    "stroke": "0px",
+    "bg": "rgb(95, 220, 192)",
+    "display": "block",
+    "transform": "matrix(0.999781, -0.0209424, 0.0209424, 0.999781, 0, 0)"
+   },
+   {
+    "sel": ".presence",
+    "visible": true,
+    "box": {
+     "x": 886,
+     "y": 304,
+     "w": 420,
+     "h": 328
+    },
+    "text": "同一刻，另一面。同一晚，你拍了舞台，TA 拍了人海。AI 在本机给你一个视角建议",
+    "font": "\"Doodle Hand\"",
+    "size": "16px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgb(255, 250, 240)",
+    "display": "block",
+    "transform": "none"
+   },
+   {
+    "sel": ".presence .presence-star",
+    "visible": true,
+    "box": {
+     "x": 1227,
+     "y": 323,
+     "w": 56,
+     "h": 56
+    },
+    "text": "",
+    "font": "\"Doodle Hand\"",
+    "size": "16px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "block",
+    "transform": "matrix(0.970296, 0.241922, -0.241922, 0.970296, 0, 0)"
+   },
+   {
+    "sel": ".presence .presence-sparkle",
+    "visible": true,
+    "box": {
+     "x": 1264,
+     "y": 380,
+     "w": 20,
+     "h": 20
+    },
+    "text": "",
+    "font": "\"Doodle Hand\"",
+    "size": "16px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgb(28, 27, 26)",
+    "display": "block",
+    "transform": "matrix(1, 0, 0, 1, 0, 0)"
+   },
+   {
+    "sel": ".track",
+    "visible": false,
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0
+    },
+    "text": "♪这一晚的歌进入房间，留下你看到的那个瞬间ENCORE / 01",
+    "font": "\"Doodle Hand\"",
+    "size": "16px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgb(255, 250, 240)",
+    "display": "none",
+    "transform": "none"
+   },
+   {
+    "sel": ".world-shell",
+    "visible": true,
+    "box": {
+     "x": 445,
+     "y": 88,
+     "w": 885,
+     "h": 562
+    },
+    "text": "MUSIC SPACE / LIVEHOUSE进到同一个现场这一晚，从这里开始照",
+    "font": "\"Doodle Hand\"",
+    "size": "16px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgb(35, 33, 43)",
+    "display": "block",
+    "transform": "none"
+   }
+  ],
+  "errors": []
+ },
+ "1536x864": {
+  "channel": "pages",
+  "stage": "lobby",
+  "welcome": true,
+  "items": [
+   {
+    "sel": "header .brand",
+    "visible": true,
+    "box": {
+     "x": 499,
+     "y": 18,
+     "w": 188,
+     "h": 46
+    },
+    "text": "Music Space",
+    "font": "\"Doodle Logo\"",
+    "size": "31px",
+    "color": "rgb(255, 212, 71)",
+    "shadow": "rgb(28, 27, 26) 2.17px 2.17px 0px, rgb(255, 92, 138) 4.03px 4.03px 0px",
+    "stroke": "1.86px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "flex",
+    "transform": "matrix(0.999657, -0.0261769, 0.0261769, 0.999657, 0, 0)"
+   },
+   {
+    "sel": ".desktop-caption",
+    "visible": true,
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 492,
+     "h": 864
+    },
+    "text": "Music Space这一晚的另一个视角，就在你身边。一个真实房间、一场共同的音",
+    "font": "\"Doodle Hand\"",
+    "size": "16px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "flex",
+    "transform": "none"
+   },
+   {
+    "sel": ".desktop-caption .caption-tag",
+    "visible": true,
+    "box": {
+     "x": 55,
+     "y": 247,
+     "w": 138,
+     "h": 34
+    },
+    "text": "Music Space",
+    "font": "\"Doodle Logo\"",
+    "size": "17px",
+    "color": "rgb(255, 250, 240)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgb(28, 27, 26)",
+    "display": "flex",
+    "transform": "matrix(0.99863, -0.052336, 0.052336, 0.99863, 0, 0)"
+   },
+   {
+    "sel": ".desktop-caption h2",
+    "visible": true,
+    "box": {
+     "x": 56,
+     "y": 304,
+     "w": 402,
+     "h": 175
+    },
+    "text": "这一晚的另一个视角，就在你身边。",
+    "font": "\"Doodle Display\"",
+    "size": "40px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "block",
+    "transform": "none"
+   },
+   {
+    "sel": ".desktop-caption .caption-line--a",
+    "visible": true,
+    "box": {
+     "x": 56,
+     "y": 304,
+     "w": 402,
+     "h": 45
+    },
+    "text": "这一晚的",
+    "font": "\"Doodle Display\"",
+    "size": "40px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "block",
+    "transform": "none"
+   },
+   {
+    "sel": ".desktop-caption .caption-line--b",
+    "visible": true,
+    "box": {
+     "x": 56,
+     "y": 354,
+     "w": 402,
+     "h": 69
+    },
+    "text": "另一个视角，",
+    "font": "\"Doodle Display\"",
+    "size": "64px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "rgb(255, 92, 138) 3.84px 3.84px 0px",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "block",
+    "transform": "none"
+   },
+   {
+    "sel": ".desktop-caption .caption-key",
+    "visible": true,
+    "box": {
+     "x": 56,
+     "y": 356,
+     "w": 254,
+     "h": 64
+    },
+    "text": "另一个视角",
+    "font": "\"Doodle Display\"",
+    "size": "64px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "rgb(255, 92, 138) 3.84px 3.84px 0px",
+    "stroke": "0px",
+    "bg": "linear-gradient(rgba(0, 0, 0, 0) 58%, rgb(95, 220, 192) 58%,",
+    "display": "inline",
+    "transform": "none"
+   },
+   {
+    "sel": ".desktop-caption .caption-line--c",
+    "visible": true,
+    "box": {
+     "x": 56,
+     "y": 432,
+     "w": 402,
+     "h": 47
+    },
+    "text": "就在你身边。",
+    "font": "\"Doodle Display\"",
+    "size": "42px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "block",
+    "transform": "none"
+   },
+   {
+    "sel": ".desktop-caption .caption-hl",
+    "visible": true,
+    "box": {
+     "x": 56,
+     "y": 434,
+     "w": 195,
+     "h": 42
+    },
+    "text": "就在你身边。",
+    "font": "\"Doodle Display\"",
+    "size": "42px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "inline",
+    "transform": "none"
+   },
+   {
+    "sel": ".desktop-caption p",
+    "visible": false,
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0
+    },
+    "text": "一个真实房间、一场共同的音乐现场。先选你的位置，再看看大家留下了什么。",
+    "font": "\"Doodle Hand\"",
+    "size": "18px",
+    "color": "rgb(61, 58, 54)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "none",
+    "transform": "none"
+   },
+   {
+    "sel": ".desktop-caption small",
+    "visible": true,
+    "box": {
+     "x": 56,
+     "y": 497,
+     "w": 400,
+     "h": 54
+    },
+    "text": "主办方开房，观众带上自己的小人入场。照片由你决定仅自己保存，还是分享给同场成员。",
+    "font": "\"Doodle Hand\"",
+    "size": "16px",
+    "color": "rgb(61, 58, 54)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "block",
+    "transform": "none"
+   },
+   {
+    "sel": ".desktop-caption .caption-note",
+    "visible": true,
+    "box": {
+     "x": 228,
+     "y": 561,
+     "w": 200,
+     "h": 56
+    },
+    "text": "就是这一刻！",
+    "font": "\"Doodle Note\"",
+    "size": "32px",
+    "color": "rgb(255, 92, 138)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "block",
+    "transform": "matrix(0.992546, -0.121869, 0.121869, 0.992546, 0, 0)"
+   },
+   {
+    "sel": ".desktop-caption .caption-arrow",
+    "visible": true,
+    "box": {
+     "x": 406,
+     "y": 620,
+     "w": 99,
+     "h": 68
+    },
+    "text": "",
+    "font": "\"Doodle Hand\"",
+    "size": "12px",
+    "color": "rgb(164, 179, 129)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgb(28, 27, 26)",
+    "display": "block",
+    "transform": "matrix(0.990268, 0.139173, -0.139173, 0.990268, 0, 0)"
+   },
+   {
+    "sel": ".desktop-caption .caption-star",
+    "visible": true,
+    "box": {
+     "x": 399,
+     "y": 198,
+     "w": 52,
+     "h": 52
+    },
+    "text": "",
+    "font": "\"Doodle Hand\"",
+    "size": "12px",
+    "color": "rgb(164, 179, 129)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "block",
+    "transform": "matrix(0.978148, 0.207912, -0.207912, 0.978148, 0, 0)"
+   },
+   {
+    "sel": ".desktop-caption .caption-sparkle",
+    "visible": true,
+    "box": {
+     "x": 444,
+     "y": 252,
+     "w": 24,
+     "h": 24
+    },
+    "text": "",
+    "font": "\"Doodle Hand\"",
+    "size": "12px",
+    "color": "rgb(164, 179, 129)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgb(28, 27, 26)",
+    "display": "block",
+    "transform": "matrix(1, 0, 0, 1, 0, 0)"
+   },
+   {
+    "sel": ".desktop-caption .caption-squiggle",
+    "visible": false,
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0
+    },
+    "text": "",
+    "font": "\"Doodle Hand\"",
+    "size": "12px",
+    "color": "rgb(164, 179, 129)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgb(95, 220, 192)",
+    "display": "none",
+    "transform": "none"
+   },
+   {
+    "sel": ".scene-heading small",
+    "visible": true,
+    "box": {
+     "x": 524,
+     "y": 106,
+     "w": 187,
+     "h": 29
+    },
+    "text": "MUSIC SPACE / LIVEHOUSE",
+    "font": "\"Doodle Marker\"",
+    "size": "12px",
+    "color": "rgb(255, 250, 240)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgb(28, 27, 26)",
+    "display": "inline-block",
+    "transform": "matrix(0.999391, -0.0348995, 0.0348995, 0.999391, 0, 0)"
+   },
+   {
+    "sel": "#room-title",
+    "visible": true,
+    "box": {
+     "x": 523,
+     "y": 142,
+     "w": 251,
+     "h": 59
+    },
+    "text": "进到同一个现场",
+    "font": "\"Doodle Display\"",
+    "size": "44px",
+    "color": "rgb(255, 212, 71)",
+    "shadow": "rgb(28, 27, 26) 2.64px 3.08px 0px",
+    "stroke": "3.3px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "flow-root",
+    "transform": "none"
+   },
+   {
+    "sel": ".scene-code",
+    "visible": true,
+    "box": {
+     "x": 526,
+     "y": 213,
+     "w": 157,
+     "h": 34
+    },
+    "text": "这一晚，从这里开始",
+    "font": "\"Doodle Marker\"",
+    "size": "14px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgb(255, 250, 240)",
+    "display": "block",
+    "transform": "matrix(0.999781, 0.0209424, -0.0209424, 0.999781, 0, 0)"
+   },
+   {
+    "sel": "#presence-title",
+    "visible": true,
+    "box": {
+     "x": 1082,
+     "y": 418,
+     "w": 300,
+     "h": 127
+    },
+    "text": "同一刻，另一面。",
+    "font": "\"Doodle Display\"",
+    "size": "60px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "rgb(255, 92, 138) 3.6px 3.6px 0px",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "block",
+    "transform": "none"
+   },
+   {
+    "sel": "#presence-title::after",
+    "visible": true,
+    "box": null,
+    "text": "\"\"",
+    "font": "\"Doodle Display\"",
+    "size": "60px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "rgb(255, 92, 138) 3.6px 3.6px 0px",
+    "stroke": "0px",
+    "bg": "rgb(95, 220, 192)",
+    "display": "block",
+    "transform": "matrix(0.999781, -0.0209424, 0.0209424, 0.999781, 0, 0)"
+   },
+   {
+    "sel": ".presence",
+    "visible": true,
+    "box": {
+     "x": 1056,
+     "y": 394,
+     "w": 420,
+     "h": 334
+    },
+    "text": "同一刻，另一面。同一晚，你拍了舞台，TA 拍了人海。AI 在本机给你一个视角建议",
+    "font": "\"Doodle Hand\"",
+    "size": "16px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgb(255, 250, 240)",
+    "display": "block",
+    "transform": "none"
+   },
+   {
+    "sel": ".presence .presence-star",
+    "visible": true,
+    "box": {
+     "x": 1397,
+     "y": 413,
+     "w": 56,
+     "h": 56
+    },
+    "text": "",
+    "font": "\"Doodle Hand\"",
+    "size": "16px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "block",
+    "transform": "matrix(0.970296, 0.241922, -0.241922, 0.970296, 0, 0)"
+   },
+   {
+    "sel": ".presence .presence-sparkle",
+    "visible": true,
+    "box": {
+     "x": 1434,
+     "y": 470,
+     "w": 20,
+     "h": 20
+    },
+    "text": "",
+    "font": "\"Doodle Hand\"",
+    "size": "16px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgb(28, 27, 26)",
+    "display": "block",
+    "transform": "matrix(1, 0, 0, 1, 0, 0)"
+   },
+   {
+    "sel": ".track",
+    "visible": true,
+    "box": {
+     "x": 539,
+     "y": 670,
+     "w": 361,
+     "h": 62
+    },
+    "text": "♪这一晚的歌进入房间，留下你看到的那个瞬间ENCORE / 01",
+    "font": "\"Doodle Hand\"",
+    "size": "16px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgb(255, 250, 240)",
+    "display": "flex",
+    "transform": "matrix(0.999781, -0.0209424, 0.0209424, 0.999781, 0, 0)"
+   },
+   {
+    "sel": ".world-shell",
+    "visible": true,
+    "box": {
+     "x": 500,
+     "y": 88,
+     "w": 1000,
+     "h": 658
+    },
+    "text": "MUSIC SPACE / LIVEHOUSE进到同一个现场这一晚，从这里开始照",
+    "font": "\"Doodle Hand\"",
+    "size": "16px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgb(35, 33, 43)",
+    "display": "block",
+    "transform": "none"
+   }
+  ],
+  "errors": []
+ },
+ "1920x1080": {
+  "channel": "pages",
+  "stage": "lobby",
+  "welcome": true,
+  "items": [
+   {
+    "sel": "header .brand",
+    "visible": true,
+    "box": {
+     "x": 507,
+     "y": 18,
+     "w": 188,
+     "h": 46
+    },
+    "text": "Music Space",
+    "font": "\"Doodle Logo\"",
+    "size": "31px",
+    "color": "rgb(255, 212, 71)",
+    "shadow": "rgb(28, 27, 26) 2.17px 2.17px 0px, rgb(255, 92, 138) 4.03px 4.03px 0px",
+    "stroke": "1.86px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "flex",
+    "transform": "matrix(0.999657, -0.0261769, 0.0261769, 0.999657, 0, 0)"
+   },
+   {
+    "sel": ".desktop-caption",
+    "visible": true,
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 500,
+     "h": 1080
+    },
+    "text": "Music Space这一晚的另一个视角，就在你身边。一个真实房间、一场共同的音",
+    "font": "\"Doodle Hand\"",
+    "size": "16px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "flex",
+    "transform": "none"
+   },
+   {
+    "sel": ".desktop-caption .caption-tag",
+    "visible": true,
+    "box": {
+     "x": 55,
+     "y": 355,
+     "w": 138,
+     "h": 34
+    },
+    "text": "Music Space",
+    "font": "\"Doodle Logo\"",
+    "size": "17px",
+    "color": "rgb(255, 250, 240)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgb(28, 27, 26)",
+    "display": "flex",
+    "transform": "matrix(0.99863, -0.052336, 0.052336, 0.99863, 0, 0)"
+   },
+   {
+    "sel": ".desktop-caption h2",
+    "visible": true,
+    "box": {
+     "x": 56,
+     "y": 412,
+     "w": 410,
+     "h": 175
+    },
+    "text": "这一晚的另一个视角，就在你身边。",
+    "font": "\"Doodle Display\"",
+    "size": "40px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "block",
+    "transform": "none"
+   },
+   {
+    "sel": ".desktop-caption .caption-line--a",
+    "visible": true,
+    "box": {
+     "x": 56,
+     "y": 412,
+     "w": 410,
+     "h": 45
+    },
+    "text": "这一晚的",
+    "font": "\"Doodle Display\"",
+    "size": "40px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "block",
+    "transform": "none"
+   },
+   {
+    "sel": ".desktop-caption .caption-line--b",
+    "visible": true,
+    "box": {
+     "x": 56,
+     "y": 462,
+     "w": 410,
+     "h": 69
+    },
+    "text": "另一个视角，",
+    "font": "\"Doodle Display\"",
+    "size": "64px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "rgb(255, 92, 138) 3.84px 3.84px 0px",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "block",
+    "transform": "none"
+   },
+   {
+    "sel": ".desktop-caption .caption-key",
+    "visible": true,
+    "box": {
+     "x": 56,
+     "y": 464,
+     "w": 254,
+     "h": 64
+    },
+    "text": "另一个视角",
+    "font": "\"Doodle Display\"",
+    "size": "64px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "rgb(255, 92, 138) 3.84px 3.84px 0px",
+    "stroke": "0px",
+    "bg": "linear-gradient(rgba(0, 0, 0, 0) 58%, rgb(95, 220, 192) 58%,",
+    "display": "inline",
+    "transform": "none"
+   },
+   {
+    "sel": ".desktop-caption .caption-line--c",
+    "visible": true,
+    "box": {
+     "x": 56,
+     "y": 540,
+     "w": 410,
+     "h": 47
+    },
+    "text": "就在你身边。",
+    "font": "\"Doodle Display\"",
+    "size": "42px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "block",
+    "transform": "none"
+   },
+   {
+    "sel": ".desktop-caption .caption-hl",
+    "visible": true,
+    "box": {
+     "x": 56,
+     "y": 542,
+     "w": 195,
+     "h": 42
+    },
+    "text": "就在你身边。",
+    "font": "\"Doodle Display\"",
+    "size": "42px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "inline",
+    "transform": "none"
+   },
+   {
+    "sel": ".desktop-caption p",
+    "visible": false,
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0
+    },
+    "text": "一个真实房间、一场共同的音乐现场。先选你的位置，再看看大家留下了什么。",
+    "font": "\"Doodle Hand\"",
+    "size": "18px",
+    "color": "rgb(61, 58, 54)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "none",
+    "transform": "none"
+   },
+   {
+    "sel": ".desktop-caption small",
+    "visible": true,
+    "box": {
+     "x": 56,
+     "y": 605,
+     "w": 400,
+     "h": 54
+    },
+    "text": "主办方开房，观众带上自己的小人入场。照片由你决定仅自己保存，还是分享给同场成员。",
+    "font": "\"Doodle Hand\"",
+    "size": "16px",
+    "color": "rgb(61, 58, 54)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "block",
+    "transform": "none"
+   },
+   {
+    "sel": ".desktop-caption .caption-note",
+    "visible": true,
+    "box": {
+     "x": 237,
+     "y": 669,
+     "w": 200,
+     "h": 56
+    },
+    "text": "就是这一刻！",
+    "font": "\"Doodle Note\"",
+    "size": "32px",
+    "color": "rgb(255, 92, 138)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "block",
+    "transform": "matrix(0.992546, -0.121869, 0.121869, 0.992546, 0, 0)"
+   },
+   {
+    "sel": ".desktop-caption .caption-arrow",
+    "visible": true,
+    "box": {
+     "x": 415,
+     "y": 728,
+     "w": 99,
+     "h": 68
+    },
+    "text": "",
+    "font": "\"Doodle Hand\"",
+    "size": "12px",
+    "color": "rgb(164, 179, 129)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgb(28, 27, 26)",
+    "display": "block",
+    "transform": "matrix(0.990268, 0.139173, -0.139173, 0.990268, 0, 0)"
+   },
+   {
+    "sel": ".desktop-caption .caption-star",
+    "visible": true,
+    "box": {
+     "x": 408,
+     "y": 306,
+     "w": 52,
+     "h": 52
+    },
+    "text": "",
+    "font": "\"Doodle Hand\"",
+    "size": "12px",
+    "color": "rgb(164, 179, 129)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "block",
+    "transform": "matrix(0.978148, 0.207912, -0.207912, 0.978148, 0, 0)"
+   },
+   {
+    "sel": ".desktop-caption .caption-sparkle",
+    "visible": true,
+    "box": {
+     "x": 452,
+     "y": 360,
+     "w": 24,
+     "h": 24
+    },
+    "text": "",
+    "font": "\"Doodle Hand\"",
+    "size": "12px",
+    "color": "rgb(164, 179, 129)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgb(28, 27, 26)",
+    "display": "block",
+    "transform": "matrix(1, 0, 0, 1, 0, 0)"
+   },
+   {
+    "sel": ".desktop-caption .caption-squiggle",
+    "visible": false,
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0
+    },
+    "text": "",
+    "font": "\"Doodle Hand\"",
+    "size": "12px",
+    "color": "rgb(164, 179, 129)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgb(95, 220, 192)",
+    "display": "none",
+    "transform": "none"
+   },
+   {
+    "sel": ".scene-heading small",
+    "visible": true,
+    "box": {
+     "x": 533,
+     "y": 106,
+     "w": 187,
+     "h": 29
+    },
+    "text": "MUSIC SPACE / LIVEHOUSE",
+    "font": "\"Doodle Marker\"",
+    "size": "12px",
+    "color": "rgb(255, 250, 240)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgb(28, 27, 26)",
+    "display": "inline-block",
+    "transform": "matrix(0.999391, -0.0348995, 0.0348995, 0.999391, 0, 0)"
+   },
+   {
+    "sel": "#room-title",
+    "visible": true,
+    "box": {
+     "x": 531,
+     "y": 142,
+     "w": 251,
+     "h": 59
+    },
+    "text": "进到同一个现场",
+    "font": "\"Doodle Display\"",
+    "size": "44px",
+    "color": "rgb(255, 212, 71)",
+    "shadow": "rgb(28, 27, 26) 2.64px 3.08px 0px",
+    "stroke": "3.3px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "flow-root",
+    "transform": "none"
+   },
+   {
+    "sel": ".scene-code",
+    "visible": true,
+    "box": {
+     "x": 535,
+     "y": 213,
+     "w": 157,
+     "h": 34
+    },
+    "text": "这一晚，从这里开始",
+    "font": "\"Doodle Marker\"",
+    "size": "14px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgb(255, 250, 240)",
+    "display": "block",
+    "transform": "matrix(0.999781, 0.0209424, -0.0209424, 0.999781, 0, 0)"
+   },
+   {
+    "sel": "#presence-title",
+    "visible": true,
+    "box": {
+     "x": 1466,
+     "y": 634,
+     "w": 300,
+     "h": 127
+    },
+    "text": "同一刻，另一面。",
+    "font": "\"Doodle Display\"",
+    "size": "60px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "rgb(255, 92, 138) 3.6px 3.6px 0px",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "block",
+    "transform": "none"
+   },
+   {
+    "sel": "#presence-title::after",
+    "visible": true,
+    "box": null,
+    "text": "\"\"",
+    "font": "\"Doodle Display\"",
+    "size": "60px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "rgb(255, 92, 138) 3.6px 3.6px 0px",
+    "stroke": "0px",
+    "bg": "rgb(95, 220, 192)",
+    "display": "block",
+    "transform": "matrix(0.999781, -0.0209424, 0.0209424, 0.999781, 0, 0)"
+   },
+   {
+    "sel": ".presence",
+    "visible": true,
+    "box": {
+     "x": 1440,
+     "y": 610,
+     "w": 420,
+     "h": 334
+    },
+    "text": "同一刻，另一面。同一晚，你拍了舞台，TA 拍了人海。AI 在本机给你一个视角建议",
+    "font": "\"Doodle Hand\"",
+    "size": "16px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgb(255, 250, 240)",
+    "display": "block",
+    "transform": "none"
+   },
+   {
+    "sel": ".presence .presence-star",
+    "visible": true,
+    "box": {
+     "x": 1781,
+     "y": 629,
+     "w": 56,
+     "h": 56
+    },
+    "text": "",
+    "font": "\"Doodle Hand\"",
+    "size": "16px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgba(0, 0, 0, 0)",
+    "display": "block",
+    "transform": "matrix(0.970296, 0.241922, -0.241922, 0.970296, 0, 0)"
+   },
+   {
+    "sel": ".presence .presence-sparkle",
+    "visible": true,
+    "box": {
+     "x": 1818,
+     "y": 686,
+     "w": 20,
+     "h": 20
+    },
+    "text": "",
+    "font": "\"Doodle Hand\"",
+    "size": "16px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgb(28, 27, 26)",
+    "display": "block",
+    "transform": "matrix(1, 0, 0, 1, 0, 0)"
+   },
+   {
+    "sel": ".track",
+    "visible": true,
+    "box": {
+     "x": 547,
+     "y": 886,
+     "w": 361,
+     "h": 62
+    },
+    "text": "♪这一晚的歌进入房间，留下你看到的那个瞬间ENCORE / 01",
+    "font": "\"Doodle Hand\"",
+    "size": "16px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgb(255, 250, 240)",
+    "display": "flex",
+    "transform": "matrix(0.999781, -0.0209424, 0.0209424, 0.999781, 0, 0)"
+   },
+   {
+    "sel": ".world-shell",
+    "visible": true,
+    "box": {
+     "x": 508,
+     "y": 88,
+     "w": 1376,
+     "h": 874
+    },
+    "text": "MUSIC SPACE / LIVEHOUSE进到同一个现场这一晚，从这里开始照",
+    "font": "\"Doodle Hand\"",
+    "size": "16px",
+    "color": "rgb(28, 27, 26)",
+    "shadow": "none",
+    "stroke": "0px",
+    "bg": "rgb(35, 33, 43)",
+    "display": "block",
+    "transform": "none"
+   }
+  ],
+  "errors": []
+ }
+}

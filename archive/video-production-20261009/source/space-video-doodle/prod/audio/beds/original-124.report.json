@@ -1,0 +1,96 @@
+{
+ "map": "original-124",
+ "label": "Team original score《Same Moment, Other Side》124 BPM, re-rendered with the STORYBOARD §3.1 section lengths (every hit on its storyboard bar)",
+ "track": {
+  "audio": "/tmp/space-video-doodle/prod/audio/original-124/master_float.wav",
+  "beats": "/tmp/space-video-doodle/prod/audio/original-124/beats.json",
+  "title": "Same Moment, Other Side",
+  "artist": "Music Space team (original, code-synthesised)",
+  "licence": "original work of the team (no third-party rights)",
+  "proof": "/tmp/space-video-doodle/music-original/PROVENANCE.txt",
+  "credit": "配乐：团队原创（代码合成，无采样、无第三方录音）"
+ },
+ "duration_s": 174.894,
+ "bars": 90,
+ "cut": [],
+ "added": [],
+ "splices": [],
+ "loudness": {
+  "gain_db": 0.0,
+  "before": {
+   "I": -16.0,
+   "TP": -2.5,
+   "LRA": 6.1
+  },
+  "after": {
+   "I": -16.0,
+   "TP": -2.5,
+   "LRA": 6.1
+  },
+  "limiter_max_reduction_db": 0.0,
+  "ceiling_db": -1.5
+ },
+ "onsets_vs_grid": {
+  "beats": 360,
+  "median_offset_ms": 4.4,
+  "p10_ms": 1.6,
+  "p90_ms": 7.2,
+  "within_20ms": "180/180",
+  "note": "strongest onset within +-70 ms of every beat of the output grid (5 ms hop), upper half by strength, corrected for the detector bias (-10.3 ms, calibrated on synthetic hits); + = music after the grid"
+ },
+ "moments": {
+  "title_stop": {
+   "verdict": "yes",
+   "silence_before_5_1_db": -34.7,
+   "hit_5_1_db": 35.1,
+   "level_5_6_vs_3_4_db": -4.0
+  },
+  "pain_sparse": {
+   "verdict": "partial",
+   "level_vs_film_median_db": -2.8,
+   "onset_density_vs_film": 0.7
+  },
+  "drop": {
+   "verdict": "yes",
+   "hit_21_1_db": 2.5,
+   "hit_21_1_low_db": 22.1,
+   "level_21_28_vs_pain_db": 2.7,
+   "rank_among_downbeats": 18
+  },
+  "ai_chime": {
+   "verdict": "music",
+   "at_s": 59.0
+  },
+  "payoff": {
+   "verdict": "yes",
+   "hit_51_1_db": 42.1,
+   "rank_among_downbeats": 1,
+   "of": 89,
+   "gap_50_4_db": -42.6,
+   "biggest_downbeat": "51:1 (+42.1 dB)"
+  },
+  "social_groove": {
+   "verdict": "yes",
+   "level_vs_film_median_db": 0.3
+  },
+  "break": {
+   "verdict": "partial",
+   "level_73_74_vs_2_bars_before_db": -1.4
+  },
+  "lift": {
+   "verdict": "partial",
+   "hit_75_1_db": 2.4,
+   "hit_75_1_low_db": 4.0,
+   "level_75_82_vs_break_db": 2.6
+  },
+  "end_resolve": {
+   "verdict": "natural (ends in silence)",
+   "last_100ms_db": -113.9,
+   "end_card_level_db": -20.2
+  }
+ },
+ "files": {
+  "wav": "/private/tmp/space-video-doodle/prod/audio/beds/original-124.wav",
+  "m4a": "/private/tmp/space-video-doodle/prod/audio/beds/original-124.m4a"
+ }
+}

@@ -1,0 +1,939 @@
+{
+ "file": "vocal-ref__BobAFeldman-Birthday-Song.mp3",
+ "title": "vocal reference (Bob A. Feldman, sung)",
+ "duration_s": 198.14,
+ "loudness": {
+  "I": -10.5,
+  "LRA": 5.2,
+  "TP": 0.5
+ },
+ "tempo": {
+  "bpm": 87.49,
+  "beat_s": 0.6858,
+  "bar_s": 2.743,
+  "autocorr_conf": 0.098,
+  "octave_note": "",
+  "drift_ms": {
+   "windows": 35,
+   "aligned_windows": 35,
+   "resid_sd": 74.4,
+   "resid_max_abs": 139.3
+  }
+ },
+ "grid": {
+  "first_beat_s": 0.37,
+  "downbeat_offset_beats": 3,
+  "downbeat_scores": [
+   {
+    "kick": 0.122,
+    "chord_change": -0.148,
+    "backbeat": 0.14
+   },
+   {
+    "kick": -0.124,
+    "chord_change": 0.252,
+    "backbeat": -0.14
+   },
+   {
+    "kick": -0.158,
+    "chord_change": -0.137,
+    "backbeat": 0.14
+   },
+   {
+    "kick": 0.159,
+    "chord_change": 0.035,
+    "backbeat": -0.14
+   }
+  ],
+  "downbeat_margin": 0.023,
+  "first_downbeat_s": 2.427,
+  "first_active_downbeat_s": 2.427,
+  "n_bars": 72,
+  "bar_starts_s": [
+   2.427,
+   5.171,
+   7.914,
+   10.657,
+   13.4,
+   16.143,
+   18.886,
+   21.629,
+   24.372,
+   27.115,
+   29.858,
+   32.601,
+   35.344,
+   38.087,
+   40.83,
+   43.573,
+   46.316,
+   49.059,
+   51.802,
+   54.545,
+   57.288,
+   60.031,
+   62.774,
+   65.517,
+   68.26,
+   71.003,
+   73.746,
+   76.489,
+   79.232,
+   81.975,
+   84.718,
+   87.461,
+   90.204,
+   92.947,
+   95.69,
+   98.433,
+   101.176,
+   103.919,
+   106.662,
+   109.406,
+   112.149,
+   114.892,
+   117.635,
+   120.378,
+   123.121,
+   125.864,
+   128.607,
+   131.35,
+   134.093,
+   136.836,
+   139.579,
+   142.322,
+   145.065,
+   147.808,
+   150.551,
+   153.294,
+   156.037,
+   158.78,
+   161.523,
+   164.266,
+   167.009,
+   169.752,
+   172.495,
+   175.238,
+   177.981,
+   180.724,
+   183.467,
+   186.21,
+   188.953,
+   191.696,
+   194.439,
+   197.182
+  ]
+ },
+ "bars": [
+  {
+   "t": 2.427,
+   "rms_db": -12.1,
+   "onsets": 17,
+   "perc": 0.112,
+   "centroid": 2002
+  },
+  {
+   "t": 5.171,
+   "rms_db": -10.9,
+   "onsets": 15,
+   "perc": 0.074,
+   "centroid": 1643
+  },
+  {
+   "t": 7.914,
+   "rms_db": -12.8,
+   "onsets": 13,
+   "perc": 0.115,
+   "centroid": 1633
+  },
+  {
+   "t": 10.657,
+   "rms_db": -11.5,
+   "onsets": 14,
+   "perc": 0.072,
+   "centroid": 1944
+  },
+  {
+   "t": 13.4,
+   "rms_db": -16.3,
+   "onsets": 7,
+   "perc": 0.09,
+   "centroid": 2093
+  },
+  {
+   "t": 16.143,
+   "rms_db": -9.7,
+   "onsets": 13,
+   "perc": 0.114,
+   "centroid": 1526
+  },
+  {
+   "t": 18.886,
+   "rms_db": -8.5,
+   "onsets": 12,
+   "perc": 0.039,
+   "centroid": 1950
+  },
+  {
+   "t": 21.629,
+   "rms_db": -10.9,
+   "onsets": 15,
+   "perc": 0.087,
+   "centroid": 1966
+  },
+  {
+   "t": 24.372,
+   "rms_db": -13.0,
+   "onsets": 11,
+   "perc": 0.095,
+   "centroid": 1590
+  },
+  {
+   "t": 27.115,
+   "rms_db": -10.0,
+   "onsets": 12,
+   "perc": 0.067,
+   "centroid": 1558
+  },
+  {
+   "t": 29.858,
+   "rms_db": -9.1,
+   "onsets": 12,
+   "perc": 0.042,
+   "centroid": 1908
+  },
+  {
+   "t": 32.601,
+   "rms_db": -9.0,
+   "onsets": 13,
+   "perc": 0.053,
+   "centroid": 1303
+  },
+  {
+   "t": 35.344,
+   "rms_db": -9.5,
+   "onsets": 14,
+   "perc": 0.067,
+   "centroid": 1827
+  },
+  {
+   "t": 38.087,
+   "rms_db": -17.3,
+   "onsets": 9,
+   "perc": 0.047,
+   "centroid": 1785
+  },
+  {
+   "t": 40.83,
+   "rms_db": -13.9,
+   "onsets": 15,
+   "perc": 0.09,
+   "centroid": 1781
+  },
+  {
+   "t": 43.573,
+   "rms_db": -9.7,
+   "onsets": 11,
+   "perc": 0.105,
+   "centroid": 1801
+  },
+  {
+   "t": 46.316,
+   "rms_db": -11.2,
+   "onsets": 15,
+   "perc": 0.111,
+   "centroid": 1653
+  },
+  {
+   "t": 49.059,
+   "rms_db": -10.3,
+   "onsets": 15,
+   "perc": 0.106,
+   "centroid": 1778
+  },
+  {
+   "t": 51.802,
+   "rms_db": -11.4,
+   "onsets": 11,
+   "perc": 0.077,
+   "centroid": 2041
+  },
+  {
+   "t": 54.545,
+   "rms_db": -14.9,
+   "onsets": 10,
+   "perc": 0.039,
+   "centroid": 1571
+  },
+  {
+   "t": 57.288,
+   "rms_db": -10.3,
+   "onsets": 13,
+   "perc": 0.124,
+   "centroid": 1716
+  },
+  {
+   "t": 60.031,
+   "rms_db": -9.9,
+   "onsets": 15,
+   "perc": 0.085,
+   "centroid": 2179
+  },
+  {
+   "t": 62.774,
+   "rms_db": -9.1,
+   "onsets": 18,
+   "perc": 0.088,
+   "centroid": 2059
+  },
+  {
+   "t": 65.517,
+   "rms_db": -10.9,
+   "onsets": 11,
+   "perc": 0.053,
+   "centroid": 1595
+  },
+  {
+   "t": 68.26,
+   "rms_db": -10.0,
+   "onsets": 13,
+   "perc": 0.076,
+   "centroid": 1968
+  },
+  {
+   "t": 71.003,
+   "rms_db": -9.7,
+   "onsets": 15,
+   "perc": 0.074,
+   "centroid": 1752
+  },
+  {
+   "t": 73.746,
+   "rms_db": -8.7,
+   "onsets": 14,
+   "perc": 0.079,
+   "centroid": 1401
+  },
+  {
+   "t": 76.489,
+   "rms_db": -9.4,
+   "onsets": 14,
+   "perc": 0.081,
+   "centroid": 1628
+  },
+  {
+   "t": 79.232,
+   "rms_db": -11.1,
+   "onsets": 10,
+   "perc": 0.033,
+   "centroid": 1640
+  },
+  {
+   "t": 81.975,
+   "rms_db": -10.3,
+   "onsets": 15,
+   "perc": 0.082,
+   "centroid": 1783
+  },
+  {
+   "t": 84.718,
+   "rms_db": -10.0,
+   "onsets": 17,
+   "perc": 0.098,
+   "centroid": 1696
+  },
+  {
+   "t": 87.461,
+   "rms_db": -10.7,
+   "onsets": 15,
+   "perc": 0.082,
+   "centroid": 1551
+  },
+  {
+   "t": 90.204,
+   "rms_db": -10.2,
+   "onsets": 16,
+   "perc": 0.109,
+   "centroid": 2039
+  },
+  {
+   "t": 92.947,
+   "rms_db": -13.9,
+   "onsets": 8,
+   "perc": 0.047,
+   "centroid": 1617
+  },
+  {
+   "t": 95.69,
+   "rms_db": -13.8,
+   "onsets": 13,
+   "perc": 0.041,
+   "centroid": 1685
+  },
+  {
+   "t": 98.433,
+   "rms_db": -9.0,
+   "onsets": 17,
+   "perc": 0.095,
+   "centroid": 2333
+  },
+  {
+   "t": 101.176,
+   "rms_db": -8.9,
+   "onsets": 16,
+   "perc": 0.073,
+   "centroid": 1805
+  },
+  {
+   "t": 103.919,
+   "rms_db": -9.9,
+   "onsets": 15,
+   "perc": 0.074,
+   "centroid": 1797
+  },
+  {
+   "t": 106.662,
+   "rms_db": -11.6,
+   "onsets": 10,
+   "perc": 0.04,
+   "centroid": 1626
+  },
+  {
+   "t": 109.406,
+   "rms_db": -10.5,
+   "onsets": 12,
+   "perc": 0.062,
+   "centroid": 1474
+  },
+  {
+   "t": 112.149,
+   "rms_db": -9.1,
+   "onsets": 17,
+   "perc": 0.083,
+   "centroid": 1934
+  },
+  {
+   "t": 114.892,
+   "rms_db": -8.7,
+   "onsets": 12,
+   "perc": 0.086,
+   "centroid": 1706
+  },
+  {
+   "t": 117.635,
+   "rms_db": -8.9,
+   "onsets": 13,
+   "perc": 0.087,
+   "centroid": 1661
+  },
+  {
+   "t": 120.378,
+   "rms_db": -12.2,
+   "onsets": 10,
+   "perc": 0.069,
+   "centroid": 2122
+  },
+  {
+   "t": 123.121,
+   "rms_db": -13.5,
+   "onsets": 13,
+   "perc": 0.131,
+   "centroid": 1588
+  },
+  {
+   "t": 125.864,
+   "rms_db": -8.7,
+   "onsets": 17,
+   "perc": 0.052,
+   "centroid": 1660
+  },
+  {
+   "t": 128.607,
+   "rms_db": -11.2,
+   "onsets": 14,
+   "perc": 0.095,
+   "centroid": 1588
+  },
+  {
+   "t": 131.35,
+   "rms_db": -8.9,
+   "onsets": 17,
+   "perc": 0.098,
+   "centroid": 1771
+  },
+  {
+   "t": 134.093,
+   "rms_db": -11.2,
+   "onsets": 14,
+   "perc": 0.125,
+   "centroid": 1841
+  },
+  {
+   "t": 136.836,
+   "rms_db": -14.4,
+   "onsets": 10,
+   "perc": 0.039,
+   "centroid": 1547
+  },
+  {
+   "t": 139.579,
+   "rms_db": -9.1,
+   "onsets": 15,
+   "perc": 0.082,
+   "centroid": 1516
+  },
+  {
+   "t": 142.322,
+   "rms_db": -8.6,
+   "onsets": 13,
+   "perc": 0.036,
+   "centroid": 1484
+  },
+  {
+   "t": 145.065,
+   "rms_db": -8.2,
+   "onsets": 17,
+   "perc": 0.062,
+   "centroid": 1423
+  },
+  {
+   "t": 147.808,
+   "rms_db": -10.4,
+   "onsets": 12,
+   "perc": 0.057,
+   "centroid": 1557
+  },
+  {
+   "t": 150.551,
+   "rms_db": -11.4,
+   "onsets": 10,
+   "perc": 0.036,
+   "centroid": 1324
+  },
+  {
+   "t": 153.294,
+   "rms_db": -11.3,
+   "onsets": 13,
+   "perc": 0.042,
+   "centroid": 1317
+  },
+  {
+   "t": 156.037,
+   "rms_db": -8.5,
+   "onsets": 12,
+   "perc": 0.056,
+   "centroid": 1470
+  },
+  {
+   "t": 158.78,
+   "rms_db": -8.3,
+   "onsets": 14,
+   "perc": 0.075,
+   "centroid": 1728
+  },
+  {
+   "t": 161.523,
+   "rms_db": -8.7,
+   "onsets": 14,
+   "perc": 0.101,
+   "centroid": 1934
+  },
+  {
+   "t": 164.266,
+   "rms_db": -10.4,
+   "onsets": 13,
+   "perc": 0.053,
+   "centroid": 1493
+  },
+  {
+   "t": 167.009,
+   "rms_db": -15.3,
+   "onsets": 11,
+   "perc": 0.064,
+   "centroid": 1616
+  },
+  {
+   "t": 169.752,
+   "rms_db": -9.9,
+   "onsets": 15,
+   "perc": 0.075,
+   "centroid": 1870
+  },
+  {
+   "t": 172.495,
+   "rms_db": -9.6,
+   "onsets": 14,
+   "perc": 0.07,
+   "centroid": 1506
+  },
+  {
+   "t": 175.238,
+   "rms_db": -8.7,
+   "onsets": 15,
+   "perc": 0.079,
+   "centroid": 1708
+  },
+  {
+   "t": 177.981,
+   "rms_db": -9.9,
+   "onsets": 17,
+   "perc": 0.103,
+   "centroid": 1917
+  },
+  {
+   "t": 180.724,
+   "rms_db": -9.7,
+   "onsets": 16,
+   "perc": 0.092,
+   "centroid": 1866
+  },
+  {
+   "t": 183.467,
+   "rms_db": -10.0,
+   "onsets": 12,
+   "perc": 0.099,
+   "centroid": 1550
+  },
+  {
+   "t": 186.21,
+   "rms_db": -9.2,
+   "onsets": 14,
+   "perc": 0.096,
+   "centroid": 1821
+  },
+  {
+   "t": 188.953,
+   "rms_db": -9.2,
+   "onsets": 15,
+   "perc": 0.073,
+   "centroid": 1887
+  },
+  {
+   "t": 191.696,
+   "rms_db": -9.2,
+   "onsets": 10,
+   "perc": 0.032,
+   "centroid": 1398
+  },
+  {
+   "t": 194.439,
+   "rms_db": -14.5,
+   "onsets": 0,
+   "perc": 0.008,
+   "centroid": 1193
+  },
+  {
+   "t": 197.182,
+   "rms_db": -28.1,
+   "onsets": 0,
+   "perc": 0.073,
+   "centroid": 1877
+  }
+ ],
+ "sections": [
+  {
+   "bars": [
+    1,
+    5
+   ],
+   "t": [
+    2.427,
+    16.143
+   ],
+   "rms_db": -12.7,
+   "onsets_per_bar": 13.2,
+   "perc": 0.093,
+   "level": "mid"
+  },
+  {
+   "bars": [
+    6,
+    8
+   ],
+   "t": [
+    16.143,
+    24.372
+   ],
+   "rms_db": -9.7,
+   "onsets_per_bar": 13.3,
+   "perc": 0.08,
+   "level": "peak"
+  },
+  {
+   "bars": [
+    9,
+    13
+   ],
+   "t": [
+    24.372,
+    38.087
+   ],
+   "rms_db": -10.1,
+   "onsets_per_bar": 12.4,
+   "perc": 0.065,
+   "level": "peak"
+  },
+  {
+   "bars": [
+    14,
+    17
+   ],
+   "t": [
+    38.087,
+    49.059
+   ],
+   "rms_db": -13.0,
+   "onsets_per_bar": 12.5,
+   "perc": 0.088,
+   "level": "mid"
+  },
+  {
+   "bars": [
+    18,
+    20
+   ],
+   "t": [
+    49.059,
+    57.288
+   ],
+   "rms_db": -12.2,
+   "onsets_per_bar": 12.0,
+   "perc": 0.074,
+   "level": "high"
+  },
+  {
+   "bars": [
+    21,
+    24
+   ],
+   "t": [
+    57.288,
+    68.26
+   ],
+   "rms_db": -10.1,
+   "onsets_per_bar": 14.2,
+   "perc": 0.088,
+   "level": "peak"
+  },
+  {
+   "bars": [
+    25,
+    32
+   ],
+   "t": [
+    68.26,
+    90.204
+   ],
+   "rms_db": -10.0,
+   "onsets_per_bar": 14.1,
+   "perc": 0.076,
+   "level": "peak"
+  },
+  {
+   "bars": [
+    33,
+    35
+   ],
+   "t": [
+    90.204,
+    98.433
+   ],
+   "rms_db": -12.6,
+   "onsets_per_bar": 12.3,
+   "perc": 0.066,
+   "level": "high"
+  },
+  {
+   "bars": [
+    36,
+    39
+   ],
+   "t": [
+    98.433,
+    109.405
+   ],
+   "rms_db": -9.8,
+   "onsets_per_bar": 14.5,
+   "perc": 0.07,
+   "level": "peak"
+  },
+  {
+   "bars": [
+    40,
+    48
+   ],
+   "t": [
+    109.406,
+    134.093
+   ],
+   "rms_db": -10.2,
+   "onsets_per_bar": 13.9,
+   "perc": 0.085,
+   "level": "peak"
+  },
+  {
+   "bars": [
+    49,
+    50
+   ],
+   "t": [
+    134.093,
+    139.579
+   ],
+   "rms_db": -12.8,
+   "onsets_per_bar": 12.0,
+   "perc": 0.082,
+   "level": "mid"
+  },
+  {
+   "bars": [
+    51,
+    55
+   ],
+   "t": [
+    139.579,
+    153.294
+   ],
+   "rms_db": -9.5,
+   "onsets_per_bar": 13.4,
+   "perc": 0.055,
+   "level": "peak"
+  },
+  {
+   "bars": [
+    56,
+    61
+   ],
+   "t": [
+    153.294,
+    169.752
+   ],
+   "rms_db": -10.4,
+   "onsets_per_bar": 12.8,
+   "perc": 0.065,
+   "level": "high"
+  },
+  {
+   "bars": [
+    62,
+    65
+   ],
+   "t": [
+    169.752,
+    180.724
+   ],
+   "rms_db": -9.5,
+   "onsets_per_bar": 15.2,
+   "perc": 0.082,
+   "level": "peak"
+  },
+  {
+   "bars": [
+    66,
+    72
+   ],
+   "t": [
+    180.724,
+    199.925
+   ],
+   "rms_db": -12.8,
+   "onsets_per_bar": 9.6,
+   "perc": 0.068,
+   "level": "mid"
+  }
+ ],
+ "strongest_window": {
+  "start_bar": 21,
+  "start_s": 57.288,
+  "end_s": 87.288,
+  "bars": 11,
+  "bars_exact_s": 30.173,
+  "mean_rms_db": -9.9
+ },
+ "key": {
+  "key": "F major",
+  "r": 0.758,
+  "alt": "D minor",
+  "r_alt": 0.594
+ },
+ "stems": {
+  "stem_lag_ms": 50.1,
+  "energy_share": {
+   "drums": 0.0,
+   "bass": 0.0,
+   "other": 0.606,
+   "vocals": 0.394
+  },
+  "vocals": {
+   "rel_db_overall": -4.0,
+   "median_db": -5.9,
+   "p95_db": -2.9,
+   "frac_seconds_above_m10db": 0.702,
+   "frac_seconds_above_m15db": 0.747
+  },
+  "drum_grid_16": {
+   "kick": [
+    0.99,
+    0.97,
+    0.9,
+    0.59,
+    0.83,
+    0.82,
+    0.79,
+    0.93,
+    0.74,
+    0.66,
+    0.56,
+    0.98,
+    1.0,
+    0.62,
+    0.74,
+    0.69
+   ],
+   "snare": [
+    0.11,
+    0.12,
+    0.09,
+    0.14,
+    0.14,
+    0.12,
+    0.14,
+    0.17,
+    0.12,
+    0.11,
+    0.15,
+    0.12,
+    1.0,
+    0.13,
+    0.13,
+    0.14
+   ],
+   "hats": [
+    0.07,
+    0.06,
+    0.04,
+    0.05,
+    0.04,
+    0.05,
+    0.06,
+    0.05,
+    0.04,
+    0.05,
+    0.03,
+    0.06,
+    1.0,
+    0.04,
+    0.05,
+    0.04
+   ]
+  },
+  "drums_onset_rate": 1.24,
+  "bass_onset_rate": 5.64,
+  "other_onset_rate": 4.07,
+  "bass_peak_hz": 59.2,
+  "other_centroid_hz": 1295,
+  "other_percussive_share": 0.038,
+  "other_flatness": 0.307
+ },
+ "note": "Constant-tempo grid fitted to the whole track (comb + drift regression). downbeat chosen from kick-on-1, chord-change and backbeat evidence; a small margin means check one bar by eye on the waveform. Nobody listened to the track."
+}

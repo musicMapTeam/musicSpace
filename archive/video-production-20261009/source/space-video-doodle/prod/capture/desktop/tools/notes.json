@@ -1,0 +1,30 @@
+{
+ "storyboard_map": {
+  "H3 (bar 8)": "D-01-landing: hold, the title card position for the match cut is in its 'landing' mark (titleLines = the two lines of 「同一刻，另一面。」, titleCard, captionNote 「就是这一刻！」 for the 8:3 circle)",
+  "E4 (bars 27-28) and W5 (bars 81-82)": "D-02-room-hero 0.00-8.00 s: the overview hold with all five (labels 阿遥·示例 · 可招呼 … 林间·示例 · 安静, 阿宁 · 我); figure boxes for the E4 circles in clips[D-02-room-hero].figures_overview_master_px; footer box (W5 circle) in the 'overview' mark",
+  "+2 (optional glide after bar 28)": "D-02-room-hero 22.00-24.00 s: the pull-back from the 阿遥 close-up to the overview reveals all five with their labels (the best 'slow move with the cast'); 13.00-15.00 s is the move from the wall back to the overview (cast visible from its first frame); 8.00-10.00 s (overview -> wall) shows the room without the cast (product hides figures on the way to the wall)",
+  "H1 / S11 collage": "stills/CUT-01-room-overview.png, stills/CUT-03-wall-5-photos.png (3840x2160)",
+  "A4 36:1 / 36:3": "D-03a-wall-before (4 photos) then D-03b-wall-after (5 photos); D-03s-wall-save is the continuous desktop save if the edit prefers it",
+  "S3 (bar 59)": "D-04-linjian-quiet: close-up settled from 3.00 s ('linjian-close-up'), tap 认识一下 at 5.50 s, card fully in at 'card-settled'; quiet sentence box for the 59:4 mint underline in 'card-settled'",
+  "M3-M7 desktop alternative (spare)": "D-05-exchange",
+  "S1-S2 desktop alternative (spare)": "D-06-greet-chat",
+  "about sheet": "not captured: the storyboard never opens it (W5 only circles the footer link 「示例站 · 数据只存在这个浏览器 · 关于这个示例」, which is in every desktop frame)"
+ },
+ "notes": [
+  "Product behaviour, not a capture fault: while the camera heads to the photo wall or to one person, the product hides the other figures and the overlay labels/cards at once (first frame of the glide) and shows a small 「正在靠近」 chip; glides back to the overview show everyone from their first frame. In D-02 the vanish frame is 8.00 s (cast) and 17.00 s (all but 阿遥).",
+  "Product behaviour: the photos view frames four photos close (one row) and five photos wider (two rows, curtain and guitar in the foreground), so D-03a -> D-03b is a re-frame plus the new polaroid, not only a pop-in. In D-03s the re-frame happens on the same frame as the panel switches to the wall (6.50 s).",
+  "The desktop header shows the product's 「音乐探索 ↗」 pill (entry to Music Map) in every room frame; Music Map itself is never opened. Its box is 'headerMusicMap' in the D-02 marks if the edit wants to cover it with a sticker.",
+  "Playback is 4 % slower than real time (rig: 16 ms of virtual time per 60 fps frame). Waits shown uncut: 阿遥 accepting the exchange and 小满 accepting the greeting / replying take their real (seeded) times on the virtual clock.",
+  "The on-device AI answers in real time while the virtual clock is stepped, so 「AI 判断：人海」 appears 1 frame after the tap in D-03s (real latency here 0.15-0.3 s). The answer itself is the model's real output on the 人海 sample.",
+  "Clock: desktop takes use 2026-10-07 22:40 +08:00 (SHOTS.md, same as the P1 phone takes); the P2P3 phone tools default to 2026-10-09 22:30 +08:00, so on-screen times can differ between those clips (chat 22:40 here).",
+  "Holds change only on the product's line boil (every 8.9 frames on the virtual clock = 6.7 boils per second in the files); the edit's PUSH keeps holds moving as the storyboard asks.",
+  "Tap rings are the rig's doodle ring (yellow, ink outline, pink offset, 30 frames); there is no pointer arrow anywhere. Camera glides are started without a ring (the glide is the action)."
+ ],
+ "problems": [
+  "None blocking. Every clip: no frozen stretch over 9 frames (the product's line-boil cadence), no stutter inside camera glides (4 glides in D-02 + 1 in D-04: every frame moves, step ratio 0.98-1.01) or scrolls, no pointer, no half-loaded UI in the sampled frames, master and 1080 copy have identical frame counts.",
+  "QC heuristic false positives (still frame between two moving ones), checked frame by frame: D-02 16.98 s = a line-boil step two frames before the 阿遥 glide starts; D-06 11.55 s = two discrete UI updates two frames apart (your bubble lands, then its 已保存 status). Neither is a stutter.",
+  "Eased scrolls end with a final 2-3 CSS px snap: Chrome draws these panels on a whole-CSS-pixel grid even at DPR 8/3, so sub-pixel ease tails would otherwise repeat frames. D-03 and D-05 were re-recorded with this fix (first versions had 1-device-pixel judder at scroll ends); the earlier files were deleted.",
+  "The model-download check before D-03 waited for nothing (the demo already warms the model at boot, before any page listener); harmless: the AI answered 1 frame after the tap.",
+  "D-03b and CUT-03 were re-taken in their own world (take D03B) so the 5 s save toast 「已分享给本场成员」 is gone before the hold starts; D-03a / D-03s come from the previous D-03 world (same build, same visitor, same sample)."
+ ]
+}

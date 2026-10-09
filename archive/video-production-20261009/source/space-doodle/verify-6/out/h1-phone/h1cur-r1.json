@@ -1,0 +1,226 @@
+{
+ "label": "h1cur",
+ "round": 1,
+ "ok": true,
+ "fcp": 856,
+ "ready": 2923,
+ "loadingHidden": 2666,
+ "proto": "http/1.1",
+ "docEnd": 2102,
+ "css": "169/716/772",
+ "firstOtherFontStart": 799,
+ "frames": 126,
+ "fontsLoaded": 10,
+ "net": [
+  {
+   "url": "/musicSpace/",
+   "proto": "http/1.1",
+   "prio": "VeryHigh",
+   "bytes": 646057,
+   "start": 1,
+   "resp": 156,
+   "end": 2102
+  },
+  {
+   "url": "/musicSpace/shared/three-0.186.1/three.module.js",
+   "proto": "http/1.1",
+   "prio": "High",
+   "bytes": 131801,
+   "start": 168,
+   "resp": 911,
+   "end": 910
+  },
+  {
+   "url": "/musicSpace/shared/three-0.186.1/three.core.js",
+   "proto": "http/1.1",
+   "prio": "High",
+   "bytes": 288244,
+   "start": 169,
+   "resp": 1590,
+   "end": 1589
+  },
+  {
+   "url": "/musicSpace/sql/sql-wasm.wasm",
+   "proto": "http/1.1",
+   "prio": "High",
+   "bytes": 658626,
+   "start": 169,
+   "resp": 326,
+   "end": 2280
+  },
+  {
+   "url": "/musicSpace/fonts/doodle/marker-0.woff2",
+   "proto": "http/1.1",
+   "prio": "High",
+   "bytes": 43617,
+   "start": 169,
+   "resp": 560,
+   "end": 558
+  },
+  {
+   "url": "/musicSpace/fonts/doodle/display-0.woff2",
+   "proto": "http/1.1",
+   "prio": "High",
+   "bytes": 82109,
+   "start": 169,
+   "resp": 731,
+   "end": 729
+  },
+  {
+   "url": "/musicSpace/fonts/doodle/fonts.css",
+   "proto": "http/1.1",
+   "prio": "VeryHigh",
+   "bytes": 12134,
+   "start": 169,
+   "resp": 716,
+   "end": 772
+  },
+  {
+   "url": "/musicSpace/fonts/doodle/logo-0.woff2",
+   "proto": "http/1.1",
+   "prio": "VeryHigh",
+   "bytes": 17029,
+   "start": 799,
+   "resp": 1028,
+   "end": 1027
+  },
+  {
+   "url": "/musicSpace/fonts/doodle/display-1.woff2",
+   "proto": "http/1.1",
+   "prio": "VeryHigh",
+   "bytes": 102366,
+   "start": 800,
+   "resp": 1435,
+   "end": 1432
+  },
+  {
+   "url": "/musicSpace/fonts/doodle/hand-0.woff2",
+   "proto": "http/1.1",
+   "prio": "VeryHigh",
+   "bytes": 198166,
+   "start": 800,
+   "resp": 1931,
+   "end": 1927
+  },
+  {
+   "url": "/musicSpace/fonts/doodle/marker-1.woff2",
+   "proto": "http/1.1",
+   "prio": "VeryHigh",
+   "bytes": 35789,
+   "start": 800,
+   "resp": 1370,
+   "end": 1369
+  },
+  {
+   "url": "/musicSpace/fonts/doodle/hand-1.woff2",
+   "proto": "http/1.1",
+   "prio": "VeryHigh",
+   "bytes": 116130,
+   "start": 826,
+   "resp": 1979,
+   "end": 1977
+  },
+  {
+   "url": "/musicSpace/fonts/doodle/marker-2.woff2",
+   "proto": "http/1.1",
+   "prio": "VeryHigh",
+   "bytes": 48253,
+   "start": 829,
+   "resp": 1804,
+   "end": 1803
+  },
+  {
+   "url": "/musicSpace/demo/yao-stage.jpg",
+   "proto": "http/1.1",
+   "prio": "Low",
+   "bytes": 70225,
+   "start": 2270,
+   "resp": 2590,
+   "end": 2603
+  },
+  {
+   "url": "/musicSpace/demo/man-crowd.jpg",
+   "proto": "http/1.1",
+   "prio": "Low",
+   "bytes": 57051,
+   "start": 2270,
+   "resp": 2590,
+   "end": 2593
+  },
+  {
+   "url": "/musicSpace/demo/man-near.jpg",
+   "proto": "http/1.1",
+   "prio": "Low",
+   "bytes": 22130,
+   "start": 2271,
+   "resp": 2589,
+   "end": 2503
+  },
+  {
+   "url": "/musicSpace/demo/bei-balcony.jpg",
+   "proto": "http/1.1",
+   "prio": "Low",
+   "bytes": 34251,
+   "start": 2271,
+   "resp": 2591,
+   "end": 2550
+  },
+  {
+   "url": "/musicSpace/fonts/doodle/digits-0.woff2",
+   "proto": "http/1.1",
+   "prio": "VeryHigh",
+   "bytes": 14609,
+   "start": 2330,
+   "resp": 2562,
+   "end": 2542
+  },
+  {
+   "url": "/musicSpace/fonts/doodle/hand-2.woff2",
+   "proto": "http/1.1",
+   "prio": "VeryHigh",
+   "bytes": 158454,
+   "start": 2551,
+   "resp": 2850,
+   "end": 2846
+  },
+  {
+   "url": "/musicSpace/demo/sample-crowd.jpg",
+   "proto": "http/1.1",
+   "prio": "Low",
+   "bytes": 81501,
+   "start": 2915,
+   "resp": 3069,
+   "end": 3212
+  },
+  {
+   "url": "/musicSpace/demo/sample-stage.jpg",
+   "proto": "http/1.1",
+   "prio": "Low",
+   "bytes": 90731,
+   "start": 2915,
+   "resp": 3067,
+   "end": 3220
+  }
+ ],
+ "perf": {
+  "origin": 1791300115000.6,
+  "paints": [
+   {
+    "name": "first-paint",
+    "t": 856
+   },
+   {
+    "name": "first-contentful-paint",
+    "t": 856
+   }
+  ],
+  "log": {
+   "ready": 2923,
+   "loadingHidden": 2665.899999976158,
+   "firstStyled": null
+  },
+  "boot": "ready",
+  "fontsLoaded": 10,
+  "title": "Music Space · 同一刻，另一面"
+ }
+}

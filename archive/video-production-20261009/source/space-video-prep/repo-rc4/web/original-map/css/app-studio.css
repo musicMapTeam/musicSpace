@@ -1,0 +1,117 @@
+/* 0.6: a small music app with floating tools and tangible objects. */
+:root {
+  --studio-panel:#1b2329; --studio-well:#141b21; --studio-border:#ffffff12;
+  --studio-shadow:0 16px 48px #02080d28,0 2px 5px #02080d1c;
+  --studio-soft-shadow:0 5px 20px #02080d20; --studio-radius:24px;
+}
+html[data-theme="sakura"] { --bg:#f4f1e9; --studio-panel:#fffdf6; --studio-well:#ebe9df; --studio-border:#6f665614; --studio-shadow:0 18px 55px #65595113,0 2px 6px #6559510b; --studio-soft-shadow:0 5px 20px #65595110; }
+html[data-theme] body { background:var(--bg); }
+html[data-theme] body::before,html[data-theme] body::after { display:none; }
+html[data-theme] .app-masthead.app-studio-shell { position:fixed; inset:22px auto 22px 20px; z-index:40; width:72px; min-height:0; margin:0; padding:0; display:block; border:0; background:none; }
+html[data-theme] .app-studio-shell .brand { width:68px; min-height:58px; gap:0; justify-content:center; border:0; }
+html[data-theme] .brand-mark { width:26px; height:33px; gap:4px; transform:rotate(-14deg); }
+html[data-theme] .brand-mark i { width:5px; height:23px; }
+html[data-theme] .brand-mark i:nth-child(2) { height:33px; }
+html[data-theme] .brand-mark i:nth-child(3) { height:18px; }
+html[data-theme] .brand-wordmark { position:absolute; top:17px; left:103px; font-size:21px; font-weight:680; letter-spacing:-.06em; white-space:nowrap; color:var(--text); }
+html[data-theme] .brand-light { color:var(--muted); font-weight:400; }
+html[data-theme] .primary-nav { position:absolute; top:50%; width:72px; transform:translateY(-50%); display:flex; flex-direction:column; gap:5px; padding:8px; border:1px solid var(--studio-border); border-radius:27px; background:var(--studio-panel); box-shadow:var(--studio-soft-shadow); }
+html[data-theme] .primary-nav .nav-item { width:54px; min-height:65px; padding:10px 0; flex-direction:column; gap:5px; border-radius:19px; font-size:12px; font-weight:500; letter-spacing:0; color:var(--muted); }
+html[data-theme] .primary-nav .nav-item>.icon { display:block; width:21px; height:21px; }
+html[data-theme] .primary-nav .nav-item::after { display:none; }
+html[data-theme] .nav-item.active { color:var(--text); background:var(--studio-well); }
+html[data-theme] .primary-nav .nav-item.active>.icon { color:var(--mint); }
+html[data-theme] .primary-nav .nav-item:hover { background:var(--studio-well); color:var(--text); }
+html[data-theme] .masthead-tools { position:fixed; right:30px; top:26px; gap:8px; display:flex; align-items:center; }
+html[data-theme] .masthead-tools .demo-help { width:38px; height:38px; min-width:38px; min-height:38px; display:grid; place-items:center; border:0; padding:0; color:var(--muted); }
+html[data-theme] .app-body { margin-left:112px; padding:0; min-height:100dvh; }
+html[data-theme] .main-content { max-width:1660px; min-height:100dvh; padding:94px 32px 32px 16px; margin:0 auto; }
+html[data-theme] .main-content:focus { outline:none; }
+html[data-theme] .storage-warning { position:relative; margin:80px 32px 12px 16px; z-index:30; }
+html[data-theme] .storage-warning>span { display:block; overflow-wrap:anywhere; }
+/* The doubled class keeps the weight (0,3,1) the old shared-button list gave this rule, so every button rule tuned against it resolves as before. */
+html[data-theme] .button.button { border-radius:13px; min-height:44px; padding:10px 17px; font-size:13px; font-weight:550; border-color:var(--line); transition:transform .18s,background .18s,box-shadow .18s; }
+html[data-theme] .button--primary { background:var(--button-fill); color:var(--button-ink); border-color:var(--button-fill); }
+html[data-theme] .button:hover:not(:disabled) { transform:translateY(-1px); }
+html[data-theme] .button:active:not(:disabled) { transform:translateY(1px); }
+html[data-theme] .icon-button { border-radius:50%; }
+html[data-theme] :is(.about-dialog,.map-dialog) { border-radius:var(--studio-radius); border:1px solid var(--studio-border); box-shadow:0 30px 110px #0005; }
+html[data-theme] dialog::backdrop { background:#0e151c88; backdrop-filter:blur(8px); }
+html[data-theme] .about-dialog { background:var(--studio-panel); }
+html[data-theme] .about-dialog h2 { font-size:23px; letter-spacing:-.04em; margin:0; }
+html[data-theme] .about-facts { border:0; }
+html[data-theme] .about-facts p { display:grid; grid-template-columns:48px 1fr; gap:16px; }
+html[data-theme] .about-facts span { margin:0; font-size:13px; color:var(--muted); }
+html[data-theme] .toast { border:0; border-radius:16px; box-shadow:var(--studio-shadow); }
+
+/* Personal collection: tabs and objects, without a document masthead. */
+html[data-theme] .records-page { max-width:1120px; padding-top:12px; }
+html[data-theme] .records-heading { align-items:center; padding:0; margin:0 0 26px; border:0; }
+html[data-theme] .records-heading h1 { font-size:27px; margin:0; font-weight:600; letter-spacing:-.04em; }
+html[data-theme] .records-heading .button { background:var(--studio-panel); border:0; }
+html[data-theme] .records-filters { display:inline-flex; gap:4px; padding:5px; margin:0 0 18px; border:0; border-radius:16px; background:var(--studio-well); }
+html[data-theme] .records-filters button { padding:9px 14px; gap:8px; border-radius:12px; font-size:12px; }
+html[data-theme] .records-filters button[aria-pressed=true] { background:var(--studio-panel); box-shadow:0 2px 7px #00000008; }
+html[data-theme] .records-filters button::after { display:none; }
+html[data-theme] .records-filters button span { color:var(--muted); font-size:12px; }
+html[data-theme] .records-page .section-heading { margin-bottom:18px; padding:0; border:0; }
+html[data-theme] .records-page .section-heading h2 { font-size:17px; font-weight:550; letter-spacing:0; }
+html[data-theme] .records-page .empty-state { border:0; border-radius:var(--studio-radius); background:var(--studio-panel); padding:40px 24px; }
+html[data-theme] .records-page .empty-state h3 { font-size:19px; }
+html[data-theme] .records-page .map-storage-note { margin-top:14px; color:var(--muted); font-size:12px; }
+html[data-theme] .map-records { margin:24px 0 0; }
+html[data-theme] .map-records-heading { margin-bottom:18px; }
+html[data-theme] .map-records .map-records-heading h2 { font-size:15px; font-weight:550; }
+html[data-theme] .map-records-heading>span { font-size:12px; }
+/* Two routes side by side only where each card keeps a readable line; the collection sheet is one column. */
+html[data-theme] .map-record-list { grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr)); gap:16px; }
+/* Sleeve on the left; the words take the rest of the row and the actions sit under them, so no line is squeezed beside the buttons. */
+html[data-theme] .map-records .map-record { display:grid; grid-template-columns:52px minmax(0,1fr); grid-template-areas:'disc copy' 'disc actions'; align-items:start; border:0; border-radius:18px; background:var(--studio-panel); box-shadow:var(--studio-soft-shadow); gap:8px 16px; padding:16px; }
+html[data-theme] .map-records .map-record__disc { grid-area:disc; }
+/* Lines break at the spaced separators, never inside a name, a count or the date. */
+html[data-theme] .map-records .map-record__copy { grid-area:copy; word-break:keep-all; overflow-wrap:anywhere; }
+html[data-theme] .map-records .map-record__actions { grid-area:actions; flex-wrap:wrap; margin-left:0; }
+html[data-theme] .map-records .map-record__actions .button { white-space:nowrap; }
+html[data-theme] .map-record__disc { width:52px; height:52px; }
+html[data-theme] .map-record__disc span { width:25px; height:25px; font-size:12px; }
+html[data-theme] .map-record h3 { margin:5px 0; font-size:15px; }
+html[data-theme] .map-record__meta { font-size:12px; }
+html[data-theme] .map-record p { font-size:12px; }
+html[data-theme] .map-record__actions { margin-left:auto; gap:3px; }
+html[data-theme] .map-record__actions .button { font-size:12px; padding:7px; min-height:34px; }
+html[data-theme] .map-record__actions .icon-button { width:30px; height:30px; min-width:30px; min-height:30px; border:0; }
+
+@media(min-width:761px) and (max-width:1100px) {
+  html[data-theme] .main-content { padding-right:22px; }
+}
+@media(max-width:760px) {
+  html[data-theme] .app-masthead.app-studio-shell { position:absolute; inset:12px 15px auto; width:auto; height:46px; }
+  html[data-theme] .app-studio-shell .brand { width:auto; min-height:42px; gap:9px; }
+  html[data-theme] .brand-mark { width:19px; height:26px; gap:3px; }
+  html[data-theme] .brand-mark i { width:4px; height:18px; }
+  html[data-theme] .brand-mark i:nth-child(2) { height:26px; }
+  html[data-theme] .brand-mark i:nth-child(3) { height:14px; }
+  html[data-theme] .brand-wordmark { position:static; font-size:20px; }
+  html[data-theme] .primary-nav { display:none; }
+  html[data-theme] .masthead-tools { position:absolute; right:0; top:3px; gap:2px; }
+  html[data-theme] .masthead-tools .demo-help { width:32px; min-width:32px; }
+  html[data-theme] .app-body { margin:0; padding:0 0 calc(91px + env(safe-area-inset-bottom)); }
+  html[data-theme] .main-content { min-height:calc(100dvh - 91px); padding:80px 18px 16px; }
+  html[data-theme] .mobile-nav { position:fixed; inset:auto 22px calc(15px + env(safe-area-inset-bottom)); display:flex; justify-content:center; align-items:center; gap:4px; z-index:50; width:auto; max-width:380px; margin:0 auto; min-height:63px; padding:6px; border:1px solid var(--studio-border); border-radius:24px; background:var(--studio-panel); box-shadow:0 8px 30px #0002; }
+  html[data-theme] .mobile-nav .nav-item { display:flex; flex:1; min-height:48px; flex-direction:row; gap:7px; padding:9px 8px; border-radius:17px; font-size:12px; color:var(--muted); }
+  html[data-theme] .mobile-nav .nav-item.active { background:var(--studio-well); color:var(--text); }
+  html[data-theme] .mobile-nav .nav-item>.icon { width:19px; height:19px; }
+  html[data-theme] .mobile-nav .nav-item.active::before,html[data-theme] .mobile-nav .nav-item::after { display:none; }
+  html[data-theme] .toast { bottom:100px; font-size:12px; }
+  html[data-theme] .storage-warning { margin:65px 16px 12px; font-size:12px; }
+  html[data-theme] .records-page { padding-top:4px; }
+  html[data-theme] .records-heading { margin-bottom:23px; gap:12px; }
+  html[data-theme] .records-heading h1 { font-size:23px; }
+  html[data-theme] .records-heading .button { font-size:12px; padding:7px 10px; min-height:36px; }
+  html[data-theme] .records-filters { display:flex; }
+  html[data-theme] .records-filters button { flex:1; justify-content:center; padding:9px 7px; font-size:12px; gap:6px; }
+  html[data-theme] .map-record-list { grid-template-columns:1fr; }
+}
+@media(prefers-reduced-motion:reduce) {
+  html[data-theme] .button { transition:none; }
+}

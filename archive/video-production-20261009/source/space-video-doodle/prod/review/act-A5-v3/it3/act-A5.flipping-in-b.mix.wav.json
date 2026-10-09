@@ -1,0 +1,57 @@
+{
+ "map": "flipping-in-b",
+ "bed": "/tmp/space-video-doodle/prod/audio/beds/flipping-in-b.wav",
+ "range": [
+  105.3667,
+  140.4833
+ ],
+ "full": false,
+ "music": {
+  "I": -14.8,
+  "TP": -1.5,
+  "LRA": 1.6
+ },
+ "sfx_before_gain": {
+  "I": -30.1,
+  "TP": -7.9,
+  "LRA": 5.0
+ },
+ "sfx_gain_db": 6.0,
+ "sfx": {
+  "I": -24.1,
+  "TP": -1.9,
+  "LRA": 5.0
+ },
+ "sfx_vs_music_LU": -9.3,
+ "mix": {
+  "I": -14.6,
+  "TP": -1.5,
+  "LRA": 1.7
+ },
+ "normalisation": {
+  "gain_db": 0.0,
+  "limiter_max_reduction_db": -2.73
+ },
+ "sfx_counts": {
+  "slam": 17,
+  "slap": 11,
+  "pop": 9,
+  "squeak": 4,
+  "click": 15,
+  "flip": 1,
+  "boop": 2,
+  "impact": 1,
+  "typetick": 52,
+  "blip": 5,
+  "scratch": 1,
+  "tick": 10,
+  "highlighter": 1,
+  "ding": 3,
+  "swish": 3,
+  "sparkle": 6,
+  "whoosh": 3,
+  "tape": 3
+ },
+ "sfx_placed": 147,
+ "note": "all SFX synthesized in tools/sfx.py from noise/oscillators; no samples"
+}

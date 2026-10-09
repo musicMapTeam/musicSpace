@@ -1,0 +1,382 @@
+[
+ {
+  "label": "MAP-D1-round master",
+  "file": "/tmp/space-video-doodle/prod/capture/map-rc2/desktop/master/MAP-D1-round.mp4",
+  "bytes": 71433145,
+  "MB": 71.4,
+  "duration_s": 25.167,
+  "video": "h264 High 3840x2160 60/1 yuv420p",
+  "colour": "bt709/bt709/bt709/tv",
+  "frames": 1510,
+  "bitrate_mbps": 22.7,
+  "audio_streams": 0,
+  "frames_decoded": 1510,
+  "frames_rig": 1510,
+  "same_count": true,
+  "longest_still": {
+   "frames": 10,
+   "at_s": 2.533
+  },
+  "still_over_1s": [],
+  "stutters": {
+   "count": 4,
+   "at_s": [
+    10.867,
+    16.283,
+    17.683,
+    22.1
+   ]
+  },
+  "exact_repeat_runs_over_9f": [],
+  "exact_unique": 1436,
+  "motion_windows": [
+   {
+    "kind": "tap ring",
+    "label": "tap 「音乐探索」 (beat 3)",
+    "from": 88,
+    "to": 110,
+    "allow": 1,
+    "frames": 23,
+    "exactRepeats": 0,
+    "longestRepeat": 1,
+    "minChange": 0.007,
+    "ok": true
+   },
+   {
+    "kind": "tap ring",
+    "label": "flip 《千里之外》",
+    "from": 229,
+    "to": 251,
+    "allow": 1,
+    "frames": 23,
+    "exactRepeats": 0,
+    "longestRepeat": 1,
+    "minChange": 0.03,
+    "ok": true
+   },
+   {
+    "kind": "tap ring",
+    "label": "来源 《千里之外》 (beat 3)",
+    "from": 317,
+    "to": 339,
+    "allow": 1,
+    "frames": 23,
+    "exactRepeats": 0,
+    "longestRepeat": 1,
+    "minChange": 0.008,
+    "ok": true
+   },
+   {
+    "kind": "tap ring",
+    "label": "close the paper (×)",
+    "from": 488,
+    "to": 510,
+    "allow": 1,
+    "frames": 23,
+    "exactRepeats": 0,
+    "longestRepeat": 1,
+    "minChange": 0.01,
+    "ok": true
+   },
+   {
+    "kind": "tap ring",
+    "label": "前往 周杰伦 (beat 1)",
+    "from": 528,
+    "to": 550,
+    "allow": 1,
+    "frames": 23,
+    "exactRepeats": 0,
+    "longestRepeat": 1,
+    "minChange": 0.008,
+    "ok": true
+   },
+   {
+    "kind": "scroll",
+    "label": "hand scroll -> 《稻香 / Stay With You》",
+    "from": 615,
+    "to": 651,
+    "allow": 1,
+    "frames": 37,
+    "exactRepeats": 0,
+    "longestRepeat": 1,
+    "minChange": 0.505,
+    "ok": true
+   },
+   {
+    "kind": "tap ring",
+    "label": "flip 《稻香》",
+    "from": 671,
+    "to": 693,
+    "allow": 1,
+    "frames": 23,
+    "exactRepeats": 0,
+    "longestRepeat": 1,
+    "minChange": 0.018,
+    "ok": true
+   },
+   {
+    "kind": "tap ring",
+    "label": "前往 林俊杰 (beat 3)",
+    "from": 759,
+    "to": 781,
+    "allow": 1,
+    "frames": 23,
+    "exactRepeats": 0,
+    "longestRepeat": 1,
+    "minChange": 0.005,
+    "ok": true
+   },
+   {
+    "kind": "scroll",
+    "label": "hand scroll -> 《手心的蔷薇》",
+    "from": 840,
+    "to": 867,
+    "allow": 1,
+    "frames": 28,
+    "exactRepeats": 0,
+    "longestRepeat": 1,
+    "minChange": 0.44,
+    "ok": true
+   },
+   {
+    "kind": "tap ring",
+    "label": "flip 《手心的蔷薇》",
+    "from": 887,
+    "to": 909,
+    "allow": 1,
+    "frames": 23,
+    "exactRepeats": 0,
+    "longestRepeat": 1,
+    "minChange": 0.034,
+    "ok": true
+   },
+   {
+    "kind": "tap ring",
+    "label": "前往 邓紫棋 = 抵达 (beat 3)",
+    "from": 975,
+    "to": 997,
+    "allow": 1,
+    "frames": 23,
+    "exactRepeats": 0,
+    "longestRepeat": 1,
+    "minChange": 0.01,
+    "ok": true
+   },
+   {
+    "kind": "tap ring",
+    "label": "「+ 留下」《千里之外》",
+    "from": 1210,
+    "to": 1232,
+    "allow": 1,
+    "frames": 23,
+    "exactRepeats": 0,
+    "longestRepeat": 1,
+    "minChange": 0.041,
+    "ok": true
+   },
+   {
+    "kind": "scroll",
+    "label": "setlist scroll -> 《手心的蔷薇》",
+    "from": 1327,
+    "to": 1377,
+    "allow": 1,
+    "frames": 51,
+    "exactRepeats": 0,
+    "longestRepeat": 1,
+    "minChange": 0.672,
+    "ok": true
+   }
+  ],
+  "motion_ok": true
+ },
+ {
+  "label": "MAP-D1-round edit 1080",
+  "file": "/tmp/space-video-doodle/prod/capture/map-rc2/desktop/1080/MAP-D1-round.mp4",
+  "bytes": 32922690,
+  "MB": 32.9,
+  "duration_s": 25.167,
+  "video": "h264 High 1920x1080 60/1 yuv420p",
+  "colour": "bt709/bt709/bt709/tv",
+  "frames": 1510,
+  "bitrate_mbps": 10.5,
+  "audio_streams": 0,
+  "frames_decoded": 1510,
+  "frames_rig": 1510,
+  "same_count": true,
+  "longest_still": {
+   "frames": 10,
+   "at_s": 2.533
+  },
+  "still_over_1s": [],
+  "stutters": {
+   "count": 4,
+   "at_s": [
+    10.867,
+    16.283,
+    17.683,
+    22.1
+   ]
+  },
+  "exact_repeat_runs_over_9f": [],
+  "exact_unique": 1436,
+  "motion_windows": [
+   {
+    "kind": "tap ring",
+    "label": "tap 「音乐探索」 (beat 3)",
+    "from": 88,
+    "to": 110,
+    "allow": 1,
+    "frames": 23,
+    "exactRepeats": 0,
+    "longestRepeat": 1,
+    "minChange": 0.006,
+    "ok": true
+   },
+   {
+    "kind": "tap ring",
+    "label": "flip 《千里之外》",
+    "from": 229,
+    "to": 251,
+    "allow": 1,
+    "frames": 23,
+    "exactRepeats": 0,
+    "longestRepeat": 1,
+    "minChange": 0.034,
+    "ok": true
+   },
+   {
+    "kind": "tap ring",
+    "label": "来源 《千里之外》 (beat 3)",
+    "from": 317,
+    "to": 339,
+    "allow": 1,
+    "frames": 23,
+    "exactRepeats": 0,
+    "longestRepeat": 1,
+    "minChange": 0.005,
+    "ok": true
+   },
+   {
+    "kind": "tap ring",
+    "label": "close the paper (×)",
+    "from": 488,
+    "to": 510,
+    "allow": 1,
+    "frames": 23,
+    "exactRepeats": 0,
+    "longestRepeat": 1,
+    "minChange": 0.004,
+    "ok": true
+   },
+   {
+    "kind": "tap ring",
+    "label": "前往 周杰伦 (beat 1)",
+    "from": 528,
+    "to": 550,
+    "allow": 1,
+    "frames": 23,
+    "exactRepeats": 0,
+    "longestRepeat": 1,
+    "minChange": 0.004,
+    "ok": true
+   },
+   {
+    "kind": "scroll",
+    "label": "hand scroll -> 《稻香 / Stay With You》",
+    "from": 615,
+    "to": 651,
+    "allow": 1,
+    "frames": 37,
+    "exactRepeats": 0,
+    "longestRepeat": 1,
+    "minChange": 0.523,
+    "ok": true
+   },
+   {
+    "kind": "tap ring",
+    "label": "flip 《稻香》",
+    "from": 671,
+    "to": 693,
+    "allow": 1,
+    "frames": 23,
+    "exactRepeats": 0,
+    "longestRepeat": 1,
+    "minChange": 0.02,
+    "ok": true
+   },
+   {
+    "kind": "tap ring",
+    "label": "前往 林俊杰 (beat 3)",
+    "from": 759,
+    "to": 781,
+    "allow": 1,
+    "frames": 23,
+    "exactRepeats": 0,
+    "longestRepeat": 1,
+    "minChange": 0.01,
+    "ok": true
+   },
+   {
+    "kind": "scroll",
+    "label": "hand scroll -> 《手心的蔷薇》",
+    "from": 840,
+    "to": 867,
+    "allow": 1,
+    "frames": 28,
+    "exactRepeats": 0,
+    "longestRepeat": 1,
+    "minChange": 0.456,
+    "ok": true
+   },
+   {
+    "kind": "tap ring",
+    "label": "flip 《手心的蔷薇》",
+    "from": 887,
+    "to": 909,
+    "allow": 1,
+    "frames": 23,
+    "exactRepeats": 0,
+    "longestRepeat": 1,
+    "minChange": 0.04,
+    "ok": true
+   },
+   {
+    "kind": "tap ring",
+    "label": "前往 邓紫棋 = 抵达 (beat 3)",
+    "from": 975,
+    "to": 997,
+    "allow": 1,
+    "frames": 23,
+    "exactRepeats": 0,
+    "longestRepeat": 1,
+    "minChange": 0.008,
+    "ok": true
+   },
+   {
+    "kind": "tap ring",
+    "label": "「+ 留下」《千里之外》",
+    "from": 1210,
+    "to": 1232,
+    "allow": 1,
+    "frames": 23,
+    "exactRepeats": 0,
+    "longestRepeat": 1,
+    "minChange": 0.041,
+    "ok": true
+   },
+   {
+    "kind": "scroll",
+    "label": "setlist scroll -> 《手心的蔷薇》",
+    "from": 1327,
+    "to": 1377,
+    "allow": 1,
+    "frames": 51,
+    "exactRepeats": 0,
+    "longestRepeat": 1,
+    "minChange": 0.674,
+    "ok": true
+   }
+  ],
+  "motion_ok": true
+ }
+]

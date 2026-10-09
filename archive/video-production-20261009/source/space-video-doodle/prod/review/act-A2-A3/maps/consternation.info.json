@@ -1,0 +1,1988 @@
+{
+ "scene": "act-A2-A3",
+ "range_frames": [
+  0,
+  10410
+ ],
+ "fps": 60,
+ "W": 1920,
+ "H": 1080,
+ "map": {
+  "id": "consternation",
+  "label": "Wax Lyricist《Consternation At The Disco》130 BPM — 93 bars (+3 ADD bars), the breakdown for the title and the wait, natural end",
+  "end_s": 173.494,
+  "grid_end_s": 171.694,
+  "bpm": 130,
+  "beat_s": 0.46155,
+  "bar_s": 1.8462
+ },
+ "duration": 173.494,
+ "frames": 10410,
+ "shots": [
+  {
+   "id": "A2-E-phone",
+   "t0": 36.923,
+   "t1": 48,
+   "z": 10
+  },
+  {
+   "id": "A2-E-type",
+   "t0": 36.923,
+   "t1": 48,
+   "z": 30
+  },
+  {
+   "id": "W-A2-room",
+   "t0": 47.7593,
+   "t1": 48.13,
+   "z": 90
+  },
+  {
+   "id": "A2-E4-room",
+   "t0": 48,
+   "t1": 53.539,
+   "z": 10
+  },
+  {
+   "id": "A2-E4-type",
+   "t0": 48,
+   "t1": 53.539,
+   "z": 30
+  },
+  {
+   "id": "A3-fixed",
+   "t0": 53.539,
+   "t1": 75.693,
+   "z": 45
+  },
+  {
+   "id": "A3-A-phone",
+   "t0": 53.539,
+   "t1": 66.462,
+   "z": 10
+  },
+  {
+   "id": "A3-A-type",
+   "t0": 53.539,
+   "t1": 66.462,
+   "z": 30
+  },
+  {
+   "id": "A3-A4-wall",
+   "t0": 66.462,
+   "t1": 68.308,
+   "z": 10
+  },
+  {
+   "id": "A3-A4-type",
+   "t0": 66.462,
+   "t1": 68.308,
+   "z": 30
+  },
+  {
+   "id": "A3-A5-phone",
+   "t0": 68.308,
+   "t1": 75.693,
+   "z": 10
+  },
+  {
+   "id": "A3-A5-type",
+   "t0": 68.308,
+   "t1": 75.693,
+   "z": 30
+  },
+  {
+   "id": "W-A3-A4",
+   "t0": 75.4522,
+   "t1": 75.823,
+   "z": 90
+  }
+ ],
+ "events": [
+  {
+   "t": 36.923,
+   "kind": "cut",
+   "label": "A2-E-phone",
+   "pos": "21:1",
+   "sfx": "none",
+   "shot": "A2-E-phone"
+  },
+  {
+   "t": 36.923,
+   "kind": "rise",
+   "label": "phone rises (drop)",
+   "pos": "21:1",
+   "sfx": "whoosh",
+   "pan": -0.153125,
+   "shot": "A2-E-phone",
+   "id": "A2-E-phone:1"
+  },
+  {
+   "t": 36.923,
+   "kind": "sfx",
+   "label": "boom",
+   "pos": "21:1",
+   "sfx": "boom",
+   "gain": -3,
+   "visual": false
+  },
+  {
+   "t": 36.923,
+   "kind": "slam",
+   "label": "同场的人，",
+   "pos": "21:1",
+   "pan": -0.025000000000000012,
+   "size": 180,
+   "shot": "A2-E-type",
+   "id": "A2-E-type:5"
+  },
+  {
+   "t": 37.3845,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "21:2",
+   "gain": -10,
+   "pan": -0.05312500000000001,
+   "note": 0,
+   "shot": "A2-E-phone",
+   "id": "A2-E-phone:8"
+  },
+  {
+   "t": 37.846,
+   "kind": "slam",
+   "label": "再进同一间 Livehouse。",
+   "pos": "21:3",
+   "pan": -0.025000000000000012,
+   "size": 128,
+   "shot": "A2-E-type",
+   "id": "A2-E-type:6"
+  },
+  {
+   "t": 38.3075,
+   "kind": "pop",
+   "label": "star",
+   "pos": "21:4",
+   "gain": -10,
+   "pan": 0.24999999999999997,
+   "note": 0,
+   "shot": "A2-E-phone",
+   "id": "A2-E-phone:9"
+  },
+  {
+   "t": 38.769,
+   "kind": "punch",
+   "label": "punch: the card 同一刻，另一面。",
+   "pos": "22:1",
+   "sfx": "thump",
+   "shot": "A2-E-phone"
+  },
+  {
+   "t": 38.99987,
+   "kind": "draw",
+   "label": "wavy 同一间",
+   "pos": "22:1.5",
+   "shot": "A2-E-type",
+   "id": "A2-E-type:7",
+   "dur": 0.27693
+  },
+  {
+   "t": 39.6925,
+   "kind": "tap",
+   "label": "tap 进入示例现场",
+   "pos": "22:3",
+   "sfx": "click",
+   "note": 0
+  },
+  {
+   "t": 40.15425,
+   "kind": "pop",
+   "label": "ding heart",
+   "pos": "22:4",
+   "sfx": "ding",
+   "gain": -6,
+   "pan": -0.05312500000000001,
+   "shot": "A2-E-phone",
+   "id": "A2-E-phone:10"
+  },
+  {
+   "t": 40.616,
+   "kind": "slap",
+   "label": "pink paper",
+   "pos": "23:1",
+   "sfx": "slap",
+   "gain": -6,
+   "pan": -0.153125,
+   "shot": "A2-E-phone",
+   "id": "A2-E-phone:3"
+  },
+  {
+   "t": 40.616,
+   "kind": "slam",
+   "label": "带上你的小人，",
+   "pos": "23:1",
+   "pan": -0.03437500000000001,
+   "size": 128,
+   "shot": "A2-E-type",
+   "id": "A2-E-type:11"
+  },
+  {
+   "t": 40.616,
+   "kind": "tap",
+   "label": "tap preset 1",
+   "pos": "23:1",
+   "sfx": "click",
+   "note": 0
+  },
+  {
+   "t": 40.616,
+   "kind": "pop",
+   "label": "look 1",
+   "pos": "23:1",
+   "sfx": "none",
+   "pan": -0.04843750000000001,
+   "shot": "A2-E-phone",
+   "id": "A2-E-phone:13"
+  },
+  {
+   "t": 41.0775,
+   "kind": "tap",
+   "label": "tap preset 2",
+   "pos": "23:2",
+   "sfx": "click",
+   "note": 3
+  },
+  {
+   "t": 41.0775,
+   "kind": "pop",
+   "label": "look 2",
+   "pos": "23:2",
+   "sfx": "none",
+   "pan": -0.03906250000000001,
+   "shot": "A2-E-phone",
+   "id": "A2-E-phone:14"
+  },
+  {
+   "t": 41.539,
+   "kind": "tap",
+   "label": "tap preset 3",
+   "pos": "23:3",
+   "sfx": "click",
+   "note": 0
+  },
+  {
+   "t": 41.539,
+   "kind": "pop",
+   "label": "look 3",
+   "pos": "23:3",
+   "sfx": "none",
+   "pan": -0.05312500000000001,
+   "shot": "A2-E-phone",
+   "id": "A2-E-phone:15"
+  },
+  {
+   "t": 42.0005,
+   "kind": "tap",
+   "label": "tap preset 4",
+   "pos": "23:4",
+   "sfx": "click",
+   "note": 3
+  },
+  {
+   "t": 42.0005,
+   "kind": "pop",
+   "label": "look 4",
+   "pos": "23:4",
+   "sfx": "none",
+   "pan": -0.0375,
+   "shot": "A2-E-phone",
+   "id": "A2-E-phone:16"
+  },
+  {
+   "t": 42.462,
+   "kind": "punch",
+   "label": "punch: the figure turns",
+   "pos": "24:1",
+   "sfx": "thump",
+   "gain": -4
+  },
+  {
+   "t": 42.462,
+   "kind": "type",
+   "label": "今晚，我这样。",
+   "pos": "24:1",
+   "note": 7,
+   "shot": "A2-E-type",
+   "id": "A2-E-type:12",
+   "dur": 0.8077125
+  },
+  {
+   "t": 42.462,
+   "kind": "tap",
+   "label": "tap angle 1",
+   "pos": "24:1",
+   "sfx": "click",
+   "note": 0
+  },
+  {
+   "t": 42.9235,
+   "kind": "tap",
+   "label": "tap angle 2",
+   "pos": "24:2",
+   "sfx": "click",
+   "note": 3
+  },
+  {
+   "t": 42.9235,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "24:2",
+   "sfx": "none",
+   "gain": -6,
+   "pan": -0.05312500000000001,
+   "note": 0,
+   "shot": "A2-E-phone",
+   "id": "A2-E-phone:17"
+  },
+  {
+   "t": 43.385,
+   "kind": "tap",
+   "label": "tap angle 3",
+   "pos": "24:3",
+   "sfx": "click",
+   "note": 0
+  },
+  {
+   "t": 43.38505,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "24:3",
+   "sfx": "none",
+   "gain": -6,
+   "pan": -0.045312499999999985,
+   "note": 1,
+   "shot": "A2-E-phone",
+   "id": "A2-E-phone:18"
+  },
+  {
+   "t": 43.8465,
+   "kind": "tap",
+   "label": "tap angle 4",
+   "pos": "24:4",
+   "sfx": "click",
+   "note": 3
+  },
+  {
+   "t": 43.8465,
+   "kind": "pop",
+   "label": "ding star",
+   "pos": "24:4",
+   "sfx": "ding",
+   "gain": -6,
+   "pan": -0.04999999999999999,
+   "shot": "A2-E-phone",
+   "id": "A2-E-phone:19"
+  },
+  {
+   "t": 44.07725,
+   "kind": "tap",
+   "label": "tap 保存这个我 (off frame; E3 opens on the toast 小人已保存)",
+   "pos": "24:4.5",
+   "sfx": "click",
+   "note": 0
+  },
+  {
+   "t": 44.07725,
+   "kind": "draw",
+   "label": "saved check",
+   "pos": "24:4.5",
+   "sfx": "pencil",
+   "shot": "A2-E-phone",
+   "id": "A2-E-phone:20",
+   "dur": 0.18462
+  },
+  {
+   "t": 44.308,
+   "kind": "slap",
+   "label": "mint paper",
+   "pos": "25:1",
+   "sfx": "slap",
+   "gain": -6,
+   "pan": -0.15,
+   "shot": "A2-E-phone",
+   "id": "A2-E-phone:4"
+  },
+  {
+   "t": 44.308,
+   "kind": "slam",
+   "label": "愿意打招呼，",
+   "pos": "25:1",
+   "pan": -0.025000000000000012,
+   "size": 128,
+   "shot": "A2-E-type",
+   "id": "A2-E-type:21"
+  },
+  {
+   "t": 45.231,
+   "kind": "slam",
+   "label": "还是 安静参与？",
+   "pos": "25:3",
+   "pan": -0.025000000000000012,
+   "size": 128,
+   "shot": "A2-E-type",
+   "id": "A2-E-type:22"
+  },
+  {
+   "t": 45.231,
+   "kind": "draw",
+   "label": "bracket around both options",
+   "pos": "25:3",
+   "sfx": "squeak",
+   "shot": "A2-E-phone",
+   "id": "A2-E-phone:24",
+   "dur": 0.323085
+  },
+  {
+   "t": 46.154,
+   "kind": "pop",
+   "label": "自己选。",
+   "pos": "26:1",
+   "pan": -0.017187499999999988,
+   "size": 128,
+   "shot": "A2-E-type",
+   "id": "A2-E-type:23"
+  },
+  {
+   "t": 46.154,
+   "kind": "tap",
+   "label": "tick consent",
+   "pos": "26:1",
+   "sfx": "click",
+   "note": 0
+  },
+  {
+   "t": 46.154,
+   "kind": "draw",
+   "label": "mint check on the consent tick",
+   "pos": "26:1",
+   "sfx": "pencil",
+   "shot": "A2-E-phone",
+   "id": "A2-E-phone:25",
+   "dur": 0.230775
+  },
+  {
+   "t": 47.077,
+   "kind": "tap",
+   "label": "tap 进入示例现场",
+   "pos": "26:3",
+   "sfx": "click",
+   "note": 0
+  },
+  {
+   "t": 47.5385,
+   "kind": "pop",
+   "label": "ding star",
+   "pos": "26:4",
+   "sfx": "ding",
+   "gain": -6,
+   "pan": -0.05312500000000001,
+   "shot": "A2-E-phone",
+   "id": "A2-E-phone:26"
+  },
+  {
+   "t": 47.76925,
+   "kind": "wipe",
+   "label": "W-A2-room",
+   "pos": "26:4.5",
+   "shot": "W-A2-room"
+  },
+  {
+   "t": 48,
+   "kind": "cut",
+   "label": "A2-E4-room",
+   "pos": "27:1",
+   "sfx": "none",
+   "shot": "A2-E4-room"
+  },
+  {
+   "t": 48,
+   "kind": "slam",
+   "label": "看看谁也在。",
+   "pos": "27:1",
+   "pan": -0.2525,
+   "size": 128,
+   "shot": "A2-E4-type",
+   "id": "A2-E4-type:39"
+  },
+  {
+   "t": 48.46175,
+   "kind": "draw",
+   "label": "circle 阿遥",
+   "pos": "27:2",
+   "gain": -8,
+   "shot": "A2-E4-room",
+   "id": "A2-E4-room:30",
+   "dur": 0.25385250000000004
+  },
+  {
+   "t": 48.9235,
+   "kind": "draw",
+   "label": "circle 小满",
+   "pos": "27:3",
+   "gain": -8,
+   "shot": "A2-E4-room",
+   "id": "A2-E4-room:31",
+   "dur": 0.25385250000000004
+  },
+  {
+   "t": 48.9235,
+   "kind": "stamp",
+   "label": "stamp 示例角色 · 自动回复",
+   "pos": "27:3",
+   "pan": 0.14375000000000002,
+   "size": 56,
+   "shot": "A2-E4-type",
+   "id": "A2-E4-type:40"
+  },
+  {
+   "t": 49.38525,
+   "kind": "draw",
+   "label": "circle 北屿",
+   "pos": "27:4",
+   "gain": -8,
+   "shot": "A2-E4-room",
+   "id": "A2-E4-room:32",
+   "dur": 0.25385250000000004
+  },
+  {
+   "t": 49.847,
+   "kind": "draw",
+   "label": "circle 林间",
+   "pos": "28:1",
+   "gain": -8,
+   "shot": "A2-E4-room",
+   "id": "A2-E4-room:33",
+   "dur": 0.25385250000000004
+  },
+  {
+   "t": 50.3085,
+   "kind": "draw",
+   "label": "circle 阿宁 · 我",
+   "pos": "28:2",
+   "sfx": "none",
+   "shot": "A2-E4-room",
+   "id": "A2-E4-room:34",
+   "dur": 0.230775
+  },
+  {
+   "t": 50.3085,
+   "kind": "pop",
+   "label": "heart on 阿宁 · 我",
+   "pos": "28:2",
+   "sfx": "boop",
+   "gain": -4,
+   "pan": -0.3,
+   "shot": "A2-E4-room",
+   "id": "A2-E4-room:35"
+  },
+  {
+   "t": 50.77,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "28:3",
+   "gain": -10,
+   "pan": -0.3,
+   "note": 0,
+   "shot": "A2-E4-room",
+   "id": "A2-E4-room:36"
+  },
+  {
+   "t": 51.00078,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "28:3.5",
+   "sfx": "none",
+   "gain": -10,
+   "pan": -0.3,
+   "note": 1,
+   "shot": "A2-E4-room",
+   "id": "A2-E4-room:37"
+  },
+  {
+   "t": 51.2315,
+   "kind": "pop",
+   "label": "ding star",
+   "pos": "28:4",
+   "sfx": "ding",
+   "gain": -6,
+   "pan": 0.24531249999999996,
+   "shot": "A2-E4-type",
+   "id": "A2-E4-type:41"
+  },
+  {
+   "t": 53.539,
+   "kind": "fade",
+   "label": "AI disclosure",
+   "pos": "29:1",
+   "pan": -0.25875,
+   "size": 36,
+   "shot": "A3-fixed",
+   "id": "A3-fixed:43"
+  },
+  {
+   "t": 53.539,
+   "kind": "cut",
+   "label": "A3-A-phone",
+   "pos": "29:1",
+   "sfx": "none",
+   "shot": "A3-A-phone"
+  },
+  {
+   "t": 53.539,
+   "kind": "enter-slap",
+   "label": "A3-A-phone",
+   "pos": "29:1",
+   "sfx": "slap",
+   "shot": "A3-A-phone"
+  },
+  {
+   "t": 53.539,
+   "kind": "slam",
+   "label": "放一张你的照片。",
+   "pos": "29:1",
+   "pan": -0.2625,
+   "size": 128,
+   "shot": "A3-A-type",
+   "id": "A3-A-type:53"
+  },
+  {
+   "t": 54.0005,
+   "kind": "draw",
+   "label": "circle 人海 · 示例照片",
+   "pos": "29:2",
+   "shot": "A3-A-phone",
+   "id": "A3-A-phone:49",
+   "dur": 0.27693
+  },
+  {
+   "t": 54.462,
+   "kind": "tap",
+   "label": "tap 人海 · 示例照片",
+   "pos": "29:3",
+   "sfx": "click",
+   "note": 0
+  },
+  {
+   "t": 54.462,
+   "kind": "slap",
+   "label": "polaroid sample photo flies in",
+   "pos": "29:3",
+   "sfx": "slap",
+   "gain": -4,
+   "pan": -0.10937500000000001,
+   "shot": "A3-A-phone",
+   "id": "A3-A-phone:50"
+  },
+  {
+   "t": 54.9235,
+   "kind": "slide",
+   "label": "upload form slides up",
+   "pos": "29:4",
+   "sfx": "shutter",
+   "gain": -6
+  },
+  {
+   "t": 54.9235,
+   "kind": "slide",
+   "label": "the photo flies into the form",
+   "pos": "29:4",
+   "sfx": "swish",
+   "gain": -8
+  },
+  {
+   "t": 55.385,
+   "kind": "punch",
+   "label": "punch: 拍摄于 21:48 + the note",
+   "pos": "30:1",
+   "sfx": "thump",
+   "shot": "A3-A-phone"
+  },
+  {
+   "t": 55.385,
+   "kind": "pop",
+   "label": "21:48",
+   "pos": "30:1",
+   "pan": -0.2625,
+   "size": 240,
+   "shot": "A3-A-type",
+   "id": "A3-A-type:54"
+  },
+  {
+   "t": 55.385,
+   "kind": "swipe",
+   "label": "21:48",
+   "pos": "30:1",
+   "shot": "A3-A-type",
+   "id": "A3-A-type:54",
+   "dur": 0.46155
+  },
+  {
+   "t": 55.385,
+   "kind": "slam",
+   "label": "拍摄时间， 照片自己记得。",
+   "pos": "30:1",
+   "pan": -0.2625,
+   "size": 128,
+   "shot": "A3-A-type",
+   "id": "A3-A-type:55"
+  },
+  {
+   "t": 55.61575,
+   "kind": "draw",
+   "label": "underline 21:48",
+   "pos": "30:1.5",
+   "shot": "A3-A-phone",
+   "id": "A3-A-phone:52",
+   "dur": 0.230775
+  },
+  {
+   "t": 56.308,
+   "kind": "pop",
+   "label": "chip 示例照片 · 拍摄时间为虚构",
+   "pos": "30:3",
+   "pan": 0.103125,
+   "size": 36,
+   "shot": "A3-A-type",
+   "id": "A3-A-type:56"
+  },
+  {
+   "t": 57.231,
+   "kind": "slam",
+   "label": "拍的是哪一面？",
+   "pos": "31:1",
+   "pan": -0.2625,
+   "size": 128,
+   "shot": "A3-A-type",
+   "id": "A3-A-type:57"
+  },
+  {
+   "t": 58.154,
+   "kind": "sfx",
+   "label": "chime",
+   "pos": "31:3",
+   "sfx": "chime",
+   "gain": 0,
+   "visual": false
+  },
+  {
+   "t": 58.154,
+   "kind": "cut",
+   "label": "AI chip on screen (product jump)",
+   "pos": "31:3",
+   "sfx": "none"
+  },
+  {
+   "t": 58.154,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "31:3",
+   "gain": -9,
+   "pan": 0.0703125,
+   "note": 0,
+   "shot": "A3-A-phone",
+   "id": "A3-A-phone:59"
+  },
+  {
+   "t": 58.26939,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "31:3.25",
+   "sfx": "none",
+   "gain": -9,
+   "pan": 0.08750000000000002,
+   "note": 1,
+   "shot": "A3-A-phone",
+   "id": "A3-A-phone:60"
+  },
+  {
+   "t": 58.38475,
+   "kind": "draw",
+   "label": "circle AI 判断：人海",
+   "pos": "31:3.5",
+   "shot": "A3-A-phone",
+   "id": "A3-A-phone:58",
+   "dur": 0.27693
+  },
+  {
+   "t": 58.38478,
+   "kind": "pop",
+   "label": "star",
+   "pos": "31:3.5",
+   "gain": -9,
+   "pan": 0.0796875,
+   "note": 2,
+   "shot": "A3-A-phone",
+   "id": "A3-A-phone:61"
+  },
+  {
+   "t": 58.6155,
+   "kind": "pop",
+   "label": "AI chip lifts off the phone",
+   "pos": "31:4",
+   "sfx": "pop",
+   "pan": -0.159375,
+   "note": 5,
+   "shot": "A3-A-phone",
+   "id": "A3-A-phone:62"
+  },
+  {
+   "t": 58.6155,
+   "kind": "pop",
+   "label": "burst lines",
+   "pos": "31:4",
+   "sfx": "none",
+   "pan": -0.08125,
+   "shot": "A3-A-phone",
+   "id": "A3-A-phone:63"
+  },
+  {
+   "t": 59.077,
+   "kind": "punch",
+   "label": "punch x2.2 on the AI chip",
+   "pos": "32:1",
+   "sfx": "thump",
+   "shot": "A3-A-phone"
+  },
+  {
+   "t": 59.077,
+   "kind": "slam",
+   "label": "人海。",
+   "pos": "32:1",
+   "pan": -0.2609375,
+   "size": 240,
+   "shot": "A3-A-type",
+   "id": "A3-A-type:65"
+  },
+  {
+   "t": 60.0005,
+   "kind": "type",
+   "label": "AI 在本机判断，",
+   "pos": "32:3",
+   "note": 9,
+   "shot": "A3-A-type",
+   "id": "A3-A-type:66",
+   "dur": 1.0384875
+  },
+  {
+   "t": 60.924,
+   "kind": "slam",
+   "label": "照片不上传。",
+   "pos": "33:1",
+   "pan": -0.2625,
+   "size": 128,
+   "shot": "A3-A-type",
+   "id": "A3-A-type:67"
+  },
+  {
+   "t": 60.924,
+   "kind": "swipe",
+   "label": "hl AI 在本机判",
+   "pos": "33:1",
+   "shot": "A3-A-phone",
+   "id": "A3-A-phone:69",
+   "dur": 0.230775
+  },
+  {
+   "t": 61.15475,
+   "kind": "swipe",
+   "label": "hl 断，照片不上传",
+   "pos": "33:1.5",
+   "shot": "A3-A-phone",
+   "id": "A3-A-phone:70",
+   "dur": 0.230775
+  },
+  {
+   "t": 61.3855,
+   "kind": "pop",
+   "label": "padlock",
+   "pos": "33:2",
+   "sfx": "click",
+   "gain": -4,
+   "pan": -0.031249999999999986,
+   "shot": "A3-A-type",
+   "id": "A3-A-type:68"
+  },
+  {
+   "t": 61.847,
+   "kind": "slap",
+   "label": "pink paper",
+   "pos": "33:3",
+   "sfx": "slap",
+   "gain": -8,
+   "pan": 0.15624999999999997,
+   "shot": "A3-A-phone",
+   "id": "A3-A-phone:46"
+  },
+  {
+   "t": 61.847,
+   "kind": "type",
+   "label": "没把握的时候，",
+   "pos": "33:3",
+   "note": 7,
+   "shot": "A3-A-type",
+   "id": "A3-A-type:71",
+   "dur": 0.8077125
+  },
+  {
+   "t": 61.847,
+   "kind": "draw",
+   "label": "circle 舞台 · 示例照片",
+   "pos": "33:3",
+   "shot": "A3-A-phone",
+   "id": "A3-A-phone:72",
+   "dur": 0.18462
+  },
+  {
+   "t": 62.07775,
+   "kind": "tap",
+   "label": "tap 舞台 · 示例照片",
+   "pos": "33:3.5",
+   "sfx": "click",
+   "note": 0
+  },
+  {
+   "t": 62.3085,
+   "kind": "sfx",
+   "label": "hmm",
+   "pos": "33:4",
+   "sfx": "hmm",
+   "gain": -2,
+   "visual": false
+  },
+  {
+   "t": 62.3085,
+   "kind": "cut",
+   "label": "不确定，请选择 on screen (product jump)",
+   "pos": "33:4",
+   "sfx": "none"
+  },
+  {
+   "t": 62.77,
+   "kind": "draw",
+   "label": "dashed circle 不确定",
+   "pos": "34:1",
+   "shot": "A3-A-phone",
+   "id": "A3-A-phone:73",
+   "dur": 0.323085
+  },
+  {
+   "t": 62.77,
+   "kind": "punch",
+   "label": "punch: 不确定 + the dashed 舞台",
+   "pos": "34:1",
+   "sfx": "thump",
+   "gain": -4,
+   "shot": "A3-A-phone"
+  },
+  {
+   "t": 62.77,
+   "kind": "slam",
+   "label": "它就说不确定。",
+   "pos": "34:1",
+   "pan": -0.2625,
+   "size": 128,
+   "shot": "A3-A-type",
+   "id": "A3-A-type:74"
+  },
+  {
+   "t": 62.77,
+   "kind": "draw",
+   "label": "dashed 它就说不确定。",
+   "pos": "34:1",
+   "shot": "A3-A-type",
+   "id": "A3-A-type:74",
+   "dur": 0.46155
+  },
+  {
+   "t": 63.693,
+   "kind": "tap",
+   "label": "tap 舞台",
+   "pos": "34:3",
+   "sfx": "click",
+   "note": 0
+  },
+  {
+   "t": 63.693,
+   "kind": "pop",
+   "label": "你来选。",
+   "pos": "34:3",
+   "pan": -0.253125,
+   "size": 128,
+   "shot": "A3-A-type",
+   "id": "A3-A-type:75"
+  },
+  {
+   "t": 63.92375,
+   "kind": "draw",
+   "label": "check 舞台",
+   "pos": "34:3.5",
+   "sfx": "pencil",
+   "shot": "A3-A-phone",
+   "id": "A3-A-phone:76",
+   "dur": 0.230775
+  },
+  {
+   "t": 64.616,
+   "kind": "slap",
+   "label": "mint paper",
+   "pos": "35:1",
+   "sfx": "slap",
+   "gain": -8,
+   "pan": 0.153125,
+   "shot": "A3-A-phone",
+   "id": "A3-A-phone:47"
+  },
+  {
+   "t": 64.616,
+   "kind": "slam",
+   "label": "保存，上墙。",
+   "pos": "35:1",
+   "pan": -0.2625,
+   "size": 128,
+   "shot": "A3-A-type",
+   "id": "A3-A-type:77"
+  },
+  {
+   "t": 65.0775,
+   "kind": "tap",
+   "label": "tap 保存这张照片",
+   "pos": "35:2",
+   "sfx": "click",
+   "note": 0
+  },
+  {
+   "t": 65.0775,
+   "kind": "slide",
+   "label": "wall panel",
+   "pos": "35:2",
+   "sfx": "whoosh",
+   "gain": -6
+  },
+  {
+   "t": 65.539,
+   "kind": "draw",
+   "label": "wavy 这一晚，大家看到了什么？",
+   "pos": "35:3",
+   "shot": "A3-A-phone",
+   "id": "A3-A-phone:78",
+   "dur": 0.27693
+  },
+  {
+   "t": 66.0005,
+   "kind": "pop",
+   "label": "star",
+   "pos": "35:4",
+   "gain": -9,
+   "pan": 0.06875000000000002,
+   "note": 0,
+   "shot": "A3-A-phone",
+   "id": "A3-A-phone:79"
+  },
+  {
+   "t": 66.23127,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "35:4.5",
+   "sfx": "none",
+   "gain": -9,
+   "pan": 0.2421875,
+   "note": 1,
+   "shot": "A3-A-phone",
+   "id": "A3-A-phone:80"
+  },
+  {
+   "t": 66.462,
+   "kind": "cut",
+   "label": "A3-A4-wall",
+   "pos": "36:1",
+   "sfx": "none",
+   "shot": "A3-A4-wall"
+  },
+  {
+   "t": 67.385,
+   "kind": "draw",
+   "label": "circle your polaroid",
+   "pos": "36:3",
+   "sfx": "none",
+   "shot": "A3-A4-wall",
+   "id": "A3-A4-wall:84",
+   "dur": 0.2076975
+  },
+  {
+   "t": 67.385,
+   "kind": "pop",
+   "label": "star: your polaroid",
+   "pos": "36:3",
+   "sfx": "pop",
+   "pan": -0.3,
+   "shot": "A3-A4-wall",
+   "id": "A3-A4-wall:85"
+  },
+  {
+   "t": 67.385,
+   "kind": "sfx",
+   "label": "tape",
+   "pos": "36:3",
+   "sfx": "tape",
+   "gain": -6,
+   "visual": false
+  },
+  {
+   "t": 67.385,
+   "kind": "type",
+   "label": "上墙啦！",
+   "pos": "36:3",
+   "note": 4,
+   "shot": "A3-A4-type",
+   "id": "A3-A4-type:87",
+   "dur": 0.46155
+  },
+  {
+   "t": 67.8465,
+   "kind": "draw",
+   "label": "arrow to the new polaroid",
+   "pos": "36:4",
+   "shot": "A3-A4-type",
+   "id": "A3-A4-type:88",
+   "dur": 0.27693
+  },
+  {
+   "t": 68.308,
+   "kind": "cut",
+   "label": "A3-A5-phone",
+   "pos": "37:1",
+   "sfx": "none",
+   "shot": "A3-A5-phone"
+  },
+  {
+   "t": 68.308,
+   "kind": "enter-slap",
+   "label": "A3-A5-phone",
+   "pos": "37:1",
+   "sfx": "slap",
+   "shot": "A3-A5-phone"
+  },
+  {
+   "t": 68.308,
+   "kind": "slam",
+   "label": "按拍摄时间，",
+   "pos": "37:1",
+   "pan": -0.2625,
+   "size": 128,
+   "shot": "A3-A5-type",
+   "id": "A3-A5-type:102"
+  },
+  {
+   "t": 68.76975,
+   "kind": "slap",
+   "label": "wall card POL-03",
+   "pos": "37:2",
+   "sfx": "slap",
+   "gain": -6,
+   "pan": -0.2109375,
+   "note": 0,
+   "shot": "A3-A5-phone",
+   "id": "A3-A5-phone:92"
+  },
+  {
+   "t": 69.00063,
+   "kind": "slap",
+   "label": "wall card POL-04",
+   "pos": "37:2.5",
+   "sfx": "slap",
+   "gain": -6,
+   "pan": -0.1328125,
+   "note": 2,
+   "shot": "A3-A5-phone",
+   "id": "A3-A5-phone:94"
+  },
+  {
+   "t": 69.2315,
+   "kind": "draw",
+   "label": "underline 21:47",
+   "pos": "37:3",
+   "shot": "A3-A5-phone",
+   "id": "A3-A5-phone:91",
+   "dur": 0.230775
+  },
+  {
+   "t": 69.2315,
+   "kind": "slap",
+   "label": "wall card POL-05",
+   "pos": "37:3",
+   "sfx": "slap",
+   "gain": -6,
+   "pan": -0.054687499999999986,
+   "note": 4,
+   "shot": "A3-A5-phone",
+   "id": "A3-A5-phone:96"
+  },
+  {
+   "t": 69.46238,
+   "kind": "swipe",
+   "label": "hl time POL-03",
+   "pos": "37:3.5",
+   "gain": -6,
+   "shot": "A3-A5-phone",
+   "id": "A3-A5-phone:93",
+   "dur": 0.138465
+  },
+  {
+   "t": 69.57781,
+   "kind": "swipe",
+   "label": "hl time POL-04",
+   "pos": "37:3.75",
+   "gain": -6,
+   "shot": "A3-A5-phone",
+   "id": "A3-A5-phone:95",
+   "dur": 0.138465
+  },
+  {
+   "t": 69.69325,
+   "kind": "swipe",
+   "label": "hl time POL-05",
+   "pos": "37:4",
+   "gain": -6,
+   "shot": "A3-A5-phone",
+   "id": "A3-A5-phone:97",
+   "dur": 0.138465
+  },
+  {
+   "t": 69.92413,
+   "kind": "slide",
+   "label": "the three cards fly into the phone",
+   "pos": "37:4.5",
+   "sfx": "swish",
+   "gain": -8
+  },
+  {
+   "t": 70.155,
+   "kind": "slap",
+   "label": "the rule block lifts off the phone",
+   "pos": "38:1",
+   "sfx": "slap",
+   "gain": -2
+  },
+  {
+   "t": 70.155,
+   "kind": "pop",
+   "label": "3 分钟以内，",
+   "pos": "38:1",
+   "pan": -0.2625,
+   "size": 128,
+   "shot": "A3-A5-type",
+   "id": "A3-A5-type:103"
+  },
+  {
+   "t": 70.155,
+   "kind": "swipe",
+   "label": "3 分钟以内，",
+   "pos": "38:1",
+   "shot": "A3-A5-type",
+   "id": "A3-A5-type:103",
+   "dur": 0.46155
+  },
+  {
+   "t": 71.078,
+   "kind": "swipe",
+   "label": "hl 相差不超过 3 分钟",
+   "pos": "38:3",
+   "shot": "A3-A5-phone",
+   "id": "A3-A5-phone:99",
+   "dur": 0.27693
+  },
+  {
+   "t": 71.078,
+   "kind": "slam",
+   "label": "就是同一刻。",
+   "pos": "38:3",
+   "pan": -0.2625,
+   "size": 128,
+   "shot": "A3-A5-type",
+   "id": "A3-A5-type:104"
+  },
+  {
+   "t": 72.001,
+   "kind": "stamp",
+   "label": "stamp 规则判断，不是 AI。",
+   "pos": "39:1",
+   "pan": -0.13374999999999998,
+   "size": 84,
+   "shot": "A3-A5-type",
+   "id": "A3-A5-type:105"
+  },
+  {
+   "t": 72.924,
+   "kind": "slide",
+   "label": "the rule block drops back",
+   "pos": "39:3",
+   "sfx": "swish",
+   "gain": -8
+  },
+  {
+   "t": 73.847,
+   "kind": "slap",
+   "label": "the badge lifts out of the phone",
+   "pos": "40:1",
+   "sfx": "slap",
+   "gain": -2
+  },
+  {
+   "t": 73.847,
+   "kind": "punch",
+   "label": "badge callout",
+   "pos": "40:1",
+   "sfx": "thump",
+   "gain": -6
+  },
+  {
+   "t": 73.847,
+   "kind": "type",
+   "label": "看这里！",
+   "pos": "40:1",
+   "note": 4,
+   "shot": "A3-A5-type",
+   "id": "A3-A5-type:106",
+   "dur": 0.46155
+  },
+  {
+   "t": 74.3085,
+   "kind": "draw",
+   "label": "circle 同一刻的另一面",
+   "pos": "40:2",
+   "shot": "A3-A5-phone",
+   "id": "A3-A5-phone:101",
+   "dur": 0.27693
+  },
+  {
+   "t": 74.53925,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "40:2.5",
+   "gain": -9,
+   "pan": 0.009375,
+   "note": 0,
+   "shot": "A3-A5-phone",
+   "id": "A3-A5-phone:108"
+  },
+  {
+   "t": 74.77,
+   "kind": "draw",
+   "label": "arrow to the badge",
+   "pos": "40:3",
+   "shot": "A3-A5-type",
+   "id": "A3-A5-type:107",
+   "dur": 0.230775
+  },
+  {
+   "t": 74.77002,
+   "kind": "pop",
+   "label": "star",
+   "pos": "40:3",
+   "sfx": "none",
+   "gain": -9,
+   "pan": 0.012500000000000022,
+   "note": 1,
+   "shot": "A3-A5-phone",
+   "id": "A3-A5-phone:109"
+  },
+  {
+   "t": 75.0008,
+   "kind": "pop",
+   "label": "sparkle",
+   "pos": "40:3.5",
+   "gain": -9,
+   "pan": -0.24687499999999998,
+   "note": 2,
+   "shot": "A3-A5-phone",
+   "id": "A3-A5-phone:110"
+  },
+  {
+   "t": 75.46225,
+   "kind": "wipe",
+   "label": "W-A3-A4",
+   "pos": "40:4.5",
+   "shot": "W-A3-A4"
+  }
+ ],
+ "texts": [
+  {
+   "id": "A2-E-type:5",
+   "shot": "A2-E-type",
+   "t0": 36.923,
+   "t1": 40.716,
+   "text": "同场的人，",
+   "role": "display",
+   "kind": "title",
+   "size": 180,
+   "recipe": "ink-mint",
+   "script": "T041",
+   "inFootage": false
+  },
+  {
+   "id": "A2-E-type:6",
+   "shot": "A2-E-type",
+   "t0": 37.846,
+   "t1": 40.716,
+   "text": "再进同一间\nLivehouse。",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-mint",
+   "script": "T042",
+   "inFootage": false
+  },
+  {
+   "id": "A2-E-type:11",
+   "shot": "A2-E-type",
+   "t0": 40.616,
+   "t1": 44.408,
+   "text": "带上你的小人，",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-pink",
+   "script": "T043",
+   "inFootage": false
+  },
+  {
+   "id": "A2-E-type:12",
+   "shot": "A2-E-type",
+   "t0": 42.462,
+   "t1": 44.408,
+   "text": "今晚，我这样。",
+   "role": "note",
+   "kind": "note",
+   "size": 84,
+   "recipe": "note-pink",
+   "script": "T044",
+   "inFootage": false
+  },
+  {
+   "id": "A2-E-type:21",
+   "shot": "A2-E-type",
+   "t0": 44.308,
+   "t1": 46.254,
+   "text": "愿意打招呼，",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-pink",
+   "script": "T045",
+   "inFootage": false
+  },
+  {
+   "id": "A2-E-type:22",
+   "shot": "A2-E-type",
+   "t0": 45.231,
+   "t1": 48,
+   "text": "还是\n安静参与？",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-mint",
+   "script": "T046",
+   "inFootage": false
+  },
+  {
+   "id": "A2-E-type:23",
+   "shot": "A2-E-type",
+   "t0": 46.154,
+   "t1": 48,
+   "text": "自己选。",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "st-yellow",
+   "script": "T047",
+   "inFootage": false
+  },
+  {
+   "id": "A2-E4-type:39",
+   "shot": "A2-E4-type",
+   "t0": 48,
+   "t1": 53.539,
+   "text": "看看谁也在。",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-pink",
+   "script": "T048",
+   "inFootage": false
+  },
+  {
+   "id": "A2-E4-type:40",
+   "shot": "A2-E4-type",
+   "t0": 48.9235,
+   "t1": 53.539,
+   "text": "示例角色 · 自动回复",
+   "role": "marker",
+   "kind": "label",
+   "size": 56,
+   "recipe": "stamp-mint",
+   "script": "T049",
+   "inFootage": false
+  },
+  {
+   "id": "A3-fixed:43",
+   "shot": "A3-fixed",
+   "t0": 53.539,
+   "t1": 75.693,
+   "text": "照片为 AI 生成的示例图",
+   "role": "hand",
+   "kind": "fine",
+   "size": 36,
+   "recipe": "fine",
+   "script": null,
+   "inFootage": false
+  },
+  {
+   "id": "A3-A-type:53",
+   "shot": "A3-A-type",
+   "t0": 53.539,
+   "t1": 55.485,
+   "text": "放一张你的照片。",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-yellow",
+   "script": "T050",
+   "inFootage": false
+  },
+  {
+   "id": "A3-A-type:54",
+   "shot": "A3-A-type",
+   "t0": 55.385,
+   "t1": 57.331,
+   "text": "21:48",
+   "role": "digits",
+   "kind": "title",
+   "size": 240,
+   "recipe": "digits",
+   "script": "T051",
+   "inFootage": false
+  },
+  {
+   "id": "A3-A-type:55",
+   "shot": "A3-A-type",
+   "t0": 55.385,
+   "t1": 58.254,
+   "text": "拍摄时间，\n照片自己记得。",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-yellow",
+   "script": "T052",
+   "inFootage": false
+  },
+  {
+   "id": "A3-A-type:56",
+   "shot": "A3-A-type",
+   "t0": 56.308,
+   "t1": 59.177,
+   "text": "示例照片 · 拍摄时间为虚构",
+   "role": "marker",
+   "kind": "label",
+   "size": 36,
+   "recipe": "chip",
+   "script": "T053",
+   "inFootage": false
+  },
+  {
+   "id": "A3-A-type:57",
+   "shot": "A3-A-type",
+   "t0": 57.231,
+   "t1": 59.177,
+   "text": "拍的是哪一面？",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-pink",
+   "script": "T054",
+   "inFootage": false
+  },
+  {
+   "id": "A3-A-type:65",
+   "shot": "A3-A-type",
+   "t0": 59.077,
+   "t1": 61.024,
+   "text": "人海。",
+   "role": "display",
+   "kind": "title",
+   "size": 240,
+   "recipe": "ink-pink",
+   "script": "T055",
+   "inFootage": false
+  },
+  {
+   "id": "A3-A-type:66",
+   "shot": "A3-A-type",
+   "t0": 60.0005,
+   "t1": 61.947,
+   "text": "AI 在本机判断，",
+   "role": "marker",
+   "kind": "title",
+   "size": 84,
+   "recipe": "ink",
+   "script": "T056",
+   "inFootage": false
+  },
+  {
+   "id": "A3-A-type:67",
+   "shot": "A3-A-type",
+   "t0": 60.924,
+   "t1": 62.87,
+   "text": "照片不上传。",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-mint",
+   "script": "T057",
+   "inFootage": false
+  },
+  {
+   "id": "A3-A-type:71",
+   "shot": "A3-A-type",
+   "t0": 61.847,
+   "t1": 63.793,
+   "text": "没把握的时候，",
+   "role": "marker",
+   "kind": "title",
+   "size": 84,
+   "recipe": "ink",
+   "script": "T058",
+   "inFootage": false
+  },
+  {
+   "id": "A3-A-type:74",
+   "shot": "A3-A-type",
+   "t0": 62.77,
+   "t1": 64.716,
+   "text": "它就说不确定。",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-dashed",
+   "script": "T059",
+   "inFootage": false
+  },
+  {
+   "id": "A3-A-type:75",
+   "shot": "A3-A-type",
+   "t0": 63.693,
+   "t1": 65.639,
+   "text": "你来选。",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "st-yellow",
+   "script": "T060",
+   "inFootage": false
+  },
+  {
+   "id": "A3-A-type:77",
+   "shot": "A3-A-type",
+   "t0": 64.616,
+   "t1": 66.462,
+   "text": "保存，上墙。",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-pink",
+   "script": "T061",
+   "inFootage": false
+  },
+  {
+   "id": "A3-A4-type:87",
+   "shot": "A3-A4-type",
+   "t0": 67.385,
+   "t1": 68.308,
+   "text": "上墙啦！",
+   "role": "note",
+   "kind": "note",
+   "size": 84,
+   "recipe": "note-pink",
+   "script": "T062",
+   "inFootage": false
+  },
+  {
+   "id": "A3-A5-type:102",
+   "shot": "A3-A5-type",
+   "t0": 68.308,
+   "t1": 71.178,
+   "text": "按拍摄时间，",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-yellow",
+   "script": "T063",
+   "inFootage": false
+  },
+  {
+   "id": "A3-A5-type:103",
+   "shot": "A3-A5-type",
+   "t0": 70.155,
+   "t1": 72.101,
+   "text": "3 分钟以内，",
+   "role": "digits",
+   "kind": "title",
+   "size": 128,
+   "recipe": "digits",
+   "script": "T065",
+   "inFootage": false
+  },
+  {
+   "id": "A3-A5-type:104",
+   "shot": "A3-A5-type",
+   "t0": 71.078,
+   "t1": 73.024,
+   "text": "就是同一刻。",
+   "role": "display",
+   "kind": "title",
+   "size": 128,
+   "recipe": "ink-mint",
+   "script": "T064",
+   "inFootage": false
+  },
+  {
+   "id": "A3-A5-type:105",
+   "shot": "A3-A5-type",
+   "t0": 72.001,
+   "t1": 73.947,
+   "text": "规则判断，不是 AI。",
+   "role": "marker",
+   "kind": "title",
+   "size": 84,
+   "recipe": "stamp-mint",
+   "script": "T066",
+   "inFootage": false
+  },
+  {
+   "id": "A3-A5-type:106",
+   "shot": "A3-A5-type",
+   "t0": 73.847,
+   "t1": 75.693,
+   "text": "看这里！",
+   "role": "note",
+   "kind": "note",
+   "size": 84,
+   "recipe": "note-pink",
+   "script": "T067",
+   "inFootage": false
+  }
+ ],
+ "marks": {},
+ "warnings": [],
+ "assets": {
+  "CUT-04-full": {
+   "name": "CUT-04-full",
+   "path": "/tmp/space-video-doodle/prod/capture/P1/stills/CUT-04-full.png",
+   "kind": "capture",
+   "candidates": 1
+  },
+  "photo:sample-crowd": {
+   "name": "photo:sample-crowd",
+   "path": "/tmp/space-publish/dist-pages/demo/sample-crowd.jpg",
+   "kind": "alias"
+  },
+  "CUT-04a": {
+   "name": "CUT-04a",
+   "path": "/tmp/space-video-doodle/prod/capture/P2P3/cut/CUT-04a_ai-tag-renhai.png",
+   "kind": "capture",
+   "candidates": 2
+  },
+  "POL-03": {
+   "name": "POL-03",
+   "path": "/tmp/space-video-doodle/prod/capture/P2P3/cut/POL-03_wall-card-man-crowd-2148.png",
+   "kind": "capture",
+   "candidates": 2
+  },
+  "POL-04": {
+   "name": "POL-04",
+   "path": "/tmp/space-video-doodle/prod/capture/P2P3/cut/POL-04_wall-card-aning-crowd-2148-ai.png",
+   "kind": "capture",
+   "candidates": 2
+  },
+  "POL-05": {
+   "name": "POL-05",
+   "path": "/tmp/space-video-doodle/prod/capture/P2P3/cut/POL-05_wall-card-bei-detail-2149.png",
+   "kind": "capture",
+   "candidates": 2
+  },
+  "CUT-05.opaque": {
+   "name": "CUT-05.opaque",
+   "path": "/tmp/space-video-doodle/prod/capture/P2P3/cut/CUT-05_badge-other-side.opaque.png",
+   "kind": "capture",
+   "candidates": 1
+  },
+  "WALL-01.opaque": {
+   "name": "WALL-01.opaque",
+   "path": "/tmp/space-video-doodle/prod/capture/P2P3/cut/WALL-01_group-header-2147-rule.opaque.png",
+   "kind": "capture",
+   "candidates": 1
+  }
+ },
+ "clips": {
+  "P-01": {
+   "name": "P-01",
+   "path": "/tmp/space-video-doodle/prod/capture/P1/clips/P-01.mp4",
+   "kind": "capture",
+   "candidates": 1,
+   "fps": 60,
+   "frames": 513,
+   "w": 1080,
+   "h": 2340,
+   "duration": 8.55,
+   "key": "f9270839a8"
+  },
+  "P-02": {
+   "name": "P-02",
+   "path": "/tmp/space-video-doodle/prod/capture/P1/clips/P-02.mp4",
+   "kind": "capture",
+   "candidates": 1,
+   "fps": 60,
+   "frames": 659,
+   "w": 1080,
+   "h": 2340,
+   "duration": 10.9833,
+   "key": "e9f2015f2d"
+  },
+  "P-03": {
+   "name": "P-03",
+   "path": "/tmp/space-video-doodle/prod/capture/P1/clips/P-03.mp4",
+   "kind": "capture",
+   "candidates": 1,
+   "fps": 60,
+   "frames": 388,
+   "w": 1080,
+   "h": 2340,
+   "duration": 6.4667,
+   "key": "e8958f163c"
+  },
+  "D-02-room-hero": {
+   "name": "D-02-room-hero",
+   "path": "/tmp/space-video-doodle/prod/capture/desktop/master/D-02-room-hero.mp4",
+   "kind": "capture",
+   "candidates": 2,
+   "fps": 60,
+   "frames": 1560,
+   "w": 3840,
+   "h": 2160,
+   "duration": 26,
+   "key": "87374ecab8"
+  },
+  "P-05": {
+   "name": "P-05",
+   "path": "/tmp/space-video-doodle/prod/capture/P1/clips/P-05.mp4",
+   "kind": "capture",
+   "candidates": 1,
+   "fps": 60,
+   "frames": 456,
+   "w": 1080,
+   "h": 2340,
+   "duration": 7.6,
+   "key": "06869b00c8"
+  },
+  "P-06": {
+   "name": "P-06",
+   "path": "/tmp/space-video-doodle/prod/capture/P2P3/clips/P-06.mp4",
+   "kind": "capture",
+   "candidates": 1,
+   "fps": 60,
+   "frames": 326,
+   "w": 1080,
+   "h": 2340,
+   "duration": 5.4333,
+   "key": "ea8c18cdce"
+  },
+  "P-07": {
+   "name": "P-07",
+   "path": "/tmp/space-video-doodle/prod/capture/P1/clips/P-07.mp4",
+   "kind": "capture",
+   "candidates": 1,
+   "fps": 60,
+   "frames": 195,
+   "w": 1080,
+   "h": 2340,
+   "duration": 3.25,
+   "key": "6e3c415389"
+  },
+  "D-03a-wall-before": {
+   "name": "D-03a-wall-before",
+   "path": "/tmp/space-video-doodle/prod/capture/desktop/master/D-03a-wall-before.mp4",
+   "kind": "capture",
+   "candidates": 2,
+   "fps": 60,
+   "frames": 240,
+   "w": 3840,
+   "h": 2160,
+   "duration": 4,
+   "key": "801fde03d1"
+  },
+  "D-03b-wall-after": {
+   "name": "D-03b-wall-after",
+   "path": "/tmp/space-video-doodle/prod/capture/desktop/master/D-03b-wall-after.mp4",
+   "kind": "capture",
+   "candidates": 2,
+   "fps": 60,
+   "frames": 240,
+   "w": 3840,
+   "h": 2160,
+   "duration": 4,
+   "key": "96322fd5e1"
+  },
+  "P-08": {
+   "name": "P-08",
+   "path": "/tmp/space-video-doodle/prod/capture/P1/clips/P-08.mp4",
+   "kind": "capture",
+   "candidates": 1,
+   "fps": 60,
+   "frames": 855,
+   "w": 1080,
+   "h": 2340,
+   "duration": 14.25,
+   "key": "9ed399a09d"
+  }
+ },
+ "script": [
+  "T041",
+  "T042",
+  "T043",
+  "T044",
+  "T045",
+  "T046",
+  "T047",
+  "T048",
+  "T049",
+  "T050",
+  "T051",
+  "T052",
+  "T053",
+  "T054",
+  "T055",
+  "T056",
+  "T057",
+  "T058",
+  "T059",
+  "T060",
+  "T061",
+  "T062",
+  "T063",
+  "T064",
+  "T065",
+  "T066",
+  "T067"
+ ],
+ "scenes": [
+  "act-A2-A3"
+ ]
+}

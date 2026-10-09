@@ -1,0 +1,4 @@
+{ "title": "vo ducking test", "output": "out/vo-test.mp4", "size": [1920, 1080], "fps": 30, "crf": 28, "preset": "veryfast", "band_color": "#182d26",
+  "music": { "file": "../music/original-v2/space-original-v2_-16LUFS_48k24.wav", "start": 32.5, "fade_in": 0.2, "fade_out": 1.0, "target_lufs": -16 },
+  "voice": [ { "file": "../work-v2/vo-test.wav", "at": 3.0, "gain_db": 0 } ],
+  "shots": [ { "id": "T", "src": "../cards/out/card-d-whatif.mp4", "dur": 8, "layout": "full", "footage": false } ], "subtitles": [] }

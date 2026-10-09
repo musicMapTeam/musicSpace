@@ -1,0 +1,4 @@
+const {page}=await get(globalThis.KIND);
+await page.evaluate(()=>{const p=document.querySelector('#panel');p.scrollTop=0;});await sleep(300);
+await page.screenshot({path:globalThis.OUT,clip:globalThis.CLIP});
+return await page.evaluate(()=>{const p=document.querySelector('#panel'),r=p.getBoundingClientRect(),cs=getComputedStyle(p);const nav=document.querySelector('.camera-nav')?.getBoundingClientRect();const fine=[...document.querySelectorAll('#panel-body p.fine')].map(n=>{const q=n.getBoundingClientRect();return [Math.round(q.top),Math.round(q.bottom)];});return {panel:[Math.round(r.top),Math.round(r.bottom)],ovf:cs.overflowY,clip:cs.clipPath,mask:cs.maskImage,nav:nav&&[Math.round(nav.top),Math.round(nav.bottom)],fine,kind:p.dataset.kind};});

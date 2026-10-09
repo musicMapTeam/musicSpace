@@ -1,0 +1,68 @@
+{
+ "kind": "desktop",
+ "who": "阿遥",
+ "results": {
+  "open:person": {
+   "kind": "person",
+   "st": 0,
+   "sh": 441,
+   "ch": 441,
+   "close": [
+    1327,
+    330,
+    1373,
+    377
+   ],
+   "sheetTop": 319,
+   "sheetRight": 1384,
+   "fromTop": 11,
+   "fromRight": 11,
+   "inView": true,
+   "onTop": true,
+   "hit": "#panel-close",
+   "under": [],
+   "focused": true
+  },
+  "scan:person": {
+   "kind": "person",
+   "max": 0,
+   "steps": 1,
+   "bad": [],
+   "closeOffsets": [
+    "11,11"
+   ],
+   "drift": {
+    "top": 0,
+    "right": 0,
+    "topRange": [
+     10.52,
+     10.52
+    ]
+   }
+  },
+  "close:person:end": {
+   "kind": "person",
+   "st": 0,
+   "sh": 441,
+   "ch": 441,
+   "close": [
+    1327,
+    330,
+    1373,
+    377
+   ],
+   "sheetTop": 319,
+   "sheetRight": 1384,
+   "fromTop": 11,
+   "fromRight": 11,
+   "inView": true,
+   "onTop": true,
+   "hit": "#panel-close",
+   "under": [],
+   "focused": true
+  }
+ },
+ "failures": [],
+ "failedRequests": [],
+ "ok": true
+}

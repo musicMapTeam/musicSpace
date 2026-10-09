@@ -1,0 +1,78 @@
+/* The courtyard has objects, not a different application in a sidebar. */
+html[data-theme='sakura'] {
+  --object-paper:#fff9e9;
+  --object-line:#78806c38;
+  --object-shadow:0 10px 32px #39483424,0 2px 3px #39483416;
+}
+html[data-theme='sakura'] body dialog[open] { scrollbar-width:none; }
+
+/* A shared printed language for the front-door slip, the album and the dialogs. */
+html[data-theme='sakura'] .home-paper {
+  border:1px solid #e1dbc7; border-radius:3px; background:var(--object-paper);
+  box-shadow:var(--object-shadow); color:var(--text);
+}
+html[data-theme='sakura'] :is(.home-paper,.collection-page,.map-dialog,.about-dialog) .button {
+  border-radius:3px; letter-spacing:.025em;
+}
+html[data-theme='sakura'] :is(.map-dialog,.about-dialog) {
+  border:1px solid #ddd5bd; border-radius:3px; background:var(--object-paper);
+  box-shadow:var(--object-shadow),inset 6px 0 #e8e0ca,inset 7px 0 #d7cfb8;
+  color:var(--text); pointer-events:auto;
+}
+html[data-theme='sakura'] :is(.map-dialog,.about-dialog)::backdrop {
+  background:#354c3e28; backdrop-filter:none;
+}
+/* The open paper owns its finish, whatever host it sits in. */
+html[data-theme='sakura'] body dialog[open]:is(.map-dialog,.about-dialog) {
+  border:1px solid #ddd5bd; border-radius:3px; background:var(--object-paper);
+  box-shadow:var(--object-shadow),inset 6px 0 #e8e0ca,inset 7px 0 #d7cfb8;
+  color:var(--text); pointer-events:auto;
+}
+html[data-theme='sakura'] body dialog.map-dialog[open] { padding:0; }
+html[data-theme='sakura'] body dialog.map-dialog[open] .map-dialog__top {
+  height:57px; padding:12px 20px 4px 28px; background:var(--object-paper);
+}
+html[data-theme='sakura'] body dialog.map-dialog[open] .map-dialog__content { padding:0 27px 26px 32px; }
+html[data-theme='sakura'] body dialog.map-dialog[open] h2 { font-family:'Songti SC','SimSun',serif; font-weight:500; letter-spacing:.035em; }
+html[data-theme='sakura'] body dialog.map-dialog[open] :is(.button,.icon-button,.map-track) { border-radius:2px; }
+html[data-theme='sakura'] .map-dialog { padding:25px 27px 23px 32px; }
+html[data-theme='sakura'] .map-dialog .icon-button {
+  border-radius:2px; background:#e7e8d9; border:1px solid #77866c26;
+}
+html[data-theme='sakura'] .map-dialog :is(input:not([type='checkbox']):not([type='radio']),textarea) {
+  border-radius:2px; background:#f9f1dd; border-color:#a0a18870;
+}
+html[data-theme='sakura'] .home-paper::before { width:44px; height:11px; background:#b6bfa37d; }
+html[data-theme='sakura'] .home-paper__actions .button { border-radius:3px; }
+
+/* A personal album: cloth binding and index tabs for routes and kept songs. */
+html[data-theme='sakura'] body[data-spatial-section='records'] .main-content {
+  top:123px; right:43px; bottom:113px; width:min(650px,55vw); padding:29px 28px 26px 49px;
+  border:1px solid #d6cdb3; border-radius:3px; background:linear-gradient(90deg,#d5d7bd 0 12px,#bbbfa3 12px 13px,#e5ddc5 13px 23px,#f6eedc 23px 25px,var(--object-paper) 25px);
+  box-shadow:3px 4px 0 #e6dec6,4px 5px 0 #cfc5a9,var(--object-shadow); scrollbar-width:thin; scrollbar-color:transparent transparent;
+}
+html[data-theme='sakura'] body[data-spatial-section='records'] .records-heading { margin-bottom:20px; }
+html[data-theme='sakura'] body[data-spatial-section='records'] .records-heading h1 { font:500 27px/1.5 'Songti SC','SimSun',serif; letter-spacing:.09em; }
+/* Album index: quiet ink words on one hairline; the open section gets a short rose ribbon, not a folder tab. */
+html[data-theme='sakura'] .collection-page .records-filters { display:flex; flex-wrap:nowrap; gap:0 26px; width:100%; margin:0 0 20px; padding:0; border:0; border-bottom:1px solid #e4dcc6; border-radius:0; background:none; box-shadow:none; }
+html[data-theme='sakura'] .collection-page .records-filters button { position:relative; flex:none; min-height:40px; padding:6px 0 10px; border:0; border-radius:0; background:none; color:#77786a; font-size:14px; font-weight:500; letter-spacing:.06em; white-space:nowrap; box-shadow:none; transition:color .18s ease; }
+html[data-theme='sakura'] .collection-page .records-filters button:hover { color:#34503f; background:none; }
+html[data-theme='sakura'] .collection-page .records-filters button[aria-pressed='true'] { color:#23392c; font-weight:600; background:none; box-shadow:none; }
+html[data-theme='sakura'] .collection-page .records-filters button::after { content:''; display:block; position:absolute; left:50%; right:auto; bottom:-1px; width:0; height:2px; border-radius:2px; background:#b36677; transform:translateX(-50%); transition:width .22s ease; }
+html[data-theme='sakura'] .collection-page .records-filters button[aria-pressed='true']::after { width:100%; }
+html[data-theme='sakura'] .collection-page .records-filters button:focus-visible { outline-offset:4px; border-radius:4px; }
+
+@media(min-width:761px) and (max-width:1100px) {
+  html[data-theme='sakura'] body[data-spatial-section='records'] .main-content { width:54vw; right:26px; padding:23px 20px 25px 38px; }
+}
+@media(max-width:760px) {
+  html[data-theme='sakura'] .map-dialog { inset:auto 16px 94px; width:auto; max-width:none; max-height:76dvh; padding:22px 21px 20px 26px; border-radius:2px; }
+  html[data-theme='sakura'] body dialog.map-dialog[open] { padding:0; border-radius:2px; }
+  html[data-theme='sakura'] body dialog.map-dialog[open] .map-dialog__top { height:52px; padding:9px 17px 4px 25px; }
+  html[data-theme='sakura'] body dialog.map-dialog[open] .map-dialog__content { padding:0 20px 23px 26px; }
+  html[data-theme='sakura'] body[data-spatial-section='records'] .main-content { top:27dvh; right:16px; left:16px; bottom:94px; width:auto; max-width:none; padding:21px 17px 20px 33px; background:linear-gradient(90deg,#d5d7bd 0 8px,#bbbfa3 8px 9px,#e5ddc5 9px 16px,#f6eedc 16px 18px,var(--object-paper) 18px); }
+  html[data-theme='sakura'] body[data-spatial-section='records'] .records-heading h1 { font-size:23px; }
+  html[data-theme='sakura'] body[data-spatial-section='records'] .records-heading>.button { min-height:35px; padding:8px; font-size:12px; }
+  html[data-theme='sakura'] .collection-page .records-filters { justify-content:space-between; gap:0 8px; margin-bottom:16px; }
+  html[data-theme='sakura'] .collection-page .records-filters button { min-height:40px; padding:6px 0 9px; font-size:13px; letter-spacing:.02em; }
+}

@@ -1,0 +1,57 @@
+offer -> compose: 0 frames
+send -> accepted: 233 frames
+probe: wallx96|composex284|等待本人回应x239|交换已接受x219
+{
+ "file": "/tmp/space-video-doodle/capture-test/clips/C-desktop-exchange.mp4",
+ "frames": 838,
+ "seconds": 13.967,
+ "bytes": 19661635,
+ "wallSeconds": 98.3,
+ "wallPerVideoSecond": 7.04,
+ "msPerFrame": {
+  "step": 4,
+  "grab": 102.7,
+  "write": 6.3
+ },
+ "dup": {
+  "frames": 838,
+  "unique": 748,
+  "consecutiveDuplicates": 80,
+  "longestStill": 9,
+  "stillRuns": [
+   "8.78s+7f",
+   "9.23s+7f",
+   "9.38s+7f",
+   "9.53s+8f",
+   "10.12s+9f"
+  ]
+ },
+ "marks": [
+  {
+   "label": "wall",
+   "frame": 0,
+   "t": 0
+  },
+  {
+   "label": "compose",
+   "frame": 111,
+   "t": 1.85
+  },
+  {
+   "label": "consent",
+   "frame": 337,
+   "t": 5.617
+  },
+  {
+   "label": "pending",
+   "frame": 428,
+   "t": 7.133
+  },
+  {
+   "label": "accepted",
+   "frame": 652,
+   "t": 10.867
+  }
+ ]
+}
+errors [] console []

@@ -1,8 +1,2079 @@
 {
   "target_file_classes": {
-    "identical_archive_content": 43,
-    "tracked_verified_main": 221
+    "tracked_verified_main": 221,
+    "identical_archive_content": 43
   },
   "uncovered_files": [],
-  "all_scanned_file_count": 264
+  "all_scanned_file_count": 264,
+  "files": [
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/index.html",
+      "sha256": "57d0254d72b0d280871fab88d63c743484fa939f0c5ef2cee972c05f17a60853",
+      "logicalbytes": 2788976,
+      "coverage": "identical_archive_content",
+      "archive_path": "space-final/dist-pages/index.html"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/.nojekyll",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "logicalbytes": 0,
+      "coverage": "identical_archive_content",
+      "archive_path": "space-video-doodle/music-cc0/_screen/missing.txt"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/build.json",
+      "sha256": "ffb01eb0f250ccf93a705528408b64a30ac898cb268421d1da33522d02bc06b3",
+      "logicalbytes": 6718,
+      "coverage": "identical_archive_content",
+      "archive_path": "space-final/dist-pages/build.json"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/demo/sample-crowd.jpg",
+      "sha256": "0c02a35a31445f06cb26a49cfa2493d0e4b78a801448b244deed7afcdba3f64f",
+      "logicalbytes": 81292,
+      "coverage": "identical_archive_content",
+      "archive_path": "tme-video-production/script/frames/assets/sample-crowd.jpg"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/demo/bei-balcony.jpg",
+      "sha256": "3236efba83eb8311ba00e7d3527109d97f554a7ea8c3c739603b1baca967ff55",
+      "logicalbytes": 34042,
+      "coverage": "identical_archive_content",
+      "archive_path": "space-video-prep/repo-routeb/dist-pages/demo/bei-balcony.jpg"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/demo/man-near.jpg",
+      "sha256": "0b8f0d6848903920176934c186e0449f3a083ab509ebe483e8586f1ca3047c22",
+      "logicalbytes": 75391,
+      "coverage": "identical_archive_content",
+      "archive_path": "space-doodle/3dfix/dist-pages/demo/man-near.jpg"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/demo/man-crowd.jpg",
+      "sha256": "c421b5477ef103ce57f5727f9b80c1a69c785754bca9e46b2f964316ca420514",
+      "logicalbytes": 56842,
+      "coverage": "identical_archive_content",
+      "archive_path": "space-video-prep/repo-routeb/dist-pages/demo/man-crowd.jpg"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/demo/manifest.json",
+      "sha256": "d0ecf3f97c339884603cb2ab59753709cc1a83b2c803eee2d325629fa8f08c42",
+      "logicalbytes": 3121,
+      "coverage": "identical_archive_content",
+      "archive_path": "space-doodle/3dfix/dist-pages/demo/manifest.json"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/demo/yao-stage.jpg",
+      "sha256": "678c67cb7e62780d586f22f0e6c1a7dc1ccba165146b910fd95bb0d0079fe2ad",
+      "logicalbytes": 70016,
+      "coverage": "identical_archive_content",
+      "archive_path": "tme-video-production/script/frames/assets/yao-stage.jpg"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/demo/sample-stage.jpg",
+      "sha256": "b0b9f035aa9fdcb349ef4a648052228fb23bd12c732c585decd3983440bffeb3",
+      "logicalbytes": 90522,
+      "coverage": "identical_archive_content",
+      "archive_path": "space-video-doodle/prod/capture/P2P3/exports/CUT-09/sample-stage.jpg"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/classic/index.html",
+      "sha256": "c769535e70acbf1fee7f12f508b2f3b1122447d899b9f1d60d8e25d3ce06dbbf",
+      "logicalbytes": 1754441,
+      "coverage": "identical_archive_content",
+      "archive_path": "space-map/3d-final/dist-pages/classic/index.html"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/music-map/index.html",
+      "sha256": "a0dcdcffcd243c99a41337fdbeaf230d1afa851b19a5ceaee525f323e9172ba6",
+      "logicalbytes": 873566,
+      "coverage": "identical_archive_content",
+      "archive_path": "space-final/dist-pages/music-map/index.html"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/shared/three-0.186.1/three.module.js",
+      "sha256": "9052042d676cb0fdc1ddfefe193053f34b7ac0513a616fdac4535d49987812ea",
+      "logicalbytes": 662772,
+      "coverage": "identical_archive_content",
+      "archive_path": "space-video-prep/repo-rc4/dist/shared/three-0.186.1/three.module.js"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/shared/three-0.186.1/three.core.js",
+      "sha256": "9edde002b066a9a05676a6127f67735b62baf399bdea529f2f7e31657da769e6",
+      "logicalbytes": 1458113,
+      "coverage": "identical_archive_content",
+      "archive_path": "space-video-prep/repo-rc4/dist/shared/three-0.186.1/three.core.js"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/ai/LICENSE-onnxruntime-web-MIT.txt",
+      "sha256": "2f07c72751aed99790b8a4869cf2311df85a860b22ded05fa22803587a48922c",
+      "logicalbytes": 1073,
+      "coverage": "identical_archive_content",
+      "archive_path": "space-video-prep/live-mirror/ai/LICENSE-onnxruntime-web-MIT.txt"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/ai/tc8/labels.json",
+      "sha256": "a7422fc83f7f1c3b1f7133575969d9348e6fb6fa6019614ff9798d653dbdcc2e",
+      "logicalbytes": 17609,
+      "coverage": "identical_archive_content",
+      "archive_path": "space-video-prep/live-mirror/ai/tc8/labels.json"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/ai/tc8/LICENSE-TinyCLIP-MIT.txt",
+      "sha256": "583acc0d9c74def18ec24e56964421bf1fac1fa2d60451e75e6681d5ae58a3f6",
+      "logicalbytes": 1769,
+      "coverage": "identical_archive_content",
+      "archive_path": "space-video-prep/live-mirror/ai/tc8/LICENSE-TinyCLIP-MIT.txt"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/ai/tc8/vision.onnx",
+      "sha256": "53112612a2c20a6c7af46c46de0824ea2206c9de5c3cae18ba11d3fa8fa328ca",
+      "logicalbytes": 8807127,
+      "coverage": "identical_archive_content",
+      "archive_path": "space-video-prep/live-mirror/ai/tc8/vision.onnx"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/ai/ort/ort-wasm-simd-threaded.wasm",
+      "sha256": "3398c10d07d229bd91b364548e130e0e51a8e5704b88c7c083ebbeb78842dee2",
+      "logicalbytes": 14239897,
+      "coverage": "identical_archive_content",
+      "archive_path": "space-video-prep/live-mirror/ai/ort/ort-wasm-simd-threaded.wasm"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/ai/ort/ort.wasm.min.mjs",
+      "sha256": "219e6a1fc8a9938268d18efca3c91d310bd2f4a59bbd13744df5b2b7fc6cee3b",
+      "logicalbytes": 50126,
+      "coverage": "identical_archive_content",
+      "archive_path": "space-video-prep/live-mirror/ai/ort/ort.wasm.min.mjs"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/ai/ort/ort-wasm-simd-threaded.mjs",
+      "sha256": "e13f7f94fc51b4ca72b12faeb1ee95f4ace6dfbc8939bc718aabdc0a27c4299b",
+      "logicalbytes": 24381,
+      "coverage": "identical_archive_content",
+      "archive_path": "space-video-prep/live-mirror/ai/ort/ort-wasm-simd-threaded.mjs"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/fonts/doodle/logo-0.woff2",
+      "sha256": "391fb0d7075b966c73f06b7ae14ad5eb9f63ed3b888226ce3efbe0fe17963dcd",
+      "logicalbytes": 16768,
+      "coverage": "identical_archive_content",
+      "archive_path": "space-final/dist-pages/fonts/doodle/logo-0.woff2"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/fonts/doodle/digits-0.woff2",
+      "sha256": "ac71b94a01c9b9b1ce7dc609dc244de719ba94b295adfccccefdaede267220f2",
+      "logicalbytes": 14424,
+      "coverage": "identical_archive_content",
+      "archive_path": "space-final/dist-pages/fonts/doodle/digits-0.woff2"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/fonts/doodle/note-0.woff2",
+      "sha256": "d8b88180e8824f1aa22f6c4b4b34814b0d1484d15f907b87c63aa5dbd85c39a2",
+      "logicalbytes": 16008,
+      "coverage": "identical_archive_content",
+      "archive_path": "space-final/dist-pages/fonts/doodle/note-0.woff2"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/fonts/doodle/display-0.woff2",
+      "sha256": "41e889f0805bb949c9b86ac61492f36de8a95f9ecca61f2f5b225fe2c885b2dc",
+      "logicalbytes": 98040,
+      "coverage": "identical_archive_content",
+      "archive_path": "space-final/dist-pages/fonts/doodle/display-0.woff2"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/fonts/doodle/marker-1.woff2",
+      "sha256": "ff1f32f3bce175fec40b499a86feb489d1192b7b781900df9ebb2b29f3d8207b",
+      "logicalbytes": 36256,
+      "coverage": "identical_archive_content",
+      "archive_path": "space-final/dist-pages/fonts/doodle/marker-1.woff2"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/fonts/doodle/hand-2.woff2",
+      "sha256": "d79d970d397137372a93d40f55261604f745e203c96a6519f2f8e5542d5cfe57",
+      "logicalbytes": 160452,
+      "coverage": "identical_archive_content",
+      "archive_path": "space-final/dist-pages/fonts/doodle/hand-2.woff2"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/fonts/doodle/marker-3.woff2",
+      "sha256": "8df3234299131eeb3c4a3ecc8cdb5c915cd239797387741764d5641dd503ab5f",
+      "logicalbytes": 24584,
+      "coverage": "identical_archive_content",
+      "archive_path": "space-final/dist-pages/fonts/doodle/marker-3.woff2"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/fonts/doodle/hand-0.woff2",
+      "sha256": "0d99e7e7b0bf2c145e5b6d786f9eb584ff3a66539df97c3e8b42afc14c84fbe6",
+      "logicalbytes": 133104,
+      "coverage": "identical_archive_content",
+      "archive_path": "space-final/dist-pages/fonts/doodle/hand-0.woff2"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/fonts/doodle/display-2.woff2",
+      "sha256": "6fde2d202383b17298b5b0abe1ce94ed18c6dcf6bf44597abd25d131766a64b2",
+      "logicalbytes": 138912,
+      "coverage": "identical_archive_content",
+      "archive_path": "space-final/dist-pages/fonts/doodle/display-2.woff2"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/fonts/doodle/hand-4.woff2",
+      "sha256": "d6b354b46a5655d005ada68a6830d34b66bf9a7236fdcb3132b2455f3c3f7a6f",
+      "logicalbytes": 762808,
+      "coverage": "identical_archive_content",
+      "archive_path": "space-final/dist-pages/fonts/doodle/hand-4.woff2"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/fonts/doodle/hand-1.woff2",
+      "sha256": "46cfc5533ff48b91b6e8f8f729cd6bd718dd11f8bc65bea3391e390c13dd26a0",
+      "logicalbytes": 118184,
+      "coverage": "identical_archive_content",
+      "archive_path": "space-final/dist-pages/fonts/doodle/hand-1.woff2"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/fonts/doodle/marker-2.woff2",
+      "sha256": "6149cfc91684576ec33dd0dcbdfaa07d42ebbea9d65de739ba3abc0c4f719fa5",
+      "logicalbytes": 48832,
+      "coverage": "identical_archive_content",
+      "archive_path": "space-final/dist-pages/fonts/doodle/marker-2.woff2"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/fonts/doodle/display-3.woff2",
+      "sha256": "b738c8e44d96881fc2eb7958ac9acff82d1a6c7ce34f759f6bfb1707d16c7db7",
+      "logicalbytes": 69716,
+      "coverage": "identical_archive_content",
+      "archive_path": "space-final/dist-pages/fonts/doodle/display-3.woff2"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/fonts/doodle/display-1.woff2",
+      "sha256": "ad88c5036736e2b2a9e631b6661d6ecbf8775e55b18a245bdaf94c7ff780632d",
+      "logicalbytes": 104112,
+      "coverage": "identical_archive_content",
+      "archive_path": "space-final/dist-pages/fonts/doodle/display-1.woff2"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/fonts/doodle/fonts.css",
+      "sha256": "5b52e995fe78f3a8d6eb441a0e72c9a4e26f1bce7383dc3500720b1013c2cfa9",
+      "logicalbytes": 66136,
+      "coverage": "identical_archive_content",
+      "archive_path": "space-map/fix/dist-pages/fonts/doodle/fonts.css"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/fonts/doodle/hand-3.woff2",
+      "sha256": "6b47b82cf5e4f2bd137a77dbc34eb906089763bfdc62cf4bd20d9780f0047761",
+      "logicalbytes": 77056,
+      "coverage": "identical_archive_content",
+      "archive_path": "space-final/dist-pages/fonts/doodle/hand-3.woff2"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/fonts/doodle/marker-0.woff2",
+      "sha256": "cc681f7d310ed1f256d80b6bfa2ebca9cd5bde2c7b92e34bafd64c8646cd54c2",
+      "logicalbytes": 45908,
+      "coverage": "identical_archive_content",
+      "archive_path": "space-final/dist-pages/fonts/doodle/marker-0.woff2"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/fonts/doodle/LICENSES.txt",
+      "sha256": "48c26a3edf4569c57169b5312d7116b33d73d75c012bb16601dd546fd5fe75c5",
+      "logicalbytes": 34540,
+      "coverage": "identical_archive_content",
+      "archive_path": "space-map/fix/dist-pages/fonts/doodle/LICENSES.txt"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/fonts/doodle/marker-4.woff2",
+      "sha256": "075a6090be026f8554bcb1251fac50d6fdc2ca89b327828722f2b2dae28130f8",
+      "logicalbytes": 220696,
+      "coverage": "identical_archive_content",
+      "archive_path": "space-final/dist-pages/fonts/doodle/marker-4.woff2"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/fonts/doodle/marker-symbols.woff2",
+      "sha256": "3700219595880c2e7c70bc7c46bc1d82bae21c5050800c0059303a9b8dba7b4e",
+      "logicalbytes": 2892,
+      "coverage": "identical_archive_content",
+      "archive_path": "space-final/dist-pages/fonts/doodle/marker-symbols.woff2"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/sql/LICENSE-sql.js-MIT.txt",
+      "sha256": "60a3f6e4d7b29b4321359e683b36cf198d24f58e24582070f56e6fa89d5ee2be",
+      "logicalbytes": 2199,
+      "coverage": "identical_archive_content",
+      "archive_path": "space-video-prep/repo-routeb/dist-pages/sql/LICENSE-sql.js-MIT.txt"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/dist-pages/sql/sql-wasm.wasm",
+      "sha256": "38c14f6e379210bc942bdc4ebca44e7bfdb4318ecc1c72ca666a28fdce96670a",
+      "logicalbytes": 658410,
+      "coverage": "identical_archive_content",
+      "archive_path": "space-video-prep/repo-routeb/dist-pages/sql/sql-wasm.wasm"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/src/event-worldcup.js",
+      "sha256": "13b47370e5fd95edb65d177236c014440fb66e96d4cc079c6ae0ce27acfeae5e",
+      "logicalbytes": 11173,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/src/event-worldcup.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/src/avatar-worker.js",
+      "sha256": "aa16228635ab7cb1a4cf9b36578dc7904eb0b0d22777664eb3aa362a5544e502",
+      "logicalbytes": 37995,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/src/avatar-worker.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/src/event-games.js",
+      "sha256": "e3a02c90332e78f4f3082dfc6930e1200d31bcce227aa90d6786f726248546e1",
+      "logicalbytes": 22331,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/src/event-games.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/src/map-catalogue.js",
+      "sha256": "f38b4f1a2ff916565bfacdce3fd4aa6add6a77b7da6b9663e1484cb452934f0b",
+      "logicalbytes": 60144,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/src/map-catalogue.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/src/event-music-topics.js",
+      "sha256": "34e6aabb1fb288fe7fce3e9f175e8101c9506298ca412be3a0b931b26e148d69",
+      "logicalbytes": 4125,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/src/event-music-topics.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/src/worldcup-albums.js",
+      "sha256": "72071bf3d65cfd9e1b25799d976fedac4281e060c5284af4b850a65b52b10e33",
+      "logicalbytes": 696,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/src/worldcup-albums.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/src/event-community.js",
+      "sha256": "ac493075710e5c0899ac37b9a589ccd4123c7cb33ffd60c2dff85c200bec5cc8",
+      "logicalbytes": 18209,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/src/event-community.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/src/music-catalogue.js",
+      "sha256": "fd2215f9caff75710db580261134646eeeb468b2d29b8bfcc779178678bd2195",
+      "logicalbytes": 2143,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/src/music-catalogue.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/src/event-moderation.js",
+      "sha256": "55b18809864852fdcc98cb1fe5ee66d3894b398015c1dac232d64a005774df46",
+      "logicalbytes": 14102,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/src/event-moderation.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/src/admission-protocol.js",
+      "sha256": "2e2a4e7b0f81bfe6c1b25468ee476b8d55b99552846945ef3ca2f4a94c76e01c",
+      "logicalbytes": 2586,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/src/admission-protocol.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/src/event-exchanges.js",
+      "sha256": "05db134c83d9ec128f5de1d82e6e663be770127fca91233f42208ff94a71aa37",
+      "logicalbytes": 17064,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/src/event-exchanges.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/src/event-chat.js",
+      "sha256": "8eb201444e8f203457e3de22d0fb44435f5d709d1a03765cb728784bdf2f89aa",
+      "logicalbytes": 10569,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/src/event-chat.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/src/event-recap.js",
+      "sha256": "f88981fcba7287a38e4e521d640969a48acffc88a33235e3328f84f9eaae6f8f",
+      "logicalbytes": 3892,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/src/event-recap.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/src/event-worker.js",
+      "sha256": "ae9818169b995c241a7b1fa473a30ec763bb3a01863770ba61926095d78fb4a6",
+      "logicalbytes": 35189,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/src/event-worker.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/src/music-play-access.js",
+      "sha256": "1ed4994e337f9fc64476e4c7b855bdef399974761031fefb9c5e84a1a3418cac",
+      "logicalbytes": 3241,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/src/music-play-access.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/src/event-participation.js",
+      "sha256": "a9f5a8dcf792a39b1f4db52aef23f8c19e07bde4fb83d8ea42ae4d44b78dadcb",
+      "logicalbytes": 2362,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/src/event-participation.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/src/event-social.js",
+      "sha256": "bce2ddaeb40480fde98b9b432884675ccb566d9887f4063ab3188c3d460a8fa9",
+      "logicalbytes": 17848,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/src/event-social.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/src/space-access.js",
+      "sha256": "879c165e34bacf423c0149c4fc27a7dcdfe65331457730dabdfdf4f0a71e6865",
+      "logicalbytes": 524,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/src/space-access.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/src/event-corners.js",
+      "sha256": "d2ee91eb64de80ce9dda486a8f937fa8a961e3776212275cb3a19465d0e279cd",
+      "logicalbytes": 12096,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/src/event-corners.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/src/event-spaces.js",
+      "sha256": "fb2a759039f1c12174435c4278b33531517fdbde2615f5a01918c2f2e4a3ba3e",
+      "logicalbytes": 7480,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/src/event-spaces.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/avatar/doodle-pass.js",
+      "sha256": "7518b08098361d957738c1a722276f8d47fb24e31601dc8ac9a0eba9ae79fbdf",
+      "logicalbytes": 16401,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/avatar/doodle-pass.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/avatar/avatar.js",
+      "sha256": "077568150e3e7fd95f0689e62418ee38f1bba86944ca01d2953610b900a12676",
+      "logicalbytes": 8497,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/avatar/avatar.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/avatar/index.html",
+      "sha256": "c1626aa0752605692dc770305b899d00ecb71af32845b94e3c0b1107de8e488a",
+      "logicalbytes": 936,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/avatar/index.html",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/avatar/export.js",
+      "sha256": "9d30736105a8747f2439ecd65f17d2afcb19b7fc080efc11fc8b4681e302181f",
+      "logicalbytes": 3157,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/avatar/export.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/avatar/three-scene.js",
+      "sha256": "9da5ed8946d94828e1719a803fbc5f9b2690f37e844163a169a13a8d5543b5bf",
+      "logicalbytes": 111485,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/avatar/three-scene.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/avatar/audio.js",
+      "sha256": "466996c817e412be12c2c788d859e9be6fce7ccf2f21c189149091ce73e97678",
+      "logicalbytes": 1099,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/avatar/audio.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/avatar/style.css",
+      "sha256": "61f9f68382a5650117997157dea4295d2bd4cf40656900434a70ae61a41551a7",
+      "logicalbytes": 56886,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/avatar/style.css",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/avatar/api.js",
+      "sha256": "a41d8054c92b173e786e6e55e6305db0d2c164a3ece7236cd621ed2d512e7c50",
+      "logicalbytes": 2426,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/avatar/api.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/avatar/model.js",
+      "sha256": "f2eba4f21383d15098dbb84c0d83f834572b1195d13e1908b12e3027e4cadbca",
+      "logicalbytes": 8068,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/avatar/model.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/avatar/app.js",
+      "sha256": "15edf3e7c907329035ab8f796354bc72f1c4a82ef97f9226fccd9ce79d4704d6",
+      "logicalbytes": 60511,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/avatar/app.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/avatar/assets/sakura-night.webp",
+      "sha256": "b0979ffe606933993936b3635588c3f9bc33d64ee540476fcb9fdf341288043c",
+      "logicalbytes": 372196,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/avatar/assets/sakura-night.webp",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/avatar/assets/scene-provenance.json",
+      "sha256": "3c8d3a82428e0f3760e8b37526868cbde98647d769512d1278e28f2ad5875c16",
+      "logicalbytes": 7956,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/avatar/assets/scene-provenance.json",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/avatar/assets/rooftop-night.webp",
+      "sha256": "b614b2503e8d255d1f7e0afb91824f1085ab19a6d44dd5cdc97e6e28180e8170",
+      "logicalbytes": 233748,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/avatar/assets/rooftop-night.webp",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/wardrobe.js",
+      "sha256": "dbba21c9c3f67e6601068824d0871d531c23cb64acd7a963ac4e79ae269e8fe7",
+      "logicalbytes": 8590,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/wardrobe.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/corner-png.js",
+      "sha256": "aaf9c054bf4d22db38a1adf2f29d4112b1a5663503ba8b6e36c6dfa5069ffcc8",
+      "logicalbytes": 10690,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/corner-png.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/music-card.js",
+      "sha256": "e1283a9017db919436d1e8d2186cf281203a54d2b0c6ed884b2a80e10fd73aae",
+      "logicalbytes": 1965,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/music-card.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/music-games.js",
+      "sha256": "5226af2d728c248487eaece7480c28bcb06121f0f926821965ec920153a618ca",
+      "logicalbytes": 21406,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/music-games.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/community-panel.js",
+      "sha256": "6911c43fccb07c321392e39cff76958af3bbd3f41f9643be2dc9a9a1204b0a89",
+      "logicalbytes": 22171,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/community-panel.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/recap-view.js",
+      "sha256": "94e5d7a9e4f3f3950e3bf2b041fe1761232e49bb4c0d4cd8574f5e32dd0b9652",
+      "logicalbytes": 3176,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/recap-view.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/original-map-entry.js",
+      "sha256": "26f364ae30b8235d81e75e00cfb19e935abd122c67f308d70fe3a6cb5df5a784",
+      "logicalbytes": 2132,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/original-map-entry.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/wall-moments.css",
+      "sha256": "86b4102c9723075b543a6fb4147364fa7b4572a0133fad43736432e983a2c367",
+      "logicalbytes": 4110,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/wall-moments.css",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/exchange-panel.js",
+      "sha256": "5a3f3ae31eb2fb8f420a27dcb89addebaf7e13c1836ee417b7bdd709480384c7",
+      "logicalbytes": 19152,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/exchange-panel.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/space-management.js",
+      "sha256": "89f778f0728c05902399d911a092a1d3b31c66aa0e2d7abefcfb2e867d7ad943",
+      "logicalbytes": 11509,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/space-management.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/venue-art.js",
+      "sha256": "e84e20531a5e20336faac6b2fb8d69ef68707462380e7703c751d874b139646e",
+      "logicalbytes": 11454,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/venue-art.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/memory-card-png.js",
+      "sha256": "6adc43913cad5eb62b7654f049e1d9610059e48122310c2a51268d6d3a66aade",
+      "logicalbytes": 14272,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/memory-card-png.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/worldcup-panel.js",
+      "sha256": "ffc831b42863a60d917ae5f730af84e623b3d52b9a0c7612bd403c705996672d",
+      "logicalbytes": 14883,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/worldcup-panel.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/index.html",
+      "sha256": "b00744ffad7d1f9efb46525ccf710c99484f89a00de2fcba99370433d0e92a87",
+      "logicalbytes": 6743,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/index.html",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/exchange-panel.css",
+      "sha256": "5438bbb5253e2f32f9ac50562c7cfe8ec58e208c244136c1330d87ab602fe0ea",
+      "logicalbytes": 4833,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/exchange-panel.css",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/moderation-panel.js",
+      "sha256": "f8f97b298bdfaed4d5b03d8171c6931ef9ce42868042e179dd0a38c9b68cc878",
+      "logicalbytes": 15194,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/moderation-panel.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/scene-layout.js",
+      "sha256": "08e847c4c11ebd39f636ec53fb5de5ab8efef639cdc306c91cfed1d0e30e0d3b",
+      "logicalbytes": 2466,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/scene-layout.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/moment-upload.js",
+      "sha256": "a40a0871767e52730325eb8f53d1e30c5fa1c40184c1e3dcecaa235326a00bca",
+      "logicalbytes": 44079,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/moment-upload.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/music-map.js",
+      "sha256": "6c211b8b11378cbccca795695fdebd5f4a469cc4cf8b4ba023b71e847f271184",
+      "logicalbytes": 10334,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/music-map.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/memory-card.js",
+      "sha256": "a95189c254eb017902f0b086f234f3149ace80a96562ad22b1f612ad08a96f9f",
+      "logicalbytes": 3201,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/memory-card.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/music-games.css",
+      "sha256": "7c1cb8d73ead7670992e24f84c585b9b6bb6cd467b2dfd9f808735083abc2515",
+      "logicalbytes": 1502,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/music-games.css",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/corner-panel.js",
+      "sha256": "e0ce68b26b3c2cfbd5c097bc16c955cf70156e35c35e085651b06d583a052b34",
+      "logicalbytes": 17719,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/corner-panel.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/chat-panel.js",
+      "sha256": "81b12c25ad48c8986fa005693a81b371174b116608ec63d9cfb0ae36d9c48dae",
+      "logicalbytes": 13224,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/chat-panel.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/venue-polish.css",
+      "sha256": "11aae35bfd86c82af93eedcae45811862dabf2a46a7fbc10fe56b436b98be7f8",
+      "logicalbytes": 10669,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/venue-polish.css",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/experience.css",
+      "sha256": "74297d2e7da3f61706ede94bc81b9cfd22c367d8f1fda0b6e0a2addfb1643e6c",
+      "logicalbytes": 6344,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/experience.css",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/personal-space.js",
+      "sha256": "f12bced7dfb8cefa4267613a3176737011f0ff89d7599cb106bb1fad1498e2f7",
+      "logicalbytes": 6085,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/personal-space.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/moment-upload.css",
+      "sha256": "42219146e0db7850dc9b8f7e993e1702598276669a98ee989ba209bb47a1abcc",
+      "logicalbytes": 10603,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/moment-upload.css",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/community-panel.css",
+      "sha256": "e630ecfd5deb74ed509612e7f753aadc710e77d357057ee873a52855f8095c2f",
+      "logicalbytes": 3320,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/community-panel.css",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/README.md",
+      "sha256": "b7a1cd308c37324d3d3f0cb0aab4c77ccbc61443720aafb775d6576fd1b4d448",
+      "logicalbytes": 5674,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/README.md",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/music-topics.js",
+      "sha256": "2c4af4a1dab810634f4ae1c4a5359969eddc6a33cf24f23b8744e8e679444b0b",
+      "logicalbytes": 8239,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/music-topics.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/moment-wall.js",
+      "sha256": "e4bbc0b26c27581633dc69b012e073084d0669fe62d0486c75551b13f1ebc516",
+      "logicalbytes": 9490,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/moment-wall.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/space-management.css",
+      "sha256": "27569347651c4b05b263563ab7e3ced3c33455f9e3f17a37c6a220ea06718743",
+      "logicalbytes": 521,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/space-management.css",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/style.css",
+      "sha256": "0d79701d5b8da6608fe5dca75c14f8946bb04c1f132541845558fe0f0b3a1176",
+      "logicalbytes": 24915,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/style.css",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/memory-card.css",
+      "sha256": "18709c0151551455d49c593208a1586111c71081340aebf60b8f601281cf19f3",
+      "logicalbytes": 2314,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/memory-card.css",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/corner-panel.css",
+      "sha256": "d2b8b08825765cb7e00b53c3e9dbb8bdbe685dd96904f38daf3698e666c70a1b",
+      "logicalbytes": 1416,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/corner-panel.css",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/editorial.css",
+      "sha256": "c63e6f369835de305e41fc11851353f8628a04c51c2356678f346332b0c0761c",
+      "logicalbytes": 18981,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/editorial.css",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/runtime-profile.js",
+      "sha256": "6dbc8a755bad45750263ba86880d98505e698cee2f52d6b5800eb64786e6ba9f",
+      "logicalbytes": 1245,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/runtime-profile.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/identity-continuity-panel.js",
+      "sha256": "4848c34b3af57561eaa9bd637619122132704b2e84a8c3be8d05e515b6db5e26",
+      "logicalbytes": 3997,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/identity-continuity-panel.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/exchange-suggest.js",
+      "sha256": "7f5c0c7696f03fc5cc7e1c0a3e095866f18254bbb8bb348d95c8e8c2c374541a",
+      "logicalbytes": 3909,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/exchange-suggest.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/music-map.css",
+      "sha256": "e848a292650ae6e9d33f77b5af2e259f796c9a3764de2e90bcf37e7059b952c6",
+      "logicalbytes": 4793,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/music-map.css",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/moderation-panel.css",
+      "sha256": "4a4b5f5d3bc1a70da407c059e0f1680c4d209fca1ec90c110f1d69985a780bda",
+      "logicalbytes": 3866,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/moderation-panel.css",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/personal-space.css",
+      "sha256": "e9677287cbc422ee9864775994c8745470d750064fcedd57ed0ca181ac8f7627",
+      "logicalbytes": 1099,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/personal-space.css",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/illustrated-person.js",
+      "sha256": "d0af768321776845b62ea82507d7b719ed6edacacf35e83ec742d3061d16ed86",
+      "logicalbytes": 3643,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/illustrated-person.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/app.js",
+      "sha256": "a2dcfbb63917116be3c019becb34ced84afc2cfcf983183f85a134b4407d3d41",
+      "logicalbytes": 82696,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/app.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/memory-card-view.js",
+      "sha256": "5f5123f46a2ddc761d04854819d2840a4d0827662e621c9897de6c8737a29a32",
+      "logicalbytes": 2918,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/memory-card-view.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/moment-model.js",
+      "sha256": "e88da378bc247252c0f27b682d35eb8b5932ae803e05ac21ef052e93d6a51da6",
+      "logicalbytes": 7543,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/moment-model.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/venue-asset.js",
+      "sha256": "78dd4e6b8e920be84e509e307fa86ca05a41b4f2784869aca84dd0f573a4ce26",
+      "logicalbytes": 5135,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/venue-asset.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/public/fonts/doodle/logo-0.woff2",
+      "sha256": "391fb0d7075b966c73f06b7ae14ad5eb9f63ed3b888226ce3efbe0fe17963dcd",
+      "logicalbytes": 16768,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/public/fonts/doodle/logo-0.woff2",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/public/fonts/doodle/digits-0.woff2",
+      "sha256": "ac71b94a01c9b9b1ce7dc609dc244de719ba94b295adfccccefdaede267220f2",
+      "logicalbytes": 14424,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/public/fonts/doodle/digits-0.woff2",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/public/fonts/doodle/note-0.woff2",
+      "sha256": "d8b88180e8824f1aa22f6c4b4b34814b0d1484d15f907b87c63aa5dbd85c39a2",
+      "logicalbytes": 16008,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/public/fonts/doodle/note-0.woff2",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/public/fonts/doodle/display-0.woff2",
+      "sha256": "41e889f0805bb949c9b86ac61492f36de8a95f9ecca61f2f5b225fe2c885b2dc",
+      "logicalbytes": 98040,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/public/fonts/doodle/display-0.woff2",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/public/fonts/doodle/marker-1.woff2",
+      "sha256": "ff1f32f3bce175fec40b499a86feb489d1192b7b781900df9ebb2b29f3d8207b",
+      "logicalbytes": 36256,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/public/fonts/doodle/marker-1.woff2",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/public/fonts/doodle/hand-2.woff2",
+      "sha256": "d79d970d397137372a93d40f55261604f745e203c96a6519f2f8e5542d5cfe57",
+      "logicalbytes": 160452,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/public/fonts/doodle/hand-2.woff2",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/public/fonts/doodle/marker-3.woff2",
+      "sha256": "8df3234299131eeb3c4a3ecc8cdb5c915cd239797387741764d5641dd503ab5f",
+      "logicalbytes": 24584,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/public/fonts/doodle/marker-3.woff2",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/public/fonts/doodle/hand-0.woff2",
+      "sha256": "0d99e7e7b0bf2c145e5b6d786f9eb584ff3a66539df97c3e8b42afc14c84fbe6",
+      "logicalbytes": 133104,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/public/fonts/doodle/hand-0.woff2",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/public/fonts/doodle/display-2.woff2",
+      "sha256": "6fde2d202383b17298b5b0abe1ce94ed18c6dcf6bf44597abd25d131766a64b2",
+      "logicalbytes": 138912,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/public/fonts/doodle/display-2.woff2",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/public/fonts/doodle/hand-4.woff2",
+      "sha256": "d6b354b46a5655d005ada68a6830d34b66bf9a7236fdcb3132b2455f3c3f7a6f",
+      "logicalbytes": 762808,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/public/fonts/doodle/hand-4.woff2",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/public/fonts/doodle/hand-1.woff2",
+      "sha256": "46cfc5533ff48b91b6e8f8f729cd6bd718dd11f8bc65bea3391e390c13dd26a0",
+      "logicalbytes": 118184,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/public/fonts/doodle/hand-1.woff2",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/public/fonts/doodle/marker-2.woff2",
+      "sha256": "6149cfc91684576ec33dd0dcbdfaa07d42ebbea9d65de739ba3abc0c4f719fa5",
+      "logicalbytes": 48832,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/public/fonts/doodle/marker-2.woff2",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/public/fonts/doodle/display-3.woff2",
+      "sha256": "b738c8e44d96881fc2eb7958ac9acff82d1a6c7ce34f759f6bfb1707d16c7db7",
+      "logicalbytes": 69716,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/public/fonts/doodle/display-3.woff2",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/public/fonts/doodle/display-1.woff2",
+      "sha256": "ad88c5036736e2b2a9e631b6661d6ecbf8775e55b18a245bdaf94c7ff780632d",
+      "logicalbytes": 104112,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/public/fonts/doodle/display-1.woff2",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/public/fonts/doodle/fonts.css",
+      "sha256": "5b52e995fe78f3a8d6eb441a0e72c9a4e26f1bce7383dc3500720b1013c2cfa9",
+      "logicalbytes": 66136,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/public/fonts/doodle/fonts.css",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/public/fonts/doodle/hand-3.woff2",
+      "sha256": "6b47b82cf5e4f2bd137a77dbc34eb906089763bfdc62cf4bd20d9780f0047761",
+      "logicalbytes": 77056,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/public/fonts/doodle/hand-3.woff2",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/public/fonts/doodle/marker-0.woff2",
+      "sha256": "cc681f7d310ed1f256d80b6bfa2ebca9cd5bde2c7b92e34bafd64c8646cd54c2",
+      "logicalbytes": 45908,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/public/fonts/doodle/marker-0.woff2",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/public/fonts/doodle/LICENSES.txt",
+      "sha256": "48c26a3edf4569c57169b5312d7116b33d73d75c012bb16601dd546fd5fe75c5",
+      "logicalbytes": 34540,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/public/fonts/doodle/LICENSES.txt",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/public/fonts/doodle/marker-4.woff2",
+      "sha256": "075a6090be026f8554bcb1251fac50d6fdc2ca89b327828722f2b2dae28130f8",
+      "logicalbytes": 220696,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/public/fonts/doodle/marker-4.woff2",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/public/fonts/doodle/marker-symbols.woff2",
+      "sha256": "3700219595880c2e7c70bc7c46bc1d82bae21c5050800c0059303a9b8dba7b4e",
+      "logicalbytes": 2892,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/public/fonts/doodle/marker-symbols.woff2",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/assets/venue-r1/asset-manifest.json",
+      "sha256": "67843a04d502cb88c1838ed81a40ef8c48fb7e01e7f7b59c9f1466dacfcfaa4f",
+      "logicalbytes": 1538,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/assets/venue-r1/asset-manifest.json",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/assets/venue-r1/venue.glb",
+      "sha256": "68f2b5991115dac38580e44f38277e9ca93be70d3bdf8e5806bbc64d59c85b8e",
+      "logicalbytes": 1158336,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/assets/venue-r1/venue.glb",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/assets/venue-r1/README.md",
+      "sha256": "94362a1ad0b36197c7512b46a98e700145fc2fd998d6b27c4bf35a8850898738",
+      "logicalbytes": 1380,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/assets/venue-r1/README.md",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/assets/venue-r1/occlusion-groups.json",
+      "sha256": "d092b2a44cebfc5b789e2a75f4200a7d127e0c8c6554b465a20cdf55f7d0cb0f",
+      "logicalbytes": 918,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/assets/venue-r1/occlusion-groups.json",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/doodle/showcase.css",
+      "sha256": "cebbb4dfde86080673ff21f7acb97c64e5896d49953bca6ae9124634256a86fb",
+      "logicalbytes": 32315,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/doodle/showcase.css",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/doodle/panels-core.css",
+      "sha256": "b0d0adaef01f647005d93bf967d1ab81cdf3d16ddb9e1f5bf51bb0573faaceb9",
+      "logicalbytes": 81370,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/doodle/panels-core.css",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/doodle/tokens.css",
+      "sha256": "d240935736522a19617859c9e401ff3efbf1310bcec057a0e89b8969134868ec",
+      "logicalbytes": 2135,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/doodle/tokens.css",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/doodle/type.css",
+      "sha256": "81b04e7f6b321681ccdd041edc8c13ed23f01b048da7f815d57cb3824ac1fb5e",
+      "logicalbytes": 1939,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/doodle/type.css",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/doodle/index.css",
+      "sha256": "ce68cb2d2d07d2e2b316b00053314984f1e0646c1bb2f4515d3c4f0435fcd7e8",
+      "logicalbytes": 476,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/doodle/index.css",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/doodle/panels-social.css",
+      "sha256": "b711e531d3d2410717231e5158a1b7ad10afde3e15896fbdd875d9fc2e36d933",
+      "logicalbytes": 68862,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/doodle/panels-social.css",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/doodle/kit.css",
+      "sha256": "dee998b60bef019d664efe0d474a1c140480da5b4ead4c1322f87781de9d296f",
+      "logicalbytes": 9445,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/doodle/kit.css",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/event-room/doodle/chrome.css",
+      "sha256": "0f04b0a88757d15b0b6a7d70ad2b880a247b915e69d380d1c8b882756b29b837",
+      "logicalbytes": 46288,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/event-room/doodle/chrome.css",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/shared/site-base.js",
+      "sha256": "d56be33cd8f6f29c4cccba988dcdef65e49b66338707bc3c94f6816ea8925d90",
+      "logicalbytes": 2802,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/shared/site-base.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/original-map/js/vendor/sakura/palette.js",
+      "sha256": "a99b8936e51c7e70ba3e1c9234f27f1832292117a536d537f0fbee54b717560e",
+      "logicalbytes": 16829,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/original-map/js/vendor/sakura/palette.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/original-map/js/vendor/sakura/SOURCE.json",
+      "sha256": "57a89c5bc5f5bd6875980d50e5a4f09063c3cfca934cf511b77de3c908fbb1bf",
+      "logicalbytes": 2891,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/original-map/js/vendor/sakura/SOURCE.json",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/original-map/js/vendor/sakura/post.js",
+      "sha256": "608009ae38b43d22588843a8d5fb4ad41ea657ff178bb3c6de484bdfd43f8ea9",
+      "logicalbytes": 10826,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/original-map/js/vendor/sakura/post.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/original-map/js/vendor/sakura/toon.js",
+      "sha256": "dcbb18f4501a7023c92a93f22b7f5cadbbd99073b8ba2518541ac7adfa98189c",
+      "logicalbytes": 5637,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/original-map/js/vendor/sakura/toon.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/original-map/js/sakura-batch.js",
+      "sha256": "faee5d58b131d632e425dbe1ca8c245a500f1b481dfa1a9c1fdea57ce0a25eff",
+      "logicalbytes": 2779,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/original-map/js/sakura-batch.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/original-map/js/sakura-camera.js",
+      "sha256": "ead906885832ede632cc51d301d6a26d4e2805977261a5fb7c010efc1bf33b45",
+      "logicalbytes": 6946,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/original-map/js/sakura-camera.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/original-map/js/sakura-doodle-prints.js",
+      "sha256": "8c14bf48f1fbe402f86e2f6044baed6638637f35e93737071f98b552121e16fa",
+      "logicalbytes": 9981,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/original-map/js/sakura-doodle-prints.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/original-map/js/sakura-doodle.js",
+      "sha256": "399b06ec15ebf3530a4d89c8a733112be9c8405347035d1dac9e9eb0c50bc572",
+      "logicalbytes": 6092,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/original-map/js/sakura-doodle.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/original-map/js/sakura-framing.js",
+      "sha256": "5c6402a3de3bf7bde3be00677d33d2f1098e2ae25b20d8b592b92612b473cc37",
+      "logicalbytes": 11697,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/original-map/js/sakura-framing.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/original-map/js/sakura-music.js",
+      "sha256": "9ceb8e3439bd9b00e05a872f5a2ce841348f78a7d7dc9c442f4403ca52602097",
+      "logicalbytes": 59203,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/original-map/js/sakura-music.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/original-map/js/sakura-printwork.js",
+      "sha256": "1d925a53bb8c82efcf34af2619cf54dd3812dd7a6f6262d6991b9aeb768a111c",
+      "logicalbytes": 6786,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/original-map/js/sakura-printwork.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/original-map/js/sakura-scene.js",
+      "sha256": "6a01ceababaef08d3e36031b936f53f88de368b8cecb05bf9a2f6263f01fabfe",
+      "logicalbytes": 33481,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/original-map/js/sakura-scene.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/original-map/js/sakura-world.js",
+      "sha256": "ed9bdfd1a9b092627801c3a05276ad6a33ce5ef43a8afe3ffcd5c054c4a34d9b",
+      "logicalbytes": 45879,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/original-map/js/sakura-world.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/original-map/js/themes.js",
+      "sha256": "494b9741cb19a26cf06f338c38e800fae6bd8c49f7bb5368956319512421896f",
+      "logicalbytes": 1147,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/original-map/js/themes.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/drizzle.config.ts",
+      "sha256": "b6de759d3b6a3167d22714fdc6b819a075d5b7737a41af589b26a072bed055c4",
+      "logicalbytes": 140,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/drizzle.config.ts",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/tests/d1-adapter-sqljs.mjs",
+      "sha256": "f2d9594d5590457d149ee657ed0001132a5b2cc3c67a29c0def4d110dd98fcde",
+      "logicalbytes": 7782,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/tests/d1-adapter-sqljs.mjs",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/tests/d1-adapter.mjs",
+      "sha256": "66992e39bb362e3f9b8470fc111f0bc49f5be662cf9b7a5ca1906f6e410c0c44",
+      "logicalbytes": 4016,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/tests/d1-adapter.mjs",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/tests/avatar-worker.test.mjs",
+      "sha256": "7ca20c758c23ec1e37aa498ed151f8a5e140aadd77fe89d902152e2256eaa4c1",
+      "logicalbytes": 40001,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/tests/avatar-worker.test.mjs",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/tests/avatar-components-worker.test.mjs",
+      "sha256": "d3af018c8fa2551bf09c07c5e80309f6d1f4657a5424851b525fc2a37970f630",
+      "logicalbytes": 16437,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/tests/avatar-components-worker.test.mjs",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/tests/event-worker.test.mjs",
+      "sha256": "5d7a57b0f7847e5bcf82001cb521ddb1c32c6d021112e0034ab58a167a728a65",
+      "logicalbytes": 16010,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/tests/event-worker.test.mjs",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/db/schema.ts",
+      "sha256": "8d2479ccf96eca194f7c7f2a6e3208e85defc56ca7a02491598379b6baf9d803",
+      "logicalbytes": 30489,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/db/schema.ts",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/drizzle/0007_event_communities.sql",
+      "sha256": "853e780281e6e07f5fd63d0bd0eb1e73e02f7a5ab0007cbf883d96fd6202fc78",
+      "logicalbytes": 1660,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/drizzle/0007_event_communities.sql",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/drizzle/0008_event_music.sql",
+      "sha256": "3975e00951e9fb7b42dcaa35a4cb5ffa9888ec0051d17dc9894cb9e88f23f801",
+      "logicalbytes": 270,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/drizzle/0008_event_music.sql",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/drizzle/0011_event_spaces.sql",
+      "sha256": "db9b7d5ff39eb8cefc6c030a235d3f30c36d2aa727f1746eb8e2d6dab688d77c",
+      "logicalbytes": 1011,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/drizzle/0011_event_spaces.sql",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/drizzle/0002_event_social.sql",
+      "sha256": "9cf4032c39e03f0391a2795479cc09826871435dfc2879b7a787cd635038c928",
+      "logicalbytes": 3407,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/drizzle/0002_event_social.sql",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/drizzle/0010_event_corners.sql",
+      "sha256": "265c9338978eaea2ea791ddfceef4f23b305c853fd869a298544ced1af387e7d",
+      "logicalbytes": 1711,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/drizzle/0010_event_corners.sql",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/drizzle/0012_event_music_play.sql",
+      "sha256": "040a071637d212a95b69a5b34f5a17bd6250a153ac548952f3393bc542de0252",
+      "logicalbytes": 3047,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/drizzle/0012_event_music_play.sql",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/drizzle/0004_event_exchanges.sql",
+      "sha256": "6d7860a87070a7a450c5f7b2265dd06ac4adc09c8b210a63d4abf6be2306eb5e",
+      "logicalbytes": 5147,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/drizzle/0004_event_exchanges.sql",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/drizzle/0000_known_colonel_america.sql",
+      "sha256": "5592051d56d95cfe2ab3e0e9901850a859c6b9ec0fabc8607029e54166f4387a",
+      "logicalbytes": 2305,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/drizzle/0000_known_colonel_america.sql",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/drizzle/0001_event_rooms.sql",
+      "sha256": "dab04e3359eb2f531624ab00240967485fc89a9855bd5e41f9b36daf1d5ed2ce",
+      "logicalbytes": 2976,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/drizzle/0001_event_rooms.sql",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/drizzle/0009_event_worldcup.sql",
+      "sha256": "6111381a47c1aeaa29ce76998363722c5b4e831b0fed27ba7037a8ced9cbf23a",
+      "logicalbytes": 1027,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/drizzle/0009_event_worldcup.sql",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/drizzle/0003_event_chat.sql",
+      "sha256": "f93944e7d1dab0ce0680d8f719ef1aff5f1b1ea8e34a1b7f2aba1e1969fff38b",
+      "logicalbytes": 1855,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/drizzle/0003_event_chat.sql",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/drizzle/0013_event_photo_moment.sql",
+      "sha256": "8283f413f6b57be73e173389e04c2c34c49406552e48b41fe73924c3cbccebf2",
+      "logicalbytes": 1297,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/drizzle/0013_event_photo_moment.sql",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/drizzle/0006_event_participation.sql",
+      "sha256": "c669975f1afc86f1e6e251a8ac117c5043d3340985b75de7e419b08e791d5360",
+      "logicalbytes": 1080,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/drizzle/0006_event_participation.sql",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/drizzle/0005_event_moderation.sql",
+      "sha256": "747d47be741c75f52a05b40f152306a2540e2007d7d8fa4c931e9b07feccc6f1",
+      "logicalbytes": 2428,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/drizzle/0005_event_moderation.sql",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/drizzle/meta/0010_snapshot.json",
+      "sha256": "1bea2da363148393062eecb74dc2d8476e7fd8c1f4d1e69330611ecb5ed4e0fe",
+      "logicalbytes": 99109,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/drizzle/meta/0010_snapshot.json",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/drizzle/meta/0007_snapshot.json",
+      "sha256": "d9a2a21aeb7386401608e41d2e7d4b541c8b5ee80960b0ef041821065a327932",
+      "logicalbytes": 79774,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/drizzle/meta/0007_snapshot.json",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/drizzle/meta/0003_snapshot.json",
+      "sha256": "ebf687c9a54c1ecc09ad090399ac88e2de1922ef32afd38b418e26dcccb10548",
+      "logicalbytes": 39400,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/drizzle/meta/0003_snapshot.json",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/drizzle/meta/0004_snapshot.json",
+      "sha256": "b4ee7227b26d85a03c702a519154bbb3b69537316a05c4d0550704a126175ab5",
+      "logicalbytes": 55175,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/drizzle/meta/0004_snapshot.json",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/drizzle/meta/0013_snapshot.json",
+      "sha256": "50bbdc81c5ff56a86502a976ce228cbe7494dac98811d791a739c0c8fb03f4b7",
+      "logicalbytes": 128052,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/drizzle/meta/0013_snapshot.json",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/drizzle/meta/0000_snapshot.json",
+      "sha256": "9034e261cb54227b73af30ea3b2de4b30d8918803b5f5c0a62152249acb03356",
+      "logicalbytes": 9821,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/drizzle/meta/0000_snapshot.json",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/drizzle/meta/0009_snapshot.json",
+      "sha256": "e7ac9f43178d0c001535f0e6c57d8ff96c7cf30990637af8d82cecfaef704098",
+      "logicalbytes": 88483,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/drizzle/meta/0009_snapshot.json",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/drizzle/meta/0008_snapshot.json",
+      "sha256": "fd99dc29ae2e9df07a7c9c9659a0c6c5b775dbed51be5fa0038363e0eb7d7cf9",
+      "logicalbytes": 80988,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/drizzle/meta/0008_snapshot.json",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/drizzle/meta/_journal.json",
+      "sha256": "3ddc414dd473e7835ebd7c84fcf16404eacba9e4e60789461a0e06fe9df24e39",
+      "logicalbytes": 2064,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/drizzle/meta/_journal.json",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/drizzle/meta/0001_snapshot.json",
+      "sha256": "d805e9707a427e9f3e4d66a705ac282b5e8d394d926593d55db1de74fcac6cc0",
+      "logicalbytes": 21744,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/drizzle/meta/0001_snapshot.json",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/drizzle/meta/0012_snapshot.json",
+      "sha256": "606659292f06696b8b2512cd44e60fed0b876fcad2ece47fce2a149d03564c07",
+      "logicalbytes": 125886,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/drizzle/meta/0012_snapshot.json",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/drizzle/meta/0005_snapshot.json",
+      "sha256": "48e2c5e6906aa96626a2686065a162cc1b3bd240d89fef7b810342558b22a51f",
+      "logicalbytes": 63958,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/drizzle/meta/0005_snapshot.json",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/drizzle/meta/0002_snapshot.json",
+      "sha256": "5351a13974d5f571858c9b41664109ed81f38bfc9eca6ec21bc2feda46a44111",
+      "logicalbytes": 32015,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/drizzle/meta/0002_snapshot.json",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/drizzle/meta/0006_snapshot.json",
+      "sha256": "7ddbd14adf309b33fdd5cdb23912fe8d268803e370a978235850f52502e8c093",
+      "logicalbytes": 66210,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/drizzle/meta/0006_snapshot.json",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/runtime-preview/drizzle/meta/0011_snapshot.json",
+      "sha256": "aec679b8a5be4a3e03350b83ef6b5c368c37a5d3ccd1114e55f3f75cb68edd51",
+      "logicalbytes": 104459,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "runtime-preview/drizzle/meta/0011_snapshot.json",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/js/sakura-scene.js",
+      "sha256": "14fb5cc653db9de6e64b4a0ecc4f901bd251751accae2678d7c8a656bc917e50",
+      "logicalbytes": 31812,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/js/sakura-scene.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/js/sakura-printwork.js",
+      "sha256": "49db4ee2af89456297ca276c5d095cd6d7fa998ff5960b418e168e7281ab8126",
+      "logicalbytes": 5556,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/js/sakura-printwork.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/js/setlist-ui.js",
+      "sha256": "26295936b5d307f54ed002a299015abe49ad496b931348a21be97d897e165ecc",
+      "logicalbytes": 3743,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/js/setlist-ui.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/js/sakura-framing.js",
+      "sha256": "e7d0bac7d2183c83571349bd8565777bc2eb378c3281f9fc1c93f87e8e4748b0",
+      "logicalbytes": 9401,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/js/sakura-framing.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/js/icons.js",
+      "sha256": "51db5c70857d15cf52d15dcbcab2f04e4abe3242cc2000268162035d60f63fdb",
+      "logicalbytes": 8111,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/js/icons.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/js/moment.js",
+      "sha256": "bfd15cb0dca85feaa225c8ec12958e6d632c5e9457b29730402098fbb31dd1a9",
+      "logicalbytes": 24264,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/js/moment.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/js/space-data.js",
+      "sha256": "9a89404babb02dee8180fbd3a789f2107b2575ae8447185efc9dc1be7dd8972c",
+      "logicalbytes": 2341,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/js/space-data.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/js/live-library.js",
+      "sha256": "146cc391fad1072e6ea25a99f9007f925bc240a84dc399464924aa6b0e9214ff",
+      "logicalbytes": 23660,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/js/live-library.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/js/duet-facts.js",
+      "sha256": "b0d1fefecd8b83c0aa9e70468fc47823d4328a101de1b15e6806037b52ba91c8",
+      "logicalbytes": 4095,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/js/duet-facts.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/js/sakura-batch.js",
+      "sha256": "faee5d58b131d632e425dbe1ca8c245a500f1b481dfa1a9c1fdea57ce0a25eff",
+      "logicalbytes": 2779,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/js/sakura-batch.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/js/themes.js",
+      "sha256": "d22048bec9df22827cf7de0caeafbf66afb401897e67d4958a83344b1e3dcb19",
+      "logicalbytes": 814,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/js/themes.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/js/sakura-camera.js",
+      "sha256": "6a2be63ca70f9ae614d5ac7cbcd672f35bfd895642c85ea3102bcff82c5487e4",
+      "logicalbytes": 6587,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/js/sakura-camera.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/js/home.js",
+      "sha256": "2f6ce639f9a5c26c6035e4c1bda4f35be4dbb0e0737f6a833e0c226741d6d1e7",
+      "logicalbytes": 10099,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/js/home.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/js/sakura-world.js",
+      "sha256": "2fbb8f466ba11aebbb42f657f54c2b4eb532d55e167cdef49243e4e7e544a040",
+      "logicalbytes": 49320,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/js/sakura-world.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/js/duet-ceremony.js",
+      "sha256": "6cf513aedb582a38cdd31b04e0c6a3f40223bc6cd52e19418bedc43848b2db50",
+      "logicalbytes": 19734,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/js/duet-ceremony.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/js/space.js",
+      "sha256": "49887473ecee143c36b24896b657ac60c4fa962e8319d94625dba26ffe9b7cfd",
+      "logicalbytes": 78988,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/js/space.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/js/live-photo.js",
+      "sha256": "be35fa3719ce7840ecaca5370592ddf332b678c7fc98effa87bcda0abaeffe3a",
+      "logicalbytes": 3114,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/js/live-photo.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/js/ticket-export.js",
+      "sha256": "4d5138f2e4f300fd19b6a56688e12eb14938a580d673287c2136378619ef570d",
+      "logicalbytes": 21976,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/js/ticket-export.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/js/motion.js",
+      "sha256": "e535ec9cc01e65983d637594ec57b449be83a483f8a7fd75604d476cdaf7f68a",
+      "logicalbytes": 2580,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/js/motion.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/js/photo-insight.js",
+      "sha256": "1364ca3bbb27f9721736984a84494b8775044fba12e3b946bf348d910a8f2b51",
+      "logicalbytes": 15336,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/js/photo-insight.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/js/live.js",
+      "sha256": "195c26196676ed966ccc1559baf77fdd8982fa064af07b6706d50d4f35fc8ca3",
+      "logicalbytes": 75638,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/js/live.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/js/app.js",
+      "sha256": "4c4191f83e80fdeb5541b5003e0e5e713aa552caad714bc82699695206854da3",
+      "logicalbytes": 23549,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/js/app.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/js/storage.js",
+      "sha256": "8a903c0fe846fa7194dce260a226c7087d3a520ca11a6fed36525a1a4b3f17f3",
+      "logicalbytes": 3578,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/js/storage.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/js/ai/space-ai.js",
+      "sha256": "b153fded1d37a92c751b0c8cacd9c26857d94766d7426e3a18dfb2a300b94211",
+      "logicalbytes": 23320,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/js/ai/space-ai.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/js/ai/exif-time.js",
+      "sha256": "91695002f09bf99dc92f4c9ef11aac2156d1ec1c966ea896b91401925bdba19b",
+      "logicalbytes": 13518,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/js/ai/exif-time.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/js/vendor/sakura/palette.js",
+      "sha256": "a99b8936e51c7e70ba3e1c9234f27f1832292117a536d537f0fbee54b717560e",
+      "logicalbytes": 16829,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/js/vendor/sakura/palette.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/js/vendor/sakura/SOURCE.json",
+      "sha256": "d51faf7a4cb734e134726c3bcba70e9fda258a699b60e4ce93b794db5d0f5da0",
+      "logicalbytes": 2616,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/js/vendor/sakura/SOURCE.json",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/js/vendor/sakura/post.js",
+      "sha256": "608009ae38b43d22588843a8d5fb4ad41ea657ff178bb3c6de484bdfd43f8ea9",
+      "logicalbytes": 10826,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/js/vendor/sakura/post.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/js/vendor/sakura/toon.js",
+      "sha256": "0e9261f904c27422211af57b9b5f6acb030fec31c6a7f59c6caee43d952af354",
+      "logicalbytes": 5485,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/js/vendor/sakura/toon.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/static-runtime/single-writer.js",
+      "sha256": "b5495efd9726d1efa1fd9c7682be75f656208b8edaea075760cb03a757d63751",
+      "logicalbytes": 5327,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/static-runtime/single-writer.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/static-runtime/profile.js",
+      "sha256": "3217ef4252e372c1ad6fe63e0f175e1d1e507681b1065f9c6adb8406226cb692",
+      "logicalbytes": 4694,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/static-runtime/profile.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/static-runtime/clock.js",
+      "sha256": "95c229278838dd4fa715a46796a0fbfbedfd82a849c30fa768db22099c958887",
+      "logicalbytes": 945,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/static-runtime/clock.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/static-runtime/storage-guard.js",
+      "sha256": "2e3f4b217d48c6bf4b4b30e96237345baba97ab57583a31cd1bbdbf8ca58dea6",
+      "logicalbytes": 8171,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/static-runtime/storage-guard.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/static-runtime/boot.js",
+      "sha256": "e89f399007e0effec99753674a373bfe37cf11b9357eeb7ff89b4e3db00bc031",
+      "logicalbytes": 41804,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/static-runtime/boot.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/static-runtime/runtime.js",
+      "sha256": "73a65d16b40d6a6c8e71fe6d8f66b5f24510ec915120d078ab22c2c6b59b5bc4",
+      "logicalbytes": 15521,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/static-runtime/runtime.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/static-runtime/demo.css",
+      "sha256": "f798c8e4ca09c917ca42559693f06271cb7b67da5c6c344f862f1b7734b63a51",
+      "logicalbytes": 12242,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/static-runtime/demo.css",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/static-runtime/r2-idb.js",
+      "sha256": "dcc5bda24720b13252739513873967024484cb6c96a66b0977052e18f829f58b",
+      "logicalbytes": 1341,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/static-runtime/r2-idb.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/static-runtime/transport.js",
+      "sha256": "f343de286927eaad4c69cb9ded35d5e091007efdb18b40c5f6c3755be68df1c6",
+      "logicalbytes": 5160,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/static-runtime/transport.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/static-runtime/idb-store.js",
+      "sha256": "a27c839017d1f32be28c4a266414a3a0ab0f1c1883564095f994bc3cc5ba2266",
+      "logicalbytes": 9451,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/static-runtime/idb-store.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/static-runtime/d1-sqljs.js",
+      "sha256": "a738556cd01ce9d2f536b8da9f4c30b65a76465fb6959c2b9b1159c378fbbacb",
+      "logicalbytes": 6638,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/static-runtime/d1-sqljs.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/static-runtime/demo-assets/sample-crowd.jpg",
+      "sha256": "0c02a35a31445f06cb26a49cfa2493d0e4b78a801448b244deed7afcdba3f64f",
+      "logicalbytes": 81292,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/static-runtime/demo-assets/sample-crowd.jpg",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/static-runtime/demo-assets/bei-balcony.jpg",
+      "sha256": "3236efba83eb8311ba00e7d3527109d97f554a7ea8c3c739603b1baca967ff55",
+      "logicalbytes": 34042,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/static-runtime/demo-assets/bei-balcony.jpg",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/static-runtime/demo-assets/man-near.jpg",
+      "sha256": "0b8f0d6848903920176934c186e0449f3a083ab509ebe483e8586f1ca3047c22",
+      "logicalbytes": 75391,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/static-runtime/demo-assets/man-near.jpg",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/static-runtime/demo-assets/man-crowd.jpg",
+      "sha256": "c421b5477ef103ce57f5727f9b80c1a69c785754bca9e46b2f964316ca420514",
+      "logicalbytes": 56842,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/static-runtime/demo-assets/man-crowd.jpg",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/static-runtime/demo-assets/manifest.json",
+      "sha256": "d0ecf3f97c339884603cb2ab59753709cc1a83b2c803eee2d325629fa8f08c42",
+      "logicalbytes": 3121,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/static-runtime/demo-assets/manifest.json",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/static-runtime/demo-assets/yao-stage.jpg",
+      "sha256": "678c67cb7e62780d586f22f0e6c1a7dc1ccba165146b910fd95bb0d0079fe2ad",
+      "logicalbytes": 70016,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/static-runtime/demo-assets/yao-stage.jpg",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/static-runtime/demo-assets/sample-stage.jpg",
+      "sha256": "b0b9f035aa9fdcb349ef4a648052228fb23bd12c732c585decd3983440bffeb3",
+      "logicalbytes": 90522,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/static-runtime/demo-assets/sample-stage.jpg",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/static-runtime/shims/node-crypto.js",
+      "sha256": "e9c75d1027765d0a569409c28bf18f82f3a55dcdb267bf29cd90773c1f0a87a9",
+      "logicalbytes": 7243,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/static-runtime/shims/node-crypto.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/static-runtime/shims/node-buffer.js",
+      "sha256": "d94a02565d51e5da1d9a3de46ff28b88023f6f17b96ffb875ae4fc7e07d435e4",
+      "logicalbytes": 9133,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/static-runtime/shims/node-buffer.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/static-runtime/showcase/copy.js",
+      "sha256": "ab15410547a5a900d404d643ad9b6f4d57ab02c7fa1eed994bbe9bf60926403e",
+      "logicalbytes": 5284,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/static-runtime/showcase/copy.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/static-runtime/showcase/about-panel.js",
+      "sha256": "6cd13ca16bb7d0a50e508bc99de887ebbe3a1d826631e0c9d6f8711080ef98a5",
+      "logicalbytes": 6032,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/static-runtime/showcase/about-panel.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/static-runtime/showcase/autopilot.js",
+      "sha256": "997fedbd136b3faa1cc93d5cccabb262ad96ea0a965dc5c953fa9adf05936127",
+      "logicalbytes": 22401,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/static-runtime/showcase/autopilot.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/static-runtime/showcase/npc-lines.js",
+      "sha256": "ea52f9bdc6fcb1dc08dc633a175d18dff482390cc0c57178dc1efd2687e6bb31",
+      "logicalbytes": 2998,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/static-runtime/showcase/npc-lines.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/static-runtime/showcase/tour.js",
+      "sha256": "95435be48760c1385cc8d656304b8f58de0eef858b2004800b3250f1a275dd8c",
+      "logicalbytes": 9945,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/static-runtime/showcase/tour.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/static-runtime/showcase/roster.js",
+      "sha256": "6cd8bd30f6855267e33a67437a692436c2a674c2e609438506a6e5968d147229",
+      "logicalbytes": 6567,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/static-runtime/showcase/roster.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/static-runtime/showcase/seed.js",
+      "sha256": "e1a50d93d2b22e466cba00a28dec965190532dbc287d889617e399a392a1909f",
+      "logicalbytes": 12084,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/static-runtime/showcase/seed.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/static-runtime/showcase/demo-hooks.js",
+      "sha256": "f4cef302f97fccba0a0e98bb3d0942689753ea9f42ab956b3020e62a3149e076",
+      "logicalbytes": 9023,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/static-runtime/showcase/demo-hooks.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    },
+    {
+      "path": "/Users/alakazan/workplace/tme/musicSpace/web/static-runtime/showcase/entry-panel.js",
+      "sha256": "e7f48ce0f565c2b9a58ff638021655cb22aa01caa0b096976e9156d6e9068e90",
+      "logicalbytes": 5283,
+      "coverage": "tracked_verified_main",
+      "repository_relative_path": "web/static-runtime/showcase/entry-panel.js",
+      "base_commit": "bb1071ea2d28c1d85cca909b207d84e8eb3b9144"
+    }
+  ]
 }

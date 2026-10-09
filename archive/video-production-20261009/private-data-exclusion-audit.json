@@ -1,0 +1,12 @@
+{
+  "regular_headers_scanned": 34377,
+  "source_text_files_fully_scanned": 7902,
+  "source_text_bytes_scanned": 749839125,
+  "remaining_database_headers_or_names": [],
+  "remaining_credential_tokens_or_private_keys": [],
+  "privately_preserved_files": 37,
+  "private_copy_hashes_verified": true,
+  "no_text_size_cap": true,
+  "passed": true,
+  "checked_utc": "2026-10-09T03:46:44Z"
+}

@@ -1,0 +1,326 @@
+{
+  "repository": "musicMapTeam/musicSpace",
+  "tag": "archive-video-production-20261009",
+  "release_id": 407473684,
+  "part_limit_bytes": 536870912,
+  "parts": [
+    {
+      "index": 1,
+      "name": "video-production.tar.gz.part0001",
+      "bytes": 536870912,
+      "sha256": "9decbe2633488029471389b338d350c16e8096d4ac3a75289b783c977f28ed15",
+      "remote_digest": "sha256:9decbe2633488029471389b338d350c16e8096d4ac3a75289b783c977f28ed15",
+      "asset_id": 623787727,
+      "url": "https://github.com/musicMapTeam/musicSpace/releases/download/archive-video-production-20261009/video-production.tar.gz.part0001",
+      "verified": true
+    },
+    {
+      "index": 2,
+      "name": "video-production.tar.gz.part0002",
+      "bytes": 536870912,
+      "sha256": "3a4e8acbd42da288e7a17f43b3b70777e95f6a389ccec4393b8677ad587a5330",
+      "remote_digest": "sha256:3a4e8acbd42da288e7a17f43b3b70777e95f6a389ccec4393b8677ad587a5330",
+      "asset_id": 623799346,
+      "url": "https://github.com/musicMapTeam/musicSpace/releases/download/archive-video-production-20261009/video-production.tar.gz.part0002",
+      "verified": true
+    },
+    {
+      "index": 3,
+      "name": "video-production.tar.gz.part0003",
+      "bytes": 536870912,
+      "sha256": "7e287b15e36f3ff389cd1d2daf1dd2abd986d998cc5876d43eb334e787776959",
+      "remote_digest": "sha256:7e287b15e36f3ff389cd1d2daf1dd2abd986d998cc5876d43eb334e787776959",
+      "asset_id": 623799592,
+      "url": "https://github.com/musicMapTeam/musicSpace/releases/download/archive-video-production-20261009/video-production.tar.gz.part0003",
+      "verified": true
+    },
+    {
+      "index": 4,
+      "name": "video-production.tar.gz.part0004",
+      "bytes": 536870912,
+      "sha256": "a00774f6618b4026e9a21ee5fc049dce21753a03a52ac9b105a3956102527b42",
+      "remote_digest": "sha256:a00774f6618b4026e9a21ee5fc049dce21753a03a52ac9b105a3956102527b42",
+      "asset_id": 623799999,
+      "url": "https://github.com/musicMapTeam/musicSpace/releases/download/archive-video-production-20261009/video-production.tar.gz.part0004",
+      "verified": true
+    },
+    {
+      "index": 5,
+      "name": "video-production.tar.gz.part0005",
+      "bytes": 536870912,
+      "sha256": "45c5d7deeb6ae70eba531f2eae51d297de520379f76d6e0801d0cabd1a292cbd",
+      "remote_digest": "sha256:45c5d7deeb6ae70eba531f2eae51d297de520379f76d6e0801d0cabd1a292cbd",
+      "asset_id": 623824766,
+      "url": "https://github.com/musicMapTeam/musicSpace/releases/download/archive-video-production-20261009/video-production.tar.gz.part0005",
+      "verified": true
+    },
+    {
+      "index": 6,
+      "name": "video-production.tar.gz.part0006",
+      "bytes": 536870912,
+      "sha256": "d5b60b965e7940ca7f575174f51f663a85484c055020c89b2c326fb8d6fc5117",
+      "remote_digest": "sha256:d5b60b965e7940ca7f575174f51f663a85484c055020c89b2c326fb8d6fc5117",
+      "asset_id": 623825074,
+      "url": "https://github.com/musicMapTeam/musicSpace/releases/download/archive-video-production-20261009/video-production.tar.gz.part0006",
+      "verified": true
+    },
+    {
+      "index": 7,
+      "name": "video-production.tar.gz.part0007",
+      "bytes": 536870912,
+      "sha256": "4e7e77fa10be7b3d49e4343b91625eff7f3f04c7699b0c0a318ddb0c092eda1e",
+      "remote_digest": "sha256:4e7e77fa10be7b3d49e4343b91625eff7f3f04c7699b0c0a318ddb0c092eda1e",
+      "asset_id": 623825299,
+      "url": "https://github.com/musicMapTeam/musicSpace/releases/download/archive-video-production-20261009/video-production.tar.gz.part0007",
+      "verified": true
+    },
+    {
+      "index": 8,
+      "name": "video-production.tar.gz.part0008",
+      "bytes": 536870912,
+      "sha256": "079d257954855d1bbb39ce77f35c2bc80eba7902ab5ad9ff737394c29f977a40",
+      "remote_digest": "sha256:079d257954855d1bbb39ce77f35c2bc80eba7902ab5ad9ff737394c29f977a40",
+      "asset_id": 623831001,
+      "url": "https://github.com/musicMapTeam/musicSpace/releases/download/archive-video-production-20261009/video-production.tar.gz.part0008",
+      "verified": true
+    },
+    {
+      "index": 9,
+      "name": "video-production.tar.gz.part0009",
+      "bytes": 536870912,
+      "sha256": "afd3d285fd4daefb0d17e65d6319a58fd5ba9d5a7236950c061cc7d527631516",
+      "remote_digest": "sha256:afd3d285fd4daefb0d17e65d6319a58fd5ba9d5a7236950c061cc7d527631516",
+      "asset_id": 623834426,
+      "url": "https://github.com/musicMapTeam/musicSpace/releases/download/archive-video-production-20261009/video-production.tar.gz.part0009",
+      "verified": true
+    },
+    {
+      "index": 10,
+      "name": "video-production.tar.gz.part0010",
+      "bytes": 536870912,
+      "sha256": "444ecb2516fd38e27c21a3ae51118c15ca8d57d15266447f5bdae9e854a23f63",
+      "remote_digest": "sha256:444ecb2516fd38e27c21a3ae51118c15ca8d57d15266447f5bdae9e854a23f63",
+      "asset_id": 623834662,
+      "url": "https://github.com/musicMapTeam/musicSpace/releases/download/archive-video-production-20261009/video-production.tar.gz.part0010",
+      "verified": true
+    },
+    {
+      "index": 11,
+      "name": "video-production.tar.gz.part0011",
+      "bytes": 536870912,
+      "sha256": "76a4cabdbb3d89c3f2111834fc2403edfdb5f76ff2f5189e2846940cff5e54a7",
+      "remote_digest": "sha256:76a4cabdbb3d89c3f2111834fc2403edfdb5f76ff2f5189e2846940cff5e54a7",
+      "asset_id": 623836948,
+      "url": "https://github.com/musicMapTeam/musicSpace/releases/download/archive-video-production-20261009/video-production.tar.gz.part0011",
+      "verified": true
+    },
+    {
+      "index": 12,
+      "name": "video-production.tar.gz.part0012",
+      "bytes": 536870912,
+      "sha256": "33bd6d3dadf51dc4163839a6574318cf729e1312a1d64fae0afbcc1f3cfb9078",
+      "remote_digest": "sha256:33bd6d3dadf51dc4163839a6574318cf729e1312a1d64fae0afbcc1f3cfb9078",
+      "asset_id": 623842759,
+      "url": "https://github.com/musicMapTeam/musicSpace/releases/download/archive-video-production-20261009/video-production.tar.gz.part0012",
+      "verified": true
+    },
+    {
+      "index": 13,
+      "name": "video-production.tar.gz.part0013",
+      "bytes": 536870912,
+      "sha256": "85fd6c382c65a1547b36015cff4d2c9e07052cfaeabda8ef710503e08996f60b",
+      "remote_digest": "sha256:85fd6c382c65a1547b36015cff4d2c9e07052cfaeabda8ef710503e08996f60b",
+      "asset_id": 623847690,
+      "url": "https://github.com/musicMapTeam/musicSpace/releases/download/archive-video-production-20261009/video-production.tar.gz.part0013",
+      "verified": true
+    },
+    {
+      "index": 14,
+      "name": "video-production.tar.gz.part0014",
+      "bytes": 536870912,
+      "sha256": "5e22ae24c2dbb2ffe5f04eb8a32143b66873200d7f237d2118eb87162c289814",
+      "remote_digest": "sha256:5e22ae24c2dbb2ffe5f04eb8a32143b66873200d7f237d2118eb87162c289814",
+      "asset_id": 623847983,
+      "url": "https://github.com/musicMapTeam/musicSpace/releases/download/archive-video-production-20261009/video-production.tar.gz.part0014",
+      "verified": true
+    },
+    {
+      "index": 15,
+      "name": "video-production.tar.gz.part0015",
+      "bytes": 536870912,
+      "sha256": "f19e87eefca796a3fd365f90345a4abfb759fc38961e51d5ff02ce6ac4e7d114",
+      "remote_digest": "sha256:f19e87eefca796a3fd365f90345a4abfb759fc38961e51d5ff02ce6ac4e7d114",
+      "asset_id": 623849559,
+      "url": "https://github.com/musicMapTeam/musicSpace/releases/download/archive-video-production-20261009/video-production.tar.gz.part0015",
+      "verified": true
+    },
+    {
+      "index": 16,
+      "name": "video-production.tar.gz.part0016",
+      "bytes": 536870912,
+      "sha256": "e817a2027b80b2353e4d3df3cde9bb40f15a306fd8bf4bf7f899d10259aae174",
+      "remote_digest": "sha256:e817a2027b80b2353e4d3df3cde9bb40f15a306fd8bf4bf7f899d10259aae174",
+      "asset_id": 623851922,
+      "url": "https://github.com/musicMapTeam/musicSpace/releases/download/archive-video-production-20261009/video-production.tar.gz.part0016",
+      "verified": true
+    },
+    {
+      "index": 17,
+      "name": "video-production.tar.gz.part0017",
+      "bytes": 536870912,
+      "sha256": "f5cf97debbaa44840853d1650d207556cbea0e396d5603c8a159a6862aa741be",
+      "remote_digest": "sha256:f5cf97debbaa44840853d1650d207556cbea0e396d5603c8a159a6862aa741be",
+      "asset_id": 623863702,
+      "url": "https://github.com/musicMapTeam/musicSpace/releases/download/archive-video-production-20261009/video-production.tar.gz.part0017",
+      "verified": true
+    },
+    {
+      "index": 18,
+      "name": "video-production.tar.gz.part0018",
+      "bytes": 536870912,
+      "sha256": "541a21447c29be6cd91dbc534f672816e261a8dc9d5d51a64d994a6a4911f168",
+      "remote_digest": "sha256:541a21447c29be6cd91dbc534f672816e261a8dc9d5d51a64d994a6a4911f168",
+      "asset_id": 623856302,
+      "url": "https://github.com/musicMapTeam/musicSpace/releases/download/archive-video-production-20261009/video-production.tar.gz.part0018",
+      "verified": true
+    },
+    {
+      "index": 19,
+      "name": "video-production.tar.gz.part0019",
+      "bytes": 536870912,
+      "sha256": "f53f87349762708b01e41b9dbf44808395a18bb3d651fb2d51af92082d6b36fe",
+      "remote_digest": "sha256:f53f87349762708b01e41b9dbf44808395a18bb3d651fb2d51af92082d6b36fe",
+      "asset_id": 623863900,
+      "url": "https://github.com/musicMapTeam/musicSpace/releases/download/archive-video-production-20261009/video-production.tar.gz.part0019",
+      "verified": true
+    },
+    {
+      "index": 20,
+      "name": "video-production.tar.gz.part0020",
+      "bytes": 536870912,
+      "sha256": "43fa074aec6d1b891efebe877f945120186f12ad7755197e1a7ff040f22ad784",
+      "remote_digest": "sha256:43fa074aec6d1b891efebe877f945120186f12ad7755197e1a7ff040f22ad784",
+      "asset_id": 623871076,
+      "url": "https://github.com/musicMapTeam/musicSpace/releases/download/archive-video-production-20261009/video-production.tar.gz.part0020",
+      "verified": true
+    },
+    {
+      "index": 21,
+      "name": "video-production.tar.gz.part0021",
+      "bytes": 536870912,
+      "sha256": "833610e1ad6ad1ac111ca2e8dd6961c6e9d9535f0114b86f061b62658f0bd2b4",
+      "remote_digest": "sha256:833610e1ad6ad1ac111ca2e8dd6961c6e9d9535f0114b86f061b62658f0bd2b4",
+      "asset_id": 623871403,
+      "url": "https://github.com/musicMapTeam/musicSpace/releases/download/archive-video-production-20261009/video-production.tar.gz.part0021",
+      "verified": true
+    },
+    {
+      "index": 22,
+      "name": "video-production.tar.gz.part0022",
+      "bytes": 536870912,
+      "sha256": "4438a66cdeedd310f8ccd10a839dd49776f10a50224c52cb93fcdf141b8ff6ac",
+      "remote_digest": "sha256:4438a66cdeedd310f8ccd10a839dd49776f10a50224c52cb93fcdf141b8ff6ac",
+      "asset_id": 623872239,
+      "url": "https://github.com/musicMapTeam/musicSpace/releases/download/archive-video-production-20261009/video-production.tar.gz.part0022",
+      "verified": true
+    },
+    {
+      "index": 23,
+      "name": "video-production.tar.gz.part0023",
+      "bytes": 536870912,
+      "sha256": "d8fda612fecb6f7c9a066cc27153aedcade8ef45aea8cf5e638177d0d8c7c3be",
+      "remote_digest": "sha256:d8fda612fecb6f7c9a066cc27153aedcade8ef45aea8cf5e638177d0d8c7c3be",
+      "asset_id": 623877501,
+      "url": "https://github.com/musicMapTeam/musicSpace/releases/download/archive-video-production-20261009/video-production.tar.gz.part0023",
+      "verified": true
+    },
+    {
+      "index": 24,
+      "name": "video-production.tar.gz.part0024",
+      "bytes": 536870912,
+      "sha256": "673ada64fde6448acb32193495112b496f1aa74350df36f141c9ec6d7e3ab06e",
+      "remote_digest": "sha256:673ada64fde6448acb32193495112b496f1aa74350df36f141c9ec6d7e3ab06e",
+      "asset_id": 623878531,
+      "url": "https://github.com/musicMapTeam/musicSpace/releases/download/archive-video-production-20261009/video-production.tar.gz.part0024",
+      "verified": true
+    },
+    {
+      "index": 25,
+      "name": "video-production.tar.gz.part0025",
+      "bytes": 536870912,
+      "sha256": "3f25028a7362b8fa604498dcf849ab8234f3da93eeaf3bbd67b0fa1f0405def5",
+      "remote_digest": "sha256:3f25028a7362b8fa604498dcf849ab8234f3da93eeaf3bbd67b0fa1f0405def5",
+      "asset_id": 623881624,
+      "url": "https://github.com/musicMapTeam/musicSpace/releases/download/archive-video-production-20261009/video-production.tar.gz.part0025",
+      "verified": true
+    },
+    {
+      "index": 26,
+      "name": "video-production.tar.gz.part0026",
+      "bytes": 536870912,
+      "sha256": "603c219ac240f163cd310dfacd2f4a6d155b253a4c4e8dddf644534ddf776ef7",
+      "remote_digest": "sha256:603c219ac240f163cd310dfacd2f4a6d155b253a4c4e8dddf644534ddf776ef7",
+      "asset_id": 623887238,
+      "url": "https://github.com/musicMapTeam/musicSpace/releases/download/archive-video-production-20261009/video-production.tar.gz.part0026",
+      "verified": true
+    },
+    {
+      "index": 27,
+      "name": "video-production.tar.gz.part0027",
+      "bytes": 536870912,
+      "sha256": "e4c623939aeef6374df5cc99ae9d7b2b0a3220c52b5cd5e58bd883230d4f059e",
+      "remote_digest": "sha256:e4c623939aeef6374df5cc99ae9d7b2b0a3220c52b5cd5e58bd883230d4f059e",
+      "asset_id": 623887525,
+      "url": "https://github.com/musicMapTeam/musicSpace/releases/download/archive-video-production-20261009/video-production.tar.gz.part0027",
+      "verified": true
+    },
+    {
+      "index": 28,
+      "name": "video-production.tar.gz.part0028",
+      "bytes": 536870912,
+      "sha256": "c99bbd9be783ba10fcfd0921a9cd25872c1a06cd65c13f688ae713b0d6b1ca01",
+      "remote_digest": "sha256:c99bbd9be783ba10fcfd0921a9cd25872c1a06cd65c13f688ae713b0d6b1ca01",
+      "asset_id": 623888692,
+      "url": "https://github.com/musicMapTeam/musicSpace/releases/download/archive-video-production-20261009/video-production.tar.gz.part0028",
+      "verified": true
+    },
+    {
+      "index": 29,
+      "name": "video-production.tar.gz.part0029",
+      "bytes": 536870912,
+      "sha256": "29c64386b98ef778ab0a3a48940006406ecb93b4691f7df9e95b3641b7b9a0a5",
+      "remote_digest": "sha256:29c64386b98ef778ab0a3a48940006406ecb93b4691f7df9e95b3641b7b9a0a5",
+      "asset_id": 623894929,
+      "url": "https://github.com/musicMapTeam/musicSpace/releases/download/archive-video-production-20261009/video-production.tar.gz.part0029",
+      "verified": true
+    },
+    {
+      "index": 30,
+      "name": "video-production.tar.gz.part0030",
+      "bytes": 133074160,
+      "sha256": "b8e50a142bbe5e44c289722a85f5f2617b3489fa2b6c919e345504db60ea7d3a",
+      "remote_digest": "sha256:b8e50a142bbe5e44c289722a85f5f2617b3489fa2b6c919e345504db60ea7d3a",
+      "asset_id": 623895209,
+      "url": "https://github.com/musicMapTeam/musicSpace/releases/download/archive-video-production-20261009/video-production.tar.gz.part0030",
+      "verified": true
+    }
+  ],
+  "complete": true,
+  "gzip_level": 1,
+  "deterministic_mtime": 0,
+  "upload_concurrency": 3,
+  "max_generated_part_bytes": 1610612736,
+  "full_stream_gzip_validated": true,
+  "uncompressed_tar_bytes": 16846428160,
+  "compressed_stream_bytes": 15702330608,
+  "compressed_stream_sha256": "ad07585e15131b61e702bb5a887837162f21dce6d58799c9bf9499766b5b5377",
+  "archive_counts": {
+    "regular": 24625,
+    "hardlinks": 9491,
+    "symlinks": 71,
+    "dirs": 1947,
+    "bytes_verified": 20345825396
+  },
+  "remote_part_count": 30,
+  "verified_utc": "2026-10-09T04:35:51Z"
+}

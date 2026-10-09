@@ -1,0 +1,22 @@
+{
+  "uploaded_or_uploading_prefix_parts": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "last_archive_progress_before_stop": 3001,
+  "upper_bound_source_files_before_next_logged_checkpoint": 4000,
+  "prefix_payload_roots": [
+    "/Users/alakazan/workplace/tme/video-production",
+    "/private/tmp/space-video-doodle"
+  ],
+  "private_databases_all_original_roots": [
+    "/private/tmp/space-video-prep",
+    "/private/tmp/space-doodle",
+    "/private/tmp/space-copy"
+  ],
+  "private_key_original_root": "/private/tmp/space-doodle",
+  "none_of_private_roots_reached": true,
+  "note": "Only payload, not original-path metadata, is assessed. The writer was interrupted while waiting for a slot after part4; all roots directories are written first but contain no file data."
+}

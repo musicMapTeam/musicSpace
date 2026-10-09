@@ -12,8 +12,8 @@
     },
     {
       "root": "/private/tmp/space-video-doodle",
-      "included_regular_files": 9864,
-      "included_regular_bytes": 10908416635,
+      "included_regular_files": 9603,
+      "included_regular_bytes": 9995490732,
       "symlinks": 0,
       "directory_entries": 436,
       "excluded_regular_bytes": 8779586499,
@@ -21,8 +21,8 @@
     },
     {
       "root": "/private/tmp/space-video-prep",
-      "included_regular_files": 5234,
-      "included_regular_bytes": 3038142407,
+      "included_regular_files": 5208,
+      "included_regular_bytes": 3027895183,
       "symlinks": 1,
       "directory_entries": 251,
       "excluded_regular_bytes": 368600556,
@@ -30,8 +30,8 @@
     },
     {
       "root": "/private/tmp/space-doodle",
-      "included_regular_files": 11930,
-      "included_regular_bytes": 3094120584,
+      "included_regular_files": 11923,
+      "included_regular_bytes": 3092103644,
       "symlinks": 40,
       "directory_entries": 499,
       "excluded_regular_bytes": 0,
@@ -48,8 +48,8 @@
     },
     {
       "root": "/private/tmp/space-copy",
-      "included_regular_files": 2584,
-      "included_regular_bytes": 1022516753,
+      "included_regular_files": 2580,
+      "included_regular_bytes": 1021111825,
       "symlinks": 0,
       "directory_entries": 176,
       "excluded_regular_bytes": 0,
@@ -102,11 +102,11 @@
       "scope": "Only the two explicitly requested unique video workflow scripts"
     }
   ],
-  "included_regular_bytes": 21272420391,
-  "unique_sha256_regular_bytes": 17689613822,
-  "duplicate_regular_bytes": 3582806569,
+  "included_regular_bytes": 20345825396,
+  "unique_sha256_regular_bytes": 16802567795,
+  "duplicate_regular_bytes": 3543257601,
   "excluded_regular_bytes": 15654928309,
-  "included_file_entries": 34485,
+  "included_file_entries": 34187,
   "included_directory_entries": 1947,
   "standard_tar_bytes_before_longname_pax_headers": null,
   "archive_size_note": "Logical payload exact; actual compressed archive size cannot be known before compression. Standard tar estimate excludes extended path headers and end block padding.",
@@ -190,8 +190,22 @@
     }
   ],
   "confirmed_secret_files": [],
-  "secret_scan_note": "Pattern-based scan of retained text/source files up to 16 MiB; no confirmed secrets. Two test fixtures contain fixed test passwords; 15 matches inside task identifiers dismissed.",
+  "secret_scan_note": "Complete retained-file header scan plus UTF-8 text scan found one private PEM key in a test harness; key privately hashbacked and excluded. No credential tokens or private keys remain in public payload.",
   "reproducibility_note": "Kept 346404948-byte downloaded AST model because no verified pinned download revision was established; retained all raw capture, source music, fonts/licenses, review evidence, and distinct output versions.",
   "branch_source_file_count": 6380,
-  "branch_source_logicalbytes": 228292515
+  "branch_source_logicalbytes": 228292515,
+  "private_database_file_count": 36,
+  "private_database_bytes": 13667384,
+  "private_database_backup_root": "/Users/alakazan/Documents/project-backup-receipts/2026-10-09/tme-temporary-databases",
+  "private_key_file_count": 1,
+  "private_key_backup_root": "/Users/alakazan/Documents/project-backup-receipts/2026-10-09/tme-private-test-tls-key",
+  "private_key_backup_bytes": 1708,
+  "additional_proven_regenerable_file_count": 261,
+  "additional_proven_regenerable_bytes": 912925903,
+  "source_coverage_counts": {
+    "public_file_entries": 34187,
+    "private_local_file_entries": 37,
+    "individually_proven_regenerable_file_entries": 261,
+    "total_original_inventoried_file_entries": 34485
+  }
 }

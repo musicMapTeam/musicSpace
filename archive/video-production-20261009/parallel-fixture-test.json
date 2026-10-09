@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "parts": 35,
+  "max_simultaneous_generated_parts": 3,
+  "slot_limit": 3,
+  "threadsafe_ledger": true,
+  "sha256_remote_verification": true,
+  "actual_full_gzip_stream_validation": true,
+  "verified_parts_removed": true
+}
